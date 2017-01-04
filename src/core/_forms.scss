@@ -1,0 +1,162 @@
+@import "vars";
+@import "colors";
+
+input {
+	font-size: $font-size;
+	border: 1px solid $gray50;
+	outline: 1px solid $white;
+    outline-offset: 1px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 30px;
+	transition: all 0.1s;
+	min-width: 280px;
+	margin: 2px;
+	&.sm {
+		height: 20px;
+	}
+	&.md {
+		height: 30px;
+	}
+	&.lg {
+		height: 40px;
+	}
+	&:focus {
+		outline: 1px solid $blue50;
+	    outline-offset: 1px;
+	}
+}
+
+.checkbox {
+	width: 20px;
+	position: relative;
+	display: inline-block;
+	margin: 1px;
+	label {
+	    width: 20px;
+	    height: 20px;
+	    cursor: pointer;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    background: #fcfff4;
+	    background: $white;
+	    border: 1px solid $gray50;
+	    outline: 1px solid $white;
+	    outline-offset: 1px;
+	    &:after {
+			content: '';
+			width: 10px;
+			height: 5px;
+			position: absolute;
+			top: 5px;
+			left: 4px;
+			border: 2px solid $gray50;
+			border-top: none;
+			border-right: none;
+			background: transparent;
+			opacity: 0;
+			transform: rotate(-45deg);
+	    }
+	    &:hover::after {
+	    	opacity: 0.5;
+	    }
+	    &:hover {
+	    	border: 1px solid $blue50;
+	    }
+	}
+	input[type=checkbox] {
+		opacity: 0;
+	    height: 20px;
+	    min-width: 0;
+	    &:checked + label {
+	    	border: 1px solid $blue50;
+	    }
+	    &:checked + label:after {
+	    	opacity: 1;
+	    	border: 2px solid $blue50;
+	    	border-top: none;
+			border-right: none;
+	    }
+	    &:focus {
+	    	outline: none;
+	    }
+	    &:focus + label {
+	    	outline: 1px solid $blue50;
+	    }
+	}	
+}
+
+.radio {
+	width: 20px;
+	position: relative;
+	display: inline-block;
+	margin: 1px;
+	label {
+	    width: 20px;
+	    height: 20px;
+	    cursor: pointer;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    background: #fcfff4;
+	    background: $white;
+	    border: 1px solid $gray50;
+	    outline: 1px solid $white;
+	    outline-offset: 1px;
+	    border-radius: 15px;
+	    &:after {
+			content: '';
+			width: 10px;
+			height: 5px;
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			border: 7px solid $gray50;
+			background: transparent;
+			opacity: 0;
+			border-radius: 15px;
+	    }
+	    &:hover::after {
+	    	opacity: 0.5;
+	    }
+	    &:hover {
+	    	border: 1px solid $blue50;
+	    }
+	}
+	input[type=radio] {
+		opacity: 0;
+	    height: 20px;
+	    min-width: 0;
+	    outline: none;
+	    &:checked + label {
+	    	border: 1px solid $blue50;
+	    }
+	    &:checked + label:after {
+	    	opacity: 1;
+	    	border: 7px solid $blue50;
+	    }
+	    &:focus {
+	    	outline: none;
+	    }
+	    &:focus + label {
+	    	outline: 1px solid $blue50;
+	    }
+	}	
+}
+
+textarea {
+	font-size: $font-size;
+	padding: 10px;
+	border: 1px solid $gray50;
+	outline: 1px solid $white;
+	outline-offset: 1px;
+	height: 114px;
+	width: 385px;
+	transition: all 0.1s;
+	margin: 2px;
+	&:focus {
+		outline: 1px solid $blue50;
+	    outline-offset: 1px;
+	}
+}

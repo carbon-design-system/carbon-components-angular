@@ -1,0 +1,31 @@
+<h2>Accessibility</h2>
+
+<p>There are no standard HTML elements for a combo box. A combo box is the combined presentation of a single line text field with a drop-down list or a list box. Keyboard events must be built into the control so the user can interact with the combo box as specified in the usage section of this standard.</p>
+<p>When larger fonts are used, the text in the text field and the selection choices should still be visible.</p>
+<p>When hint text is provided in the text field that has no default or prior selection, ensure it has good color contrast. The contrast between text (and images of text) and the background behind the text must meet the following minimum requirements based on the size of the text:</p>
+<ul>
+<li>Small text: 4.5:1 contrast ratio for plain text that is less than 18 point if not bold and bold text that is less than 14 point. </li>
+<li>Large text: 3:1 contrast ratio for plain text that is at least 18 point if not bold and bold text that is at least 14 point. </li>
+</ul>
+
+<h3>The WAI-ARIA markup for the combo box is as follows:</h3>
+<ul>
+<li>The container element for the combo box has a role="combobox". </li>
+<li>Elements with the role combobox have an implicit aria-haspopup="true". </li>
+<li>The combo box must have aria-expanded="true" when the drop-down list is displayed or aria-expanded="false" when it is not. </li>
+<li>Set the property aria-disabled="true" when the combo box is disabled and aria-disabled="false" when it is enabled. </li>
+<li>The first child element within the combo box is an input text field with a role="textbox" and is responsible for managing the keyboard focus between the text field and the drop-down list as well as displaying the list. You must ensure this text field is in the tab order. </li>
+<li>Set the aria-autocomplete attribute on the text field to indicate whether completion suggestions are provided and how the suggestions are provided. Depending on this attribute's value, the following must also be done to ensure interoperability with assistive technology: 
+		<ul>
+  <li>When aria-autocomplete="none" (the default setting), authors must manage and set focus on the associated list box, so assistive technologies can follow the currently selected value. </li>
+  <li>When aria-autocomplete is set to inline or both, authors must update the value of the focused text field, so assistive technologies can announce the currently selected value. </li>
+  <li>When aria-autocomplete="list", user agents (browsers) or assistive technologies must follow the aria-activedescendant of the combo box, and authors should associate the combo box text field with its list box using aria-owns. </li>
+  </ul>
+</li>
+<li>Whenever the list of options is a drop-down, the next element is an HTML &lt;button&gt;, or another element with a role="button". This element is used to toggle the display of the combo box's drop-down list and is not included in the tab order because keystrokes are available to open the drop-down list.</li>
+<li>The next element has a role="listbox" and represents the drop-down list. It manages keyboard navigation among list items and navigating back to the text field if necessary. </li>
+<li>Each item in the list box has a role="option". Options are not in the tab order. </li>
+<li>Provide a label for the combo box by referencing the text field in the combo box. You can use an aria-label to associate a hidden label with the combo box or you may use the HTML &lt;label&gt; element with the "for" attribute to reference the text field. </li>
+<li>To be keyboard accessible, authors need to manage the keyboard focus of descendants for all instances of the combo box role. </li>
+<li>If the list box is resizable, it must be resizable using the keyboard, such as adding a Resize list option to the context menu for the list box. Note, context menus are always displayed using Shift+F10. In addition, you can add a tooltip to the expandable indicator icon that says "Use right/left arrow key to resize the list" and implement those keys to expand/contract the list. </li>
+</ul>

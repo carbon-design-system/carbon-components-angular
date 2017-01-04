@@ -1,0 +1,231 @@
+<div class="container-fluid">
+    <h1 class="page-header">Combination (a.k.a. Combo) Boxes</h1>
+    <p class="lead">Users need to choose one or more items from a list, and they need to be able to add new items to the list as well.</p>
+    <tabset>
+        <tab heading="Demo">
+            <div class="alert alert-info">
+                <p>The combination box element is still in progress.</p>
+            </div>
+        </tab>
+        <tab heading="UX specification">
+                <!-- to implement anchor links to the various sections of the page once we have the proper code
+                                <div class="col-md-9">
+                                    <div ng-show="selectedDoc == null || selectedDoc === 'comboboxes'"
+                                         ng-include="'comboboxes/views/comboboxes.html'"
+                                         class="bs-docs-section"></div>
+
+                                    <div ng-show="selectedDoc === 'states'"
+                                         ng-include="'comboboxes/views/states.html'"
+                                         class="bs-docs-section"></div>
+
+                                    <div ng-show="selectedDoc === 'interactions'"
+                                         ng-include="'comboboxes/views/interactions.html'"
+                                         class="bs-docs-section"></div>
+
+                                    <div ng-show="selectedDoc === 'accessibility'"
+                                         ng-include="'comboboxes/views/accessibility.html'"
+                                         class="bs-docs-section"></div>
+
+                                    <div ng-show="selectedDoc === 'globalization'"
+                                         ng-include="'comboboxes/views/globalization.html'"
+                                         class="bs-docs-section"></div>
+
+
+                                </div><!--/.col-md-9-->
+                <!-- <div class="col-md-3">
+                    <div class="bs-docs-sidebar">
+                        <ul class="nav bs-docs-sidenav">
+                            <li ng-class="{active: selectedDoc === null || selectedDoc === 'comboboxes'}">
+                                <a href ng-click="selectedDoc = 'comboboxes'">Overview</a></li>
+                            <li ng-class="{active: selectedDoc === 'interactions'}">
+                                <a href ng-click="selectedDoc = 'interactions'">Interactions</a></li>
+                            <li ng-class="{active: selectedDoc === 'states'}">
+                                <a href ng-click="selectedDoc = 'states'">States</a></li>
+                            <li ng-class="{active: selectedDoc === 'accessibility'}">
+                                <a href ng-click="selectedDoc = 'accessibility'">Accessibility</a></li>
+                            <li ng-class="{active: selectedDoc === 'globalization'}">
+                                <a href ng-click="selectedDoc = 'globalization'">Globalization</a></li>
+                        </ul>
+                    </div>-->
+                    <!--/.bs-docs-sidebar-->
+                    <!-- </div><!--/.col-md-3-->
+                    <h2>What they're for...</h2>
+                    <p>A combo box is a way to show a list of items, as well as to add an item. A combo box is a combination of a drop-down list, or a list box, and a single line text field. </p>
+                    <h2>Use when...</h2>
+                    <p>Use a combo box when the user needs to select one or more items from a list, and where they can add a new item to the list as well.</p>
+
+                    <h2>Implementation</h2>
+                    <p>A combo box is a combination of a drop-down list or a list box, and a single line text field that allows the user to type a value that isn't in the list, or to find and choose from the existing list.</p>
+                    <p>An editable drop down list is a combination of a drop-down list and an editable text field. This combination is most commonly used, to save real estate.</p>
+                    <p>An editable list box is a combination of a list box and an editable text field. This combination is less commonly used because it uses so much of the space in the window. The combination of list box and text field is used to encourage the user to review the alternative choices, and draw attention to an item in the list.</p>
+
+                    <ul>
+                        <li>If space is constrained, implement the combo box with a drop-down list instead of a list box. This combination is most commonly used, to save real estate. </li>
+                        <li>Implement the combo boxes with a list box when space is unconstrained. This combination is less commonly used because it uses so much of the space in the window.
+                            The combination of list box and text field is used to encourage the user to review the alternative choices, and draw attention to an item in the list.</li>
+                        <li>If a user enters text that is not valid (for example, text instead of a number) you must handle the error with an error message.</li>
+                        <li>Clicking the arrow, or using the Alt+Up/Down arrow or Up/Down arrow keys, opens the drop-down list so the user can see likely choices in advance, and a list of previous user values.</li>
+                        <li>Ideally, the list of possible values does not exceed 30. If there are more than 30 choices, consider showing a representative sample.
+                            This works well when the user can easily enter a different value. (For example, you can list the most common font sizes, and users who want to use a less common size can type it in.)
+                            However, if a user might have difficulty entering the value correctly, it is better to display the full list of choices and scroll the list if needed.
+                        </li>
+                    </ul>
+
+                    <h3>Order of choices</h3>
+                    <p>Unless a more natural order is appropriate, sort the list items alphabetically.</p>
+
+                    <h3>Default choices</h3>
+                    <ul>
+                        <li>When there is a reasonable default value, supply it initially in the text field and as selected in the list.</li>
+                        <li>When there is a single click in the text field, or when the text field receives focus, the text in the entry should automatically be selected.</li>
+                        <li>With the first character entered, the default or previous value is automatically removed.</li>
+                        <li>When there is no default value, you may use a prompt label in the text field for identifying the purpose of the combo box.</li>
+                        <li>It must not be crucial information that user needs to see while using the combo box.</li>
+                        <li>The prompt text should be in italic and in grey. It must not be confused with real text in black. Use sentence style capitalization for the prompt text. </li>
+                    </ul>
+
+                    <h3>Alignment</h3>
+                    <ul>
+                        <li>The text in a combo box does not wrap. Use clear and concise items.</li>
+                        <li>Avoid using horizontal scroll. If necessary, resize the list, or display the tail and the beginning of the value instead.</li>
+                        <li>Sometimes expanding the drop-down list overlaps other UI elements.</li>
+                    </ul>
+
+                    <h2>States</h2>
+                    <p>A combo box can have these states:</p>
+                    <dl class="dl-horizontal">
+                        <dt>Enabled</dt>
+                        <dd>The user can choose from the list, or create a new entry.</dd>
+                        <dt>Disabled</dt>
+                        <dd>Both the disabled combo box and the label are unavailable to the user. The combo box cannot be selected. If an option is preselected, it is still visible in gray text.</dd>
+                    </dl>
+
+                    <h2>Interactions</h2>
+
+                    <ul>
+                        <li>When the user selects, clicks or moves keyboard focus to the text field, the cursor is set and the user can type a value. The items are mutually exclusive.</li>
+                        <li>Clicking the arrow of the drop-down list or using the Alt+Up/Down arrow keys, opens the drop-down part, but does not place the focus on the text field.</li>
+                        <li>Text does not wrap in this control. Write the list choices as concisely as possible.</li>
+
+                    </ul>
+                    <h3>Clicking on, touching or tabbing to the text field</h3>
+                    <ul>
+                        <li>When the user clicks on, touches, or tabs to the text field part of the combo box, focus is set with all the current text selected, so the user can start typing immediately to replace existing text. </li>
+                        <li>For combo box with a drop-down list, as the user types, the drop-down list opens when there is a potential match in the list, showing the list of potential matches and highlighting the first match. The opened list closes if the user continues to type letters and there are no longer any potential matches. If there is never a match, the list does not open. If the list is always displayed, no highlight selector is shown until a match is found.  The items in the drop-down filter use the same rules as auto-complete. Auto-complete involves the program predicting a word(s) that the user wants to type in without the user actually typing it in completely.  </li>
+                        <li>Until the user highlights a particular choice, only the typed letters are displayed in the text field. </li>
+                    </ul>
+
+                    <h3>Clicking or touching the drop down arrow, or pressing the Alt+Up/Down arrow or Up/Down arrow when focus is on the text field</h3>
+                    <ul>
+                        <li>The drop down list opens, so the user can see the options in the list. </li>
+                        <li>The default or preselected list option is automatically highlighted. </li>
+                        <li>Focus remains in the text field, so the user can type characters. </li>
+                        <li>For desktop applications, additional key presses of Alt+Up/Down arrow keys toggles the drop-down list closed/opened. </li>
+                    </ul>
+
+                    <h3>Selecting an option by touching, clicking with the mouse, or pressing the Enter key</h3>
+                    <ul>
+                        <li>The drop-down list closes. </li>
+                        <li>The selected option is shown in the text field part of the combo box. </li>
+                        <li>Focus returns to the text field. </li>
+                    </ul>
+
+                    <h3>Exiting the drop down list by touching outside it, or pressing Esc key</h3>
+                    <ul>
+                        <li>The drop-down closes. </li>
+                        <li>Focus returns to the text field </li>
+                    </ul>
+
+                    <h3>Keyboard (Desktop) Only Interactions</h3>
+
+
+                    <h3>Pressing Up/Down arrow key when the drop down list is open </h3>
+                    <ul>
+                        <li>Places keyboard focus on the selector. If there was no selector, the selector and keyboard focus is placed on the first option in the list. </li>
+                        <li>Moves the highlight selector up/down in the drop-down list. </li>
+                        <li>Updates the contents of the text field to the text of the currently selected option. </li>
+                        <li>When keyboard navigation is at the top/bottom element in the drop down list, Up/Down arrow keys do not cause the selector to wrap around to the bottom/top element. Instead the selector remains on the same element in the list. </li>
+                        <li>Saves the current cursor position in the text field.</li>
+                    </ul>
+
+                    <h3>Pressing Home/End key when keyboard focus is in the text field</h3>
+                    <ul>
+                        <li>Removes selection highlight from text in the text field. </li>
+                        <li>Moves the input cursor in front of the first character or after the last character, respectively. </li>
+                    </ul>
+
+                    <h3>Pressing Home/End key when keyboard focus is on an option in the list </h3>
+                    <ul>
+                        <li>Moves the highlight selector and keyboard focus to the first/last option in the drop-down list. </li>
+                    </ul>
+
+                    <h3>Pressing page Up/Down key when keyboard focus is in the list</h3>
+                    <ul>
+                        <li>Pages the content of the drop-down list up/down. </li>
+                        <li>Moves the highlight selector to the topmost/bottommost visible list option. </li>
+                    </ul>
+
+                    <h3>Pressing Tab key when the keyboard focus is in the list</h3>
+                    <ul>
+                        <li>Updates the contents of the text field part of the combo box to the text of the currently selected option. </li>
+                        <li>The drop-down list closes. </li>
+                        <li>Moves keyboard focus to the next interactive UI element in the Tab order. </li>
+                    </ul>
+
+                    <h3>Typing characters when keyboard focus is on the list</h3>
+                    <ul>
+                        <li>Returns focus to the text field at the saved cursor position. </li>
+                        <li>Other behaviors are documented in the first bullet above.</li>
+                    </ul>
+
+                    <h2>Accessibility</h2>
+
+                    <p>There are no standard HTML elements for a combo box. A combo box is the combined presentation of a single line text field with a drop-down list or a list box. Keyboard events must be built into the control so the user can interact with the combo box as specified in the usage section of this standard.</p>
+                    <p>When larger fonts are used, the text in the text field and the selection choices should still be visible.</p>
+                    <p>When hint text is provided in the text field that has no default or prior selection, ensure it has good color contrast. The contrast between text (and images of text) and the background behind the text must meet the following minimum requirements based on the size of the text:</p>
+                    <ul>
+                        <li>Small text: 4.5:1 contrast ratio for plain text that is less than 18 point if not bold and bold text that is less than 14 point. </li>
+                        <li>Large text: 3:1 contrast ratio for plain text that is at least 18 point if not bold and bold text that is at least 14 point. </li>
+                    </ul>
+
+                    <h3>The WAI-ARIA markup for the combo box is as follows:</h3>
+                    <ul>
+                        <li>The container element for the combo box has a <code>role="combobox"</code>. </li>
+                        <li>Elements with the role combobox have an implicit <code>aria-haspopup="true"</code>. </li>
+                        <li>The combo box must have <code>aria-expanded="true"</code> when the drop-down list is displayed or <code>aria-expanded="false"</code> when it is not. </li>
+                        <li>Set the property <code>aria-disabled="true"</code> when the combo box is disabled and <code>aria-disabled="false"</code> when it is enabled. </li>
+                        <li>The first child element within the combo box is an input text field with a <code>role="textbox"</code> and is responsible for managing the keyboard focus between the text field and the drop-down list as well as displaying the list. You must ensure this text field is in the tab order. </li>
+                        <li>Set the aria-autocomplete attribute on the text field to indicate whether completion suggestions are provided and how the suggestions are provided. Depending on this attribute's value, the following must also be done to ensure interoperability with assistive technology:
+                            <ul>
+                                <li>When <code>aria-autocomplete="none"</code> (the default setting), authors must manage and set focus on the associated list box, so assistive technologies can follow the currently selected value. </li>
+                                <li>When <code>aria-autocomplete</code> is set to inline or both, authors must update the value of the focused text field, so assistive technologies can announce the currently selected value. </li>
+                                <li>When <code>aria-autocomplete="list"</code>, user agents (browsers) or assistive technologies must follow the aria-activedescendant of the combo box, and authors should associate the combo box text field with its list box using aria-owns. </li>
+                            </ul>
+                        </li>
+                        <li>Whenever the list of options is a drop-down, the next element is an HTML &lt;button&gt;, or another element with a <code>role="button"</code>. This element is used to toggle the display of the combo box's drop-down list and is not included in the tab order because keystrokes are available to open the drop-down list.</li>
+                        <li>The next element has a <code>role="listbox"</code> and represents the drop-down list. It manages keyboard navigation among list items and navigating back to the text field if necessary. </li>
+                        <li>Each item in the list box has a <code>role="option"</code>. Options are not in the tab order. </li>
+                        <li>Provide a label for the combo box by referencing the text field in the combo box. You can use an aria-label to associate a hidden label with the combo box or you may use the HTML &lt;label&gt; element with the "for" attribute to reference the text field. </li>
+                        <li>To be keyboard accessible, authors need to manage the keyboard focus of descendants for all instances of the combo box role. </li>
+                        <li>If the list box is resizable, it must be resizable using the keyboard, such as adding a Resize list option to the context menu for the list box. Note, context menus are always displayed using Shift+F10. In addition, you can add a tooltip to the expandable indicator icon that says "Use right/left arrow key to resize the list" and implement those keys to expand/contract the list. </li>
+                    </ul>
+
+                    <h2>Globalization</h2>
+
+                    <p>For translated text, use leading edge to specify the placement of the combo box label. Use sentence style capitalization for combo box label. Use sentence style capitalization for choices unless the item is a proper noun.</p>
+                    <p>See the Globalization sections for drop-down lists, and list boxes for more information.</p>
+
+
+            <!-- </div>/.bs-docs-sidebar-->
+
+
+
+</tab>
+        <tab heading="UX blueprint">
+    <p>Coming soon.
+        <!--<img src="comboboxes/comboboxes_blueprints.png" alt="Combo Boxes Blueprint" class="img-responsive" /> -->
+
+    </p>
+</tab>
+</tabset>
+</div>

@@ -1,0 +1,65 @@
+<h2 class="page-header">Labels</h2>
+<p class="lead">Buttons must be labeled with text, a graphic, or both text and a graphic.</p>
+<p>Generally, buttons need only a text label. Since buttons represent actions that the user can
+	take, the text is usually the verb that is the action (for example, Add or Cancel). The text
+	can also be the answer to a leading question, such as OK, Yes, or No in response to “Do you
+	really want to do x?” If you need to use longer descriptive text, it should be placed outside
+	the button.</p>
+<p>Graphics include icons and other images. Graphics provide a visual indication of the action
+	that can be performed. They are generally used on toolbars and for actions where the metaphor
+	is familiar. See the Iconography section for information on using glyphicons on buttons and
+	other user interface elements.</p>
+<ul>
+	<li>Consider combining text and graphics only when the graphic aids in comprehension, such as
+		when it is a standard symbol for the command or helps users visualize the results of the
+		command.</li>
+	<li>If you are using a fixed-width button, the label text will wrap within that fixed size.
+		If you are using a variable-width button, it will expand to the length of the text. In
+		this case, be aware of the extra space required for translation to ensure that your
+		buttons do not get overly long.</li>
+	<li>Do not use text characters in button labels to represent arrows or other shapes.
+		Characters used this way do not translate well. An example would be using < or > in an
+		Add/Remove button.</li>
+	<li>Use one-word button labels where possible. Avoid using more than three words on a button
+		label.</li>
+</ul>
+<p>It is not recommended to create buttons that have only an icon as a label. Mobile environments
+	do not allow for tooltip support, and icons are not always intuitive and easy to understand.
+	If you do use buttons that are labeled only with icons, consider adding text to the graphic
+	when the graphic alone is not sufficiently self-explanatory, or in toolbars where there are
+	so few buttons that each one can have its own text label. Combining text and graphics on a
+	button is also useful where the graphic is used elsewhere in the product, and/or you want to
+	help build recognition for a new symbol. Avoid using graphical images of text in buttons,
+	unless there is an exceptional circumstance such as in a bold, italic, or font-sizing button
+	.</p>
+<div class="bs-example">
+	<div class="btn-toolbar" role="toolbar">
+		<button type="button" class="btn btn-default btn-lg"><span
+				class="glyphicon glyphicon-save"></span> Save</button>
+		<button type="button" class="btn btn-default"><span
+				class="glyphicon glyphicon-save"></span> Save</button>
+		<button type="button" class="btn btn-default btn-sm"><span
+				class="glyphicon glyphicon-save"></span> Save</button>
+	</div>
+</div>
+<div class="highlight"><pre><code class="html">
+		   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
+		   <span class="na">class=</span><span
+			   class="s">&quot;btn btn-default btn-lg&quot;</span><span class="nt">&gt;</span>
+		   <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-save&quot;</span><span
+			   class="nt">&gt;&lt;/span&gt;</span> Save
+		   <span class="nt">&lt;/button&gt;</span>
+		   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
+		   <span class="na">class=</span><span class="s">&quot;btn btn-default&quot;</span><span
+			   class="nt">&gt;</span>
+		   <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-save&quot;</span><span
+			   class="nt">&gt;&lt;/span&gt;</span> Save
+		   <span class="nt">&lt;/button&gt;</span>
+		   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
+		   <span class="na">class=</span><span
+			   class="s">&quot;btn btn-default btn-sm&quot;</span><span class="nt">&gt;</span>
+		   <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;glyphicon glyphicon-save&quot;</span><span
+			   class="nt">&gt;&lt;/span&gt;</span> Save
+		   <span class="nt">&lt;/button&gt;</span>
+	   </code></pre>
+</div>

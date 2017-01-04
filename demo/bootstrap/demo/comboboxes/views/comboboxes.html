@@ -1,0 +1,39 @@
+<h2>What they're for...</h2>
+<p>A combo box is a way to show a list of items, as well as to add an item. A combo box is a combination of a drop-down list, or a list box, and a single line text field. </p>
+<h2>Use when...</h2>
+<p>Use a combo box when the user needs to select one or more items from a list, and where they can add a new item to the list as well.</p>
+<h2>Implementation</h2>
+<p>A combo box is a combination of a drop-down list or a list box, and a single line text field.  
+This allows the user to type a value that isn't in the list, or to choose from the list of existing options.</p>
+<p>See the Drop-down, Text field, and List box guidelines for styling and blueprint information.</p>
+<ul>
+    <li>If space is constrained, implement the combo box with a drop-down list instead of a list box. This combination is most commonly used, to save real estate. </li>
+    <li>Implement the combo boxes with a list box when space is unconstrained. This combination is less commonly used because it uses so much of the space in the window.
+    The combination of list box and text field is used to encourage the user to review the alternative choices, and draw attention to an item in the list.</li>
+				<li>If a user enters text that is not valid (for example, text instead of a number) you must handle the error with an error message.</li>
+    <li>Ideally, the list of possible values does not exceed 30. If there are more than 30 choices, consider showing a representative sample. 
+    This works well when the user can easily enter a different value. (For example, you can list the most common font sizes, and users who want to use a less common size can type it in.) 
+    However, if a user might have difficulty entering the value correctly, it is better to display the full list of choices and scroll the list if needed.
+</li>
+</ul>
+
+<p>On desktop applications, clicking the arrow, or using the Alt+Up/Down arrow or Up/Down arrow keys, opens the drop-down list so the user can see likely choices in advance, and a list of previous user values.</p>
+<h3>Order of choices</h3>
+<p>Unless a more natural order is appropriate, sort the list items alphabetically.</p>
+
+<h3>Default choice</h3>
+<p>When there is a reasonable default value, supply it initially in the text field and as selected in the list. 
+When there is a single click in the text field, or when the text field receives focus, the text in the entry should automatically be selected. 
+With the first character entered, the default or previous value is automatically removed. 
+When there is no default value, you may use a prompt label in the text field for identifying the purpose of the combo box. 
+It must not be crucial information that user needs to see while using the combo box. 
+The prompt text should be in italic and in grey. It must not be confused with real text in black. Use sentence style capitalization for the prompt text. </p>
+
+<h3>Label and choices</h3>
+<p>For globalization, use leading edge to specify the placement of the combo box label. Note: these guidelines assume left alignment as the leading edge, however right alignment should be assumed for the leading edge, as appropriate per locale.</p>
+<h3>Alignment</h3>
+<ul>
+    <li>The text in a combo box does not wrap. Use clear and concise items.</li>
+    <li>Avoid using horizontal scroll. If necessary, resize the list, or display the tail and the beginning of the value instead.</li>
+    <li>Sometimes expanding the drop-down list overlaps other UI elements.</li>
+</ul>

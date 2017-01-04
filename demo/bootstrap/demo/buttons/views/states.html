@@ -1,0 +1,51 @@
+<h2 class="page-header">States</h2>
+<h4>The following states are available in both mobile and non-mobile environments:</h4>
+<dl class="dl-horizontal">
+	<dt>Enabled (active)</dt>
+	<dd>An enabled button is a button that a user can act on.</dd>
+	<dt>Disabled (inactive)</dt>
+	<dd>A disabled button is a button that a user can't act on.</dd>
+	<dt>Selected</dt>
+	<dd>A button is selected when the user presses and holds the mouse button while the cursor is
+		on the button (non-mobile environment) or pushes and holds on the button (mobile
+		environment).</dd>
+	<dt>Hover</dt>
+	<dd>A button is in a <strong>hover</strong> state when the mouse or user's finger moves over
+		it. This state is not available on all mobile OS platforms and devices.</dd>
+</dl>
+<h4>These states apply to non-mobile devices:</h4>
+<dl class="dl-horizontal">
+	<dt>Default</dt>
+	<dd>A default button is the one that initially has focus. There is no distinct visual to
+		identify the default.</dd>
+	<dt>Focus</dt>
+	<dd>A button other than the default button gains focus when the user navigates to it using
+		the keyboard. The button with focus will be activated when the user presses the Enter key
+		or the space bar key.</dd>
+</dl>
+<p>Each state has its own visual treatments. Multiple states are supported — for example, a
+	button that is enabled (active) will additionally show a hover state when the mouse moves
+	over it, while a disabled button will not.</p>
+<h3>Hide, show or disable</h3>
+<p><strong>Hide actions that are not applicable, unless one of the following conditions is
+	true:</strong></p>
+<ul>
+	<li>The user can enable it.</li>
+	<li>The state is transient or temporary.</li>
+</ul>
+<p>In these cases, leave the actions enabled and provide the conditions of enablement on click.</p>
+<p><strong>Always leave the following enabled, and guide the user when not applicable (for example,
+	the search box could include hint text):</strong></p>
+<ul>
+	<li>Search buttons</li>
+	<li>Form submission buttons (including wizards)</li>
+</ul>
+<p><strong>Dynamically disable the following buttons, and modify the tooltip text in supporting
+	browsers:</strong></p>
+<ul>
+	<li>Toolbar buttons</li>
+	<li>Nested form button</li>
+</ul>
+<p>It is strongly recommended that the button label be amended and the button disabled to
+	acknowledge an action that the user has taken. For example, when the user clicks the Buy
+	button, disable the button and change the label to Buying…</p>

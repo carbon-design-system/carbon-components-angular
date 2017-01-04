@@ -1,0 +1,166 @@
+<div class="container-fluid">
+<h1 class="page-header">Toggle Buttons</h1>
+    <p class="lead">A toggle button is a specialized control which has two states: on or off.  </p>
+    <tabset>
+        <tab heading="Demo">
+            <p>Coming soon.</p>
+            </tab>
+        <tab heading="UX specifications">
+                <div class="col-md-9">
+                <a id="overview"></a>
+                <h2>What they're for...</h2>
+                <p>Toggles are typically used for filtering the display of items in an interface, or for turning functions on or off.</p>
+                
+                <h2>Use when...</h2>
+                <p></p>
+                
+                <h2>Implementation</h2>
+                <p>Toggle buttons, like simple buttons, result in an immediate action, but the result toggles between two states. Clicking/pressing the button shows the action selected, signifying that it is active. Clicking/pressing the button again returns it to its previous state, signifying that it is inactive. Toggle buttons with more than two states also exist, but we do not have an IBM-wide standard for their use.</p>
+                <p>The two states are represented by a single button with two halves, or by a single button with an icon to indicate whether the state is 'on' or 'off'.</p>
+                <p>If the text describing the toggle states is long, then use a toggle slider, and put the text for the states as a label for the slider.</p>
+                <p>Multiple-state 'toggles' are actually radio buttons or check boxes that have been grouped together and given a button-like display for easier use.  These elements can be grouped, and can either behave independently (see Check boxes), or work as part of a group to represent an exclusive choice within the set (see Radio buttons). </p>
+
+
+                    <p><strong>Single toggle</strong></p>
+                    <p>Add 'data-toggle="button"' for single state toggle buttons.</p>
+                    <div class="bs-example">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-toggle="button">Single Toggle</button>
+
+                        </div>
+                    </div>
+                    <div class="highlight">
+                          <pre>
+                          &lt;button class="btn btn-primary" type="button" data-toggle="button"&gt;
+                       Single Toggle&lt;/button&gt;
+                          </pre>
+                    </div>
+
+
+                    <p><strong>Grouped toggle buttons</strong></p>
+                    <p>Toggle buttons can be grouped, and can either behave independently like checkboxes, or work
+                        as part of a group to represent an exclusive choice within the set, like radio buttons.</p>
+
+                    <p><strong>Check box toggle</strong></p>
+                    <p> Add 'data-toggle="buttons-checkbox"' for checkbox style toggling on btn-group.</p>
+                    <p>This function is not yet implemented.</p>
+                    <!-- <div class="btn-group" data-toggle="buttons-checkbox">
+                        <label class="btn btn-default">
+                            <input type="radio" name="options" id="option1">Pick this
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="options" id="option2">Pick that
+                        </label>
+                        <label class="btn btn-default">
+                            <input type="radio" name="options" id="option3">Pick another
+                        </label>
+
+                    </div>
+                    -->
+                    <p><strong>Radio button toggle</strong></p>
+                    <p>Add 'data-toggle="buttons-radio"' for radio style toggling on btn-group.</p>
+                    <p>Styling for this function has not yet been incorporated.</p>
+                    <div class="bs-example">
+                        <div class="btn-group" data-toggle="buttons-radio">
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" id="option1"> 1 day
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" id="option2"> 30 days
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" id="option3"> 60 days
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="options" id="option4"> 90 days
+                            </label>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                          <pre>
+                                &lt;div class="btn-group data-toggle="buttons-radio"&gt;<br/>
+                                    &lt;label class="btn btn-default"&gt;<br/>
+                                        &lt;input type="radio" name="options" id="option1"&gt; 1 day<br/>
+                                    &lt;/label&gt;<br/>
+                                    &lt;label class="btn btn-default"&gt;<br/>
+                                        &lt;input type="radio" name="options" id="option2"&gt; 30 days<br/>
+                                    &lt;/label&gt;<br/>
+                                    &lt;label class="btn btn-default"&gt;<br/>
+                                        &lt;input type="radio" name="options" id="option3"&gt; 60 days<br/>
+                                    &lt;/label&gt;<br/>
+                                    &lt;label class="btn btn-default"&gt;<br/>
+                                        &lt;input type="radio" name="options" id="option4"&gt; 90 days<br/>
+                                    &lt;/label&gt;<br/>
+                                &lt;/div&gt;
+                          </pre>
+                    </div>
+
+
+                    <a id="states"></a>
+            <h2>States</h2>
+            <h4>The following states are available in both mobile and non-mobile environments:</h4>
+                <dl class="dl-horizontal">
+                    <dt>Enabled</dt>
+                    <dd>A button that a user can act on.</dd>
+                    <dt>Disabled</dt>
+                    <dd>A button that a user can not act on.</dd>
+                    <dt>Selected</dt>
+                    <dd>A button is <strong>selected</strong> when the user presses and holds the mouse button down -
+                        or pushes and holds if the user is using a mobile device</dd>
+                    <dt>Hover</dt>
+                    <dd>A button is in a <strong>hover</strong> state when the mouse or user's finger moves over it. This state is not available on all mobile OS platforms and devices.</dd>
+                </dl>
+            
+            
+            <h4>These states apply to non-mobile devices:</h4>
+            
+            <dl class="dl-horizontal">
+                <dt>Default</dt>
+                <dd>A default button is the one that initially has focus, and will be activated
+                    when the user presses the Enter key or the Space bar key. There is no distinct visual to
+                    identify the default.</dd>
+                <dt>Focus</dt>
+                <dd>A button other than the default button gains focus when the user navigates to
+                    it using the keyboard - desktop only</dd>
+            </dl>
+            
+            
+            <p>Each state has their own visual treatments. Multiple states are supported — for example, a button that is enabled (active) will additionally show a hover state when the mouse moves over it, while a disabled button will not.</p>
+            
+
+                    
+
+       <a id="accessibility"></a>
+       <h2>Accessibility</h2>
+        <p>See the Button pattern for detailed accessibility guidelines.</p>
+        <a id="globalization"></a>
+        <h2>Globalization</h2>
+        <p>Button text must be isolated for translation and allow sufficient expansion space. The position of the buttons must not be fixed.
+            See <a href="http://www-01.ibm.com/software/globalization/guidelines/a4.html">Globalization Design Guideline A4</a>.</p>
+                        
+                        </div>
+<!-- Need correct code to allow anchor links to work within the page -->
+                <!-- <div class="col-md-3">
+                    <div class="bs-docs-sidebar">
+                    <ul class="bs-docs-sidebar">
+                     <li><a href="buttons/buttons.demo.html/#overview">Overview</a></li>
+                     <li><a href="buttons/buttons.demo.html/#button-types">Button types</a></li>
+                     <li><a href="buttons/buttons.demo.html/#hierarchy">Hierarchy</a></li>
+                     <li><a href="buttons/buttons.demo.html/#states">States</a></li>
+                     <li><a href="buttons/buttons.demo.html/#labels">Labels</a></li>
+                     <li><a href="buttons/buttons.demo.html/#alignment">Alignment</a></li>
+                     <li><a href="buttons/buttons.demo.html/#accessibility">Accessibility</a></li>
+                     <li><a href="buttons/buttons.demo.html/#globalization">Globalization</a></li>
+                    </ul>                    
+                    </div> -->
+                    <!--/.bs-docs-sidebar-->
+            <!-- </div> -->
+<!-- .col-md-3-->
+        </tab>
+        <tab heading="UX blueprint">
+            <img src="toggle-buttons/images/toggle_blueprints.png" />
+
+        </tab>
+
+    </tabset>
+</div>

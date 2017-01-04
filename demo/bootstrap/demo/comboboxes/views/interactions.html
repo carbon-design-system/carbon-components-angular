@@ -1,0 +1,71 @@
+<h2>Interactions</h2>
+
+<h3>Clicking on, touching or tabbing to the text field</h3>
+<ul>
+<li>When the user clicks on, touches, or tabs to, the text field part of the combo box, focus is set with all the current text selected, so the user can start typing immediately to replace existing text. </li>
+<li>For a combo box with a drop down list, as the user enters text, the drop down list opens and shows the list of potential matches and highlights the first match. The opened list closes if the user continues to type letters and there are no longer any potential matches. If there is never a match, the list does not open. If the list is always displayed, no highlight selector is shown until a match is found.  The items in the drop down filter use the same rules as auto-complete. Auto-complete involves the program predicting a word(s) that the user wants to type in without the user actually typing it in completely. </li>
+<li>Until the user highlights a particular choice, only the typed letters are displayed in the text field. </li>
+</ul>
+
+<h3>Clicking or touching the drop down arrow, or pressing the Alt+Up/Down arrow or Up/Down arrow when focus is on the text field</h3>
+<ul>
+<li>The drop down list opens, so the user can see the options in the list. </li>
+<li>The default or preselected list option is automatically highlighted. </li>
+<li>Focus remains in the text field, so the user can type characters. </li>
+<li>For desktop applications, additional key presses of Alt+Up/Down arrow keys toggles the drop-down list closed/open. </li>
+</ul>
+
+<h3>Selecting an option by touching, clicking with a mouse, or pressing Enter</h3>
+<ul>
+<li>The drop-down list closes. </li>
+<li>The selected option is shown in the text field part of the combo box. </li>
+<li>Focus returns to the text field. </li>
+</ul>
+
+<h3>Exiting the drop down list by touching outside it, or pressing Esc key</h3>
+<ul>
+<li>The drop down closes. </li>
+<li>Focus returns to the text field </li>
+</ul>
+
+<h3>Keyboard (Desktop) Only Interactions</h3>
+
+
+<h3>Pressing Up/Down arrow key when the drop down list is open </h3>
+<ul>
+<li>Places keyboard focus on the selector. If there was no selector, the selector and keyboard focus is placed on the first option in the list. </li>
+<li>Moves the highlight selector up/down in the drop-down list. </li>
+<li>Updates the contents of the text field to the text of the currently selected option. </li>
+<li>When keyboard navigation is at the top/bottom element in the drop down list, Up/Down arrow keys do not cause the selector to wrap around to the bottom/top element. Instead the selector remains on the same element in the list. </li>
+<li>Saves the current cursor position in the text field.</li>
+</ul>
+
+<h3>Pressing Home/End key when keyboard focus is in the text field</h3>
+<ul>
+<li>Removes selection highlight from text in the text field. </li>
+<li>Moves the input cursor in front of the first character or after the last character, respectively. </li>
+</ul>
+
+<h3>Pressing Home/End key when keyboard focus is on an option in the list </h3>
+<ul>
+<li>Moves the highlight selector and keyboard focus to the first/last option in the drop-down list. </li>
+</ul>
+
+<h3>Pressing page Up/Down key when keyboard focus is in the list</h3>
+<ul>
+<li>Pages the content of the drop-down list up/down. </li>
+<li>Moves the highlight selector to the topmost/bottommost visible list option. </li>
+</ul>
+
+<h3>Pressing Tab key when the keyboard focus is in the list</h3>
+<ul>
+<li>Updates the contents of the text field part of the combo box to the text of the currently selected option. </li>
+<li>The drop-down list closes. </li>
+<li>Moves keyboard focus to the next interactive UI element in the Tab order. </li>
+</ul>
+
+<h3>Typing characters when keyboard focus is on the list</h3>
+<ul>
+<li>Returns focus to the text field at the saved cursor position. </li>
+<li>Other behaviors are documented in the first bullet above.</li>
+</ul>

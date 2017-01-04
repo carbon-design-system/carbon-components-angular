@@ -1,0 +1,99 @@
+<h3 class="page-header">Icons in a font file</h3>
+<p>We have created our own font file that contains a number of common mono-chromatic
+	icons. This allows the size and color of the icon to be specified using CSS.
+	These icons are referred to as <em>glyphicons</em>.</p>
+<h4>How to use glyphicons</h4>
+<p>For performance reasons, all icons require a base class and individual icon class. To
+	use, place the following code just about anywhere. Be sure to leave a space
+	between the icon and text for proper padding.</p>
+
+<div class="bs-callout bs-callout-danger">
+	<h4>Don't mix with other components</h4>
+	<p>Icon classes cannot be directly combined with other components. They should not
+		be used along with other classes on the same element. Instead, add a nested
+		<code>&lt;span&gt;</code> and apply the icon classes to the
+		<code>&lt;span&gt;</code>.</p>
+</div>
+<div class="bs-callout bs-callout-danger">
+	<h4>Only for use on empty elements</h4>
+	<p>Icon classes should only be used on elements that contain no text content and
+		have no child elements.</p>
+</div>
+
+<h3 class="page-header">Examples</h3>
+<h4>Sizes</h4>
+<div id="icons-demo" class="bs-example">
+	<div class="btn-toolbar" role="toolbar">
+		<span class="glyphicon glyphicon-xs glyphicon-lightbulb"></span> 14px
+		<span class="glyphicon glyphicon-sm glyphicon-lightbulb"></span> 16px (Default)
+		<span class="glyphicon glyphicon-md glyphicon-lightbulb"></span> 20px
+		<span class="glyphicon glyphicon-lg glyphicon-lightbulb"></span> 30px
+	</div>
+</div>
+<x1-prism element="#icons-demo" lang="markup"></x1-prism>
+
+<h4>Buttons</h4>
+<div id="icons-btn-demo" class="bs-example">
+	<div class="btn-toolbar" role="toolbar">
+		<button type="button" class="btn btn-secondary btn-glyphicon btn-lg">
+			<span class="glyphicon glyphicon-save"></span> Save</button>
+		<button type="button" class="btn btn-secondary btn-glyphicon">
+			<span class="glyphicon glyphicon-save"></span> Save</button>
+		<button type="button" class="btn btn-secondary btn-glyphicon btn-sm">
+			<span class="glyphicon glyphicon-save"></span> Save</button>
+		<button type="button" class="btn btn-secondary btn-glyphicon btn-xs">
+			<span class="glyphicon glyphicon-save"></span> Save</button>
+	</div>
+</div>
+<x1-prism element="#icons-btn-demo" lang="markup"></x1-prism>
+
+<h4>Inputs</h4>
+<div id="icons-input-demo" class="bs-example">
+	<div class="input-group">
+		<input type="text" class="form-control" placeholder="Search for...">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="button">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</span>
+	</div>
+</div>
+<x1-prism element="#icons-input-demo" lang="markup"></x1-prism>
+
+<h4>Stacked</h4>
+<div id="icons-stacked-demo" class="bs-example">
+	<span class="x1-icon-stack-sm">
+		<i class="glyphicon glyphicon-star text-info"></i>
+		<i class="glyphicon glyphicon-star-empty"></i>
+	</span>
+	<span class="x1-icon-stack-md">
+		<i class="glyphicon glyphicon-circle text-success"></i>
+		<i class="glyphicon glyphicon-circle-empty"></i>
+	</span>
+	<span class="x1-icon-stack-lg">
+		<i class="glyphicon glyphicon-diamond text-danger"></i>
+		<i class="glyphicon glyphicon-diamond-empty"></i>
+	</span>
+</div>
+<x1-prism element="#icons-stacked-demo" lang="markup"></x1-prism>
+
+<h3 class="page-header">Font family</h3>
+<div class="bs-glyphicons">
+	<form class="form-group">
+		<label for="glyphSearch" class="sr-only">Search</label>
+		<input type="search" id="glyphSearch" class="form-control" placeholder="Search" ng-model="glyphSearch">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		<a ng-click="glyphSearch=''" aria-label="Clear search" tabindex="0">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</a>
+	</form>
+	<article ng-repeat="glyph in glyphs" class="clearfix">
+		<h4 ng-hide="glyphSearch">{{glyph.group}}</h4>
+		<ul class="bs-glyphicons-list">
+			<li ng-repeat="class in glyph.classes | filter:glyphSearch">
+				<span class="glyphicon {{class}}"></span>
+				<span class="glyphicon-class">glyphicon {{class}}</span>
+			</li>
+		</ul>
+	</article>
+</div>

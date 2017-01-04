@@ -1,0 +1,67 @@
+<div class="container-fluid">
+<h1 class="page-header">Button Alignment & Placement</h1>
+    <p class="lead">Consistent alignment helps promote the sense of quality and continuity, and lessens visual distraction to the user.</p>
+    <tabset>
+        <tab heading="UX specifications">
+                <div class="col-md-9">
+       <h2>Button Alignment</h2>
+
+        <p>Buttons can be aligned with other elements in a UI in various ways. </p>
+        <p>Note: This guideline deals with form submission (and cancel) buttons, and no other toolbar or action buttons.</p>
+        <p>There are two main types of button alignments:
+        </p>
+        <ul>
+            <li>Inline form buttons, which are left-aligned.</li>
+            <li>Modal window buttons, which are right-aligned.</li>
+        </ul>
+        <p>In both of these options, the primary button is always to the left of secondary buttons; Cancel is always the right-most button.</p>
+        
+        <h3>Left Alignment</h3>
+        <p>Left alignment is used for inline forms, and not web modal window (dialog box) forms. Place buttons at the end of the form, and ensure that the buttons are left-aligned with the sentence start position. </p>
+        <p>This practice has the following benefits:
+        </p>
+        <ul>
+            <li>Consistent with web trends and rich-client convention.</li>
+            <li>Consistent with eye scanning patterns that occur from left to right at the end of the form.</li>
+            <li>Aligns with other toolbar buttons that may appear elsewhere when the inline form appears on a page.</li>
+        </ul>
+        <h3>Right Alignment</h3>
+        <p>Right align buttons for web modal windows (dialog boxes) in the lower right corner of the window. If the user reduces the window size, the button moves in so that it is not scrolled out of view.</p>
+        <p>This practice has the following benefits:
+        </p>
+        <ul>
+            <li>Provides a consistent experience of reading primary actions first as found in inline forms.</li>
+            <li>Users see the primary action as they read left to right, to save time, and avoid errors.</li>
+            <li>Follows the Windows interaction, which is still in use by the majority of people.</li>
+        </ul>
+        <h2>Button placement</h2>
+        <h3>Top Button Placement</h3>
+        <p>Buttons should be placed on the bottom of most forms, however there are special cases allowing for variations.</p>
+        <p>Buttons may be placed above a form when the form includes inputs, where one or more input is exceedingly long (requires scrolling to reach the end), such as a rich text editor, or other input where a long input response is allowed. It is also allowed if a form is exceedingly long, and the inputs at the top are the ones most commonly used, where the following inputs are optional, or not expected to be used often. This occurs commonly in edit forms, where a user may only need to interact with a few of the fields at the top of the form. In cases such as these, the buttons may be placed above the form.</p>
+        <p>When top placement is used, the buttons can be repeated at the bottom if desired, if the scrolling required to view the end of the form hides the buttons at the top. It is also permissible to lock the buttons at the top of a scrolling form so that they always remain in view. If this implementation is used, buttons should not be placed at the bottom of the form.
+        </p>
+        <h3>Button Placement in Tabbed Forms or Wizards</h3>
+        <p>Some forms and form wizards have multiple tabs or steps, to combine similar content. Sometimes, the tabs have varying lengths due to the amount of content, and they may employ scroll bars within individual tabs, in order to keep the overall form the same size. In these cases, it is acceptable to lock the location of the buttons at the top or bottom, outside of the scrolling area, provided that the length of the overall form container fits within the view without scrolling.</p>
+
+        <h3>Additional guidelines</h3>
+        <p>If the dialog box includes an additional sub-form within it, the sub-form follows form guidelines (left-aligned). An example is a small search form that produces a list of selectable options, which are then passed to the rest of the dialog box.</p>
+        <p>For web applications with forms that use a toolbar such as an email, buttons might be displayed in the toolbar across the top of the window.</p>
+       <a id="accessibility"></a>
+       <h2>Accessibility</h2>
+        <p>Button alignment techniques should not impact navigation or logical reading order of the page. For example, right-alignment of buttons should not be achieved using a series of hidden images or markup (solely for layout purposes) that a screen reader would announce to the user, or that keyboard-only users would be required to navigate through.</p>
+        <p>Likewise, if using CSS to change alignment, the buttons should still be located in a logical and sensible location in the page source so a logical reading order is maintained.</p>
+
+                        
+        <a id="globalization"></a>
+        <h2>Globalization</h2>
+
+        <p>If the UI is to be translated into Arabic or Hebrew (RTL languages), the UI has to be mirrored; what was on the left will be on the right, and vice versa. UI mirroring is only to be applied when the UI is Arabic or Hebrew, not if the user happens to be in an Arabic or Hebrew location but is viewing the UI in a different language.</p>
+        <p>As a button's text length expands as a result of translation, the button's width also expands because of the translated button's text. Insufficient room in a dialog box as a result of translation may negatively impact the alignment of the buttons.</p>
+                        </div>
+        </tab>
+        <tab heading="UX blueprint">
+        <p>TBD.</p>
+        </tab>
+
+
+</div>

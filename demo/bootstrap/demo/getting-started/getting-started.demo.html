@@ -1,0 +1,146 @@
+<section class="container">
+	<h1 class="page-header">Using this site</h1>
+	<p class="lead">How to find what you're looking for</p>
+	<tabset class="showcase-demo">
+		<tab heading="Site structure">
+            <p>Interaction patterns have been listed alphabetically by their most common name.</p>
+            <p>Beside each interaction pattern name is an indicator to show you whether the </p>
+            <p>For each pattern, the following information is provided in separate tabs:</p>
+            <img src="getting-started/showcase_tabs.png"/>
+            <ul>
+                <li>Demo:  An interactive demo of the code</li>
+                <li>Documentation:  Code documentation, if required</li>
+                <li>UX specifications:  The UX specifications that describe the following:
+                    <ul>
+                        <li>What it helps the user to accomplish</li>
+                        <li>When to use it</li>
+                        <li>A description of the solution and how to implement the pattern (usually with examples)</li>
+                        <li>Accessibility considerations, if any</li>
+                        <li>Globalization considerations, if any</li>
+                    </ul>
+                </li>
+                <li>UX blueprint:  A blueprint in the form of a .png image, containing the detailed specifications for the implementation of the pattern, if available</li>
+                <li>[Coming Soon] Comment:  A page where you can contribute new ideas, make suggestions, and send us feedback. </li>
+            </ul>
+		</tab>
+        <tab heading="Finding the element you need">
+            <p>There are quite a few interface elements that you can use to present the user with actions or choices. To help you quickly select the correct one for your specific situation, we created a table that lists the most commonly used elements and when to use each one.</p>
+        <h3>Selection interface elements</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>UI Element test</th>
+                    <th>Immediate action on click?</th>
+                    <th>Multiple choices for user</th>
+                    <th>Mutually exclusive choices</th>
+                    <th>Choices always visible</th>
+                    <th>Rationale</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Simple button<br/>
+                <img src="buttons/images/simple_buttons.png"/></td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>Simple buttons result in an immediate action. Clicking the button immediately performs the action specified by the label.</td>
+            </tr>
+            <tr>
+                <td>Toggle button</td>
+                <td>Yes</td>
+                <td>2 choices</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Toggle buttons also result in an immediate action, but the result toggles between two states. Clicking the button shows the action selected, signifying that it is active. Clicking the button again returns it to its previous state, signifying that it is inactive.</td>
+            </tr>
+            <tr>
+                <td>Drop-down menu</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>Either</td>
+                <td>No</td>
+                <td>Drop down menus are used when you need to present a set of choices to the user, the real estate is limited, and it is not important for the user to see what they've chosen or to see the choices all the time.  Clicking the menu drops down a list of choices. The list can be either mutually exclusive (only one choice allowed) or multi-choice (multiple choices allowed; selections are indicated using check marks).  The user then proceeds to another part of the interface to select further choices or actions.<br/>
+                    Use when there are a lot of items to choose from.
+                </td>
+            </tr>
+            <tr>
+                <td>Drop-down button<br/>
+                    <img src="buttons/images/combination_buttons.png"/></td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Drop down buttons are used to combine multiple actions into a single button with a drop down list. They are used when you need to present a set of actions and the real estate is constrained. Clicking a menu button drops down a list of actions. When the user selects an action, it is implemented immediately.</td>
+            </tr>
+            <tr>
+                <td>Combo button<br/>
+                    <img src="buttons/images/combination_buttons.png"/></td>
+                <td>No. User selects an item from the list, then has to click on the button again to initiate the action.</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Combo buttons are specialized versions of drop down buttons that assign a default action to the button label. Other related actions are provided via the drop down menu. Clicking the left portion of the button immediately performs the action specified by the label. Clicking the arrow drops down a menu of related actions. The action associated with the button label should also be included in the menu. The label must always reflect the action associated with the button so that the user knows what it will do.</td>
+            </tr>
+
+            <tr>
+                <td>Radio button</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>A radio button is a way for a user to choose only one item from a group of items. Because all choices are visible to the user, this is best used when there are less than 10 items to choose from.  There must be a default item selected in any given radio button group.<br/>
+                    Use When... it is important for the user to be able to see the choices available and what they've chosen.
+                </td>
+            </tr>
+            <tr>
+                <td>Check box</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>A check box is a way for a user to choose one or more items from a group of items. Because all choices are visible to the user, this is best used when there are less than 10 items to choose from.<br/>
+                    Use When... it is important for the user to be able to see the choices available and what they've chosen.
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3>Display interface elements</h3>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td width="10%">UI Element</td>
+                    <td width="10%">Also know as...</td>
+                    <td width="10%">Interrupts user?</td>
+                    <td width="10%">Requires user action?</td>
+                    <td width="60%">Rationale</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Modal</td>
+                    <td>Pop up, dialog box, window</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Use modals when the system needs input from the user (eg. data in a form), or if the system needs to
+                    inform the user of an urgent issue (eg. error or warning messages).</td>
+                </tr>
+                <tr>
+                    <td>Popover</td>
+                    <td>Daughter menu</td>
+                    <td>User initiated</td>
+                    <td>Yes</td>
+                    <td>Use popovers to provide additional actions or information for the user, that are specific to element on the page that they are working on.  They are used for right-click menu items, and to
+                    provide additional information to the user via the information icon.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        </tab>
+	</tabset>
+</section>

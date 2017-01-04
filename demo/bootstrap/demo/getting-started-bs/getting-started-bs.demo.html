@@ -1,0 +1,109 @@
+<section class="container">
+	<h1 class="page-header">Getting Started with Bootstrap</h1>
+	<p class="lead">An overview of X1 UI Bootstrap, how to download and use, and more.</p>
+	<tabset class="showcase-demo">
+		<tab heading="Download">
+			<article>
+				<h3>Create Bower Registry File</h3>
+				<p>Since X1 UI Boostrap is registered in a private bower, you must create a bower
+					registry file called <code>.bowerrc</code> in your project root populated with
+					the json below in order to point to our private bower registry.</p>
+				<div class="highlight"><pre>
+					<code class="json" data-lang="json">{
+	"registry": "http://x1showcase.emmlabs.ibm.com:5678"
+}</code>
+				</pre></div>
+				<h3>Install with Bower</h3>
+				<p>Save installed package into the project’s <code>bower.json</code> dependencies
+				by appending <code>--save</code> to bower install command.</p>
+				<div class="highlight"><pre>
+					<code class="language-bash" data-lang="bash"><span class="gp">$ </span>bower install x1-ui-bootstrap --save</code></pre></div>
+			</article>
+		</tab>
+		<tab heading="What's included">
+			<article>
+				<h3>X1 UI Bootstrap Source Code</h3>
+				<p>The X1 UI Bootstrap source code bower installed includes the precompiled CSS,
+					font assets, Sass sources, Sass tools, core Bootstrap JavaScript and
+					documentation. More specifically, it includes the following and more:</p>
+				<div class="highlight"><pre>
+					<code class="language-bash" data-lang="bash">x1-ui-bootstrap/
+├── app/
+│   └── src/
+│   │   ├── bootstrap/
+│   │   │   ├── bootstrap.js
+│   │   │   └── bootstrap.min.js
+│   │   ├── x1-ui-bootstrap.scss
+│   │   └── x1-ui-sass-tools.scss
+├── dist/
+│   ├── demo/
+│   ├── fonts/
+│   │   ├── ux1-glyphicons.eot
+│   │   ├── ux1-glyphicons.svg
+│   │   ├── ux1-glyphicons.ttf
+│   │   └── ux1-glyphicons.woff
+│   ├── x1-ui-bootstrap.css
+│   └── x1-ui-bootstrap.min.css
+├── bower.json
+├── CHANGELOG.md
+└── README.md</code></pre></div>
+			</article>
+		</tab>
+		<tab heading="How to use">
+			<article>
+				<h2>Including X1 UI Bootstrap</h2>
+
+				<h3>Option 1: Linking the CSS</h3>
+				<p>If you are not precompiling your code, add one of the two file paths below
+					to the <code>&lt;head&gt;</code> of your index file.</p>
+				<div class="highlight"><pre>
+					<code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"bower_components/x1-ui-bootstrap/dist/x1-ui-bootstrap.css"</span><span class="nt">&gt;</span>
+<span class="c">&lt;!-- or --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"bower_components/x1-ui-bootstrap/dist/x1-ui-bootstrap.min.css"</span><span class="nt">&gt;</span></code></pre></div>
+
+				<h3>Option 2: Compiling the CSS</h3>
+				<p>Whether you are using gulp or grunt you want to add one of the two file
+					paths below to a glob.</p>
+				<div class="highlight"><pre>
+					<code class="language-js"
+							data-lang="js"><span class="s1">"bower_components/x1-ui-bootstrap/dist/x1-ui-bootstrap.css"</span>
+<span class="c">// or</span>
+<span class="s1">"bower_components/x1-ui-bootstrap/dist/x1-ui-bootstrap.min.css"</span></code></pre></div>
+
+				<h2>Copying the Font Directory</h2>
+				<p>If you are not compiling your code, make sure to copy the path below to your
+					application's directory. <br/> If you are compiling your code,
+					make sure to add the path below to a glob.</p>
+				<div class="highlight"><pre>
+					<code class="language-js"
+							data-lang="js"><span class="s1">"bower_components/x1-ui-bootstrap/dist/fonts"</span></code></pre></div>
+
+				<hr/>
+
+				<h2>Using Sass Tools (optional)</h2>
+				<p>In order to use X1 UI Bootstrap variables and mixins in your Sass files the
+					<code>x1-ui-sass-tools.scss</code> file needs to imported, just like in
+					this example:</p>
+				<div class="highlight"><pre>
+					<code class="language-scss" data-lang="scss"><span class="k">@import</span> <span class="s1">"../bower_components/x1-ui-bootstrap/app/src/x1-ui-sass-tools.scss"</span><span class="p">;</span></code></pre></div>
+
+				<h2>Including Core Bootstrap JavaScript (optional)</h2>
+				<p>This step allows you to use <a href="http://getbootstrap.com/javascript/">Bootstrap's Core Components</a>.</p>
+
+				<h3>Option 1: Linking the JS</h3>
+				<p>Add one of the two file paths below to the end of your <code>&lt;body&gt;</code>.</p>
+				<div class="highlight"><pre>
+					<code class="language-html" data-lang="html"><span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="na">src=</span><span class="s">"bower_components/x1-ui-bootstrap/app/src/bootstrap/bootstrap.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- or --&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"bower_components/x1-ui-bootstrap/app/src/bootstrap/bootstrap.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+
+				<h3>Option 2: Compiling the JS</h3>
+				<p>Add one of the two file paths below to the end of your build logic.</p>
+				<div class="highlight"><pre>
+					<code class="language-js" data-lang="js"><span class="s1">"bower_components/x1-ui-bootstrap/app/src/bootstrap/bootstrap.js"</span>
+<span class="c">// or</span>
+<span class="s1">"bower_components/x1-ui-bootstrap/app/src/bootstrap/bootstrap.min.js"</span></code></pre></div>
+			</article>
+		</tab>
+	</tabset>
+</section>

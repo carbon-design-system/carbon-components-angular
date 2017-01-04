@@ -1,0 +1,19 @@
+<h2>Tri-state check boxes</h2>
+
+<p>In some situations, you may need to implement tri-state check boxes. These are check boxes that can be checked, unchecked, or of an indeterminate state. Most often, this sort of check box is found in a tree.</p>
+
+<h3>Tri-state check box behavior</h3>
+<p>
+<ul>
+<li>When no children elements are in a checked state, the parent element is also in an unchecked state.</li>
+<li>When all the children elements are in a checked state, the parent element is also in a checked state.</li>
+<li>When the children elements contain both checked and unchecked state elements, the parent element is in an indeterminate state. The indeterminate state is shown with a square in the check box, which indicates that its state is neither checked nor unchecked. When the parent check box starts in an indeterminate state, activating the check box cycles through the three states as follows:
+	<ul>
+    <li>Parent check box changes to the checked state and changes the state of all of its children check boxes to the checked state.</li>
+    <li>The second activation of the parent check box changes it to the unchecked state also changes the state of all its children check boxes to the unchecked state.</li>
+    <li>The third activation of the parent check box a third time returns the check box to the indeterminate state and restores the original mixture of checked and unchecked states for the children check boxes. In this way, the user can cycle between the states. The indeterminate state is only retained for the current session.
+    </li>
+    </ul>
+</li>
+</ul>
+</p>

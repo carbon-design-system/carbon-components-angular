@@ -1,0 +1,442 @@
+<div class="container">
+	<h1 class="page-header">Radio Buttons</h1>
+
+	<p class="lead">A radio button is a way for a user to choose only one item from a group of items, and it is important that the user see all of the choices available.</p>
+	<tabset>
+        <tab heading="Demo">
+            <style>
+                * {
+                    box-sizing: border-box;
+                }
+
+                *:focus {
+                    outline: 0;
+
+                }
+
+                span.field {
+                    display: block;
+                    margin-bottom: .5em;
+                }
+
+                input[type="radio"] + label,
+                input[type="checkbox"] + label {
+                    color: #000;
+                    font-size: 1em;
+                    curser: pointer;
+                }
+
+                input[type="radio"],
+                input[type="checkbox"] {
+                    position: absolute;
+                    opacity: 0;
+                    curser: pointer;
+                }
+
+                input[type="radio"]:checked + label,
+                input[type="checkbox"]:checked + label {
+                    position: relative;
+                }
+
+                .bg-light > span >input[type="radio"] + label::before,
+                .bg-light > span >input[type="checkbox"] + label::before {
+                    content: '';
+                    width: 20px;
+                    height: 20px;
+                    margin-right: .5em;
+                    position: relative;
+                    border: 1px solid #959595;
+                    background-color:white;
+                }
+
+                .bg-light > span >input[type="radio"] + label::before {
+                    top: .4em;
+                    display: inline-block;
+                    -moz-border-radius: 90px;
+                    border-radius: 90px;
+                }
+
+                .bg-light > span >input[type="checkbox"] + label::before {
+                    top: .25em;
+                    -moz-border-radius: 90px;
+                    display: inline-block;
+                    border-radius: 3px;
+                }
+
+                .bg-light > span >input[type="radio"]:checked + label::before {
+                    border-color: #959595;
+                    background-color:white;
+                }
+                .bg-light > span >input[type="checkbox"]:checked + label::before {
+                    border-color: #959595;
+                    background-color:white;
+                }
+
+                .bg-light > span >input[type="checkbox"]:checked + label,
+                .bg-light > span >input[type="radio"]:checked + label{
+                    color: black;
+                }
+
+                .bg-light > span >input[type="checkbox"]:checked + label::after {
+                    font-family: "UX1 Glyphicons";
+                    font-size: 16px;
+                    content:'\e62e';
+                    display: block;
+                    position: absolute;
+                    top: 5px;
+                    left: 2px;
+                    width: 12px;
+                    height: 12px;
+                    color:#00B4A0;
+                }
+
+                .bg-light > span >input[type="radio"]:checked + label::after {
+                    content: '';
+                    width: 14px;
+                    height: 14px;
+                    position: absolute;
+                    top: 9px;
+                    left: 3px;
+                    display: inline-block;
+                    background-color: #00B4A0;
+                    border-radius: 90px;
+                    -moz-border-radius: 90px;
+                }
+
+                .bg-light > span >input[type="checkbox"]:hover  + label::before,
+                .bg-light > span >input[type="radio"]:hover  + label::before{
+
+                    background-color: #A7FAE6;
+                    border-color: #00B4A0;
+                }
+
+                .bg-light > span >input[type="checkbox"]:disabled + label::before,
+                .bg-light > span >input[type="radio"]:disabled + label::before {
+                    border-color: #C7C7C7;
+                    background-color: #E0E0E0;
+                    opacity:0.25;
+
+                }
+
+                .bg-light > span >input[type="checkbox"]:disabled + label,
+                .bg-light > span >input[type="radio"]:disabled + label {
+                    color: #c7c7c7;
+                }
+
+
+                /*
+                    Dark Background
+                */
+
+                .bg-dark {
+                    background-color: #777677;
+                }
+
+                .bg-dark  > span > label {
+                    color:white;
+                }
+
+                .bg-dark > span > input[type="radio"] + label::before,
+                .bg-dark > span > input[type="checkbox"] + label::before {
+                    content: '';
+                    width: 20px;
+                    height: 20px;
+                    margin-right: .5em;
+                    position: relative;
+                    border: 1px solid #959595;
+                    background-color:white;
+                }
+
+                .bg-dark > span > input[type="radio"] + label::before {
+                    top: .4em;
+                    display: inline-block;
+                    -moz-border-radius: 90px;
+                    border-radius: 90px;
+                }
+
+                .bg-dark > span > input[type="checkbox"] + label::before {
+                    top: .25em;
+                    display: inline-block;
+                    border-radius: 3px;
+                }
+
+                .bg-dark > span > input[type="checkbox"]:checked + label::after {
+                    font-family: "UX1 Glyphicons";
+                    font-size: 16px;
+                    content:'\e62e';
+                    display: block;
+                    position: absolute;
+                    top: 5px;
+                    left: 2px;
+                    width: 12px;
+                    height: 12px;
+                    color: rgb(0, 166, 160);
+                }
+
+                .bg-dark > span > input[type="radio"]:checked + label::before {
+                    border-color: #959595;
+                    background-color:white;
+                }
+
+                .bg-dark > span > input[type="radio"]:checked + label,
+                .bg-dark > span > input[type="checkbox"]:checked + label{
+
+                    color: white;
+                }
+                .bg-dark > span > input[type="radio"]:checked + label::after {
+                    content: '';
+                    width: 14px;
+                    height: 14px;
+                    position: absolute;
+                    top: 9px;
+                    left: 3px;
+                    display: inline-block;
+                    background-color: #00B4A0;
+                    border-radius: 90px;
+                    -moz-border-radius: 90px;
+                }
+
+                .bg-dark > span > input[type="radio"]:hover  + label::before,
+                .bg-dark > span > input[type="checkbox"]:hover  + label::before{
+                    background-color: #A7FAE6;
+                    border-color: #00B4A0;
+                }
+
+                .bg-dark > span > input[type="radio"]:disabled + label::before {
+                    border-color: #C7C7C7;
+                    background-color: #E0E0E0;
+                    opacity:0.25;
+                }
+
+                .bg-dark > span >  input[type="radio"]:disabled + label,
+                .bg-dark > span >  input[type="checkbox"]:disabled + label {
+                    color: #c7c7c7;
+                }
+
+                .bg-dark > span > input[type="checkbox"]:disabled + label::before {
+                    border-color: #C7C7C7;
+                    background-color: #E0E0E0;
+                    opacity:0.25;
+                }
+
+
+
+                /*
+
+                Gray 10
+                #E0E0E0
+
+                Gray 20
+                #c7c7c7
+
+                Grau 30
+                #aeaeae
+
+                Gray 40
+                #959595
+
+                Gray 50
+                #777677
+
+                Gray 60
+                #5A5A5A
+
+                Teal 10
+                #A7FAE6
+
+                Teal 40
+                #00B4A0
+                */
+
+
+
+            </style>
+            <p>This demo page is a work in progress.</p>
+            <div class="row">
+                <h3>Radio Button - Vertical</h3>
+                <div class="col-xs-3 bg-light">
+
+        <span class="field">
+         <input id="Field1_1" name="Field1" type="radio" class="field radio" value="Fantasty" checked="checked">
+         <label class="choice" for="Field1_1">
+             Radio Option 1
+         </label>
+        </span>
+           <span class="field">
+         <input id="Field1_2" name="Field1" type="radio" class="field radio" value="Sci-Fi">
+         <label class="choice" for="Field1_2">
+             Radio Option 2
+         </label>
+        </span>
+        <span class="field">
+         <input id="Field1_3" name="Field1" type="radio" class="field radio" value="Dont make me choose!">
+         <label class="choice" for="Field1_3">
+             Radio Option 3
+         </label>
+        </span>
+           <span class="field">
+         <input id="Field1_4" name="Field1" type="radio" class="field radio" disabled="true" value="Fantasty">
+         <label class="choice" for="Field1_4">
+             Radio Option 4
+         </label>
+        </span>
+                </div>
+                <div class="col-xs-3 bg-dark">
+
+        <span class="field">
+         <input id="Field1_5" name="Field2" type="radio" class="field radio" value="Sci-Fi">
+         <label class="choice" for="Field1_5">
+             Radio Option 1
+         </label>
+        </span>
+        <span class="field">
+         <input id="Field1_6" name="Field2" type="radio" class="field radio" value="Dont make me choose!">
+         <label class="choice" for="Field1_6">
+             Radio Option 2
+         </label>
+        </span>
+        <span class="field">
+         <input id="Field1_7" name="Field2" type="radio" class="field radio" value="Sci-Fi">
+         <label class="choice" for="Field1_7">
+             Radio Option 3
+         </label>
+        </span>
+        <span class="field">
+         <input id="Field1_8" name="Field2" type="radio" class="field radio" disabled="true" value="Dont make me choose!">
+         <label class="choice" for="Field1_8">
+             Radio Option 4
+         </label>
+        </span>
+                </div>
+            </div>
+            <div class="row ">
+                <h3>Radio Button - Horizontal</h3>
+                <div class="col-xs-4 bg-light">
+                    <span class="field">
+         <input id="Field1_9" name="Field3" type="radio" class="field radio" value="Fantasty" checked="checked">
+         <label class="choice" for="Field1_9">
+             Radio Option 1
+         </label>
+        </span>
+                </div>
+                <div class="col-xs-4 bg-light">
+           <span class="field">
+                    <input id="Field1_10" name="Field3" type="radio" class="field radio" value="Sci-Fi">
+     <label class="choice" for="Field1_10">
+         Radio Option 2
+     </label>
+                    </span>
+                </div>
+                <div class="col-xs-4 bg-light">
+           <span class="field">
+         <input id="Field1_11" name="Field3" type="radio" class="field radio" disabled="true" value="Dont make me choose!">
+         <label class="choice" for="Field1_11">
+             Radio Option 3
+         </label>
+        </span>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-xs-4 bg-dark">
+                            <span class="field">
+                 <input id="Field1_12" name="Field4" type="radio" class="field radio" value="Fantasty" checked="checked">
+                 <label class="choice" for="Field1_12">
+                     Radio Option 1
+                 </label>
+                </span>
+                    </div>
+                    <div class="col-xs-4 bg-dark">
+                   <span class="field">
+                            <input id="Field1_13" name="Field4" type="radio" class="field radio" value="Sci-Fi">
+             <label class="choice" for="Field1_13">
+                 Radio Option 2
+             </label>
+                            </span>
+                    </div>
+                    <div class="col-xs-4 bg-dark">
+                   <span class="field">
+                 <input id="Field1_14" name="Field4" type="radio" class="field radio" disabled="true" value="Dont make me choose!">
+                 <label class="choice" for="Field1_14">
+                     Radio Option 3
+                 </label>
+                </span>
+                    </div>
+                </div>
+        </tab>
+		<tab heading="UX specifications">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2>What they're for...</h2>
+
+                    <p>A radio button is a way for a user to choose only one item from a group of items, and it is important that the user see all of the choices available.</p>
+
+                    <h2>Use when...</h2>
+                    <p>For mobile applications, radio buttons are displayed with a button-like interface to make them easier to use on small devices. These are often referred to as multi-state toggles, but they are not actually toggles, which have only two choices – on or off (see Toggles).</p>
+                    <p>For desktop applications, radio buttons are still used to show a choice of items, where the user selects only one item.</p>
+
+                    <h2>Implementation</h2>
+                    <ul>
+                        <li>Use at least two radio buttons. Long lists of items can be overwhelming. Keep the number of radio buttons to six – eight.</li>
+                        <li>You can include more than eight radio buttons if there is adequate space and the user would benefit from seeing all the options at one time.</li>
+                        <li>However, typically if you need more than eight radio buttons, use a drop-down list because it conserves space. If you use a group of radio buttons, ensure that the user can see all the options at the same time.</li>
+                        <li>Place the most common or important option first.</li>
+                        <li>One radio button must always be selected. If none of the selections are required (no radio button is selected), include a "None" or "Not applicable" option.</li>
+                    </ul>
+
+                    <h3>Order</h3>
+                    <p>Place the most common or important option first. However, if there is a more natural or logical ordering, use that instead. If there is no natural or logical order, list them in alphabetical order.</p>
+
+                    <h3>Labels</h3>
+                    <ul>
+                        <li>Use a label for a group of radio buttons.</li>
+                        <li>Use sentence style capitalization for a group label.</li>
+                        <li>Do not include a colon at the end of a group label.</li>
+                        <li>Use sentence style capitalization for radio button labels.</li>
+                    </ul>
+                    <h2>States</h2>
+
+                    <dl class="dl-horizontal">
+                        <dt>Default state</dt>
+                        <dd>Ensure that the default radio button is meaningful: choose the option that is most appropriate, most common, has the least risk, or is the current value. There are times when it is appropriate to have no default value.</dd>
+                        <dt>Selected</dt>
+                        <dd>If a radio button is selected, it is the default selection, or the user has selected the radio button. It is possible that an option is chosen as a result of interacting with another form element where dependencies exist.</dd>
+                        <dt>Unselected</dt>
+                        <dd>If a radio button is unselected, it is not the default selection, and was not selected by the user.</dd>
+                        <dt>Disabled</dt>
+                        <dd>If a radio button is disabled, it is one that the user cannot act on. Often times, a user must perform another action first, for example, choose a prerequisite, before this radio button is enabled. A disabled radio button can be selected or unselected. When a disabled radio button controls other UI elements, disable the dependent elements.</dd>
+                    </dl>
+
+
+                    <h2>Accessibility</h2>
+
+                    <p>Using standard HTML elements, no additional coding is necessary for the individual radio buttons.</p>
+
+                    <p>When a group of radio button is used, provide a text label that describes or identifies the group. For the web, groups of radio buttons are marked up using HTML <code>fieldset</code> and legend elements where the <code>legend</code> is the label for the group.</p>
+
+                    <p>Keyboard accessibility is as follows:</p>
+
+                    <ul>
+                        <li>Web applications must follow the keyboard interaction for radio buttons describe in the WAI-ARIA Authoring Practices</li>
+                        <li>Desktop applications supports tabbing to focus on the first radio button. To navigate to and select the next radio button use the down or right arrow keys, to navigate to and select the previous radio buttons use the up and left arrow keys, and the escape key to return to the original selection.</li>
+                        <li>Radio button groups or individual radio buttons that are disabled are not included in the keyboard navigation order.</li>
+                    </ul>
+
+                    <p>The state of the radio button must be visually apparent in high contrast mode.</p>
+
+                    <p>Custom radio buttons on the web are given a WAI-ARIA <code>role=&quot;radio&quot;</code> and are members of a group of radio controls with <code>role=&quot;radiogroup&quot;</code> on the <code>div</code> containing the group of radio buttons. The visible label is associated with the ARIA group using <code>aria-labelledby</code>.</p>
+
+                    <h2>Globalization</h2>
+
+                    <p>Be aware that translation may cause the radio button text to expand. When planning the radio buttons, ensure that you allow sufficient room for expansion. Globalization Design Guideline A3 has guidance on additional space requirements for text after translation.</p>
+
+
+                </div><!--/.col-md-9-->
+
+            </div><!--/.row-->
+		</tab>
+		<tab heading="UX blueprint">
+            <img src="radiobuttons/radiobuttons_blueprints.png" />
+
+		</tab>
+	</tabset>
+</div>

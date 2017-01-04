@@ -1,0 +1,32 @@
+@import "vars";
+@import "colors";
+
+table {
+	//cells
+	thead, tbody, tfoot {
+		tr {
+			th, td {
+
+			}
+		}
+	}
+
+	//header
+	thead > tr > th {
+
+	}
+
+	//body
+	thead + tbody > tr {
+		th, td {
+
+		}
+	}
+	
+	//striped rows
+	&.striped {
+		tr:nth-child(2n) {
+
+		}
+	}
+}

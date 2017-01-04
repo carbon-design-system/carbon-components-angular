@@ -1,0 +1,55 @@
+.check-column {
+    width: 60px;
+    text-align: center;
+}
+
+.check-column .checkbox {
+    width: 20px;
+    margin: 0 auto;
+}
+
+.scroll-table {
+	overflow-y: auto;
+    /*stupid ipad*/
+    -webkit-overflow-scrolling: touch;
+	height: calc(100% - 80px);
+}
+
+table {
+	border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    white-space: nowrap;
+    table-layout: fixed;
+}
+
+table tbody {
+    display: table;
+    width: 100%;
+}
+
+table tr {
+    height: 40px;
+    padding-bottom: 12.5px;
+    padding-top: 12.5px;
+    color: #5A5A5A;
+}
+
+table tr.striped {
+    background: rgba(224,224,224,0.25);
+}
+
+table tr:hover {
+    background: rgba(85,150,230,0.10);
+}
+
+table tr.selected {
+    background: rgba(85,150,230,0.10);
+}
+
+table td {
+	padding-left: 20px;
+	padding-right: 20px;
+	border-bottom: 1px solid #E0E0E0;
+    overflow: hidden;
+}

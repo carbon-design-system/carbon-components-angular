@@ -1,0 +1,78 @@
+<!--  init() doesn't hit, not needed <div ng-controller="bidiCtrl" ng-init="init()" class="container"> -->
+<div ng-controller="bidiCtrl" class="container">
+	<p class="lead">Base text direction (Bidi) support</p>
+	<tabset>
+        <tab heading="Demo">			
+           <p>Tooltips with 'textdir' option passed via constructor.</p>
+           <div class="row">			
+				<button type="button" class="btn btn-primary tooltip-bottom" title="Tooltip demonstrating 'rtl' textdir option!!!">Tooltip('rtl' textdir)</button>
+				<pre><code>&lt;button type="button" class="btn btn-primary tooltip-bottom" title="Tooltip demonstrating 'rtl' textdir option!!!"&gt;Tooltip('rtl' textdir)&lt;/button></code></pre>
+				<button type="button" class="btn btn-primary tooltip-top" title="אבג  Tooltip demonstrating 'contextual' textdir option!!!">Tooltip('contextual' textdir)</button>		
+				<pre><code>&lt;button type="button" class="btn btn-primary tooltip-top" title="אבג  Tooltip demonstrating 'contextual' textdir option!!!"&gt;Tooltip('contextual' textdir)&lt;/button</code></pre>				
+           </div>
+            <br>
+            <p>Tooltips with 'textdir' option passed declaratively.</p>
+            <div class="row">
+				<button type="button" data-textdir="rtl" data-trigger="hover" class="btn btn-primary tooltip-right" title="Tooltip demonstrating 'rtl' textdir option!!!">Tooltip('rtl' textdir)</button>
+				<pre><code>&lt;button type="button" data-textdir="rtl" data-trigger="hover" class="btn btn-primary" title="Tooltip demonstrating 'rtl' textdir option!!!"&gt;Tooltip('rtl' textdir)&lt;/button></code></pre>
+				<button type="button" data-textdir="contextual" data-trigger="hover" class="btn btn-primary tooltip-right" title="אבג  Tooltip demonstrating 'contextual' textdir option!!!">Tooltip('contextual' textdir)</button>
+				<pre><code>&lt;button type="button" data-textdir="contextual" data-trigger="hover" class="btn btn-primary" title="אבג  Tooltip demonstrating 'contextual' textdir option!!!"&gt;Tooltip('contextual' textdir)&lt;/button></code></pre>				
+            </div>
+            <br>
+            <p>Popover with 'textdir' option passed via constructor.</p>
+            <div class="row">	
+				<button id="popover1" type="button" class="btn btn-default" data-container="body" 
+				data-toggle="popover" data-placement="right" data-content="Popover demonstrating 'rtl' textdir option!!!">
+					Popover on right!
+				</button>
+				<pre><code>&lt;button id="popover1" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Popover demonstrating 'rtl' textdir option!!!"&gt;Popover on right!&lt;/button&gt;</code></pre>				
+            </div>
+            <br>
+            <p>Popover with 'textdir' option passed declaratively.</p>
+            <div class="row">
+				<a id="popover2" tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" 
+				data-textdir="contextual" 
+				data-trigger="focus" title="אבג Title!" data-content="אבג And here's some content demonstrating 'contextual' textdir option!">
+					Dismissible popover!
+				</a>
+				<pre><code>&lt;a id="popover2" tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-textdir="contextual" data-trigger="focus" title="אבג Title!" data-content="אבג And here's some content demonstrating 'contextual' textdir option!"&gt;Dismissible popover!&lt;/a&gt;</code></pre>				
+            </div>	
+
+        </tab>
+		<tab heading="UX specifications">
+            <div class="row">
+                    <h2>What is 'base text direction'</h2>
+<p><pre>Text direction - applicable for widgets which show text. 
+Direction of text is critical for readability of that text especially in Bidi languages. 
+For example: "hello world !!!" will be displayed as "!!! hello world" with RTL direction
+Detailed explanation of what base text direction term means may be found on pages 5-9 of the following reference document:<br> 
+<a class="ext-link" href="https://docs.google.com/document/d/1dDrSwimrQbpbXybhMYDEiJXLeeqvelnY4cc8HeCP1Nk/edit?usp=sharing" rel="nofollow"><span class="icon">&nbsp;</span>https://docs.google.com/document/d/1dDrSwimrQbpbXybhMYDEiJXLeeqvelnY4cc8HeCP1Nk/edit?usp=sharing
+</a></pre></p>
+						
+                   <h2>'Base text direction' (BTD) for bootstrap widgets</h2>
+<p><pre>Only Toltip and Popover bootstrap widgets support BTD
+since only these ones create their HTML markup dynamically.
+Other widgets are based on existing HTML markup, therefore either 'direction' style
+or 'dir' attribute may be used by createor of HTML page in order to achieve required BTD.
+</pre></p>
+                   <h2>How to specify 'base text direction' for bootstrap widgets</h2>	
+<p><pre>Bootstrap widgets provide BTD basing on 'textdir' option been passed to widget constructor.
+Alternatively BTD ma be specified declaratively as 'data-textdir' attribute of corresponding html element.
+
+Allowed values are: "ltr" (left-to-right), "rtl" (right-to-left) and 
+"contectual" (meaning that either 'ltr' or 'rtl' value is used depending on 
+the first strong(Arabic/Hebrew or English) character of string been displayed.  
+
+Note: The bootstrapBidi.js script file should be loaded, by side of primary bootstrap script
+(either bootstrap.js or bootstrap.min.js) in order to enable 'base text direction support 
+like in following illustrative snippet:
+<code>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="../../dist/js/bootstrap.min.js"&gt;&lt;/script&gt;  
+&lt;script src="../../dist/js/bootstrapBidi.js"&gt;&lt;/script&gt;
+</code>			
+</pre></p>				   
+            </div>			
+		</tab>
+	</tabset>
+</div>

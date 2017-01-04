@@ -1,0 +1,35 @@
+<h3 class="page-header">How to use</h3>
+<p>Reference all color variables with one line of code.</p>
+<div class="bs-callout bs-callout-warning">
+	<h4>@import file required!</h4>
+	<p>All individual Sass files using color variables <strong>require</strong> a file import of
+		<code>x1-ui-bootstrap/dist/app/src/x1-ui-sass-tools.scss</code> from you bower component
+		directory.</p>
+</div>
+<div class="highlight">
+	<pre>
+		<code class="language-css" prism>@import "../../x1-ui-bootstrap/dist/app/src/x1-ui-sass-tools.scss";</code>
+	</pre>
+</div>
+
+<h3 class="page-header">Color palette</h3>
+<p>Search by variable name or hex value to filter the color swatches below.</p>
+<div ng-controller="colorsCtrl" class="bs-example bs-colors">
+	<form class="form-group">
+		<label for="colorSearch" class="sr-only">Search</label>
+		<input type="search" id="colorSearch" class="form-control" placeholder="Search" ng-model="colorSearch">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		<a ng-click="colorSearch=''" aria-label="Clear search" tabindex="0">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</a>
+	</form>
+	<div class="color-swatches" ng-repeat="shades in colorShades">
+		<div ng-repeat="color in shades | filter:colorSearch"
+				ng-mouseover="hex=true" ng-mouseleave="hex=false"
+				class="color-swatch {{color.textClass}}"
+				style="background-color:{{color.hex}}">
+			<span ng-hide="hex" class="color-text">{{color.variable}}</span>
+			<span ng-show="hex" class="color-text">{{color.hex}}</span>
+		</div>
+	</div>
+</div>

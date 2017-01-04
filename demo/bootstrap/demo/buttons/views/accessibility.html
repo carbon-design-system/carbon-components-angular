@@ -1,0 +1,113 @@
+<h2 class="page-header">Accessibility</h2>
+<ul>
+	<li>All buttons should include a label parameter (either the alt or aria-label attribute) with
+		text for the button even if the showLabel parameter is set to false. This is used to
+		identify the button in high contrast mode when the icon for the button will no longer be
+		displayed, and it is also used to identify the button to a screen reader. This label will
+		also provide content for the tooltip, where applicable.
+	</li>
+	<li>When the button text is accompanied by a graphic, the graphic should only have alternative
+		text if the graphic provides additional information that the text does not convey. Otherwise
+		the graphic should have the alternative text alt="".
+	</li>
+	<li>When there are primary buttons on the page, ensure the visual and keyboard design is
+		harmonious. Create keyboard navigation such that it is simpler to get to the primary buttons
+		than the secondary buttons. Grouping buttons can help by using one of the following
+		techniques:
+		<ul>
+			<li>Group the primary buttons in a toolbar and the secondary buttons in one or more
+				additional toolbars. Ensure the primary button toolbar is quicker to navigate to
+				with the keyboard than the secondary button toolbars.
+			</li>
+			<li>Group each primary button along with its related secondary buttons in a toolbar in
+				such a way that keyboard navigation reaches the primary button first. For example,
+				in a horizontal toolbar with the primary button listed as the leftmost button (in
+				left-to-right languages) or the rightmost button (in right-to-left languages).
+			</li>
+			<li>Grouping buttons into toolbars also improves keyboard navigation. The Tab key is
+				used to navigate to each group and the arrow keys are used to navigate to the
+				buttons within the group.
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<h3>Keyboard navigation (desktop only)</h3>
+
+<h4>Simple button:</h4>
+<ul>
+	<li>For Web applications, if the simple button is not a standard HTML or Dojo Dijit button, it
+		must be identified with the WAI-ARIA role="button".
+	</li>
+	<li>Keyboard navigation:
+		<ul>
+			<li>Tab - Navigate to a button</li>
+			<li>Enter or space - Activate the button</li>
+		</ul>
+
+	</li>
+	<li>Drop down menu button:
+		<ul>
+			<li>Use WAI-ARIA role="pushbutton" aria-haspopup="true".</li>
+			<li>Refer to the <a href="http://www.w3.org/WAI/PF/aria-practices/#menubutton">WAI-ARIA
+				Authoring Practices menu button design pattern
+				(http://www.w3.org/WAI/PF/aria-practices/#menubutton)</a> for the correct
+				accessibility markup for the menu.
+			</li>
+			<li>Refer to the WAI-ARIA Authoring Practices menu button design pattern for the
+				keyboard interaction.
+			</li>
+		</ul>
+	</li>
+</ul>
+<h4>Combination button:</h4>
+<ul>
+	<li>In Windows 7, the combination button is a standard element. For the Web, the combination
+		button is manufactured by putting a simple button and a drop down menu button together into
+		one widget. It can be made accessible by grouping the two buttons in a WAI-ARIA role=”group”
+		where the first button is a standard button that performs the action and the second button
+		is a button with ARIA role=”button” aria-haspopup=”true” to present the user with the list
+		of other actions. Provide a label for the group which will be made available to the screen
+		reader user and should briefly describe the purpose of the combination button. The label for
+		the button group may be hidden from view by using aria-label or have a visible label
+		associated with the group using aria-labelledby.
+	</li>
+	<li>Keyboard navigation:
+		<ul>
+			<li>When focus is on the first button (simple button):
+				<ul>
+					<li>Right arrow moves focus to the drop down menu button.</li>
+					<li>Spacebar or Enter activates the action shown in the label of the button.
+					</li>
+				</ul>
+			</li>
+			<li>When focus is on the second button (drop down menu button):
+				<ul>
+					<li>Left arrow moves focus to the simple button.</li>
+					<li>Spacebar and Enter toggles the display of the drop down menu and focus
+						remains on the button.
+					</li>
+					<li>Down arrow opens the drop down menu and places focus on the first menu
+						item.
+					</li>
+					<li>If drop down menu was already open (because user pressed Spacebar or Enter),
+						focus moves to the first menu item.
+					</li>
+				</ul>
+			</li>
+			<li>When focus is on the pop-up list of actions:
+				<ul>
+					<li>Down arrow moves focus down the list.</li>
+					<li>Up arrow moves focus up the list.</li>
+					<li>Esc closes the list without performing any action. Additionally, in the case
+						of a dynamic combination button, the label of the button is not updated.
+					</li>
+					<li>Enter performs the action and, in the case of a dynamic combination button,
+						also places the label of the selected action into the simple button.
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+

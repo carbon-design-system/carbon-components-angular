@@ -1,0 +1,303 @@
+<div class="container-fluid">
+    <h1 class="page-header">Check boxes</h1>
+    <p class="lead">A user needs to be able to choose zero or more non-exclusive items from a list of options. They need to be able to see what they have selected and to add or remove items from the selection as required. </p>
+    <tabset>
+        <tab heading="Demo">
+            <p>This demo page is a work in progress.</p>
+            <div class="row">
+                <h3>Checkboxes - stacked</h3>
+                <form class="col-xs-3">
+                    <div class="checkbox">
+                        <label for="checkbox1">
+                            <input type="checkbox" checked="checked" value="" id="checkbox1">
+                            <span>Checkbox option 1</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="checkbox2">
+                            <input type="checkbox" value="" id="checkbox2">
+                            <span>Checkbox option 2</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="checkbox3">
+                            <input type="checkbox" value="" id="checkbox3" disabled="true">
+                            <span>Checkbox option 3</span>
+                        </label>
+                    </div>
+                </form>
+                <form class="col-xs-3 checkbox-bg-dark">
+                    <div class="checkbox">
+                        <label for="checkbox4">
+                            <input type="checkbox" checked="checked" value="" id="checkbox4">
+                            <span>Checkbox option 4</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="checkbox5">
+                            <input type="checkbox" value="" id="checkbox5">
+                            <span>Checkbox option 5</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="checkbox6">
+                            <input type="checkbox" value="" id="checkbox6" disabled="true">
+                            <span>Checkbox option 6</span>
+                        </label>
+                    </div>
+                </form>
+            </div><!-- .row -->
+			<div class="highlight">
+				<pre>
+					<code class="language-html" data-lang="html">&lt;form class="col-xs-3">
+	&lt;div class="checkbox">
+		&lt;label for="checkbox1">
+			&lt;input type="checkbox" checked="checked" value="" id="checkbox1">
+			&lt;span>Checkbox option 1&lt;/span>
+		&lt;/label>
+	&lt;/div>
+	&lt;div class="checkbox">
+		&lt;label for="checkbox2">
+			&lt;input type="checkbox" value="" id="checkbox2">
+			&lt;span>Checkbox option 2&lt;/span>
+		&lt;/label>
+	&lt;/div>
+	&lt;div class="checkbox">
+		&lt;label for="checkbox3">
+			&lt;input type="checkbox" value="" id="checkbox3" disabled="true">
+			&lt;span>Checkbox option 3&lt;/span>
+		&lt;/label>
+	&lt;/div>
+&lt;/form></code>
+				</pre>
+			</div><!-- .highlight -->
+            <div class="row">
+                <h3>Checkboxes - inline</h3>
+                <form class="col-xs-12">
+                    <label class="checkbox-inline" for="checkbox7">
+                        <input type="checkbox" checked="checked" value="" id="checkbox7">
+                        <span>Checkbox option 7</span>
+                    </label>
+                    <label class="checkbox-inline" for="checkbox8">
+                        <input type="checkbox" value="" id="checkbox8">
+                        <span>Checkbox option 8</span>
+                    </label>
+                    <label class="checkbox-inline" for="checkbox9">
+                        <input type="checkbox" value="" id="checkbox9" disabled="true">
+                        <span>Checkbox option 9</span>
+                    </label>
+                </form>
+                <form class="col-xs-12 checkbox-bg-dark">
+                    <label class="checkbox-inline" for="checkbox10">
+                        <input type="checkbox" checked="checked" value="" id="checkbox10">
+                        <span>Checkbox option 10</span>
+                    </label>
+                    <label class="checkbox-inline" for="checkbox11">
+                        <input type="checkbox" value="" id="checkbox11">
+                        <span>Checkbox option 11</span>
+                    </label>
+                    <label class="checkbox-inline" for="checkbox12">
+                        <input type="checkbox" value="" id="checkbox12" disabled="true">
+                        <span>Checkbox option 12</span>
+                    </label>
+                </form>
+            </div><!-- .row -->
+			<div class="highlight">
+				<pre>
+					<code class="language-html" data-lang="html">&lt;form class="col-xs-12 checkbox-bg-dark">
+	&lt;label class="checkbox-inline" for="checkbox10">
+		&lt;input type="checkbox" checked="checked" value="" id="checkbox10">
+		&lt;span>Checkbox option 10&lt;/span>
+	&lt;/label>
+	&lt;label class="checkbox-inline" for="checkbox11">
+		&lt;input type="checkbox" value="" id="checkbox11">
+		&lt;span>Checkbox option 11&lt;/span>
+	&lt;/label>
+	&lt;label class="checkbox-inline" for="checkbox12">
+		&lt;input type="checkbox" value="" id="checkbox12" disabled="true">
+		&lt;span>Checkbox option 12&lt;/span>
+	&lt;/label>
+&lt;/form></code>
+				</pre>
+			</div><!-- .highlight -->
+        </tab>
+        <tab heading="UX specifications">
+        <div class="row">
+            <div class="col-md-9">
+
+                <h2>Use when...</h2>
+                <p>Use a group of check boxes when you have six to eight related items from which a user can choose zero or more items. You can include more than eight items if there is sufficient space and the user would benefit from always seeing all the items.</p>
+
+                    <p>When using a single check box, the checked and unchecked states must be mutually exclusive. If there is any room for ambiguity, use radio buttons instead.</p>
+
+                <h2>Implementation</h2>
+                <ul>
+                    <li>The default state of a check box should be the most common or least risky option.</li>
+                    <li>If a user might want to choose all of the check boxes in a group, include a Select all /Deselect all  function at the top of the group. </li>
+                    <li>List the most important item first, unless there is a more natural or logical order. Or, you can use alphabetical order.</li>
+                    <li>Provide a label for a check box group.</li>
+                    <li>Use sentence-style capitalization for the check box labels and for the group label.</li>
+                </ul>
+
+                <h2>States</h2>
+                <dl class="dl-horizontal">
+                    <dt>Checked</dt>
+                    <dd>If a check box is checked, it is the default selection, or the user has selected the check box.</dd>
+
+                    <dt>Unchecked</dt>
+                    <dd>If a check box is unchecked, it is not the default selection and was not selected by the user, or it was cleared by the user.</dd>
+
+                    <dt>Indeterminate</dt>
+                    <dd>The indeterminate state occurs when a 3-state check box has nested check boxes, and some of the children check boxes are checked and others are unchecked. The user can cycle the state of the check box between the 3 states.</dd>
+
+                    <dt>Disabled</dt>
+                    <dd>If a check box is disabled, the user cannot select it. Often a user must complete another action first, for example, choose a prerequisite, before a check box is enabled. A disabled check box can be checked or unchecked. When a disabled check box controls other UI elements, disable the dependent elements.
+                    </dd>
+                </dl>
+
+                <h2>Tri-state check boxes</h2>
+
+                <p>In some situations, you may need to implement tri-state check boxes. These are check boxes that can be checked, unchecked, or of an indeterminate state. Most often, this sort of check box is found in a tree.</p>
+
+                <h3>Tri-state check box behavior</h3>
+
+                <ul>
+                    <li>When all the children elements are in an unchecked state, the parent element is also in an unchecked state.</li>
+                    <li>When all the children elements are in a checked state, the parent element is also in a checked state</li>
+                    <li> 	When some children elements are checked and some are unchecked, the parent element is in an indeterminate state. The indeterminate state is shown with a square in the check box, which indicates that its state is neither checked nor unchecked. When the parent check box starts in an indeterminate state, activating the check box cycles through the three states as follows:
+                        <ul>
+                            <li>The parent check box and all children check boxes change to the checked state.</li>
+                            <li>The second activation of the parent check box changes the parent check box and all children check boxes to the unchecked state.</li>
+                            <li>The third activation of the parent check box returns the check box to the indeterminate state and restores the original mixture of checked and unchecked states for the children check boxes. In this way, the user can cycle between the states. The indeterminate state is only retained for the current session.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>Alternative 'no-box' check box style</h2>
+
+                <p>Traditionally, check boxes are check marks that appear inside a box &mdash; hence the name.  However, some modern styles do not include the box part of the check box.  The styling on the 'no-box' check boxes applies just to the check mark itself, and relies on surrounding context to provide additional visual cues (such as hover background color changes).
+                </p>
+                <p>You can use no-check check boxes in tables that would otherwise be too busy visually and in drop-down lists with limited real estate
+                </p>
+                <p>Styling for this type of check box has not been finalized.</p>
+
+                <h2>Tags</h2>
+
+                <p>Tags are a special implementation of check boxes.
+                    These appear as button-like elements on a user interface that are used for filtering the display of amounts of information,
+                    but they behave like check boxes and can be used in multiple combinations.
+                </p>
+                <p>See the Tags pattern for more information.</p>
+
+                <h2>Accessibility</h2>
+                <ul>
+                    <li>Provide labels for check boxes that clearly indicate their purpose.</li>
+                    <li>When a group of check boxes is used, provide a text label that describes or identifies the group. Groups of check boxes can be marked up using the following methods:
+                        <ul>
+                            <li>HTML fileset and legend elements where the legend is the label for the group.</li>
+                            <li>The WAI-ARIA <code>role="group"</code> on the &lt;div&gt; containing the group of check boxes. The group typically has a visible label, so associate it to the ARIA group using <code>aria-labelledby</code>. Otherwise an invisible label is assigned using <code>aria-label</code>.</li>
+                        </ul>
+                    </li>
+                    <li>It is best to locate labels near the check boxes they describe. This proximity is especially important for people with low vision who magnify the contents of the screen.</li>
+                    <li>When standard HTML, Dojo Dijit, or operating system elements are used, no additional coding is necessary.</li>
+                </ul>
+                <p>When non-standard check box elements are created, the following functions must be supported for accessibility.</p>
+                <ul>
+                    <li>The appropriate role, name (or label), and state information must be provided.
+                        <ul>
+                            <li>For the web, reference the WAI-ARIA 1.o Authoring Practices for check boxes for the appropriate WAI-ARIA markup and state changes.</li>
+                            <li>For the Windows desktop, the MSAA name, role, and state are used.</li>
+                        </ul>
+
+                    </li>
+                    <li>Users must be able to navigate from one check box to another using the Tab key and to use the space bar to change the state of the check box that has focus. Disabled check boxes are not included in the Tab order. You can add optional accessibility enhancements such as altering the tabbing order to one that is more logical or assigning keyboard mnemonics to individual check boxes for enhanced navigation.</li>
+                    <li>When a check box has the keyboard focus, provide a clear visual indicator that it is selected. The most consistent and visually obvious method is to have a dotted box drawn around the text label for the check box that has the keyboard focus. Be sure the dotted box has sufficient contrast from the background and is also visible in high contrast mode. It is also recommended that the check box icon provides adequate contrast so the user can easily identify the various states.</li>
+                    <li>The icon showing the check box state must have visible alternative in high contrast mode.</li>
+                </ul>
+
+                <h3>Keyboard interactions</h3>
+                <p><strong>Dual-state check box</strong></p>
+                <p>The Space key toggles the selection, checking or unchecking of the box. </p>
+
+                <p><strong>Tri-state check box</strong></p>
+                <p>If not checked, Space reinstates the mixed state, if known. If the mixed state is not known, Space checks the check box</p>
+
+                <p>If checked, Space unchecks the check box.</p>
+                <p>If mixed, Space checks the check box.</p>
+
+                <h3>WAI-ARIA roles, states, and properties</h3>
+                <ul>
+                    <li>The checkbox should have a role of <code>checkbox</code>.</li>
+                    <li>If checked it should have the state <code>aria-checked="true"</code>.</li>
+                    <li>If not checked it should have the state <code>aria-checked="false"</code>.</li>
+                    <li>If partially checked, it should have the state <code>aria-checked="mixed"</code>.</li>
+                    <li>If you use an image to render the state of a checkbox, it should not appear in the accessibility API mapping. This can be accomplished using CSS to render it or setting a role of <code>presentation</code> on the image.</li>
+                    <li>Put the checkbox in the tab order, such as by setting its <code>tabindex="0"</code>.</li>
+                    <li>Checkboxes having a logical grouping should be children of a DOM element whose role is <code>group</code>.</li>
+                    <li>The group should assign a label that is visible and referenced through the <code>aria-labelledby</code> property set to the ID of the label.</li>
+                    <li>Use an <code>aria-describedby</code> property to add additional help information to the checkbox or grouping.</li>
+
+                </ul>
+
+                <h2>Globalization</h2>
+
+                <p>If the UI is to be translated into Arabic or Hebrew, the UI has to be mirrored; what was on the left will be on the right, and vice versa. UI mirroring is only to be applied when the UI is Arabic or Hebrew, not if the user happens to be in an Arabic or Hebrew locale and is using some other UI language.</p>
+                <p>Globalization of the labels for checkboxes follows the same recommendations as those for text fields.</p>
+            </div><!--/.col-md-9-->
+            <!-- Need correct code to allow anchor links to work within the page -->
+            <!--<div class="col-md-3">
+                <div class="bs-docs-sidebar">
+                    <ul class="nav bs-docs-sidenav">
+                        <li ng-class="{active: selectedDoc === null || selectedDoc === 'checkboxes'}">
+                            <a href ng-click="selectedDoc = 'checkboxes'">Overview</a></li>
+                        <li ng-class="{active: selectedDoc === 'states'}">
+                            <a href ng-click="selectedDoc = 'states'">States</a></li>
+                        <li ng-class="{active: selectedDoc === 'tri-state'}">
+                            <a href ng-click="selectedDoc = 'tri-state'">Tri-state check boxes</a></li>
+                        <li ng-class="{active: selectedDoc === 'tags'}">
+                            <a href ng-click="selectedDoc = 'tags'">Tags</a></li>
+                        <li ng-class="{active: selectedDoc === 'nobox'}">
+                            <a href ng-click="selectedDoc = 'nobox'">'No box' check boxes</a></li>
+                        <li ng-class="{active: selectedDoc === 'accessibility'}">
+                            <a href ng-click="selectedDoc = 'accessibility'">Accessibility</a></li>
+                        <li ng-class="{active: selectedDoc === 'globalization'}">
+                            <a href ng-click="selectedDoc = 'globalization'">Globalization</a></li>
+                    </ul>
+                </div> -->
+                <!--/.bs-docs-sidebar-->
+            <!-- </div><!--/.col-md-3-->
+        </div><!--/.row-->
+        </tab>
+        <!-- to be added when styling code is done
+        <tab heading="HTML code">
+
+            <p>Check boxes in a form:</p>
+            <form>
+                <input class="checkbox" type="checkbox" name="animals" value="dog">I have a dog
+                <br>
+                <input class="checkbox" type="checkbox" name="animals" value="cat">I have a cat
+                <br>
+                <input class="checkbox" type="checkbox" name="animals" value="rabbit">I have a rabbit
+                <br>
+                <input class="checkbox" type="checkbox" name="animals" value="chicken">I have a horse
+            </form>
+
+            <pre>
+            &lt;input class="checkbox" type="checkbox" name="animals" value="dog"&gt;I have a dog
+            &lt;br&gt;
+            &lt;input class="checkbox" type="checkbox" name="animals" value="cat"&gt;I have a cat
+            &lt;br&gt;
+            &lt;input class="checkbox" type="checkbox" name="animals" value="rabbit"&gt;I have a rabbit
+            &lt;br&gt;
+            &lt;input class="checkbox" type="checkbox" name="animals" value="chicken"&gt;I have a horse
+
+            </pre>
+
+        </tab>-->
+        <tab heading="UX blueprint">
+            <img src="images/checkboxes_blueprints.png"/>
+            <img src="images/checkboxes_horiz_blueprints.png"/>
+        </tab>
+    </tabset>
+</div>

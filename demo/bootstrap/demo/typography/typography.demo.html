@@ -1,0 +1,63 @@
+<h3 class="page-header">Headers</h3>
+<div id="type-header-demo" class="bs-example">
+	<h1>Top line metrics <small>- 36px Helvetica Neue Bold for IBM</small></h1>
+	<h2>Embedded assistance, first time use, guidance <small>- 22px Helvetica Neue Light for IBM</small></h2>
+	<h3>Page title, side bar/nav titles <small>- 17px Helvetica Neue Bold for IBM</small></h3>
+	<h4>Product titles, widget titles, modal titles <small>- 15px Helvetica Neue Bold for IBM</small></h4>
+	<h5>Top menu bar links <small>- 15px Helvetica Neue Roman for IBM</small></h5>
+	<h6>Contextual actions/links (non-top menu bar links), field hints <small>- 13px Helvetica
+		Neue Roman for IBM</small></h6>
+</div>
+<x1-prism element="#type-header-demo" lang="markup"></x1-prism>
+
+<h3 class="page-header">Content</h3>
+<div id="type-content-demo" class="bs-example">
+	<p>Content, buttons, dropdowns, toggles, tabs, labels - 14px Helvetica Neue Roman for IBM (default)</p>
+	<label>Labels - 14px Helvetica Neue Medium for IBM</label>
+	<p class="small">Mini text information (card panel main content) - 12px Helvetica Neue Roman for IBM</p>
+	<p class="xs-small">Charting labels - 11px Helvetica Neue Roman for IBM</p>
+</div>
+<x1-prism element="#type-content-demo" lang="markup"></x1-prism>
+
+<h3 class="page-header">Color usage</h3>
+<div id="type-color-demo" class="bs-typography bs-example">
+	<h1>Headers: Gray 80, #323232</h1>
+	<p>Standard text: Gray 60, #5a5a5a (default)</p>
+	<p class="contextual-text">Contextual buttons, field hints: $gray50: #777677</p>
+	<p class="text-link-on-gray">Nav bar links on Gray 70 background: $blue20: #7cc7ff</p>
+	<p class="icon-on-gray">Nav bar icons on Gray 80 nav: $gray10-50: #EFEFEF</p>
+	<p class="icon-on-gray">High contrast mode for icons (that aren’t contextual actions or in buttons): $gray10-50: #EFEFEF</p>
+	<p class="disabled">Disabled text and buttons on white: $gray40: #959595</p>
+	<p class="disabled-on-gray">Disabled text and buttons on gray background: $gray20: #C7C7C7</p>
+</div>
+<tabset>
+	<tab heading="HTML">
+		<x1-prism element="#type-color-demo" lang="markup"></x1-prism>
+	</tab>
+	<tab heading="SCSS">
+		<x1-prism lang="css">
+@import &quot;../../src/x1-ui-sass-tools&quot;;
+
+.bs-typography {
+	.contextual-text {
+		color: $gray50;
+	}
+	.text-link-on-gray {
+		background-color: $gray70;
+		color: $link-color2;
+		padding: 2px 5px;
+	}
+	.icon-on-gray {
+		background-color: $gray80;
+		color: $icon2;
+		padding: 2px 5px;
+	}
+	.disabled-on-gray {
+		background-color: $gray;
+		color: $text-disabled2;
+		padding: 2px 5px;
+	}
+}
+		</x1-prism>
+	</tab>
+</tabset>

@@ -1,0 +1,87 @@
+<div class="container-fluid">
+	<h1 class="page-header">Pop-up Help</h1>
+	<p class="lead">In order to accomplish their tasks, users sometimes need more information than the UI text provides. </p>
+	<tabset>
+		<tab heading="Demo">
+            <p>Pop-up help is implemented using a specially styled Tooltip.  See the <a href="http://dev.x1showcase.emmlabs.ibm.com/#/tooltip">Tooltip section</a> for the demo.</p>
+		</tab>
+		<tab heading="UX specifications">
+			<h2>What it's for...</h2>
+            <p>In order to accomplish their tasks, users sometimes need more information than the UI text provides. Users do not want to leave the UI to look up information.</p>
+			<h3>Use when...</h3>
+            <p>Use pop-up help to provide information that a user needs to accomplish their tasks without requiring them to leave the UI to get the information. </p>
+            <p>Use pop-ups sparingly and only when they serve a clear purpose for users to get more assistance. If the only argument for creating a pop up for a UI control is that you need it in order to be consistent, don’t create it.</p>
+
+            <h2>Implementation</h2>
+            <p>Use a ? icon to indicate that there is pop-up help available for an UI element. Place the ? icon after the label for the UI element.</p>
+            <p>When the user clicks or taps the icon, open the pop-up window. Because pop-up help might contain links, the pop-up display must persist so that users can click or tap any links.</p>
+            <p>NOTE: 	Requiring users to click or tap the icon, instead of merely hovering over it, is a change from earlier standards. The hover state is not available on all mobile devices, so we have adopted a standard that provides users with a consistent experience across platforms and devices.</p>
+            <p>Position the pop-up help so that it is in a viewable area of the window and, if possible, does not occlude the control for which is it providing assistance. When there is not room to display fully, the pop-up help should automatically align to fit the window.</p>
+            <p>The pop-up should be no wider than 320 pixels. This width provides an optimal line width of 62 characters in Arial 10 pt plus left and right side padding.</p>
+            <p><strong>Pop-up help closes when any of the following occur:</strong></p>
+            <ul>
+                <li>A user clicks the close icon.</li>
+                <li>A user selects a navigation link.</li>
+                <li>Keyboard focus moves away from the UI element that has hover help.</li>
+            </ul>
+
+            <h3>Content</h3>
+            <p>Apply the Progressive Disclosure Model for Information to design the overall user assistance. Pop-up help is an optional layer of assistance and should be applied sparingly, only when labels and other embedded assistance is inadequate. Do not add hover help to every UI control, but only to those that need it. Many windows and pages might have no hover help at all.</p>
+            <p>Never write pop-up help in a vacuum. Rather, consider the entire user experience so that pop-up help complements the labels and inline text and provides additional, consistent information in more detail. Do not provide redundant information or document the obvious. For example, if the field label is User name, do not create hover help with the text Enter your user name. Rely on the Progressive Disclosure Model for Information to determine the type of content to write for different controls that need additional assistance.</p>
+
+            <h3>Length</h3>
+            <p>Recommended length for most pop-up help is 30 words or fewer. The goal is to be succinct. If necessary, hover help can expand to a maximum of 80 words, but this should be the exception. If necessary, link to a KC topic rather than increasing the length of the pop-up help.</p>
+            <p>The content of the pop-up help should not scroll horizontally in any language. The size of the help should adjust to fit the text. If the text does not fit in the display area at its maximum size (for example, on a phone), the text should scroll vertically.</p>
+            <h3>Links</h3>
+            <p>Links are optional; include a link to additional information only when necessary. Code links so that they open a new window or page in the browser. Never replace the application page.</p>
+            <p><strong>You can add a maximum of two links inside a single pop-up help.</strong></p>
+            <ul>
+                <li>In most situations, include a single link with the "Learn more" link text.</li>
+                <li>You can use a second link for opening multimedia. Do not use a second link for additional information in text.</li>
+
+            </ul>
+            <p>Do not include two links that both point to additional information in text. The goal is to point users to highly contextual information about the specific UI element. From that contextual information, users can follow other links for broader or deeper related information.</p>
+            <h2>Accessibility</h2>
+            <p>Accessibility guidelines for mobile devices are still a work in progress. We will update this section as standards are developed. </p>
+            <p>These are the desktop accessibility standards for pop-up help.</p>
+
+            <h3>Help text</h3>
+            <p>The text in the pop-up help should respond to display settings in the browser or operating system, such as text size, background color, high contrast, and so on.</p>
+
+            <h3>The <span class="glyphicon glyphicon-help"></span> icon</h3>
+            <ul>
+                <li>If the <span class="glyphicon glyphicon-help"></span> icon is implemented as an action link, the action link must have a <code>WAI-ARIA role="button"</code> and use aria-owns to assign ownership of the pop-up to the link.</li>
+                <li>Use <code>aria-label="Help for &lt;description&gt;"</code> to provide a label for the icon so a screen reader can announce what it is. For form fields, the description text would be the field label.</li>
+                <li>The Ctrl+F1, Space bar key and the Enter key all can be used to invoke the pop-up help.</li>
+                <li>Icons in the UI must have a visible replacement in high contrast mode. High-contrast mode turns off all background images, so these will disappear in the UI if an alternative is not provided. You can detect high-contrast mode, use an image tag for the ? icon, or provide a text alternative for the icon.</li>
+
+            </ul>
+
+            <h3>The UI control or field that has pop-up help</h3>
+            <ul>
+                <li>The field that has pop-up help must receive keyboard focus using either the tabindex or aria-activedescendent methods.</li>
+                <li>When the field has keyboard focus, Ctrl+F1 is used to display the pop-up help.</li>
+            </ul>
+
+            <h3>The pop-up help dialog</h3>
+            <ul>
+                <li>Remember the keyboard focus location on the field, button, or action link that launches the pop-up help so that when the help is dismissed focus returns to this element.</li>
+                <li>The pop-up help has a <code>WAI-ARIA role="dialog"</code>.</li>
+                <li>Use <code>role="document"</code> and a tabindex on the &lt;div&gt; that contains the help information. When the help is displayed, keyboard focus is placed on the document element within the help content so the screen reader will automatically read it.
+                <p>IMPORTANT: 	Do not include any application elements inside of content marked with the document role, as it will prevent proper keyboard interaction for those widgets (the keys get used by the screen reader and the widget won’t get them). For example, do not include a toolbar inside the document region.</p></li>
+                <li>Tab key navigation cycles through the focus-able elements within the help dialog until the dialog is dismissed by the user.</li>
+                <li>Shift+Tab cycles backward through the focus-able elements in the help dialog.</li>
+                <li>All links contained in the help content must be able to be activated by tabbing to them and pressing Enter.</li>
+                <li>The close button is included in the tab order. When focus is on this button and the user presses the Space bar or Enter key, the help is dismissed.</li>
+                <li>The help content should remain displayed until the user dismisses it by pressing Esc or navigates to the Close button and activates it by pressing the Enter or Space bar key; focus returns to the saved keyboard focus location.</li>
+            </ul>
+
+            <h2>Globalization</h2>
+            <p>Be aware of expansion space that is needed for translation. Short English text up to four words requires approximately 100% expansion space for translation. Between 4 and 15 words requires between 80% and 30% expansion space respectively. The percentage goes down as the number of English words goes up.</p>
+            <p>Anything over 15 words requires approximately 30% expansion space. Pop-up controls generally expand to contain the content. However, longer content can obscure too much of the UI.</p>
+		</tab>
+		<tab heading="UX blueprint">
+			<p>See the <a href="http://dev.x1showcase.emmlabs.ibm.com/#/tooltip">Tooltip section</a> blueprints.</p>
+		</tab>
+	</tabset>
+</div>

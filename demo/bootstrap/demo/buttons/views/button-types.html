@@ -1,0 +1,204 @@
+<h2>Button types</h2>
+<p>There are several different types of buttons: simple, toggle, and menu.</p>
+    <p>Use simple or toggle buttons when the visibility of actions is important. Actions
+	that are contained in a menu button (drop down or combination) are less visible because the user needs to
+	search through the menu to discover them, so use menu buttons when real estate
+	is a constraint.  </p>
+
+	<h3>Simple buttons</h3>
+    <p>Simple buttons result in an immediate action. Clicking/pressing the button immediately
+        performs the action specified by the label.</p>
+    <p>See the Button hierarchy for detailed descriptions of the various simple buttons, and when to use them.</P>
+
+	<h3>Toggle button</h3>
+
+	<p>Toggle buttons, like simple buttons, result in an immediate action, but the result toggles between two
+		states. Clicking/pressing the button shows the action selected, signifying that it is
+		active. Clicking/pressing the button again returns it to its previous state, signifying that
+		it is inactive. Toggle buttons with more than two states also exist, but we do not have an
+		IBM-wide standard for their use.</p>
+
+        <p><strong>Single toggle</strong></p>
+        <p>Add 'data-toggle="button"' for single state toggle buttons.</p>
+        <div class="bs-example">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" data-toggle="button">Single Toggle</button>
+
+            </div>
+        </div>
+        <div class="highlight">
+						<pre>
+						&lt;button class="btn btn-primary" type="button" data-toggle="button"&gt;
+			Single Toggle&lt;/button&gt;
+						</pre>
+        </div>
+
+
+
+
+        <p><strong>Grouped toggle buttons</strong></p>
+        <p>Toggle buttons can be grouped, and can either behave independently like checkboxes, or work
+        as part of a group to represent an exclusive choice within the set, like radio buttons.</p>
+
+        <p><strong>Check box toggle</strong></p>
+        <p> Add 'data-toggle="buttons-checkbox"' for checkbox style toggling on btn-group.</p>
+        <p>This function is not yet implemented.</p>
+        <!-- <div class="btn-group" data-toggle="buttons-checkbox">
+            <label class="btn btn-default">
+                <input type="radio" name="options" id="option1">Pick this
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="options" id="option2">Pick that
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="options" id="option3">Pick another
+            </label>
+
+        </div>
+        -->
+        <p><strong>Radio button toggle</strong></p>
+        <p>Add 'data-toggle="buttons-radio"' for radio style toggling on btn-group.</p>
+        <p>Styling for this function has not yet been incorporated.</p>
+        <div class="bs-example">
+            <div class="btn-group" data-toggle="buttons-radio">
+                <label class="btn btn-default">
+                    <input type="radio" name="options" id="option1"> 1 day
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="options" id="option2"> 30 days
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="options" id="option3"> 60 days
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="options" id="option4"> 90 days
+                </label>
+            </div>
+        </div>
+        <div class="highlight">
+						<pre>
+            &lt;div class="btn-group data-toggle="buttons-radio"&gt;<br/>
+                &lt;label class="btn btn-default"&gt;<br/>
+                    &lt;input type="radio" name="options" id="option1"&gt; 1 day<br/>
+                &lt;/label&gt;<br/>
+                &lt;label class="btn btn-default"&gt;<br/>
+                    &lt;input type="radio" name="options" id="option2"&gt; 30 days<br/>
+                &lt;/label&gt;<br/>
+                &lt;label class="btn btn-default"&gt;<br/>
+                    &lt;input type="radio" name="options" id="option3"&gt; 60 days<br/>
+                &lt;/label&gt;<br/>
+                &lt;label class="btn btn-default"&gt;<br/>
+                    &lt;input type="radio" name="options" id="option4"&gt; 90 days<br/>
+                &lt;/label&gt;<br/>
+            &lt;/div&gt;
+						</pre>
+        </div>
+
+
+
+
+	<h3>Menu button (aka drop-down button)</h3>
+	<p>Menu buttons are used to combine multiple actions into a single button with a drop-down
+		list. They are used when you need to present a set of actions and the real estate is
+		constrained. Clicking/pressing a menu button drops down a list of actions.</p>
+    <div class="bs-example">
+        <div class="btn-group">
+            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"
+                    type="button">Default <span class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="">Another action</a></li>
+                <li><a href="">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="">Separated link</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="highlight">
+						<pre>
+						&lt;p&gt;<br>
+		&lt;button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"&gt;<br>
+			Default&lt;span class="caret"&gt;&lt;/span&gt;<br>
+		&lt;/button&gt;<br>
+		&lt;ul class="dropdown-menu"&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a href="#"&gt;Action&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a&gt;Another action&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a&gt;Something else here&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li class="divider"&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a&gt;Separated link&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+		&lt;/ul&gt;<br>
+	&lt;/p&gt;<br>
+						</pre>
+    </div>
+
+        <p><strong>Combination button (split button)</strong></p>
+    <p>Combination buttons are specialized versions of drop-down menu buttons that assign a default action to the button label. Other related actions are provided via the drop down list. Clicking the left portion of the button immediately performs the action specified by the label.</p>
+    <p>Clicking the arrow drops down a menu of related actions. The action associated with the button label should also be included in the menu. The label must always reflect the action associated with the button so that the user knows what it will do.</p>
+    <p>A combination button can be static or dynamic. The action associated with a static combination button is always the same (for example, the default or commonly used action). The action associated with a dynamic combination button changes based on the selection in the menu (for example, the last action). Dynamic combination buttons are best used for repetitive tasks where the action varies from one user to another.</p>
+
+<div class="bs-example">
+        <div class="btn-group">
+
+            <button class="btn btn-default" type="button">
+                Default
+            </button>
+            <button class="btn btn-default dropdown-toggle" type="button">
+                <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a>Action</a>
+                </li>
+                <li>
+                    <a>Another action</a>
+                </li>
+                <li>
+                    <a>Something else here</a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                    <a>Separated link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="highlight">
+						<pre>
+						&lt;p&gt;<br>
+		&lt;button class="btn btn-default" type="button"&gt;<br>
+			Default
+        &lt;/button&gt;<br>
+        &lt;button class="btn btn-default dropdown-toggle" type="button"&gt;<br>
+                         &lt;span class="caret"&gt;&lt;/span&gt;&lt;span class="sr-only"&gt;Toggle drop down&lt;/span&gt;<br>
+		&lt;/button&gt;<br>
+		&lt;ul class="dropdown-menu"&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a href="#"&gt;Action&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a&gt;Another action&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a&gt;Something else here&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li class="divider"&gt;<br>
+			&lt;/li&gt;<br>
+			&lt;li&gt;<br>
+				&lt;a&gt;Separated link&lt;/a&gt;<br>
+			&lt;/li&gt;<br>
+		&lt;/ul&gt;<br>
+	&lt;/p&gt;<br>
+						</pre>
+    </div>
+
+

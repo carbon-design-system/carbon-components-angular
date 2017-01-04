@@ -1,0 +1,91 @@
+<div class="container-fluid">
+	<h1 class="page-header">Textual Content in the UI</h1>
+
+	<p class="lead">In software design, look and feel is a term used to describe the visual and interactive aspects of a user interface. The textual content in the user interface has components of both look and feel.</p>
+	<tabset>
+
+        <tab heading="Look: Capitalization of UI text">
+            <h2>Capitalization of UI text</h2>
+            <p>There are two types of capitalization: sentence style and headline style. Use sentence-style capitalization for all UI elements.</p>
+            <p>This recommendation is a change from the previous IBM style.</p>
+            <p>Note: standard applies to English content, not translated or non-English content. See the Globalization section below for more information on capitalization in non-English text.</p>
+            <p>Sentence-style capitalization is mostly lowercase. </p>
+            <p><strong>Capitalize the initial letter of these words: </strong></p>
+                <ul>
+                    <li>The first word in the text</li>
+                    <li>Proper nouns</li>
+                </ul>
+            <p>Proper nouns include the names of specific people, places, companies, languages, protocols, and products.</p>
+            <p>A string with sentence-style capitalization can have punctuation at the end, such as a period, colon, or ellipsis.</p>
+            <h4>Examples</h4>
+            <ul>
+                <li>Security policy</li>
+                <li>Default time zone</li>
+                <li>Program approved for sales</li>
+                <li>Flowchart name</li>
+            </ul>
+            <h3>Exceptions and special cases</h3>
+            <h4>Abbreviations, acronyms, and initials</h4>
+            <p>Use all uppercase letters for acronyms, initials, and two-letter abbreviations.</p>
+            <h4>Examples</h4>
+            <ul>
+                <li>IBM</li>
+                <li>ASCII</li>
+                <li>user IDs</li>
+                <li>OK</li>
+            </ul>
+
+            <h4>User-supplied text</h4>
+            <p>Preserve the capitalization of user-supplied text, even when it does not match the capitalization of the surrounding UI text.</p>
+            <h4>Example</h4>
+            <p>Displaying a campaign name in all uppercase letters in a title bar because the user entered the name in all uppercase letters.</p>
+
+            <h4>Programming terms</h4>
+            <p>Programming terms should keep their capitalization. Do not start a sentence with a lowercase term, such as a command name. </p>
+            <p>Instead, rewrite the sentence. Intraword capitalization (sometimes called camel case) is permissible for programming objects and executable commands.</p>
+            <h4>Examples</h4>
+            <ul>
+                <li>startServer</li>
+                <li>JavaBeans</li>
+            </ul>
+
+            <h4>Links used for navigation</h4>
+            <p>If the link text is the name of the page or section heading, match the wording and capitalization to the content that it links to (which will typically use headline-style capitalization). If the link text is a description of the information rather than the title, use sentence capitalization.</p>            <p>Instead, rewrite the sentence. Intraword capitalization (sometimes called camel case) is permissible for programming objects and executable commands.</p>
+            <h4>Examples</h4>
+            <ul>
+                <li>Learn more</li>
+                <li>See my latest reviews here</li>
+                <li>IBM Style Database</li>
+            </ul>
+
+            <h4>Conveying emphasis</h4>
+            <p>Do not use capitalization to convey emphasis. Text in all capital letters is more difficult to read and might give the impression that the UI is shouting. If you want to indicate emphasis in web content, use the &lt;strong&gt; or &lt;em&gt; tags.</p>
+
+
+
+            <h3>Accessibility</h3>
+            <p><strong>Consider the following accessibility guidelines:</strong></p>
+            <ul>
+                <li>Screen readers generally do not indicate case or punctuation when reading text unless the user terms on a specific verbosity setting. Do not use capitalization alone to indicate meaning; make sure the meaning is indicated in the text.</li>
+                <li>Use &lt;strong&gt; or &lt;em&gt; tags to indicate emphasis. Do not use capitalization, because screen readers generally do not read text differently if it is in all capital letters.</li>
+                <li>Use the &lt;abbr&gt; tag to encode abbreviations, acronyms, and initials. Include a title attribute that specifies the expansion of the abbreviation, acronym, or initials.</li>
+                <li>Use the proper markup (for example, &lt;hn&gt;, &lt;label&gt;, @title, @label) or native platform APIs to identify document elements and user interface control labels.</li>
+                <li>Include punctuation as part of the text.</li>
+                </li>
+            </ul>
+
+            <h3>Globalization</h3>
+            <p>These guidelines apply to English text only. Some languages do not capitalize, for example, Japanese, Chinese, Hebrew, Arabic, Georgian, and Indic languages. Other languages do capitalize but use different capitalization rules than English uses. Translators are expected to use the capitalization that makes sense in the target language.</p>
+            <p>When you send text to be globalized, include any punctuation so it can be globalized as well.</p>
+
+
+        </tab>
+        <tab heading="Feel: Tone">
+            <h2>Tone</h2>
+            <p>The tone of the text in the user interface contributes to the feel of the product.</p>
+            <p>An IBM-level work group has created guidance on content. This guidance is supposed to be included in a future version of the IBM Design Language, but in the meantime, you can access it through <a href="https://w3-connections.ibm.com/forums/html/topic?id=1572d80a-077b-4e5f-aa4c-25cee8f2a0d6">this topic</a> in the IBM Design Language community forum.
+            </p>
+
+        </tab>
+	</tabset>
+</div>

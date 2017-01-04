@@ -1,0 +1,60 @@
+{
+  "name": "next",
+  "version": "0.0.1",
+  "description": "monorepo",
+  "main": "index.js",
+  "scripts": {
+    "demo:build": "webpack --config webpack.config.js --watch",
+    "demo:server": "webpack-dev-server --config webpack.config.js --watch",
+    "lint": "tslint \"src/**/*.ts\"",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.ibm.com:peretz-next/next.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "2.2.1",
+    "@angular/compiler": "2.2.1",
+    "@angular/core": "2.2.1",
+    "@angular/forms": "2.2.1",
+    "@angular/http": "2.2.1",
+    "@angular/platform-browser": "2.2.1",
+    "@angular/platform-browser-dynamic": "2.2.1",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "2.2.1",
+    "@types/jasmine": "^2.5.38",
+    "@types/node": "^6.0.42",
+    "angular2-template-loader": "^0.6.0",
+    "awesome-typescript-loader": "^3.0.0-beta.9",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.24.1",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.8.0",
+    "node-sass": "^4.1.1",
+    "phantomjs-prebuilt": "^2.1.14",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.1.0",
+    "style-loader": "^0.13.1",
+    "tslint": "^4.0.2",
+    "tslint-loader": "^3.3.0",
+    "typescript": "^2.0.10",
+    "webpack": "^2.1.0-beta",
+    "webpack-dev-server": "^2.1.0-beta.12",
+    "webpack-node-externals": "^1.5.4"
+  }
+}
