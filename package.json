@@ -2,7 +2,7 @@
   "name": "next",
   "version": "0.0.1",
   "description": "monorepo",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "demo:build": "webpack --config webpack.config.js --watch",
     "demo:server": "webpack-dev-server --config webpack.config.js --watch",
