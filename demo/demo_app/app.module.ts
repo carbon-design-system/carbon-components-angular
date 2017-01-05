@@ -12,19 +12,23 @@ import { RouterModule } from "@angular/router";
 import { TableDemo } from "./table_demo/table-demo.component";
 import { TableModule } from "./../../src/table/table.module";
 import { CoreDemo } from "./core_demo/core-demo.component";
+import { GlyphiconModule } from "./../../src/glyphicon/glyphicon.module";
+import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HomeComponent,
 		TableDemo,
-		CoreDemo
+		CoreDemo,
+		GlyphiconDemo
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
 		TableModule,
+		GlyphiconModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -37,6 +41,10 @@ import { CoreDemo } from "./core_demo/core-demo.component";
 			{
 				path: "css",
 				component: CoreDemo
+			},
+			{
+				path: "glyphicon",
+				component: GlyphiconDemo
 			}
 		])
 	],
