@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "table-demo",
 	templateUrl: "./table-demo.component.html",
-	// styleUrls: ["./table-demo.component.css"]
+	styleUrls: ["./table-demo.component.css"]
 })
 export class TableDemo implements OnInit {
 	private availableRows = [];
