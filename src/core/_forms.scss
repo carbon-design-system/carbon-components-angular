@@ -3,13 +3,9 @@
 
 input {
 	font-size: $font-size;
-	border: 1px solid $gray50;
-	outline: 1px solid $white;
-    outline-offset: 1px;
 	padding-left: 10px;
 	padding-right: 10px;
 	height: 30px;
-	transition: all 0.1s;
 	min-width: 280px;
 	margin: 2px;
 	&.sm {
@@ -28,61 +24,64 @@ input {
 }
 
 .checkbox {
-	width: 20px;
+	mac-width: 100%;
+	height: 20px;
 	position: relative;
-	display: inline-block;
+	display: block;
 	margin: 1px;
 	label {
-	    width: 20px;
-	    height: 20px;
-	    cursor: pointer;
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    background: #fcfff4;
-	    background: $white;
-	    border: 1px solid $gray50;
-	    outline: 1px solid $white;
-	    outline-offset: 1px;
-	    &:after {
-			content: '';
-			width: 10px;
-			height: 5px;
-			position: absolute;
-			top: 5px;
-			left: 4px;
-			border: 2px solid $gray50;
-			border-top: none;
-			border-right: none;
-			background: transparent;
-			opacity: 0;
-			transform: rotate(-45deg);
-	    }
-	    &:hover::after {
-	    	opacity: 0.5;
-	    }
-	    &:hover {
-	    	border: 1px solid $blue50;
-	    }
+	    display: block;
+	    span {
+		    height: 20px;
+		    cursor: pointer;
+    	    top: 0;
+		    left: 0;
+		    display: inline-block;
+		    &:before {
+		    	content: '';
+			    width: 20px;
+			    margin-right: 10px;
+			    display: inline-block;
+			    height: 20px;
+			    border: 1px solid $gray50;
+			    vertical-align: middle;
+		    }
+		    &:after {
+				content: '';
+				width: 10px;
+				height: 5px;
+				position: absolute;
+				top: 6px;
+				left: 5px;
+				border: 2px solid $gray50;
+				border-top: none;
+				border-right: none;
+				background: transparent;
+				opacity: 0;
+				transform: rotate(-45deg);
+		    }
+		    &:hover:after {
+		    	opacity: 0.5;
+		    }
+		}
 	}
 	input[type=checkbox] {
 		opacity: 0;
 	    height: 20px;
 	    min-width: 0;
-	    &:checked + label {
+	    position: absolute;
+	    &:checked + span:before {
 	    	border: 1px solid $blue50;
 	    }
-	    &:checked + label:after {
+	    &:checked + span:after {
 	    	opacity: 1;
 	    	border: 2px solid $blue50;
 	    	border-top: none;
 			border-right: none;
 	    }
-	    &:focus {
-	    	outline: none;
-	    }
-	    &:focus + label {
+	    &:focus + span:before {
 	    	outline: 1px solid $blue50;
+	    	outline-offset: 1px;
 	    }
 	}	
 }
@@ -102,8 +101,6 @@ input {
 	    background: #fcfff4;
 	    background: $white;
 	    border: 1px solid $gray50;
-	    outline: 1px solid $white;
-	    outline-offset: 1px;
 	    border-radius: 15px;
 	    &:after {
 			content: '';
@@ -136,9 +133,6 @@ input {
 	    	opacity: 1;
 	    	border: 7px solid $blue50;
 	    }
-	    &:focus {
-	    	outline: none;
-	    }
 	    &:focus + label {
 	    	outline: 1px solid $blue50;
 	    }
@@ -149,8 +143,6 @@ textarea {
 	font-size: $font-size;
 	padding: 10px;
 	border: 1px solid $gray50;
-	outline: 1px solid $white;
-	outline-offset: 1px;
 	height: 114px;
 	width: 385px;
 	transition: all 0.1s;

@@ -38,14 +38,14 @@ import { Column } from "./column.component";
 						{{column.col.title}}
 						<div class="col-actions">
 							<button 
-								class="btn btn-secondary btn-sm" 
+								class="sm" 
 								*ngIf="column.col.filter"
 								(click)="filter(column.col)">
 									filter
 								</button>
 							<button 
-								class="btn btn-secondary 
-								btn-sm" *ngIf="column.col.sort"
+								class="sm" 
+								*ngIf="column.col.sort"
 								(click)="sort(column.col)">
 									sort
 							</button>
