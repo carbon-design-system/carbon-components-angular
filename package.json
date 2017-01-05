@@ -1,7 +1,7 @@
 {
-  "name": "next",
+  "name": "@neutrino/neutrino",
   "version": "0.0.1",
-  "description": "monorepo",
+  "description": "Next generation components",
   "main": "index.ts",
   "scripts": {
     "demo:build": "webpack --config webpack.config.js --watch",
