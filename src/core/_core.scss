@@ -15,6 +15,18 @@ body {
 	font-weight: 400;
 }
 
+//link styles
+a {
+  color: $blue50;
+  text-decoration: none;
+  &:visited {
+    color: $blue50;
+  }
+  &:focus, &:hover {
+    text-decoration: underline;
+  }
+}
+
 // Reset fonts for relevant elements
 input,
 button,

@@ -12,7 +12,7 @@ import { RouterModule } from "@angular/router";
 import { TableDemo } from "./table_demo/table-demo.component";
 import { TableModule } from "./../../src/table/table.module";
 import { CoreDemo } from "./core_demo/core-demo.component";
-import { GlyphiconModule } from "./../../src/glyphicon/glyphicon.module";
+import { GlyphiconModule, IconService } from "./../../src/glyphicon/glyphicon.module";
 import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 
 @NgModule({
@@ -48,7 +48,7 @@ import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 			}
 		])
 	],
-	providers: [],
+	providers: [IconService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
