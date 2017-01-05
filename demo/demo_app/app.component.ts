@@ -2,45 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "app-root",
-	template: `
-		<h1>
-		  Table
-		</h1>
-		<p>demo controls</p>
-		<button class="btn btn-primary" (click)="update()">update rows</button>
-		<button class="btn btn-primary" (click)="deleteSelected()">delete selected</button>
-		<button class="btn btn-primary" (click)="cvis = !cvis">toggle col c</button>
-		<hr/>
-		<div class="table">
-			<cdl-table 
-				[rows]="availableRows"
-				[striped]="true"
-				(selectAll)="select($event)"
-				(selectRow)="select($event)">
-				<cdl-column 
-					key="a" 
-					title="A"
-					width="200px"
-					(sort)="sortA($event)">
-					<template let-data="data">col 1 {{data}}</template>
-				</cdl-column>
-				<cdl-column 
-					key="b" 
-					title="B"
-					(sort)="sort($event)"
-					resizeable="false">
-					<template let-data="data">column two {{data}}</template>
-				</cdl-column>
-				<cdl-column
-					*ngIf="cvis"
-					key="c"
-					title="C"
-					width="200px">
-					<template let-data="data">{{data}}</template>
-				</cdl-column>
-			</cdl-table>
-		</div>
-	`,
+	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {

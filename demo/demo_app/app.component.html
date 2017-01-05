@@ -1,0 +1,91 @@
+<h1>
+  Next
+</h1>
+<button class="sm">Button</button>
+<button>Button</button>
+<button class="lg">Button</button>
+<br>
+
+<button class="secondary sm">Button</button>
+<button class="secondary">Button</button>
+<button class="secondary lg">Button</button>
+<br>
+
+<button class="action">Button</button>
+<button class="action selected">Button</button>
+<br>
+
+<div class="button-group">
+	<button class="secondary">Button</button>
+	<button class="secondary">Button</button>
+	<button class="secondary">Button</button>
+</div>
+<br><br>
+
+<input type="text" class="sm">
+<input type="text">
+<input type="text" class="lg">
+<br>
+
+<input type="number">
+<br>
+
+<textarea></textarea>
+<br>
+
+<div class="checkbox">
+	<label>
+		<input type="checkbox">
+		<span>test</span>
+	</label>
+</div>
+<div class="checkbox">
+	<label>
+		<input type="checkbox">
+		<span></span>
+	</label>
+</div>
+<form>
+	<div class="radio">
+		<input type="radio" name="rg1" id="r1" checked>
+		<label for="r1"></label>
+	</div>
+	<div class="radio">
+		<input type="radio" name="rg1" id="r2">
+		<label for="r2"></label>
+	</div>
+</form>
+<p>demo controls</p>
+<button (click)="update()">update rows</button>
+<button (click)="deleteSelected()">delete selected</button>
+<button (click)="cvis = !cvis">toggle col c</button>
+<hr/>
+<div class="table">
+	<cdl-table 
+		[rows]="availableRows"
+		[striped]="true"
+		(selectAll)="select($event)"
+		(selectRow)="select($event)">
+		<cdl-column 
+			key="a" 
+			title="A"
+			width="200px"
+			(sort)="sortA($event)">
+			<template let-data="data">col 1 {{data}}</template>
+		</cdl-column>
+		<cdl-column 
+			key="b" 
+			title="B"
+			(sort)="sort($event)"
+			resizeable="false">
+			<template let-data="data">column two {{data}}</template>
+		</cdl-column>
+		<cdl-column
+			*ngIf="cvis"
+			key="c"
+			title="C"
+			width="200px">
+			<template let-data="data">{{data}}</template>
+		</cdl-column>
+	</cdl-table>
+</div>
