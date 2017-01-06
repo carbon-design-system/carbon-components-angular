@@ -1,7 +1,7 @@
 # Table
 
-class: Table
-selector: `cdl-table`
+class: Table  
+selector: `cdl-table`  
 @Inputs
 
 | Input   | Type          | Default Value |
@@ -18,8 +18,8 @@ selector: `cdl-table`
 
 Expects a set of `cdl-column`s 
 
-class: Column
-selector: `cdl-column`
+class: Column  
+selector: `cdl-column`  
 @Inputs
 
 | Input | Type   | Default Value |
@@ -34,5 +34,5 @@ selector: `cdl-column`
 | ------ | ---------------------------------- |
 | sort   | `{key: string, direction: string}` |
 
-Expects a `template` which recives `data` as an argument and will be instantiated into cells
+Expects a `template` which recives `data` as an argument and will be instantiated into cells  
 ex: `<template let-data="data">col 1 {{data}}</template>`
