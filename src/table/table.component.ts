@@ -101,10 +101,10 @@ export class Table implements OnInit, AfterContentChecked {
 
 	sort(col:Column) {
 		console.log(col);
-		if(col.direction === "up") {
-			col.direction = "down";
-		} else {
+		if(col.direction === "down") {
 			col.direction = "up";
+		} else {
+			col.direction = "down";
 		}
 		// this.sortColumn.emit({key: col.key, direction: col.direction});
 		col.sort.emit({key: col.key, direction: col.direction});
