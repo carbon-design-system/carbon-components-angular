@@ -9,14 +9,14 @@
 		[striped]="true"
 		(selectAll)="select($event)"
 		(selectRow)="select($event)">
-		<cdl-column 
+		<cdl-column
 			key="a" 
 			title="A"
 			width="200px"
 			(sort)="sortA($event)">
 			<template let-data="data">col 1 {{data}}</template>
 		</cdl-column>
-		<cdl-column 
+		<cdl-column
 			key="b" 
 			title="B"
 			(sort)="sort($event)"

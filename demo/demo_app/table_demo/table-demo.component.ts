@@ -40,7 +40,7 @@ export class TableDemo implements OnInit {
 	}
 
 	sortA(ev) {
-		if(ev.direction === "up") {
+		if(ev.direction === "down") {
 			this.availableRows.sort((a,b) => a[ev.key] - b[ev.key]);
 		} else {
 			this.availableRows.sort((a,b) => b[ev.key] - a[ev.key]);
@@ -48,7 +48,7 @@ export class TableDemo implements OnInit {
 	}
 
 	sort(ev) {
-		if(ev.direction === "up") {
+		if(ev.direction === "down") {
 			this.availableRows.sort();
 		} else {
 			this.availableRows.sort().reverse();
