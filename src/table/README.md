@@ -3,12 +3,14 @@
 class: Table
 selector: `cdl-table`
 @Inputs
+
 | Input   | Type          | Default Value |
 | ------- | ------------- | ------------- |
 | rows    | Array<Object> | `[]`          |
 | striped | boolean       | `false`       |
 
 @Outputs
+
 | Output    | Event                                             |
 | --------- | ------------------------------------------------- |
 | selectAll | `{selected: boolean, rows: Array<Object>}`        |
@@ -19,6 +21,7 @@ Expects a set of `cdl-column`s
 class: Column
 selector: `cdl-column`
 @Inputs
+
 | Input | Type   | Default Value |
 | ----- | ------ | ------------- |
 | key   | string |               |
@@ -26,6 +29,7 @@ selector: `cdl-column`
 | width | string |               |
 
 @Outputs
+
 | Output | Event                              |
 | ------ | ---------------------------------- |
 | sort   | `{key: string, direction: string}` |
