@@ -18,8 +18,8 @@ export class Glyphicon implements OnChanges, OnInit {
 	private icons: IconService;
 	private sanitizer: DomSanitizer;
 	// props
-	@Input() icon;
-	@Input() size;
+	@Input() icon: string = "";
+	@Input() size: string = "sm";
 
 	// internal structures etc
 	private iconSize: string;
