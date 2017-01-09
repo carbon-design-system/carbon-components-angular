@@ -16,6 +16,8 @@ import { GlyphiconModule, IconService } from "./../../src/glyphicon/glyphicon.mo
 import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 import { PopoverDemo } from "./popover_demo/popover-demo.component";
 import { PopoverModule } from "./../../src/popover/popover.module";
+import { TabsDemo } from "./tabs_demo/tabs_demo.component";
+import { TabsModule } from "./../../src/tabs/tabs.module";
 
 @NgModule({
 	declarations: [
@@ -24,13 +26,15 @@ import { PopoverModule } from "./../../src/popover/popover.module";
 		TableDemo,
 		CoreDemo,
 		GlyphiconDemo,
-		PopoverDemo
+		PopoverDemo,
+		TabsDemo
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
 		TableModule,
+		TabsModule,
 		GlyphiconModule,
 		PopoverModule,
 		RouterModule.forRoot([
@@ -53,6 +57,10 @@ import { PopoverModule } from "./../../src/popover/popover.module";
 			{
 				path: "popover",
 				component: PopoverDemo
+			},
+			{
+				path: "tabs",
+				component: TabsDemo
 			}
 		])
 	],
