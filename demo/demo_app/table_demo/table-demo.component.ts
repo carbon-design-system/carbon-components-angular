@@ -9,6 +9,15 @@ export class TableDemo implements OnInit {
 	private availableRows = [];
 	private updates = 0;
 	private cvis = false;
+	private columns = [
+		{
+			key: "a",
+			title: "A",
+			width: "200px",
+			sort: "sortA($event)",
+			template: `<template let-data="data">col 1 {{data}}</template>`
+		}
+	]
 
 	ngOnInit() {
 		this.rows();
@@ -24,7 +33,6 @@ export class TableDemo implements OnInit {
 			});
 		}
 		this.availableRows = test;
-
 	}
 
 	update() {
@@ -33,7 +41,8 @@ export class TableDemo implements OnInit {
 		for (var i = 0; i < 100; i++) {
 			test.push({
 				a: i + `Aupdated${this.updates}`,
-				b: i + `Bupdated${this.updates}`
+				b: i + `Bupdated${this.updates}`,
+				c: 1 + `Cupdated${this.updates}`
 			});
 		}
 		this.availableRows = test;
