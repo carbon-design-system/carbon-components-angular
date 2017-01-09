@@ -1,3 +1,8 @@
 .DS_Store
+*.log
+*.swp
+bower_components
 node_modules
 ./demo/
+.idea
+.vscode
