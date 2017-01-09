@@ -17,22 +17,19 @@ module.exports = [{
 		loaders: [
 			{
 				test: /\.ts$/,
-				loaders: ["angular2-template-loader", "awesome-typescript-loader"]
+				loaders: ["angular2-template-loader", "awesome-typescript-loader", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,
 				loader: "html-loader"
 			},
 			{
-				test: /\.min\.css$/,
-				loader: ExtractText.extract({
-					fallbackLoader: "style-loader",
-					loader: "css-loader"
-				})
+				test: /\.css$/,
+				loader: "raw-loader"
 			},
 			{
-				test: /[^\.min]\.css$/,
-				loader: "raw-loader"
+				test: /\.scss$/,
+				loaders: ["raw-loader", "sass-loader"]
 			},
 			{
 				test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
@@ -46,8 +43,7 @@ module.exports = [{
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './demo/index.html'
-		}),
-		new ExtractText("styles.css")
+		})
 	],
 	devServer: {
 		contentBase: "./demo",

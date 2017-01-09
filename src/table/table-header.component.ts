@@ -20,14 +20,17 @@ import { Column } from "./column.component";
 				<th class="check-column">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" (change)="doSelectAll($event)"/>
+							<input type="checkbox" (change)="selectAll($event)"/>
 							<span></span>
 						</label>
 					</div>
 				</th>
 				<th 
 					*ngFor="let column of tableService.getCols({}, cols)"
-					[ngStyle]="{'width': column.col.width || colWidth}">
+					[ngStyle]="{'width': column.col.width || colWidth}"
+					(mousedown)="mouseDown($event, column)"
+					(mouseup)="mouseUp($event)"
+					(mousemove)="mouseMove($event)">
 					{{column.col.title}}
 					<div class="col-actions">
 						<button 
@@ -55,6 +58,9 @@ import { Column } from "./column.component";
 export class TableHeader{
 	@Input() cols;
 	@Input() colWidth;
+	@Output() doSelectAll = new EventEmitter<Object>();
+	private isTabMoving:boolean = false;
+	private movingTab:Column = null;
 
 	constructor(private tableService:TableService) {}
 
@@ -70,5 +76,25 @@ export class TableHeader{
 
 	filter(col:Column) {
 		console.log(col);
+	}
+
+	selectAll(ev) {
+		this.doSelectAll.emit(ev);
+	}
+
+	mouseDown(ev, col) {
+		this.isTabMoving = true;
+		this.movingTab = col;
+	}
+
+	mouseUp(ev) {
+		this.isTabMoving = false;
+		this.movingTab = null;
+	}
+
+	mouseMove(ev) {
+		if(this.isTabMoving) {
+			console.log(ev, this.movingTab);
+		}
 	}
 }

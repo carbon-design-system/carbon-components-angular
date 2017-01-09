@@ -19,7 +19,8 @@ import { Column } from "./column.component";
 		(window:resize)="viewResize()">
 		<table-header
 			[cols]="cols"
-			[colWidth]="columnWidth">
+			[colWidth]="columnWidth"
+			(doSelectAll)="emitSelectAll($event)">
 		</table-header>
 		<table-body #body
 			[rows]="rows"
@@ -55,7 +56,7 @@ export class Table implements AfterContentChecked {
 		this.columnWidth = `${((this.body.width-60)/this.cols.length)}px`;
 	}
 
-	doSelectAll(ev) {
+	emitSelectAll(ev) {
 		if(ev.target.checked) {
 			this.body.selected['all'] = true;
 		} else {
