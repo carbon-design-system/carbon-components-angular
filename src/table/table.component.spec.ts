@@ -4,11 +4,12 @@ import { TestBed } from "@angular/core/testing";
 import { TableModule } from "./table.module";
 import { Table } from "./table.component";
 import { TableBody } from "./table-body.component";
+import { TableHeader } from "./table-header.component";
 import { By } from '@angular/platform-browser';
 
 describe("Table", () => {
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [Table, TableBody]});
+		TestBed.configureTestingModule({declarations: [Table, TableBody, TableHeader]});
 	});
 
 	it("should work", () => {

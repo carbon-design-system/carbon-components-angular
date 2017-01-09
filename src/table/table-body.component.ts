@@ -1,15 +1,14 @@
 import { 
 	Component, 
 	OnInit, 
-	AfterContentChecked, 
 	OnChanges, 
 	DoCheck, 
 	Input, 
 	Output, 
 	ViewChild, 
-	ContentChildren, 
 	EventEmitter 
 } from "@angular/core";
+import { TableService } from "./table.service";
 
 @Component({
 	selector: "table-body",
@@ -38,7 +37,7 @@ import {
 						</div>
 					</td>
 					<td 
-						*ngFor="let col of getCols(row)"
+						*ngFor="let col of tableService.getCols(row, cols)"
 						[ngStyle]="{'width': col.col.width || colWidth}">
 						<template
 							[ngTemplateOutlet]="col.col.template"
@@ -54,6 +53,7 @@ import {
 	</div>
 	`,
 	styleUrls: ["./table-body.component.css"],
+	providers: [TableService]
 })
 export class TableBody implements OnInit, OnChanges, DoCheck {
 	private visibleRows: Array<Object>;
@@ -71,6 +71,9 @@ export class TableBody implements OnInit, OnChanges, DoCheck {
 	@Input() colWidth;
 	@Output() selectRow = new EventEmitter<Object>();
 	@ViewChild("tableContainer") container;
+
+	constructor(private tableService:TableService) {}
+
 	ngOnInit() {
 		this.height = this.container.nativeElement.offsetHeight;
 		this.width = this.container.nativeElement.offsetWidth;
@@ -102,18 +105,6 @@ export class TableBody implements OnInit, OnChanges, DoCheck {
 		if(changes.rows) {
 			this.visibleRows = this.getVisibleAtScroll(this.container.nativeElement.scrollTop);
 		}
-	}
-
-	//serviceify
-	getCols(row = {}) {
-		let cols = [];
-		this.cols.forEach(col => {
-			cols.push({
-				data: row[col.key],
-				col: col
-			});
-		});
-		return cols;
 	}
 
 	doSelectRow(ev, row, index) {
