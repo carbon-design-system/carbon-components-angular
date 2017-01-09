@@ -9,7 +9,6 @@ import { IconService } from "./glyphicon.service";
 					[ngStyle]="{width: iconSize + 'px', height: iconSize + 'px'}" 
 					[innerHTML]="iconSVG">
 				</span>`,
-	// template: "asdf",
 	styleUrls: ["./glyphicon.component.css"],
 	providers: [IconService]
 })
