@@ -1,6 +1,6 @@
 {
   "name": "@neutrino/neutrino",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Next generation components",
   "main": "index.ts",
   "scripts": {
@@ -9,6 +9,10 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "karma start"
   },
+  "files": [
+    "src",
+    "index.ts"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.ibm.com:peretz-next/next.git"
