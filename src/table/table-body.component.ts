@@ -77,7 +77,6 @@ export class TableBody implements OnInit, OnChanges, DoCheck {
 	ngOnInit() {
 		this.height = this.container.nativeElement.offsetHeight;
 		this.width = this.container.nativeElement.offsetWidth;
-		console.log(this.width, this.height, this.rows);
 		this.visibleRows = this.getVisibleAtScroll(0);
 	}
 
@@ -101,7 +100,6 @@ export class TableBody implements OnInit, OnChanges, DoCheck {
 	}
 
 	ngOnChanges(changes) {
-		console.log(changes);
 		if(changes.rows) {
 			this.visibleRows = this.getVisibleAtScroll(this.container.nativeElement.scrollTop);
 		}
