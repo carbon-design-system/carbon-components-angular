@@ -4,7 +4,6 @@
   "description": "Next generation components",
   "main": "index.ts",
   "scripts": {
-    "demo:build": "webpack --config webpack.config.js --watch",
     "demo:server": "webpack-dev-server --config webpack.config.js --watch",
     "lint": "tslint -e spec.ts src/**/*.ts || true",
     "test": "karma start"
