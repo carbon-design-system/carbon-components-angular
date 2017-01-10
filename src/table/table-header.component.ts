@@ -1,12 +1,12 @@
-import { 
-	Component, 
-	OnInit, 
-	OnChanges, 
-	DoCheck, 
-	Input, 
-	Output, 
-	ViewChild, 
-	EventEmitter 
+import {
+	Component,
+	OnInit,
+	OnChanges,
+	DoCheck,
+	Input,
+	Output,
+	ViewChild,
+	EventEmitter
 } from "@angular/core";
 import { TableService } from "./table.service";
 import { Column } from "./column.component";
@@ -52,19 +52,19 @@ import { Column } from "./column.component";
 	styleUrls: ["./table-header.component.css"],
 	providers: [TableService]
 })
-export class TableHeader{
+export class TableHeader {
 	@Input() cols;
 	@Input() colWidth;
 	@Output() doSelectAll = new EventEmitter<Object>();
-	private isTabMoving:boolean = false;
-	private isTabResizeing:boolean = false;
-	private movingCol:Column = null;
-	private resizingCol:Column = null;
+	private isTabMoving: boolean = false;
+	private isTabResizeing: boolean = false;
+	private movingCol: Column = null;
+	private resizingCol: Column = null;
 
-	constructor(private tableService:TableService) {}
+	constructor(private tableService: TableService) {}
 
-	sort(col:Column) {
-		if(col.direction === "down") {
+	sort(col: Column) {
+		if (col.direction === "down") {
 			col.direction = "up";
 		} else {
 			col.direction = "down";
@@ -72,7 +72,7 @@ export class TableHeader{
 		col.sort.emit({key: col.key, direction: col.direction});
 	}
 
-	filter(col:Column) {
+	filter(col: Column) {
 		console.log(col);
 	}
 
@@ -91,7 +91,7 @@ export class TableHeader{
 	}
 
 	mouseMove(ev) {
-		if(this.isTabMoving) {
+		if (this.isTabMoving) {
 			console.log(ev, this.movingCol);
 		}
 	}

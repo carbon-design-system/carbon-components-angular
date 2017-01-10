@@ -1,15 +1,15 @@
-import { 
-	Component, 
-	AfterContentChecked,  
-	Input, 
-	Output, 
-	ViewChild, 
-	ContentChildren, 
-	EventEmitter 
+import {
+	Component,
+	AfterContentChecked,
+	Input,
+	Output,
+	ViewChild,
+	ContentChildren,
+	EventEmitter
 } from "@angular/core";
 import { Column } from "./column.component";
 
-//TODO: refactor into sub-components
+// TODO: refactor into sub-components
 // head can probably be a component, etc
 @Component({
 	selector: "cdl-table",
@@ -34,9 +34,9 @@ import { Column } from "./column.component";
 	styleUrls: ["./table.component.css"]
 })
 export class Table implements AfterContentChecked {
-	private width:number = 0;
-	private columnWidth:string;
-	@Input() rows:Array<Object> = [];
+	private width: number = 0;
+	private columnWidth: string;
+	@Input() rows: Array<Object> = [];
 	@Input() striped: boolean = false;
 	@Output() loadMore = new EventEmitter<Object>();
 	@Output() selectAll = new EventEmitter<Object>();
@@ -45,7 +45,7 @@ export class Table implements AfterContentChecked {
 	@ContentChildren(Column) cols;
 
 	ngAfterContentChecked() {
-		this.columnWidth = `${((this.body.width-60)/this.cols.length)}px`;
+		this.columnWidth = `${((this.body.width - 60) / this.cols.length)}px`;
 	}
 
 	bubble(ev, to) {
@@ -53,12 +53,12 @@ export class Table implements AfterContentChecked {
 	}
 
 	viewResize() {
-		this.columnWidth = `${((this.body.width-60)/this.cols.length)}px`;
+		this.columnWidth = `${((this.body.width - 60) / this.cols.length)}px`;
 	}
 
 	emitSelectAll(ev) {
-		if(ev.target.checked) {
-			this.body.selected['all'] = true;
+		if (ev.target.checked) {
+			this.body.selected["all"] = true;
 		} else {
 			this.body.selected = {};
 		}

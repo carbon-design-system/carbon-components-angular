@@ -3,7 +3,7 @@
 import { TestBed } from "@angular/core/testing";
 import { TableBody } from "./table-body.component";
 import { Column } from "./column.component";
-import { By } from '@angular/platform-browser';
+import { By } from "@angular/platform-browser";
 
 describe("TableBody", () => {
 	beforeEach(() => {
@@ -18,8 +18,8 @@ describe("TableBody", () => {
 	it("should render rows", () => {
 		let fixture = TestBed.createComponent(TableBody);
 		let bodyInstance = fixture.componentInstance;
-		let elem = fixture.debugElement.query(By.css("tbody"))
-		bodyInstance.rows = [{a:1},{a:2},{a:3}];
+		let elem = fixture.debugElement.query(By.css("tbody"));
+		bodyInstance.rows = [{a: 1}, {a: 2}, {a: 3}];
 		let c = new Column();
 		c.key = "a";
 		bodyInstance.cols = [c];

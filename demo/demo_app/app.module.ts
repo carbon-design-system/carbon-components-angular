@@ -8,7 +8,7 @@ import { HomeComponent } from "./home.component";
 
 import { RouterModule } from "@angular/router";
 
-//demo imports
+// demo imports
 import { TableDemo } from "./table_demo/table-demo.component";
 import { TableModule } from "./../../src/table/table.module";
 import { CoreDemo } from "./core_demo/core-demo.component";

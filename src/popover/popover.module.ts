@@ -7,12 +7,12 @@ import { Popover } from "./popover.component";
 export { Popover } from "./popover.component";
 
 @NgModule({
-    declarations: [
-        Popover
-    ],
-    exports: [
-        Popover
-    ],
+	declarations: [
+		Popover
+	],
+	exports: [
+		Popover
+	],
 	imports: [CommonModule, BrowserModule]
 })
 export class PopoverModule {}
