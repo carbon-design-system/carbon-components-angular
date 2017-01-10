@@ -8,6 +8,7 @@ import { TableBody } from "./table-body.component";
 import { Column } from "./column.component";
 
 export { Table } from "./table.component";
+export { Column } from "./column.component";
 
 @NgModule({
 	declarations: [

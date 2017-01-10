@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Column } from "./../../../src/table/table.module";
 
 @Component({
 	selector: "table-demo",
@@ -9,15 +10,6 @@ export class TableDemo implements OnInit {
 	private availableRows = [];
 	private updates = 0;
 	private cvis = false;
-	private columns = [
-		{
-			key: "a",
-			title: "A",
-			width: "200px",
-			sort: "sortA($event)",
-			template: `<template let-data="data">col 1 {{data}}</template>`
-		}
-	]
 
 	ngOnInit() {
 		this.rows();

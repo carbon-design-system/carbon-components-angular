@@ -27,10 +27,7 @@ import { Column } from "./column.component";
 				</th>
 				<th 
 					*ngFor="let column of tableService.getCols({}, cols)"
-					[ngStyle]="{'width': column.col.width || colWidth}"
-					(mousedown)="mouseDown($event, column)"
-					(mouseup)="mouseUp($event)"
-					(mousemove)="mouseMove($event)">
+					[ngStyle]="{'width': column.col.width || colWidth}">
 					{{column.col.title}}
 					<div class="col-actions">
 						<button 
@@ -60,12 +57,13 @@ export class TableHeader{
 	@Input() colWidth;
 	@Output() doSelectAll = new EventEmitter<Object>();
 	private isTabMoving:boolean = false;
-	private movingTab:Column = null;
+	private isTabResizeing:boolean = false;
+	private movingCol:Column = null;
+	private resizingCol:Column = null;
 
 	constructor(private tableService:TableService) {}
 
 	sort(col:Column) {
-		console.log(col);
 		if(col.direction === "down") {
 			col.direction = "up";
 		} else {
@@ -84,17 +82,17 @@ export class TableHeader{
 
 	mouseDown(ev, col) {
 		this.isTabMoving = true;
-		this.movingTab = col;
+		this.movingCol = col;
 	}
 
 	mouseUp(ev) {
 		this.isTabMoving = false;
-		this.movingTab = null;
+		this.movingCol = null;
 	}
 
 	mouseMove(ev) {
 		if(this.isTabMoving) {
-			console.log(ev, this.movingTab);
+			console.log(ev, this.movingCol);
 		}
 	}
 }
