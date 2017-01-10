@@ -13,5 +13,5 @@ export class Column {
 	@Output() sort = new EventEmitter<Object>();
 	@ContentChild(TemplateRef) template;
 	public direction = "down";
-	public position:number = -1;
+	public position: number = -1;
 }

@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { TableHeader } from "./table-header.component";
 import { Column } from "./column.component";
-import { By } from '@angular/platform-browser';
+import { By } from "@angular/platform-browser";
 
 describe("TableBody", () => {
 	beforeEach(() => {
@@ -21,7 +21,7 @@ describe("TableBody", () => {
 	});
 
 	xit("should emit the columns filter event", () => {
-		//thinking needed ... maybe this isn't a thing
+		// thinking needed ... maybe this isn't a thing
 		// maybe the event binding is done as part of the ng-content 
 		// passed into some <filter> component passed into a <column>
 	});
