@@ -36,12 +36,19 @@ import { Column } from "./column.component";
 							(click)="filter(column.col)">
 								filter
 							</button>
-						<button 
+						<span 
 							class="sm" 
 							*ngIf="column.col.sort"
 							(click)="sort(column.col)">
-								sort
-						</button>
+							<!-- arrow up -->
+							<svg *ngIf="column.col.direction === 'up'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+								<path d="M13.5 5.5L8 0 2.5 5.5l1 1 3.8-3.8V16h1.4V2.7l3.8 3.8z"/>
+							</svg>
+							<!-- arrow down -->
+							<svg *ngIf="column.col.direction !== 'up'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+								<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
+							</svg>
+						</span>
 					</div>
 					<div class="resizer"></div>
 				</th>
@@ -64,6 +71,11 @@ export class TableHeader {
 	constructor(private tableService: TableService) {}
 
 	sort(col: Column) {
+		for (let column of this.tableService.getCols({}, this.cols)) {
+			if (column.col !== col) {
+				column.col.direction = "down";
+			}
+		}
 		if (col.direction === "down") {
 			col.direction = "up";
 		} else {
