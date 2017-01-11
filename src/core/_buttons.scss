@@ -57,6 +57,12 @@ button {
 			border-bottom: 2px solid $blue50;
 		}
 	}
+	&.clear-button {
+		background: transparent;
+		padding: 0px;
+		border: none;
+		cursor: pointer;
+	}
 }
 
 .button-group {
