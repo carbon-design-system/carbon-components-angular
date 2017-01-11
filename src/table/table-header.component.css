@@ -6,6 +6,14 @@ table {
     table-layout: fixed;
 }
 
+svg {
+    fill: #959595;
+}
+
+svg:hover {
+    fill: #4178BE;
+}
+
 thead tr {
     height: 40px;
 }
