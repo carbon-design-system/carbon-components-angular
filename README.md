@@ -27,6 +27,7 @@ run `npm install` to grab all the dependencies.
  - [CDL master files (December 2016)](https://ibm.ent.box.com/v/illustratorDecember2016)
  - [TypeScript docs](https://www.typescriptlang.org/docs/tutorial.html)
  - [Dynamic Assessment Plugin (aka. DAP/RPT)](https://w3-connections.ibm.com/wikis/home?lang=en-us#!/wiki/W88ee03f8907c_412b_a3a8_988dabb72b35/page/Dynamic%20Assessment%20Plugin) - now shipping a pretty solid chrome plugin
+ - [CDL Icon Library](https://icon.stage1.mybluemix.net/)
 
 #####Philosophy
 - Components should be the smallest unit of computation 
