@@ -21,5 +21,26 @@
 			font-weight: bold;
 			background: rgba($blue40, 0.10);
 		}
+		.selected-check {
+			display: inline-block;
+			vertical-align: middle;
+			height: 18px;
+			width: 18px;
+			border-radius: 20px;
+			border: 1px solid $white;
+			background: $blue50;
+		    float: right;
+		    margin-right: 20px;
+			svg {
+			    background: $blue50;
+			    border-radius: 20px;
+			    path:first-child {
+			    	fill: $blue50;
+			    }
+			    path:last-child {
+			    	fill: $white;
+			    }
+			}
+		}
 	}
 }
