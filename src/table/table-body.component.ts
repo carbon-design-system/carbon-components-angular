@@ -109,7 +109,7 @@ export class TableBody implements OnInit, OnChanges, DoCheck {
 		if (ev.target.checked) {
 			this.selected[this.offsetTop + index] = true;
 		} else {
-			delete this.selected[index];
+			delete this.selected[this.offsetTop + index];
 		}
 		this.selectRow.emit({
 			selected: ev.target.checked,
