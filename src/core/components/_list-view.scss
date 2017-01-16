@@ -1,0 +1,25 @@
+.list-view {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		padding-left: 20px;
+		padding-top: 12.5px;
+		padding-bottom: 12.5px;
+		border-top: 1px solid $gray10;
+		border-left: 1px solid $gray10;
+		border-right: 1px solid $gray10;
+		&:last-child {
+			border-bottom: 1px solid $gray10;
+		}
+		&:hover {
+			background: rgba($blue40, 0.10);
+		}
+		&.selected {
+			border-left: 2px solid $blue50;
+			color: $blue50;
+			font-weight: bold;
+			background: rgba($blue40, 0.10);
+		}
+	}
+}

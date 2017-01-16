@@ -18,6 +18,8 @@ import { PopoverDemo } from "./popover_demo/popover-demo.component";
 import { PopoverModule } from "./../../src/popover/popover.module";
 import { TabsDemo } from "./tabs_demo/tabs_demo.component";
 import { TabsModule } from "./../../src/tabs/tabs.module";
+import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
+import { ListViewModule } from "./../../src/list-view/list-view.module";
 
 @NgModule({
 	declarations: [
@@ -27,7 +29,8 @@ import { TabsModule } from "./../../src/tabs/tabs.module";
 		CoreDemo,
 		GlyphiconDemo,
 		PopoverDemo,
-		TabsDemo
+		TabsDemo,
+		ListViewDemo
 	],
 	imports: [
 		BrowserModule,
@@ -37,6 +40,7 @@ import { TabsModule } from "./../../src/tabs/tabs.module";
 		TabsModule,
 		GlyphiconModule,
 		PopoverModule,
+		ListViewModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -61,6 +65,10 @@ import { TabsModule } from "./../../src/tabs/tabs.module";
 			{
 				path: "tabs",
 				component: TabsDemo
+			},
+			{
+				path: "list-view",
+				component: ListViewDemo
 			}
 		])
 	],
