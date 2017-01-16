@@ -30,7 +30,7 @@ import { CdlTab } from "./tab.component";
       </button>
       <ul class="cdl-tab-heading" role="tablist">
         <li *ngFor="let tab of tabs; let i = index;">
-          <a href="javascript:void(0)" role="tab" (click)="selectTab(tab)" on-focus="onTabFocus(i)"
+          <a href="javascript:void(0)" draggable="false" role="tab" (click)="selectTab(tab)" on-focus="onTabFocus(i)"
             [ngClass]="{'active-tab': tab.active, 'disabled-tab': tab.disabled}">
             <span *ngIf="!tab.headingIsTemplate">{{tab.heading}}</span>
             <template *ngIf="tab.headingIsTemplate" [ngTemplateOutlet]="tab.heading">
@@ -61,6 +61,8 @@ export class CdlTabHeaders {
   private disabledLeftArrow = true;
   private currentSelectedTab: number;
   private totalTabs: number;
+  private isMousePress: boolean;
+  private prevClientX: number;
 
   @Input() tabs: QueryList<CdlTab>;
 
@@ -93,6 +95,35 @@ export class CdlTabHeaders {
     if (event.keyCode === KeyCodes.LEFT_ARROW || event.KeyCode === KeyCodes.UP_ARROW) {
       if (this.currentSelectedTab > 0) {
         this.allTabHeading[this.currentSelectedTab - 1].focus();
+      }
+    }
+  }
+
+  // draggable
+  @HostListener('mousedown', ['$event'])
+  onMouseDown(event) {
+    this.isMousePress = true;
+    this.prevClientX = event.clientX;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onMouseUp(event) {
+    this.isMousePress = false;
+  }
+
+  @HostListener('mousemove', ['$event'])
+  onMouseMove(event) {
+    if (this.isOverFlow && this.isMousePress) {
+      if (event.clientX < this.prevClientX) {
+        requestAnimationFrame(() => {
+          this.tabHeading.scrollLeft-= 5;
+        });
+        this.prevClientX = event.clientX;
+      } else if (event.clientX > this.prevClientX){
+        requestAnimationFrame(() => {
+          this.tabHeading.scrollLeft+= 5;
+        });
+        this.prevClientX = event.clientX;
       }
     }
   }
