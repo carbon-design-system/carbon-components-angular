@@ -6,12 +6,14 @@ import { Component, Input, Output, ViewChild, ContentChild, ContentChildren, Tem
 })
 export class Column {
 	@Input() key;
-	@Input() title;
-	@Input() filter;
+	// @Input() title;
+	// @Input() filter;
 	@Input() width;
 	@Input() resizeable = true;
-	@Output() sort = new EventEmitter<Object>();
-	@ContentChild(TemplateRef) template;
-	public direction = "down";
+	// @Output() sort = new EventEmitter<Object>();
+	@ContentChild("cellTemplate") template;
+	@ContentChild("headerTemplate") header;
+	// public direction = "down";
+	// public sorted: boolean = false;
 	public position: number = -1;
 }

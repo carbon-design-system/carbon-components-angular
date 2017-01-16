@@ -23,7 +23,7 @@ run `npm install` to grab all the dependencies.
 #####Resources
  - [Angular style guide](https://angular.io/styleguide)
  - [I18N tooling](https://angular.io/docs/ts/latest/cookbook/i18n.html)
- - (Angular 2+ doesn't have anything like ngAria, instead here's [The A11Y Project](http://a11yproject.com/) and [WAI-ARIA specs](https://www.w3.org/TR/wai-aria/))
+ - (Angular 2+ doesn't have anything like ngAria, instead here's [The A11Y Project](http://a11yproject.com/), [WAI-ARIA specs](https://www.w3.org/TR/wai-aria/), and [WAI-ARIA Authoring Practices](https://www.w3.org/TR/2016/WD-wai-aria-practices-1.1-20160317/))
  - [CDL master files (December 2016)](https://ibm.ent.box.com/v/illustratorDecember2016)
  - [TypeScript docs](https://www.typescriptlang.org/docs/tutorial.html)
  - [Dynamic Assessment Plugin (aka. DAP/RPT)](https://w3-connections.ibm.com/wikis/home?lang=en-us#!/wiki/W88ee03f8907c_412b_a3a8_988dabb72b35/page/Dynamic%20Assessment%20Plugin) - now shipping a pretty solid chrome plugin

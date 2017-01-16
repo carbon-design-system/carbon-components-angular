@@ -38,7 +38,7 @@ import { TableService } from "./table.service";
 					</td>
 					<td 
 						*ngFor="let col of tableService.getCols(row, cols)"
-						[ngStyle]="{'width': col.col.width || colWidth}">
+						[ngStyle]="{'width': (col.col.width || colWidth) + 'px'}">
 						<template
 							[ngTemplateOutlet]="col.col.template"
 							[ngOutletContext]="{

@@ -7,28 +7,31 @@
 	<cdl-table 
 		[rows]="availableRows"
 		striped="true"
-		(selectAll)="select($event)"
+		(selectAll)="selectAll($event)"
 		(selectRow)="select($event)">
 		<cdl-column
 			key="a" 
 			title="A"
-			width="200px"
+			width="200"
 			(sort)="sortA($event)">
-			<template let-data="data">col 1 {{data}}</template>
+			<template #headerTemplate>A</template>
+			<template #cellTemplate let-data="data">col 1 {{data}}</template>
 		</cdl-column>
 		<cdl-column
 			key="b" 
 			title="B"
 			(sort)="sort($event)"
 			resizeable="false">
-			<template let-data="data">column two {{data}}</template>
+			<template #headerTemplate>B</template>
+			<template #cellTemplate let-data="data">column two {{data}}</template>
 		</cdl-column>
 		<cdl-column
 			*ngIf="cvis"
 			key="c"
 			title="C"
-			width="200px">
-			<template let-data="data">{{data}}</template>
+			width="200">
+			<template #headerTemplate>C</template>
+			<template #cellTemplate let-data="data">{{data}}</template>
 		</cdl-column>
 	</cdl-table>
 </div>

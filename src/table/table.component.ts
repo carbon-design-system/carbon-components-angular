@@ -9,8 +9,6 @@ import {
 } from "@angular/core";
 import { Column } from "./column.component";
 
-// TODO: refactor into sub-components
-// head can probably be a component, etc
 @Component({
 	selector: "cdl-table",
 	template: `
@@ -35,7 +33,7 @@ import { Column } from "./column.component";
 })
 export class Table implements AfterContentChecked {
 	private width: number = 0;
-	private columnWidth: string;
+	private columnWidth: number;
 	@Input() rows: Array<Object> = [];
 	@Input() striped: boolean = false;
 	@Output() loadMore = new EventEmitter<Object>();
@@ -45,7 +43,7 @@ export class Table implements AfterContentChecked {
 	@ContentChildren(Column) cols;
 
 	ngAfterContentChecked() {
-		this.columnWidth = `${((this.body.width - 60) / this.cols.length)}px`;
+		this.columnWidth = ((this.body.width - 60) / this.cols.length);
 	}
 
 	bubble(ev, to) {
@@ -53,7 +51,7 @@ export class Table implements AfterContentChecked {
 	}
 
 	viewResize() {
-		this.columnWidth = `${((this.body.width - 60) / this.cols.length)}px`;
+		this.columnWidth = ((this.body.width - 60) / this.cols.length);
 	}
 
 	emitSelectAll(ev) {

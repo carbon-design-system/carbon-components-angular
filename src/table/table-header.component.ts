@@ -27,30 +27,14 @@ import { Column } from "./column.component";
 				</th>
 				<th 
 					*ngFor="let column of tableService.getCols({}, cols)"
-					[ngStyle]="{'width': column.col.width || colWidth}">
-					{{column.col.title}}
-					<div class="col-actions">
-						<button 
-							class="sm" 
-							*ngIf="column.col.filter"
-							(click)="filter(column.col)">
-								filter
-							</button>
-						<span 
-							class="sm" 
-							*ngIf="column.col.sort"
-							(click)="sort(column.col)">
-							<!-- arrow up -->
-							<svg *ngIf="column.col.direction === 'up'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-								<path d="M13.5 5.5L8 0 2.5 5.5l1 1 3.8-3.8V16h1.4V2.7l3.8 3.8z"/>
-							</svg>
-							<!-- arrow down -->
-							<svg *ngIf="column.col.direction !== 'up'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-								<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
-							</svg>
-						</span>
+					[ngStyle]="{'width': (column.col.width || colWidth) + 'px'}">
+					<template
+						[ngTemplateOutlet]="column.col.header">
+					</template>
+					<div 
+						class="resizer"
+						(mousedown)="mouseDown($event, column.col)">
 					</div>
-					<div class="resizer"></div>
 				</th>
 			</tr>
 		</thead>
@@ -61,50 +45,58 @@ import { Column } from "./column.component";
 })
 export class TableHeader {
 	@Input() cols;
-	@Input() colWidth;
+	@Input() colWidth: number;
 	@Output() doSelectAll = new EventEmitter<Object>();
 	private isTabMoving: boolean = false;
 	private isTabResizeing: boolean = false;
 	private movingCol: Column = null;
 	private resizingCol: Column = null;
+	private lastX: number = 0;
 
 	constructor(private tableService: TableService) {}
 
-	sort(col: Column) {
-		for (let column of this.tableService.getCols({}, this.cols)) {
-			if (column.col !== col) {
-				column.col.direction = "down";
-			}
-		}
-		if (col.direction === "down") {
-			col.direction = "up";
-		} else {
-			col.direction = "down";
-		}
-		col.sort.emit({key: col.key, direction: col.direction});
-	}
+	// sort(col: Column) {
+	// 	for (let column of this.tableService.getCols({}, this.cols)) {
+	// 		if (column.col !== col) {
+	// 			column.col.direction = "down";
+	// 			column.col.sorted = false;
+	// 		}
+	// 	}
+	// 	if (col.direction === "down") {
+	// 		col.direction = "up";
+	// 	} else {
+	// 		col.direction = "down";
+	// 	}
+	// 	col.sorted = true;
+	// 	col.sort.emit({key: col.key, direction: col.direction});
+	// }
 
-	filter(col: Column) {
-		console.log(col);
-	}
+	// filter(col: Column) {
+	// 	console.log(col);
+	// }
 
 	selectAll(ev) {
 		this.doSelectAll.emit(ev);
 	}
 
 	mouseDown(ev, col) {
-		this.isTabMoving = true;
-		this.movingCol = col;
-	}
-
-	mouseUp(ev) {
-		this.isTabMoving = false;
-		this.movingCol = null;
+		this.isTabResizeing = true;
+		this.resizingCol = col;
+		this.lastX = ev.clientX;
+		document.addEventListener("mousemove", this.mouseMove.bind(this));
+		document.addEventListener("mouseup", () => {
+			this.isTabResizeing = false;
+			this.resizingCol = null;
+			document.removeEventListener("mousemove", this.mouseMove);
+		});
 	}
 
 	mouseMove(ev) {
-		if (this.isTabMoving) {
-			console.log(ev, this.movingCol);
+		if (this.isTabResizeing) {
+			let colWidth = parseInt(this.resizingCol.width, 10);
+			let x = ev.x;
+			this.resizingCol.width = colWidth - (this.lastX - x);
+			this.lastX = x;
 		}
 	}
 }
