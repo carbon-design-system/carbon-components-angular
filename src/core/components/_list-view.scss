@@ -12,6 +12,11 @@
 		&:last-child {
 			border-bottom: 1px solid $gray10;
 		}
+		&:focus {
+			border-left: 2px solid $blue50;
+		    outline: 1px solid $blue50;
+		    outline-offset: 1px;
+		}
 		&:hover {
 			background: rgba($blue40, 0.10);
 		}

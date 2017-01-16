@@ -3,16 +3,20 @@ import {
 	OnInit,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	HostListener
 } from "@angular/core";
+
+import { KeyCodes } from "../constant/keys";
 
 @Component({
 	selector: "cdl-list-view",
 	template: `
 		<ul class="list-view">
-			<li 
+			<li tabindex="0"
 				*ngFor="let item of items"
 				(click)="doClick($event, item)"
+				(keyup)="doKeyUp($event, item)"
 				[ngClass]="{
 					selected: item.selected
 				}">
@@ -36,6 +40,25 @@ import {
 export class ListView {
 	@Input() items: Array<Object> = [];
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+
+	@HostListener("keyup", ["$event"])
+	arrowKey(ev) {
+		if (ev.shiftKey) {
+			ev.target.click();
+		}
+		if (ev.which === KeyCodes.DOWN_ARROW && ev.target.nextElementSibling) {
+			ev.target.nextElementSibling.focus();
+		}
+		if (ev.which === KeyCodes.UP_ARROW && ev.target.previousElementSibling) {
+			ev.target.previousElementSibling.focus();
+		}
+	}
+
+	doKeyUp(ev, item) {
+		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
+			this.doClick(ev, item);
+		}
+	}
 
 	doClick(ev, item) {
 		this.select.emit({
