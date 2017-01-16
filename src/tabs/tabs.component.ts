@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ContentChildren, QueryList, AfterContentInit, forwardRef } from "@angular/core";
+import { Component, OnInit, Input, ContentChildren, QueryList, AfterContentInit } from "@angular/core";
 import { CdlTab } from "./tab.component";
 import {CdlTabHeaders} from  "./tab-headers.component";
 

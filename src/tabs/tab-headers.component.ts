@@ -10,6 +10,8 @@ import {
   ComponentRef,
   ChangeDetectorRef
 } from "@angular/core";
+import 'rxjs/add/operator/debounceTime';
+import {debounce} from "lodash";
 
 import { CdlTab } from "./tab.component";
 
@@ -65,11 +67,28 @@ export class CdlTabHeaders {
   }
 
   ngAfterViewInit() {
+    this.scrollCheck();
+  }
+
+  // check for window resize
+  @HostListener('window:resize', [])
+  onResize = debounce(()=> {
+    this.scrollCheck();
+  }, 100);
+
+  private scrollCheck() {
     if (this.tabHeading.scrollWidth > this.tabHeading.offsetWidth) {
       this.isOverFlow = true;
-      this.scrollLength = this.tabHeading.scrollWidth - this.tabHeading.offsetWidth;
+      this.disabledRightArrow = false;
+
+      setTimeout(() =>{
+        this.scrollLength = this.tabHeading.scrollWidth - this.tabHeading.offsetWidth;
+      });
+
       this.allTabHeading = this._elementRef.nativeElement.querySelectorAll("div ul li");
       this._cdr.detectChanges();
+    } else {
+      this.isOverFlow = false;
     }
   }
 
@@ -103,6 +122,7 @@ export class CdlTabHeaders {
     }
 
     if (this.tabHeading.scrollLeft + this.allTabHeading[this.firstVisibleTab].offsetWidth >= this.scrollLength) {
+
       this.disabledRightArrow = true;
     }
 
