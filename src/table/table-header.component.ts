@@ -29,7 +29,7 @@ import { Column } from "./column.component";
 					*ngFor="let column of tableService.getCols({}, cols)"
 					[ngStyle]="{'width': (column.col.width || colWidth) + 'px'}">
 					<template
-						[ngTemplateOutlet]="column.col.header">
+						[ngTemplateOutlet]="column.col.headerTemplate">
 					</template>
 					<div class="col-actions">
 						<button 
@@ -38,8 +38,17 @@ import { Column } from "./column.component";
 							(click)="filter(column.col)">
 								filter
 							</button>
-						<span 
-							class="sm" 
+						<span
+							(click)="filter(column.col)">
+							<svg 
+								xmlns="http://www.w3.org/2000/svg"
+								width="16" 
+								height="16" 
+								viewBox="0 0 16 16">
+								<path fill="#949494" d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
+							</svg>
+						</span>
+						<span
 							*ngIf="column.col.sort"
 							(click)="sort(column.col)">
 							<!-- arrow up -->
@@ -120,23 +129,22 @@ export class TableHeader {
 	}
 
 	mouseDown(ev, col) {
+		let mouseMove = (event) => {
+			if (this.isTabResizeing) {
+				let colWidth = parseInt(this.resizingCol.width, 10);
+				let x = event.x;
+				this.resizingCol.width = colWidth - (this.lastX - x);
+				this.lastX = x;
+			}
+		};
 		this.isTabResizeing = true;
 		this.resizingCol = col;
 		this.lastX = ev.clientX;
-		document.addEventListener("mousemove", this.mouseMove.bind(this));
+		document.addEventListener("mousemove", mouseMove);
 		document.addEventListener("mouseup", () => {
 			this.isTabResizeing = false;
 			this.resizingCol = null;
-			document.removeEventListener("mousemove", this.mouseMove);
+			document.removeEventListener("mousemove", mouseMove);
 		});
-	}
-
-	mouseMove(ev) {
-		if (this.isTabResizeing) {
-			let colWidth = parseInt(this.resizingCol.width, 10);
-			let x = ev.x;
-			this.resizingCol.width = colWidth - (this.lastX - x);
-			this.lastX = x;
-		}
 	}
 }

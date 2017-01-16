@@ -12,7 +12,8 @@ export class Column {
 	@Input() resizeable = true;
 	@Output() sort = new EventEmitter<Object>();
 	@ContentChild("cellTemplate") template;
-	@ContentChild("headerTemplate") header;
+	@ContentChild("headerTemplate") headerTemplate;
+	@ContentChild("filterTemplate") filterTemplate;
 	public direction = "down";
 	public sorted: boolean = false;
 	public position: number = -1;
