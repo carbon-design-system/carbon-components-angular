@@ -10,10 +10,10 @@ export class Column {
 	// @Input() filter;
 	@Input() width;
 	@Input() resizeable = true;
-	// @Output() sort = new EventEmitter<Object>();
+	@Output() sort = new EventEmitter<Object>();
 	@ContentChild("cellTemplate") template;
 	@ContentChild("headerTemplate") header;
-	// public direction = "down";
-	// public sorted: boolean = false;
+	public direction = "down";
+	public sorted: boolean = false;
 	public position: number = -1;
 }
