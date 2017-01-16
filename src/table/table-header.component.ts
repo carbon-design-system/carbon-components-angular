@@ -53,7 +53,7 @@ import { Column } from "./column.component";
 							(click)="sort(column.col)">
 							<!-- arrow up -->
 							<svg 
-								*ngIf="column.col.direction === 'up' && column.col.sorted" 
+								*ngIf="column.col.direction === sorts.ascending && column.col.sorted" 
 								xmlns="http://www.w3.org/2000/svg" 
 								width="16" 
 								height="16" 
@@ -62,7 +62,7 @@ import { Column } from "./column.component";
 							</svg>
 							<!-- arrow down -->
 							<svg 
-								*ngIf="column.col.direction === 'down' && column.col.sorted" 
+								*ngIf="column.col.direction === sorts.descending && column.col.sorted" 
 								xmlns="http://www.w3.org/2000/svg" 
 								width="16" 
 								height="16" 
@@ -81,6 +81,7 @@ import { Column } from "./column.component";
 						</span> 
 					</div>
 					<div 
+						*ngIf="column.col.resizeable"
 						class="resizer"
 						(mousedown)="mouseDown($event, column.col)">
 					</div>
@@ -101,20 +102,21 @@ export class TableHeader {
 	private movingCol: Column = null;
 	private resizingCol: Column = null;
 	private lastX: number = 0;
+	private sorts = Column.sort;
 
 	constructor(private tableService: TableService) {}
 
 	sort(col: Column) {
 		for (let column of this.tableService.getCols({}, this.cols)) {
 			if (column.col !== col) {
-				column.col.direction = "down";
+				column.col.direction = Column.sort.descending;
 				column.col.sorted = false;
 			}
 		}
-		if (col.direction === "down") {
-			col.direction = "up";
+		if (col.direction === Column.sort.descending) {
+			col.direction = Column.sort.ascending;
 		} else {
-			col.direction = "down";
+			col.direction = Column.sort.descending;
 		}
 		col.sorted = true;
 		col.sort.emit({key: col.key, direction: col.direction});

@@ -1,10 +1,23 @@
-import { Component, Input, Output, ViewChild, ContentChild, ContentChildren, TemplateRef, EventEmitter } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	ViewChild,
+	ContentChild,
+	ContentChildren,
+	TemplateRef,
+	EventEmitter
+} from "@angular/core";
 
 @Component({
 	selector: "cdl-column",
 	template: ""
 })
 export class Column {
+	public static sort = {
+		ascending: Symbol(),
+		descending: Symbol()
+	};
 	@Input() key;
 	// @Input() title;
 	// @Input() filter;
@@ -14,7 +27,7 @@ export class Column {
 	@ContentChild("cellTemplate") template;
 	@ContentChild("headerTemplate") headerTemplate;
 	@ContentChild("filterTemplate") filterTemplate;
-	public direction = "down";
+	public direction = Column.sort.descending;
 	public sorted: boolean = false;
 	public position: number = -1;
 }
