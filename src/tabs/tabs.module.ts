@@ -15,13 +15,13 @@ export { CdlTabHeaders } from "./tab-headers.component";
 @NgModule({
 	declarations: [
 		CdlTabs,
-    CdlTab,
-    CdlTabHeaders
+		CdlTab,
+		CdlTabHeaders
 	],
 	exports: [
 		CdlTabs,
-    CdlTab,
-    CdlTabHeaders
+		CdlTab,
+		CdlTabHeaders
 	],
 	imports: [CommonModule, BrowserModule],
 })
