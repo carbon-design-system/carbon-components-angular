@@ -15,4 +15,4 @@ export { ListView } from "./list-view.component";
 	],
 	imports: [CommonModule, BrowserModule]
 })
-export class ComboBoxModule {}
+export class ListViewModule {}
