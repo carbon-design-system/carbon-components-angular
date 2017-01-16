@@ -1,0 +1,31 @@
+<h1>Dropdown Demo</h1>
+
+<h3>Default Drop down</h3>
+<div style="width: 400px">
+	<cdl-dropdown displayValue="Dropdown 1">
+		<cdl-list-view [items]="demoItems0" (select)="onSelect($event)"></cdl-list-view>
+	</cdl-dropdown>
+</div>
+
+<h3>Drop down with menu open on select</h3>
+<div style="width: 400px">
+	<cdl-dropdown displayValue="Dropdown 2" [closeOnSelect]="false">
+		<cdl-list-view [items]="demoItems1" (select)="onSelect($event)"></cdl-list-view>
+	</cdl-dropdown>
+</div>
+
+
+<h3>Drop down with split button</h3>
+<cdl-dropdown displayValue="Dropdown 3" [isSplit]="true">
+	<cdl-list-view [items]="demoItems2" (select)="onSelect($event)"></cdl-list-view>
+</cdl-dropdown>
+
+<h3>Drop down with multi select</h3>
+<cdl-dropdown displayValue="Dropdown 4" [isSplit]="true" [multiSelect]="true" [closeOnSelect]="false">
+	<cdl-list-view [items]="demoItems3" (select)="onSelect($event)"></cdl-list-view>
+</cdl-dropdown>
+
+<h3>Disabled Drop down/h3>
+<cdl-dropdown displayValue="Dropdown 5" [isSplit]="true" [disabled]="true">
+	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
+</cdl-dropdown>

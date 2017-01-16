@@ -20,6 +20,8 @@ import { TabsDemo } from "./tabs_demo/tabs_demo.component";
 import { TabsModule } from "./../../src/tabs/tabs.module";
 import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
 import { ListViewModule } from "./../../src/list-view/list-view.module";
+import { DropdownModule } from "./../../src/dropdown/dropdown.module";
+import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 
 @NgModule({
 	declarations: [
@@ -30,7 +32,8 @@ import { ListViewModule } from "./../../src/list-view/list-view.module";
 		GlyphiconDemo,
 		PopoverDemo,
 		TabsDemo,
-		ListViewDemo
+		ListViewDemo,
+		DropdownDemo
 	],
 	imports: [
 		BrowserModule,
@@ -41,6 +44,7 @@ import { ListViewModule } from "./../../src/list-view/list-view.module";
 		GlyphiconModule,
 		PopoverModule,
 		ListViewModule,
+		DropdownModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -69,6 +73,10 @@ import { ListViewModule } from "./../../src/list-view/list-view.module";
 			{
 				path: "list-view",
 				component: ListViewDemo
+			},
+			{
+				path: "dropdown",
+				component: DropdownDemo
 			}
 		])
 	],

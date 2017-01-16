@@ -1,0 +1,63 @@
+@import "../core/colors";
+@import "../core/vars";
+
+.dropdown-wrapper {
+	position: relative;
+
+	.dropdown-value {
+		width: 100%;
+		border: solid 1px $gray50;
+		background: $white;
+		color: $black;
+		text-align: left;
+		position: relative;
+		padding-right: 10px;
+
+		&:hover, &:focus {
+			background: $blue10;
+			border: solid 1px $gray50;
+		}
+
+		.dropdown-icon {
+			float: right;
+			width: 16px;
+			height: 16px;
+
+			&.open {
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+		}
+
+		&:disabled {
+			color: $gray20;
+			border: solid 1px $gray30;
+
+			&:hover, &:focus {
+				background: $white;
+				cursor: no-drop;
+			}
+		}
+
+		.divider{
+				position:absolute;
+				right: 35px;
+				top: 0px;
+				height: 100%;
+				border-left: solid 1px $gray50;
+		}
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		z-index: 1000;
+		display: none;
+
+		&.open {
+			display: block;
+			min-width: 100%;
+			background: $white;
+		}
+	}
+}
