@@ -13,6 +13,7 @@ import {
 import 'rxjs/add/operator/debounceTime';
 import {debounce} from "lodash";
 
+import { KeyCodes } from "../constant/keys"
 import { CdlTab } from "./tab.component";
 
 @Component({
@@ -28,8 +29,8 @@ import { CdlTab } from "./tab.component";
         </svg>
       </button>
       <ul class="cdl-tab-heading" role="tablist">
-        <li *ngFor="let tab of tabs">
-          <a href="javascript:void(0)" role="tab" (click)="selectTab(tab)"
+        <li *ngFor="let tab of tabs; let i = index;">
+          <a href="javascript:void(0)" role="tab" (click)="selectTab(tab)" on-focus="onTabFocus(i)"
             [ngClass]="{'active-tab': tab.active, 'disabled-tab': tab.disabled}">
             <span *ngIf="!tab.headingIsTemplate">{{tab.heading}}</span>
             <template *ngIf="tab.headingIsTemplate" [ngTemplateOutlet]="tab.heading">
@@ -58,6 +59,9 @@ export class CdlTabHeaders {
   private allTabHeading;
   private disabledRightArrow = false;
   private disabledLeftArrow = true;
+  private currentSelectedTab: number;
+  private totalTabs: number;
+
   @Input() tabs: QueryList<CdlTab>;
 
   constructor(private _elementRef: ElementRef, private _viewContainerRef: ViewContainerRef, private _cdr: ChangeDetectorRef) {}
@@ -68,6 +72,8 @@ export class CdlTabHeaders {
 
   ngAfterViewInit() {
     this.scrollCheck();
+    this.allTabHeading = this._elementRef.nativeElement.querySelectorAll("div ul li a");
+    this.totalTabs = this.allTabHeading.length;
   }
 
   // check for window resize
@@ -75,6 +81,25 @@ export class CdlTabHeaders {
   onResize = debounce(()=> {
     this.scrollCheck();
   }, 100);
+
+  // keyboard accessibility
+  @HostListener('keydown', ['$event'])
+  keyboardInput(event) {
+    if (event.keyCode === KeyCodes.RIGHT_ARROW || event.keyCode === KeyCodes.DOWN_ARROW) {
+      if (this.currentSelectedTab < this.totalTabs - 1) {
+        this.allTabHeading[this.currentSelectedTab + 1].focus();
+      }
+    }
+    if (event.keyCode === KeyCodes.LEFT_ARROW || event.KeyCode === KeyCodes.UP_ARROW) {
+      if (this.currentSelectedTab > 0) {
+        this.allTabHeading[this.currentSelectedTab - 1].focus();
+      }
+    }
+  }
+
+  private onTabFocus(index: number) {
+    this.currentSelectedTab = index;
+  }
 
   private scrollCheck() {
     if (this.tabHeading.scrollWidth > this.tabHeading.offsetWidth) {
@@ -85,7 +110,6 @@ export class CdlTabHeaders {
         this.scrollLength = this.tabHeading.scrollWidth - this.tabHeading.offsetWidth;
       });
 
-      this.allTabHeading = this._elementRef.nativeElement.querySelectorAll("div ul li");
       this._cdr.detectChanges();
     } else {
       this.isOverFlow = false;
