@@ -3,17 +3,14 @@ import {
 	QueryList,
 	Input,
 	HostListener,
-	ElementRef,
-	TemplateRef,
-	ViewContainerRef,
-	ViewRef,
-	ComponentRef,
-	ChangeDetectorRef
+	ViewChild,
+	ViewChildren,
+	AfterViewInit
 } from "@angular/core";
 import {debounce} from "lodash";
 
 import { KeyCodes } from "../constant/keys";
-import { CdlTab } from "./tab.component";
+import { Tab } from "./tab.component";
 
 @Component({
 	selector: "cdl-tab-headers",
@@ -34,6 +31,7 @@ import { CdlTab } from "./tab.component";
 				</svg>
 			</button>
 			<ul 
+				#tabList
 				class="cdl-tab-heading" 
 				role="tablist" 
 				[ngStyle]="{'left.px':scrollLeft}">
@@ -76,8 +74,7 @@ import { CdlTab } from "./tab.component";
 	styleUrls: ["./tabs.component.scss"]
 })
 
-export class CdlTabHeaders {
-	private tabHeading;
+export class TabHeaders implements AfterViewInit {
 	private isOverFlow = false;
 	private firstVisibleTab = 0;
 	private scrollLength = 0;
@@ -85,12 +82,13 @@ export class CdlTabHeaders {
 	private disabledRightArrow = false;
 	private disabledLeftArrow = true;
 	private currentSelectedTab: number;
-	private isMousePress: boolean;
+	private isTouching: boolean;
 	private prevClientX: number;
 
 	private scrollLeft = 0;
 
-	@Input() tabs: QueryList<CdlTab>;
+	@Input() tabs: QueryList<Tab>;
+	@ViewChild("tabList") tabHeading;
 
 	// check for window resize
 	@HostListener("window:resize", [])
@@ -119,62 +117,49 @@ export class CdlTabHeaders {
 	// draggable
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(event) {
-		this.isMousePress = true;
+		this.isTouching = true;
 		this.prevClientX = event.clientX;
 	}
 
 	@HostListener("touchend", ["$event"])
 	onTouchEnd(event) {
-		this.isMousePress = false;
+		this.isTouching = false;
 	}
 
 	@HostListener("touchmove", ["$event"])
 	onTouchMove(event) {
-		if (this.isOverFlow && this.isMousePress) {
+		if (this.isOverFlow && this.isTouching) {
 			if (event.clientX < this.prevClientX) {
 				requestAnimationFrame(() => {
-					this.tabHeading.scrollLeft -= event.clientX - this.prevClientX;
+					this.tabHeading.nativeElement.scrollLeft -= event.clientX - this.prevClientX;
 				});
 				this.prevClientX = event.clientX;
 			} else if (event.clientX > this.prevClientX) {
 				requestAnimationFrame(() => {
-					this.tabHeading.scrollLeft += 5;
+					this.tabHeading.nativeElement.scrollLeft += 5;
 				});
 				this.prevClientX = event.clientX;
 			}
 		}
 	}
 
-	constructor(private _elementRef: ElementRef, private _viewContainerRef: ViewContainerRef, private _cdr: ChangeDetectorRef) {}
-
-	ngOnInit() {
-		// use viewrefs instead of querying the nativelement
-		this.tabHeading = this._elementRef.nativeElement.querySelector("div ul");
-	}
-
 	ngAfterViewInit() {
 		this.scrollCheck();
-		// use viewrefs instead of querying the nativelement
-		this.allTabHeading = this._elementRef.nativeElement.querySelectorAll("div ul li a");
+		this.allTabHeading = this.tabHeading.nativeElement.querySelectorAll("li a");
 	}
 
 	private onTabFocus(ev, index: number) {
 		this.currentSelectedTab = index;
 		this.moveTabIntoView(ev.target);
 		// reset scroll left because we're already handling it
-		this.tabHeading.parentElement.scrollLeft = 0;
+		this.tabHeading.nativeElement.parentElement.scrollLeft = 0;
 	}
 
 	private scrollCheck() {
-		if (this.tabHeading.offsetWidth > this.tabHeading.parentElement.offsetWidth) {
+		if (this.tabHeading.nativeElement.offsetWidth > this.tabHeading.nativeElement.parentElement.offsetWidth) {
 			this.isOverFlow = true;
 			this.disabledRightArrow = false;
-
-			setTimeout(() => {
-				this.scrollLength = this.tabHeading.offsetWidth;
-			});
-
-			this._cdr.detectChanges();
+			this.scrollLength = this.tabHeading.nativeElement.offsetWidth;
 		} else {
 			this.isOverFlow = false;
 		}
@@ -214,15 +199,15 @@ export class CdlTabHeaders {
 			let visibleTab = this.allTabHeading[this.firstVisibleTab];
 			this.scrollLeft = -(visibleTab.offsetLeft + visibleTab.offsetWidth - 15);
 			this.firstVisibleTab++;
-			if (this.scrollLength + this.scrollLeft <= this.tabHeading.parentElement.offsetWidth) {
+			if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
 				this.disabledRightArrow = true;
 				// 40 === the width of the left/right buttons
-				this.scrollLeft = -(this.scrollLength - this.tabHeading.parentElement.offsetWidth + 40);
+				this.scrollLeft = -(this.scrollLength - this.tabHeading.nativeElement.parentElement.offsetWidth + 40);
 			}
 		}
 	}
 
-	private selectTab(ev, tab: CdlTab) {
+	private selectTab(ev, tab: Tab) {
 		if (tab.disabled) {
 			return;
 		}
@@ -238,8 +223,8 @@ export class CdlTabHeaders {
 
 	private moveTabIntoView(tab) {
 		// if the target is behind the right edge move it into view
-		if (tab.offsetLeft + tab.offsetWidth > this.tabHeading.parentElement.offsetWidth - (this.scrollLeft + 40)) {
-			this.scrollLeft = -((tab.offsetLeft + tab.offsetWidth + 40) - this.tabHeading.parentElement.offsetWidth);
+		if (tab.offsetLeft + tab.offsetWidth > this.tabHeading.nativeElement.parentElement.offsetWidth - (this.scrollLeft + 40)) {
+			this.scrollLeft = -((tab.offsetLeft + tab.offsetWidth + 40) - this.tabHeading.nativeElement.parentElement.offsetWidth);
 		}
 
 		// if the target is scrolled behind the left edge move it into view
@@ -250,7 +235,7 @@ export class CdlTabHeaders {
 		if (this.firstVisibleTab > 0) {
 			this.disabledLeftArrow = false;
 		}
-		if (this.scrollLength + this.scrollLeft <= this.tabHeading.parentElement.offsetWidth) {
+		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
 			this.disabledRightArrow = true;
 		}
 	}

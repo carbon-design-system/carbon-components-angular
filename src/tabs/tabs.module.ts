@@ -2,26 +2,26 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { CdlTabs } from "./tabs.component";
-import { CdlTab } from "./tab.component";
-import { CdlTabHeaders } from "./tab-headers.component";
+import { Tabs } from "./tabs.component";
+import { Tab } from "./tab.component";
+import { TabHeaders } from "./tab-headers.component";
 
 
-export { CdlTabs } from "./tabs.component";
-export { CdlTab } from "./tab.component";
-export { CdlTabHeaders } from "./tab-headers.component";
+export { Tabs } from "./tabs.component";
+export { Tab } from "./tab.component";
+export { TabHeaders } from "./tab-headers.component";
 
 
 @NgModule({
 	declarations: [
-		CdlTabs,
-		CdlTab,
-		CdlTabHeaders
+		Tabs,
+		Tab,
+		TabHeaders
 	],
 	exports: [
-		CdlTabs,
-		CdlTab,
-		CdlTabHeaders
+		Tabs,
+		Tab,
+		TabHeaders
 	],
 	imports: [CommonModule, BrowserModule],
 })
