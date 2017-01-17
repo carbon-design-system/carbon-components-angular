@@ -1,0 +1,49 @@
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	HostListener,
+	ElementRef,
+	TemplateRef,
+	ViewContainerRef,
+	ViewRef,
+	ComponentRef,
+	ChangeDetectorRef,
+	forwardRef
+} from "@angular/core";
+import { View } from "../common/view.class";
+import { NestedViewItem } from "./nested-view-item.component";
+
+@Component({
+	selector: "cdl-nested-view",
+	template: `
+		<ul class="nested-view" [class.open]="isOpen">
+			<li>
+				<cdl-nested-view-item
+					*ngFor="let item of items"
+					[listItem]="item"
+					[hasSubMenu]="!!item.subMenu"
+					[parentRef]="parent"
+					(select)="onClick($event)">
+					</cdl-nested-view-item>
+			</li>
+		</ul>
+	`,
+	providers: [{provide: View, useExisting: forwardRef(() => NestedView)}]
+})
+export class NestedView implements View {
+	@Input() items: Array<Object> = [];
+	@Input() isOpen: Boolean = false;
+	@Input() parent: any = null;
+	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+
+	onClick(evt) {
+		let item = evt.item;
+
+		this.select.emit({
+			item
+		});
+	}
+}

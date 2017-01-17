@@ -22,6 +22,8 @@ import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
 import { ListViewModule } from "./../../src/list-view/list-view.module";
 import { DropdownModule } from "./../../src/dropdown/dropdown.module";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
+import { NestedViewDemo } from "./nested_view_demo/nested-view-demo.component";
+import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
 
 @NgModule({
 	declarations: [
@@ -33,6 +35,7 @@ import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 		PopoverDemo,
 		TabsDemo,
 		ListViewDemo,
+		NestedViewDemo,
 		DropdownDemo
 	],
 	imports: [
@@ -44,6 +47,7 @@ import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 		GlyphiconModule,
 		PopoverModule,
 		ListViewModule,
+		NestedViewModule,
 		DropdownModule,
 		RouterModule.forRoot([
 			{
@@ -73,6 +77,10 @@ import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 			{
 				path: "list-view",
 				component: ListViewDemo
+			},
+			{
+				path: "nested-view",
+				component: NestedViewDemo
 			},
 			{
 				path: "dropdown",
