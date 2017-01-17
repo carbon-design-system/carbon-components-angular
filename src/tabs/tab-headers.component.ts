@@ -19,7 +19,10 @@ import { CdlTab } from "./tab.component";
 	selector: "cdl-tab-headers",
 	template: `
 		<div [class.is-over-flow]="isOverFlow">
-			<button class="left-arrow clear-button" [class.disabled]="disabledLeftArrow" (click)="goLeft()">
+			<button 
+				class="left-arrow clear-button" 
+				[class.disabled]="disabledLeftArrow" 
+				(click)="goLeft()">
 				<svg 
 					xmlns="http://www.w3.org/2000/svg" 
 					width="16" 
@@ -30,17 +33,32 @@ import { CdlTab } from "./tab.component";
 					1.2c3.7 0 6.8 3.1 6.8 6.8 0 3.7-3.1 6.8-6.8 6.8S1.2 11.7 1.2 8c0-3.7 3.1-6.8 6.8-6.8z"/>
 				</svg>
 			</button>
-			<ul class="cdl-tab-heading" role="tablist" [ngStyle]="{'left.px':scrollLeft}">
+			<ul 
+				class="cdl-tab-heading" 
+				role="tablist" 
+				[ngStyle]="{'left.px':scrollLeft}">
 				<li *ngFor="let tab of tabs; let i = index;">
-					<a href="javascript:void(0)" draggable="false" role="tab" (click)="selectTab($event, tab)" (focus)="onTabFocus($event, i)"
+					<a 
+						href="javascript:void(0)" 
+						draggable="false" 
+						role="tab" 
+						(click)="selectTab($event, tab)" 
+						(focus)="onTabFocus($event, i)"
 						[ngClass]="{'active-tab': tab.active, 'disabled-tab': tab.disabled}">
-						<span *ngIf="!tab.headingIsTemplate">{{tab.heading}}</span>
-						<template *ngIf="tab.headingIsTemplate" [ngTemplateOutlet]="tab.heading">
+						<span *ngIf="!tab.headingIsTemplate">
+							{{tab.heading}}
+						</span>
+						<template 
+							*ngIf="tab.headingIsTemplate" 
+							[ngTemplateOutlet]="tab.heading">
 						</template>
 					</a>
 				</li>
 			</ul>
-			<button class="right-arrow clear-button" [class.disabled]="disabledRightArrow"  (click)="goRight()">
+			<button 
+				class="right-arrow clear-button" 
+				[class.disabled]="disabledRightArrow"  
+				(click)="goRight()">
 				<svg 
 					xmlns="http://www.w3.org/2000/svg" 
 					width="16" 

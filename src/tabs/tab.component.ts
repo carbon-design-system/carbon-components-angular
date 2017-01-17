@@ -15,6 +15,7 @@ export class CdlTab implements OnInit {
 	@Input() heading: string | TemplateRef<any>;
 	@Input() active: boolean;
 	@Input() disabled: boolean;
+	// do we need id's?
 	@Input() id: string = `cdl-tab-${nextId++}`;
 	headingIsTemplate = false;
 
