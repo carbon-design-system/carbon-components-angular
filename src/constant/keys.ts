@@ -6,4 +6,5 @@ export class KeyCodes {
 	public static RIGHT_ARROW = 39;
 	public static UP_ARROW = 38;
 	public static DOWN_ARROW = 40;
+	public static ESCAPE = 27;
 }

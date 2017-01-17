@@ -7,8 +7,7 @@ import { Component, OnInit } from "@angular/core";
 export class DropdownDemo {
 	title = "Tabs Component Demo";
 
-	// constant a = 2;
-
+	private display0 = "Dropdown 1";
 	private demoItems0 = [
 		{
 			content: "item one",
@@ -34,6 +33,15 @@ export class DropdownDemo {
 
 	private clone (el) {
 		return Object.assign({}, el);
+	}
+
+	onSelectAndDisplay(ev) {
+		ev.item.selected = !ev.item.selected;
+		if (ev.item.selected) {
+			this.display0 = ev.item.content;
+		} else {
+			this.display0 = "Dropdown 1";
+		}
 	}
 
 	onSelect(ev) {

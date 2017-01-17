@@ -4,10 +4,12 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostListener
+	HostListener,
+	forwardRef
 } from "@angular/core";
 
 import { KeyCodes } from "../constant/keys";
+import { View } from "../common/view.class";
 
 @Component({
 	selector: "cdl-list-view",
@@ -35,9 +37,10 @@ import { KeyCodes } from "../constant/keys";
 						</svg>
 				</span>
 			</li>
-		</ul>`
+		</ul>`,
+		providers: [{provide: View, useExisting: forwardRef(() => ListView)}]
 })
-export class ListView {
+export class ListView implements View {
 	@Input() items: Array<Object> = [];
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

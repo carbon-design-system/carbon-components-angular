@@ -14,7 +14,7 @@
 		padding-right: 10px;
 
 		&:hover, &:focus {
-			background: $blue10;
+			background: rgba($blue40, 0.10);
 			border: solid 1px $gray50;
 		}
 
