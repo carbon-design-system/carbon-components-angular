@@ -12,13 +12,15 @@ $tabs-margin: 15px;
 .is-over-flow {
 	padding: 0px 23px 0px 20px;
 	position: relative;
+	overflow: hidden;
 
 	.left-arrow {
 		left: 0px;
 		-webkit-box-shadow: 5px 0px 9px -5px $gray50;
 		-moz-box-shadow: 5px 0px 9px -5px $gray50;
 		box-shadow: 5px 0px 9px -5px $gray50;
-		padding-right: 5px;
+		padding-right: 2px;
+		z-index: 1;
 	}
 
 	.right-arrow {
@@ -26,20 +28,24 @@ $tabs-margin: 15px;
 		-webkit-box-shadow: -5px 0px 9px -5px $gray50;
 		-moz-box-shadow: -5px 0px 9px -5px $gray50;
 		box-shadow: -5px 0px 9px -5px $gray50;
-		padding-left: 5px;
+		padding-left: 2px;
 	}
 
 	.left-arrow, .right-arrow {
 		display: inline-block;
 		position: absolute;
-		top: 5px;
+		top: -1px;
+		height: 40px;
+		background: $white;
+		width: 20px;
+		margin: 0;
 
-		.st0 {
+		svg {
 			fill: $gray50;
 		}
 
 		&:hover {
-			.st0 {
+			svg {
 				fill: $blue50;
 			}
 		}
@@ -47,7 +53,7 @@ $tabs-margin: 15px;
 		&.disabled {
 			cursor: no-drop;
 			box-shadow: none;
-			.st0 {
+			svg {
 				fill: $gray20;
 			}
 		}
@@ -55,19 +61,25 @@ $tabs-margin: 15px;
 }
 
 .cdl-tab-heading {
-	display: block;
+	display: inline;
 	height: $tabs-height;
 	list-style: none;
 	padding-left: 0px;
 	margin: 0px;
-	overflow: hidden;
-
+	position: relative;
+	// overflow: hidden;
+	transition: left 0.5s;
+	left: 0px;
+	&.touch-transition {
+		transition:  left 0s;
+	}
 	li {
-		display: table-cell;
+		display: inline;
 		white-space: nowrap !important;
 		padding-left: $tabs-margin;
 
 		a {
+			// border: 1px solid black; //tmp
 			text-align: center;
 			line-height: $tabs-height;
 			padding: 0px $tabs-padding 0px $tabs-padding;

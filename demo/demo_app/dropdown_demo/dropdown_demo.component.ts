@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import {cloneDeep} from "lodash";
 
 @Component({
 	selector: "dropdown-demo",
@@ -29,10 +28,13 @@ export class DropdownDemo {
 		}
 	];
 
-	// private demoItems1 = this.demoItems0.assign();
-	private demoItems1 = cloneDeep(this.demoItems0);
-	private demoItems2 = cloneDeep(this.demoItems0);
-	private demoItems3 = cloneDeep(this.demoItems0);
+	private demoItems1 = Array.from(this.demoItems0, this.clone);
+	private demoItems2 = Array.from(this.demoItems0, this.clone);
+	private demoItems3 = Array.from(this.demoItems0, this.clone);
+
+	private clone (el) {
+		return Object.assign({}, el);
+	}
 
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
