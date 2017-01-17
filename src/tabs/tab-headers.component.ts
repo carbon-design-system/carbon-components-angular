@@ -44,6 +44,8 @@ import { CdlTab } from "./tab.component";
 						role="tab" 
 						(click)="selectTab($event, tab)" 
 						(focus)="onTabFocus($event, i)"
+						[attr.aria-selected]="tab.active"
+						[attr.tabindex]="tab.active?0:-1"
 						[ngClass]="{'active-tab': tab.active, 'disabled-tab': tab.disabled}">
 						<span *ngIf="!tab.headingIsTemplate">
 							{{tab.heading}}
