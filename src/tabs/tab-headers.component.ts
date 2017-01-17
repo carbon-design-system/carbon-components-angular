@@ -34,7 +34,8 @@ import { Tab } from "./tab.component";
 				#tabList
 				class="cdl-tab-heading" 
 				role="tablist" 
-				[ngStyle]="{'left.px':scrollLeft}">
+				[ngStyle]="{'left.px':scrollLeft}"
+				[class.touch-transition]="isTouching">
 				<li *ngFor="let tab of tabs; let i = index;">
 					<a 
 						href="javascript:void(0)" 
@@ -118,28 +119,30 @@ export class TabHeaders implements AfterViewInit {
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(event) {
 		this.isTouching = true;
-		this.prevClientX = event.clientX;
+		this.prevClientX = event.touches[0].clientX;
 	}
 
 	@HostListener("touchend", ["$event"])
 	onTouchEnd(event) {
 		this.isTouching = false;
+		// return to the leftmost resting place
+		if (this.scrollLeft > 0) {
+			this.scrollLeft = 0;
+		}
+		// return to the rightmost resting place
+		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
+			this.scrollLeft = -(this.scrollLength - this.tabHeading.nativeElement.parentElement.offsetWidth + 40);
+		}
 	}
 
 	@HostListener("touchmove", ["$event"])
 	onTouchMove(event) {
+		let touch = event.touches[0];
 		if (this.isOverFlow && this.isTouching) {
-			if (event.clientX < this.prevClientX) {
-				requestAnimationFrame(() => {
-					this.tabHeading.nativeElement.scrollLeft -= event.clientX - this.prevClientX;
-				});
-				this.prevClientX = event.clientX;
-			} else if (event.clientX > this.prevClientX) {
-				requestAnimationFrame(() => {
-					this.tabHeading.nativeElement.scrollLeft += 5;
-				});
-				this.prevClientX = event.clientX;
-			}
+			this.scrollLeft -= this.prevClientX - touch.clientX;
+			this.prevClientX = touch.clientX;
+			this.updateOverflowButtons();
+
 		}
 	}
 
@@ -231,13 +234,7 @@ export class TabHeaders implements AfterViewInit {
 		if (tab.offsetLeft + this.scrollLeft < 0) {
 			this.scrollLeft = -(tab.offsetLeft - 35);
 		}
-		this.firstVisibleTab = this.findFirstVisibleTab();
-		if (this.firstVisibleTab > 0) {
-			this.disabledLeftArrow = false;
-		}
-		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
-			this.disabledRightArrow = true;
-		}
+		this.updateOverflowButtons();
 	}
 
 	private findFirstVisibleTab() {
@@ -246,6 +243,16 @@ export class TabHeaders implements AfterViewInit {
 			if (this.allTabHeading[i].offsetLeft + this.scrollLeft > 0) {
 				return i;
 			}
+		}
+	}
+
+	private updateOverflowButtons() {
+		this.firstVisibleTab = this.findFirstVisibleTab();
+		if (this.firstVisibleTab > 0) {
+			this.disabledLeftArrow = false;
+		}
+		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
+			this.disabledRightArrow = true;
 		}
 	}
 }

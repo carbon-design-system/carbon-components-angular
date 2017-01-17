@@ -70,7 +70,9 @@ $tabs-margin: 15px;
 	// overflow: hidden;
 	transition: left 0.5s;
 	left: 0px;
-
+	&.touch-transition {
+		transition:  left 0s;
+	}
 	li {
 		display: inline;
 		white-space: nowrap !important;
