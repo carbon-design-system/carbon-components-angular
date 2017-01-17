@@ -125,13 +125,16 @@ export class TabHeaders implements AfterViewInit {
 	@HostListener("touchend", ["$event"])
 	onTouchEnd(event) {
 		this.isTouching = false;
-		// return to the leftmost resting place
-		if (this.scrollLeft > 0) {
-			this.scrollLeft = 0;
-		}
-		// return to the rightmost resting place
-		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
-			this.scrollLeft = -(this.scrollLength - this.tabHeading.nativeElement.parentElement.offsetWidth + 40);
+		if (this.isOverFlow) {
+			// return to the leftmost resting place
+			if (this.scrollLeft > 0) {
+				this.scrollLeft = 0;
+			}
+			// return to the rightmost resting place
+			if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
+				this.scrollLeft = -(this.scrollLength - this.tabHeading.nativeElement.parentElement.offsetWidth + 40);
+			}
+			this.updateOverflowButtons();
 		}
 	}
 
@@ -141,8 +144,6 @@ export class TabHeaders implements AfterViewInit {
 		if (this.isOverFlow && this.isTouching) {
 			this.scrollLeft -= this.prevClientX - touch.clientX;
 			this.prevClientX = touch.clientX;
-			this.updateOverflowButtons();
-
 		}
 	}
 
@@ -250,6 +251,8 @@ export class TabHeaders implements AfterViewInit {
 		this.firstVisibleTab = this.findFirstVisibleTab();
 		if (this.firstVisibleTab > 0) {
 			this.disabledLeftArrow = false;
+		} else {
+			this.disabledLeftArrow = true;
 		}
 		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
 			this.disabledRightArrow = true;
