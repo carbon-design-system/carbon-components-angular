@@ -2,8 +2,8 @@
 
 <h3>Default Drop down</h3>
 <div style="width: 400px">
-	<cdl-dropdown displayValue="Dropdown 1">
-		<cdl-list-view [items]="demoItems0" (select)="onSelect($event)"></cdl-list-view>
+	<cdl-dropdown [displayValue]="display0">
+		<cdl-list-view [items]="demoItems0" (select)="onSelectAndDisplay($event)"></cdl-list-view>
 	</cdl-dropdown>
 </div>
 
@@ -21,11 +21,11 @@
 </cdl-dropdown>
 
 <h3>Drop down with multi select</h3>
-<cdl-dropdown displayValue="Dropdown 4" [isSplit]="true" [multiSelect]="true" [closeOnSelect]="false">
+<cdl-dropdown displayValue="Dropdown 4" [isSplit]="true" [closeOnSelect]="false" [multiSelect]="true">
 	<cdl-list-view [items]="demoItems3" (select)="onSelect($event)"></cdl-list-view>
 </cdl-dropdown>
 
-<h3>Disabled Drop down/h3>
+<h3>Disabled Drop down</h3>
 <cdl-dropdown displayValue="Dropdown 5" [isSplit]="true" [disabled]="true">
 	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
 </cdl-dropdown>
