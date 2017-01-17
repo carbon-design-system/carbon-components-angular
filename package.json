@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "2.4.1",
-    "@angular/router": "^3.4.1",
+    "@angular/router": "3.4.1",
     "@types/jasmine": "^2.5.38",
     "@types/node": "^6.0.42",
     "angular2-template-loader": "^0.6.0",
