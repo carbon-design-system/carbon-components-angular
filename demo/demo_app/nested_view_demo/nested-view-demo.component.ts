@@ -70,6 +70,12 @@ export class NestedViewDemo {
 		}
 	];
 
+	private demoItems1 = Array.from(this.demoItems, this.clone);
+
+	private clone (el) {
+		return Object.assign({}, el);
+	}
+
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
 	}

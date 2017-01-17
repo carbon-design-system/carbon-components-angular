@@ -23,6 +23,7 @@ import { NestedViewItem } from "./nested-view-item.component";
 			<li>
 				<cdl-nested-view-item
 					*ngFor="let item of items"
+					[listTpl]="listTpl"
 					[listItem]="item"
 					[hasSubMenu]="!!item.subMenu"
 					[parentRef]="parent"
@@ -37,6 +38,8 @@ export class NestedView implements View {
 	@Input() items: Array<Object> = [];
 	@Input() isOpen: Boolean = false;
 	@Input() parent: any = null;
+	@Input() listTpl: string | TemplateRef<any>;
+
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	onClick(evt) {
