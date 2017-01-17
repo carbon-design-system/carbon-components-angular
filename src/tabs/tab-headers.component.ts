@@ -7,7 +7,10 @@ import {
 	ViewChildren,
 	AfterViewInit
 } from "@angular/core";
-import {debounce} from "lodash";
+
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/throttleTime";
+import "rxjs/add/observable/fromEvent";
 
 import { KeyCodes } from "../constant/keys";
 import { Tab } from "./tab.component";
@@ -91,12 +94,6 @@ export class TabHeaders implements AfterViewInit {
 	@Input() tabs: QueryList<Tab>;
 	@ViewChild("tabList") tabHeading;
 
-	// check for window resize
-	@HostListener("window:resize", [])
-	onResize = debounce(() => {
-		this.scrollCheck();
-	}, 100);
-
 	// keyboard accessibility
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
@@ -148,7 +145,17 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.scrollCheck();
+		// this needs to be rethough, and it's not an issue in prod mode
+		//  we just need this so that dev mode doesn't throw an error and
+		//  break our tests
+		setTimeout(() => {
+			this.scrollCheck();
+		});
+
+		// check for window resize
+		Observable.fromEvent(window, "resize")
+			.throttleTime(100)
+			.subscribe(() => this.scrollCheck());
 		this.allTabHeading = this.tabHeading.nativeElement.querySelectorAll("li a");
 	}
 
