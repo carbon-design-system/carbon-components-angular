@@ -90,7 +90,6 @@ export class DropdownDemo {
 	}
 
 	onNestedSelect(ev) {
-		console.log(ev.item.subMenu);
 		if (!ev.item.subMenu) {
 			ev.item.selected = !ev.item.selected;
 		}
