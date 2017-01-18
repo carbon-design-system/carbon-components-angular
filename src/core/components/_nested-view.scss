@@ -1,6 +1,8 @@
 .nested-view {
 	list-style: none;
-
+	margin: 0;
+	padding: 0;
+	
 	li {
 		padding-left: 0px;
 		margin-left: 0px;
@@ -52,14 +54,14 @@
 				margin-right: 20px;
 
 				svg {
-						background: $blue50;
-						border-radius: 20px;
-						path:first-child {
-							fill: $blue50;
-						}
-						path:last-child {
-							fill: $white;
-						}
+					background: $blue50;
+					border-radius: 20px;
+					path:first-child {
+						fill: $blue50;
+					}
+					path:last-child {
+						fill: $white;
+					}
 				}
 			}
 		}
