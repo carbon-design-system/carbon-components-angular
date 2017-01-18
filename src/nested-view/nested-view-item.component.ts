@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ElementRef
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
 import { NestedView } from "./nested-view.component";
 import { KeyCodes } from "../constant/keys";
@@ -26,7 +27,12 @@ import { KeyCodes } from "../constant/keys";
 				viewBox="0 0 16 16">
 				<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 			</svg>
-			{{listItem.content}}
+			<span *ngIf="!listTpl">{{listItem.content}}</span>
+			<template
+				*ngIf="isTpl"
+				[ngOutletContext]="{item: listItem}"
+				[ngTemplateOutlet]="listTpl">
+			</template>
 			<span
 				*ngIf="listItem.selected && !listItem.subMenu"
 				class="selected-check">
@@ -46,16 +52,20 @@ import { KeyCodes } from "../constant/keys";
 			[isOpen]="listItem.selected"
 			[items]="listItem.subMenu"
 			(select)="onClick($event)"
+			[listTpl]="listTpl"
 			[parent]="parent">
 		</cdl-nested-view>
 	`
 })
 export class NestedViewItem {
 	private parent;
+	private isTpl: Boolean = false;
 
 	@Input() hasSubMenu: boolean = false;
 	@Input() parentRef = null;
 	@Input() listItem: Object;
+	@Input() listTpl: string | TemplateRef<any>;
+
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(private _elementRef: ElementRef) {}
@@ -66,6 +76,8 @@ export class NestedViewItem {
 		} else {
 			this.parent = this._elementRef.nativeElement;
 		}
+
+		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
 	onClick(evt) {
