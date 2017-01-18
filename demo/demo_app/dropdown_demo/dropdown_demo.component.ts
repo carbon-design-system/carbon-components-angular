@@ -30,6 +30,8 @@ export class DropdownDemo {
 	private demoItems1 = Array.from(this.demoItems0, this.clone);
 	private demoItems2 = Array.from(this.demoItems0, this.clone);
 	private demoItems3 = Array.from(this.demoItems0, this.clone);
+	private demoItems4 = Array.from(this.demoItems0, this.clone);
+	private demoItems5 = Array.from(this.demoItems0, this.clone);
 
 	private nestedDemoItems = [
 		{
