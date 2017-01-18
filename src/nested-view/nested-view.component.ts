@@ -1,16 +1,8 @@
 import {
 	Component,
-	OnInit,
 	Input,
 	Output,
 	EventEmitter,
-	HostListener,
-	ElementRef,
-	TemplateRef,
-	ViewContainerRef,
-	ViewRef,
-	ComponentRef,
-	ChangeDetectorRef,
 	forwardRef
 } from "@angular/core";
 import { View } from "../common/view.class";
