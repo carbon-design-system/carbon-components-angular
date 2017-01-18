@@ -1,1 +1,7 @@
+<template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</template>
+
+<h3>Default list view</h3>
 <cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
+
+<h3>List view with custom template (Added Icon) and no check mark</h3>
+<cdl-list-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>

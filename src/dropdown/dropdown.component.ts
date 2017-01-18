@@ -65,7 +65,7 @@ export class Dropdown implements AfterContentInit {
 	constructor(private _elementRef: ElementRef) {
 		// Check for click event outside of the component
 		Observable.fromEvent(_elementRef.nativeElement, "click").subscribe(evt => {
-			this.clickInsideComp = true
+			this.clickInsideComp = true;
 		});
 
 		Observable.fromEvent(window, "click").subscribe(evt => {
