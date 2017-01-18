@@ -14,6 +14,12 @@
 	</cdl-dropdown>
 </div>
 
+<h3>Drop down with nested view</h3>
+<div style="width: 400px">
+	<cdl-dropdown displayValue="Dropdown nested">
+		<cdl-nested-view [items]="nestedDemoItems" (select)="onNestedSelect($event)"></cdl-nested-view>
+	</cdl-dropdown>
+</div>
 
 <h3>Drop down with split button</h3>
 <cdl-dropdown displayValue="Dropdown 3" [isSplit]="true">

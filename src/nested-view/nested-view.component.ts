@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	forwardRef
+	forwardRef,
+	TemplateRef
 } from "@angular/core";
 import { View } from "../common/view.class";
 import { NestedViewItem } from "./nested-view-item.component";
@@ -36,9 +37,12 @@ export class NestedView implements View {
 
 	onClick(evt) {
 		let item = evt.item;
-
-		this.select.emit({
-			item
-		});
+		if (item.subMenu) {
+			item.selected = !item.selected;
+		} else {
+			this.select.emit({
+				item
+			});
+		}
 	}
 }
