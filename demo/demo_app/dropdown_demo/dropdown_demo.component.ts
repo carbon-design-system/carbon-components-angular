@@ -31,6 +31,47 @@ export class DropdownDemo {
 	private demoItems2 = Array.from(this.demoItems0, this.clone);
 	private demoItems3 = Array.from(this.demoItems0, this.clone);
 
+	private nestedDemoItems = [
+		{
+			content: "item one",
+			selected: false
+		},
+		{
+			content: "item two",
+			selected: false,
+			subMenu: [
+				{
+					content: "sub item two 1",
+					selected: false
+				},
+				{
+					content: "sub item two 2",
+					selected: false,
+					subMenu: [
+						{
+							content: "sub item two 1b",
+							selected: false
+						},
+						{
+							content: "sub item two 2b",
+							selected: false,
+
+
+						}
+					]
+				},
+			]
+		},
+		{
+			content: "item three",
+			selected: false
+		},
+		{
+			content: "item four",
+			selected: false
+		}
+	];
+
 	private clone (el) {
 		return Object.assign({}, el);
 	}
@@ -46,6 +87,13 @@ export class DropdownDemo {
 
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
+	}
+
+	onNestedSelect(ev) {
+		console.log(ev.item.subMenu);
+		if (!ev.item.subMenu) {
+			ev.item.selected = !ev.item.selected;
+		}
 	}
 
 }
