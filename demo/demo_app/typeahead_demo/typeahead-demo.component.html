@@ -1,0 +1,12 @@
+<h1>Typeahead</h1>
+<h3>Static Typeahead with limit 8 results</h3>
+selected value {{selectedString}}
+<cdl-typeahead [list]="stringList" (onSearch)="stringSearch($event)" (onSelect)="onSelectString($event)" [limit]="8"></cdl-typeahead>
+
+<h3>Static Typeahead Object</h3>
+selected value {{selectedStatic | json}}
+<cdl-typeahead [list]="staticList" [displayKey]="'title'" (onSearch)="staticSearch($event)" (onSelect)="onSelectStatic($event)"></cdl-typeahead>
+
+<h3>Asynchronous Typeahead with 1 sec wait time</h3>
+selected value {{selectedAsync | json}}
+<cdl-typeahead [list]="list" [displayKey]="'title'" [waitTime]="1000" (onSearch)="search($event)" (onSelect)="onSelectAsync($event)"></cdl-typeahead>

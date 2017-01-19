@@ -24,6 +24,9 @@ import { DropdownModule } from "./../../src/dropdown/dropdown.module";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 import { NestedViewDemo } from "./nested_view_demo/nested-view-demo.component";
 import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
+import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
+import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
+
 
 @NgModule({
 	declarations: [
@@ -36,7 +39,8 @@ import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
 		TabsDemo,
 		ListViewDemo,
 		NestedViewDemo,
-		DropdownDemo
+		DropdownDemo,
+		TypeaheadDemo
 	],
 	imports: [
 		BrowserModule,
@@ -49,6 +53,7 @@ import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
 		ListViewModule,
 		NestedViewModule,
 		DropdownModule,
+		TypeaheadModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -85,6 +90,10 @@ import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
 			{
 				path: "dropdown",
 				component: DropdownDemo
+			},
+			{
+				path: "typeahead",
+				component: TypeaheadDemo
 			}
 		])
 	],
