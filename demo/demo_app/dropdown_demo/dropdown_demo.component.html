@@ -14,6 +14,18 @@
 	</cdl-dropdown>
 </div>
 
+<h3>Default Drop down with custom template</h3>
+<template #listTpl let-item="item">
+<cdl-glyphicon *ngIf="item.selected"  icon="Checkbox Selected" size="md"></cdl-glyphicon>
+<cdl-glyphicon *ngIf="!item.selected" icon="Checkbox Empty" size="md"></cdl-glyphicon>
+	{{item.content}}
+</template>
+<div style="width: 400px">
+	<cdl-dropdown [displayValue]="display0" [closeOnSelect]="false" [multiSelect]="true">
+		<cdl-list-view [items]="demoItems4" (select)="onSelectAndDisplay($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>
+	</cdl-dropdown>
+</div>
+
 <h3>Drop down with nested view</h3>
 <div style="width: 400px">
 	<cdl-dropdown displayValue="Dropdown nested">
