@@ -2,17 +2,12 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	
+
 	li {
 		padding-left: 0px;
 		margin-left: 0px;
-
-		div {
-			padding-left: 40px;
-			padding-top: 12.5px;
-			padding-bottom: 12.5px;
-			border: 1px solid $gray10;
-			position: relative;
+		
+		.item-wrapper {
 
 			&:hover, &:focus {
 				background: rgba($blue40, 0.10);
@@ -20,8 +15,15 @@
 
 			&:focus {
 				border-left: 2px solid $blue50;
-					outline: 1px solid $blue50;
-					outline-offset: 1px;
+				outline-offset: 1px;
+			}
+
+			.item {
+				position: relative;
+				margin-left: 40px;
+				padding-top: 12.5px;
+				padding-bottom: 12.5px;
+				border-bottom: 1px solid $gray10;
 			}
 
 			&.selected {
@@ -39,7 +41,7 @@
 
 			.arrow {
 				position: absolute;
-				left: 10px;
+				left: -25px;
 			}
 
 			.selected-check {
@@ -69,7 +71,6 @@
 
 	ul {
 		display: none;
-		padding-left: 20px;
 
 		&.open {
 			display: block;

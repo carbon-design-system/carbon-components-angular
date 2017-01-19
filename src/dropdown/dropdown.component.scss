@@ -53,6 +53,7 @@
 		position: absolute;
 		z-index: 1000;
 		display: none;
+		border: 1px solid $gray10;
 
 		&.open {
 			display: block;

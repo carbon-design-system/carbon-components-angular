@@ -12,40 +12,45 @@ import { KeyCodes } from "../constant/keys";
 @Component({
 	selector: "cdl-nested-view-item",
 	template: `
+	<li>
 		<div
+			class="item-wrapper"
 			tabindex="0"
 			[class.selected]="listItem.selected"
 			(click)="doClick(listItem)"
 			(keyup)="onKeyUp($event, listItem)">
-
-			<svg
-				*ngIf="!!listItem.subMenu"
-				id="Layer_1" class="arrow"
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16">
-				<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
-			</svg>
-			<span *ngIf="!listTpl">{{listItem.content}}</span>
-			<template
-				*ngIf="isTpl"
-				[ngOutletContext]="{item: listItem}"
-				[ngTemplateOutlet]="listTpl">
-			</template>
-			<span
-				*ngIf="listItem.selected && !listItem.subMenu"
-				class="selected-check">
+			<div
+				class="item"
+				[style.margin-left.px]="40*indent">
 				<svg
+					*ngIf="!!listItem.subMenu"
+					id="Layer_1" class="arrow"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16">
-						<path d="M8 1.2c3.7 0 6.8 3.1 6.8 6.8s-3.1 6.8-6.8
-						6.8S1.2 11.7 1.2 8 4.3 1.2 8 1.2M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/>
-						<path d="M6.7 9.6L4.6 7.5l-.9.9 3 3 5.6-5.5-.9-.9z"/>
+					<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 				</svg>
-			</span>
+				<span *ngIf="!listTpl">{{listItem.content}}</span>
+				<template
+					*ngIf="isTpl"
+					[ngOutletContext]="{item: listItem}"
+					[ngTemplateOutlet]="listTpl">
+				</template>
+				<span
+					*ngIf="listItem.selected && !listItem.subMenu"
+					class="selected-check">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 16 16">
+							<path d="M8 1.2c3.7 0 6.8 3.1 6.8 6.8s-3.1 6.8-6.8
+							6.8S1.2 11.7 1.2 8 4.3 1.2 8 1.2M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/>
+							<path d="M6.7 9.6L4.6 7.5l-.9.9 3 3 5.6-5.5-.9-.9z"/>
+					</svg>
+				</span>
+			</div>
 		</div>
 		<cdl-nested-view
 			*ngIf="!!listItem.subMenu"
@@ -53,8 +58,10 @@ import { KeyCodes } from "../constant/keys";
 			[items]="listItem.subMenu"
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
-			[parent]="parent">
+			[parent]="parent"
+			[indent]="indent+1">
 		</cdl-nested-view>
+	</li>
 	`
 })
 export class NestedViewItem {
@@ -65,6 +72,7 @@ export class NestedViewItem {
 	@Input() parentRef = null;
 	@Input() listItem: Object;
 	@Input() listTpl: string | TemplateRef<any>;
+	@Input() indent: number = 1;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
