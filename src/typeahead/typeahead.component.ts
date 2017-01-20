@@ -26,7 +26,7 @@ import "rxjs/add/operator/debounceTime";
 	`,
 	styleUrls: ["./typeahead.component.scss"]
 })
-export class Typeahead implements AfterContentInit{
+export class Typeahead implements AfterContentInit {
 	private input: string;
 	private selectedItem;
 

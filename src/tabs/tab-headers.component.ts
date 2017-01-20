@@ -19,32 +19,32 @@ import { Tab } from "./tab.component";
 	selector: "cdl-tab-headers",
 	template: `
 		<div [class.is-over-flow]="isOverFlow">
-			<button 
-				class="left-arrow clear-button" 
-				[class.disabled]="disabledLeftArrow" 
+			<button
+				class="left-arrow clear-button"
+				[class.disabled]="disabledLeftArrow"
 				(click)="goLeft()">
-				<svg 
-					xmlns="http://www.w3.org/2000/svg" 
-					width="16" 
-					height="16" 
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
 					viewBox="0 0 16 16">
 					<path class="st0" d="M10 11.5L6.4 8 10 4.5l-1-1L4.6 8 9 12.5z"/>
 					<path class="st0" d="M8 16c4.4 0 8-3.6 8-8s-3.6-8-8-8-8 3.6-8 8 3.6 8 8 8zM8
 					1.2c3.7 0 6.8 3.1 6.8 6.8 0 3.7-3.1 6.8-6.8 6.8S1.2 11.7 1.2 8c0-3.7 3.1-6.8 6.8-6.8z"/>
 				</svg>
 			</button>
-			<ul 
+			<ul
 				#tabList
-				class="cdl-tab-heading" 
-				role="tablist" 
+				class="cdl-tab-heading"
+				role="tablist"
 				[ngStyle]="{'left.px':scrollLeft}"
 				[class.touch-transition]="isTouching">
 				<li *ngFor="let tab of tabs; let i = index;">
-					<a 
-						href="javascript:void(0)" 
-						draggable="false" 
-						role="tab" 
-						(click)="selectTab($event, tab)" 
+					<a
+						href="javascript:void(0)"
+						draggable="false"
+						role="tab"
+						(click)="selectTab($event, tab)"
 						(focus)="onTabFocus($event, i)"
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="tab.active?0:-1"
@@ -52,21 +52,21 @@ import { Tab } from "./tab.component";
 						<span *ngIf="!tab.headingIsTemplate">
 							{{tab.heading}}
 						</span>
-						<template 
-							*ngIf="tab.headingIsTemplate" 
+						<template
+							*ngIf="tab.headingIsTemplate"
 							[ngTemplateOutlet]="tab.heading">
 						</template>
 					</a>
 				</li>
 			</ul>
-			<button 
-				class="right-arrow clear-button" 
-				[class.disabled]="disabledRightArrow"  
+			<button
+				class="right-arrow clear-button"
+				[class.disabled]="disabledRightArrow"
 				(click)="goRight()">
-				<svg 
-					xmlns="http://www.w3.org/2000/svg" 
-					width="16" 
-					height="16" 
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
 					viewBox="0 0 16 16">
 					<path class="st0" d="M6 4.5L9.6 8 6 11.5l1 1L11.4 8 7 3.5z"/>
 					<path class="st0" d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.8c-3.7 0-6.8-3.1-6.8-6.8 0-3.7

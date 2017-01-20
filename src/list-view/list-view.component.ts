@@ -17,7 +17,7 @@ import { View } from "../common/view.class";
 			<li tabindex="0"
 				*ngFor="let item of items"
 				(click)="doClick($event, item)"
-				(keyup)="doKeyUp($event, item)"
+				(keydown)="doKeyDown($event, item)"
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
@@ -51,14 +51,20 @@ export class ListView implements View {
 	@Input() checkMark: Boolean = true;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	doKeyUp(ev, item) {
+	doKeyDown(ev, item) {
 		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
+			ev.preventDefault();
+
 			this.doClick(ev, item);
 		} else if (ev.shiftKey) {
 			ev.target.click();
 		} else if (ev.which === KeyCodes.DOWN_ARROW && ev.target.nextElementSibling) {
+			ev.preventDefault();
+
 			ev.target.nextElementSibling.focus();
 		} else if (ev.which === KeyCodes.UP_ARROW && ev.target.previousElementSibling) {
+			ev.preventDefault();
+
 			ev.target.previousElementSibling.focus();
 		}
 	}
