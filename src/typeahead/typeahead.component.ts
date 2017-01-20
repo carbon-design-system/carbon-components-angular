@@ -4,7 +4,8 @@ import {
 	Input,
 	AfterContentInit,
 	EventEmitter,
-	ElementRef
+	ElementRef,
+	ViewEncapsulation
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/debounceTime";
@@ -18,12 +19,13 @@ import "rxjs/add/operator/debounceTime";
 				<li tabindex="0"
 				*ngFor="let item of list | slice:0:limit;"
 				(click)="select(item)">
-					<span *ngIf="!displayKey">{{item}}</span>
-					<span *ngIf="displayKey">{{item[displayKey]}}</span>
+					<typeahead-highlight *ngIf="!displayKey" [fullText]="item" [searchText]="input"></typeahead-highlight>
+					<typeahead-highlight *ngIf="displayKey" [fullText]="item[displayKey]" [searchText]="input"></typeahead-highlight>
 				</li>
 			</ul>
 		</div>
 	`,
+	encapsulation: ViewEncapsulation.None,
 	styleUrls: ["./typeahead.component.scss"]
 })
 export class Typeahead implements AfterContentInit {
