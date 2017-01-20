@@ -15,7 +15,8 @@ export { TypeaheadHighlight } from "./typeahead-highlight.component";
 		TypeaheadHighlight
 	],
 	exports: [
-		Typeahead
+		Typeahead,
+		TypeaheadHighlight
 	],
 	imports: [CommonModule, BrowserModule, FormsModule]
 })
