@@ -10,3 +10,12 @@ selected value {{selectedStatic | json}}
 <h3>Asynchronous Typeahead with 1 sec wait time</h3>
 selected value {{selectedAsync | json}}
 <cdl-typeahead [list]="list" [displayKey]="'title'" [waitTime]="1000" (onSearch)="search($event)" (onSelect)="onSelectAsync($event)"></cdl-typeahead>
+
+<template #listTpl let-item="item">
+	<cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon>
+	<typeahead-highlight [fullText]="item.item" [searchText]="item.searchText"></typeahead-highlight>
+</template>
+
+<h3>Static Typeahead with custom template</h3>
+selected value {{selectedString}}
+<cdl-typeahead [list]="stringList" (onSearch)="stringSearch($event)" (onSelect)="onSelectString($event)" [limit]="8" [listTpl]="listTpl"></cdl-typeahead>

@@ -5,6 +5,7 @@ import {
 	AfterContentInit,
 	EventEmitter,
 	ElementRef,
+	TemplateRef,
 	ViewEncapsulation
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
@@ -19,8 +20,13 @@ import "rxjs/add/operator/debounceTime";
 				<li tabindex="0"
 				*ngFor="let item of list | slice:0:limit;"
 				(click)="select(item)">
-					<typeahead-highlight *ngIf="!displayKey" [fullText]="item" [searchText]="input"></typeahead-highlight>
-					<typeahead-highlight *ngIf="displayKey" [fullText]="item[displayKey]" [searchText]="input"></typeahead-highlight>
+					<template
+						*ngIf="listTpl"
+						[ngOutletContext]="{item: {item: item, searchText: input} }"
+						[ngTemplateOutlet]="listTpl">
+					</template>
+					<typeahead-highlight *ngIf="!displayKey && !listTpl" [fullText]="item" [searchText]="input"></typeahead-highlight>
+					<typeahead-highlight *ngIf="displayKey && !listTpl" [fullText]="item[displayKey]" [searchText]="input"></typeahead-highlight>
 				</li>
 			</ul>
 		</div>
@@ -37,6 +43,8 @@ export class Typeahead implements AfterContentInit {
 	@Input() waitTime: number = 0;
 	@Input() search: Function;
 	@Input() displayKey: string;
+	@Input() listTpl: TemplateRef<any> = null;
+
 	@Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 	@Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
 
