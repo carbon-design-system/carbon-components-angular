@@ -7,24 +7,17 @@ import { Component, OnInit } from "@angular/core";
 export class ListViewDemo {
 	private demoItems = [
 		{
-			content: "item one",
-			selected: false
+			content: "item one"
 		},
 		{
-			content: "item two",
-			selected: false
+			content: "item two"
 		},
 		{
-			content: "item three",
-			selected: false
+			content: "item three"
 		},
 		{
-			content: "item four",
-			selected: false
+			content: "item four"
 		}
 	];
 
-	onSelect(ev) {
-		ev.item.selected = !ev.item.selected;
-	}
 }
