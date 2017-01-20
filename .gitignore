@@ -3,6 +3,7 @@
 *.swp
 bower_components
 node_modules
+dist
 ./demo/
 .idea
 .vscode
