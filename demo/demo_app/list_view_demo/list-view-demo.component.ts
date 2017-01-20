@@ -7,7 +7,8 @@ import { Component, OnInit } from "@angular/core";
 export class ListViewDemo {
 	private demoItems = [
 		{
-			content: "item one"
+			content: "item one",
+			selected: false
 		},
 		{
 			content: "item two",
@@ -15,10 +16,12 @@ export class ListViewDemo {
 			disabled: true
 		},
 		{
-			content: "item three"
+			content: "item three",
+			selected: false
 		},
 		{
-			content: "item four"
+			content: "item four",
+			selected: false
 		}
 	];
 

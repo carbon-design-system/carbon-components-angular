@@ -3,8 +3,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "top-nav-demo",
-	templateUrl: "./top-nav-demo.component.html",
-	// styleUrls: ["./core-demo.component.css"]
+	templateUrl: "./top-nav-demo.component.html"
 })
 
 export class TopNavDemo {
