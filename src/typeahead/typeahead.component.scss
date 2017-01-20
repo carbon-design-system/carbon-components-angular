@@ -13,5 +13,10 @@
 		background: $white;
 		z-index: 1000;
 		width: 100%;
+
+		.highlight {
+			font-weight: bold;
+			color: $blue50;
+		}
 	}
 }

@@ -4,12 +4,15 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 
 import { Typeahead } from "./typeahead.component";
+import { TypeaheadHighlight } from "./typeahead-highlight.component";
 
 export { Typeahead } from "./typeahead.component";
+export { TypeaheadHighlight } from "./typeahead-highlight.component";
 
 @NgModule({
 	declarations: [
-		Typeahead
+		Typeahead,
+		TypeaheadHighlight
 	],
 	exports: [
 		Typeahead
