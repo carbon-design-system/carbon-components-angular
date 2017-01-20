@@ -1,0 +1,17 @@
+@import "../core/colors";
+@import "../core/vars";
+
+.typeahead {
+	position: relative;
+
+	input {
+		width: 100%;
+	}
+
+	.list-view {
+		position: absolute;
+		background: $white;
+		z-index: 1000;
+		width: 100%;
+	}
+}

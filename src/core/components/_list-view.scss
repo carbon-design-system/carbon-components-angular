@@ -7,15 +7,22 @@
 		padding-top: 12.5px;
 		padding-bottom: 12.5px;
 		border-top: 1px solid $gray10;
-		border-left: 1px solid $gray10;
-		border-right: 1px solid $gray10;
+		&.disabled {
+			color: $gray20;
+			cursor: no-drop;
+			&:hover, &:focus {
+				background: $white;
+				border-left: 0px solid $gray10;
+				outline: none;
+			}
+		}
 		&:last-child {
 			border-bottom: 1px solid $gray10;
 		}
 		&:focus {
 			border-left: 2px solid $blue50;
-		    outline: 1px solid $blue50;
-		    outline-offset: 1px;
+			outline: 1px solid $blue50;
+			outline-offset: 1px;
 		}
 		&:hover {
 			background: rgba($blue40, 0.10);
@@ -34,17 +41,17 @@
 			border-radius: 20px;
 			border: 1px solid $white;
 			background: $blue50;
-		    float: right;
-		    margin-right: 20px;
+			float: right;
+			margin-right: 20px;
 			svg {
-			    background: $blue50;
-			    border-radius: 20px;
-			    path:first-child {
-			    	fill: $blue50;
-			    }
-			    path:last-child {
-			    	fill: $white;
-			    }
+				background: $blue50;
+				border-radius: 20px;
+				path:first-child {
+					fill: $blue50;
+				}
+				path:last-child {
+					fill: $white;
+				}
 			}
 		}
 	}

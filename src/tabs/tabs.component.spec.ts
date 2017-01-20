@@ -6,9 +6,9 @@ import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
 
 
 import {createGenericTestComponent} from "../common/test";
-import { CdlTabs } from "./tabs.component";
-import { CdlTab } from "./tab.component";
-import { CdlTabHeaders } from "./tab-headers.component";
+import { Tabs } from "./tabs.component";
+import { Tab } from "./tab.component";
+import { TabHeaders } from "./tab-headers.component";
 
 const createTestComponent = (html: string) =>
 		createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
@@ -16,7 +16,7 @@ const createTestComponent = (html: string) =>
 
 describe("Tabs", () => {
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [CdlTabs, CdlTab, CdlTabHeaders, TestComponent]});
+		TestBed.configureTestingModule({declarations: [Tabs, Tab, TabHeaders, TestComponent]});
 	});
 
 	it("should work", () => {

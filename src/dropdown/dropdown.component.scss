@@ -14,7 +14,7 @@
 		padding-right: 10px;
 
 		&:hover, &:focus {
-			background: $blue10;
+			background: rgba($blue40, 0.10);
 			border: solid 1px $gray50;
 		}
 
@@ -53,6 +53,7 @@
 		position: absolute;
 		z-index: 1000;
 		display: none;
+		border: 1px solid $gray10;
 
 		&.open {
 			display: block;

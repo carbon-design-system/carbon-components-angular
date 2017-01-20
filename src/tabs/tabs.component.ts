@@ -1,6 +1,6 @@
 import { Component, Input, ContentChildren, QueryList, AfterContentInit } from "@angular/core";
-import { CdlTab } from "./tab.component";
-import {CdlTabHeaders} from  "./tab-headers.component";
+import { Tab } from "./tab.component";
+import { TabHeaders } from  "./tab-headers.component";
 
 
 @Component({
@@ -14,8 +14,8 @@ import {CdlTabHeaders} from  "./tab-headers.component";
 	 `,
 	styleUrls: ["./tabs.component.scss"]
 })
-export class CdlTabs implements AfterContentInit {
-	@ContentChildren(CdlTab) tabs: QueryList<CdlTab>;
+export class Tabs implements AfterContentInit {
+	@ContentChildren(Tab) tabs: QueryList<Tab>;
 
 	@Input() tabsPosition: "top" | "bottom";
 

@@ -22,8 +22,16 @@ import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
 import { ListViewModule } from "./../../src/list-view/list-view.module";
 import { DropdownModule } from "./../../src/dropdown/dropdown.module";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
+<<<<<<< HEAD
 import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
 import { TopNavModule } from "./../../src/top-nav/top-nav.module";
+=======
+import { NestedViewDemo } from "./nested_view_demo/nested-view-demo.component";
+import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
+import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
+import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
+
+>>>>>>> 6ecebf669cdd22672f512cc1e98813202febaf4c
 
 @NgModule({
 	declarations: [
@@ -35,8 +43,14 @@ import { TopNavModule } from "./../../src/top-nav/top-nav.module";
 		PopoverDemo,
 		TabsDemo,
 		ListViewDemo,
+<<<<<<< HEAD
 		DropdownDemo,
 		TopNavDemo
+=======
+		NestedViewDemo,
+		DropdownDemo,
+		TypeaheadDemo
+>>>>>>> 6ecebf669cdd22672f512cc1e98813202febaf4c
 	],
 	imports: [
 		BrowserModule,
@@ -47,8 +61,13 @@ import { TopNavModule } from "./../../src/top-nav/top-nav.module";
 		GlyphiconModule,
 		PopoverModule,
 		ListViewModule,
+		NestedViewModule,
 		DropdownModule,
+<<<<<<< HEAD
 		TopNavModule,
+=======
+		TypeaheadModule,
+>>>>>>> 6ecebf669cdd22672f512cc1e98813202febaf4c
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -79,12 +98,21 @@ import { TopNavModule } from "./../../src/top-nav/top-nav.module";
 				component: ListViewDemo
 			},
 			{
+				path: "nested-view",
+				component: NestedViewDemo
+			},
+			{
 				path: "dropdown",
 				component: DropdownDemo
 			},
 			{
+<<<<<<< HEAD
 				path: "top-nav",
 				component: TopNavDemo
+=======
+				path: "typeahead",
+				component: TypeaheadDemo
+>>>>>>> 6ecebf669cdd22672f512cc1e98813202febaf4c
 			}
 		])
 	],

@@ -1,0 +1,8 @@
+<h1>Nest View</h1>
+<template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</template>
+
+<h3>Default nested view</h3>
+<cdl-nested-view [items]="demoItems" (select)="onSelect($event)"></cdl-nested-view>
+
+<h3>Nested view with custom template (Added Icon)</h3>
+<cdl-nested-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl"></cdl-nested-view>

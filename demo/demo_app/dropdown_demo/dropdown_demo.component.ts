@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import {cloneDeep} from "lodash";
 
 @Component({
 	selector: "dropdown-demo",
@@ -8,8 +7,7 @@ import {cloneDeep} from "lodash";
 export class DropdownDemo {
 	title = "Tabs Component Demo";
 
-	// constant a = 2;
-
+	private display0 = "Dropdown 1";
 	private demoItems0 = [
 		{
 			content: "item one",
@@ -29,13 +27,74 @@ export class DropdownDemo {
 		}
 	];
 
-	// private demoItems1 = this.demoItems0.assign();
-	private demoItems1 = cloneDeep(this.demoItems0);
-	private demoItems2 = cloneDeep(this.demoItems0);
-	private demoItems3 = cloneDeep(this.demoItems0);
+	private demoItems1 = Array.from(this.demoItems0, this.clone);
+	private demoItems2 = Array.from(this.demoItems0, this.clone);
+	private demoItems3 = Array.from(this.demoItems0, this.clone);
+	private demoItems4 = Array.from(this.demoItems0, this.clone);
+	private demoItems5 = Array.from(this.demoItems0, this.clone);
+
+	private nestedDemoItems = [
+		{
+			content: "item one",
+			selected: false
+		},
+		{
+			content: "item two",
+			selected: false,
+			subMenu: [
+				{
+					content: "sub item two 1",
+					selected: false
+				},
+				{
+					content: "sub item two 2",
+					selected: false,
+					subMenu: [
+						{
+							content: "sub item two 1b",
+							selected: false
+						},
+						{
+							content: "sub item two 2b",
+							selected: false,
+
+
+						}
+					]
+				},
+			]
+		},
+		{
+			content: "item three",
+			selected: false
+		},
+		{
+			content: "item four",
+			selected: false
+		}
+	];
+
+	private clone (el) {
+		return Object.assign({}, el);
+	}
+
+	onSelectAndDisplay(ev) {
+		ev.item.selected = !ev.item.selected;
+		if (ev.item.selected) {
+			this.display0 = ev.item.content;
+		} else {
+			this.display0 = "Dropdown 1";
+		}
+	}
 
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
+	}
+
+	onNestedSelect(ev) {
+		if (!ev.item.subMenu) {
+			ev.item.selected = !ev.item.selected;
+		}
 	}
 
 }

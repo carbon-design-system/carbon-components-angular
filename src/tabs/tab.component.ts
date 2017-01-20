@@ -11,10 +11,11 @@ let nextId = 0;
 	 `,
 	styleUrls: ["./tabs.component.scss"]
 })
-export class CdlTab implements OnInit {
+export class Tab implements OnInit {
 	@Input() heading: string | TemplateRef<any>;
 	@Input() active: boolean;
 	@Input() disabled: boolean;
+	// do we need id's?
 	@Input() id: string = `cdl-tab-${nextId++}`;
 	headingIsTemplate = false;
 

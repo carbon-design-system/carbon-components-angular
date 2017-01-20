@@ -10,7 +10,9 @@ export class ListViewDemo {
 			content: "item one"
 		},
 		{
-			content: "item two"
+			content: "item two",
+			selected: false,
+			disabled: true
 		},
 		{
 			content: "item three"
@@ -20,4 +22,14 @@ export class ListViewDemo {
 		}
 	];
 
+
+	private demoItems1 = Array.from(this.demoItems, this.clone);
+
+	private clone (el) {
+		return Object.assign({}, el);
+	}
+
+	onSelect(ev) {
+		ev.item.selected = !ev.item.selected;
+	}
 }
