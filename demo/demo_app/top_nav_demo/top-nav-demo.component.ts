@@ -7,12 +7,9 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class TopNavDemo {
-	constructor () {
-	}
-	topNavBadge = "Beta";
-	topNavBrand = "Neutrino";
-
-		private demoItems = [
+	private topNavBadge = "Beta";
+	private topNavBrand = "Neutrino";
+	private demoItems = [
 		{
 			content: "item one",
 			selected: false
@@ -30,6 +27,9 @@ export class TopNavDemo {
 			selected: false
 		}
 	];
+
+	constructor () {
+	}
 
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
