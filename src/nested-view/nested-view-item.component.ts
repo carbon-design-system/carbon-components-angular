@@ -18,7 +18,7 @@ import { KeyCodes } from "../constant/keys";
 			tabindex="0"
 			[class.selected]="listItem.selected"
 			(click)="doClick(listItem)"
-			(keyup)="onKeyUp($event, listItem)">
+			(keydown)="onKeyDown($event, listItem)">
 			<div
 				class="item"
 				[style.margin-left.px]="40*indent">
@@ -102,8 +102,10 @@ export class NestedViewItem {
 	}
 
 	// Keyboard accessibility
-	onKeyUp(ev, item) {
+	onKeyDown(ev, item) {
 		if (ev.keyCode === KeyCodes.UP_ARROW) {
+			ev.preventDefault();
+
 			if (this._elementRef.nativeElement.previousElementSibling) {
 				this._elementRef.nativeElement.previousElementSibling.querySelector("div").focus();
 			} else if (this._elementRef.nativeElement) {
@@ -115,9 +117,9 @@ export class NestedViewItem {
 					parent.parentNode.parentNode.parentNode.querySelector("div").focus();
 				}
 			}
-		}
+		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
+			ev.preventDefault();
 
-		if (ev.keyCode === KeyCodes.DOWN_ARROW) {
 			if (!item.subMenu || !item.selected) {
 				if (this._elementRef.nativeElement.nextElementSibling) {
 					this._elementRef.nativeElement.nextElementSibling.querySelector("div").focus();
@@ -129,9 +131,9 @@ export class NestedViewItem {
 			} else if (item.subMenu && item.selected) {
 				this._elementRef.nativeElement.querySelector("ul cdl-nested-view-item").querySelector("div").focus();
 			}
-		}
+		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
+			ev.preventDefault();
 
-		if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
 			this.select.emit({
 				item
 			});
