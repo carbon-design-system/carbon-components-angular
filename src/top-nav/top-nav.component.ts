@@ -7,7 +7,8 @@ import { Component, Input, Renderer, OnInit } from "@angular/core";
 	<nav class="top-nav" [ngStyle]="{'position':displayType}">
 		<span class="top-nav-hamburger" *ngIf="hamburger">
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-			<path class="st0" d="M13h18v3H1zM1 9h18v3H1zM1 15h18v3H1z"/></svg>
+ 			<path class="st0" d="M1
+ 			3h18v3H1zM1 9h18v3H1zM1 15h18v3H1z"/></svg>
 		</span>
 		
 		<span class="top-nav-heading">
@@ -17,7 +18,7 @@ import { Component, Input, Renderer, OnInit } from "@angular/core";
 		<ng-content></ng-content>
 
 		<span class="top-nav-ibm">
-			<svg xmlns="http://www.w3.org/2000/svg" width="38" height="15" viewBox="0 0 38 15">path class="st0" d="M0
+			<svg xmlns="http://www.w3.org/2000/svg" width="38" height="15" viewBox="0 0 38 15"><path class="st0" d="M0
 			0h7v1H0zM0 2h7v1H0zM0 12h7v1H0zM0 14h7v1H0zM2 10h3v1H2zM2 8h3v1H2zM2 6h3v1H2zM2 4h3v1H2zM10 4h3v1h-3zM23 8h3v1h-3zM23 
 			10h3v1h-3zM21 12h5v1h-5zM33 12h5v1h-5zM33 14h5v1h-5zM21 14h5v1h-5zM33 8h3v1h-3zM33 10h3v1h-3zM10 10h3v1h-3zM26.3 0H21v1h5.7zM27.1 
 			2H21v1h6.5zM27.9 4H23v1h5.3zM28.7 6H23v1h6.1zM32.4 8h-5.8l.4 1h5zM27.4 10h4.2l-.4 1h-3.4zM28.2 12h2.6l-.4 1h-1.8zM29 14h1l-.4 
@@ -43,15 +44,15 @@ export class TopNav implements OnInit {
 	constructor(private renderer: Renderer) {}
 
 	ngOnInit() {
-		if(this.sticky) {
+		if (this.sticky) {
 			this.renderer.listenGlobal("window", "scroll", (evt) => {
 				const nav = evt.target.querySelector(".top-nav");
 				const navTop = nav.offsetTop;
 				console.log(this.displayType);
-				if (window.scrollY >= navTop){
-					this.displayType = "fixed";
+				if (window.scrollY >= navTop) {
+				this.displayType = "fixed";
 				} else {
-					this.displayType = "relative";
+				this.displayType = "relative";
 				}
 			});
 		}

@@ -10,92 +10,70 @@
   }
 }
 
-
-
-.top-nav{
-  background:$black;
-  top:0;
-  width: 100%;
-  z-index: 1;
-
-
-
-  .top-nav-hamburger{
-
-    float: left;
-    padding: 12.5px 10px;
-    @include heading-selection;
-    path{
-      fill:$white;
+.top-nav {
+    background: $black;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    path {
+        fill: $white;
     }
-  }
-
-  .top-nav-heading{
-    text-decoration: none;
-    font-family: "Helvetica Neue Roman for IBM", Helvetica, Arial, sans-serif;
-    color: $white;
-    display: inline-block;
-    padding: 12px 10px;
-    @include heading-selection;
- 
-    span{
-      display: inline-block;
+    .top-nav-hamburger {
+        float: left;
+        padding: 12.5px 10px;
+        @include heading-selection;
     }
-    .top-nav-brand{
-      font-size: 15px;
-      color: $white;
-      margin: 0;
-      padding-right: 10px;
-
+    .top-nav-heading {
+        text-decoration: none;
+        font-family: "Helvetica Neue Roman for IBM", Helvetica, Arial, sans-serif;
+        color: $white;
+        display: inline-block;
+        padding: 12px 10px;
+        @include heading-selection;
+        span {
+            display: inline-block;
+        }
+        .top-nav-brand {
+            font-size: 15px;
+            color: $white;
+            margin: 0;
+            padding-right: 10px;
+        }
+        .top-nav-badge {
+            background-color: $purple60;
+            padding: 4px 10px;
+            h2 {
+                font-size: 15px;
+                font-weight: 400;
+            }
+        }
     }
-
-    .top-nav-badge{
-      background-color:  $purple60;
-      padding: 4px 10px;
-
-
-      h2{
-          font-size: 15px;
-          font-weight: 400;
-      }
+    .top-nav-ibm {
+        padding: 14px 20px 14px 30px;
+        right: 0;
+        position: absolute;
+        display: inline-block;
     }
-
-  }
-
-  .top-nav-ibm{
-
-    
-    padding: 14px 20px 14px 30px;
-    right:0;
-    position: absolute;
-    display: inline-block;
-
-  }
-
 }
 
 //for list-view menu items if projecting
 
-:host /deep/ .list-view {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: inline-flex;
-
-
-
-  li{
-    padding: 15px 7.5px 16px 7.5px;
-    text-align: center;
-    flex: 2;
-    justify-content: center;
-    align-items: center;
-    border:none;
-    white-space: nowrap;
-    color:$white;
-    font-size:15px;
-    height:100%;
-    @include heading-selection;
-
-  }
-}
+// :host /deep/ .list-view {
+//     margin: 0;
+//     padding: 0;
+//     list-style: none;
+//     display: inline-flex;
+//     li {
+//         padding: 15px 7.5px 16px 7.5px;
+//         text-align: center;
+//         flex: 2;
+//         justify-content: center;
+//         align-items: center;
+//         border: none;
+//         white-space: nowrap;
+//         color: $white;
+//         font-size: 15px;
+//         height: 100%;
+//         @include heading-selection;
+//     }
+// }
