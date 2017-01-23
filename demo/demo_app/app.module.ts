@@ -28,6 +28,9 @@ import { NestedViewDemo } from "./nested_view_demo/nested-view-demo.component";
 import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
 import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
 import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
+import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
+import { SideNavModule } from "./../../src/side-nav/side-nav.module";
+
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
 		TopNavDemo,
 		NestedViewDemo,
 		DropdownDemo,
-		TypeaheadDemo
+		TypeaheadDemo,
+		SideNavDemo
 	],
 	imports: [
 		BrowserModule,
@@ -59,6 +63,7 @@ import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
 		DropdownModule,
 		TopNavModule,
 		TypeaheadModule,
+		SideNavModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -103,6 +108,10 @@ import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
 			{
 				path: "typeahead",
 				component: TypeaheadDemo
+			},
+			{
+				path: "side-nav",
+				component: SideNavDemo
 			}
 		])
 	],
