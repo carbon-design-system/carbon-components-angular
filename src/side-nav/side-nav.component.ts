@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'cdl-side-nav',
   template: `
 
-    <div>{{foobar}}</div>
+    <aside class="left-nav">
+		<ng-content></ng-content>
+    </aside>
   `,
   styleUrls: ["./side-nav.component.scss"]
 })
 export class SideNav {
-  foobar: string = "side nav";
+
 }

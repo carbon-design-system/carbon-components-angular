@@ -1,0 +1,43 @@
+@import "./../../../src/core/colors";
+
+.left-nav{
+	//gross
+	& > cdl-nested-view > .nested-view > cdl-nested-view-item > li > .item-wrapper > .item {
+		margin-left: 0 !important;
+		background-color: $gray70;
+		color: $white;
+		& > .arrow {
+			position: relative;
+			float: right;
+			right: 15px;
+			fill: $white;
+		}
+	}
+
+	.item-wrapper{
+		div.item {
+			background: white;
+			border-bottom: 2px solid $white;
+			font-weight: 600;
+
+			cdl-glyphicon {
+				fill: $white;
+			}
+		}
+		&:hover {
+    		background:$blue50 !important;
+  		}
+  		&:focus {
+    		background:$blue50 !important;
+  		}
+	}
+	.nest-view .open {
+		cdl-nested-view-item {
+			.item-wrapper{
+				.item{
+				background-color: $white;
+				}
+			}
+		}
+	}
+}
