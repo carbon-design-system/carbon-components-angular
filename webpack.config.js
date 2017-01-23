@@ -10,7 +10,7 @@ module.exports = [{
 		demo: "./demo/main.ts",
 	},
 	output: {
-		path: __dirname + "/demo",
+		path: __dirname + "/dist",
 		filename: "[name].js",
 	},
 	module: {
