@@ -1,15 +1,15 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input} from "@angular/core";
 
 @Component({
-  selector: 'cdl-side-nav',
-  template: `
+	selector: "cdl-side-nav",
+	template: `
 
-    <aside class="left-nav">
+    <aside class="left-nav" [ngClass]="{isOpen: open}" >
 		<ng-content></ng-content>
     </aside>
   `,
-  styleUrls: ["./side-nav.component.scss"]
+	styleUrls: ["./side-nav.component.scss"]
 })
 export class SideNav {
-
+	@Input() open: boolean = true;
 }

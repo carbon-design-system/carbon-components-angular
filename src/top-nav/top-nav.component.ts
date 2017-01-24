@@ -2,14 +2,16 @@ import {
 	Component,
 	Input,
 	Renderer,
-	OnInit
+	OnInit,
+	Output,
+	EventEmitter
 } from "@angular/core";
 
 @Component({
 	selector: "cdl-top-nav",
 	template: `
 	<nav class="top-nav" [ngStyle]="{'position':displayType}">
-		<span class="top-nav-hamburger" *ngIf="hamburger">
+		<span class="top-nav-hamburger" *ngIf="hamburger" (click)="clickFn()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
  			<path class="st0" d="M1
  			3h18v3H1zM1 9h18v3H1zM1 15h18v3H1z"/></svg>
@@ -42,10 +44,18 @@ export class TopNav implements OnInit {
 	@Input() brand: string;
 	@Input() hamburger: boolean;
 	@Input() sticky: boolean;
+	@Output() onClick: EventEmitter<Object> = new EventEmitter<Object>();
 
 	private displayType: string = "relative";
 
 	constructor(private renderer: Renderer) {}
+
+	private clickFn() {
+		let hamburgerClick = {};
+			this.onClick.emit({
+				hamburgerClick
+			});
+	}
 
 	ngOnInit() {
 		if (this.sticky) {

@@ -4,75 +4,59 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "side-nav-demo",
 	templateUrl: "./side-nav-demo.component.html",
-	encapsulation:ViewEncapsulation.None,
-	styleUrls:["./side-nav-demo.component.scss"]
+	encapsulation: ViewEncapsulation.None,
+	styleUrls: ["./side-nav-demo.component.scss"]
 })
 
 export class SideNavDemo {
+	private topNavBadge = "Beta";
+	private topNavBrand = "Neutrino";
+	private sideNavOpen = true;
+
 
 	private demoItems = [
+
 		{
-			content: "item one",
-			selected: false
-		},
-		{
-			content: "item two",
+			content: "Understand",
 			selected: false,
 			subMenu: [
 				{
-					content: "sub item two 1",
+					content: "Experience integrations",
 					selected: false
 				},
 				{
-					content: "sub item two 2",
+					content: "Predictive custom intelligence",
 					selected: false,
-					subMenu: [
-						{
-							content: "sub item two 1b",
-							selected: false
-						},
-						{
-							content: "sub item two 2b",
-							selected: false,
-
-
-						}
-					]
 				},
 			]
 		},
 		{
-			content: "item three",
+			content: "Plan",
 			selected: false
 		},
 		{
-			content: "item four",
+			content: "Design",
 			selected: false
 		},
 		{
-			content: "item six",
-			selected: false,
-			subMenu: [
-				{
-					content: "sub item six 1",
-					selected: false
-				},
-				{
-					content: "sub item six 2",
-					selected: false,
-					subMenu: [
-						{
-							content: "sub item six 1b",
-							selected: false
-						},
-						{
-							content: "sub item six 2b",
-							selected: false,
-						}
-					]
-				},
-			]
+			content: "Build",
+			selected: false
+
+		},
+		{
+			content: "Listen",
+			selected: false
+
+		},
+		{
+			content: "Optimize",
+			selected: false
+
 		}
 	];
+
+	private onClick() {
+		this.sideNavOpen = !this.sideNavOpen;
+	}
 
 }
