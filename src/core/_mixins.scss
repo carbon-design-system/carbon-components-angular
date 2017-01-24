@@ -1,0 +1,12 @@
+//Neutrino Sass Mixins
+
+
+@mixin hover-blue {
+	fill: $white;
+  &:hover {
+    background-color:$blue50;
+  }
+  &:focus {
+    background-color:$blue50;
+  }
+}

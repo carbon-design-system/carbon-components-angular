@@ -1,14 +1,7 @@
 @import "../core/colors";
 @import "../core/vars";
+@import "../core/mixins";
 
-@mixin heading-selection {
-  &:hover {
-    background-color:$blue50;
-  }
-  &:focus {
-    background-color:$blue50;
-  }
-}
 
 .top-nav {
     background: $black;
@@ -18,18 +11,13 @@
     path {
         fill: $white;
     }
-    .top-nav-hamburger {
-        float: left;
-        padding: 12.5px 10px;
-        @include heading-selection;
-    }
     .top-nav-heading {
         text-decoration: none;
         font-family: "Helvetica Neue Roman for IBM", Helvetica, Arial, sans-serif;
         color: $white;
         display: inline-block;
         padding: 12px 10px;
-        @include heading-selection;
+        @include hover-blue;
         span {
             display: inline-block;
         }
@@ -56,24 +44,3 @@
     }
 }
 
-//for list-view menu items if projecting
-
-// :host /deep/ .list-view {
-//     margin: 0;
-//     padding: 0;
-//     list-style: none;
-//     display: inline-flex;
-//     li {
-//         padding: 15px 7.5px 16px 7.5px;
-//         text-align: center;
-//         flex: 2;
-//         justify-content: center;
-//         align-items: center;
-//         border: none;
-//         white-space: nowrap;
-//         color: $white;
-//         font-size: 15px;
-//         height: 100%;
-//         @include heading-selection;
-//     }
-// }
