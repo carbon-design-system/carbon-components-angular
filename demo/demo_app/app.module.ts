@@ -30,8 +30,6 @@ import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
 import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
 import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
 import { SideNavModule } from "./../../src/side-nav/side-nav.module";
-import { HamburgerDemo } from "./hamburger_demo/hamburger-demo.component";
-import { HamburgerModule } from "./../../src/hamburger/hamburger.module";
 
 
 @NgModule({
@@ -49,8 +47,7 @@ import { HamburgerModule } from "./../../src/hamburger/hamburger.module";
 		NestedViewDemo,
 		DropdownDemo,
 		TypeaheadDemo,
-		SideNavDemo,
-		HamburgerDemo
+		SideNavDemo
 	],
 	imports: [
 		BrowserModule,
@@ -66,7 +63,6 @@ import { HamburgerModule } from "./../../src/hamburger/hamburger.module";
 		TopNavModule,
 		TypeaheadModule,
 		SideNavModule,
-		HamburgerModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -115,10 +111,6 @@ import { HamburgerModule } from "./../../src/hamburger/hamburger.module";
 			{
 				path: "side-nav",
 				component: SideNavDemo
-			},
-			{
-				path: "hamburger",
-				component: HamburgerDemo
 			}
 		], {
 			useHash: true

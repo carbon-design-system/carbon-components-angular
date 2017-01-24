@@ -1,17 +1,21 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
+
 import { TopNav } from "./top-nav.component";
+import { Hamburger } from "./hamburger.component";
 
 export { TopNav } from "./top-nav.component";
+export { Hamburger } from "./hamburger.component";
 
 @NgModule({
 	declarations: [
-		TopNav
+		TopNav,
+		Hamburger
 	],
 	exports: [
-
-		TopNav
+		TopNav,
+		Hamburger
 	],
 	imports: [CommonModule, BrowserModule]
 })
