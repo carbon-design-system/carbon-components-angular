@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  position: absolute;
+  height: 400px;
+  width: 80%;
+  max-width: 950px;
+  background-color: #ddd;
+  top: 50%;;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
