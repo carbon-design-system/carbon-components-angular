@@ -1,17 +1,12 @@
 <h1>
   <a routerLink="/">Neutrino</a>
 </h1>
-<a routerLink="/table">Table Demo</a>
-<a routerLink="/css">CSS Demo</a>
-<a routerLink="/glyphicon">Glyphicon Demo</a>
-<a routerLink="/popover">Popover Demo</a>
-<a routerLink="/tabs">Tabs Demo</a>
-<a routerLink="/list-view">List View Demo</a>
-<a routerLink="/nested-view">Nested View Demo</a>
-<a routerLink="/dropdown">Dropdown Demo</a>
-<a routerLink="/top-nav">Top Nav Demo</a>
-<a routerLink="/typeahead">Typeahead Demo</a>
-<a routerLink="/side-nav">Side Nav Demo</a>
+<input type="search" (keyup)="search($event)" style="width: 100%">
+<cdl-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+	<template #item let-item="item">
+		<a routerLink="{{item.link}}">{{item.content}}</a>
+	</template>
+</cdl-list-view>
 <div>
 	<router-outlet></router-outlet>
 </div>
