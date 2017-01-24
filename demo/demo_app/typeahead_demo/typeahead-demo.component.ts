@@ -54,7 +54,7 @@ export class TypeaheadDemo {
 		.toPromise()
 		.then(data => {
 			this.list = data.json().photos.photo.filter(photo =>
-				new RegExp(searchTerm, "gi").test(photo.title))
+				new RegExp(searchTerm, "gi").test(photo.title));
 		});
 	}
 
