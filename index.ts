@@ -6,3 +6,4 @@ export * from "./src/combo-box/combo-box.module";
 export * from "./src/tree-view/tree-view.module";
 export * from "./src/list-view/list-view.module";
 export * from "./src/top-nav/top-nav.module";
+export * from "./src/modal/modal.module";

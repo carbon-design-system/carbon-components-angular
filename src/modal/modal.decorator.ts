@@ -1,5 +1,5 @@
 class ModalContainer {
-  destroy: Function; 
+  destroy: Function;
   closeModal(): void {
     this.destroy();
   }
@@ -7,6 +7,6 @@ class ModalContainer {
 
 export default function Modal() {
   return function(target) {
-    Object.assign(target.prototype, ModalContainer.prototype)  
+    Object.assign(target.prototype, ModalContainer.prototype);
   };
 }

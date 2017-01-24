@@ -1,7 +1,7 @@
-import { ViewContainerRef, Injector, Compiler, ComponentRef, ReflectiveInjector } from '@angular/core'
-import { Observable } from 'rxjs/Rx'
-import { ReplaySubject } from 'rxjs/ReplaySubject'
-import { Injectable } from '@angular/core';
+import { ViewContainerRef, Injector, Compiler, ComponentRef, ReflectiveInjector } from "@angular/core";
+import { Observable } from "rxjs/Rx";
+import { ReplaySubject } from "rxjs/ReplaySubject";
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ModalService {
@@ -10,13 +10,13 @@ export class ModalService {
   public activeInstances: number = 0;
 
   constructor(private compiler: Compiler) {}
-  
+
   registerViewContainerRef(vcRef: ViewContainerRef): void {
-    this.vcRef = vcRef;  
+    this.vcRef = vcRef;
   }
 
   registerInjector(injector: Injector): void {
-    this.injector = injector; 
+    this.injector = injector;
   }
 
   create<T>(module: any,  component: any, parameters?: Object): Observable<ComponentRef<T>> {
@@ -25,8 +25,8 @@ export class ModalService {
     this.compiler.compileModuleAndAllComponentsAsync(module)
       .then(factory => {
         let componentFactory = factory.componentFactories
-          .filter(item => { 
-            return item.componentType === component
+          .filter(item => {
+            return item.componentType === component;
           })[0];
         const childInjector = ReflectiveInjector
           .resolveAndCreate([], this.injector);
@@ -35,9 +35,9 @@ export class ModalService {
         Object.assign(componentRef.instance, parameters);
         this.activeInstances ++;
 
-        componentRef.instance['destroy'] = () => {
+        componentRef.instance["destroy"] = () => {
           this.activeInstances --;
-          componentRef.destroy(); 
+          componentRef.destroy();
         };
 
         componentRef$.next(componentRef);

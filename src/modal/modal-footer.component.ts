@@ -1,13 +1,13 @@
-import { Component } from '@angular/core'
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-modal-footer',
+  selector: "cdl-modal-footer",
   template: `
     <footer>
       <ng-content></ng-content>  
     </footer>
   `,
-  styleUrls: ['./modal-footer.component.scss']
+  styleUrls: ["./modal-footer.component.scss"]
 })
 
 export class ModalFooterComponent {
