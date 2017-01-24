@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
-import { ListViewModule } from "./../list-view/list-view.module";
+import { NestedViewModule } from "./../nested-view/nested-view.module";
 import { SideNav } from "./side-nav.component";
 
 export { SideNav } from "./side-nav.component";
@@ -14,6 +14,6 @@ export { SideNav } from "./side-nav.component";
 
 		SideNav
 	],
-	imports: [CommonModule, BrowserModule, ListViewModule ]
+	imports: [CommonModule, BrowserModule, NestedViewModule ]
 })
 export class SideNavModule {}
