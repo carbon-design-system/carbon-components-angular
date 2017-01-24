@@ -1,10 +1,9 @@
 # Gylphicon
 
 class: Glyphicon  
-selector: `cdl-glyphicon`  
-@Inputs
+selector: `cdl-glyphicon`
 
-| Input   | Type   | Default Value |
+| @Input  | Type   | Default Value |
 | ------- | ------ | ------------- |
 | icon    | string | ""            |
 | size    | string | "sm"          |
