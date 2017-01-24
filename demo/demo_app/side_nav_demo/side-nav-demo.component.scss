@@ -1,35 +1,56 @@
 @import "./../../../src/core/colors";
+@import "./../../../src/core/mixins";
 
 .left-nav{
+
 	//gross
 	& > cdl-nested-view > .nested-view > cdl-nested-view-item > li > .item-wrapper > .item {
 		margin-left: 0 !important;
+		padding:0;
 		background-color: $gray70;
 		color: $white;
-		& > .arrow {
-			position: relative;
-			float: right;
-			right: 15px;
-			fill: $white;
-		}
-	}
-
-	.item-wrapper{
-		div.item {
-			background: white;
-			border-bottom: 2px solid $white;
-			font-weight: 600;
-
 			cdl-glyphicon {
 				fill: $white;
 			}
+			.side-nav-glyph {
+				display: inline-block;
+				padding: 14px;
+				background: $blue50;
+			}
+			.side-nav-item {
+				padding-left: 20px;
+			}
+		& > .arrow {
+			position: relative;
+			float: right;
+			top: 16px;
+			fill: $white;
 		}
-		&:hover {
-    		background:$blue50 !important;
-  		}
-  		&:focus {
-    		background:$blue50 !important;
-  		}
+	}
+	& > cdl-nested-view > .nested-view > cdl-nested-view-item > li > .item-wrapper {
+		border-left: none;
+		&.selected > .item{
+			background-color: $blue50;
+		}
+
+	}
+
+//nested sub menu items
+	.item-wrapper{
+		
+		div.item {
+			background: white;
+			font-weight: 600;
+			margin-left: 0!important;
+			padding-left: 44px;
+
+
+			.side-nav-glyph {
+				display: none;
+			}
+		}
+        @include hover-blue;
+
 	}
 	.nest-view .open {
 		cdl-nested-view-item {
