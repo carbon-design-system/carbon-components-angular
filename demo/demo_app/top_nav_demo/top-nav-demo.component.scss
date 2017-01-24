@@ -1,0 +1,23 @@
+//for list-view menu items if projecting
+@import "./../../../src/core/colors";
+@import "./../../../src/core/mixins";
+
+:host /deep/ .list-view {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    li {
+        padding: 15px 7.5px 16px 7.5px;
+        text-align: center;
+        flex: 2;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        white-space: nowrap;
+        color: $white;
+        font-size: 15px;
+        height: 100%;
+        @include hover-blue;
+    }
+}

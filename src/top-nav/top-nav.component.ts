@@ -2,27 +2,20 @@ import {
 	Component,
 	Input,
 	Renderer,
-	OnInit,
-	Output,
-	EventEmitter
+	OnInit
 } from "@angular/core";
 
 @Component({
 	selector: "cdl-top-nav",
 	template: `
 	<nav class="top-nav" [ngStyle]="{'position':displayType}">
-		<span class="top-nav-hamburger" *ngIf="hamburger" (click)="clickFn()">
-			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
- 			<path class="st0" d="M1
- 			3h18v3H1zM1 9h18v3H1zM1 15h18v3H1z"/></svg>
-		</span>
-
+		<ng-content select="[hamburger]"></ng-content>
 		<span class="top-nav-heading">
 					<span> <h1 class="top-nav-brand"> IBM <strong>{{brand}}</strong> </h1> </span>
 					<span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
 		</span>
-		<ng-content></ng-content>
-
+		<ng-content select="[links]"></ng-content>
+		<ng-content select="[menu]"></ng-content>
 		<span class="top-nav-ibm">
 			<svg xmlns="http://www.w3.org/2000/svg" width="38" height="15" viewBox="0 0 38 15"><path class="st0" d="M0
 			0h7v1H0zM0 2h7v1H0zM0 12h7v1H0zM0 14h7v1H0zM2 10h3v1H2zM2 8h3v1H2zM2 6h3v1H2zM2 4h3v1H2zM10 4h3v1h-3zM23 8h3v1h-3zM23
@@ -42,20 +35,11 @@ import {
 export class TopNav implements OnInit {
 	@Input() badge: string;
 	@Input() brand: string;
-	@Input() hamburger: boolean;
 	@Input() sticky: boolean;
-	@Output() onClick: EventEmitter<Object> = new EventEmitter<Object>();
 
 	private displayType: string = "relative";
 
 	constructor(private renderer: Renderer) {}
-
-	private clickFn() {
-		let hamburgerClick = {};
-			this.onClick.emit({
-				hamburgerClick
-			});
-	}
 
 	ngOnInit() {
 		if (this.sticky) {
