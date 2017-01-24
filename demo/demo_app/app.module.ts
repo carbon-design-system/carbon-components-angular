@@ -113,7 +113,9 @@ import { SideNavModule } from "./../../src/side-nav/side-nav.module";
 				path: "side-nav",
 				component: SideNavDemo
 			}
-		])
+		], {
+			useHash: true
+		})
 	],
 	providers: [IconService],
 	bootstrap: [AppComponent]
