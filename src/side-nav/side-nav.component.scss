@@ -2,9 +2,17 @@
 @import "../core/vars";
 
 
-.left-nav{
+.left-nav {
 	width: 260px;
 	height: 100vh;
 	background-color: $gray70;
+	position:relative;
+	left:-270px;
+	transition:left 0.2s ease;
+	z-index: 2;
 
+}
+
+.isOpen{
+	left:0;
 }
