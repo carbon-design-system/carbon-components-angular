@@ -32,7 +32,6 @@ import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
 import { SideNavModule } from "./../../src/side-nav/side-nav.module";
 
 
-
 @NgModule({
 	declarations: [
 		AppComponent,

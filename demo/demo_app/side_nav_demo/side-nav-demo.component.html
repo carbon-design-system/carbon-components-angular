@@ -1,6 +1,8 @@
 <template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> <span class="side-nav-item">{{item.content}}</span></template>
 
-<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [hamburger]="true" [sticky]="false" (onClick)="onClick($event)"></cdl-top-nav>
+<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false" >
+		<cdl-hamburger (onClick)="onClick($event)" hamburger></cdl-hamburger>
+</cdl-top-nav>
 <cdl-side-nav [open]="sideNavOpen">
 	<cdl-nested-view [items]="demoItems" [listTpl]="listTpl"> </cdl-nested-view>
 </cdl-side-nav>

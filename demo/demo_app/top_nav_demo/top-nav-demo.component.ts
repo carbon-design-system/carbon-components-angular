@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 
 
 @Component({
 	selector: "top-nav-demo",
-	templateUrl: "./top-nav-demo.component.html"
+	templateUrl: "./top-nav-demo.component.html",
+	styleUrls: ["./top-nav-demo.component.scss"]
 })
 
 export class TopNavDemo {
