@@ -1,6 +1,9 @@
 <h1>Side Nav Demo</h1>
 
-<template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> <span class="side-nav-item">{{item.content}}</span></template>
+<template #listTpl let-item="item">
+	<span class="side-nav-glyph"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></span>
+	<span class="side-nav-item">{{item.content}}</span>
+</template>
 
 <cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false" >
 		<cdl-hamburger (onClick)="onClick($event)" hamburger></cdl-hamburger>
