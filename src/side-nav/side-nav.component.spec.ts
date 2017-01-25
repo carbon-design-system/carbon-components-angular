@@ -1,8 +1,6 @@
 import {Component} from "@angular/core";
 
-import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
-
-import {createGenericTestComponent} from "../common/test";
+import {TestBed, ComponentFixture} from "@angular/core/testing";
 
 import {SideNav} from "./side-nav.component";
 
