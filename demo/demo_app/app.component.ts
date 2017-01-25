@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { IconService } from "./../../src/glyphicon/glyphicon.module";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
+import "rxjs/add/operator/filter";
 
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	private navItems = [
 		{
 			content: "Table Demo",
@@ -66,8 +67,17 @@ export class AppComponent {
 		}
 	];
 	private filteredItems = this.navItems;
+	private previousItem = null;
 	constructor (private router: Router) {
 		IconService.setIconUrl("http://csx00509.canlab.ibm.com/icons/");
+	}
+
+	ngOnInit() {
+		this.router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
+			if (x.url === "/" && this.previousItem) {
+				this.previousItem.selected = false;
+			}
+		});
 	}
 
 	search(ev) {
@@ -78,7 +88,11 @@ export class AppComponent {
 	}
 
 	onSelect({item}) {
-		console.log(item);
+		if (this.previousItem) {
+			this.previousItem.selected = false;
+		}
+		this.previousItem = item;
+		item.selected = true;
 		this.router.navigate([item.link]);
 	}
 }
