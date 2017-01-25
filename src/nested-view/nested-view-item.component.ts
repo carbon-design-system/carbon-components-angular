@@ -71,7 +71,7 @@ export class NestedViewItem {
 	@Input() hasSubMenu: boolean = false;
 	@Input() parentRef = null;
 	@Input() listItem: Object;
-	@Input() listTpl: string | TemplateRef<any>;
+	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent: number = 1;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
