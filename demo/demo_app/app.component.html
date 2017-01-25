@@ -2,7 +2,7 @@
   <a routerLink="/">Neutrino</a>
 </h1>
 <nav>
-	<input type="search" (keyup)="search($event)" style="width: 100%">
+	<input type="search" (keyup)="search($event)" style="width: 100%" placeholder="Filter">
 	<cdl-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
 		<template #item let-item="item">
 			<a routerLink="{{item.link}}">{{item.content}}</a>
