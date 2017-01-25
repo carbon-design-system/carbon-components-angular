@@ -7,6 +7,10 @@
     float: left;
     padding: 12.5px 10px;
     background: $black;
+    background: none;
+  	border: none;
+  	height: 48px;
+  	margin: 0;
 
     @include hover-blue;
 }

@@ -26,6 +26,7 @@
             color: $white;
             margin: 0;
             padding-right: 10px;
+            font-weight: 400;
         }
         .top-nav-badge {
             background-color: $purple60;
@@ -35,6 +36,8 @@
                 font-weight: 400;
             }
         }
+
+        @include unselectable;
     }
     .top-nav-ibm {
         padding: 14px 20px 14px 30px;

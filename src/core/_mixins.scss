@@ -1,6 +1,7 @@
 //Neutrino Sass Mixins
 
 
+// Changes element to blue on hover/focus. Changes svg fill to white to contrast.
 @mixin hover-blue {
 	fill: $white;
   &:hover {
@@ -9,4 +10,12 @@
   &:focus {
     background-color:$blue50;
   }
+}
+
+
+// Makes text unselectable
+@mixin unselectable {
+	-moz-user-select: none;
+ 	-webkit-user-select: none;
+ 	-ms-user-select: none;
 }
