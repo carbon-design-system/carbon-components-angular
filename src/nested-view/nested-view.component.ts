@@ -30,7 +30,7 @@ export class NestedView implements View {
 	@Input() items: Array<Object> = [];
 	@Input() isOpen: Boolean = false;
 	@Input() parent: any = null;
-	@Input() listTpl: string | TemplateRef<any>;
+	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent: number = 1;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
