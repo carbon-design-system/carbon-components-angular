@@ -66,12 +66,12 @@ import { KeyCodes } from "../constant/keys";
 })
 export class NestedViewItem {
 	private parent;
-	private isTpl: Boolean = false;
+	private isTpl: boolean = false;
 
 	@Input() hasSubMenu: boolean = false;
 	@Input() parentRef = null;
 	@Input() listItem: Object;
-	@Input() listTpl: string | TemplateRef<any>;
+	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent: number = 1;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
