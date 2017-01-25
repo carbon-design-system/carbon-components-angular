@@ -9,6 +9,7 @@ import {
 
 import { KeyCodes } from "../constant/keys";
 import { View } from "../common/view.class";
+import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 @Component({
 	selector: "cdl-list-view",
@@ -54,18 +55,18 @@ export class ListView implements View {
 	doKeyDown(ev, item) {
 		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
 			ev.preventDefault();
-
 			this.doClick(ev, item);
-		} else if (ev.shiftKey) {
-			ev.target.click();
-		} else if (ev.which === KeyCodes.DOWN_ARROW && ev.target.nextElementSibling) {
-			ev.preventDefault();
-
-			ev.target.nextElementSibling.focus();
-		} else if (ev.which === KeyCodes.UP_ARROW && ev.target.previousElementSibling) {
-			ev.preventDefault();
-
-			ev.target.previousElementSibling.focus();
+		} else if (ev.which === KeyCodes.DOWN_ARROW || ev.which === KeyCodes.UP_ARROW) {
+			if (ev.which === KeyCodes.DOWN_ARROW && findNextElem(ev.target)) {
+				ev.preventDefault();
+				findNextElem(ev.target).focus();
+			} else if (ev.which === KeyCodes.UP_ARROW && findPrevElem(ev.target)) {
+				ev.preventDefault();
+				findPrevElem(ev.target).focus();
+			}
+			if (ev.shiftKey) {
+				ev.target.click();
+			}
 		}
 	}
 
