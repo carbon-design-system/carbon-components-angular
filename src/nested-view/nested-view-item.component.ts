@@ -66,7 +66,7 @@ import { KeyCodes } from "../constant/keys";
 })
 export class NestedViewItem {
 	private parent;
-	private isTpl: Boolean = false;
+	private isTpl: boolean = false;
 
 	@Input() hasSubMenu: boolean = false;
 	@Input() parentRef = null;
