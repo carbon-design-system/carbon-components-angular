@@ -1,0 +1,42 @@
+nav {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.main {
+	width: 100%;
+	padding-right: 5px;
+}
+
+@media (min-width: 0px) {
+	nav {
+		position: relative;
+		width: 100%;
+	}
+
+	.main {
+		padding-left: 5px;
+	}
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+	nav {
+		width: 300px;
+		position: absolute;
+	}
+
+	.main {
+		padding-left: 310px;
+	}
+}
+
+@media (min-width: 1200px) {
+	/deep/ body {
+	    max-width: 1200px;
+	    margin: 0 auto;
+	}
+}
+
