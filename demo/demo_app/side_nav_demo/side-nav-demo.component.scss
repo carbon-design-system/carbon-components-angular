@@ -37,7 +37,7 @@
 
 //nested sub menu items
 	.item-wrapper{
-		
+
 		div.item {
 			background: white;
 			font-weight: 600;
@@ -61,4 +61,5 @@
 			}
 		}
 	}
+	@include unselectable;
 }
