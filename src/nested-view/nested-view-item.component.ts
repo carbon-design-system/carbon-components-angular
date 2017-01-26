@@ -107,14 +107,18 @@ export class NestedViewItem {
 			ev.preventDefault();
 
 			if (this._elementRef.nativeElement.previousElementSibling) {
-				this._elementRef.nativeElement.previousElementSibling.querySelector("div").focus();
+				let items = this._elementRef.nativeElement.previousElementSibling.querySelectorAll("ul.open > cdl-nested-view-item");
+				if (items.length > 0) {
+					items[items.length - 1].querySelector("[tabindex='0']").focus();
+				} else {
+					this._elementRef.nativeElement.previousElementSibling.querySelector("[tabindex='0']").focus();
+				}
 			} else if (this._elementRef.nativeElement) {
 				let parent = this._elementRef.nativeElement.parentNode;
-
 				if (parent && parent.parentNode
 					&& parent.parentNode.parentNode
 					&& parent.parentNode.parentNode.parentNode.tagName === "CDL-NESTED-VIEW-ITEM") {
-					parent.parentNode.parentNode.parentNode.querySelector("div").focus();
+					parent.parentNode.parentNode.parentNode.querySelector("[tabindex='0']").focus();
 				}
 			}
 		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
@@ -122,14 +126,14 @@ export class NestedViewItem {
 
 			if (!item.subMenu || !item.selected) {
 				if (this._elementRef.nativeElement.nextElementSibling) {
-					this._elementRef.nativeElement.nextElementSibling.querySelector("div").focus();
+					this._elementRef.nativeElement.nextElementSibling.querySelector("[tabindex='0']").focus();
 				} else {
-					if (this.parentRef.nextElementSibling) {
-						this.parentRef.nextElementSibling.querySelector("div").focus();
+					if (this.parentRef && this.parentRef.nextElementSibling) {
+						this.parentRef.nextElementSibling.querySelector("[tabindex='0']").focus();
 					}
 				}
 			} else if (item.subMenu && item.selected) {
-				this._elementRef.nativeElement.querySelector("ul cdl-nested-view-item").querySelector("div").focus();
+				this._elementRef.nativeElement.querySelector("ul cdl-nested-view-item").querySelector("[tabindex='0']").focus();
 			}
 		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
 			ev.preventDefault();
