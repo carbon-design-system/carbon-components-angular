@@ -56,30 +56,12 @@ describe("Popover directive", () => {
 		expect(document.querySelector(".popover").classList.contains("top")).toBe(true);
 	});
 
-	it("popover should hide title", () => {
-		TestBed.overrideComponent(TestComponent, {
-			set: {
-				template: "<button cdlPopover='test content' [showTitle]='false'>Pop over right</button>"
-			}
-		});
-
-		const fixture = TestBed.createComponent(TestComponent);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(document.querySelector(".popover-title")).toBe(null);
-	});
-
 	it("popover should use provided custom template", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
 				template: `
 				<template #customPopover>custom template</template>
-				<button [cdlPopover]='customPopover' [showTitle]='false'>Pop over right</button>
+				<button [cdlPopover]='customPopover'>Pop over right</button>
 				`
 			}
 		});

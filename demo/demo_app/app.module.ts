@@ -35,6 +35,7 @@ import { SampleModalComponent } from "./modal_demo/sample-modal.component";
 import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { XLModalComponent } from "./modal_demo/extra-large.component";
 import { ModalModule } from "./../..";
+import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 
 @NgModule({
 	declarations: [
@@ -55,12 +56,13 @@ import { ModalModule } from "./../..";
 		ModalDemo,
 		SampleModalComponent,
 		ErrorModalComponent,
-		XLModalComponent
+		XLModalComponent,
+		TooltipDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
 		ErrorModalComponent,
-		XLModalComponent
+		XLModalComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -97,6 +99,10 @@ import { ModalModule } from "./../..";
 			{
 				path: "popover",
 				component: PopoverDemo
+			},
+			{
+				path: "tooltip",
+				component: TooltipDemo
 			},
 			{
 				path: "tabs",

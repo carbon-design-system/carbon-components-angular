@@ -22,6 +22,7 @@ describe("Popover component", () => {
 		const fixture = TestBed.createComponent(Popover);
 
 		fixture.componentInstance.content = "test";
+		fixture.componentInstance.trigger = "click";
 		fixture.componentInstance.parentRef = new ElementRef(element);
 		fixture.detectChanges();
 
