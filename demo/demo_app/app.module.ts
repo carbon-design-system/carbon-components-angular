@@ -30,7 +30,11 @@ import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
 import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
 import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
 import { SideNavModule } from "./../../src/side-nav/side-nav.module";
-
+import { ModalDemo } from "./modal_demo/modal-demo.component";
+import { SampleModalComponent } from "./modal_demo/sample-modal.component";
+import { ErrorModalComponent } from "./modal_demo/error-modal.component";
+import { XLModalComponent } from "./modal_demo/extra-large.component";
+import { ModalModule } from "./../..";
 
 @NgModule({
 	declarations: [
@@ -47,7 +51,16 @@ import { SideNavModule } from "./../../src/side-nav/side-nav.module";
 		NestedViewDemo,
 		DropdownDemo,
 		TypeaheadDemo,
-		SideNavDemo
+		SideNavDemo,
+		ModalDemo,
+		SampleModalComponent,
+		ErrorModalComponent,
+		XLModalComponent
+	],
+	entryComponents: [
+		SampleModalComponent,
+		ErrorModalComponent,
+		XLModalComponent
 	],
 	imports: [
 		BrowserModule,
@@ -63,6 +76,7 @@ import { SideNavModule } from "./../../src/side-nav/side-nav.module";
 		TopNavModule,
 		TypeaheadModule,
 		SideNavModule,
+		ModalModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -111,6 +125,10 @@ import { SideNavModule } from "./../../src/side-nav/side-nav.module";
 			{
 				path: "side-nav",
 				component: SideNavDemo
+			},
+			{
+				path: "modal",
+				component: ModalDemo
 			}
 		], {
 			useHash: true
