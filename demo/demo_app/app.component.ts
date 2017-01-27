@@ -64,6 +64,11 @@ export class AppComponent implements OnInit {
 			content: "Side Nav Demo",
 			link: "/side-nav",
 			selected: false
+		},
+		{
+			content: "Modal Demo",
+			link: "/modal",
+			selected: false
 		}
 	];
 	private filteredItems = this.navItems;

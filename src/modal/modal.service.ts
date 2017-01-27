@@ -1,50 +1,52 @@
-import { ViewContainerRef, Injector, Compiler, ComponentRef, ReflectiveInjector } from "@angular/core";
+import { ViewContainerRef, Injector, Compiler, ComponentRef, ReflectiveInjector, ComponentFactoryResolver } from "@angular/core";
 import { Observable } from "rxjs/Rx";
 import { ReplaySubject } from "rxjs/ReplaySubject";
 import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ModalService {
-  private vcRef: ViewContainerRef;
-  private injector: Injector;
-  public activeInstances: number = 0;
+	private vcRef: ViewContainerRef;
+	public activeInstances: number = 0;
 
-  constructor(private compiler: Compiler) {}
+	constructor(private resolver: ComponentFactoryResolver) {}
 
-  registerViewContainerRef(vcRef: ViewContainerRef): void {
-    this.vcRef = vcRef;
-  }
+	registerViewContainerRef(vcRef: ViewContainerRef): void {
+		this.vcRef = vcRef;
+	}
 
-  registerInjector(injector: Injector): void {
-    this.injector = injector;
-  }
+	create<T>(data: {component: any, inputs?: any}) {
+    let inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}))
+    let resolvedInputs = ReflectiveInjector.resolve(inputProviders)
+    let injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.vcRef.parentInjector)
+    let factory = this.resolver.resolveComponentFactory(data.component)
+    let component = factory.create(injector)
+    this.vcRef.insert(component.hostView)
 
-  create<T>(module: any,  component: any, parameters?: Object): Observable<ComponentRef<T>> {
-    let componentRef$ = new ReplaySubject();
+		//let componentRef$ = new ReplaySubject();
 
-    this.compiler.compileModuleAndAllComponentsAsync(module)
-      .then(factory => {
-        let componentFactory = factory.componentFactories
-          .filter(item => {
-            return item.componentType === component;
-          })[0];
-        const childInjector = ReflectiveInjector
-          .resolveAndCreate([], this.injector);
-        let componentRef = this.vcRef
-          .createComponent(componentFactory, 0, childInjector);
-        Object.assign(componentRef.instance, parameters);
-        this.activeInstances ++;
+		//this.compiler.compileModuleAndAllComponentsAsync(module).then(factory => {
+			//let componentFactory = factory.componentFactories
+				//.filter(item => {
+					//return item.componentType === component;
+				//});
 
-        componentRef.instance["destroy"] = () => {
-          this.activeInstances --;
-          componentRef.destroy();
-        };
+		//const childInjector = ReflectiveInjector
+			//.resolveAndCreate([], this.injector);
+		//let componentRef = this.vcRef
+			//.createComponent(componentFactory, 0, childInjector);
+		//Object.assign(componentRef.instance, parameters);
+		//this.activeInstances ++;
 
-        componentRef$.next(componentRef);
-        componentRef$.complete();
-      });
-    return componentRef$;
-  }
+    component.instance["destroy"] = () => {
+      this.activeInstances --;
+      component.destroy();
+    };
+
+		//componentRef$.next(componentRef);
+		//componentRef$.complete();
+	//});
+	//return componentRef$;
+	}
 }
 
 

@@ -2,20 +2,18 @@ import { Component, OnInit, Injector, ViewContainerRef, ViewChild } from "@angul
 import { ModalService } from "./modal.service";
 
 @Component({
-  selector: "cdl-modal-placeholder",
-  template: `<div #modalplaceholder></div>`
+	selector: "cdl-modal-placeholder",
+	template: `<div #modalplaceholder></div>`
 })
 
 export class ModalPlaceholderComponent implements OnInit {
-  @ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef;
+	@ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
-  constructor(
-    private modalService: ModalService,
-    private injector: Injector
-  ) {}
+	constructor(
+		private modalService: ModalService,
+	) {}
 
-  ngOnInit(): void {
-    this.modalService.registerViewContainerRef(this.viewContainerRef);
-    this.modalService.registerInjector(this.injector);
-  }
+	ngOnInit(): void {
+		this.modalService.registerViewContainerRef(this.viewContainerRef);
+	}
 }
