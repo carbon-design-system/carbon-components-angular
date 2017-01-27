@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
-import { Modal } from '../../..'
+import { Component } from "@angular/core";
+import { Modal } from "../../..";
 
 @Modal()
 @Component({
-  selector: 'error-modal',
-  template: `
-    <cdl-modal size="sm" (overlaySelected)="closeModal()">
-      <cdl-modal-header modalType="error" (closeSelect)="closeModal()">Error</cdl-modal-header>
-      <section class="content">
-        <p>The connection was lost. Try to log in again.</p>
-      </section>
-      <cdl-modal-footer><button class="cancel-button" (click)="closeModal()">Close</button></cdl-modal-footer>
-    </cdl-modal>
-  `,
-  styleUrls: ['./error-modal.component.scss']
+	selector: "error-modal",
+	template: `
+		<cdl-modal size="sm" (overlaySelected)="closeModal()">
+			<cdl-modal-header modalType="error" (closeSelect)="closeModal()">Error</cdl-modal-header>
+			<section class="content">
+				<p>The connection was lost. Try to log in again.</p>
+			</section>
+			<cdl-modal-footer><button class="cancel-button" (click)="closeModal()">Close</button></cdl-modal-footer>
+		</cdl-modal>
+	`,
+	styleUrls: ["./error-modal.component.scss"]
 })
 export class ErrorModalComponent {
 
-  constructor() { }
+	constructor() { }
 
 }

@@ -1,4 +1,4 @@
-import { ViewContainerRef, Injector, Compiler, ComponentRef, ReflectiveInjector, ComponentFactoryResolver } from "@angular/core";
+import { ViewContainerRef, ReflectiveInjector, ComponentFactoryResolver } from "@angular/core";
 import { Observable } from "rxjs/Rx";
 import { ReplaySubject } from "rxjs/ReplaySubject";
 import { Injectable } from "@angular/core";
@@ -15,37 +15,19 @@ export class ModalService {
 	}
 
 	create<T>(data: {component: any, inputs?: any}) {
-    let inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}))
-    let resolvedInputs = ReflectiveInjector.resolve(inputProviders)
-    let injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.vcRef.parentInjector)
-    let factory = this.resolver.resolveComponentFactory(data.component)
-    let component = factory.create(injector)
-    this.vcRef.insert(component.hostView)
+		const inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}));
+		const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
+		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.vcRef.parentInjector);
+		const factory = this.resolver.resolveComponentFactory(data.component);
+		const component = factory.create(injector);
+		this.vcRef.insert(component.hostView);
+		this.activeInstances ++;
 
-		//let componentRef$ = new ReplaySubject();
+		component.instance["destroy"] = () => {
+			this.activeInstances --;
+			component.destroy();
+		};
 
-		//this.compiler.compileModuleAndAllComponentsAsync(module).then(factory => {
-			//let componentFactory = factory.componentFactories
-				//.filter(item => {
-					//return item.componentType === component;
-				//});
-
-		//const childInjector = ReflectiveInjector
-			//.resolveAndCreate([], this.injector);
-		//let componentRef = this.vcRef
-			//.createComponent(componentFactory, 0, childInjector);
-		//Object.assign(componentRef.instance, parameters);
-		//this.activeInstances ++;
-
-    component.instance["destroy"] = () => {
-      this.activeInstances --;
-      component.destroy();
-    };
-
-		//componentRef$.next(componentRef);
-		//componentRef$.complete();
-	//});
-	//return componentRef$;
 	}
 }
 
