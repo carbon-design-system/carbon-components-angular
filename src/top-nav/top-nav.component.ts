@@ -2,8 +2,12 @@ import {
 	Component,
 	Input,
 	Renderer,
-	OnInit
+	OnInit,
+	Inject
 } from "@angular/core";
+
+import { DOCUMENT } from "@angular/platform-browser";
+
 
 @Component({
 	selector: "cdl-top-nav",
@@ -39,18 +43,19 @@ export class TopNav implements OnInit {
 
 	private displayType: string = "relative";
 
-	constructor(private renderer: Renderer) {}
+	constructor(@Inject(DOCUMENT) private document, private renderer: Renderer) {}
 
 	ngOnInit() {
+		const nav = this.document.querySelector(".top-nav");
+		const navTop = nav.offsetTop;
+
 		if (this.sticky) {
 			this.renderer.listenGlobal("window", "scroll", (evt) => {
-				const nav = evt.target.querySelector(".top-nav");
-				const navTop = nav.offsetTop;
 
 				if (window.scrollY >= navTop) {
 					this.displayType = "fixed";
-				} else {
-				this.displayType = "relative";
+				} else if (window.scrollY <= navTop) {
+					this.displayType = "relative";
 				}
 			});
 		}
