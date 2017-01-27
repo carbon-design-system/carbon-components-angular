@@ -21,7 +21,7 @@ openModal(modalType) {
         this.modalService.create({component: ErrorModalComponent, inputs: {}});
         break;
       default:
-        this.modalService.create({component: SampleModalComponent, inputs: {}});
+        this.modalService.create({component: SampleModalComponent, inputs: {modalText: 'Hello Universe'}});
         break;
     }
   }
