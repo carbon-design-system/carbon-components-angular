@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
+			content: "Tooltip Demo",
+			link: "/tooltip",
+			selected: false
+		},
+		{
 			content: "Tabs Demo",
 			link: "/tabs",
 			selected: false

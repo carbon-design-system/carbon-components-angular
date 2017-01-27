@@ -1,6 +1,6 @@
 <h1>Popover Demo</h1>
 
-<template #customPopover><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> Cool content <br/> another cool content</template>
+<template #customPopover><div style="display: inline-block; width: 20px; height: 20px"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></div> Cool content <br/> another cool content <br/><br/><br/><br/><br/></template>
 
 <h3>Basic Popover</h3>
 <button cdlPopover="Hello There" placement="bottom">Pop over Bottom</button>
@@ -13,9 +13,6 @@
 <button [cdlPopover]="customPopover" placement="left" trigger="mouseenter">Pop over Left</button>
 <button cdlPopover="Hello There" placement="top" trigger="mouseenter">Pop over Top</button>
 <button [cdlPopover]="customPopover" placement="right" trigger="mouseenter">Pop over right</button>
-
-<h3>Popover with no title</h3>
-<button [cdlPopover]="customPopover" placement="right" [showTitle]="false">Pop over right</button>
 
 <h3>Popover can be close manualy</h3>
 <button [cdlPopover]="customPopover" placement="right" #popOver="cdlPopover">Pop over right</button>

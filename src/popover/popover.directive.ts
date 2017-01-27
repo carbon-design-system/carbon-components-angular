@@ -5,7 +5,6 @@ import {
 	EventEmitter,
 	OnInit,
 	Injector,
-	Renderer,
 	ComponentRef,
 	ElementRef,
 	TemplateRef,
@@ -25,21 +24,21 @@ import "rxjs/add/observable/fromEvent";
 	exportAs: "cdlPopover"
 })
 export class PopoverDirective implements OnInit {
-	private triggerListenFn: Function;
-	private mouseoutListenFn: Function;
 	private isOpen: boolean = false;
-	private popoverRef: ComponentRef<Popover>;
 	private componentFactory: ComponentFactory<Popover>;
 	private onClose: EventEmitter<any> = new EventEmitter();
+	private popoverRef: ComponentRef<Popover>;
 
 	@Input() title: string;
 	@Input() cdlPopover: string | TemplateRef<any>;
 	@Input() trigger: "click" | "mouseenter" = "click";
 	@Input() placement: "top" | "bottom" = "top";
 	@Input() waitTime: number = 0;
-	@Input() showTitle: boolean = true;
 	@Input() gap: number = 10;
 	@Input() appendToBody: boolean = false;
+	@Input() type: string;
+
+	isTooltip: boolean = false;
 
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
@@ -49,7 +48,7 @@ export class PopoverDirective implements OnInit {
 		this.toggle();
 	}
 
-	constructor(private elementRef: ElementRef, private renderer: Renderer, private injector: Injector,
+	constructor(private elementRef: ElementRef, private injector: Injector,
 			componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {
 		this.componentFactory = componentFactoryResolver.resolveComponentFactory(Popover);
 	}
@@ -79,8 +78,10 @@ export class PopoverDirective implements OnInit {
 			this.popoverRef.instance.title = this.title;
 			this.popoverRef.instance.placement = this.placement;
 			this.popoverRef.instance.parentRef = this.elementRef;
-			this.popoverRef.instance.showTitle = this.showTitle;
+			this.popoverRef.instance.isTooltip = this.isTooltip;
 			this.popoverRef.instance.gap = this.gap;
+			this.popoverRef.instance.type = this.type;
+			this.popoverRef.instance.trigger = this.trigger;
 			this.popoverRef.instance.appendToBody = this.appendToBody;
 			this.onClose = this.popoverRef.instance.close;
 			this.isOpen = true;
@@ -101,5 +102,19 @@ export class PopoverDirective implements OnInit {
 			this.popoverRef = null;
 			this.isOpen = false;
 		}
+	}
+}
+
+@Directive({
+	selector: "[cdlTooltip]",
+	exportAs: "cdlTooltip"
+})
+export class TooltipDirective extends PopoverDirective {
+	@Input() cdlTooltip: string | TemplateRef<any>;
+
+	open() {
+		this.cdlPopover = this.cdlTooltip;
+		this.isTooltip = true;
+		super.open();
 	}
 }

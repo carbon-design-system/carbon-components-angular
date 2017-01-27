@@ -22,22 +22,22 @@ describe("Top Nav", () => {
 	xit("brand should display", () => {
 		let fixture = TestBed.createComponent(TopNav);
 		let comp    = fixture.componentInstance;
-   		let de = fixture.debugElement.query(By.css('.top-nav-brand'));
-    	let el = de.nativeElement;
-    	comp.brand = "test";
+			let de = fixture.debugElement.query(By.css(".top-nav-brand"));
+			let el = de.nativeElement;
+			comp.brand = "test";
 		fixture.detectChanges();
 		expect(el.textContent).toBe(" IBM test ");
-	});	
+	});
 
 	it("badge should display", () => {
 		let fixture = TestBed.createComponent(TopNav);
 		let comp    = fixture.componentInstance;
 		comp.badge = "alpha";
 		fixture.detectChanges();
-		let de = fixture.debugElement.query(By.css('.top-nav-badge'));
+		let de = fixture.debugElement.query(By.css(".top-nav-badge"));
 		let el = de.nativeElement;
 		expect(el.textContent.trim()).toBe("alpha");
-	});	
+	});
 
 });
 

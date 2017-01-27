@@ -18,16 +18,22 @@ import { positionElements } from "../common/position.service";
 @Component({
 	selector: "cdl-popover",
 	template: `
-		<div class="popover {{placement}}">
-			<div *ngIf="showTitle" class="popover-title">
+		<div class="popover {{placement}} {{type}} {{trigger}}" [class.tooltip]="isTooltip">
+			<div *ngIf="!isTooltip" class="popover-title">
 				{{title}}
-				<button class="close-icon"  (click)="onClose()">
+				<button *ngIf="trigger==='click'" class="close-icon"  (click)="onClose()">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
 					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
 					</svg>
 				</button>
 			</div>
 			<div class="popover-content">
+				<button *ngIf="isTooltip && trigger==='click'" class="close-icon"  (click)="onClose()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
+					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
+					</svg>
+				</button>
+
 				<template
 					*ngIf="isTpl"
 					[ngTemplateOutlet]="content">
@@ -40,28 +46,28 @@ import { positionElements } from "../common/position.service";
 })
 export class Popover implements OnInit, AfterViewInit {
 	private offsetTop: number = 48; // 40px heading + 8px triangle
+	private isTpl: boolean;
+
+	isTooltip: boolean = false;
 
 	@Input() title: string;
-	@Input() showTitle: boolean = true;
 	@Input() placement: "top" | "bottom" | "left" | "right" = "top";
 	@Input() content: string | TemplateRef<any>;
 	@Input() gap: number = 0;
 	@Input() parentRef: ElementRef;
 	@Input() appendToBody: boolean = true;
-
-	private zoneSubscription;
+	@Input() type: string;
+	@Input() trigger: string;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
-
-	private isTpl: boolean;
 
 	constructor(private elementRef: ElementRef) {}
 
 	ngOnInit() {
 		this.isTpl = this.content instanceof TemplateRef;
 
-		if (!this.showTitle) {
-			this.offsetTop = 8;
+		if (this.isTooltip) {
+			this.offsetTop = undefined;
 		}
 
 		Observable.fromEvent(window, "resize")
