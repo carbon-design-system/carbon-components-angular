@@ -1,6 +1,7 @@
 # Top-nav component
 
 class: TopNav (implements OnInit)
+
 selector: `cdl-top-nav`
 
 | @Input       | Type                       | Accepted Value                 | Default Value |
@@ -31,6 +32,7 @@ Ex:
 	content: "string",
 	disabled: false //optional
 }
+```
 
 See list-view component.
 
