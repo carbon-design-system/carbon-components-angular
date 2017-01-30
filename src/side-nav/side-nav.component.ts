@@ -4,7 +4,10 @@ import { Component, Input} from "@angular/core";
 	selector: "cdl-side-nav",
 	template: `
 
-    <aside class="left-nav" [ngClass]="{isOpen: open}" >
+    <aside class="left-nav" 
+    	   [ngClass]="{isOpen: open}" 
+    	   [attr.aria-expanded]="open" 
+    	   role="complementary">
 		<ng-content></ng-content>
     </aside>
   `,
