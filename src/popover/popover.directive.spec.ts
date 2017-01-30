@@ -38,7 +38,7 @@ describe("Popover directive", () => {
 		expect(document.querySelector(".popover").classList.contains("bottom")).toBe(true);
 	});
 
-	it("popover should appear at the top as default", () => {
+	it("popover should appear auto as default", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
 				template: "<button cdlPopover='test content'>Pop over right</button>"
@@ -53,7 +53,7 @@ describe("Popover directive", () => {
 		button.click();
 		fixture.detectChanges();
 
-		expect(document.querySelector(".popover").classList.contains("top")).toBe(true);
+		expect(document.querySelector(".popover").classList.contains("auto")).toBe(true);
 	});
 
 	it("popover should use provided custom template", () => {
