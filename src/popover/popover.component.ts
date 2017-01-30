@@ -51,7 +51,7 @@ export class Popover implements OnInit, AfterViewInit {
 	isTooltip: boolean = false;
 
 	@Input() title: string;
-	@Input() placement: "top" | "bottom" | "left" | "right" = "top";
+	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
 	@Input() content: string | TemplateRef<any>;
 	@Input() gap: number = 0;
 	@Input() parentRef: ElementRef;
