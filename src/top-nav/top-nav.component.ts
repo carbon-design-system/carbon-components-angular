@@ -46,18 +46,10 @@ export class TopNav implements OnInit {
 	constructor(@Inject(DOCUMENT) private document, private renderer: Renderer) {}
 
 	ngOnInit() {
-		const nav = this.document.querySelector(".top-nav");
-		const navTop = nav.offsetTop;
-
 		if (this.sticky) {
-			this.renderer.listenGlobal("window", "scroll", (evt) => {
-
-				if (window.scrollY >= navTop) {
-					this.displayType = "fixed";
-				} else if (window.scrollY <= navTop) {
-					this.displayType = "relative";
-				}
-			});
+			this.displayType = "fixed";
+		} else {
+			this.displayType = "relative";
 		}
 	}
 }
