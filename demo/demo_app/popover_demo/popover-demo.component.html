@@ -7,6 +7,7 @@
 <button [cdlPopover]="customPopover" placement="left">Pop over Left</button>
 <button cdlPopover="Hello There" placement="top">Pop over Top</button>
 <button [cdlPopover]="customPopover" placement="right">Pop over right</button>
+<button [cdlPopover]="customPopover" placement="auto">Pop over auto position</button>
 
 <h3>Basic Popover on hover</h3>
 <button cdlPopover="Hello There" placement="bottom" trigger="mouseenter">Pop over Bottom</button>
@@ -38,5 +39,5 @@
 <br/><br/>
 
 <div style="width: 400px; overflow: hidden; position: absolute; border: solid 1px red">
-	<button [cdlPopover]="list" placement="right" title="Select item" [appendToBody]="true">Pop over append body</button>
+	<button [cdlPopover]="list" placement="auto" title="Select item" [appendToBody]="true">Pop over append body with auto position</button>
 </div>
