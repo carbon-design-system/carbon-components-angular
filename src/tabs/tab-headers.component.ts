@@ -263,6 +263,8 @@ export class TabHeaders implements AfterViewInit {
 		}
 		if (this.scrollLength + this.scrollLeft <= this.tabHeading.nativeElement.parentElement.offsetWidth) {
 			this.disabledRightArrow = true;
+		} else {
+			this.disabledRightArrow = false;
 		}
 	}
 }
