@@ -6,11 +6,13 @@ import { By } from "@angular/platform-browser";
 
 import {TopNav} from "./top-nav.component";
 
+import {Hamburger} from "./hamburger.component";
+
 
 describe("Top Nav", () => {
 
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [TopNav]});
+		TestBed.configureTestingModule({declarations: [TopNav, Hamburger]});
 
 	});
 
@@ -19,12 +21,12 @@ describe("Top Nav", () => {
 		expect(fixture.componentInstance instanceof TopNav).toBe(true);
 	});
 
-	xit("brand should display", () => {
+	it("brand should display", () => {
 		let fixture = TestBed.createComponent(TopNav);
 		let comp    = fixture.componentInstance;
-			let de = fixture.debugElement.query(By.css(".top-nav-brand"));
-			let el = de.nativeElement;
-			comp.brand = "test";
+		let de = fixture.debugElement.query(By.css(".top-nav-brand"));
+		let el = de.nativeElement;
+		comp.brand = "test";
 		fixture.detectChanges();
 		expect(el.textContent).toBe(" IBM test ");
 	});
@@ -37,6 +39,17 @@ describe("Top Nav", () => {
 		let de = fixture.debugElement.query(By.css(".top-nav-badge"));
 		let el = de.nativeElement;
 		expect(el.textContent.trim()).toBe("alpha");
+	});
+
+
+	it("hamburger click should emit event", () => {
+		let fixture = TestBed.createComponent(Hamburger);
+		let comp    = fixture.componentInstance;
+		let hamburger_clickbox = fixture.nativeElement.querySelector("button");
+		fixture.detectChanges();
+		spyOn(fixture.componentInstance.onClick, "emit");
+		hamburger_clickbox.click();
+		expect(fixture.componentInstance.onClick.emit).toHaveBeenCalled();
 	});
 
 });
