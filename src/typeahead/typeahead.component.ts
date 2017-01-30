@@ -41,7 +41,6 @@ export class Typeahead implements AfterContentInit {
 	@Input() list = [];
 	@Input() limit: number = 5;
 	@Input() waitTime: number = 0;
-	@Input() search: Function;
 	@Input() displayKey: string;
 	@Input() listTpl: TemplateRef<any> = null;
 
