@@ -39,7 +39,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 export class TopNav implements OnInit {
 	@Input() badge: string;
 	@Input() brand: string;
-	@Input() sticky: boolean;
+	@Input() sticky: boolean = false;
 
 	private displayType: string = "relative";
 
