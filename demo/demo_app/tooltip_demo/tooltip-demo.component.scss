@@ -1,0 +1,8 @@
+.ellipsis {
+	display: inline-block;
+	overflow: hidden;
+	width: 150px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 5px;
+}
