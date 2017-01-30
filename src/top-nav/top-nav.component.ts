@@ -15,7 +15,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 	<nav class="top-nav" [ngStyle]="{'position':displayType}">
 		<ng-content select="[hamburger]"></ng-content>
 		<span class="top-nav-heading">
-					<span> <h1 class="top-nav-brand"> IBM <strong>{{brand}}</strong> </h1> </span>
+					<span> <h1 class="top-nav-brand" role="button"> IBM <strong>{{brand}}</strong> </h1> </span>
 					<span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
 		</span>
 		<ng-content select="[links]"></ng-content>
