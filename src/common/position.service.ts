@@ -104,43 +104,64 @@ export class Positioning {
 			right: targetElBCR.width || targetElement.offsetWidth
 		};
 
-		switch (placementPrimary) {
-			case "top":
-				targetElPosition.top = hostElPosition.top - targetElement.offsetHeight - gap;
-				targetElPosition.bottom += hostElPosition.top - targetElement.offsetHeight + gap;
-				targetElPosition.left = shiftWidth[placementSecondary];
-				targetElPosition.right += shiftWidth[placementSecondary];
-				break;
-			case "bottom":
-				targetElPosition.top = shiftHeight[placementPrimary] + gap;
-				targetElPosition.bottom += shiftHeight[placementPrimary] - gap;
-				targetElPosition.left = shiftWidth[placementSecondary];
-				targetElPosition.right += shiftWidth[placementSecondary];
-				break;
-			case "left":
-				if (offsetTop) {
-					targetElPosition.top = hostElPosition.top - offsetTop;
-				} else {
-					targetElPosition.top = shiftHeight[placementSecondary];
-					targetElPosition.bottom += shiftHeight[placementSecondary];
-				}
+		let placeToPosition: Function = function(position) {
+			targetElement.querySelector(".popover").classList.add(position);
 
-				targetElPosition.left = hostElPosition.left - targetElement.offsetWidth - gap;
-				targetElPosition.right += hostElPosition.left - targetElement.offsetWidth + gap;
+			switch (position) {
+				case "top":
+					targetElPosition.top = hostElPosition.top - targetElement.offsetHeight - gap;
+					targetElPosition.bottom += hostElPosition.top - targetElement.offsetHeight + gap;
+					targetElPosition.left = shiftWidth[placementSecondary];
+					targetElPosition.right += shiftWidth[placementSecondary];
+					break;
+				case "bottom":
+					targetElPosition.top = shiftHeight[position] + gap;
+					targetElPosition.bottom += shiftHeight[position] - gap;
+					targetElPosition.left = shiftWidth[placementSecondary];
+					targetElPosition.right += shiftWidth[placementSecondary];
+					break;
+				case "left":
+					if (offsetTop) {
+						targetElPosition.top = hostElPosition.top - offsetTop;
+					} else {
+						targetElPosition.top = shiftHeight[placementSecondary];
+						targetElPosition.bottom += shiftHeight[placementSecondary];
+					}
 
-				break;
-			case "right":
-				if (offsetTop) {
-					targetElPosition.top = hostElPosition.top - offsetTop;
-				} else {
-					targetElPosition.top = shiftHeight[placementSecondary];
-					targetElPosition.bottom += shiftHeight[placementSecondary];
-				}
+					targetElPosition.left = hostElPosition.left - targetElement.offsetWidth - gap;
+					targetElPosition.right += hostElPosition.left - targetElement.offsetWidth + gap;
 
-				targetElPosition.left = shiftWidth[placementPrimary] + gap;
-				targetElPosition.right += shiftWidth[placementPrimary] - gap;
-				break;
-		}
+					break;
+				case "right":
+					if (offsetTop) {
+						targetElPosition.top = hostElPosition.top - offsetTop;
+					} else {
+						targetElPosition.top = shiftHeight[placementSecondary];
+						targetElPosition.bottom += shiftHeight[placementSecondary];
+					}
+
+					targetElPosition.left = shiftWidth[position] + gap;
+					targetElPosition.right += shiftWidth[position] - gap;
+					break;
+				case "auto":
+					if ( targetElPosition.height + gap < hostElPosition.top &&
+						( targetElPosition.width / 2 - hostElPosition.left - hostElPosition.width / 2 ) < 0 ) {
+						placeToPosition( "top" );
+					} else if ( targetElPosition.height + gap + hostElPosition.top + hostElPosition.height > window.innerHeight &&
+						( targetElPosition.width / 2 - hostElPosition.left - hostElPosition.width / 2 ) < 0 ) {
+						placeToPosition( "bottom" );
+					} else if (hostElPosition.left - (targetElPosition.width + gap) > 0) {
+						placeToPosition( "left" );
+					} else if (hostElPosition.left + hostElPosition.width + targetElPosition.width + gap < window.innerWidth) {
+						placeToPosition( "right" );
+					}	else {
+						placeToPosition( "top" );
+					}
+					break;
+			}
+		};
+
+		placeToPosition(placementPrimary);
 
 		targetElPosition.top = Math.round(targetElPosition.top);
 		targetElPosition.bottom = Math.round(targetElPosition.bottom);

@@ -12,6 +12,75 @@ $triangleSize: 8px;
 .popover {
 	display: block;
 
+	&.tooltip {
+		&.click {
+			.popover-content{
+				padding-right: 30px;
+			}
+		}
+		.popover-content{
+			padding-right: 15px;
+
+			.close-icon {
+				position: absolute;
+				right: 7px;
+				top: 7px;
+				cursor: pointer;
+				background: transparent;
+				border: transparent;
+				padding: 0px 3px 0px 3px;
+				height: 16px;
+
+				&:focus {
+					border: solid 1px $gray50;
+				}
+
+				svg {
+					fill: $gray50;
+				}
+			}
+
+		}
+
+		&.top, &.bottom, &.right, &.left {
+			border-color: $blue50;
+
+			&.danger {
+				border-color: $red50;
+			}
+			&.warning {
+				border-color: $yellow20;
+			}
+		}
+
+		&.top {
+			border-top-width: 4px;
+			border-top-style: solid;
+		}
+
+		&.bottom {
+			border-bottom-width: 4px;
+			border-bottom-style: solid;
+		}
+
+		&.left {
+			border-left-width: 4px;
+			border-left-style: solid;
+			.popover-content:after {
+				top: 50%;
+			}
+		}
+
+		&.right {
+			border-right-width: 4px;
+			border-right-style: solid;
+			.popover-content:after {
+				top: 50%;
+			}
+		}
+
+	}
+
 	.popover-title {
 		padding-left: 20px;
 		height: 40px;

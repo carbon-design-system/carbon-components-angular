@@ -41,6 +41,7 @@ describe("Top Nav", () => {
 		expect(el.textContent.trim()).toBe("alpha");
 	});
 
+
 	it("hamburger click should emit event", () => {
 		let fixture = TestBed.createComponent(Hamburger);
 		let comp    = fixture.componentInstance;
