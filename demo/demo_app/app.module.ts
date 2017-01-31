@@ -10,36 +10,42 @@ import { RouterModule } from "@angular/router";
 
 // demo imports
 import { TableDemo } from "./table_demo/table-demo.component";
-import { TableModule } from "./../../src/table/table.module";
 import { CoreDemo } from "./core_demo/core-demo.component";
-import { GlyphiconModule, IconService } from "./../../src/glyphicon/glyphicon.module";
 import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 import { PopoverDemo } from "./popover_demo/popover-demo.component";
-import { PopoverModule } from "./../../src/popover/popover.module";
 import { TabsDemo } from "./tabs_demo/tabs_demo.component";
-import { TabsModule } from "./../../src/tabs/tabs.module";
 import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
-import { ListViewModule } from "./../../src/list-view/list-view.module";
-import { DropdownModule } from "./../../src/dropdown/dropdown.module";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
-import { TopNavModule } from "./../../src/top-nav/top-nav.module";
 import { NestedViewDemo } from "./nested_view_demo/nested-view-demo.component";
-import { NestedViewModule } from "./../../src/nested-view/nested-view.module";
 import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
-import { TypeaheadModule } from "./../../src/typeahead/typeahead.module";
 import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
-import { SideNavModule } from "./../../src/side-nav/side-nav.module";
 import { ModalDemo } from "./modal_demo/modal-demo.component";
 import { SampleModalComponent } from "./modal_demo/sample-modal.component";
 import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { XLModalComponent } from "./modal_demo/extra-large.component";
-import { ModalModule } from "./../..";
 import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
-import { AlertModule, AlertService } from "./../.."
-import { TooltipModule } from "./../../src/tooltip/tooltip.module";
+
+// component imports
+import {
+	TableModule,
+	TabsModule,
+	GlyphiconModule,
+	IconService,
+	PopoverModule,
+	ListViewModule,
+	NestedViewModule,
+	DropdownModule,
+	TopNavModule,
+	TypeaheadModule,
+	SideNavModule,
+	ModalModule,
+	AlertModule,
+	AlertService
+} from "./../..";
+
 
 @NgModule({
 	declarations: [
@@ -87,7 +93,6 @@ import { TooltipModule } from "./../../src/tooltip/tooltip.module";
 		SideNavModule,
 		ModalModule,
 		AlertModule,
-		TooltipModule,
 		RouterModule.forRoot([
 			{
 				path: "",

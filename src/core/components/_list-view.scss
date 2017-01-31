@@ -7,6 +7,7 @@
 		padding-top: 12.5px;
 		padding-bottom: 12.5px;
 		border-top: 1px solid $gray10;
+		border-left: 2px solid transparent;
 		&.disabled {
 			color: $gray20;
 			cursor: no-drop;
