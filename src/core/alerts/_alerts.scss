@@ -38,7 +38,7 @@
 		height: $alert-height;
 		line-height: $alert-height - 2; //subtract border
 
-        & + p{
+        & ~ p{
             max-width: calc(100% - 90px);
             float:left;
         }
@@ -54,7 +54,6 @@
 		vertical-align: top;
 		margin-right: 10px;
 		float: left;
-		// vertical-align: middle;
 	}
 
 
