@@ -36,6 +36,9 @@ import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { XLModalComponent } from "./modal_demo/extra-large.component";
 import { ModalModule } from "./../..";
 import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
+import { AlertDemo } from "./alert_demo/alert-demo-component";
+import { AlertCustom } from "./alert_demo/alert-demo-custom";
+import { AlertModule, AlertService } from "./../.."
 
 @NgModule({
 	declarations: [
@@ -57,12 +60,15 @@ import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 		SampleModalComponent,
 		ErrorModalComponent,
 		XLModalComponent,
-		TooltipDemo
+		TooltipDemo,
+		AlertDemo,
+		AlertCustom
 	],
 	entryComponents: [
 		SampleModalComponent,
 		ErrorModalComponent,
 		XLModalComponent,
+		AlertCustom
 	],
 	imports: [
 		BrowserModule,
@@ -79,6 +85,7 @@ import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 		TypeaheadModule,
 		SideNavModule,
 		ModalModule,
+		AlertModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -135,12 +142,16 @@ import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 			{
 				path: "modal",
 				component: ModalDemo
+			},
+			{
+				path: "alert",
+				component: AlertDemo
 			}
 		], {
 			useHash: true
 		})
 	],
-	providers: [IconService],
+	providers: [IconService, AlertService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
