@@ -24,7 +24,7 @@ export class AlertDemo {
 	};
 
 	errorAlert = {
-		type: "error",
+		type: "danger",
 		message: "sample message"
 	};
 
@@ -34,7 +34,7 @@ export class AlertDemo {
 	};
 
 	successAlert = {
-		type: "info",
+		type: "success",
 		message: "sample message",
 	};
 

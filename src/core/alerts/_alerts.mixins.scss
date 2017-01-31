@@ -1,0 +1,9 @@
+// Alerts
+@mixin alert-variant($background, $border, $text-color) {
+  background-color: $background;
+  border-color: $border;
+  color: $text-color;
+  .alert-icon svg{
+	  fill:$border
+  }
+}

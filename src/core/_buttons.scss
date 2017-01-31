@@ -1,7 +1,14 @@
 @import "colors";
 @import "vars";
 
-button {
+
+button{
+	appearance:none;
+	-webkit-appearance:none;
+	background: none;
+	border:0;
+}
+button.btn {
 	cursor: pointer;
 	font-size: $font-size;
 	padding-left: 20px;

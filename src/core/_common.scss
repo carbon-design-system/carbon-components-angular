@@ -5,6 +5,8 @@
 //core styles, normalize
 @import "core";
 
+@import "mixins/utils";
+
 //etc
 @import "buttons";
 @import "forms";
@@ -12,7 +14,10 @@
 //components
 @import "components/list-view";
 @import "components/nested-view";
-@import "components/alert";
+@import "alerts/alerts";
+
+
+
 
 
 //accessibility

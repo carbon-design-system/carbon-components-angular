@@ -8,8 +8,17 @@ import {
 @Component({
 	selector: "cdl-alert",
 	template: `
-	<div *ngIf="alertObj" class="alert-banner {{alertObj.type}}">
-		<span class="alert-icon">
+	<div *ngIf="alertObj" class="alert alert-{{alertObj.type}}" role="alert">
+		<button class="close-btn" (click)="onClose()" aria-label="Close">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16">
+					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
+				</svg>
+		</button>
+		<span class="alert-icon" aria-hidden="true">
 			<svg *ngIf="alertObj.type==='info'"
 				xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 				width="30px"
@@ -30,7 +39,7 @@ import {
 				<path class="st0" d="M15 1C7.3 1 1 7.3 1 15s6.3 14 14 14 14-6.3 14-14S22.7 1 15 1zm0
 				26C8.4 27 3 21.6 3 15S8.4 3 15 3s12 5.4 12 12-5.4 12-12 12z"/>
 			</svg>
-			<svg *ngIf="alertObj.type==='error'"
+			<svg *ngIf="alertObj.type==='danger'"
 				xmlns="http://www.w3.org/2000/svg"
 				width="30"
 				height="30"
@@ -49,19 +58,11 @@ import {
 				3m0-2C7.3 1 1 7.3 1 15s6.3 14 14 14 14-6.3 14-14S22.7 1 15 1z"/>
 			</svg>
 		</span>
-		<div class="message-container">
+		<p>
 			{{alertObj.message}}
-		</div>
+		</p>
 
-		<button class="clear-button" (click)="onClose()">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16">
-				<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
-			</svg>
-		</button>
+
 	</div>
 		`
 })
