@@ -7,3 +7,4 @@ export * from "./src/tree-view/tree-view.module";
 export * from "./src/list-view/list-view.module";
 export * from "./src/top-nav/top-nav.module";
 export * from "./src/modal/modal.module";
+export * from "./src/alert/alert.module";

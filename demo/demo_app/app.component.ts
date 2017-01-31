@@ -74,6 +74,11 @@ export class AppComponent implements OnInit {
 			content: "Modal Demo",
 			link: "/modal",
 			selected: false
+		},
+		{
+			content: "Alert Demo",
+			link: "/alert",
+			selected: false
 		}
 	];
 	private filteredItems = this.navItems;
