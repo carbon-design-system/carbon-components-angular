@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IconService } from "./../../src/glyphicon/glyphicon.module";
 import { Router, NavigationEnd } from "@angular/router";
+import { HcModeChecker } from './../../src/common/a11y.service';
 import "rxjs/add/operator/filter";
 
 @Component({
@@ -93,6 +94,8 @@ export class AppComponent implements OnInit {
 				this.previousItem.selected = false;
 			}
 		});
+
+		HcModeChecker();
 	}
 
 	search(ev) {
