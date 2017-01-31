@@ -14,3 +14,18 @@ export function findNextElem(target) {
 export function findPrevElem(target) {
 	return findSiblingElem(target, "previousElementSibling");
 }
+
+// check for Hight contrast mode
+export function HcModeChecker(){
+	let colorTest = "rgb(255, 0, 0)";
+
+	var htmlChecker = document.createElement("div");
+	htmlChecker.classList.add('hc-checker');
+	document.body.appendChild(htmlChecker);
+
+	if(window.getComputedStyle(htmlChecker).backgroundColor.toString() !== colorTest){
+		document.body.classList.add('a11y');
+	}
+	document.body.removeChild(htmlChecker);
+
+}
