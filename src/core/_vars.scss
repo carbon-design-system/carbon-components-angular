@@ -2,3 +2,43 @@ $font-size: 14px;
 $sm: 20px;
 $md: 30px;
 $lg: 40px;
+
+
+
+
+//== Alerts
+//
+//## Define alert colors, border radius, and padding.
+
+$alert-height:				44px;
+$alert-padding:				0 10px;
+$alert-border-radius:		none;
+$alert-border-width:		1px;
+$alert-link-font-weight:	700;
+$alert-font-color:			$gray80;
+
+$alert-icon-margin:			0 10px 0 0;
+$alert-icon-font-size:		22px;
+$alert-close-margin:		0 0 0 20px;
+
+$alert-success-bg:            mix($green10, $white, 25%);
+$alert-success-text:          $alert-font-color;
+$alert-success-border:        $green40;
+$alert-success-icon:          $green40;
+
+$alert-info-bg:               mix($blue10, $white, 25%);
+$alert-info-text:             $alert-font-color;
+$alert-info-border:           $blue30;
+$alert-info-icon:             $blue30;
+
+$alert-warning-bg:            mix($yellow10, $white, 25%);
+$alert-warning-text:          $alert-font-color;
+$alert-warning-border:        $yellow;
+$alert-warning-icon:          $yellow;
+
+$alert-danger-bg:             mix($red10, $white, 25%);
+$alert-danger-text:           $alert-font-color;
+$alert-danger-border:         $red50;
+$alert-danger-icon:           $red50;
+
+

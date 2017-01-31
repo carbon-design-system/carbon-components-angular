@@ -1,22 +1,22 @@
 <h1>Alert Service</h1>
 
 <h3>Default Alert</h3>
-<button (click)="callAlert('info')">Alert Info</button>
-<button (click)="callAlert('error')">Alert Error</button>
-<button (click)="callAlert('warning')">Alert Warning</button>
-<button (click)="callAlert('success')">Alert Success</button>
+<button class="btn" (click)="callAlert('info')">Alert Info</button>
+<button class="btn" (click)="callAlert('error')">Alert Error</button>
+<button class="btn" (click)="callAlert('warning')">Alert Warning</button>
+<button class="btn" (click)="callAlert('success')">Alert Success</button>
 
 <h3>Custom Alert</h3>
 
-<button (click)="callAlertCustom()">show custom alert</button>
+<button class="btn" (click)="callAlertCustom()">show custom alert</button>
 
 <h3>Fade away Alert(2secs)</h3>
 
-<button (click)="callAlertFadeAway()">show fade away alert</button>
+<button class="btn" (click)="callAlertFadeAway()">show fade away alert</button>
 
 
 <h3>Alert to a container</h3>
-<button (click)="callAlert2()">show alert in the container below</button>
+<button class="btn" (click)="callAlert2()">show alert in the container below</button>
 <div id="alertcontainer">
 <span></span>
 </div>

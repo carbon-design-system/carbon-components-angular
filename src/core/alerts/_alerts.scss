@@ -1,0 +1,85 @@
+//
+// Alerts
+// --------------------------------------------------
+
+// Mixins
+// -------------------------
+@import './alerts.mixins';
+
+
+
+// Base styles
+// -------------------------
+.alert {
+
+	color: $alert-font-color;
+    padding: $alert-padding;
+	line-height: $alert-height - 2;
+	height: $alert-height;
+    border:$alert-border-width solid transparent;
+	vertical-align: middle;
+
+    p{
+		float: left;
+        margin:0;
+        @include text-overflow();
+        display: inline-block;
+        max-width: calc(100% - 50px);
+        a{
+            font-weight: 700;
+            color:$alert-font-color;
+        }
+    }
+
+    .close-btn {
+        float: right;
+		cursor: pointer;
+		margin: $alert-close-margin;
+		height: $alert-height;
+		line-height: $alert-height - 2; //subtract border
+
+        & + p{
+            max-width: calc(100% - 90px);
+            float:left;
+        }
+		svg{
+			fill:$gray80
+		}
+    }
+
+	.alert-icon{
+		width: 30px;
+		height: 30px;
+		padding-top:6px;
+		vertical-align: top;
+		margin-right: 10px;
+		float: left;
+		// vertical-align: middle;
+	}
+
+
+}
+
+// Alternate styles
+//
+// Generate contextual modifier classes for colorizing the alert.
+
+.alert-success {
+    @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+}
+
+.alert-info {
+    @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+}
+
+.alert-warning {
+    @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+
+}
+.alert-danger {
+  	@include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+}
+
+
+
+
