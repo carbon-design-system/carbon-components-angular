@@ -39,6 +39,7 @@ import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { AlertModule, AlertService } from "./../.."
+import { TooltipModule } from "./../../src/tooltip/tooltip.module";
 
 @NgModule({
 	declarations: [
@@ -86,6 +87,7 @@ import { AlertModule, AlertService } from "./../.."
 		SideNavModule,
 		ModalModule,
 		AlertModule,
+		TooltipModule,
 		RouterModule.forRoot([
 			{
 				path: "",

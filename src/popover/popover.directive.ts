@@ -105,37 +105,37 @@ export class PopoverDirective implements OnInit {
 	}
 }
 
-@Directive({
-	selector: "[cdlTooltip]",
-	exportAs: "cdlTooltip"
-})
-export class TooltipDirective extends PopoverDirective {
-	@Input() cdlTooltip: string | TemplateRef<any>;
+// @Directive({
+// 	selector: "[cdlTooltip]",
+// 	exportAs: "cdlTooltip"
+// })
+// export class TooltipDirective extends PopoverDirective {
+// 	@Input() cdlTooltip: string | TemplateRef<any>;
 
-	open() {
-		this.cdlPopover = this.cdlTooltip;
-		this.isTooltip = true;
-		super.open();
-	}
-}
+// 	open() {
+// 		this.cdlPopover = this.cdlTooltip;
+// 		this.isTooltip = true;
+// 		super.open();
+// 	}
+// }
 
-@Directive({
-	selector: "[cdlEllipsisTooltip]"
-})
-export class EllipsisTooltipDirective extends PopoverDirective {
-	constructor(private _elementRef: ElementRef, private _injector: Injector,
-			_componentFactoryResolver: ComponentFactoryResolver, private _viewContainerRef: ViewContainerRef) {
-		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
-		this.trigger = "mouseenter";
-		this.isTooltip = true;
-	}
+// @Directive({
+// 	selector: "[cdlEllipsisTooltip]"
+// })
+// export class EllipsisTooltipDirective extends PopoverDirective {
+// 	constructor(private _elementRef: ElementRef, private _injector: Injector,
+// 			_componentFactoryResolver: ComponentFactoryResolver, private _viewContainerRef: ViewContainerRef) {
+// 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
+// 		this.trigger = "mouseenter";
+// 		this.isTooltip = true;
+// 	}
 
-	open() {
-		if (this._elementRef.nativeElement.scrollWidth <= this._elementRef.nativeElement.offsetWidth) {
-			return;
-		}
+// 	open() {
+// 		if (this._elementRef.nativeElement.scrollWidth <= this._elementRef.nativeElement.offsetWidth) {
+// 			return;
+// 		}
 
-		this.cdlPopover = this._elementRef.nativeElement.innerText;
-		super.open();
-	}
-}
+// 		this.cdlPopover = this._elementRef.nativeElement.innerText;
+// 		super.open();
+// 	}
+// }
