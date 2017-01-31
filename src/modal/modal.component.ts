@@ -1,4 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter, trigger, state, style, transition, animate } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	trigger,
+	state,
+	style,
+	transition,
+	animate
+} from "@angular/core";
 
 @Component({
 	selector: "cdl-modal",
@@ -10,14 +21,14 @@ import { Component, OnInit, Input, Output, EventEmitter, trigger, state, style, 
 	`,
 	animations: [
 		trigger("modalState", [
-			state("in", style({opacity: 1, transform: "translate(-50%, -50%)"})),
-			state("void", style({transform: "translate(-50%, -55%)", opacity: 0})),
+			state("in", style({opacity: 1, transform: "translate(-50%, 50%)"})),
+			state("void", style({transform: "translate(-50%, 55%)", opacity: 0})),
 			transition(":enter", [
 				animate("200ms ease-in"),
 			]),
-			transition("* => void", [
-				style({opacity: 1, transform: "translate(-50%, -50%"}),
-				animate(200, style({transform: "translate(-50%, -55%)", opacity: 0}))
+			transition(":leave", [
+				style({opacity: 1, transform: "translate(-50%, 50%"}),
+				animate(200, style({transform: "translate(-50%, 55%)", opacity: 0}))
 			])
 		])
 	],
