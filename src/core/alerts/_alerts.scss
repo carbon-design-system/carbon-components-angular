@@ -11,7 +11,10 @@
 // Base styles
 // -------------------------
 .alert {
-
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	width:100%;
 	color: $alert-font-color;
     padding: $alert-padding;
 	line-height: $alert-height - 2;
