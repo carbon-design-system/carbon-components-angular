@@ -37,7 +37,7 @@
 
 //nested sub menu items
 	.item-wrapper{
-
+		background: $white;
 		div.item {
 			background: white;
 			font-weight: 600;
@@ -49,6 +49,7 @@
 				display: none;
 			}
 		}
+
         @include hover-blue;
 
 	}
