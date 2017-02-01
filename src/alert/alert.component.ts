@@ -61,8 +61,6 @@ import {
 		<p>
 			{{alertObj.message}}
 		</p>
-
-
 	</div>
 		`
 })
