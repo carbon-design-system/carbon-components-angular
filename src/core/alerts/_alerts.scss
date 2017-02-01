@@ -6,49 +6,48 @@
 // -------------------------
 @import './alerts.mixins';
 
-
-
 // Base styles
 // -------------------------
 .alert {
 	position: absolute;
 	z-index: 1000;
-	top: 0;
+	top: 0px;
+	left: 0px;
 	width:100%;
 	color: $alert-font-color;
-    padding: $alert-padding;
+	padding: $alert-padding;
 	line-height: $alert-height - 2;
 	height: $alert-height;
-    border:$alert-border-width solid transparent;
+	border:$alert-border-width solid transparent;
 	vertical-align: middle;
 
-    p{
-		float: left;
-        margin:0;
-        @include text-overflow();
-        display: inline-block;
-        max-width: calc(100% - 50px);
-        a{
-            font-weight: 700;
-            color:$alert-font-color;
-        }
-    }
-
-    .close-btn {
-        float: right;
-		cursor: pointer;
-		margin: $alert-close-margin;
-		height: $alert-height;
-		line-height: $alert-height - 2; //subtract border
-
-        & ~ p{
-            max-width: calc(100% - 90px);
-            float:left;
-        }
-		svg{
-			fill:$gray80
+		p {
+			float: left;
+			margin:0;
+			@include text-overflow();
+			display: inline-block;
+			max-width: calc(100% - 50px);
+			a {
+				font-weight: 700;
+				color:$alert-font-color;
+			}
 		}
-    }
+
+		.close-btn {
+			float: right;
+			cursor: pointer;
+			margin: $alert-close-margin;
+			height: $alert-height;
+			line-height: $alert-height - 2; //subtract border
+
+			& ~ p {
+				max-width: calc(100% - 90px);
+				float:left;
+			}
+			svg {
+				fill:$gray80
+			}
+		}
 
 	.alert-icon{
 		width: 30px;
@@ -58,8 +57,6 @@
 		margin-right: 10px;
 		float: left;
 	}
-
-
 }
 
 // Alternate styles
@@ -67,21 +64,17 @@
 // Generate contextual modifier classes for colorizing the alert.
 
 .alert-success {
-    @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+	@include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
 }
 
 .alert-info {
-    @include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+	@include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
 }
 
 .alert-warning {
-    @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+	@include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
 
 }
 .alert-danger {
-  	@include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+	@include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
 }
-
-
-
-
