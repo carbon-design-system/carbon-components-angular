@@ -37,8 +37,7 @@
 
 //nested sub menu items
 	.item-wrapper{
-		border-left: 2px solid $white;
-
+		background: $white;
 		div.item {
 			background: white;
 			font-weight: 600;
@@ -50,8 +49,9 @@
 				display: none;
 			}
 		}
+
         @include hover-blue;
-		
+
 	}
 	.nest-view .open {
 		cdl-nested-view-item {

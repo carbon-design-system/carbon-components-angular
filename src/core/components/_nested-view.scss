@@ -8,9 +8,11 @@
 		margin-left: 0px;
 		
 		.item-wrapper {
+			border-left: 2px solid transparent;
 
-			&:hover, &:focus {
+			&:hover {
 				background: rgba($blue40, 0.10);
+				border-left: 2px solid $blue50;
 			}
 
 			&:focus {
