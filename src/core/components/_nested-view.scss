@@ -8,7 +8,7 @@
 		margin-left: 0px;
 		
 		.item-wrapper {
-			border-left: 2px solid transparent;
+			border-left: 2px solid transparent; // transparent border to prevent shifting
 
 			&:hover {
 				background: rgba($blue40, 0.10);
