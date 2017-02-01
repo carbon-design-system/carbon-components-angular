@@ -37,6 +37,7 @@
 
 //nested sub menu items
 	.item-wrapper{
+		border-left: 2px solid $white;
 
 		div.item {
 			background: white;
@@ -50,7 +51,7 @@
 			}
 		}
         @include hover-blue;
-
+		
 	}
 	.nest-view .open {
 		cdl-nested-view-item {
