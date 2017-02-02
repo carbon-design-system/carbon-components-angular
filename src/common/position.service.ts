@@ -50,18 +50,25 @@ export class Positioning {
 	}
 
 	offset(element: HTMLElement, round = true): ClientRect {
+		let bodyOffsetLeft = 0;
+
 		const elBcr = element.getBoundingClientRect();
+		const body = window.document.querySelector("body");
 		const viewportOffset = {
 			top: window.pageYOffset - document.documentElement.clientTop,
 			left: window.pageXOffset - document.documentElement.clientLeft
 		};
+
+		if (this.getStyle(body, "position") === "relative") {
+			bodyOffsetLeft = body.getBoundingClientRect().left;
+		}
 
 		let elOffset = {
 			height: elBcr.height || element.offsetHeight,
 			width: elBcr.width || element.offsetWidth,
 			top: elBcr.top + viewportOffset.top,
 			bottom: elBcr.bottom + viewportOffset.top,
-			left: elBcr.left + viewportOffset.left,
+			left: elBcr.left + viewportOffset.left - bodyOffsetLeft,
 			right: elBcr.right + viewportOffset.left
 		};
 
@@ -70,7 +77,7 @@ export class Positioning {
 			elOffset.width = Math.round(elOffset.width);
 			elOffset.top = Math.round(elOffset.top);
 			elOffset.bottom = Math.round(elOffset.bottom);
-			elOffset.left = Math.round(elOffset.left);
+			elOffset.left = Math.round(elOffset.left - bodyOffsetLeft);
 			elOffset.right = Math.round(elOffset.right);
 		}
 
