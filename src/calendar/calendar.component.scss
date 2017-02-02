@@ -1,0 +1,40 @@
+@import "../core/colors";
+@import "../core/vars";
+
+.calendar-month {
+	text-align: center;
+	width: 250px;
+}
+
+.calendar {
+	width: 250px;
+	height: 240px;
+	border: solid 1px $blue50;
+	display: inline-block;
+
+	th {
+		color: $blue50;
+		width: 30px;
+		height: 30px;
+		padding-left: 5px;
+	}
+
+	button {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+
+		&.current-date {
+			background: $blue10;
+		}
+
+		&.selected-date {
+			background: $blue50;
+			color: $white;
+		}
+
+		&:hover, &:focus {
+			border-bottom: solid 4px $blue50;
+		}
+	}
+}

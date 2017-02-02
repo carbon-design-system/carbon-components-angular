@@ -12,3 +12,4 @@ export * from "./src/side-nav/side-nav.module";
 export * from "./src/modal/modal.module";
 export * from "./src/alert/alert.module";
 export * from "./src/typeahead/typeahead.module";
+export * from "./src/calendar/calendar.module";
