@@ -27,6 +27,7 @@ import { XLModalComponent } from "./modal_demo/extra-large.component";
 import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
+import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
 
 // component imports
 import {
@@ -43,7 +44,8 @@ import {
 	SideNavModule,
 	ModalModule,
 	AlertModule,
-	AlertService
+	AlertService,
+	CalendarModule
 } from "./../..";
 
 
@@ -69,7 +71,8 @@ import {
 		XLModalComponent,
 		TooltipDemo,
 		AlertDemo,
-		AlertCustom
+		AlertCustom,
+		CalendarDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -93,6 +96,7 @@ import {
 		SideNavModule,
 		ModalModule,
 		AlertModule,
+		CalendarModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -153,6 +157,10 @@ import {
 			{
 				path: "alert",
 				component: AlertDemo
+			},
+			{
+				path: "calendar",
+				component: CalendarDemo
 			}
 		], {
 			useHash: true
