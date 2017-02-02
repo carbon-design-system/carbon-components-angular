@@ -6,7 +6,7 @@
   "scripts": {
     "demo:build": "webpack --config webpack.config.js",
     "demo:server": "webpack-dev-server --config webpack.config.js --watch",
-    "lint": "tslint -e spec.ts src/**/*.ts || true",
+    "lint": "tslint -e spec.ts src/**/*.ts",
     "test": "karma start"
   },
   "files": [
