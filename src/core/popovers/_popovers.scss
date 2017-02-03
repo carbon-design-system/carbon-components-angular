@@ -17,6 +17,13 @@
         .popover-title{
             color:$popover-title-color;
         }
+		.close-icon{
+			float: right;
+			padding: 0;
+			svg{
+				fill:$white;
+			}
+		}
     }
     .popover-content{
         padding: $popover-content-padding

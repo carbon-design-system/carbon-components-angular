@@ -1,3 +1,7 @@
+@import "mixins/utils",
+		"mixins/vendor-prefixes",
+		"mixins/arrows";
+
 //variables
 @import "colors";
 @import "vars";
@@ -5,9 +9,8 @@
 //core styles, normalize
 @import "core";
 
-@import "mixins/utils",
-		"mixins/vendor-prefixes",
-		"mixins/arrows";
+
+@import "type/type";
 
 //etc
 @import "buttons";

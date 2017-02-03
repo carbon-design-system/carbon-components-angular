@@ -7,6 +7,37 @@ $lg: 40px;
 
 
 
+// refactor fonts
+//== Typography
+//
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+
+
+$font-size-base:		em(14);
+
+$font-size-h1:          em(36, 14);
+$font-size-h2:          em(22, 14);
+$font-size-h3:          em(17, 14);
+$font-size-h4:          em(15, 14);
+$font-size-h5:          $font-size-h4;
+$font-size-h6:          em(13, 14);
+
+$line-height-difference: 4; // em
+
+$line-height-h1:		em(36 + $line-height-difference, 36);
+$line-height-h2:		em(22 + $line-height-difference, 22);
+$line-height-h3:		em(17 + $line-height-difference, 17);
+$line-height-h4:		em(15 + $line-height-difference, 15);
+$line-height-h5:		$line-height-h4;
+$line-height-h6:	    em(13 + $line-height-difference, 13);
+
+$line-height-base:      em(16 + $line-height-difference);
+
+
+
+
 
 
 //== Alerts
@@ -76,6 +107,8 @@ $tooltip-max-width: 200px;
 $tooltip-min-width: 146px;
 
 $tooltip-highlight-border-width:	4px;
+
+
 
 
 
