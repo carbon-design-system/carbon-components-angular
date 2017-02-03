@@ -17,14 +17,16 @@ import { PopoverDirective } from "./popover.directive";
 export class TooltipDirective extends PopoverDirective {
 	@Input() cdlTooltip: string | TemplateRef<any>;
 
+
 	constructor(private _elementRef: ElementRef, private _injector: Injector,
 			_componentFactoryResolver: ComponentFactoryResolver, private _viewContainerRef: ViewContainerRef) {
 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
 	}
 
-	open() {
-		this.cdlPopover = this.cdlTooltip;
-		this.isTooltip = true;
-		super.open();
+	ngOnInit() {
+		super.ngOnInit();
+
+		this.popoverConfig.isTooltip = true;
+		this.popoverConfig.content = this.cdlTooltip;
 	}
 }

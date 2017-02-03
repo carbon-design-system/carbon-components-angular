@@ -28,6 +28,7 @@ import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
+import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
 
 // component imports
 import {
@@ -45,7 +46,8 @@ import {
 	ModalModule,
 	AlertModule,
 	AlertService,
-	CalendarModule
+	CalendarModule,
+	DatepickerModule
 } from "./../..";
 
 
@@ -72,7 +74,8 @@ import {
 		TooltipDemo,
 		AlertDemo,
 		AlertCustom,
-		CalendarDemo
+		CalendarDemo,
+		DatepickerDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -97,6 +100,7 @@ import {
 		ModalModule,
 		AlertModule,
 		CalendarModule,
+		DatepickerModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -161,6 +165,10 @@ import {
 			{
 				path: "calendar",
 				component: CalendarDemo
+			},
+			{
+				path: "datepicker",
+				component: DatepickerDemo
 			}
 		], {
 			useHash: true

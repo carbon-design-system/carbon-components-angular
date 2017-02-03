@@ -21,12 +21,12 @@ export class EllipsisTooltipDirective extends PopoverDirective {
 		this.isTooltip = true;
 	}
 
-	open() {
+	toggle() {
 		if (this._elementRef.nativeElement.scrollWidth <= this._elementRef.nativeElement.offsetWidth) {
 			return;
 		}
 
-		this.cdlPopover = this._elementRef.nativeElement.innerText;
-		super.open();
+		this.popoverConfig.content = this._elementRef.nativeElement.innerText;
+		super.toggle();
 	}
 }
