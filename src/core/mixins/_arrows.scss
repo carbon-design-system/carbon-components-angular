@@ -1,0 +1,22 @@
+@mixin arrow($width, $height, $color, $box-shadow){
+
+      width: $width;
+      height: $height;
+      position: absolute;
+      overflow: hidden;
+      box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.5);
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: $width;
+        height: $width;
+        background-color:$color;
+        transform: rotate(45deg);
+        top: - ($width + $height)/2;
+        left: 0;
+        box-shadow: $box-shadow;
+    }
+
+}
+

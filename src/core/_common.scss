@@ -5,7 +5,9 @@
 //core styles, normalize
 @import "core";
 
-@import "mixins/utils";
+@import "mixins/utils",
+		"mixins/vendor-prefixes",
+		"mixins/arrows";
 
 //etc
 @import "buttons";
@@ -13,8 +15,9 @@
 
 //components
 @import "components/list-view";
-@import "components/nested-view";
-@import "alerts/alerts";
+@import "components/nested-view",
+		"alerts/alerts",
+		"popovers/popovers";
 
 
 

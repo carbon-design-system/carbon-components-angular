@@ -6,6 +6,9 @@ $lg: 40px;
 
 
 
+
+
+
 //== Alerts
 //
 //## Define alert colors, border radius, and padding.
@@ -40,5 +43,40 @@ $alert-danger-bg:             mix($red10, $white, 25%);
 $alert-danger-text:           $alert-font-color;
 $alert-danger-border:         $red50;
 $alert-danger-icon:           $red50;
+
+
+
+
+//** Box shadow value for modals, popovers, dropdowns, tooltips, etc.
+$default-box-shadow:	          0 0 10px rgba($black, 0.16);
+$default-box-shadow-overlayed:    0 0 10px rgba($black, 0.08); // for arrows
+
+
+
+//== Popovers
+//
+//## Define
+
+$popover-header-padding: 	15px 20px;
+$popover-header-height: 	45px;
+$popover-header-bg: 		$blue50;// $blue50
+$popover-title-color: 		$white;
+
+$popover-content-padding: 	30px 20px;
+$popover-arrow-width:		20px;
+$popover-arrow-height:		10px;
+
+//== tooltips
+//
+//## Define
+
+$tooltip-padding: 	11px 16px;
+$tooltip-border: 	1px solid  $gray10;
+$tooltip-max-width: 200px;
+$tooltip-min-width: 146px;
+
+$tooltip-highlight-border-width:	4px;
+
+
 
 
