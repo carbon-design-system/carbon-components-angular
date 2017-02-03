@@ -1,5 +1,4 @@
 
-
 .popover-wrapper{
 	position: absolute;
 	z-index:1000;
@@ -16,6 +15,10 @@
         background-color:$popover-header-bg;
         .popover-title{
             color:$popover-title-color;
+			margin:0;
+			float: left;
+			max-width: calc(100% - 30px); // ask Nicole
+			@include text-overflow(); // ask Nicole
         }
 		.close-icon{
 			float: right;
@@ -26,7 +29,8 @@
 		}
     }
     .popover-content{
-        padding: $popover-content-padding
+        padding: $popover-content-padding;
+		overflow: auto;
     }
 
     .arrow{
@@ -58,7 +62,6 @@
       .popover-header ~ .arrow{
         top:60px;
       }
-
     }
     &.right {
       .arrow{
@@ -80,6 +83,7 @@
          border: $tooltip-border;
          padding: $tooltip-padding;
        }
+
        .arrow::after{
          border:$tooltip-border;
        }
@@ -140,6 +144,19 @@
             margin-left: 1px;
           }
         }
+
+
+		&.click{
+		   .popover-content{
+			   padding-right: 30px;
+			   .close-icon{
+				   position: absolute;
+				   padding:10px;
+				   top: 0;
+				   right: 0;
+			   }
+		   }
+	   }
 
     }
 }
