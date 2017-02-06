@@ -13,3 +13,4 @@ export * from "./src/modal/modal.module";
 export * from "./src/alert/alert.module";
 export * from "./src/typeahead/typeahead.module";
 export * from "./src/calendar/calendar.module";
+export * from "./src/datepicker/datepicker.module";

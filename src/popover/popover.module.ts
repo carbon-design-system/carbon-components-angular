@@ -6,12 +6,13 @@ import { PopoverDirective } from "./popover.directive";
 import { TooltipDirective } from "./tooltip.directive";
 import { EllipsisTooltipDirective } from "./ellipsis-tooltip.directive";
 import { Popover } from "./popover.component";
+import { PopoverService } from "./popover.service";
 
 export { PopoverDirective } from "./popover.directive";
 export { TooltipDirective } from "./tooltip.directive";
 export { EllipsisTooltipDirective } from "./ellipsis-tooltip.directive";
 export { Popover } from "./popover.component";
-
+export { PopoverService } from "./popover.service";
 
 @NgModule({
 	declarations: [

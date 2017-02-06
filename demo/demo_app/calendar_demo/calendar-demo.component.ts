@@ -11,6 +11,8 @@ export class CalendarDemo {
 
 	counter = this.date.getMonth();
 
+	selected = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() + 1);
+
 	changeDate() {
 		if (this.counter < 11) {
 			this.counter++;

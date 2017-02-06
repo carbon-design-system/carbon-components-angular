@@ -85,6 +85,11 @@ export class AppComponent implements OnInit {
 			content: "Calendar Demo",
 			link: "/calendar",
 			selected: false
+		},
+		{
+			content: "Datepicker Demo",
+			link: "/datepicker",
+			selected: false
 		}
 	];
 	private filteredItems = this.navItems;

@@ -12,6 +12,7 @@ import { KeyCodes } from "../constant/keys";
 
 @Component({
 	selector: "cdl-calendar",
+	exportAs: "cdlCalendar",
 	template: `
 		<div *ngIf="showYear" class="calendar-month"><h2>{{year}}</h2></div>
 		<div *ngIf="showMonth" class="calendar-month"><h3>{{months[month]}}</h3></div>
@@ -24,7 +25,12 @@ import { KeyCodes } from "../constant/keys";
 					<td *ngFor="let column of columns; let columnIndex = index;">
 						<button
 						(keydown)="onKeyDown($event, columnIndex + rowIndex*7)"
-						[class.current-date]="currentMonth === month && currentDay === (columnIndex + rowIndex*7 - firstDay + 1)"
+						[class.current-date]="currentMonth === month
+						&& currentDay === (columnIndex + rowIndex*7 - firstDay + 1)
+						&& currentYear === year"
+						[class.selected-date]="selectedDateDay === (columnIndex + rowIndex*7 - firstDay + 1)
+						&& selectedDateMonth === month
+						&& selectedDateYear === year"
 						[hidden]="(columnIndex + rowIndex*7 - firstDay) < 0 || (columnIndex + rowIndex*7 - firstDay + 1) > numberOfDays"
 						(click)="select($event, columnIndex + rowIndex*7 - firstDay + 1)">
 							{{columnIndex + rowIndex*7 - firstDay + 1}}
@@ -38,6 +44,7 @@ import { KeyCodes } from "../constant/keys";
 })
 export class Calendar {
 	@Input() date: Date = new Date();
+	@Input() selectedDate: Date;
 	@Input() showMonth: boolean = true;
 	@Input() showYear: boolean = true;
 	@Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
@@ -71,6 +78,7 @@ export class Calendar {
 	private today = new Date();
 	private currentMonth = this.today.getMonth();
 	private currentDay = this.today.getDate();
+	private currentYear = this.today.getFullYear();
 	private month;
 	private year;
 	private numberOfDays;
@@ -81,11 +89,22 @@ export class Calendar {
 	private currentSelectedMonth;
 	private currentSelectedYear;
 	private allButtons;
+	private selectedDateDay;
+	private selectedDateMonth;
+	private selectedDateYear;
 
 	constructor(private elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
 		this.allButtons = this.elementRef.nativeElement.querySelectorAll("button");
+	}
+
+	ngOnInit() {
+		if (this.selectedDate) {
+			this.selectedDateDay = this.selectedDate.getDate();
+			this.selectedDateMonth = this.selectedDate.getMonth();
+			this.selectedDateYear = this.selectedDate.getFullYear();
+		}
 	}
 
 	updateCalendar() {
@@ -99,7 +118,7 @@ export class Calendar {
 		if (this.currentSelectedDate && this.currentSelectedMonth === this.month && this.currentSelectedYear === this.year) {
 			this.currentSelectedDate.classList.add("selected-date");
 		} else if (this.currentSelectedDate) {
-			this.currentSelectedDate.classList.remove("selected-date");
+			this.clearSelectedDate();
 		}
 	}
 
@@ -113,6 +132,7 @@ export class Calendar {
 
 	select(evt, date) {
 		let selectedDate;
+		this.selectedDateDay = null;
 
 		if (!evt.target.classList.contains("selected-date")) {
 			if (this.currentSelectedDate) {
@@ -126,10 +146,7 @@ export class Calendar {
 
 			selectedDate = new Date(this.year, this.month, date);
 		} else {
-			this.currentSelectedDate.classList.remove("selected-date");
-			this.currentSelectedDate = null;
-			this.currentSelectedMonth = null;
-			this.currentSelectedYear = null;
+			this.clearSelectedDate();
 			selectedDate = null;
 		}
 
@@ -149,6 +166,15 @@ export class Calendar {
 		} else if (evt.keyCode === KeyCodes.DOWN_ARROW && this.allButtons[idx + 7]) {
 			evt.preventDefault();
 			this.allButtons[idx + 7].focus();
+		}
+	}
+
+	clearSelectedDate() {
+		if (this.currentSelectedDate) {
+			this.currentSelectedDate.classList.remove("selected-date");
+			this.currentSelectedDate = null;
+			this.currentSelectedMonth = null;
+			this.currentSelectedYear = null;
 		}
 	}
 

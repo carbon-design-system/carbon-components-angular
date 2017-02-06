@@ -1,0 +1,50 @@
+@import "../core/colors";
+@import "../core/vars";
+
+.date-picker-popover {
+	min-width: 550px;
+	position: absolute;
+}
+
+.date-picker {
+	width: 550px;
+	border: solid 1px $gray10;
+
+	.date-picker-year {
+		text-align: center;
+	}
+
+	.date-picker-icon {
+		display: inline-block;
+		cursor: pointer;
+
+		&:focus {
+			outline: solid 1px $blue50;
+		}
+
+		&.prev-month {
+			position: absolute;
+			left: 0px;
+			top: 20px;
+		}
+
+		&.next-month {
+			position: absolute;
+			right: 0px;
+			top: 20px;
+		}
+	}
+
+	.month-arrows {
+		position: relative;
+	}
+
+	.first, .second {
+		display: inline-block;
+	}
+
+	.second {
+		margin-left: 40px;
+	}
+}
+

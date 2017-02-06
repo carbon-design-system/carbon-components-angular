@@ -14,6 +14,7 @@ import {
 	HostListener
 } from "@angular/core";
 import { Popover } from "./popover.component";
+import { PopoverService } from "./popover.service";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
@@ -24,10 +25,8 @@ import "rxjs/add/observable/fromEvent";
 	exportAs: "cdlPopover"
 })
 export class PopoverDirective implements OnInit {
-	private isOpen: boolean = false;
-	private componentFactory: ComponentFactory<Popover>;
-	private onClose: EventEmitter<any> = new EventEmitter();
-	private popoverRef: ComponentRef<Popover>;
+	popoverService: PopoverService;
+	popoverConfig: any;
 
 	@Input() title: string;
 	@Input() cdlPopover: string | TemplateRef<any>;
@@ -50,57 +49,37 @@ export class PopoverDirective implements OnInit {
 
 	constructor(private elementRef: ElementRef, private injector: Injector,
 			componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {
-		this.componentFactory = componentFactoryResolver.resolveComponentFactory(Popover);
+
+		this.popoverService = new PopoverService(Popover, viewContainerRef, componentFactoryResolver, injector);
 	}
 
 	ngOnInit() {
+		this.popoverConfig = {
+			title: this.title,
+			content: this.cdlPopover,
+			placement: this.placement,
+			elementRef: this.elementRef,
+			gap: this.gap,
+			trigger: this.trigger,
+			appendToBody: this.appendToBody,
+			type: this.type,
+			isTooltip: this.isTooltip
+		};
+
 		Observable.fromEvent(this.elementRef.nativeElement, this.trigger).subscribe(evt => {
 			this.toggle();
 		});
 
 		if (this.trigger === "mouseenter") {
-			Observable.fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.close());
+			Observable.fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.popoverService.close());
 		}
 	}
 
 	toggle() {
-		if (this.isOpen) {
-			this.close();
-		} else {
-			this.open();
-		}
-	}
-
-	open() {
-		if (!this.popoverRef) {
-			this.popoverRef = this.viewContainerRef.createComponent(this.componentFactory, 0, this.injector);
-			this.popoverRef.instance.content = this.cdlPopover;
-			this.popoverRef.instance.title = this.title;
-			this.popoverRef.instance.placement = this.placement;
-			this.popoverRef.instance.parentRef = this.elementRef;
-			this.popoverRef.instance.isTooltip = this.isTooltip;
-			this.popoverRef.instance.gap = this.gap;
-			this.popoverRef.instance.type = this.type;
-			this.popoverRef.instance.trigger = this.trigger;
-			this.popoverRef.instance.appendToBody = this.appendToBody;
-			this.onClose = this.popoverRef.instance.close;
-			this.isOpen = true;
-
-			if (this.appendToBody) {
-				window.document.querySelector("body").appendChild(this.popoverRef.location.nativeElement);
-			}
-
-			this.onClose.subscribe(() => {
-				this.close();
-			});
-		}
+		this.popoverService.toggle(this.popoverConfig);
 	}
 
 	close() {
-		if (this.popoverRef) {
-			this.viewContainerRef.remove(this.viewContainerRef.indexOf(this.popoverRef.hostView));
-			this.popoverRef = null;
-			this.isOpen = false;
-		}
+		this.popoverService.close();
 	}
 }
