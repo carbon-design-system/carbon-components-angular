@@ -37,12 +37,15 @@
 				position: absolute;
 				top: ($el-size - $selected-height) / 2;
 				left: ($el-size - $selected-width) / 2;
+				border-color: $blue50;
+				border-style: solid;
+
 				@if $type == radio {
-					background-color: $blue50;
 					border-radius:$el-brd-radius;
+					border-width:6px;
 				}@else if $type == checkbox{
 					top: 5px;
-					border: 2px solid $blue50;
+					border-width: 2px;
 					border-top: none;
 					border-right: none;
 					transform: rotate(-45deg);
@@ -91,8 +94,15 @@
 				 &:after {
 					width:$el-selected-sm-width;
 					height:$el-selected-sm-height;
-					top: 6px;
+
 					left: 3px;
+					@if $type == radio{
+						border-width:5px;
+						top: 3.5px;
+					} @else{
+						top:5px;
+					}
+
 				 }
 			}
 		}
