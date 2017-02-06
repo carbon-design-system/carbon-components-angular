@@ -58,7 +58,7 @@ export class PopoverDirective implements OnInit {
 			title: this.title,
 			content: this.cdlPopover,
 			placement: this.placement,
-			elementRef: this.elementRef,
+			parentRef: this.elementRef,
 			gap: this.gap,
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
