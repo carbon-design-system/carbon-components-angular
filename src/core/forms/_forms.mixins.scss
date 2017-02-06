@@ -1,0 +1,138 @@
+//
+// Mixin for Checkbox and Radio
+// --------------------------------------------------
+
+
+@mixin radio-checkbox($type, $el-size, $el-brd-radius , $label-margin, $selected-width,
+					  $selected-height, $el-sm-width, $el-sm-height, $el-selected-sm-width,
+					  $el-selected-sm-height){
+	max-width: 100%;
+	height: $el-size;
+	position: relative;
+	display: block;
+	margin-bottom:10px;
+	label {
+	    display: block;
+	    span {
+		    height: $el-size;
+		    cursor: pointer;
+		    display: inline-block;
+			position: relative;
+			top:0;
+			left:0;
+		    &:before {
+		    	content: '';
+			    width: $el-size;
+			    margin-right: $label-margin;
+			    display: inline-block;
+			    height: $el-size;
+			    border: 1px solid $gray50;
+			    vertical-align: middle;
+                border-radius: $el-brd-radius;
+		    }
+		    &:after {
+				content: '';
+				width: $selected-width;
+				height: $selected-height;
+				position: absolute;
+				top: ($el-size - $selected-height) / 2;
+				left: ($el-size - $selected-width) / 2;
+				@if $type == radio {
+					background-color: $blue50;
+					border-radius:$el-brd-radius;
+				}@else if $type == checkbox{
+					top: 5px;
+					border: 2px solid $blue50;
+					border-top: none;
+					border-right: none;
+					transform: rotate(-45deg);
+				}
+				opacity: 0;
+			}
+
+		    &:hover:before {
+				border-color:$blue50;
+		    }
+		}
+	}
+	input[type=#{$type}] {
+		opacity: 0;
+	    height: $el-size;
+	    min-width: 0;
+	    position: absolute;
+	    &:checked
+		{
+	    	+ span:after {
+	    		opacity: 1;
+	    	}
+
+		}
+		&:disabled{
+			+ span{
+				color:$gray20;
+				cursor: not-allowed;
+				&:before{
+					border-color:$gray20;
+				}
+				&:after{
+					background-color:$gray20;
+				}
+			}
+		}
+	}
+	.size-sm & , &.size-sm  {
+		label {
+			span{
+				height: $el-sm-height;
+				 &:before {
+					 width:$el-sm-width;
+					 height:$el-sm-height;
+				 }
+				 &:after {
+					width:$el-selected-sm-width;
+					height:$el-selected-sm-height;
+					top: 6px;
+					left: 3px;
+				 }
+			}
+		}
+	}
+	.theme-dark & {
+		label {
+			span{
+				 &:before {
+					 border-color:$white;
+				 }
+				 &:after {
+					@if $type == radio {
+						background-color:$blue20;
+					} @else if $type == checkbox{
+						border-color:$blue20;
+					}
+				 }
+				  &:hover:before {
+					border-color:$blue20;
+				}
+			}
+			input[type=#{$type}]{
+				&:disabled{
+					& + span{
+						&:before{
+							border-color:$gray20;
+						}
+						&:after{
+							@if $type == radio {
+								background-color:$gray20;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.layout-inline & {
+		 display: inline-block;
+		 margin-right: 10px
+	}
+}

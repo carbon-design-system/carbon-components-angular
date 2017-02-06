@@ -1,0 +1,22 @@
+//
+// Checbox
+// --------------------------------------------------
+
+
+// Mixins
+// -------------------------
+@import './forms.mixins';
+
+// checkbox
+.checkbox{
+	@include radio-checkbox($checkbox-type,
+							$checkbox-size,
+							$checkbox-border-radius,
+							$radio-label-margin,
+							$checkbox-selected-width,
+							$checkbox-selected-height,
+							$checkbox-sm-width,
+							$checkbox-sm-height,
+							$checkbox-selected-sm-width,
+							$checkbox-selected-sm-height);
+}

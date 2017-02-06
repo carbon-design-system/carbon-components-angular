@@ -13,8 +13,6 @@ $lg: 40px;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-
-
 $font-size-base:		em(14);
 
 $font-size-h1:          em(36, 14);
@@ -34,10 +32,6 @@ $line-height-h5:		$line-height-h4;
 $line-height-h6:	    em(13 + $line-height-difference, 13);
 
 $line-height-base:      em(16 + $line-height-difference);
-
-
-
-
 
 
 //== Alerts
@@ -83,7 +77,6 @@ $default-box-shadow:	          0 0 10px rgba($black, 0.16);
 $default-box-shadow-overlayed:    0 0 10px rgba($black, 0.08); // for arrows
 
 
-
 //== Popovers
 //
 //## Define
@@ -109,7 +102,39 @@ $tooltip-min-width: 146px;
 $tooltip-highlight-border-width:	4px;
 
 
+//== Radio
+//
+//## Define Radio colors, border radius, and padding.
+
+$radio-type:            radio;
+$radio-label-margin:    10px;
+$radio-size:            20px;
+$radio-border-radius:   20px;
+$radio-selected-width:  12px;
+$radio-selected-height: $radio-selected-width;
+
+// small radio
+$radio-sm-width:           15px;
+$radio-sm-height:          $radio-sm-width;
+$radio-selected-sm-width:  9px;
+$radio-selected-sm-height: $radio-selected-sm-width;
 
 
+//== Checkbox
+//
+//## Define checkbox colors, border radius, and padding.
+
+$checkbox-type:            checkbox;
+$checkbox-label-margin:    10px;
+$checkbox-size:            20px;
+$checkbox-border-radius:   0px;
+$checkbox-selected-width:  12px;
+$checkbox-selected-height: 6px;
+
+// small checkbox
+$checkbox-sm-width:           15px;
+$checkbox-sm-height:          15px;
+$checkbox-selected-sm-width:  10px;
+$checkbox-selected-sm-height: 5px;
 
 
