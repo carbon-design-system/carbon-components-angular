@@ -72,6 +72,8 @@ export class PopoverDirective implements OnInit {
 
 		if (this.trigger === "mouseenter") {
 			Observable.fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.popoverService.close());
+			Observable.fromEvent(this.elementRef.nativeElement, "keyup").subscribe(() => this.popoverService.open(this.popoverConfig) );
+			Observable.fromEvent(this.elementRef.nativeElement, "keydown").subscribe(() => this.popoverService.close() );
 		}
 	}
 
