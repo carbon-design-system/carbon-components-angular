@@ -18,7 +18,8 @@ import { positionElements } from "../common/position.service";
 @Component({
 	selector: "cdl-popover",
 	template: `
-		<div class="popover {{popoverConfig.placement}} {{popoverConfig.type}} {{popoverConfig.trigger}}" [class.tooltip]="popoverConfig.isTooltip">
+		<div class="popover {{popoverConfig.placement}} {{popoverConfig.type}}
+		{{popoverConfig.trigger}}" [class.tooltip]="popoverConfig.isTooltip">
 			<div *ngIf="!popoverConfig.isTooltip" class="popover-header">
 				<h4 class="popover-title">{{popoverConfig.title}}</h4>
 				<button *ngIf="popoverConfig.trigger==='click'" class="close-icon"  (click)="onClose()" aria-label="Close popover">
@@ -34,7 +35,11 @@ import { positionElements } from "../common/position.service";
 				</template>
 				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
 
-				<button *ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'" class="close-icon"  (click)="onClose()" aria-label="Close Tooltip">
+				<button
+				*ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'"
+				class="close-icon"
+				(click)="onClose()"
+				aria-label="Close Tooltip">
 					<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
 					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
 					</svg>

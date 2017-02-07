@@ -43,7 +43,6 @@ export class PopoverService {
 			this.popoverRef.instance.popoverConfig = popOverConfig;
 			this.onClose = this.popoverRef.instance.close;
 			this.isOpen = true;
-
 			if (popOverConfig.appendToBody) {
 				window.document.querySelector("body").appendChild(this.popoverRef.location.nativeElement);
 			}
@@ -54,8 +53,8 @@ export class PopoverService {
 		}
 	}
 
-	close(evt = null) {
-		if (evt) {
+	close(evt?) {
+		if (evt !== undefined) {
 			this.isClosed.emit(evt);
 		}
 

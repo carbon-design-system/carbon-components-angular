@@ -1,9 +1,41 @@
 <h1>Date picker</h1>
-
-<div style="display: inline-block; position: relative">
-<input type="text" [(ngModel)]="cdlDatepicker.selectedDate" /><button class="btn" cdlDatepicker placement="bottom" #cdlDatepicker="cdlDatepicker"><cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon></button>
+<br/>
+Selected date: {{selectedDate1}}
+<br/>
+Valid Date: {{validDate1}}
+<div style="position: relative">
+  <input type="text"
+    [(ngModel)]="date1"
+    cdlDatepicker
+    placement="bottom"
+    #cdlDatepicker="cdlDatepicker"
+    [(selectedDate)]="selectedDate1"
+    [(validDate)]="validDate1"
+  />
+  <button class="btn" (click)="cdlDatepicker.toggle($event)">
+    <span style="pointer-events: none; display: inline-block">
+      <cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon>
+    </span>
+  </button>
 </div>
 
-<div style="display: inline-block; position: relative">
-<input type="text" [(ngModel)]="cdlDatepicker2.selectedDate" /><button class="btn" cdlDatepicker placement="top" #cdlDatepicker2="cdlDatepicker"><cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon></button>
+<br/>
+Selected date: {{selectedDate}}
+<br/>
+Valid Date: {{validDate}}
+<div style="position: relative">
+  <input type="text"
+    cdlDatepicker
+    placement="left"
+    [(ngModel)]="date2"
+    format="dd/mm/yy"
+    [(selectedDate)]="selectedDate"
+    [(validDate)]="validDate"
+    #cdlDatepicker2="cdlDatepicker"
+  />
+  <button class="btn" (click)="cdlDatepicker2.toggle($event)">
+    <span style="pointer-events: none; display: inline-block">
+      <cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon>
+    </span>
+  </button>
 </div>

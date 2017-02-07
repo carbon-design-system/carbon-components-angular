@@ -60,8 +60,7 @@ import {
 			</cdl-calendar>
 		</div>
 	 </div>
-		`,
-	styleUrls: ["./datepicker.component.scss"],
+		`
 })
 export class Datepicker {
 	private date;
@@ -76,6 +75,14 @@ export class Datepicker {
 		this.year = this.date.getFullYear();
 
 		this.getNextMonth();
+	}
+
+	ngOnInit() {
+		if (this.selectedDate) {
+			this.date = this.selectedDate;
+			this.year = this.date.getFullYear();
+			this.getNextMonth();
+		}
 	}
 
 	goPrevMonth() {
