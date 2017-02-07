@@ -6,5 +6,6 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class DatepickerDemo {
-
+  date1 = "";
+  selectedDate = "";
 }

@@ -40,18 +40,9 @@ export class PopoverService {
 	open(popOverConfig) {
 		if (!this.popoverRef) {
 			this.popoverRef = this.viewContainerRef.createComponent(this.componentFactory, 0, this.injector);
-			this.popoverRef.instance.content = popOverConfig.content;
-			this.popoverRef.instance.title = popOverConfig.title;
-			this.popoverRef.instance.placement = popOverConfig.placement;
-			this.popoverRef.instance.parentRef = popOverConfig.elementRef;
-			this.popoverRef.instance.isTooltip = popOverConfig.isTooltip;
-			this.popoverRef.instance.gap = popOverConfig.gap;
-			this.popoverRef.instance.type = popOverConfig.type;
-			this.popoverRef.instance.trigger = popOverConfig.trigger;
-			this.popoverRef.instance.appendToBody = popOverConfig.appendToBody;
+			this.popoverRef.instance.popoverConfig = popOverConfig;
 			this.onClose = this.popoverRef.instance.close;
 			this.isOpen = true;
-
 			if (popOverConfig.appendToBody) {
 				window.document.querySelector("body").appendChild(this.popoverRef.location.nativeElement);
 			}
@@ -62,8 +53,8 @@ export class PopoverService {
 		}
 	}
 
-	close(evt = null) {
-		if (evt) {
+	close(evt?) {
+		if (evt !== undefined) {
 			this.isClosed.emit(evt);
 		}
 

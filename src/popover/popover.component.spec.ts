@@ -21,9 +21,13 @@ describe("Popover component", () => {
 		let element = createElement(200, 300, 100, 150);
 		const fixture = TestBed.createComponent(Popover);
 
-		fixture.componentInstance.content = "test";
-		fixture.componentInstance.trigger = "click";
-		fixture.componentInstance.parentRef = new ElementRef(element);
+		fixture.componentInstance.popoverConfig = {
+			content: "test",
+			trigger: "click",
+			placement: "auto",
+			parentRef: new ElementRef(element)
+		};
+
 		fixture.detectChanges();
 
 		spyOn(fixture.componentInstance.close, "emit");
@@ -38,9 +42,13 @@ describe("Popover component", () => {
 	it("should add proper class according to placement", () => {
 		const fixture = TestBed.createComponent(Popover);
 		let element = createElement(200, 300, 100, 150);
-		fixture.componentInstance.content = "test";
-		fixture.componentInstance.parentRef = new ElementRef(element);
-		fixture.componentInstance.placement = "left";
+
+		fixture.componentInstance.popoverConfig = {
+			content: "test",
+			trigger: "click",
+			placement: "left",
+			parentRef: new ElementRef(element)
+		};
 
 		fixture.detectChanges();
 

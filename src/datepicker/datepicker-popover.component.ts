@@ -2,9 +2,11 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ElementRef
 } from "@angular/core";
 import { DatepickerService } from "./datepicker.service";
+import { positionElements } from "../common/position.service";
 
 @Component({
 	selector: "cdl-date-picker-popover",
@@ -23,15 +25,27 @@ import { DatepickerService } from "./datepicker.service";
 			</div>
 		</div>
 		`,
-	styleUrls: ["./datepicker.component.scss"]
+	host: {"class": "date-picker-wrapper"}
 })
 export class DatepickerPopover {
 	selectedDate;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
+	@Input() popoverConfig;
 
-	constructor(private datepickerService: DatepickerService) {
+	constructor(private datepickerService: DatepickerService, private elementRef: ElementRef) {
 		this.selectedDate = this.datepickerService.getSelectedDate();
+	}
+
+	ngAfterViewInit() {
+		positionElements(
+			this.popoverConfig.parentRef.nativeElement,
+			this.elementRef.nativeElement,
+			this.popoverConfig.placement,
+			this.popoverConfig.appendToBody,
+			10,
+			undefined
+		);
 	}
 
 	private onClose() {
