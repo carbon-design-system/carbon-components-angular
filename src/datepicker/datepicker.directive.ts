@@ -38,7 +38,7 @@ export class DatepickerDirective implements OnInit {
 	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
 	@Input() appendToBody: boolean = false;
 	@Input() format: any = "yyyy/mm/dd";
-	@Input() selectedDate;
+	@Input() selectedDate: Date;
 	@Input() validDate: boolean;
 
 	@Output() ngModelChange = new EventEmitter();
