@@ -23,6 +23,7 @@ import { positionElements } from "../common/position.service";
 			<div>
 				<cdl-date-picker [selectedDate]="selectedDate" (onSelectDate)="onSelect($event)"></cdl-date-picker>
 			</div>
+			<div class="arrow" aria-hidden="true"></div>
 		</div>
 		`,
 	host: {"class": "date-picker-wrapper"}
@@ -38,13 +39,15 @@ export class DatepickerPopover {
 	}
 
 	ngAfterViewInit() {
+		this.elementRef.nativeElement.querySelector("button").focus();
+
 		positionElements(
 			this.popoverConfig.parentRef.nativeElement,
 			this.elementRef.nativeElement,
 			this.popoverConfig.placement,
 			this.popoverConfig.appendToBody,
 			10,
-			undefined
+			50
 		);
 	}
 
