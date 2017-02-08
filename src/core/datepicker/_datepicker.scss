@@ -2,18 +2,15 @@
   position: absolute;
   z-index: 1000;
   width: 550px;
-  // display: inline-block;
 }
 
 .date-picker-popover {
   min-width: 550px;
   position: relative;
-  // z-index: 10001;
 }
 
 .date-picker {
   width: 550px;
-  border: solid 1px $gray10;
 
   .date-picker-year {
     text-align: center;
