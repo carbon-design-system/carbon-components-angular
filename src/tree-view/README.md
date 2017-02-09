@@ -1,7 +1,7 @@
-# Nested View
+# Tree View
 
-class: NestedView (implements View)  
-selector: `cdl-nested-view`  
+class: TreeView (implements View)
+selector: `cdl-tree-view`
 
 | @Input  | Type                       | Default Value |
 | ------- | -------------------------- | ------------- |

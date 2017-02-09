@@ -5,7 +5,7 @@ export * from "./src/tabs/tabs.module";
 export * from "./src/combo-box/combo-box.module";
 export * from "./src/tree-view/tree-view.module";
 export * from "./src/list-view/list-view.module";
-export * from "./src/nested-view/nested-view.module";
+// export * from "./src/nested-view/nested-view.module";
 export * from "./src/dropdown/dropdown.module";
 export * from "./src/top-nav/top-nav.module";
 export * from "./src/side-nav/side-nav.module";

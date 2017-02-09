@@ -1,0 +1,8 @@
+<h1>Tree View Demo</h1>
+<template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</template>
+
+<h3>Default tree view</h3>
+<cdl-tree-view [items]="demoItems" (select)="onSelect($event)"></cdl-tree-view>
+
+<h3>Tree view with custom template (Added Icon)</h3>
+<cdl-tree-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl"></cdl-tree-view>

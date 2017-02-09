@@ -6,11 +6,11 @@ import {
 	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { NestedView } from "./nested-view.component";
+import { TreeView } from "./tree-view.component";
 import { KeyCodes } from "../constant/keys";
 
 @Component({
-	selector: "cdl-nested-view-item",
+	selector: "cdl-tree-view-item",
 	template: `
 	<li>
 		<div
@@ -52,7 +52,7 @@ import { KeyCodes } from "../constant/keys";
 				</span>
 			</div>
 		</div>
-		<cdl-nested-view
+		<cdl-tree-view
 			*ngIf="!!listItem.subMenu"
 			[isOpen]="listItem.selected"
 			[items]="listItem.subMenu"
@@ -60,11 +60,11 @@ import { KeyCodes } from "../constant/keys";
 			[listTpl]="listTpl"
 			[parent]="parent"
 			[indent]="indent+1">
-		</cdl-nested-view>
+		</cdl-tree-view>
 	</li>
 	`
 })
-export class NestedViewItem {
+export class TreeViewItem {
 	private parent;
 	private isTpl: boolean = false;
 
@@ -107,7 +107,7 @@ export class NestedViewItem {
 			ev.preventDefault();
 
 			if (this._elementRef.nativeElement.previousElementSibling) {
-				let items = this._elementRef.nativeElement.previousElementSibling.querySelectorAll("ul.open > cdl-nested-view-item");
+				let items = this._elementRef.nativeElement.previousElementSibling.querySelectorAll("ul.open > cdl-tree-view-item");
 				if (items.length > 0) {
 					items[items.length - 1].querySelector("[tabindex='0']").focus();
 				} else {
@@ -133,7 +133,7 @@ export class NestedViewItem {
 					}
 				}
 			} else if (item.subMenu && item.selected) {
-				this._elementRef.nativeElement.querySelector("ul cdl-nested-view-item").querySelector("[tabindex='0']").focus();
+				this._elementRef.nativeElement.querySelector("ul cdl-tree-view-item").querySelector("[tabindex='0']").focus();
 			}
 		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
 			ev.preventDefault();
