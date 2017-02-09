@@ -7,31 +7,29 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { View } from "../common/view.class";
-import { TreeViewItem } from "./tree-view-item.component";
+import { SubMenuViewItem } from "./sub-menu-view-item.component";
 
 @Component({
-	selector: "cdl-tree-view",
+	selector: "cdl-sub-menu-view",
 	template: `
-		<ul class="tree-view" [class.open]="isOpen">
-			<cdl-tree-view-item
+		<ul class="sub-menu-view" [class.open]="isOpen">
+			<cdl-sub-menu-view-item
 				*ngFor="let item of items"
 				[listTpl]="listTpl"
 				[listItem]="item"
 				[hasSubMenu]="!!item.subMenu"
 				[parentRef]="parent"
-				(select)="onClick($event)"
-				[indent]="indent">
-			</cdl-tree-view-item>
+				(select)="onClick($event)">
+			</cdl-sub-menu-view-item>
 		</ul>
 	`,
-	providers: [{provide: View, useExisting: forwardRef(() => TreeView)}]
+	providers: [{provide: View, useExisting: forwardRef(() => SubMenuView)}]
 })
-export class TreeView implements View {
+export class SubMenuView implements View {
 	@Input() items: Array<Object> = [];
 	@Input() isOpen: boolean = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent: number = 1;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

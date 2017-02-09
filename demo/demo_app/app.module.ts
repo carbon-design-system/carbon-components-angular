@@ -29,6 +29,7 @@ import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
 import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
+import { SubMenuViewDemo } from "./sub_menu_view_demo/sub-menu-view-demo.component";
 
 // component imports
 import {
@@ -47,7 +48,8 @@ import {
 	AlertModule,
 	AlertService,
 	CalendarModule,
-	DatepickerModule
+	DatepickerModule,
+	SubMenuViewModule
 } from "./../..";
 
 
@@ -75,7 +77,8 @@ import {
 		AlertDemo,
 		AlertCustom,
 		CalendarDemo,
-		DatepickerDemo
+		DatepickerDemo,
+		SubMenuViewDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -101,6 +104,7 @@ import {
 		AlertModule,
 		CalendarModule,
 		DatepickerModule,
+		SubMenuViewModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -135,8 +139,12 @@ import {
 				component: ListViewDemo
 			},
 			{
-				path: "nested-view",
+				path: "tree-view",
 				component: TreeViewDemo
+			},
+			{
+				path: "sub-menu-view",
+				component: SubMenuViewDemo
 			},
 			{
 				path: "dropdown",

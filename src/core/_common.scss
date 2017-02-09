@@ -17,8 +17,9 @@
 @import "forms";
 
 //components
-@import "components/list-view";
-@import "components/nested-view",
+@import "components/list-view",
+    "components/tree-view",
+    "components/sub-menu-view",
 		"alerts/alerts",
 		"popovers/popovers",
 		"forms/radio",

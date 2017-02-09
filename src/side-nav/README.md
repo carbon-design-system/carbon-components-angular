@@ -7,7 +7,7 @@ selector: `cdl-side-nav`
 | ---------    | -------------------------- | ------------------------------ | ------------- |
 | open         | boolean                    |                                | true          |
 
-Side-nav contains a single projection for side-nav content. Below is an example for a nested-view component.
+Side-nav contains a single projection for side-nav content. Below is an example for a tree-view component.
 
 Ex:
 ```html
