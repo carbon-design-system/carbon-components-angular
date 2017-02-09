@@ -17,7 +17,7 @@ import { TabsDemo } from "./tabs_demo/tabs_demo.component";
 import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
-import { NestedViewDemo } from "./nested_view_demo/nested-view-demo.component";
+import { TreeViewDemo } from "./tree_view_demo/tree-view-demo.component";
 import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
 import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
 import { ModalDemo } from "./modal_demo/modal-demo.component";
@@ -38,7 +38,7 @@ import {
 	IconService,
 	PopoverModule,
 	ListViewModule,
-	NestedViewModule,
+	TreeViewModule,
 	DropdownModule,
 	TopNavModule,
 	TypeaheadModule,
@@ -63,7 +63,7 @@ import {
 		ListViewDemo,
 		DropdownDemo,
 		TopNavDemo,
-		NestedViewDemo,
+		TreeViewDemo,
 		DropdownDemo,
 		TypeaheadDemo,
 		SideNavDemo,
@@ -92,7 +92,7 @@ import {
 		GlyphiconModule,
 		PopoverModule,
 		ListViewModule,
-		NestedViewModule,
+		TreeViewModule,
 		DropdownModule,
 		TopNavModule,
 		TypeaheadModule,
@@ -136,7 +136,7 @@ import {
 			},
 			{
 				path: "nested-view",
-				component: NestedViewDemo
+				component: TreeViewDemo
 			},
 			{
 				path: "dropdown",

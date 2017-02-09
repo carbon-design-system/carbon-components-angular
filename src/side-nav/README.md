@@ -12,6 +12,6 @@ Side-nav contains a single projection for side-nav content. Below is an example 
 Ex:
 ```html
 <cdl-side-nav [open]="sideNavOpen">
-	<cdl-nested-view [items]="demoItems" [listTpl]="listTpl"> </cdl-nested-view>
+	<cdl-tree-view [items]="demoItems" [listTpl]="listTpl"> </cdl-tree-view>
 </cdl-side-nav>
 ```

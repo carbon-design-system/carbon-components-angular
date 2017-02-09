@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "nested-view-demo",
-	templateUrl: "./nested-view-demo.component.html"
+	selector: "tree-view-demo",
+	templateUrl: "./tree-view-demo.component.html"
 })
-export class NestedViewDemo {
+export class TreeViewDemo {
 	private demoItems = [
 		{
 			content: "item one",

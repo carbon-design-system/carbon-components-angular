@@ -4,7 +4,7 @@
 .left-nav{
 
 	//gross
-	& > cdl-nested-view > .nested-view > cdl-nested-view-item > li > .item-wrapper > .item {
+	& > cdl-tree-view > .nested-view > cdl-tree-view-item > li > .item-wrapper > .item {
 		margin-left: 0 !important;
 		padding:0;
 		background-color: $gray70;
@@ -27,7 +27,7 @@
 			fill: $white;
 		}
 	}
-	& > cdl-nested-view > .nested-view > cdl-nested-view-item > li > .item-wrapper {
+	& > cdl-tree-view > .nested-view > cdl-tree-view-item > li > .item-wrapper {
 		border-left: none;
 		&.selected > .item{
 			background-color: $blue50;
@@ -54,7 +54,7 @@
 
 	}
 	.nest-view .open {
-		cdl-nested-view-item {
+		cdl-tree-view-item {
 			.item-wrapper{
 				.item{
 				background-color: $white;
