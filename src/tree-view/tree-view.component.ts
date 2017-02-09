@@ -19,6 +19,8 @@ import { TreeViewItem } from "./tree-view-item.component";
 				[listItem]="item"
 				[hasSubMenu]="!!item.subMenu"
 				[parentRef]="parent"
+				[rootElem]="rootElem"
+				[selectedIcon]="selectedIcon"
 				(select)="onClick($event)"
 				[indent]="indent">
 			</cdl-tree-view-item>
@@ -32,17 +34,22 @@ export class TreeView implements View {
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent: number = 1;
+	@Input() rootElem: any = null;
+	@Input() selectedIcon: boolean = true;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	onClick(evt) {
 		let item = evt.item;
-		if (item.subMenu) {
-			item.selected = !item.selected;
-		} else {
-			this.select.emit({
-				item
-			});
+
+		if (!item.disabled) {
+			if (item.subMenu) {
+				item.selected = !item.selected;
+			} else {
+				this.select.emit({
+					item
+				});
+			}
 		}
 	}
 }

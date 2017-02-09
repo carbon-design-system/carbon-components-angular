@@ -10,6 +10,16 @@
 		.item-wrapper {
 			border-left: 2px solid transparent; // transparent border to prevent shifting
 
+			&.disabled {
+				color: $gray20;
+				cursor: no-drop;
+				&:hover, &:focus {
+					background: $white;
+					border-left: 2px solid transparent;
+					outline: none;
+				}
+			}
+
 			&:hover {
 				background: rgba($blue40, 0.10);
 				border-left: 2px solid $blue50;

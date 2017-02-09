@@ -24,7 +24,8 @@ export class TreeViewDemo {
 					subMenu: [
 						{
 							content: "sub item two 1b",
-							selected: false
+							selected: false,
+							disabled: true
 						},
 						{
 							content: "sub item two 2b",
@@ -38,7 +39,8 @@ export class TreeViewDemo {
 		},
 		{
 			content: "item three",
-			selected: false
+			selected: false,
+			disabled: true
 		},
 		{
 			content: "item four",

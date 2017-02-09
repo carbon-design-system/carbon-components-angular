@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { SubMenuView } from "./sub-menu-view.component";
 import { KeyCodes } from "../constant/keys";
+import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
 
 @Component({
 	selector: "cdl-sub-menu-view-item",
@@ -15,8 +16,11 @@ import { KeyCodes } from "../constant/keys";
 	<li>
 		<div
 			class="item-wrapper"
-			tabindex="0"
-			[class.selected]="listItem.selected"
+			tabindex="{{listItem.disabled?-1:0}}"
+			[ngClass]="{
+				selected: listItem.selected,
+				disabled: listItem.disabled
+			}"
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)">
 			<div
@@ -37,7 +41,7 @@ import { KeyCodes } from "../constant/keys";
 					[ngTemplateOutlet]="listTpl">
 				</template>
 				<span
-					*ngIf="listItem.selected && !listItem.subMenu"
+					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
 					class="selected-check">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +61,8 @@ import { KeyCodes } from "../constant/keys";
 			[items]="listItem.subMenu"
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
+			[rootElem]="rootElem"
+			[selectedIcon]="selectedIcon"
 			[parent]="parent">
 		</cdl-sub-menu-view>
 	</li>
@@ -70,6 +76,8 @@ export class SubMenuViewItem {
 	@Input() parentRef = null;
 	@Input() listItem: any;
 	@Input() listTpl: string | TemplateRef<any> = "";
+	@Input() rootElem = null;
+	@Input() selectedIcon: boolean = true;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
@@ -77,6 +85,10 @@ export class SubMenuViewItem {
 
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;
+
+		if (!this.rootElem) {
+			this.rootElem = this._elementRef.nativeElement;
+		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
@@ -99,15 +111,11 @@ export class SubMenuViewItem {
 		if (evt.keyCode === KeyCodes.UP_ARROW) {
 			evt.preventDefault();
 
-			if (this._elementRef.nativeElement.previousElementSibling) {
-				this._elementRef.nativeElement.previousElementSibling.querySelector("[tabindex='0']").focus();
-			}
+			focusPrevElem(this._elementRef.nativeElement, this.parentRef);
 		} else if (evt.keyCode === KeyCodes.DOWN_ARROW) {
 			evt.preventDefault();
 
-			if (this._elementRef.nativeElement.nextElementSibling) {
-				this._elementRef.nativeElement.nextElementSibling.querySelector("[tabindex='0']").focus();
-			}
+			focusNextElem(this._elementRef.nativeElement, this.rootElem);
 		} else if (evt.keyCode === KeyCodes.RIGHT_ARROW) {
 			if (this.listItem.subMenu) {
 
@@ -118,8 +126,9 @@ export class SubMenuViewItem {
 				}
 
 				setTimeout(() => {
-					let subMenu = this._elementRef.nativeElement.querySelector("ul");
-					subMenu.querySelector(".item-wrapper").focus();
+					let subMenu = this._elementRef.nativeElement.querySelector("ul cdl-sub-menu-view-item");
+
+					focusNextTree(subMenu, this.rootElem);
 				});
 			}
 		} else if (evt.keyCode === KeyCodes.LEFT_ARROW) {

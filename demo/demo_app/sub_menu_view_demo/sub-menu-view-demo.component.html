@@ -1,8 +1,8 @@
 <h1>Sub Menu View Demo</h1>
 <template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</template>
 
-<h3>Default nested view</h3>
+<h3>Default sub menu view</h3>
 <cdl-sub-menu-view [items]="demoItems" (select)="onSelect($event)"></cdl-sub-menu-view>
 
-<h3>Nested view with custom template (Added Icon)</h3>
-<cdl-sub-menu-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl"></cdl-sub-menu-view>
+<h3>Sub menu view with custom template (Added Icon) and no check mark</h3>
+<cdl-sub-menu-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [selectedIcon]="false"></cdl-sub-menu-view>

@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { TreeView } from "./tree-view.component";
 import { KeyCodes } from "../constant/keys";
+import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
 
 @Component({
 	selector: "cdl-tree-view-item",
@@ -15,8 +16,11 @@ import { KeyCodes } from "../constant/keys";
 	<li>
 		<div
 			class="item-wrapper"
-			tabindex="0"
-			[class.selected]="listItem.selected"
+			tabindex="{{listItem.disabled?-1:0}}"
+			[ngClass]="{
+				selected: listItem.selected,
+				disabled: listItem.disabled
+			}"
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)">
 			<div
@@ -38,7 +42,7 @@ import { KeyCodes } from "../constant/keys";
 					[ngTemplateOutlet]="listTpl">
 				</template>
 				<span
-					*ngIf="listItem.selected && !listItem.subMenu"
+					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
 					class="selected-check">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +63,8 @@ import { KeyCodes } from "../constant/keys";
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
 			[parent]="parent"
+			[selectedIcon]="selectedIcon"
+			[rootElem]="rootElem"
 			[indent]="indent+1">
 		</cdl-tree-view>
 	</li>
@@ -73,16 +79,18 @@ export class TreeViewItem {
 	@Input() listItem: Object;
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent: number = 1;
+	@Input() rootElem = null;
+	@Input() selectedIcon: boolean = true;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(private _elementRef: ElementRef) {}
 
 	ngOnInit() {
-		if (this.parentRef) {
-			this.parent = this.parentRef;
-		} else {
-			this.parent = this._elementRef.nativeElement;
+		this.parent = this._elementRef.nativeElement;
+
+		if (!this.rootElem) {
+			this.rootElem = this._elementRef.nativeElement;
 		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
@@ -106,34 +114,14 @@ export class TreeViewItem {
 		if (ev.keyCode === KeyCodes.UP_ARROW) {
 			ev.preventDefault();
 
-			if (this._elementRef.nativeElement.previousElementSibling) {
-				let items = this._elementRef.nativeElement.previousElementSibling.querySelectorAll("ul.open > cdl-tree-view-item");
-				if (items.length > 0) {
-					items[items.length - 1].querySelector("[tabindex='0']").focus();
-				} else {
-					this._elementRef.nativeElement.previousElementSibling.querySelector("[tabindex='0']").focus();
-				}
-			} else if (this._elementRef.nativeElement) {
-				let parent = this._elementRef.nativeElement.parentNode;
-				if (parent && parent.parentNode
-					&& parent.parentNode.parentNode
-					&& parent.parentNode.parentNode.parentNode.tagName === "CDL-NESTED-VIEW-ITEM") {
-					parent.parentNode.parentNode.parentNode.querySelector("[tabindex='0']").focus();
-				}
-			}
+			focusPrevElem(this._elementRef.nativeElement, this.parentRef);
 		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
 			ev.preventDefault();
 
 			if (!item.subMenu || !item.selected) {
-				if (this._elementRef.nativeElement.nextElementSibling) {
-					this._elementRef.nativeElement.nextElementSibling.querySelector("[tabindex='0']").focus();
-				} else {
-					if (this.parentRef && this.parentRef.nextElementSibling) {
-						this.parentRef.nextElementSibling.querySelector("[tabindex='0']").focus();
-					}
-				}
+				focusNextElem(this._elementRef.nativeElement, this.rootElem);
 			} else if (item.subMenu && item.selected) {
-				this._elementRef.nativeElement.querySelector("ul cdl-tree-view-item").querySelector("[tabindex='0']").focus();
+				focusNextTree(this._elementRef.nativeElement.querySelector("ul cdl-tree-view-item"), this.rootElem);
 			}
 		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
 			ev.preventDefault();

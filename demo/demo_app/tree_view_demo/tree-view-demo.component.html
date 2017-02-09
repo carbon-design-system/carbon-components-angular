@@ -4,5 +4,5 @@
 <h3>Default tree view</h3>
 <cdl-tree-view [items]="demoItems" (select)="onSelect($event)"></cdl-tree-view>
 
-<h3>Tree view with custom template (Added Icon)</h3>
-<cdl-tree-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl"></cdl-tree-view>
+<h3>Tree view with custom template (Added Icon) with no selected icon</h3>
+<cdl-tree-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [selectedIcon]="false"></cdl-tree-view>

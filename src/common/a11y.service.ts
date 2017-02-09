@@ -29,3 +29,59 @@ export function HcModeChecker() {
 	document.body.removeChild(htmlChecker);
 
 }
+
+export function focusNextTree(elem, rootElem = null) {
+	if (elem) {
+		let focusable = elem.querySelector("[tabindex='0']");
+
+		if (focusable) {
+			focusable.focus();
+		} else {
+			focusNextElem(elem, rootElem);
+		}
+	}
+}
+
+export function	focusNextElem(elem, rootElem = null) {
+		if (elem) {
+			let nextElem = elem.nextElementSibling;
+
+			if (nextElem) {
+				let focusableElem = nextElem.querySelector("[tabindex='0']");
+
+				if (focusableElem) {
+					focusableElem.focus();
+				} else {
+					focusNextElem(nextElem, rootElem);
+				}
+			} else {
+				if (rootElem) {
+					let nextRootElem = rootElem.nextElementSibling;
+
+					if (nextRootElem) {
+						focusNextTree(nextRootElem, rootElem);
+					}
+				}
+			}
+		}
+	}
+
+export function	focusPrevElem(elem, parentRef = null) {
+		if (elem) {
+			let prevElem = elem.previousElementSibling;
+
+			if (prevElem) {
+				let focusableElem = prevElem.querySelector("[tabindex='0']");
+
+				if (focusableElem) {
+					focusableElem.focus();
+				} else {
+					focusPrevElem(prevElem);
+				}
+			} else {
+				if (parentRef) {
+					parentRef.querySelector("[tabindex='0']").focus();
+				}
+			}
+		}
+	}
