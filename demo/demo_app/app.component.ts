@@ -47,8 +47,13 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Nested View Demo",
-			link: "/nested-view",
+			content: "Tree View Demo",
+			link: "/tree-view",
+			selected: false
+		},
+		{
+			content: "Sub Menu View Demo",
+			link: "/sub-menu-view",
 			selected: false
 		},
 		{

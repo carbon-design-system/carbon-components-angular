@@ -1,4 +1,4 @@
-.nested-view {
+.tree-view {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -6,7 +6,7 @@
 	li {
 		padding-left: 0px;
 		margin-left: 0px;
-		
+
 		.item-wrapper {
 			border-left: 2px solid transparent; // transparent border to prevent shifting
 
@@ -17,6 +17,7 @@
 
 			&:focus {
 				border-left: 2px solid $blue50;
+				outline: 1px solid $blue50;
 				outline-offset: 1px;
 			}
 
