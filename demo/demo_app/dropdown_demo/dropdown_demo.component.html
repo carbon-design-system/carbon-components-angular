@@ -26,10 +26,17 @@
 	</cdl-dropdown>
 </div>
 
-<h3>Drop down with nested view</h3>
+<h3>Drop down with tree view</h3>
 <div style="width: 400px">
-	<cdl-dropdown displayValue="Dropdown nested">
-		<cdl-tree-view [items]="nestedDemoItems" (select)="onNestedSelect($event)"></cdl-tree-view>
+	<cdl-dropdown displayValue="Dropdown tree view">
+		<cdl-tree-view [items]="nestedDemoItems" (select)="onNestedSelect($event)" [selectedIcon]="false"></cdl-tree-view>
+	</cdl-dropdown>
+</div>
+
+<h3>Drop down with sub menu view</h3>
+<div style="width: 250px">
+	<cdl-dropdown displayValue="Dropdown sub menu">
+		<cdl-sub-menu-view [items]="nestedDemoItems" (select)="onNestedSelect($event)" [selectedIcon]="false"></cdl-sub-menu-view>
 	</cdl-dropdown>
 </div>
 

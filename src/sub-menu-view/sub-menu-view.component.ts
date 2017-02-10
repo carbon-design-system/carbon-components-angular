@@ -19,6 +19,8 @@ import { SubMenuViewItem } from "./sub-menu-view-item.component";
 				[listItem]="item"
 				[hasSubMenu]="!!item.subMenu"
 				[parentRef]="parent"
+				[selectedIcon]="selectedIcon"
+				[rootElem]="rootElem"
 				(select)="onClick($event)">
 			</cdl-sub-menu-view-item>
 		</ul>
@@ -30,17 +32,21 @@ export class SubMenuView implements View {
 	@Input() isOpen: boolean = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
+	@Input() rootElem: any = null;
+	@Input() selectedIcon: boolean = true;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	onClick(evt) {
 		let item = evt.item;
-		if (item.subMenu) {
-			item.selected = !item.selected;
-		} else {
-			this.select.emit({
-				item
-			});
+		if (!item.disabled) {
+			if (item.subMenu) {
+				item.selected = !item.selected;
+			} else {
+				this.select.emit({
+					item
+				});
+			}
 		}
 	}
 }
