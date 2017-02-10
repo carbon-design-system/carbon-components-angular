@@ -1,58 +1,89 @@
+//
+// List view
+// --------------------------------------------------
+
+// Base style
+//
+// Easily usable on <ul>, <ol>, or <div>.
+// USE PROPER SYMANTIC
+
 .list-view {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	li {
-		padding-left: 20px;
-		padding-top: 12.5px;
-		padding-bottom: 12.5px;
-		border-top: 1px solid $gray10;
-		border-left: 2px solid transparent;
+
+	@extend .list-unstyled;
+
+	> * {
+		padding: $listview-padding;
+		border: $listview-border;
+		margin-bottom: -1px;
+
+		&:hover, &.selected, &:focus {
+			margin: -1px 0;
+			border-color: $listview-active-border-color $listview-hover-bg;
+			background-color:$listview-hover-bg;
+			position: relative;
+			z-index: 1
+		}
+
+		&.selected {
+			color:$listview-selected-color;
+			font-weight: bold;
+			&:before{
+				content:'';
+				height: 100%;
+				left:-1px;
+				top:0;
+				position: absolute;
+				border-left:$listview-selected-border;
+			}
+		}
 		&.disabled {
 			color: $gray20;
 			cursor: no-drop;
 			&:hover, &:focus {
-				background: $white;
-				border-left: 0px solid $gray10;
-				outline: none;
+				border: $listview-border;
+				background-color: $white;
 			}
 		}
 		&:last-child {
-			border-bottom: 1px solid $gray10;
+			margin-bottom:0;
 		}
-		&:focus {
-			border-left: 2px solid $blue50;
-			outline: 1px solid $blue50;
-			outline-offset: 1px;
+		&:first-child {
+			&:hover, &.selected, &:focus {
+				margin-top:0;
+			}
 		}
-		&:hover {
-			background: rgba($blue40, 0.10);
-		}
-		&.selected {
-			border-left: 2px solid $blue50;
-			color: $blue50;
-			font-weight: bold;
-			background: rgba($blue40, 0.10);
-		}
-		.selected-check {
-			display: inline-block;
+
+
+		// Badge style
+		//
+		// Create badge in global ?
+
+		.badge{
+			float: right;
+			position: relative;
 			vertical-align: middle;
 			height: 18px;
-			width: 18px;
-			border-radius: 20px;
+			min-width: 18px;
+			border-radius: 18px;
 			border: 1px solid $white;
 			background: $blue50;
-			float: right;
-			margin-right: 20px;
-			svg {
-				background: $blue50;
-				border-radius: 20px;
-				path:first-child {
-					fill: $blue50;
-				}
-				path:last-child {
-					fill: $white;
-				}
+			color:$white;
+			text-align: center;
+			font-size: rem(12);
+			line-height: 1rem;
+		}
+		.checked {
+			@extend .badge;
+			&:before{
+				content:'';
+				border-right: 1px solid $white;
+				border-bottom: 1px solid $white;
+				transform: rotate(45deg);
+				position: absolute;
+				left: 6px;
+				top: 3px;
+				height: 8px;
+				width: 4px;
 			}
 		}
 	}

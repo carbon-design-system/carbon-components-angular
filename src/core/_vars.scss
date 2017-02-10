@@ -4,6 +4,12 @@ $md: 30px;
 $lg: 40px;
 
 
+//
+// Colors
+// --------------------------------------------------
+
+//== Custom Colors.
+$blue40-10:				#eef4fc;
 
 
 
@@ -136,5 +142,22 @@ $checkbox-sm-width:           15px;
 $checkbox-sm-height:          15px;
 $checkbox-selected-sm-width:  10px;
 $checkbox-selected-sm-height: 5px;
+
+
+
+//== list-view
+//
+//## Define list-view colors, border, and padding.
+
+$listview-bg:          $white;
+$listview-padding:     11px 20px; // padding is 11 to make it 40 pixel height
+
+$listview-border:      1px solid $gray10;
+$listview-hover-bg:    $blue40-10;
+
+$listview-active-border-color:  $white;
+$listview-selected-border:		2px solid $blue50; // left border
+$listview-selected-color: 		$blue50;
+
 
 
