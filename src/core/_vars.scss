@@ -19,25 +19,25 @@ $blue40-10:				#eef4fc;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-size-base:		em(14);
+$font-size-base:		rem(14);
 
-$font-size-h1:          em(36, 14);
-$font-size-h2:          em(22, 14);
-$font-size-h3:          em(17, 14);
-$font-size-h4:          em(15, 14);
+$font-size-h1:          rem(36);
+$font-size-h2:          rem(22);
+$font-size-h3:          rem(17);
+$font-size-h4:          rem(15);
 $font-size-h5:          $font-size-h4;
-$font-size-h6:          em(13, 14);
+$font-size-h6:          rem(13);
 
 $line-height-difference: 4; // em
 
-$line-height-h1:		em(36 + $line-height-difference, 36);
-$line-height-h2:		em(22 + $line-height-difference, 22);
-$line-height-h3:		em(17 + $line-height-difference, 17);
-$line-height-h4:		em(15 + $line-height-difference, 15);
+$line-height-h1:		rem(36 + $line-height-difference);
+$line-height-h2:		rem(22 + $line-height-difference);
+$line-height-h3:		rem(17 + $line-height-difference);
+$line-height-h4:		rem(15 + $line-height-difference);
 $line-height-h5:		$line-height-h4;
-$line-height-h6:	    em(13 + $line-height-difference, 13);
+$line-height-h6:	    rem(13 + $line-height-difference);
 
-$line-height-base:      em(16 + $line-height-difference);
+$line-height-base:      rem(16 + $line-height-difference);
 
 
 //== Alerts
