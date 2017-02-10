@@ -4,6 +4,12 @@ $md: 30px;
 $lg: 40px;
 
 
+//
+// Colors
+// --------------------------------------------------
+
+//== Custom Colors.
+$blue40-10:				#eef4fc;
 
 
 
@@ -13,25 +19,25 @@ $lg: 40px;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-size-base:		em(14);
+$font-size-base:		rem(14);
 
-$font-size-h1:          em(36, 14);
-$font-size-h2:          em(22, 14);
-$font-size-h3:          em(17, 14);
-$font-size-h4:          em(15, 14);
+$font-size-h1:          rem(36);
+$font-size-h2:          rem(22);
+$font-size-h3:          rem(17);
+$font-size-h4:          rem(15);
 $font-size-h5:          $font-size-h4;
-$font-size-h6:          em(13, 14);
+$font-size-h6:          rem(13);
 
 $line-height-difference: 4; // em
 
-$line-height-h1:		em(36 + $line-height-difference, 36);
-$line-height-h2:		em(22 + $line-height-difference, 22);
-$line-height-h3:		em(17 + $line-height-difference, 17);
-$line-height-h4:		em(15 + $line-height-difference, 15);
+$line-height-h1:		rem(36 + $line-height-difference);
+$line-height-h2:		rem(22 + $line-height-difference);
+$line-height-h3:		rem(17 + $line-height-difference);
+$line-height-h4:		rem(15 + $line-height-difference);
 $line-height-h5:		$line-height-h4;
-$line-height-h6:	    em(13 + $line-height-difference, 13);
+$line-height-h6:	    rem(13 + $line-height-difference);
 
-$line-height-base:      em(16 + $line-height-difference);
+$line-height-base:      rem(16 + $line-height-difference);
 
 
 //== Alerts
@@ -136,5 +142,22 @@ $checkbox-sm-width:           15px;
 $checkbox-sm-height:          15px;
 $checkbox-selected-sm-width:  10px;
 $checkbox-selected-sm-height: 5px;
+
+
+
+//== list-view
+//
+//## Define list-view colors, border, and padding.
+
+$listview-bg:          $white;
+$listview-padding:     11px 20px; // padding is 11 to make it 40 pixel height
+
+$listview-border:      1px solid $gray10;
+$listview-hover-bg:    $blue40-10;
+
+$listview-active-border-color:  $white;
+$listview-selected-border:		2px solid $blue50; // left border
+$listview-selected-color: 		$blue50;
+
 
 

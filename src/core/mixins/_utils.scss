@@ -1,7 +1,7 @@
 $browser-context: 16; // Default
 
-@function em($pixels, $context: $browser-context) {
-  @return #{$pixels/$context}em;
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
 }
 
 

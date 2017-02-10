@@ -9,8 +9,8 @@
 //core styles, normalize
 @import "core";
 
-
-@import "type/type";
+@import "type/type",
+		"common/global";
 
 //etc
 @import "buttons";
@@ -18,13 +18,13 @@
 
 //components
 @import "components/list-view",
-    "components/tree-view",
-    "components/sub-menu-view",
+    	"components/tree-view",
+    	"components/sub-menu-view",
 		"alerts/alerts",
 		"popovers/popovers",
 		"forms/radio",
 		"forms/checkbox",
-    "datepicker/datepicker";
+    	"datepicker/datepicker";
 
 
 
