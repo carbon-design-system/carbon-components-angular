@@ -24,7 +24,6 @@ import { KeyCodes } from "./../constant/keys";
 			(click)="openMenu()"
 			[disabled]="disabled">
 			{{displayValue}}
-			<span [class.divider]="isSplit"></span>
 			<span class="dropdown-icon" [class.open]="!menuIsClose">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -53,11 +52,10 @@ export class Dropdown implements AfterContentInit {
 
 	@Input() displayValue: string = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() type: "single" | "multi" = "single";
 	@Input() disabled: boolean = false;
 	@Input() selectedVal: any;
-	@Input() isSplit: boolean = false;
 	@Input() closeOnSelect: boolean = true;
-	@Input() multiSelect: boolean = false;
 
 	@ContentChild(View) view;
 	@ViewChild("dropdownHost") rootButton;
@@ -93,7 +91,7 @@ export class Dropdown implements AfterContentInit {
 				this.rootButton.nativeElement.focus();
 			}
 
-			if (!this.multiSelect && this.prevSelectItem && evt.item !== this.prevSelectItem) {
+			if (this.type === "single" && this.prevSelectItem && evt.item !== this.prevSelectItem) {
 				this.prevSelectItem.selected = false;
 			}
 
