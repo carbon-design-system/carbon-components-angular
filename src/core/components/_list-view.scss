@@ -5,7 +5,7 @@
 // Base style
 //
 // Easily usable on <ul>, <ol>, or <div>.
-// USE PROPER SYMANTIC
+// USE PROPER SEMANTIC
 
 .list-view {
 
@@ -37,8 +37,6 @@
 			}
 		}
 		&.disabled {
-			color: $gray20;
-			cursor: no-drop;
 			&:hover, &:focus {
 				border: $listview-border;
 				background-color: $white;
