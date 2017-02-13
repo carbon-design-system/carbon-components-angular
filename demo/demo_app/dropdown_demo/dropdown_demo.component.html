@@ -21,7 +21,7 @@
 	{{item.content}}
 </template>
 <div style="width: 400px">
-	<cdl-dropdown [displayValue]="display0" [closeOnSelect]="false" [multiSelect]="true">
+	<cdl-dropdown [displayValue]="display0" [closeOnSelect]="false" type="multi">
 		<cdl-list-view [items]="demoItems4" (select)="onSelectAndDisplay($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>
 	</cdl-dropdown>
 </div>
@@ -40,17 +40,12 @@
 	</cdl-dropdown>
 </div>
 
-<h3>Drop down with split button</h3>
-<cdl-dropdown displayValue="Dropdown 3" [isSplit]="true">
-	<cdl-list-view [items]="demoItems2" (select)="onSelect($event)"></cdl-list-view>
-</cdl-dropdown>
-
 <h3>Drop down with multi select</h3>
-<cdl-dropdown displayValue="Dropdown 4" [isSplit]="true" [closeOnSelect]="false" [multiSelect]="true">
+<cdl-dropdown displayValue="Dropdown 4" [closeOnSelect]="false" type="multi">
 	<cdl-list-view [items]="demoItems3" (select)="onSelect($event)"></cdl-list-view>
 </cdl-dropdown>
 
 <h3>Disabled Drop down</h3>
-<cdl-dropdown displayValue="Dropdown 5" [isSplit]="true" [disabled]="true">
+<cdl-dropdown displayValue="Dropdown 5" [disabled]="true">
 	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
 </cdl-dropdown>
