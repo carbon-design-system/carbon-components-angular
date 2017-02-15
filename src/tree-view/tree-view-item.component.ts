@@ -13,7 +13,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 @Component({
 	selector: "cdl-tree-view-item",
 	template: `
-	<li >
+	<li>
 		<div
 			class="item-wrapper"
 			tabindex="{{listItem.disabled?-1:0}}"
@@ -23,7 +23,10 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			}"
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
-			role="treeitem">
+			role="treeitem"
+			[attr.aria-level]="indent"
+			[attr.aria-hidden]="listItem.disabled"
+			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true: false) : null">
 			<div
 				class="item"
 				[style.margin-left.px]="40*indent">
@@ -117,7 +120,8 @@ export class TreeViewItem {
 			} else if (item.subMenu && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul cdl-tree-view-item"), this.rootElem);
 			}
-		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
+		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
+					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
 			ev.preventDefault();
 
 			this.select.emit({

@@ -12,7 +12,7 @@ import { TreeViewItem } from "./tree-view-item.component";
 @Component({
 	selector: "cdl-tree-view",
 	template: `
-		<ul class="tree-view" [class.open]="isOpen" [attr.role]="role">
+		<ul class="tree-view" [class.open]="isOpen" [attr.role]="role" [attr.aria-hidden]="(role == 'group') ? !isOpen : null ">
 			<cdl-tree-view-item
 				*ngFor="let item of items"
 				[listTpl]="listTpl"
