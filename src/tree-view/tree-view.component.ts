@@ -36,7 +36,7 @@ export class TreeView implements View {
 	@Input() indent: number = 1;
 	@Input() rootElem: any = null;
 	@Input() selectedIcon: boolean = true;
-	@Input() role: string ;
+	@Input() role: "tree" | "group" = "tree" ;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

@@ -2,7 +2,7 @@
 <template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</template>
 
 <h3>Default tree view</h3>
-<cdl-tree-view [items]="demoItems" (select)="onSelect($event)" [role]="'tree'"></cdl-tree-view>
+<cdl-tree-view [items]="demoItems" (select)="onSelect($event)" ></cdl-tree-view>
 
 <h3>Tree view with custom template (Added Icon) with no selected icon</h3>
-<cdl-tree-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [selectedIcon]="false" [role]="'tree'"></cdl-tree-view>
+<cdl-tree-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [selectedIcon]="false" ></cdl-tree-view>
