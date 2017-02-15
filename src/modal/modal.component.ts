@@ -14,21 +14,27 @@ import {
 @Component({
 	selector: "cdl-modal",
 	template: `
-		<cdl-overlay (overlaySelect)="overlaySelected.emit()"></cdl-overlay>
-		<section [@modalState]="modalState" class="modal size-{{size}}">
-			<ng-content></ng-content>
-		</section>
+		<div class="modal-wrapper">
+			<cdl-overlay (overlaySelect)="overlaySelected.emit()"></cdl-overlay>
+			<div class="valign-wrapper">
+				<div class="valign-element">
+					<section [@modalState]="modalState" class="modal size-{{size}}">
+						<ng-content></ng-content>
+					</section>
+				</div>
+			</div>
+		</div>
 	`,
 	animations: [
 		trigger("modalState", [
-			state("in", style({opacity: 1, transform: "translate(-50%, 50%)"})),
-			state("void", style({transform: "translate(-50%, 55%)", opacity: 0})),
+			state("in", style({opacity: 1, transform: "translate(0, 0)"})),
+			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
 			transition(":enter", [
 				animate("200ms ease-in"),
 			]),
 			transition(":leave", [
-				style({opacity: 1, transform: "translate(-50%, 50%"}),
-				animate(200, style({transform: "translate(-50%, 55%)", opacity: 0}))
+				style({opacity: 1, transform: "translate(0, 0"}),
+				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
 			])
 		])
 	],
