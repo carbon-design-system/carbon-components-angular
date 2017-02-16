@@ -10,7 +10,7 @@ import { Modal } from "../../..";
 			<section class="content">
 				<p>The connection was lost. Try to log in again.</p>
 			</section>
-			<cdl-modal-footer><button class="cancel-button" (click)="closeModal()">Close</button></cdl-modal-footer>
+			<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Close</button></cdl-modal-footer>
 		</cdl-modal>
 	`,
 	styleUrls: ["./error-modal.component.scss"]

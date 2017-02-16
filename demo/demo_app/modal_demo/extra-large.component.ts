@@ -10,7 +10,7 @@ import { Modal } from "../../..";
 		<section class="content">
 			<p>This is an XXL Modal</p>
 		</section>
-		<cdl-modal-footer><button class="cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
+		<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
 	</cdl-modal>
 	`,
 	styleUrls: ["./error-modal.component.scss"]

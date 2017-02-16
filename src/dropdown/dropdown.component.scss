@@ -18,15 +18,23 @@
 			border: solid 1px $gray50;
 		}
 
+		&.open {
+			z-index: 1001;
+		}
+
 		.dropdown-icon {
 			float: right;
 			width: 16px;
 			height: 16px;
+			-ms-transform: rotate(0deg); /* IE 9 */
+			-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+			transform: rotate(0deg);
+			transition: transform 0.2s linear;
 
 			&.open {
-				-ms-transform: rotate(180deg); /* IE 9 */
-				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-				transform: rotate(180deg);
+				-ms-transform: rotate(-180deg); /* IE 9 */
+				-webkit-transform: rotate(-180deg); /* Chrome, Safari, Opera */
+				transform: rotate(-180deg);
 			}
 		}
 
@@ -44,13 +52,27 @@
 	.dropdown-menu {
 		position: absolute;
 		z-index: 1000;
-		display: none;
-		border: 1px solid $gray10;
+		// display: none;
+		// visibility: hidden;
+		min-width: 100%;
+		background: $white;
+		box-shadow: $default-box-shadow;
+		transform: rotateX(-90deg);
+		transform-origin: top;
+		transition: transform 0.2s linear; 
+
+		// maybe this kind of thing should live somewhere else
+		li, .item {
+			border-left: transparent !important;
+			border-right: transparent !important;
+			border-top: transparent !important;
+			border-bottom: transparent !important;
+		}
 
 		&.open {
-			display: block;
-			min-width: 100%;
-			background: $white;
+			// display: block;
+			// visibility: visible;
+			transform: rotateX(0deg);
 		}
 	}
 }

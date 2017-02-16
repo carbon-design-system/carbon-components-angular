@@ -22,7 +22,8 @@ import { KeyCodes } from "./../constant/keys";
 			#dropdownHost
 			class="dropdown-value {{size}}"
 			(click)="openMenu()"
-			[disabled]="disabled">
+			[disabled]="disabled"
+			[class.open]="!menuIsClose">
 			{{displayValue}}
 			<span class="dropdown-icon" [class.open]="!menuIsClose">
 				<svg
