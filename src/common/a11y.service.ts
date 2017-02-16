@@ -72,11 +72,22 @@ export function	focusPrevElem(elem, parentRef = null) {
 
 			if (prevElem) {
 				let focusableElem = prevElem.querySelector("[tabindex='0']");
-
 				if (focusableElem) {
+
+					if (focusableElem.getAttribute("aria-expanded") === "true") {
+						let lastFocElms = prevElem.querySelectorAll("[tabindex='0']");
+						let arrLen = lastFocElms.length - 1;
+						for (let i = arrLen; i >= 0; i--) {
+							if (!!( lastFocElms[i].offsetWidth || lastFocElms[i].offsetHeight ||
+									lastFocElms[i].getClientRects().length)) {
+								focusableElem = lastFocElms[i];
+								break;
+							}
+						}
+					}
 					focusableElem.focus();
 				} else {
-					focusPrevElem(prevElem);
+					focusPrevElem(prevElem, parentRef);
 				}
 			} else {
 				if (parentRef) {
