@@ -1,87 +1,73 @@
-.tree-view {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+//
+// Treeview
+// --------------------------------------------------
 
-	li {
-		padding-left: 0px;
-		margin-left: 0px;
+// Base style
 
-		.item-wrapper {
-			border-left: 2px solid transparent; // transparent border to prevent shifting
 
-			&.disabled {
-				color: $gray20;
-				cursor: no-drop;
-				&:hover, &:focus {
-					background: $white;
-					border-left: 2px solid transparent;
-					outline: none;
-				}
-			}
-
-			&:hover {
-				background: rgba($blue40, 0.10);
-				border-left: 2px solid $blue50;
-			}
-
-			&:focus {
-				border-left: 2px solid $blue50;
-				outline: 1px solid $blue50;
-				outline-offset: 1px;
-			}
-
-			.item {
-				position: relative;
-				margin-left: 40px;
-				padding-top: 12.5px;
-				padding-bottom: 12.5px;
-				border-bottom: 1px solid $gray10;
-			}
-
-			&.selected {
-				border-left: 2px solid $blue50;
-				color: $blue50;
-				font-weight: bold;
-				background: rgba($blue40, 0.10);
-
-				.arrow {
-					-ms-transform: rotate(90deg); /* IE 9 */
-					-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-					transform: rotate(90deg);
-				}
-			}
-
-			.arrow {
-				position: absolute;
-				left: -25px;
-			}
-
-			.selected-check {
-				display: inline-block;
-				vertical-align: middle;
-				height: 18px;
-				width: 18px;
-				border-radius: 20px;
-				border: 1px solid $white;
-				background: $blue50;
-				float: right;
-				margin-right: 20px;
-
-				svg {
-					background: $blue50;
-					border-radius: 20px;
-					path:first-child {
-						fill: $blue50;
-					}
-					path:last-child {
-						fill: $white;
-					}
-				}
-			}
+.tree-view{
+    &, ul{
+        @extend .list-unstyled;
+    }
+    .item-wrapper {
+        border-left:2px solid transparent;
+        .item{
+            padding:$treeview-padding $treeview-padding $treeview-padding 0;
+            border-top:$treeview-border;
+        }
+        &:hover, &:focus,  &.selected {
+            background-color:$listview-hover-bg;
+        }
+        .arrow{
+            margin-left:-25px;
+            margin-right: 5px;
+            vertical-align: middle;
+            transition: all 0.5s;
+        }
+        &.selected{
+            border-left-color:$treeview-selected-border-color;
+            font-weight: 700;
+            color:$treeview-selected-color;
+            .arrow{
+                transform: rotate(90deg);
+            }
+        }
+    }
+	&.disabled {
+		&:hover, &:focus {
+			background: $white;
+			border-left: 2px solid transparent;
 		}
 	}
-
+    .badge{
+        float: right;
+        position: relative;
+        vertical-align: middle;
+        height: 18px;
+        min-width: 18px;
+        padding:0 5px;
+        border-radius: 18px;
+        border: 1px solid $white;
+        background-color: $blue50;
+        color:$white;
+        text-align: center;
+        font-size: rem(12);
+        line-height: 1rem;
+    }
+    .checked {
+        @extend .badge;
+        &:before{
+            content:'';
+            border-right: 1px solid $white;
+            border-bottom: 1px solid $white;
+            transform: rotate(45deg);
+            position: absolute;
+            left: 6px;
+            top: 3px;
+            height: 8px;
+            width: 4px;
+        }
+    }
 	ul {
 		display: none;
 
@@ -89,4 +75,6 @@
 			display: block;
 		}
 	}
+
 }
+

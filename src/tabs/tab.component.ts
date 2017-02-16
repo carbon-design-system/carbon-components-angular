@@ -5,7 +5,7 @@ let nextId = 0;
 @Component({
 	selector: "cdl-tab",
 	template: `
-		<div [hidden]="!active">
+		<div *ngIf="active">
 			<ng-content></ng-content>
 		</div>
 	 `,
@@ -13,8 +13,8 @@ let nextId = 0;
 })
 export class Tab implements OnInit {
 	@Input() heading: string | TemplateRef<any>;
-	@Input() active: boolean;
-	@Input() disabled: boolean;
+	@Input() active: boolean = false;
+	@Input() disabled: boolean = false;
 	// do we need id's?
 	@Input() id: string = `cdl-tab-${nextId++}`;
 	headingIsTemplate = false;

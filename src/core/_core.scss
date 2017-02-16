@@ -5,7 +5,6 @@
 @import "colors";
 
 
-
 body {
 	font-family: sans-serif;
 	font-size: $font-size;
@@ -84,4 +83,8 @@ textarea {
 
 button{
 	cursor:pointer
+}
+
+.hidden {
+  display: none;
 }

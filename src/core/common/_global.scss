@@ -3,3 +3,25 @@
     padding: 0;
     margin: 0
 }
+
+.disabled{
+    cursor:no-drop;
+	color: $gray20;
+}
+
+.valign-wrapper{
+	display: table;
+	width:100%;
+	height: 100%;
+	> .valign-element{
+		display: table-cell;
+		vertical-align: middle;
+		height:100%;
+		width: 100%;
+		text-align: center;
+		> *{
+			margin: 0 auto;
+			text-align:inherit
+		}
+	}
+}

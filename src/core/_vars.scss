@@ -10,7 +10,7 @@ $lg: 40px;
 
 //== Custom Colors.
 $blue40-10:				#eef4fc;
-
+$gray10-50:           	#efefef;
 
 
 // refactor fonts
@@ -158,6 +158,18 @@ $listview-hover-bg:    $blue40-10;
 $listview-active-border-color:  $white;
 $listview-selected-border:		2px solid $blue50; // left border
 $listview-selected-color: 		$blue50;
+
+//== tree-view
+//
+//## Define tree-view colors, border, and padding.
+
+$treeview-padding:     10px; // padding is 11 to make it 40 pixel height;
+
+$treeview-border:      1px solid $gray10-50;
+$treeview-hover-bg:    $blue40-10;
+
+$treeview-selected-border-color:$blue50; // left border
+$treeview-selected-color:       $blue50;
 
 
 

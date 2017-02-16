@@ -31,7 +31,8 @@ import { KeyCodes } from "../constant/keys";
 						[class.selected-date]="selectedDateDay === (columnIndex + rowIndex*7 - firstDay + 1)
 						&& selectedDateMonth === month
 						&& selectedDateYear === year"
-						[hidden]="(columnIndex + rowIndex*7 - firstDay) < 0 || (columnIndex + rowIndex*7 - firstDay + 1) > numberOfDays"
+						[class.hidden]="(columnIndex + rowIndex*7 - firstDay) < 0 || (columnIndex + rowIndex*7 - firstDay + 1) > numberOfDays"
+						aria-hidden="(columnIndex + rowIndex*7 - firstDay) < 0 || (columnIndex + rowIndex*7 - firstDay + 1) > numberOfDays"
 						(click)="select($event, columnIndex + rowIndex*7 - firstDay + 1)">
 							{{columnIndex + rowIndex*7 - firstDay + 1}}
 						</button>

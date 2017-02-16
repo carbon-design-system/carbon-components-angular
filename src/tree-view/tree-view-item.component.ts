@@ -22,7 +22,11 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 				disabled: listItem.disabled
 			}"
 			(click)="doClick(listItem)"
-			(keydown)="onKeyDown($event, listItem)">
+			(keydown)="onKeyDown($event, listItem)"
+			role="treeitem"
+			[attr.aria-level]="indent"
+			[attr.aria-hidden]="listItem.disabled"
+			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true: false) : null">
 			<div
 				class="item"
 				[style.margin-left.px]="40*indent">
@@ -43,16 +47,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 				</template>
 				<span
 					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
-					class="selected-check">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16">
-							<path d="M8 1.2c3.7 0 6.8 3.1 6.8 6.8s-3.1 6.8-6.8
-							6.8S1.2 11.7 1.2 8 4.3 1.2 8 1.2M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/>
-							<path d="M6.7 9.6L4.6 7.5l-.9.9 3 3 5.6-5.5-.9-.9z"/>
-					</svg>
+					class="checked" aria-hidden="true">
 				</span>
 			</div>
 		</div>
@@ -65,7 +60,9 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[parent]="parent"
 			[selectedIcon]="selectedIcon"
 			[rootElem]="rootElem"
-			[indent]="indent+1">
+			[indent]="indent+1"
+			[role]="'group'"
+			>
 		</cdl-tree-view>
 	</li>
 	`
@@ -123,7 +120,8 @@ export class TreeViewItem {
 			} else if (item.subMenu && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul cdl-tree-view-item"), this.rootElem);
 			}
-		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR) {
+		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
+					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
 			ev.preventDefault();
 
 			this.select.emit({
