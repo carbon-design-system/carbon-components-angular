@@ -5,6 +5,9 @@
 	z-index: 1000;
 	left: 0;
 	top:0;
+  .valign-element {
+    padding: 20px;
+  }
 }
 
 .modal {
@@ -15,19 +18,19 @@
 	text-align: left;
   box-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.15);
   &.size-xl {
-    width: 980px;
+    max-width: 980px;
   }
   &.size-sm {
-    width: 320px;
+    max-width: 320px;
   }
   &.size-md {
-    width: 640px;
+    max-width: 640px;
   }
   &.size-lg {
-    width: 900px;
+    max-width: 900px;
   }
   &.size-xxl {
-    width: calc(100% - 60px);
-    height: calc(100% - 60px);
+    max-width: 100%;
+    height: 100%;
   }
 }

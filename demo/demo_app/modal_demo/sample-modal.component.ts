@@ -11,7 +11,7 @@ import { Modal } from "../../..";
 				<h1>sample-modal Works!</h1>
 				{{modalText}}
 			</section>
-			<cdl-modal-footer><button class="cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
+			<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
 		</cdl-modal>
 	`,
 	styleUrls: ["./sample-modal.component.scss"]
