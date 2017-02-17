@@ -13,7 +13,6 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 @Component({
 	selector: "cdl-tree-view-item",
 	template: `
-	<li>
 		<div
 			class="item-wrapper"
 			tabindex="{{listItem.disabled?-1:0}}"
@@ -26,13 +25,14 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			role="treeitem"
 			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true: false) : null">
+			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
+			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
 				[style.margin-left.px]="40*indent">
 				<svg
 					*ngIf="!!listItem.subMenu"
-					id="Layer_1" class="arrow"
+					class="arrow"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
 					height="16"
@@ -62,9 +62,9 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[rootElem]="rootElem"
 			[indent]="indent+1"
 			[role]="'group'"
+			[treeViewLabel]="listItem"
 			>
 		</cdl-tree-view>
-	</li>
 	`
 })
 export class TreeViewItem {
@@ -87,7 +87,7 @@ export class TreeViewItem {
 		this.parent = this._elementRef.nativeElement;
 
 		if (!this.rootElem) {
-			this.rootElem = this._elementRef.nativeElement;
+			this.rootElem = this._elementRef.nativeElement.parentNode;
 		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
@@ -111,14 +111,14 @@ export class TreeViewItem {
 		if (ev.keyCode === KeyCodes.UP_ARROW) {
 			ev.preventDefault();
 
-			focusPrevElem(this._elementRef.nativeElement, this.parentRef);
+			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
 		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
 			ev.preventDefault();
 
 			if (!item.subMenu || !item.selected) {
-				focusNextElem(this._elementRef.nativeElement, this.rootElem);
+				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
 			} else if (item.subMenu && item.selected) {
-				focusNextTree(this._elementRef.nativeElement.querySelector("ul cdl-tree-view-item"), this.rootElem);
+				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			}
 		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
 					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {

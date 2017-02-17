@@ -12,18 +12,23 @@ import { TreeViewItem } from "./tree-view-item.component";
 @Component({
 	selector: "cdl-tree-view",
 	template: `
-		<ul class="tree-view" [class.open]="isOpen" [attr.role]="role" [attr.aria-hidden]="(role == 'group') ? !isOpen : null ">
-			<cdl-tree-view-item
-				*ngFor="let item of items"
-				[listTpl]="listTpl"
-				[listItem]="item"
-				[hasSubMenu]="!!item.subMenu"
-				[parentRef]="parent"
-				[rootElem]="rootElem"
-				[selectedIcon]="selectedIcon"
-				(select)="onClick($event)"
-				[indent]="indent">
-			</cdl-tree-view-item>
+		<ul class="tree-view"
+			[class.open]="isOpen"
+			[attr.role]="role"
+			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
+			[attr.aria-label]="treeViewLabel">
+			<li *ngFor="let item of items">
+				<cdl-tree-view-item
+					[listTpl]="listTpl"
+					[listItem]="item"
+					[hasSubMenu]="!!item.subMenu"
+					[parentRef]="parent"
+					[rootElem]="rootElem"
+					[selectedIcon]="selectedIcon"
+					(select)="onClick($event)"
+					[indent]="indent">
+				</cdl-tree-view-item>
+			</li>
 		</ul>
 	`,
 	providers: [{provide: View, useExisting: forwardRef(() => TreeView)}]
@@ -37,6 +42,7 @@ export class TreeView implements View {
 	@Input() rootElem: any = null;
 	@Input() selectedIcon: boolean = true;
 	@Input() role: "tree" | "group" = "tree" ;
+	@Input() treeViewLabel: string;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
