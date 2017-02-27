@@ -84,4 +84,25 @@
 		left:0;
 	}
 
+
+
+	// Accessibility
+	// -------------------------
+
+	.a11y &{
+		border:1px solid $black;
+		svg{
+			fill:$black;
+		}
+		.item-level-1 > .item {
+			svg{
+				fill:$black;
+			}
+		}
+
+
+	}
+
 }
+
+

@@ -133,7 +133,7 @@
 			border-left-width: $tooltip-highlight-border-width;
 				.popover-content{
 					border-left: 0;
-		padding-left: 10px;
+					padding-left: 10px;
 			}
 			.arrow{
 				top:calc(50% - 5px);
@@ -184,8 +184,6 @@
 			border:1px solid $black;
 		}
 	}
-
-
 
 }
 
