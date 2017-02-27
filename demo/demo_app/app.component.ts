@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IconService } from "./../../src/glyphicon/glyphicon.module";
-import { Router, NavigationEnd } from "@angular/router";
-import { HcModeChecker } from './../../src/common/a11y.service';
+import { Router, NavigationEnd, NavigationStart } from "@angular/router";
+import { HcModeChecker } from "./../../src/common/a11y.service";
 import "rxjs/add/operator/filter";
 
 @Component({
@@ -108,6 +108,17 @@ export class AppComponent implements OnInit {
 			if (x.url === "/" && this.previousItem) {
 				this.previousItem.selected = false;
 			}
+		});
+
+		this.router.events.filter(x => x instanceof NavigationStart).subscribe(x => {
+			if (this.previousItem) {
+				this.previousItem.selected = false;
+			}
+			let item = this.navItems.find(y => y.link === x.url);
+			if (item) {
+				item.selected = true;
+			}
+			this.previousItem = item;
 		});
 
 		HcModeChecker();
