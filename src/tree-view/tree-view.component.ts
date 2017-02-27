@@ -26,7 +26,11 @@ import { TreeViewItem } from "./tree-view-item.component";
 					[rootElem]="rootElem"
 					[selectedIcon]="selectedIcon"
 					(select)="onClick($event)"
-					[indent]="indent">
+					[indent]="indent"
+					[indentStart]="indentStart"
+					[brdrAllTheWay]="brdrAllTheWay"
+					[elemSpacing]="elemSpacing"
+					>
 				</cdl-tree-view-item>
 			</li>
 		</ul>
@@ -39,10 +43,13 @@ export class TreeView implements View {
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent: number = 1;
+	@Input() indentStart: number = 0;
 	@Input() rootElem: any = null;
 	@Input() selectedIcon: boolean = true;
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() treeViewLabel: string;
+	@Input() elemSpacing: number = 40;
+	@Input() brdrAllTheWay: boolean = false;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

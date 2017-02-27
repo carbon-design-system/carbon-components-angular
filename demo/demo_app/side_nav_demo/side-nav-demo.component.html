@@ -1,7 +1,7 @@
 <h1>Side Nav Demo</h1>
 
 <template #listTpl let-item="item">
-	<span class="side-nav-glyph"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></span>
+	<span class="side-nav-glyph" *ngIf="item.icon"><cdl-glyphicon icon="{{item.icon}}" size="md"></cdl-glyphicon></span>
 	<span class="side-nav-item">{{item.content}}</span>
 </template>
 
@@ -9,6 +9,6 @@
 		<cdl-hamburger (onClick)="onClick($event)" hamburger></cdl-hamburger>
 </cdl-top-nav>
 <cdl-side-nav [open]="sideNavOpen">
-	<cdl-tree-view [items]="demoItems" [listTpl]="listTpl"> </cdl-tree-view>
+	<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [indentStart]="1" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
 </cdl-side-nav>
 

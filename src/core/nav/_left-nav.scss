@@ -1,0 +1,87 @@
+//
+// Leftnav
+// --------------------------------------------------
+
+// Base style
+
+.left-nav{
+	width: 260px;
+	height: 100vh;
+	background-color: $gray70;
+	position:relative;
+	left:-270px;
+	transition:left 0.2s ease;
+	z-index: 2;
+
+	//nested sub menu items
+	.item-wrapper{
+		background-color:$white;
+		.item {
+			// background: $white;
+			font-weight: 600;
+		}
+	}
+
+	.item-level-1 > .item {
+		padding:0;
+		background-color: $gray70;
+		color: $white;
+		svg {
+			fill: $white;
+		}
+		.side-nav-glyph {
+			display: inline-block;
+			padding: 14px;
+			background: $blue50;
+
+		}
+		.side-nav-item {
+			padding-left: 20px;
+		}
+
+		& > .arrow {
+			position: relative;
+			float: right;
+			top: 16px;
+			margin-right:12px;
+			margin-left: 0;
+		}
+	}
+
+	.item-level-1{
+		border-left: none;
+
+		&.selected > .item{
+			background-color: $blue50;
+		}
+
+		@include hover-blue;
+
+
+	}
+	> * > .tree-view {
+		li:first-child{
+			.item-level-1  > .item{
+			border-top: 0;
+			}
+		}
+		border-bottom:1px solid $gray10;
+	}
+
+
+	.nest-view .open {
+		cdl-tree-view-item {
+			.item-wrapper{
+				.item{
+				background-color: $white;
+				}
+			}
+		}
+	}
+	@include unselectable;
+
+	&.isOpen{
+		left:0;
+	}
+
+}

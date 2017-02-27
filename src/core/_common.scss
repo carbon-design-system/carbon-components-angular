@@ -1,6 +1,7 @@
 @import "mixins/utils",
 		"mixins/vendor-prefixes",
-		"mixins/arrows";
+		"mixins/arrows",
+		"mixins";
 
 //variables
 @import "colors";
@@ -24,7 +25,8 @@
 		"popovers/popovers",
 		"forms/radio",
 		"forms/checkbox",
-    	"datepicker/datepicker";
+    	"datepicker/datepicker",
+		"nav/left-nav";
 
 
 

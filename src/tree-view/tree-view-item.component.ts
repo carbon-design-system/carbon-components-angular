@@ -14,7 +14,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 	selector: "cdl-tree-view-item",
 	template: `
 		<div
-			class="item-wrapper"
+			class="item-wrapper item-level-{{indent}}"
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
 				selected: listItem.selected,
@@ -29,7 +29,9 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
-				[style.margin-left.px]="40*indent">
+				[style.margin-left.px]="( !brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
+				[style.padding-left.px]="( brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
+				>
 				<svg
 					*ngIf="!!listItem.subMenu"
 					class="arrow"
@@ -61,8 +63,11 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[selectedIcon]="selectedIcon"
 			[rootElem]="rootElem"
 			[indent]="indent+1"
+			[indentStart]="indentStart"
+			[brdrAllTheWay]="brdrAllTheWay"
 			[role]="'group'"
 			[treeViewLabel]="listItem"
+			[elemSpacing]="elemSpacing"
 			>
 		</cdl-tree-view>
 	`
@@ -78,7 +83,9 @@ export class TreeViewItem {
 	@Input() indent: number = 1;
 	@Input() rootElem = null;
 	@Input() selectedIcon: boolean = true;
-
+	@Input() indentStart: number = 0;
+	@Input() elemSpacing: number = 40;
+	@Input() brdrAllTheWay: boolean = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(private _elementRef: ElementRef) {}
