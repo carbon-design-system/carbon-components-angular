@@ -1,0 +1,31 @@
+.content {
+  padding: 20px 20px 70px 20px;
+}
+
+.form-instructions {
+  padding-bottom: 20px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.field-title {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.cancel-button {
+  float: right;
+  margin-left: 10px;
+}
+
+.submit-button {
+  float: right;
+}
+
+input {
+  margin: 0;
+}
