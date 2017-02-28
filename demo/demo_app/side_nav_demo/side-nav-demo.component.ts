@@ -4,8 +4,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "side-nav-demo",
 	templateUrl: "./side-nav-demo.component.html",
-	encapsulation: ViewEncapsulation.None,
-	styleUrls: ["./side-nav-demo.component.scss"]
+	encapsulation: ViewEncapsulation.None
 })
 
 export class SideNavDemo {
@@ -19,38 +18,54 @@ export class SideNavDemo {
 		{
 			content: "Understand",
 			selected: false,
+			icon:"Alert",
 			subMenu: [
 				{
 					content: "Experience integrations",
-					selected: false
+					selected: false,
+					subMenu: [
+						{
+							content: "Experience integrations",
+							selected: false
+						},
+						{
+							content: "Predictive custom intelligence",
+							selected: false
+						},
+					]
 				},
 				{
 					content: "Predictive custom intelligence",
-					selected: false,
+					selected: false
 				},
 			]
 		},
 		{
 			content: "Plan",
-			selected: false
+			selected: false,
+			icon:"Alert"
 		},
 		{
 			content: "Design",
-			selected: false
+			selected: false,
+			icon:"Alert"
 		},
 		{
 			content: "Build",
-			selected: false
+			selected: false,
+			icon:"Alert"
 
 		},
 		{
 			content: "Listen",
-			selected: false
+			selected: false,
+			icon:"Alert"
 
 		},
 		{
 			content: "Optimize",
-			selected: false
+			selected: false,
+			icon:"Alert"
 
 		}
 	];

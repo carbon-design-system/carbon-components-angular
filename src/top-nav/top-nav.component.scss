@@ -4,14 +4,14 @@
 
 
 .top-nav {
-    background: $black;
+    background-color: $black;
     top: 0;
     width: 100%;
     left: 0;
     z-index: 3;
-    path {
-        fill: $white;
-    }
+	svg{
+		fill:$white;
+	}
     .top-nav-heading {
         text-decoration: none;
         font-family: "Helvetica Neue Roman for IBM", Helvetica, Arial, sans-serif;
@@ -47,5 +47,14 @@
         position: absolute;
         display: inline-block;
     }
+	.a11y &{
+
+	}
 }
 
+:host-context(.a11y) .top-nav{
+	border-bottom:1px solid $black;
+	svg{
+		fill:$black
+	}
+}

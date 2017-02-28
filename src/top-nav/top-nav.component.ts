@@ -14,10 +14,10 @@ import { DOCUMENT } from "@angular/platform-browser";
 	template: `
 	<nav class="top-nav" [ngStyle]="{'position':displayType}">
 		<ng-content select="[hamburger]"></ng-content>
-		<span class="top-nav-heading">
-					<span> <h1 class="top-nav-brand" role="button"> IBM <strong>{{brand}}</strong> </h1> </span>
-					<span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
-		</span>
+		<a class="top-nav-heading" href="#">
+			<span><h1 class="top-nav-brand"> IBM <strong>{{brand}}</strong> </h1> </span>
+			<span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
+		</a>
 		<ng-content select="[links]"></ng-content>
 		<ng-content select="[menu]"></ng-content>
 		<span class="top-nav-ibm">

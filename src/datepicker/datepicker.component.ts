@@ -100,7 +100,7 @@ export class Datepicker {
 	goNextMonth() {
 		if (this.nextMonth.getMonth() === 11) {
 			this.year++;
-			this.date = new Date(this.year, 1);
+			this.date = new Date(this.year, 0);
 			this.getNextMonth();
 		} else {
 			this.date = this.nextMonth;
