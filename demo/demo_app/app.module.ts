@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 
 import { AppComponent } from "./app.component";
@@ -24,6 +25,7 @@ import { ModalDemo } from "./modal_demo/modal-demo.component";
 import { SampleModalComponent } from "./modal_demo/sample-modal.component";
 import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { XLModalComponent } from "./modal_demo/extra-large.component";
+import { FormModalComponent } from "./modal_demo/form-modal.component";
 import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
@@ -73,6 +75,7 @@ import {
 		SampleModalComponent,
 		ErrorModalComponent,
 		XLModalComponent,
+		FormModalComponent,
 		TooltipDemo,
 		AlertDemo,
 		AlertCustom,
@@ -84,11 +87,13 @@ import {
 		SampleModalComponent,
 		ErrorModalComponent,
 		XLModalComponent,
+		FormModalComponent,
 		AlertCustom
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
+		ReactiveFormsModule,
 		HttpModule,
 		TableModule,
 		TabsModule,
