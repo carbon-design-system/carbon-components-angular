@@ -82,6 +82,14 @@
 				}
 			}
 		}
+		// angular
+		&.ng-invalid.ng-touched, &.is-error{
+			+ span{
+				&:before{
+					@include outline-error;
+				}
+			}
+		}
 	}
 	.size-sm & , &.size-sm  {
 		label {

@@ -1,48 +1,6 @@
 @import "vars";
 @import "colors";
 
-input {
-	font-size: $font-size;
-	padding-left: 10px;
-	padding-right: 10px;
-	height: 30px;
-	min-width: 280px;
-	margin: 2px;
-	border: 1px solid $gray50;
-	color: $gray60;
-	&.sm {
-		height: 20px;
-	}
-	&.md {
-		height: 30px;
-	}
-	&.lg {
-		height: 40px;
-	}
-	&:focus {
-		outline: 1px solid $blue50;
-	    outline-offset: 1px;
-	}
-}
-
-
-
-
-
-textarea {
-	color: $gray60;
-	font-size: $font-size;
-	padding: 10px;
-	border: 1px solid $gray50;
-	height: 114px;
-	width: 385px;
-	transition: all 0.1s;
-	margin: 2px;
-	&:focus {
-		outline: 1px solid $blue50;
-	    outline-offset: 1px;
-	}
-}
 
 .switch {
 	label {

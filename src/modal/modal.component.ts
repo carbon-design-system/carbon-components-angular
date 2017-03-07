@@ -18,7 +18,7 @@ import {
 			<cdl-overlay (overlaySelect)="overlaySelected.emit()"></cdl-overlay>
 			<div class="valign-wrapper">
 				<div class="valign-element">
-					<section [@modalState]="modalState" class="modal size-{{size}}">
+					<section [@modalState]="modalState" class="modal modal-size-{{size}}">
 						<ng-content></ng-content>
 					</section>
 				</div>

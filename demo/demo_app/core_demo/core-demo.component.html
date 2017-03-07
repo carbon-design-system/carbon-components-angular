@@ -19,47 +19,69 @@
 	<button class="btn secondary">Button</button>
 	<button class="btn secondary">Button</button>
 </div>
-<br><br>
-
-<input type="text" class="sm">
-<input type="text">
-<input type="text" class="lg">
 <br>
 
-<input type="number">
+<h2>Forms</h2>
+<br>
+<div class="form-container">
+	<label class="label label-top" for="">Field Small</label>
+	<input type="text" class="input-field size-sm">
+</div>
+<br>
+<div class="form-container">
+	<label class="label  label-top" for="">Field</label>
+	<input type="text" class="input-field">
+</div>
+<br>
+<div class="form-container">
+	<label class="label label-top" for="">Field Large</label>
+	<input type="text" class="input-field size-lg">
+</div>
 <br>
 
-<textarea></textarea>
+<div class="form-container">
+	<label class="label label-top" for="">Textarea </label>
+	<textarea class="input-field"></textarea>
+</div>
 <br>
 
 <h2>checkbox</h2>
 <div class="checkbox">
 	<label>
 		<input type="checkbox">
-		<span>test</span>
+		<span  class="label">test</span>
 	</label>
 </div>
+
 <div class="checkbox">
 	<label>
-		<input type="checkbox">
-		<span>Checkbox</span>
+		<input type="checkbox" >
+		<span class="label">Checkbox</span>
 	</label>
 </div>
+
+
+<div class="checkbox">
+	<label>
+		<input type="checkbox" class="ng-invalid ng-touched">
+		<span class="label">Checkbox</span>
+	</label>
+</div>
+
 <br>
 
 <h2>Radiobox</h2>
 	<div class="radio">
 		<label for="r1">
 			<input type="radio" name="rg1" id="r1" checked>
-			<span>Radio Box 1</span>
+				<span class="label">Radio Box 1</span>
 		</label>
 	</div>
 	<div class="radio">
 		<label for="r2">
-		<input type="radio" name="rg1" id="r2">
-		<span>Radio Box 2</span>
+			<input type="radio" name="rg1" id="r2" class="ng-invalid ng-touched">
+			<span  class="label">Radio Box 2</span>
 		</label>
-
 	</div>
 
 <br>

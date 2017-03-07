@@ -108,6 +108,35 @@ $tooltip-min-width: 146px;
 $tooltip-highlight-border-width:	4px;
 
 
+//== Form
+//
+//## Define input colors, border radius, and padding.
+
+$input-field-font: 300; // Helvetica Roman
+
+$input-field-border: 1px solid $gray50;
+$input-field-color:				$gray60;
+
+$input-field-border-hover: 		$blue50;
+$input-field-border-focus: 		$blue50;
+$input-field-border-disabled: 	$gray20;
+$input-field-color-disabled: 	$gray20;
+
+
+// sizes;
+$input-field-height:     30px;
+$input-field-height-sm:  20px;
+$input-field-height-lg:  40px;
+
+//padding
+$input-field-padding: 	 0 10px;
+$input-field-padding-lg: 0 20px;
+
+//textarea
+$text-area-padding: 	 10px;
+$text-area-height: 	     114px;
+
+
 //== Radio
 //
 //## Define Radio colors, border radius, and padding.

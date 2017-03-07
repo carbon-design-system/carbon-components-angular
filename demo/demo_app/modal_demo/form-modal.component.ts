@@ -21,14 +21,14 @@ import { Modal } from "../../..";
 @Component({
 	selector: "form-modal",
 	template: `
-		<cdl-modal size="sm" (overlaySelected)="closeModal()">		
+		<cdl-modal size="sm" (overlaySelected)="closeModal()">
 			<cdl-modal-header (closeSelect)="closeModal()">Form</cdl-modal-header>
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
 				<div class="content">
 					<div class="form-instructions">{{modalText}}</div>
-					<div class="form-fields" *ngFor="let field of fields">
-						<div class="field-title">{{field}}</div>
-						<input type="text" placeholder="{{field}}" formControlName="{{field}}"/>
+					<div class="form-container" *ngFor="let field of fields" [class.has-error]="form.get(field).touched && !form.get(field).valid">
+						<label class="label label-top">{{field}}</label>
+						<input type="text" class="input-field" placeholder="{{field}}" formControlName="{{field}}"/>
 					</div>
 				</div>
 				<cdl-modal-footer>
