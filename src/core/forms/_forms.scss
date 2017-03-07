@@ -51,6 +51,7 @@
     }
     // textarea
     @at-root textarea#{&} {
+		padding: $text-area-padding;
         height: $text-area-height;
     }
 	&.ng-invalid.ng-touched, &.is-error{
