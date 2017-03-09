@@ -85,7 +85,7 @@ export class DatepickerDirective implements OnInit {
 		}
 	}
 
-	checkValidDateInput(dateStr) {
+	checkValidDateInput(dateStr): any {
 		if (dateStr) {
 			let expected = this.format.split(this.separator);
 			let inputVals = dateStr.split(this.separator);
