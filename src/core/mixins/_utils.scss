@@ -15,4 +15,9 @@ $browser-context: 16; // Default
 }
 
 
+// outline error
+@mixin outline-error{
+	box-shadow: 0px 0px 0px 1px white, 0px 0px 0px 2px red;
+	outline-offset: none;
+}
 

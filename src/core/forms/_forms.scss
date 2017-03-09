@@ -1,0 +1,64 @@
+//
+// Forms
+// --------------------------------------------------
+
+
+// label
+
+.label{
+    color:$gray80;
+    font-weight: 400;
+    &.disabled, .disabled &{
+        color:$input-field-color-disabled;
+    }
+}
+
+.label-top{
+    display: block;
+    clear:both;
+    margin-bottom: 10px;
+}
+
+// text field
+.input-field{
+	width:100%;
+    font-weight: $input-field-font;
+    border: $input-field-border;
+    color:$input-field-color;
+    height: $input-field-height;
+    padding: $input-field-padding;
+
+    &:hover{
+        border-color:$input-field-border-hover;
+    }
+
+    &:focus{
+        outline:0;
+        @include box-shadow(0 0 0 1px $white, 0 0 0 2px $blue50)
+    }
+    &:disabled{
+        border-color: $input-field-border-disabled;
+        color:$input-field-color-disabled;
+    }
+    @at-root input#{&} {
+        .size-sm & , &.size-sm{
+            height: $input-field-height-sm;
+        }
+        .size-lg &, &.size-lg{
+            height: $input-field-height-lg;
+            padding:$input-field-padding-lg;
+        }
+    }
+    // textarea
+    @at-root textarea#{&} {
+		padding: $text-area-padding;
+        height: $text-area-height;
+    }
+	&.ng-invalid.ng-touched, &.is-error{
+		@include outline-error;
+	}
+
+}
+
+
+
