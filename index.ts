@@ -14,3 +14,4 @@ export * from "./src/typeahead/typeahead.module";
 export * from "./src/calendar/calendar.module";
 export * from "./src/datepicker/datepicker.module";
 export * from "./src/sub-menu-view/sub-menu-view.module";
+export * from "./src/common/common.module";
