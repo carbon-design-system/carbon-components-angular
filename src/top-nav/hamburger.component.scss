@@ -6,7 +6,7 @@
 .hamburger {
     float: left;
     padding: 12px 10px;
-    background: $black;
+    background: color("black", 100);
     background: none;
   	border: none;
   	height: 48px;
@@ -18,7 +18,7 @@
 }
 :host-context(.a11y) .hamburger{
 	svg{
-		fill:$black;
+		fill: color("black", 100);
 	}
 }
 

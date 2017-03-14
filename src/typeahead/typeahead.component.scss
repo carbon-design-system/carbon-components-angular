@@ -10,13 +10,13 @@
 
 	.list-view {
 		position: absolute;
-		background: $white;
+		background: color("white", 0);
 		z-index: 1000;
 		width: 100%;
 
 		.highlight {
 			font-weight: bold;
-			color: $blue50;
+			color: color("blue", 50);
 		}
 	}
 }

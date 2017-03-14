@@ -7,7 +7,7 @@
 .left-nav{
 	width: 260px;
 	height: 100vh;
-	background-color: $gray70;
+	background-color: color("gray", 70);
 	position:relative;
 	left:-270px;
 	transition:left 0.2s ease;
@@ -15,7 +15,7 @@
 
 	//nested sub menu items
 	.item-wrapper{
-		background-color:$white;
+		background-color: color("white", 0);
 		.item {
 			// background: $white;
 			font-weight: 600;
@@ -24,15 +24,15 @@
 
 	.item-level-1 > .item {
 		padding:0;
-		background-color: $gray70;
-		color: $white;
+		background-color: color("gray", 70);
+		color: color("white", 0);
 		svg {
-			fill: $white;
+			fill: color("white", 0);
 		}
 		.side-nav-glyph {
 			display: inline-block;
 			padding: 14px;
-			background: $blue50;
+			background: color("blue", 50);
 
 		}
 		.side-nav-item {
@@ -52,7 +52,7 @@
 		border-left: none;
 
 		&.selected > .item{
-			background-color: $blue50;
+			background-color: color("blue", 50);
 		}
 
 		@include hover-blue;
@@ -65,7 +65,7 @@
 			border-top: 0;
 			}
 		}
-		border-bottom:1px solid $gray10;
+		border-bottom:1px solid color("gray", 10);
 	}
 
 
@@ -73,7 +73,7 @@
 		cdl-tree-view-item {
 			.item-wrapper{
 				.item{
-				background-color: $white;
+				background-color: color("white", 0);
 				}
 			}
 		}
@@ -90,13 +90,13 @@
 	// -------------------------
 
 	.a11y &{
-		border:1px solid $black;
+		border:1px solid color("black", 100);
 		svg{
-			fill:$black;
+			fill: color("black", 100);
 		}
 		.item-level-1 > .item {
 			svg{
-				fill:$black;
+				fill: color("black", 100);
 			}
 		}
 

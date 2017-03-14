@@ -26,7 +26,7 @@
 			    margin-right: $label-margin;
 			    display: inline-block;
 			    height: $el-size;
-			    border: 1px solid $gray50;
+			    border: 1px solid color("gray", 50);
 			    vertical-align: middle;
                 border-radius: $el-brd-radius;
 		    }
@@ -37,7 +37,7 @@
 				position: absolute;
 				top: ($el-size - $selected-height) / 2;
 				left: ($el-size - $selected-width) / 2;
-				border-color: $blue50;
+				border-color: color("blue", 50);
 				border-style: solid;
 
 				@if $type == radio {
@@ -54,7 +54,7 @@
 			}
 
 		    &:hover:before {
-				border-color:$blue50;
+				border-color: color("blue", 50);
 		    }
 		}
 	}
@@ -72,13 +72,13 @@
 		}
 		&:disabled{
 			+ span{
-				color:$gray20;
+				color: color("gray", 20);
 				cursor: not-allowed;
 				&:before{
-					border-color:$gray20;
+					border-color: color("gray", 20);
 				}
 				&:after{
-					background-color:$gray20;
+					background-color: color("gray", 20);
 				}
 			}
 		}
@@ -119,28 +119,28 @@
 		label {
 			span{
 				 &:before {
-					 border-color:$white;
+					 border-color: color("white", 0);
 				 }
 				 &:after {
 					@if $type == radio {
-						background-color:$blue20;
+						background-color: color("blue", 20);
 					} @else if $type == checkbox{
-						border-color:$blue20;
+						border-color: color("blue", 20);
 					}
 				 }
 				  &:hover:before {
-					border-color:$blue20;
+					border-color: color("blue", 20);
 				}
 			}
 			input[type=#{$type}]{
 				&:disabled{
 					& + span{
 						&:before{
-							border-color:$gray20;
+							border-color: color("gray", 20);
 						}
 						&:after{
 							@if $type == radio {
-								background-color:$gray20;
+								background-color: color("gray", 20);
 							}
 						}
 					}

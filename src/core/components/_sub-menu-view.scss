@@ -5,7 +5,7 @@
 	@include box-shadow($default-box-shadow);
 	max-width: 250px;
 	z-index: 1000;
-	background: $white;
+	background: color("white", 0);
 
 	li {
 		padding-left: 0px;
@@ -17,30 +17,30 @@
 			border-left: 2px solid transparent; // transparent border to prevent shifting
 
 			&.disabled {
-				color: $gray20;
+				color: color("gray", 20);
 				cursor: no-drop;
 				&:hover, &:focus {
-					background: $white;
+					background: color("white", 0);
 					border-left: 2px solid transparent;
 					outline: none;
 				}
 			}
 
 			&.selected {
-				border-left: 2px solid $blue50;
-				color: $blue50;
+				border-left: 2px solid color("blue", 50);
+				color: color("blue", 50);
 				font-weight: bold;
-				background: rgba($blue40, 0.10);
+				background: rgba(color("blue", 40), 0.10);
 			}
 
 			&:hover {
-				background: rgba($blue40, 0.10);
-				border-left: 2px solid $blue50;
+				background: rgba(color("blue", 40), 0.10);
+				border-left: 2px solid color("blue", 50);
 			}
 
 			&:focus {
-				border-left: 2px solid $blue50;
-				outline: 1px solid $blue50;
+				border-left: 2px solid color("blue", 50);
+				outline: 1px solid color("blue", 50);
 				outline-offset: 1px;
 			}
 
@@ -49,7 +49,7 @@
 				padding-left: 20px;
 				padding-top: 12.5px;
 				padding-bottom: 12.5px;
-				border-bottom: 1px solid $gray10;
+				border-bottom: 1px solid color("gray", 10);
 			}
 
 			.arrow {
@@ -63,19 +63,19 @@
 				height: 18px;
 				width: 18px;
 				border-radius: 20px;
-				border: 1px solid $white;
-				background: $blue50;
+				border: 1px solid color("white", 0);
+				background: color("blue", 50);
 				float: right;
 				margin-right: 20px;
 
 				svg {
-					background: $blue50;
+					background: color("blue", 50);
 					border-radius: 20px;
 					path:first-child {
-						fill: $blue50;
+						fill: color("blue", 50);
 					}
 					path:last-child {
-						fill: $white;
+						fill: color("white", 0);
 					}
 				}
 			}

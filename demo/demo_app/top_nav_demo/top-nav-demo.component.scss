@@ -12,7 +12,7 @@
         text-align: center;
         border: none;
         white-space: nowrap;
-        color: $white;
+        color: color("white", 0);
         font-size: 15px;
         height: 100%;
         @include hover-blue;

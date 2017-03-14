@@ -12,7 +12,7 @@
 
 .popover{
 	@include box-shadow($default-box-shadow);
-	background-color:$white;
+	background-color: color("white", 0);
 	position: relative;
 	max-width: 280px;
 
@@ -31,7 +31,7 @@
 			float: right;
 			padding: 0;
 			svg{
-				fill:$white;
+				fill: color("white", 0);
 			}
 		}
 	}
@@ -41,7 +41,7 @@
 	}
 
 	.arrow{
-		@include arrow($popover-arrow-width, $popover-arrow-height, $white, $default-box-shadow-overlayed);
+		@include arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 	}
 	&.top {
 		.arrow{
@@ -57,7 +57,7 @@
 			transform: rotate(180deg);
 		}
 		.popover-header ~ .arrow:after{
-			background-color:$popover-header-bg;
+			background-color: $popover-header-bg;
 		}
 	}
 	&.left{
@@ -98,15 +98,15 @@
 		}
 
 		&.top, &.bottom, &.right, &.left {
-			border-color: $blue50;
+			border-color: color("blue", 50);
 			border-width: 0;
 			border-style: solid;
 
 			&.danger {
-				border-color: $red50;
+				border-color: color("red", 50);
 			}
 			&.warning {
-				border-color: $yellow20;
+				border-color: color("yellow", 10);
 			}
 		}
 		&.top {
@@ -172,16 +172,16 @@
 	// -------------------------
 
 	.a11y &{
-		border:1px solid $black;
+		border:1px solid color("black", 100);
 		.popover-header{
-			border-bottom: 1px solid $black;
+			border-bottom: 1px solid color("black", 100);
 
 			svg {
-				fill:$black
+				fill: color("black", 100)
 			}
 		}
 		.arrow:after{
-			border:1px solid $black;
+			border:1px solid color("black", 100);
 		}
 	}
 

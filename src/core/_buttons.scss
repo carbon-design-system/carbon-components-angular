@@ -13,9 +13,9 @@ button.btn {
 	font-size: $font-size;
 	padding-left: 20px;
 	padding-right: 20px;
-	border: 2px solid $blue50;
-	color: $white;
-	background: $blue50;
+	border: 2px solid color("blue", 50);
+	color: color("white", 0);
+	background: color("blue", 50);
 	height: $md;
 	margin: 1px;
 	line-height: $font-size;
@@ -29,39 +29,39 @@ button.btn {
 		height: $lg;
 	}
 	&:hover, &:focus {
-		background: $blue60;
-		border: 2px solid $blue60;
+		background: color("blue", 60);
+		border: 2px solid color("blue", 60);
 	}
 	&:active {
-		background: $blue70;
+		background: color("blue", 70);
 	}
 	&.secondary {
-		color: $blue50;
-		background: $white;
+		color: color("blue", 50);
+		background: color("white", 0);
 		&:hover, &:focus {
-			background: rgba($blue40, 0.10);
+			background: rgba(color("blue", 40), 0.10);
 		}
 		&:active {
-			background: $blue60;
-			color: $white;
+			background: color("blue", 60);
+			color: color("white", 0);
 		}
 	}
 	&.action {
-		color: $gray60;
+		color: color("gray", 60);
 		border: none;
 		background: white;
-		outline: 1px solid $white;
+		outline: 1px solid color("white", 0);
 		outline-offset: 1px;
 		&:hover {
-			color: $blue50;
+			color: color("blue", 50);
 		}
 		&:focus {
-			outline: 1px solid $blue50;
+			outline: 1px solid color("blue", 50);
 			outline-offset: 1px;
 		}
 		&.selected {
-			color: $blue50;
-			border-bottom: 2px solid $blue50;
+			color: color("blue", 50);
+			border-bottom: 2px solid color("blue", 50);
 		}
 	}
 	&.clear-button {

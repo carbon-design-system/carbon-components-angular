@@ -39,7 +39,7 @@
 		&.disabled {
 			&:hover, &:focus {
 				border: $listview-border;
-				background-color: $white;
+				background-color: color("white", 0);
 			}
 		}
 		&:last-child {
@@ -63,9 +63,9 @@
 			height: 18px;
 			min-width: 18px;
 			border-radius: 18px;
-			border: 1px solid $white;
-			background: $blue50;
-			color:$white;
+			border: 1px solid color("blue", 1);
+			background: color("blue", 50);
+			color: color("white", 0);
 			text-align: center;
 			font-size: rem(12);
 			line-height: 1rem;
@@ -74,8 +74,8 @@
 			@extend .badge;
 			&:before{
 				content:'';
-				border-right: 1px solid $white;
-				border-bottom: 1px solid $white;
+				border-right: 1px solid color("white", 0);
+				border-bottom: 1px solid color("white", 0);
 				transform: rotate(45deg);
 				position: absolute;
 				left: 6px;

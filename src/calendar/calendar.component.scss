@@ -12,7 +12,7 @@
 	display: inline-block;
 
 	th {
-		color: $blue50;
+		color: color("blue", 50);
 		width: 30px;
 		height: 30px;
 		padding-left: 5px;
@@ -24,16 +24,16 @@
 		line-height: 30px;
 
 		&.current-date {
-			background: $blue10;
+			background: color("blue", 10);
 		}
 
 		&.selected-date {
-			background: $blue50;
-			color: $white;
+			background: color("blue", 50);
+			color: color("white", 0);
 		}
 
 		&:hover, &:focus {
-			border-bottom: solid 4px $blue50;
+			border-bottom: solid 4px color("blue", 50);
 		}
 	}
 }
