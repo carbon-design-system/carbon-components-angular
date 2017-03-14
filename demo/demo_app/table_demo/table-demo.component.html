@@ -1,18 +1,18 @@
 <h1>Table Demo</h1>
 
 <p>demo controls</p>
-<button (click)="update()">update rows</button>
-<button (click)="deleteSelected()">delete selected</button>
-<button (click)="cvis = !cvis">toggle col c</button>
+<button (click)="update()" class="btn">update rows</button>
+<button (click)="deleteSelected()" class="btn" >delete selected</button>
+<button (click)="cvis = !cvis" class="btn" >toggle col c</button>
 <hr/>
 <div class="table">
-	<cdl-table 
+	<cdl-table
 		[rows]="availableRows"
 		striped="true"
 		(selectAll)="selectAll($event)"
 		(selectRow)="select($event)">
 		<cdl-column
-			key="a" 
+			key="a"
 			title="A"
 			width="200"
 			(sort)="sortA($event)">
@@ -20,7 +20,7 @@
 			<template #cellTemplate let-data="data">col 1 {{data}}</template>
 		</cdl-column>
 		<cdl-column
-			key="b" 
+			key="b"
 			title="B"
 			(sort)="sort($event)"
 			resizeable="false">
