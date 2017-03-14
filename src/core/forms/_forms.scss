@@ -6,7 +6,7 @@
 // label
 
 .label{
-    color:$gray80;
+    color: color("gray", 80);
     font-weight: 400;
     &.disabled, .disabled &{
         color:$input-field-color-disabled;
@@ -24,21 +24,21 @@
 	width:100%;
     font-weight: $input-field-font;
     border: $input-field-border;
-    color:$input-field-color;
+    color: $input-field-color;
     height: $input-field-height;
     padding: $input-field-padding;
 
     &:hover{
-        border-color:$input-field-border-hover;
+        border-color: $input-field-border-hover;
     }
 
     &:focus{
         outline:0;
-        @include box-shadow(0 0 0 1px $white, 0 0 0 2px $blue50)
+        @include box-shadow(0 0 0 1px color("white", 0), 0 0 0 2px color("blue", 50))
     }
     &:disabled{
         border-color: $input-field-border-disabled;
-        color:$input-field-color-disabled;
+        color: $input-field-color-disabled;
     }
     @at-root input#{&} {
         .size-sm & , &.size-sm{

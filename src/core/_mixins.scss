@@ -3,12 +3,12 @@
 
 // Changes element to blue on hover/focus. Changes svg fill to white to contrast.
 @mixin hover-blue {
-	fill: $white;
+	fill: color("white", 0);
 	&:hover {
-		background-color:$blue50;
+		background-color: color("blue", 50);
 	}
 	&:focus {
-		background-color:$blue50;
+		background-color: color("blue", 50);
 	}
 }
 

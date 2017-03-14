@@ -16,18 +16,18 @@ $tabs-margin: 15px;
 
 	.left-arrow {
 		left: 0px;
-		-webkit-box-shadow: 5px 0px 9px -5px $gray50;
-		-moz-box-shadow: 5px 0px 9px -5px $gray50;
-		box-shadow: 5px 0px 9px -5px $gray50;
+		-webkit-box-shadow: 5px 0px 9px -5px color("gray", 50);
+		-moz-box-shadow: 5px 0px 9px -5px color("gray", 50);
+		box-shadow: 5px 0px 9px -5px color("gray", 50);
 		padding-right: 2px;
 		z-index: 1;
 	}
 
 	.right-arrow {
 		right: 0px;
-		-webkit-box-shadow: -5px 0px 9px -5px $gray50;
-		-moz-box-shadow: -5px 0px 9px -5px $gray50;
-		box-shadow: -5px 0px 9px -5px $gray50;
+		-webkit-box-shadow: -5px 0px 9px -5px color("gray", 50);
+		-moz-box-shadow: -5px 0px 9px -5px color("gray", 50);
+		box-shadow: -5px 0px 9px -5px color("gray", 50);
 		padding-left: 2px;
 	}
 
@@ -36,17 +36,17 @@ $tabs-margin: 15px;
 		position: absolute;
 		top: -1px;
 		height: 40px;
-		background: $white;
+		background: color("white", 0);
 		width: 20px;
 		margin: 0;
 
 		svg {
-			fill: $gray50;
+			fill: color("gray", 50);
 		}
 
 		&:hover {
 			svg {
-				fill: $blue50;
+				fill: color("blue", 50);
 			}
 		}
 
@@ -54,7 +54,7 @@ $tabs-margin: 15px;
 			cursor: no-drop;
 			box-shadow: none;
 			svg {
-				fill: $gray20;
+				fill: color("gray", 20);
 			}
 		}
 	}
@@ -86,25 +86,25 @@ $tabs-margin: 15px;
 			height: $tabs-height;
 			display: inline-block;
 			border-bottom: solid 3px transparent;
-			color: $gray60;
+			color: color("gray", 60);
 			font-size: $font-size;
 
 			&:hover, &:focus {
 				text-decoration: none;
-				border-bottom: solid 1px $blue50;
+				border-bottom: solid 1px color("blue", 50);
 			}
 
 			&.active-tab {
-				border-bottom: solid 3px $blue50;
+				border-bottom: solid 3px color("blue", 50);
 				font-weight: bold;
 
 				&:focus {
-					color: $blue50;
+					color: color("blue", 50);
 				}
 			}
 
 			&.disabled-tab {
-				color: $gray20;
+				color: color("gray", 20);
 
 				&:hover, &:focus {
 					border-bottom: solid 3px transparent;

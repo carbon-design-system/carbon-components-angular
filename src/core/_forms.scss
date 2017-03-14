@@ -18,13 +18,13 @@
 				position: relative;
 				height: 30px;
 				width: 65px;
-				background: $gray50;
+				background: color("gray", 50);
 				border-radius: 50px;
 				padding: 5px;
 				transition: padding 0.3s ease, background 0.3s ease;
 				margin: 0 10px;
 				&:hover {
-					background: $gray60;
+					background: color("gray", 60);
 				}
 				&:before {
 					position: absolute;
@@ -36,8 +36,8 @@
 				    transition: opacity 0.3s ease;
 				    height: 14px;
 				    width: 8px;
-				    border-right: 1px solid $white;
-				    border-bottom: 1px solid $white;
+				    border-right: 1px solid color("white", 0);
+				    border-bottom: 1px solid color("white", 0);
 				    transform: rotate(45deg);
 				}
 				&:after {
@@ -45,15 +45,15 @@
 					height: 20px;
 					content: "";
 					display: inline-block;
-					background: $white;
+					background: color("white", 0);
 					border-radius: 50px;
 				}
 			}
 			&:checked + span:last-child {
 				padding-left: 40px;
-				background: $blue50;
+				background: color("blue", 50);
 				&:hover {
-					background: $blue60;
+					background: color("blue", 60);
 				}
 				&:before {
 					opacity: 1;

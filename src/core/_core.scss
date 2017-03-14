@@ -8,16 +8,16 @@
 body {
 	font-family: sans-serif;
 	font-size: $font-size;
-	color: $gray60;
+	color: color("gray", 60);
 	font-weight: 400;
 }
 
 //link styles
 a {
-  color: $blue50;
+  color: color("blue", 50);
   text-decoration: none;
   &:visited {
-    color: $blue50;
+    color: color("blue", 50);
   }
   &:focus, &:hover {
     text-decoration: underline;

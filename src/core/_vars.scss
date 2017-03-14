@@ -49,38 +49,38 @@ $alert-padding:				0 10px;
 $alert-border-radius:		none;
 $alert-border-width:		1px;
 $alert-link-font-weight:	700;
-$alert-font-color:			$gray80;
+$alert-font-color:			color("gray", 80);
 
 $alert-icon-margin:			0 10px 0 0;
 $alert-icon-font-size:		22px;
 $alert-close-margin:		0 0 0 20px;
 
-$alert-success-bg:            mix($green10, $white, 25%);
+$alert-success-bg:            mix(color("green", 10), color("white", 0), 25%);
 $alert-success-text:          $alert-font-color;
-$alert-success-border:        $green40;
-$alert-success-icon:          $green40;
+$alert-success-border:        color("green", 40);
+$alert-success-icon:          color("green", 40);
 
-$alert-info-bg:               mix($blue10, $white, 25%);
+$alert-info-bg:               mix(color("blue", 10), color("white", 0), 25%);
 $alert-info-text:             $alert-font-color;
-$alert-info-border:           $blue30;
-$alert-info-icon:             $blue30;
+$alert-info-border:           color("blue", 30);
+$alert-info-icon:             color("blue", 30);
 
-$alert-warning-bg:            mix($yellow10, $white, 25%);
+$alert-warning-bg:            mix(color("yellow", 10), color("white", 0), 25%);
 $alert-warning-text:          $alert-font-color;
-$alert-warning-border:        $yellow;
-$alert-warning-icon:          $yellow;
+$alert-warning-border:        color("yellow", 10);
+$alert-warning-icon:          color("yellow", 10);
 
-$alert-danger-bg:             mix($red10, $white, 25%);
+$alert-danger-bg:             mix(color("red", 10), color("white", 0), 25%);
 $alert-danger-text:           $alert-font-color;
-$alert-danger-border:         $red50;
-$alert-danger-icon:           $red50;
+$alert-danger-border:         color("red", 50);
+$alert-danger-icon:           color("red", 50);
 
 
 
 
 //** Box shadow value for modals, popovers, dropdowns, tooltips, etc.
-$default-box-shadow:	          0 0 10px rgba($black, 0.16);
-$default-box-shadow-overlayed:    0 0 10px rgba($black, 0.08); // for arrows
+$default-box-shadow:	          0 0 10px rgba(color("black", 100), 0.16);
+$default-box-shadow-overlayed:    0 0 10px rgba(color("black", 100), 0.08); // for arrows
 
 
 //== Popovers
@@ -89,8 +89,8 @@ $default-box-shadow-overlayed:    0 0 10px rgba($black, 0.08); // for arrows
 
 $popover-header-padding: 	15px 20px;
 $popover-header-height: 	45px;
-$popover-header-bg: 		$blue50;// $blue50
-$popover-title-color: 		$white;
+$popover-header-bg: 		color("blue", 50);
+$popover-title-color: 		color("white", 0);
 
 $popover-content-padding: 	30px 20px;
 $popover-arrow-width:		20px;
@@ -101,7 +101,7 @@ $popover-arrow-height:		10px;
 //## Define
 
 $tooltip-padding: 	11px 16px;
-$tooltip-border: 	1px solid  $gray10;
+$tooltip-border: 	1px solid color("gray", 10);
 $tooltip-max-width: 200px;
 $tooltip-min-width: 146px;
 
@@ -114,13 +114,13 @@ $tooltip-highlight-border-width:	4px;
 
 $input-field-font: 300; // Helvetica Roman
 
-$input-field-border: 1px solid $gray50;
-$input-field-color:				$gray60;
+$input-field-border: 1px solid color("gray", 50);
+$input-field-color:			   color("gray", 60);
 
-$input-field-border-hover: 		$blue50;
-$input-field-border-focus: 		$blue50;
-$input-field-border-disabled: 	$gray20;
-$input-field-color-disabled: 	$gray20;
+$input-field-border-hover: 	   color("gray", 50);
+$input-field-border-focus: 	   color("gray", 50);
+$input-field-border-disabled:  color("gray", 20);
+$input-field-color-disabled:   color("gray", 20);
 
 
 // sizes;
@@ -178,15 +178,15 @@ $checkbox-selected-sm-height: 5px;
 //
 //## Define list-view colors, border, and padding.
 
-$listview-bg:          $white;
+$listview-bg:          color("white", 0);
 $listview-padding:     11px 20px; // padding is 11 to make it 40 pixel height
 
-$listview-border:      1px solid $gray10;
-$listview-hover-bg:    $blue40-10;
+$listview-border:      1px solid color("gray", 10);
+$listview-hover-bg:    color-tint(color("blue", 40), 90);
 
-$listview-active-border-color:  $white;
-$listview-selected-border:		2px solid $blue50; // left border
-$listview-selected-color: 		$blue50;
+$listview-active-border-color:  color("white", 0);
+$listview-selected-border:		2px solid color("blue", 50); // left border
+$listview-selected-color: 		color("blue", 50);
 
 //== tree-view
 //
@@ -194,11 +194,11 @@ $listview-selected-color: 		$blue50;
 
 $treeview-padding:     10px; // padding is 11 to make it 40 pixel height;
 
-$treeview-border:      1px solid $gray10-50;
-$treeview-hover-bg:    $blue40-10;
+$treeview-border:      1px solid color-tint(color("gray", 10), 50);
+$treeview-hover-bg:    color-tint(color("blue", 40), 90);
 
-$treeview-selected-border-color:$blue50; // left border
-$treeview-selected-color:       $blue50;
+$treeview-selected-border-color: color("blue", 50); // left border
+$treeview-selected-color:        color("blue", 50);
 
 
 //== buttons
@@ -217,64 +217,64 @@ $btn-padding: 		0 20px;
 // btns array could be changed to variables
 $btns: (
     primary: (
-        color: 		     $white,
-        bg:  	         $blue50,
-        brd-color:       $blue50,
-        brd-color-hover: $blue60,
-        bg-hover:        $blue60,
-        color-disabled:  $gray30,
-        bg-disabled:     $gray20,
-        brd-disabled:    $gray20
+        color: 		     color("white", 0),
+        bg:  	         color("blue", 50),
+        brd-color:       color("blue", 50),
+        brd-color-hover: color("blue", 60),
+        bg-hover:        color("blue", 60),
+        color-disabled:  color("gray", 30),
+        bg-disabled:     color("gray", 20),
+        brd-disabled:    color("gray", 20)
     ),
     secondary: (
-        color:           $blue50,
-        bg:              $white,
-        bg-hover:        $blue40-10,
-        brd-color:       $blue50,
-        color-disabled:  $gray20,
+        color:           color("blue", 50),
+        bg:              color("white", 0),
+        bg-hover:        color-tint(color("blue", 40), 90),
+        brd-color:       color("blue", 50),
+        color-disabled:  color("gray", 20),
         bg-disabled:     transparent,
-        brd-disabled:    $gray20,
-        bg-focus:        $blue60,
-        color-focus:     $white,
-        color-active:    $white,
-        bg-active:       $blue50
+        brd-disabled:    color("gray", 20),
+        bg-focus:        color("blue", 60),
+        color-focus:     color("white", 0),
+        color-active:    color("white", 0),
+        bg-active:       color("blue", 50)
     ),
     primary-bt: (
-        color:           $blue50,
-        bg:              $white,
-        brd-color:       $white,
-        color-hover:     $blue60,
-        bg-hover:        $white,
-        color-disabled:  $gray30,
-        bg-disabled:     $gray20,
-        brd-disabled:    $gray20
+        color:           color("blue", 50),
+        bg:              color("white", 0),
+        brd-color:       color("white", 0),
+        color-hover:     color("blue", 60),
+        bg-hover:        color("white", 0),
+        color-disabled:  color("gray", 30),
+        bg-disabled:     color("gray", 20),
+        brd-disabled:    color("gray", 20)
     ),
      secondary-bt: (
-        color:           $white,
+        color:           color("white", 0),
         bg:              transparent,
-        brd-color:       $white,
-        color-hover: 	 $white,
-        bg-hover: 		 $blue60-50,
-        color-disabled:  $gray20,
+        brd-color:       color("white", 0),
+        color-hover: 	 color("white", 0),
+        bg-hover: 		 color-tint(color("blue", 60), 50),
+        color-disabled:  color("gray", 20),
         bg-disabled: 	 transparent,
-        brd-disabled: 	 $gray20,
-        bg-active: 		 $white,
-        color-active: 	 $blue50,
-        color-focus: 	 $blue60,
-        bg-focus:        $white
+        brd-disabled: 	 color("gray", 20),
+        bg-active: 		 color("white", 0),
+        color-active: 	 color("blue", 50),
+        color-focus: 	 color("blue", 60),
+        bg-focus:        color("white", 0)
     ),
     gray-btn: (
-        color: 			$gray60,
-        bg-color:       $white,
-        brd-color: 		$gray50,
-        bg-hover: 		$blue40-10,
-        bg-active:      $gray50,
-        color-active:   $white,
-        color-focus:    $white,
-        bg-focus: 		$gray60,
-        color-disabled: $gray20,
+        color: 			color("gray", 60),
+        bg-color:       color("white", 0),
+        brd-color: 		color("gray", 50),
+        bg-hover: 		color-tint(color("gray", 50), 90),
+        bg-active:      color("gray", 50),
+        color-active:   color("white", 0),
+        color-focus:    color("white", 0),
+        bg-focus: 		color("gray", 60),
+        color-disabled: color("gray", 20),
         bg-disabled:    transparent,
-        brd-disabled:   $gray20
+        brd-disabled:   color("gray", 20)
     )
 );
 

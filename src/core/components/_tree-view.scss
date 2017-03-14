@@ -35,7 +35,7 @@
     }
 	&.disabled {
 		&:hover, &:focus {
-			background: $white;
+			background: color("white", 0);
 			border-left: 2px solid transparent;
 		}
 	}
@@ -47,9 +47,9 @@
         min-width: 18px;
         padding:0 5px;
         border-radius: 18px;
-        border: 1px solid $white;
-        background-color: $blue50;
-        color:$white;
+        border: 1px solid color("white", 0);
+        background-color: color("blue", 50);
+        color:color("white", 0);
         text-align: center;
         font-size: rem(12);
         line-height: 1rem;
@@ -58,8 +58,8 @@
         @extend .badge;
         &:before{
             content:'';
-            border-right: 1px solid $white;
-            border-bottom: 1px solid $white;
+            border-right: 1px solid color("white", 0);
+            border-bottom: 1px solid color("white", 0);
             transform: rotate(45deg);
             position: absolute;
             left: 6px;

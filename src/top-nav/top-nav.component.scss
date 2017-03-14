@@ -4,18 +4,18 @@
 
 
 .top-nav {
-    background-color: $black;
+    background-color: color("black", 100);
     top: 0;
     width: 100%;
     left: 0;
     z-index: 3;
 	svg{
-		fill:$white;
+		fill: color("white", 0);
 	}
     .top-nav-heading {
         text-decoration: none;
         font-family: "Helvetica Neue Roman for IBM", Helvetica, Arial, sans-serif;
-        color: $white;
+        color: color("white", 0);
         display: inline-block;
         padding: 12px 10px;
         @include hover-blue;
@@ -25,13 +25,13 @@
         .top-nav-brand {
             font-size: 15px;
 			line-height: 1em;
-            color: $white;
+            color: color("white", 0);
             margin: 0;
             padding-right: 10px;
             font-weight: 400;
         }
         .top-nav-badge {
-            background-color: $purple60;
+            background-color: color("purple", 60);
             padding: 4px 10px;
             h2 {
                 font-size: 15px;
@@ -53,8 +53,8 @@
 }
 
 :host-context(.a11y) .top-nav{
-	border-bottom:1px solid $black;
+	border-bottom:1px solid color("black", 100);
 	svg{
-		fill:$black
+		fill: color("black", 100);
 	}
 }

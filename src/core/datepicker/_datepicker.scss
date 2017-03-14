@@ -21,7 +21,7 @@
     cursor: pointer;
 
     &:focus {
-      outline: solid 1px $blue50;
+      outline: solid 1px color("blue", 50);
     }
 
     &.prev-month {
