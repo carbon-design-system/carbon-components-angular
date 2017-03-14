@@ -11,7 +11,7 @@ $lg: 40px;
 //== Custom Colors.
 $blue40-10:				#eef4fc;
 $gray10-50:           	#efefef;
-
+$blue60-50:				#3b6b9d;
 
 // refactor fonts
 //== Typography
@@ -201,4 +201,80 @@ $treeview-selected-border-color:$blue50; // left border
 $treeview-selected-color:       $blue50;
 
 
+//== buttons
+//
+//## Define buttons colors, border, and padding.
+
+$btn-border-width:  2px;
+$btn-height-sm:		20px;
+$btn-height:		30px;
+$btn-height-lg:		40px;
+$btn-height-xlg:	50px;
+$btn-font--size-sm: rem(12);
+$btn-padding: 		0 20px;
+
+
+// btns array could be changed to variables
+$btns: (
+    primary: (
+        color: 		     $white,
+        bg:  	         $blue50,
+        brd-color:       $blue50,
+        brd-color-hover: $blue60,
+        bg-hover:        $blue60,
+        color-disabled:  $gray30,
+        bg-disabled:     $gray20,
+        brd-disabled:    $gray20
+    ),
+    secondary: (
+        color:           $blue50,
+        bg:              $white,
+        bg-hover:        $blue40-10,
+        brd-color:       $blue50,
+        color-disabled:  $gray20,
+        bg-disabled:     transparent,
+        brd-disabled:    $gray20,
+        bg-focus:        $blue60,
+        color-focus:     $white,
+        color-active:    $white,
+        bg-active:       $blue50
+    ),
+    primary-bt: (
+        color:           $blue50,
+        bg:              $white,
+        brd-color:       $white,
+        color-hover:     $blue60,
+        bg-hover:        $white,
+        color-disabled:  $gray30,
+        bg-disabled:     $gray20,
+        brd-disabled:    $gray20
+    ),
+     secondary-bt: (
+        color:           $white,
+        bg:              transparent,
+        brd-color:       $white,
+        color-hover: 	 $white,
+        bg-hover: 		 $blue60-50,
+        color-disabled:  $gray20,
+        bg-disabled: 	 transparent,
+        brd-disabled: 	 $gray20,
+        bg-active: 		 $white,
+        color-active: 	 $blue50,
+        color-focus: 	 $blue60,
+        bg-focus:        $white
+    ),
+    gray-btn: (
+        color: 			$gray60,
+        bg-color:       $white,
+        brd-color: 		$gray50,
+        bg-hover: 		$blue40-10,
+        bg-active:      $gray50,
+        color-active:   $white,
+        color-focus:    $white,
+        bg-focus: 		$gray60,
+        color-disabled: $gray20,
+        bg-disabled:    transparent,
+        brd-disabled:   $gray20
+    )
+);
 
