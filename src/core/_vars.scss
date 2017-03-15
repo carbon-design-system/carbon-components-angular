@@ -278,3 +278,33 @@ $btns: (
     )
 );
 
+
+
+//== Dropdowns
+//
+//## Define dropdowns colors, border, and padding.
+
+$dropdown-height: 	 30px;
+$dropdown-height-sm: 20px;
+$dropdown-height-lg: 40px;
+
+$dropdown-padding: 		0 10px;
+$dropdown-padding-lg: 	0 20px;
+
+// sizes
+$dropdown-font-size-sm: rem(12);
+
+//colors
+$dropdown-color: 		  color("black", 100);
+$dropdown-border: 		  1px solid  color("gray", 50);
+$dropdown-bg-color: 	  color("white", 0);
+$dropdown-bg-color-hover: rgba(color("blue", 40), 0.10);
+
+$dropdown-submenu-bg-color:  color("white", 0);
+
+//bg-disabled
+$dropdown-color-disabled:          color("gray", 20);
+$dropdown-border-disabled: 		   1px solid color("gray", 30);
+$dropdown-bg-color-disabled-hover: color("white", 0);
+
+

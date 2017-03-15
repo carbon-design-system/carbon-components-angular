@@ -42,7 +42,6 @@ import { KeyCodes } from "./../constant/keys";
 		</div>
 	`,
 	encapsulation: ViewEncapsulation.None,
-	styleUrls: ["./dropdown.component.scss"],
 	host: {"class": "dropdown-wrapper"},
 })
 export class Dropdown implements AfterContentInit {

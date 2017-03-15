@@ -3,14 +3,14 @@
 <h3>Default Drop down</h3>
 <div style="width: 400px">
 	<cdl-dropdown [displayValue]="display0">
-		<cdl-list-view [items]="demoItems0" (select)="onSelectAndDisplay($event)"></cdl-list-view>
+		<cdl-list-view [items]="demoItems0" (select)="onSelectAndDisplay($event)" [checkMark]="false"></cdl-list-view>
 	</cdl-dropdown>
 </div>
 
 <h3>Drop down with menu open on select</h3>
 <div style="width: 400px">
 	<cdl-dropdown displayValue="Dropdown 2" [closeOnSelect]="false">
-		<cdl-list-view [items]="demoItems1" (select)="onSelect($event)"></cdl-list-view>
+		<cdl-list-view [items]="demoItems1" (select)="onSelect($event)" [checkMark]="false"></cdl-list-view>
 	</cdl-dropdown>
 </div>
 
@@ -42,10 +42,10 @@
 
 <h3>Drop down with multi select</h3>
 <cdl-dropdown displayValue="Dropdown 4" [closeOnSelect]="false" type="multi">
-	<cdl-list-view [items]="demoItems3" (select)="onSelect($event)"></cdl-list-view>
+	<cdl-list-view [items]="demoItems3" (select)="onSelect($event)"  [checkMark]="false"></cdl-list-view>
 </cdl-dropdown>
 
 <h3>Disabled Drop down</h3>
 <cdl-dropdown displayValue="Dropdown 5" [disabled]="true">
-	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
+	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"  [checkMark]="false"></cdl-list-view>
 </cdl-dropdown>
