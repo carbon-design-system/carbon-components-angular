@@ -47,7 +47,7 @@ export class TreeView implements View {
 	@Input() rootElem: any = null;
 	@Input() selectedIcon: boolean = true;
 	@Input() role: "tree" | "group" = "tree" ;
-	@Input() treeViewLabel: string;
+	@Input() label: string;
 	@Input() elemSpacing: number = 40;
 	@Input() brdrAllTheWay: boolean = false;
 

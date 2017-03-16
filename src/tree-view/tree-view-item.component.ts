@@ -66,7 +66,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[indentStart]="indentStart"
 			[brdrAllTheWay]="brdrAllTheWay"
 			[role]="'group'"
-			[treeViewLabel]="listItem"
+			[label]="listItem"
 			[elemSpacing]="elemSpacing"
 			>
 		</cdl-tree-view>

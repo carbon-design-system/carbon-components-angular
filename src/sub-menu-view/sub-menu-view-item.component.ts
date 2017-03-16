@@ -13,21 +13,24 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 @Component({
 	selector: "cdl-sub-menu-view-item",
 	template: `
-	<li>
-		<div
-			class="item-wrapper"
+		<div class="sub-menu-item-wrapper"
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
 				selected: listItem.selected,
 				disabled: listItem.disabled
 			}"
 			(click)="doClick(listItem)"
-			(keydown)="onKeyDown($event, listItem)">
-			<div
-				class="item">
+			(keydown)="onKeyDown($event, listItem)"
+			role="treeitem"
+			[attr.aria-level]="indent"
+			[attr.aria-hidden]="listItem.disabled"
+			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
+			[attr.aria-selected]="listItem.selected"
+			>
+			<div class="sub-menu-item">
 				<svg
 					*ngIf="!!listItem.subMenu"
-					id="Layer_1" class="arrow"
+					class="arrow"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
 					height="16"
@@ -42,16 +45,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 				</template>
 				<span
 					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
-					class="selected-check">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16">
-							<path d="M8 1.2c3.7 0 6.8 3.1 6.8 6.8s-3.1 6.8-6.8
-							6.8S1.2 11.7 1.2 8 4.3 1.2 8 1.2M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/>
-							<path d="M6.7 9.6L4.6 7.5l-.9.9 3 3 5.6-5.5-.9-.9z"/>
-					</svg>
+					class="checked" aria-hidden="true">
 				</span>
 			</div>
 		</div>
@@ -63,9 +57,9 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[listTpl]="listTpl"
 			[rootElem]="rootElem"
 			[selectedIcon]="selectedIcon"
+			[role]="'group'"
 			[parent]="parent">
 		</cdl-sub-menu-view>
-	</li>
 	`
 })
 export class SubMenuViewItem {
@@ -87,7 +81,7 @@ export class SubMenuViewItem {
 		this.parent = this._elementRef.nativeElement;
 
 		if (!this.rootElem) {
-			this.rootElem = this._elementRef.nativeElement;
+			this.rootElem = this._elementRef.nativeElement.parentNode;
 		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
@@ -107,36 +101,22 @@ export class SubMenuViewItem {
 	}
 
 	// Keyboard accessibility
-	onKeyDown(evt, item) {
-		if (evt.keyCode === KeyCodes.UP_ARROW) {
-			evt.preventDefault();
+	onKeyDown(ev, item) {
+		if (ev.keyCode === KeyCodes.UP_ARROW) {
+			ev.preventDefault();
 
-			focusPrevElem(this._elementRef.nativeElement, this.parentRef);
-		} else if (evt.keyCode === KeyCodes.DOWN_ARROW) {
-			evt.preventDefault();
+			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
+		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
+			ev.preventDefault();
 
-			focusNextElem(this._elementRef.nativeElement, this.rootElem);
-		} else if (evt.keyCode === KeyCodes.RIGHT_ARROW) {
-			if (this.listItem.subMenu) {
-
-				if (!this.listItem.selected) {
-					this.select.emit({
-						item
-					});
-				}
-
-				setTimeout(() => {
-					let subMenu = this._elementRef.nativeElement.querySelector("ul cdl-sub-menu-view-item");
-
-					focusNextTree(subMenu, this.rootElem);
-				});
+			if (!item.subMenu || !item.selected) {
+				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
+			} else if (item.subMenu && item.selected) {
+				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			}
-		} else if (evt.keyCode === KeyCodes.LEFT_ARROW) {
-			if (this.parentRef) {
-				this.parentRef.querySelector(".item-wrapper").focus();
-			}
-		} else if (evt.keyCode === KeyCodes.ENTER_KEY || evt.keyCode === KeyCodes.SPACE_BAR) {
-			evt.preventDefault();
+		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
+					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
+			ev.preventDefault();
 
 			this.select.emit({
 				item

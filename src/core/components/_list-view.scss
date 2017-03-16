@@ -52,25 +52,10 @@
 		}
 
 
-		// Badge style
-		//
-		// Create badge in global ?
-
-		.badge{
+		.checked {
 			float: right;
 			position: relative;
 			vertical-align: middle;
-			height: 18px;
-			min-width: 18px;
-			border-radius: 18px;
-			border: 1px solid color("blue", 1);
-			background: color("blue", 50);
-			color: color("white", 0);
-			text-align: center;
-			font-size: rem(12);
-			line-height: 1rem;
-		}
-		.checked {
 			@extend .badge;
 			&:before{
 				content:'';

@@ -2,7 +2,13 @@
 <template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</template>
 
 <h3>Default sub menu view</h3>
-<cdl-sub-menu-view [items]="demoItems" (select)="onSelect($event)"></cdl-sub-menu-view>
+<cdl-sub-menu-view [items]="demoItems" (select)="onSelect($event)" [label]="'Submenu view'"></cdl-sub-menu-view>
 
 <h3>Sub menu view with custom template (Added Icon) and no check mark</h3>
-<cdl-sub-menu-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [selectedIcon]="false"></cdl-sub-menu-view>
+<cdl-sub-menu-view
+	[items]="demoItems1"
+	(select)="onSelect($event)"
+	[listTpl]="listTpl"
+	[selectedIcon]="false"
+	[label]="'Submenu view'"
+	></cdl-sub-menu-view>

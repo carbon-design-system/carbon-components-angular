@@ -192,13 +192,28 @@ $listview-selected-color: 		color("blue", 50);
 //
 //## Define tree-view colors, border, and padding.
 
-$treeview-padding:     10px; // padding is 11 to make it 40 pixel height;
+$treeview-padding:     10px;
 
 $treeview-border:      1px solid color-tint(color("gray", 10), 50);
 $treeview-hover-bg:    color-tint(color("blue", 40), 90);
 
 $treeview-selected-border-color: color("blue", 50); // left border
 $treeview-selected-color:        color("blue", 50);
+
+
+//== Submenu
+//
+//## Define Submenu colors, border, and padding.
+
+$submenu-padding:     10px 20px; // padding is 10 to make it 40 pixel height;
+
+$submenu-bg:		  color("white", 0);
+$submenu-border:      1px solid color-tint(color("gray", 10), 50);
+$submenu-hover-bg:    color-tint(color("blue", 40), 90);
+
+$submenu-selected-border-color: color("blue", 50); // left border
+$submenu-selected-color:        color("blue", 50);
+
 
 
 //== buttons
