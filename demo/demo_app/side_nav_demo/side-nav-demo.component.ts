@@ -18,7 +18,7 @@ export class SideNavDemo {
 		{
 			content: "Understand",
 			selected: false,
-			icon:"Alert",
+			icon: "Alert",
 			subMenu: [
 				{
 					content: "Experience integrations",
@@ -43,29 +43,29 @@ export class SideNavDemo {
 		{
 			content: "Plan",
 			selected: false,
-			icon:"Alert"
+			icon: "Alert"
 		},
 		{
 			content: "Design",
 			selected: false,
-			icon:"Alert"
+			icon: "Alert"
 		},
 		{
 			content: "Build",
 			selected: false,
-			icon:"Alert"
+			icon: "Alert"
 
 		},
 		{
 			content: "Listen",
 			selected: false,
-			icon:"Alert"
+			icon: "Alert"
 
 		},
 		{
 			content: "Optimize",
 			selected: false,
-			icon:"Alert"
+			icon: "Alert"
 
 		}
 	];

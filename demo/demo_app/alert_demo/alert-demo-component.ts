@@ -4,7 +4,7 @@ import {
 	TemplateRef
 } from "@angular/core";
 
-import { AlertService } from "./../../..";
+import { AlertService } from "./../../../src";
 import { AlertCustom } from "./alert-demo-custom";
 
 @Component({

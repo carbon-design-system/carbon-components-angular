@@ -18,8 +18,7 @@ function rxjsExternal(context, request, cb) {
     }
     cb();
 }
-// todo: convert templateUrls and styleUrls to inline templates and inline styles prior/during tsc build
-// move core sass to dist folder, also compile it
+
 module.exports = [{
 	devtool: "source-map",
 	entry: {

@@ -14,8 +14,8 @@ import {
 	Validators
 } from "@angular/forms";
 
-import { ModalService } from "../../..";
-import { Modal } from "../../..";
+import { ModalService } from "../../../src";
+import { Modal } from "../../../src";
 
 @Modal()
 @Component({
