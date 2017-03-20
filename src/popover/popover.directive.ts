@@ -32,12 +32,12 @@ export class PopoverDirective implements OnInit {
 	@Input() cdlPopover: string | TemplateRef<any>;
 	@Input() trigger: "click" | "mouseenter" = "click";
 	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
-	@Input() waitTime: number = 0;
-	@Input() gap: number = 10;
-	@Input() appendToBody: boolean = false;
+	@Input() waitTime = 0;
+	@Input() gap = 10;
+	@Input() appendToBody = false;
 	@Input() type: "warning" | "danger" | "" = "";
 
-	isTooltip: boolean = false;
+	isTooltip = false;
 
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {

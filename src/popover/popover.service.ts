@@ -13,7 +13,7 @@ import {
 @Injectable()
 export class PopoverService {
 
-	private isOpen: boolean = false;
+	private isOpen = false;
 	private componentFactory: ComponentFactory<any>;
 	private onClose: EventEmitter<any> = new EventEmitter();
 	private popoverRef: ComponentRef<any>;

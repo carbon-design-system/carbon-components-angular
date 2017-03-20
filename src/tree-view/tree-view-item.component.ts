@@ -74,18 +74,18 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 })
 export class TreeViewItem {
 	private parent;
-	private isTpl: boolean = false;
+	private isTpl = false;
 
-	@Input() hasSubMenu: boolean = false;
+	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
 	@Input() listItem: Object;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent: number = 1;
+	@Input() indent = 1;
 	@Input() rootElem = null;
-	@Input() selectedIcon: boolean = true;
-	@Input() indentStart: number = 0;
-	@Input() elemSpacing: number = 40;
-	@Input() brdrAllTheWay: boolean = false;
+	@Input() selectedIcon = true;
+	@Input() indentStart = 0;
+	@Input() elemSpacing = 40;
+	@Input() brdrAllTheWay = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(private _elementRef: ElementRef) {}

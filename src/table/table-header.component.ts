@@ -97,11 +97,11 @@ export class TableHeader {
 	@Input() cols;
 	@Input() colWidth: number;
 	@Output() doSelectAll = new EventEmitter<Object>();
-	private isTabMoving: boolean = false;
-	private isTabResizeing: boolean = false;
+	private isTabMoving = false;
+	private isTabResizeing = false;
 	private movingCol: Column = null;
 	private resizingCol: Column = null;
-	private lastX: number = 0;
+	private lastX = 0;
 	private sorts = Column.sort;
 
 	constructor(private tableService: TableService) {}

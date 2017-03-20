@@ -46,8 +46,8 @@ import { KeyCodes } from "../constant/keys";
 export class Calendar {
 	@Input() date: Date = new Date();
 	@Input() selectedDate: Date;
-	@Input() showMonth: boolean = true;
-	@Input() showYear: boolean = true;
+	@Input() showMonth = true;
+	@Input() showYear = true;
 	@Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
 
 	// TODO: Need to implement angular translation

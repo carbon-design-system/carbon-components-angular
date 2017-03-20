@@ -28,6 +28,6 @@ export class Column {
 	@ContentChild("headerTemplate") headerTemplate;
 	@ContentChild("filterTemplate") filterTemplate;
 	public direction = Column.sort.descending;
-	public sorted: boolean = false;
+	public sorted = false;
 	public position: number = -1;
 }
