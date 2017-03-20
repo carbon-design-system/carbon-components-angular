@@ -1,15 +1,15 @@
 <h1>Typeahead Demo</h1>
 
 <h3>Static Typeahead with limit 8 results</h3>
-selected value {{selectedString}}
+<label class="label label-top" for="">selected value {{selectedString}}</label>
 <cdl-typeahead [list]="stringList" (onSearch)="stringSearch($event)" (onSelect)="onSelectString($event)" [limit]="8"></cdl-typeahead>
 
 <h3>Static Typeahead Object</h3>
-selected value {{selectedStatic | json}}
+<label class="label label-top" for="">selected value {{selectedStatic | json}}</label>
 <cdl-typeahead [list]="staticList" [displayKey]="'title'" (onSearch)="staticSearch($event)" (onSelect)="onSelectStatic($event)"></cdl-typeahead>
 
 <h3>Asynchronous Typeahead with 1 sec wait time</h3>
-selected value {{selectedAsync | json}}
+<label class="label label-top" for="">selected value {{selectedAsync | json}}</label>
 <cdl-typeahead [list]="list" [displayKey]="'title'" [waitTime]="1000" (onSearch)="search($event)" (onSelect)="onSelectAsync($event)"></cdl-typeahead>
 
 <template #listTpl let-item="item">
@@ -18,5 +18,5 @@ selected value {{selectedAsync | json}}
 </template>
 
 <h3>Static Typeahead with custom template</h3>
-selected value {{selectedString}}
+<label class="label label-top" for="">selected value {{selectedString}}</label>
 <cdl-typeahead [list]="stringList" (onSearch)="stringSearch($event)" (onSelect)="onSelectString($event)" [limit]="8" [listTpl]="listTpl"></cdl-typeahead>

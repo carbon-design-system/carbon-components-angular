@@ -15,6 +15,7 @@
 		position: relative;
 		padding: $dropdown-padding;
 		height: $dropdown-height;
+		font-weight: $dropdown-font;
 
 		&:hover, &:focus {
 			background-color: $dropdown-bg-color-hover

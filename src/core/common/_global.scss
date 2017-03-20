@@ -1,3 +1,66 @@
+// Body reset
+html {
+  font-size:1em;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  font-weight:$font-roman;
+	font-family:$font-family-base;
+	font-size: $font-size-base;
+  color: $text-color;
+}
+
+
+// Links
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus {
+    // @include tab-focus;
+  }
+}
+
+//set a nice box model
+* {
+	box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+//Remove outline for focus state of all elements
+*:focus {
+	outline: none;
+}
+
+button{
+	cursor:pointer;
+	appearance:none;
+	-webkit-appearance:none;
+	background: none;
+	border:0;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
 .list-unstyled {
     list-style: none;
     padding: 0;
@@ -6,7 +69,7 @@
 
 .disabled{
     cursor:no-drop;
-	color: color("gray", 20);
+		color: color("gray", 20);
 }
 
 .valign-wrapper{
@@ -26,14 +89,6 @@
 	}
 }
 
-button{
-	appearance:none;
-	-webkit-appearance:none;
-	background: none;
-	border:0;
-}
-
-
 
  .badge{
 	height: 18px;
@@ -46,4 +101,8 @@ button{
 	text-align: center;
 	font-size: rem(12);
 	line-height: 1rem;
+}
+
+strong{
+	font-weight: 700;
 }

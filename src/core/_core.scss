@@ -5,24 +5,6 @@
 @import "colors";
 
 
-body {
-	font-family: sans-serif;
-	font-size: $font-size;
-	color: color("gray", 60);
-	font-weight: 400;
-}
-
-//link styles
-a {
-  color: color("blue", 50);
-  text-decoration: none;
-  &:visited {
-    color: color("blue", 50);
-  }
-  &:focus, &:hover {
-    text-decoration: underline;
-  }
-}
 
 // Reset fonts for relevant elements
 input,
@@ -66,25 +48,3 @@ textarea {
 }
 
 
-//set a nice box model
-* {
-	box-sizing: border-box;
-}
-
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-//Remove outline for focus state of all elements
-*:focus {
-	outline: none;
-}
-
-button{
-	cursor:pointer
-}
-
-.hidden {
-  display: none;
-}

@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Helvetica Neue for IBM';
+  src:	url('fonts/bold/helvetica-neue-bold.eot?') format('eot'),
+      	url('fonts/bold/helvetica-neue-bold.woff2') format('woff2'),
+  		url('fonts/bold/helvetica-neue-bold.woff') format('woff'),
+  		url('fonts/bold/helvetica-neue-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue for IBM';
+  src:	url('fonts/bold-italic/helvetica-neue-bold-italic.eot?') format('eot'),
+  		url('fonts/bold-italic/helvetica-neue-bold-italic.woff2') format('woff2'),
+  		url('fonts/bold-italic/helvetica-neue-bold-italic.woff') format('woff'),
+  		url('fonts/bold-italic/helvetica-neue-bold-italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
