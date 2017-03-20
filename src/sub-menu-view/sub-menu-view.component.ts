@@ -34,13 +34,13 @@ import { SubMenuViewItem } from "./sub-menu-view-item.component";
 })
 export class SubMenuView implements View {
 	@Input() items: Array<Object> = [];
-	@Input() isOpen: boolean = false;
+	@Input() isOpen = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() rootElem: any = null;
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
-	@Input() selectedIcon: boolean = true;
+	@Input() selectedIcon = true;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

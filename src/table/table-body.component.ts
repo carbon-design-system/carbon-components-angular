@@ -57,13 +57,13 @@ import { TableService } from "./table.service";
 })
 export class TableBody implements OnInit, OnChanges, DoCheck {
 	private visibleRows: Array<Object>;
-	private offsetTop: number = 0;
-	private offsetBottom: number = 0;
-	private height: number = 0;
-	private width: number = 0;
-	private topPadding: number = 0;
-	private bottomPadding: number = 0;
-	private lastScrollTop: number = 0;
+	private offsetTop = 0;
+	private offsetBottom = 0;
+	private height = 0;
+	private width = 0;
+	private topPadding = 0;
+	private bottomPadding = 0;
+	private lastScrollTop = 0;
 	public selected = {};
 	@Input() rows;
 	@Input() cols;

@@ -52,7 +52,7 @@ import { positionElements } from "../common/position.service";
 	host: {"class": "popover-wrapper"}
 })
 export class Popover implements OnInit, AfterViewInit {
-	private offsetTop: number = 48; // 40px heading + 8px triangle
+	private offsetTop = 48; // 40px heading + 8px triangle
 	private isTpl: boolean;
 
 	@Input() popoverConfig;

@@ -39,17 +39,17 @@ import { TreeViewItem } from "./tree-view-item.component";
 })
 export class TreeView implements View {
 	@Input() items: Array<Object> = [];
-	@Input() isOpen: boolean = false;
+	@Input() isOpen = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent: number = 1;
-	@Input() indentStart: number = 0;
+	@Input() indent = 1;
+	@Input() indentStart = 0;
 	@Input() rootElem: any = null;
-	@Input() selectedIcon: boolean = true;
+	@Input() selectedIcon = true;
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
-	@Input() elemSpacing: number = 40;
-	@Input() brdrAllTheWay: boolean = false;
+	@Input() elemSpacing = 40;
+	@Input() brdrAllTheWay = false;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

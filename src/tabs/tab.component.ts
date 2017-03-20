@@ -13,10 +13,10 @@ let nextId = 0;
 })
 export class Tab implements OnInit {
 	@Input() heading: string | TemplateRef<any>;
-	@Input() active: boolean = false;
-	@Input() disabled: boolean = false;
+	@Input() active = false;
+	@Input() disabled = false;
 	// do we need id's?
-	@Input() id: string = `cdl-tab-${nextId++}`;
+	@Input() id = `cdl-tab-${nextId++}`;
 	headingIsTemplate = false;
 
 	ngOnInit() {

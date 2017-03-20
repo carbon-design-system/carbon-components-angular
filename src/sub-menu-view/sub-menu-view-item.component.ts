@@ -64,14 +64,14 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 })
 export class SubMenuViewItem {
 	private parent;
-	private isTpl: boolean = false;
+	private isTpl = false;
 
-	@Input() hasSubMenu: boolean = false;
+	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
 	@Input() listItem: any;
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() rootElem = null;
-	@Input() selectedIcon: boolean = true;
+	@Input() selectedIcon = true;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

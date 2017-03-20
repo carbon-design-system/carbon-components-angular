@@ -39,9 +39,9 @@ import { DOCUMENT } from "@angular/platform-browser";
 export class TopNav implements OnInit {
 	@Input() badge: string;
 	@Input() brand: string;
-	@Input() sticky: boolean = false;
+	@Input() sticky = false;
 
-	private displayType: string = "relative";
+	private displayType = "relative";
 
 	constructor(@Inject(DOCUMENT) private document, private renderer: Renderer) {}
 

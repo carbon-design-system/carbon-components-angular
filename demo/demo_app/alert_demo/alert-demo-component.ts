@@ -14,10 +14,6 @@ import { AlertCustom } from "./alert-demo-custom";
 })
 
 export class AlertDemo {
-	constructor(private alert: AlertService) {
-
-	}
-
 	infoAlert = {
 		type: "info",
 		message: "sample message"
@@ -37,6 +33,10 @@ export class AlertDemo {
 		type: "success",
 		message: "sample message",
 	};
+
+	constructor(private alert: AlertService) {
+
+	}
 
 	callAlertCustom() {
 		this.alert.showAlert({
