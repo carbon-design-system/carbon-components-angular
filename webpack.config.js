@@ -10,8 +10,18 @@ module.exports = [{
 		demo: "./demo/main.ts",
 	},
 	output: {
-		path: __dirname + "/dist",
-		filename: "[name].js",
+		path: __dirname + "/dist/bundle",
+		filename: "neutrino.umd.js",
+		library: "neutrino",
+		libraryTarget: "umd"
+	},
+	externals: {
+		"angular": {
+			commonjs: "@angular/angular",
+			commonjs2: "@angular/angular",
+			amd: "@angular/angular",
+			root: "angular"
+		}
 	},
 	module: {
 		loaders: [

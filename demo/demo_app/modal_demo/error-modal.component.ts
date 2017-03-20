@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Modal } from "../../..";
+import { Modal } from "../../../src";
 
 @Modal()
 @Component({

@@ -3,7 +3,7 @@ import { XLModalComponent } from "./extra-large.component";
 import { ErrorModalComponent } from "./error-modal.component";
 import { SampleModalComponent } from "./sample-modal.component";
 import { FormModalComponent } from "./form-modal.component";
-import { ModalService } from "../../..";
+import { ModalService } from "../../../src";
 
 @Component({
 	selector: "modal-demo",

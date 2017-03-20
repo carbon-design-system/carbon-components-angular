@@ -52,7 +52,7 @@ import {
 	CalendarModule,
 	DatepickerModule,
 	SubMenuViewModule
-} from "./../..";
+} from "./../../src";
 
 
 @NgModule({
