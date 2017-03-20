@@ -4,7 +4,7 @@
   "description": "Next generation components",
   "main": "index.ts",
   "scripts": {
-    "demo:build": "webpack --config webpack.config.js",
+    "build": "tsc && webpack --config webpack.build.js",
     "demo:server": "webpack-dev-server --config webpack.config.js --watch",
     "lint": "tslint -e spec.ts src/**/*.ts",
     "test": "karma start"
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "2.4.1",
+    "@angular/platform-server": "2.4.1",
     "@angular/router": "3.4.1",
     "@types/jasmine": "^2.5.38",
     "@types/node": "^6.0.42",
@@ -59,7 +60,7 @@
     "style-loader": "^0.13.1",
     "tslint": "^4.0.2",
     "tslint-loader": "^3.3.0",
-    "typescript": "^2.0.10",
+    "typescript": "2.0.10",
     "webpack": "^2.1.0-beta",
     "webpack-dev-server": "^2.1.0-beta.12",
     "webpack-node-externals": "^1.5.4"

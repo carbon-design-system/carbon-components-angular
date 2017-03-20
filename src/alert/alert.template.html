@@ -1,14 +1,4 @@
-import {
-	Component,
-	Input,
-	Output,
-	EventEmitter
-} from "@angular/core";
-
-@Component({
-	selector: "cdl-alert",
-	template: `
-		<div *ngIf="alertObj" class="alert alert-{{alertObj.type}}" role="alert">
+	<div *ngIf="alertObj" class="alert alert-{{alertObj.type}}" role="alert">
 		<button class="close-btn" (click)="onClose()" aria-label="Close">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -62,14 +52,3 @@ import {
 			{{alertObj.message}}
 		</p>
 	</div>
-	`
-})
-export class Alert {
-	@Input() alertObj: Object;
-
-	@Output() close: EventEmitter<any> = new EventEmitter();
-
-	onClose() {
-		this.close.emit();
-	}
-}
