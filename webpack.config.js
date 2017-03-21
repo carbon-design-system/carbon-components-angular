@@ -10,7 +10,7 @@ module.exports = [{
 		demo: "./demo/main.ts",
 	},
 	output: {
-		path: __dirname + "/dist/bundle",
+		path: __dirname + "/demo/bundle",
 		filename: "neutrino.umd.js",
 		library: "neutrino",
 		libraryTarget: "umd"

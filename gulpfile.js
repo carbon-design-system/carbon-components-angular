@@ -45,9 +45,20 @@ gulp.task("build:css", () => {
 
 gulp.task("build:package", () => {
 	return gulp.src("./package.json")
-		//do some magic here
+		.pipe(version())
 		.pipe(gulp.dest(DIST));
 });
+
+function version() {
+	return tap(function(file) {
+		const commit = process.env.TRAVIS_COMMIT;
+		if (path.extname(file.path) === ".json") {
+			let packageJSON = JSON.parse(file.contents.toString("utf-8"));
+			packageJSON.version = packageJSON.version + commit;
+			file.contents = new Buffer(JSON.stringify(packageJSON));
+		}
+	});
+}
 
 function replaceTemplates() {
 	// regex borrwed from https://github.com/TheLarkInn/angular2-template-loader/blob/1403302e985bf689ee49e9dd8bb953225f32737b/index.js#L5-L7
