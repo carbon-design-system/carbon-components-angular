@@ -3,15 +3,19 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { Dropdown } from "./dropdown.component";
+import { DropdownDirective } from "./dropdown.directive";
 
 export { Dropdown } from "./dropdown.component";
+export { DropdownDirective } from "./dropdown.directive";
 
 @NgModule({
 	declarations: [
-		Dropdown
+		Dropdown,
+		DropdownDirective
 	],
 	exports: [
-		Dropdown
+		Dropdown,
+		DropdownDirective
 	],
 	imports: [CommonModule, BrowserModule],
 })
