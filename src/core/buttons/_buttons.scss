@@ -10,6 +10,7 @@ button.btn{
     border-width:$btn-border-width;
     border-style:solid;
     height: $btn-height;
+	font-weight: $btn-font;
     .size-sm &, &.size-sm{
         height:$btn-height-sm;
 		font-size:$btn-font--size-sm;

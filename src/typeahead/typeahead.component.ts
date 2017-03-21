@@ -17,7 +17,7 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 	selector: "cdl-typeahead",
 	template: `
 		<div class="typeahead">
-			<input type="text" [(ngModel)]="input" (keydown)="inputKeydown($event)"/>
+			<input type="text" [(ngModel)]="input" class="input-field" (keydown)="inputKeydown($event)"/>
 			<ul class="list-view" *ngIf="!selectedItem && input && list && list.length">
 				<li tabindex="0"
 				*ngFor="let item of list | slice:0:limit;"

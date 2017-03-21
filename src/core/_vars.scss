@@ -13,11 +13,38 @@ $blue40-10:				#eef4fc;
 $gray10-50:           	#efefef;
 $blue60-50:				#3b6b9d;
 
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               color("white", 0);
+//** Global text color on `<body>`.
+$text-color:            color("gray", 60);
+//** Global textual link color.
+$link-color:            color("blue", 50);
+//** Link hover color set via `darken()` function.
+$link-hover-color:      color("blue", 50);
+//** Link hover decoration.
+$link-hover-decoration: underline;
+
 // refactor fonts
 //== Typography
 //
 //
 //## Font, line-height, and color for body text, headings, and more.
+
+
+$font-family-base:       Arial, sans-serif;
+
+
+$font-light:            100; // Helvetica light;
+$font-roman:            300; // Helvetica roman
+$font-roman-bold:       400; // Helvetica roman bold
+$font-medium:           500; // Helvetica Medium
+$font-bold:             700; // Helvetica Bold
+
 
 $font-size-base:		rem(14);
 
@@ -227,6 +254,8 @@ $btn-height-lg:		40px;
 $btn-height-xlg:	50px;
 $btn-font--size-sm: rem(12);
 $btn-padding: 		0 20px;
+$btn-font: 			$font-roman; // roman
+
 
 
 // btns array could be changed to variables
@@ -299,6 +328,8 @@ $btns: (
 //
 //## Define dropdowns colors, border, and padding.
 
+$dropdown-font:      $font-roman;
+
 $dropdown-height: 	 30px;
 $dropdown-height-sm: 20px;
 $dropdown-height-lg: 40px;
@@ -323,3 +354,12 @@ $dropdown-border-disabled: 		   1px solid color("gray", 30);
 $dropdown-bg-color-disabled-hover: color("white", 0);
 
 
+
+
+
+//== topnav
+//
+//## Define topnav colors, border, and padding.
+
+$topnav-bg-color:  color("gray", 80);
+$topnav-color: 	   color("white", 0);
