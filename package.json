@@ -14,6 +14,9 @@
     "type": "git",
     "url": "git@github.ibm.com:peretz-next/next.git"
   },
+  "publishConfig": {
+    "registry": "npm-registry.whitewater.ibm.com/:_authToken=88123338-4535-46bc-930c-0735ccdcd150"
+  },
   "author": "",
   "license": "",
   "dependencies": {
@@ -25,12 +28,12 @@
     "@angular/platform-browser": "2.4.1",
     "@angular/platform-browser-dynamic": "2.4.1",
     "core-js": "^2.4.1",
-    "ibm-design-colors": "^2.0.3",
     "rxjs": "5.0.1",
-    "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "ts-helpers": "^1.1.1",
+    "ibm-design-colors": "^2.0.3",
     "@angular/compiler-cli": "2.4.1",
     "@angular/platform-server": "2.4.1",
     "@angular/router": "3.4.1",
