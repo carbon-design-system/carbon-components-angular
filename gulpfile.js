@@ -15,7 +15,11 @@ const TS_SRC = [
 
 const SASS_SRC = [
 	"src/core/**/*.scss"
-]
+];
+
+const FONT_SRC = [
+
+];
 
 const DIST = "dist";
 const SASS_DIST = `${DIST}/core`;
@@ -43,6 +47,11 @@ gulp.task("build:css", () => {
 		.pipe(gulp.dest(SASS_DIST));
 });
 
+gulp.task("build:font", () => {
+	return gulp.src(FONT_SRC)
+		.pipe()
+});
+
 gulp.task("build:package", () => {
 	return gulp.src("./package.json")
 		.pipe(version())
@@ -54,7 +63,7 @@ function version() {
 		const commit = process.env.TRAVIS_COMMIT;
 		if (path.extname(file.path) === ".json") {
 			let packageJSON = JSON.parse(file.contents.toString("utf-8"));
-			packageJSON.version = packageJSON.version + commit;
+			packageJSON.version = `${packageJSON.version}-dev-${commit.slice(0, 5)}`;
 			file.contents = new Buffer(JSON.stringify(packageJSON));
 		}
 	});
