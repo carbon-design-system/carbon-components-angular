@@ -62,12 +62,11 @@ function version() {
 
 function replaceTemplates() {
 	// regex borrwed from https://github.com/TheLarkInn/angular2-template-loader/blob/1403302e985bf689ee49e9dd8bb953225f32737b/index.js#L5-L7
-	const templateUrlRegex = /templateUrl\s*:(\s*['"`](.*?)['"`]\s*([,}]))/gm;
+	const templateUrlRegex = /templateUrl\s*:(\s*['"`](.*?)['"`])/g;
 	const stylesRegex = /styleUrls *:(\s*\[[^\]]*?\])/g;
-	const stringRegex = /(['`"])((?:[^\\]\\\1|.)*?)\1/g;
 
 	function templateToString(file, url) {
-		url = url.trim().replace(/^\"/gi, "").replace(/\"(.|\n)*/gi, "");
+		url = url.trim().replace(/^\"/gi, "").replace(/\"$/gi, "");
 		let fileStr = path.resolve(file.path, "..", url);
 		return htmlmin(fs.readFileSync(fileStr, {encoding: "utf-8"}));
 	}
@@ -87,8 +86,8 @@ function replaceTemplates() {
 		if (path.extname(file.path) === ".ts") {
 			let fileStr = file.contents.toString("utf-8");
 			if (fileStr.indexOf(templateUrlRegex) < 0 || fileStr.indexOf(stylesRegex) < 0) {
-				fileStr = fileStr.replace(templateUrlRegex, (match, url) => `template: \`${templateToString(file, url)}\`,`)
-					.replace(stylesRegex, (match, urls) => `styles: [\`${stylesToString(file, urls)}\`],`);
+				fileStr = fileStr.replace(templateUrlRegex, (match, url) => `template: \`${templateToString(file, url)}\``)
+					.replace(stylesRegex, (match, urls) => `styles: [\`${stylesToString(file, urls)}\`]`);
 				file.contents = new Buffer(fileStr);
 			}
 		}
