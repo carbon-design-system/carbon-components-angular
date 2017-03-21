@@ -14,5 +14,5 @@ import { Component, Input} from "@angular/core";
 	styleUrls: ["./side-nav.component.scss"]
 })
 export class SideNav {
-	@Input() open: boolean = true;
+	@Input() open = true;
 }

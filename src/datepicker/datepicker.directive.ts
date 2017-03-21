@@ -32,11 +32,11 @@ export class DatepickerDirective implements OnInit {
 	private possibleSeparators = ["-", " ", "/"];
 	private popoverService: PopoverService;
 	private popoverConfig: any;
-	private changeOnSelect: boolean = false;
+	private changeOnSelect = false;
 
 	@Input() ngModel;
 	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
-	@Input() appendToBody: boolean = false;
+	@Input() appendToBody = false;
 	@Input() format: any = "yyyy/mm/dd";
 	@Input() selectedDate: Date;
 	@Input() validDate: boolean;

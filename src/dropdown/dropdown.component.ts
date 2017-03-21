@@ -47,15 +47,15 @@ import { KeyCodes } from "./../constant/keys";
 export class Dropdown implements AfterContentInit {
 	private text: string;
 	private clickInsideComp = false;
-	private menuIsClose: boolean = true;
+	private menuIsClose = true;
 	private prevSelectItem: any;
 
-	@Input() displayValue: string = "";
+	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
-	@Input() disabled: boolean = false;
+	@Input() disabled = false;
 	@Input() selectedVal: any;
-	@Input() closeOnSelect: boolean = true;
+	@Input() closeOnSelect = true;
 
 	@ContentChild(View) view;
 	@ViewChild("dropdownHost") rootButton;

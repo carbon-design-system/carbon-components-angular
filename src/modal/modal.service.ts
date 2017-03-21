@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ModalService {
 	private vcRef: ViewContainerRef;
-	public activeInstances: number = 0;
+	public activeInstances = 0;
 
 	constructor(private resolver: ComponentFactoryResolver) {}
 

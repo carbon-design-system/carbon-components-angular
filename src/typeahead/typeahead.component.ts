@@ -42,8 +42,8 @@ export class Typeahead implements AfterContentInit {
 	private selectedItem;
 
 	@Input() list = [];
-	@Input() limit: number = 5;
-	@Input() waitTime: number = 0;
+	@Input() limit = 5;
+	@Input() waitTime = 0;
 	@Input() displayKey: string;
 	@Input() listTpl: TemplateRef<any> = null;
 

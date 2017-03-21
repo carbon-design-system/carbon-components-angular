@@ -17,8 +17,8 @@ export class Glyphicon implements OnChanges, OnInit {
 	private icons: IconService;
 	private sanitizer: DomSanitizer;
 	// props
-	@Input() icon: string = "";
-	@Input() size: string = "sm";
+	@Input() icon = "";
+	@Input() size = "sm";
 
 	// internal structures etc
 	private iconSize: string;
@@ -38,7 +38,7 @@ export class Glyphicon implements OnChanges, OnInit {
 			// forcebly set the height/width of the svg
 			let tmp: HTMLElement = document.createElement("div");
 			tmp.innerHTML = icon;
-			// TypeScript doesn"t realize this is an HTMLElement, 
+			// TypeScript doesn"t realize this is an HTMLElement,
 			//  and so complains unless we do this
 			let fc: HTMLElement = <HTMLElement>tmp.firstChild;
 			fc.setAttribute("height", this.icons.size2px(this.size));

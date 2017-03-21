@@ -32,10 +32,10 @@ import { Column } from "./column.component";
 	styleUrls: ["./table.component.css"]
 })
 export class Table implements AfterContentChecked {
-	private width: number = 0;
+	private width = 0;
 	private columnWidth: number;
 	@Input() rows: Array<Object> = [];
-	@Input() striped: boolean = false;
+	@Input() striped = false;
 	@Output() loadMore = new EventEmitter<Object>();
 	@Output() selectAll = new EventEmitter<Object>();
 	@Output() selectRow = new EventEmitter<Object>();
