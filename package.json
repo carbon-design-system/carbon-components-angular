@@ -15,7 +15,7 @@
     "url": "git@github.ibm.com:peretz-next/next.git"
   },
   "publishConfig": {
-    "registry": "npm-registry.whitewater.ibm.com/:_authToken=88123338-4535-46bc-930c-0735ccdcd150"
+    "registry": "npm-registry.whitewater.ibm.com"
   },
   "author": "",
   "license": "",
