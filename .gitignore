@@ -4,7 +4,7 @@
 bower_components
 node_modules
 dist
-demo/
+demo/bundle
 .idea
 .vscode
 doc/
