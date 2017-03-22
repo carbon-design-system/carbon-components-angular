@@ -18,7 +18,7 @@ const SASS_SRC = [
 ];
 
 const FONT_SRC = [
-
+	"src/core/fonts/**/*"
 ];
 
 const DIST = "dist";
@@ -26,7 +26,7 @@ const SASS_DIST = `${DIST}/core`;
 
 const TSCONFG = require("./tsconfig.json").compilerOptions;
 
-gulp.task("build", ["build:angular", "build:package", "build:sass", "build:css"]);
+gulp.task("build", ["build:angular", "build:sass", "build:css", "build:font", "build:package"]);
 
 gulp.task("build:angular", () => {
 	return gulp.src(TS_SRC)
@@ -49,7 +49,7 @@ gulp.task("build:css", () => {
 
 gulp.task("build:font", () => {
 	return gulp.src(FONT_SRC)
-		.pipe()
+		.pipe(gulp.dest(`${DIST}/core/fonts`));
 });
 
 gulp.task("build:package", () => {
@@ -60,10 +60,20 @@ gulp.task("build:package", () => {
 
 function version() {
 	return tap(function(file) {
-		const commit = process.env.TRAVIS_COMMIT;
 		if (path.extname(file.path) === ".json") {
 			let packageJSON = JSON.parse(file.contents.toString("utf-8"));
-			packageJSON.version = `${packageJSON.version}-dev-${commit.slice(0, 5)}`;
+			if (process.env.TRAVIS) {
+				// beta release (every time master is merged into the beta branch (nominally weekly))
+				if (process.env.TRAVIS_BRANCH === "beta") {
+					const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
+					packageJSON.version = `${packageJSON.version}-beta-${build}`;
+				// dev release (every push)
+				} else if (process.env.TRAVIS_BRANCH === "master") {
+					const commit = process.env.TRAVIS_COMMIT;
+					packageJSON.version = `${packageJSON.version}-dev-${commit.slice(0, 5)}`;
+				}
+			}
+			// otherwise we'll do a standard release with whatever version is in the package.json
 			file.contents = new Buffer(JSON.stringify(packageJSON));
 		}
 	});
