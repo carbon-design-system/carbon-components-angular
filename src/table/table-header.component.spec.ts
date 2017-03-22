@@ -22,7 +22,7 @@ describe("TableBody", () => {
 
 	xit("should emit the columns filter event", () => {
 		// thinking needed ... maybe this isn't a thing
-		// maybe the event binding is done as part of the ng-content 
+		// maybe the event binding is done as part of the ng-content
 		// passed into some <filter> component passed into a <column>
 	});
 });
