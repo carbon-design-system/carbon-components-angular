@@ -13,7 +13,6 @@ body {
 
 
 // Links
-
 a {
   color: $link-color;
   text-decoration: none;
@@ -55,9 +54,6 @@ button{
 .hidden {
   display: none;
 }
-
-
-
 
 
 
@@ -105,4 +101,12 @@ button{
 
 strong{
 	font-weight: 700;
+}
+
+
+.fr{
+	float: right;
+}
+.fl{
+	float: left;
 }
