@@ -70,7 +70,7 @@ function version() {
 				// dev release (every push)
 				} else if (process.env.TRAVIS_BRANCH === "master") {
 					const commit = process.env.TRAVIS_COMMIT;
-					packageJSON.version = `${packageJSON.version}-dev.${commit.slice(0, 5)}`;
+					packageJSON.version = `${packageJSON.version}-alpha.${commit.slice(0, 5)}`;
 				}
 			}
 			// otherwise we'll do a standard release with whatever version is in the package.json
