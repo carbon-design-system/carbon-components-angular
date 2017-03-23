@@ -66,11 +66,11 @@ function version() {
 				// beta release (every time master is merged into the beta branch (nominally weekly))
 				if (process.env.TRAVIS_BRANCH === "beta") {
 					const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
-					packageJSON.version = `${packageJSON.version}-beta-${build}`;
+					packageJSON.version = `${packageJSON.version}-beta.${build}`;
 				// dev release (every push)
 				} else if (process.env.TRAVIS_BRANCH === "master") {
 					const commit = process.env.TRAVIS_COMMIT;
-					packageJSON.version = `${packageJSON.version}-dev-${commit.slice(0, 5)}`;
+					packageJSON.version = `${packageJSON.version}-dev.${commit.slice(0, 5)}`;
 				}
 			}
 			// otherwise we'll do a standard release with whatever version is in the package.json
