@@ -19,15 +19,15 @@ $blue60-50:				#3b6b9d;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               color("white", 0);
+$body-bg:               color("white", 0) !default;
 //** Global text color on `<body>`.
-$text-color:            color("gray", 60);
+$text-color:            color("gray", 60) !default;
 //** Global textual link color.
-$link-color:            color("blue", 50);
+$link-color:            color("blue", 50) !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      color("blue", 50);
+$link-hover-color:      color("blue", 50) !default;
 //** Link hover decoration.
-$link-hover-decoration: underline;
+$link-hover-decoration: underline !default;
 
 // refactor fonts
 //== Typography
@@ -36,168 +36,191 @@ $link-hover-decoration: underline;
 //## Font, line-height, and color for body text, headings, and more.
 
 
-$font-family-base:       Arial, sans-serif;
+$font-family-base:       "Helvetica Neue for IBM", Helvetica, Arial, sans-serif !default;
 
 
-$font-light:            100; // Helvetica light;
-$font-roman:            300; // Helvetica roman
-$font-roman-bold:       400; // Helvetica roman bold
-$font-medium:           500; // Helvetica Medium
-$font-bold:             700; // Helvetica Bold
+$font-light:            100 !default; // Helvetica light
+$font-roman:            300 !default; // Helvetica roman
+$font-roman-bold:       400 !default; // Helvetica roman bold
+$font-medium:           500 !default; // Helvetica Medium
+$font-bold:             700 !default; // Helvetica Bold
 
 
-$font-size-base:		rem(14);
+$font-size-base:		rem(14) !default;
 
-$font-size-h1:          rem(36);
-$font-size-h2:          rem(22);
-$font-size-h3:          rem(17);
-$font-size-h4:          rem(15);
-$font-size-h5:          $font-size-h4;
-$font-size-h6:          rem(13);
+$font-size-h1:          rem(36) !default;
+$font-size-h2:          rem(22) !default;
+$font-size-h3:          rem(17) !default;
+$font-size-h4:          rem(15) !default;
+$font-size-h5:          $font-size-h4 !default;
+$font-size-h6:          rem(13) !default;
 
-$line-height-difference: 4; // em
+$line-height-difference: 4 !default; // em
 
-$line-height-h1:		rem(36 + $line-height-difference);
-$line-height-h2:		rem(22 + $line-height-difference);
-$line-height-h3:		rem(17 + $line-height-difference);
-$line-height-h4:		rem(15 + $line-height-difference);
-$line-height-h5:		$line-height-h4;
-$line-height-h6:	    rem(13 + $line-height-difference);
+$line-height-h1:		rem(36 + $line-height-difference) !default;
+$line-height-h2:		rem(22 + $line-height-difference) !default;
+$line-height-h3:		rem(17 + $line-height-difference) !default;
+$line-height-h4:		rem(15 + $line-height-difference) !default;
+$line-height-h5:		$line-height-h4 !default;
+$line-height-h6:	    rem(13 + $line-height-difference) !default;
 
-$line-height-base:      rem(16 + $line-height-difference);
+$line-height-base:      rem(16 + $line-height-difference) !default;
 
 
 //== Alerts
 //
 //## Define alert colors, border radius, and padding.
 
-$alert-height:				44px;
-$alert-padding:				0 10px;
-$alert-border-radius:		none;
-$alert-border-width:		1px;
-$alert-link-font-weight:	700;
-$alert-font-color:			color("gray", 80);
+$alert-height:				44px !default;
+$alert-padding:				0 10px !default;
+$alert-border-radius:		none !default;
+$alert-border-width:		1px !default;
+$alert-link-font-weight:	700 !default;
+$alert-font-color:			color("gray", 80) !default;
 
-$alert-icon-margin:			0 10px 0 0;
-$alert-icon-font-size:		22px;
-$alert-close-margin:		0 0 0 20px;
+$alert-icon-margin:			0 10px 0 0 !default;
+$alert-icon-font-size:		22px !default;
+$alert-close-margin:		0 0 0 20px !default;
 
-$alert-success-bg:            mix(color("green", 10), color("white", 0), 25%);
-$alert-success-text:          $alert-font-color;
-$alert-success-border:        color("green", 40);
-$alert-success-icon:          color("green", 40);
+$alert-success-bg:            mix(color("green", 10), color("white", 0), 25%) !default;
+$alert-success-text:          $alert-font-color !default;
+$alert-success-border:        color("green", 40) !default;
+$alert-success-icon:          color("green", 40) !default;
 
-$alert-info-bg:               mix(color("blue", 10), color("white", 0), 25%);
-$alert-info-text:             $alert-font-color;
-$alert-info-border:           color("blue", 30);
-$alert-info-icon:             color("blue", 30);
+$alert-info-bg:               mix(color("blue", 10), color("white", 0), 25%) !default;
+$alert-info-text:             $alert-font-color !default;
+$alert-info-border:           color("blue", 30) !default;
+$alert-info-icon:             color("blue", 30) !default;
 
-$alert-warning-bg:            mix(color("yellow", 10), color("white", 0), 25%);
-$alert-warning-text:          $alert-font-color;
-$alert-warning-border:        color("yellow", 10);
-$alert-warning-icon:          color("yellow", 10);
+$alert-warning-bg:            mix(color("yellow", 10), color("white", 0), 25%) !default;
+$alert-warning-text:          $alert-font-color !default;
+$alert-warning-border:        color("yellow", 10) !default;
+$alert-warning-icon:          color("yellow", 10) !default;
 
-$alert-danger-bg:             mix(color("red", 10), color("white", 0), 25%);
-$alert-danger-text:           $alert-font-color;
-$alert-danger-border:         color("red", 50);
-$alert-danger-icon:           color("red", 50);
+$alert-danger-bg:             mix(color("red", 10), color("white", 0), 25%) !default;
+$alert-danger-text:           $alert-font-color !default;
+$alert-danger-border:         color("red", 50) !default;
+$alert-danger-icon:           color("red", 50) !default;
 
 
 
 
 //** Box shadow value for modals, popovers, dropdowns, tooltips, etc.
-$default-box-shadow:	          0 0 10px rgba(color("black", 100), 0.16);
-$default-box-shadow-overlayed:    0 0 10px rgba(color("black", 100), 0.08); // for arrows
+$default-box-shadow:	          0 0 10px rgba(color("black", 100), 0.16) !default;
+$default-box-shadow-overlayed:    0 0 10px rgba(color("black", 100), 0.08) !default; // for arrows
 
 
 //== Popovers
 //
 //## Define
 
-$popover-header-padding: 	15px 20px;
-$popover-header-height: 	45px;
-$popover-header-bg: 		color("blue", 50);
-$popover-title-color: 		color("white", 0);
+$popover-header-padding: 	15px 20px !default;
+$popover-header-height: 	45px !default;
+$popover-header-bg: 		color("blue", 50) !default;
+$popover-title-color: 		color("white", 0) !default;
 
-$popover-content-padding: 	30px 20px;
-$popover-arrow-width:		20px;
-$popover-arrow-height:		10px;
+$popover-content-padding: 	30px 20px !default;
+$popover-arrow-width:		20px !default;
+$popover-arrow-height:		10px !default;
 
 //== tooltips
 //
 //## Define
 
-$tooltip-padding: 	11px 16px;
-$tooltip-border: 	1px solid color("gray", 10);
-$tooltip-max-width: 200px;
-$tooltip-min-width: 146px;
+$tooltip-padding: 	11px 16px !default;
+$tooltip-border: 	1px solid color("gray", 10) !default;
+$tooltip-max-width: 200px !default;
+$tooltip-min-width: 146px !default;
 
-$tooltip-highlight-border-width:	4px;
+$tooltip-highlight-border-width:	4px !default;
 
 
 //== Form
 //
 //## Define input colors, border radius, and padding.
 
-$input-field-font: 300; // Helvetica Roman
+$input-field-font: 300 !default; // Helvetica Roman
 
-$input-field-border: 1px solid color("gray", 50);
-$input-field-color:			   color("gray", 60);
+$input-field-border: 1px solid color("gray", 50) !default;
+$input-field-color:			   color("gray", 60) !default;
 
-$input-field-border-hover: 	   color("gray", 50);
-$input-field-border-focus: 	   color("gray", 50);
-$input-field-border-disabled:  color("gray", 20);
-$input-field-color-disabled:   color("gray", 20);
+$input-field-border-hover: 	   color("gray", 50) !default;
+$input-field-border-focus: 	   color("gray", 50) !default;
+$input-field-border-disabled:  color("gray", 20) !default;
+$input-field-color-disabled:   color("gray", 20) !default;
 
 
-// sizes;
-$input-field-height:     30px;
-$input-field-height-sm:  20px;
-$input-field-height-lg:  40px;
+// sizes
+$input-field-height:     30px !default;
+$input-field-height-sm:  20px !default;
+$input-field-height-lg:  40px !default;
 
 //padding
-$input-field-padding: 	 0 10px;
-$input-field-padding-lg: 0 20px;
+$input-field-padding: 	 0 10px !default;
+$input-field-padding-lg: 0 20px !default;
 
 //textarea
-$text-area-padding: 	 10px;
-$text-area-height: 	     114px;
+$text-area-padding: 	 10px !default;
+$text-area-height: 	     114px !default;
 
 
 //== Radio
 //
 //## Define Radio colors, border radius, and padding.
 
-$radio-type:            radio;
-$radio-label-margin:    10px;
-$radio-size:            20px;
-$radio-border-radius:   20px;
-$radio-selected-width:  12px;
-$radio-selected-height: $radio-selected-width;
+$radio-type:            radio !default;
+$radio-label-margin:    10px !default;
+$radio-size:            20px !default;
+$radio-border-radius:   20px !default;
+$radio-selected-width:  12px !default;
+$radio-selected-height: $radio-selected-width !default;
 
 // small radio
-$radio-sm-width:           16px;
-$radio-sm-height:          $radio-sm-width;
-$radio-selected-sm-width:  9px;
-$radio-selected-sm-height: $radio-selected-sm-width;
+$radio-sm-width:           16px !default;
+$radio-sm-height:          $radio-sm-width !default;
+$radio-selected-sm-width:  9px !default;
+$radio-selected-sm-height: $radio-selected-sm-width !default;
 
 
 //== Checkbox
 //
 //## Define checkbox colors, border radius, and padding.
 
-$checkbox-type:            checkbox;
-$checkbox-label-margin:    10px;
-$checkbox-size:            20px;
-$checkbox-border-radius:   0px;
-$checkbox-selected-width:  12px;
-$checkbox-selected-height: 6px;
+$checkbox-type:            checkbox !default;
+$checkbox-label-margin:    10px !default;
+$checkbox-size:            20px !default;
+$checkbox-border-radius:   0px !default;
+$checkbox-selected-width:  12px !default;
+$checkbox-selected-height: 6px !default;
 
 // small checkbox
-$checkbox-sm-width:           15px;
-$checkbox-sm-height:          15px;
-$checkbox-selected-sm-width:  10px;
-$checkbox-selected-sm-height: 5px;
+$checkbox-sm-width:           15px !default;
+$checkbox-sm-height:          15px !default;
+$checkbox-selected-sm-width:  10px !default;
+$checkbox-selected-sm-height: 5px !default;
+
+
+//== Switch
+//
+//## Define Switch colors, border, and padding.
+
+
+$switch-bottom-margin: 10px !default;
+
+
+$switch-height:  30px !default;
+$switch-width:   65px !default;
+$switch-padding: 5px !default;
+$switch-label-margin: 10px !default;
+
+$switch-bg-color: color("gray", 50) !default;
+$switch-border-radius: 50px !default;
+
+$switch-hover-bg-color:    color("gray", 60) !default;
+$switch-active-bg-color:   color("blue", 50) !default;
+$switch-disabled-bg-color: color("gray", 20) !default;
+
+$switch-innerbtn-disabled-bg-color: color("gray", 30) !default;
 
 
 
@@ -205,41 +228,41 @@ $checkbox-selected-sm-height: 5px;
 //
 //## Define list-view colors, border, and padding.
 
-$listview-bg:          color("white", 0);
-$listview-padding:     11px 20px; // padding is 11 to make it 40 pixel height
+$listview-bg:          color("white", 0) !default;
+$listview-padding:     11px 20px !default; // padding is 11 to make it 40 pixel height
 
-$listview-border:      1px solid color("gray", 10);
-$listview-hover-bg:    color-tint(color("blue", 40), 90);
+$listview-border:      1px solid color("gray", 10) !default;
+$listview-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
-$listview-active-border-color:  color("white", 0);
-$listview-selected-border:		2px solid color("blue", 50); // left border
-$listview-selected-color: 		color("blue", 50);
+$listview-active-border-color:  color("white", 0) !default;
+$listview-selected-border:		2px solid color("blue", 50) !default; // left border
+$listview-selected-color: 		color("blue", 50) !default;
 
 //== tree-view
 //
 //## Define tree-view colors, border, and padding.
 
-$treeview-padding:     10px;
+$treeview-padding:     10px !default;
 
-$treeview-border:      1px solid color-tint(color("gray", 10), 50);
-$treeview-hover-bg:    color-tint(color("blue", 40), 90);
+$treeview-border:      1px solid color-tint(color("gray", 10), 50) !default;
+$treeview-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
-$treeview-selected-border-color: color("blue", 50); // left border
-$treeview-selected-color:        color("blue", 50);
+$treeview-selected-border-color: color("blue", 50) !default; // left border
+$treeview-selected-color:        color("blue", 50) !default;
 
 
 //== Submenu
 //
 //## Define Submenu colors, border, and padding.
 
-$submenu-padding:     10px 20px; // padding is 10 to make it 40 pixel height;
+$submenu-padding:     10px 20px !default; // padding is 10 to make it 40 pixel height
 
-$submenu-bg:		  color("white", 0);
-$submenu-border:      1px solid color-tint(color("gray", 10), 50);
-$submenu-hover-bg:    color-tint(color("blue", 40), 90);
+$submenu-bg:		  color("white", 0) !default;
+$submenu-border:      1px solid color-tint(color("gray", 10), 50) !default;
+$submenu-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
-$submenu-selected-border-color: color("blue", 50); // left border
-$submenu-selected-color:        color("blue", 50);
+$submenu-selected-border-color: color("blue", 50) !default; // left border
+$submenu-selected-color:        color("blue", 50) !default;
 
 
 
@@ -247,14 +270,14 @@ $submenu-selected-color:        color("blue", 50);
 //
 //## Define buttons colors, border, and padding.
 
-$btn-border-width:  2px;
-$btn-height-sm:		20px;
-$btn-height:		30px;
-$btn-height-lg:		40px;
-$btn-height-xlg:	50px;
-$btn-font--size-sm: rem(12);
-$btn-padding: 		0 20px;
-$btn-font: 			$font-roman; // roman
+$btn-border-width:  2px !default;
+$btn-height-sm:		20px !default;
+$btn-height:		30px !default;
+$btn-height-lg:		40px !default;
+$btn-height-xlg:	50px !default;
+$btn-font--size-sm: rem(12) !default;
+$btn-padding: 		0 20px !default;
+$btn-font: 			$font-roman !default; // roman
 
 
 
@@ -320,7 +343,7 @@ $btns: (
         bg-disabled:    transparent,
         brd-disabled:   color("gray", 20)
     )
-);
+) !default;
 
 
 
@@ -328,38 +351,35 @@ $btns: (
 //
 //## Define dropdowns colors, border, and padding.
 
-$dropdown-font:      $font-roman;
+$dropdown-font:      $font-roman !default;
 
-$dropdown-height: 	 30px;
-$dropdown-height-sm: 20px;
-$dropdown-height-lg: 40px;
+$dropdown-height: 	 30px !default;
+$dropdown-height-sm: 20px !default;
+$dropdown-height-lg: 40px !default;
 
-$dropdown-padding: 		0 10px;
-$dropdown-padding-lg: 	0 20px;
+$dropdown-padding: 		0 10px !default;
+$dropdown-padding-lg: 	0 20px !default;
 
 // sizes
-$dropdown-font-size-sm: rem(12);
+$dropdown-font-size-sm: rem(12) !default;
 
 //colors
-$dropdown-color: 		  color("black", 100);
-$dropdown-border: 		  1px solid  color("gray", 50);
-$dropdown-bg-color: 	  color("white", 0);
-$dropdown-bg-color-hover: rgba(color("blue", 40), 0.10);
+$dropdown-color: 		  color("black", 100) !default;
+$dropdown-border: 		  1px solid  color("gray", 50) !default;
+$dropdown-bg-color: 	  color("white", 0) !default;
+$dropdown-bg-color-hover: rgba(color("blue", 40), 0.10) !default;
 
-$dropdown-submenu-bg-color:  color("white", 0);
+$dropdown-submenu-bg-color:  color("white", 0) !default;
 
 //bg-disabled
-$dropdown-color-disabled:          color("gray", 20);
-$dropdown-border-disabled: 		   1px solid color("gray", 30);
-$dropdown-bg-color-disabled-hover: color("white", 0);
-
-
-
+$dropdown-color-disabled:          color("gray", 20) !default;
+$dropdown-border-disabled: 		   1px solid color("gray", 30) !default;
+$dropdown-bg-color-disabled-hover: color("white", 0) !default;
 
 
 //== topnav
 //
 //## Define topnav colors, border, and padding.
 
-$topnav-bg-color:  color("gray", 80);
-$topnav-color: 	   color("white", 0);
+$topnav-bg-color:  color("gray", 80) !default;
+$topnav-color: 	   color("white", 0) !default;

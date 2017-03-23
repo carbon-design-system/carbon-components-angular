@@ -24,7 +24,7 @@
 
 //etc
 @import "buttons/buttons";
-@import "forms";
+
 
 //components
 @import "components/list-view",
@@ -35,6 +35,7 @@
 		"forms/forms",
 		"forms/radio",
 		"forms/checkbox",
+		"forms/switch",
     	"datepicker/datepicker",
 		"nav/left-nav",
 		"dropdown/dropdown";
