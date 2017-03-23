@@ -12,11 +12,13 @@ import { DOCUMENT } from "@angular/platform-browser";
 @Component({
 	selector: "cdl-top-nav",
 	template: `
-	<nav class="top-nav" [ngStyle]="{'position':displayType}">
+	<nav class="top-nav  clearfix" [ngClass]="displayType">
 		<ng-content select="[hamburger]"></ng-content>
-		<a class="top-nav-heading" href="#">
-			<span><h1 class="top-nav-brand"> IBM <strong>{{brand}}</strong> </h1> </span>
-			<span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
+		<a class="top-nav-heading top-nav-link-item fl" href="#">
+			<h1 class="top-nav-brand">
+			IBM <strong>{{brand}}</strong> <span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
+			</h1>
+
 		</a>
 		<ng-content select="[links]"></ng-content>
 		<ng-content select="[menu]"></ng-content>
@@ -30,10 +32,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 			1.1-1zM19.9 4h-3.5v1h3.3c.1-.2.2-.6.2-1zM19.4 2H8v1h11.8c0-.3-.3-.8-.4-1zM8 0v1h10.5c-.3-.2-1.5-1-3.1-1H8z"/>
 			</svg>
 		</span>
-	</nav>
-
-	`,
-	styleUrls: ["./top-nav.component.scss"]
+	</nav>`
 })
 
 export class TopNav implements OnInit {
@@ -41,15 +40,13 @@ export class TopNav implements OnInit {
 	@Input() brand: string;
 	@Input() sticky = false;
 
-	private displayType = "relative";
+	private displayType = "";
 
 	constructor(@Inject(DOCUMENT) private document, private renderer: Renderer) {}
 
 	ngOnInit() {
 		if (this.sticky) {
-			this.displayType = "fixed";
-		} else {
-			this.displayType = "relative";
+			this.displayType = "top-nav-sticky";
 		}
 	}
 }

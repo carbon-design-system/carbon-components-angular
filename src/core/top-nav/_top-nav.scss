@@ -1,0 +1,102 @@
+//
+// Topnav
+// --------------------------------------------------
+
+// top-nav base styles
+// -------------------------
+
+.top-nav {
+	position: relative;
+    background-color: $topnav-bg-color;
+	height: $topnav-height;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: $topnav-z-index;
+	color:$topnav-color;
+	padding-right: 88px;
+
+	svg{
+		fill: $topnav-color;
+	}
+	.top-nav-link-item{
+		color:$topnav-color;
+		cursor: pointer;
+ 		@include hover-blue;
+		transition: background-color 0.2s ease-in-out;
+		text-decoration: none;
+		line-height: rem(20);
+		height: $topnav-height;
+		border-top:2px solid transparent;
+		&:active{
+			border-top:2px solid white;
+		}
+	}
+    .top-nav-heading {
+        display: inline-block;
+        padding: $topnav-title-padding;
+		vertical-align: top;
+		span {
+            display: inline-block;
+        }
+        @include unselectable;
+    }
+	.top-nav-badge {
+		background-color: $topnav-badge-bg-color;
+		padding: $topnav-badge-padding;
+		margin:$topnav-badge-margin;
+		height:$topnav-badge-height;
+		color:$topnav-badge-color;
+		line-height: 1;
+	}
+	.top-nav-brand {
+		font-size:$topnav-header-font-size;
+		margin:$topnav-header-margin;
+		padding-right: 10px;
+		line-height: rem(20);
+		font-weight: $topnav-header-font-family;
+	}
+    .top-nav-ibm {
+        padding: $topnav-ibm-logo-padding;
+		position: absolute;
+		right: 0;
+        display: inline-block;
+    }
+}
+.top-nav-sticky{
+	position: fixed;
+}
+
+ .top-nav-links {
+	@extend .list-unstyled;
+    margin: 0;
+    padding: 0;
+	display: inline-block;
+    li {
+		float:left;
+        text-align: center;
+        white-space: nowrap;
+    }
+	.top-nav-link-item{
+		display: inline-block;
+		padding: $topnav-links-padding;
+		height: $topnav-height;
+	}
+    .menu-icon {
+        display: inline-block;
+        margin:$topnav-links-icon-margin;
+        vertical-align: middle;
+    }
+    .chevron-down{
+        display: inline-block;
+        margin: $topnav-links-chevron-margin;
+        vertical-align: middle;
+    }
+}
+
+.a11y .top-nav{
+	border-bottom:1px solid color("black", 100);
+	svg{
+		fill: color("black", 100);
+	}
+}

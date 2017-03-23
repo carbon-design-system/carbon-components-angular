@@ -28,7 +28,7 @@ describe("Top Nav", () => {
 		let el = de.nativeElement;
 		comp.brand = "test";
 		fixture.detectChanges();
-		expect(el.textContent).toBe(" IBM test ");
+		expect(el.textContent.trim()).toBe("IBM test");
 	});
 
 	it("badge should display", () => {
