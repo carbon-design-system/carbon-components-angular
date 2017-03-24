@@ -27,7 +27,7 @@
 	</div>
 </template>
 
-<button class="btn" [cdlPopover]="list" placement="right" title="Select item" [gap]="30">Pop over with list and some extra space</button>
+<button class="btn" [cdlPopover]="list" wrapperClass="popover-content-fullwidth" placement="right" title="Select item" [gap]="30">Pop over with list and some extra space</button>
 
 
 <h3>Popover append to body</h3>
@@ -39,5 +39,5 @@
 <br/><br/>
 
 <div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
-	<button class="btn" [cdlPopover]="list" placement="right" title="Select item" [appendToBody]="true">Pop over with appendToBody = true</button>
+	<button class="btn" [cdlPopover]="list" wrapperClass="popover-content-fullwidth" placement="right" title="Select item" [appendToBody]="true">Pop over with appendToBody = true</button>
 </div>
