@@ -106,8 +106,8 @@ $alert-danger-icon:           color("red", 50) !default;
 
 
 //** Box shadow value for modals, popovers, dropdowns, tooltips, etc.
-$default-box-shadow:	          0 0 10px rgba(color("black", 100), 0.16) !default;
-$default-box-shadow-overlayed:    0 0 10px rgba(color("black", 100), 0.08) !default; // for arrows
+$default-box-shadow:	          0 0 10px color("black", 100, $alpha: 0.16) !default;
+$default-box-shadow-overlayed:    0 0 10px color("black", 100, $alpha: 0.08) !default; // for arrows
 
 
 //== Popovers
@@ -367,7 +367,7 @@ $dropdown-font-size-sm: rem(12) !default;
 $dropdown-color: 		  color("black", 100) !default;
 $dropdown-border: 		  1px solid  color("gray", 50) !default;
 $dropdown-bg-color: 	  color("white", 0) !default;
-$dropdown-bg-color-hover: rgba(color("blue", 40), 0.10) !default;
+$dropdown-bg-color-hover: color("blue", 40, $alpha: 0.10) !default;
 
 $dropdown-submenu-bg-color:  color("white", 0) !default;
 
@@ -409,3 +409,40 @@ $topnav-links-padding: 12px 10px 14px 10px !default;
 $topnav-links-icon-margin: 0 12px 0 0 !default;
 $topnav-links-chevron-margin: 0 0 0 10px !default;
 
+
+
+
+//== table
+//
+//## Define table colors, border, and padding.
+
+
+$table-header-bg: color-tint(color("gray", 10), 50);
+$table-header-font: $font-bold;
+$table-header-border-color: color("white", 0);
+$table-header-color: color("black", 100);
+
+$table-row-border-color: color("gray", 10);
+$table-cell-hover-bg: color("blue", 40, $alpha: 0.10) !default;
+
+//Default tables
+$table-cell-height: 40px;
+$table-cell-padding:12px 20px;
+
+
+// Medium tables
+$table-cell-paddings-md:8px 10px;
+$table-cell-height-md: 30px;
+$table-font-size-md: rem(13);
+
+// small tables
+$table-cell-paddings-sm:6px 5px;
+$table-cell-height-sm: 25px;
+$table-font-size-sm: rem(12);
+
+$table-stripped-bg-color: color("gray", 1, $alpha:0.25); // tint isn't working with 75 .. not getting the right color
+
+// checkbox in table
+$table-checkbox-col-padding: 5px;
+$table-checkbox-col-width: 30px;
+$table-checkbox-width: 20px;
