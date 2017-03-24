@@ -2,8 +2,8 @@
 
 <h3>Default Drop down</h3>
 <div style="width: 400px">
-	<cdl-dropdown [displayValue]="display0">
-		<cdl-list-view [items]="demoItems0" (select)="onSelectAndDisplay($event)" [checkMark]="false"></cdl-list-view>
+	<cdl-dropdown [displayValue]="display">
+		<cdl-list-view [items]="demoItems" (select)="onSelectAndDisplay($event)" [checkMark]="false"></cdl-list-view>
 	</cdl-dropdown>
 </div>
 
@@ -16,13 +16,13 @@
 
 <h3>Default Drop down with custom template</h3>
 <template #listTpl let-item="item">
-<cdl-glyphicon *ngIf="item.selected"  icon="Checkbox Selected" size="md"></cdl-glyphicon>
-<cdl-glyphicon *ngIf="!item.selected" icon="Checkbox Empty" size="md"></cdl-glyphicon>
+	<cdl-glyphicon *ngIf="item.selected"  icon="Checkbox Selected" size="md"></cdl-glyphicon>
+	<cdl-glyphicon *ngIf="!item.selected" icon="Checkbox Empty" size="md"></cdl-glyphicon>
 	{{item.content}}
 </template>
 <div style="width: 400px">
-	<cdl-dropdown [displayValue]="display0" [closeOnSelect]="false" type="multi">
-		<cdl-list-view [items]="demoItems4" (select)="onSelectAndDisplay($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>
+	<cdl-dropdown [displayValue]="displayCustom" [closeOnSelect]="false" type="multi">
+		<cdl-list-view [items]="demoItemsCustom" (select)="onSelectAndDisplayCustom($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>
 	</cdl-dropdown>
 </div>
 
@@ -36,13 +36,13 @@
 <h3>Drop down with sub menu view</h3>
 <div style="width: 250px">
 	<cdl-dropdown displayValue="Dropdown sub menu">
-		<cdl-sub-menu-view [items]="nestedDemoItems" (select)="onNestedSelect($event)" [selectedIcon]="false"></cdl-sub-menu-view>
+		<cdl-sub-menu-view [items]="nestedDemoItems1" (select)="onNestedSelect($event)" [selectedIcon]="false"></cdl-sub-menu-view>
 	</cdl-dropdown>
 </div>
 
 <h3>Drop down with multi select</h3>
 <cdl-dropdown displayValue="Dropdown 4" [closeOnSelect]="false" type="multi">
-	<cdl-list-view [items]="demoItems3" (select)="onSelect($event)"  [checkMark]="false"></cdl-list-view>
+	<cdl-list-view [items]="demoItems2" (select)="onSelect($event)"  [checkMark]="false"></cdl-list-view>
 </cdl-dropdown>
 
 <h3>Disabled Drop down</h3>
