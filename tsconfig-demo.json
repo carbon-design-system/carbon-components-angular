@@ -10,14 +10,11 @@
     "module": "es2015",
     "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "target": "es5",
     "inlineSources": true,
     "typeRoots": [
       "../node_modules/@types"
     ]
-  },
-  "files": [
-    "./src/index.ts"
-  ]
+  }
 }
