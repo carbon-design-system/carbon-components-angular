@@ -15,11 +15,11 @@
 </div>
 
 <h3>Default Drop down with custom template</h3>
-<template #listTpl let-item="item">
+<ng-template #listTpl let-item="item">
 	<cdl-glyphicon *ngIf="item.selected"  icon="Checkbox Selected" size="md"></cdl-glyphicon>
 	<cdl-glyphicon *ngIf="!item.selected" icon="Checkbox Empty" size="md"></cdl-glyphicon>
 	{{item.content}}
-</template>
+</ng-template>
 <div style="width: 400px">
 	<cdl-dropdown [displayValue]="displayCustom" [closeOnSelect]="false" type="multi">
 		<cdl-list-view [items]="demoItemsCustom" (select)="onSelectAndDisplayCustom($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>

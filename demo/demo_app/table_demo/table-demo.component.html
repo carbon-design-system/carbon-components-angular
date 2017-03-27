@@ -16,24 +16,24 @@
 			title="A"
 			width="200"
 			(sort)="sortA($event)">
-			<template #headerTemplate>A</template>
-			<template #cellTemplate let-data="data">col 1 {{data}}</template>
+			<ng-template #headerTemplate>A</ng-template>
+			<ng-template #cellTemplate let-data="data">col 1 {{data}}</ng-template>
 		</cdl-column>
 		<cdl-column
 			key="b"
 			title="B"
 			(sort)="sort($event)"
 			resizeable="false">
-			<template #headerTemplate>B</template>
-			<template #cellTemplate let-data="data">column two {{data}}</template>
+			<ng-template #headerTemplate>B</ng-template>
+			<ng-template #cellTemplate let-data="data">column two {{data}}</ng-template>
 		</cdl-column>
 		<cdl-column
 			*ngIf="cvis"
 			key="c"
 			title="C"
 			width="200">
-			<template #headerTemplate>C</template>
-			<template #cellTemplate let-data="data">{{data}}</template>
+			<ng-template #headerTemplate>C</ng-template>
+			<ng-template #cellTemplate let-data="data">{{data}}</ng-template>
 		</cdl-column>
 	</cdl-table>
 </div>

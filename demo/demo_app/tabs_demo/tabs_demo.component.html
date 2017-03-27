@@ -70,7 +70,7 @@
 </div>
 
 <h2>Tabs with custom heading template</h2>
-<template #tabHeading> Hello, ! <button (click)="test()">Click me</button> <cdl-glyphicon icon="Alert" size="lg"></cdl-glyphicon></template>
+<ng-template #tabHeading> Hello, ! <button (click)="test()">Click me</button> <cdl-glyphicon icon="Alert" size="lg"></cdl-glyphicon></ng-template>
 <cdl-tabs>
 	<cdl-tab [heading]="tabHeading">
 		tab 1 content <cdl-glyphicon icon="Alert" size="lg"></cdl-glyphicon>

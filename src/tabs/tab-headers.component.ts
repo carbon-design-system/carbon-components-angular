@@ -52,10 +52,10 @@ import { Tab } from "./tab.component";
 						<span *ngIf="!tab.headingIsTemplate">
 							{{tab.heading}}
 						</span>
-						<template
+						<ng-template
 							*ngIf="tab.headingIsTemplate"
 							[ngTemplateOutlet]="tab.heading">
-						</template>
+						</ng-template>
 					</a>
 				</li>
 			</ul>

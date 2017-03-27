@@ -23,11 +23,11 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 				*ngFor="let item of list | slice:0:limit;"
 				(keydown)="keydownNav($event, item)"
 				(click)="select(item)">
-					<template
+					<ng-template
 						*ngIf="listTpl"
 						[ngOutletContext]="{item: {item: item, searchText: input} }"
 						[ngTemplateOutlet]="listTpl">
-					</template>
+					</ng-template>
 					<typeahead-highlight *ngIf="!displayKey && !listTpl" [fullText]="item" [searchText]="input"></typeahead-highlight>
 					<typeahead-highlight *ngIf="displayKey && !listTpl" [fullText]="item[displayKey]" [searchText]="input"></typeahead-highlight>
 				</li>

@@ -38,11 +38,11 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 					<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 				</svg>
 				<span *ngIf="!listTpl">{{listItem.content}}</span>
-				<template
+				<ng-template
 					*ngIf="isTpl"
 					[ngOutletContext]="{item: listItem}"
 					[ngTemplateOutlet]="listTpl">
-				</template>
+				</ng-template>
 				<span
 					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
 					class="checked" aria-hidden="true">

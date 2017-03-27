@@ -39,12 +39,12 @@ import { TableService } from "./table.service";
 					<td 
 						*ngFor="let col of tableService.getCols(row, cols)"
 						[ngStyle]="{'width': (col.col.width || colWidth) + 'px'}">
-						<template
+						<ng-template
 							[ngTemplateOutlet]="col.col.template"
 							[ngOutletContext]="{
 								data: col.data
 							}">
-						</template>
+						</ng-template>
 					</td>
 				</tr>
 				<tr [ngStyle]="{'height.px': bottomPadding}"></tr>

@@ -28,9 +28,9 @@ import { Column } from "./column.component";
 				<th 
 					*ngFor="let column of tableService.getCols({}, cols)"
 					[ngStyle]="{'width': (column.col.width || colWidth) + 'px'}">
-					<template
+					<ng-template
 						[ngTemplateOutlet]="column.col.headerTemplate">
-					</template>
+					</ng-template>
 					<div class="col-actions">
 						<button 
 							class="sm" 
