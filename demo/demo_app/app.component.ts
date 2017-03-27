@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
-			if (x.url === "/" && this.previousItem) {
+			if (x["url"] === "/" && this.previousItem) {
 				this.previousItem.selected = false;
 			}
 		});
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
 			if (this.previousItem) {
 				this.previousItem.selected = false;
 			}
-			let item = this.navItems.find(y => y.link === x.url);
+			let item = this.navItems.find(y => y.link === x["url"]);
 			if (item) {
 				item.selected = true;
 			}

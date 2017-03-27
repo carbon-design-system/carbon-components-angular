@@ -1,6 +1,6 @@
 <h1>Popover Demo</h1>
 
-<template #customPopover><div style="display: inline-block; width: 20px; height: 20px"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></div> Cool content <br/> another cool content <br/><br/><br/><br/><br/></template>
+<ng-template #customPopover><div style="display: inline-block; width: 20px; height: 20px"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></div> Cool content <br/> another cool content <br/><br/><br/><br/><br/></ng-template>
 
 <h3>Basic Popover</h3>
 <button class="btn" cdlPopover="Hello There" placement="bottom">Pop over Bottom</button>
@@ -21,14 +21,15 @@
 <button class="btn" (click)="popOver.close()">Close above popover</button>
 
 <h3>Popover with list view and some extrap gap in between</h3>
-<template #list>
-	<div style="width: 400px;">
+<ng-template #list>
+	<div>
 		<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
 	</div>
-</template>
+</ng-template>
 
 <button class="btn" [cdlPopover]="list" placement="right" title="Select item" [gap]="30">Pop over with list and some extra space</button>
 
+<button class="btn" [cdlPopover]="list" placement="right" title="Select item">Pop over with list</button>
 
 <h3>Popover append to body</h3>
 

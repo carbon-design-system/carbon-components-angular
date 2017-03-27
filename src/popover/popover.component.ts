@@ -29,10 +29,10 @@ import { positionElements } from "../common/position.service";
 				</button>
 			</div>
 			<div class="popover-content">
-				<template
+				<ng-template
 					*ngIf="isTpl"
 					[ngTemplateOutlet]="popoverConfig.content">
-				</template>
+				</ng-template>
 				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
 
 				<button

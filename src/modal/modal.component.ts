@@ -3,13 +3,15 @@ import {
 	OnInit,
 	Input,
 	Output,
-	EventEmitter,
+	EventEmitter
+} from "@angular/core";
+import {
 	trigger,
 	state,
 	style,
 	transition,
 	animate
-} from "@angular/core";
+} from "@angular/animations";
 
 @Component({
 	selector: "cdl-modal",
