@@ -28,11 +28,11 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 					class="checked" aria-hidden="true">
 				</span>
 				<span *ngIf="!listTpl">{{item.content}}</span>
-				<template
+				<ng-template
 					*ngIf="listTpl"
 					[ngOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
-				</template>
+				</ng-template>
 			</li>
 		</ul>`,
 		providers: [{provide: View, useExisting: forwardRef(() => ListView)}]

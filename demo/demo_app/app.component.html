@@ -4,9 +4,9 @@
 <nav>
 	<input type="search" (keyup)="search($event)" class="input-field" style="width: 100%; margin-left: 0;" placeholder="Filter">
 	<cdl-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
-		<template #item let-item="item">
+		<ng-template #item let-item="item">
 			<a routerLink="{{item.link}}">{{item.content}}</a>
-		</template>
+		</ng-template>
 	</cdl-list-view>
 </nav>
 <div class="main">

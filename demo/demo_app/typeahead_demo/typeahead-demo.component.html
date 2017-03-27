@@ -12,10 +12,10 @@
 <label class="label label-top" for="">selected value {{selectedAsync | json}}</label>
 <cdl-typeahead [list]="list" [displayKey]="'title'" [waitTime]="1000" (onSearch)="search($event)" (onSelect)="onSelectAsync($event)"></cdl-typeahead>
 
-<template #listTpl let-item="item">
+<ng-template #listTpl let-item="item">
 	<cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon>
 	<typeahead-highlight [fullText]="item.item" [searchText]="item.searchText"></typeahead-highlight>
-</template>
+</ng-template>
 
 <h3>Static Typeahead with custom template</h3>
 <label class="label label-top" for="">selected value {{selectedString}}</label>
