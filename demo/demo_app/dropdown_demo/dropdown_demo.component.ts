@@ -5,10 +5,10 @@ import { Component, OnInit } from "@angular/core";
 	templateUrl: "./dropdown_demo.component.html",
 })
 export class DropdownDemo {
-	title = "Tabs Component Demo";
+	private display = "Dropdown 1";
+	private displayCustom = "Dropdown 3";
 
-	private display0 = "Dropdown 1";
-	private demoItems0 = [
+	private demoItems = [
 		{
 			content: "item one",
 			selected: false
@@ -27,11 +27,9 @@ export class DropdownDemo {
 		}
 	];
 
-	private demoItems1 = Array.from(this.demoItems0, this.clone);
-	private demoItems2 = Array.from(this.demoItems0, this.clone);
-	private demoItems3 = Array.from(this.demoItems0, this.clone);
-	private demoItems4 = Array.from(this.demoItems0, this.clone);
-	private demoItems5 = Array.from(this.demoItems0, this.clone);
+	private demoItemsCustom = this.clone(this.demoItems);
+	private demoItems1 = this.clone(this.demoItems);
+	private demoItems2 = this.clone(this.demoItems);
 
 	private nestedDemoItems = [
 		{
@@ -57,8 +55,6 @@ export class DropdownDemo {
 						{
 							content: "sub item two 2b",
 							selected: false,
-
-
 						}
 					]
 				},
@@ -74,16 +70,37 @@ export class DropdownDemo {
 		}
 	];
 
+	private nestedDemoItems1 = this.clone(this.nestedDemoItems);
+
 	private clone (el) {
-		return Object.assign({}, el);
+		return JSON.parse(JSON.stringify(el));
 	}
 
 	onSelectAndDisplay(ev) {
 		ev.item.selected = !ev.item.selected;
 		if (ev.item.selected) {
-			this.display0 = ev.item.content;
+			this.display = ev.item.content;
 		} else {
-			this.display0 = "Dropdown 1";
+			this.display = "Dropdown 1";
+		}
+	}
+
+	onSelectAndDisplayCustom(ev) {
+		ev.item.selected = !ev.item.selected;
+
+		this.displayCustom = ""; // reset the display
+
+		let demoItemsListLength = this.demoItemsCustom.length;
+		for (let i = 0; i < demoItemsListLength; i++) {
+			let item = this.demoItemsCustom[i];
+
+			if (item.selected === true) {
+				this.displayCustom += item.content + "; ";
+			}
+		}
+
+		if (this.displayCustom.length === 0) {
+			this.displayCustom = "Dropdown 3";
 		}
 	}
 
@@ -96,5 +113,4 @@ export class DropdownDemo {
 			ev.item.selected = !ev.item.selected;
 		}
 	}
-
 }
