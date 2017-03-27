@@ -60,7 +60,6 @@
 	}
 	input[type=#{$type}] {
 		opacity: 0;
-	    height: $el-size;
 	    min-width: 0;
 	    position: absolute;
 	    &:checked
@@ -92,6 +91,7 @@
 		}
 	}
 	.size-sm & , &.size-sm  {
+		height: $el-sm-height;
 		label {
 			span{
 				height: $el-sm-height;
@@ -108,11 +108,14 @@
 						border-width:5px;
 						top: 3.5px;
 					} @else{
-						top:5px;
+						top:4px;
 					}
 
 				 }
 			}
+		}
+		input[type=#{$type}] {
+			height:$el-sm-height;
 		}
 	}
 	.theme-dark & {
