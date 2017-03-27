@@ -39,7 +39,6 @@
 		padding: $popover-content-padding;
 		overflow: auto;
 	}
-
 	.arrow{
 		@include arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 	}
@@ -187,7 +186,12 @@
 
 }
 
+// Custom popover attribute classes
 
-
+.popover-content-fullwidth {
+	.popover-content {
+		padding:0;
+	}
+}
 
 

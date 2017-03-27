@@ -33,6 +33,7 @@ export class PopoverDirective implements OnInit {
 	@Input() trigger: "click" | "mouseenter" = "click";
 	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
 	@Input() waitTime = 0;
+	@Input() wrapperClass: string;
 	@Input() gap = 10;
 	@Input() appendToBody = false;
 	@Input() type: "warning" | "danger" | "" = "";
@@ -60,6 +61,7 @@ export class PopoverDirective implements OnInit {
 			placement: this.placement,
 			parentRef: this.elementRef,
 			gap: this.gap,
+			wrapperClass: this.wrapperClass,
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
 			type: this.type,
