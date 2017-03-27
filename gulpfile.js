@@ -26,13 +26,14 @@ const SASS_DIST = `${DIST}/core`;
 
 const TSCONFG = require("./tsconfig.json").compilerOptions;
 
+
 gulp.task("build", ["build:angular", "build:sass", "build:css", "build:font", "build:package"]);
 
 gulp.task("build:angular", () => {
 	return gulp.src(TS_SRC)
 		.pipe(replaceTemplates())
-		.pipe(ts(TSCONFG))
-		.pipe(gulp.dest(DIST))
+		// .pipe(ts(TSCONFG))
+		.pipe(gulp.dest(DIST + "/src"))
 });
 
 gulp.task("build:sass", () => {
@@ -85,9 +86,9 @@ function replaceTemplates() {
 	const stylesRegex = /styleUrls *:(\s*\[[^\]]*?\])/g;
 
 	function templateToString(file, url) {
-		url = url.trim().replace(/^\"/gi, "").replace(/\"$/gi, "");
+		url = url.trim().replace(/^\"/g, "").replace(/\"$/g, "");
 		let fileStr = path.resolve(file.path, "..", url);
-		return htmlmin(fs.readFileSync(fileStr, {encoding: "utf-8"}));
+		return fs.readFileSync(fileStr).toString("utf-8");
 	}
 
 	function stylesToString(file, urls) {
