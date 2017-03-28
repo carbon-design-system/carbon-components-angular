@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { ModalPlaceholderComponent } from "./modal-placeholder.component";
 import { ModalService } from "./modal.service";
@@ -13,6 +14,7 @@ export { ModalService } from "./modal.service"
 @NgModule({
 	imports: [
 		CommonModule,
+		BrowserAnimationsModule
 	],
 	declarations: [
 		ModalPlaceholderComponent,
