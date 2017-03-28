@@ -56,14 +56,14 @@ import { TableService } from "./table.service";
 	providers: [TableService]
 })
 export class TableBody implements OnInit, OnChanges, DoCheck {
-	private visibleRows: Array<Object>;
-	private offsetTop = 0;
-	private offsetBottom = 0;
-	private height = 0;
-	private width = 0;
-	private topPadding = 0;
-	private bottomPadding = 0;
-	private lastScrollTop = 0;
+	public visibleRows: Array<Object>;
+	public offsetTop = 0;
+	public offsetBottom = 0;
+	public height = 0;
+	public width = 0;
+	public topPadding = 0;
+	public bottomPadding = 0;
+	public lastScrollTop = 0;
 	public selected = {};
 	@Input() rows;
 	@Input() cols;
@@ -72,7 +72,7 @@ export class TableBody implements OnInit, OnChanges, DoCheck {
 	@Output() selectRow = new EventEmitter<Object>();
 	@ViewChild("tableContainer") container;
 
-	constructor(private tableService: TableService) {}
+	constructor(public tableService: TableService) {}
 
 	ngOnInit() {
 		this.height = this.container.nativeElement.offsetHeight;

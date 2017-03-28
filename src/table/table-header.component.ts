@@ -97,14 +97,14 @@ export class TableHeader {
 	@Input() cols;
 	@Input() colWidth: number;
 	@Output() doSelectAll = new EventEmitter<Object>();
-	private isTabMoving = false;
-	private isTabResizeing = false;
-	private movingCol: Column = null;
-	private resizingCol: Column = null;
-	private lastX = 0;
-	private sorts = Column.sort;
+	public isTabMoving = false;
+	public isTabResizeing = false;
+	public movingCol: Column = null;
+	public resizingCol: Column = null;
+	public lastX = 0;
+	public sorts = Column.sort;
 
-	constructor(private tableService: TableService) {}
+	constructor(public tableService: TableService) {}
 
 	sort(col: Column) {
 		for (let column of this.tableService.getCols({}, this.cols)) {

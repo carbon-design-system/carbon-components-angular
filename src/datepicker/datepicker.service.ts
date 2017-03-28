@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class DatepickerService {
-	private selectedDate;
+	public selectedDate;
 
 	getSelectedDate() {
 		return this.selectedDate;

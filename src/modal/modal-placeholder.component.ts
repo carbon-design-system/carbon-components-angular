@@ -10,7 +10,7 @@ export class ModalPlaceholderComponent implements OnInit {
 	@ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	constructor(
-		private modalService: ModalService,
+		public modalService: ModalService,
 	) {}
 
 	ngOnInit(): void {

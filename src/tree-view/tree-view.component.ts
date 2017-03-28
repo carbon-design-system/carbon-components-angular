@@ -16,7 +16,7 @@ import { TreeViewItem } from "./tree-view-item.component";
 			[class.open]="isOpen"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
-			[attr.aria-label]="treeViewLabel">
+			[attr.aria-label]="label">
 			<li *ngFor="let item of items">
 				<cdl-tree-view-item
 					[listTpl]="listTpl"

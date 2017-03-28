@@ -79,17 +79,17 @@ import { Tab } from "./tab.component";
 })
 
 export class TabHeaders implements AfterViewInit {
-	private isOverFlow = false;
-	private firstVisibleTab = 0;
-	private scrollLength = 0;
-	private allTabHeading;
-	private disabledRightArrow = false;
-	private disabledLeftArrow = true;
-	private currentSelectedTab: number;
-	private isTouching: boolean;
-	private prevClientX: number;
+	public isOverFlow = false;
+	public firstVisibleTab = 0;
+	public scrollLength = 0;
+	public allTabHeading;
+	public disabledRightArrow = false;
+	public disabledLeftArrow = true;
+	public currentSelectedTab: number;
+	public isTouching: boolean;
+	public prevClientX: number;
 
-	private scrollLeft = 0;
+	public scrollLeft = 0;
 
 	@Input() tabs: QueryList<Tab>;
 	@ViewChild("tabList") tabHeading;
@@ -159,14 +159,14 @@ export class TabHeaders implements AfterViewInit {
 		this.allTabHeading = this.tabHeading.nativeElement.querySelectorAll("li a");
 	}
 
-	private onTabFocus(ev, index: number) {
+	public onTabFocus(ev, index: number) {
 		this.currentSelectedTab = index;
 		this.moveTabIntoView(ev.target);
 		// reset scroll left because we're already handling it
 		this.tabHeading.nativeElement.parentElement.scrollLeft = 0;
 	}
 
-	private scrollCheck() {
+	public scrollCheck() {
 		if (this.tabHeading.nativeElement.offsetWidth > this.tabHeading.nativeElement.parentElement.offsetWidth) {
 			this.isOverFlow = true;
 			this.disabledRightArrow = false;
@@ -176,7 +176,7 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
-	private goLeft() {
+	public goLeft() {
 		if (this.disabledLeftArrow) {
 			return;
 		}
@@ -197,7 +197,7 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
-	private goRight() {
+	public goRight() {
 		if (this.disabledRightArrow) {
 			return;
 		}
@@ -218,7 +218,7 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
-	private selectTab(ev, tab: Tab) {
+	public selectTab(ev, tab: Tab) {
 		if (tab.disabled) {
 			return;
 		}
@@ -232,7 +232,7 @@ export class TabHeaders implements AfterViewInit {
 		this.moveTabIntoView(ev.target);
 	}
 
-	private moveTabIntoView(tab) {
+	public moveTabIntoView(tab) {
 		// if the target is behind the right edge move it into view
 		if (tab.offsetLeft + tab.offsetWidth > this.tabHeading.nativeElement.parentElement.offsetWidth - (this.scrollLeft + 40)) {
 			this.scrollLeft = -((tab.offsetLeft + tab.offsetWidth + 40) - this.tabHeading.nativeElement.parentElement.offsetWidth);
@@ -245,7 +245,7 @@ export class TabHeaders implements AfterViewInit {
 		this.updateOverflowButtons();
 	}
 
-	private findFirstVisibleTab() {
+	public findFirstVisibleTab() {
 		for (let i = 0; i < this.allTabHeading.length; i++) {
 			// find the first tab that isn't behind the left edge
 			if (this.allTabHeading[i].offsetLeft + this.scrollLeft > 0) {
@@ -254,7 +254,7 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
-	private updateOverflowButtons() {
+	public updateOverflowButtons() {
 		this.firstVisibleTab = this.findFirstVisibleTab();
 		if (this.firstVisibleTab > 0) {
 			this.disabledLeftArrow = false;

@@ -14,15 +14,15 @@ import { IconService } from "./glyphicon.service";
 })
 export class Glyphicon implements OnChanges, OnInit {
 	// deps
-	private icons: IconService;
-	private sanitizer: DomSanitizer;
+	public icons: IconService;
+	public sanitizer: DomSanitizer;
 	// props
 	@Input() icon = "";
 	@Input() size = "sm";
 
 	// internal structures etc
-	private iconSize: string;
-	private iconSVG: SafeHtml;
+	public iconSize: string;
+	public iconSVG: SafeHtml;
 	constructor(icons: IconService, sanitizer: DomSanitizer) {
 		this.icons = icons;
 		this.sanitizer = sanitizer;

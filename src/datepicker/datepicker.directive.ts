@@ -28,11 +28,11 @@ import "rxjs/add/observable/fromEvent";
 	providers: [DatepickerService]
 })
 export class DatepickerDirective implements OnInit {
-	private separator: string;
-	private possibleSeparators = ["-", " ", "/"];
-	private popoverService: PopoverService;
-	private popoverConfig: any;
-	private changeOnSelect = false;
+	public separator: string;
+	public possibleSeparators = ["-", " ", "/"];
+	public popoverService: PopoverService;
+	public popoverConfig: any;
+	public changeOnSelect = false;
 
 	@Input() ngModel;
 	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
@@ -46,9 +46,9 @@ export class DatepickerDirective implements OnInit {
 	@Output() validDateChange = new EventEmitter();
 
 
-	constructor(private elementRef: ElementRef, private injector: Injector,
-			componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef,
-			private datepickerService: DatepickerService) {
+	constructor(public elementRef: ElementRef, public injector: Injector,
+			componentFactoryResolver: ComponentFactoryResolver, public viewContainerRef: ViewContainerRef,
+			public datepickerService: DatepickerService) {
 
 		this.popoverService = new PopoverService(DatepickerPopover, viewContainerRef, componentFactoryResolver, injector);
 

@@ -51,7 +51,7 @@ export class Calendar {
 	@Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
 
 	// TODO: Need to implement angular translation
-	private days = [
+	public days = [
 		"Sun",
 		"Mon",
 		"Tue",
@@ -61,7 +61,7 @@ export class Calendar {
 		"Sat"
 	];
 
-	private months = [
+	public months = [
 		"January",
 		"February",
 		"March",
@@ -76,25 +76,25 @@ export class Calendar {
 		"December"
 	];
 
-	private today = new Date();
-	private currentMonth = this.today.getMonth();
-	private currentDay = this.today.getDate();
-	private currentYear = this.today.getFullYear();
-	private month;
-	private year;
-	private numberOfDays;
-	private firstDay;
-	private columns = new Array(7);
-	private rows = new Array(6);
-	private currentSelectedDate;
-	private currentSelectedMonth;
-	private currentSelectedYear;
-	private allButtons;
-	private selectedDateDay;
-	private selectedDateMonth;
-	private selectedDateYear;
+	public today = new Date();
+	public currentMonth = this.today.getMonth();
+	public currentDay = this.today.getDate();
+	public currentYear = this.today.getFullYear();
+	public month;
+	public year;
+	public numberOfDays;
+	public firstDay;
+	public columns = new Array(7);
+	public rows = new Array(6);
+	public currentSelectedDate;
+	public currentSelectedMonth;
+	public currentSelectedYear;
+	public allButtons;
+	public selectedDateDay;
+	public selectedDateMonth;
+	public selectedDateYear;
 
-	constructor(private elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
 		this.allButtons = this.elementRef.nativeElement.querySelectorAll("button");

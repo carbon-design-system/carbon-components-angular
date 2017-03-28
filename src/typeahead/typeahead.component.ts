@@ -18,7 +18,7 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 	template: `
 		<div class="typeahead">
 			<input type="text" [(ngModel)]="input" class="input-field" (keydown)="inputKeydown($event)"/>
-			<ul class="list-view" *ngIf="!selectedItem && input && list && list.length">
+			<ul class="list-view" *ngIf="!selectedItem && input && list && list.length > 0">
 				<li tabindex="0"
 				*ngFor="let item of list | slice:0:limit;"
 				(keydown)="keydownNav($event, item)"
@@ -38,8 +38,8 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 	styleUrls: ["./typeahead.component.scss"]
 })
 export class Typeahead implements AfterContentInit {
-	private input: string;
-	private selectedItem;
+	public input: string;
+	public selectedItem;
 
 	@Input() list = [];
 	@Input() limit = 5;
@@ -50,7 +50,7 @@ export class Typeahead implements AfterContentInit {
 	@Output() onSearch: EventEmitter<string> = new EventEmitter<string>();
 	@Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
 
-	constructor(private _elementRef: ElementRef) {}
+	constructor(public _elementRef: ElementRef) {}
 
 	ngAfterContentInit() {
 		Observable.fromEvent(this._elementRef.nativeElement.querySelector("input"), "input")

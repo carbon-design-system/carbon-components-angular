@@ -53,14 +53,14 @@ import { positionElements } from "../common/position.service";
 	host: {"class": "popover-wrapper"}
 })
 export class Popover implements OnInit, AfterViewInit {
-	private offsetTop = 48; // 40px heading + 8px triangle
-	private isTpl: boolean;
+	public offsetTop = 48; // 40px heading + 8px triangle
+	public isTpl: boolean;
 
 	@Input() popoverConfig;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
-	constructor(private elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {}
 
 	ngOnInit() {
 		this.isTpl = this.popoverConfig.content instanceof TemplateRef;
@@ -94,7 +94,7 @@ export class Popover implements OnInit, AfterViewInit {
 		);
 	}
 
-	private onClose() {
+	public onClose() {
 		this.close.emit();
 	}
 }

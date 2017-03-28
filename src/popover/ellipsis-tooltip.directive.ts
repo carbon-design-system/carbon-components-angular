@@ -14,8 +14,8 @@ import { PopoverDirective } from "./popover.directive";
 	selector: "[cdlEllipsisTooltip]"
 })
 export class EllipsisTooltipDirective extends PopoverDirective {
-	constructor(private _elementRef: ElementRef, private _injector: Injector,
-			_componentFactoryResolver: ComponentFactoryResolver, private _viewContainerRef: ViewContainerRef) {
+	constructor(public _elementRef: ElementRef, public _injector: Injector,
+			_componentFactoryResolver: ComponentFactoryResolver, public _viewContainerRef: ViewContainerRef) {
 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
 		this.trigger = "mouseenter";
 		this.isTooltip = true;

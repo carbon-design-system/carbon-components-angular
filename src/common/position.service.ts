@@ -1,11 +1,11 @@
 export class Positioning {
-	private getStyle(element: HTMLElement, prop: string): string { return window.getComputedStyle(element)[prop]; }
+	public getStyle(element: HTMLElement, prop: string): string { return window.getComputedStyle(element)[prop]; }
 
-	private isStaticPositioned(element: HTMLElement): boolean {
+	public isStaticPositioned(element: HTMLElement): boolean {
 		return (this.getStyle(element, "position") || "static") === "static";
 	}
 
-	private offsetParent(element: HTMLElement): HTMLElement {
+	public offsetParent(element: HTMLElement): HTMLElement {
 		let offsetParentEl = <HTMLElement>element.offsetParent || document.documentElement;
 
 		while (offsetParentEl && offsetParentEl !== document.documentElement && this.isStaticPositioned(offsetParentEl)) {
