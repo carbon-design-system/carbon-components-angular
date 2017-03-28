@@ -20,8 +20,8 @@ export class TooltipDirective extends PopoverDirective {
 	@Input() cdlTooltip: string | TemplateRef<any>;
 	tooltipID: string;
 
-	constructor(private _elementRef: ElementRef, private _injector: Injector,
-			_componentFactoryResolver: ComponentFactoryResolver, private _viewContainerRef: ViewContainerRef) {
+	constructor(public _elementRef: ElementRef, public _injector: Injector,
+			_componentFactoryResolver: ComponentFactoryResolver, public _viewContainerRef: ViewContainerRef) {
 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
 	}
 

@@ -73,12 +73,12 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 	`
 })
 export class TreeViewItem {
-	private parent;
-	private isTpl = false;
+	public parent;
+	public isTpl = false;
 
 	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
-	@Input() listItem: Object;
+	@Input() listItem;
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent = 1;
 	@Input() rootElem = null;
@@ -88,7 +88,7 @@ export class TreeViewItem {
 	@Input() brdrAllTheWay = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	constructor(private _elementRef: ElementRef) {}
+	constructor(public _elementRef: ElementRef) {}
 
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;

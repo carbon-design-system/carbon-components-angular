@@ -16,7 +16,7 @@ import { SubMenuViewItem } from "./sub-menu-view-item.component";
 			[class.open]="isOpen"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
-			[attr.aria-label]="subViewLabel" >
+			[attr.aria-label]="label" >
 			<li *ngFor="let item of items">
 				<cdl-sub-menu-view-item
 					[listTpl]="listTpl"

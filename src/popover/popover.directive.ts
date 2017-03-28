@@ -48,8 +48,8 @@ export class PopoverDirective implements OnInit {
 		this.toggle();
 	}
 
-	constructor(private elementRef: ElementRef, private injector: Injector,
-			componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {
+	constructor(public elementRef: ElementRef, public injector: Injector,
+			componentFactoryResolver: ComponentFactoryResolver, public viewContainerRef: ViewContainerRef) {
 
 		this.popoverService = new PopoverService(Popover, viewContainerRef, componentFactoryResolver, injector);
 	}

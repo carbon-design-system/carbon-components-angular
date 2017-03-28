@@ -4,9 +4,9 @@ import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class IconService {
-	private static iconCache = {};
-	private static iconUrl = "icons/";
-	private http: Http;
+	public static iconCache = {};
+	public static iconUrl = "icons/";
+	public http: Http;
 
 	static setIconUrl(url: string) {
 		IconService.iconUrl = url;

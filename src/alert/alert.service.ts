@@ -12,14 +12,14 @@ import { Alert } from "./alert.component";
 
 @Injectable()
 export class AlertService {
-private componentFactory: ComponentFactory<any>;
-private alertRef: ComponentRef<any>;
-private onClose: EventEmitter<any> = new EventEmitter();
-private body = document.querySelector("body");
-private timeout;
+public componentFactory: ComponentFactory<any>;
+public alertRef: ComponentRef<any>;
+public onClose: EventEmitter<any> = new EventEmitter();
+public body = document.querySelector("body");
+public timeout;
 
-	constructor(private injector: Injector,
-		private componentFactoryResolver: ComponentFactoryResolver, private applicationRef: ApplicationRef) {
+	constructor(public injector: Injector,
+		public componentFactoryResolver: ComponentFactoryResolver, public applicationRef: ApplicationRef) {
 	}
 
 	showAlert(alertObj, alertComp = null) {

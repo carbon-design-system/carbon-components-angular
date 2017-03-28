@@ -34,7 +34,7 @@ export class DatepickerPopover {
 	@Output() close: EventEmitter<any> = new EventEmitter();
 	@Input() popoverConfig;
 
-	constructor(private datepickerService: DatepickerService, private elementRef: ElementRef) {
+	constructor(public datepickerService: DatepickerService, public elementRef: ElementRef) {
 		this.selectedDate = this.datepickerService.getSelectedDate();
 	}
 
@@ -51,7 +51,7 @@ export class DatepickerPopover {
 		);
 	}
 
-	private onClose() {
+	public onClose() {
 		this.close.emit();
 	}
 

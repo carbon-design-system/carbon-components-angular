@@ -32,8 +32,8 @@ import { Column } from "./column.component";
 	styleUrls: ["./table.component.css"]
 })
 export class Table implements AfterContentChecked {
-	private width = 0;
-	private columnWidth: number;
+	public width = 0;
+	public columnWidth: number;
 	@Input() rows: Array<Object> = [];
 	@Input() striped = false;
 	@Output() loadMore = new EventEmitter<Object>();

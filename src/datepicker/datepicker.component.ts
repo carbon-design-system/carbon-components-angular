@@ -63,9 +63,9 @@ import {
 		`
 })
 export class Datepicker {
-	private date;
-	private nextMonth;
-	private year;
+	public date;
+	public nextMonth;
+	public year;
 	@Input() selectedDate;
 
 	@Output() onSelectDate: EventEmitter<any> = new EventEmitter();

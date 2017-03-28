@@ -13,17 +13,17 @@ import {
 @Injectable()
 export class PopoverService {
 
-	private isOpen = false;
-	private componentFactory: ComponentFactory<any>;
-	private onClose: EventEmitter<any> = new EventEmitter();
-	private popoverRef: ComponentRef<any>;
+	public isOpen = false;
+	public componentFactory: ComponentFactory<any>;
+	public onClose: EventEmitter<any> = new EventEmitter();
+	public popoverRef: ComponentRef<any>;
 
-	private viewContainerRef: ViewContainerRef;
-	private injector: Injector;
+	public viewContainerRef: ViewContainerRef;
+	public injector: Injector;
 
 	isClosed: EventEmitter<any> = new EventEmitter();
 
-	constructor(comp, viewContainerRef, componentFactoryResolver, injector) {
+	constructor(comp, viewContainerRef: ViewContainerRef, componentFactoryResolver: ComponentFactoryResolver, injector: Injector) {
 		this.viewContainerRef = viewContainerRef;
 		this.injector = injector;
 		this.componentFactory = componentFactoryResolver.resolveComponentFactory(comp);

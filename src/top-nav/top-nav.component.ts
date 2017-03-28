@@ -40,9 +40,9 @@ export class TopNav implements OnInit {
 	@Input() brand: string;
 	@Input() sticky = false;
 
-	private displayType = "";
+	public displayType = "";
 
-	constructor(@Inject(DOCUMENT) private document, private renderer: Renderer) {}
+	constructor(@Inject(DOCUMENT) public document, public renderer: Renderer) {}
 
 	ngOnInit() {
 		if (this.sticky) {

@@ -13,8 +13,8 @@ export class TypeaheadHighlight {
 	@Input() fullText: string;
 	@Input() searchText: string;
 
-	private matches = [];
-	private iSearchText = [];
+	public matches = [];
+	public iSearchText = [];
 
 	ngOnChanges() {
 		let searchTextRegex = new RegExp(this.searchText, "gi");

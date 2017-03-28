@@ -22,7 +22,6 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
 			role="treeitem"
-			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
 			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
 			[attr.aria-selected]="listItem.selected"
@@ -63,8 +62,8 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 	`
 })
 export class SubMenuViewItem {
-	private parent;
-	private isTpl = false;
+	public parent;
+	public isTpl = false;
 
 	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
@@ -75,7 +74,7 @@ export class SubMenuViewItem {
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	constructor(private _elementRef: ElementRef) {}
+	constructor(public _elementRef: ElementRef) {}
 
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;

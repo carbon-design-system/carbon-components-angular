@@ -5,10 +5,10 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ModalService {
-	private vcRef: ViewContainerRef;
+	public vcRef: ViewContainerRef;
 	public activeInstances = 0;
 
-	constructor(private resolver: ComponentFactoryResolver) {}
+	constructor(public resolver: ComponentFactoryResolver) {}
 
 	registerViewContainerRef(vcRef: ViewContainerRef): void {
 		this.vcRef = vcRef;

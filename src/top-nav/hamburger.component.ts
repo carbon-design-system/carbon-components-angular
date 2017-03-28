@@ -20,7 +20,7 @@ import { Component, Output, EventEmitter} from "@angular/core";
 export class Hamburger {
 	@Output() onClick: EventEmitter<Object> = new EventEmitter<Object>();
 
-	private clickFn() {
+	public clickFn() {
 		let hamburgerClick = {};
 			this.onClick.emit({
 				hamburgerClick

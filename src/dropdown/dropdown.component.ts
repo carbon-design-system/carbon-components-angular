@@ -45,10 +45,10 @@ import { KeyCodes } from "./../constant/keys";
 	host: {"class": "dropdown-wrapper"},
 })
 export class Dropdown implements AfterContentInit {
-	private text: string;
-	private clickInsideComp = false;
-	private menuIsClose = true;
-	private prevSelectItem: any;
+	public text: string;
+	public clickInsideComp = false;
+	public menuIsClose = true;
+	public prevSelectItem: any;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
@@ -60,7 +60,7 @@ export class Dropdown implements AfterContentInit {
 	@ContentChild(View) view;
 	@ViewChild("dropdownHost") rootButton;
 
-	constructor(private _elementRef: ElementRef) {
+	constructor(public _elementRef: ElementRef) {
 		// Check for click event outside of the component
 		Observable.fromEvent(_elementRef.nativeElement, "click").subscribe(evt => {
 			this.clickInsideComp = true;
@@ -99,7 +99,7 @@ export class Dropdown implements AfterContentInit {
 		});
 	}
 
-	private openMenu() {
+	public openMenu() {
 		this.menuIsClose = !this.menuIsClose;
 	}
 }
