@@ -7,7 +7,14 @@ import { ModalService } from "../../../src";
 
 @Component({
 	selector: "modal-demo",
-	templateUrl: "./modal-demo.component.html"
+	template: `
+	<button class="btn" (click)="openModal()">XL Modal</button>
+	<button class="btn" (click)="openModal('XXL')">XXL Modal</button>
+	<button class="btn" (click)="openModal('error')">Error Modal</button>
+	<button class="btn" (click)="openModal('form')">Form Modal</button>
+
+	<div>{{this.data | json}}</div>
+	`
 })
 export class ModalDemo {
 

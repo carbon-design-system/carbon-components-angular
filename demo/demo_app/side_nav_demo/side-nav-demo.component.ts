@@ -3,7 +3,21 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 @Component({
 	selector: "side-nav-demo",
-	templateUrl: "./side-nav-demo.component.html",
+	template: `
+	<h1>Side Nav Demo</h1>
+
+	<ng-template #listTpl let-item="item">
+		<span class="side-nav-glyph" *ngIf="item.icon"><cdl-glyphicon icon="{{item.icon}}" size="md"></cdl-glyphicon></span>
+		<span class="side-nav-item">{{item.content}}</span>
+	</ng-template>
+
+	<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false" >
+			<cdl-hamburger (onClick)="onClick($event)" hamburger></cdl-hamburger>
+	</cdl-top-nav>
+	<cdl-side-nav [open]="sideNavOpen">
+		<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [indentStart]="1" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
+	</cdl-side-nav>
+	`,
 	encapsulation: ViewEncapsulation.None
 })
 

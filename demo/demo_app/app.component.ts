@@ -6,7 +6,23 @@ import "rxjs/add/operator/filter";
 
 @Component({
 	selector: "app-root",
-	templateUrl: "./app.component.html",
+	template: `
+	<h1>
+		<a routerLink="/">Neutrino</a>
+	</h1>
+	<nav>
+		<input type="search" (keyup)="search($event)" class="input-field" style="width: 100%; margin-left: 0;" placeholder="Filter">
+		<cdl-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+			<ng-template #item let-item="item">
+				<a routerLink="{{item.link}}">{{item.content}}</a>
+			</ng-template>
+		</cdl-list-view>
+	</nav>
+	<div class="main">
+		<router-outlet></router-outlet>
+	</div>
+	<cdl-modal-placeholder></cdl-modal-placeholder>
+	`,
 	styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {

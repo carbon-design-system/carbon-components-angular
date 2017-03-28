@@ -2,7 +2,17 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "calendar-demo",
-	templateUrl: "./calendar-demo.component.html"
+	template: `
+	<h1>Calendar</h1>
+
+	<button class="btn" (click)="changeDate()">Change</button>
+
+	<br/><br/>
+	Selected Date: {{selectedDate}}
+
+	<br/><br/>
+	<cdl-calendar [date]="date" [selectedDate]="selected" (onSelect)="onSelect($event)"></cdl-calendar>
+	`
 })
 
 export class CalendarDemo {

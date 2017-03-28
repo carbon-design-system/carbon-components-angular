@@ -2,7 +2,17 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "list-view-demo",
-	templateUrl: "./list-view-demo.component.html"
+	template: `
+	<h1>List View Demo</h1>
+
+	<ng-template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</ng-template>
+
+	<h3>Default list view</h3>
+	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
+
+	<h3>List view with custom template (Added Icon) and no check mark</h3>
+	<cdl-list-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>
+	`
 })
 export class ListViewDemo {
 	private demoItems = [
