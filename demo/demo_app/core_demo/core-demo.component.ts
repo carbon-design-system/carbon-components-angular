@@ -155,8 +155,8 @@ import { Component, OnInit } from "@angular/core";
 			</tr>
 			</tbody>
 		</table>
-		<br/>
-		<br/>
+		<br>
+		<br>
 		<table class="table has-checkbox table-stripped ">
 			<caption class="sr-only">
 				Required table caption.
@@ -220,8 +220,8 @@ import { Component, OnInit } from "@angular/core";
 		</table>
 
 
-		<br/>
-		<br/>
+		<br>
+		<br>
 		<table class="table has-checkbox table-stripped size-sm">
 			<caption class="sr-only">
 				Required table caption.

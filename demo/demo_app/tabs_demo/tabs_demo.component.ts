@@ -133,7 +133,7 @@ import { Component, OnInit } from "@angular/core";
 		</cdl-tabs>
 	</div>
 
-	<br/><br/>
+	<br><br>
 	`
 })
 export class TabsDemo {

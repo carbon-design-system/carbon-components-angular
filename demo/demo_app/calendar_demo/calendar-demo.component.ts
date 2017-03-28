@@ -7,10 +7,10 @@ import { Component, OnInit } from "@angular/core";
 
 	<button class="btn" (click)="changeDate()">Change</button>
 
-	<br/><br/>
+	<br><br>
 	Selected Date: {{selectedDate}}
 
-	<br/><br/>
+	<br><br>
 	<cdl-calendar [date]="date" [selectedDate]="selected" (onSelect)="onSelect($event)"></cdl-calendar>
 	`
 })

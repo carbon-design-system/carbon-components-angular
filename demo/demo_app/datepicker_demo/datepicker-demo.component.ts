@@ -4,9 +4,9 @@ import { Component, OnInit } from "@angular/core";
 	selector: "datepicker-demo",
 	template: `
 	<h1>Date picker</h1>
-	<br/>
+	<br>
 	Selected date: {{selectedDate1}}
-	<br/>
+	<br>
 	Valid Date: {{validDate1}}
 	<div style="position: relative">
 	<input type="text"
@@ -24,9 +24,9 @@ import { Component, OnInit } from "@angular/core";
 	</button>
 	</div>
 
-	<br/>
+	<br>
 	Selected date: {{selectedDate3}}
-	<br/>
+	<br>
 	Valid Date: {{validDate3}}
 	<div style="position: relative">
 	<input type="text"
@@ -46,9 +46,9 @@ import { Component, OnInit } from "@angular/core";
 	</button>
 	</div>
 
-	<br/>
+	<br>
 	Selected date: {{selectedDate}}
-	<br/>
+	<br>
 	Valid Date: {{validDate}}
 	<div style="position: relative">
 	<input type="text"
