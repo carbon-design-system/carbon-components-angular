@@ -36,6 +36,9 @@ $link-hover-decoration: underline !default;
 //## Font, line-height, and color for body text, headings, and more.
 
 
+$font-path: 'fonts/' !default;
+
+
 $font-family-base:       "Helvetica Neue for IBM", Helvetica, Arial, sans-serif !default;
 
 
@@ -119,7 +122,7 @@ $popover-header-height: 	45px !default;
 $popover-header-bg: 		color("blue", 50) !default;
 $popover-title-color: 		color("white", 0) !default;
 
-$popover-content-padding: 	20px 20px !default;
+$popover-content-padding: 	30px 20px !default;
 $popover-arrow-width:		20px !default;
 $popover-arrow-height:		10px !default;
 
@@ -417,32 +420,32 @@ $topnav-links-chevron-margin: 0 0 0 10px !default;
 //## Define table colors, border, and padding.
 
 
-$table-header-bg: color-tint(color("gray", 10), 50);
-$table-header-font: $font-bold;
-$table-header-border-color: color("white", 0);
-$table-header-color: color("black", 100);
+$table-header-bg:   color-tint(color("gray", 10), 50) !default;
+$table-header-font: $font-bold !default;
+$table-header-border-color: color("white", 0) !default;
+$table-header-color: color("black", 100) !default;
 
-$table-row-border-color: color("gray", 10);
+$table-row-border-color: color("gray", 10) !default;
 $table-cell-hover-bg: color("blue", 40, $alpha: 0.10) !default;
 
 //Default tables
-$table-cell-height: 40px;
-$table-cell-padding:12px 20px;
+$table-cell-height:  40px !default;
+$table-cell-padding: 12px 20px !default;
 
 
 // Medium tables
-$table-cell-paddings-md:8px 10px;
-$table-cell-height-md: 30px;
-$table-font-size-md: rem(13);
+$table-cell-paddings-md:  8px 10px !default;
+$table-cell-height-md:    30px !default;
+$table-font-size-md:      rem(13) !default;
 
 // small tables
-$table-cell-paddings-sm:6px 5px;
-$table-cell-height-sm: 25px;
-$table-font-size-sm: rem(12);
+$table-cell-paddings-sm:  6px 5px !default;
+$table-cell-height-sm:    25px !default;
+$table-font-size-sm:      rem(12) !default;
 
 $table-stripped-bg-color: color("gray", 1, $alpha:0.25); // tint isn't working with 75 .. not getting the right color
 
 // checkbox in table
-$table-checkbox-col-padding: 5px;
-$table-checkbox-col-width: 30px;
-$table-checkbox-width: 20px;
+$table-checkbox-col-padding: 5px !default;
+$table-checkbox-col-width:   30px !default;
+$table-checkbox-width:       20px !default;
