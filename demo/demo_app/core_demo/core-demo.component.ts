@@ -122,7 +122,7 @@ import { Component, OnInit } from "@angular/core";
 
 	<h2>Static Table</h2>
 	<div>
-		<table class="table table-stripped">
+		<table class="table table-striped">
 			<caption class="sr-only">
 				Required table caption.
 			</caption>
@@ -157,7 +157,7 @@ import { Component, OnInit } from "@angular/core";
 		</table>
 		<br>
 		<br>
-		<table class="table has-checkbox table-stripped ">
+		<table class="table has-checkbox table-striped ">
 			<caption class="sr-only">
 				Required table caption.
 			</caption>
@@ -222,7 +222,7 @@ import { Component, OnInit } from "@angular/core";
 
 		<br>
 		<br>
-		<table class="table has-checkbox table-stripped size-sm">
+		<table class="table has-checkbox table-striped size-sm">
 			<caption class="sr-only">
 				Required table caption.
 			</caption>
