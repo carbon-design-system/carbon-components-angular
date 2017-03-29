@@ -4,17 +4,18 @@
 		"mixins";
 
 
+
+//variables
+@import "colors";
+@import "vars";
+
+
 @import 'font-families/font--bold',
         'font-families/font--light',
         'font-families/font--medium',
         'font-families/font--roman',
         'font-families/font--roman-bold';
 
-
-
-//variables
-@import "colors";
-@import "vars";
 
 //core styles, normalize
 @import "core";
