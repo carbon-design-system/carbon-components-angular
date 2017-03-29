@@ -2,7 +2,22 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "sub-menu-view-demo",
-	templateUrl: "./sub-menu-view-demo.component.html"
+	template: `
+	<h1>Sub Menu View Demo</h1>
+	<ng-template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</ng-template>
+
+	<h3>Default sub menu view</h3>
+	<cdl-sub-menu-view [items]="demoItems" (select)="onSelect($event)" [label]="'Submenu view'"></cdl-sub-menu-view>
+
+	<h3>Sub menu view with custom template (Added Icon) and no check mark</h3>
+	<cdl-sub-menu-view
+		[items]="demoItems1"
+		(select)="onSelect($event)"
+		[listTpl]="listTpl"
+		[selectedIcon]="false"
+		[label]="'Submenu view'"
+		></cdl-sub-menu-view>
+	`
 })
 export class SubMenuViewDemo {
 	private demoItems = [
