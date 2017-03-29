@@ -49,7 +49,7 @@ $font-medium:           500 !default; // Helvetica Medium
 $font-bold:             700 !default; // Helvetica Bold
 
 
-$font-size-base:		rem(14) !default;
+$font-size-main:		rem(14) !default;
 
 $font-size-h1:          rem(36) !default;
 $font-size-h2:          rem(22) !default;
@@ -67,7 +67,7 @@ $line-height-h4:		rem(15 + $line-height-difference) !default;
 $line-height-h5:		$line-height-h4 !default;
 $line-height-h6:	    rem(13 + $line-height-difference) !default;
 
-$line-height-base:      rem(16 + $line-height-difference) !default;
+$line-height-main:      rem(16 + $line-height-difference) !default;
 
 
 //== Alerts
@@ -443,7 +443,7 @@ $table-cell-paddings-sm:  6px 5px !default;
 $table-cell-height-sm:    25px !default;
 $table-font-size-sm:      rem(12) !default;
 
-$table-stripped-bg-color: color("gray", 1, $alpha:0.25); // tint isn't working with 75 .. not getting the right color
+$table-striped-bg-color: color("gray", 1, $alpha:0.25); // tint isn't working with 75 .. not getting the right color
 
 // checkbox in table
 $table-checkbox-col-padding: 5px !default;
