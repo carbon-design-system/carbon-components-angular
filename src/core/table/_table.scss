@@ -96,10 +96,10 @@
 //
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 
-.table-stripped {
+.table-striped {
 	tbody{
 		tr:nth-child(odd){
-			background-color:$table-stripped-bg-color;
+			background-color:$table-striped-bg-color;
 		}
 	}
 }
