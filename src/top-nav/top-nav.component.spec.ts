@@ -20,26 +20,27 @@ describe("Top Nav", () => {
 		let fixture = TestBed.createComponent(TopNav);
 		expect(fixture.componentInstance instanceof TopNav).toBe(true);
 	});
+	// No longer needed since brand & badge are rendered in the HTML template
+	// itself.
+	// it("brand should display", () => {
+	// 	let fixture = TestBed.createComponent(TopNav);
+	// 	let comp    = fixture.componentInstance;
+	// 	let de = fixture.debugElement.query(By.css(".top-nav-brand"));
+	// 	let el = de.nativeElement;
+	// 	comp.brand = "test";
+	// 	fixture.detectChanges();
+	// 	expect(el.textContent.trim()).toBe("IBM test");
+	// });
 
-	it("brand should display", () => {
-		let fixture = TestBed.createComponent(TopNav);
-		let comp    = fixture.componentInstance;
-		let de = fixture.debugElement.query(By.css(".top-nav-brand"));
-		let el = de.nativeElement;
-		comp.brand = "test";
-		fixture.detectChanges();
-		expect(el.textContent.trim()).toBe("IBM test");
-	});
-
-	it("badge should display", () => {
-		let fixture = TestBed.createComponent(TopNav);
-		let comp    = fixture.componentInstance;
-		comp.badge = "alpha";
-		fixture.detectChanges();
-		let de = fixture.debugElement.query(By.css(".top-nav-badge"));
-		let el = de.nativeElement;
-		expect(el.textContent.trim()).toBe("alpha");
-	});
+	// it("badge should display", () => {
+	// 	let fixture = TestBed.createComponent(TopNav);
+	// 	let comp    = fixture.componentInstance;
+	// 	comp.badge = "alpha";
+	// 	fixture.detectChanges();
+	// 	let de = fixture.debugElement.query(By.css(".top-nav-badge"));
+	// 	let el = de.nativeElement;
+	// 	expect(el.textContent.trim()).toBe("alpha");
+	// });
 
 
 	it("hamburger click should emit event", () => {
