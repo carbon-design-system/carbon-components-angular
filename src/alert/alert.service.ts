@@ -13,61 +13,70 @@ import { Alert } from "./alert.component";
 @Injectable()
 export class AlertService {
 public componentFactory: ComponentFactory<any>;
-public alertRef: ComponentRef<any>;
+public alertRefs = new Array<ComponentRef<any>>();
 public onClose: EventEmitter<any> = new EventEmitter();
-public body = document.querySelector("body");
-public timeout;
 
 	constructor(public injector: Injector,
 		public componentFactoryResolver: ComponentFactoryResolver, public applicationRef: ApplicationRef) {
 	}
 
 	showAlert(alertObj, alertComp = null) {
-		this.close();
-
 		if (!alertComp) {
 			this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(Alert);
 		} else {
 			this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(alertComp);
 		}
 
-		this.alertRef = this.componentFactory.create(this.injector);
-		this.alertRef.instance.alertObj = alertObj;
-		this.onClose = this.alertRef.instance.close;
-		this.applicationRef.attachView(this.alertRef.hostView);
+		let alertRef = this.componentFactory.create(this.injector);
+		alertRef.instance.alertObj = alertObj;
+		this.alertRefs.push(alertRef);
+
+		this.onClose = alertRef.instance.close;
+		this.applicationRef.attachView(alertRef.hostView);
 
 		if (alertObj.target) {
-			document.querySelector(alertObj.target).appendChild(this.alertRef.location.nativeElement);
+			document.querySelector(alertObj.target).appendChild(alertRef.location.nativeElement);
 		} else {
-			document.querySelector("body").appendChild(this.alertRef.location.nativeElement);
+			let body = document.querySelector("body");
+
+			// get or create a container for alert list
+			let alertClassName = "body-alerts";
+			let alertList = body.querySelector("." + alertClassName);
+			if (!alertList) {
+				alertList = document.createElement("div");
+				alertList.className = alertClassName;
+				body.appendChild(alertList);
+			}
+
+			alertList.appendChild(alertRef.location.nativeElement);
 		}
 
 		if (alertObj.duration && alertObj.duration > 0) {
-			this.timeout = setTimeout(() => {
-				this.close();
+			setTimeout(() => {
+				this.close(alertRef);
 			}, alertObj.duration);
 		}
 
 		this.onClose.subscribe(() => {
-			this.close();
+			this.close(alertRef);
 		});
 	}
 
-	close() {
-		if (this.timeout) {
-			clearTimeout(this.timeout);
-		}
-
-		if (this.alertRef) {
-			this.applicationRef.detachView(this.alertRef.hostView);
-			this.alertRef.destroy();
+	close(alertRef: ComponentRef<any>) {
+		if (alertRef) {
+			this.applicationRef.detachView(alertRef.hostView);
+			alertRef.destroy();
 		}
 	}
 
 	ngOnDestroy() {
-		if (this.alertRef) {
-			this.applicationRef.detachView(this.alertRef.hostView);
-			this.alertRef.destroy();
+		if (this.alertRefs.length > 0) {
+			for (let i = 0; i < this.alertRefs.length; i++) {
+				let alertRef = this.alertRefs[i];
+				this.applicationRef.detachView(alertRef.hostView);
+				alertRef.destroy();
+			}
+			this.alertRefs.length = 0;
 		}
 	}
 }
