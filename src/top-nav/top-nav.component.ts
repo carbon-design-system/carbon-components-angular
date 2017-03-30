@@ -12,14 +12,9 @@ import { DOCUMENT } from "@angular/platform-browser";
 @Component({
 	selector: "cdl-top-nav",
 	template: `
-	<nav class="top-nav  clearfix" [ngClass]="displayType">
+	<nav class="top-nav clearfix" [ngClass]="displayType">
 		<ng-content select="[hamburger]"></ng-content>
-		<a class="top-nav-heading top-nav-link-item fl" href="#">
-			<h1 class="top-nav-brand">
-			IBM <strong>{{brand}}</strong> <span class="top-nav-badge" *ngIf="badge"> {{badge}} </span>
-			</h1>
-
-		</a>
+		<ng-content select="[title]"></ng-content>
 		<ng-content select="[links]"></ng-content>
 		<ng-content select="[menu]"></ng-content>
 		<span class="top-nav-ibm">
