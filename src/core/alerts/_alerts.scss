@@ -8,8 +8,17 @@
 
 // Base styles
 // -------------------------
+.body-alerts {
+	position: fixed;
+	top: 0px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	z-index: 1000;
+	width: 704px;
+}
+
 .alert {
-	position: absolute;
+	position: relative;
 	z-index: 1000;
 	top: 0px;
 	left: 0px;
@@ -22,7 +31,6 @@
 	vertical-align: middle;
 
 		p {
-			float: left;
 			margin:0;
 			@include text-overflow();
 			display: inline-block;
