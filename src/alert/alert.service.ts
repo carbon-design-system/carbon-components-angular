@@ -48,7 +48,12 @@ public onClose: EventEmitter<any> = new EventEmitter();
 				body.appendChild(alertList);
 			}
 
-			alertList.appendChild(alertRef.location.nativeElement);
+			// add the alert to the top of the list
+			if (alertList.firstChild) {
+				alertList.insertBefore(alertRef.location.nativeElement, alertList.firstChild);
+			} else {
+				alertList.appendChild(alertRef.location.nativeElement);
+			}
 		}
 
 		if (alertObj.duration && alertObj.duration > 0) {
@@ -64,8 +69,12 @@ public onClose: EventEmitter<any> = new EventEmitter();
 
 	close(alertRef: ComponentRef<any>) {
 		if (alertRef) {
-			this.applicationRef.detachView(alertRef.hostView);
-			alertRef.destroy();
+			// animation and delayed distruction
+			alertRef.location.nativeElement.querySelector(".alert").classList.add("alert-dropout");
+			setTimeout( () => {
+				this.applicationRef.detachView(alertRef.hostView);
+				alertRef.destroy();
+			}, 200);
 		}
 	}
 
