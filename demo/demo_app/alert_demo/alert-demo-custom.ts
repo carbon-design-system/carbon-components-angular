@@ -17,8 +17,6 @@ import {
 		<p>{{alertObj.message}}
 		- This is a custom alert component you can pass in.
 		<a href="http://www.ibm.com/ca-en/" target="_blank">click me to visit IBM</a></p>
-
-
 	</div>
 		`
 })
