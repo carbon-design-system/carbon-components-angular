@@ -60,7 +60,7 @@ describe("Popover directive", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
 				template: `
-				<template #customPopover>custom template</template>
+				<ng-template #customPopover>custom template</ng-template>
 				<button [cdlPopover]='customPopover'>Pop over right</button>
 				`
 			}
