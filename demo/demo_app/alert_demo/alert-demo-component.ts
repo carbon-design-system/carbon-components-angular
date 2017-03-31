@@ -18,9 +18,11 @@ import { AlertCustom } from "./alert-demo-custom";
 	<button class="btn" (click)="callAlert('warning')">Alert Warning</button>
 	<button class="btn" (click)="callAlert('success')">Alert Success</button>
 
+
 	<h3>Custom Alert</h3>
 
 	<button class="btn" (click)="callAlertCustom()">show custom alert</button>
+
 
 	<h3>Fade away Alert(2secs)</h3>
 
@@ -32,6 +34,17 @@ import { AlertCustom } from "./alert-demo-custom";
 	<div id="alertcontainer">
 	<span></span>
 	</div>
+
+
+	<h3>Smart Alert</h3>
+
+	<p><textarea [(ngModel)]="smartAlertText" rows="6" cols="60"></textarea></p>
+
+	<button class="btn" (click)="callAlertSmart('info')">Alert Info</button>
+	<button class="btn" (click)="callAlertSmart('danger')">Alert Error</button>
+	<button class="btn" (click)="callAlertSmart('warning')">Alert Warning</button>
+	<button class="btn" (click)="callAlertSmart('success')">Alert Success</button>
+
 
 	<h1>Alert Component</h1>
 
@@ -50,7 +63,6 @@ import { AlertCustom } from "./alert-demo-custom";
 	`,
 	styleUrls: ["./alert-demo.component.scss"]
 })
-
 export class AlertDemo {
 	infoAlert = {
 		type: "info",
@@ -72,6 +84,8 @@ export class AlertDemo {
 		message: "sample message",
 	};
 
+	smartAlertText = "The length of this text, along with alert type, affects how long alert displays. Try it out!";
+
 	constructor(private alert: AlertService) {
 
 	}
@@ -87,6 +101,14 @@ export class AlertDemo {
 		this.alert.showAlert({
 			type: type,
 			message: "sample message"
+		});
+	}
+
+	callAlertSmart(type) {
+		this.alert.showAlert({
+			type: type,
+			message: this.smartAlertText,
+			smart: true
 		});
 	}
 
