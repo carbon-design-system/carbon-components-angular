@@ -21,3 +21,24 @@ $browser-context: 16; // Default
 	outline-offset: none;
 }
 
+//Neutrino Sass Mixins
+
+
+// Changes element to blue on hover/focus. Changes svg fill to white to contrast.
+@mixin hover-blue {
+	fill: color("white", 0);
+	&:hover {
+		background-color: color("blue", 50);
+	}
+	&:focus {
+		background-color: color("blue", 50);
+	}
+}
+
+
+// Makes text unselectable
+@mixin unselectable {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
