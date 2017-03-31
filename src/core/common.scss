@@ -1,27 +1,24 @@
-@import "mixins/utils",
-		"mixins/vendor-prefixes",
-		"mixins/arrows",
-		"mixins";
-
+@import "mixins/mixins";
 
 
 //variables
-@import "colors";
-@import "vars";
+@import "colors/colors";
+@import "variables/variables";
 
 
-@import 'font-families/font--bold',
-        'font-families/font--light',
-        'font-families/font--medium',
-        'font-families/font--roman',
-        'font-families/font--roman-bold';
+@import "font-families/font--bold",
+        "font-families/font--light",
+        "font-families/font--medium",
+        "font-families/font--roman",
+        "font-families/font--roman-bold";
 
 
 //core styles, normalize
-@import "core";
+@import "core/normalize",
+		"core/core";
 
-@import "type/type",
-		"common/global";
+
+@import "type/type";
 
 //etc
 @import "buttons/buttons";
@@ -42,7 +39,6 @@
 		"nav/left-nav",
 		"table/table",
 		"dropdown/dropdown";
-
 
 
 //accessibility
