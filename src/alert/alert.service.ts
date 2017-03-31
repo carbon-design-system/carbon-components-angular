@@ -62,6 +62,13 @@ public onClose: EventEmitter<any> = new EventEmitter();
 			}, alertObj.duration);
 		}
 
+		if (alertObj.smart) {
+			// let it disappear after calculated timeout
+			setTimeout(() => {
+				this.close(alertRef);
+			}, this.getSmartTimeout(alertObj));
+		}
+
 		this.onClose.subscribe(() => {
 			this.close(alertRef);
 		});
@@ -76,6 +83,39 @@ public onClose: EventEmitter<any> = new EventEmitter();
 				alertRef.destroy();
 			}, 200);
 		}
+	}
+
+	getSmartTimeout(alertObj) {
+		// calculate timeout
+		let timeout = 600; // start with reaction time
+
+		// custom duration
+		timeout += alertObj.duration || 0;
+
+		// message type
+		switch (alertObj.type) {
+			case "info":
+			case "success":
+			default: {
+				break;
+			}
+			case "danger": {
+				timeout += 3000;
+				break;
+			}
+			case "warning": {
+				timeout += 1500;
+				break;
+			}
+		}
+
+		// message length
+		// average reader reads around 200 words per minute, or it takes them ~0.3s per word
+		// let's use 1.5 factor for below average speed readers and have 0.45s per word
+		let wordCount = alertObj.message.trim().split(/\s+/).length;
+		timeout += wordCount * 450;
+
+		return timeout;
 	}
 
 	ngOnDestroy() {
