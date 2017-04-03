@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 
 @Component({
 	selector: "core-demo",
@@ -62,14 +62,14 @@ import { Component, OnInit } from "@angular/core";
 	<h2>Checkbox</h2>
 	<div class="checkbox">
 		<label>
-			<input type="checkbox">
+			<input type="checkbox" indeterminate="true">
 			<span  class="label">test</span>
 		</label>
 	</div>
 
 	<div class="checkbox">
 		<label>
-			<input type="checkbox" >
+			<input type="checkbox" #interCheckbox >
 			<span class="label">Checkbox</span>
 		</label>
 	</div>
@@ -291,4 +291,9 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CoreDemo {
 
+	@ViewChild('interCheckbox') inCheckbox : ElementRef;
+
+	ngAfterViewInit() {
+		this.inCheckbox.nativeElement.indeterminate = true;
+	}
 }
