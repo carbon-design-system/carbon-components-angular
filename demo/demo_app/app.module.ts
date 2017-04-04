@@ -32,6 +32,7 @@ import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
 import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
 import { SubMenuViewDemo } from "./sub_menu_view_demo/sub-menu-view-demo.component";
+import { ChartsDemo } from "./charts_demo/charts-demo.component";
 
 // component imports
 import {
@@ -51,7 +52,8 @@ import {
 	AlertService,
 	CalendarModule,
 	DatepickerModule,
-	SubMenuViewModule
+	SubMenuViewModule,
+	ChartsModule
 } from "./../../src";
 
 
@@ -81,7 +83,8 @@ import {
 		AlertCustom,
 		CalendarDemo,
 		DatepickerDemo,
-		SubMenuViewDemo
+		SubMenuViewDemo,
+		ChartsDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -110,6 +113,7 @@ import {
 		CalendarModule,
 		DatepickerModule,
 		SubMenuViewModule,
+		ChartsModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -182,6 +186,10 @@ import {
 			{
 				path: "datepicker",
 				component: DatepickerDemo
+			},
+			{
+				path: "charts",
+				component: ChartsDemo
 			}
 		], {
 			useHash: true
