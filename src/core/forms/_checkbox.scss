@@ -19,4 +19,17 @@
 							$checkbox-sm-height,
 							$checkbox-selected-sm-width,
 							$checkbox-selected-sm-height);
+
+	//tri-state
+	input[type="checkbox"]:indeterminate{
+		+ span {
+			&:after{
+				opacity: 1;
+				transform: none;
+				height:2px;
+				top:9px;
+			}
+		}
+	}
 }
+

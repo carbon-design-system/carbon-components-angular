@@ -35,12 +35,13 @@
 				width: $selected-width;
 				height: $selected-height;
 				position: absolute;
-				top: ($el-size - $selected-height) / 2;
 				left: ($el-size - $selected-width) / 2;
 				border-color: color("blue", 50);
 				border-style: solid;
-
+				opacity: 0;
+				transition: all 0.2s ease-in;
 				@if $type == radio {
+					top: ($el-size - $selected-height) / 2;
 					border-radius:$el-brd-radius;
 					border-width:6px;
 				}@else if $type == checkbox{
@@ -50,7 +51,6 @@
 					border-right: none;
 					transform: rotate(-45deg);
 				}
-				opacity: 0;
 			}
 
 		    &:hover:before {
