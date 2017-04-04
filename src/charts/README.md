@@ -14,6 +14,8 @@ selector: `cdl-bar-chart`
 
 Bar Chart builds a simple bar-graph that accepts an configuration object and data object as inputs.
 
+*currently set as any as a final data format is TBD
+
 Ex:
 ```html
     <cdl-bar-chart [config]="barConfig" [data]="chartData"></sci-bar-chart>
