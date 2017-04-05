@@ -1,4 +1,4 @@
-class Margin {
+export class Margin {
 	top: number;
 	right: number;
 	bottom: number;
