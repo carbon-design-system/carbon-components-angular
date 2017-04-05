@@ -12,7 +12,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 @Component({
 	selector: "cdl-top-nav",
 	template: `
-	<nav class="top-nav clearfix" [ngClass]="displayType">
+	<header class="top-nav clearfix" [ngClass]="displayType" role="banner">
 		<ng-content select="[hamburger]"></ng-content>
 		<ng-content select="[title]"></ng-content>
 		<ng-content select="[links]"></ng-content>
@@ -27,7 +27,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 			1.1-1zM19.9 4h-3.5v1h3.3c.1-.2.2-.6.2-1zM19.4 2H8v1h11.8c0-.3-.3-.8-.4-1zM8 0v1h10.5c-.3-.2-1.5-1-3.1-1H8z"/>
 			</svg>
 		</span>
-	</nav>`
+	</header>`
 })
 
 export class TopNav implements OnInit {
