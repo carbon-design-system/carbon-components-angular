@@ -15,3 +15,4 @@ export * from "./calendar/calendar.module";
 export * from "./datepicker/datepicker.module";
 export * from "./sub-menu-view/sub-menu-view.module";
 export * from "./common/common.module";
+export * from "./charts/charts.module";
