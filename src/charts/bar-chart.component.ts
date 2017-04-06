@@ -18,7 +18,7 @@ enum ChartValues {
 	selector: "cdl-bar-chart",
 	template: `<div [attr.id]="chartId"></div>`
 })
-export class BarChart implements OnInit, OnChanges  {
+export class BarChart implements OnInit, OnChanges {
 	@Input() config: Config;
 	@Input() data: any; // TODO: a specific type will be created when the data structure is determined.
 
@@ -49,10 +49,12 @@ export class BarChart implements OnInit, OnChanges  {
 			console.log("runonce");
 			this.setup();
 			this.buildSVG();
+			this.populate();
 			this.initialized = true;
+		} else {
+			console.log("changes", changes);
+			this.populate();
 		}
-		console.log("changes", changes);
-		this.populate();
 	}
 
 	setup() {
@@ -85,15 +87,25 @@ export class BarChart implements OnInit, OnChanges  {
 		// add a container for our bars
 		this.svg.append("g")
 			.attr("class", "bars");
-	}
 
-	drawXAxis() {
 		this.xAxis = D3.axisBottom(this.xScale)
 			.tickSizeInner(-this.config.height)
 			.tickSizeOuter(0);
+
+		this.yAxis = D3.axisLeft(this.yScale)
+			.tickSizeInner(-this.config.width)
+			.tickSizeOuter(0)
+			.ticks(this.config.yTicks);
+	}
+
+	initXAxis() {
 		let g = this.svg.select(".x.axis")
-			.attr("transform", `translate(${20 - this.TMPBARPADDING},${this.config.height})`)// 20 - this.TMPBARPADDING
+			.attr("transform", `translate(${20 - this.TMPBARPADDING},${this.config.height})`)
 			.call(this.xAxis);
+	}
+
+	drawXAxis() {
+		let g = this.svg.select(".x.axis");
 		g.selectAll("line")
 			.attr("stroke", "#7CC7FF");
 		g.selectAll("text")
@@ -106,23 +118,39 @@ export class BarChart implements OnInit, OnChanges  {
 		g.select(".domain")
 			.attr("transform", `translate(${this.TMPBARPADDING}, 0)`)
 			.attr("stroke", "#586464")
-			.attr("stroke-width", 2);
+			.attr("stroke-width", 2);	
+	}
+
+	updateXAxis() {
+		let g = this.svg.select(".x.axis");
+		g.transition()
+			.duration(this.config.animDuration)
+			.ease(D3.easeLinear)
+			.call(this.xAxis);
+	}
+
+	initYAxis() {
+		let g = this.svg.select(".y.axis")
+			.attr("transform", "translate(20,0)")
+			.call(this.yAxis);
 	}
 
 	drawYAxis() {
-		this.yAxis = D3.axisLeft(this.yScale)
-			.tickSizeInner(-this.config.width)
-			.tickSizeOuter(0)
-			.ticks(this.config.yTicks);
-		let g = this.svg.select(".y.axis")
-			.call(this.yAxis)
-			.attr("transform", "translate(20,0)");
+		let g = this.svg.select(".y.axis");
 		g.select(".domain").remove()
 		g.selectAll("line")
 			.attr("stroke", "#7CC7FF");
 		g.selectAll("text")
 			.attr("fill", "#586464")
 			.attr("x", -10);
+	}
+
+	updateYAxis() {
+		let g = this.svg.select(".y.axis");
+		g.transition()
+			.duration(this.config.animDuration)
+			.ease(D3.easeLinear)
+			.call(this.yAxis);
 	}
 
 	populate() {
@@ -140,19 +168,26 @@ export class BarChart implements OnInit, OnChanges  {
 			});
 			this.yScale.domain([ChartValues.origin, yMax]);
 
-			//remove any old axis
-			svg.selectAll(".axis .tick").remove();
-			// render our axis
-			this.drawYAxis();
-			this.drawXAxis();
+			if (!this.initialized) {
+				this.initXAxis();
+				this.initYAxis();
+				this.drawYAxis();
+				this.drawXAxis();
+			} else {
+				this.updateYAxis();
+				this.updateXAxis();
+				this.drawYAxis();
+				this.drawXAxis();
+			}
 
 			// render the bars
-			
 			let bars = svg.select(".bars").selectAll("rect").data(this.data, d => d[this.config.xDomain]);
-			console.log("data", this.data, this.data.length);
+			
+			//remove any data that doesn't exist
 			bars.exit().remove();
 
-			bars.enter()
+			// add our data as rects
+			bars = bars.enter()
 				.append("rect")
 				.on("mouseover", function (d, i) {
 					svg.selectAll(".bars rect").attr("opacity", 0.5);
@@ -167,8 +202,10 @@ export class BarChart implements OnInit, OnChanges  {
 				.attr("width", this.config.width / this.data.length - (this.TMPBARPADDING*2))
 				.attr("height", 0)
 				.attr("fill", this.config.colours[0])
-				.merge(bars)
-				.transition()
+				.merge(bars);
+
+			// add transitions to our bars
+			bars.transition()
 				.duration(this.config.animDuration)
 				.ease(D3.easeLinear)
 				.attr("height", d => {
