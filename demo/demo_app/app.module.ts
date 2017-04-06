@@ -12,6 +12,7 @@ import { RouterModule } from "@angular/router";
 // demo imports
 import { TableDemo } from "./table_demo/table-demo.component";
 import { CoreDemo } from "./core_demo/core-demo.component";
+import { FormsDemo } from "./forms_demo/forms-demo.component";
 import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 import { PopoverDemo } from "./popover_demo/popover-demo.component";
 import { TabsDemo } from "./tabs_demo/tabs_demo.component";
@@ -51,6 +52,7 @@ import {
 	AlertModule,
 	AlertService,
 	CalendarModule,
+	CDLFormsModule,
 	DatepickerModule,
 	SubMenuViewModule,
 	ChartsModule
@@ -63,6 +65,7 @@ import {
 		HomeComponent,
 		TableDemo,
 		CoreDemo,
+		FormsDemo,
 		GlyphiconDemo,
 		PopoverDemo,
 		TabsDemo,
@@ -111,6 +114,7 @@ import {
 		ModalModule,
 		AlertModule,
 		CalendarModule,
+		CDLFormsModule,
 		DatepickerModule,
 		SubMenuViewModule,
 		ChartsModule,
@@ -126,6 +130,10 @@ import {
 			{
 				path: "css",
 				component: CoreDemo
+			},
+			{
+				path: "forms",
+				component: FormsDemo
 			},
 			{
 				path: "glyphicon",

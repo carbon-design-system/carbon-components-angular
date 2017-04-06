@@ -11,6 +11,7 @@
 	position: relative;
 	display: block;
 	margin-bottom:10px;
+
 	label {
 	    display: block;
 	    span {
@@ -83,7 +84,7 @@
 		}
 		// angular
 		&.ng-invalid.ng-touched, &.is-error{
-			+ span{
+			 + span{
 				&:before{
 					@include outline-error;
 				}
