@@ -118,7 +118,7 @@ export class BarChart implements OnInit, OnChanges {
 		g.select(".domain")
 			.attr("transform", `translate(${this.TMPBARPADDING}, 0)`)
 			.attr("stroke", "#586464")
-			.attr("stroke-width", 2);	
+			.attr("stroke-width", 2);
 	}
 
 	updateXAxis() {
@@ -137,7 +137,7 @@ export class BarChart implements OnInit, OnChanges {
 
 	drawYAxis() {
 		let g = this.svg.select(".y.axis");
-		g.select(".domain").remove()
+		g.select(".domain").remove();
 		g.selectAll("line")
 			.attr("stroke", "#7CC7FF");
 		g.selectAll("text")
@@ -182,8 +182,8 @@ export class BarChart implements OnInit, OnChanges {
 
 			// render the bars
 			let bars = svg.select(".bars").selectAll("rect").data(this.data, d => d[this.config.xDomain]);
-			
-			//remove any data that doesn't exist
+
+			// remove any data that doesn't exist
 			bars.exit().remove();
 
 			// add our data as rects
@@ -196,10 +196,10 @@ export class BarChart implements OnInit, OnChanges {
 				})
 				.on("mouseout", () => svg.selectAll(".bars rect").attr("opacity", 1))
 				.attr("x", (d, i) => { // data and index of the data
-					return i * (this.config.width / this.data.length) + 20;// 20 === left padding
+					return i * (this.config.width / this.data.length) + 20; // 20 === left padding
 				})
 				.attr("y", this.config.height)
-				.attr("width", this.config.width / this.data.length - (this.TMPBARPADDING*2))
+				.attr("width", this.config.width / this.data.length - (this.TMPBARPADDING * 2))
 				.attr("height", 0)
 				.attr("fill", this.config.colours[0])
 				.merge(bars);
@@ -215,9 +215,9 @@ export class BarChart implements OnInit, OnChanges {
 					return this.yScale(d[this.config.yDomain]);
 				})
 				.attr("x", (d, i) => { // data and index of the data
-					return i * (this.config.width / this.data.length) + 20;// 20 === left padding
+					return i * (this.config.width / this.data.length) + 20; // 20 === left padding
 				})
-				.attr("width", this.config.width / this.data.length - (this.TMPBARPADDING*2));
+				.attr("width", this.config.width / this.data.length - (this.TMPBARPADDING * 2));
 		}
 	}
 }
