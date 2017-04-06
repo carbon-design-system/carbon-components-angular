@@ -37,7 +37,7 @@ export class CheckboxChange {
 					[required]="required"
 					[value]="value"
 					[attr.aria-label]="ariaLabel"
-					[attr.aria-aria-labelledby]="ariaLabelledby"
+					[attr.aria-labelledby]="ariaLabelledby"
 					(change)="onChange($event)"
 					(click)="onClick($event)">
 				<span  class="label"><ng-content></ng-content></span>
