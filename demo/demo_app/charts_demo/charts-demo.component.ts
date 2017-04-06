@@ -82,10 +82,10 @@ export class ChartsDemo {
 	ngOnInit() {
 		setTimeout(() => {
 			console.log("adding data");
-			this.chartData.push({
+			this.chartData = [...this.chartData, {
 				"Part Number": "473D-XK35L",
 				"Qty": 10
-			})
-		}, 5000);
+			}];
+		}, 2000);
 	}
 }
