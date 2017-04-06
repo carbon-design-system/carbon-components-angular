@@ -14,8 +14,9 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 @Component({
 	selector: "cdl-list-view",
 	template: `
-		<ul class="list-view">
+		<ul #listView class="list-view">
 			<li tabindex="{{item.disabled?-1:0}}"
+				[attr.role]="listView.attributes.role?'option':null"
 				*ngFor="let item of items"
 				(click)="doClick($event, item)"
 				(keydown)="doKeyDown($event, item)"
