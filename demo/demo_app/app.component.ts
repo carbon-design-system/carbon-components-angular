@@ -38,6 +38,11 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
+			content: "Forms Demo",
+			link: "/forms",
+			selected: false
+		},
+		{
 			content: "Glyphicon Demo",
 			link: "/glyphicon",
 			selected: false

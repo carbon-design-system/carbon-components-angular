@@ -1,42 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
 	selector: "core-demo",
 	template: `
-	<h1>Core CSS Demo</h1>
+	<h1>Forms Demo</h1>
 
-	<h2>Primary buttons</h2>
-
-	<button class="btn size-sm">Button</button>
-	<button class="btn">Button</button>
-	<button class="btn size-lg">Button</button>
-	<br>
-
-	<h2>Secondary buttons</h2>
-
-	<button class="btn btn-secondary size-sm">Button</button>
-	<button class="btn btn-secondary">Button</button>
-	<button class="btn btn-secondary size-lg">Button</button>
-	<br>
-	<br>
-
-	<h2>Btns group</h2>
-	<div aria-label="" class="btn-group clearfix" role="group">
-		<button class="btn active">Standard</button>
-		<button class="btn">Standard</button>
-		<button class="btn " disabled="disabled">Standard</button>
-	</div>
-
-	<h2>Btns secondary group</h2>
-	<div aria-label="" class="btn-group  btn-secondary  clearfix" role="group">
-		<button class="btn active">Standard</button>
-		<button class="btn">Standard</button>
-		<button class="btn " disabled="disabled">Standard</button>
-	</div>
-
-	<br>
-	<h2>Forms</h2>
-	<br>
 	<div class="form-container">
 		<label class="label label-top" for="">Field Small</label>
 		<input type="text" class="input-field size-sm">
@@ -60,27 +28,26 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 	<br>
 
 	<h2>Checkbox</h2>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox">
-			<span  class="label">test</span>
-		</label>
-	</div>
-
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" #interCheckbox >
-			<span class="label">Checkbox</span>
-		</label>
-	</div>
+	<cdl-checkbox [(ngModel)]="firstCheckboxState">Checkbox</cdl-checkbox>
+	<p>State: {{firstCheckboxState}}</p>
 
 
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" class="ng-invalid ng-touched">
-			<span class="label">Checkbox</span>
-		</label>
-	</div>
+	<cdl-checkbox
+		[(ngModel)]="secondCheckboxState"
+		[indeterminate]="someSelected"
+		(change)="onTristateChange()">
+		Tristate Checkbox (State: {{secondCheckboxState}} Indeterminate: {{someSelected}})
+	</cdl-checkbox>
+
+	<cdl-checkbox *ngFor="let one of manyCheckboxes"
+		[(ngModel)]="one.checked"
+		(change) = "multiCheckboxChanged()"
+		class="indent">
+		Check ({{one.checked}})
+	</cdl-checkbox>
+
+	<cdl-checkbox class="ng-invalid ng-touched">Checkbox</cdl-checkbox>
+
 
 	<br>
 
@@ -287,13 +254,38 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 
 	</div>
 	`,
-	styleUrls: ["./core-demo.component.scss"]
+	styleUrls: ["./forms-demo.component.scss"]
 })
-export class CoreDemo {
+export class FormsDemo {
+	firstCheckboxState = true;
+	secondCheckboxState = false;
+	someSelected = false;
 
-	@ViewChild("interCheckbox") inCheckbox: ElementRef;
+	manyCheckboxes = [{checked: false}, {checked: false}, {checked: false}, {checked: false}];
 
-	ngAfterViewInit() {
-		this.inCheckbox.nativeElement.indeterminate = true;
+	onTristateChange() {
+		this.someSelected = false;
+		for (let i = 0; i < this.manyCheckboxes.length; i++) {
+			let one = this.manyCheckboxes[i];
+			one.checked = this.secondCheckboxState;
+		}
+	}
+
+	multiCheckboxChanged() {
+		let startValue = this.manyCheckboxes[0].checked;
+
+		for (let i = 1; i < this.manyCheckboxes.length; i++) {
+			let one = this.manyCheckboxes[i];
+
+			if (one.checked !== startValue) {
+				// set indeterminate
+				this.secondCheckboxState = false;
+				this.someSelected = true;
+				return;
+			}
+		}
+
+		this.someSelected = false;
+		this.secondCheckboxState = startValue;
 	}
 }
