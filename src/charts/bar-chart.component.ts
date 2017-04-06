@@ -19,13 +19,10 @@ enum ChartValues {
 	template: `<div [attr.id]="chartId"></div>`
 })
 export class BarChart implements OnInit, OnChanges  {
-	@Input()
-	config: Config;
-	@Input()
-	data: any; // TODO: a specific type will be created when the data structure is determined.
+	@Input() config: Config;
+	@Input() data: any; // TODO: a specific type will be created when the data structure is determined.
 
 	private container;
-	private chartConfig: Config;
 	public chartId: string;
 
 	// chart variables
@@ -36,21 +33,25 @@ export class BarChart implements OnInit, OnChanges  {
 	private width;
 	private svg;
 
+	private TMPBARPADDING = 10;
+	private initialized = false;
+
 	constructor(private element: ElementRef) {
-			this.container = D3.select(this.element.nativeElement);
+		this.container = D3.select(this.element.nativeElement);
 	}
 
 	ngOnInit() {
-		this.chartConfig = this.config;
-		this.chartId = this.chartConfig.id;
+		this.chartId = this.config.id;
 	}
 
-	ngOnChanges() {
-		this.setup();
-		this.buildSVG();
+	ngOnChanges(changes) {
+		if (!this.initialized) {
+			this.setup();
+			this.buildSVG();
+			this.initialized = true;
+		}
+		console.log(changes);
 		this.populate();
-		this.drawXAxis();
-		this.drawYAxis();
 	}
 
 	setup() {
@@ -61,59 +62,113 @@ export class BarChart implements OnInit, OnChanges  {
 	buildSVG() {
 		this.container.html("");
 		this.svg = this.container.append("svg")
-				.attr("width", this.config.width + this.config.margin.left + this.config.margin.right)
-				.attr("height", this.config.height + this.config.margin.top + this.config.margin.bottom)
-				.append("g")
-				.attr("transform", `translate(${this.config.margin.left},${this.config.margin.top})`);
+			.attr("width", this.config.width + this.config.margin.left + this.config.margin.right)
+			.attr("height", this.config.height + this.config.margin.top + this.config.margin.bottom)
+			.append("g")
+			.attr("transform", `translate(0,${this.config.margin.top})`);
+		this.svg.append("rect")
+			.attr("width", this.config.width)
+			.attr("height", this.config.height)
+			.attr("fill", "#DFE9E9")
+			.attr("fill-opacity", 0.1)
+			.attr("transform", "translate(20,0)");
+		this.svg.append("g")
+			.attr("class", "bars");
 	}
 
 	drawXAxis() {
-		this.xAxis = D3.axisBottom(this.xScale);
-		this.svg.append("g")
+		this.xAxis = D3.axisBottom(this.xScale)
+			.tickSizeInner(-this.config.height)
+			.tickSizeOuter(0);
+		let g = this.svg.append("g")
 			.attr("class", "x axis")
-			.attr("transform", `translate(0,${this.config.height})`)
+			.attr("transform", `translate(${20 - this.TMPBARPADDING},${this.config.height})`)// 20 - this.TMPBARPADDING
 			.call(this.xAxis);
+		g.selectAll("line")
+			.attr("stroke", "#7CC7FF");
+			// .attr("stroke-opacity", 0.5);
+		g.selectAll("text")
+			.attr("y", 9)
+			.attr("x", -4)
+			.attr("dy", ".35em")
+			.attr("transform", "rotate(-45)")
+			.style("text-anchor", "end")
+			.attr("fill", "#586464");
+		g.select(".domain")
+			.attr("transform", `translate(${this.TMPBARPADDING}, 0)`)
+			.attr("stroke", "#586464")
+			.attr("stroke-width", 2);
 	}
 
 	drawYAxis() {
 		this.yAxis = D3.axisLeft(this.yScale)
+			.tickSizeInner(-this.config.width)
+			.tickSizeOuter(0)
 			.ticks(this.config.yTicks);
-		this.svg.append("g")
+		let g = this.svg.append("g")
 			.attr("class", "y axis")
-			.call(this.yAxis);
+			.call(this.yAxis)
+			.attr("transform", "translate(20,0)");
+		g.select(".domain").remove()
+		g.selectAll("line")
+			.attr("stroke", "#7CC7FF");
+			// .attr("stroke-opacity", 0.5);
+		g.selectAll("text")
+			.attr("fill", "#586464")
+			.attr("x", -10);
 	}
 
 	populate() {
 		if (this.data) {
+			// keep a reference to svg for when we need to get a different this
+			let svg = this.svg;
+
+			// setup the scales for our x/y axis based on our data
 			this.xScale.domain(this.data.map((d) => {
-					return d[this.config.xDomain];
+				return d[this.config.xDomain];
 			}));
 
 			const yMax = D3.max(this.data, (d) => {
-						return d[this.config.yDomain];
-				});
-
+				return d[this.config.yDomain];
+			});
 			this.yScale.domain([ChartValues.origin, yMax]);
-			this.svg.selectAll("rect")
-				.data(this.data)
-				.enter()
+
+			// render our axis
+			// y first then x so the x .domain bar doesn't have a blue line through it
+			this.drawYAxis();
+			this.drawXAxis();
+
+			// render the bars
+			
+			let bars = svg.selectAll(".bars rect").data(this.data);
+			console.log(this.data);
+			bars.exit().remove();
+
+			bars.enter()
 				.append("rect")
-				.attr("x", (d, i) => { // data and index of the data
-							return i * (this.config.width / this.data.length);
-					})
-				.attr("y", (d) => {
-						return this.yScale(d[this.config.yDomain]);
+				.on("mouseover", function (d, i) {
+					svg.selectAll(".bars rect").attr("opacity", 0.5);
+					D3.select(this).attr("opacity", 1);
+					console.log(d, i, this, svg);
 				})
-				.attr("width", this.config.width / this.data.length - this.config.margin.left - this.config.margin.right)
+				.on("mouseout", () => svg.selectAll(".bars rect").attr("opacity", 1))
+				.attr("x", (d, i) => { // data and index of the data
+					return i * (this.config.width / this.data.length) + 20;// 20 === left padding
+				})
+				.attr("y", this.config.height)
+				.attr("width", this.config.width / this.data.length - (this.TMPBARPADDING*2))
 				.attr("height", 0)
+				.merge(bars)
 				.transition()
 				.duration(this.config.animDuration)
 				.ease(D3.easeLinear)
-				.attr("height", (d) => {
-						return this.config.height - this.yScale(d[this.config.yDomain]);
+				.attr("height", d => {
+					return this.config.height - this.yScale(d[this.config.yDomain]);
+				})
+				.attr("y", d => {
+					return this.yScale(d[this.config.yDomain]);
 				})
 				.attr("fill", this.config.colours[0]);
 		}
 	}
-
 }

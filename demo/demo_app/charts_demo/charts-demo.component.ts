@@ -3,11 +3,34 @@ import { Component, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "charts-demo",
 	template: `
-	<h1>Side Nav Demo</h1>
-	<p> Work in progress </p>
-	<cdl-bar-chart [config]="barConfig" [data]="chartData"></cdl-bar-chart>
+	<h1>Charts Demo</h1>
+	<p>!!FOR DEMO PURPOSES ONLY!!</p>
+	<section class="chart">
+		<span class="chart-title">Parts</span>
+		<cdl-bar-chart [config]="barConfig" [data]="chartData"></cdl-bar-chart>
+	</section>
 	`,
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	styles: [
+		`
+			cdl-bar-chart {
+				display: block;
+				padding-left: 20px;
+				padding-top: 20px;
+			}
+			.chart {
+
+			}
+			.chart-title {
+			    display: block;
+			    font-size: 16px;
+			    font-weight: bold;
+			}
+			.chart svg {
+				overflow: visible;
+			}
+		`
+	]
 })
 
 export class ChartsDemo {
@@ -37,23 +60,32 @@ export class ChartsDemo {
 			"Part Number": "773C-XKB5L",
 			"Qty": 13
 		}
-		];
+	];
 
 	barConfig = {
-		"id": "bar",
-		"width": 960,
-		"height": 500,
-		"margin" : {
-			"top": 20,
-			"right": 20,
-			"bottom": 100,
-			"left": 40
+		id: "bar",
+		width: 550,
+		height: 500,
+		margin: {
+			top: 20,
+			bottom: 50,
+			left: 20,
+			right: 0
 		},
-		"xDomain" : "Part Number",
-		"yDomain" : "Qty",
-		"yTicks": 5,
-		"colours": ["#4178BE"],
-		"animDuration": 1500
-		};
+		xDomain: "Part Number",
+		yDomain: "Qty",
+		yTicks: 5,
+		colours: ["#4178BE"],
+		animDuration: 1500
+	};
 
+	ngOnInit() {
+		setTimeout(() => {
+			console.log("adding data");
+			this.chartData.push({
+				"Part Number": "473D-XK35L",
+				"Qty": 10
+			})
+		}, 5000);
+	}
 }
