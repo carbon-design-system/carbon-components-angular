@@ -4,8 +4,7 @@ import { Component, Output, EventEmitter } from "@angular/core";
 	selector: "cdl-overlay",
 	template: `
 		<section class="overlay" (click)="overlayClick($event)"></section>
-	`,
-	styleUrls: ["./overlay.component.scss"]
+	`
 })
 export class OverlayComponent {
 	@Output() overlaySelect = new EventEmitter();

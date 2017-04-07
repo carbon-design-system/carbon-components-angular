@@ -8,8 +8,7 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 				<ng-content></ng-content>
 			</h4>
 		</header>
-	`,
-	styleUrls: ["./modal-header.component.scss"]
+	`
 })
 
 export class ModalHeaderComponent {

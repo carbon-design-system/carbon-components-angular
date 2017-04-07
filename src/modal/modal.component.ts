@@ -39,8 +39,7 @@ import {
 				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
 			])
 		])
-	],
-	styleUrls: ["./modal.component.scss"]
+	]
 })
 
 export class ModalComponent implements OnInit {

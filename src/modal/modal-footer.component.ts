@@ -6,8 +6,7 @@ import { Component } from "@angular/core";
 		<footer>
 			<ng-content></ng-content>
 		</footer>
-	`,
-	styleUrls: ["./modal-footer.component.scss"]
+	`
 })
 
 export class ModalFooterComponent {
