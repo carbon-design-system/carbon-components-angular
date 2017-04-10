@@ -28,7 +28,6 @@ import { TreeItem } from "./tree-item.component";
 					(select)="onClick($event)"
 					[indent]="indent"
 					[indentStart]="indentStart"
-					[brdrAllTheWay]="brdrAllTheWay"
 					[elemSpacing]="elemSpacing">
 				</cdl-tree-item>
 			</li>
@@ -48,7 +47,6 @@ export class DropdownTree implements AbstractDropdownView {
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
 	@Input() elemSpacing = 40;
-	@Input() brdrAllTheWay = false;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

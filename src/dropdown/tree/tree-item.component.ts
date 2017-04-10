@@ -29,9 +29,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
-				[style.margin-left.px]="( !brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
-				[style.padding-left.px]="( brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
-				>
+				[style.margin-left.px]="calculateIndent()">
 				<svg
 					*ngIf="!!listItem.items"
 					class="arrow"
@@ -57,14 +55,13 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
-			(select)="onClick($event)"
+			(select)="bubbleSelect($event)"
 			[listTpl]="listTpl"
 			[parent]="parent"
 			[selectedIcon]="selectedIcon"
 			[rootElem]="rootElem"
 			[indent]="indent+1"
 			[indentStart]="indentStart"
-			[brdrAllTheWay]="brdrAllTheWay"
 			[role]="'group'"
 			[label]="listItem"
 			[elemSpacing]="elemSpacing"
@@ -85,7 +82,6 @@ export class TreeItem {
 	@Input() selectedIcon = true;
 	@Input() indentStart = 0;
 	@Input() elemSpacing = 40;
-	@Input() brdrAllTheWay = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
@@ -100,40 +96,39 @@ export class TreeItem {
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
-	onClick(evt) {
-		let item = evt.item;
-		this.select.emit({
-			item
-		});
+	calculateIndent(border) {
+		if (this.indentStart <= this.indent) {
+			return this.elemSpacing * (this.indent - this.indentStart);
+		}
+		return this.indent;
+	}
+
+	bubbleSelect(evt) {
+		this.select.emit(evt);
 	}
 
 	doClick(item) {
-		this.select.emit({
-			item
-		});
+		this.select.emit({item});
 	}
 
 	// Keyboard accessibility
 	onKeyDown(ev, item) {
 		if (ev.keyCode === KeyCodes.UP_ARROW) {
 			ev.preventDefault();
-
 			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
 		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
 			ev.preventDefault();
-
 			if (!item.items || !item.selected) {
 				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
 			} else if (item.items && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			}
-		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
-					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
+		} else if (ev.keyCode === KeyCodes.ENTER_KEY
+			|| ev.keyCode === KeyCodes.SPACE_BAR
+			|| ev.keyCode === KeyCodes.RIGHT_ARROW
+			|| ev.keyCode === KeyCodes.LEFT_ARROW) {
 			ev.preventDefault();
-
-			this.select.emit({
-				item
-			});
+			this.select.emit({item});
 		}
 	}
 }
