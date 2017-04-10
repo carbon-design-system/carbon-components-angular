@@ -1,19 +1,23 @@
 import {
 	Component,
 	Input,
+	Output,
+	EventEmitter,
 	ElementRef,
 	ViewEncapsulation,
 	ContentChild,
 	ViewChild,
 	AfterContentInit,
 	AfterViewInit,
-	HostListener
+	HostListener,
+	forwardRef
 } from "@angular/core";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
 
-import { View } from "./../common/view.class";
+import { AbstractDropdownView } from "./AbstractDropdownView.class";
 import { KeyCodes } from "./../constant/keys";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
@@ -22,15 +26,15 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	template: `
 		<button
 			#dropdownHost
-			[attr.aria-label]="'Toggle dropdown display'"
-			[attr.aria-expanded]="!menuIsClose"
+			[attr.aria-label]="a11yLabel"
+			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			class="dropdown-value {{size}}"
 			(click)="openMenu()"
 			[disabled]="disabled"
-			[class.open]="!menuIsClose">
+			[class.open]="!menuIsClosed">
 			{{displayValue}}
-			<span class="dropdown-icon" [class.open]="!menuIsClose">
+			<span class="dropdown-icon" [class.open]="!menuIsClosed">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -42,7 +46,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		</button>
 		<div
 			class="dropdown-menu {{size}} {{type}}"
-			[class.open]="!menuIsClose">
+			[class.open]="!menuIsClosed">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -50,26 +54,27 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	host: {
 		"class": "dropdown-wrapper",
 		"role": "combobox"
-	}
+	},
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => Dropdown),
+			multi: true
+		}
+	]
 })
 export class Dropdown implements AfterContentInit {
-	private text: string;
 	private clickInsideComp = false;
-	private menuIsClose = true;
+	private menuIsClosed = true;
 	private prevSelectItem: any;
-	private currentEl = null;
-	private list: Array<any>;
-	private idx = -1;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
-	@Input() dropdownType: "list-view" | "tree-view" | "sub-menu-view" = "list-view";
 	@Input() disabled = false;
-	@Input() selectedVal: any;
-	@Input() closeOnSelect = true;
+	@Output() select = new EventEmitter<Object>();
 
-	@ContentChild(View) view;
+	@ContentChild(AbstractDropdownView) view;
 	@ViewChild("dropdownHost") rootButton;
 
 	constructor(public _elementRef: ElementRef) {
@@ -79,8 +84,8 @@ export class Dropdown implements AfterContentInit {
 		});
 
 		Observable.fromEvent(window, "click").subscribe(evt => {
-			if (!this.clickInsideComp && !this.menuIsClose) {
-				this.menuIsClose = true;
+			if (!this.clickInsideComp && !this.menuIsClosed) {
+				this.menuIsClosed = true;
 			}
 
 			this.clickInsideComp = false;
@@ -88,117 +93,82 @@ export class Dropdown implements AfterContentInit {
 		// End check for click event outside of the component
 	}
 
+	writeValue(value: any) {
+		console.log(value);
+	}
+
+	registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	registerOnTouched() {
+
+	}
+
+	private propagateChange = (_: any) => {};
+
 	@HostListener("keydown", ["$event"])
 	onKeyDown(evt) {
 		if (evt.which === KeyCodes.ESCAPE || (evt.which === KeyCodes.UP_ARROW && evt.altKey)) {
 			evt.preventDefault();
-			this.menuIsClose = true;
+			this.menuIsClosed = true;
 			this.rootButton.nativeElement.focus();
 		} else if (evt.which === KeyCodes.DOWN_ARROW && evt.altKey) {
 			evt.preventDefault();
-			this.menuIsClose = false;
+			this.menuIsClosed = false;
 		}
 
-		if (evt.target === this.rootButton.nativeElement && !this.menuIsClose && evt.which === KeyCodes.DOWN_ARROW) {
+		if (evt.target === this.rootButton.nativeElement
+			&& !this.menuIsClosed
+			&& evt.which === KeyCodes.DOWN_ARROW) {
 			focusNextElem(evt.target);
 		}
 
-		if (!this.menuIsClose && evt.target === this.rootButton.nativeElement && evt.which === KeyCodes.TAB_KEY) {
-			this.menuIsClose = true;
+		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY) {
+			this.menuIsClosed = true;
 		}
 
 		if (this.type === "multi") { return; }
 
-		if (this.menuIsClose) {
+		if (this.menuIsClosed) {
 			this.closedDropdownNavigation(evt);
 		}
 	}
 
 	closedDropdownNavigation(evt) {
-		if (this.dropdownType === "list-view") {
-			if (evt.which === KeyCodes.DOWN_ARROW) {
-				evt.preventDefault();
-				if (this.currentEl === null) {
-					this.currentEl = findNextElem(evt.target).querySelector("[tabindex='0'");
-					this.currentEl.click();
-				} else {
-					let nextEl = findNextElem(this.currentEl);
-					if (nextEl) {
-						this.currentEl = nextEl;
-						this.currentEl.click();
-					}
-				}
-			} else if (evt.which === KeyCodes.UP_ARROW) {
-				evt.preventDefault();
-				if (this.currentEl) {
-					let prevEl = findPrevElem(this.currentEl);
-					if (prevEl) {
-						this.currentEl = prevEl;
-						this.currentEl.click();
-					}
-				}
+		if (evt.which === KeyCodes.DOWN_ARROW) {
+			evt.preventDefault();
+			let elem = this.view.getNextElement();
+			if (elem) {
+				elem.click();
 			}
-		} else if (this.dropdownType === "tree-view" || this.dropdownType === "sub-menu-view") {
-			if (evt.which === KeyCodes.DOWN_ARROW) {
-				evt.preventDefault();
-				if (this.idx < (this.list.length - 1)) {
-					this.idx++;
-					while (this.list[this.idx].firstElementChild.classList.contains("disabled")) {
-						this.idx++;
-					}
-					this.list[this.idx].firstElementChild.click();
-				}
-			} else if (evt.which === KeyCodes.UP_ARROW) {
-				evt.preventDefault();
-				if (this.idx > 0) {
-					this.idx--;
-					while (this.list[this.idx].firstElementChild.classList.contains("disabled")) {
-						this.idx--;
-					}
-					this.list[this.idx].firstElementChild.click();
-				}
+		} else if (evt.which === KeyCodes.UP_ARROW) {
+			evt.preventDefault();
+			let elem = this.view.getPrevElement();
+			if (elem) {
+				elem.click();
 			}
 		}
 	}
 
 	ngAfterContentInit() {
 		this.view.select.subscribe(evt => {
-			if (this.closeOnSelect) {
-				this.menuIsClose = true;
+			if (this.type === "single") {
+				this.menuIsClosed = true;
 				this.rootButton.nativeElement.focus();
 			}
-
+			evt.item.selected = !evt.item.selected;
 			if (this.type === "single" && this.prevSelectItem && evt.item !== this.prevSelectItem) {
 				this.prevSelectItem.selected = false;
 			}
 
 			this.prevSelectItem = evt.item;
-
-			function findInd(el) {
-				return el.querySelector("span").innerHTML === evt.item.content;
-			}
-
-			if (this.dropdownType === "tree-view" || this.dropdownType === "sub-menu-view") {
-				this.idx = this.list.findIndex(findInd);
-			}
+			this.propagateChange(evt.item);
+			this.select.emit(evt);
 		});
 	}
 
-	ngAfterViewInit() {
-		if (this.dropdownType === "tree-view") {
-			this.list = Array.from(this._elementRef.nativeElement.getElementsByTagName("cdl-tree-view-item"));
-			this.list = this.list.filter(function(el) {
-				return el.childElementCount === 1;
-			});
-		} else if (this.dropdownType === "sub-menu-view") {
-			this.list = Array.from(this._elementRef.nativeElement.getElementsByTagName("cdl-sub-menu-view-item"));
-			this.list = this.list.filter(function(el) {
-				return el.childElementCount === 1;
-			});
-		}
-	}
-
 	private openMenu() {
-		this.menuIsClose = !this.menuIsClose;
+		this.menuIsClosed = !this.menuIsClosed;
 	}
 }

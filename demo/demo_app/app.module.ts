@@ -32,7 +32,6 @@ import { AlertDemo } from "./alert_demo/alert-demo-component";
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
 import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
-import { SubMenuViewDemo } from "./sub_menu_view_demo/sub-menu-view-demo.component";
 import { ChartsDemo } from "./charts_demo/charts-demo.component";
 
 // component imports
@@ -54,7 +53,6 @@ import {
 	CalendarModule,
 	CDLFormsModule,
 	DatepickerModule,
-	SubMenuViewModule,
 	ChartsModule
 } from "./../../src";
 
@@ -86,7 +84,6 @@ import {
 		AlertCustom,
 		CalendarDemo,
 		DatepickerDemo,
-		SubMenuViewDemo,
 		ChartsDemo
 	],
 	entryComponents: [
@@ -116,7 +113,6 @@ import {
 		CalendarModule,
 		CDLFormsModule,
 		DatepickerModule,
-		SubMenuViewModule,
 		ChartsModule,
 		RouterModule.forRoot([
 			{
@@ -158,10 +154,6 @@ import {
 			{
 				path: "tree-view",
 				component: TreeViewDemo
-			},
-			{
-				path: "sub-menu-view",
-				component: SubMenuViewDemo
 			},
 			{
 				path: "dropdown",

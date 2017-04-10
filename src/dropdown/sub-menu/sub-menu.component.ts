@@ -6,11 +6,11 @@ import {
 	forwardRef,
 	TemplateRef
 } from "@angular/core";
-import { View } from "../common/view.class";
-import { SubMenuViewItem } from "./sub-menu-view-item.component";
+import { AbstractDropdownView } from "./../AbstractDropdownView.class";
+import { SubMenuItem } from "./sub-menu-item.component";
 
 @Component({
-	selector: "cdl-sub-menu-view",
+	selector: "cdl-dropdown-sub-menu",
 	template: `
 		<ul class="sub-menu-view"
 			[class.open]="isOpen"
@@ -18,7 +18,7 @@ import { SubMenuViewItem } from "./sub-menu-view-item.component";
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label" >
 			<li *ngFor="let item of items">
-				<cdl-sub-menu-view-item
+				<cdl-sub-menu-item
 					[listTpl]="listTpl"
 					[listItem]="item"
 					[hasSubMenu]="!!item.subMenu"
@@ -26,13 +26,13 @@ import { SubMenuViewItem } from "./sub-menu-view-item.component";
 					[selectedIcon]="selectedIcon"
 					[rootElem]="rootElem"
 					(select)="onClick($event)">
-				</cdl-sub-menu-view-item>
+				</cdl-sub-menu-item>
 			</li>
 		</ul>
 	`,
-	providers: [{provide: View, useExisting: forwardRef(() => SubMenuView)}]
+	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownSubMenu)}]
 })
-export class SubMenuView implements View {
+export class DropdownSubMenu implements AbstractDropdownView {
 	@Input() items: Array<Object> = [];
 	@Input() isOpen = false;
 	@Input() parent: any = null;
@@ -44,15 +44,29 @@ export class SubMenuView implements View {
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
+	getNextItem(): Object {
+		return;
+	}
+
+	getNextElement(): HTMLElement {
+		return;
+	}
+
+	getPrevItem(): Object {
+		return;
+	}
+
+	getPrevElement(): HTMLElement {
+		return;
+	}
+
 	onClick(evt) {
 		let item = evt.item;
 		if (!item.disabled) {
 			if (item.subMenu) {
 				item.selected = !item.selected;
 			} else {
-				this.select.emit({
-					item
-				});
+				this.select.emit({item});
 			}
 		}
 	}

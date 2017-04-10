@@ -6,14 +6,15 @@ import {
 	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { SubMenuView } from "./sub-menu-view.component";
-import { KeyCodes } from "../constant/keys";
-import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
+import { DropdownTree } from "./tree.component";
+import { KeyCodes } from "./../../constant/keys";
+import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
 @Component({
-	selector: "cdl-sub-menu-view-item",
+	selector: "cdl-tree-item",
 	template: `
-		<div class="sub-menu-item-wrapper"
+		<div
+			class="item-wrapper item-level-{{indent}}"
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
 				selected: listItem.selected,
@@ -22,11 +23,15 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
 			role="treeitem"
+			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
 			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
-			[attr.aria-selected]="listItem.selected"
-			>
-			<div class="sub-menu-item">
+			[attr.aria-selected]="listItem.selected">
+			<div
+				class="item"
+				[style.margin-left.px]="( !brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
+				[style.padding-left.px]="( brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
+				>
 				<svg
 					*ngIf="!!listItem.subMenu"
 					class="arrow"
@@ -48,30 +53,39 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 				</span>
 			</div>
 		</div>
-		<cdl-sub-menu-view
+		<cdl-dropdown-tree
 			*ngIf="!!listItem.subMenu"
 			[isOpen]="listItem.selected"
 			[items]="listItem.subMenu"
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
-			[rootElem]="rootElem"
+			[parent]="parent"
 			[selectedIcon]="selectedIcon"
+			[rootElem]="rootElem"
+			[indent]="indent+1"
+			[indentStart]="indentStart"
+			[brdrAllTheWay]="brdrAllTheWay"
 			[role]="'group'"
-			[parent]="parent">
-		</cdl-sub-menu-view>
+			[label]="listItem"
+			[elemSpacing]="elemSpacing"
+			>
+		</cdl-dropdown-tree>
 	`
 })
-export class SubMenuViewItem {
+export class TreeItem {
 	public parent;
 	public isTpl = false;
 
 	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
-	@Input() listItem: any;
+	@Input() listItem;
 	@Input() listTpl: string | TemplateRef<any> = "";
+	@Input() indent = 1;
 	@Input() rootElem = null;
 	@Input() selectedIcon = true;
-
+	@Input() indentStart = 0;
+	@Input() elemSpacing = 40;
+	@Input() brdrAllTheWay = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
