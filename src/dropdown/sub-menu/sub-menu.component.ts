@@ -60,6 +60,10 @@ export class DropdownSubMenu implements AbstractDropdownView {
 		return;
 	}
 
+	getSelected() {
+		return;
+	}
+
 	onClick(evt) {
 		let item = evt.item;
 		if (!item.disabled) {

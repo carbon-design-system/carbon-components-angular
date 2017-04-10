@@ -17,11 +17,22 @@ import { Component, OnInit } from "@angular/core";
 		<h3>Default Drop down (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown 
-				[displayValue]="dropdown1?dropdown1.content:'Select an option'" 
+				[displayValue]="dropdown1||dropdown1.selected?dropdown1.content:'Select an option'" 
 				[(ngModel)]="dropdown1">
 				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
 			{{dropdown1 | json}}
+		</div>
+
+		<h3>Multi Drop down (ngmodel)</h3>
+		<div style="width: 400px">
+			<cdl-dropdown 
+				[displayValue]="getDisplay(dropdown2)" 
+				[(ngModel)]="dropdown2"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
+			</cdl-dropdown>
+			{{dropdown2 | json}}
 		</div>
 
 		<h3>Default Drop down with custom template</h3>
@@ -66,7 +77,7 @@ import { Component, OnInit } from "@angular/core";
 		<h3>Drop down with sub menu view</h3>
 		<div style="width: 250px">
 			<cdl-dropdown 
-				dropdownType="sub-menu-view" 
+				dropdownType="sub-menu-view"
 				[displayValue]="display5"
 				(select)="onSelectAndDisplay5($event)">
 				<cdl-dropdown-sub-menu
@@ -103,16 +114,16 @@ import { Component, OnInit } from "@angular/core";
 })
 export class DropdownDemo {
 	title = "Tabs Component Demo";
-	private itemsSelected = 0;
-	private itemsSelected2= 0;
-	private display1 = "Select an option";
-	private display2 = "Select an option";
-	private display3 = "No Items selected";
-	private display4 = "Select";
-	private display5 = "Select";
-	private display6 = "No Items selected";
+	itemsSelected = 0;
+	itemsSelected2= 0;
+	display1 = "Select an option";
+	display2 = "Select an option";
+	display3 = "No Items selected";
+	display4 = "Select";
+	display5 = "Select";
+	display6 = "No Items selected";
 
-	private demoItems1 = [
+	demoItems1 = [
 		{
 			content: "item one",
 			selected: false
@@ -132,9 +143,9 @@ export class DropdownDemo {
 		}
 	];
 
-	private demoItems2 = Array.from(this.demoItems1, this.clone);
-	private demoItems3 = Array.from(this.demoItems1, this.clone);
-	private demoItems4 = [
+	demoItems2 = Array.from(this.demoItems1, this.clone);
+	demoItems3 = Array.from(this.demoItems1, this.clone);
+	demoItems4 = [
 		{
 			content: "item one",
 			selected: false
@@ -174,13 +185,30 @@ export class DropdownDemo {
 		}
 	];
 
-	private demoItems5 = Array.from(this.demoItems4, this.clone);
-	private demoItems6 = Array.from(this.demoItems1, this.clone);
-	private demoItems7 = Array.from(this.demoItems1, this.clone);
-	private demoItems8 = Array.from(this.demoItems1, this.clone);
+	demoItems5 = Array.from(this.demoItems4, this.clone);
+	demoItems6 = Array.from(this.demoItems1, this.clone);
+	demoItems7 = Array.from(this.demoItems1, this.clone);
+	demoItems8 = Array.from(this.demoItems1, this.clone);
+	dropdown1 = {};
+	dropdown2 = [];
 
+	constructor() {
+		let init = this.demoItems8[0];
+		init.selected = true;
+		this.dropdown1 = init;
+		let init2 = this.demoItems2[2];
+		init2.selected = true;
+		this.dropdown2 = [init2];
+	}
 	private clone (el) {
 		return JSON.parse(JSON.stringify(el));
+	}
+
+	getDisplay(model) {
+		if (model) {
+			return `${model.length} selected`;
+		}
+		return 'Select an option';
 	}
 
 	onSelect(ev) {

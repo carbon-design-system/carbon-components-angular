@@ -94,7 +94,9 @@ export class Dropdown implements AfterContentInit {
 	}
 
 	writeValue(value: any) {
-		console.log(value);
+		if (this.type === "single") {
+			this.prevSelectItem = value;
+		}
 	}
 
 	registerOnChange(fn: any) {
@@ -163,7 +165,11 @@ export class Dropdown implements AfterContentInit {
 			}
 
 			this.prevSelectItem = evt.item;
-			this.propagateChange(evt.item);
+			if (this.type === "multi") {
+				this.propagateChange(this.view.getSelected());
+			} else {
+				this.propagateChange(evt.item);
+			}
 			this.select.emit(evt);
 		});
 	}

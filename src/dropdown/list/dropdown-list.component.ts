@@ -62,7 +62,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		this.listList = this.list.nativeElement.querySelectorAll("li");
 	}
 
-	getNextItem(): Object {
+	getNextItem(): ListItem {
 		if (this.index < this.items.length - 1) {
 			this.index++;
 		}
@@ -84,7 +84,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		return elem;
 	}
 
-	getPrevItem(): Object {
+	getPrevItem(): ListItem {
 		if (this.index > 0) {
 			this.index--;
 		}
@@ -104,6 +104,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			return this.getPrevElement();
 		}
 		return elem;
+	}
+
+	getSelected(): ListItem[] {
+		return this.items.filter(item => item.selected);
 	}
 
 	doKeyDown(ev, item) {
