@@ -208,7 +208,7 @@ export class DropdownDemo {
 		if (model) {
 			return `${model.length} selected`;
 		}
-		return 'Select an option';
+		return "Select an option";
 	}
 
 	onSelect(ev) {
