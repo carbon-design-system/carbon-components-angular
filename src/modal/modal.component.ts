@@ -21,7 +21,7 @@ import {
 			<div class="valign-wrapper">
 				<div class="valign-element">
 					<section [@modalState]="modalState" class="modal modal-size-{{size}}">
-						<ng-content></ng-content>
+							<ng-content></ng-content>
 					</section>
 				</div>
 			</div>
@@ -55,5 +55,4 @@ export class ModalComponent implements OnInit {
 	ngOnDestroy() {
 		this.modalState = "out";
 	}
-
 }

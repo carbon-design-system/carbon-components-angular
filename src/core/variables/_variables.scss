@@ -453,3 +453,63 @@ $table-striped-bg-color: color("gray", 1, $alpha:0.25); // tint isn't working wi
 $table-checkbox-col-padding: 5px !default;
 $table-checkbox-col-width:   30px !default;
 $table-checkbox-width:       20px !default;
+
+//==  modal
+//
+//## Define modal colors, border, and padding.
+
+// modal
+$modal-bg: color("white", 0) !default;
+$modal-wrapper-height: 100vh !default;
+$modal-wrapper-width: 100vw !default;
+$modal-min-height: 153px !default;
+
+// modal sizes
+$modal-size-sm: 320px !default;
+$modal-size-md: 640px !default;
+$modal-size-lg: 900px !default;
+$modal-size-xl: 980px !default;
+$modal-size-xxl: 1000px !default;
+$modal-size-height-xxl: 100% !default;
+
+// modal header
+$modal-header-bg: color("blue", 50) !default;
+$modal-header-error-bg: color("red", 50) !default;
+$modal-header-text: color("white", 0) !default;
+$modal-header-width: 100% !default;
+$modal-header-height: 44px !default;
+$modal-header-padding: 0 20px !default;
+$modal-header-font-size: 15rem !default;
+$modal-header-text-margin: 0 !default;
+$modal-header-text-padding: 0 !default;
+$modal-header-text-height: 100% !default;
+$modal-header-text-line-height: 44px !default;
+
+// modal icon
+$modal-icon-remove-padding: 2px !default;
+$modal-icon-remove-padding-bottom: 0 !default;
+$modal-icon-remove-hover-padding-right: 1px !default;
+$modal-icon-remove-hover-border: 1px solid !default;
+$modal-icon-remove-hover-border-color: color("white", 0) !default;
+
+// modal footer
+$modal-footer-height: 50px !default;
+$modal-footer-width: 100% !default;
+$modal-footer-padding: 10px 20px !default;
+$modal-footer-border-top: 1px solid !default;
+$modal-footer-border-top-color: color("gray", 10) !default;
+
+// modal overlay
+$modal-overlay-bg: color("gray", 80, $alpha: 0.5) !default;
+$modal-overlay-height: 100% !default;
+$modal-overlay-width: 100% !default;
+
+// modal close icon
+$modal-close-icon-height: 14px !default;
+$modal-close-icon-width: 14px !default;
+$modal-close-icon-padding: 0 !default;
+$modal-close-icon-svg-height: 14px !default;
+$modal-close-icon-svg-width: 14px !default;
+$modal-close-icon-svg-colour: color("white", 0) !default;
+
+
