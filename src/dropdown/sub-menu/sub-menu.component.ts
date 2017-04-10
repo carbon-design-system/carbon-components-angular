@@ -21,7 +21,7 @@ import { SubMenuItem } from "./sub-menu-item.component";
 				<cdl-sub-menu-item
 					[listTpl]="listTpl"
 					[listItem]="item"
-					[hasSubMenu]="!!item.subMenu"
+					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
 					[selectedIcon]="selectedIcon"
 					[rootElem]="rootElem"
@@ -67,7 +67,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	onClick(evt) {
 		let item = evt.item;
 		if (!item.disabled) {
-			if (item.subMenu) {
+			if (item.items) {
 				item.selected = !item.selected;
 			} else {
 				this.select.emit({item});

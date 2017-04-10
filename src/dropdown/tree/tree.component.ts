@@ -21,7 +21,7 @@ import { TreeItem } from "./tree-item.component";
 				<cdl-tree-item
 					[listTpl]="listTpl"
 					[listItem]="item"
-					[hasSubMenu]="!!item.subMenu"
+					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
 					[rootElem]="rootElem"
 					[selectedIcon]="selectedIcon"
@@ -76,7 +76,7 @@ export class DropdownTree implements AbstractDropdownView {
 		let item = evt.item;
 
 		if (!item.disabled) {
-			if (item.subMenu) {
+			if (item.items) {
 				item.selected = !item.selected;
 			} else {
 				this.select.emit({item});

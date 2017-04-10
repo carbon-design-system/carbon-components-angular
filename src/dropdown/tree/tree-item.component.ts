@@ -25,7 +25,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			role="treeitem"
 			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
+			[attr.aria-expanded]="(!!listItem.items) ? ((listItem.selected) ? true : false) : null"
 			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
@@ -33,7 +33,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				[style.padding-left.px]="( brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
 				>
 				<svg
-					*ngIf="!!listItem.subMenu"
+					*ngIf="!!listItem.items"
 					class="arrow"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -48,15 +48,15 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 				<span
-					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
+					*ngIf="selectedIcon && listItem.selected && !listItem.items"
 					class="checked" aria-hidden="true">
 				</span>
 			</div>
 		</div>
 		<cdl-dropdown-tree
-			*ngIf="!!listItem.subMenu"
+			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
-			[items]="listItem.subMenu"
+			[items]="listItem.items"
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
 			[parent]="parent"
@@ -122,9 +122,9 @@ export class TreeItem {
 		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
 			ev.preventDefault();
 
-			if (!item.subMenu || !item.selected) {
+			if (!item.items || !item.selected) {
 				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
-			} else if (item.subMenu && item.selected) {
+			} else if (item.items && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			}
 		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR

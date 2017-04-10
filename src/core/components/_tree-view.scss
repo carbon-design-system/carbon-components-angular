@@ -22,7 +22,7 @@
             margin-left:-25px;
             margin-right: 5px;
             vertical-align: middle;
-            transition: all 0.5s;
+            transition: transform 0.1s linear;
         }
         &.selected{
             border-left-color:$treeview-selected-border-color;

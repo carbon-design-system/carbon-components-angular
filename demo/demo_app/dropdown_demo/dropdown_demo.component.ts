@@ -163,7 +163,7 @@ export class DropdownDemo {
 		{
 			content: "item two",
 			selected: false,
-			subMenu: [
+			items: [
 				{
 					content: "sub item two 1",
 					selected: false
@@ -171,7 +171,7 @@ export class DropdownDemo {
 				{
 					content: "sub item two 2",
 					selected: false,
-					subMenu: [
+					items: [
 						{
 							content: "sub item two 1b",
 							selected: false
@@ -267,7 +267,7 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay4(ev) {
-		if (!ev.item.subMenu) {
+		if (!ev.item.items) {
 			// ev.item.selected = !ev.item.selected;
 			if (ev.item.selected) {
 				this.display4 = ev.item.content;
@@ -278,7 +278,7 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay5(ev) {
-		if (!ev.item.subMenu) {
+		if (!ev.item.items) {
 			// ev.item.selected = !ev.item.selected;
 			if (ev.item.selected) {
 				this.display5 = ev.item.content;
