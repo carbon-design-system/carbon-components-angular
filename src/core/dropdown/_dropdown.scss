@@ -25,11 +25,11 @@
 			z-index: 1001;
 		}
 
-		&.size-sm{
+		&.size-sm, .size-sm &{
 			font-size: $dropdown-font-size-sm;
 			height: $dropdown-height-sm;
 		}
-		&.size-lg{
+		&.size-lg, .size-lg &{
 			padding: $dropdown-padding-lg;
 			height:  $dropdown-height-lg;
 		}
