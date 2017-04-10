@@ -151,7 +151,7 @@ export class BarChart implements OnChanges {
 		//  stay put. thankfully with a carful eye we can optimize and
 		//  only "reset" exactly what we need to.
 		gt.selectAll("text")
-			.attr("y", 9)
+			.attr("y", 9);
 		g.selectAll("text")
 			.attr("y", 9)
 			.attr("x", -4)
@@ -214,14 +214,12 @@ export class BarChart implements OnChanges {
 		if (this.data) {
 			// keep a reference to svg for when we need to get a different this
 			let svg = this.svg;
-			
 			// setup the scales for our y axis based on our data
 			// const yMax = D3.max(this.data, (d) => {
 			// 	return d[this.config.yDomain];
 			// });
 			// this.yScale.domain([ChartValues.origin, yMax]);
 			// this.drawYAxis();
-			
 			console.log("ahhh", this.yAxisWidth);
 			// this.yAxisWidth = svg.select(".y.axis").node().getBBox().width;
 			this.xScale = D3.scaleBand().range([ChartValues.origin, this.config.width - this.yAxisWidth]);
