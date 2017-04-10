@@ -107,7 +107,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	getSelected(): ListItem[] {
-		return this.items.filter(item => item.selected);
+		let selected = this.items.filter(item => item.selected);
+		if (selected.length === 0) {
+			return null;
+		}
+		return selected;
 	}
 
 	doKeyDown(ev, item) {

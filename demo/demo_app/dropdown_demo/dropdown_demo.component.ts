@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
 	selector: "dropdown-demo",
@@ -17,22 +18,22 @@ import { Component, OnInit } from "@angular/core";
 		<h3>Default Drop down (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown 
-				[displayValue]="dropdown1||dropdown1.selected?dropdown1.content:'Select an option'" 
+				[displayValue]="getDisplay(dropdown1)" 
 				[(ngModel)]="dropdown1">
 				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
-			{{dropdown1 | json}}
+			{{ dropdown1 | json }}
 		</div>
 
 		<h3>Multi Drop down (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown 
-				[displayValue]="getDisplay(dropdown2)" 
+				[displayValue]="getMultiDisplay(dropdown2)" 
 				[(ngModel)]="dropdown2"
 				type="multi">
 				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
 			</cdl-dropdown>
-			{{dropdown2 | json}}
+			{{ dropdown2 | json }}
 		</div>
 
 		<h3>Default Drop down with custom template</h3>
@@ -47,7 +48,7 @@ import { Component, OnInit } from "@angular/core";
 				icon="Checkbox Empty" 
 				size="md">
 			</cdl-glyphicon>
-			{{item.content}}
+			{{ item.content }}
 		</ng-template>
 		<div style="width: 400px">
 			<cdl-dropdown 
@@ -106,6 +107,15 @@ import { Component, OnInit } from "@angular/core";
 				[items]="demoItems7">
 			</cdl-dropdown-list>
 		</cdl-dropdown>
+
+		<h3>Reactive form dropdown</h3>
+		<cdl-dropdown 
+			[displayValue]="'Select an option'" 
+			[formControl]="test">
+			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
+		</cdl-dropdown>
+		{{ test.value | json }}
+		{{ test.status | json }}
 	`,
 	styles: [
 		":host /deep/ .disabled:hover {border: none;}",
@@ -192,6 +202,9 @@ export class DropdownDemo {
 	dropdown1 = {};
 	dropdown2 = [];
 
+	testData = Array.from(this.demoItems1, this.clone);
+	test = new FormControl(null, Validators.required);
+
 	constructor() {
 		let init = this.demoItems8[0];
 		init.selected = true;
@@ -205,12 +218,18 @@ export class DropdownDemo {
 	}
 
 	getDisplay(model) {
+		if (model && model.selected) {
+			return model.content;
+		}
+		return "Select an option";
+	}
+
+	getMultiDisplay(model) {
 		if (model) {
 			return `${model.length} selected`;
 		}
 		return "Select an option";
 	}
-
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
 	}

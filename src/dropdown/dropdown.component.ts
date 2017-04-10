@@ -168,7 +168,11 @@ export class Dropdown implements AfterContentInit {
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
 			} else {
-				this.propagateChange(evt.item);
+				if (evt.item.selected) {
+					this.propagateChange(evt.item);
+				} else {
+					this.propagateChange(null);
+				}
 			}
 			this.select.emit(evt);
 		});
