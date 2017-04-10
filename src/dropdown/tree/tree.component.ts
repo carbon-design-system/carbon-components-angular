@@ -6,10 +6,11 @@ import {
 	forwardRef,
 	TemplateRef
 } from "@angular/core";
-import { TreeViewItem } from "./tree-view-item.component";
+import { AbstractDropdownView } from "./../AbstractDropdownView.class";
+import { TreeItem } from "./tree-item.component";
 
 @Component({
-	selector: "cdl-tree-view",
+	selector: "cdl-dropdown-tree",
 	template: `
 		<ul class="tree-view"
 			[class.open]="isOpen"
@@ -17,24 +18,24 @@ import { TreeViewItem } from "./tree-view-item.component";
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
 			<li *ngFor="let item of items">
-				<cdl-tree-view-item
+				<cdl-tree-item
 					[listTpl]="listTpl"
 					[listItem]="item"
-					[hasSubMenu]="!!item.subMenu"
+					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
 					[rootElem]="rootElem"
 					[selectedIcon]="selectedIcon"
 					(select)="onClick($event)"
 					[indent]="indent"
 					[indentStart]="indentStart"
-					[brdrAllTheWay]="brdrAllTheWay"
 					[elemSpacing]="elemSpacing">
-				</cdl-tree-view-item>
+				</cdl-tree-item>
 			</li>
 		</ul>
 	`,
+	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownTree)}]
 })
-export class TreeView {
+export class DropdownTree implements AbstractDropdownView {
 	@Input() items: Array<Object> = [];
 	@Input() isOpen = false;
 	@Input() parent: any = null;
@@ -46,20 +47,37 @@ export class TreeView {
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
 	@Input() elemSpacing = 40;
-	@Input() brdrAllTheWay = false;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+
+	getNextItem(): Object {
+		return;
+	}
+
+	getNextElement(): HTMLElement {
+		return;
+	}
+
+	getPrevItem(): Object {
+		return;
+	}
+
+	getPrevElement(): HTMLElement {
+		return;
+	}
+
+	getSelected() {
+		return;
+	}
 
 	onClick(evt) {
 		let item = evt.item;
 
 		if (!item.disabled) {
-			if (item.subMenu) {
+			if (item.items) {
 				item.selected = !item.selected;
 			} else {
-				this.select.emit({
-					item
-				});
+				this.select.emit({item});
 			}
 		}
 	}

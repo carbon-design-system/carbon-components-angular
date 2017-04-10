@@ -73,11 +73,6 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Sub Menu View Demo",
-			link: "/sub-menu-view",
-			selected: false
-		},
-		{
 			content: "Dropdown Demo",
 			link: "/dropdown",
 			selected: false
@@ -122,7 +117,7 @@ export class AppComponent implements OnInit {
 			link: "/charts",
 			selected: false
 		}
-	];
+	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
 	private filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private router: Router) {

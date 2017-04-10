@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 
 import { KeyCodes } from "../constant/keys";
-import { View } from "../common/view.class";
 import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 @Component({
@@ -36,9 +35,8 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 				</ng-template>
 			</li>
 		</ul>`,
-		providers: [{provide: View, useExisting: forwardRef(() => ListView)}]
 })
-export class ListView implements View {
+export class ListView {
 	@Input() items: Array<Object> = [];
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Input() checkMark: Boolean = true;

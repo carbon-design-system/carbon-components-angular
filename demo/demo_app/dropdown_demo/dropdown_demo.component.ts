@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
 	selector: "dropdown-demo",
@@ -7,89 +8,114 @@ import { Component, OnInit } from "@angular/core";
 
 		<h3>Default Drop down</h3>
 		<div style="width: 400px">
-			<cdl-dropdown [displayValue]="display1" [selectedVal]="selected1">
-				<cdl-list-view
-					[dropdown]="'list-view'"
-					[items]="demoItems1"
-					(select)="onSelectAndDisplay1($event)"
-					[checkMark]="false">
-				</cdl-list-view>
+			<cdl-dropdown 
+				[displayValue]="display1"
+				(select)="onSelectAndDisplay1($event)">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 		</div>
 
-		<h3>Drop down with menu open on select</h3>
+		<h3>Default Drop down (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown [displayValue]="display2" [closeOnSelect]="false">
-				<cdl-list-view
-					[dropdown]="'list-view'"
-					[items]="demoItems2"
-					(select)="onSelectAndDisplay2($event)"
-					[checkMark]="false">
-				</cdl-list-view>
+			<cdl-dropdown 
+				[displayValue]="getDisplay(dropdown1)" 
+				[(ngModel)]="dropdown1">
+				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
+			{{ dropdown1 | json }}
+		</div>
+
+		<h3>Multi Drop down (ngmodel)</h3>
+		<div style="width: 400px">
+			<cdl-dropdown 
+				[displayValue]="getMultiDisplay(dropdown2)" 
+				[(ngModel)]="dropdown2"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
+			</cdl-dropdown>
+			{{ dropdown2 | json }}
 		</div>
 
 		<h3>Default Drop down with custom template</h3>
-		<template #listTpl let-item="item">
-		<cdl-glyphicon *ngIf="item.selected"  icon="Checkbox Selected" size="md"></cdl-glyphicon>
-		<cdl-glyphicon *ngIf="!item.selected" icon="Checkbox Empty" size="md"></cdl-glyphicon>
-			{{item.content}}
-		</template>
+		<ng-template #listTpl let-item="item">
+			<cdl-glyphicon 
+				*ngIf="item.selected"  
+				icon="Checkbox Selected" 
+				size="md">
+			</cdl-glyphicon>
+			<cdl-glyphicon 
+				*ngIf="!item.selected" 
+				icon="Checkbox Empty" 
+				size="md">
+			</cdl-glyphicon>
+			{{ item.content }}
+		</ng-template>
 		<div style="width: 400px">
-			<cdl-dropdown [displayValue]="display3" [closeOnSelect]="false" type="multi">
-				<cdl-list-view
-					[dropdown]="'list-view'"
+			<cdl-dropdown 
+				[displayValue]="display3" 
+				(select)="onSelectAndDisplay3($event)"
+				type="multi">
+				<cdl-dropdown-list
 					[items]="demoItems3"
-					(select)="onSelectAndDisplay3($event)"
-					[listTpl]="listTpl"
-					[checkMark]="false">
-				</cdl-list-view>
+					[listTpl]="listTpl">
+				</cdl-dropdown-list>
 			</cdl-dropdown>
 		</div>
 
 		<h3>Drop down with tree view</h3>
 		<div style="width: 400px">
-			<cdl-dropdown dropdownType="tree-view" [displayValue]="display4">
-				<cdl-tree-view
-					[dropdown]="'tree-view'"
+			<cdl-dropdown
+				(select)="onSelectAndDisplay4($event)"
+				[displayValue]="display4">
+				<cdl-dropdown-tree
 					[items]="demoItems4"
-					(select)="onSelectAndDisplay4($event)"
 					[selectedIcon]="false"
 					[label]="'Dropdown with Tree view'">
-				</cdl-tree-view>
+				</cdl-dropdown-tree>
 			</cdl-dropdown>
 		</div>
 
 		<h3>Drop down with sub menu view</h3>
 		<div style="width: 250px">
-			<cdl-dropdown dropdownType="sub-menu-view" [displayValue]="display5">
-				<cdl-sub-menu-view
-					[dropdown]="'sub-menu-view'"
+			<cdl-dropdown 
+				dropdownType="sub-menu-view"
+				[displayValue]="display5"
+				(select)="onSelectAndDisplay5($event)">
+				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
-					(select)="onSelectAndDisplay5($event)"
 					[selectedIcon]="false">
-				</cdl-sub-menu-view>
+				</cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 		</div>
 
 		<h3>Drop down with multi select</h3>
-		<cdl-dropdown [displayValue]="display6" [closeOnSelect]="false" type="multi">
-			<cdl-list-view
-				[dropdown]="'list-view'"
-				[items]="demoItems6"
-				(select)="onSelectAndDisplay6($event)"
-				[checkMark]="false">
-			</cdl-list-view>
+		<cdl-dropdown 
+			[displayValue]="display6"
+			(select)="onSelectAndDisplay6($event)"
+			type="multi">
+			<cdl-dropdown-list
+				[items]="demoItems6">
+			</cdl-dropdown-list>
 		</cdl-dropdown>
 
 		<h3>Disabled Drop down</h3>
-		<cdl-dropdown displayValue="Dropdown 7" [disabled]="true">
-			<cdl-list-view
-				[items]="demoItems7"
-				(select)="onSelect($event)"
-				[checkMark]="false">
-			</cdl-list-view>
+		<cdl-dropdown 
+			displayValue="Dropdown 7"
+			[disabled]="true"
+			(select)="onSelect($event)">
+			<cdl-dropdown-list
+				[items]="demoItems7">
+			</cdl-dropdown-list>
 		</cdl-dropdown>
+
+		<h3>Reactive form dropdown</h3>
+		<cdl-dropdown 
+			[displayValue]="'Select an option'" 
+			[formControl]="test">
+			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
+		</cdl-dropdown>
+		{{ test.value | json }}
+		{{ test.status | json }}
 	`,
 	styles: [
 		":host /deep/ .disabled:hover {border: none;}",
@@ -98,16 +124,16 @@ import { Component, OnInit } from "@angular/core";
 })
 export class DropdownDemo {
 	title = "Tabs Component Demo";
-	private itemsSelected = 0;
-	private itemsSelected2= 0;
-	private display1 = "Select an option";
-	private display2 = "Select an option";
-	private display3 = "No Items selected";
-	private display4 = "Select";
-	private display5 = "Select";
-	private display6 = "No Items selected";
+	itemsSelected = 0;
+	itemsSelected2= 0;
+	display1 = "Select an option";
+	display2 = "Select an option";
+	display3 = "No Items selected";
+	display4 = "Select";
+	display5 = "Select";
+	display6 = "No Items selected";
 
-	private demoItems1 = [
+	demoItems1 = [
 		{
 			content: "item one",
 			selected: false
@@ -127,12 +153,9 @@ export class DropdownDemo {
 		}
 	];
 
-	private demoItems2 = Array.from(this.demoItems1, this.clone);
-	private demoItems3 = Array.from(this.demoItems1, this.clone);
-	private demoItems6 = Array.from(this.demoItems1, this.clone);
-	private demoItems7 = Array.from(this.demoItems1, this.clone);
-
-	private demoItems4 = [
+	demoItems2 = Array.from(this.demoItems1, this.clone);
+	demoItems3 = Array.from(this.demoItems1, this.clone);
+	demoItems4 = [
 		{
 			content: "item one",
 			selected: false
@@ -140,7 +163,7 @@ export class DropdownDemo {
 		{
 			content: "item two",
 			selected: false,
-			subMenu: [
+			items: [
 				{
 					content: "sub item two 1",
 					selected: false
@@ -148,7 +171,7 @@ export class DropdownDemo {
 				{
 					content: "sub item two 2",
 					selected: false,
-					subMenu: [
+					items: [
 						{
 							content: "sub item two 1b",
 							selected: false
@@ -172,14 +195,48 @@ export class DropdownDemo {
 		}
 	];
 
-	private demoItems5 = Array.from(this.demoItems4, this.clone);
+	demoItems5 = Array.from(this.demoItems4, this.clone);
+	demoItems6 = Array.from(this.demoItems1, this.clone);
+	demoItems7 = Array.from(this.demoItems1, this.clone);
+	demoItems8 = Array.from(this.demoItems1, this.clone);
+	dropdown1 = {};
+	dropdown2 = [];
 
+	testData = Array.from(this.demoItems1, this.clone);
+	test = new FormControl(null, Validators.required);
+
+	constructor() {
+		let init = this.demoItems8[0];
+		init.selected = true;
+		this.dropdown1 = init;
+		let init2 = this.demoItems2[2];
+		init2.selected = true;
+		this.dropdown2 = [init2];
+	}
 	private clone (el) {
 		return JSON.parse(JSON.stringify(el));
 	}
 
-	onSelectAndDisplay1(ev) {
+	getDisplay(model) {
+		if (model && model.selected) {
+			return model.content;
+		}
+		return "Select an option";
+	}
+
+	getMultiDisplay(model) {
+		if (model) {
+			return `${model.length} selected`;
+		}
+		return "Select an option";
+	}
+	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
+	}
+
+	onSelectAndDisplay1(ev) {
+		console.log("onSelectAndDisplay1", ev);
+		// ev.item.selected = !ev.item.selected;
 		if (ev.item.selected) {
 			this.display1 = ev.item.content;
 		} else {
@@ -187,7 +244,7 @@ export class DropdownDemo {
 		}
 	}
 	onSelectAndDisplay2(ev) {
-		ev.item.selected = !ev.item.selected;
+		// ev.item.selected = !ev.item.selected;
 		if (ev.item.selected) {
 			this.display2 = ev.item.content;
 		} else {
@@ -196,7 +253,8 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay3(ev) {
-		ev.item.selected = !ev.item.selected;
+		// ev.item.selected = !ev.item.selected;
+		console.log("onSelectAndDisplay3", ev, ev.item.selected);
 		this.itemsSelected = ev.item.selected ? this.itemsSelected + 1 : this.itemsSelected - 1;
 
 		if (this.itemsSelected === 0) {
@@ -209,8 +267,8 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay4(ev) {
-		if (!ev.item.subMenu) {
-			ev.item.selected = !ev.item.selected;
+		if (!ev.item.items) {
+			// ev.item.selected = !ev.item.selected;
 			if (ev.item.selected) {
 				this.display4 = ev.item.content;
 			} else {
@@ -220,8 +278,8 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay5(ev) {
-		if (!ev.item.subMenu) {
-			ev.item.selected = !ev.item.selected;
+		if (!ev.item.items) {
+			// ev.item.selected = !ev.item.selected;
 			if (ev.item.selected) {
 				this.display5 = ev.item.content;
 			} else {
@@ -230,12 +288,8 @@ export class DropdownDemo {
 		}
 	}
 
-	onSelect(ev) {
-		ev.item.selected = !ev.item.selected;
-	}
-
 	onSelectAndDisplay6(ev) {
-		ev.item.selected = !ev.item.selected;
+		// ev.item.selected = !ev.item.selected;
 		this.itemsSelected2 = ev.item.selected ? this.itemsSelected2 + 1 : this.itemsSelected2 - 1;
 
 		if (this.itemsSelected2 === 0) {

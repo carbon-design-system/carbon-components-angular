@@ -6,14 +6,15 @@ import {
 	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { SubMenuView } from "./sub-menu-view.component";
-import { KeyCodes } from "../constant/keys";
-import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
+import { DropdownTree } from "./tree.component";
+import { KeyCodes } from "./../../constant/keys";
+import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
 @Component({
-	selector: "cdl-sub-menu-view-item",
+	selector: "cdl-tree-item",
 	template: `
-		<div class="sub-menu-item-wrapper"
+		<div
+			class="item-wrapper item-level-{{indent}}"
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
 				selected: listItem.selected,
@@ -22,13 +23,15 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
 			role="treeitem"
+			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
-			[attr.aria-selected]="listItem.selected"
-			>
-			<div class="sub-menu-item">
+			[attr.aria-expanded]="(!!listItem.items) ? ((listItem.selected) ? true : false) : null"
+			[attr.aria-selected]="listItem.selected">
+			<div
+				class="item"
+				[style.margin-left.px]="calculateIndent()">
 				<svg
-					*ngIf="!!listItem.subMenu"
+					*ngIf="!!listItem.items"
 					class="arrow"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -43,35 +46,42 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 				<span
-					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
+					*ngIf="selectedIcon && listItem.selected && !listItem.items"
 					class="checked" aria-hidden="true">
 				</span>
 			</div>
 		</div>
-		<cdl-sub-menu-view
-			*ngIf="!!listItem.subMenu"
+		<cdl-dropdown-tree
+			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
-			[items]="listItem.subMenu"
-			(select)="onClick($event)"
+			[items]="listItem.items"
+			(select)="bubbleSelect($event)"
 			[listTpl]="listTpl"
-			[rootElem]="rootElem"
+			[parent]="parent"
 			[selectedIcon]="selectedIcon"
+			[rootElem]="rootElem"
+			[indent]="indent+1"
+			[indentStart]="indentStart"
 			[role]="'group'"
-			[parent]="parent">
-		</cdl-sub-menu-view>
+			[label]="listItem"
+			[elemSpacing]="elemSpacing"
+			>
+		</cdl-dropdown-tree>
 	`
 })
-export class SubMenuViewItem {
+export class TreeItem {
 	public parent;
 	public isTpl = false;
 
 	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
-	@Input() listItem: any;
+	@Input() listItem;
 	@Input() listTpl: string | TemplateRef<any> = "";
+	@Input() indent = 1;
 	@Input() rootElem = null;
 	@Input() selectedIcon = true;
-
+	@Input() indentStart = 0;
+	@Input() elemSpacing = 40;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
@@ -86,40 +96,39 @@ export class SubMenuViewItem {
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
-	onClick(evt) {
-		let item = evt.item;
-		this.select.emit({
-			item
-		});
+	calculateIndent(border) {
+		if (this.indentStart <= this.indent) {
+			return this.elemSpacing * (this.indent - this.indentStart);
+		}
+		return this.indent;
+	}
+
+	bubbleSelect(evt) {
+		this.select.emit(evt);
 	}
 
 	doClick(item) {
-		this.select.emit({
-			item
-		});
+		this.select.emit({item});
 	}
 
 	// Keyboard accessibility
 	onKeyDown(ev, item) {
 		if (ev.keyCode === KeyCodes.UP_ARROW) {
 			ev.preventDefault();
-
 			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
 		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
 			ev.preventDefault();
-
-			if (!item.subMenu || !item.selected) {
+			if (!item.items || !item.selected) {
 				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
-			} else if (item.subMenu && item.selected) {
+			} else if (item.items && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			}
-		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
-					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
+		} else if (ev.keyCode === KeyCodes.ENTER_KEY
+			|| ev.keyCode === KeyCodes.SPACE_BAR
+			|| ev.keyCode === KeyCodes.RIGHT_ARROW
+			|| ev.keyCode === KeyCodes.LEFT_ARROW) {
 			ev.preventDefault();
-
-			this.select.emit({
-				item
-			});
+			this.select.emit({item});
 		}
 	}
 }
