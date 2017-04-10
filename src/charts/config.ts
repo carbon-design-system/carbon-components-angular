@@ -1,15 +1,8 @@
-export class Margin {
-	top: number;
-	right: number;
-	bottom: number;
-	left: number;
-}
-
 export class Config {
 	id: string;
 	width: number;
 	height: number;
-	margin: Margin;
+	barPadding: number;
 	xDomain: string;
 	yDomain: string;
 	yTicks: string;

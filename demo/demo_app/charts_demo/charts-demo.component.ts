@@ -38,27 +38,27 @@ export class ChartsDemo {
 	chartData = [
 		{
 			"Part Number": "2V2N-9KYPM",
-			"Qty": 1
+			"Qty": 100000
 		},
 		{
 			"Part Number": "L22I-P66EP",
-			"Qty": 2
+			"Qty": 200000
 		},
 		{
 			"Part Number": "JQAI-2M4L1",
-			"Qty": 6
+			"Qty": 600000
 		},
 		{
 			"Part Number": "J9DZ-F37AP",
-			"Qty": 1
+			"Qty": 100000
 		},
 		{
 			"Part Number": "Q6XK-YEL48",
-			"Qty": 4
+			"Qty": 400000
 		},
 		{
 			"Part Number": "773C-XKB5L",
-			"Qty": 13
+			"Qty": 13000000
 		}
 	];
 
@@ -66,12 +66,7 @@ export class ChartsDemo {
 		id: "bar",
 		width: 550,
 		height: 500,
-		margin: {
-			top: 20,
-			bottom: 50,
-			left: 20,
-			right: 0
-		},
+		barPadding: 10,
 		xDomain: "Part Number",
 		yDomain: "Qty",
 		yTicks: 5,
@@ -80,12 +75,25 @@ export class ChartsDemo {
 	};
 
 	ngOnInit() {
-		setTimeout(() => {
-			console.log("adding data");
-			this.chartData = [...this.chartData, {
-				"Part Number": "473D-XK35L",
-				"Qty": 10
-			}];
-		}, 2000);
+		// setTimeout(() => {
+		// 	console.log("adding data");
+		// 	this.chartData = [...this.chartData, {
+		// 		"Part Number": "473D-XK35L",
+		// 		"Qty": 1000000
+		// 	}];
+		// }, 2000);
+
+		// setTimeout(() => {
+		// 	console.log("adding data");
+		// 	this.chartData = [...this.chartData, {
+		// 		"Part Number": "413D-CK3KL",
+		// 		"Qty": 2000000
+		// 	}];
+		// }, 4000);
+
+		// setTimeout(() => {
+		// 	console.log("removing data");
+		// 	this.chartData = this.chartData.filter(x => x.Qty !== 200000);
+		// }, 8000);
 	}
 }
