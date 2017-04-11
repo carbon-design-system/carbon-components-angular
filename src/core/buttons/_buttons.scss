@@ -18,7 +18,7 @@ button.btn{
     .size-lg &, &.size-lg{
         height:$btn-height-lg
     }
-    .size-xlg &, &.size-lg{
+    .size-xlg &, &.size-xlg{
         height:$btn-height-xlg
     }
     @include btn-variant('primary');
@@ -50,15 +50,6 @@ button.btn{
             @include btn-variant('secondary-bt', $active:true, $focusDifferent:true);
         }
     }
-    &.btn-secondary{
-        button.btn{
-            @include btn-variant('gray-btn', $active:true, $focusDifferent:true);
-        }
-        .theme-blue &{
-            @include btn-variant('secondary-bt', $active:true, $focusDifferent:true);
-        }
-    }
-
 }
 
 

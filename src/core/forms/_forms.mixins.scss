@@ -55,7 +55,7 @@
 			}
 
 		    &:hover:before {
-				border-color: color("blue", 50);
+				box-shadow: 0px 0px 0px 1px color("white", 0), 0px 0px 0px 2px color("blue", 50);
 		    }
 		}
 	}
@@ -63,35 +63,49 @@
 		opacity: 0;
 	    min-width: 0;
 	    position: absolute;
-	    &:checked
-		{
+	    &:checked {
 	    	+ span:after {
 	    		opacity: 1;
 	    	}
 
 		}
-		&:disabled{
-			+ span{
+		&:focus {
+			 + span {
+				&:before {
+					box-shadow: 0px 0px 0px 1px color("white", 0), 0px 0px 0px 2px color("blue", 50);
+				}
+			}
+		}
+		&:disabled {
+			+ span {
 				color: color("gray", 20);
 				cursor: not-allowed;
-				&:before{
+				&:before {
+					border-color: color("gray", 20);
+					border-style: dashed;
+				}
+				&:after {
 					border-color: color("gray", 20);
 				}
-				&:after{
-					background-color: color("gray", 20);
+			}
+			&:hover {
+				 + span {
+					&:before {
+						box-shadow: none;
+					}
 				}
 			}
 		}
 		// angular
-		&.ng-invalid.ng-touched, &.is-error{
-			 + span{
-				&:before{
+		&.ng-invalid.ng-touched, &.is-error {
+			 + span {
+				&:before {
 					@include outline-error;
 				}
 			}
 		}
 	}
-	.size-sm & , &.size-sm  {
+	.size-sm &, &.size-sm {
 		height: $el-sm-height;
 		label {
 			span{
@@ -119,33 +133,36 @@
 			height:$el-sm-height;
 		}
 	}
-	.theme-dark & {
+	.theme-blue & {
 		label {
-			span{
-				 &:before {
+			span {
+				color: color("white", 0);
+				&:before {
 					 border-color: color("white", 0);
-				 }
-				 &:after {
-					@if $type == radio {
-						background-color: color("blue", 20);
-					} @else if $type == checkbox{
-						border-color: color("blue", 20);
-					}
-				 }
-				  &:hover:before {
-					border-color: color("blue", 20);
+				}
+				&:after {
+					border-color: color("white", 0);
+				}
+				&:hover:before {
+					box-shadow: 0px 0px 0px 1px color("blue", 50), 0px 0px 0px 2px color("white", 0);
 				}
 			}
-			input[type=#{$type}]{
-				&:disabled{
-					& + span{
-						&:before{
-							border-color: color("gray", 20);
+			input[type=#{$type}] {
+				&:focus {
+					 + span {
+						&:before {
+							box-shadow: 0px 0px 0px 1px color("blue", 50), 0px 0px 0px 2px color("white", 0);
 						}
-						&:after{
-							@if $type == radio {
-								background-color: color("gray", 20);
-							}
+					}
+				}
+				&:disabled {
+					& + span {
+						color: color("white", 0);
+						&:before {
+							border-color: color("white", 0);
+						}
+						&:after {
+							border-color: color("white", 0);
 						}
 					}
 				}

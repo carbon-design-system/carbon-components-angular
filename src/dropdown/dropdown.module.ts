@@ -13,7 +13,8 @@ export { Dropdown } from "./dropdown.component";
 export { DropdownList } from "./list/dropdown-list.component";
 export { DropdownSubMenu } from "./sub-menu/sub-menu.component";
 
-export { AbstractDropdownView } from "./AbstractDropdownView.class";
+export { AbstractDropdownView } from "./abstract-dropdown-view.class";
+export { ListItem } from "./list-item.interface";
 
 @NgModule({
 	declarations: [

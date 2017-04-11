@@ -88,15 +88,11 @@ export class SubMenuItem {
 
 	onClick(evt) {
 		let item = evt.item;
-		this.select.emit({
-			item
-		});
+		this.select.emit({item});
 	}
 
 	doClick(item) {
-		this.select.emit({
-			item
-		});
+		this.select.emit({item});
 	}
 
 	// Keyboard accessibility
@@ -117,9 +113,7 @@ export class SubMenuItem {
 					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
 			ev.preventDefault();
 
-			this.select.emit({
-				item
-			});
+			this.select.emit({item});
 		}
 	}
 }

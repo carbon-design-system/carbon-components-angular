@@ -5,22 +5,22 @@
 
 // label
 
-.label{
+.label {
     color: color("gray", 80);
     font-weight: 400;
-    &.disabled, .disabled &{
+    &.disabled, .disabled & {
         color:$input-field-color-disabled;
     }
 }
 
-.label-top{
+.label-top {
     display: block;
     clear:both;
     margin-bottom: 10px;
 }
 
 // text field
-.input-field{
+.input-field {
 	width:100%;
     font-weight: $input-field-font;
     border: $input-field-border;
@@ -28,16 +28,17 @@
     height: $input-field-height;
     padding: $input-field-padding;
 
-    &:hover{
+    &:hover {
         border-color: $input-field-border-hover;
     }
 
-    &:focus{
+    &:focus {
         outline:0;
         @include box-shadow(0 0 0 1px color("white", 0), 0 0 0 2px color("blue", 50))
     }
-    &:disabled{
+    &:disabled {
         border-color: $input-field-border-disabled;
+        border-style: dashed;
         color: $input-field-color-disabled;
     }
     @at-root input#{&} {
@@ -54,7 +55,7 @@
 		padding: $text-area-padding;
         height: $text-area-height;
     }
-	&.ng-invalid.ng-touched, &.is-error{
+	&.ng-invalid.ng-touched, &.is-error {
 		@include outline-error;
 	}
 
