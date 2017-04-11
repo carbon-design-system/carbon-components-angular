@@ -22,11 +22,11 @@
 				width: $switch-width;
 				background-color: $switch-bg-color;
 				border-radius: $switch-border-radius;
-				padding:$switch-padding;
+				padding: $switch-padding;
 				transition: padding 0.3s ease, background 0.3s ease;
 				margin-left: $switch-label-margin;
 				&:hover, &.hover{
-					background-color: $switch-hover-bg-color;
+					box-shadow: inset 0px 0px 0px 2px $switch-bg-color, inset 0px 0px 0px 3px color("white", 0);
 				}
 				&:before {
 					position: absolute;
@@ -54,20 +54,28 @@
 				padding-left: 40px;
 				background-color: $switch-active-bg-color;
 				&:hover {
-					background-color: $switch-hover-bg-color;
+					box-shadow: inset 0px 0px 0px 2px color("blue", 50), inset 0px 0px 0px 3px color("white", 0);
 				}
 				&:before {
 					opacity: 1;
 				}
 			}
 			&:disabled + span, &.disabled + span{
-				background-color: $switch-disabled-bg-color;
+				padding-top: 4px; // to fix the button looking stupid (might also be fixed by adding a transparent border)
+				background-color: transparent;
     			cursor: not-allowed;
+    			border-style: dashed;
+			    border-width: 1px;
+			    &:hover, &.hover{
+			    	box-shadow: none;
+			    }
 				&:after{
-					background-color:$switch-innerbtn-disabled-bg-color;
+					background-color: transparent;
+				    border-style: dashed;
+				    border-width: 1px;
 				}
 				&:before{
-					border-color:$switch-innerbtn-disabled-bg-color;
+					border-color: $switch-innerbtn-disabled-bg-color;
 				}
 			}
 		}
@@ -77,48 +85,63 @@
 // Switch size
 // ------------
 
-.size-sm .switch {
-	label{
+.size-sm .switch, .size-sm.switch {
+	label {
 		input[type=checkbox] {
 			& + span {
-				padding:2px;
-				height:20px;
+				padding: 3px;
+				height: 20px;
+				&:hover, &.hover {
+					box-shadow: inset 0px 0px 0px 1px $switch-bg-color, inset 0px 0px 0px 2px color("white", 0);
+				}
 				&:before {
-					top:0px;
-					left:18px
+					top: 0px;
+					left: 18px
 				}
 				&:after {
-					width:16px;
-					height:16px;
+					width: 14px;
+					height: 14px;
 				}
 			}
 			&:checked + span {
 				padding-left: 46px;
+			}
+			&:disabled + span, &.disabled + span{
+				padding-top: 2px;
 			}
 		}
 	}
 }
 
 
-// theme-dark
+// theme-blue
 // ------------
-
-.theme-dark .switch{
-	label{
-
+.theme-blue .switch {
+	label {
+		.label {
+			color: color("white", 0);
+		}
 		input[type=checkbox] {
 			& + span {
+				&:hover, &.hover{
+					box-shadow: inset 0px 0px 0px 2px color("white", 0), inset 0px 0px 0px 3px color("blue", 50);
+				}
 				background-color: color("white", 0);
 				&:before{
-					border-color: color("black", 100);
+					border-color: color("blue", 50);
 				}
 				&:after {
-					background-color: color("gray", 80);
+					background-color: color("blue", 50);
 				}
 			}
-
-			&:checked + span {
-				background-color: color("blue", 20);
+			&:disabled + span, &.disabled + span {
+				background-color: transparent;
+				&:hover, &.hover{
+			    	box-shadow: none;
+			    }
+				&:before{
+					border-color: color("white", 0);
+				}
 			}
 		}
 	}

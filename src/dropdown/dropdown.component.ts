@@ -17,7 +17,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
 
-import { AbstractDropdownView } from "./AbstractDropdownView.class";
+import { AbstractDropdownView } from "./abstract-dropdown-view.class";
+import { ListItem } from "./list-item.interface";
 import { KeyCodes } from "./../constant/keys";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
@@ -66,13 +67,13 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 export class Dropdown implements AfterContentInit {
 	private clickInsideComp = false;
 	private menuIsClosed = true;
-	private prevSelectItem: any;
+	private prevSelectedItem: ListItem;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
 	@Input() disabled = false;
-	@Output() select = new EventEmitter<Object>();
+	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	@ContentChild(AbstractDropdownView) view;
 	@ViewChild("dropdownHost") rootButton;
@@ -95,7 +96,7 @@ export class Dropdown implements AfterContentInit {
 
 	writeValue(value: any) {
 		if (this.type === "single") {
-			this.prevSelectItem = value;
+			this.prevSelectedItem = value;
 		}
 	}
 
@@ -160,11 +161,11 @@ export class Dropdown implements AfterContentInit {
 				this.rootButton.nativeElement.focus();
 			}
 			evt.item.selected = !evt.item.selected;
-			if (this.type === "single" && this.prevSelectItem && evt.item !== this.prevSelectItem) {
-				this.prevSelectItem.selected = false;
+			if (this.type === "single" && this.prevSelectedItem && evt.item !== this.prevSelectedItem) {
+				this.prevSelectedItem.selected = false;
 			}
 
-			this.prevSelectItem = evt.item;
+			this.prevSelectedItem = evt.item;
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
 			} else {

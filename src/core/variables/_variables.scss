@@ -223,7 +223,7 @@ $switch-hover-bg-color:    color("gray", 60) !default;
 $switch-active-bg-color:   color("blue", 50) !default;
 $switch-disabled-bg-color: color("gray", 20) !default;
 
-$switch-innerbtn-disabled-bg-color: color("gray", 30) !default;
+$switch-innerbtn-disabled-bg-color: color("gray", 50) !default;
 
 
 
@@ -290,20 +290,20 @@ $btns: (
         color: 		     color("white", 0),
         bg:  	         color("blue", 50),
         brd-color:       color("blue", 50),
-        brd-color-hover: color("blue", 60),
-        bg-hover:        color("blue", 60),
-        color-disabled:  color("gray", 30),
-        bg-disabled:     color("gray", 20),
-        brd-disabled:    color("gray", 20)
+        hover:           unquote('inset 0px 0px 0px 1px #{color("blue", 50)}, inset 0px 0px 0px 2px #{color("white", 0)}'),
+        color-disabled:  color("gray", 50),
+        bg-disabled:     transparent,
+        brd-disabled:    color("gray", 50)
     ),
     secondary: (
         color:           color("blue", 50),
         bg:              color("white", 0),
         bg-hover:        color-tint(color("blue", 40), 90),
+        hover:           unquote('inset 0px 0px 0px 1px #{color("white", 0)}, inset 0px 0px 0px 2px #{color("blue", 50)}'),
         brd-color:       color("blue", 50),
-        color-disabled:  color("gray", 20),
+        color-disabled:  color("gray", 50),
         bg-disabled:     transparent,
-        brd-disabled:    color("gray", 20),
+        brd-disabled:    color("gray", 50),
         bg-focus:        color("blue", 60),
         color-focus:     color("white", 0),
         color-active:    color("white", 0),
@@ -315,9 +315,10 @@ $btns: (
         brd-color:       color("white", 0),
         color-hover:     color("blue", 60),
         bg-hover:        color("white", 0),
-        color-disabled:  color("gray", 30),
-        bg-disabled:     color("gray", 20),
-        brd-disabled:    color("gray", 20)
+        hover:           unquote('inset 0px 0px 0px 1px #{color("white", 0)}, inset 0px 0px 0px 2px #{color("blue", 50)}'),
+        color-disabled:  color("white", 0),
+        bg-disabled:     transparent,
+        brd-disabled:    color("white", 0)
     ),
      secondary-bt: (
         color:           color("white", 0),
@@ -325,26 +326,14 @@ $btns: (
         brd-color:       color("white", 0),
         color-hover: 	 color("white", 0),
         bg-hover: 		 color-tint(color("blue", 60), 50),
-        color-disabled:  color("gray", 20),
+        hover:           unquote('inset 0px 0px 0px 1px #{color("blue", 50)}, inset 0px 0px 0px 2px #{color("white", 0)}'),
+        color-disabled:  color("white", 0),
         bg-disabled: 	 transparent,
-        brd-disabled: 	 color("gray", 20),
+        brd-disabled: 	 color("white", 0),
         bg-active: 		 color("white", 0),
         color-active: 	 color("blue", 50),
         color-focus: 	 color("blue", 60),
         bg-focus:        color("white", 0)
-    ),
-    gray-btn: (
-        color: 			color("gray", 60),
-        bg-color:       color("white", 0),
-        brd-color: 		color("gray", 50),
-        bg-hover: 		color-tint(color("gray", 50), 90),
-        bg-active:      color("gray", 50),
-        color-active:   color("white", 0),
-        color-focus:    color("white", 0),
-        bg-focus: 		color("gray", 60),
-        color-disabled: color("gray", 20),
-        bg-disabled:    transparent,
-        brd-disabled:   color("gray", 20)
     )
 ) !default;
 
@@ -375,8 +364,8 @@ $dropdown-bg-color-hover: color("blue", 40, $alpha: 0.10) !default;
 $dropdown-submenu-bg-color:  color("white", 0) !default;
 
 //bg-disabled
-$dropdown-color-disabled:          color("gray", 20) !default;
-$dropdown-border-disabled: 		   1px solid color("gray", 30) !default;
+$dropdown-color-disabled:          color("gray", 50) !default;
+$dropdown-border-disabled: 		   1px dashed color("gray", 50) !default;
 $dropdown-bg-color-disabled-hover: color("white", 0) !default;
 
 

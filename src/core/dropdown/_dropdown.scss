@@ -8,6 +8,7 @@
 
 	.dropdown-value {
 		width: 100%;
+		min-width: 200px;
 		border: $dropdown-border;
 		background-color: $dropdown-bg-color;
 		color: $dropdown-color;
@@ -18,7 +19,7 @@
 		font-weight: $dropdown-font;
 
 		&:hover, &:focus {
-			background-color: $dropdown-bg-color-hover
+			box-shadow: inset 0px 0px 0px 1px color("white", 0), inset 0px 0px 0px 2px color("blue", 50);
 		}
 
 		&.open {
@@ -48,14 +49,19 @@
 				-webkit-transform: rotate(-180deg); /* Chrome, Safari, Opera */
 				transform: rotate(-180deg);
 			}
+
 		}
 
 		&:disabled {
 			color: $dropdown-color-disabled;
 			border: $dropdown-border-disabled;
 			&:hover, &:focus {
-				background-color:$dropdown-bg-color-disabled-hover;
+				box-shadow: none;
 				cursor: no-drop;
+			}
+
+			.dropdown-icon {
+				fill: color("gray", 50);
 			}
 		}
 	}
@@ -70,6 +76,7 @@
 		left:0;
 
 		// if we will use list-view etc
+		// TODO: remove this
 		li, .sub-menu-view li .item-wrapper .item, .item {
 			border:0;
 		}

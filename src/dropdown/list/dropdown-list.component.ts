@@ -12,21 +12,16 @@ import {
 
 import { KeyCodes } from "./../../constant/keys";
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
-import { AbstractDropdownView } from "./../AbstractDropdownView.class";
+import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
+import { ListItem } from "./../list-item.interface";
 import { ListView } from "./../../list-view/list-view.component";
-
-interface ListItem {
-	content: string;
-	disabled: boolean;
-	selected: boolean;
-}
 
 @Component({
 	selector: "cdl-dropdown-list",
 	template: `
-		<ul #listView class="list-view">
+		<ul #list class="list-view">
 			<li tabindex="{{item.disabled?-1:0}}"
-				[attr.role]="listView.attributes.role?'option':null"
+				role="option"
 				*ngFor="let item of items"
 				(click)="doClick($event, item)"
 				(keydown)="doKeyDown($event, item)"
@@ -53,13 +48,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Input() checkMark: Boolean = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
-	@ViewChild("listView") list: ElementRef;
+	@ViewChild("list") list: ElementRef;
 	private index = -1;
-	private currentElement: HTMLElement;
 	private listList: HTMLElement[];
 
 	ngAfterViewInit() {
 		this.listList = this.list.nativeElement.querySelectorAll("li");
+		this.index = this.items.findIndex(item => item.selected);
 	}
 
 	getNextItem(): ListItem {
@@ -133,6 +128,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	doClick(ev, item) {
+		this.index = this.items.indexOf(item);
 		if (!item.disabled) {
 			this.select.emit({item});
 		}

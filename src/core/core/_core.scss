@@ -98,15 +98,13 @@ button{
   display: none;
 }
 
-
-
 .list-unstyled {
     list-style: none;
     padding: 0;
     margin: 0
 }
 
-.disabled{
+.disabled, [disabled]{
     cursor:no-drop;
 		color: color("gray", 20);
 }
@@ -127,7 +125,6 @@ button{
 		}
 	}
 }
-
 
  .badge{
 	height: 18px;

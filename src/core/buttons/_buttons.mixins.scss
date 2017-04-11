@@ -5,28 +5,27 @@
     }
 
     color: getColor(color);
-    background-color:getColor(bg);
+    background-color: getColor(bg);
     border-color: getColor(brd-color);
 
     @mixin hover{
-        background-color:getColor(bg-hover);
-        color:getColor(color-hover);
-        border-color:getColor(brd-color-hover);
+        color: getColor(color-hover);
+        box-shadow: getColor(hover);
     }
-    &:hover{
+    &:hover {
          @include hover;
      }
-    @if $active == true{
+    @if $active == true {
         &.active{
-            background-color:getColor(bg-active);
-            color:getColor(color-active);
+            background-color: getColor(bg-active);
+            color: getColor(color-active);
         }
     }
 
     @if $focusDifferent == true {
         &:focus{
-            background-color:getColor(bg-focus);
-            color:getColor(color-focus);
+            background-color: getColor(bg-focus);
+            color: getColor(color-focus);
         }
     } @else {
         &:focus{
@@ -34,9 +33,11 @@
         }
     }
 
-    &.disabled, &[disabled]{
-        background-color:getColor(bg-disabled);
-        color:getColor(color-disabled);
-        border-color:getColor(brd-disabled);
+    &.disabled, &[disabled] {
+        background-color: getColor(bg-disabled);
+        color: getColor(color-disabled);
+        border-style: dashed;
+        border-color: getColor(brd-disabled);
+        box-shadow: none;
     }
 }
