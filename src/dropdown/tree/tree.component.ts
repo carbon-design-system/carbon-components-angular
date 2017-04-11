@@ -16,7 +16,7 @@ import { TreeItem } from "./tree-item.component";
 @Component({
 	selector: "cdl-dropdown-tree",
 	template: `
-		<ul #list class="tree-view"
+		<ul #list class="tree"
 			[class.open]="isOpen"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "

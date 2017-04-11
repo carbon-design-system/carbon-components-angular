@@ -34,6 +34,9 @@ import { SubMenuItem } from "./sub-menu-item.component";
 			</li>
 		</ul>
 	`,
+	host: {
+		"class": "sub-menu"
+	},
 	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownSubMenu)}]
 })
 export class DropdownSubMenu implements AbstractDropdownView {

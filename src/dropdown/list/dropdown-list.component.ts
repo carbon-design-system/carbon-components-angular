@@ -19,7 +19,7 @@ import { ListView } from "./../../list-view/list-view.component";
 @Component({
 	selector: "cdl-dropdown-list",
 	template: `
-		<ul #list class="list-view">
+		<ul #list class="list">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
 				*ngFor="let item of items"
@@ -28,7 +28,8 @@ import { ListView } from "./../../list-view/list-view.component";
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
-				}">
+				}"
+				class="option">
 				<span
 					*ngIf="checkMark && item.selected"
 					class="checked" aria-hidden="true">

@@ -30,7 +30,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			[attr.aria-label]="a11yLabel"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			class="dropdown-value {{size}}"
+			class="dropdown-value size-{{size}}"
 			(click)="openMenu()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
@@ -46,7 +46,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			</span>
 		</button>
 		<div
-			class="dropdown-menu {{size}} {{type}}"
+			class="dropdown-menu size-{{size}}"
 			[class.open]="!menuIsClosed">
 			<ng-content></ng-content>
 		</div>
