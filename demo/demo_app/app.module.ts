@@ -20,7 +20,6 @@ import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
 import { TreeViewDemo } from "./tree_view_demo/tree-view-demo.component";
-import { TypeaheadDemo } from "./typeahead_demo/typeahead-demo.component";
 import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
 import { ModalDemo } from "./modal_demo/modal-demo.component";
 import { SampleModalComponent } from "./modal_demo/sample-modal.component";
@@ -45,7 +44,6 @@ import {
 	TreeViewModule,
 	DropdownModule,
 	TopNavModule,
-	TypeaheadModule,
 	SideNavModule,
 	ModalModule,
 	AlertModule,
@@ -72,7 +70,6 @@ import {
 		TopNavDemo,
 		TreeViewDemo,
 		DropdownDemo,
-		TypeaheadDemo,
 		SideNavDemo,
 		ModalDemo,
 		SampleModalComponent,
@@ -106,7 +103,6 @@ import {
 		TreeViewModule,
 		DropdownModule,
 		TopNavModule,
-		TypeaheadModule,
 		SideNavModule,
 		ModalModule,
 		AlertModule,
@@ -162,10 +158,6 @@ import {
 			{
 				path: "top-nav",
 				component: TopNavDemo
-			},
-			{
-				path: "typeahead",
-				component: TypeaheadDemo
 			},
 			{
 				path: "side-nav",
