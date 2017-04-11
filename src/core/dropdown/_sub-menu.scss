@@ -1,10 +1,4 @@
-//
-// Submenu
-// --------------------------------------------------
-
-
-.sub-menu-view {
-
+.sub-menu {
 	&, ul{
         @extend .list-unstyled;
     }
@@ -37,8 +31,8 @@
 }
 
 .sub-menu-item-wrapper {
-
 	border-left: 2px solid transparent; // transparent border to prevent shifting
+	background: $submenu-bg;
 	&.disabled {
 		color: color("gray", 20);
 		cursor: no-drop;
@@ -48,8 +42,8 @@
 			outline: none;
 		}
 	}
-	&:hover, &:focus,  &.selected {
-		background-color:$submenu-hover-bg;
+	&:hover, &:focus, &.selected {
+		background-color: $submenu-hover-bg;
 	}
 
 	&.selected {
@@ -59,8 +53,7 @@
 	}
 
 	&:focus {
-		outline: 1px solid color("blue", 50);
-		outline-offset: 1px;
+
 	}
 
 	.arrow {
@@ -86,9 +79,18 @@
 		}
 	}
 }
+&.size-sm .sub-menu-item {
+    padding: 2px 10px;
+    font-size: $dropdown-font-size-sm;
+    height: $dropdown-height-sm;
+}
 
+&.size-lg .sub-menu-item {
+    padding: 10px 20px;
+    height: $dropdown-height-lg;
+}
 .sub-menu-item {
 	position: relative;
-	padding:$submenu-padding;
-	border-bottom:$submenu-border
+	padding: 7px 20px;
+	height: 30px;
 }

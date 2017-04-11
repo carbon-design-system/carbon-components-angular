@@ -30,6 +30,7 @@
 			font-size: $dropdown-font-size-sm;
 			height: $dropdown-height-sm;
 		}
+
 		&.size-lg, .size-lg &{
 			padding: $dropdown-padding-lg;
 			height:  $dropdown-height-lg;
@@ -74,15 +75,11 @@
 		background-color: $dropdown-submenu-bg-color;
 		box-shadow: $default-box-shadow;
 		left:0;
-
-		// if we will use list-view etc
-		// TODO: remove this
-		li, .sub-menu-view li .item-wrapper .item, .item {
-			border:0;
-		}
-
 		&.open {
 			display: block;
 		}
+		@import "./sub-menu";
+		@import "./list";
+		@import "./tree";
 	}
 }

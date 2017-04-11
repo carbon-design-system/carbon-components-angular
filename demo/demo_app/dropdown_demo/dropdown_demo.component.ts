@@ -6,16 +6,107 @@ import { FormControl, Validators } from "@angular/forms";
 	template: `
 		<h1>Dropdown Demo</h1>
 
-		<h3>Default Drop down</h3>
+		<h3>Default dropdown</h3>
 		<div style="width: 400px">
+			<cdl-dropdown 
+				[displayValue]="display1"
+				(select)="onSelectAndDisplay1($event)"
+				size="sm">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+			<br><br>
 			<cdl-dropdown 
 				[displayValue]="display1"
 				(select)="onSelectAndDisplay1($event)">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown 
+				[displayValue]="display1"
+				(select)="onSelectAndDisplay1($event)"
+				size="lg">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
 		</div>
 
-		<h3>Default Drop down (ngmodel)</h3>
+		<h3>Dropdown with tree</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				(select)="onSelectAndDisplay4($event)"
+				[displayValue]="display4"
+				size="sm">
+				<cdl-dropdown-tree
+					[items]="demoItems4"
+					[selectedIcon]="false"
+					[label]="'Dropdown with Tree view'">
+				</cdl-dropdown-tree>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				(select)="onSelectAndDisplay4($event)"
+				[displayValue]="display4">
+				<cdl-dropdown-tree
+					[items]="demoItems4"
+					[selectedIcon]="false"
+					[label]="'Dropdown with Tree view'">
+				</cdl-dropdown-tree>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				(select)="onSelectAndDisplay4($event)"
+				[displayValue]="display4"
+				size="lg">
+				<cdl-dropdown-tree
+					[items]="demoItems4"
+					[selectedIcon]="false"
+					[label]="'Dropdown with Tree view'">
+				</cdl-dropdown-tree>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Dropdown with sub menu</h3>
+		<div style="width: 250px">
+			<cdl-dropdown 
+				[displayValue]="display5"
+				(select)="onSelectAndDisplay5($event)"
+				size="sm">
+				<cdl-dropdown-sub-menu
+					[items]="demoItems5"
+					[selectedIcon]="false">
+				</cdl-dropdown-sub-menu>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown 
+				[displayValue]="display5"
+				(select)="onSelectAndDisplay5($event)">
+				<cdl-dropdown-sub-menu
+					[items]="demoItems5"
+					[selectedIcon]="false">
+				</cdl-dropdown-sub-menu>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown 
+				[displayValue]="display5"
+				(select)="onSelectAndDisplay5($event)"
+				size="lg">
+				<cdl-dropdown-sub-menu
+					[items]="demoItems5"
+					[selectedIcon]="false">
+				</cdl-dropdown-sub-menu>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Disabled dropdown</h3>
+		<cdl-dropdown 
+			displayValue="Dropdown 7"
+			[disabled]="true"
+			(select)="onSelect($event)">
+			<cdl-dropdown-list
+				[items]="demoItems7">
+			</cdl-dropdown-list>
+		</cdl-dropdown>
+
+		<h3>Default dropdown (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown 
 				[displayValue]="getDisplay(dropdown1)" 
@@ -25,7 +116,7 @@ import { FormControl, Validators } from "@angular/forms";
 			{{ dropdown1 | json }}
 		</div>
 
-		<h3>Multi Drop down (ngmodel)</h3>
+		<h3>Dropdown with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown 
 				[displayValue]="getMultiDisplay(dropdown2)" 
@@ -36,7 +127,26 @@ import { FormControl, Validators } from "@angular/forms";
 			{{ dropdown2 | json }}
 		</div>
 
-		<h3>Default Drop down with custom template</h3>
+		<h3>Dropdown with multi-select</h3>
+		<cdl-dropdown 
+			[displayValue]="display6"
+			(select)="onSelectAndDisplay6($event)"
+			type="multi">
+			<cdl-dropdown-list
+				[items]="demoItems6">
+			</cdl-dropdown-list>
+		</cdl-dropdown>
+
+		<h3>Reactive form dropdown</h3>
+		<cdl-dropdown 
+			[displayValue]="'Select an option'" 
+			[formControl]="test">
+			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
+		</cdl-dropdown>
+		{{ test.value | json }}
+		{{ test.status | json }}
+
+		<h3>Default dropdown with custom template</h3>
 		<ng-template #listTpl let-item="item">
 			<cdl-glyphicon 
 				*ngIf="item.selected"  
@@ -61,66 +171,7 @@ import { FormControl, Validators } from "@angular/forms";
 				</cdl-dropdown-list>
 			</cdl-dropdown>
 		</div>
-
-		<h3>Drop down with tree view</h3>
-		<div style="width: 400px">
-			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4">
-				<cdl-dropdown-tree
-					[items]="demoItems4"
-					[selectedIcon]="false"
-					[label]="'Dropdown with Tree view'">
-				</cdl-dropdown-tree>
-			</cdl-dropdown>
-		</div>
-
-		<h3>Drop down with sub menu view</h3>
-		<div style="width: 250px">
-			<cdl-dropdown 
-				dropdownType="sub-menu-view"
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)">
-				<cdl-dropdown-sub-menu
-					[items]="demoItems5"
-					[selectedIcon]="false">
-				</cdl-dropdown-sub-menu>
-			</cdl-dropdown>
-		</div>
-
-		<h3>Drop down with multi select</h3>
-		<cdl-dropdown 
-			[displayValue]="display6"
-			(select)="onSelectAndDisplay6($event)"
-			type="multi">
-			<cdl-dropdown-list
-				[items]="demoItems6">
-			</cdl-dropdown-list>
-		</cdl-dropdown>
-
-		<h3>Disabled Drop down</h3>
-		<cdl-dropdown 
-			displayValue="Dropdown 7"
-			[disabled]="true"
-			(select)="onSelect($event)">
-			<cdl-dropdown-list
-				[items]="demoItems7">
-			</cdl-dropdown-list>
-		</cdl-dropdown>
-
-		<h3>Reactive form dropdown</h3>
-		<cdl-dropdown 
-			[displayValue]="'Select an option'" 
-			[formControl]="test">
-			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
-		</cdl-dropdown>
-		{{ test.value | json }}
-		{{ test.status | json }}
 	`,
-	styles: [
-		":host /deep/ .disabled:hover {border: none;}",
-		":host /deep/ .disabled:focus {border: none;}"
-	]
 })
 export class DropdownDemo {
 	title = "Tabs Component Demo";
@@ -141,7 +192,6 @@ export class DropdownDemo {
 		{
 			content: "item two",
 			selected: false,
-			disabled: true
 		},
 		{
 			content: "item three",
@@ -187,7 +237,6 @@ export class DropdownDemo {
 		{
 			content: "item three",
 			selected: false,
-			disabled: true
 		},
 		{
 			content: "item four",
@@ -235,8 +284,6 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay1(ev) {
-		console.log("onSelectAndDisplay1", ev);
-		// ev.item.selected = !ev.item.selected;
 		if (ev.item.selected) {
 			this.display1 = ev.item.content;
 		} else {
@@ -244,7 +291,6 @@ export class DropdownDemo {
 		}
 	}
 	onSelectAndDisplay2(ev) {
-		// ev.item.selected = !ev.item.selected;
 		if (ev.item.selected) {
 			this.display2 = ev.item.content;
 		} else {
@@ -253,8 +299,6 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay3(ev) {
-		// ev.item.selected = !ev.item.selected;
-		console.log("onSelectAndDisplay3", ev, ev.item.selected);
 		this.itemsSelected = ev.item.selected ? this.itemsSelected + 1 : this.itemsSelected - 1;
 
 		if (this.itemsSelected === 0) {
@@ -268,7 +312,6 @@ export class DropdownDemo {
 
 	onSelectAndDisplay4(ev) {
 		if (!ev.item.items) {
-			// ev.item.selected = !ev.item.selected;
 			if (ev.item.selected) {
 				this.display4 = ev.item.content;
 			} else {
@@ -279,7 +322,6 @@ export class DropdownDemo {
 
 	onSelectAndDisplay5(ev) {
 		if (!ev.item.items) {
-			// ev.item.selected = !ev.item.selected;
 			if (ev.item.selected) {
 				this.display5 = ev.item.content;
 			} else {
@@ -289,9 +331,7 @@ export class DropdownDemo {
 	}
 
 	onSelectAndDisplay6(ev) {
-		// ev.item.selected = !ev.item.selected;
 		this.itemsSelected2 = ev.item.selected ? this.itemsSelected2 + 1 : this.itemsSelected2 - 1;
-
 		if (this.itemsSelected2 === 0) {
 			this.display6 = "No items selected";
 		} else if (this.itemsSelected2 === 1) {
