@@ -24,7 +24,7 @@ import { Modal } from "../../../src";
 		<cdl-modal size="sm" (overlaySelected)="closeModal()">
 			<cdl-modal-header (closeSelect)="closeModal()">Form</cdl-modal-header>
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
-				<div class="content">
+				<div class="modal-body">
 					<div class="form-instructions">{{modalText}}</div>
 					<div class="form-container" *ngFor="let field of fields" [class.has-error]="form.get(field).touched && !form.get(field).valid">
 						<label class="label label-top">{{field}}</label>

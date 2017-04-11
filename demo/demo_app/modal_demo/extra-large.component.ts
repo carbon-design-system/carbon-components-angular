@@ -7,7 +7,7 @@ import { Modal } from "../../../src/";
 	template: `
 	<cdl-modal size="xxl" (overlaySelected)="closeModal()">
 		<cdl-modal-header (closeSelect)="closeModal()">XXL</cdl-modal-header>
-		<section class="content">
+		<section class="modal-body">
 			<p>This is an XXL Modal</p>
 		</section>
 		<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>

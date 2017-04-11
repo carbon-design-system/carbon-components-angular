@@ -458,7 +458,7 @@ $modal-size-sm: 320px !default;
 $modal-size-md: 640px !default;
 $modal-size-lg: 900px !default;
 $modal-size-xl: 980px !default;
-$modal-size-xxl: 1000px !default;
+$modal-size-xxl: 100% !default;
 $modal-size-height-xxl: 100% !default;
 
 // modal header
@@ -494,11 +494,13 @@ $modal-overlay-height: 100% !default;
 $modal-overlay-width: 100% !default;
 
 // modal close icon
-$modal-close-icon-height: 14px !default;
-$modal-close-icon-width: 14px !default;
+$modal-close-icon-height: 18px !default;
+$modal-close-icon-width: 18px !default;
 $modal-close-icon-padding: 0 !default;
 $modal-close-icon-svg-height: 14px !default;
 $modal-close-icon-svg-width: 14px !default;
 $modal-close-icon-svg-colour: color("white", 0) !default;
+$modal-close-icon-border: 1px solid !default;
+$modal-close-icon-border-color: color("white", 0) !default;
 
 
