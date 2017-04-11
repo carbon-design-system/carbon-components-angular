@@ -117,7 +117,7 @@ export class DropdownTree implements AbstractDropdownView {
 		if (item.disabled || item.items) {
 			return this.getPrevElement();
 		}
-		return elem;	
+		return elem;
 	}
 
 	getSelected(): ListItem[] {
