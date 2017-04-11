@@ -5,17 +5,15 @@
 	z-index: 1000;
 	left: 0;
 	top:0;
-  .valign-element {
-    padding: 20px;
-  }
+	padding: 20px;
 }
 
 .modal {
+	text-align:left;
 	z-index: 1001;
   position: relative;
   min-height: $modal-min-height;
   background-color: $modal-bg;
-	text-align: left;
   box-shadow: 0px 0px 10px hsla(0, 0%, 0%, 0.15);
   &.modal-size-xl {
     max-width: $modal-size-xl;
@@ -55,6 +53,7 @@
   .close-icon{
   		display: flex;
 			float: right;
+			justify-content: center;
 			height: $modal-close-icon-height;
 			width: $modal-close-icon-width;
 			padding: $modal-close-icon-padding;
@@ -62,6 +61,9 @@
 				fill: $modal-close-icon-svg-colour;
 				height: $modal-close-icon-svg-height;
 				width: $modal-close-icon-svg-width;
+			}
+			&:hover, &:focus {
+				border: $modal-close-icon-border $modal-close-icon-border-color;
 			}
 		}
 	}
