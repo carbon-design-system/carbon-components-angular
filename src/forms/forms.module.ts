@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { CheckboxComponent } from "./checkbox.component";
+import { SwitchComponent } from "./switch.component";
 
 @NgModule({
 	imports: [
@@ -9,10 +10,12 @@ import { CheckboxComponent } from "./checkbox.component";
 		FormsModule
 	],
 	declarations: [
-		CheckboxComponent
+		CheckboxComponent,
+		SwitchComponent
 	],
 	exports: [
-		CheckboxComponent
+		CheckboxComponent,
+		SwitchComponent
 	]
 })
 export class CDLFormsModule { }
