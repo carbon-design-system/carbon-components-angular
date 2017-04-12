@@ -22,6 +22,12 @@ import { Component, OnInit } from "@angular/core";
 	</cdl-checkbox>
 
 	<cdl-checkbox class="ng-invalid ng-touched">Checkbox</cdl-checkbox>
+
+
+	<h2>Switch</h2>
+
+	<cdl-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</cdl-switch>
+	<cdl-switch disabled="true">Switch disabled</cdl-switch>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]
 })
@@ -29,6 +35,7 @@ export class FormsDemo {
 	firstCheckboxState = true;
 	secondCheckboxState = false;
 	someSelected = false;
+	firstSwitchState = false;
 
 	manyCheckboxes = [{checked: false}, {checked: false}, {checked: false}, {checked: false}];
 
