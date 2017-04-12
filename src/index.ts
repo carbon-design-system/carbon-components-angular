@@ -10,7 +10,6 @@ export * from "./top-nav/top-nav.module";
 export * from "./side-nav/side-nav.module";
 export * from "./modal/modal.module";
 export * from "./alert/alert.module";
-export * from "./typeahead/typeahead.module";
 export * from "./calendar/calendar.module";
 export * from "./datepicker/datepicker.module";
 export * from "./common/common.module";

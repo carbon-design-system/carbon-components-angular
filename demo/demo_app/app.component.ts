@@ -83,11 +83,6 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Typeahead Demo",
-			link: "/typeahead",
-			selected: false
-		},
-		{
 			content: "Side Nav Demo",
 			link: "/side-nav",
 			selected: false
