@@ -12,9 +12,10 @@ Then you'll be able to `npm install @neutrino/neutrino` and start importing comp
 
 #### Quickstart
 - fork peretz-next/neutrino and clone it locally
-- run `npm install` to grab all the dependencies, `npm run demo:server`
-- add a folder with your component code, styles, and documentation README.md under `src`
+- run `npm install` to grab all the dependencies, then `npm run demo:server` to start the demo server
+- add a folder with your component code, styles, tests, and documentation README.md under `src`
   - follow the [Angular style guide](https://angular.io/styleguide) and [our general component guidelines](https://github.ibm.com/peretz-next/neutrino/wiki/General-component-API-guidelines)
+  - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
 - export your module from `index.ts`
 - add a demo to `./demo/demo_app` (see README.md in that directory for more info)
 - DO NOT change the version number.
