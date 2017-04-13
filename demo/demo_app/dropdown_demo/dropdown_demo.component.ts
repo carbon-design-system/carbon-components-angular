@@ -8,20 +8,20 @@ import { FormControl, Validators } from "@angular/forms";
 
 		<h3>Default dropdown</h3>
 		<div style="width: 400px">
-			<cdl-dropdown 
+			<cdl-dropdown
 				[displayValue]="display1"
 				(select)="onSelectAndDisplay1($event)"
 				size="sm">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
+			<cdl-dropdown
 				[displayValue]="display1"
 				(select)="onSelectAndDisplay1($event)">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
+			<cdl-dropdown
 				[displayValue]="display1"
 				(select)="onSelectAndDisplay1($event)"
 				size="lg">
@@ -66,7 +66,7 @@ import { FormControl, Validators } from "@angular/forms";
 
 		<h3>Dropdown with sub menu</h3>
 		<div style="width: 250px">
-			<cdl-dropdown 
+			<cdl-dropdown
 				[displayValue]="display5"
 				(select)="onSelectAndDisplay5($event)"
 				size="sm">
@@ -76,7 +76,7 @@ import { FormControl, Validators } from "@angular/forms";
 				</cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
+			<cdl-dropdown
 				[displayValue]="display5"
 				(select)="onSelectAndDisplay5($event)">
 				<cdl-dropdown-sub-menu
@@ -85,7 +85,7 @@ import { FormControl, Validators } from "@angular/forms";
 				</cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
+			<cdl-dropdown
 				[displayValue]="display5"
 				(select)="onSelectAndDisplay5($event)"
 				size="lg">
@@ -97,7 +97,7 @@ import { FormControl, Validators } from "@angular/forms";
 		</div>
 
 		<h3>Disabled dropdown</h3>
-		<cdl-dropdown 
+		<cdl-dropdown
 			displayValue="Dropdown 7"
 			[disabled]="true"
 			(select)="onSelect($event)">
@@ -106,10 +106,34 @@ import { FormControl, Validators } from "@angular/forms";
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
+		<h3>Default dropdown with appendToBody true</h3>
+		<div style="height: 100px; border: solid 1px red; overflow: hidden; width: 100%">
+			<div style="width: 300px; display: inline-block">
+				<b>AppendToBody: false</b>
+				<cdl-dropdown
+					[displayValue]="getDisplay(dropdown1)"
+					[(ngModel)]="dropdown1">
+					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
+				</cdl-dropdown>
+				{{ dropdown1 | json }}
+			</div>
+
+			<div style="width: 300px; display: inline-block">
+				<b>AppendToBody: true</b>
+				<cdl-dropdown
+					[appendToBody]="true"
+					[displayValue]="getDisplay(dropdown1)"
+					[(ngModel)]="dropdown1">
+					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
+				</cdl-dropdown>
+				{{ dropdown1 | json }}
+			</div>
+		</div>
+
 		<h3>Default dropdown (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="getDisplay(dropdown1)" 
+			<cdl-dropdown
+				[displayValue]="getDisplay(dropdown1)"
 				[(ngModel)]="dropdown1">
 				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -118,8 +142,8 @@ import { FormControl, Validators } from "@angular/forms";
 
 		<h3>Dropdown with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="getMultiDisplay(dropdown2)" 
+			<cdl-dropdown
+				[displayValue]="getMultiDisplay(dropdown2)"
 				[(ngModel)]="dropdown2"
 				type="multi">
 				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
@@ -128,7 +152,7 @@ import { FormControl, Validators } from "@angular/forms";
 		</div>
 
 		<h3>Dropdown with multi-select</h3>
-		<cdl-dropdown 
+		<cdl-dropdown
 			[displayValue]="display6"
 			(select)="onSelectAndDisplay6($event)"
 			type="multi">
@@ -138,8 +162,8 @@ import { FormControl, Validators } from "@angular/forms";
 		</cdl-dropdown>
 
 		<h3>Reactive form dropdown</h3>
-		<cdl-dropdown 
-			[displayValue]="'Select an option'" 
+		<cdl-dropdown
+			[displayValue]="'Select an option'"
 			[formControl]="test">
 			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
 		</cdl-dropdown>
@@ -148,21 +172,21 @@ import { FormControl, Validators } from "@angular/forms";
 
 		<h3>Default dropdown with custom template</h3>
 		<ng-template #listTpl let-item="item">
-			<cdl-glyphicon 
-				*ngIf="item.selected"  
-				icon="Checkbox Selected" 
+			<cdl-glyphicon
+				*ngIf="item.selected"
+				icon="Checkbox Selected"
 				size="md">
 			</cdl-glyphicon>
-			<cdl-glyphicon 
-				*ngIf="!item.selected" 
-				icon="Checkbox Empty" 
+			<cdl-glyphicon
+				*ngIf="!item.selected"
+				icon="Checkbox Empty"
 				size="md">
 			</cdl-glyphicon>
 			{{ item.content }}
 		</ng-template>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="display3" 
+			<cdl-dropdown
+				[displayValue]="display3"
 				(select)="onSelectAndDisplay3($event)"
 				type="multi">
 				<cdl-dropdown-list

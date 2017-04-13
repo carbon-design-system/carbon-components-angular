@@ -18,6 +18,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
+import { positionElements } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { KeyCodes } from "./../constant/keys";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
@@ -31,7 +32,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			class="dropdown-value size-{{size}}"
-			(click)="openMenu()"
+			(click)="toggleMenu()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
 			{{displayValue}}
@@ -47,6 +48,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		</button>
 		<div
 			class="dropdown-menu size-{{size}}"
+			[class.popover]="appendToBody"
 			[class.open]="!menuIsClosed">
 			<ng-content></ng-content>
 		</div>
@@ -68,11 +70,14 @@ export class Dropdown implements AfterContentInit {
 	private clickInsideComp = false;
 	private menuIsClosed = true;
 	private prevSelectedItem: ListItem;
+	private dropdown: HTMLElement;
+	private dropdownWraper: HTMLElement;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
 	@Input() disabled = false;
+	@Input() appendToBody = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	@ContentChild(AbstractDropdownView) view;
@@ -86,7 +91,7 @@ export class Dropdown implements AfterContentInit {
 
 		Observable.fromEvent(window, "click").subscribe(evt => {
 			if (!this.clickInsideComp && !this.menuIsClosed) {
-				this.menuIsClosed = true;
+				this.closeMenu();
 			}
 
 			this.clickInsideComp = false;
@@ -114,11 +119,11 @@ export class Dropdown implements AfterContentInit {
 	onKeyDown(evt) {
 		if (evt.which === KeyCodes.ESCAPE || (evt.which === KeyCodes.UP_ARROW && evt.altKey)) {
 			evt.preventDefault();
-			this.menuIsClosed = true;
+			this.closeMenu();
 			this.rootButton.nativeElement.focus();
 		} else if (evt.which === KeyCodes.DOWN_ARROW && evt.altKey) {
 			evt.preventDefault();
-			this.menuIsClosed = false;
+			this.openMenu();
 		}
 
 		if (evt.target === this.rootButton.nativeElement
@@ -128,7 +133,7 @@ export class Dropdown implements AfterContentInit {
 		}
 
 		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY) {
-			this.menuIsClosed = true;
+			this.closeMenu();
 		}
 
 		if (this.type === "multi") { return; }
@@ -157,7 +162,7 @@ export class Dropdown implements AfterContentInit {
 	ngAfterContentInit() {
 		this.view.select.subscribe(evt => {
 			if (this.type === "single") {
-				this.menuIsClosed = true;
+				this.closeMenu();
 				this.rootButton.nativeElement.focus();
 			}
 			evt.item.selected = !evt.item.selected;
@@ -180,6 +185,38 @@ export class Dropdown implements AfterContentInit {
 	}
 
 	private openMenu() {
-		this.menuIsClosed = !this.menuIsClosed;
+		this.menuIsClosed = false;
+
+		// move the dropdown list to the body if appendToBody is true
+		// and position it relative to the dropdown wrapper
+		if (this.appendToBody) {
+				this.dropdownWraper = document.createElement("div");
+				this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+				this.dropdownWraper.className = "dropdown-wrapper append-body";
+				this.dropdownWraper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+				this.dropdownWraper.appendChild(this.dropdown);
+				window.document.querySelector("body").appendChild(this.dropdownWraper);
+
+				positionElements(this._elementRef.nativeElement, this.dropdownWraper, "bottom", true, 0, 0);
+		}
+
+	}
+
+	private closeMenu() {
+		this.menuIsClosed = true;
+
+		// move the list back in the component on close
+		if (this.appendToBody) {
+			this._elementRef.nativeElement.appendChild(this.dropdown);
+			window.document.querySelector("body").removeChild(this.dropdownWraper);
+		}
+	}
+
+	private toggleMenu() {
+		if (this.menuIsClosed) {
+			this.openMenu();
+		} else {
+			this.closeMenu();
+		}
 	}
 }

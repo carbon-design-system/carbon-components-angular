@@ -5,6 +5,12 @@
 
 .dropdown-wrapper {
 	position: relative;
+	display: inline-block;
+	width: 100%;
+
+	&.append-body {
+		position: absolute;
+	}
 
 	.dropdown-value {
 		width: 100%;
