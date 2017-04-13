@@ -27,6 +27,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	selector: "cdl-dropdown",
 	template: `
 		<button
+			type="button"
 			#dropdownHost
 			[attr.aria-label]="a11yLabel"
 			[attr.aria-expanded]="!menuIsClosed"
