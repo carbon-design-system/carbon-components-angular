@@ -13,11 +13,15 @@ Then you'll be able to `npm install @neutrino/neutrino` and start importing comp
 #### Quickstart
 - fork peretz-next/neutrino and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run demo:server` to start the demo server
-- add a folder with your component code, styles, tests, and documentation README.md under `src`
-  - follow the [Angular style guide](https://angular.io/styleguide) and [our general component guidelines](https://github.ibm.com/peretz-next/neutrino/wiki/General-component-API-guidelines)
-  - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
-- export your module from `index.ts`
-- add a demo to `./demo/demo_app` (see README.md in that directory for more info)
+- **if you are adding a component**:
+  - add a folder with your component code, styles, tests, and documentation README.md under `src`
+  - export your module from `index.ts`
+  - add a demo to `./demo/demo_app` (see README.md in that directory for more info)
+- **if you are contributing a fix**:
+  - add your fix, update the documentation as needed
+  - consider adding or modifying a test case to cover the fix
+- follow the [Angular style guide](https://angular.io/styleguide) and [our general component guidelines](https://github.ibm.com/peretz-next/neutrino/wiki/General-component-API-guidelines)
+- be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
 - DO NOT change the version number.
 - submit a PR
 
@@ -32,6 +36,22 @@ Then you'll be able to `npm install @neutrino/neutrino` and start importing comp
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
 - DO NOT @mention @peretz-next/Development - we have a bot in ibm-front-end#peretz-next that will let us know
+- [link to code review checklist goes here](#)
+
+#### Issues submission guidelines
+- **One issue per defect** - do not open an issue that spans multiple defects
+- provide a descriptive title that mentions the component and version the issue covers
+- provide 
+  - version(s) affected
+  - a description of the issue
+  - steps taken to produce the issue
+  - expected behaviour
+  - current behaviour
+  - screenshots if needed
+  - relevant code snippets
+  - links to application source code or running demo (including connection/authentication information)
+- add relevant labels (bug, accsibility, design, discussion, feature, etc)
+- if you have a fix to contribute, assign yourself, otherwise leave unassigned
 
 #### npm commands
 To keep our build dependancies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or demo.
