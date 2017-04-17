@@ -8,6 +8,24 @@ Your project should use a module bundler - we recommend [webpack](https://webpac
 
 Then you'll be able to `npm install @neutrino/neutrino` and start importing components and styles.
 
+### Component status
+
+| Component       | Status    |
+| --------------- | --------- |
+| breadcrumbs     | planning  |
+| charts          | planning  |
+| combo box       | planning  |
+| dropdown        | prototype |
+| modal           | prototype |
+| popover         | prototype |
+| forms           | WIP       |
+| side navigation | prototype |
+| table           | prototype |
+| tabs            | prototype |
+| tooltip         | prototype |
+| top navigation  | prototype |
+| tree view       | prototype |
+
 ### Contributing
 
 #### Quickstart
