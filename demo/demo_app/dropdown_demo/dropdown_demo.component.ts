@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms";
 
 @Component({
 	selector: "dropdown-demo",
@@ -111,7 +111,7 @@ import { FormControl, Validators } from "@angular/forms";
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: false</b>
 				<cdl-dropdown
-					[displayValue]="getDisplay(dropdown1)"
+					[displayValue]="getDisplay(dropdown1) || 'Select an option'"
 					[(ngModel)]="dropdown1">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 				</cdl-dropdown>
@@ -122,7 +122,7 @@ import { FormControl, Validators } from "@angular/forms";
 				<b>AppendToBody: true</b>
 				<cdl-dropdown
 					[appendToBody]="true"
-					[displayValue]="getDisplay(dropdown1)"
+					[displayValue]="getDisplay(dropdown1) || 'Select an option'"
 					[(ngModel)]="dropdown1">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 				</cdl-dropdown>
@@ -133,7 +133,7 @@ import { FormControl, Validators } from "@angular/forms";
 		<h3>Default dropdown (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="getDisplay(dropdown1)"
+				[displayValue]="getDisplay(dropdown1) || 'Select an option'"
 				[(ngModel)]="dropdown1">
 				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -168,7 +168,37 @@ import { FormControl, Validators } from "@angular/forms";
 			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
 		</cdl-dropdown>
 		{{ test.value | json }}
+		<br>
 		{{ test.status | json }}
+		<br>
+		<br>
+		<cdl-dropdown
+			[displayValue]="'Select an option'"
+			[formControl]="test2"
+			type="multi">
+			<cdl-dropdown-list [items]="testData2"></cdl-dropdown-list>
+		</cdl-dropdown>
+		{{ test2.value | json }}
+		<br>
+		form
+		<br>
+		<form [formGroup]="testForm" novalidate (ngSubmit)="testSubmit(testForm)">
+			<div formArrayName="tests">
+				<div *ngFor="let testDrop of testForm.controls.tests.controls; let i = index">
+					<div [formGroupName]="i">
+						<cdl-dropdown
+							formControlName="drop"
+							type="multi"
+							[displayValue]="getMultiDisplay(testDrop.value.drop) || 'Select an option'">
+							<cdl-dropdown-list [items]="formitems"></cdl-dropdown-list>
+						</cdl-dropdown>
+						{{ testDrop.value | json }}
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-secondary" (click)="addTestOption()">add</button>
+			<button type="submit" class="btn">submit</button>
+		</form>
 
 		<h3>Default dropdown with custom template</h3>
 		<ng-template #listTpl let-item="item">
@@ -276,33 +306,62 @@ export class DropdownDemo {
 	dropdown2 = [];
 
 	testData = Array.from(this.demoItems1, this.clone);
+	testData2 = Array.from(this.demoItems1, this.clone);
 	test = new FormControl(null, Validators.required);
+	test2 = new FormControl(null, Validators.required);
 
-	constructor() {
+	testForm: FormGroup;
+
+	formitems = [{content: "item one", selected: false}, {content: "item two", selected: false}];
+
+	constructor(private fb: FormBuilder) {
 		let init = this.demoItems8[0];
 		init.selected = true;
 		this.dropdown1 = init;
 		let init2 = this.demoItems2[2];
 		init2.selected = true;
 		this.dropdown2 = [init2];
+
+		// reactive forms
+		this.testForm = this.fb.group({
+			tests: this.fb.array([
+				new FormGroup({
+					drop: new FormControl(),
+				}),
+				new FormGroup({
+					drop: new FormControl(),
+				})
+			])
+		});
+
+		this.testForm.valueChanges.forEach(value => console.log(value));
 	}
+
 	private clone (el) {
 		return JSON.parse(JSON.stringify(el));
+	}
+
+	addTestOption() {
+		let array = this.testForm.get("tests") as FormArray;
+		array.push(new FormGroup({drop: new FormControl}));
+	}
+
+	testSubmit(form) {
+		console.log(form);
 	}
 
 	getDisplay(model) {
 		if (model && model.selected) {
 			return model.content;
 		}
-		return "Select an option";
 	}
 
 	getMultiDisplay(model) {
 		if (model) {
 			return `${model.length} selected`;
 		}
-		return "Select an option";
 	}
+
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
 	}

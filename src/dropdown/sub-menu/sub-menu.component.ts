@@ -57,6 +57,12 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	private flatList: Array<ListItem> = [];
 	private index = -1;
 
+	ngOnChanges(changes) {
+		if (changes.items) {
+			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+		}
+	}
+
 	ngAfterViewInit() {
 		this.listList = this.list.nativeElement.querySelectorAll(".sub-menu-item-wrapper");
 		this.flattenTree(this.items);

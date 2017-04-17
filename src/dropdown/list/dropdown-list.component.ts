@@ -53,6 +53,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	private index = -1;
 	private listList: HTMLElement[];
 
+	ngOnChanges(changes) {
+		if (changes.items) {
+			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+		}
+	}
+
 	ngAfterViewInit() {
 		this.listList = this.list.nativeElement.querySelectorAll("li");
 		this.index = this.items.findIndex(item => item.selected);
