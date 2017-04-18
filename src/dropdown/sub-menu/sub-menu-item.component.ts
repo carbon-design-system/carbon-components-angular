@@ -76,6 +76,15 @@ export class SubMenuItem {
 
 	constructor(public _elementRef: ElementRef) {}
 
+	ngOnChanges(changes) {
+		if (changes.listItem) {
+			this.listItem = Object.assign({}, changes.listItem.currentValue);
+			if (changes.listItem.currentValue.items) {
+				this.listItem.items = changes.listItem.currentValue.items.map(item => Object.assign({}, item));
+			}
+		}
+	}
+
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;
 
