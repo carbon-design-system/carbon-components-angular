@@ -28,6 +28,58 @@ import { Component, OnInit } from "@angular/core";
 
 	<cdl-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</cdl-switch>
 	<cdl-switch disabled="true">Switch disabled</cdl-switch>
+
+
+	<h2>Forms (Label)</h2>
+
+	<cdl-label>
+		<label label>Field small</label>
+		<input type="text" [(ngModel)]="textInput1" class="input-field size-sm">
+	</cdl-label>
+	<p>Text: {{textInput1}}</p>
+
+	<cdl-label>
+		<label label>Field</label>
+		<input type="text" [(ngModel)]="textInput2" class="input-field">
+	</cdl-label>
+	<p>Text: {{textInput2}}</p>
+
+	<cdl-label>
+		<label label>Field large</label>
+		<input type="text" [(ngModel)]="textInput3" class="input-field size-lg">
+	</cdl-label>
+	<p>Text: {{textInput3}}</p>
+
+	<cdl-label>
+		<label label>Field disabled</label>
+		<input type="text" class="input-field" disabled>
+	</cdl-label>
+	<br>
+
+	<cdl-label>
+		<label label>Textarea</label>
+		<textarea [(ngModel)]="textareaText1" class="input-field"></textarea>
+	</cdl-label>
+	<p>Text: {{textareaText1}}</p>
+
+
+	<cdl-label labelState="success">
+		<label label>Field with success</label>
+		<input type="text" class="input-field">
+	</cdl-label>
+	<br>
+
+	<cdl-label labelState="warning">
+		<label label>Field with warning</label>
+		<input type="text" class="input-field">
+	</cdl-label>
+	<br>
+
+	<cdl-label labelState="error">
+		<label label>Field with error</label>
+		<input type="text" class="input-field">
+	</cdl-label>
+	<br>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]
 })
