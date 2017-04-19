@@ -95,3 +95,12 @@
 	width: $modal-overlay-width;
 	z-index: 1000;
 }
+
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="email"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}

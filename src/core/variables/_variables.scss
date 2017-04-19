@@ -449,7 +449,7 @@ $table-checkbox-width:       20px !default;
 
 // modal
 $modal-bg: color("white", 0) !default;
-$modal-wrapper-height: 100vh !default;
+$modal-wrapper-height: calc(100vh - 40px) !default;
 $modal-wrapper-width: 100vw !default;
 $modal-min-height: 153px !default;
 
