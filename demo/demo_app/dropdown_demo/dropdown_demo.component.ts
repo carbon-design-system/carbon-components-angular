@@ -9,21 +9,21 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Default dropdown</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="display1"
-				(select)="onSelectAndDisplay1($event)"
+				[displayValue]="defaultdisplay1 || 'Select an option'"
+				(select)="defaultdisplay1 = getDisplay($event.item)"
 				size="sm">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="display1"
-				(select)="onSelectAndDisplay1($event)">
+				[displayValue]="defaultdisplay2 || 'Select an option'"
+				(select)="defaultdisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="display1"
-				(select)="onSelectAndDisplay1($event)"
+				[displayValue]="defaultdisplay3 || 'Select an option'"
+				(select)="defaultdisplay3 = getDisplay($event.item)"
 				size="lg">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -32,8 +32,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Dropdown with tree</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4"
+				[displayValue]="treedisplay1 || 'Select an option'"
+				(select)="treedisplay1 = getDisplay($event.item)"
 				size="sm">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
@@ -43,8 +43,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4">
+				[displayValue]="treedisplay2 || 'Select an option'"
+				(select)="treedisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
 					[selectedIcon]="false"
@@ -53,8 +53,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4"
+				[displayValue]="treedisplay3 || 'Select an option'"
+				(select)="treedisplay3 = getDisplay($event.item)"
 				size="lg">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
@@ -67,8 +67,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Dropdown with sub menu</h3>
 		<div style="width: 250px">
 			<cdl-dropdown
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)"
+				[displayValue]="subdisplay1 || 'Select an option'"
+				(select)="subdisplay1 = getDisplay($event.item)"
 				size="sm">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -77,8 +77,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)">
+				[displayValue]="subdisplay2 || 'Select an option'"
+				(select)="subdisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
 					[selectedIcon]="false">
@@ -86,8 +86,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)"
+				[displayValue]="subdisplay3 || 'Select an option'"
+				(select)="subdisplay3 = getDisplay($event.item)"
 				size="lg">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -102,7 +102,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			[disabled]="true"
 			(select)="onSelect($event)">
 			<cdl-dropdown-list
-				[items]="demoItems7">
+				[items]="demoItems1">
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
@@ -153,11 +153,11 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Dropdown with multi-select</h3>
 		<cdl-dropdown
-			[displayValue]="display6"
-			(select)="onSelectAndDisplay6($event)"
+			[displayValue]="multidisplay1 || 'Select an option'"
+			(select)="multidisplay1 = getMultiDisplay($event.item)"
 			type="multi">
 			<cdl-dropdown-list
-				[items]="demoItems6">
+				[items]="demoItems1">
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
@@ -216,11 +216,11 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		</ng-template>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="display3"
-				(select)="onSelectAndDisplay3($event)"
+				[displayValue]="customdisplay1 || 'Select an option'"
+				(select)="customdisplay1 = getDisplay($event.item)"
 				type="multi">
 				<cdl-dropdown-list
-					[items]="demoItems3"
+					[items]="demoItems1"
 					[listTpl]="listTpl">
 				</cdl-dropdown-list>
 			</cdl-dropdown>
@@ -228,16 +228,6 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 	`,
 })
 export class DropdownDemo {
-	title = "Tabs Component Demo";
-	itemsSelected = 0;
-	itemsSelected2= 0;
-	display1 = "Select an option";
-	display2 = "Select an option";
-	display3 = "No Items selected";
-	display4 = "Select";
-	display5 = "Select";
-	display6 = "No Items selected";
-
 	demoItems1 = [
 		{
 			content: "item one",
@@ -343,11 +333,11 @@ export class DropdownDemo {
 
 	addTestOption() {
 		let array = this.testForm.get("tests") as FormArray;
-		array.push(new FormGroup({drop: new FormControl}));
+		array.push(new FormGroup({drop: new FormControl()}));
 	}
 
-	testSubmit(form) {
-		console.log(form);
+	testSubmit() {
+		console.log(this.testForm);
 	}
 
 	getDisplay(model) {
@@ -363,64 +353,8 @@ export class DropdownDemo {
 	}
 
 	onSelect(ev) {
+		console.log("this shouldnt fire");
 		ev.item.selected = !ev.item.selected;
 	}
 
-	onSelectAndDisplay1(ev) {
-		if (ev.item.selected) {
-			this.display1 = ev.item.content;
-		} else {
-			this.display1 = "Select an option";
-		}
-	}
-	onSelectAndDisplay2(ev) {
-		if (ev.item.selected) {
-			this.display2 = ev.item.content;
-		} else {
-			this.display2 = "Select an option";
-		}
-	}
-
-	onSelectAndDisplay3(ev) {
-		this.itemsSelected = ev.item.selected ? this.itemsSelected + 1 : this.itemsSelected - 1;
-
-		if (this.itemsSelected === 0) {
-			this.display3 = "No items selected";
-		} else if (this.itemsSelected === 1) {
-			this.display3 = "1 item selected";
-		} else {
-			this.display3 = `${this.itemsSelected} items selected`;
-		}
-	}
-
-	onSelectAndDisplay4(ev) {
-		if (!ev.item.items) {
-			if (ev.item.selected) {
-				this.display4 = ev.item.content;
-			} else {
-				this.display4 = "Select";
-			}
-		}
-	}
-
-	onSelectAndDisplay5(ev) {
-		if (!ev.item.items) {
-			if (ev.item.selected) {
-				this.display5 = ev.item.content;
-			} else {
-				this.display5 = "Select";
-			}
-		}
-	}
-
-	onSelectAndDisplay6(ev) {
-		this.itemsSelected2 = ev.item.selected ? this.itemsSelected2 + 1 : this.itemsSelected2 - 1;
-		if (this.itemsSelected2 === 0) {
-			this.display6 = "No items selected";
-		} else if (this.itemsSelected2 === 1) {
-			this.display6 = "1 item selected";
-		} else {
-			this.display6 = `${this.itemsSelected2} items selected`;
-		}
-	}
 }

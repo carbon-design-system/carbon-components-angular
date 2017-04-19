@@ -29,7 +29,6 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		<button
 			type="button"
 			#dropdownHost
-			[attr.aria-label]="a11yLabel"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			class="dropdown-value size-{{size}}"
@@ -68,11 +67,11 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	]
 })
 export class Dropdown implements AfterContentInit {
-	private clickInsideComp = false;
-	private menuIsClosed = true;
-	private prevSelectedItem: ListItem;
-	private dropdown: HTMLElement;
-	private dropdownWraper: HTMLElement;
+	clickInsideComp = false;
+	menuIsClosed = true;
+	prevSelectedItem: ListItem;
+	dropdown: HTMLElement;
+	dropdownWraper: HTMLElement;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";

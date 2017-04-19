@@ -127,11 +127,11 @@ export class CheckboxComponent implements ControlValueAccessor {
 		// unused for now
 	}
 
-	private onChange(event) {
+	onChange(event) {
 		event.stopPropagation();
 	}
 
-	private onClick(event) {
+	onClick(event) {
 		event.stopPropagation();
 
 		if (!this.disabled) {
@@ -141,7 +141,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 		}
 	}
 
-	private transitionCheckboxState(newState: CheckboxState) {
+	transitionCheckboxState(newState: CheckboxState) {
 		let oldState = this.currentCheckboxState;
 
 		// Indeterminate has to be set always if it's transitioned to
@@ -159,7 +159,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 		this.currentCheckboxState = newState;
 	}
 
-	private emitChangeEvent() {
+	emitChangeEvent() {
 		let event = new CheckboxChange();
 		event.source = this;
 		event.checked = this.checked;
@@ -176,5 +176,5 @@ export class CheckboxComponent implements ControlValueAccessor {
 	}
 
 	// method set in registerOnChange to propagate changes back to the form
-	private propagateChange = (_: any) => {};
+	propagateChange = (_: any) => {};
 }
