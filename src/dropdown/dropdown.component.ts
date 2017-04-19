@@ -113,7 +113,7 @@ export class Dropdown implements AfterContentInit {
 
 	}
 
-	private propagateChange = (_: any) => {};
+	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(evt) {
@@ -184,7 +184,7 @@ export class Dropdown implements AfterContentInit {
 		});
 	}
 
-	private openMenu() {
+	openMenu() {
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if appendToBody is true
@@ -202,7 +202,7 @@ export class Dropdown implements AfterContentInit {
 
 	}
 
-	private closeMenu() {
+	closeMenu() {
 		this.menuIsClosed = true;
 
 		// move the list back in the component on close
@@ -212,7 +212,7 @@ export class Dropdown implements AfterContentInit {
 		}
 	}
 
-	private toggleMenu() {
+	toggleMenu() {
 		if (this.menuIsClosed) {
 			this.openMenu();
 		} else {
