@@ -78,6 +78,7 @@ export class Dropdown implements AfterContentInit {
 	@Input() disabled = false;
 	@Input() appendToBody = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
 	@ContentChild(AbstractDropdownView) view;
 	@ViewChild("dropdownHost") rootButton;
@@ -198,6 +199,7 @@ export class Dropdown implements AfterContentInit {
 
 	closeMenu() {
 		this.menuIsClosed = true;
+		this.onClose.emit();
 
 		// move the list back in the component on close
 		if (this.appendToBody) {
