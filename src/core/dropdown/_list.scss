@@ -14,11 +14,28 @@
 		padding: 7px 20px;
 		height: 30px;
 		margin-bottom: -1px;
+		cursor: pointer;
 		&:hover, &.selected, &:focus {
 			margin: -1px 0;
 			background-color:$listview-hover-bg;
 			position: relative;
-			z-index: 1
+			z-index: 1;
+		}
+
+		.checkbox {
+			display: inline-block;
+			margin-right: 10px;
+		    top: -1px;
+			.size-sm & .label {
+				width: 15px;
+			}
+			.label {
+				width: 20px;
+				background: color("white", 0);
+			}
+			.label:hover:before, input:focus + .label:before, .label:active:before {
+				box-shadow: none;
+			}
 		}
 
 		&.selected {

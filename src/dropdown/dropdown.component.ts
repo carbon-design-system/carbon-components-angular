@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	ViewEncapsulation,
 	ContentChild,
+	OnInit,
 	ViewChild,
 	AfterContentInit,
 	HostListener,
@@ -65,7 +66,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements AfterContentInit {
+export class Dropdown implements OnInit, AfterContentInit {
 	clickInsideComp = false;
 	menuIsClosed = true;
 	prevSelectedItem: ListItem;
@@ -84,6 +85,10 @@ export class Dropdown implements AfterContentInit {
 	@ViewChild("dropdownHost") rootButton;
 
 	constructor(public _elementRef: ElementRef) {}
+
+	ngOnInit() {
+		this.view.type = this.type;
+	}
 
 	ngAfterContentInit() {
 		this.view.select.subscribe(evt => {
