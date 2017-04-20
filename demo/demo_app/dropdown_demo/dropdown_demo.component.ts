@@ -249,7 +249,11 @@ export class DropdownDemo {
 		}
 	];
 
-	demoItems2 = Array.from(this.demoItems1, this.clone);
+	demoItems2 = Array.from(this.demoItems1, this.clone)
+		.concat(Array.from(this.demoItems1, this.clone))
+		.concat(Array.from(this.demoItems1, this.clone))
+		.concat(Array.from(this.demoItems1, this.clone))
+		.concat(Array.from(this.demoItems1, this.clone));
 	demoItems3 = Array.from(this.demoItems1, this.clone);
 	demoItems4 = [
 		{

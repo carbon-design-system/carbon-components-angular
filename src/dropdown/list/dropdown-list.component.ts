@@ -30,9 +30,16 @@ import { ListView } from "./../../list-view/list-view.component";
 					disabled: item.disabled
 				}"
 				class="option">
-				<span
-					*ngIf="checkMark && item.selected"
-					class="checked" aria-hidden="true">
+				<span 
+					class="checkbox" 
+					*ngIf="type === 'multi'">
+					<label>
+						<input 
+							type="checkbox" 
+							[checked]="item.selected"
+							(click)="doClick($event, item)">
+						<span class="label"></span>
+					</label>
 				</span>
 				<span *ngIf="!listTpl">{{item.content}}</span>
 				<ng-template
@@ -47,9 +54,9 @@ import { ListView } from "./../../list-view/list-view.component";
 export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = null;
-	@Input() checkMark: Boolean = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@ViewChild("list") list: ElementRef;
+	public type: "single" | "multi" = "single";
 	private index = -1;
 	private listList: HTMLElement[];
 
