@@ -123,6 +123,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				<cdl-dropdown
 					[appendToBody]="true"
 					[displayValue]="getDisplay(dropdown1) || 'Select an option'"
+					type="multi"
 					[(ngModel)]="dropdown1">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 				</cdl-dropdown>
