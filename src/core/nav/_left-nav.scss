@@ -4,7 +4,7 @@
 
 // Base style
 
-.left-nav{
+.left-nav {
 	width: 260px;
 	height: 100vh;
 	background-color: color("gray", 70);
@@ -14,7 +14,7 @@
 	z-index: 2;
 
 	//nested sub menu items
-	.item-wrapper{
+	.item-wrapper {
 		background-color: color("white", 0);
 		.item {
 			// background: $white;
@@ -48,7 +48,7 @@
 		}
 	}
 
-	.item-level-1{
+	.item-level-1 {
 		border-left: none;
 
 		&.selected > .item{
@@ -71,8 +71,8 @@
 
 	.nest-view .open {
 		cdl-tree-view-item {
-			.item-wrapper{
-				.item{
+			.item-wrapper {
+				.item {
 				background-color: color("white", 0);
 				}
 			}
@@ -80,7 +80,7 @@
 	}
 	@include unselectable;
 
-	&.isOpen{
+	&.isOpen {
 		left:0;
 	}
 
@@ -89,9 +89,9 @@
 	// Accessibility
 	// -------------------------
 
-	.a11y &{
+	.a11y & {
 		border:1px solid color("black", 100);
-		svg{
+		svg {
 			fill: color("black", 100);
 		}
 		.item-level-1 > .item {
@@ -99,10 +99,10 @@
 				fill: color("black", 100);
 			}
 		}
-
-
 	}
-
 }
 
 
+.left-nav-sticky {
+	position: fixed;
+}

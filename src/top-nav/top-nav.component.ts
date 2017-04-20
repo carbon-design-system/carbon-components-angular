@@ -2,7 +2,6 @@ import {
 	Component,
 	Input,
 	Renderer,
-	OnInit,
 	Inject
 } from "@angular/core";
 
@@ -12,7 +11,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 @Component({
 	selector: "cdl-top-nav",
 	template: `
-	<header class="top-nav clearfix" [ngClass]="displayType" role="banner">
+	<header class="top-nav clearfix" [ngClass]="{'top-nav-sticky': sticky}" role="banner">
 		<ng-content select="[hamburger]"></ng-content>
 		<ng-content select="[title]"></ng-content>
 		<ng-content select="[links]"></ng-content>
@@ -30,7 +29,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 	</header>`
 })
 
-export class TopNav implements OnInit {
+export class TopNav {
 	@Input() badge: string;
 	@Input() brand: string;
 	@Input() sticky = false;
@@ -38,10 +37,4 @@ export class TopNav implements OnInit {
 	public displayType = "";
 
 	constructor(@Inject(DOCUMENT) public document, public renderer: Renderer) {}
-
-	ngOnInit() {
-		if (this.sticky) {
-			this.displayType = "top-nav-sticky";
-		}
-	}
 }
