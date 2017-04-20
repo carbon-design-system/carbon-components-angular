@@ -145,6 +145,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<cdl-dropdown
 				[displayValue]="getMultiDisplay(dropdown2)"
 				[(ngModel)]="dropdown2"
+				(onClose)="onClose()"
 				type="multi">
 				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -329,6 +330,10 @@ export class DropdownDemo {
 
 	private clone (el) {
 		return JSON.parse(JSON.stringify(el));
+	}
+
+	onClose() {
+		// handle on dropdown close event
 	}
 
 	addTestOption() {
