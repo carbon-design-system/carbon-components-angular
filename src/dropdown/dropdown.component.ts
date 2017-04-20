@@ -8,7 +8,6 @@ import {
 	ContentChild,
 	ViewChild,
 	AfterContentInit,
-	AfterViewInit,
 	HostListener,
 	forwardRef
 } from "@angular/core";
@@ -84,20 +83,31 @@ export class Dropdown implements AfterContentInit {
 	@ContentChild(AbstractDropdownView) view;
 	@ViewChild("dropdownHost") rootButton;
 
-	constructor(public _elementRef: ElementRef) {
-		// Check for click event outside of the component
-		Observable.fromEvent(_elementRef.nativeElement, "click").subscribe(evt => {
-			this.clickInsideComp = true;
-		});
+	constructor(public _elementRef: ElementRef) {}
 
-		Observable.fromEvent(window, "click").subscribe(evt => {
-			if (!this.clickInsideComp && !this.menuIsClosed) {
+	ngAfterContentInit() {
+		this.view.select.subscribe(evt => {
+			if (this.type === "single") {
 				this.closeMenu();
+				this.rootButton.nativeElement.focus();
+			}
+			evt.item.selected = !evt.item.selected;
+			if (this.type === "single" && this.prevSelectedItem && evt.item !== this.prevSelectedItem) {
+				this.prevSelectedItem.selected = false;
 			}
 
-			this.clickInsideComp = false;
+			this.prevSelectedItem = evt.item;
+			if (this.type === "multi") {
+				this.propagateChange(this.view.getSelected());
+			} else {
+				if (evt.item.selected) {
+					this.propagateChange(evt.item);
+				} else {
+					this.propagateChange(null);
+				}
+			}
+			this.select.emit(evt);
 		});
-		// End check for click event outside of the component
 	}
 
 	writeValue(value: any) {
@@ -160,33 +170,19 @@ export class Dropdown implements AfterContentInit {
 		}
 	}
 
-	ngAfterContentInit() {
-		this.view.select.subscribe(evt => {
-			if (this.type === "single") {
-				this.closeMenu();
-				this.rootButton.nativeElement.focus();
-			}
-			evt.item.selected = !evt.item.selected;
-			if (this.type === "single" && this.prevSelectedItem && evt.item !== this.prevSelectedItem) {
-				this.prevSelectedItem.selected = false;
-			}
-
-			this.prevSelectedItem = evt.item;
-			if (this.type === "multi") {
-				this.propagateChange(this.view.getSelected());
-			} else {
-				if (evt.item.selected) {
-					this.propagateChange(evt.item);
-				} else {
-					this.propagateChange(null);
-				}
-			}
-			this.select.emit(evt);
-		});
-	}
-
 	openMenu() {
 		this.menuIsClosed = false;
+		let outsideClick = (ev) => {
+			if (!(this._elementRef.nativeElement.contains(ev.target))) {
+				ev.stopPropagation();
+				this.closeMenu();
+				document.body.firstElementChild.removeEventListener("click", outsideClick);
+			}
+		};
+		// we bind to document.body.firstElementChild due to safari not firing events
+		// from docuemnt or body
+		document.body.firstElementChild.addEventListener("click", outsideClick);
+
 
 		// move the dropdown list to the body if appendToBody is true
 		// and position it relative to the dropdown wrapper
@@ -197,10 +193,8 @@ export class Dropdown implements AfterContentInit {
 				this.dropdownWraper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
 				this.dropdownWraper.appendChild(this.dropdown);
 				window.document.querySelector("body").appendChild(this.dropdownWraper);
-
 				positionElements(this._elementRef.nativeElement, this.dropdownWraper, "bottom", true, 0, 0);
 		}
-
 	}
 
 	closeMenu() {
