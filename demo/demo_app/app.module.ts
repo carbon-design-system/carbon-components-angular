@@ -10,28 +10,28 @@ import { HomeComponent } from "./home.component";
 import { RouterModule } from "@angular/router";
 
 // demo imports
-import { TableDemo } from "./table_demo/table-demo.component";
+import { AlertCustom } from "./alert_demo/alert-demo-custom";
+import { AlertDemo } from "./alert_demo/alert-demo-component";
+// import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
+import { ChartsDemo } from "./charts_demo/charts-demo.component";
 import { CoreDemo } from "./core_demo/core-demo.component";
+// import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
+import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
+import { ErrorModalComponent } from "./modal_demo/error-modal.component";
+import { FormModalComponent } from "./modal_demo/form-modal.component";
 import { FormsDemo } from "./forms_demo/forms-demo.component";
 import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
-import { PopoverDemo } from "./popover_demo/popover-demo.component";
-import { TabsDemo } from "./tabs_demo/tabs_demo.component";
 import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
-import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
+import { ModalDemo } from "./modal_demo/modal-demo.component";
+import { PopoverDemo } from "./popover_demo/popover-demo.component";
+import { SampleModalComponent } from "./modal_demo/sample-modal.component";
+import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
+import { TableDemo } from "./table_demo/table-demo.component";
+import { TabsDemo } from "./tabs_demo/tabs_demo.component";
+import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
 import { TreeViewDemo } from "./tree_view_demo/tree-view-demo.component";
-import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
-import { ModalDemo } from "./modal_demo/modal-demo.component";
-import { SampleModalComponent } from "./modal_demo/sample-modal.component";
-import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { XLModalComponent } from "./modal_demo/extra-large.component";
-import { FormModalComponent } from "./modal_demo/form-modal.component";
-import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
-import { AlertDemo } from "./alert_demo/alert-demo-component";
-import { AlertCustom } from "./alert_demo/alert-demo-custom";
-import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
-import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
-import { ChartsDemo } from "./charts_demo/charts-demo.component";
 
 // component imports
 import {
@@ -48,9 +48,9 @@ import {
 	ModalModule,
 	AlertModule,
 	AlertService,
-	CalendarModule,
+	// CalendarModule,
 	CDLFormsModule,
-	DatepickerModule,
+	// DatepickerModule,
 	ChartsModule
 } from "./../../src";
 
@@ -79,8 +79,8 @@ import {
 		TooltipDemo,
 		AlertDemo,
 		AlertCustom,
-		CalendarDemo,
-		DatepickerDemo,
+		// CalendarDemo,
+		// DatepickerDemo,
 		ChartsDemo
 	],
 	entryComponents: [
@@ -106,9 +106,9 @@ import {
 		SideNavModule,
 		ModalModule,
 		AlertModule,
-		CalendarModule,
+		// CalendarModule,
 		CDLFormsModule,
-		DatepickerModule,
+		// DatepickerModule,
 		ChartsModule,
 		RouterModule.forRoot([
 			{
@@ -171,14 +171,14 @@ import {
 				path: "alert",
 				component: AlertDemo
 			},
-			{
+			/*{
 				path: "calendar",
 				component: CalendarDemo
 			},
 			{
 				path: "datepicker",
 				component: DatepickerDemo
-			},
+			},*/
 			{
 				path: "charts",
 				component: ChartsDemo

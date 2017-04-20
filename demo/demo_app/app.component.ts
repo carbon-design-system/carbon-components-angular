@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
 			link: "/alert",
 			selected: false
 		},
-		{
+		/*{
 			content: "Calendar Demo",
 			link: "/calendar",
 			selected: false
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
 			content: "Datepicker Demo",
 			link: "/datepicker",
 			selected: false
-		},
+		},*/
 		{
 			content: "Charts Demo",
 			link: "/charts",

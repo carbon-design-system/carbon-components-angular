@@ -29,7 +29,6 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		<button
 			type="button"
 			#dropdownHost
-			[attr.aria-label]="a11yLabel"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			class="dropdown-value size-{{size}}"
@@ -68,11 +67,11 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	]
 })
 export class Dropdown implements AfterContentInit {
-	private clickInsideComp = false;
-	private menuIsClosed = true;
-	private prevSelectedItem: ListItem;
-	private dropdown: HTMLElement;
-	private dropdownWraper: HTMLElement;
+	clickInsideComp = false;
+	menuIsClosed = true;
+	prevSelectedItem: ListItem;
+	dropdown: HTMLElement;
+	dropdownWraper: HTMLElement;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
@@ -114,7 +113,7 @@ export class Dropdown implements AfterContentInit {
 
 	}
 
-	private propagateChange = (_: any) => {};
+	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(evt) {
@@ -185,7 +184,7 @@ export class Dropdown implements AfterContentInit {
 		});
 	}
 
-	private openMenu() {
+	openMenu() {
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if appendToBody is true
@@ -203,7 +202,7 @@ export class Dropdown implements AfterContentInit {
 
 	}
 
-	private closeMenu() {
+	closeMenu() {
 		this.menuIsClosed = true;
 
 		// move the list back in the component on close
@@ -213,7 +212,7 @@ export class Dropdown implements AfterContentInit {
 		}
 	}
 
-	private toggleMenu() {
+	toggleMenu() {
 		if (this.menuIsClosed) {
 			this.openMenu();
 		} else {

@@ -104,7 +104,7 @@ export class TreeItem {
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
-	calculateIndent(border) {
+	calculateIndent() {
 		if (this.indentStart <= this.indent) {
 			return this.elemSpacing * (this.indent - this.indentStart);
 		}
