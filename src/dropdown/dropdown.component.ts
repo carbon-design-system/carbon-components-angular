@@ -171,7 +171,7 @@ export class Dropdown implements AfterContentInit {
 	}
 
 	openMenu() {
-		this.menuIsClosed = false; 
+		this.menuIsClosed = false;
 		let outsideClick = (ev) => {
 			if (!(this._elementRef.nativeElement.contains(ev.target))) {
 				ev.stopPropagation();
