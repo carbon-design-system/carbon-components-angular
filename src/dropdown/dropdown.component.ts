@@ -177,16 +177,19 @@ export class Dropdown implements OnInit, AfterContentInit {
 
 	openMenu() {
 		this.menuIsClosed = false;
+		let noop = () => {};
 		let outsideClick = (ev) => {
 			if (!(this._elementRef.nativeElement.contains(ev.target))) {
 				ev.stopPropagation();
 				this.closeMenu();
-				document.body.firstElementChild.removeEventListener("click", outsideClick);
+				document.body.firstElementChild.removeEventListener("click", noop);
+				document.removeEventListener("click", outsideClick);
 			}
 		};
-		// we bind to document.body.firstElementChild due to safari not firing events
-		// from docuemnt or body
-		document.body.firstElementChild.addEventListener("click", outsideClick);
+		// we bind noop to document.body.firstElementChild to allow safari to fire events
+		// from document. Then we unbind everything later to keep things light.
+		document.body.firstElementChild.addEventListener("click", noop);
+		document.addEventListener("click", outsideClick);
 
 
 		// move the dropdown list to the body if appendToBody is true
