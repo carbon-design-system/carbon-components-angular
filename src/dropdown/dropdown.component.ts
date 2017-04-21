@@ -67,11 +67,10 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	]
 })
 export class Dropdown implements OnInit, AfterContentInit {
-	clickInsideComp = false;
 	menuIsClosed = true;
 	prevSelectedItem: ListItem;
 	dropdown: HTMLElement;
-	dropdownWraper: HTMLElement;
+	dropdownWrapper: HTMLElement;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
@@ -177,9 +176,26 @@ export class Dropdown implements OnInit, AfterContentInit {
 
 	openMenu() {
 		this.menuIsClosed = false;
+
+		// move the dropdown list to the body if appendToBody is true
+		// and position it relative to the dropdown wrapper
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+		if (this.appendToBody) {
+				this.dropdownWrapper = document.createElement("div");
+				this.dropdownWrapper.className = "dropdown-wrapper append-body";
+				this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+				this.dropdownWrapper.appendChild(this.dropdown);
+				window.document.querySelector("body").appendChild(this.dropdownWrapper);
+				positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+		}
+
+
 		let noop = () => {};
 		let outsideClick = (ev) => {
-			if (!(this._elementRef.nativeElement.contains(ev.target))) {
+			if (!this._elementRef.nativeElement.contains(ev.target) &&
+				// if we're appendToBody the list isn't within the _elementRef,
+				// so we've got to check if our target is possibly in there too.
+				!this.dropdown.contains(ev.target)) {
 				ev.stopPropagation();
 				this.closeMenu();
 				document.body.firstElementChild.removeEventListener("click", noop);
@@ -190,19 +206,6 @@ export class Dropdown implements OnInit, AfterContentInit {
 		// from document. Then we unbind everything later to keep things light.
 		document.body.firstElementChild.addEventListener("click", noop);
 		document.addEventListener("click", outsideClick);
-
-
-		// move the dropdown list to the body if appendToBody is true
-		// and position it relative to the dropdown wrapper
-		if (this.appendToBody) {
-				this.dropdownWraper = document.createElement("div");
-				this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
-				this.dropdownWraper.className = "dropdown-wrapper append-body";
-				this.dropdownWraper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
-				this.dropdownWraper.appendChild(this.dropdown);
-				window.document.querySelector("body").appendChild(this.dropdownWraper);
-				positionElements(this._elementRef.nativeElement, this.dropdownWraper, "bottom", true, 0, 0);
-		}
 	}
 
 	closeMenu() {
@@ -212,7 +215,7 @@ export class Dropdown implements OnInit, AfterContentInit {
 		// move the list back in the component on close
 		if (this.appendToBody) {
 			this._elementRef.nativeElement.appendChild(this.dropdown);
-			window.document.querySelector("body").removeChild(this.dropdownWraper);
+			window.document.querySelector("body").removeChild(this.dropdownWrapper);
 		}
 	}
 
