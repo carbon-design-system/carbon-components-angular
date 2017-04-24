@@ -131,6 +131,10 @@ export class DropdownSubMenu implements AbstractDropdownView {
 		return selected;
 	}
 
+	propagateSelected(value: Array<ListItem>): void {
+	}
+
+
 	onClick(evt) {
 		let item = evt.item;
 		this.index = this.flatList.indexOf(item);

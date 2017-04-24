@@ -9,6 +9,7 @@ import {
 	OnInit,
 	ViewChild,
 	AfterContentInit,
+	AfterViewInit,
 	HostListener,
 	forwardRef
 } from "@angular/core";
@@ -66,11 +67,14 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit {
+export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 	menuIsClosed = true;
-	prevSelectedItem: ListItem;
 	dropdown: HTMLElement;
 	dropdownWrapper: HTMLElement;
+	// .bind creates a new function, so we decalre the methods below
+	// but .bind them up here
+	noop = this._noop.bind(this);
+	outsideClick = this._outsideClick.bind(this);
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
@@ -90,17 +94,12 @@ export class Dropdown implements OnInit, AfterContentInit {
 	}
 
 	ngAfterContentInit() {
+		this.view.type = this.type;
 		this.view.select.subscribe(evt => {
 			if (this.type === "single") {
 				this.closeMenu();
 				this.rootButton.nativeElement.focus();
 			}
-			evt.item.selected = !evt.item.selected;
-			if (this.type === "single" && this.prevSelectedItem && evt.item !== this.prevSelectedItem) {
-				this.prevSelectedItem.selected = false;
-			}
-
-			this.prevSelectedItem = evt.item;
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
 			} else {
@@ -114,9 +113,18 @@ export class Dropdown implements OnInit, AfterContentInit {
 		});
 	}
 
+	ngAfterViewInit() {
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+	}
+
 	writeValue(value: any) {
-		if (this.type === "single") {
-			this.prevSelectedItem = value;
+		if (value) {
+			console.log("write", value);
+			if (this.type === "single") {
+				this.view.propagateSelected([value]);
+			} else {
+				this.view.propagateSelected(value);
+			}
 		}
 	}
 
@@ -174,38 +182,35 @@ export class Dropdown implements OnInit, AfterContentInit {
 		}
 	}
 
+	_noop() {}
+	_outsideClick(ev) {
+		if (!this._elementRef.nativeElement.contains(ev.target) &&
+			// if we're appendToBody the list isn't within the _elementRef,
+			// so we've got to check if our target is possibly in there too.
+			!this.dropdown.contains(ev.target)) {
+			ev.stopPropagation();
+			this.closeMenu();
+		}
+	}
+
 	openMenu() {
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if appendToBody is true
 		// and position it relative to the dropdown wrapper
-		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 		if (this.appendToBody) {
-				this.dropdownWrapper = document.createElement("div");
-				this.dropdownWrapper.className = "dropdown-wrapper append-body";
-				this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
-				this.dropdownWrapper.appendChild(this.dropdown);
-				window.document.querySelector("body").appendChild(this.dropdownWrapper);
-				positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+			this.dropdownWrapper = document.createElement("div");
+			this.dropdownWrapper.className = "dropdown-wrapper append-body";
+			this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+			this.dropdownWrapper.appendChild(this.dropdown);
+			window.document.querySelector("body").appendChild(this.dropdownWrapper);
+			positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
 		}
 
-
-		let noop = () => {};
-		let outsideClick = (ev) => {
-			if (!this._elementRef.nativeElement.contains(ev.target) &&
-				// if we're appendToBody the list isn't within the _elementRef,
-				// so we've got to check if our target is possibly in there too.
-				!this.dropdown.contains(ev.target)) {
-				ev.stopPropagation();
-				this.closeMenu();
-				document.body.firstElementChild.removeEventListener("click", noop);
-				document.removeEventListener("click", outsideClick);
-			}
-		};
 		// we bind noop to document.body.firstElementChild to allow safari to fire events
 		// from document. Then we unbind everything later to keep things light.
-		document.body.firstElementChild.addEventListener("click", noop);
-		document.addEventListener("click", outsideClick);
+		document.body.firstElementChild.addEventListener("click", this.noop, true);
+		document.addEventListener("click", this.outsideClick, true);
 	}
 
 	closeMenu() {
@@ -217,6 +222,8 @@ export class Dropdown implements OnInit, AfterContentInit {
 			this._elementRef.nativeElement.appendChild(this.dropdown);
 			window.document.querySelector("body").removeChild(this.dropdownWrapper);
 		}
+		document.body.firstElementChild.removeEventListener("click", this.noop, true);
+		document.removeEventListener("click", this.outsideClick, true);
 	}
 
 	toggleMenu() {
