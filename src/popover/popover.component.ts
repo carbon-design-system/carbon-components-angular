@@ -7,13 +7,15 @@ import {
 	AfterViewInit,
 	Injector,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 import { positionElements } from "../common/position.service";
+import { KeyCodes } from "../constant/keys";
 
 @Component({
 	selector: "cdl-popover",
@@ -50,7 +52,7 @@ import { positionElements } from "../common/position.service";
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
 		`,
-	host: {"class": "popover-wrapper"}
+	host: {"class": "popover-wrapper"},
 })
 export class Popover implements OnInit, AfterViewInit {
 	public offsetTop = 48; // 40px heading + 8px triangle
@@ -59,6 +61,20 @@ export class Popover implements OnInit, AfterViewInit {
 	@Input() popoverConfig;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
+
+	@HostListener("window:keydown", ["$event"])
+	escapeClose(event: KeyboardEvent) {
+		if (event.keyCode === KeyCodes.ESCAPE) {
+			this.onClose();
+		}
+	}
+
+	@HostListener("document:click", ["$event"])
+	clickClose(event: MouseEvent) {
+		if (!this.elementRef.nativeElement.contains(event.target) && !this.popoverConfig.parentRef.nativeElement.contains(event.target) ) {
+			this.onClose();
+		}
+	}
 
 	constructor(public elementRef: ElementRef) {}
 
@@ -97,4 +113,5 @@ export class Popover implements OnInit, AfterViewInit {
 	public onClose() {
 		this.close.emit();
 	}
+
 }
