@@ -19,7 +19,7 @@ import { ListView } from "./../../list-view/list-view.component";
 @Component({
 	selector: "cdl-dropdown-list",
 	template: `
-		<ul #list class="list">
+		<ul #list class="list" role="listbox">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
 				*ngFor="let item of items"
@@ -151,11 +151,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			ev.preventDefault();
 			this.doClick(ev, item);
 		} else if (ev.which === KeyCodes.DOWN_ARROW || ev.which === KeyCodes.UP_ARROW) {
+			ev.preventDefault();
 			if (ev.which === KeyCodes.DOWN_ARROW && findNextElem(ev.target)) {
-				ev.preventDefault();
 				findNextElem(ev.target).focus();
 			} else if (ev.which === KeyCodes.UP_ARROW && findPrevElem(ev.target)) {
-				ev.preventDefault();
 				findPrevElem(ev.target).focus();
 			}
 			if (ev.shiftKey) {

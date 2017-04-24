@@ -17,6 +17,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
+import "rxjs/add/operator/throttleTime";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { positionElements } from "../common/position.service";
@@ -75,6 +76,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 	// but .bind them up here
 	noop = this._noop.bind(this);
 	outsideClick = this._outsideClick.bind(this);
+	keyboardNav = this._keyboardNav.bind(this);
+	resize;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
@@ -152,7 +155,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 		if (evt.target === this.rootButton.nativeElement
 			&& !this.menuIsClosed
 			&& evt.which === KeyCodes.DOWN_ARROW) {
-			focusNextElem(evt.target);
+			evt.preventDefault();
+			let firstElem = this.dropdown.querySelector("[tabindex='0']");
+			if (firstElem) { firstElem["focus"](); }
 		}
 
 		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY) {
@@ -192,6 +197,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 			this.closeMenu();
 		}
 	}
+	_keyboardNav(ev) {
+		if (ev.which === KeyCodes.ESCAPE || (ev.which === KeyCodes.UP_ARROW && ev.altKey)) {
+			ev.preventDefault();
+			this.closeMenu();
+			this.rootButton.nativeElement.focus();
+		} else if (!this.menuIsClosed && ev.which === KeyCodes.TAB_KEY) {
+			// this way focus will start on the next focusable item from the dropdown
+			// not the top of the body!
+			this.rootButton.nativeElement.focus();
+			this.rootButton.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
+			this.closeMenu();
+		}
+	}
 
 	openMenu() {
 		this.menuIsClosed = false;
@@ -205,6 +223,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 			this.dropdownWrapper.appendChild(this.dropdown);
 			window.document.querySelector("body").appendChild(this.dropdownWrapper);
 			positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+			this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
+			this.resize = Observable.fromEvent(window, "resize")
+				.throttleTime(100)
+				.subscribe(() => {
+					positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+				});
 		}
 
 		// we bind noop to document.body.firstElementChild to allow safari to fire events
@@ -221,6 +245,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 		if (this.appendToBody) {
 			this._elementRef.nativeElement.appendChild(this.dropdown);
 			window.document.querySelector("body").removeChild(this.dropdownWrapper);
+			this.resize.unsubscribe();
+			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
