@@ -29,9 +29,16 @@
 		}
 		.close-icon{
 			float: right;
-			padding: 0;
+			border: 1px solid rgba(0,0,0,0); // invisible border to compensate shift
+			padding: 3px;
 			svg{
 				fill: color("white", 0);
+			}
+			&:hover{
+				border: 1px solid color("gray",50);
+			}
+			&:focus{
+				border: 1px solid color("gray",50);
 			}
 		}
 	}
