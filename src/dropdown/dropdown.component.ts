@@ -68,7 +68,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
+export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	menuIsClosed = true;
 	dropdown: HTMLElement;
 	dropdownWrapper: HTMLElement;
@@ -193,7 +193,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit{
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
 			!this.dropdown.contains(ev.target)) {
-			ev.stopPropagation();
 			this.closeMenu();
 		}
 	}

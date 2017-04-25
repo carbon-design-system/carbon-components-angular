@@ -122,7 +122,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		}
 		return selected;
 	}
-	
+
 	propagateSelected(value: Array<ListItem>): void {
 		for (let newItem of value) {
 			// copy the item
@@ -134,11 +134,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			for (let oldItem of this.items) {
 				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 				delete tempOldItem.selected;
-				tempOldItem= JSON.stringify(tempOldItem);
+				tempOldItem = JSON.stringify(tempOldItem);
 				// do the compare
 				if (tempOldItem.includes(tempNewItem)) {
 					// oldItem = Object.assign(oldItem, newItem);
-					oldItem.selected = newItem.selected
+					oldItem.selected = newItem.selected;
 				} else {
 					oldItem.selected = false;
 				}

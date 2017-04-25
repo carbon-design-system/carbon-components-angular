@@ -48,7 +48,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				</span>
 			</div>
 		</div>
-		<cdl-dropdown-sub-menu
+		<cdl-sub-menu-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
@@ -58,7 +58,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[selectedIcon]="selectedIcon"
 			[role]="'group'"
 			[parent]="parent">
-		</cdl-dropdown-sub-menu>
+		</cdl-sub-menu-wrapper>
 	`
 })
 export class SubMenuItem {
@@ -75,15 +75,6 @@ export class SubMenuItem {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
-
-	ngOnChanges(changes) {
-		if (changes.listItem) {
-			this.listItem = Object.assign({}, changes.listItem.currentValue);
-			if (changes.listItem.currentValue.items) {
-				this.listItem.items = changes.listItem.currentValue.items.map(item => Object.assign({}, item));
-			}
-		}
-	}
 
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;
