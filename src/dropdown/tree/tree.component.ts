@@ -146,21 +146,22 @@ export class DropdownTree implements AbstractDropdownView {
 		}
 	}
 
-
+	// this and a few other functions are super common between
+	// submenu and tree ... maybe we can dedupe?
 	onClick({item}) {
 		item.selected = !item.selected;
 		this.index = this.flatList.indexOf(item);
 		// find the path to the item we want to select
-		function find(items, item, path = []) {
+		function find(items, itemToFind, path = []) {
 			let found;
 			for (let i of items) {
-				if (i === item) {
+				if (i === itemToFind) {
 					path.push(i);
 					found = i;
 				}
 				if (i.items && !found) {
 					path.push(i);
-					found = find(i.items, item, path).found;
+					found = find(i.items, itemToFind, path).found;
 					if (!found) { path = []; }
 				}
 			}
