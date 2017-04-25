@@ -111,23 +111,25 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: false</b>
 				<cdl-dropdown
-					[displayValue]="getDisplay(dropdown1) || 'Select an option'"
-					[(ngModel)]="dropdown1">
+					[displayValue]="getMultiDisplay(dropdown3) || 'Select an option'"
+					[(ngModel)]="dropdown3"
+					type="multi">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 				</cdl-dropdown>
-				{{ dropdown1 | json }}
+				{{ dropdown3 | json }}
 			</div>
 
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: true</b>
 				<cdl-dropdown
 					[appendToBody]="true"
-					[displayValue]="getDisplay(dropdown1) || 'Select an option'"
+					[displayValue]="getMultiDisplay(dropdown3) || 'Select an option'"
 					type="multi"
-					[(ngModel)]="dropdown1">
+					[(ngModel)]="dropdown3">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 				</cdl-dropdown>
-				{{ dropdown1 | json }}
+				{{ dropdown3 | json }}
+				<button class="btn" (click)="reset(dropdown3)">reset selected</button>
 			</div>
 		</div>
 
@@ -140,6 +142,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			{{ dropdown1 | json }}
 		</div>
+		<button (click)="reset2()" class="btn">reset</button>
 
 		<h3>Dropdown with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
@@ -298,8 +301,9 @@ export class DropdownDemo {
 	demoItems6 = Array.from(this.demoItems1, this.clone);
 	demoItems7 = Array.from(this.demoItems1, this.clone);
 	demoItems8 = Array.from(this.demoItems1, this.clone);
-	dropdown1 = {};
+	dropdown1 = null;
 	dropdown2 = [];
+	dropdown3 = [];
 
 	testData = Array.from(this.demoItems1, this.clone);
 	testData2 = Array.from(this.demoItems1, this.clone);
@@ -311,9 +315,9 @@ export class DropdownDemo {
 	formitems = [{content: "item one", selected: false}, {content: "item two", selected: false}];
 
 	constructor(private fb: FormBuilder) {
-		let init = this.demoItems8[0];
-		init.selected = true;
-		this.dropdown1 = init;
+		// let init = this.demoItems8[0];
+		// init.selected = true;
+		// this.dropdown1 = init;
 		let init2 = this.demoItems2[2];
 		init2.selected = true;
 		this.dropdown2 = [init2];
@@ -331,6 +335,21 @@ export class DropdownDemo {
 		});
 
 		this.testForm.valueChanges.forEach(value => console.log(value));
+	}
+
+	reset(model) {
+		console.log(model);
+		this.dropdown3 = [{
+			content: "item one",
+			selected: true
+		}];
+	}
+
+	reset2() {
+		this.dropdown1 = {
+			content: "item one",
+			selected: true
+		};
 	}
 
 	private clone (el) {

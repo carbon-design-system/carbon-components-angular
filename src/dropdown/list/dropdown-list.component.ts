@@ -19,7 +19,7 @@ import { ListView } from "./../../list-view/list-view.component";
 @Component({
 	selector: "cdl-dropdown-list",
 	template: `
-		<ul #list class="list">
+		<ul #list class="list" role="listbox">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
 				*ngFor="let item of items"
@@ -123,16 +123,38 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		return selected;
 	}
 
+	propagateSelected(value: Array<ListItem>): void {
+		for (let newItem of value) {
+			// copy the item
+			let tempNewItem: string | ListItem = Object.assign({}, newItem);
+			// deleted selected because it's what we _want_ to change
+			delete tempNewItem.selected;
+			// stringify for compare
+			tempNewItem = JSON.stringify(tempNewItem);
+			for (let oldItem of this.items) {
+				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
+				delete tempOldItem.selected;
+				tempOldItem = JSON.stringify(tempOldItem);
+				// do the compare
+				if (tempOldItem.includes(tempNewItem)) {
+					// oldItem = Object.assign(oldItem, newItem);
+					oldItem.selected = newItem.selected;
+				} else {
+					oldItem.selected = false;
+				}
+			}
+		}
+	}
+
 	doKeyDown(ev, item) {
 		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
 			ev.preventDefault();
 			this.doClick(ev, item);
 		} else if (ev.which === KeyCodes.DOWN_ARROW || ev.which === KeyCodes.UP_ARROW) {
+			ev.preventDefault();
 			if (ev.which === KeyCodes.DOWN_ARROW && findNextElem(ev.target)) {
-				ev.preventDefault();
 				findNextElem(ev.target).focus();
 			} else if (ev.which === KeyCodes.UP_ARROW && findPrevElem(ev.target)) {
-				ev.preventDefault();
 				findPrevElem(ev.target).focus();
 			}
 			if (ev.shiftKey) {
@@ -142,6 +164,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	doClick(ev, item) {
+		item.selected = !item.selected;
+		if (this.type === "single") {
+			// reset the selection
+			for (let otherItem of this.items) {
+				if (item !== otherItem) { otherItem.selected = false; }
+			}
+		}
 		this.index = this.items.indexOf(item);
 		if (!item.disabled) {
 			this.select.emit({item});

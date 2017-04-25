@@ -6,7 +6,6 @@ import {
 	forwardRef,
 	TemplateRef,
 	ElementRef,
-	ViewChild,
 	AfterViewInit
 } from "@angular/core";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
@@ -16,61 +15,50 @@ import { TreeItem } from "./tree-item.component";
 @Component({
 	selector: "cdl-dropdown-tree",
 	template: `
-		<ul #list class="tree"
-			[class.open]="isOpen"
-			[attr.role]="role"
-			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
-			[attr.aria-label]="label">
-			<li *ngFor="let item of items">
-				<cdl-tree-item
-					[listTpl]="listTpl"
-					[listItem]="item"
-					[hasSubMenu]="!!item.items"
-					[parentRef]="parent"
-					[rootElem]="rootElem"
-					[selectedIcon]="selectedIcon"
-					(select)="onClick($event)"
-					[indent]="indent"
-					[indentStart]="indentStart"
-					[elemSpacing]="elemSpacing">
-				</cdl-tree-item>
-			</li>
-		</ul>
+		<cdl-tree-wrapper
+			[items]="items"
+			[listTpl]="listTpl"
+			[selectedIcon]="selectedIcon"
+			[elemSpacing]="elemSpacing"
+			[label]="label"
+			[role]="role"
+			(select)="onClick($event)">
+		</cdl-tree-wrapper>
 	`,
 	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownTree)}]
 })
 export class DropdownTree implements AbstractDropdownView {
 	@Input() items: Array<ListItem> = [];
-	@Input() isOpen = false;
-	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent = 1;
-	@Input() indentStart = 0;
-	@Input() rootElem: any = null;
 	@Input() selectedIcon = true;
-	@Input() role: "tree" | "group" = "tree" ;
+	@Input() role: "tree" | "group" = "tree";
 	@Input() label: string;
 	@Input() elemSpacing = 40;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	@ViewChild("list") list: ElementRef;
 	public type: "single" | "multi" = "single";
 
 	private listList: HTMLElement[];
 	private flatList: Array<ListItem> = [];
 	private index = -1;
 
+	constructor(public _elementRef: ElementRef) {}
+
 	ngOnChanges(changes) {
 		if (changes.items) {
-			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+			this.items = JSON.parse(JSON.stringify(changes.items.currentValue));
+			this.flatList = [];
+			this.flattenTree(this.items);
+			this.index = this.flatList.findIndex(item => item.selected && !item.items);
+			if (this._elementRef) {
+				this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
+			}
 		}
 	}
 
 	ngAfterViewInit() {
-		this.listList = this.list.nativeElement.querySelectorAll(".item-wrapper");
-		this.flattenTree(this.items);
-		this.index = this.flatList.findIndex(item => item.selected && !item.items);
+		this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
 	}
 
 	flattenTree(items) {
@@ -99,6 +87,7 @@ export class DropdownTree implements AbstractDropdownView {
 		let elem = this.listList[this.index];
 		let item = this.flatList[this.index];
 		if (item.disabled || item.items) {
+			if (item.items) { item.selected = true; }
 			return this.getNextElement();
 		}
 		return elem;
@@ -134,15 +123,63 @@ export class DropdownTree implements AbstractDropdownView {
 		return selected;
 	}
 
-	onClick(evt) {
-		let item = evt.item;
-		this.index = this.flatList.indexOf(item);
-		if (!item.disabled) {
-			if (item.items) {
-				item.selected = !item.selected;
-			} else {
-				this.select.emit({item});
+	propagateSelected(value: Array<ListItem>): void {
+		for (let newItem of value) {
+			// copy the item
+			let tempNewItem: string | ListItem = Object.assign({}, newItem);
+			// deleted selected because it's what we _want_ to change
+			delete tempNewItem.selected;
+			// stringify for compare
+			tempNewItem = JSON.stringify(tempNewItem);
+			for (let oldItem of this.flatList) {
+				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
+				delete tempOldItem.selected;
+				tempOldItem = JSON.stringify(tempOldItem);
+				// do the compare
+				if (tempOldItem.includes(tempNewItem)) {
+					// oldItem = Object.assign(oldItem, newItem);
+					oldItem.selected = newItem.selected;
+				} else {
+					oldItem.selected = false;
+				}
 			}
+		}
+	}
+
+	// this and a few other functions are super common between
+	// submenu and tree ... maybe we can dedupe?
+	onClick({item}) {
+		item.selected = !item.selected;
+		this.index = this.flatList.indexOf(item);
+		// find the path to the item we want to select
+		function find(items, itemToFind, path = []) {
+			let found;
+			for (let i of items) {
+				if (i === itemToFind) {
+					path.push(i);
+					found = i;
+				}
+				if (i.items && !found) {
+					path.push(i);
+					found = find(i.items, itemToFind, path).found;
+					if (!found) { path = []; }
+				}
+			}
+			return {found, path};
+		}
+		if (this.type === "single") {
+			let {path} = find(this.items, item);
+			// reset the selection taking care not to touch our selected item
+			for (let i = 0; i < this.flatList.length; i++) {
+				if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {
+					this.flatList[i].selected = true;
+				} else if (this.flatList[i] !== item) {
+					this.flatList[i].selected = false;
+				}
+			}
+		}
+		if (!item.disabled && !item.items) {
+			this.select.emit({item});
 		}
 	}
 }
