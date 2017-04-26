@@ -15,6 +15,7 @@ import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { ListView } from "./../../list-view/list-view.component";
+import { focusJump } from "./../dropdowntools";
 
 @Component({
 	selector: "cdl-dropdown-list",
@@ -60,6 +61,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	private index = -1;
 	private listList: HTMLElement[];
 
+	constructor(public _elementRef: ElementRef) {}
+
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
@@ -67,8 +70,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.listList = this.list.nativeElement.querySelectorAll("li");
+		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
+		focusJump(this._elementRef.nativeElement, this.listList);
 	}
 
 	getNextItem(): ListItem {

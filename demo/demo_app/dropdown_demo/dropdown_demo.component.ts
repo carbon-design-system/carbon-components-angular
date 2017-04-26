@@ -235,19 +235,19 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 export class DropdownDemo {
 	demoItems1 = [
 		{
-			content: "item one",
+			content: "a item one",
 			selected: false
 		},
 		{
-			content: "item two",
+			content: "b item two",
 			selected: false,
 		},
 		{
-			content: "item three",
+			content: "c item three",
 			selected: false
 		},
 		{
-			content: "item four",
+			content: "d item four",
 			selected: false
 		}
 	];

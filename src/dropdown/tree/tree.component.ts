@@ -11,6 +11,7 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { TreeItem } from "./tree-item.component";
+import { focusJump } from "./../dropdowntools";
 
 @Component({
 	selector: "cdl-dropdown-tree",
@@ -58,7 +59,8 @@ export class DropdownTree implements AbstractDropdownView {
 	}
 
 	ngAfterViewInit() {
-		this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
+		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper")) as HTMLElement[];
+		focusJump(this._elementRef.nativeElement, this.listList);
 	}
 
 	flattenTree(items) {

@@ -55,6 +55,7 @@ export class PopoverDirective implements OnInit {
 	}
 
 	ngOnInit() {
+		document.body.firstElementChild.addEventListener("click", () => null, true);
 		this.popoverConfig = {
 			title: this.title,
 			content: this.cdlPopover,

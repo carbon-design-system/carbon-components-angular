@@ -12,6 +12,7 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { SubMenuItem } from "./sub-menu-item.component";
+import { focusJump } from "./../dropdowntools";
 
 @Component({
 	selector: "cdl-dropdown-sub-menu",
@@ -60,7 +61,8 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	}
 
 	ngAfterViewInit() {
-		this.listList = this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper");
+		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper")) as HTMLElement[];
+		focusJump(this._elementRef.nativeElement, this.listList);
 	}
 
 	flattenTree(items) {
