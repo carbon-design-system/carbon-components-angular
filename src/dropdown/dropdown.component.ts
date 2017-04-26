@@ -87,7 +87,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
-	@ContentChild(AbstractDropdownView) view;
+	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
 
 	constructor(public _elementRef: ElementRef) {}
@@ -234,6 +234,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 		// from document. Then we unbind everything later to keep things light.
 		document.body.firstElementChild.addEventListener("click", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
+		setTimeout(() => this.view.getCurrentElement().focus(), 0);
 	}
 
 	closeMenu() {
