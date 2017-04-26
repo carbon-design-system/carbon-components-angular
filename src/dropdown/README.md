@@ -1,22 +1,64 @@
 # Dropdown
 
+interface: ListItem
+
+```typescript
+interface ListItem {
+	content: string;
+	disabled: boolean;
+	selected: boolean;
+	items?: ListItem[];
+}
+```
+
 class: Dropdown  
 selector: `cdl-dropdown`
 
-| @Input        | Type                              | Default Value |
+| @Input        | Type                              | Default value |
 | ------------- | --------------------------------- | ------------- |
 | displayValue  | string                            | ""            |
 | size          | "sm" \| "default" \| "lg" \| "sm" | "default"     |
+| type          | "single" \| "multi"               | "single"      |
 | disabled      | boolean                           | false         |
-| selectedVal   | any                               |               |
-| isSplit       | boolean                           | false         |
-| closeOnSelect | boolean                           | true          |
-| multiSelect   | boolean                           | false         |
+| appendToBody  | boolean                           | false         |
 
-Dropdown also takes a ContentChild that implements the View base class; in Neutrino those are ListView, NestedView, and TreeView.  
+| @Output | Value shape |
+| ------- | ----------- |
+| select  | ListItem    |
+| onClose | undefined   |
+
+
+Dropdown expects a component that implements the AbstractDropdownView base class; in Neutrino those are DropdownList, DropdownTree, and DropdownSubMenu.  
 Ex:
 ```html
-<cdl-dropdown [displayValue]="dropdown">
-	<cdl-list-view [items]="items" (select)="handleSelect($event)"></cdl-list-view>
+<cdl-dropdown
+	[displayValue]="display || 'Select an option'"
+	(select)="display = getDisplay($event.item)">
+	<cdl-dropdown-list [items]="items"></cdl-dropdown-list>
 </cdl-dropdown>
 ```
+
+class: DropdownList
+selector: `cdl-dropdown-list`
+
+| @Input  | Type                       | Default value |
+| ------- | -------------------------- | ------------- |
+| items   | Array<ListItem>            | []            |
+| listTpl | string \| TemplateRef<any> | null          |
+
+class: DropdownTree
+selector: `cdl-dropdown-tree`
+
+| @Input  | Type                       | Default value |
+| ------- | -------------------------- | ------------- |
+| items   | Array<ListItem>            | []            |
+| listTpl | string \| TemplateRef<any> | null          |
+
+class: DropdownSubMenu
+selector: `cdl-dropdown-sub-menu`
+
+| @Input  | Type                       | Default value |
+| ------- | -------------------------- | ------------- |
+| items   | Array<ListItem>            | []            |
+| listTpl | string \| TemplateRef<any> | null          |
+
