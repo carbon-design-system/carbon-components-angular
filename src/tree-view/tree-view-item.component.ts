@@ -29,9 +29,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
-				[style.margin-left.px]="( !brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
-				[style.padding-left.px]="( brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
-				>
+				[style.margin-left.px]="(indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent">
 				<svg
 					*ngIf="!!listItem.subMenu"
 					class="arrow"
