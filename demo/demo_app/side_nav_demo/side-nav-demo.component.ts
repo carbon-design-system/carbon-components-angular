@@ -17,7 +17,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 	<cdl-side-nav [open]="sideNavOpen">
 		<cdl-side-nav-item routerLink="/table">
-			<span class="side-nav-glyph"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></span>
+			<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
 			<span class="side-nav-item">Understand</span>
 		</cdl-side-nav-item>
 		<cdl-side-nav-item>
