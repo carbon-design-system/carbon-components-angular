@@ -23,6 +23,11 @@ import { Component, OnInit } from "@angular/core";
 
 	<cdl-checkbox class="ng-invalid ng-touched">Checkbox</cdl-checkbox>
 
+	<cdl-checkbox
+		[(ngModel)]="thirdCheckboxState">
+		Checkbox (State: {{thirdCheckboxState}})
+	</cdl-checkbox>
+
 
 	<h2>Switch</h2>
 

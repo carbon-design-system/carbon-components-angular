@@ -51,7 +51,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				</span>
 			</div>
 		</div>
-		<cdl-dropdown-tree
+		<cdl-tree-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
@@ -65,7 +65,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[role]="'group'"
 			[label]="listItem"
 			[elemSpacing]="elemSpacing">
-		</cdl-dropdown-tree>
+		</cdl-tree-wrapper>
 	`
 })
 export class TreeItem {
@@ -84,15 +84,6 @@ export class TreeItem {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
-
-	ngOnChanges(changes) {
-		if (changes.listItem) {
-			this.listItem = Object.assign({}, changes.listItem.currentValue);
-			if (changes.listItem.currentValue.items) {
-				this.listItem.items = changes.listItem.currentValue.items.map(item => Object.assign({}, item));
-			}
-		}
-	}
 
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;
