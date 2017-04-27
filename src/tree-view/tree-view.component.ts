@@ -27,7 +27,6 @@ import { TreeViewItem } from "./tree-view-item.component";
 					(select)="onClick($event)"
 					[indent]="indent"
 					[indentStart]="indentStart"
-					[brdrAllTheWay]="brdrAllTheWay"
 					[elemSpacing]="elemSpacing">
 				</cdl-tree-view-item>
 			</li>
@@ -46,7 +45,6 @@ export class TreeView {
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
 	@Input() elemSpacing = 40;
-	@Input() brdrAllTheWay = false;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

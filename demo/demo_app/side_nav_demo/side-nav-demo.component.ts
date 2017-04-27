@@ -29,14 +29,14 @@ import { Component, ViewEncapsulation } from "@angular/core";
 				<span class="side-nav-item">Here</span>
 				<div class="side-nav-pane-sub-template">
 					<cdl-side-nav-pane-title>Here</cdl-side-nav-pane-title>
-					<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
+					<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [elemSpacing]="44" ></cdl-tree-view>
 				</div>
 			</cdl-side-nav-item>
 			<cdl-side-nav-item>
 				<span class="side-nav-item">And Here</span>
 				<div class="side-nav-pane-sub-template">
 					<cdl-side-nav-pane-title>And Here</cdl-side-nav-pane-title>
-					<cdl-tree-view [items]="demoItems2" [listTpl]="listTpl" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
+					<cdl-tree-view [items]="demoItems2" [listTpl]="listTpl" [elemSpacing]="44" ></cdl-tree-view>
 				</div>
 			</cdl-side-nav-item>
 		</cdl-side-nav-item>
