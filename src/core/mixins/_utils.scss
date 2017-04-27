@@ -24,9 +24,22 @@ $browser-context: 16; // Default
 //Neutrino Sass Mixins
 
 
-// Changes element to blue on hover/focus. Changes svg fill to white to contrast.
+@mixin inside-white-border {
+	&:before {
+		position: absolute;
+		content: '';
+		top: 2px;
+		bottom: 2px;
+		left: 2px;
+		right: 2px;
+		border: 1px solid color("white", 0);
+	}
+}
+
+// Changes element to blue on hover/focus. Changes svg fill to white to contrast. Changes text color to white to contrast.
 @mixin hover-blue {
 	fill: color("white", 0);
+	color: color("white", 0);
 	&:hover {
 		background-color: color("blue", 50);
 	}

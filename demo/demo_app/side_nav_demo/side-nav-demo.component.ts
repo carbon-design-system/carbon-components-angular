@@ -7,15 +7,39 @@ import { Component, ViewEncapsulation } from "@angular/core";
 	<h1>Side Nav Demo</h1>
 
 	<ng-template #listTpl let-item="item">
-		<span class="side-nav-glyph" *ngIf="item.icon"><cdl-glyphicon icon="{{item.icon}}" size="md"></cdl-glyphicon></span>
+		<span *ngIf="item.icon"><cdl-glyphicon icon="{{item.icon}}" size="md"></cdl-glyphicon></span>
 		<span class="side-nav-item">{{item.content}}</span>
 	</ng-template>
 
 	<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false" >
 			<cdl-hamburger (onClick)="onClick($event)" hamburger></cdl-hamburger>
 	</cdl-top-nav>
+
 	<cdl-side-nav [open]="sideNavOpen">
-		<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [indentStart]="1" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
+		<cdl-side-nav-item routerLink="/table">
+			<span class="side-nav-glyph"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></span>
+			<span class="side-nav-item">Understand</span>
+		</cdl-side-nav-item>
+		<cdl-side-nav-item>
+			<span class="side-nav-item">More</span>
+			<cdl-side-nav-item>
+				<span class="side-nav-item">Content</span>
+			</cdl-side-nav-item>
+			<cdl-side-nav-item>
+				<span class="side-nav-item">Here</span>
+				<div class="side-nav-pane-sub-template">
+					<cdl-side-nav-pane-title>Here</cdl-side-nav-pane-title>
+					<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
+				</div>
+			</cdl-side-nav-item>
+			<cdl-side-nav-item>
+				<span class="side-nav-item">And Here</span>
+				<div class="side-nav-pane-sub-template">
+					<cdl-side-nav-pane-title>And Here</cdl-side-nav-pane-title>
+					<cdl-tree-view [items]="demoItems2" [listTpl]="listTpl" [brdrAllTheWay]="true" [elemSpacing]="44" ></cdl-tree-view>
+				</div>
+			</cdl-side-nav-item>
+		</cdl-side-nav-item>
 	</cdl-side-nav>
 	`,
 	encapsulation: ViewEncapsulation.None
@@ -28,7 +52,6 @@ export class SideNavDemo {
 
 
 	private demoItems = [
-
 		{
 			content: "Understand",
 			selected: false,
@@ -84,8 +107,13 @@ export class SideNavDemo {
 		}
 	];
 
+	private demoItems2 = this.clone(this.demoItems);
+
+	private clone (el) {
+		return JSON.parse(JSON.stringify(el));
+	}
+
 	private onClick() {
 		this.sideNavOpen = !this.sideNavOpen;
 	}
-
 }
