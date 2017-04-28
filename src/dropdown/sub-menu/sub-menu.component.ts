@@ -36,7 +36,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
-	@Input() selectedIcon = true;
+	@Input() selectedIcon = false;
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

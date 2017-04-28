@@ -31,7 +31,7 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 export class DropdownTree implements AbstractDropdownView {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() selectedIcon = true;
+	@Input() selectedIcon = false;
 	@Input() role: "tree" | "group" = "tree";
 	@Input() label: string;
 	@Input() elemSpacing = 40;

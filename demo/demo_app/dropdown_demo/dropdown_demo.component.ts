@@ -230,6 +230,25 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				</cdl-dropdown-list>
 			</cdl-dropdown>
 		</div>
+
+		<h3>Dropdown item containers</h3>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-tree [items]="demoItems4"></cdl-dropdown-tree>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper" style="width: 250px;">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-sub-menu [items]="demoItems5"></cdl-dropdown-sub-menu>
+			</div>
+		</div>
 	`,
 })
 export class DropdownDemo {
