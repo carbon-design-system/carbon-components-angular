@@ -1,7 +1,7 @@
 # Dropdown
 
 interface: ListItem
-
+source: `src/dropdown/list-item.interface.ts`
 ```typescript
 interface ListItem {
 	content: string;
@@ -13,6 +13,7 @@ interface ListItem {
 
 class: Dropdown  
 selector: `cdl-dropdown`
+source: `src/dropdown/dropdown.component.ts`
 
 | @Input        | Type                              | Default value |
 | ------------- | --------------------------------- | ------------- |
@@ -27,7 +28,6 @@ selector: `cdl-dropdown`
 | select  | ListItem    |
 | onClose | undefined   |
 
-
 Dropdown expects a component that implements the AbstractDropdownView base class; in Neutrino those are DropdownList, DropdownTree, and DropdownSubMenu.  
 Ex:
 ```html
@@ -40,6 +40,7 @@ Ex:
 
 class: DropdownList
 selector: `cdl-dropdown-list`
+source: `src/dropdown/list/list.component.ts`
 
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
@@ -48,6 +49,7 @@ selector: `cdl-dropdown-list`
 
 class: DropdownTree
 selector: `cdl-dropdown-tree`
+source: `src/dropdown/tree/tree.component.ts`
 
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
@@ -56,6 +58,7 @@ selector: `cdl-dropdown-tree`
 
 class: DropdownSubMenu
 selector: `cdl-dropdown-sub-menu`
+source: `src/dropdown/sub-menu/sub-menu.component.ts`
 
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
