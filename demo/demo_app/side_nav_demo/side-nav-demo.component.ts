@@ -7,8 +7,8 @@ import { Component, ViewEncapsulation } from "@angular/core";
 	<h1>Side Nav Demo</h1>
 
 	<ng-template #listTpl let-item="item">
-		<span *ngIf="item.icon"><cdl-glyphicon icon="{{item.icon}}" size="md"></cdl-glyphicon></span>
-		<span class="side-nav-item">{{item.content}}</span>
+		<cdl-glyphicon *ngIf="item.icon" icon="{{item.icon}}" size="md"></cdl-glyphicon>
+		{{item.content}}
 	</ng-template>
 
 	<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false" >
@@ -17,26 +17,52 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 	<cdl-side-nav [open]="sideNavOpen">
 		<cdl-side-nav-item routerLink="/table">
-			<span class="side-nav-glyph"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon></span>
+			<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
 			<span class="side-nav-item">Understand</span>
 		</cdl-side-nav-item>
+
 		<cdl-side-nav-item>
+			<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
 			<span class="side-nav-item">More</span>
 			<cdl-side-nav-item>
-				<span class="side-nav-item">Content</span>
+				<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+				<span class="side-nav-item">Some long content here</span>
 			</cdl-side-nav-item>
 			<cdl-side-nav-item>
-				<span class="side-nav-item">Here</span>
+				<span class="side-nav-item">And even longer one here</span>
 				<div class="side-nav-pane-sub-template">
-					<cdl-side-nav-pane-title>Here</cdl-side-nav-pane-title>
+					<cdl-side-nav-pane-title>And even longer one here</cdl-side-nav-pane-title>
 					<cdl-tree-view [items]="demoItems" [listTpl]="listTpl" [elemSpacing]="44" ></cdl-tree-view>
 				</div>
 			</cdl-side-nav-item>
 			<cdl-side-nav-item>
-				<span class="side-nav-item">And Here</span>
+				<span class="side-nav-item">And here</span>
 				<div class="side-nav-pane-sub-template">
-					<cdl-side-nav-pane-title>And Here</cdl-side-nav-pane-title>
+					<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
 					<cdl-tree-view [items]="demoItems2" [listTpl]="listTpl" [elemSpacing]="44" ></cdl-tree-view>
+				</div>
+			</cdl-side-nav-item>
+		</cdl-side-nav-item>
+
+		<cdl-side-nav-item>
+			<span class="side-nav-item">Even more</span>
+			<cdl-side-nav-item>
+				<span class="side-nav-item">To show how ellipsis gets activated</span>
+			</cdl-side-nav-item>
+			<cdl-side-nav-item>
+				<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+				<span class="side-nav-item">And this is how ellipsis happens</span>
+				<div class="side-nav-pane-sub-template">
+					<cdl-side-nav-pane-title>And this is how ellipsis happens</cdl-side-nav-pane-title>
+					<cdl-tree-view [items]="demoItems3" [listTpl]="listTpl" [elemSpacing]="44" ></cdl-tree-view>
+				</div>
+			</cdl-side-nav-item>
+			<cdl-side-nav-item>
+				<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+				<span class="side-nav-item">And here</span>
+				<div class="side-nav-pane-sub-template">
+					<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
+					<cdl-tree-view [items]="demoItems4" [listTpl]="listTpl" [elemSpacing]="44" ></cdl-tree-view>
 				</div>
 			</cdl-side-nav-item>
 		</cdl-side-nav-item>
@@ -108,6 +134,8 @@ export class SideNavDemo {
 	];
 
 	private demoItems2 = this.clone(this.demoItems);
+	private demoItems3 = this.clone(this.demoItems);
+	private demoItems4 = this.clone(this.demoItems);
 
 	private clone (el) {
 		return JSON.parse(JSON.stringify(el));
