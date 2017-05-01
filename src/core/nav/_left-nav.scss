@@ -24,11 +24,11 @@
 	.side-nav-item-wrapper {
 		width: 100%;
 		border-bottom: 1px solid color("gray", 10);
-		height: $sidenav-item-height + 1px;  // border eats the pixel
+		min-height: $sidenav-item-height + 1px;  // border eats the pixel
 
 		.side-nav-item-button {
 			font-weight: 600;
-			height: 100%;
+			height: $sidenav-item-height;
 			width: 100%;
 			color: white;
 			text-align: left;
@@ -36,8 +36,9 @@
 			padding: 0;
 			.side-nav-arrow {
 				fill: color("white", 0);
-				position: relative;
-				float: right;
+				position: absolute;
+				right: 0;
+				top: ($sidenav-item-height - 16px) / 2; // 16px is height or the arrow
 				margin-right: 15px;
 				margin-left: 0;
 				transform: rotate(90deg);
@@ -61,18 +62,27 @@
 			display: inline-block;
 			background: color("blue", 50);
 			width: $sidenav-item-height;
-			line-height: $sidenav-item-height;
-			max-height: $sidenav-item-height;
+			height: $sidenav-item-height;
 			left: 0;
 			top: 0;
 			text-align: center;
 			vertical-align: middle;
 			svg {
 				fill: color("white", 0);
+				position: relative;
+				top: ($sidenav-item-height - 20px) / 2;  // 20px is icon height
 			}
 		}
 		.side-nav-item {
-			padding-left: 20px;
+			position: absolute;
+			top: ($sidenav-item-height - 14px) / 2;  // 14px is font-size
+			left: $sidenav-item-height + 20px;
+			display: inline-block;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			width: $sidenav-width - $sidenav-item-height - 15px - 20px - 16px;  // width - glyphicon - padding - arrow margin - arrow width
+			vertical-align: middle;
 		}
 		.side-nav-sub-item {
 			background-color: color("white", 0);
@@ -136,6 +146,10 @@
 			padding: 0;
 			background: color("blue", 50);
 			line-height: 20px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			padding-right: 15px;
 			.side-nav-arrow {
 				fill: color("white", 0);
 				float: left;
