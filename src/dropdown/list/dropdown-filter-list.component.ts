@@ -1,0 +1,213 @@
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	forwardRef,
+	TemplateRef,
+	AfterViewInit,
+	ViewChild,
+	ElementRef
+} from "@angular/core";
+
+import { KeyCodes } from "./../../constant/keys";
+import { findNextElem, findPrevElem } from "./../../common/a11y.service";
+import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
+import { ListItem } from "./../list-item.interface";
+import { ListView } from "./../../list-view/list-view.component";
+import { watchFocusJump } from "./../dropdowntools";
+import { DropdownList } from "./dropdown-list.component";
+
+@Component({
+	selector: "cdl-dropdown-filter",
+	template: `
+		<div 
+			*ngIf="type === 'multi'"
+			class="dropdown-selected-only">
+			<span class="checkbox" style="margin-bottom: 0px;">
+				<label>
+					<input 
+						#selectedOnly
+						type="checkbox"
+						[attr.disabled]="disableSelectedOnly"
+						(click)="filterItems()">
+					<span class="label">Show selected only</span>
+				</label>
+			</span>
+		</div>
+		<div class="dropdown-filter-search">
+			<div class="search-icon">
+				<svg 
+					xmlns="http://www.w3.org/2000/svg" 
+					width="16px" 
+					height="16px" 
+					viewBox="0 0 16 16">
+					<g>
+						<path 
+							fill="#949494" 
+							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z 
+							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5 
+							S8.8,11,6,11z"/>
+						<rect 
+							x="12" 
+							y="10.2" 
+							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)" 
+							fill="#949494" 
+							width="2" 
+							height="5.7"/>
+					</g>
+				</svg>
+			</div>
+			<input 
+				#filter
+				(keyup)="filterItems()"
+				type="text"
+				class="input-field"
+				tabindex="0"
+				placeholder="Search"/>
+			<button 
+				class="search-cancel"
+				type="button"
+				aria-label="cancel"
+				(click)="clearFilter()">
+				<svg 
+					xmlns="http://www.w3.org/2000/svg" 
+					width="16px"
+					height="16px"
+					viewBox="0 0 16 16">
+					<polygon 
+						fill="#959595" 
+						points="14.5,2.6 13.4,1.5 
+						8,6.9 2.6,1.5 
+						1.5,2.6 6.9,8 
+						1.5,13.4 
+						2.6,14.5 
+						8,9.1 
+						13.4,14.5 
+						14.5,13.4 
+						9.1,8"/>
+				</svg>
+			</button>
+		</div>
+		<ul #list class="list" role="listbox">
+			<li tabindex="{{item.disabled?-1:0}}"
+				role="option"
+				*ngFor="let item of displayItems"
+				(click)="doClick($event, item)"
+				(keydown)="doKeyDown($event, item)"
+				[ngClass]="{
+					selected: item.selected,
+					disabled: item.disabled
+				}"
+				class="option">
+				<span class="checkbox"
+					*ngIf="type === 'multi'">
+					<label>
+						<input 
+							tabindex="-1"
+							type="checkbox" 
+							[checked]="item.selected"
+							(click)="doClick($event, item)">
+						<span class="label"></span>
+					</label>
+				</span>
+				<span *ngIf="!listTpl">{{item.content}}</span>
+				<ng-template
+					*ngIf="listTpl"
+					[ngOutletContext]="{item: item}"
+					[ngTemplateOutlet]="listTpl">
+				</ng-template>
+			</li>
+			<li
+				*ngIf="displayItems.length === 0">
+				<span>nop</span>
+			</li>
+		</ul>`,
+		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownFilter)}]
+}) // conceptually this extends list-view, but we dont have to
+export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit {
+	@ViewChild("selectedOnly") selectedOnly;
+	@ViewChild("list") list;
+	@ViewChild("filter") filter;
+	public filterNative;
+	public selectedOnlyNative;
+	public disableSelectedOnly = true;
+	public displayItems: Array<ListItem> = [];
+	
+	constructor(public _elementRef: ElementRef) {
+		super(_elementRef);
+	}
+
+	ngOnChanges(changes) {
+		if (changes.items) {
+			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+			this.displayItems = this.getSelected() || this.items;
+		}
+	}
+
+	ngAfterViewInit() {
+		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+		this.index = this.items.findIndex(item => item.selected);
+		watchFocusJump(this.list.nativeElement, this.listList)
+			.subscribe(el => {
+				el.focus();
+			});
+		this.filterNative = this.filter.nativeElement;
+		this.selectedOnlyNative = this.selectedOnly?this.selectedOnly.nativeElement:null;
+		this._elementRef.nativeElement.addEventListener("keydown", (ev) => {
+			if (ev.which === KeyCodes.TAB_KEY && !this.list.nativeElement.contains(ev.target)) {
+				ev.stopPropagation();
+			} else if (ev.which === KeyCodes.TAB_KEY && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
+				ev.stopPropagation();
+				ev.preventDefault();
+				this.filterNative.focus();
+			} else if (ev.which === KeyCodes.ENTER_KEY || (ev.which === KeyCodes.DOWN_ARROW && !this.list.nativeElement.contains(ev.target))) {
+				this.listList[0].focus();
+			}
+		});
+	}
+
+	getDisplayItems(items: ListItem[], query: string = "", selectedOnly: boolean = false): ListItem[] {
+		if (selectedOnly) {
+			return items.filter(item => item.content.includes(query) && item.selected);
+		} else if (query) {
+			return items.filter(item => item.content.includes(query));
+		}
+		return items;
+	}
+
+	filterItems() {
+		let selected = this.type === "multi"?this.selectedOnlyNative.checked:false;
+		this.displayItems = this.getDisplayItems(this.items, this.filterNative.value, selected);
+	}
+
+	clearFilter() {
+		this.filter.nativeElement.value = "";
+		this.displayItems = this.items;
+	}
+
+	doClick(ev, item) {
+		item.selected = !item.selected;
+		if (this.type === "single") {
+			// reset the selection
+			for (let otherItem of this.items) {
+				if (item !== otherItem) { otherItem.selected = false; }
+			}
+			this.displayItems = this.getDisplayItems(this.items, this.filterNative.value);
+		} else {
+			if (this.getSelected()) {
+				this.disableSelectedOnly = null;
+			} else {
+				this.disableSelectedOnly = true;
+				this.selectedOnlyNative.checked = false;
+				this.displayItems = this.getDisplayItems(this.items, 
+					this.filterNative.value, 
+					this.selectedOnlyNative.checked);
+			}
+		}
+		this.index = this.items.indexOf(item);
+		if (!item.disabled) {
+			this.select.emit({item});
+		}
+	}
+}

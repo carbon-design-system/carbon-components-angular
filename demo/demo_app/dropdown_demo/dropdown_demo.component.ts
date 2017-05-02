@@ -29,6 +29,72 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
+		<h3>Multi-select default dropdown</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				displayValue="Select an option"
+				size="sm"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				displayValue="Select an option"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				displayValue="Select an option"
+				size="lg"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Filter dropdown</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				displayValue="Select an option"
+				size="sm">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				displayValue="Select an option">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				displayValue="Select an option"
+				size="lg">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Multi-select filter dropdown</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				displayValue="Select an option"
+				size="sm"
+				type="multi">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				displayValue="Select an option"
+				type="multi">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				displayValue="Select an option"
+				size="lg"
+				type="multi">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+		</div>
+
 		<h3>Dropdown with tree</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
@@ -235,6 +301,18 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<div class="dropdown-wrapper">
 			<div class="dropdown-menu open" style="position: relative;">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-filter [items]="demoItems1" type="multi"></cdl-dropdown-filter>
 			</div>
 		</div>
 		<br><br>

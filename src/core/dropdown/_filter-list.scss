@@ -8,6 +8,44 @@
 	padding: 10px 20px;
 	height: $dropdown-height-lg;
 }
+
+.dropdown-selected-only {
+	padding: 10px; 
+	border-bottom: 1px solid color("gray", 50);
+}
+
+.dropdown-filter-search {
+	position: relative;
+	padding: 10px; 
+	border-bottom: 1px solid color("gray", 50);
+	.search-icon {
+		position: absolute;
+	    top: 17px;
+	    left: 22px;
+	}
+	.input-field {
+		padding-left: 40px;
+		&:focus + .search-cancel {
+			opacity: 1;
+		}
+	}
+	.search-cancel {
+		background: transparent;
+		position: absolute;
+		right: 22px;
+		top: 16px;
+		height: 18px;
+		width: 18px;
+		padding: 0;
+		border: 1px solid transparent;
+		opacity: 0;
+		&:focus, &:hover {
+			border: 1px solid color("gray", 50);
+			opacity: 1;
+		}
+	}
+}
+
 .list {
 	@extend .list-unstyled;
 	li {

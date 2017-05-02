@@ -36,6 +36,7 @@ import { watchFocusJump } from "./../dropdowntools";
 					*ngIf="type === 'multi'">
 					<label>
 						<input 
+							tabindex="-1"
 							type="checkbox" 
 							[checked]="item.selected"
 							(click)="doClick($event, item)">
@@ -57,9 +58,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@ViewChild("list") list: ElementRef;
-	public type: "single" | "multi" = "single";
-	private index = -1;
-	private listList: HTMLElement[];
+	@Input() type: "single" | "multi" = "single";
+	protected index = -1;
+	protected listList: HTMLElement[];
 
 	constructor(public _elementRef: ElementRef) {}
 

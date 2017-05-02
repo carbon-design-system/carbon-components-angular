@@ -122,7 +122,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 
 	writeValue(value: any) {
 		if (value) {
-			console.log("write", value);
 			if (this.type === "single") {
 				this.view.propagateSelected([value]);
 			} else {
@@ -152,15 +151,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 			this.openMenu();
 		}
 
-		if (evt.target === this.rootButton.nativeElement
-			&& !this.menuIsClosed
-			&& evt.which === KeyCodes.DOWN_ARROW) {
-			evt.preventDefault();
-			let firstElem = this.dropdown.querySelector("[tabindex='0']");
-			if (firstElem) { firstElem["focus"](); }
-		}
-
-		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY) {
+		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY && this.dropdown.contains(evt.target)) {
 			this.closeMenu();
 		}
 

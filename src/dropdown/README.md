@@ -1,6 +1,6 @@
 # Dropdown
 
-interface: ListItem
+interface: ListItem  
 source: `src/dropdown/list-item.interface.ts`
 ```typescript
 interface ListItem {
@@ -12,7 +12,7 @@ interface ListItem {
 ```
 
 class: Dropdown  
-selector: `cdl-dropdown`
+selector: `cdl-dropdown`  
 source: `src/dropdown/dropdown.component.ts`
 
 | @Input        | Type                              | Default value |
@@ -38,8 +38,8 @@ Ex:
 </cdl-dropdown>
 ```
 
-class: DropdownList
-selector: `cdl-dropdown-list`
+class: DropdownList  
+selector: `cdl-dropdown-list`  
 source: `src/dropdown/list/list.component.ts`
 
 | @Input  | Type                       | Default value |
@@ -47,8 +47,8 @@ source: `src/dropdown/list/list.component.ts`
 | items   | Array<ListItem>            | []            |
 | listTpl | string \| TemplateRef<any> | null          |
 
-class: DropdownTree
-selector: `cdl-dropdown-tree`
+class: DropdownTree  
+selector: `cdl-dropdown-tree`  
 source: `src/dropdown/tree/tree.component.ts`
 
 | @Input  | Type                       | Default value |
@@ -56,8 +56,8 @@ source: `src/dropdown/tree/tree.component.ts`
 | items   | Array<ListItem>            | []            |
 | listTpl | string \| TemplateRef<any> | null          |
 
-class: DropdownSubMenu
-selector: `cdl-dropdown-sub-menu`
+class: DropdownSubMenu  
+selector: `cdl-dropdown-sub-menu`  
 source: `src/dropdown/sub-menu/sub-menu.component.ts`
 
 | @Input  | Type                       | Default value |
