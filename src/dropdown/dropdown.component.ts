@@ -35,6 +35,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			[attr.aria-disabled]="disabled"
 			class="dropdown-value size-{{size}}"
 			(click)="toggleMenu()"
+			(blur)="onBlur()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
 			{{displayValue}}
@@ -78,6 +79,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	outsideClick = this._outsideClick.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	resize;
+	private onTouchedCallback: () => void = this._noop;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
@@ -131,12 +133,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 		}
 	}
 
+	onBlur() {
+		this.onTouchedCallback();
+	}
+
 	registerOnChange(fn: any) {
 		this.propagateChange = fn;
 	}
 
-	registerOnTouched() {
-
+	registerOnTouched(fn: any) {
+		this.onTouchedCallback = fn;
 	}
 
 	propagateChange = (_: any) => {};
