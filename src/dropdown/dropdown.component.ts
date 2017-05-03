@@ -37,7 +37,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			(click)="toggleMenu()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
-			{{displayValue}}
+			{{getDisplayValue()}}
 			<span class="dropdown-icon" [class.open]="!menuIsClosed">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -79,6 +79,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	keyboardNav = this._keyboardNav.bind(this);
 	resize;
 
+	@Input() placeholder = "";
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
@@ -176,6 +177,21 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 				elem.click();
 			}
 		}
+	}
+
+	getDisplayValue() {
+		let selected = this.view.getSelected();
+		if (selected && !this.displayValue) {
+			if (this.type === "multi") {
+				// translate me
+				return `${selected.length} selected`;
+			} else {
+				return selected[0].content;
+			}
+		} else if (selected) {
+			return this.displayValue;
+		}
+		return this.placeholder;
 	}
 
 	_noop() {}

@@ -119,8 +119,9 @@ import { DropdownList } from "./dropdown-list.component";
 				</ng-template>
 			</li>
 			<li
+				class="no-results"
 				*ngIf="displayItems.length === 0">
-				<span>nop</span>
+				<span>No search results</span>
 			</li>
 		</ul>`,
 		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownFilter)}]
