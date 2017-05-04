@@ -14,8 +14,7 @@ import { Component, Input, ViewChild } from "@angular/core";
 		</svg>
 		<ng-content></ng-content>
 	</button>
-  `,
-	styleUrls: ["./side-nav-pane-title.component.scss"]
+  `
 })
 export class SideNavPaneTitle {
 	@ViewChild("item") item;

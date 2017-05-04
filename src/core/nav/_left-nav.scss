@@ -6,9 +6,9 @@
 
 .left-nav {
 	width: $sidenav-width;
-	height: 100vh;
+	height: 100%;
 	background-color: color("gray", 70);
-	position: relative;
+	position: absolute;
 	left: -$sidenav-width - 10px;
 	transition: left 0.2s ease;
 	z-index: 2;
@@ -16,6 +16,7 @@
 
 	.left-nav-container {
 		position: relative;
+		height: 100%;
 		left: 0px;
 		transition: left 0.2s ease;
 	}
@@ -23,8 +24,7 @@
 	// level one
 	.side-nav-item-wrapper {
 		width: 100%;
-		border-bottom: 1px solid color("gray", 10);
-		min-height: $sidenav-item-height + 1px;  // border eats the pixel
+		min-height: $sidenav-item-height;
 
 		.side-nav-item-button {
 			font-weight: 600;
@@ -34,6 +34,8 @@
 			text-align: left;
 			position: relative;
 			padding: 0;
+			border-bottom: 1px solid color("gray", 10);
+			position: relative;
 			.side-nav-arrow {
 				fill: color("white", 0);
 				position: absolute;
@@ -45,15 +47,22 @@
 				transition: transform 0.1s linear;
 			}
 			&.selected {
+				&:after {
+					position: absolute;
+					content: "";
+					display: block;
+					height: 44px;
+					width: 2px;
+					background: color("blue", 50);
+					left: 0;
+					top: 0;
+				}
 				background: color("blue", 50);
 				.side-nav-arrow {
 					transform: rotate(-90deg);
 				}
-				&:focus {
-					@include inside-white-border;
-				}
 			}
-			&:hover {
+			&:hover, &:focus {
 				background: color("blue", 50);
 				@include inside-white-border;
 			}
@@ -67,6 +76,7 @@
 			top: 0;
 			text-align: center;
 			vertical-align: middle;
+			border-bottom: 1px solid color("gray", 10);
 			svg {
 				fill: color("white", 0);
 				position: relative;
@@ -92,21 +102,15 @@
 			.side-nav-item-wrapper .side-nav-item-button {
 				font-weight: 300;
 				color: color("gray", 60);
-				&:hover {
+				&:hover, &:focus {
 					&:before {
 						display: none;  // removes white inner border
 					}
 					background: color("blue", 40, 0.1);
-					border-left-width: 1px;
-					border-left-color: color("blue", 50);
-					border-left-style: solid;
 				}
 				&.selected {
 					font-weight: 600;
 					background: color("blue", 40, 0.1);
-					border-left-width: 3px;
-					border-left-color: color("blue", 50);
-					border-left-style: solid;
 				}
 				.side-nav-arrow {
 					transform: rotate(0deg);
@@ -125,7 +129,7 @@
 		top: 0;
 		left: $sidenav-width;
 		width: $sidenav-width;
-		height: 100vh;
+		height: 100%;
 		display: none;
 	}
 
@@ -181,7 +185,6 @@
 		left: 0;
 	}
 
-
 	// Accessibility
 	// -------------------------
 
@@ -193,6 +196,7 @@
 	}
 }
 
-.left-nav-sticky {
+.left-nav-fixed {
 	position: fixed;
+	top: $topnav-height;
 }

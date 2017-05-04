@@ -21,11 +21,9 @@ import { Component, Input, ViewChild } from "@angular/core";
 			<ng-content select="cdl-side-nav-item"></ng-content>
 		</div>
 	</div>
-  `,
-	styleUrls: ["./side-nav-item.component.scss"]
+  `
 })
 export class SideNavItem {
-	@Input() open = true;
 	@Input() selected = false;
 
 	@ViewChild("item") item;

@@ -9,7 +9,7 @@ import { Component, OnInit} from "@angular/core";
 	<h1>Top Nav Demo</h1>
 
 	<h3>Default Top-nav</h3>
-	<cdl-top-nav [sticky]="false">
+	<cdl-top-nav [fixed]="false">
 		<div title>
 			<a class="top-nav-heading top-nav-link-item fl" href="#">
 				<h1 class="top-nav-brand">
@@ -23,7 +23,7 @@ import { Component, OnInit} from "@angular/core";
 	</cdl-top-nav>
 
 	<h3>Top-nav with hamburger and nav links</h3>
-	<cdl-top-nav [sticky]="false">
+	<cdl-top-nav [fixed]="false">
 		<cdl-hamburger hamburger></cdl-hamburger>
 		<div title>
 			<a class="top-nav-heading top-nav-link-item fl" href="#">
@@ -77,7 +77,7 @@ import { Component, OnInit} from "@angular/core";
 	</cdl-top-nav>
 
 	<h3>Top Nav without hamburger menu</h3>
-	<cdl-top-nav [sticky]="false">
+	<cdl-top-nav [fixed]="false">
 		<div class="top-nav-title-container" title>
 			<a class="top-nav-heading top-nav-link-item fl" href="#">
 				<h1 class="top-nav-brand">

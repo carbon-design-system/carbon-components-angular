@@ -4,11 +4,11 @@ class: TopNav (implements OnInit)
 
 selector: `cdl-top-nav`
 
-| @Input       | Type                       | Accepted Value                 | Default Value |
-| ---------    | -------------------------- | ------------------------------ | ------------- |
-| brand        | string                     |                                | null          |
-| badge        | string                     |                                | null          |
-| sticky       | boolean                    |                                | false         |
+| @Input       | Type                       | Default Value |
+| ---------    | -------------------------- | ------------- |
+| brand        | string                     | null          |
+| badge        | string                     | null          |
+| fixed        | boolean                    | false         |
 
 
 

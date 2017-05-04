@@ -11,7 +11,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 @Component({
 	selector: "cdl-top-nav",
 	template: `
-	<header class="top-nav clearfix" [ngClass]="{'top-nav-sticky': sticky}" role="banner">
+	<header class="top-nav clearfix" [ngClass]="{'top-nav-fixed': fixed}" role="banner">
 		<ng-content select="[hamburger]"></ng-content>
 		<ng-content select="[title]"></ng-content>
 		<ng-content select="[links]"></ng-content>
@@ -32,7 +32,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 export class TopNav {
 	@Input() badge: string;
 	@Input() brand: string;
-	@Input() sticky = false;
+	@Input() fixed = false;
 
 	public displayType = "";
 
