@@ -26,7 +26,7 @@ import { DropdownList } from "./dropdown-list.component";
 			class="dropdown-selected-only">
 			<span class="checkbox" style="margin-bottom: 0px;">
 				<label>
-					<input 
+					<input
 						#selectedOnly
 						type="checkbox"
 						[attr.disabled]="disableSelectedOnly"
@@ -134,7 +134,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	public selectedOnlyNative;
 	public disableSelectedOnly = true;
 	public displayItems: Array<ListItem> = [];
-	
+
 	constructor(public _elementRef: ElementRef) {
 		super(_elementRef);
 	}
@@ -154,7 +154,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 				el.focus();
 			});
 		this.filterNative = this.filter.nativeElement;
-		this.selectedOnlyNative = this.selectedOnly?this.selectedOnly.nativeElement:null;
+		this.selectedOnlyNative = this.selectedOnly ? this.selectedOnly.nativeElement : null;
 		this._elementRef.nativeElement.addEventListener("keydown", (ev) => {
 			if (ev.which === KeyCodes.TAB_KEY && !this.list.nativeElement.contains(ev.target)) {
 				ev.stopPropagation();
@@ -168,7 +168,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 		});
 	}
 
-	getDisplayItems(items: ListItem[], query: string = "", selectedOnly: boolean = false): ListItem[] {
+	getDisplayItems(items: ListItem[], query = "", selectedOnly = false): ListItem[] {
 		if (selectedOnly) {
 			return items.filter(item => item.content.includes(query) && item.selected);
 		} else if (query) {
@@ -178,7 +178,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	}
 
 	filterItems() {
-		let selected = this.type === "multi"?this.selectedOnlyNative.checked:false;
+		let selected = this.type === "multi" ? this.selectedOnlyNative.checked : false;
 		this.displayItems = this.getDisplayItems(this.items, this.filterNative.value, selected);
 	}
 
@@ -201,8 +201,8 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			} else {
 				this.disableSelectedOnly = true;
 				this.selectedOnlyNative.checked = false;
-				this.displayItems = this.getDisplayItems(this.items, 
-					this.filterNative.value, 
+				this.displayItems = this.getDisplayItems(this.items,
+					this.filterNative.value,
 					this.selectedOnlyNative.checked);
 			}
 		}
