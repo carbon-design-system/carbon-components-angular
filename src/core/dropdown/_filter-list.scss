@@ -12,15 +12,24 @@
 	}
 }
 
+&.size-lg .dropdown-filter-search {
+	.search-icon {
+		top: 22px;
+	}
+	.search-cancel {
+		top: 21px;
+	}
+}
+
 .dropdown-selected-only {
 	padding: 10px; 
-	border-bottom: 1px solid color("gray", 20);
+	border-bottom: 1px solid color("gray", 10);
 }
 
 .dropdown-filter-search {
 	position: relative;
 	padding: 10px; 
-	border-bottom: 1px solid color("gray", 20);
+	border-bottom: 1px solid color("gray", 10);
 	.search-icon {
 		position: absolute;
 	    top: 17px;
