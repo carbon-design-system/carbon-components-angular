@@ -29,9 +29,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
-				[style.margin-left.px]="( !brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
-				[style.padding-left.px]="( brdrAllTheWay ? ((indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent ): null)"
-				>
+				[style.margin-left.px]="(indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent">
 				<svg
 					*ngIf="!!listItem.subMenu"
 					class="arrow"
@@ -64,7 +62,6 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			[rootElem]="rootElem"
 			[indent]="indent+1"
 			[indentStart]="indentStart"
-			[brdrAllTheWay]="brdrAllTheWay"
 			[role]="'group'"
 			[label]="listItem"
 			[elemSpacing]="elemSpacing"
@@ -85,7 +82,6 @@ export class TreeViewItem {
 	@Input() selectedIcon = true;
 	@Input() indentStart = 0;
 	@Input() elemSpacing = 40;
-	@Input() brdrAllTheWay = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}

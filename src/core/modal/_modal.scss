@@ -5,7 +5,7 @@
 	z-index: 1000;
 	left: 0;
 	top:0;
-	padding: 20px;
+	padding: $modal-wrapper-padding;
 }
 
 .modal {
@@ -94,4 +94,13 @@
 	height: $modal-overlay-height;
 	width: $modal-overlay-width;
 	z-index: 1000;
+}
+
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="email"] {
+  -webkit-appearance: none;
+  border-radius: 0;
 }

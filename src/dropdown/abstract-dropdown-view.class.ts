@@ -9,4 +9,5 @@ export class AbstractDropdownView {
 	getPrevItem(): ListItem { return; }
 	getPrevElement(): HTMLElement { return; }
 	getSelected(): ListItem[] { return; }
+	propagateSelected(value: Array<ListItem>): void {}
 }

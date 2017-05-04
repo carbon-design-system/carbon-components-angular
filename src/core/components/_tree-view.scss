@@ -11,24 +11,24 @@
     }
     .item-wrapper {
         border-left:2px solid transparent;
-        .item{
+        .item {
             padding:$treeview-padding $treeview-padding $treeview-padding 0;
             border-top:$treeview-border;
         }
         &:hover, &:focus,  &.selected {
             background-color:$treeview-hover-bg;
         }
-        .arrow{
+        .arrow {
             margin-left:-25px;
             margin-right: 5px;
             vertical-align: middle;
             transition: transform 0.1s linear;
         }
-        &.selected{
+        &.selected {
             border-left-color:$treeview-selected-border-color;
             font-weight: 700;
             color:$treeview-selected-color;
-            .arrow{
+            .arrow {
                 transform: rotate(90deg);
             }
         }
@@ -45,7 +45,7 @@
 		vertical-align: middle;
 
         @extend .badge;
-        &:before{
+        &:before {
             content:'';
             border-right: 1px solid color("white", 0);
             border-bottom: 1px solid color("white", 0);
@@ -66,4 +66,3 @@
 	}
 
 }
-

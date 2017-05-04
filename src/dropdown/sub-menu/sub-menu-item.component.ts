@@ -48,7 +48,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				</span>
 			</div>
 		</div>
-		<cdl-dropdown-sub-menu
+		<cdl-sub-menu-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
@@ -58,7 +58,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[selectedIcon]="selectedIcon"
 			[role]="'group'"
 			[parent]="parent">
-		</cdl-dropdown-sub-menu>
+		</cdl-sub-menu-wrapper>
 	`
 })
 export class SubMenuItem {

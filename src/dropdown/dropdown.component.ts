@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	ViewEncapsulation,
 	ContentChild,
+	OnInit,
 	ViewChild,
 	AfterContentInit,
 	AfterViewInit,
@@ -16,8 +17,10 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
+import "rxjs/add/operator/throttleTime";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
+import { positionElements } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { KeyCodes } from "./../constant/keys";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
@@ -26,12 +29,13 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	selector: "cdl-dropdown",
 	template: `
 		<button
+			type="button"
 			#dropdownHost
-			[attr.aria-label]="a11yLabel"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			class="dropdown-value size-{{size}}"
-			(click)="openMenu()"
+			(click)="toggleMenu()"
+			(blur)="onBlur()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
 			{{displayValue}}
@@ -47,6 +51,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		</button>
 		<div
 			class="dropdown-menu size-{{size}}"
+			[class.popover]="appendToBody"
 			[class.open]="!menuIsClosed">
 			<ng-content></ng-content>
 		</div>
@@ -64,71 +69,105 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements AfterContentInit {
-	private clickInsideComp = false;
-	private menuIsClosed = true;
-	private prevSelectedItem: ListItem;
+export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
+	menuIsClosed = true;
+	dropdown: HTMLElement;
+	dropdownWrapper: HTMLElement;
+	// .bind creates a new function, so we decalre the methods below
+	// but .bind them up here
+	noop = this._noop.bind(this);
+	outsideClick = this._outsideClick.bind(this);
+	keyboardNav = this._keyboardNav.bind(this);
+	resize;
+	private onTouchedCallback: () => void = this._noop;
 
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
 	@Input() disabled = false;
+	@Input() appendToBody = false;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
 	@ContentChild(AbstractDropdownView) view;
 	@ViewChild("dropdownHost") rootButton;
 
-	constructor(public _elementRef: ElementRef) {
-		// Check for click event outside of the component
-		Observable.fromEvent(_elementRef.nativeElement, "click").subscribe(evt => {
-			this.clickInsideComp = true;
-		});
+	constructor(public _elementRef: ElementRef) {}
 
-		Observable.fromEvent(window, "click").subscribe(evt => {
-			if (!this.clickInsideComp && !this.menuIsClosed) {
-				this.menuIsClosed = true;
+	ngOnInit() {
+		this.view.type = this.type;
+	}
+
+	ngAfterContentInit() {
+		this.view.type = this.type;
+		this.view.select.subscribe(evt => {
+			if (this.type === "single") {
+				this.closeMenu();
+				this.rootButton.nativeElement.focus();
 			}
-
-			this.clickInsideComp = false;
+			if (this.type === "multi") {
+				this.propagateChange(this.view.getSelected());
+			} else {
+				if (evt.item.selected) {
+					this.propagateChange(evt.item);
+				} else {
+					this.propagateChange(null);
+				}
+			}
+			this.select.emit(evt);
 		});
-		// End check for click event outside of the component
+	}
+
+	ngAfterViewInit() {
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 	}
 
 	writeValue(value: any) {
-		if (this.type === "single") {
-			this.prevSelectedItem = value;
+		if (value) {
+			console.log("write", value);
+			if (this.type === "single") {
+				this.view.propagateSelected([value]);
+			} else {
+				this.view.propagateSelected(value);
+			}
 		}
+	}
+
+	onBlur() {
+		this.onTouchedCallback();
 	}
 
 	registerOnChange(fn: any) {
 		this.propagateChange = fn;
 	}
 
-	registerOnTouched() {
-
+	registerOnTouched(fn: any) {
+		this.onTouchedCallback = fn;
 	}
 
-	private propagateChange = (_: any) => {};
+	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(evt) {
 		if (evt.which === KeyCodes.ESCAPE || (evt.which === KeyCodes.UP_ARROW && evt.altKey)) {
 			evt.preventDefault();
-			this.menuIsClosed = true;
+			this.closeMenu();
 			this.rootButton.nativeElement.focus();
 		} else if (evt.which === KeyCodes.DOWN_ARROW && evt.altKey) {
 			evt.preventDefault();
-			this.menuIsClosed = false;
+			this.openMenu();
 		}
 
 		if (evt.target === this.rootButton.nativeElement
 			&& !this.menuIsClosed
 			&& evt.which === KeyCodes.DOWN_ARROW) {
-			focusNextElem(evt.target);
+			evt.preventDefault();
+			let firstElem = this.dropdown.querySelector("[tabindex='0']");
+			if (firstElem) { firstElem["focus"](); }
 		}
 
 		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY) {
-			this.menuIsClosed = true;
+			this.closeMenu();
 		}
 
 		if (this.type === "multi") { return; }
@@ -154,32 +193,75 @@ export class Dropdown implements AfterContentInit {
 		}
 	}
 
-	ngAfterContentInit() {
-		this.view.select.subscribe(evt => {
-			if (this.type === "single") {
-				this.menuIsClosed = true;
-				this.rootButton.nativeElement.focus();
-			}
-			evt.item.selected = !evt.item.selected;
-			if (this.type === "single" && this.prevSelectedItem && evt.item !== this.prevSelectedItem) {
-				this.prevSelectedItem.selected = false;
-			}
-
-			this.prevSelectedItem = evt.item;
-			if (this.type === "multi") {
-				this.propagateChange(this.view.getSelected());
-			} else {
-				if (evt.item.selected) {
-					this.propagateChange(evt.item);
-				} else {
-					this.propagateChange(null);
-				}
-			}
-			this.select.emit(evt);
-		});
+	_noop() {}
+	_outsideClick(ev) {
+		if (!this._elementRef.nativeElement.contains(ev.target) &&
+			// if we're appendToBody the list isn't within the _elementRef,
+			// so we've got to check if our target is possibly in there too.
+			!this.dropdown.contains(ev.target)) {
+			this.closeMenu();
+		}
+	}
+	_keyboardNav(ev) {
+		if (ev.which === KeyCodes.ESCAPE || (ev.which === KeyCodes.UP_ARROW && ev.altKey)) {
+			ev.preventDefault();
+			this.closeMenu();
+			this.rootButton.nativeElement.focus();
+		} else if (!this.menuIsClosed && ev.which === KeyCodes.TAB_KEY) {
+			// this way focus will start on the next focusable item from the dropdown
+			// not the top of the body!
+			this.rootButton.nativeElement.focus();
+			this.rootButton.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
+			this.closeMenu();
+		}
 	}
 
-	private openMenu() {
-		this.menuIsClosed = !this.menuIsClosed;
+	openMenu() {
+		this.menuIsClosed = false;
+
+		// move the dropdown list to the body if appendToBody is true
+		// and position it relative to the dropdown wrapper
+		if (this.appendToBody) {
+			this.dropdownWrapper = document.createElement("div");
+			this.dropdownWrapper.className = "dropdown-wrapper append-body";
+			this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+			this.dropdownWrapper.appendChild(this.dropdown);
+			window.document.querySelector("body").appendChild(this.dropdownWrapper);
+			positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+			this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
+			this.resize = Observable.fromEvent(window, "resize")
+				.throttleTime(100)
+				.subscribe(() => {
+					positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+				});
+		}
+
+		// we bind noop to document.body.firstElementChild to allow safari to fire events
+		// from document. Then we unbind everything later to keep things light.
+		document.body.firstElementChild.addEventListener("click", this.noop, true);
+		document.addEventListener("click", this.outsideClick, true);
+	}
+
+	closeMenu() {
+		this.menuIsClosed = true;
+		this.onClose.emit();
+
+		// move the list back in the component on close
+		if (this.appendToBody) {
+			this._elementRef.nativeElement.appendChild(this.dropdown);
+			window.document.querySelector("body").removeChild(this.dropdownWrapper);
+			this.resize.unsubscribe();
+			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
+		}
+		document.body.firstElementChild.removeEventListener("click", this.noop, true);
+		document.removeEventListener("click", this.outsideClick, true);
+	}
+
+	toggleMenu() {
+		if (this.menuIsClosed) {
+			this.openMenu();
+		} else {
+			this.closeMenu();
+		}
 	}
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms";
 
 @Component({
 	selector: "dropdown-demo",
@@ -8,22 +8,22 @@ import { FormControl, Validators } from "@angular/forms";
 
 		<h3>Default dropdown</h3>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="display1"
-				(select)="onSelectAndDisplay1($event)"
+			<cdl-dropdown
+				[displayValue]="defaultdisplay1 || 'Select an option'"
+				(select)="defaultdisplay1 = getDisplay($event.item)"
 				size="sm">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
-				[displayValue]="display1"
-				(select)="onSelectAndDisplay1($event)">
+			<cdl-dropdown
+				[displayValue]="defaultdisplay2 || 'Select an option'"
+				(select)="defaultdisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
-				[displayValue]="display1"
-				(select)="onSelectAndDisplay1($event)"
+			<cdl-dropdown
+				[displayValue]="defaultdisplay3 || 'Select an option'"
+				(select)="defaultdisplay3 = getDisplay($event.item)"
 				size="lg">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -32,8 +32,8 @@ import { FormControl, Validators } from "@angular/forms";
 		<h3>Dropdown with tree</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4"
+				[displayValue]="treedisplay1 || 'Select an option'"
+				(select)="treedisplay1 = getDisplay($event.item)"
 				size="sm">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
@@ -43,8 +43,8 @@ import { FormControl, Validators } from "@angular/forms";
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4">
+				[displayValue]="treedisplay2 || 'Select an option'"
+				(select)="treedisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
 					[selectedIcon]="false"
@@ -53,8 +53,8 @@ import { FormControl, Validators } from "@angular/forms";
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				(select)="onSelectAndDisplay4($event)"
-				[displayValue]="display4"
+				[displayValue]="treedisplay3 || 'Select an option'"
+				(select)="treedisplay3 = getDisplay($event.item)"
 				size="lg">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
@@ -66,9 +66,9 @@ import { FormControl, Validators } from "@angular/forms";
 
 		<h3>Dropdown with sub menu</h3>
 		<div style="width: 250px">
-			<cdl-dropdown 
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)"
+			<cdl-dropdown
+				[displayValue]="subdisplay1 || 'Select an option'"
+				(select)="subdisplay1 = getDisplay($event.item)"
 				size="sm">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -76,18 +76,18 @@ import { FormControl, Validators } from "@angular/forms";
 				</cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)">
+			<cdl-dropdown
+				[displayValue]="subdisplay2 || 'Select an option'"
+				(select)="subdisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
 					[selectedIcon]="false">
 				</cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown 
-				[displayValue]="display5"
-				(select)="onSelectAndDisplay5($event)"
+			<cdl-dropdown
+				[displayValue]="subdisplay3 || 'Select an option'"
+				(select)="subdisplay3 = getDisplay($event.item)"
 				size="lg">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -97,30 +97,59 @@ import { FormControl, Validators } from "@angular/forms";
 		</div>
 
 		<h3>Disabled dropdown</h3>
-		<cdl-dropdown 
+		<cdl-dropdown
 			displayValue="Dropdown 7"
 			[disabled]="true"
 			(select)="onSelect($event)">
 			<cdl-dropdown-list
-				[items]="demoItems7">
+				[items]="demoItems1">
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
+		<h3>Default dropdown with appendToBody true</h3>
+		<div style="height: 100px; border: solid 1px red; overflow: hidden; width: 100%">
+			<div style="width: 300px; display: inline-block">
+				<b>AppendToBody: false</b>
+				<cdl-dropdown
+					[displayValue]="getMultiDisplay(dropdown3) || 'Select an option'"
+					[(ngModel)]="dropdown3"
+					type="multi">
+					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
+				</cdl-dropdown>
+				{{ dropdown3 | json }}
+			</div>
+
+			<div style="width: 300px; display: inline-block">
+				<b>AppendToBody: true</b>
+				<cdl-dropdown
+					[appendToBody]="true"
+					[displayValue]="getMultiDisplay(dropdown3) || 'Select an option'"
+					type="multi"
+					[(ngModel)]="dropdown3">
+					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
+				</cdl-dropdown>
+				{{ dropdown3 | json }}
+				<button class="btn" (click)="reset(dropdown3)">reset selected</button>
+			</div>
+		</div>
+
 		<h3>Default dropdown (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="getDisplay(dropdown1)" 
+			<cdl-dropdown
+				[displayValue]="getDisplay(dropdown1) || 'Select an option'"
 				[(ngModel)]="dropdown1">
 				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
 			{{ dropdown1 | json }}
 		</div>
+		<button (click)="reset2()" class="btn">reset</button>
 
 		<h3>Dropdown with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="getMultiDisplay(dropdown2)" 
+			<cdl-dropdown
+				[displayValue]="getMultiDisplay(dropdown2)"
 				[(ngModel)]="dropdown2"
+				(onClose)="onClose()"
 				type="multi">
 				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -128,45 +157,75 @@ import { FormControl, Validators } from "@angular/forms";
 		</div>
 
 		<h3>Dropdown with multi-select</h3>
-		<cdl-dropdown 
-			[displayValue]="display6"
-			(select)="onSelectAndDisplay6($event)"
+		<cdl-dropdown
+			[displayValue]="multidisplay1 || 'Select an option'"
+			(select)="multidisplay1 = getMultiDisplay($event.item)"
 			type="multi">
 			<cdl-dropdown-list
-				[items]="demoItems6">
+				[items]="demoItems1">
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
 		<h3>Reactive form dropdown</h3>
-		<cdl-dropdown 
-			[displayValue]="'Select an option'" 
+		<cdl-dropdown
+			[displayValue]="'Select an option'"
 			[formControl]="test">
 			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
 		</cdl-dropdown>
 		{{ test.value | json }}
+		<br>
 		{{ test.status | json }}
+		<br>
+		<br>
+		<cdl-dropdown
+			[displayValue]="'Select an option'"
+			[formControl]="test2"
+			type="multi">
+			<cdl-dropdown-list [items]="testData2"></cdl-dropdown-list>
+		</cdl-dropdown>
+		{{ test2.value | json }}
+		<br>
+		form
+		<br>
+		<form [formGroup]="testForm" novalidate (ngSubmit)="testSubmit(testForm)">
+			<div formArrayName="tests">
+				<div *ngFor="let testDrop of testForm.controls.tests.controls; let i = index">
+					<div [formGroupName]="i">
+						<cdl-dropdown
+							formControlName="drop"
+							type="multi"
+							[displayValue]="getMultiDisplay(testDrop.value.drop) || 'Select an option'">
+							<cdl-dropdown-list [items]="formitems"></cdl-dropdown-list>
+						</cdl-dropdown>
+						{{ testDrop.value | json }}
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-secondary" (click)="addTestOption()">add</button>
+			<button type="submit" class="btn">submit</button>
+		</form>
 
 		<h3>Default dropdown with custom template</h3>
 		<ng-template #listTpl let-item="item">
-			<cdl-glyphicon 
-				*ngIf="item.selected"  
-				icon="Checkbox Selected" 
+			<cdl-glyphicon
+				*ngIf="item.selected"
+				icon="Checkbox Selected"
 				size="md">
 			</cdl-glyphicon>
-			<cdl-glyphicon 
-				*ngIf="!item.selected" 
-				icon="Checkbox Empty" 
+			<cdl-glyphicon
+				*ngIf="!item.selected"
+				icon="Checkbox Empty"
 				size="md">
 			</cdl-glyphicon>
 			{{ item.content }}
 		</ng-template>
 		<div style="width: 400px">
-			<cdl-dropdown 
-				[displayValue]="display3" 
-				(select)="onSelectAndDisplay3($event)"
+			<cdl-dropdown
+				[displayValue]="customdisplay1 || 'Select an option'"
+				(select)="customdisplay1 = getDisplay($event.item)"
 				type="multi">
 				<cdl-dropdown-list
-					[items]="demoItems3"
+					[items]="demoItems1"
 					[listTpl]="listTpl">
 				</cdl-dropdown-list>
 			</cdl-dropdown>
@@ -174,16 +233,6 @@ import { FormControl, Validators } from "@angular/forms";
 	`,
 })
 export class DropdownDemo {
-	title = "Tabs Component Demo";
-	itemsSelected = 0;
-	itemsSelected2= 0;
-	display1 = "Select an option";
-	display2 = "Select an option";
-	display3 = "No Items selected";
-	display4 = "Select";
-	display5 = "Select";
-	display6 = "No Items selected";
-
 	demoItems1 = [
 		{
 			content: "item one",
@@ -203,7 +252,11 @@ export class DropdownDemo {
 		}
 	];
 
-	demoItems2 = Array.from(this.demoItems1, this.clone);
+	demoItems2 = Array.from(this.demoItems1, this.clone)
+		.concat(Array.from(this.demoItems1, this.clone))
+		.concat(Array.from(this.demoItems1, this.clone))
+		.concat(Array.from(this.demoItems1, this.clone))
+		.concat(Array.from(this.demoItems1, this.clone));
 	demoItems3 = Array.from(this.demoItems1, this.clone);
 	demoItems4 = [
 		{
@@ -248,96 +301,89 @@ export class DropdownDemo {
 	demoItems6 = Array.from(this.demoItems1, this.clone);
 	demoItems7 = Array.from(this.demoItems1, this.clone);
 	demoItems8 = Array.from(this.demoItems1, this.clone);
-	dropdown1 = {};
+	dropdown1 = null;
 	dropdown2 = [];
+	dropdown3 = [];
 
 	testData = Array.from(this.demoItems1, this.clone);
+	testData2 = Array.from(this.demoItems1, this.clone);
 	test = new FormControl(null, Validators.required);
+	test2 = new FormControl(null, Validators.required);
 
-	constructor() {
-		let init = this.demoItems8[0];
-		init.selected = true;
-		this.dropdown1 = init;
+	testForm: FormGroup;
+
+	formitems = [{content: "item one", selected: false}, {content: "item two", selected: false}];
+
+	constructor(private fb: FormBuilder) {
+		// let init = this.demoItems8[0];
+		// init.selected = true;
+		// this.dropdown1 = init;
 		let init2 = this.demoItems2[2];
 		init2.selected = true;
 		this.dropdown2 = [init2];
+
+		// reactive forms
+		this.testForm = this.fb.group({
+			tests: this.fb.array([
+				new FormGroup({
+					drop: new FormControl(),
+				}),
+				new FormGroup({
+					drop: new FormControl(),
+				})
+			])
+		});
+
+		this.testForm.valueChanges.forEach(value => console.log(value));
 	}
+
+	reset(model) {
+		console.log(model);
+		this.dropdown3 = [{
+			content: "item one",
+			selected: true
+		}];
+	}
+
+	reset2() {
+		this.dropdown1 = {
+			content: "item one",
+			selected: true
+		};
+	}
+
 	private clone (el) {
 		return JSON.parse(JSON.stringify(el));
+	}
+
+	onClose() {
+		// handle on dropdown close event
+	}
+
+	addTestOption() {
+		let array = this.testForm.get("tests") as FormArray;
+		array.push(new FormGroup({drop: new FormControl()}));
+	}
+
+	testSubmit() {
+		console.log(this.testForm);
 	}
 
 	getDisplay(model) {
 		if (model && model.selected) {
 			return model.content;
 		}
-		return "Select an option";
 	}
 
 	getMultiDisplay(model) {
 		if (model) {
 			return `${model.length} selected`;
 		}
-		return "Select an option";
 	}
+
 	onSelect(ev) {
+		console.log("this shouldnt fire");
 		ev.item.selected = !ev.item.selected;
 	}
 
-	onSelectAndDisplay1(ev) {
-		if (ev.item.selected) {
-			this.display1 = ev.item.content;
-		} else {
-			this.display1 = "Select an option";
-		}
-	}
-	onSelectAndDisplay2(ev) {
-		if (ev.item.selected) {
-			this.display2 = ev.item.content;
-		} else {
-			this.display2 = "Select an option";
-		}
-	}
-
-	onSelectAndDisplay3(ev) {
-		this.itemsSelected = ev.item.selected ? this.itemsSelected + 1 : this.itemsSelected - 1;
-
-		if (this.itemsSelected === 0) {
-			this.display3 = "No items selected";
-		} else if (this.itemsSelected === 1) {
-			this.display3 = "1 item selected";
-		} else {
-			this.display3 = `${this.itemsSelected} items selected`;
-		}
-	}
-
-	onSelectAndDisplay4(ev) {
-		if (!ev.item.items) {
-			if (ev.item.selected) {
-				this.display4 = ev.item.content;
-			} else {
-				this.display4 = "Select";
-			}
-		}
-	}
-
-	onSelectAndDisplay5(ev) {
-		if (!ev.item.items) {
-			if (ev.item.selected) {
-				this.display5 = ev.item.content;
-			} else {
-				this.display5 = "Select";
-			}
-		}
-	}
-
-	onSelectAndDisplay6(ev) {
-		this.itemsSelected2 = ev.item.selected ? this.itemsSelected2 + 1 : this.itemsSelected2 - 1;
-		if (this.itemsSelected2 === 0) {
-			this.display6 = "No items selected";
-		} else if (this.itemsSelected2 === 1) {
-			this.display6 = "1 item selected";
-		} else {
-			this.display6 = `${this.itemsSelected2} items selected`;
-		}
-	}
 }

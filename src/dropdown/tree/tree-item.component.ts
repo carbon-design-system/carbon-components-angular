@@ -51,7 +51,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				</span>
 			</div>
 		</div>
-		<cdl-dropdown-tree
+		<cdl-tree-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
@@ -64,9 +64,8 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[indentStart]="indentStart"
 			[role]="'group'"
 			[label]="listItem"
-			[elemSpacing]="elemSpacing"
-			>
-		</cdl-dropdown-tree>
+			[elemSpacing]="elemSpacing">
+		</cdl-tree-wrapper>
 	`
 })
 export class TreeItem {
@@ -96,7 +95,7 @@ export class TreeItem {
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
-	calculateIndent(border) {
+	calculateIndent() {
 		if (this.indentStart <= this.indent) {
 			return this.elemSpacing * (this.indent - this.indentStart);
 		}

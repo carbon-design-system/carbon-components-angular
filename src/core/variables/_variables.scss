@@ -117,7 +117,7 @@ $default-box-shadow-overlayed:    0 0 10px color("black", 100, $alpha: 0.08) !de
 //
 //## Define
 
-$popover-header-padding: 	15px 20px !default;
+$popover-header-padding: 	7px 14px !default;
 $popover-header-height: 	45px !default;
 $popover-header-bg: 		color("blue", 50) !default;
 $popover-title-color: 		color("white", 0) !default;
@@ -408,6 +408,17 @@ $topnav-product-title-color: color('gray', 40) !default;
 
 
 
+//== Sidenav
+//
+//## Define sidenav
+
+$sidenav-width: 260px;
+$sidenav-item-height: 44px;
+
+
+
+
+
 //== table
 //
 //## Define table colors, border, and padding.
@@ -449,8 +460,9 @@ $table-checkbox-width:       20px !default;
 
 // modal
 $modal-bg: color("white", 0) !default;
-$modal-wrapper-height: 100vh !default;
+$modal-wrapper-height: calc(100vh - 40px) !default;
 $modal-wrapper-width: 100vw !default;
+$modal-wrapper-padding: 20px !default;
 $modal-min-height: 153px !default;
 
 // modal sizes

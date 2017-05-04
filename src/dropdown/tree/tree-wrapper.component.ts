@@ -4,37 +4,42 @@ import {
 	Output,
 	EventEmitter,
 	forwardRef,
-	TemplateRef
+	TemplateRef,
+	ElementRef,
+	ViewChild,
+	AfterViewInit
 } from "@angular/core";
-import { TreeViewItem } from "./tree-view-item.component";
+import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
+import { ListItem } from "./../list-item.interface";
+import { TreeItem } from "./tree-item.component";
 
 @Component({
-	selector: "cdl-tree-view",
+	selector: "cdl-tree-wrapper",
 	template: `
-		<ul class="tree-view"
+		<ul class="tree"
 			[class.open]="isOpen"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
 			<li *ngFor="let item of items">
-				<cdl-tree-view-item
+				<cdl-tree-item
 					[listTpl]="listTpl"
 					[listItem]="item"
-					[hasSubMenu]="!!item.subMenu"
+					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
 					[rootElem]="rootElem"
 					[selectedIcon]="selectedIcon"
-					(select)="onClick($event)"
 					[indent]="indent"
 					[indentStart]="indentStart"
-					[elemSpacing]="elemSpacing">
-				</cdl-tree-view-item>
+					[elemSpacing]="elemSpacing"
+					(select)="bubbleSelect($event)">
+				</cdl-tree-item>
 			</li>
 		</ul>
-	`,
+	`
 })
-export class TreeView {
-	@Input() items: Array<Object> = [];
+export class TreeWrapper {
+	@Input() items: Array<ListItem> = [];
 	@Input() isOpen = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
@@ -48,17 +53,7 @@ export class TreeView {
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	onClick(evt) {
-		let item = evt.item;
-
-		if (!item.disabled) {
-			if (item.subMenu) {
-				item.selected = !item.selected;
-			} else {
-				this.select.emit({
-					item
-				});
-			}
-		}
+	bubbleSelect(evt) {
+		this.select.emit(evt);
 	}
 }

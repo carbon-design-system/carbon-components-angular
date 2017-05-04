@@ -5,8 +5,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { DropdownSubMenu } from "./sub-menu/sub-menu.component";
+import { SubMenuWrapper } from "./sub-menu/sub-menu-wrapper.component";
 import { SubMenuItem } from "./sub-menu/sub-menu-item.component";
 import { DropdownTree } from "./tree/tree.component";
+import { TreeWrapper } from "./tree/tree-wrapper.component";
 import { TreeItem } from "./tree/tree-item.component";
 
 export { Dropdown } from "./dropdown.component";
@@ -21,8 +23,10 @@ export { ListItem } from "./list-item.interface";
 		Dropdown,
 		DropdownList,
 		DropdownSubMenu,
+		SubMenuWrapper,
 		SubMenuItem,
 		DropdownTree,
+		TreeWrapper,
 		TreeItem
 	],
 	exports: [

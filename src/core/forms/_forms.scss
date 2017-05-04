@@ -9,7 +9,7 @@
     color: color("gray", 80);
     font-weight: 400;
     &.disabled, .disabled & {
-        color:$input-field-color-disabled;
+        color: $input-field-color-disabled;
     }
 }
 
@@ -17,6 +17,22 @@
     display: block;
     clear:both;
     margin-bottom: 10px;
+}
+
+.label-icon {
+	margin-right: 10px;
+}
+
+.label-icon-success {
+	fill: $alert-success-icon;
+}
+
+.label-icon-warning {
+	fill: $alert-warning-icon;
+}
+
+.label-icon-error {
+	fill: $alert-danger-icon;
 }
 
 // text field
@@ -47,7 +63,7 @@
         }
         .size-lg &, &.size-lg{
             height: $input-field-height-lg;
-            padding:$input-field-padding-lg;
+            padding: $input-field-padding-lg;
         }
     }
     // textarea
