@@ -10,7 +10,6 @@ import {
 	ElementRef
 } from "@angular/core";
 
-import { KeyCodes } from "./../../constant/keys";
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
@@ -21,7 +20,7 @@ import { DropdownList } from "./dropdown-list.component";
 @Component({
 	selector: "cdl-dropdown-filter",
 	template: `
-		<div 
+		<div
 			*ngIf="type === 'multi'"
 			class="dropdown-selected-only">
 			<span class="checkbox" style="margin-bottom: 0px;">
@@ -37,54 +36,54 @@ import { DropdownList } from "./dropdown-list.component";
 		</div>
 		<div class="dropdown-filter-search">
 			<div class="search-icon">
-				<svg 
-					xmlns="http://www.w3.org/2000/svg" 
-					width="16px" 
-					height="16px" 
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16px"
+					height="16px"
 					viewBox="0 0 16 16">
 					<g>
-						<path 
-							fill="#949494" 
-							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z 
-							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5 
+						<path
+							fill="#949494"
+							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
+							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
 							S8.8,11,6,11z"/>
-						<rect 
-							x="12" 
-							y="10.2" 
-							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)" 
-							fill="#949494" 
-							width="2" 
+						<rect
+							x="12"
+							y="10.2"
+							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
+							fill="#949494"
+							width="2"
 							height="5.7"/>
 					</g>
 				</svg>
 			</div>
-			<input 
+			<input
 				#filter
 				(keyup)="filterItems()"
 				type="text"
 				class="input-field"
 				tabindex="0"
 				placeholder="Search"/>
-			<button 
+			<button
 				class="search-cancel"
 				type="button"
 				aria-label="cancel"
 				(click)="clearFilter()">
-				<svg 
-					xmlns="http://www.w3.org/2000/svg" 
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
 					width="16px"
 					height="16px"
 					viewBox="0 0 16 16">
-					<polygon 
-						fill="#959595" 
-						points="14.5,2.6 13.4,1.5 
-						8,6.9 2.6,1.5 
-						1.5,2.6 6.9,8 
-						1.5,13.4 
-						2.6,14.5 
-						8,9.1 
-						13.4,14.5 
-						14.5,13.4 
+					<polygon
+						fill="#959595"
+						points="14.5,2.6 13.4,1.5
+						8,6.9 2.6,1.5
+						1.5,2.6 6.9,8
+						1.5,13.4
+						2.6,14.5
+						8,9.1
+						13.4,14.5
+						14.5,13.4
 						9.1,8"/>
 				</svg>
 			</button>
@@ -103,9 +102,9 @@ import { DropdownList } from "./dropdown-list.component";
 				<span class="checkbox"
 					*ngIf="type === 'multi'">
 					<label>
-						<input 
+						<input
 							tabindex="-1"
-							type="checkbox" 
+							type="checkbox"
 							[checked]="item.selected"
 							(click)="doClick($event, item)">
 						<span class="label"></span>
@@ -156,13 +155,13 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 		this.filterNative = this.filter.nativeElement;
 		this.selectedOnlyNative = this.selectedOnly ? this.selectedOnly.nativeElement : null;
 		this._elementRef.nativeElement.addEventListener("keydown", (ev) => {
-			if (ev.which === KeyCodes.TAB_KEY && !this.list.nativeElement.contains(ev.target)) {
+			if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target)) {
 				ev.stopPropagation();
-			} else if (ev.which === KeyCodes.TAB_KEY && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
+			} else if (ev.key === "Tab" && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
 				ev.stopPropagation();
 				ev.preventDefault();
 				this.filterNative.focus();
-			} else if (ev.which === KeyCodes.ENTER_KEY || (ev.which === KeyCodes.DOWN_ARROW && !this.list.nativeElement.contains(ev.target))) {
+			} else if (ev.key === "Enter" || (ev.key === "ArrowDown" && !this.list.nativeElement.contains(ev.target))) {
 				this.listList[0].focus();
 			}
 		});
