@@ -22,13 +22,13 @@
 }
 
 .dropdown-selected-only {
-	padding: 10px; 
+	padding: 10px;
 	border-bottom: 1px solid color("gray", 10);
 }
 
 .dropdown-filter-search {
 	position: relative;
-	padding: 10px; 
+	padding: 10px;
 	border-bottom: 1px solid color("gray", 10);
 	.search-icon {
 		position: absolute;
@@ -58,7 +58,7 @@
 	}
 }
 
-.list li &.no-results {
+.list .no-results {
 	font-style: italic;
 	color: color("gray", 50);
 	&:hover {
