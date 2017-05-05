@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
+import { ModalService } from "./../../../src/modal/modal.service";
 import { Modal } from "../../../src/";
+import { SampleModalComponent } from "./sample-modal.component";
 
 @Modal()
 @Component({
@@ -9,6 +11,7 @@ import { Modal } from "../../../src/";
 		<cdl-modal-header (closeSelect)="closeModal()">XXL</cdl-modal-header>
 		<section class="modal-body">
 			<p>This is an XXL Modal</p>
+			<button class="btn" (click)="openModal()">Open another modal</button>
 		</section>
 		<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
 	</cdl-modal>
@@ -17,6 +20,9 @@ import { Modal } from "../../../src/";
 })
 export class XLModalComponent {
 
-	constructor() { }
+	constructor(private modalService: ModalService) { }
 
+	openModal(modalType) {
+		this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Ain't this cool!"}});
+	}
 }

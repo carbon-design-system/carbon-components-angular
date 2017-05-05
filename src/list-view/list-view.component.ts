@@ -7,7 +7,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 
-import { KeyCodes } from "../constant/keys";
 import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 @Component({
@@ -43,14 +42,14 @@ export class ListView {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	doKeyDown(ev, item) {
-		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
+		if (ev.key && (ev.key === "Enter" || ev.key === " ")) {
 			ev.preventDefault();
 			this.doClick(ev, item);
-		} else if (ev.which === KeyCodes.DOWN_ARROW || ev.which === KeyCodes.UP_ARROW) {
-			if (ev.which === KeyCodes.DOWN_ARROW && findNextElem(ev.target)) {
+		} else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+			if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
 				ev.preventDefault();
 				findNextElem(ev.target).focus();
-			} else if (ev.which === KeyCodes.UP_ARROW && findPrevElem(ev.target)) {
+			} else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
 				ev.preventDefault();
 				findPrevElem(ev.target).focus();
 			}
