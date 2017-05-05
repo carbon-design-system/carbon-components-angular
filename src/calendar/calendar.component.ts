@@ -8,8 +8,6 @@ import {
 	ElementRef
 } from "@angular/core";
 
-import { KeyCodes } from "../constant/keys";
-
 @Component({
 	selector: "cdl-calendar",
 	exportAs: "cdlCalendar",
@@ -155,16 +153,16 @@ export class Calendar {
 	}
 
 	onKeyDown(evt, idx) {
-		if (evt.keyCode === KeyCodes.RIGHT_ARROW && this.allButtons[idx + 1]) {
+		if (evt.key === "ArrowRight" && this.allButtons[idx + 1]) {
 			evt.preventDefault();
 			this.allButtons[idx + 1].focus();
-		} else if (evt.keyCode === KeyCodes.LEFT_ARROW && idx > 0) {
+		} else if (evt.key === "ArrowLeft" && idx > 0) {
 			evt.preventDefault();
 			this.allButtons[idx - 1].focus();
-		} else if (evt.keyCode === KeyCodes.UP_ARROW && idx - 7 >= 0) {
+		} else if (evt.key === "ArrowUp" && idx - 7 >= 0) {
 			evt.preventDefault();
 			this.allButtons[idx - 7].focus();
-		} else if (evt.keyCode === KeyCodes.DOWN_ARROW && this.allButtons[idx + 7]) {
+		} else if (evt.key === "ArrowDown" && this.allButtons[idx + 7]) {
 			evt.preventDefault();
 			this.allButtons[idx + 7].focus();
 		}

@@ -12,7 +12,6 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
-import { KeyCodes } from "../constant/keys";
 import { Tab } from "./tab.component";
 
 @Component({
@@ -97,13 +96,13 @@ export class TabHeaders implements AfterViewInit {
 	// keyboard accessibility
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		if (event.keyCode === KeyCodes.RIGHT_ARROW || event.keyCode === KeyCodes.DOWN_ARROW) {
+		if (event.key === "ArrowRight" || event.key === "ArrowDown") {
 			if (this.currentSelectedTab < this.allTabHeading.length - 1) {
 				event.preventDefault();
 				this.allTabHeading[this.currentSelectedTab + 1].focus();
 			}
 		}
-		if (event.keyCode === KeyCodes.LEFT_ARROW || event.keyCode === KeyCodes.UP_ARROW) {
+		if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
 				this.allTabHeading[this.currentSelectedTab - 1].focus();

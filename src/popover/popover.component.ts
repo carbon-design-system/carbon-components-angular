@@ -15,7 +15,6 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 import { positionElements } from "../common/position.service";
-import { KeyCodes } from "../constant/keys";
 
 @Component({
 	selector: "cdl-popover",
@@ -64,7 +63,7 @@ export class Popover implements OnInit, AfterViewInit {
 
 	@HostListener("window:keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
-		if (event.keyCode === KeyCodes.ESCAPE) {
+		if (event.key === "Escape") {
 			this.onClose();
 		}
 	}
