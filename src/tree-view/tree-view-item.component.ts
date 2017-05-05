@@ -7,7 +7,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { TreeView } from "./tree-view.component";
-import { KeyCodes } from "../constant/keys";
 import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
 
 @Component({
@@ -111,11 +110,11 @@ export class TreeViewItem {
 
 	// Keyboard accessibility
 	onKeyDown(ev, item) {
-		if (ev.keyCode === KeyCodes.UP_ARROW) {
+		if (ev.key === "ArrowUp") {
 			ev.preventDefault();
 
 			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
-		} else if (ev.keyCode === KeyCodes.DOWN_ARROW) {
+		} else if (ev.key === "ArrowDown") {
 			ev.preventDefault();
 
 			if (!item.subMenu || !item.selected) {
@@ -123,8 +122,8 @@ export class TreeViewItem {
 			} else if (item.subMenu && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			}
-		} else if (ev.keyCode === KeyCodes.ENTER_KEY || ev.keyCode === KeyCodes.SPACE_BAR
-					|| ev.keyCode === KeyCodes.RIGHT_ARROW || ev.keyCode === KeyCodes.LEFT_ARROW) {
+		} else if (ev.key === "Enter" || ev.key === " "
+					|| ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
 			ev.preventDefault();
 
 			this.select.emit({

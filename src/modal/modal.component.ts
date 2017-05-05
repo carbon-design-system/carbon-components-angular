@@ -15,7 +15,6 @@ import {
 	animate
 } from "@angular/animations";
 
-import { KeyCodes } from "../constant/keys";
 
 @Component({
 	selector: "cdl-modal",
@@ -54,7 +53,7 @@ export class ModalComponent implements OnInit {
 	@HostListener("document:keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
 		event.stopImmediatePropagation();
-		if (event.keyCode === KeyCodes.ESCAPE) {
+		if (event.key === "Escape") {
 			this.modalService.destroy();  // destroy top (latest) modal
 		}
 	}
