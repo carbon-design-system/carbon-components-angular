@@ -33,13 +33,7 @@ export class ModalService {
 		component.instance["destroy"] = () => {
 			// find the component in the list and call distroy on it
 			// this is necessary to keep componentRefs up to date
-			let index = -1;
-			for (let i = 0; i < this.componentRefs.length; i++) {
-				if (this.componentRefs[i] === component) {
-					index = i;
-					break;
-				}
-			}
+			let index = this.componentRefs.indexOf(component);
 			// if found
 			if (index >= 0) {
 				this.destroy(index);
