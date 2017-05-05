@@ -11,7 +11,8 @@ import {
 	AfterContentInit,
 	AfterViewInit,
 	HostListener,
-	forwardRef
+	forwardRef,
+	OnDestroy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -68,7 +69,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
+export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
 	menuIsClosed = true;
 	dropdown: HTMLElement;
 	dropdownWrapper: HTMLElement;
@@ -226,24 +227,37 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 		}
 	}
 
+	_appendToDropdown() {
+		if (document.body.contains(this.dropdownWrapper)) {
+			this._elementRef.nativeElement.appendChild(this.dropdown);
+			document.body.removeChild(this.dropdownWrapper);
+			this.resize.unsubscribe();
+			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
+		}
+	}
+
+	_appendToBody() {
+		this.dropdownWrapper = document.createElement("div");
+		this.dropdownWrapper.className = "dropdown-wrapper append-body";
+		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+		this.dropdownWrapper.appendChild(this.dropdown);
+		document.body.appendChild(this.dropdownWrapper);
+		positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
+		this.resize = Observable.fromEvent(window, "resize")
+			.throttleTime(100)
+			.subscribe(() => {
+				positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+			});
+	}
+
 	openMenu() {
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if appendToBody is true
 		// and position it relative to the dropdown wrapper
 		if (this.appendToBody) {
-			this.dropdownWrapper = document.createElement("div");
-			this.dropdownWrapper.className = "dropdown-wrapper append-body";
-			this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
-			this.dropdownWrapper.appendChild(this.dropdown);
-			window.document.querySelector("body").appendChild(this.dropdownWrapper);
-			positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
-			this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
-			this.resize = Observable.fromEvent(window, "resize")
-				.throttleTime(100)
-				.subscribe(() => {
-					positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
-				});
+			this._appendToBody();
 		}
 
 		// we bind noop to document.body.firstElementChild to allow safari to fire events
@@ -259,10 +273,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 
 		// move the list back in the component on close
 		if (this.appendToBody) {
-			this._elementRef.nativeElement.appendChild(this.dropdown);
-			window.document.querySelector("body").removeChild(this.dropdownWrapper);
-			this.resize.unsubscribe();
-			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
+			this._appendToDropdown();
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
@@ -273,6 +284,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 			this.openMenu();
 		} else {
 			this.closeMenu();
+		}
+	}
+
+	ngOnDestroy() {
+		if (this.appendToBody) {
+			this._appendToDropdown();
 		}
 	}
 }
