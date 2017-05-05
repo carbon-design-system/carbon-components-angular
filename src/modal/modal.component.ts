@@ -53,7 +53,6 @@ export class ModalComponent implements OnInit {
 
 	@HostListener("document:keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		console.log(event);
 		event.stopImmediatePropagation();
 		if (event.keyCode === KeyCodes.ESCAPE) {
 			this.modalService.destroy();  // destroy top (latest) modal
