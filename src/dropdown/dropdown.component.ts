@@ -161,6 +161,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 			this.closeMenu();
 		}
 
+		if (!this.menuIsClosed && evt.key === "Tab" && evt.shiftKey) {
+			this.closeMenu();
+		}
+
 		if (this.type === "multi") { return; }
 
 		if (this.menuIsClosed) {
