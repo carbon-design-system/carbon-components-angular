@@ -9,56 +9,110 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Default dropdown</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="defaultdisplay1 || 'Select an option'"
-				(select)="defaultdisplay1 = getDisplay($event.item)"
+				placeholder="Select an option"
 				size="sm">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown
-				[displayValue]="defaultdisplay2 || 'Select an option'"
-				(select)="defaultdisplay2 = getDisplay($event.item)">
+			<cdl-dropdown placeholder="Select an option">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="defaultdisplay3 || 'Select an option'"
-				(select)="defaultdisplay3 = getDisplay($event.item)"
+				placeholder="Select an option"
 				size="lg">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Multi-select default dropdown</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				placeholder="Select an option"
+				size="sm"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				placeholder="Select an option"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				placeholder="Select an option"
+				size="lg"
+				type="multi">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Filter dropdown</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				placeholder="Select an option"
+				size="sm">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown placeholder="Select an option">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				placeholder="Select an option"
+				size="lg">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+		</div>
+
+		<h3>Multi-select filter dropdown</h3>
+		<div style="width: 400px">
+			<cdl-dropdown
+				placeholder="Select an option"
+				size="sm"
+				type="multi">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				placeholder="Select an option"
+				type="multi">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</cdl-dropdown>
+			<br><br>
+			<cdl-dropdown
+				placeholder="Select an option"
+				size="lg"
+				type="multi">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
 			</cdl-dropdown>
 		</div>
 
 		<h3>Dropdown with tree</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="treedisplay1 || 'Select an option'"
-				(select)="treedisplay1 = getDisplay($event.item)"
+				placeholder="Select an option"
 				size="sm">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
-					[selectedIcon]="false"
 					[label]="'Dropdown with Tree view'">
 				</cdl-dropdown-tree>
 			</cdl-dropdown>
 			<br><br>
-			<cdl-dropdown
-				[displayValue]="treedisplay2 || 'Select an option'"
-				(select)="treedisplay2 = getDisplay($event.item)">
+			<cdl-dropdown placeholder="Select an option">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
-					[selectedIcon]="false"
 					[label]="'Dropdown with Tree view'">
 				</cdl-dropdown-tree>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="treedisplay3 || 'Select an option'"
-				(select)="treedisplay3 = getDisplay($event.item)"
+				placeholder="Select an option"
 				size="lg">
 				<cdl-dropdown-tree
 					[items]="demoItems4"
-					[selectedIcon]="false"
 					[label]="'Dropdown with Tree view'">
 				</cdl-dropdown-tree>
 			</cdl-dropdown>
@@ -67,8 +121,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Dropdown with sub menu</h3>
 		<div style="width: 250px">
 			<cdl-dropdown
-				[displayValue]="subdisplay1 || 'Select an option'"
-				(select)="subdisplay1 = getDisplay($event.item)"
+				placeholder="Select an option"
 				size="sm">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -77,7 +130,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="subdisplay2 || 'Select an option'"
+				placeholder="Select an option"
+				[displayValue]="subdisplay2"
 				(select)="subdisplay2 = getDisplay($event.item)">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -86,8 +140,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
-				[displayValue]="subdisplay3 || 'Select an option'"
-				(select)="subdisplay3 = getDisplay($event.item)"
+				placeholder="Select an option"
 				size="lg">
 				<cdl-dropdown-sub-menu
 					[items]="demoItems5"
@@ -98,7 +151,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Disabled dropdown</h3>
 		<cdl-dropdown
-			displayValue="Dropdown 7"
+			placeholder="Dropdown 7"
 			[disabled]="true"
 			(select)="onSelect($event)">
 			<cdl-dropdown-list
@@ -111,7 +164,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: false</b>
 				<cdl-dropdown
-					[displayValue]="getMultiDisplay(dropdown3) || 'Select an option'"
+					placeholder="Select an option"
 					[(ngModel)]="dropdown3"
 					type="multi">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
@@ -123,7 +176,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				<b>AppendToBody: true</b>
 				<cdl-dropdown
 					[appendToBody]="true"
-					[displayValue]="getMultiDisplay(dropdown3) || 'Select an option'"
+					placeholder="Select an option"
 					type="multi"
 					[(ngModel)]="dropdown3">
 					<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
@@ -136,7 +189,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Default dropdown (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="getDisplay(dropdown1) || 'Select an option'"
+				placeholder="Select an option"
 				[(ngModel)]="dropdown1">
 				<cdl-dropdown-list [items]="demoItems8"></cdl-dropdown-list>
 			</cdl-dropdown>
@@ -147,7 +200,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Dropdown with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="getMultiDisplay(dropdown2)"
+				placeholder="Select an option"
 				[(ngModel)]="dropdown2"
 				(onClose)="onClose()"
 				type="multi">
@@ -158,7 +211,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Dropdown with multi-select</h3>
 		<cdl-dropdown
-			[displayValue]="multidisplay1 || 'Select an option'"
+			placeholder="Select an option"
 			(select)="multidisplay1 = getMultiDisplay($event.item)"
 			type="multi">
 			<cdl-dropdown-list
@@ -168,7 +221,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Reactive form dropdown</h3>
 		<cdl-dropdown
-			[displayValue]="'Select an option'"
+			placeholder="Select an option"
 			[formControl]="test">
 			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
 		</cdl-dropdown>
@@ -178,7 +231,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<br>
 		<br>
 		<cdl-dropdown
-			[displayValue]="'Select an option'"
+			placeholder="Select an option"
 			[formControl]="test2"
 			type="multi">
 			<cdl-dropdown-list [items]="testData2"></cdl-dropdown-list>
@@ -194,7 +247,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 						<cdl-dropdown
 							formControlName="drop"
 							type="multi"
-							[displayValue]="getMultiDisplay(testDrop.value.drop) || 'Select an option'">
+							placeholder="Select an option">
 							<cdl-dropdown-list [items]="formitems"></cdl-dropdown-list>
 						</cdl-dropdown>
 						{{ testDrop.value | json }}
@@ -221,8 +274,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		</ng-template>
 		<div style="width: 400px">
 			<cdl-dropdown
-				[displayValue]="customdisplay1 || 'Select an option'"
-				(select)="customdisplay1 = getDisplay($event.item)"
+				placeholder="Select an option"
 				type="multi">
 				<cdl-dropdown-list
 					[items]="demoItems1"
@@ -230,24 +282,55 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				</cdl-dropdown-list>
 			</cdl-dropdown>
 		</div>
+
+		<h3>Dropdown item containers</h3>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-filter [items]="demoItems1" type="multi"></cdl-dropdown-filter>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-tree [items]="demoItems4"></cdl-dropdown-tree>
+			</div>
+		</div>
+		<br><br>
+		<div class="dropdown-wrapper" style="width: 250px;">
+			<div class="dropdown-menu open" style="position: relative;">
+				<cdl-dropdown-sub-menu [items]="demoItems5"></cdl-dropdown-sub-menu>
+			</div>
+		</div>
 	`,
 })
 export class DropdownDemo {
 	demoItems1 = [
 		{
-			content: "item one",
+			content: "a item one",
 			selected: false
 		},
 		{
-			content: "item two",
+			content: "b item two",
 			selected: false,
 		},
 		{
-			content: "item three",
+			content: "c item three",
 			selected: false
 		},
 		{
-			content: "item four",
+			content: "d item four",
 			selected: false
 		}
 	];

@@ -37,7 +37,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			(blur)="onBlur()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
-			{{displayValue}}
+			{{getDisplayValue()}}
 			<span class="dropdown-icon" [class.open]="!menuIsClosed">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -80,6 +80,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	resize;
 	private onTouchedCallback: () => void = this._noop;
 
+	@Input() placeholder = "";
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
@@ -88,7 +89,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
-	@ContentChild(AbstractDropdownView) view;
+	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
 
 	constructor(public _elementRef: ElementRef) {}
@@ -123,7 +124,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 
 	writeValue(value: any) {
 		if (value) {
-			console.log("write", value);
 			if (this.type === "single") {
 				this.view.propagateSelected([value]);
 			} else {
@@ -157,15 +157,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 			this.openMenu();
 		}
 
-		if (evt.target === this.rootButton.nativeElement
-			&& !this.menuIsClosed
-			&& evt.key === "ArrowDown") {
-			evt.preventDefault();
-			let firstElem = this.dropdown.querySelector("[tabindex='0']");
-			if (firstElem) { firstElem["focus"](); }
+		if (!this.menuIsClosed && evt.key === "Tab" && this.dropdown.contains(evt.target)) {
+			this.closeMenu();
 		}
 
-		if (!this.menuIsClosed && evt.key === "Tab") {
+		if (!this.menuIsClosed && evt.key === "Tab" && evt.shiftKey) {
 			this.closeMenu();
 		}
 
@@ -190,6 +186,21 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 				elem.click();
 			}
 		}
+	}
+
+	getDisplayValue() {
+		let selected = this.view.getSelected();
+		if (selected && !this.displayValue) {
+			if (this.type === "multi") {
+				// translate me
+				return `${selected.length} selected`;
+			} else {
+				return selected[0].content;
+			}
+		} else if (selected) {
+			return this.displayValue;
+		}
+		return this.placeholder;
 	}
 
 	_noop() {}
@@ -239,6 +250,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 		// from document. Then we unbind everything later to keep things light.
 		document.body.firstElementChild.addEventListener("click", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
+		setTimeout(() => this.view.getCurrentElement().focus(), 0);
 	}
 
 	closeMenu() {

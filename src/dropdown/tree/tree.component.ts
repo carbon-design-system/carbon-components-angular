@@ -11,6 +11,7 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { TreeItem } from "./tree-item.component";
+import { watchFocusJump, treetools } from "./../dropdowntools";
 
 @Component({
 	selector: "cdl-dropdown-tree",
@@ -30,7 +31,7 @@ import { TreeItem } from "./tree-item.component";
 export class DropdownTree implements AbstractDropdownView {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() selectedIcon = true;
+	@Input() selectedIcon = false;
 	@Input() role: "tree" | "group" = "tree";
 	@Input() label: string;
 	@Input() elemSpacing = 40;
@@ -58,7 +59,16 @@ export class DropdownTree implements AbstractDropdownView {
 	}
 
 	ngAfterViewInit() {
-		this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
+		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper")) as HTMLElement[];
+		watchFocusJump(this._elementRef.nativeElement, this.listList)
+			.subscribe(el => {
+				let item = this.flatList[this.listList.indexOf(el)];
+				treetools.find(this.items, item).path.forEach(i => {
+					if (i !== item) { i.selected = true; }
+				});
+				// wait a tick...
+				setTimeout(() => el.focus(), 0);
+			});
 	}
 
 	flattenTree(items) {
@@ -115,6 +125,13 @@ export class DropdownTree implements AbstractDropdownView {
 		return elem;
 	}
 
+	getCurrentElement(): HTMLElement {
+		if (this.index < 0) {
+			return this.listList[0];
+		}
+		return this.listList[this.index];
+	}
+
 	getSelected(): ListItem[] {
 		let selected = this.flatList.filter(item => item.selected && !item.items);
 		if (selected.length === 0) {
@@ -151,24 +168,8 @@ export class DropdownTree implements AbstractDropdownView {
 	onClick({item}) {
 		item.selected = !item.selected;
 		this.index = this.flatList.indexOf(item);
-		// find the path to the item we want to select
-		function find(items, itemToFind, path = []) {
-			let found;
-			for (let i of items) {
-				if (i === itemToFind) {
-					path.push(i);
-					found = i;
-				}
-				if (i.items && !found) {
-					path.push(i);
-					found = find(i.items, itemToFind, path).found;
-					if (!found) { path = []; }
-				}
-			}
-			return {found, path};
-		}
 		if (this.type === "single") {
-			let {path} = find(this.items, item);
+			let {path} = treetools.find(this.items, item);
 			// reset the selection taking care not to touch our selected item
 			for (let i = 0; i < this.flatList.length; i++) {
 				if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {

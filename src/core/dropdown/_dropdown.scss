@@ -84,8 +84,9 @@
 		&.open {
 			display: block;
 		}
-		@import "./sub-menu";
 		@import "./list";
+		@import "./filter-list";
 		@import "./tree";
+		@import "./sub-menu";
 	}
 }
