@@ -22,7 +22,6 @@ import "rxjs/add/operator/throttleTime";
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { positionElements } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
-import { KeyCodes } from "./../constant/keys";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
 @Component({
@@ -149,16 +148,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(evt) {
-		if (evt.which === KeyCodes.ESCAPE || (evt.which === KeyCodes.UP_ARROW && evt.altKey)) {
+		if (evt.key === "Escape" || (evt.key === "ArrowUp" && evt.altKey)) {
 			evt.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (evt.which === KeyCodes.DOWN_ARROW && evt.altKey) {
+		} else if (evt.key === "ArrowDown" && evt.altKey) {
 			evt.preventDefault();
 			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY && this.dropdown.contains(evt.target)) {
+		if (!this.menuIsClosed && evt.key === "Tab" && this.dropdown.contains(evt.target)) {
 			this.closeMenu();
 		}
 
@@ -170,13 +169,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	}
 
 	closedDropdownNavigation(evt) {
-		if (evt.which === KeyCodes.DOWN_ARROW) {
+		if (evt.key === "ArrowDown") {
 			evt.preventDefault();
 			let elem = this.view.getNextElement();
 			if (elem) {
 				elem.click();
 			}
-		} else if (evt.which === KeyCodes.UP_ARROW) {
+		} else if (evt.key === "ArrowUp") {
 			evt.preventDefault();
 			let elem = this.view.getPrevElement();
 			if (elem) {
@@ -210,11 +209,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 		}
 	}
 	_keyboardNav(ev) {
-		if (ev.which === KeyCodes.ESCAPE || (ev.which === KeyCodes.UP_ARROW && ev.altKey)) {
+		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
 			ev.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (!this.menuIsClosed && ev.which === KeyCodes.TAB_KEY) {
+		} else if (!this.menuIsClosed && ev.key === "Tab") {
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.rootButton.nativeElement.focus();

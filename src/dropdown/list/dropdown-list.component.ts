@@ -10,7 +10,6 @@ import {
 	ElementRef
 } from "@angular/core";
 
-import { KeyCodes } from "./../../constant/keys";
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
@@ -31,13 +30,13 @@ import { watchFocusJump } from "./../dropdowntools";
 					disabled: item.disabled
 				}"
 				class="option">
-				<span 
-					class="checkbox" 
+				<span
+					class="checkbox"
 					*ngIf="type === 'multi'">
 					<label>
-						<input 
+						<input
 							tabindex="-1"
-							type="checkbox" 
+							type="checkbox"
 							[checked]="item.selected"
 							(click)="doClick($event, item)">
 						<span class="label"></span>
@@ -162,14 +161,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	doKeyDown(ev, item) {
-		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
+		if (ev.key && (ev.key === "Enter" || ev.key === " ")) {
 			ev.preventDefault();
 			this.doClick(ev, item);
-		} else if (ev.which === KeyCodes.DOWN_ARROW || ev.which === KeyCodes.UP_ARROW) {
+		} else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
 			ev.preventDefault();
-			if (ev.which === KeyCodes.DOWN_ARROW && findNextElem(ev.target)) {
+			if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
 				findNextElem(ev.target).focus();
-			} else if (ev.which === KeyCodes.UP_ARROW && findPrevElem(ev.target)) {
+			} else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
 				findPrevElem(ev.target).focus();
 			}
 			if (ev.shiftKey) {

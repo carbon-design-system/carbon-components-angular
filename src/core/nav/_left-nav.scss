@@ -78,9 +78,7 @@
 			top: ($sidenav-item-height - 14px) / 2;  // 14px is font-size
 			left: $sidenav-item-height + 20px;
 			display: inline-block;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			@include text-overflow;
 			width: $sidenav-width - $sidenav-item-height - 15px - 20px - 16px;  // width - glyphicon - padding - arrow margin - arrow width
 			vertical-align: middle;
 		}
@@ -146,9 +144,7 @@
 			padding: 0;
 			background: color("blue", 50);
 			line-height: 20px;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			@include text-overflow;
 			padding-right: 15px;
 			.side-nav-arrow {
 				fill: color("white", 0);

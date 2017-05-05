@@ -1,9 +1,11 @@
+import { ModalService } from "./modal.service";
 import {
 	Component,
-	OnInit,
+	EventEmitter,
+	HostListener,
 	Input,
-	Output,
-	EventEmitter
+	OnInit,
+	Output
 } from "@angular/core";
 import {
 	trigger,
@@ -12,6 +14,7 @@ import {
 	transition,
 	animate
 } from "@angular/animations";
+
 
 @Component({
 	selector: "cdl-modal",
@@ -41,12 +44,19 @@ import {
 		])
 	]
 })
-
 export class ModalComponent implements OnInit {
 	@Input() size = "xl";
 	@Output() overlaySelected = new EventEmitter();
 	modalState = "out";
-	constructor() { }
+	constructor(public modalService: ModalService) { }
+
+	@HostListener("document:keydown", ["$event"])
+	handleKeyboardEvent(event: KeyboardEvent) {
+		event.stopImmediatePropagation();
+		if (event.key === "Escape") {
+			this.modalService.destroy();  // destroy top (latest) modal
+		}
+	}
 
 	ngOnInit() {
 		this.modalState = "in";
