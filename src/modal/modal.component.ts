@@ -70,7 +70,7 @@ export class ModalComponent implements OnInit {
 
 	@HostListener("document:keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		event.stopImmediatePropagation();
+		event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
 
 		switch (event.key) {
 			case "Escape": {
