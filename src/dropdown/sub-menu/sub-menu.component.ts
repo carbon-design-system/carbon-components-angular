@@ -44,6 +44,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	private listList: HTMLElement[];
 	private flatList: Array<ListItem> = [];
 	private index = -1;
+	private focusJump;
 
 	constructor(public _elementRef: ElementRef) {}
 
@@ -56,12 +57,20 @@ export class DropdownSubMenu implements AbstractDropdownView {
 			if (this._elementRef) {
 				this.listList = this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper");
 			}
+			this.setupFocusObservable();
 		}
 	}
 
 	ngAfterViewInit() {
 		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper")) as HTMLElement[];
-		watchFocusJump(this._elementRef.nativeElement, this.listList)
+		this.setupFocusObservable();
+	}
+
+	setupFocusObservable() {
+		if (this.focusJump) {
+			this.focusJump.unsubscribe();
+		}
+		this.focusJump = watchFocusJump(this._elementRef.nativeElement, this.listList)
 			.subscribe(el => {
 				let item = this.flatList[this.listList.indexOf(el)];
 				treetools.find(this.items, item).path.forEach(i => {
@@ -176,24 +185,8 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	onClick({item}) {
 		item.selected = !item.selected;
 		this.index = this.flatList.indexOf(item);
-		// find the path to the item we want to select
-		function find(items, itemToFind, path = []) {
-			let found;
-			for (let i of items) {
-				if (i === itemToFind) {
-					path.push(i);
-					found = i;
-				}
-				if (i.items && !found) {
-					path.push(i);
-					found = find(i.items, itemToFind, path).found;
-					if (!found) { path = []; }
-				}
-			}
-			return {found, path};
-		}
 		if (this.type === "single") {
-			let {path} = find(this.items, item);
+			let {path} = treetools.find(this.items, item);
 			// reset the selection taking care not to touch our selected item
 			for (let i = 0; i < this.flatList.length; i++) {
 				if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {
