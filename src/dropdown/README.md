@@ -12,7 +12,7 @@ interface ListItem {
 	disabled?: boolean;
 }
 ```
-`content` and `selected` are the only **required** properties you **must** provide.
+`content` and `selected` are the only **required** properties you **must** provide. When using a custom item template (supported by all the Neutrino item views, not required by AbstractDropdownView) the entire ListItem will be passed to the template as `item`.
 
 ### AbstractDropdownView base class
 class: AbstractDropdownView
@@ -48,7 +48,7 @@ source: `src/dropdown/dropdown.component.ts`
 | appendToBody  | boolean                           | false         |
 
 **Outputs:**
-| @Output | Value shape |
+| @Output | Value       |
 | ------- | ----------- |
 | select  | ListItem    |
 | onClose | undefined   |
@@ -74,7 +74,45 @@ source: `src/dropdown/list/list.component.ts`
 | items   | Array<ListItem>            | []            |
 | listTpl | string \| TemplateRef<any> | null          |
 
-###
+Ex:
+```html
+<cdl-dropdown-list [items]="listItems"></cdl-dropdown-list>
+```
+```typescript
+listItems = [
+	{
+		content: "item one",
+		selected: false
+	},
+	{
+		content: "item two",
+		selected: false,
+	},
+	{
+		content: "item three",
+		selected: false
+	},
+	{
+		content: "item four",
+		selected: false
+	}
+];
+```
+
+### DropdownFilter
+class: DropdownFilter (extends DropdownList)
+selector: `cdl-dropdown-filter`
+source: `src/dropdown/list/dropdown-filter-list.component.ts`
+**Inputs:**
+| @Input  | Type                       | Default value |
+| ------- | -------------------------- | ------------- |
+| items   | Array<ListItem>            | []            |
+| listTpl | string \| TemplateRef<any> | null          |
+
+Ex:
+```html
+<cdl-dropdown-filter [items]="listItems"></cdl-dropdown-filter>
+```
 
 ### DropdownTree
 class: DropdownTree
@@ -86,6 +124,51 @@ source: `src/dropdown/tree/tree.component.ts`
 | items   | Array<ListItem>            | []            |
 | listTpl | string \| TemplateRef<any> | null          |
 
+Ex:
+```html
+<cdl-dropdown-tree [items]="treeItems"></cdl-dropdown-tree>
+```
+```typescript
+treeItems = [
+	{
+		content: "item one",
+		selected: false
+	},
+	{
+		content: "item two",
+		selected: false,
+		items: [
+			{
+				content: "sub item two 1",
+				selected: false
+			},
+			{
+				content: "sub item two 2",
+				selected: false,
+				items: [
+					{
+						content: "sub item two 1b",
+						selected: false
+					},
+					{
+						content: "sub item two 2b",
+						selected: false,
+					}
+				]
+			},
+		]
+	},
+	{
+		content: "item three",
+		selected: false,
+	},
+	{
+		content: "item four",
+		selected: false
+	}
+];
+```
+
 ### DropdownSubMenu
 class: DropdownSubMenu
 selector: `cdl-dropdown-sub-menu`
@@ -96,3 +179,7 @@ source: `src/dropdown/sub-menu/sub-menu.component.ts`
 | items   | Array<ListItem>            | []            |
 | listTpl | string \| TemplateRef<any> | null          |
 
+Ex:
+```html
+<cdl-dropdown-sub-menu [items]="treeItems"></cdl-dropdown-sub-menu>
+```

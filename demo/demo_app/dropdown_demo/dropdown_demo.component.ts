@@ -123,29 +123,20 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<cdl-dropdown
 				placeholder="Select an option"
 				size="sm">
-				<cdl-dropdown-sub-menu
-					[items]="demoItems5"
-					[selectedIcon]="false">
-				</cdl-dropdown-sub-menu>
+				<cdl-dropdown-sub-menu [items]="demoItems5"></cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
 				placeholder="Select an option"
 				[displayValue]="subdisplay2"
 				(select)="subdisplay2 = getDisplay($event.item)">
-				<cdl-dropdown-sub-menu
-					[items]="demoItems5"
-					[selectedIcon]="false">
-				</cdl-dropdown-sub-menu>
+				<cdl-dropdown-sub-menu [items]="demoItems5"></cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown
 				placeholder="Select an option"
 				size="lg">
-				<cdl-dropdown-sub-menu
-					[items]="demoItems5"
-					[selectedIcon]="false">
-				</cdl-dropdown-sub-menu>
+				<cdl-dropdown-sub-menu [items]="demoItems5"></cdl-dropdown-sub-menu>
 			</cdl-dropdown>
 		</div>
 
