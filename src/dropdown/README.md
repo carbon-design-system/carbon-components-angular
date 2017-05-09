@@ -1,5 +1,7 @@
 # Dropdown
 
+demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/dropdown](https://pages.github.ibm.com/peretz-next/neutrino/#/dropdown)
+
 ## Interfaces
 ### ListItem interface
 interface: ListItem
@@ -41,6 +43,7 @@ source: `src/dropdown/dropdown.component.ts`
 **Inputs:**
 | @Input        | Type                              | Default value |
 | ------------- | --------------------------------- | ------------- |
+| placeholder   | string                            | ""            |
 | displayValue  | string                            | ""            |
 | size          | "sm" \| "default" \| "lg" \| "sm" | "default"     |
 | type          | "single" \| "multi"               | "single"      |
@@ -53,11 +56,14 @@ source: `src/dropdown/dropdown.component.ts`
 | select  | ListItem    |
 | onClose | undefined   |
 
+`placeholder` will __always__ be rendered when no options are selected. Either the `content` property of the ListItem (for single select dropdowns) or "# selected" (for multi select dropdowns) will be rendered when options are selected. `displayValue` can be used to set custom text to be shown when options are selected.
+
 Dropdown expects a component that implements the AbstractDropdownView base class; in Neutrino those are DropdownList, DropdownTree, and DropdownSubMenu.
+
 Ex:
 ```html
 <cdl-dropdown
-	[displayValue]="display || 'Select an option'"
+	placeholder="Select an option"
 	(select)="display = getDisplay($event.item)">
 	<cdl-dropdown-list [items]="items"></cdl-dropdown-list>
 </cdl-dropdown>
