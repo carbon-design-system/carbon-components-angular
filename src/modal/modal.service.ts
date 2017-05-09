@@ -26,7 +26,9 @@ export class ModalService {
 		const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
 		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.vcRef.parentInjector);
 		const factory = this.resolver.resolveComponentFactory(data.component);
-		const component = factory.create(injector);
+		let focusedElement = document.activeElement;
+		let component = factory.create(injector);
+		component["previouslyFocusedElement"] = focusedElement;  // used to return focus to previously focused element
 		this.componentRefs.push(component);
 		this.vcRef.insert(component.hostView);
 
@@ -51,6 +53,7 @@ export class ModalService {
 			index = this.componentRefs.length - 1;
 		}
 
+		this.componentRefs[index]["previouslyFocusedElement"].focus();  // return focus
 		this.componentRefs[index].destroy();
 		this.componentRefs.splice(index, 1);
 	}
