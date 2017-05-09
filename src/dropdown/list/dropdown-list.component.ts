@@ -94,8 +94,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		if (this.index < this.items.length - 1) {
 			this.index++;
 		}
-		let item = this.items[this.index];
-		return item;
+		return this.items[this.index];
 	}
 
 	getNextElement(): HTMLElement {
@@ -116,8 +115,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		if (this.index > 0) {
 			this.index--;
 		}
-		let item = this.items[this.index];
-		return item;
+		return this.items[this.index];
 	}
 
 	getPrevElement(): HTMLElement {
