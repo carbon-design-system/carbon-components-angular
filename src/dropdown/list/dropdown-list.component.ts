@@ -60,19 +60,31 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Input() type: "single" | "multi" = "single";
 	protected index = -1;
 	protected listList: HTMLElement[];
+	private focusJump;
 
 	constructor(public _elementRef: ElementRef) {}
 
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			this.index = this.items.findIndex(item => item.selected);
+			this.setupFocusObservable();
 		}
 	}
 
 	ngAfterViewInit() {
 		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
-		watchFocusJump(this._elementRef.nativeElement, this.listList)
+		this.setupFocusObservable();
+	}
+
+	setupFocusObservable() {
+		if (this.focusJump) {
+			this.focusJump.unsubscribe();
+		}
+		let elList = Array.from(this.list.nativeElement.querySelectorAll("li"));
+		this.focusJump = watchFocusJump(this.list.nativeElement, elList)
 			.subscribe(el => {
 				el.focus();
 			});
