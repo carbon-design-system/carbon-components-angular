@@ -37,10 +37,9 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
 	@Input() selectedIcon = false;
+	@Input() type: "single" | "multi" = "single";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
-
-	public type: "single" | "multi" = "single";
 
 	private listList: HTMLElement[];
 	private flatList: Array<ListItem> = [];
