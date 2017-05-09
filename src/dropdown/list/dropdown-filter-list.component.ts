@@ -141,19 +141,29 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
-			this.displayItems = this.getSelected() || this.items;
+			this.displayItems = this.items;
+			// the rest of this depends on the view being instantiated ...
+			if (!this.filterNative) { return; }
+			// reset everything
+			if (this.type === "multi") {
+				this.selectedOnlyNative.checked = null;
+				this.disableSelectedOnly = true;
+			}
+			this.filterNative.value = "";
+			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			this.index = this.items.findIndex(item => item.selected);
+			this.setupFocusObservable();
 		}
 	}
 
 	ngAfterViewInit() {
 		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
-		watchFocusJump(this.list.nativeElement, this.listList)
-			.subscribe(el => {
-				el.focus();
-			});
+		this.setupFocusObservable();
+		// just makes dealing with the nativeElement slightly less verbose
 		this.filterNative = this.filter.nativeElement;
 		this.selectedOnlyNative = this.selectedOnly ? this.selectedOnly.nativeElement : null;
+		// we've got to highjack a few key events so we don't close the dropdown early
 		this._elementRef.nativeElement.addEventListener("keydown", (ev) => {
 			if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target)) {
 				ev.stopPropagation();
@@ -179,11 +189,16 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	filterItems() {
 		let selected = this.type === "multi" ? this.selectedOnlyNative.checked : false;
 		this.displayItems = this.getDisplayItems(this.items, this.filterNative.value, selected);
+		// we still want to jump, so we just have to reset this
+		// wait a tick to let the view update
+		setTimeout(() => this.setupFocusObservable());
 	}
 
 	clearFilter() {
 		this.filter.nativeElement.value = "";
 		this.displayItems = this.items;
+		// wait a tick to let the view update
+		setTimeout(() => this.setupFocusObservable());
 	}
 
 	doClick(ev, item) {
