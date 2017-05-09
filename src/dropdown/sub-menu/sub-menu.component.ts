@@ -134,6 +134,13 @@ export class DropdownSubMenu implements AbstractDropdownView {
 		return selected;
 	}
 
+	getCurrentItem(): ListItem {
+		if (this.index < 0) {
+			return this.flatList[0];
+		}
+		return this.flatList[this.index];
+	}
+
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
 			return this.listList[0];

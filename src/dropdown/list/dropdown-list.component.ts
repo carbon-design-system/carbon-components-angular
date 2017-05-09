@@ -122,6 +122,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		return elem;
 	}
 
+	getCurrentItem() {
+		if (this.index < 0) {
+			return this.items[0];
+		}
+		return this.items[this.index];
+	}
+
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
 			return this.listList[0];
