@@ -41,14 +41,14 @@ class: Dropdown
 selector: `cdl-dropdown`
 source: `src/dropdown/dropdown.component.ts`
 **Inputs:**
-| @Input        | Type                              | Default value |
-| ------------- | --------------------------------- | ------------- |
-| placeholder   | string                            | ""            |
-| displayValue  | string                            | ""            |
-| size          | "sm" \| "default" \| "lg" \| "sm" | "default"     |
-| type          | "single" \| "multi"               | "single"      |
-| disabled      | boolean                           | false         |
-| appendToBody  | boolean                           | false         |
+| @Input        | Type                      | Default value |
+| ------------- | ------------------------- | ------------- |
+| placeholder   | string                    | ""            |
+| displayValue  | string                    | ""            |
+| size          | "sm" \| "default" \| "lg" | "default"     |
+| type          | "single" \| "multi"       | "single"      |
+| disabled      | boolean                   | false         |
+| appendToBody  | boolean                   | false         |
 
 **Outputs:**
 | @Output | Value       |
