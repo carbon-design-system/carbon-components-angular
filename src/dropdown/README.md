@@ -41,6 +41,7 @@ class: Dropdown
 selector: `cdl-dropdown`
 source: `src/dropdown/dropdown.component.ts`
 **Inputs:**
+
 | @Input        | Type                      | Default value |
 | ------------- | ------------------------- | ------------- |
 | placeholder   | string                    | ""            |
@@ -51,6 +52,7 @@ source: `src/dropdown/dropdown.component.ts`
 | appendToBody  | boolean                   | false         |
 
 **Outputs:**
+
 | @Output | Value       |
 | ------- | ----------- |
 | select  | ListItem    |
@@ -75,6 +77,7 @@ class: DropdownList
 selector: `cdl-dropdown-list`
 source: `src/dropdown/list/list.component.ts`
 **Inputs:**
+
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
 | items   | Array<ListItem>            | []            |
@@ -110,6 +113,7 @@ class: DropdownFilter (extends DropdownList)
 selector: `cdl-dropdown-filter`
 source: `src/dropdown/list/dropdown-filter-list.component.ts`
 **Inputs:**
+
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
 | items   | Array<ListItem>            | []            |
@@ -125,6 +129,7 @@ class: DropdownTree
 selector: `cdl-dropdown-tree`
 source: `src/dropdown/tree/tree.component.ts`
 **Inputs:**
+
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
 | items   | Array<ListItem>            | []            |
@@ -180,6 +185,7 @@ class: DropdownSubMenu
 selector: `cdl-dropdown-sub-menu`
 source: `src/dropdown/sub-menu/sub-menu.component.ts`
 **Inputs:**
+
 | @Input  | Type                       | Default value |
 | ------- | -------------------------- | ------------- |
 | items   | Array<ListItem>            | []            |
