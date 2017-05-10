@@ -5,7 +5,9 @@ demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/dropdown](https://pag
 ## Interfaces
 ### ListItem interface
 interface: ListItem
+
 source: `src/dropdown/list-item.interface.ts`
+
 ```typescript
 interface ListItem {
 	content: string;
@@ -18,7 +20,9 @@ interface ListItem {
 
 ### AbstractDropdownView base class
 class: AbstractDropdownView
+
 source: `src/dropdown/abstract-dropdown-view.class.ts`
+
 ```typescript
 export class AbstractDropdownView {
 	@Input() items: Array<ListItem>;
@@ -38,8 +42,11 @@ A component that intends to be used within Dropdown must provide an implementati
 ## Components
 ### Dropdown
 class: Dropdown
+
 selector: `cdl-dropdown`
+
 source: `src/dropdown/dropdown.component.ts`
+
 **Inputs:**
 
 | @Input        | Type                      | Default value |
@@ -74,8 +81,11 @@ Ex:
 
 ### DropdownList
 class: DropdownList
+
 selector: `cdl-dropdown-list`
+
 source: `src/dropdown/list/list.component.ts`
+
 **Inputs:**
 
 | @Input  | Type                       | Default value |
@@ -110,8 +120,11 @@ listItems = [
 
 ### DropdownFilter
 class: DropdownFilter (extends DropdownList)
+
 selector: `cdl-dropdown-filter`
+
 source: `src/dropdown/list/dropdown-filter-list.component.ts`
+
 **Inputs:**
 
 | @Input  | Type                       | Default value |
@@ -126,8 +139,11 @@ Ex:
 
 ### DropdownTree
 class: DropdownTree
+
 selector: `cdl-dropdown-tree`
+
 source: `src/dropdown/tree/tree.component.ts`
+
 **Inputs:**
 
 | @Input  | Type                       | Default value |
@@ -182,8 +198,11 @@ treeItems = [
 
 ### DropdownSubMenu
 class: DropdownSubMenu
+
 selector: `cdl-dropdown-sub-menu`
+
 source: `src/dropdown/sub-menu/sub-menu.component.ts`
+
 **Inputs:**
 
 | @Input  | Type                       | Default value |
