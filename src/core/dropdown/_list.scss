@@ -76,3 +76,14 @@
 		}
 	}
 }
+
+html[dir=rtl] & {
+	.list {
+		li {
+			.checkbox {
+				margin-left: 10px;
+				margin-right: 0;
+			}
+		}
+	}
+}
