@@ -35,7 +35,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				<svg
 					width="30"
 					height="30">
-					<use [attr.href]="'#'+icon.name+'_30'"></use>
+					<use [attr.xlink:href]="'#'+icon.name+'_30'"></use>
 				</svg>
 			</span>
 		</div>
@@ -94,42 +94,24 @@ export class GlyphiconDemo {
 	}
 
 	onSelect(ev) {
-		// this.displayMeta = this.iconMeta.filter(sprite => {
-		// 	return ((this.selected === null || (this.selected.length === 0))
-		// 			|| (this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite))));
-		// });
-		/*this.displayMeta =*/ this.iconMeta.forEach(sprite => {
+		this.iconMeta.forEach(sprite => {
 			if (this.selected === null || (this.selected.length === 0)) {
-				// return Object.assign({}, sprite, {visible: true});
 				sprite.visible = true;
 			} else if ((this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite)))) {
-				// return Object.assign({}, sprite, {visible: true});
 				sprite.visible = true;
 			} else {
-				// return Object.assign({}, sprite, {visible: false});
 				sprite.visible = false;
 			}
 		});
 	}
 
 	search(ev) {
-		// this.displayMeta = this.iconMeta.filter(sprite => {
-		// 	return ((this.selected === null || (this.selected.length === 0))
-		// 			|| (this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite))));
-		// }).map(sprite => {
-		// 	return Object.assign({}, sprite, {
-		// 		icons: sprite.icons.filter(icon => icon.name.includes(ev.target.value))
-		// 	});
-		// });
 		this.iconMeta.forEach(sprite => {
 			if (this.selected === null || (this.selected.length === 0)) {
-				// return Object.assign({}, sprite, {visible: true});
 				sprite.visible = true;
 			} else if ((this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite)))) {
-				// return Object.assign({}, sprite, {visible: true});
 				sprite.visible = true;
 			} else {
-				// return Object.assign({}, sprite, {visible: false});
 				sprite.visible = false;
 			}
 			sprite.icons.forEach(icon => {
@@ -152,7 +134,7 @@ export class GlyphiconDemo {
 		this.iconMeta.sort((a, b) => {
 			if (b.sprite.includes("core")) { return 1; }
 			return a.sprite.localeCompare(b.sprite);
-		})
+		});
 		console.log(this.iconMeta);
 		let svgContain = document.createElement("div");
 		svgContain.classList.add("svgs");

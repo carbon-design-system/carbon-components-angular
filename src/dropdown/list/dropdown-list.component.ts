@@ -67,7 +67,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
-			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			setTimeout(() => {
+				this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			}, 0);
 			this.index = this.items.findIndex(item => item.selected);
 			this.setupFocusObservable();
 		}
