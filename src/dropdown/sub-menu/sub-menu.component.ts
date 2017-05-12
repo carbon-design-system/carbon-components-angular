@@ -195,9 +195,11 @@ export class DropdownSubMenu implements AbstractDropdownView {
 					this.flatList[i].selected = false;
 				}
 			}
-		}
-		if (!item.disabled && !item.items) {
-			this.select.emit({item});
+			if (!item.disabled && !item.items) {
+				this.select.emit({item});
+			}
+		} else {
+			this.select.emit(this.getSelected());
 		}
 	}
 }

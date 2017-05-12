@@ -209,6 +209,9 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 				if (item !== otherItem) { otherItem.selected = false; }
 			}
 			this.displayItems = this.getDisplayItems(this.items, this.filterNative.value);
+			if (!item.disabled) {
+				this.select.emit({item});
+			}
 		} else {
 			if (this.getSelected()) {
 				this.disableSelectedOnly = null;
@@ -219,10 +222,8 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 					this.filterNative.value,
 					this.selectedOnlyNative.checked);
 			}
+			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);
-		if (!item.disabled) {
-			this.select.emit({item});
-		}
 	}
 }
