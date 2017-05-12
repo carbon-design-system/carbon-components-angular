@@ -29,9 +29,9 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "core-js": "^2.4.1",
+    "d3": "4.7.4",
     "rxjs": "^5.0.1",
-    "zone.js": "^0.8.4",
-    "d3": "4.7.4"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^4.0.0",
@@ -67,12 +67,14 @@
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
+    "svgxuse": "^1.2.4",
     "ts-helpers": "^1.1.1",
     "tslint": "^4.0.2",
     "tslint-loader": "^3.3.0",
     "typescript": "2.3.2",
     "webpack": "^2.5.0",
     "webpack-dev-server": "^2.4.5",
-    "webpack-node-externals": "^1.5.4"
+    "webpack-node-externals": "^1.5.4",
+    "whatwg-fetch": "^2.0.3"
   }
 }

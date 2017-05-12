@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { IconService } from "./../../../src/glyphicon/glyphicon.module";
 
 @Component({
 	selector: "glyphicon-demo",
@@ -10,11 +9,28 @@ import { IconService } from "./../../../src/glyphicon/glyphicon.module";
 	<cdl-glyphicon icon="alert" size="sm"></cdl-glyphicon>
 	<cdl-glyphicon icon="alert" size="md"></cdl-glyphicon>
 	<cdl-glyphicon icon="alert" size="lg"></cdl-glyphicon>
-	<input type="search" (keyup)="search($event)" class="input-field" style="width: 100%; margin-left: 0;" placeholder="Filter">
-	<div *ngFor="let set of displayMeta">
+	<div>
+		<input
+			type="search"
+			(keyup)="search($event)"
+			class="input-field" style="width: calc(100% - 220px); margin-left: 0;"
+			placeholder="Filter">
+		<cdl-dropdown
+			placeholder="Chose a set" style="width: 200px;"
+			type="multi"
+			(select)="onSelect($event)"
+			[(ngModel)]="selected">
+			<cdl-dropdown-list [items]="sets"></cdl-dropdown-list>
+		</cdl-dropdown>
+	</div>
+	<div
+		*ngFor="let set of iconMeta"
+		[ngClass]="{hide: !set.visible}">
 		<h2>{{ formatName(set.sprite) }}</h2>
 		<div class="set">
-			<span *ngFor="let icon of filter(set.icons)">
+			<span
+				*ngFor="let icon of set.icons"
+				[ngClass]="{hide: !icon.visible}">
 				<h3>{{ icon.name }}</h3>
 				<svg
 					width="30"
@@ -26,6 +42,17 @@ import { IconService } from "./../../../src/glyphicon/glyphicon.module";
 	</div>
 	`,
 	styles: [`
+		.hide {
+			visibility: hidden;
+			height: 0;
+			position: absolute;
+		}
+		h2 {
+			position: relative;
+			width: 100%;
+			padding: 10px 0px;
+			background: rgba(255, 255, 255, 0.7);
+		}
 		.set {
 			display: grid;
 			grid-template-columns: 200px 200px 200px;
@@ -59,37 +86,93 @@ import { IconService } from "./../../../src/glyphicon/glyphicon.module";
 export class GlyphiconDemo {
 	iconMeta;
 	displayMeta;
-	constructor () {
-		// IconService.setIconUrl("http://csx00509.canlab.ibm.com/icons/");
-	}
+	sets = [];
+	selected = [];
 
 	formatName(name) {
 		return name.slice(0, 1).toUpperCase() + name.slice(1).replace("_", " ");
 	}
 
-	filter(icons) {
-		return icons.filter(x => x.size === 30);
+	onSelect(ev) {
+		// this.displayMeta = this.iconMeta.filter(sprite => {
+		// 	return ((this.selected === null || (this.selected.length === 0))
+		// 			|| (this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite))));
+		// });
+		/*this.displayMeta =*/ this.iconMeta.forEach(sprite => {
+			if (this.selected === null || (this.selected.length === 0)) {
+				// return Object.assign({}, sprite, {visible: true});
+				sprite.visible = true;
+			} else if ((this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite)))) {
+				// return Object.assign({}, sprite, {visible: true});
+				sprite.visible = true;
+			} else {
+				// return Object.assign({}, sprite, {visible: false});
+				sprite.visible = false;
+			}
+		});
 	}
 
 	search(ev) {
-		this.displayMeta = this.iconMeta.map(sprite => {
-			return Object.assign({}, sprite, {
-				icons: sprite.icons.filter(icon => icon.name.includes(ev.target.value))
+		// this.displayMeta = this.iconMeta.filter(sprite => {
+		// 	return ((this.selected === null || (this.selected.length === 0))
+		// 			|| (this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite))));
+		// }).map(sprite => {
+		// 	return Object.assign({}, sprite, {
+		// 		icons: sprite.icons.filter(icon => icon.name.includes(ev.target.value))
+		// 	});
+		// });
+		this.iconMeta.forEach(sprite => {
+			if (this.selected === null || (this.selected.length === 0)) {
+				// return Object.assign({}, sprite, {visible: true});
+				sprite.visible = true;
+			} else if ((this.selected && this.selected.find(item => item.sprite.includes(sprite.sprite)))) {
+				// return Object.assign({}, sprite, {visible: true});
+				sprite.visible = true;
+			} else {
+				// return Object.assign({}, sprite, {visible: false});
+				sprite.visible = false;
+			}
+			sprite.icons.forEach(icon => {
+				if (ev.target.value) {
+					if (icon.name.includes(ev.target.value)) {
+						icon.visible = true;
+					} else {
+						icon.visible = false;
+					}
+				} else {
+					icon.visible = true;
+				}
 			});
 		});
 	}
 
 	async ngAfterViewInit() {
 		this.iconMeta = await fetch("http://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
+		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
+		this.iconMeta.sort((a, b) => {
+			if (b.sprite.includes("core")) { return 1; }
+			return a.sprite.localeCompare(b.sprite);
+		})
 		console.log(this.iconMeta);
 		let svgContain = document.createElement("div");
 		svgContain.classList.add("svgs");
+		let newSets = [];
 		for(let set of this.iconMeta) {
 			// fetch the svgs
 			let rawSVG = await fetch(`http://peretz-icons.mybluemix.net/${set.sprite}.svg`)
 				.then(res => res.text());
 			svgContain.innerHTML += rawSVG;
+			newSets.push({
+				content: this.formatName(set.sprite),
+				sprite: set.sprite,
+				selected: false
+			});
+			set.visible = true;
+			set.icons.forEach(icon => {
+				icon.visible = true;
+			});
 		}
+		this.sets = newSets;
 		document.body.appendChild(svgContain);
 		this.displayMeta = this.iconMeta;
 	}
