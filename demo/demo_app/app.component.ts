@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { IconService } from "./../../src/glyphicon/glyphicon.module";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src/common/a11y.service";
@@ -24,6 +24,7 @@ import "rxjs/add/operator/filter";
 	<cdl-modal-placeholder></cdl-modal-placeholder>
 	`,
 	styleUrls: ["./app.component.css"],
+	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
 	private navItems = [

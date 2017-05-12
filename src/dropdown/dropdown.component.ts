@@ -179,16 +179,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	closedDropdownNavigation(evt) {
 		if (evt.key === "ArrowDown") {
 			evt.preventDefault();
-			let elem = this.view.getNextElement();
-			if (elem) {
-				elem.click();
-			}
+			this.view.getCurrentItem().selected = false;
+			let item = this.view.getNextItem();
+			if (item) { item.selected = true; }
 		} else if (evt.key === "ArrowUp") {
 			evt.preventDefault();
-			let elem = this.view.getPrevElement();
-			if (elem) {
-				elem.click();
-			}
+			this.view.getCurrentItem().selected = false;
+			let item = this.view.getPrevItem();
+			if (item) { item.selected = true; }
 		}
 	}
 
