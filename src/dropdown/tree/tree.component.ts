@@ -43,6 +43,7 @@ export class DropdownTree implements AbstractDropdownView {
 	private listList: HTMLElement[];
 	private flatList: Array<ListItem> = [];
 	private index = -1;
+	private focusJump;
 
 	constructor(public _elementRef: ElementRef) {}
 
@@ -55,12 +56,20 @@ export class DropdownTree implements AbstractDropdownView {
 			if (this._elementRef) {
 				this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
 			}
+			this.setupFocusObservable();
 		}
 	}
 
 	ngAfterViewInit() {
 		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper")) as HTMLElement[];
-		watchFocusJump(this._elementRef.nativeElement, this.listList)
+		this.setupFocusObservable();
+	}
+
+	setupFocusObservable() {
+		if (this.focusJump) {
+			this.focusJump.unsubscribe();
+		}
+		this.focusJump = watchFocusJump(this._elementRef.nativeElement, this.listList)
 			.subscribe(el => {
 				let item = this.flatList[this.listList.indexOf(el)];
 				treetools.find(this.items, item).path.forEach(i => {
@@ -125,6 +134,13 @@ export class DropdownTree implements AbstractDropdownView {
 		return elem;
 	}
 
+	getCurrentItem(): ListItem {
+		if (this.index < 0) {
+			return this.flatList[0];
+		}
+		return this.flatList[this.index];
+	}
+
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
 			return this.listList[0];
@@ -178,9 +194,11 @@ export class DropdownTree implements AbstractDropdownView {
 					this.flatList[i].selected = false;
 				}
 			}
-		}
-		if (!item.disabled && !item.items) {
-			this.select.emit({item});
+			if (!item.disabled && !item.items) {
+				this.select.emit({item});
+			}
+		} else {
+			this.select.emit(this.getSelected());
 		}
 	}
 }

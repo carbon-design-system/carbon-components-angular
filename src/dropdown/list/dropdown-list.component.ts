@@ -60,19 +60,31 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Input() type: "single" | "multi" = "single";
 	protected index = -1;
 	protected listList: HTMLElement[];
+	private focusJump;
 
 	constructor(public _elementRef: ElementRef) {}
 
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			this.index = this.items.findIndex(item => item.selected);
+			this.setupFocusObservable();
 		}
 	}
 
 	ngAfterViewInit() {
 		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
-		watchFocusJump(this._elementRef.nativeElement, this.listList)
+		this.setupFocusObservable();
+	}
+
+	setupFocusObservable() {
+		if (this.focusJump) {
+			this.focusJump.unsubscribe();
+		}
+		let elList = Array.from(this.list.nativeElement.querySelectorAll("li"));
+		this.focusJump = watchFocusJump(this.list.nativeElement, elList)
 			.subscribe(el => {
 				el.focus();
 			});
@@ -82,8 +94,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		if (this.index < this.items.length - 1) {
 			this.index++;
 		}
-		let item = this.items[this.index];
-		return item;
+		return this.items[this.index];
 	}
 
 	getNextElement(): HTMLElement {
@@ -104,8 +115,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		if (this.index > 0) {
 			this.index--;
 		}
-		let item = this.items[this.index];
-		return item;
+		return this.items[this.index];
 	}
 
 	getPrevElement(): HTMLElement {
@@ -120,6 +130,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			return this.getPrevElement();
 		}
 		return elem;
+	}
+
+	getCurrentItem() {
+		if (this.index < 0) {
+			return this.items[0];
+		}
+		return this.items[this.index];
 	}
 
 	getCurrentElement(): HTMLElement {
@@ -184,10 +201,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			for (let otherItem of this.items) {
 				if (item !== otherItem) { otherItem.selected = false; }
 			}
+			if (!item.disabled) {
+				this.select.emit({item});
+			}
+		} else {
+			// emit an array of selected items
+			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);
-		if (!item.disabled) {
-			this.select.emit({item});
-		}
+
 	}
 }
