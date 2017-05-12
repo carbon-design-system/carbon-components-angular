@@ -148,7 +148,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
-	onKeyDown(evt) {
+	onKeyDown(evt: KeyboardEvent) {
+		if (evt.key === "Escape" && !this.menuIsClosed) {
+			evt.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+		}
 		if (evt.key === "Escape" || (evt.key === "ArrowUp" && evt.altKey)) {
 			evt.preventDefault();
 			this.closeMenu();
@@ -158,7 +161,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && evt.key === "Tab" && this.dropdown.contains(evt.target)) {
+		if (!this.menuIsClosed && evt.key === "Tab" && this.dropdown.contains(evt.target as Node)) {
 			this.closeMenu();
 		}
 
@@ -211,7 +214,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			this.closeMenu();
 		}
 	}
-	_keyboardNav(ev) {
+	_keyboardNav(ev: KeyboardEvent) {
+		if (ev.key === "Escape" && !this.menuIsClosed) {
+			ev.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+		}
 		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
 			ev.preventDefault();
 			this.closeMenu();
