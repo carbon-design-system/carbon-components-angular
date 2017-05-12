@@ -150,7 +150,9 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 				this.disableSelectedOnly = true;
 			}
 			this.filterNative.value = "";
-			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			setTimeout(() => {
+				this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			}, 0);
 			this.index = this.items.findIndex(item => item.selected);
 			this.setupFocusObservable();
 		}

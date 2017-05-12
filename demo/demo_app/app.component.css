@@ -41,7 +41,7 @@ nav {
 }
 
 @media (min-width: 1200px) {
-	/deep/ body {
+	body {
 	    max-width: 1200px;
 	    margin: 0 auto;
 	}

@@ -54,7 +54,9 @@ export class DropdownTree implements AbstractDropdownView {
 			this.flattenTree(this.items);
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
 			if (this._elementRef) {
-				this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
+				setTimeout(() => {
+					this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
+				}, 0);
 			}
 			this.setupFocusObservable();
 		}
