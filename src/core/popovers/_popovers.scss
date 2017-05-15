@@ -5,102 +5,100 @@
 // Popovers
 // -------------------------
 
-.popover-wrapper{
+.popover-wrapper {
 	position: absolute;
-	z-index:1000;
+	z-index: 1000;
 }
 
-.popover{
+.popover {
 	@include box-shadow($default-box-shadow);
 	background-color: color("white", 0);
 	position: relative;
 	max-width: 280px;
 
-	.popover-header{
+	.popover-header {
 		padding: $popover-header-padding;
 		height: $popover-header-height;
 		background-color:$popover-header-bg;
-		.popover-title{
-			color:$popover-title-color;
-			margin:0;
+		.popover-title {
+			color: $popover-title-color;
+			margin: 0;
 			float: left;
 			max-width: calc(100% - 30px); // ask Nicole
 			@include text-overflow(); // ask Nicole
 		}
-		.close-icon{
+		.close-icon {
 			float: right;
 			border: 1px solid rgba(0,0,0,0); // invisible border to compensate shift
 			padding: 3px;
 			svg{
 				fill: color("white", 0);
 			}
-			&:hover{
+			&:hover {
 				border: 1px solid color("gray",50);
 			}
-			&:focus{
+			&:focus {
 				border: 1px solid color("gray",50);
 			}
 		}
 	}
-	.popover-content{
+	.popover-content {
 		padding: $popover-content-padding;
 		overflow: auto;
 	}
-	.arrow{
+	.arrow {
 		@include arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 	}
 	&.top {
-		.arrow{
-			bottom:- $popover-arrow-height;
-			left:calc(50% - 10px);
+		.arrow {
+			bottom: - $popover-arrow-height;
+			left: calc(50% - 10px);
 		}
 
 	}
-	&.bottom  {
-		.arrow{
+	&.bottom {
+		.arrow {
 			top: - $popover-arrow-height;
-			left:calc(50% - 10px);
+			left: calc(50% - 10px);
 			transform: rotate(180deg);
 		}
-		.popover-header ~ .arrow:after{
+		.popover-header ~ .arrow:after {
 			background-color: $popover-header-bg;
 		}
 	}
-	&.left{
-
-		.arrow{
+	&.left {
+		.arrow {
 			right: -15px;
 			transform: rotate(270deg);
 		}
-		.popover-header ~ .arrow{
-			top:60px;
+		.popover-header ~ .arrow {
+			top: 60px;
 		}
 	}
 	&.right {
-		.arrow{
+		.arrow {
 			left: -15px;
 			transform: rotate(90deg);
 		}
-		.popover-header ~ .arrow{
-			top:60px;
+		.popover-header ~ .arrow {
+			top: 60px;
 		}
 	}
 
 
 	// tooltip
 	// -------------------------
-	&.tooltip{
-
+	&.tooltip {
 		min-width: $tooltip-min-width;
 		max-width: $tooltip-max-width;
 
-		.popover-content{
+		.popover-content {
 			border: $tooltip-border;
 			padding: $tooltip-padding;
 		}
 
-		.arrow::after{
-			border:$tooltip-border;
+		.arrow::after {
+			border: $tooltip-border;
 		}
 
 		&.top, &.bottom, &.right, &.left {
@@ -117,54 +115,53 @@
 		}
 		&.top {
 			border-top-width: $tooltip-highlight-border-width;
-			.popover-content{
+			.popover-content {
 				border-top: 0;
-
 			}
-			.arrow{
+			.arrow {
 				margin-bottom: 1px;
 			}
 
 		}
-		&.bottom  {
+		&.bottom {
 			border-bottom-width: $tooltip-highlight-border-width;
-			.popover-content{
+			.popover-content {
 				border-bottom: 0;
 			}
-			.arrow{
+			.arrow {
 				margin-top: 1px;
 			}
 		}
-		&.left{
+		&.left {
 			border-left-width: $tooltip-highlight-border-width;
-				.popover-content{
+				.popover-content {
 					border-left: 0;
 					padding-left: 10px;
 			}
-			.arrow{
-				top:calc(50% - 5px);
-				margin-right:1px;
+			.arrow {
+				top: calc(50% - 5px);
+				margin-right: 1px;
 			}
 
 		}
 		&.right {
 			border-right-width: $tooltip-highlight-border-width;
-			.popover-content{
+			.popover-content {
 				border-right: 0;
 				padding-right: 10px;
 			}
-			.arrow{
-				top:calc(50% - 5px);
+			.arrow {
+				top: calc(50% - 5px);
 				margin-left: 1px;
 			}
 		}
 
-		&.click{
-			.popover-content{
+		&.click {
+			.popover-content {
 				padding-right: 30px;
-				.close-icon{
+				.close-icon {
 					position: absolute;
-					padding:10px;
+					padding: 10px;
 					top: 0;
 					right: 0;
 				}
@@ -177,17 +174,17 @@
 	// Accessibility
 	// -------------------------
 
-	.a11y &{
-		border:1px solid color("black", 100);
-		.popover-header{
+	.a11y & {
+		border: 1px solid color("black", 100);
+		.popover-header {
 			border-bottom: 1px solid color("black", 100);
 
 			svg {
 				fill: color("black", 100)
 			}
 		}
-		.arrow:after{
-			border:1px solid color("black", 100);
+		.arrow:after {
+			border: 1px solid color("black", 100);
 		}
 	}
 
@@ -197,8 +194,6 @@
 
 .popover-content-fullwidth {
 	.popover-content {
-		padding:0;
+		padding: 0;
 	}
 }
-
-

@@ -112,5 +112,4 @@ export class Popover implements OnInit, AfterViewInit {
 	public onClose() {
 		this.close.emit();
 	}
-
 }
