@@ -21,7 +21,7 @@ export class ModalService {
 	}
 
 
-	create<T>(data: {component: any, inputs?: any}) {
+	create<T>(data: {component: any, inputs?: any}): ComponentRef<any> {
 		const inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}));
 		const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
 		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.vcRef.parentInjector);
@@ -41,6 +41,7 @@ export class ModalService {
 				this.destroy(index);
 			}
 		};
+		return component;
 	}
 
 	destroy(index: number = -1) {
