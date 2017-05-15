@@ -23,7 +23,7 @@ describe("Alert", () => {
 		fixture.detectChanges();
 
 		let alert = fixture.nativeElement.querySelector(".alert");
-		expect(alert.classList.contains("alert-info")).toBeTruthy;
+		expect(alert.classList.contains("alert-info")).toBeTruthy();
 	});
 
 	it("should render danger alert", () => {
