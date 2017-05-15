@@ -18,6 +18,10 @@ module.exports = function (config) {
 				terminal: true,
 				level: ""
 		},
+		browserConsoleLogOptions: {
+				terminal: true,
+				level: ""
+		},
     reporters: ['dots'],
     port: 9876,
     logLevel: config.LOG_INFO,
