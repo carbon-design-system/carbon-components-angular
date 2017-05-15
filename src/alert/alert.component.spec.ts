@@ -35,7 +35,7 @@ describe("Alert", () => {
 		fixture.detectChanges();
 
 		let alert = fixture.nativeElement.querySelector(".alert");
-		expect(alert.classList.contains("alert-danger")).toBeTruthy;
+		expect(alert.classList.contains("alert-danger")).toBeTruthy();
 	});
 
 	it("should render info warning", () => {
@@ -47,7 +47,7 @@ describe("Alert", () => {
 		fixture.detectChanges();
 
 		let alert = fixture.nativeElement.querySelector(".alert");
-		expect(alert.classList.contains("alert-warning")).toBeTruthy;
+		expect(alert.classList.contains("alert-warning")).toBeTruthy();
 	});
 
 	it("should render info success", () => {
@@ -59,7 +59,7 @@ describe("Alert", () => {
 		fixture.detectChanges();
 
 		let alert = fixture.nativeElement.querySelector(".alert");
-		expect(alert.classList.contains("alert-success")).toBeTruthy;
+		expect(alert.classList.contains("alert-success")).toBeTruthy();
 	});
 
 	it("should display correct message", () => {
