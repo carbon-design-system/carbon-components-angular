@@ -14,30 +14,38 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			type="search"
 			(keyup)="search($event)"
 			class="input-field" style="width: calc(100% - 220px); margin-left: 0;"
-			placeholder="Filter">
+			placeholder="Filter"
+			[attr.disabled]="waitingForLoad?true:null">
 		<cdl-dropdown
 			placeholder="Chose a set" style="width: 200px;"
 			type="multi"
-			(select)="onSelect($event)"
-			[(ngModel)]="selected">
+			(select)="onSelect()"
+			[(ngModel)]="selected"
+			[disabled]="waitingForLoad">
 			<cdl-dropdown-list [items]="sets"></cdl-dropdown-list>
 		</cdl-dropdown>
 	</div>
 	<div
-		*ngFor="let set of iconMeta"
-		[ngClass]="{hide: !set.visible}">
-		<h2>{{ formatName(set.sprite) }}</h2>
-		<div class="set">
-			<span
-				*ngFor="let icon of set.icons"
-				[ngClass]="{hide: !icon.visible}">
-				<h3>{{ icon.name }}</h3>
-				<svg
-					width="30"
-					height="30">
-					<use [attr.xlink:href]="'#'+icon.name+'_30'"></use>
-				</svg>
-			</span>
+		class="loading"
+		[ngClass]="{hide: !waitingForLoad}">
+	</div>
+	<div [ngClass]="{hide: waitingForLoad}">
+		<div
+			*ngFor="let set of iconMeta"
+			[ngClass]="{hide: !set.visible}">
+			<h2>{{ formatName(set.sprite) }}</h2>
+			<div class="set">
+				<span
+					*ngFor="let icon of set.icons"
+					[ngClass]="{hide: !icon.visible}">
+					<h3>{{ icon.name }}</h3>
+					<svg
+						width="30"
+						height="30">
+						<use [attr.xlink:href]="'#'+icon.name+'_30'"></use>
+					</svg>
+				</span>
+			</div>
 		</div>
 	</div>
 	`,
@@ -55,12 +63,10 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		}
 		.set {
 			display: grid;
-			grid-template-columns: 200px 200px 200px;
 			justify-content: center;
 			grid-gap: 10px;
 		}
 		.set span {
-			height: 200px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -70,6 +76,12 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		}
 		.set h3 {
 			text-align: center;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+			position: relative;
+			width: 100%;
+			padding-left: 5px;
+			padding-right: 5px;
 		}
 		.set span svg {
 			display: block;
@@ -80,20 +92,77 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			height: 0;
 			width: 0;
 		}
+		.loading {
+			height: 500px;
+			display: flex;
+			align-content: center;
+			align-items: center;
+			justify-content: center;
+		}
+		.loading:after {
+			content: "";
+			display: block;
+			height: 200px;
+			width: 200px;
+			border-radius: 200px;
+			border-top: 4px solid #2d74da;
+			border-left: 4px solid #2d74da;
+			border-bottom: 4px solid transparent;
+			border-right: 4px solid transparent;
+			transform: rotate(0deg);
+			animation-name: load;
+			animation-iteration-count: infinite;
+			animation-duration: 0.8s;
+			animation-timing-function: linear;
+		}
+
+		@keyframes load {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		@media (min-width: 0px) {
+			.set {
+				grid-template-columns: 160px 160px;
+			}
+			.set span {
+				height: 160px;
+			}
+		}
+
+		@media (min-width: 576px) {
+		}
+
+		@media (min-width: 768px) {
+			.set {
+				grid-template-columns: 200px 200px 200px;
+			}
+			.set span {
+				height: 200px;
+			}
+		}
+
+		@media (min-width: 1200px) {
+		}
 	`],
 	encapsulation: ViewEncapsulation.None
 })
 export class GlyphiconDemo {
 	iconMeta;
-	displayMeta;
 	sets = [];
 	selected = [];
+	waitingForLoad = true;
 
 	formatName(name) {
 		return name.slice(0, 1).toUpperCase() + name.slice(1).replace("_", " ");
 	}
 
 	onSelect(ev) {
+		console.log(ev);
 		this.iconMeta.forEach(sprite => {
 			if (this.selected === null || (this.selected.length === 0)) {
 				sprite.visible = true;
@@ -156,6 +225,6 @@ export class GlyphiconDemo {
 		}
 		this.sets = newSets;
 		document.body.appendChild(svgContain);
-		this.displayMeta = this.iconMeta;
+		this.waitingForLoad = false;
 	}
 }
