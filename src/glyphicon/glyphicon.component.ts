@@ -9,21 +9,24 @@ import { IconService } from "./glyphicon.service";
 					<svg
 						[attr.width]="iconSize"
 						[attr.height]="iconSize">
-						<use [attr.href]="'#'+icon+'_'+clampSize(iconSize)"></use>
+						<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
 					</svg>
 				</span>`,
-	styleUrls: ["./glyphicon.component.css"],
+	styles: [`
+		:host {
+			vertical-align: middle;
+			display: inline-block;
+			fill: #959494;
+		}
+	`],
 	providers: [IconService]
 })
 export class Glyphicon implements OnChanges {
 	public iconSize: string;
-	public icons: IconService;
 	@Input() icon = "";
 	@Input() size = "sm";
 
-	constructor(icons: IconService) {
-		this.icons = icons;
-	}
+	constructor(private icons: IconService) {}
 
 	clampSize(size) {
 		size = parseInt(size, 10);
