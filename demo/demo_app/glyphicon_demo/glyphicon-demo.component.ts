@@ -37,13 +37,10 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<div class="set">
 				<span
 					*ngFor="let icon of set.icons"
+					class="icon"
 					[ngClass]="{hide: !icon.visible}">
 					<h3>{{ icon.name }}</h3>
-					<svg
-						width="30"
-						height="30">
-						<use [attr.xlink:href]="'#'+icon.name+'_30'"></use>
-					</svg>
+					<cdl-glyphicon [icon]="icon.name" size="lg"></cdl-glyphicon>
 				</span>
 			</div>
 		</div>
@@ -66,7 +63,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			justify-content: center;
 			grid-gap: 10px;
 		}
-		.set span {
+		.set .icon {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -83,7 +80,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			padding-left: 5px;
 			padding-right: 5px;
 		}
-		.set span svg {
+		.set .icon svg {
 			display: block;
 			margin: 0 auto;
 		}
@@ -199,20 +196,15 @@ export class GlyphiconDemo {
 
 	async ngAfterViewInit() {
 		this.iconMeta = await fetch("http://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
+		// gather and nest the avliable icons sizes into set.icons[].sizes[]
 		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
 		this.iconMeta.sort((a, b) => {
 			if (b.sprite.includes("core")) { return 1; }
 			return a.sprite.localeCompare(b.sprite);
 		});
 		console.log(this.iconMeta);
-		let svgContain = document.createElement("div");
-		svgContain.classList.add("svgs");
 		let newSets = [];
 		for(let set of this.iconMeta) {
-			// fetch the svgs
-			let rawSVG = await fetch(`http://peretz-icons.mybluemix.net/${set.sprite}.svg`)
-				.then(res => res.text());
-			svgContain.innerHTML += rawSVG;
 			newSets.push({
 				content: this.formatName(set.sprite),
 				sprite: set.sprite,
@@ -224,7 +216,6 @@ export class GlyphiconDemo {
 			});
 		}
 		this.sets = newSets;
-		document.body.appendChild(svgContain);
 		this.waitingForLoad = false;
 	}
 }
