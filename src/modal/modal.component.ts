@@ -49,6 +49,7 @@ import {
 export class ModalComponent implements OnInit {
 	@Input() size = "xl";
 	@Output() overlaySelected = new EventEmitter();
+	@Output() close = new EventEmitter();
 	@ViewChild("modal") modal: ElementRef;
 
 	modalState = "out";
@@ -66,12 +67,12 @@ export class ModalComponent implements OnInit {
 
 	ngOnDestroy() {
 		this.modalState = "out";
+		this.close.emit();
 	}
 
 	@HostListener("document:keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
 		event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
-
 		switch (event.key) {
 			case "Escape": {
 				this.modalService.destroy();  // destroy top (latest) modal

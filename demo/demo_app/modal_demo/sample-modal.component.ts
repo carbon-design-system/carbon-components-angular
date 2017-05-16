@@ -6,8 +6,7 @@ import { Modal } from "../../../src";
 	selector: "sample-modal",
 	template: `
 		<cdl-modal size="xl" (overlaySelected)="closeModal()">
-			<cdl-modal-header (closeSelect)="closeModal()">Header text
-			</cdl-modal-header>
+			<cdl-modal-header (closeSelect)="closeModal()">Header text</cdl-modal-header>
 			<section class="modal-body">
 				<h1>sample-modal Works!</h1>
 				{{modalText}}
