@@ -49,6 +49,7 @@ module.exports = [{
 		contentBase: "./demo",
 		host: "0.0.0.0",
 		port: 9000,
-		historyApiFallback: true
+		historyApiFallback: true,
+		disableHostCheck: true
 	}
 }];

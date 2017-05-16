@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { IconService } from "./../../src/glyphicon/glyphicon.module";
+import { IconService } from "./../../src";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
-import { HcModeChecker } from "./../../src/common/a11y.service";
+import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
 
 @Component({
@@ -22,6 +22,17 @@ import "rxjs/add/operator/filter";
 		<router-outlet></router-outlet>
 	</div>
 	<cdl-modal-placeholder></cdl-modal-placeholder>
+	<cdl-sprite sprite="core"></cdl-sprite>
+	<cdl-sprite sprite="alerts_status"></cdl-sprite>
+	<cdl-sprite sprite="arrows_chevrons"></cdl-sprite>
+	<cdl-sprite sprite="brands"></cdl-sprite>
+	<cdl-sprite sprite="calculator"></cdl-sprite>
+	<cdl-sprite sprite="emoticons"></cdl-sprite>
+	<cdl-sprite sprite="formatting"></cdl-sprite>
+	<cdl-sprite sprite="mobile_controls"></cdl-sprite>
+	<cdl-sprite sprite="playback_controls"></cdl-sprite>
+	<cdl-sprite sprite="window_controls"></cdl-sprite>
+	<cdl-sprite sprite="should_fail"></cdl-sprite>
 	`,
 	styleUrls: ["./app.component.css"],
 	encapsulation: ViewEncapsulation.None
@@ -98,16 +109,6 @@ export class AppComponent implements OnInit {
 			link: "/alert",
 			selected: false
 		},
-		/*{
-			content: "Calendar Demo",
-			link: "/calendar",
-			selected: false
-		},
-		{
-			content: "Datepicker Demo",
-			link: "/datepicker",
-			selected: false
-		},*/
 		{
 			content: "Charts Demo",
 			link: "/charts",
@@ -117,7 +118,7 @@ export class AppComponent implements OnInit {
 	private filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private router: Router) {
-		IconService.setIconUrl("http://csx00509.canlab.ibm.com/icons/");
+		IconService.setCacheLevel("aggressive");
 	}
 
 	ngOnInit() {
