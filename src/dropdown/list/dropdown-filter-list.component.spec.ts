@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import { DropdownList } from "./dropdown-list.component";
+import { DropdownFilter } from "./dropdown-filter-list.component";
 import { ListItem } from "./../list-item.interface";
 
 @Component({
-	template: `<cdl-dropdown-list [items]="items" (select)="onSelect($event)"></cdl-dropdown-list>`
+	template: `<cdl-dropdown-filter [items]="items" (select)="onSelect($event)"></cdl-dropdown-filter>`
 })
 class TestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -16,7 +16,7 @@ class TestComponent {
 }
 
 @Component({
-	template: `<cdl-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cdl-dropdown-list>`
+	template: `<cdl-dropdown-filter [items]="items" (select)="onSelect($event)" type="multi"></cdl-dropdown-filter>`
 })
 class TestMultiComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -31,7 +31,7 @@ describe("Dropdown list", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
-				DropdownList,
+				DropdownFilter,
 				TestComponent
 			]
 		});
@@ -44,8 +44,8 @@ describe("Dropdown list", () => {
 	});
 
 	it("should work", () => {
-		fixture = TestBed.createComponent(DropdownList);
-		expect(fixture.componentInstance instanceof DropdownList).toBe(true);
+		fixture = TestBed.createComponent(DropdownFilter);
+		expect(fixture.componentInstance instanceof DropdownFilter).toBe(true);
 	});
 
 	it("should select an item", () => {
@@ -60,7 +60,7 @@ describe("Dropdown multi list", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
-				DropdownList,
+				DropdownFilter,
 				TestMultiComponent
 			]
 		});
@@ -73,9 +73,9 @@ describe("Dropdown multi list", () => {
 	});
 
 	it("should work", () => {
-		fixture = TestBed.createComponent(DropdownList);
+		fixture = TestBed.createComponent(DropdownFilter);
 		fixture.type = "multi";
-		expect(fixture.componentInstance instanceof DropdownList).toBe(true);
+		expect(fixture.componentInstance instanceof DropdownFilter).toBe(true);
 	});
 
 	it("should multi select", () => {
