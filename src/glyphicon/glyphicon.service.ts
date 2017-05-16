@@ -2,18 +2,50 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
+// stores data in localStorage (which is strings only)
+// returns promises of the data
+class LocalPromiseCache {
+	// key so we avoid collisions
+	static key = "cdl-";
+	constructor() {}
+
+	get(item: string): Promise<string> {
+		return new Promise((resolve, reject) => {
+			resolve(localStorage.getItem(LocalPromiseCache.key + item));
+		});
+	}
+
+	set(item: string, promise: Promise<string>): void {
+		promise.then(data => {
+			localStorage.setItem(LocalPromiseCache.key + item, data);
+		});
+	}
+
+	has(item: string): boolean {
+		if (localStorage.getItem(LocalPromiseCache.key + item)) { return true; }
+		return false;
+	}
+}
+
 @Injectable()
 export class IconService {
-	public static iconCache = {};
-	public static iconUrl = "icons/";
-	public http: Http;
+	public static spriteCache: Map<string, Promise<string>> | LocalPromiseCache = new Map();
+	public static cacheLevel: "none" | "simple" | "aggressive" = "simple";
+	public static baseURL = "http://peretz-icons.mybluemix.net/";
 
-	static setIconUrl(url: string) {
-		IconService.iconUrl = url;
+	static setBaseURL(url: string) {
+		IconService.baseURL = url;
 	}
-	constructor(http: Http) {
-		this.http = http;
+
+	static setCacheLevel(level: "none" | "simple" | "aggressive") {
+		IconService.cacheLevel = level;
+		if (level === "aggressive") {
+			console.warn("aggressive caching is experimental!");
+			IconService.spriteCache = new LocalPromiseCache();
+		}
 	}
+
+	constructor(private http: Http) {}
 
 	size2px(size) {
 		if (parseFloat(size)) {
@@ -33,16 +65,28 @@ export class IconService {
 		}
 	}
 
-	getIcon(name, size) {
-		let icon = name + "-" + size;
-		if (IconService.iconCache[icon]) {
-			return IconService.iconCache[icon];
+	getSprite(name) {
+		if (IconService.cacheLevel === "none") {
+			return this.http.get(`${IconService.baseURL}${name}.svg`)
+				.toPromise()
+				.then(res => res.text(),
+					err => {
+						console.error("failed to load sprite", name, "check that the server is available and baseURL is correct");
+						return "";
+					});
+		} else {
+			if (IconService.spriteCache.has(name)) {
+				return IconService.spriteCache.get(name);
+			}
+			let spriteReq = this.http.get(`${IconService.baseURL}${name}.svg`)
+				.toPromise()
+				.then(res => res.text(),
+					err => {
+						console.error("failed to load sprite", name, "check that the server is available and baseURL is correct");
+						return "";
+					});
+			IconService.spriteCache.set(name, spriteReq);
+			return spriteReq;
 		}
-		IconService.iconCache[icon] = this.http.get(IconService.iconUrl + icon + ".svg")
-			.toPromise()
-			.then(
-				res => res.text(),
-				err => `<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"></svg>`);
-		return IconService.iconCache[icon];
 	}
 }
