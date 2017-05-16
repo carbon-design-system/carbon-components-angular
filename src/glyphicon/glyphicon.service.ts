@@ -33,7 +33,7 @@ class LocalPromiseCache {
 export class IconService {
 	private static spriteCache: Map<string, Promise<string>> | LocalPromiseCache = new Map<string, Promise<string>>();
 	private static cacheLevel: "none" | "simple" | "aggressive" = "simple";
-	private static baseURL = "http://peretz-icons.mybluemix.net/";
+	private static baseURL = "https://peretz-icons.mybluemix.net/";
 
 	static setBaseURL(url: string) {
 		IconService.baseURL = url;
