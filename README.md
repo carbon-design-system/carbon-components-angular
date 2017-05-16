@@ -10,21 +10,34 @@ Then you'll be able to `npm install @neutrino/neutrino` and start importing comp
 
 ### Component status
 
-| Component       | Status    |
-| --------------- | --------- |
-| breadcrumbs     | planning  |
-| charts          | planning  |
-| combo box       | planning  |
-| dropdown        | prototype |
-| modal           | prototype |
-| popover         | prototype |
-| forms           | WIP       |
-| side navigation | prototype |
-| table           | prototype |
-| tabs            | prototype |
-| tooltip         | prototype |
-| top navigation  | prototype |
-| tree view       | prototype |
+| Component       | Status    | Epic |
+| --------------- | --------- | ---- |
+| breadcrumbs     | Planning  | #346 |
+| charts          | Planning  | #366 |
+| combo box       | Planning  | #344 |
+| dropdown        | WIP       | #343 |
+| modal           | Done      | #342 |
+| popover         | WIP       | #341 |
+| forms           | WIP       | #340 |
+| side navigation | Prototype | #339 |
+| table           | Prototype | #338 |
+| tabs            | Prototype | #337 |
+| tooltip         | WIP       | #336 |
+| top navigation  | Prototype | #335 |
+| tree view       | Prototype | #334 |
+
+Status explination:
+- Planning: Technical requirements, UI specs, or UX specs (may be) incomplete, and/or no prototype created
+- WIP: Work In Progress
+- Done: Done according to the base requirements checklist, which consists of:
+	- accessible
+	- documented
+	- matches UI/UX specs
+	- unit tests
+	- mobile first
+	- l10n (globalization) + i18n (localization)
+	- RTL support
+	- performant
 
 ### Contributing
 
@@ -59,7 +72,7 @@ Then you'll be able to `npm install @neutrino/neutrino` and start importing comp
 #### Issues submission guidelines
 - **One issue per defect** - do not open an issue that spans multiple defects
 - provide a descriptive title that mentions the component and version the issue covers
-- provide 
+- provide
   - version(s) affected
   - a description of the issue
   - steps taken to produce the issue
