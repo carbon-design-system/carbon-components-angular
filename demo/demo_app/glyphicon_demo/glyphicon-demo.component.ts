@@ -204,7 +204,7 @@ export class GlyphiconDemo {
 		});
 		console.log(this.iconMeta);
 		let newSets = [];
-		for(let set of this.iconMeta) {
+		for (let set of this.iconMeta) {
 			newSets.push({
 				content: this.formatName(set.sprite),
 				sprite: set.sprite,
