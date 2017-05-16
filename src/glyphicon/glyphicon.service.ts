@@ -18,6 +18,8 @@ class LocalPromiseCache {
 	set(item: string, promise: Promise<string>): void {
 		promise.then(data => {
 			localStorage.setItem(LocalPromiseCache.key + item, data);
+		}).catch(err => {
+			console.error("error caching", err);
 		});
 	}
 
@@ -29,12 +31,13 @@ class LocalPromiseCache {
 
 @Injectable()
 export class IconService {
-	public static spriteCache: Map<string, Promise<string>> | LocalPromiseCache = new Map();
+	public static spriteCache: Map<string, Promise<string>> | LocalPromiseCache = new Map<string, Promise<string>>();
 	public static cacheLevel: "none" | "simple" | "aggressive" = "simple";
 	public static baseURL = "http://peretz-icons.mybluemix.net/";
 
 	static setBaseURL(url: string) {
 		IconService.baseURL = url;
+		return IconService;
 	}
 
 	static setCacheLevel(level: "none" | "simple" | "aggressive") {
@@ -43,6 +46,7 @@ export class IconService {
 			console.warn("aggressive caching is experimental!");
 			IconService.spriteCache = new LocalPromiseCache();
 		}
+		return IconService;
 	}
 
 	constructor(private http: Http) {}
@@ -65,28 +69,26 @@ export class IconService {
 		}
 	}
 
+	doSpriteRequest(name) {
+		return this.http.get(`${IconService.baseURL}${name}.svg`)
+			.toPromise()
+			.then(res => res.text(),
+				err => {
+					console.error(`failed to load sprite ${name}, check that the server is available and baseURL is correct`);
+					return "";
+				});
+	}
+
 	getSprite(name) {
 		if (IconService.cacheLevel === "none") {
-			return this.http.get(`${IconService.baseURL}${name}.svg`)
-				.toPromise()
-				.then(res => res.text(),
-					err => {
-						console.error("failed to load sprite", name, "check that the server is available and baseURL is correct");
-						return "";
-					});
+			return this.doSpriteRequest(name);
 		} else {
 			if (IconService.spriteCache.has(name)) {
 				return IconService.spriteCache.get(name);
 			}
-			let spriteReq = this.http.get(`${IconService.baseURL}${name}.svg`)
-				.toPromise()
-				.then(res => res.text(),
-					err => {
-						console.error("failed to load sprite", name, "check that the server is available and baseURL is correct");
-						return "";
-					});
-			IconService.spriteCache.set(name, spriteReq);
-			return spriteReq;
+			let spriteRequest = this.doSpriteRequest(name);
+			IconService.spriteCache.set(name, spriteRequest);
+			return spriteRequest;
 		}
 	}
 }

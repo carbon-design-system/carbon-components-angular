@@ -32,6 +32,7 @@ import "rxjs/add/operator/filter";
 	<cdl-sprite sprite="mobile_controls"></cdl-sprite>
 	<cdl-sprite sprite="playback_controls"></cdl-sprite>
 	<cdl-sprite sprite="window_controls"></cdl-sprite>
+	<cdl-sprite sprite="should_fail"></cdl-sprite>
 	`,
 	styleUrls: ["./app.component.css"],
 	encapsulation: ViewEncapsulation.None

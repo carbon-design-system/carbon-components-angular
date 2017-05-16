@@ -1,4 +1,9 @@
-import { Component, OnChanges, OnInit, Input } from "@angular/core";
+import {
+	Component,
+	OnChanges,
+	OnInit,
+	Input
+} from "@angular/core";
 import { IconService } from "./glyphicon.service";
 
 @Component({
