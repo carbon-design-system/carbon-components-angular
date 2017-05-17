@@ -17,6 +17,7 @@
         .item{
             padding: 7px 20px 7px 0;
             height: 30px;
+			position: relative;
         }
         &:hover, &:focus,  &.selected {
             background-color:$treeview-hover-bg;
@@ -26,6 +27,8 @@
             margin-right: 5px;
             vertical-align: middle;
             transition: transform 0.1s linear;
+			position: absolute;
+			left: 0;
         }
         &.selected {
             border-left-color:$treeview-selected-border-color;
@@ -68,4 +71,3 @@
 	}
 
 }
-

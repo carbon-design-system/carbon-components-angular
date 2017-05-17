@@ -195,7 +195,7 @@ export class GlyphiconDemo {
 	}
 
 	async ngAfterViewInit() {
-		this.iconMeta = await fetch("http://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
+		this.iconMeta = await fetch("https://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
 		// gather and nest the avliable icons sizes into set.icons[].sizes[]
 		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
 		this.iconMeta.sort((a, b) => {
