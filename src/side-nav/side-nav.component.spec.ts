@@ -23,9 +23,6 @@ describe("Side Nav", () => {
 		fixture.detectChanges();
 		expect(comp.className).toBe("left-nav isOpen");
 	});
-
-
-
 });
 
 
