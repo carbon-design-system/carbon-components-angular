@@ -89,7 +89,7 @@ export class Positioning {
 	ClientRect {
 		const hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
 		const shiftWidth: any = {
-			left: hostElPosition.left,
+			left: hostElPosition.left - targetElement.clientWidth,
 			center: hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2,
 			right: hostElPosition.left + hostElPosition.width
 		};
@@ -112,8 +112,6 @@ export class Positioning {
 		};
 
 		let placeToPosition: Function = function(position) {
-			targetElement.querySelector(".popover").classList.add(position);
-
 			switch (position) {
 				case "top":
 					targetElPosition.top = hostElPosition.top - targetElement.offsetHeight - gap;
@@ -151,19 +149,21 @@ export class Positioning {
 					targetElPosition.right += shiftWidth[position] - gap;
 					break;
 				case "auto":
+					let place = "top";
 					if ( targetElPosition.height + gap < hostElPosition.top &&
 						( targetElPosition.width / 2 - hostElPosition.left - hostElPosition.width / 2 ) < 0 ) {
-						placeToPosition( "top" );
+						place = "top";
 					} else if ( targetElPosition.height + gap + hostElPosition.top + hostElPosition.height > window.innerHeight &&
 						( targetElPosition.width / 2 - hostElPosition.left - hostElPosition.width / 2 ) < 0 ) {
-						placeToPosition( "bottom" );
+						place = "bottom";
 					} else if (hostElPosition.left - (targetElPosition.width + gap) > 0) {
-						placeToPosition( "left" );
+						place = "left";
 					} else if (hostElPosition.left + hostElPosition.width + targetElPosition.width + gap < window.innerWidth) {
-						placeToPosition( "right" );
-					}	else {
-						placeToPosition( "top" );
+						place = "right";
 					}
+
+					placeToPosition(place);
+					targetElement.querySelector(".popover").classList.add(place);
 					break;
 			}
 		};

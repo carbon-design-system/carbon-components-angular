@@ -56,11 +56,50 @@
 		}
 
 	}
+	&.top-left {
+		.arrow {
+			bottom: - $popover-arrow-height;
+			right: 0px;
+			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
+		}
+
+	}
+	&.top-right {
+		.arrow {
+			bottom: - $popover-arrow-height;
+			left: 0;
+			transform: scaleX(-1);
+			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
+		}
+
+	}
 	&.bottom {
 		.arrow {
 			top: - $popover-arrow-height;
 			left: calc(50% - 10px);
 			transform: rotate(180deg);
+		}
+		.popover-header ~ .arrow:after {
+			background-color: $popover-header-bg;
+		}
+	}
+	&.bottom-left {
+		.arrow {
+			top: - $popover-arrow-height;
+			right: 0;
+			transform: rotate(180deg) scaleX(-1);
+			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
+		}
+		.popover-header ~ .arrow:after {
+			background-color: $popover-header-bg;
+		}
+	}
+	&.bottom-right {
+		.arrow {
+			top: - $popover-arrow-height;
+			left: 0;
+			transform: rotate(180deg);
+			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 		}
 		.popover-header ~ .arrow:after {
 			background-color: $popover-header-bg;
