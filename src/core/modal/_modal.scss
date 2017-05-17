@@ -1,4 +1,4 @@
-.modal-wrapper{
+.modal-wrapper {
 	position:fixed;
 	height: $modal-wrapper-height;
 	width: $modal-wrapper-width;
@@ -32,25 +32,25 @@
     height: $modal-size-height-xxl;
   }
   header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: $modal-header-width;
-  height: $modal-header-height;
-  color: $modal-header-text;
-  padding: $modal-header-padding;
-  font-size: $modal-header-font-size;
-  background-color: $modal-header-bg;
-  &.error {
-    background-color: $modal-header-error-bg;
-  }
-  .header-text {
-    margin: $modal-header-text-margin;
-    padding: $modal-header-text-padding;
-    height: $modal-header-text-height;
-    line-height: $modal-header-text-line-height;
-  	}
-  .close-icon{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: $modal-header-width;
+		height: $modal-header-height;
+		color: $modal-header-text;
+		padding: $modal-header-padding;
+		font-size: $modal-header-font-size;
+		background-color: $modal-header-bg;
+		&.error {
+			background-color: $modal-header-error-bg;
+		}
+		.header-text {
+			margin: $modal-header-text-margin;
+			padding: $modal-header-text-padding;
+			height: $modal-header-text-height;
+			line-height: $modal-header-text-line-height;
+		}
+		.close-icon {
   		display: flex;
 			float: right;
 			justify-content: center;
@@ -77,12 +77,12 @@
 	  }
 	}
 	footer {
-  height: $modal-footer-height;
-  width: $modal-footer-width;
-  padding: $modal-footer-padding;
-  border-top: $modal-footer-border-top $modal-footer-border-top-color;
-  position: absolute;
-  bottom: 0;
+		height: $modal-footer-height + 1px;  // border eats a pixel
+		width: $modal-footer-width;
+		padding: $modal-footer-padding;
+		border-top: $modal-footer-border-top $modal-footer-border-top-color;
+		position: absolute;
+		bottom: 0;
 	}
 }
 

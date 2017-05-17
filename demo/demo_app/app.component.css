@@ -34,12 +34,15 @@ nav {
 	.main {
 		padding-left: 310px;
 	}
+
+	html[dir=rtl] .main {
+		padding-right: 310px;
+	}
 }
 
 @media (min-width: 1200px) {
-	/deep/ body {
+	body {
 	    max-width: 1200px;
 	    margin: 0 auto;
 	}
 }
-

@@ -30,6 +30,13 @@ import { Modal } from "../../../src";
 						<label class="label label-top">{{field}}</label>
 						<input type="text" class="input-field" placeholder="{{field}}" formControlName="{{field}}"/>
 					</div>
+					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
+					<cdl-dropdown
+						placeholder="Select an option"
+						size="sm">
+						<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+					</cdl-dropdown>
+					<button class="btn" cdlPopover="Hello There" placement="bottom">Pop over Bottom</button>
 				</div>
 				<cdl-modal-footer>
 					<button class="btn secondary cancel-button" (click)="closeModal()">Cancel</button>
@@ -46,6 +53,25 @@ export class FormModalComponent implements OnInit {
 	private fields = [];
 	private form: FormGroup;
 	private submitted: any;
+
+	demoItems1 = [
+		{
+			content: "a item one",
+			selected: false
+		},
+		{
+			content: "b item two",
+			selected: false,
+		},
+		{
+			content: "c item three",
+			selected: false
+		},
+		{
+			content: "d item four",
+			selected: false
+		}
+	];
 
 	constructor(private fb: FormBuilder, private injector: Injector) {
 		this.modalText = this.injector.get("modalText");

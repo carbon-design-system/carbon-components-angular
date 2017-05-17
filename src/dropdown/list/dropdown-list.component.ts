@@ -10,11 +10,11 @@ import {
 	ElementRef
 } from "@angular/core";
 
-import { KeyCodes } from "./../../constant/keys";
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { ListView } from "./../../list-view/list-view.component";
+import { watchFocusJump } from "./../dropdowntools";
 
 @Component({
 	selector: "cdl-dropdown-list",
@@ -30,12 +30,13 @@ import { ListView } from "./../../list-view/list-view.component";
 					disabled: item.disabled
 				}"
 				class="option">
-				<span 
-					class="checkbox" 
+				<span
+					class="checkbox"
 					*ngIf="type === 'multi'">
 					<label>
-						<input 
-							type="checkbox" 
+						<input
+							tabindex="-1"
+							type="checkbox"
 							[checked]="item.selected"
 							(click)="doClick($event, item)">
 						<span class="label"></span>
@@ -56,27 +57,46 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@ViewChild("list") list: ElementRef;
-	public type: "single" | "multi" = "single";
-	private index = -1;
-	private listList: HTMLElement[];
+	@Input() type: "single" | "multi" = "single";
+	protected index = -1;
+	protected listList: HTMLElement[];
+	private focusJump;
+
+	constructor(public _elementRef: ElementRef) {}
 
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
+			setTimeout(() => {
+				this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			}, 0);
+			this.index = this.items.findIndex(item => item.selected);
+			this.setupFocusObservable();
 		}
 	}
 
 	ngAfterViewInit() {
-		this.listList = this.list.nativeElement.querySelectorAll("li");
+		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
+		this.setupFocusObservable();
+	}
+
+	setupFocusObservable() {
+		if (this.focusJump) {
+			this.focusJump.unsubscribe();
+		}
+		let elList = Array.from(this.list.nativeElement.querySelectorAll("li"));
+		this.focusJump = watchFocusJump(this.list.nativeElement, elList)
+			.subscribe(el => {
+				el.focus();
+			});
 	}
 
 	getNextItem(): ListItem {
 		if (this.index < this.items.length - 1) {
 			this.index++;
 		}
-		let item = this.items[this.index];
-		return item;
+		return this.items[this.index];
 	}
 
 	getNextElement(): HTMLElement {
@@ -97,8 +117,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		if (this.index > 0) {
 			this.index--;
 		}
-		let item = this.items[this.index];
-		return item;
+		return this.items[this.index];
 	}
 
 	getPrevElement(): HTMLElement {
@@ -113,6 +132,20 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			return this.getPrevElement();
 		}
 		return elem;
+	}
+
+	getCurrentItem() {
+		if (this.index < 0) {
+			return this.items[0];
+		}
+		return this.items[this.index];
+	}
+
+	getCurrentElement(): HTMLElement {
+		if (this.index < 0) {
+			return this.listList[0];
+		}
+		return this.listList[this.index];
 	}
 
 	getSelected(): ListItem[] {
@@ -147,14 +180,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	doKeyDown(ev, item) {
-		if (ev.which && (ev.which === KeyCodes.ENTER_KEY || ev.which === KeyCodes.SPACE_BAR)) {
+		if (ev.key && (ev.key === "Enter" || ev.key === " ")) {
 			ev.preventDefault();
 			this.doClick(ev, item);
-		} else if (ev.which === KeyCodes.DOWN_ARROW || ev.which === KeyCodes.UP_ARROW) {
+		} else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
 			ev.preventDefault();
-			if (ev.which === KeyCodes.DOWN_ARROW && findNextElem(ev.target)) {
+			if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
 				findNextElem(ev.target).focus();
-			} else if (ev.which === KeyCodes.UP_ARROW && findPrevElem(ev.target)) {
+			} else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
 				findPrevElem(ev.target).focus();
 			}
 			if (ev.shiftKey) {
@@ -170,10 +203,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			for (let otherItem of this.items) {
 				if (item !== otherItem) { otherItem.selected = false; }
 			}
+			if (!item.disabled) {
+				this.select.emit({item});
+			}
+		} else {
+			// emit an array of selected items
+			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);
-		if (!item.disabled) {
-			this.select.emit({item});
-		}
+
 	}
 }

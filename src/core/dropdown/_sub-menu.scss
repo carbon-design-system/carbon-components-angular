@@ -95,3 +95,21 @@
 	padding: 7px 20px;
 	height: 30px;
 }
+
+html[dir=rtl] & {
+	.sub-menu-item-wrapper {
+		.arrow {
+			right: initial;
+			left: 10px;
+			transform: rotate(180deg);
+		}
+	}
+	.sub-menu {
+		li {
+			.sub-menu-view {
+				left: initial;
+				right: calc(100% + 2px);
+			}
+		}
+	}
+}

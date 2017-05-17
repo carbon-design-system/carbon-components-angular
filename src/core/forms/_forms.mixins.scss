@@ -174,4 +174,18 @@
 		 display: inline-block;
 		 margin-right: 10px
 	}
+
+	html[dir=rtl] & {
+		label {
+			span {
+				&:before {
+					margin-left: $label-margin;
+					margin-right: 0;
+				}
+				&:after {
+					right: ($el-size - $selected-width) / 2;
+				}
+			}
+		}
+	}
 }

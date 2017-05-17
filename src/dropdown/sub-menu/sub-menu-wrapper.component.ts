@@ -44,6 +44,7 @@ export class SubMenuWrapper {
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
 	@Input() selectedIcon = true;
+	@Input() type: "single" | "multi" = "single";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

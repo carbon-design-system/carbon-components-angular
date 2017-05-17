@@ -2,6 +2,9 @@
 	padding: 2px 10px;
 	font-size: $dropdown-font-size-sm;
 	height: $dropdown-height-sm;
+	.checkbox .label {
+		width: 15px;
+	}
 }
 
 &.size-lg .list li {
@@ -11,7 +14,7 @@
 .list {
 	@extend .list-unstyled;
 	li {
-		padding: 7px 20px;
+		padding: 7px 10px;
 		height: 30px;
 		margin-bottom: -1px;
 		cursor: pointer;
@@ -69,6 +72,17 @@
 		&:first-child {
 			&:hover, &.selected, &:focus {
 				margin-top:0;
+			}
+		}
+	}
+}
+
+html[dir=rtl] & {
+	.list {
+		li {
+			.checkbox {
+				margin-left: 10px;
+				margin-right: 0;
 			}
 		}
 	}

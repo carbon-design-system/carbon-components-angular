@@ -14,6 +14,14 @@ module.exports = function (config) {
     preprocessors: {
       './karma-test-shim.js': ['webpack']
     },
+		browserConsoleLogOptions: {
+				terminal: true,
+				level: ""
+		},
+		browserConsoleLogOptions: {
+				terminal: true,
+				level: ""
+		},
     reporters: ['dots'],
     port: 9876,
     logLevel: config.LOG_INFO,

@@ -11,7 +11,8 @@ import {
 	AfterContentInit,
 	AfterViewInit,
 	HostListener,
-	forwardRef
+	forwardRef,
+	OnDestroy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -22,7 +23,6 @@ import "rxjs/add/operator/throttleTime";
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { positionElements } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
-import { KeyCodes } from "./../constant/keys";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
 @Component({
@@ -38,7 +38,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			(blur)="onBlur()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
-			{{displayValue}}
+			{{getDisplayValue()}}
 			<span class="dropdown-icon" [class.open]="!menuIsClosed">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
+export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
 	menuIsClosed = true;
 	dropdown: HTMLElement;
 	dropdownWrapper: HTMLElement;
@@ -81,6 +81,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	resize;
 	private onTouchedCallback: () => void = this._noop;
 
+	@Input() placeholder = "";
 	@Input() displayValue = "";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() type: "single" | "multi" = "single";
@@ -89,7 +90,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
-	@ContentChild(AbstractDropdownView) view;
+	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
 
 	constructor(public _elementRef: ElementRef) {}
@@ -124,7 +125,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 
 	writeValue(value: any) {
 		if (value) {
-			console.log("write", value);
 			if (this.type === "single") {
 				this.view.propagateSelected([value]);
 			} else {
@@ -148,25 +148,24 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
-	onKeyDown(evt) {
-		if (evt.which === KeyCodes.ESCAPE || (evt.which === KeyCodes.UP_ARROW && evt.altKey)) {
+	onKeyDown(evt: KeyboardEvent) {
+		if (evt.key === "Escape" && !this.menuIsClosed) {
+			evt.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+		}
+		if (evt.key === "Escape" || (evt.key === "ArrowUp" && evt.altKey)) {
 			evt.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (evt.which === KeyCodes.DOWN_ARROW && evt.altKey) {
+		} else if (evt.key === "ArrowDown" && evt.altKey) {
 			evt.preventDefault();
 			this.openMenu();
 		}
 
-		if (evt.target === this.rootButton.nativeElement
-			&& !this.menuIsClosed
-			&& evt.which === KeyCodes.DOWN_ARROW) {
-			evt.preventDefault();
-			let firstElem = this.dropdown.querySelector("[tabindex='0']");
-			if (firstElem) { firstElem["focus"](); }
+		if (!this.menuIsClosed && evt.key === "Tab" && this.dropdown.contains(evt.target as Node)) {
+			this.closeMenu();
 		}
 
-		if (!this.menuIsClosed && evt.which === KeyCodes.TAB_KEY) {
+		if (!this.menuIsClosed && evt.key === "Tab" && evt.shiftKey) {
 			this.closeMenu();
 		}
 
@@ -178,19 +177,32 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 	}
 
 	closedDropdownNavigation(evt) {
-		if (evt.which === KeyCodes.DOWN_ARROW) {
+		if (evt.key === "ArrowDown") {
 			evt.preventDefault();
-			let elem = this.view.getNextElement();
-			if (elem) {
-				elem.click();
-			}
-		} else if (evt.which === KeyCodes.UP_ARROW) {
+			this.view.getCurrentItem().selected = false;
+			let item = this.view.getNextItem();
+			if (item) { item.selected = true; }
+		} else if (evt.key === "ArrowUp") {
 			evt.preventDefault();
-			let elem = this.view.getPrevElement();
-			if (elem) {
-				elem.click();
-			}
+			this.view.getCurrentItem().selected = false;
+			let item = this.view.getPrevItem();
+			if (item) { item.selected = true; }
 		}
+	}
+
+	getDisplayValue() {
+		let selected = this.view.getSelected();
+		if (selected && !this.displayValue) {
+			if (this.type === "multi") {
+				// translate me
+				return `${selected.length} selected`;
+			} else {
+				return selected[0].content;
+			}
+		} else if (selected) {
+			return this.displayValue;
+		}
+		return this.placeholder;
 	}
 
 	_noop() {}
@@ -202,12 +214,15 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 			this.closeMenu();
 		}
 	}
-	_keyboardNav(ev) {
-		if (ev.which === KeyCodes.ESCAPE || (ev.which === KeyCodes.UP_ARROW && ev.altKey)) {
+	_keyboardNav(ev: KeyboardEvent) {
+		if (ev.key === "Escape" && !this.menuIsClosed) {
+			ev.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+		}
+		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
 			ev.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (!this.menuIsClosed && ev.which === KeyCodes.TAB_KEY) {
+		} else if (!this.menuIsClosed && ev.key === "Tab") {
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.rootButton.nativeElement.focus();
@@ -216,30 +231,44 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 		}
 	}
 
+	_appendToDropdown() {
+		if (document.body.contains(this.dropdownWrapper)) {
+			this._elementRef.nativeElement.appendChild(this.dropdown);
+			document.body.removeChild(this.dropdownWrapper);
+			this.resize.unsubscribe();
+			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
+		}
+	}
+
+	_appendToBody() {
+		this.dropdownWrapper = document.createElement("div");
+		this.dropdownWrapper.className = "dropdown-wrapper append-body";
+		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+		this.dropdownWrapper.appendChild(this.dropdown);
+		document.body.appendChild(this.dropdownWrapper);
+		positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
+		this.resize = Observable.fromEvent(window, "resize")
+			.throttleTime(100)
+			.subscribe(() => {
+				positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+			});
+	}
+
 	openMenu() {
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if appendToBody is true
 		// and position it relative to the dropdown wrapper
 		if (this.appendToBody) {
-			this.dropdownWrapper = document.createElement("div");
-			this.dropdownWrapper.className = "dropdown-wrapper append-body";
-			this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
-			this.dropdownWrapper.appendChild(this.dropdown);
-			window.document.querySelector("body").appendChild(this.dropdownWrapper);
-			positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
-			this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
-			this.resize = Observable.fromEvent(window, "resize")
-				.throttleTime(100)
-				.subscribe(() => {
-					positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
-				});
+			this._appendToBody();
 		}
 
 		// we bind noop to document.body.firstElementChild to allow safari to fire events
 		// from document. Then we unbind everything later to keep things light.
 		document.body.firstElementChild.addEventListener("click", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
+		setTimeout(() => this.view.getCurrentElement().focus(), 0);
 	}
 
 	closeMenu() {
@@ -248,10 +277,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 
 		// move the list back in the component on close
 		if (this.appendToBody) {
-			this._elementRef.nativeElement.appendChild(this.dropdown);
-			window.document.querySelector("body").removeChild(this.dropdownWrapper);
-			this.resize.unsubscribe();
-			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
+			this._appendToDropdown();
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
@@ -262,6 +288,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit {
 			this.openMenu();
 		} else {
 			this.closeMenu();
+		}
+	}
+
+	ngOnDestroy() {
+		if (this.appendToBody) {
+			this._appendToDropdown();
 		}
 	}
 }

@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "cdl-modal-footer",
 	template: `
-		<footer>
+		<footer role="contentinfo">
 			<ng-content></ng-content>
 		</footer>
 	`
