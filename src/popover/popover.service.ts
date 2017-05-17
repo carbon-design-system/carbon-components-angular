@@ -23,7 +23,12 @@ export class PopoverService {
 
 	isClosed: EventEmitter<any> = new EventEmitter();
 
-	constructor(comp, viewContainerRef: ViewContainerRef, componentFactoryResolver: ComponentFactoryResolver, injector: Injector) {
+	constructor(
+		comp,
+		viewContainerRef: ViewContainerRef,
+		componentFactoryResolver: ComponentFactoryResolver,
+		injector: Injector
+	) {
 		this.viewContainerRef = viewContainerRef;
 		this.injector = injector;
 		this.componentFactory = componentFactoryResolver.resolveComponentFactory(comp);

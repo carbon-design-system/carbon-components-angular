@@ -31,7 +31,7 @@ export class PopoverDirective implements OnInit {
 	@Input() title: string;
 	@Input() cdlPopover: string | TemplateRef<any>;
 	@Input() trigger: "click" | "mouseenter" = "click";
-	@Input() placement: "top" | "bottom" | "left" | "right" | "auto" = "auto";
+	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "auto" = "auto";
 	@Input() waitTime = 0;
 	@Input() wrapperClass: string;
 	@Input() gap = 10;
@@ -78,6 +78,10 @@ export class PopoverDirective implements OnInit {
 			Observable.fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.popoverService.open(this.popoverConfig) );
 			Observable.fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.popoverService.close() );
 		}
+	}
+
+	open() {
+		this.popoverService.open(this.popoverConfig);
 	}
 
 	toggle() {
