@@ -14,12 +14,12 @@ import { Component, Input, ViewChild } from "@angular/core";
 				width="16"
 				height="16"
 				viewBox="0 0 16 16">
-				<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+				<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 			</svg>
 		</button>
-		<div class="side-nav-sub-item" [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}" #subItem>
-			<ng-content select="cdl-side-nav-item"></ng-content>
-		</div>
+	</div>
+	<div class="side-nav-sub-item" [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}" #subItem>
+		<ng-content select="cdl-side-nav-item"></ng-content>
 	</div>
   `
 })

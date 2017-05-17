@@ -76,11 +76,11 @@ import { Component, OnInit } from "@angular/core";
 
 	<h2>Tabs with custom heading template</h2>
 	<ng-template #tabHeading>
-		Hello, ! <button (click)="test()">Click me</button> <cdl-glyphicon icon="Alert" size="lg"></cdl-glyphicon>
+		Hello, ! <button (click)="test()">Click me</button> <cdl-glyphicon icon="alert" size="lg"></cdl-glyphicon>
 	</ng-template>
 	<cdl-tabs>
 		<cdl-tab [heading]="tabHeading">
-			tab 1 content <cdl-glyphicon icon="Alert" size="lg"></cdl-glyphicon>
+			tab 1 content <cdl-glyphicon icon="alert" size="lg"></cdl-glyphicon>
 		</cdl-tab>
 		<cdl-tab heading='tab2'>
 			tab 2 content

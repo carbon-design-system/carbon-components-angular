@@ -18,15 +18,15 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 		<cdl-side-nav [open]="sideNavOpen">
 			<cdl-side-nav-item routerLink="/table">
-				<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+				<cdl-glyphicon class="side-nav-glyph" icon="lightbulb" size="md"></cdl-glyphicon>
 				<span class="side-nav-item">Understand</span>
 			</cdl-side-nav-item>
 
 			<cdl-side-nav-item>
-				<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+				<cdl-glyphicon class="side-nav-glyph" icon="gears" size="md"></cdl-glyphicon>
 				<span class="side-nav-item">More</span>
 				<cdl-side-nav-item>
-					<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+					<cdl-glyphicon class="side-nav-glyph" icon="active_work" size="md"></cdl-glyphicon>
 					<span class="side-nav-item">Some long content here</span>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
@@ -51,7 +51,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 					<span class="side-nav-item">To show how ellipsis gets activated</span>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
-					<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+					<cdl-glyphicon class="side-nav-glyph" icon="analyze" size="md"></cdl-glyphicon>
 					<span class="side-nav-item">And this is how ellipsis happens</span>
 					<div class="side-nav-pane-sub-template">
 						<cdl-side-nav-pane-title>And this is how ellipsis happens</cdl-side-nav-pane-title>
@@ -59,7 +59,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 					</div>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
-					<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+					<cdl-glyphicon class="side-nav-glyph" icon="attributes" size="md"></cdl-glyphicon>
 					<span class="side-nav-item">And here</span>
 					<div class="side-nav-pane-sub-template">
 						<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
@@ -83,7 +83,7 @@ export class SideNavDemo {
 		{
 			content: "Understand",
 			selected: false,
-			icon: "Alert",
+			icon: "alert",
 			subMenu: [
 				{
 					content: "Experience integrations",
@@ -108,29 +108,29 @@ export class SideNavDemo {
 		{
 			content: "Plan",
 			selected: false,
-			icon: "Alert"
+			icon: "alert"
 		},
 		{
 			content: "Design",
 			selected: false,
-			icon: "Alert"
+			icon: "alert"
 		},
 		{
 			content: "Build",
 			selected: false,
-			icon: "Alert"
+			icon: "alert"
 
 		},
 		{
 			content: "Listen",
 			selected: false,
-			icon: "Alert"
+			icon: "alert"
 
 		},
 		{
 			content: "Optimize",
 			selected: false,
-			icon: "Alert"
+			icon: "alert"
 
 		}
 	];

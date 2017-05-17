@@ -24,7 +24,8 @@
 	// level one
 	.side-nav-item-wrapper {
 		width: 100%;
-		min-height: $sidenav-item-height;
+		height: $sidenav-item-height + 1;
+		border-bottom: 1px solid color("gray", 10);
 
 		.side-nav-item-button {
 			font-weight: 600;
@@ -34,13 +35,13 @@
 			text-align: left;
 			position: relative;
 			padding: 0;
-			border-bottom: 1px solid color("gray", 10);
+			// border-bottom: 1px solid color("gray", 10);
 			position: relative;
 			.side-nav-arrow {
 				fill: color("white", 0);
 				position: absolute;
 				right: 0;
-				top: ($sidenav-item-height - 16px) / 2; // 16px is height or the arrow
+				top: ($sidenav-item-height - 16px) / 2; // 16px is height of the arrow
 				margin-right: 15px;
 				margin-left: 0;
 				transform: rotate(90deg);
@@ -76,7 +77,7 @@
 			top: 0;
 			text-align: center;
 			vertical-align: middle;
-			border-bottom: 1px solid color("gray", 10);
+			// border-bottom: 1px solid color("gray", 10);
 			svg {
 				fill: color("white", 0);
 				position: relative;
@@ -92,33 +93,34 @@
 			width: $sidenav-width - $sidenav-item-height - 15px - 20px - 16px;  // width - glyphicon - padding - arrow margin - arrow width
 			vertical-align: middle;
 		}
-		.side-nav-sub-item {
-			background-color: color("white", 0);
-			color: color("gray", 60);
+	}
 
-			// level two
-			.side-nav-item-wrapper .side-nav-item-button {
-				font-weight: 300;
-				color: color("gray", 60);
-				&:hover, &:focus {
-					&:before {
-						display: none;  // removes white inner border
-					}
-					background: color("blue", 40, 0.1);
+	.side-nav-sub-item {
+		background-color: color("white", 0);
+		color: color("gray", 60);
+
+		// level two
+		.side-nav-item-wrapper .side-nav-item-button {
+			font-weight: 300;
+			color: color("gray", 60);
+			&:hover, &:focus {
+				&:before {
+					display: none;  // removes white inner border
 				}
-				&.selected {
-					font-weight: 600;
-					background: color("blue", 40, 0.1);
-				}
-				.side-nav-arrow {
-					transform: rotate(0deg);
-					fill: color("gray", 60);
-				}
+				background: color("blue", 40, 0.1);
+			}
+			&.selected {
+				font-weight: 600;
+				background: color("blue", 40, 0.1);
+			}
+			.side-nav-arrow {
+				transform: rotate(0deg);
+				fill: color("gray", 60);
 			}
 		}
-		.hide-side-nav-sub-item {
-			display: none;
-		}
+	}
+	.hide-side-nav-sub-item {
+		display: none;
 	}
 
 	.side-nav-pane-sub-template {

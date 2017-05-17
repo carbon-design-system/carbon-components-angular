@@ -1,6 +1,6 @@
 # Side-nav
 
-class: SideNav  
+class: SideNav
 selector: `cdl-side-nav`
 
 | @Input | Type    | Default Value |
@@ -17,7 +17,7 @@ Ex:
 </cdl-side-nav>
 ```
 
-class: SideNavItem  
+class: SideNavItem
 selector: `cdl-side-nav-item`
 
 | @Input   | Type    | Default Value |
@@ -28,7 +28,7 @@ SideNavItem expects either a icon with the class `.side-nav-glyph` and a title w
 
 ```html
 <cdl-side-nav-item>
-	<cdl-glyphicon class="side-nav-glyph" icon="Alert" size="md"></cdl-glyphicon>
+	<cdl-glyphicon class="side-nav-glyph" icon="alert" size="md"></cdl-glyphicon>
 	<span class="side-nav-item">Some title content here</span>
 </cdl-side-nav-item>
 ```
@@ -43,7 +43,7 @@ SideNavItem expects either a icon with the class `.side-nav-glyph` and a title w
 </cdl-side-nav-item>
 ```
 
-class: SideNavPaneTitle  
+class: SideNavPaneTitle
 selector: `cdl-side-nav-pane-title`
 
 SideNavPaneTitle expects some title to be projected, to be used as the title of the fly in sub view.
