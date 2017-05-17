@@ -68,3 +68,18 @@
 		}
 	}
 }
+html[dir=rtl] & {
+	.dropdown-filter-search {
+		.search-icon {
+			left: initial;
+			right: 22px;
+		}
+		.input-field {
+			padding-right: 40px;
+		}
+		.search-cancel {
+			right: initial;
+			left: 22px;
+		}
+	}
+}
