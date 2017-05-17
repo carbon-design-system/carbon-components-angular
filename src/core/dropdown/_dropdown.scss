@@ -90,3 +90,14 @@
 		@import "./sub-menu";
 	}
 }
+
+html[dir=rtl] {
+	.dropdown-wrapper {
+		.dropdown-value {
+			text-align: right;
+			.dropdown-icon {
+				float: left;
+			}
+		}
+	}
+}
