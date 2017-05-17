@@ -119,9 +119,6 @@ export class AppComponent implements OnInit {
 	private previousItem = null;
 	constructor (private router: Router) {
 		IconService.setCacheLevel("aggressive");
-		if (window.location.hostname === "pages.github.ibm.com" && document.dir) {
-			document.dir = "ltr";
-		}
 	}
 
 	ngOnInit() {
