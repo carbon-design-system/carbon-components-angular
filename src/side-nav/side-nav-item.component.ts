@@ -1,8 +1,10 @@
 import {
 	Component,
 	Input,
+	Output,
 	ViewChild,
-	AfterViewInit
+	AfterViewInit,
+	EventEmitter
 } from "@angular/core";
 
 @Component({
@@ -10,7 +12,11 @@ import {
 	template: `
 	<div class="side-nav-item-wrapper" #item>
 		<ng-content select=".side-nav-pane-sub-template"></ng-content>
-		<button class="side-nav-item-button" [ngClass]="{'selected': selected}" (click)="onClick()">
+		<button
+			class="side-nav-item-button"
+			[ngClass]="{'selected': selected}"
+			(click)="onClick()"
+			[attr.aria-expanded]="selected">
 			<ng-content></ng-content>
 			<svg
 				*ngIf="hasSubmenu()"
@@ -30,6 +36,7 @@ import {
 })
 export class SideNavItem {
 	@Input() selected = false;
+	@Output() select: EventEmitter<any> = new EventEmitter<any>();
 
 	@ViewChild("item") item;
 	@ViewChild("subItem") subItem;
@@ -53,6 +60,7 @@ export class SideNavItem {
 		} else {
 			this.showPane();
 		}
+		this.select.emit();
 	}
 
 	getPaneTemplateElement() {
@@ -65,6 +73,7 @@ export class SideNavItem {
 		if (pane) {
 			pane.closest(".left-nav-container").classList.add("side-nav-pane-sub-template-visible");
 			pane.classList.add("side-nav-pane-visible");
+			(pane.querySelector(".side-nav-pane-title") as HTMLElement).focus();
 		}
 	}
 }
