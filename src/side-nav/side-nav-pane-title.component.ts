@@ -25,6 +25,7 @@ export class SideNavPaneTitle {
 		// hide after the animation
 		setTimeout( () => {
 			this.item.nativeElement.closest(".side-nav-pane-sub-template").classList.remove("side-nav-pane-visible");
+			this.item.nativeElement.closest(".side-nav-item-wrapper").querySelector(".side-nav-item-button").focus();
 		}, 200);
 	}
 }
