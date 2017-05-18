@@ -16,7 +16,7 @@ import {
 	transition,
 	animate
 } from "@angular/animations";
-
+import { cycleTabs } from "./../common/tab.service";
 
 @Component({
 	selector: "cdl-modal",
@@ -53,10 +53,6 @@ export class ModalComponent implements OnInit {
 	@ViewChild("modal") modal: ElementRef;
 
 	modalState = "out";
-	tabbableSelector = "a[href], area[href], input:not([disabled]):not([tabindex=\'-1\']), " +
-		"button:not([disabled]):not([tabindex=\'-1\']),select:not([disabled]):not([tabindex=\'-1\']), " +
-		"textarea:not([disabled]):not([tabindex=\'-1\']), " +
-		"iframe, object, embed, *[tabindex]:not([tabindex=\'-1\']), *[contenteditable=true]";
 
 	constructor(public modalService: ModalService) { }
 
@@ -70,78 +66,19 @@ export class ModalComponent implements OnInit {
 		this.close.emit();
 	}
 
-	@HostListener("document:keydown", ["$event"])
+	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
 		switch (event.key) {
 			case "Escape": {
+				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
 				this.modalService.destroy();  // destroy top (latest) modal
 				break;
 			}
 
 			case "Tab": {
-				let list = this.getFocusElementList();
-				let focusChanged = false;
-
-				if (event.shiftKey) {
-					if (this.isFocusInFirstItem(event, list) || this.isModalFocused(event)) {
-						focusChanged = this.focusLastFocusableElement(list);
-					}
-				} else {
-					if (this.isFocusInLastItem(event, list)) {
-						focusChanged = this.focusFirstFocusableElement(list);
-					}
-				}
-
-				if (focusChanged) {
-					event.preventDefault();
-					event.stopPropagation();
-				}
+				cycleTabs(event, this.modal.nativeElement);
 				break;
 			}
 		}
-	}
-
-	private getFocusElementList() {
-		let elements = this.modal.nativeElement.querySelectorAll(this.tabbableSelector);
-		return elements ? Array.prototype.filter.call(elements, element => this.isVisible(element)) : elements;
-	}
-
-	private isFocusInFirstItem(event, list) {
-		if (list.length > 0) {
-			return (event.target || event.srcElement) === list[0];
-		}
-		return false;
-	}
-
-	private isFocusInLastItem(event, list) {
-		if (list.length > 0) {
-			return (event.target || event.srcElement) === list[list.length - 1];
-		}
-		return false;
-	}
-
-	private isModalFocused(event) {
-		return (event.target || event.srcElement) === this.modal.nativeElement;
-	}
-
-	private focusFirstFocusableElement(list) {
-		if (list.length > 0) {
-			list[0].focus();
-			return true;
-		}
-		return false;
-	}
-
-	private focusLastFocusableElement(list) {
-		if (list.length > 0) {
-			list[list.length - 1].focus();
-			return true;
-		}
-		return false;
-	}
-
-	private isVisible(element) {
-		return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
 	}
 }
