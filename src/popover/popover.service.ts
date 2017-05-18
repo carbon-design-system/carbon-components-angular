@@ -23,7 +23,12 @@ export class PopoverService {
 
 	isClosed: EventEmitter<any> = new EventEmitter();
 
-	constructor(comp, viewContainerRef: ViewContainerRef, componentFactoryResolver: ComponentFactoryResolver, injector: Injector) {
+	constructor(
+		comp,
+		viewContainerRef: ViewContainerRef,
+		componentFactoryResolver: ComponentFactoryResolver,
+		injector: Injector
+	) {
 		this.viewContainerRef = viewContainerRef;
 		this.injector = injector;
 		this.componentFactory = componentFactoryResolver.resolveComponentFactory(comp);
@@ -40,6 +45,8 @@ export class PopoverService {
 	open(popOverConfig) {
 		if (!this.popoverRef) {
 			this.popoverRef = this.viewContainerRef.createComponent(this.componentFactory, 0, this.injector);
+			let focusedElement = document.activeElement;
+			popOverConfig["previouslyFocusedElement"] = focusedElement;
 			this.popoverRef.instance.popoverConfig = popOverConfig;
 			this.onClose = this.popoverRef.instance.close;
 			this.isOpen = true;
@@ -50,6 +57,8 @@ export class PopoverService {
 			this.onClose.subscribe((evt) => {
 				this.close(evt);
 			});
+
+			this.popoverRef.instance.elementRef.nativeElement.focus();
 		}
 	}
 
@@ -59,9 +68,11 @@ export class PopoverService {
 		}
 
 		if (this.popoverRef) {
+			let elementToFocus = this.popoverRef.instance.popoverConfig["previouslyFocusedElement"];
 			this.viewContainerRef.remove(this.viewContainerRef.indexOf(this.popoverRef.hostView));
 			this.popoverRef = null;
 			this.isOpen = false;
+			elementToFocus.focus();
 		}
 	}
 }

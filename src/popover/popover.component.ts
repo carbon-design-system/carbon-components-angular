@@ -8,19 +8,21 @@ import {
 	Injector,
 	ElementRef,
 	TemplateRef,
-	HostListener
+	HostListener,
+	ViewChild
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 import { positionElements } from "../common/position.service";
+import { cycleTabs } from "./../common/tab.service";
 
 @Component({
 	selector: "cdl-popover",
 	template: `
 		<div class="popover {{popoverConfig.wrapperClass}} {{popoverConfig.placement}} {{popoverConfig.type}}
-		{{popoverConfig.trigger}}" [class.tooltip]="popoverConfig.isTooltip" id="{{popoverConfig.compID}}">
+		{{popoverConfig.trigger}}" [class.tooltip]="popoverConfig.isTooltip" id="{{popoverConfig.compID}}" tabindex="0" #popover>
 			<div *ngIf="!popoverConfig.isTooltip" class="popover-header" >
 				<h4 class="popover-title">{{popoverConfig.title}}</h4>
 				<button *ngIf="popoverConfig.trigger==='click' || popoverConfig.trigger==='mouseenter'"
@@ -56,15 +58,25 @@ import { positionElements } from "../common/position.service";
 export class Popover implements OnInit, AfterViewInit {
 	public offsetTop = 48; // 40px heading + 8px triangle
 	public isTpl: boolean;
+	@ViewChild("popover") popover: ElementRef;
 
 	@Input() popoverConfig;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
-	@HostListener("window:keydown", ["$event"])
+	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
-		if (event.key === "Escape") {
-			this.onClose();
+		switch (event.key) {
+			case "Escape": {
+				event.stopImmediatePropagation();
+				this.onClose();
+				break;
+			}
+
+			case "Tab": {
+				cycleTabs(event, this.elementRef.nativeElement);
+				break;
+			}
 		}
 	}
 
@@ -96,6 +108,8 @@ export class Popover implements OnInit, AfterViewInit {
 				this.offsetTop
 			);
 		});
+
+		this.popover.nativeElement.focus();
 	}
 
 	ngAfterViewInit() {
@@ -112,5 +126,4 @@ export class Popover implements OnInit, AfterViewInit {
 	public onClose() {
 		this.close.emit();
 	}
-
 }

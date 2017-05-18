@@ -1,0 +1,17 @@
+.flower-wrapper {
+	position: relative;
+	padding: 132px;
+	width: 100%;
+	height: 360px;
+}
+
+.flower-center {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+	border-color: yellow;
+	border-width: 6px;
+	border-style: solid;
+	background: #fc0;
+}

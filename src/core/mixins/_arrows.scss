@@ -1,5 +1,4 @@
-@mixin arrow($width, $height, $color, $box-shadow){
-
+@mixin arrow($width, $height, $color, $box-shadow) {
       width: $width;
       height: $height;
       position: absolute;
@@ -17,6 +16,28 @@
         left: 0;
         box-shadow: $box-shadow;
     }
+}
 
+@mixin diagonal-arrow($width, $height, $color, $box-shadow) {
+      width: $width;
+      height: $height;
+      position: absolute;
+      overflow: hidden;
+      box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.5);
+
+      &:after {
+        display: block;
+		position: absolute;
+		content: "";
+		margin-top: -10px;
+		margin-left: 6px;
+		width: 0;
+		height: 0;
+		border-top: 15px solid #000;
+		border-right: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 15px solid #000;
+		box-shadow: $box-shadow;
+    }
 }
 
