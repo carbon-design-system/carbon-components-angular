@@ -1,4 +1,9 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import {
+	Component,
+	Input,
+	ViewChild,
+	AfterViewInit
+} from "@angular/core";
 
 @Component({
 	selector: "cdl-side-nav-item",
@@ -29,6 +34,13 @@ export class SideNavItem {
 	@ViewChild("item") item;
 	@ViewChild("subItem") subItem;
 
+	ngAfterViewInit() {
+		if (this.selected && this.getPaneTemplateElement()) {
+			this.showPane();
+			this.selected = false;
+		}
+	}
+
 	hasSubmenu() {
 		return (this.subItem.nativeElement.children && this.subItem.nativeElement.children.length > 0) || !!this.getPaneTemplateElement();
 	}
@@ -44,7 +56,8 @@ export class SideNavItem {
 	}
 
 	getPaneTemplateElement() {
-		return Array.prototype.filter.call(this.item.nativeElement.children, (el) => el.classList.contains("side-nav-pane-sub-template"))[0];
+		return (Array.from(this.item.nativeElement.children) as HTMLElement[])
+					.filter((el) => el.classList.contains("side-nav-pane-sub-template"))[0];
 	}
 
 	showPane() {
