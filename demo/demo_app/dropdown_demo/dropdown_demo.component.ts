@@ -315,6 +315,7 @@ export class DropdownDemo {
 		{
 			content: "b item two",
 			selected: false,
+			disabled: true
 		},
 		{
 			content: "c item three",
