@@ -197,20 +197,20 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	}
 
 	doClick(ev, item) {
-		item.selected = !item.selected;
-		if (this.type === "single") {
-			// reset the selection
-			for (let otherItem of this.items) {
-				if (item !== otherItem) { otherItem.selected = false; }
-			}
-			if (!item.disabled) {
-				this.select.emit({item});
-			}
-		} else {
-			// emit an array of selected items
-			this.select.emit(this.getSelected());
-		}
-		this.index = this.items.indexOf(item);
+		if (!item.disabled) {
+			item.selected = !item.selected;
+			if (this.type === "single") {
+				// reset the selection
+				for (let otherItem of this.items) {
+					if (item !== otherItem) { otherItem.selected = false; }
+				}
 
+				this.select.emit({item});
+			} else {
+				// emit an array of selected items
+				this.select.emit(this.getSelected());
+			}
+			this.index = this.items.indexOf(item);
+		}
 	}
 }

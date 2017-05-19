@@ -41,6 +41,7 @@
     }
 	&.disabled {
 		&:hover, &:focus {
+			cursor: not-allowed;
 			background: color("white", 0);
 			border-left: 2px solid transparent;
 		}

@@ -63,7 +63,12 @@
 		}
 		&.disabled {
 			&:hover, &:focus {
+				cursor: not-allowed;
 				background-color: color("white", 0);
+
+				&:before{
+					border-left: none;
+				}
 			}
 		}
 		&:last-child {
