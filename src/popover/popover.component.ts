@@ -22,8 +22,12 @@ import { cycleTabs } from "./../common/tab.service";
 	selector: "cdl-popover",
 	template: `
 		<div class="popover {{popoverConfig.wrapperClass}} {{popoverConfig.placement}} {{popoverConfig.type}}
-		{{popoverConfig.trigger}}" [class.tooltip]="popoverConfig.isTooltip" id="{{popoverConfig.compID}}" tabindex="0" #popover>
-			<div *ngIf="!popoverConfig.isTooltip" class="popover-header" >
+		{{popoverConfig.trigger}}"
+		[class.tooltip]="popoverConfig.isTooltip"
+		[class.popover-menu]="popoverConfig.popoverMenu"
+		[class.popover-filter]="popoverConfig.popoverFilter"
+		id="{{popoverConfig.compID}}" tabindex="0" #popover>
+			<header *ngIf="!popoverConfig.isTooltip" class="popover-header" aria-labelledby="Title" role="banner">
 				<h4 class="popover-title">{{popoverConfig.title}}</h4>
 				<button *ngIf="popoverConfig.trigger==='click' || popoverConfig.trigger==='mouseenter'"
 				class="close-icon"  (click)="onClose()" aria-label="Close popover">
@@ -31,8 +35,8 @@ import { cycleTabs } from "./../common/tab.service";
 					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
 					</svg>
 				</button>
-			</div>
-			<div class="popover-content">
+			</header>
+			<div class="popover-content" role="main">
 				<ng-template
 					*ngIf="isTpl"
 					[ngTemplateOutlet]="popoverConfig.content">
@@ -105,7 +109,9 @@ export class Popover implements OnInit, AfterViewInit {
 				this.popoverConfig.placement,
 				this.popoverConfig.appendToBody,
 				this.popoverConfig.gap,
-				this.offsetTop
+				this.offsetTop,
+				true,
+				this.popoverConfig.popoverFilter
 			);
 		});
 
@@ -119,7 +125,9 @@ export class Popover implements OnInit, AfterViewInit {
 			this.popoverConfig.placement,
 			this.popoverConfig.appendToBody,
 			this.popoverConfig.gap,
-			this.offsetTop
+			this.offsetTop,
+			true,
+			this.popoverConfig.popoverFilter
 		);
 	}
 
