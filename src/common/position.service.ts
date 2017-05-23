@@ -85,14 +85,22 @@ export class Positioning {
 	}
 
 	positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string,
-		appendToBody?: boolean, gap?: number, offsetTop?: number):
+		appendToBody?: boolean, gap?: number, offsetTop?: number, isPopover?: boolean, isPopoverFilter?: boolean):
 	ClientRect {
 		const hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
-		const shiftWidth: any = {
+		let shiftWidth: any = {
 			left: hostElPosition.left - targetElement.clientWidth,
 			center: hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2,
 			right: hostElPosition.left + hostElPosition.width
 		};
+		if (isPopover) {
+			// popover requires slightly different positioning diagonally
+			shiftWidth["left"] = hostElPosition.left + 10;
+			if (placement !== "right") {
+				shiftWidth["right"] = hostElPosition.left + hostElPosition.width - targetElement.clientWidth - 10;
+			}
+		}
+
 		const shiftHeight: any = {
 			top: hostElPosition.top,
 			center: hostElPosition.top + hostElPosition.height / 2 - targetElement.offsetHeight / 2,
@@ -133,6 +141,11 @@ export class Positioning {
 						targetElPosition.bottom += shiftHeight[placementSecondary];
 					}
 
+					if (isPopoverFilter) {
+						// needs to be position so title is in line with element that requested it
+						targetElPosition.top = hostElPosition.top;
+					}
+
 					targetElPosition.left = hostElPosition.left - targetElement.offsetWidth - gap;
 					targetElPosition.right += hostElPosition.left - targetElement.offsetWidth + gap;
 
@@ -143,6 +156,10 @@ export class Positioning {
 					} else {
 						targetElPosition.top = shiftHeight[placementSecondary];
 						targetElPosition.bottom += shiftHeight[placementSecondary];
+					}
+					if (isPopoverFilter) {
+						// needs to be positioned so title is in line with element that requested it
+						targetElPosition.top = hostElPosition.top;
 					}
 
 					targetElPosition.left = shiftWidth[position] + gap;
@@ -181,8 +198,24 @@ export class Positioning {
 
 const positionService = new Positioning();
 export function positionElements(
-		hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean, gap?: number, offsetTop?: number): void {
-	const pos = positionService.positionElements(hostElement, targetElement, placement, appendToBody, gap, offsetTop);
+		hostElement: HTMLElement,
+		targetElement: HTMLElement,
+		placement: string,
+		appendToBody?: boolean,
+		gap?: number,
+		offsetTop?: number,
+		isPopover?: boolean,
+		isPopoverFilter?: boolean): void {
+	const pos = positionService.positionElements(
+		hostElement,
+		targetElement,
+		placement,
+		appendToBody,
+		gap,
+		offsetTop,
+		isPopover,
+		isPopoverFilter
+	);
 
 	targetElement.style.top = `${pos.top}px`;
 	targetElement.style.left = `${pos.left}px`;
