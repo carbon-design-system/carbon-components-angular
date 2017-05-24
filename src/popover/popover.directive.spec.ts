@@ -24,6 +24,25 @@ describe("Popover directive", () => {
 		expect(directiveEl).not.toBeNull();
 	});
 
+	it("should create the popover component and popover should appear at the top", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='top'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("top")).toBe(true);
+	});
+
 	it("should create the popover component and popover should appear at the bottom", () => {
 		const fixture = TestBed.createComponent(TestComponent);
 		fixture.detectChanges();
@@ -36,6 +55,120 @@ describe("Popover directive", () => {
 		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
 		expect(document.querySelector(".popover")).not.toBe(null);
 		expect(document.querySelector(".popover").classList.contains("bottom")).toBe(true);
+	});
+
+	it("should create the popover component and popover should appear at the top left", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='top-left'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("top-left")).toBe(true);
+	});
+
+	it("should create the popover component and popover should appear at the bottom left", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='bottom-left'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("bottom-left")).toBe(true);
+	});
+
+	it("should create the popover component and popover should appear at the top right", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='top-right'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("top-right")).toBe(true);
+	});
+
+	it("should create the popover component and popover should appear at the bottom right", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='bottom-right'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("bottom-right")).toBe(true);
+	});
+
+	it("should create the popover component and popover should appear at the left", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='left'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("left")).toBe(true);
+	});
+
+	it("should create the popover component and popover should appear at the right", () => {
+		TestBed.overrideComponent(TestComponent, {
+			set: {
+				template: "<button cdlPopover='Hello There' placement='right'>Me</button>"
+			}
+		});
+		const fixture = TestBed.createComponent(TestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+
+		button.click();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(document.querySelector(".popover")).not.toBe(null);
+		expect(document.querySelector(".popover").classList.contains("right")).toBe(true);
 	});
 
 	it("popover should appear auto as default", () => {
