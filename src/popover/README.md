@@ -121,7 +121,8 @@ selector: `cdlTooltip`
 
 Ex:
 ```html
-<button cdlTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="danger">Tooltip</button>
+<button cdlTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="danger">Tooltip Right</button>
+<button cdlTooltip="I am a tooltip" type="warning">Tooltip Top warning on click</button>
 ```
 
 
