@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { ListView } from "./list-view.component";
 
@@ -13,6 +12,6 @@ export { ListView } from "./list-view.component";
 	exports: [
 		ListView
 	],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class ListViewModule {}

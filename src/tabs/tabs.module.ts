@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
@@ -23,6 +22,6 @@ export { TabHeaders } from "./tab-headers.component";
 		Tab,
 		TabHeaders
 	],
-	imports: [CommonModule, BrowserModule],
+	imports: [CommonModule],
 })
 export class TabsModule {}

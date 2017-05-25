@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { Table } from "./table.component";
 import { TableHeader } from "./table-header.component";
@@ -21,6 +20,6 @@ export * from "./column.component";
 		Table,
 		Column
 	],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class TableModule {}
