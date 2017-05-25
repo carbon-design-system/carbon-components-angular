@@ -243,9 +243,16 @@
 				padding-right: 30px;
 				.close-icon {
 					position: absolute;
-					padding: 10px;
+					padding: 2px;
 					top: 0;
 					right: 0;
+					line-height: 0;
+					margin: 10px;
+					border: 1px solid transparent;
+
+					&:hover, &:focus {
+						border: 1px solid color("gray", 50);
+					}
 				}
 			}
 		}
