@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { TreeView } from "./tree-view.component";
 import { TreeViewItem } from "./tree-view-item.component";
@@ -17,6 +16,6 @@ export { TreeViewItem } from "./tree-view-item.component";
 		TreeView,
 		TreeViewItem
 	],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class TreeViewModule {}

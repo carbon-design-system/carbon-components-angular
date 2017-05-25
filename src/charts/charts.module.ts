@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { BarChart } from "./bar-chart.component";
 
 export { BarChart } from "./bar-chart.component";
@@ -12,6 +11,6 @@ export { BarChart } from "./bar-chart.component";
 	exports: [
 		BarChart
 	],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class ChartsModule {}

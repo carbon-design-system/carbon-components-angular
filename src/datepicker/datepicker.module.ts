@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { CalendarModule } from "./../calendar/calendar.module";
 import { Datepicker } from "./datepicker.component";
@@ -25,7 +24,7 @@ export { DatepickerService } from "./datepicker.service";
 		DatepickerPopover,
 		DatepickerDirective
 	],
-	imports: [CommonModule, BrowserModule, CalendarModule],
+	imports: [CommonModule, CalendarModule],
 	entryComponents: [DatepickerPopover]
 })
 export class DatepickerModule {}

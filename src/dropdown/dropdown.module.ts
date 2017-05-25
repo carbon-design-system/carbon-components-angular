@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 
 import { Dropdown } from "./dropdown.component";
@@ -46,7 +45,6 @@ export { ListItem } from "./list-item.interface";
 	],
 	imports: [
 		CommonModule,
-		BrowserModule,
 		FormsModule
 	]
 })

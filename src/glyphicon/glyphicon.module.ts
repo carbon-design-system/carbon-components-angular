@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
 
 import { Glyphicon } from "./glyphicon.component";
@@ -20,6 +19,6 @@ export { Sprite } from "./sprite.component";
 		Glyphicon,
 		Sprite
 	],
-	imports: [HttpModule, CommonModule, BrowserModule]
+	imports: [HttpModule, CommonModule]
 })
 export class GlyphiconModule {}

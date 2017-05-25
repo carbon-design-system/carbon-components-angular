@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 import { SideNav } from "./side-nav.component";
 import { SideNavItem } from "./side-nav-item.component";
 
@@ -19,6 +18,6 @@ import { SideNavPaneTitle } from "./side-nav-pane-title.component";
 		SideNavItem,
 		SideNavPaneTitle
 	],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class SideNavModule {}
