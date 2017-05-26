@@ -87,6 +87,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() type: "single" | "multi" = "single";
 	@Input() disabled = false;
 	@Input() appendToBody = false;
+	@Input() scrollableContainer: string;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 
@@ -97,6 +98,24 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngOnInit() {
 		this.view.type = this.type;
+
+		// add scroll event listenter if scrollableContainer is provided
+		if (this.scrollableContainer) {
+			const container = document.querySelector(this.scrollableContainer);
+
+			if (container) {
+				Observable.fromEvent(container, "scroll")
+				.subscribe(() => {
+					if (!this.menuIsClosed) {
+						if (this.isVisibleInContainer(this._elementRef.nativeElement, container)) {
+							positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+						} else {
+							this.closeMenu();
+						}
+					}
+				});
+			}
+		}
 	}
 
 	ngAfterContentInit() {
@@ -289,6 +308,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		} else {
 			this.closeMenu();
 		}
+	}
+
+	isVisibleInContainer(elem, container) {
+		const containerTop = container.scrollTop;
+		const containerBottom = containerTop + container.offsetHeight;
+		const elemTop = elem.offsetTop + elem.offsetHeight;
+		const elemBottom = elemTop;
+
+		if ((elemBottom <= containerBottom) && (elemTop >= containerTop)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	ngOnDestroy() {
