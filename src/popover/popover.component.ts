@@ -16,7 +16,7 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 import { positionElements } from "../common/position.service";
-import { cycleTabs } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
 @Component({
 	selector: "cdl-popover",
@@ -26,7 +26,7 @@ import { cycleTabs } from "./../common/tab.service";
 		[class.tooltip]="popoverConfig.isTooltip"
 		[class.popover-menu]="popoverConfig.popoverMenu"
 		[class.popover-filter]="popoverConfig.popoverFilter"
-		[attr.role]="popoverConfig.isTooltip ? 'tooltip':'dialog'"
+		[attr.role]="popoverConfig.isTooltip && !isRoleDialog() ? 'tooltip':'dialog'"
 		id="{{popoverConfig.compID}}" tabindex="0" #popover>
 			<header *ngIf="!popoverConfig.isTooltip" class="popover-header" aria-labelledby="Title" role="banner">
 				<h4 class="popover-title">{{popoverConfig.title}}</h4>
@@ -134,5 +134,9 @@ export class Popover implements OnInit, AfterViewInit {
 
 	public onClose() {
 		this.close.emit();
+	}
+
+	isRoleDialog() {
+		return getFocusElementList(this.elementRef.nativeElement).length > 1;
 	}
 }
