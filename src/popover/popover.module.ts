@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { PopoverDirective } from "./popover.directive";
 import { TooltipDirective } from "./tooltip.directive";
@@ -28,6 +27,6 @@ export { PopoverService } from "./popover.service";
 		Popover
 	],
 	entryComponents: [Popover],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class PopoverModule {}
