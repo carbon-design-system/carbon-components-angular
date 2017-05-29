@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
 	<h1>Tooltip</h1>
 	<ng-template #customTooltip>
 		<div style="display: inline-block; width: 20px; height: 20px">
-			<cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon>
+			<cdl-glyphicon icon="alert" size="md"></cdl-glyphicon>
 		</div>
 		Cool content <br> another cool content
 	</ng-template>

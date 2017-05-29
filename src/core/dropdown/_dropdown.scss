@@ -91,7 +91,7 @@
 	}
 }
 
-html[dir=rtl] {
+html[dir=rtl], body[dir=rtl] {
 	.dropdown-wrapper {
 		.dropdown-value {
 			text-align: right;

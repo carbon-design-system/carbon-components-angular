@@ -1,11 +1,22 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	ViewChild,
+	AfterViewInit,
+	EventEmitter
+} from "@angular/core";
 
 @Component({
 	selector: "cdl-side-nav-item",
 	template: `
 	<div class="side-nav-item-wrapper" #item>
 		<ng-content select=".side-nav-pane-sub-template"></ng-content>
-		<button class="side-nav-item-button" [ngClass]="{'selected': selected}" (click)="onClick()">
+		<button
+			class="side-nav-item-button"
+			[ngClass]="{'selected': selected}"
+			(click)="onClick()"
+			[attr.aria-expanded]="selected">
 			<ng-content></ng-content>
 			<svg
 				*ngIf="hasSubmenu()"
@@ -14,22 +25,28 @@ import { Component, Input, ViewChild } from "@angular/core";
 				width="16"
 				height="16"
 				viewBox="0 0 16 16">
-				<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+				<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 			</svg>
 		</button>
-		<div class="side-nav-sub-item" [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}" #subItem>
-			<ng-content select="cdl-side-nav-item"></ng-content>
-		</div>
 	</div>
-  `,
-	styleUrls: ["./side-nav-item.component.scss"]
+	<div class="side-nav-sub-item" [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}" #subItem>
+		<ng-content select="cdl-side-nav-item"></ng-content>
+	</div>
+  `
 })
 export class SideNavItem {
-	@Input() open = true;
 	@Input() selected = false;
+	@Output() select: EventEmitter<any> = new EventEmitter<any>();
 
 	@ViewChild("item") item;
 	@ViewChild("subItem") subItem;
+
+	ngAfterViewInit() {
+		if (this.selected && this.getPaneTemplateElement()) {
+			this.showPane();
+			this.selected = false;
+		}
+	}
 
 	hasSubmenu() {
 		return (this.subItem.nativeElement.children && this.subItem.nativeElement.children.length > 0) || !!this.getPaneTemplateElement();
@@ -43,10 +60,12 @@ export class SideNavItem {
 		} else {
 			this.showPane();
 		}
+		this.select.emit();
 	}
 
 	getPaneTemplateElement() {
-		return Array.prototype.filter.call(this.item.nativeElement.children, (el) => el.classList.contains("side-nav-pane-sub-template"))[0];
+		return (Array.from(this.item.nativeElement.children) as HTMLElement[])
+					.filter((el) => el.classList.contains("side-nav-pane-sub-template"))[0];
 	}
 
 	showPane() {
@@ -54,6 +73,7 @@ export class SideNavItem {
 		if (pane) {
 			pane.closest(".left-nav-container").classList.add("side-nav-pane-sub-template-visible");
 			pane.classList.add("side-nav-pane-visible");
+			(pane.querySelector(".side-nav-pane-title") as HTMLElement).focus();
 		}
 	}
 }

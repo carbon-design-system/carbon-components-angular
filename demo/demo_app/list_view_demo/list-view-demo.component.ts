@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
 	template: `
 	<h1>List View Demo</h1>
 
-	<ng-template #listTpl let-item="item"><cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon> {{item.content}}</ng-template>
+	<ng-template #listTpl let-item="item"><cdl-glyphicon icon="alert" size="md"></cdl-glyphicon> {{item.content}}</ng-template>
 
 	<h3>Default list view</h3>
 	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>

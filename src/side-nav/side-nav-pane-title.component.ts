@@ -10,12 +10,11 @@ import { Component, Input, ViewChild } from "@angular/core";
 			width="16"
 			height="16"
 			viewBox="0 0 16 16">
-			<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+			<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 		</svg>
 		<ng-content></ng-content>
 	</button>
-  `,
-	styleUrls: ["./side-nav-pane-title.component.scss"]
+  `
 })
 export class SideNavPaneTitle {
 	@ViewChild("item") item;
@@ -26,6 +25,7 @@ export class SideNavPaneTitle {
 		// hide after the animation
 		setTimeout( () => {
 			this.item.nativeElement.closest(".side-nav-pane-sub-template").classList.remove("side-nav-pane-visible");
+			this.item.nativeElement.closest(".side-nav-item-wrapper").querySelector(".side-nav-item-button").focus();
 		}, 200);
 	}
 }

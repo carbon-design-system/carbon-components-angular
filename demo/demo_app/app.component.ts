@@ -34,7 +34,7 @@ import "rxjs/add/operator/filter";
 	<cdl-sprite sprite="window_controls"></cdl-sprite>
 	<cdl-sprite sprite="should_fail"></cdl-sprite>
 	`,
-	styleUrls: ["./app.component.css"],
+	styleUrls: ["./app.component.scss"],
 	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {

@@ -20,14 +20,14 @@ cdl-checkbox:indeterminate label input[type="checkbox"] {
 		&:after{
 			opacity: 1;
 			transform: none;
-			height:2px;
-			top:9px;
+			height: 2px;
+			top: 9px;
 		}
 	}
 }
 
 // checkbox
-.checkbox{
+.checkbox {
 	@include radio-checkbox($checkbox-type,
 							$checkbox-size,
 							$checkbox-border-radius,
@@ -42,13 +42,12 @@ cdl-checkbox:indeterminate label input[type="checkbox"] {
 	//tri-state
 	input[type="checkbox"]:indeterminate {
 		+ span {
-			&:after{
+			&:after {
 				opacity: 1;
 				transform: none;
-				height:2px;
-				top:9px;
+				height: 2px;
+				top: 9px;
 			}
 		}
 	}
 }
-
