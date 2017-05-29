@@ -35,8 +35,11 @@ nav {
 		padding-left: 310px;
 	}
 
-	html[dir=rtl] .main {
-		padding-right: 310px;
+	html[dir=rtl], body[dir=rtl] {
+		.main {
+			padding-left: 5px;
+			padding-right: 310px;
+		}
 	}
 }
 
