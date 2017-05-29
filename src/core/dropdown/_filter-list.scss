@@ -68,7 +68,7 @@
 		}
 	}
 }
-html[dir=rtl] & {
+html[dir=rtl] &, body[dir=rtl] & {
 	.dropdown-filter-search {
 		.search-icon {
 			left: initial;
