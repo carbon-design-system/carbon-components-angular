@@ -40,8 +40,10 @@ export class SwitchChange {
 					[value]="value"
 					[attr.aria-label]="ariaLabel"
 					[attr.aria-labelledby]="ariaLabelledby"
+					[attr.aria-checked]="indeterminate ? 'mixed' : checked"
 					(change)="onChange($event)"
-					(click)="onClick($event)">
+					(click)="onClick($event)"
+					role="checkbox">
 					<span></span>
 			</label>
 		</div>
