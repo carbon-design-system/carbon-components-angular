@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<ng-template #customPopover>
 		<div style="display: inline-block; width: 20px; height: 20px">
-			<cdl-glyphicon icon="Alert" size="md"></cdl-glyphicon>
+			<cdl-glyphicon icon="alert" size="md"></cdl-glyphicon>
 		</div>
 		Cool content <br> another cool content <br><br><br><br><br>
 	</ng-template>
