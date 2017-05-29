@@ -24,7 +24,7 @@
 	// level one
 	.side-nav-item-wrapper {
 		width: 100%;
-		height: $sidenav-item-height + 1;
+		height: $sidenav-item-height + 1; // border compenstation
 		border-bottom: 1px solid color("gray", 10);
 
 		.side-nav-item-button {
