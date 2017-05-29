@@ -96,7 +96,7 @@
 	height: 30px;
 }
 
-html[dir=rtl] & {
+html[dir=rtl] &, body[dir=rtl] & {
 	.sub-menu-item-wrapper {
 		.arrow {
 			right: initial;
