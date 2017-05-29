@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { AlertService } from "./alert.service";
 import { Alert } from "./alert.component";
@@ -16,6 +15,6 @@ export { Alert } from "./alert.component";
 		Alert
 	],
 	entryComponents: [Alert],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class AlertModule {}

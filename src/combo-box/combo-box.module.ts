@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { ComboBox } from "./combo-box.component";
 
@@ -13,6 +12,6 @@ export { ComboBox } from "./combo-box.component";
 	exports: [
 		ComboBox
 	],
-	imports: [CommonModule, BrowserModule]
+	imports: [CommonModule]
 })
 export class ComboBoxModule {}

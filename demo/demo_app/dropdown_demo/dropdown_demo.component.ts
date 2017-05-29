@@ -151,7 +151,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		</cdl-dropdown>
 
 		<h3>Default dropdown with appendToBody true</h3>
-		<div style="height: 100px; border: solid 1px red; overflow: hidden; width: 100%">
+		<div class="dropdown-appendbody-container" style="height: 150px;
+		border: solid 1px red; overflow: scroll; width: 100%; position: relative;">
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: false</b>
 				<cdl-dropdown
@@ -166,6 +167,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: true</b>
 				<cdl-dropdown
+					scrollableContainer=".dropdown-appendbody-container"
 					[appendToBody]="true"
 					placeholder="Select an option"
 					type="multi"
@@ -175,6 +177,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				{{ dropdown3 | json }}
 				<button class="btn" (click)="reset(dropdown3)">reset selected</button>
 			</div>
+
+			<div style="width: 100%; height: 300px"></div>
 		</div>
 
 		<h3>Default dropdown (ngmodel)</h3>
@@ -315,6 +319,7 @@ export class DropdownDemo {
 		{
 			content: "b item two",
 			selected: false,
+			disabled: true
 		},
 		{
 			content: "c item three",

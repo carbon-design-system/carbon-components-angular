@@ -185,23 +185,25 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	// this and a few other functions are super common between
 	// submenu and tree ... maybe we can dedupe?
 	onClick({item}) {
-		item.selected = !item.selected;
-		this.index = this.flatList.indexOf(item);
-		if (this.type === "single") {
-			let {path} = treetools.find(this.items, item);
-			// reset the selection taking care not to touch our selected item
-			for (let i = 0; i < this.flatList.length; i++) {
-				if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {
-					this.flatList[i].selected = true;
-				} else if (this.flatList[i] !== item) {
-					this.flatList[i].selected = false;
+		if (!item.disabled) {
+			item.selected = !item.selected;
+			this.index = this.flatList.indexOf(item);
+			if (this.type === "single") {
+				let {path} = treetools.find(this.items, item);
+				// reset the selection taking care not to touch our selected item
+				for (let i = 0; i < this.flatList.length; i++) {
+					if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {
+						this.flatList[i].selected = true;
+					} else if (this.flatList[i] !== item) {
+						this.flatList[i].selected = false;
+					}
 				}
+				if (!item.items) {
+					this.select.emit({item});
+				}
+			} else {
+				this.select.emit(this.getSelected());
 			}
-			if (!item.disabled && !item.items) {
-				this.select.emit({item});
-			}
-		} else {
-			this.select.emit(this.getSelected());
 		}
 	}
 }

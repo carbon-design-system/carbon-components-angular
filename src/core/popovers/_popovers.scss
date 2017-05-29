@@ -10,35 +10,81 @@
 	z-index: 1000;
 }
 
+.popover-menu-button {
+	padding-left: 4px;  // 6px from the dot to the side of the icon + these 4px to get to desired 10px
+	padding-right: 10px;
+	color: color("gray", 60);
+	font-weight: 300;
+	height: $btn-height - 1px;  // border adds a pixel
+	border-bottom: 1px solid transparent;
+
+	cdl-glyphicon {
+		padding-right: 1px;  // 6px from the dot to the side of the icon + this pixel to get to desired 7px
+	}
+
+	&:hover {
+		color: color("blue", 40, 10);
+		border-bottom: 1px solid color("blue", 40, 10);
+		cdl-glyphicon .cdl-glyphicon {
+			svg * {
+				fill: inherit;
+			}
+			svg use .st0 {
+				fill: color("blue", 40, 10);
+			}
+		}
+	}
+}
+
 .popover {
 	@include box-shadow($default-box-shadow);
 	background-color: color("white", 0);
 	position: relative;
 	max-width: 280px;
 
+	&.popover-menu {
+		.popover-header {
+			height: 30px;
+			padding: 6px 10px;
+			.close-icon {
+				padding: 0;
+				margin: 0;
+				height: 18px;
+			}
+		}
+		.popover-content ul.list-view {
+			li {
+				padding: 6px 10px;
+				height: 30px;
+			}
+		}
+	}
+
 	.popover-header {
 		padding: $popover-header-padding;
 		height: $popover-header-height;
-		background-color:$popover-header-bg;
+		background-color: $popover-header-bg;
 		.popover-title {
 			color: $popover-title-color;
-			margin: 0;
+			margin: 5px;
 			float: left;
-			max-width: calc(100% - 30px); // ask Nicole
-			@include text-overflow(); // ask Nicole
+			max-width: 890px;
+			@include text-overflow();
 		}
 		.close-icon {
 			float: right;
 			border: 1px solid rgba(0,0,0,0); // invisible border to compensate shift
 			padding: 3px;
-			svg{
+			margin: 3px 0;
+			height: 24px;
+			svg {
 				fill: color("white", 0);
 			}
 			&:hover {
-				border: 1px solid color("gray",50);
+				border: 1px solid color("white", 0);
 			}
 			&:focus {
-				border: 1px solid color("gray",50);
+				border: 1px solid color("white", 0);
 			}
 		}
 	}
@@ -54,24 +100,21 @@
 			bottom: - $popover-arrow-height;
 			left: calc(50% - 10px);
 		}
-
 	}
 	&.top-left {
-		.arrow {
-			bottom: - $popover-arrow-height;
-			right: 0px;
-			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
-		}
-
-	}
-	&.top-right {
 		.arrow {
 			bottom: - $popover-arrow-height;
 			left: 0;
 			transform: scaleX(-1);
 			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 		}
-
+	}
+	&.top-right {
+		.arrow {
+			bottom: - $popover-arrow-height;
+			right: 0px;
+			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
+		}
 	}
 	&.bottom {
 		.arrow {
@@ -86,8 +129,8 @@
 	&.bottom-left {
 		.arrow {
 			top: - $popover-arrow-height;
-			right: 0;
-			transform: rotate(180deg) scaleX(-1);
+			left: 0;
+			transform: rotate(180deg);
 			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 		}
 		.popover-header ~ .arrow:after {
@@ -97,8 +140,8 @@
 	&.bottom-right {
 		.arrow {
 			top: - $popover-arrow-height;
-			left: 0;
-			transform: rotate(180deg);
+			right: 0;
+			transform: rotate(180deg) scaleX(-1);
 			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
 		}
 		.popover-header ~ .arrow:after {
@@ -200,9 +243,16 @@
 				padding-right: 30px;
 				.close-icon {
 					position: absolute;
-					padding: 10px;
+					padding: 2px;
 					top: 0;
 					right: 0;
+					line-height: 0;
+					margin: 10px;
+					border: 1px solid transparent;
+
+					&:hover, &:focus {
+						border: 1px solid color("gray", 50);
+					}
 				}
 			}
 		}
@@ -226,12 +276,28 @@
 			border: 1px solid color("black", 100);
 		}
 	}
-
 }
 
 // Custom popover attribute classes
 
 .popover-content-fullwidth {
+	.popover-content {
+		padding: 0;
+	}
+}
+
+.popover-content-filter {
+	&.popover {
+		&.right, &.left {
+			.arrow {
+				top: 17px;
+			}
+			.popover-header ~ .arrow:after {
+				background-color: $popover-header-bg;
+			}
+		}
+	}
+
 	.popover-content {
 		padding: 0;
 	}

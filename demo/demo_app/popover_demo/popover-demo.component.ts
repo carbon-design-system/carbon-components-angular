@@ -53,6 +53,45 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<button class="btn" [cdlPopover]="list" placement="right" title="Select item">Pop over with list</button>
 
+	<h3>Popover Menu</h3>
+	<button class="popover-menu-button"
+		[cdlPopover]="list"
+		placement="bottom-right"
+		wrapperClass="popover-content-fullwidth"
+		popoverMenu="true"
+		[gap]="13">
+		<cdl-glyphicon icon="dotdotdot_vert" size="16"></cdl-glyphicon>Menu
+	</button>
+
+	<h3>Popover Filter</h3>
+	<ng-template #filter>
+		<div class="filter-options">
+			<cdl-checkbox>High</cdl-checkbox>
+			<cdl-checkbox>Medium</cdl-checkbox>
+			<cdl-checkbox>Low</cdl-checkbox>
+			<cdl-checkbox>Danger</cdl-checkbox>
+		</div>
+		<div class="filter-options-buttons">
+			<button class="btn">Apply</button>
+			<button class="btn btn-secondary">Cancel</button>
+		</div>
+	</ng-template>
+	<button class="btn"
+		[cdlPopover]="filter"
+		placement="left"
+		wrapperClass="popover-content-filter"
+		popoverFilter="true">
+		Filter Left
+	</button>
+
+	<button class="btn"
+		[cdlPopover]="filter"
+		placement="right"
+		wrapperClass="popover-content-filter"
+		popoverFilter="true">
+		Filter Right
+	</button>
+
 	<h3>Popover append to body</h3>
 
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">

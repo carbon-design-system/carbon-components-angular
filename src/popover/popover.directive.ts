@@ -37,6 +37,8 @@ export class PopoverDirective implements OnInit {
 	@Input() gap = 10;
 	@Input() appendToBody = false;
 	@Input() type: "warning" | "danger" | "" = "";
+	@Input() popoverMenu = false;
+	@Input() popoverFilter = false;
 
 	isTooltip = false;
 
@@ -66,7 +68,9 @@ export class PopoverDirective implements OnInit {
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
 			type: this.type,
-			isTooltip: this.isTooltip
+			isTooltip: this.isTooltip,
+			popoverMenu: this.popoverMenu,
+			popoverFilter: this.popoverFilter
 		};
 
 		Observable.fromEvent(this.elementRef.nativeElement, this.trigger).subscribe(evt => {
