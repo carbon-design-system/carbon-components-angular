@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { TranslateModule } from "@ngx-translate/core";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
@@ -45,7 +46,8 @@ export { ListItem } from "./list-item.interface";
 	],
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		TranslateModule.forChild()
 	]
 })
 export class DropdownModule {}

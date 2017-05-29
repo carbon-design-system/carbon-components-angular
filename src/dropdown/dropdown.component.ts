@@ -20,6 +20,8 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/operator/throttleTime";
 
+import { TranslateService } from "@ngx-translate/core";
+
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { positionElements } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
@@ -94,7 +96,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
 
-	constructor(public _elementRef: ElementRef) {}
+	constructor(public _elementRef: ElementRef, public _translate: TranslateService) {}
 
 	ngOnInit() {
 		this.view.type = this.type;
