@@ -96,7 +96,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
 
-	constructor(public _elementRef: ElementRef, public _translate: TranslateService) {}
+	constructor(private _elementRef: ElementRef, private _translate: TranslateService) {}
 
 	ngOnInit() {
 		this.view.type = this.type;
