@@ -40,7 +40,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			(blur)="onBlur()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
-			{{getDisplayValue()}}
+			{{getDisplayValue() | async}}
 			<span class="dropdown-icon" [class.open]="!menuIsClosed">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -215,15 +215,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				// translate me
-				return `${selected.length} selected`;
+				return this._translate.get("DROPDOWN.SELECTED", {number: selected.length});
 			} else {
-				return selected[0].content;
+				return Observable.of(selected[0].content);
 			}
 		} else if (selected) {
-			return this.displayValue;
+			return Observable.of(this.displayValue);
 		}
-		return this.placeholder;
+		return Observable.of(this.placeholder);
 	}
 
 	_noop() {}
