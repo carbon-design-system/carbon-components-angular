@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 import { IconService } from "./../../src";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
@@ -117,18 +118,30 @@ export class AppComponent implements OnInit {
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
 	private filteredItems = this.navItems;
 	private previousItem = null;
-	constructor (private router: Router) {
+	constructor (private _router: Router, private _translate: TranslateService) {
 		IconService.setCacheLevel("aggressive");
+		this._translate.setDefaultLang("en");
+		this._translate.use("en");
+		this._translate.setTranslation("en", {
+			DROPDOWN: {
+				SELECTED: "{{ number }} selected",
+				FILTER: {
+					SELECTED_ONLY: "Show selected only",
+					SEARCH: "Search",
+					NO_RESULTS: "No search results"
+				}
+			}
+		});
 	}
 
 	ngOnInit() {
-		this.router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
+		this._router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
 			if (x["url"] === "/" && this.previousItem) {
 				this.previousItem.selected = false;
 			}
 		});
 
-		this.router.events.filter(x => x instanceof NavigationStart).subscribe(x => {
+		this._router.events.filter(x => x instanceof NavigationStart).subscribe(x => {
 			if (this.previousItem) {
 				this.previousItem.selected = false;
 			}
@@ -155,6 +168,6 @@ export class AppComponent implements OnInit {
 		}
 		this.previousItem = item;
 		item.selected = true;
-		this.router.navigate([item.link]);
+		this._router.navigate([item.link]);
 	}
 }

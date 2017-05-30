@@ -30,7 +30,7 @@ import { DropdownList } from "./dropdown-list.component";
 						type="checkbox"
 						[attr.disabled]="disableSelectedOnly"
 						(click)="filterItems()">
-					<span class="label">Show selected only</span>
+					<span class="label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
 				</label>
 			</span>
 		</div>
@@ -63,7 +63,7 @@ import { DropdownList } from "./dropdown-list.component";
 				type="text"
 				class="input-field"
 				tabindex="0"
-				placeholder="Search"/>
+				placeholder="{{ 'DROPDOWN.FILTER.SEARCH' | translate }}"/>
 			<button
 				class="search-cancel"
 				type="button"
@@ -120,7 +120,7 @@ import { DropdownList } from "./dropdown-list.component";
 			<li
 				class="no-results"
 				*ngIf="displayItems.length === 0">
-				<span>No search results</span>
+				<span>{{ 'DROPDOWN.FILTER.NO_RESULTS' | translate }}</span>
 			</li>
 		</ul>`,
 		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownFilter)}]
