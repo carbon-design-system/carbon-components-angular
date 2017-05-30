@@ -17,7 +17,7 @@ import { Component, OnInit, Input } from "@angular/core";
 	// tslint:enable:max-line-length
 })
 export class LabelComponent implements OnInit {
-	@Input() labelState: "success" | "warning" | "error" | "";
+	@Input() labelState: "success" | "warning" | "error" | "" = "";
 
 	constructor() { }
 
