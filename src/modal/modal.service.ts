@@ -22,6 +22,9 @@ export class ModalService {
 
 
 	create<T>(data: {component: any, inputs?: any}): ComponentRef<any> {
+		if (!data.inputs) {
+			data.inputs = {};
+		}
 		const inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}));
 		const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
 		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.vcRef.parentInjector);
