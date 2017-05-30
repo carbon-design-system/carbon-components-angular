@@ -9,6 +9,8 @@ import { HomeComponent } from "./home.component";
 
 import { RouterModule } from "@angular/router";
 
+import { TranslateModule } from "@ngx-translate/core";
+
 // demo imports
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
@@ -185,7 +187,8 @@ import {
 			}
 		], {
 			useHash: true
-		})
+		}),
+		TranslateModule.forRoot()
 	],
 	providers: [IconService, AlertService],
 	bootstrap: [AppComponent]
