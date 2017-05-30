@@ -38,9 +38,11 @@ export class CheckboxChange {
 					[value]="value"
 					[attr.aria-label]="ariaLabel"
 					[attr.aria-labelledby]="ariaLabelledby"
+					[attr.aria-checked]="indeterminate ? 'mixed' : checked"
 					(change)="onChange($event)"
-					(click)="onClick($event)">
-				<span  class="label"><ng-content></ng-content></span>
+					(click)="onClick($event)"
+					role="checkbox">
+				<span class="label"><ng-content></ng-content></span>
 			</label>
 		</div>
 	`,
