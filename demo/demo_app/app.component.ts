@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { IconService } from "./../../src";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
@@ -119,7 +118,6 @@ export class AppComponent implements OnInit {
 	private filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {
-		IconService.setCacheLevel("aggressive");
 		this._translate.setDefaultLang("en");
 		this._translate.use("en");
 		this._translate.setTranslation("en", {
