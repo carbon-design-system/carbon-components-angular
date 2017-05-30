@@ -125,8 +125,12 @@ export class CheckboxComponent implements ControlValueAccessor {
 		this.propagateChange = fn;
 	}
 
-	public registerOnTouched() {
-		// unused for now
+	/**
+	 * Registers a callback to be triggered when the control has been touched.
+	 * @param fn Callback to be triggered when the checkbox is touched.
+	 */
+	public registerOnTouched(fn: any) {
+		this.onTouched = fn;
 	}
 
 	onChange(event) {
@@ -142,6 +146,10 @@ export class CheckboxComponent implements ControlValueAccessor {
 			this.emitChangeEvent();
 		}
 	}
+
+	// Called when the checkbox is blurred.
+	// Needed to properly implement ControlValueAccessor.
+	onTouched: () => any = () => {};
 
 	transitionCheckboxState(newState: CheckboxState) {
 		let oldState = this.currentCheckboxState;
