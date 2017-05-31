@@ -181,9 +181,9 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 
 	getDisplayItems(items: ListItem[], query = "", selectedOnly = false): ListItem[] {
 		if (selectedOnly) {
-			return items.filter(item => item.content.includes(query) && item.selected);
+			return items.filter(item => item.content.toLowerCase().includes(query.toLowerCase()) && item.selected);
 		} else if (query) {
-			return items.filter(item => item.content.includes(query));
+			return items.filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
 		}
 		return items;
 	}
