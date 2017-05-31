@@ -3,7 +3,7 @@
 	background-color: $background;
 	border-color: $border;
 	color: $text-color;
-	.alert-icon svg{
+	.alert-icon svg * {
 		fill:$border
 	}
 }

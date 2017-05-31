@@ -79,7 +79,9 @@
 			vertical-align: middle;
 			// border-bottom: 1px solid color("gray", 10);
 			svg {
-				fill: color("white", 0);
+				* {
+					fill: color("white", 0);
+				}
 				position: relative;
 				top: ($sidenav-item-height - 20px) / 2;  // 20px is icon height
 			}
@@ -188,7 +190,7 @@
 
 	.a11y & {
 		border: 1px solid color("black", 100);
-		svg {
+		svg * {
 			fill: color("black", 100);
 		}
 	}

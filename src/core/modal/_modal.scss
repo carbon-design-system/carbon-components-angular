@@ -57,8 +57,10 @@
 			height: $modal-close-icon-height;
 			width: $modal-close-icon-width;
 			padding: $modal-close-icon-padding;
-			svg{
-				fill: $modal-close-icon-svg-colour;
+			svg {
+				* {
+					fill: $modal-close-icon-svg-colour;
+				}
 				height: $modal-close-icon-svg-height;
 				width: $modal-close-icon-svg-width;
 			}
