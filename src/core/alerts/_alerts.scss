@@ -61,7 +61,7 @@
 				max-width: calc(100% - 90px);
 				float:left;
 			}
-			svg {
+			svg * {
 				fill: color("gray", 80)
 			}
 		}

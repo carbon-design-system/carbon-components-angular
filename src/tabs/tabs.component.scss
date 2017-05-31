@@ -40,12 +40,12 @@ $tabs-margin: 15px;
 		width: 20px;
 		margin: 0;
 
-		svg {
+		svg * {
 			fill: color("gray", 50);
 		}
 
 		&:hover {
-			svg {
+			svg * {
 				fill: color("blue", 50);
 			}
 		}
@@ -53,7 +53,7 @@ $tabs-margin: 15px;
 		&.disabled {
 			cursor: no-drop;
 			box-shadow: none;
-			svg {
+			svg * {
 				fill: color("gray", 20);
 			}
 		}

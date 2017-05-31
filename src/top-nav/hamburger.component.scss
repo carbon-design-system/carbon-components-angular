@@ -1,6 +1,5 @@
 @import "../core/scss-tools";
 
-
 .hamburger {
 	float: left;
 	padding: 12px 10px;
@@ -12,12 +11,9 @@
 	width: 44px;
 
 	@include hover-blue;
-
-
 }
 :host-context(.a11y) .hamburger{
-	svg {
+	svg * {
 		fill: color("black", 100);
 	}
 }
-

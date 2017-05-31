@@ -16,7 +16,7 @@
 	color:$topnav-color;
 	padding-right: 88px;
 
-	svg{
+	svg * {
 		fill: $topnav-color;
 	}
 	.top-nav-link-item{
@@ -102,7 +102,7 @@
 
 .a11y .top-nav{
 	border-bottom:1px solid color("black", 100);
-	svg{
+	svg * {
 		fill: color("black", 100);
 	}
 }
