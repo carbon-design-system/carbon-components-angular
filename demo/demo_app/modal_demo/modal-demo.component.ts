@@ -26,10 +26,10 @@ export class ModalDemo {
 	openModal(modalType) {
 		switch (modalType) {
 			case "XXL":
-				this.modalService.create({component: XLModalComponent, inputs: {}});
+				this.modalService.create({component: XLModalComponent});
 				break;
 			case "error":
-				this.modalService.create({component: ErrorModalComponent, inputs: {}});
+				this.modalService.create({component: ErrorModalComponent});
 				break;
 			case "form":
 				this.modalService.create({
