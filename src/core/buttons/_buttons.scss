@@ -5,49 +5,49 @@
 // import mixins
 @import "buttons.mixins";
 
-button.btn{
+button.btn {
     padding: $btn-padding;
-    border-width:$btn-border-width;
-    border-style:solid;
+    border-width: $btn-border-width;
+    border-style: solid;
     height: $btn-height;
 	font-weight: $btn-font;
-    .size-sm &, &.size-sm{
+    .size-sm &, &.size-sm {
         height:$btn-height-sm;
 		font-size:$btn-font--size-sm;
     }
-    .size-lg &, &.size-lg{
-        height:$btn-height-lg
+    .size-lg &, &.size-lg {
+        height: $btn-height-lg
     }
-    .size-xlg &, &.size-xlg{
-        height:$btn-height-xlg
+    .size-xlg &, &.size-xlg {
+        height: $btn-height-xlg
     }
     @include btn-variant('primary');
 
-    .theme-blue &{
+    .theme-blue & {
         @include btn-variant('primary-bt');
     }
 
-    &.btn-secondary{
+    &.btn-secondary {
         @include btn-variant('secondary');
-         .theme-blue &{
+         .theme-blue & {
             @include btn-variant('secondary-bt');
         }
     }
 }
 
-.btn-group{
+.btn-group {
     display: inline-block;
 
-    button.btn{
-        @include btn-variant('secondary',  $active:true, $focusDifferent:true);
+    button.btn {
+        @include btn-variant('secondary',  $active: true, $focusDifferent:  true);
         float: left;
         border-left-width: 0;
 
-        &:first-child{
-            border-left-width:$btn-border-width;
+        &:first-child {
+            border-left-width: $btn-border-width;
         }
-        .theme-blue &{
-            @include btn-variant('secondary-bt', $active:true, $focusDifferent:true);
+        .theme-blue & {
+            @include btn-variant('secondary-bt', $active: true, $focusDifferent: true);
         }
     }
 }

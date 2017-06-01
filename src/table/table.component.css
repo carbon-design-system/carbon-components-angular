@@ -1,8 +1,6 @@
 .table-container {
 	height: calc(100% + 40px);
 	font-size: 14px;
-	/*line-height: 40px;*/
-	font-family: sans-serif;
     color: #323232;
 }
 

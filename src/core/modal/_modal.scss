@@ -63,6 +63,8 @@
 				}
 				height: $modal-close-icon-svg-height;
 				width: $modal-close-icon-svg-width;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			&:hover, &:focus {
 				border: $modal-close-icon-border $modal-close-icon-border-color;
