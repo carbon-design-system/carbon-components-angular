@@ -12,7 +12,7 @@ import { ModalService } from "../../../src";
 	<button class="btn" (click)="openModal('XXL')">XXL Modal</button>
 	<button class="btn" (click)="openModal('error')">Error Modal</button>
 	<button class="btn" (click)="openModal('form')">Form Modal</button>
-	<button class="btn" (click)="openModal('close')">Programatic close</button>
+	<button class="btn" (click)="openModal('close')">Programmatic close</button>
 
 	<div>{{this.data | json}}</div>
 	`
@@ -42,12 +42,12 @@ export class ModalDemo {
 				});
 				break;
 			case "close":
-				let m = this.modalService.create({component: SampleModalComponent, inputs: {modalText: "I close in 2s"}});
+				let m = this.modalService.create({component: SampleModalComponent, inputs: {modalText: "I close in 2s."}});
 				m.onDestroy(() => console.log("closed!"));
 				setTimeout(() => m.destroy(), 2000);
 				break;
 			default:
-				this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello Universe"}});
+				this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello universe."}});
 				break;
 		}
 	}
