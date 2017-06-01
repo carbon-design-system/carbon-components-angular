@@ -81,6 +81,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	outsideClick = this._outsideClick.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	resize;
+	scroll;
 	private onTouchedCallback: () => void = this._noop;
 
 	@Input() placeholder = "";
@@ -100,24 +101,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngOnInit() {
 		this.view.type = this.type;
-
-		// add scroll event listenter if scrollableContainer is provided
-		if (this.scrollableContainer) {
-			const container = document.querySelector(this.scrollableContainer);
-
-			if (container) {
-				Observable.fromEvent(container, "scroll")
-				.subscribe(() => {
-					if (!this.menuIsClosed) {
-						if (this.isVisibleInContainer(this._elementRef.nativeElement, container)) {
-							positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
-						} else {
-							this.closeMenu();
-						}
-					}
-				});
-			}
-		}
 	}
 
 	ngAfterContentInit() {
@@ -281,6 +264,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// move the dropdown list to the body if appendToBody is true
 		// and position it relative to the dropdown wrapper
 		if (this.appendToBody) {
+			this.addScrollEventListener();
 			this._appendToBody();
 		}
 
@@ -297,10 +281,35 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 		// move the list back in the component on close
 		if (this.appendToBody) {
+			this.removeScrollEventListener();
 			this._appendToDropdown();
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
+	}
+
+	addScrollEventListener() {
+		// add scroll event listenter if scrollableContainer is provided
+		if (this.scrollableContainer) {
+			const container = document.querySelector(this.scrollableContainer);
+
+			if (container) {
+				this.scroll = Observable.fromEvent(container, "scroll")
+				.subscribe(() => {
+					if (this.isVisibleInContainer(this._elementRef.nativeElement, container)) {
+						positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+					} else {
+						this.closeMenu();
+					}
+				});
+			}
+		}
+	}
+
+	removeScrollEventListener() {
+		if (this.scroll) {
+			this.scroll.unsubscribe();
+		}
 	}
 
 	toggleMenu() {
