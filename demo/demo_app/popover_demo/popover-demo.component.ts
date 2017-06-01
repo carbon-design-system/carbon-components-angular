@@ -6,52 +6,36 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<h1>Popover Demo</h1>
 
 	<ng-template #customPopover>
-		<div style="display: inline-block; width: 20px; height: 20px">
-			<cdl-glyphicon icon="alert" size="md"></cdl-glyphicon>
-		</div>
 		Cool content <br> another cool content <br><br><br><br><br>
 	</ng-template>
 
 	<h3>Basic Popover</h3>
-	<button class="btn" [cdlPopover]="customPopover" placement="left">Pop over Left</button>
-	<button class="btn" cdlPopover="Hello There" placement="top-left">Pop over Top Left</button>
-	<button class="btn" cdlPopover="Hello There" placement="top">Pop over Top</button>
-	<button class="btn" cdlPopover="Hello There" placement="top-right">Pop over Top Right</button>
-	<button class="btn" [cdlPopover]="customPopover" placement="right">Pop over right</button>
-	<button class="btn" cdlPopover="Hello There" placement="bottom-left">Pop over Bottom Left</button>
-	<button class="btn" cdlPopover="Hello There" placement="bottom">Pop over Bottom</button>
-	<button class="btn" cdlPopover="Hello There" placement="bottom-right">Pop over Bottom Right</button>
-	<button class="btn" [cdlPopover]="customPopover" placement="auto">Pop over auto position</button>
-
-	<h3>Basic Popover on hover</h3>
-	<button class="btn" [cdlPopover]="customPopover" placement="left" trigger="mouseenter">Pop over Left</button>
-	<button class="btn" cdlPopover="Hello There" placement="top-left" trigger="mouseenter">Pop over Top Left</button>
-	<button class="btn" cdlPopover="Hello There" placement="top" trigger="mouseenter">Pop over Top</button>
-	<button class="btn" cdlPopover="Hello There" placement="top-right" trigger="mouseenter">Pop over Top Right</button>
-	<button class="btn" [cdlPopover]="customPopover" placement="right" trigger="mouseenter">Pop over right</button>
-	<button class="btn" cdlPopover="Hello There" placement="bottom-left" trigger="mouseenter">Pop over Bottom Left</button>
-	<button class="btn" cdlPopover="Hello There" placement="bottom" trigger="mouseenter">Pop over Bottom</button>
-	<button class="btn" cdlPopover="Hello There" placement="bottom-right" trigger="mouseenter">Pop over Bottom Right</button>
-	<button class="btn" [cdlPopover]="customPopover" placement="auto" trigger="mouseenter">Pop over auto position</button>
+	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="left">Pop over Left</button>
+	<button class="btn" cdlPopover="Hello There" title="Popover title" placement="top-left">Pop over Top Left</button>
+	<button class="btn" cdlPopover="Hello There" title="Popover title" placement="top">Pop over Top</button>
+	<button class="btn" cdlPopover="Hello There" title="Popover title" placement="top-right">Pop over Top Right</button>
+	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="right">Pop over right</button>
+	<button class="btn" cdlPopover="Hello There" title="Popover title" placement="bottom-left">Pop over Bottom Left</button>
+	<button class="btn" cdlPopover="Hello There" title="Popover title" placement="bottom">Pop over Bottom</button>
+	<button class="btn" cdlPopover="Hello There" title="Popover title" placement="bottom-right">Pop over Bottom Right</button>
+	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="auto">Pop over auto position</button>
 
 	<h3>Popover can be opened or closed manualy</h3>
-	<button class="btn" [cdlPopover]="customPopover" placement="right" #popOver="cdlPopover">Pop over right</button>
+	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="right" #popOver="cdlPopover">Pop over right</button>
 	<br>
 	<button class="btn" (click)="popOver.close()">Close above popover</button>
 	<button class="btn" (click)="this.open()">Open above popover</button>
 
-	<h3>Popover with list view and some extrap gap in between</h3>
 	<ng-template #list>
 		<div>
-			<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
+			<ul class="list-view">
+				<li tabindex="0"><div><span>Settings</span></div></li>
+				<li tabindex="0"><div><span>Save</span></div></li>
+				<li tabindex="0"><div><span>Preferences</span></div></li>
+				<li tabindex="0"><div><span>Delete</span></div></li>
+			</ul>
 		</div>
 	</ng-template>
-
-	<button class="btn" [cdlPopover]="list" wrapperClass="popover-content-fullwidth" placement="right" title="Select item" [gap]="30">
-		Pop over with list and some extra space
-	</button>
-
-	<button class="btn" [cdlPopover]="list" placement="right" title="Select item">Pop over with list</button>
 
 	<h3>Popover Menu</h3>
 	<button class="popover-menu-button"
@@ -59,6 +43,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		placement="bottom-right"
 		wrapperClass="popover-content-fullwidth"
 		popoverMenu="true"
+		title="Actions"
 		[gap]="13">
 		<cdl-glyphicon icon="dotdotdot_vert" size="16"></cdl-glyphicon>Menu
 	</button>
@@ -78,6 +63,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	</ng-template>
 	<button class="btn"
 		[cdlPopover]="filter"
+		title="Popover filter"
 		placement="left"
 		wrapperClass="popover-content-filter"
 		popoverFilter="true">
@@ -86,6 +72,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<button class="btn"
 		[cdlPopover]="filter"
+		title="Popover filter"
 		placement="right"
 		wrapperClass="popover-content-filter"
 		popoverFilter="true">
@@ -148,8 +135,7 @@ export class PopoverDemo {
 		},
 		{
 			content: "item two",
-			selected: false,
-			disabled: true
+			selected: false
 		},
 		{
 			content: "item three",
