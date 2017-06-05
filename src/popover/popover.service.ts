@@ -59,6 +59,8 @@ export class PopoverService {
 			});
 
 			this.popoverRef.instance.elementRef.nativeElement.focus();
+
+			this.popoverRef.instance.popoverConfig.parentRef.nativeElement.classList.add("popover-selected");
 		}
 	}
 
@@ -68,6 +70,7 @@ export class PopoverService {
 		}
 
 		if (this.popoverRef) {
+			this.popoverRef.instance.popoverConfig.parentRef.nativeElement.classList.remove("popover-selected");
 			let elementToFocus = this.popoverRef.instance.popoverConfig["previouslyFocusedElement"];
 			this.viewContainerRef.remove(this.viewContainerRef.indexOf(this.popoverRef.hostView));
 			this.popoverRef = null;
