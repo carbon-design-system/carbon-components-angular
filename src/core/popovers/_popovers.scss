@@ -22,7 +22,7 @@
 		padding-right: 1px;  // 6px from the dot to the side of the icon + this pixel to get to desired 7px
 	}
 
-	&:hover {
+	&:hover, &.popover-selected {
 		color: color("blue", 40, 10);
 		border-bottom: 1px solid color("blue", 40, 10);
 		cdl-glyphicon .cdl-glyphicon {
