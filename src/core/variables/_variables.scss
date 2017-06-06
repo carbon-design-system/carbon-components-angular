@@ -239,7 +239,7 @@ $listview-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
 $listview-active-border-color:  color("white", 0) !default;
 $listview-selected-border:		2px solid color("blue", 50) !default; // left border
-$listview-selected-color: 		color("blue", 50) !default;
+$listview-selected-color: 		$text-color !default;
 
 //== tree-view
 //
@@ -251,7 +251,7 @@ $treeview-border:      1px solid color-tint(color("gray", 10), 50) !default;
 $treeview-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
 $treeview-selected-border-color: color("blue", 50) !default; // left border
-$treeview-selected-color:        color("blue", 50) !default;
+$treeview-selected-color:        $text-color !default;
 
 
 //== Submenu
@@ -265,7 +265,7 @@ $submenu-border:      1px solid color-tint(color("gray", 10), 50) !default;
 $submenu-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
 $submenu-selected-border-color: color("blue", 50) !default; // left border
-$submenu-selected-color:        color("blue", 50) !default;
+$submenu-selected-color:        $text-color !default;
 
 
 

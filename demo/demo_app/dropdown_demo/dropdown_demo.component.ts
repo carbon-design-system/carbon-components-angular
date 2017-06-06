@@ -48,7 +48,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Filter dropdown</h3>
+		<h3>Search dropdown</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -67,7 +67,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Multi-select filter dropdown</h3>
+		<h3>Multi-select search dropdown</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -165,7 +165,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</div>
 
 			<div style="width: 300px; display: inline-block">
-				<b>AppendToBody: true</b>
+				<b>appendToBody: true</b>
 				<cdl-dropdown
 					scrollableContainer=".dropdown-appendbody-container"
 					[appendToBody]="true"
@@ -175,7 +175,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 					<cdl-dropdown-list [items]="demoItems5"></cdl-dropdown-list>
 				</cdl-dropdown>
 				{{ dropdown3 | json }}
-				<button class="btn" (click)="reset(dropdown3)">reset selected</button>
+				<button class="btn" (click)="reset(dropdown3)">Reset selected</button>
 			</div>
 
 			<div style="width: 100%; height: 300px"></div>
@@ -190,7 +190,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 			{{ dropdown1 | json }}
 		</div>
-		<button (click)="reset2()" class="btn">reset</button>
+		<button (click)="reset2()" class="btn">Reset</button>
 
 		<h3>Dropdown with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
@@ -313,20 +313,19 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 export class DropdownDemo {
 	demoItems1 = [
 		{
-			content: "a item one",
+			content: "An item",
 			selected: false
 		},
 		{
-			content: "b item two",
+			content: "But when",
 			selected: false,
-			disabled: true
 		},
 		{
-			content: "c item three",
+			content: "Can a",
 			selected: false
 		},
 		{
-			content: "d item four",
+			content: "Dog run",
 			selected: false
 		}
 	];
@@ -338,27 +337,27 @@ export class DropdownDemo {
 		.concat(Array.from(this.demoItems1, this.clone));
 	demoItems3 = [
 		{
-			content: "item one",
+			content: "Item one",
 			selected: false
 		},
 		{
-			content: "item two",
+			content: "Item two",
 			selected: false,
 			items: [
 				{
-					content: "sub item two 1",
+					content: "Sub item two 1",
 					selected: false
 				},
 				{
-					content: "sub item two 2",
+					content: "Sub item two 2",
 					selected: false,
 					items: [
 						{
-							content: "sub item two 1b",
+							content: "Sub item two 1b",
 							selected: false
 						},
 						{
-							content: "sub item two 2b",
+							content: "Sub item two 2b",
 							selected: false,
 						}
 					]
@@ -366,16 +365,43 @@ export class DropdownDemo {
 			]
 		},
 		{
-			content: "item three",
+			content: "Item three",
 			selected: false,
 		},
 		{
-			content: "item four",
+			content: "Item four",
 			selected: false
 		}
 	];
 
-	demoItems4 = Array.from(this.demoItems3, this.clone);
+	demoItems4 = [
+		{
+			content: "Item one",
+			selected: false
+		},
+		{
+			content: "Item two",
+			selected: false,
+			items: [
+				{
+					content: "Sub item two 1",
+					selected: false
+				},
+				{
+					content: "Sub item two 2",
+					selected: false,
+				}
+			]
+		},
+		{
+			content: "Item three",
+			selected: false,
+		},
+		{
+			content: "Item four",
+			selected: false
+		}
+	];
 	demoItems5 = Array.from(this.demoItems1, this.clone);
 	dropdown1 = null;
 	dropdown2 = [];

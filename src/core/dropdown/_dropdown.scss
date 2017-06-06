@@ -23,6 +23,9 @@
 		padding: $dropdown-padding;
 		height: $dropdown-height;
 		font-weight: $dropdown-font;
+		display: flex;
+		align-content: center;
+		align-items: center;
 
 		&:hover, &:focus {
 			box-shadow: inset 0px 0px 0px 1px color("white", 0), inset 0px 0px 0px 2px color("blue", 50);
@@ -40,16 +43,26 @@
 		&.size-lg, .size-lg &{
 			padding: $dropdown-padding-lg;
 			height:  $dropdown-height-lg;
+			.dropdown-icon {
+				right: 20px;
+			}
+		}
+
+		.placeholder {
+			font-style: italic;
+			color: color("gray", 50);
 		}
 
 		.dropdown-icon {
-			float: right;
+			position: absolute;
+			right: 10px;
 			width: 16px;
 			height: 16px;
+			fill: color("gray", 50);
 			-ms-transform: rotate(0deg); /* IE 9 */
 			-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
 			transform: rotate(0deg);
-			transition: transform 0.2s linear;
+			// make fancy morph transition
 
 			&.open {
 				-ms-transform: rotate(-180deg); /* IE 9 */

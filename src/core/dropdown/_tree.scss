@@ -1,23 +1,29 @@
 &.size-sm .tree .item-wrapper .item {
-    padding: 2px 10px;
     font-size: $dropdown-font-size-sm;
     height: $dropdown-height-sm;
 }
 
 &.size-lg .tree .item-wrapper .item {
-    padding: 10px 20px;
     height: $dropdown-height-lg;
 }
 .tree{
     &, ul{
         @extend .list-unstyled;
+		li {
+			border-bottom: 1px solid white;
+			&:last-child {
+				border-bottom: none;
+			}
+		}
     }
     .item-wrapper {
-        border-left:2px solid transparent;
+        border-left: 2px solid transparent;
         .item{
-            padding: 7px 20px 7px 0;
+            padding-right: 20px;
             height: 30px;
 			position: relative;
+			display: flex;
+			align-items: center;
         }
         &:hover, &:focus,  &.selected {
             background-color:$treeview-hover-bg;
@@ -31,9 +37,9 @@
 			left: 0;
         }
         &.selected {
-            border-left-color:$treeview-selected-border-color;
+            border-left-color: $treeview-selected-border-color;
             font-weight: 700;
-            color:$treeview-selected-color;
+            color: $treeview-selected-color;
             .arrow {
                 transform: rotate(90deg);
             }
@@ -68,6 +74,7 @@
 		display: none;
 		&.open {
 			display: block;
+			border-top: 1px solid white;
 		}
 	}
 
