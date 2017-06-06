@@ -34,6 +34,7 @@ import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
 import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
 import { TreeViewDemo } from "./tree_view_demo/tree-view-demo.component";
 import { XLModalComponent } from "./modal_demo/extra-large.component";
+import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
 
 // component imports
 import {
@@ -53,7 +54,8 @@ import {
 	// CalendarModule,
 	CDLFormsModule,
 	// DatepickerModule,
-	ChartsModule
+	ChartsModule,
+	ComboBoxModule
 } from "./../../src";
 
 
@@ -83,7 +85,8 @@ import {
 		AlertCustom,
 		// CalendarDemo,
 		// DatepickerDemo,
-		ChartsDemo
+		ChartsDemo,
+		ComboboxDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -112,6 +115,7 @@ import {
 		CDLFormsModule,
 		// DatepickerModule,
 		ChartsModule,
+		ComboBoxModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -184,6 +188,10 @@ import {
 			{
 				path: "charts",
 				component: ChartsDemo
+			},
+			{
+				path: "combobox",
+				component: ComboboxDemo
 			}
 		], {
 			useHash: true
