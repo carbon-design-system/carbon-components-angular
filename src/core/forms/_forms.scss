@@ -7,7 +7,7 @@
 
 .label {
     color: color("gray", 80);
-    font-weight: 400;
+    font-weight: $font-medium;
     &.disabled, .disabled & {
         color: $input-field-color-disabled;
     }

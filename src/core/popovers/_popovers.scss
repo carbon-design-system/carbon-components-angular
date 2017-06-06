@@ -22,7 +22,7 @@
 		padding-right: 1px;  // 6px from the dot to the side of the icon + this pixel to get to desired 7px
 	}
 
-	&:hover {
+	&:hover, &.popover-selected {
 		color: color("blue", 40, 10);
 		border-bottom: 1px solid color("blue", 40, 10);
 		cdl-glyphicon .cdl-glyphicon {
@@ -40,9 +40,15 @@
 	max-width: 280px;
 
 	&.popover-menu {
+		min-width: 130px;
 		.popover-header {
 			height: 30px;
 			padding: 6px 10px;
+			.popover-title {
+				margin: 0;
+				margin-right: 20px;
+				font-size: 13px;
+			}
 			.close-icon {
 				padding: 0;
 				margin: 0;
@@ -50,9 +56,38 @@
 			}
 		}
 		.popover-content ul.list-view {
+			overflow: hidden;
+			margin-top: -2px; // hide last border-bottom
 			li {
-				padding: 6px 10px;
+				padding: 6px 10px 6px 0;
 				height: 30px;
+				border: 0;
+				font-size: 13px;
+				margin-bottom: 0;
+				margin-top: 1px;
+				div {
+					width: 100%;
+					border-top: $listview-border;
+					margin-left: 10px;
+					padding-top: 5px;
+					position: relative;
+					top: -7px;
+					span {
+						position: relative;
+						top: 2px;
+					}
+				}
+				&:hover {
+					margin-top: 1px;
+					div {
+						border-top: 1px solid transparent;
+					}
+					& + li {
+						div {
+							border-top: 1px solid transparent;
+						}
+					}
+				}
 			}
 		}
 	}

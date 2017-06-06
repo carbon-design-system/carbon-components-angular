@@ -26,20 +26,24 @@ import { Modal } from "../../../src";
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
 				<div class="modal-body">
 					<div class="form-instructions">{{modalText}}</div>
-					<div class="form-container" *ngFor="let field of fields" [class.has-error]="form.get(field).touched && !form.get(field).valid">
+					<cdl-label *ngFor="let field of fields" [class.has-error]="form.get(field).touched && !form.get(field).valid">
 						<label class="label label-top">{{field}}</label>
-						<input type="text" class="input-field" placeholder="{{field}}" formControlName="{{field}}"/>
-					</div>
+						<input type="text" class="input-field" formControlName="{{field}}"/>
+					</cdl-label>
+
+					<br><br>
+
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
 					<cdl-dropdown
 						placeholder="Select an option"
 						size="sm">
 						<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 					</cdl-dropdown>
-					<button class="btn" cdlPopover="Hello There" placement="bottom">Pop over Bottom</button>
+					<br><br>
+					<button class="btn" cdlPopover="Hello There" placement="bottom">Pop over bottom</button>
 				</div>
 				<cdl-modal-footer>
-					<button class="btn secondary cancel-button" (click)="closeModal()">Cancel</button>
+					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Close</button>
                     <button class="btn submit-button" type="submit">Submit</button>
 				</cdl-modal-footer>
 			</form>

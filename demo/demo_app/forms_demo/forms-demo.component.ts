@@ -10,22 +10,19 @@ import { Component, OnInit } from "@angular/core";
 	<cdl-checkbox
 		[(ngModel)]="secondCheckboxState"
 		[indeterminate]="someSelected"
-		(change)="onTristateChange()">
-		Tristate Checkbox (State: {{secondCheckboxState}} Indeterminate: {{someSelected}})
+		(change)="onTristateChange()">Tristate Checkbox (State: {{secondCheckboxState}} Indeterminate: {{someSelected}})
 	</cdl-checkbox>
 
 	<cdl-checkbox *ngFor="let one of manyCheckboxes"
 		[(ngModel)]="one.checked"
 		(change) = "multiCheckboxChanged()"
-		class="indent">
-		Check ({{one.checked}})
+		class="indent">Check ({{one.checked}})
 	</cdl-checkbox>
 
 	<cdl-checkbox class="ng-invalid ng-touched">Checkbox</cdl-checkbox>
 
 	<cdl-checkbox
-		[(ngModel)]="thirdCheckboxState">
-		Checkbox (State: {{thirdCheckboxState}})
+		[(ngModel)]="thirdCheckboxState">Checkbox (State: {{thirdCheckboxState}})
 	</cdl-checkbox>
 
 
