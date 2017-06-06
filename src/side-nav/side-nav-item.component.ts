@@ -10,7 +10,7 @@ import {
 @Component({
 	selector: "cdl-side-nav-item",
 	template: `
-	<div class="side-nav-item-wrapper" #item>
+	<div class="side-nav-item-wrapper" role="heading" [attr.aria-level]="ariaLevel" #item>
 		<ng-content select=".side-nav-pane-sub-template"></ng-content>
 		<button
 			class="side-nav-item-button"
@@ -36,6 +36,7 @@ import {
 })
 export class SideNavItem {
 	@Input() selected = false;
+	@Input("aria-level") ariaLevel = 1;
 	@Output() select: EventEmitter<any> = new EventEmitter<any>();
 
 	@ViewChild("item") item;
@@ -46,6 +47,9 @@ export class SideNavItem {
 			this.showPane();
 			this.selected = false;
 		}
+		// get all cdl-side-nav-items in subItem and set aria-level to ariaLevel+1 on them
+		const items = this.subItem.nativeElement.querySelectorAll("cdl-side-nav-item") as HTMLElement[];
+		items.forEach((item) => item.querySelector(".side-nav-item-wrapper").setAttribute("aria-level", (this.ariaLevel + 1).toString()));
 	}
 
 	hasSubmenu() {
@@ -71,9 +75,11 @@ export class SideNavItem {
 	showPane() {
 		let pane = this.getPaneTemplateElement();
 		if (pane) {
-			pane.closest(".left-nav-container").classList.add("side-nav-pane-sub-template-visible");
 			pane.classList.add("side-nav-pane-visible");
-			(pane.querySelector(".side-nav-pane-title") as HTMLElement).focus();
+			pane.closest(".left-nav-container").classList.add("side-nav-pane-sub-template-visible");
+			setTimeout( () => {
+				(pane.querySelector(".side-nav-pane-title") as HTMLElement).focus();
+			}, 100);  // focus after animation
 		}
 	}
 }

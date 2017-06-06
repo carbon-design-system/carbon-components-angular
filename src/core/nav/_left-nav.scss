@@ -11,6 +11,7 @@
 	position: absolute;
 	left: -$sidenav-width - 10px;
 	transition: left 0.2s ease;
+	padding: 0;
 	z-index: 2;
 	overflow: hidden;
 
@@ -35,8 +36,6 @@
 			text-align: left;
 			position: relative;
 			padding: 0;
-			// border-bottom: 1px solid color("gray", 10);
-			position: relative;
 			.side-nav-arrow {
 				fill: color("white", 0);
 				position: absolute;

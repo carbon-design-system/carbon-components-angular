@@ -3,14 +3,15 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "cdl-side-nav",
 	template: `
-    <aside class="left-nav"
+    <nav class="left-nav"
     	   [ngClass]="{isOpen: open, 'left-nav-fixed': fixed}"
     	   [attr.aria-expanded]="open"
-    	   role="complementary">
+    	   role="navigation"
+		   aria-label="side navigation">
 			<div class="left-nav-container">
 				<ng-content></ng-content>
 			</div>
-    </aside>
+    </nav>
   `
 })
 export class SideNav {

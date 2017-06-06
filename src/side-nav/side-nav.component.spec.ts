@@ -18,7 +18,7 @@ describe("Side Nav", () => {
 
 	it("should be open", () => {
 		const fixture = TestBed.createComponent(SideNav);
-		const comp    = fixture.nativeElement.querySelector("aside");
+		const comp    = fixture.nativeElement.querySelector("nav");
 		comp.open = true;
 		fixture.detectChanges();
 		expect(comp.className).toBe("left-nav isOpen");
