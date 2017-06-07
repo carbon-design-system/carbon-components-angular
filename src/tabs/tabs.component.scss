@@ -10,25 +10,19 @@ $tabs-margin: 15px;
 }
 
 .is-over-flow {
-	padding: 0px 23px 0px 20px;
+	padding: 0px 30px 0px 30px;
 	position: relative;
 	overflow: hidden;
 
 	.left-arrow {
 		left: 0px;
-		-webkit-box-shadow: 5px 0px 9px -5px color("gray", 50);
-		-moz-box-shadow: 5px 0px 9px -5px color("gray", 50);
 		box-shadow: 5px 0px 9px -5px color("gray", 50);
-		padding-right: 2px;
 		z-index: 1;
 	}
 
 	.right-arrow {
 		right: 0px;
-		-webkit-box-shadow: -5px 0px 9px -5px color("gray", 50);
-		-moz-box-shadow: -5px 0px 9px -5px color("gray", 50);
 		box-shadow: -5px 0px 9px -5px color("gray", 50);
-		padding-left: 2px;
 	}
 
 	.left-arrow, .right-arrow {
@@ -37,8 +31,9 @@ $tabs-margin: 15px;
 		top: -1px;
 		height: 40px;
 		background: color("white", 0);
-		width: 20px;
+		width: 30px;
 		margin: 0;
+		padding: 0 5px;
 
 		svg * {
 			fill: color("gray", 50);
@@ -84,10 +79,13 @@ $tabs-margin: 15px;
 			line-height: $tabs-height;
 			padding: 0px $tabs-padding 0px $tabs-padding;
 			height: $tabs-height;
-			display: inline-block;
-			border-bottom: solid 3px transparent;
+			border-bottom: solid 1px transparent;
 			color: color("gray", 60);
 			font-size: $font-size;
+			display: inline-flex;
+			align-items: center;
+			align-content: center;
+			position: relative;
 
 			&:hover, &:focus {
 				text-decoration: none;
@@ -98,8 +96,15 @@ $tabs-margin: 15px;
 				border-bottom: solid 3px color("blue", 50);
 				font-weight: bold;
 
-				&:focus {
-					color: color("blue", 50);
+				&:focus:after {
+					background: color("blue", 50);
+					width: 100%;
+					display: block;
+					content: "";
+					height: 1px;
+					position: absolute;
+					bottom: 2px;
+					left: 0;
 				}
 			}
 

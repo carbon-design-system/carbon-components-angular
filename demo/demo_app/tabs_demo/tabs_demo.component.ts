@@ -74,9 +74,9 @@ import { Component, OnInit } from "@angular/core";
 		</cdl-tabs>
 	</div>
 
-	<h2>Tabs with custom heading template</h2>
+	<h2>Tabs with custom header template</h2>
 	<ng-template #tabHeading>
-		Hello, ! <button (click)="test()">Click me</button> <cdl-glyphicon icon="alert" size="lg"></cdl-glyphicon>
+		Hello, <button (click)="test()">Click me</button> <cdl-glyphicon icon="alert" size="sm"></cdl-glyphicon>
 	</ng-template>
 	<cdl-tabs>
 		<cdl-tab [heading]="tabHeading">
