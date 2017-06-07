@@ -21,6 +21,7 @@ import { CoreDemo } from "./core_demo/core-demo.component";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { FormModalComponent } from "./modal_demo/form-modal.component";
+import { DrilldownModalComponent } from "./modal_demo/drilldown-modal.component";
 import { FormsDemo } from "./forms_demo/forms-demo.component";
 import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
 import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
@@ -80,6 +81,7 @@ import {
 		ErrorModalComponent,
 		XLModalComponent,
 		FormModalComponent,
+		DrilldownModalComponent,
 		TooltipDemo,
 		AlertDemo,
 		AlertCustom,
@@ -93,6 +95,7 @@ import {
 		ErrorModalComponent,
 		XLModalComponent,
 		FormModalComponent,
+		DrilldownModalComponent,
 		AlertCustom
 	],
 	imports: [
