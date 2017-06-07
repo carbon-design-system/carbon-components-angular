@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
 	template: `
 	<h1>Tooltip</h1>
 	<ng-template #customTooltip>
-		<p class="large-tooltip-number">12.1k</p>
+		<p class="large-tooltip-number">12,100</p>
 		<p class="tooltip-date">7 Sep 2016</p>
 	</ng-template>
 
@@ -35,9 +35,9 @@ import { Component, OnInit } from "@angular/core";
 	<br><br><br>
 	<h3>Tooltip for ellipsis</h3>
 
-	<div class="ellipsis" cdlEllipsisTooltip>Tooltip for ellipsis</div>
+	<div class="ellipsis" cdlEllipsisTooltip>Text that fits</div>
 	<br>
-	<div class="ellipsis" cdlEllipsisTooltip>Tooltip for ellipsis because I can and I am really really long.</div>
+	<div class="ellipsis" cdlEllipsisTooltip>Text that is too long to fit and needs a tooltip to display the complete text</div>
 	`,
 	styleUrls: ["./tooltip-demo.component.scss"]
 })

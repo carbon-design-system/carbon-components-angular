@@ -34,13 +34,13 @@ import { Modal } from "../../../src";
 					<br><br>
 
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
+					<label class="label label-top">Dropdown</label>
 					<cdl-dropdown
-						placeholder="Select an option"
-						size="sm">
+						placeholder="Select an option">
 						<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 					</cdl-dropdown>
 					<br><br>
-					<button class="btn" cdlPopover="Hello There" placement="bottom">Pop over bottom</button>
+					<button class="btn" cdlPopover="Hello there" placement="bottom">Popover bottom</button>
 				</div>
 				<cdl-modal-footer>
 					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Close</button>
@@ -60,19 +60,19 @@ export class FormModalComponent implements OnInit {
 
 	demoItems1 = [
 		{
-			content: "a item one",
+			content: "An item",
 			selected: false
 		},
 		{
-			content: "b item two",
+			content: "But when",
 			selected: false,
 		},
 		{
-			content: "c item three",
+			content: "Can a",
 			selected: false
 		},
 		{
-			content: "d item four",
+			content: "Dog run",
 			selected: false
 		}
 	];
