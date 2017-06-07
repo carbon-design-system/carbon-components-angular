@@ -3,6 +3,7 @@ import { XLModalComponent } from "./extra-large.component";
 import { ErrorModalComponent } from "./error-modal.component";
 import { SampleModalComponent } from "./sample-modal.component";
 import { FormModalComponent } from "./form-modal.component";
+import {DrilldownModalComponent } from "./drilldown-modal.component";
 import { ModalService } from "../../../src";
 
 @Component({
@@ -13,6 +14,7 @@ import { ModalService } from "../../../src";
 	<button class="btn" (click)="openModal('error')">Error Modal</button>
 	<button class="btn" (click)="openModal('form')">Form Modal</button>
 	<button class="btn" (click)="openModal('close')">Programmatic close</button>
+	<button class="btn" (click)="openModal('drill')">Drilldown modal</button>
 
 	<div>{{this.data | json}}</div>
 	`
@@ -45,6 +47,9 @@ export class ModalDemo {
 				let m = this.modalService.create({component: SampleModalComponent, inputs: {modalText: "I close in 2s."}});
 				m.onDestroy(() => console.log("closed!"));
 				setTimeout(() => m.destroy(), 2000);
+				break;
+			case "drill":
+				this.modalService.create({component: DrilldownModalComponent});
 				break;
 			default:
 				this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello universe."}});
