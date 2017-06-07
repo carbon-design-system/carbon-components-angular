@@ -17,7 +17,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 		<ng-content select="[links]"></ng-content>
 		<ng-content select="[menu]"></ng-content>
 		<span class="top-nav-ibm">
-			<svg xmlns="http://www.w3.org/2000/svg" width="38" height="15" viewBox="0 0 38 15"><path class="st0" d="M0
+			<svg xmlns="http://www.w3.org/2000/svg" width="38" height="16" viewBox="0 0 38 15"><path class="st0" d="M0
 			0h7v1H0zM0 2h7v1H0zM0 12h7v1H0zM0 14h7v1H0zM2 10h3v1H2zM2 8h3v1H2zM2 6h3v1H2zM2 4h3v1H2zM10 4h3v1h-3zM23 8h3v1h-3zM23
 			10h3v1h-3zM21 12h5v1h-5zM33 12h5v1h-5zM33 14h5v1h-5zM21 14h5v1h-5zM33 8h3v1h-3zM33 10h3v1h-3zM10 10h3v1h-3zM26.3 0H21v1h5.7zM27.1
 			2H21v1h6.5zM27.9 4H23v1h5.3zM28.7 6H23v1h6.1zM32.4 8h-5.8l.4 1h5zM27.4 10h4.2l-.4 1h-3.4zM28.2 12h2.6l-.4 1h-1.8zM29 14h1l-.4

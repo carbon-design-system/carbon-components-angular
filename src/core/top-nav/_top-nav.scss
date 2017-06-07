@@ -9,26 +9,27 @@
 	position: relative;
     background-color: $topnav-bg-color;
 	height: $topnav-height;
+	font-size: $topnav-header-font-size;
     top: 0;
     width: 100%;
     left: 0;
     z-index: $topnav-z-index;
-	color:$topnav-color;
-	padding-right: 88px;
+	color: $topnav-color;
+	padding-right: 68px;
 
 	svg * {
 		fill: $topnav-color;
 	}
-	.top-nav-link-item{
-		color:$topnav-color;
+	.top-nav-link-item {
+		color: $topnav-color;
 		cursor: pointer;
  		@include hover-blue;
 		transition: background-color 0.2s ease-in-out;
 		text-decoration: none;
-		line-height: rem(20);
+		line-height: inherit;
 		height: $topnav-height;
-		border-top:2px solid transparent;
-		&:active{
+		border-top: 2px solid transparent;
+		&:active {
 			border-top:2px solid white;
 		}
 	}
@@ -41,19 +42,21 @@
         }
         @include unselectable;
     }
+	.top-nav-heading-no-hamburger {
+		padding: $topnav-title-padding-no-hamburger;
+	}
 	.top-nav-badge {
 		background-color: $topnav-badge-bg-color;
 		padding: $topnav-badge-padding;
-		margin:$topnav-badge-margin;
-		height:$topnav-badge-height;
-		color:$topnav-badge-color;
-		line-height: 1;
+		margin: $topnav-badge-margin;
+		height: $topnav-badge-height;
+		color: $topnav-badge-color;
+		line-height: inherit;
 	}
 	.top-nav-brand {
-		font-size:$topnav-header-font-size;
-		margin:$topnav-header-margin;
-		padding-right: 10px;
-		line-height: rem(20);
+		font-size: $topnav-header-font-size;
+		margin: $topnav-header-margin;
+		line-height: inherit;
 		font-weight: $topnav-header-font-family;
 	}
     .top-nav-ibm {
@@ -61,13 +64,23 @@
 		position: absolute;
 		right: 0;
         display: inline-block;
+		height: $topnav-height;
+		svg * {
+			fill: color("gray", 30);
+		}
     }
-    .top-nav-product-title{
+    .top-nav-product-title {
     	padding: $topnav-product-title-padding;
     	color: $topnav-product-title-color;
     	position: absolute;
     	@include unselectable;
     }
+	.top-nav-divider {
+		width: 1px;
+		height: 20px;
+		background: color("white");
+		margin: 12px 10px;
+	}
 }
 .top-nav-fixed {
 	position: fixed;
@@ -83,24 +96,23 @@
         text-align: center;
         white-space: nowrap;
     }
-	.top-nav-link-item{
+	.top-nav-link-item {
 		display: inline-block;
 		padding: $topnav-links-padding;
 		height: $topnav-height;
 	}
     .menu-icon {
         display: inline-block;
-        margin:$topnav-links-icon-margin;
+        margin: $topnav-links-icon-margin;
         vertical-align: middle;
     }
-    .chevron-down{
-        display: inline-block;
-        margin: $topnav-links-chevron-margin;
-        vertical-align: middle;
-    }
+	.menu-icon-only {
+		margin: 0;
+		width: 24px;  // it makes the icon hover/touch width == 44px
+	}
 }
 
-.a11y .top-nav{
+.a11y .top-nav {
 	border-bottom:1px solid color("black", 100);
 	svg * {
 		fill: color("black", 100);
