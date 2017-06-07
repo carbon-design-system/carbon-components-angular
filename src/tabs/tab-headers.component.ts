@@ -94,6 +94,9 @@ export class TabHeaders implements AfterViewInit {
 	public touchMove: boolean;
 	public prevClientX: number;
 
+	private leftPadding = 15; // seems to be button width less the tab padding
+	private rightPadding = 70; // seems to be both buttons widths less tab padding
+
 	public scrollLeft = 0;
 
 	@Input() tabs: QueryList<Tab>;
@@ -133,8 +136,9 @@ export class TabHeaders implements AfterViewInit {
 				this.scrollLeft = 0;
 			}
 			// return to the rightmost resting place
-			if (this.scrollLength + this.scrollLeft <= this.headerContainer.nativeElement.parentElement.offsetWidth) {
-				this.scrollLeft = -(this.scrollLength - this.headerContainer.nativeElement.parentElement.offsetWidth + 40);
+			let headerContainer = this.headerContainer.nativeElement.parentElement;
+			if (this.scrollLength + this.scrollLeft <= headerContainer.offsetWidth) {
+				this.scrollLeft = -(this.scrollLength - headerContainer.offsetWidth + this.rightPadding);
 			}
 			this.updateOverflowButtons();
 		}
@@ -165,6 +169,7 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	public onTabFocus(ev, index: number) {
+		console.log("focus tab");
 		this.currentSelectedTab = index;
 		this.moveTabIntoView(ev.target);
 		// reset scroll left because we're already handling it
@@ -198,7 +203,7 @@ export class TabHeaders implements AfterViewInit {
 			this.firstVisibleTab--;
 			let visibleTab = this.allTabHeaders[this.firstVisibleTab];
 			// where 15 ===
-			this.scrollLeft = -(visibleTab.offsetLeft - 15);
+			this.scrollLeft = -(visibleTab.offsetLeft - this.leftPadding);
 		}
 	}
 
@@ -210,15 +215,14 @@ export class TabHeaders implements AfterViewInit {
 		if (this.disabledLeftArrow) {
 			this.disabledLeftArrow = false;
 		}
-
+		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		if (this.firstVisibleTab < this.allTabHeaders.length - 1) {
 			let visibleTab = this.allTabHeaders[this.firstVisibleTab];
 			this.scrollLeft = -(visibleTab.offsetLeft + visibleTab.offsetWidth - 15);
 			this.firstVisibleTab++;
-			if (this.scrollLength + this.scrollLeft <= this.headerContainer.nativeElement.parentElement.offsetWidth) {
+			if (this.scrollLength + this.scrollLeft <= headerContainer.offsetWidth) {
 				this.disabledRightArrow = true;
-				// 60 === the width of the left/right buttons
-				this.scrollLeft = -(this.scrollLength - this.headerContainer.nativeElement.parentElement.offsetWidth + 60);
+				this.scrollLeft = -(this.scrollLength - headerContainer.offsetWidth + this.rightPadding);
 			}
 		}
 	}
@@ -229,18 +233,15 @@ export class TabHeaders implements AfterViewInit {
 		}
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
-		this.moveTabIntoView(ev.target);
 	}
 
 	public moveTabIntoView(tab) {
 		// if the target is behind the right edge move it into view
-		if (tab.offsetLeft + tab.offsetWidth > this.headerContainer.nativeElement.parentElement.offsetWidth - (this.scrollLeft + 40)) {
-			this.scrollLeft = -((tab.offsetLeft + tab.offsetWidth + 40) - this.headerContainer.nativeElement.parentElement.offsetWidth);
-		}
-
-		// if the target is scrolled behind the left edge move it into view
-		if (tab.offsetLeft + this.scrollLeft < 0) {
-			this.scrollLeft = -(tab.offsetLeft - 35);
+		let headerContainer = this.headerContainer.nativeElement.parentElement;
+		if (tab.offsetLeft + tab.offsetWidth > headerContainer.offsetWidth - (this.scrollLeft + this.rightPadding)) {
+			this.scrollLeft = -((tab.offsetLeft + tab.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
+		} else if (tab.offsetLeft + this.scrollLeft < 0) { // if the target is scrolled behind the left edge move it into view
+			this.scrollLeft = -(tab.offsetLeft - this.leftPadding);
 		}
 		this.updateOverflowButtons();
 	}
