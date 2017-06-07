@@ -16,10 +16,11 @@
 	li {
 		padding: 7px 10px;
 		height: 30px;
-		margin-bottom: -1px;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid white;
 		&:hover, &.selected, &:focus {
-			margin: -1px 0;
 			background-color: $listview-hover-bg;
 			position: relative;
 			z-index: 1;
@@ -36,6 +37,7 @@
 		.checkbox {
 			display: inline-block;
 			margin-right: 10px;
+			margin-bottom: 0;
 		    top: -1px;
 			.size-sm & .label {
 				width: 15px;
@@ -72,7 +74,7 @@
 			}
 		}
 		&:last-child {
-			margin-bottom:0;
+			border-bottom: none;
 		}
 		&:first-child {
 			&:hover, &.selected, &:focus {

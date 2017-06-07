@@ -40,7 +40,8 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			(blur)="onBlur()"
 			[disabled]="disabled"
 			[class.open]="!menuIsClosed">
-			{{getDisplayValue() | async}}
+			<span *ngIf="valueSelected()">{{getDisplayValue() | async}}</span>
+			<span *ngIf="!valueSelected()" class="placeholder">{{getDisplayValue() | async}}</span>
 			<span class="dropdown-icon" [class.open]="!menuIsClosed">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -206,6 +207,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			return Observable.of(this.displayValue);
 		}
 		return Observable.of(this.placeholder);
+	}
+
+	valueSelected() {
+		if (this.view.getSelected()) { return true; }
+		return false;
 	}
 
 	_noop() {}

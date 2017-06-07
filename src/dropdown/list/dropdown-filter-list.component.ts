@@ -34,7 +34,7 @@ import { DropdownList } from "./dropdown-list.component";
 				</label>
 			</span>
 		</div>
-		<div class="dropdown-filter-search">
+		<div class="dropdown-filter-search size-md">
 			<div class="search-icon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +63,9 @@ import { DropdownList } from "./dropdown-list.component";
 				type="text"
 				class="input-field"
 				tabindex="0"
+				[ngClass]="{
+					placeholder: !filter.value
+				}"
 				placeholder="{{ 'DROPDOWN.FILTER.SEARCH' | translate }}"/>
 			<button
 				class="search-cancel"
