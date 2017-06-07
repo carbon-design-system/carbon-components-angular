@@ -376,9 +376,10 @@ $dropdown-bg-color-disabled-hover: color("white", 0) !default;
 $topnav-bg-color:  color("gray", 80) !default;
 $topnav-color: 	   color("white", 0) !default;
 
-$topnav-height: 48px !default;
+$topnav-height: 44px !default;
 
-$topnav-title-padding: 12px 0px 14px 12px !default;
+$topnav-title-padding: 12px 10px 14px 12px !default;
+$topnav-title-padding-no-hamburger: 12px 20px 14px 20px !default;
 $topnav-z-index: 3 !default;
 
 // top nav badge
@@ -390,16 +391,15 @@ $topnav-badge-margin: -2px 0 -2px 20px !default;
 
 // main title anchor
 $topnav-header-color: $topnav-color !default;
-$topnav-header-font-size: $font-size-h5 !default;
+$topnav-header-font-size: 14px !default;
 $topnav-header-margin:0 !default;
 $topnav-header-font-family: $font-roman !default;
 
-$topnav-ibm-logo-padding: 14px 20px 14px 30px !default;
+$topnav-ibm-logo-padding: 14px 20px 14px 10px !default;
 
 // inner links styles
 $topnav-links-padding: 12px 10px 14px 10px !default;
-$topnav-links-icon-margin: 0 12px 0 0 !default;
-$topnav-links-chevron-margin: 0 0 0 10px !default;
+$topnav-links-icon-margin: 0 7px 0 0 !default;
 
 //top-nav product title
 $topnav-product-title-padding: 13px 19px 13px 19px !default;
