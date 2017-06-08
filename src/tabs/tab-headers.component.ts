@@ -39,14 +39,15 @@ import { Tab } from "./tab.component";
 				class="cdl-tab-heading"
 				role="tablist"
 				[ngStyle]="{'left.px':scrollLeft}"
-				[class.touch-transition]="isTouching">
+				[class.touch-transition]="touchMove">
 				<li *ngFor="let tab of tabs; let i = index;">
 					<a
+						#tabref
 						href="javascript:void(0)"
 						draggable="false"
 						role="tab"
-						(click)="selectTab($event, tab)"
-						(focus)="onTabFocus($event, i)"
+						(click)="selectTab(tabref, tab, i)"
+						(focus)="onTabFocus(tabref, i)"
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="tab.active?0:-1"
 						[attr.aria-controls]="tab.id"
@@ -93,9 +94,8 @@ export class TabHeaders implements AfterViewInit {
 	public currentSelectedTab: number;
 	public touchMove: boolean;
 	public prevClientX: number;
-
-	private leftPadding = 15; // seems to be button width less the tab padding
-	private rightPadding = 70; // seems to be both buttons widths less tab padding
+	private leftPadding = 15; // button width less tab left padding
+	private rightPadding = 70; // both button widths less some padding
 
 	public scrollLeft = 0;
 
@@ -168,10 +168,9 @@ export class TabHeaders implements AfterViewInit {
 		this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 	}
 
-	public onTabFocus(ev, index: number) {
-		console.log("focus tab");
+	public onTabFocus(ref, index: number) {
 		this.currentSelectedTab = index;
-		this.moveTabIntoView(ev.target);
+		this.moveTabIntoView(ref);
 		// reset scroll left because we're already handling it
 		this.headerContainer.nativeElement.parentElement.scrollLeft = 0;
 	}
@@ -202,7 +201,6 @@ export class TabHeaders implements AfterViewInit {
 		if (this.firstVisibleTab >= 0) {
 			this.firstVisibleTab--;
 			let visibleTab = this.allTabHeaders[this.firstVisibleTab];
-			// where 15 ===
 			this.scrollLeft = -(visibleTab.offsetLeft - this.leftPadding);
 		}
 	}
@@ -227,12 +225,14 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
-	public selectTab(ev, tab: Tab) {
+	public selectTab(ref, tab: Tab, tabIndex: number) {
 		if (tab.disabled) {
 			return;
 		}
+		this.currentSelectedTab = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
+		this.moveTabIntoView(ref);
 	}
 
 	public moveTabIntoView(tab) {

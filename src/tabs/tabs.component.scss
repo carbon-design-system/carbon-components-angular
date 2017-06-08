@@ -26,14 +26,15 @@ $tabs-margin: 15px;
 	}
 
 	.left-arrow, .right-arrow {
-		display: inline-block;
+		display: inline-flex;
 		position: absolute;
-		top: -1px;
+		top: 0;
 		height: 40px;
 		background: color("white", 0);
 		width: 30px;
 		margin: 0;
 		padding: 0 5px;
+		align-items: center;
 
 		svg * {
 			fill: color("gray", 50);
@@ -66,7 +67,7 @@ $tabs-margin: 15px;
 	transition: left 0.5s;
 	left: 0px;
 	&.touch-transition {
-		transition:  left 0s;
+		transition: left 0s;
 	}
 	li {
 		display: inline;
