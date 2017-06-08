@@ -9,10 +9,10 @@ import { ModalService } from "../../../src";
 @Component({
 	selector: "modal-demo",
 	template: `
-	<button class="btn" (click)="openModal()">XL Modal</button>
-	<button class="btn" (click)="openModal('XXL')">XXL Modal</button>
-	<button class="btn" (click)="openModal('error')">Error Modal</button>
-	<button class="btn" (click)="openModal('form')">Form Modal</button>
+	<button class="btn" (click)="openModal()">XL modal</button>
+	<button class="btn" (click)="openModal('XXL')">XXL modal</button>
+	<button class="btn" (click)="openModal('error')">Error modal</button>
+	<button class="btn" (click)="openModal('form')">Form modal</button>
 	<button class="btn" (click)="openModal('close')">Programmatic close</button>
 	<button class="btn" (click)="openModal('drill')">Drilldown modal</button>
 
