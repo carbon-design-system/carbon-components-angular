@@ -182,6 +182,7 @@ export class TabHeaders implements AfterViewInit {
 			this.scrollLength = this.headerContainer.nativeElement.offsetWidth;
 		} else {
 			this.overflow = false;
+			this.scrollLeft = 0;
 		}
 	}
 
@@ -236,6 +237,7 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	public moveTabIntoView(tab) {
+		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		if (tab.offsetLeft + tab.offsetWidth > headerContainer.offsetWidth - (this.scrollLeft + this.rightPadding)) {
