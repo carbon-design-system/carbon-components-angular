@@ -166,7 +166,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 		this.selectedOnlyNative = this.selectedOnly ? this.selectedOnly.nativeElement : null;
 		// we've got to highjack a few key events so we don't close the dropdown early
 		this._elementRef.nativeElement.addEventListener("keydown", (ev) => {
-			if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target)) {
+			if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target) && this.displayItems.length !== 0) {
 				ev.stopPropagation();
 			} else if (ev.key === "Tab" && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
 				ev.stopPropagation();
