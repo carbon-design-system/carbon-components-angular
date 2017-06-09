@@ -30,8 +30,10 @@ import { TreeItem } from "./tree-item.component";
 					[rootElem]="rootElem"
 					[selectedIcon]="selectedIcon"
 					[indent]="indent"
-					[indentStart]="indentStart"
-					[elemSpacing]="elemSpacing"
+					[isBase]="isBase(items)"
+					[outerPadding]="outerPadding"
+					[iconWidth]="iconWidth"
+					[innerPadding]="innerPadding"
 					(select)="bubbleSelect($event)">
 				</cdl-tree-item>
 			</li>
@@ -43,17 +45,25 @@ export class TreeWrapper {
 	@Input() isOpen = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent = 1;
-	@Input() indentStart = 0;
+	@Input() indent = 0;
 	@Input() rootElem: any = null;
 	@Input() selectedIcon = true;
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
-	@Input() elemSpacing = 40;
+	@Input() outerPadding = 20; // padding from left edge
+	@Input() iconWidth = 16;
+	@Input() innerPadding = 10; // padding between icon and content
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	bubbleSelect(evt) {
+	public isBase(items) {
+		if (items.find(item => item.items)) {
+			return false;
+		}
+		return true;
+	}
+
+	public bubbleSelect(evt) {
 		this.select.emit(evt);
 	}
 }

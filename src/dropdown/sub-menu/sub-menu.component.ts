@@ -41,6 +41,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
+	public size: "sm" | "default" | "lg" = "default";
 	private listList: HTMLElement[];
 	private flatList: Array<ListItem> = [];
 	private index = -1;

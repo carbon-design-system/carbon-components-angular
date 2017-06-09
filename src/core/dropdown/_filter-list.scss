@@ -1,6 +1,23 @@
 &.size-sm .dropdown-filter-search {
+	.search-icon {
+		top: 13px;
+		.icon {
+			height: 14px;
+			width: 14px;
+		}
+	}
 	.input-field {
-		height: 30px;
+		height: 20px;
+		font-size: 12px;
+	}
+	.search-cancel {
+		top: 12px;
+		height: 16px;
+		width: 16px;
+		.icon {
+			height: 14px;
+			width: 14px;
+		}
 	}
 }
 
@@ -35,7 +52,10 @@
 		position: absolute;
 	    top: 17px;
 	    left: 22px;
-		fill: color("gray", 50);
+		.icon {
+			width: 16px;
+			height: 16px;
+		}
 	}
 	.input-field {
 		padding: 0 40px;
@@ -56,10 +76,13 @@
 		padding: 0;
 		border: 1px solid transparent;
 		opacity: 0;
-		fill: color("gray", 50);
 		&:focus, &:hover {
 			border: 1px solid color("gray", 50);
 			opacity: 1;
+		}
+		.icon {
+			width: 16px;
+			height: 16px;
 		}
 	}
 }

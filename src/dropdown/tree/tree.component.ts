@@ -20,9 +20,11 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			[items]="items"
 			[listTpl]="listTpl"
 			[selectedIcon]="selectedIcon"
-			[elemSpacing]="elemSpacing"
 			[label]="label"
 			[role]="role"
+			[outerPadding]="outerPadding"
+			[iconWidth]="iconWidth"
+			[innerPadding]="innerPadding"
 			(select)="onClick($event)">
 		</cdl-tree-wrapper>
 	`,
@@ -39,12 +41,26 @@ export class DropdownTree implements AbstractDropdownView {
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
+	public size: "sm" | "default" | "lg" = "default";
+	public outerPadding = 10; // padding from left edge
+	public iconWidth = 16;
+	public innerPadding = 10; // padding between icon and content
+
 	private listList: HTMLElement[];
 	private flatList: Array<ListItem> = [];
 	private index = -1;
 	private focusJump;
 
 	constructor(public _elementRef: ElementRef) {}
+
+	ngOnInit() {
+		if (this.size === "lg") {
+			this.outerPadding = 20;
+		}
+		if (this.size === "sm") {
+			this.iconWidth = 14;
+		}
+	}
 
 	ngOnChanges(changes) {
 		if (changes.items) {

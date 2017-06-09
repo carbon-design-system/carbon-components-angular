@@ -37,13 +37,11 @@ import { DropdownList } from "./dropdown-list.component";
 		<div class="dropdown-filter-search size-md">
 			<div class="search-icon">
 				<svg
+					class="icon"
 					xmlns="http://www.w3.org/2000/svg"
-					width="16px"
-					height="16px"
 					viewBox="0 0 16 16">
 					<g>
 						<path
-							fill="#949494"
 							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
 							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
 							S8.8,11,6,11z"/>
@@ -51,7 +49,6 @@ import { DropdownList } from "./dropdown-list.component";
 							x="12"
 							y="10.2"
 							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
-							fill="#949494"
 							width="2"
 							height="5.7"/>
 					</g>
@@ -73,12 +70,10 @@ import { DropdownList } from "./dropdown-list.component";
 				aria-label="cancel"
 				(click)="clearFilter()">
 				<svg
+					class="icon"
 					xmlns="http://www.w3.org/2000/svg"
-					width="16px"
-					height="16px"
 					viewBox="0 0 16 16">
 					<polygon
-						fill="#959595"
 						points="14.5,2.6 13.4,1.5
 						8,6.9 2.6,1.5
 						1.5,2.6 6.9,8
@@ -132,6 +127,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	@ViewChild("selectedOnly") selectedOnly;
 	@ViewChild("list") list;
 	@ViewChild("filter") filter;
+	public size: "sm" | "default" | "lg" = "default";
 	public filterNative;
 	public selectedOnlyNative;
 	public disableSelectedOnly = true;
