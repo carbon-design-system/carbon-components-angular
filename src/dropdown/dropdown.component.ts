@@ -128,9 +128,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	ngAfterViewInit() {
 		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 		document.addEventListener("keydown", (ev) => {
-			console.log(this.menuIsClosed, ev.key);
 			if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
-				console.log("tab");
 				this.closeMenu();
 			}
 		});
