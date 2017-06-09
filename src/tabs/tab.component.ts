@@ -5,11 +5,17 @@ let nextId = 0;
 @Component({
 	selector: "cdl-tab",
 	template: `
-		<div *ngIf="active">
+		<div
+			role="tabpanel"
+			*ngIf="active"
+			[attr.aria-labelledby]="id + '-header'">
 			<ng-content></ng-content>
 		</div>
 	 `,
-	styleUrls: ["./tabs.component.scss"]
+	styleUrls: ["./tabs.component.scss"],
+	host: {
+		"[attr.id]": "id"
+	}
 })
 export class Tab implements OnInit {
 	@Input() heading: string | TemplateRef<any>;
