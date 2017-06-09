@@ -127,6 +127,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngAfterViewInit() {
 		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+		document.addEventListener("keydown", (ev) => {
+			console.log(this.menuIsClosed, ev.key);
+			if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+				console.log("tab");
+				this.closeMenu();
+			}
+		});
 	}
 
 	writeValue(value: any) {
@@ -154,42 +161,42 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
-	onKeyDown(evt: KeyboardEvent) {
-		if (evt.key === "Escape" && !this.menuIsClosed) {
-			evt.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+	onKeyDown(ev: KeyboardEvent) {
+		if (ev.key === "Escape" && !this.menuIsClosed) {
+			ev.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (evt.key === "Escape" || (evt.key === "ArrowUp" && evt.altKey)) {
-			evt.preventDefault();
+		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
+			ev.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (evt.key === "ArrowDown" && evt.altKey) {
-			evt.preventDefault();
+		} else if (ev.key === "ArrowDown" && ev.altKey) {
+			ev.preventDefault();
 			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && evt.key === "Tab" && this.dropdown.contains(evt.target as Node)) {
+		if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
 			this.closeMenu();
 		}
 
-		if (!this.menuIsClosed && evt.key === "Tab" && evt.shiftKey) {
+		if (!this.menuIsClosed && ev.key === "Tab" && ev.shiftKey) {
 			this.closeMenu();
 		}
 
 		if (this.type === "multi") { return; }
 
 		if (this.menuIsClosed) {
-			this.closedDropdownNavigation(evt);
+			this.closedDropdownNavigation(ev);
 		}
 	}
 
-	closedDropdownNavigation(evt) {
-		if (evt.key === "ArrowDown") {
-			evt.preventDefault();
+	closedDropdownNavigation(ev) {
+		if (ev.key === "ArrowDown") {
+			ev.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
-		} else if (evt.key === "ArrowUp") {
-			evt.preventDefault();
+		} else if (ev.key === "ArrowUp") {
+			ev.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
 			if (item) { item.selected = true; }
