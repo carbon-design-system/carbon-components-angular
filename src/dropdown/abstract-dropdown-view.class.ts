@@ -5,6 +5,7 @@ export class AbstractDropdownView {
 	@Input() items: Array<ListItem>;
 	@Output() select: EventEmitter<Object>;
 	public type: "single" | "multi" = "single";
+	public size: "sm" | "default" | "lg" = "default";
 	getNextItem(): ListItem { return; }
 	getNextElement(): HTMLElement { return; }
 	getPrevItem(): ListItem { return; }

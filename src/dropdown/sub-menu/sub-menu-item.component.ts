@@ -16,7 +16,8 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
 				selected: listItem.selected,
-				disabled: listItem.disabled
+				disabled: listItem.disabled,
+				'has-items': !!listItem.items
 			}"
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
@@ -28,12 +29,10 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			<div class="sub-menu-item">
 				<svg
 					*ngIf="!!listItem.items"
-					class="arrow"
+					class="arrow icon"
 					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
 					viewBox="0 0 16 16">
-					<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+					<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 				</svg>
 				<span *ngIf="!listTpl">{{listItem.content}}</span>
 				<ng-template

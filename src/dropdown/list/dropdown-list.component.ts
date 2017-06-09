@@ -58,6 +58,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@ViewChild("list") list: ElementRef;
 	@Input() type: "single" | "multi" = "single";
+	public size: "sm" | "default" | "lg" = "default";
 	protected index = -1;
 	protected listList: HTMLElement[];
 	private focusJump;

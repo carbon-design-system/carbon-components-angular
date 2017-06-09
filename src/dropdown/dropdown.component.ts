@@ -106,6 +106,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngAfterContentInit() {
 		this.view.type = this.type;
+		this.view.size = this.size;
 		this.view.select.subscribe(evt => {
 			if (this.type === "single") {
 				this.closeMenu();
