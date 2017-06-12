@@ -2,24 +2,24 @@
 
 import { TestBed } from "@angular/core/testing";
 import { HttpModule } from "@angular/http";
-import { Glyphicon } from "./glyphicon.component";
-import { IconService } from "./glyphicon.service";
+import { Icon } from "./icon.component";
+import { IconService } from "./icon.service";
 
-describe("Glyphicon", () => {
+describe("Icon", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Glyphicon],
+			declarations: [Icon],
 			providers: [IconService],
 			imports: [HttpModule]
 		});
 	});
 
 	xit("should work", () => {
-		let fixture = TestBed.createComponent(Glyphicon);
+		let fixture = TestBed.createComponent(Icon);
 		let iconService = fixture.debugElement.injector.get(IconService);
 		let fakeicon = `<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"></svg>`;
 		let spy = spyOn(iconService, "getIcon").and.returnValue(Promise.resolve(fakeicon));
-		expect(fixture.componentInstance instanceof Glyphicon).toBe(true);
+		expect(fixture.componentInstance instanceof Icon).toBe(true);
 	});
 
 	xit("should return the correct sizes", () => {

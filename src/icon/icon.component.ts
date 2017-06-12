@@ -4,14 +4,14 @@ import {
 	OnInit,
 	Input
 } from "@angular/core";
-import { IconService } from "./glyphicon.service";
+import { IconService } from "./icon.service";
 
 @Component({
-	selector: "cdl-glyphicon",
+	selector: "cdl-icon",
 	template: `<span
-					class="cdl-glyphicon"
 					[ngStyle]="{width: iconSize + 'px', height: iconSize + 'px'}">
 					<svg
+						class="icon"
 						[attr.width]="iconSize"
 						[attr.height]="iconSize">
 						<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
@@ -21,12 +21,11 @@ import { IconService } from "./glyphicon.service";
 		:host {
 			vertical-align: middle;
 			display: inline-block;
-			fill: #959494;
 		}
 	`],
 	providers: [IconService]
 })
-export class Glyphicon implements OnChanges {
+export class Icon implements OnChanges {
 	public iconSize: string;
 	@Input() icon = "";
 	@Input() size = "sm";

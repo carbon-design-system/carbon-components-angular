@@ -6,18 +6,18 @@ import { TabHeaders } from  "./tab-headers.component";
 @Component({
 	selector: "cdl-tabs",
 	template: `
-			<cdl-tab-headers *ngIf="!tabsPosition || tabsPosition === 'top'" [tabs]="tabs"></cdl-tab-headers>
+			<cdl-tab-headers *ngIf="position === 'top'" [tabs]="tabs"></cdl-tab-headers>
 			<div class="cdl-tabs-content">
 				<ng-content></ng-content>
 			</div>
-			<cdl-tab-headers *ngIf="tabsPosition === 'bottom'" [tabs]="tabs"></cdl-tab-headers>
+			<cdl-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></cdl-tab-headers>
 	 `,
 	styleUrls: ["./tabs.component.scss"]
 })
 export class Tabs implements AfterContentInit {
 	@ContentChildren(Tab) tabs: QueryList<Tab>;
 
-	@Input() tabsPosition: "top" | "bottom";
+	@Input() position: "top" | "bottom" = "top";
 
 	ngAfterContentInit() {
 		let active = false;

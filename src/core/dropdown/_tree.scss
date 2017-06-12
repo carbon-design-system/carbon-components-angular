@@ -7,11 +7,17 @@
 	.arrow {
 		width: 14px;
 		height: 14px;
+		top: 3px;
 	}
 }
 
-&.size-lg .tree .item-wrapper .item {
-    height: $dropdown-height-lg;
+&.size-lg .tree .item-wrapper {
+	.item {
+		height: $dropdown-height-lg;
+	}
+	.arrow {
+		top: 12px;
+	}
 }
 .tree{
     &, ul{
@@ -42,6 +48,7 @@
             transition: transform 0.1s linear;
 			position: absolute;
 			left: 0;
+			top: 7px;
 			width: 16px;
 			height: 16px;
         }

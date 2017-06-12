@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 		<h1>Side Nav Demo</h1>
 		<div style="position: relative; height: 600px; margin-bottom: 50px;">
 			<ng-template #listTpl let-item="item">
-				<cdl-glyphicon *ngIf="item.icon" icon="{{item.icon}}" size="md"></cdl-glyphicon>
+				<cdl-icon *ngIf="item.icon" icon="{{item.icon}}" size="md"></cdl-icon>
 				{{item.content}}
 			</ng-template>
 
@@ -24,26 +24,26 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 			<cdl-side-nav [open]="sideNavOpen">
 				<cdl-side-nav-item routerLink="/table">
-					<cdl-glyphicon
+					<cdl-icon
 						class="side-nav-glyph"
 						icon="lightbulb"
 						size="md">
-					</cdl-glyphicon>
+					</cdl-icon>
 					<span class="side-nav-item">Understand</span>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
-					<cdl-glyphicon
+					<cdl-icon
 						class="side-nav-glyph"
 						icon="gears"
 						size="md">
-					</cdl-glyphicon>
+					</cdl-icon>
 					<span class="side-nav-item">More</span>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
+						<cdl-icon
 							class="side-nav-glyph"
 							icon="active_work"
 							size="md">
-						</cdl-glyphicon>
+						</cdl-icon>
 						<span class="side-nav-item">Some long content here</span>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item>
@@ -75,11 +75,11 @@ import { Component, ViewEncapsulation } from "@angular/core";
 						<span class="side-nav-item">To show how ellipsis gets activated</span>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
+						<cdl-icon
 							class="side-nav-glyph"
 							icon="analyze"
 							size="md">
-						</cdl-glyphicon>
+						</cdl-icon>
 						<span class="side-nav-item">And this is how ellipsis happens</span>
 						<div class="side-nav-pane-sub-template">
 							<cdl-side-nav-pane-title>And this is how ellipsis happens</cdl-side-nav-pane-title>
@@ -91,11 +91,11 @@ import { Component, ViewEncapsulation } from "@angular/core";
 						</div>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
+						<cdl-icon
 							class="side-nav-glyph"
 							icon="attributes"
 							size="md">
-						</cdl-glyphicon>
+						</cdl-icon>
 						<span class="side-nav-item">And here</span>
 						<div class="side-nav-pane-sub-template">
 							<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
@@ -112,18 +112,18 @@ import { Component, ViewEncapsulation } from "@angular/core";
 		<div style="position: relative; height: 600px; padding-top: 50px;">
 			<cdl-side-nav [open]="sideNavOpen">
 				<cdl-side-nav-item selected="true">
-					<cdl-glyphicon
+					<cdl-icon
 						class="side-nav-glyph"
 						icon="gears"
 						size="md">
-					</cdl-glyphicon>
+					</cdl-icon>
 					<span class="side-nav-item">More</span>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
+						<cdl-icon
 							class="side-nav-glyph"
 							icon="active_work"
 							size="md">
-						</cdl-glyphicon>
+						</cdl-icon>
 						<span class="side-nav-item">Some long content here</span>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item selected="true">
@@ -139,11 +139,11 @@ import { Component, ViewEncapsulation } from "@angular/core";
 					</cdl-side-nav-item>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
-					<cdl-glyphicon
+					<cdl-icon
 						class="side-nav-glyph"
 						icon="gear"
 						size="md">
-					</cdl-glyphicon>
+					</cdl-icon>
 					<span class="side-nav-item">Gear Here</span>
 				</cdl-side-nav-item>
 			</cdl-side-nav>
