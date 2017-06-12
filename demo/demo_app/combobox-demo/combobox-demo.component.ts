@@ -4,9 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	selector: "combobox-demo",
 	template: `
 		<h1>Combobox demo</h1>
-		<cdl-combo-box></cdl-combo-box>
-		<br>
-		<cdl-pill-input></cdl-pill-input>
+		<cdl-pill-input [pills]="demoItems2" type="multi"></cdl-pill-input>
 		<br>
 		<cdl-dropdown-button></cdl-dropdown-button>
 		<br>
@@ -62,6 +60,25 @@ export class ComboboxDemo {
 		{
 			content: "Digital",
 			selected: false
+		}
+	];
+
+	demoItems2 = [
+		{
+			content: "Abacus",
+			selected: true
+		},
+		{
+			content: "Byte",
+			selected: true,
+		},
+		{
+			content: "Cathode",
+			selected: true
+		},
+		{
+			content: "Digital",
+			selected: true
 		}
 	];
 

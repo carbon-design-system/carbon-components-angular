@@ -4,8 +4,9 @@
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	margin-right: 5px;
 	margin-bottom: 10px;
+	margin-left: -3px; // there's some weird ghost margins, this fixes that
+    margin-right: -4px;
 
 	span {
 		height: 100%;
@@ -90,8 +91,8 @@
 
 .combo-input {
 	max-width: 100%;
-	min-width: 1px;
-	margin-left: 5px;
+	min-width: 10px;
+	padding-left: 2px; // so the cursor isn't right up agains the pill
 	display: inline-block;
 	&:first-child {
 		margin-left: 0;

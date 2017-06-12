@@ -22,7 +22,9 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			[ngClass]="{
 				focus: focus
 			}"
-			(click)="focusInput()"
+			(click)="focusInput($event)"
+			(focus)="focusInput($event)"
+			tabindex="0"
 			[ngStyle]="{
 				'height.px': moreShown?expandedHeight:null
 			}">
@@ -35,18 +37,31 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					style="line-height: 20px; pointer-events: none;">
 					{{ placeholder }}
 				</span>
-				<cdl-pill
-					*ngFor="let pill of pills"
-					[item]="pill">
-					{{ pill.content }}
-				</cdl-pill>
+				<span *ngFor="let pill of pills; let last = last">
+					<cdl-pill
+						[item]="pill">
+						{{ pill.content }}
+					</cdl-pill>
+					<div
+						#comboInput
+						*ngIf="!last"
+						style="line-height: 20px;"
+						class="combo-input"
+						contenteditable
+						(focus)="focus = true"
+						(blur)="onBlur($event)"
+						(keydown)="onKeydown($event)"
+						(keyup)="onKeyup($event)">
+					</div>
+				</span>
 				<div
 					#comboInput
+					*ngIf="!last"
 					style="line-height: 20px;"
 					class="combo-input"
 					contenteditable
 					(focus)="focus = true"
-					(blur)="onBlur()"
+					(blur)="onBlur($event)"
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">
 				</div>
@@ -64,7 +79,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					class="combo-input"
 					contenteditable
 					(focus)="focus = true"
-					(blur)="onBlur()"
+					(blur)="onBlur($event)"
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">
 				</div>
@@ -96,7 +111,7 @@ export class PillInput {
 	@Output() removePills = new EventEmitter();
 	@Output() search = new EventEmitter();
 	@ViewChild("pillWrapper") pillWrapper;
-	@ViewChild("comboInput") comboInput;
+	@ViewChildren("comboInput") comboInputs: QueryList<any>;
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
 
 	constructor(public _elementRef: ElementRef) {}
@@ -133,10 +148,15 @@ export class PillInput {
 			}
 		}
 		// collapse input on outside click
-		document.addEventListener("click", (ev) => {
+		document.addEventListener("click", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
 				this.focus = false;
 				this.moreShown = false;
+			}
+		});
+		document.addEventListener("keydown", ev => {// ??
+			if (!this._elementRef.nativeElement.contains(ev.target)) {
+				this.focus = false;
 			}
 		});
 	}
@@ -151,43 +171,68 @@ export class PillInput {
 		return false;
 	}
 
-	public focusInput() {
+	public focusInput(ev) {
+		console.log(ev);
 		if (this.numberMore > 0) {
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight + 10;
 			this.moreShown = true;
-			this._elementRef.nativeElement.querySelector(".combo-input").focus();
-		} else {
-			this._elementRef.nativeElement.querySelector(".combo-input").focus();
 		}
-		if (this.getInputText()) {
-			let selectionRange = document.createRange();
+		if (this.comboInputs.find(input => input.nativeElement === ev.target)) {
+			this.clearInputText(ev.target);
+			this.setSelection(ev.target);
+		} else if (this.getInputText()) {
+			this.comboInputs.forEach(input => {
+				if (input.nativeElement.textContent.trim() !== "") {
+					this.setSelection(input.nativeElement);
+				}
+			});
+		} else {
+			this.setSelection(this.comboInputs.last.nativeElement);
+		}
+	}
+
+	private setSelection(target) {
+		let selectionRange = document.createRange();
 			let selection = window.getSelection();
-			selectionRange.selectNodeContents(this.comboInput.nativeElement);
+			selectionRange.selectNodeContents(target);
 			selection.removeAllRanges();
 			selection.addRange(selectionRange);
-		} else {
-			this.comboInput.nativeElement.textContent = "";
-		}
 	}
 
 	public showMore(ev) {
 		ev.stopPropagation();
 		ev.preventDefault();
-		// + 10 to accommodate weird heights, and non-actioned text
-		// if we clear when we hide/close the dropdown the + 10 can be dropped
 		this.moreShown = !this.moreShown;
 		this.doResize();
 	}
 
 	public doResize() {
 		if (this.moreShown) {
+			// + 10 to accommodate weird heights, and non-actioned text
+			// if we clear when we hide/close the dropdown the + 10 can be dropped
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight + 10;
 		}
 	}
 
-	public getInputText() {
-		if (this.comboInput) {
-			return this.comboInput.nativeElement.textContent.trim();
+	// clears the comboInputs
+	public clearInputText(toSkip = null) {
+		if (this.comboInputs) {
+			this.comboInputs.forEach(input => {
+				if (!toSkip || input.nativeElement !== toSkip) {
+					input.nativeElement.textContent = "";
+				}
+			});
+		}
+	}
+
+	// returns the text from an event, the textContent of the first filled comboInput, or an empty string
+	public getInputText(ev = null) {
+		if (ev) {
+			return ev.target.textContent.trim();
+		}
+		if (this.comboInputs) {
+			let text = this.comboInputs.find(input => input.nativeElement.textContent.trim() !== "");
+			return text ? text.nativeElement.textContent.trim() : "";
 		}
 		return "";
 	}
@@ -199,18 +244,17 @@ export class PillInput {
 		} else if (ev.key === "Backspace" && ev.target["textContent"].trim() === "" && !this.empty(this.pills)) {
 			this.pills[this.pills.length - 1].selected = false;
 			this.removePills.emit();
-		} else {
-			// let query = ev.target["textContent"].trim();
-			// if (query !== "") { this.search.emit(query); }
 		}
 	}
 
 	onKeyup(ev: KeyboardEvent) {
-		this.search.emit(this.getInputText());
+		this.clearInputText(ev.target);
+		this.search.emit(this.getInputText(ev));
 	}
 
-	onBlur() {
-		this.focus = false;
-		// this.moreShown = false;
+	onBlur(ev) {
+		if (!this._elementRef.nativeElement.contains(ev.target)) {
+			this.focus = false;
+		}
 	}
 }
