@@ -72,7 +72,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					style="line-height: 20px; pointer-events: none;">
 					{{ placeholder }}
 				</span>
-				<span>{{ displayValue }}</span>
 				<div
 					#comboInput
 					style="line-height: 20px;"
@@ -82,6 +81,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					(blur)="onBlur($event)"
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">
+					{{ displayValue }}
 				</div>
 			</div>
 			<a
