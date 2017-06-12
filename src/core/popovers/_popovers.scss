@@ -111,7 +111,8 @@
 			border: 1px solid rgba(0,0,0,0); // invisible border to compensate shift
 			padding: 3px;
 			margin: 3px 0;
-			height: 24px;
+			height: 20px;
+			display: flex;
 			svg * {
 				fill: color("white", 0);
 			}
