@@ -30,7 +30,6 @@ export class SwitchChange {
 	template: `
 		<div class="switch">
 			<label>
-				<span  class="label"><ng-content></ng-content></span>
 				<input type="checkbox" #inputCheckbox
 					[checked]="checked"
 					[disabled]="disabled"
@@ -45,6 +44,7 @@ export class SwitchChange {
 					(click)="onClick($event)"
 					role="checkbox">
 					<span></span>
+				<span class="label"><ng-content></ng-content></span>
 			</label>
 		</div>
 	`,

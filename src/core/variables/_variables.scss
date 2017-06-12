@@ -87,8 +87,8 @@ $alert-close-margin:		0 0 0 20px !default;
 
 $alert-success-bg:            mix(color("green", 10), color("white", 0), 25%) !default;
 $alert-success-text:          $alert-font-color !default;
-$alert-success-border:        color("green", 40) !default;
-$alert-success-icon:          color("green", 40) !default;
+$alert-success-border:        color("green", 50) !default;
+$alert-success-icon:          color("green", 50) !default;
 
 $alert-info-bg:               mix(color("blue", 10), color("white", 0), 25%) !default;
 $alert-info-text:             $alert-font-color !default;
@@ -122,7 +122,7 @@ $popover-header-height: 	45px !default;
 $popover-header-bg: 		color("blue", 50) !default;
 $popover-title-color: 		color("white", 0) !default;
 
-$popover-content-padding: 	30px 20px !default;
+$popover-content-padding: 	20px !default;
 $popover-arrow-width:		20px !default;
 $popover-arrow-height:		10px !default;
 
@@ -130,7 +130,7 @@ $popover-arrow-height:		10px !default;
 //
 //## Define
 
-$tooltip-padding: 	11px 16px !default;
+$tooltip-padding: 	8px 15px 10px 15px !default;
 $tooltip-border: 	1px solid color("gray", 10) !default;
 $tooltip-max-width: 200px !default;
 $tooltip-min-width: 146px !default;
@@ -149,8 +149,8 @@ $input-field-color:			   color("gray", 60) !default;
 
 $input-field-border-hover: 	   color("gray", 50) !default;
 $input-field-border-focus: 	   color("gray", 50) !default;
-$input-field-border-disabled:  color("gray", 20) !default;
-$input-field-color-disabled:   color("gray", 20) !default;
+$input-field-border-disabled:  color("gray", 50) !default;
+$input-field-color-disabled:   color("gray", 50) !default;
 
 
 // sizes
