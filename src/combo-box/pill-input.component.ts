@@ -34,7 +34,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				<ng-content></ng-content>
 				<span
 					*ngIf="empty(pills) && !focus && !getInputText()"
-					style="line-height: 20px; pointer-events: none;">
+					class="placeholder">
 					{{ placeholder }}
 				</span>
 				<span *ngFor="let pill of pills; let last = last">
@@ -69,7 +69,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			<div *ngIf="type === 'single'">
 				<span
 					*ngIf="!displayValue && !focus && !getInputText()"
-					style="line-height: 20px; pointer-events: none;">
+					class="placeholder">
 					{{ placeholder }}
 				</span>
 				<div
