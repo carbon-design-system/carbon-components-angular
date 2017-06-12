@@ -11,13 +11,9 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<h3>Basic popover</h3>
 	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="left">Popover left</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="top-left">Popover top left</button>
 	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="top">Popover top</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="top-right">Popover top right</button>
 	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="right">Popover right</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="bottom-left">Popover bottom left</button>
 	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="bottom">Popover bottom</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="bottom-right">Popover bottom right</button>
 	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="auto">Popover auto position</button>
 
 	<h3>Popover can be opened or closed manualy</h3>
@@ -82,15 +78,14 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<h3>Popover append to body</h3>
 
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
-		<button class="btn" [cdlPopover]="list" placement="right" title="Select item">Regular popover</button>
+		<button class="btn" [cdlPopover]="customPopover" placement="right" title="Select item">Regular popover</button>
 	</div>
 
 	<br><br>
 
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
 		<button class="btn"
-			[cdlPopover]="list"
-			wrapperClass="popover-content-fullwidth"
+			[cdlPopover]="customPopover"
 			placement="right"
 			title="Select item"
 			[appendToBody]="true">

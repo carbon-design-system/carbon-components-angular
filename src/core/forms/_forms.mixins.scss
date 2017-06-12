@@ -17,10 +17,11 @@
 	    span {
 		    height: $el-size;
 		    cursor: pointer;
-		    display: inline-block;
+		    display: inline-flex;
+			align-items: center;
 			position: relative;
-			top:0;
-			left:0;
+			top: 0;
+			left: 0;
 		    &:before {
 		    	content: '';
 			    width: $el-size;
@@ -78,14 +79,14 @@
 		}
 		&:disabled {
 			+ span {
-				color: color("gray", 20);
+				color: color("gray", 50);
 				cursor: not-allowed;
 				&:before {
-					border-color: color("gray", 20);
+					border-color: color("gray", 50);
 					border-style: dashed;
 				}
 				&:after {
-					border-color: color("gray", 20);
+					border-color: color("gray", 50);
 				}
 			}
 			&:hover {
