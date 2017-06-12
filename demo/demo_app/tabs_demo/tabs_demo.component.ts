@@ -74,9 +74,9 @@ import { Component, OnInit } from "@angular/core";
 		</cdl-tabs>
 	</div>
 
-	<h2>Tabs with custom heading template</h2>
+	<h2>Tabs with custom header template</h2>
 	<ng-template #tabHeading>
-		Hello, ! <button (click)="test()">Click me</button> <cdl-glyphicon icon="alert" size="lg"></cdl-glyphicon>
+		Hello, <button (click)="test()">Click me</button> <cdl-glyphicon icon="alert" size="sm"></cdl-glyphicon>
 	</ng-template>
 	<cdl-tabs>
 		<cdl-tab [heading]="tabHeading">
@@ -97,7 +97,7 @@ import { Component, OnInit } from "@angular/core";
 			<cdl-tab heading='tab1'>
 				tab 1 content
 			</cdl-tab>
-			<cdl-tab heading='tab2'>
+			<cdl-tab heading='tab2 with a long header'>
 				tab 2 content
 			</cdl-tab>
 			<cdl-tab heading='tab3'>
@@ -106,10 +106,10 @@ import { Component, OnInit } from "@angular/core";
 			<cdl-tab heading='tab4'>
 				tab 4content
 			</cdl-tab>
-			<cdl-tab heading='tab5'>
+			<cdl-tab heading='tab5 with a long header'>
 				tab 5 content
 			</cdl-tab>
-			<cdl-tab heading='tab6'>
+			<cdl-tab heading='tab6 with a long header'>
 				tab 6 content
 			</cdl-tab>
 			<cdl-tab heading='tab7'>
@@ -118,7 +118,7 @@ import { Component, OnInit } from "@angular/core";
 			<cdl-tab heading='tab8'>
 				tab 8 content
 			</cdl-tab>
-			<cdl-tab heading='tab9'>
+			<cdl-tab heading='tab9 with a long header'>
 				tab 9 content
 			</cdl-tab>
 			<cdl-tab heading='tab10'>

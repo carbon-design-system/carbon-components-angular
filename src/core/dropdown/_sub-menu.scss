@@ -52,6 +52,11 @@
 		background-color: $submenu-hover-bg;
 	}
 
+	&.has-items.selected {
+		border-left-width: 1px;
+		font-weight: inherit;
+	}
+
 	&.selected {
 		border-left: 2px solid color("blue", 50);
 		color: $submenu-selected-color;
@@ -61,6 +66,8 @@
 	.arrow {
 		position: absolute;
 		right: 10px;
+		height: 16px;
+		width: 16px;
 	}
 
 	.checked {
@@ -79,6 +86,12 @@
 			height: 8px;
 			width: 4px;
 		}
+	}
+}
+&.size-sm .sub-menu-item-wrapper {
+	.arrow {
+		width: 14px;
+		height: 14px;
 	}
 }
 &.size-sm .sub-menu-item {
