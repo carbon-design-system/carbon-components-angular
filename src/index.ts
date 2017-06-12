@@ -4,7 +4,7 @@ export * from "./combo-box/combo-box.module";
 export * from "./common/common.module";
 export * from "./dropdown/dropdown.module";
 export * from "./forms/forms.module";
-export * from "./glyphicon/glyphicon.module";
+export * from "./icon/icon.module";
 export * from "./list-view/list-view.module";
 export * from "./modal/modal.module";
 export * from "./popover/popover.module";

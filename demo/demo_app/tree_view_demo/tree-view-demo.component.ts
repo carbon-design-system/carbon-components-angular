@@ -4,7 +4,7 @@ import { Component, OnInit } from "@angular/core";
 	selector: "tree-view-demo",
 	template: `
 	<h1>Tree View Demo</h1>
-	<ng-template #listTpl let-item="item"><cdl-glyphicon icon="alert" size="md"></cdl-glyphicon> {{item.content}}</ng-template>
+	<ng-template #listTpl let-item="item"><cdl-icon icon="alert" size="md"></cdl-icon> {{item.content}}</ng-template>
 
 	<h3>Default tree view</h3>
 	<cdl-tree-view [items]="demoItems" (select)="onSelect($event)" [label]="'Default Tree View'"></cdl-tree-view>

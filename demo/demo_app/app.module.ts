@@ -14,16 +14,14 @@ import { TranslateModule } from "@ngx-translate/core";
 // demo imports
 import { AlertCustom } from "./alert_demo/alert-demo-custom";
 import { AlertDemo } from "./alert_demo/alert-demo-component";
-// import { CalendarDemo } from "./calendar_demo/calendar-demo.component";
 import { ChartsDemo } from "./charts_demo/charts-demo.component";
 import { CoreDemo } from "./core_demo/core-demo.component";
-// import { DatepickerDemo } from "./datepicker_demo/datepicker-demo.component";
 import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
 import { ErrorModalComponent } from "./modal_demo/error-modal.component";
 import { FormModalComponent } from "./modal_demo/form-modal.component";
 import { DrilldownModalComponent } from "./modal_demo/drilldown-modal.component";
 import { FormsDemo } from "./forms_demo/forms-demo.component";
-import { GlyphiconDemo } from "./glyphicon_demo/glyphicon-demo.component";
+import { IconDemo } from "./icon-demo/icon-demo.component";
 import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
 import { ModalDemo } from "./modal_demo/modal-demo.component";
 import { PopoverDemo } from "./popover_demo/popover-demo.component";
@@ -41,7 +39,7 @@ import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
 import {
 	TableModule,
 	TabsModule,
-	GlyphiconModule,
+	IconModule,
 	IconService,
 	PopoverModule,
 	ListViewModule,
@@ -52,9 +50,7 @@ import {
 	ModalModule,
 	AlertModule,
 	AlertService,
-	// CalendarModule,
 	CDLFormsModule,
-	// DatepickerModule,
 	ChartsModule,
 	ComboBoxModule
 } from "./../../src";
@@ -67,7 +63,7 @@ import {
 		TableDemo,
 		CoreDemo,
 		FormsDemo,
-		GlyphiconDemo,
+		IconDemo,
 		PopoverDemo,
 		TabsDemo,
 		ListViewDemo,
@@ -85,8 +81,6 @@ import {
 		TooltipDemo,
 		AlertDemo,
 		AlertCustom,
-		// CalendarDemo,
-		// DatepickerDemo,
 		ChartsDemo,
 		ComboboxDemo
 	],
@@ -105,7 +99,7 @@ import {
 		HttpModule,
 		TableModule,
 		TabsModule,
-		GlyphiconModule,
+		IconModule,
 		PopoverModule,
 		ListViewModule,
 		TreeViewModule,
@@ -114,9 +108,7 @@ import {
 		SideNavModule,
 		ModalModule,
 		AlertModule,
-		// CalendarModule,
 		CDLFormsModule,
-		// DatepickerModule,
 		ChartsModule,
 		ComboBoxModule,
 		RouterModule.forRoot([
@@ -137,8 +129,8 @@ import {
 				component: FormsDemo
 			},
 			{
-				path: "glyphicon",
-				component: GlyphiconDemo
+				path: "icon",
+				component: IconDemo
 			},
 			{
 				path: "popover",
@@ -180,14 +172,6 @@ import {
 				path: "alert",
 				component: AlertDemo
 			},
-			/*{
-				path: "calendar",
-				component: CalendarDemo
-			},
-			{
-				path: "datepicker",
-				component: DatepickerDemo
-			},*/
 			{
 				path: "charts",
 				component: ChartsDemo

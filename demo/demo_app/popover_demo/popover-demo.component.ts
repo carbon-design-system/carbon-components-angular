@@ -41,7 +41,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		popoverMenu="true"
 		title="Actions"
 		[gap]="13">
-		<cdl-glyphicon icon="dotdotdot_vert" size="16"></cdl-glyphicon>Menu
+		<cdl-icon icon="dotdotdot_vert" size="16"></cdl-icon>Menu
 	</button>
 
 	<h3>Popover filter</h3>

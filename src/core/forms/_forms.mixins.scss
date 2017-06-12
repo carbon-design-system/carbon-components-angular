@@ -25,6 +25,7 @@
 		    &:before {
 		    	content: '';
 			    width: $el-size;
+				padding-left: $el-size - 1; //1px for border
 				margin-right: $label-margin;
 			    display: inline-block;
 			    height: $el-size;
@@ -114,6 +115,7 @@
 				 &:before {
 					 width: $el-sm-width;
 					 height: $el-sm-height;
+					 padding-left: $el-sm-width - 1; //1px for border
 				 }
 				 &:after {
 					width:$el-selected-sm-width;

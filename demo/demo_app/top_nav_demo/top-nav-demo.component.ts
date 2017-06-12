@@ -38,7 +38,7 @@ import { Component, OnInit} from "@angular/core";
 		<ul class="top-nav-links fr" menu>
 			<li>
 				<a class="top-nav-link-item" href="#">
-					<cdl-glyphicon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-glyphicon>
+					<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
 				</a>
 			</li>
 			<li>
@@ -98,7 +98,7 @@ import { Component, OnInit} from "@angular/core";
 		<ul class="top-nav-links fr" menu>
 			<li>
 				<a class="top-nav-link-item" href="#">
-					<cdl-glyphicon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-glyphicon>
+					<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
 				</a>
 			</li>
 			<li>
