@@ -4,9 +4,9 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 @Component({
 	selector: "dropdown-demo",
 	template: `
-		<h1>Dropdown Demo</h1>
+		<h1>Drop-down Demo</h1>
 
-		<h3>Default dropdown</h3>
+		<h3>Default drop-down</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -25,7 +25,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Multi-select default dropdown</h3>
+		<h3>Multi-select default drop-down</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -48,7 +48,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Search dropdown</h3>
+		<h3>Search drop-down</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -67,7 +67,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Multi-select search dropdown</h3>
+		<h3>Multi-select search drop-down</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -90,21 +90,21 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Dropdown with tree</h3>
+		<h3>Drop-down with tree</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
 				size="sm">
 				<cdl-dropdown-tree
 					[items]="demoItems3"
-					[label]="'Dropdown with Tree view'">
+					[label]="'Drop-down with Tree view'">
 				</cdl-dropdown-tree>
 			</cdl-dropdown>
 			<br><br>
 			<cdl-dropdown placeholder="Select an option">
 				<cdl-dropdown-tree
 					[items]="demoItems3"
-					[label]="'Dropdown with Tree view'">
+					[label]="'Drop-down with Tree view'">
 				</cdl-dropdown-tree>
 			</cdl-dropdown>
 			<br><br>
@@ -113,12 +113,12 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				size="lg">
 				<cdl-dropdown-tree
 					[items]="demoItems3"
-					[label]="'Dropdown with Tree view'">
+					[label]="'Drop-down with Tree view'">
 				</cdl-dropdown-tree>
 			</cdl-dropdown>
 		</div>
 
-		<h3>Dropdown with sub menu</h3>
+		<h3>Drop-down with sub menu</h3>
 		<div style="width: 250px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -140,9 +140,9 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Disabled dropdown</h3>
+		<h3>Disabled drop-down</h3>
 		<cdl-dropdown
-			placeholder="Dropdown 7"
+			placeholder="Drop-down 7"
 			[disabled]="true"
 			(select)="onSelect($event)">
 			<cdl-dropdown-list
@@ -150,7 +150,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
-		<h3>Default dropdown with appendToBody true</h3>
+		<h3>Default drop-down with appendToBody true</h3>
 		<div class="dropdown-appendbody-container" style="height: 150px;
 		border: solid 1px red; overflow: scroll; width: 100%; position: relative;">
 			<div style="width: 300px; display: inline-block">
@@ -181,7 +181,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<div style="width: 100%; height: 300px"></div>
 		</div>
 
-		<h3>Default dropdown (ngmodel)</h3>
+		<h3>Default drop-down (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -192,7 +192,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		</div>
 		<button (click)="reset2()" class="btn">Reset</button>
 
-		<h3>Dropdown with multi-select (ngmodel)</h3>
+		<h3>Drop-down with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
 			<cdl-dropdown
 				placeholder="Select an option"
@@ -204,7 +204,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			{{ dropdown2 | json }}
 		</div>
 
-		<h3>Dropdown with multi-select</h3>
+		<h3>Drop-down with multi-select</h3>
 		<cdl-dropdown
 			placeholder="Select an option"
 			(select)="multidisplay1 = getMultiDisplay($event.item)"
@@ -214,7 +214,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown-list>
 		</cdl-dropdown>
 
-		<h3>Reactive form dropdown</h3>
+		<h3>Reactive form drop-down</h3>
 		<cdl-dropdown
 			placeholder="Select an option"
 			[formControl]="test">
@@ -253,18 +253,18 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<button type="submit" class="btn">submit</button>
 		</form>
 
-		<h3>Default dropdown with custom template</h3>
+		<h3>Default drop-down with custom template</h3>
 		<ng-template #listTpl let-item="item">
-			<cdl-glyphicon
+			<cdl-icon
 				*ngIf="item.selected"
 				icon="Checkbox Selected"
 				size="md">
-			</cdl-glyphicon>
-			<cdl-glyphicon
+			</cdl-icon>
+			<cdl-icon
 				*ngIf="!item.selected"
 				icon="Checkbox Empty"
 				size="md">
-			</cdl-glyphicon>
+			</cdl-icon>
 			{{ item.content }}
 		</ng-template>
 		<div style="width: 400px">
@@ -278,7 +278,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</cdl-dropdown>
 		</div>
 
-		<h3>Dropdown item containers</h3>
+		<h3>Drop-down item containers</h3>
 		<div class="dropdown-wrapper">
 			<div class="dropdown-menu open" style="position: relative;">
 				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
@@ -317,15 +317,15 @@ export class DropdownDemo {
 			selected: false
 		},
 		{
-			content: "But when",
+			content: "Byte",
 			selected: false,
 		},
 		{
-			content: "Can a",
+			content: "Computer",
 			selected: false
 		},
 		{
-			content: "Dog run",
+			content: "Design",
 			selected: false
 		}
 	];
@@ -414,7 +414,7 @@ export class DropdownDemo {
 
 	testForm: FormGroup;
 
-	formitems = [{content: "item one", selected: false}, {content: "item two", selected: false}];
+	formitems = [{content: "Item one", selected: false}, {content: "Item two", selected: false}];
 
 	constructor(private fb: FormBuilder) {
 		let init2 = this.demoItems2[2];
@@ -439,14 +439,14 @@ export class DropdownDemo {
 	reset(model) {
 		console.log(model);
 		this.dropdown3 = [{
-			content: "item one",
+			content: "Item one",
 			selected: true
 		}];
 	}
 
 	reset2() {
 		this.dropdown1 = {
-			content: "item one",
+			content: "Item one",
 			selected: true
 		};
 	}

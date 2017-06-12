@@ -25,6 +25,14 @@ $tabs-margin: 15px;
 		box-shadow: -5px 0px 9px -5px color("gray", 50);
 	}
 
+	.left-arrow {
+		padding-right: 10px;
+		padding-left: 5px;
+	}
+	.right-arrow {
+		padding-right: 5px;
+		padding-left: 10px;
+	}
 	.left-arrow, .right-arrow {
 		display: inline-flex;
 		position: absolute;
@@ -33,7 +41,6 @@ $tabs-margin: 15px;
 		background: color("white", 0);
 		width: 30px;
 		margin: 0;
-		padding: 0 5px;
 		align-items: center;
 
 		svg * {

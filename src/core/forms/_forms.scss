@@ -5,7 +5,7 @@
 
 // label
 
-.label {
+label {
     color: color("gray", 80);
     font-weight: $font-medium;
     &.disabled, .disabled & {
@@ -14,13 +14,13 @@
 }
 
 .label-top {
-    display: block;
-    clear:both;
+    display: flex;
+    clear: both;
     margin-bottom: 10px;
 }
 
 .label-icon {
-	margin-right: 10px;
+	margin-right: 7px;
 }
 
 .label-icon-success {
@@ -37,12 +37,24 @@
 
 // text field
 .input-field {
-	width:100%;
+	width: 100%;
     font-weight: $input-field-font;
     border: $input-field-border;
     color: $input-field-color;
     height: $input-field-height;
     padding: $input-field-padding;
+
+	&.input-field-success {
+		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $alert-success-icon)
+	}
+
+	&.input-field-warning {
+		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $alert-warning-icon)
+	}
+
+	&.input-field-error {
+		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $alert-danger-icon)
+	}
 
     &:hover {
         border-color: $input-field-border-hover;
@@ -50,7 +62,7 @@
 
     &:focus {
         outline:0;
-        @include box-shadow(0 0 0 1px color("white", 0), 0 0 0 2px color("blue", 50))
+        @include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px color("blue", 50))
     }
     &:disabled {
         border-color: $input-field-border-disabled;

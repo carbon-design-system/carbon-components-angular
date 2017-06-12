@@ -14,7 +14,7 @@ import { Modal } from "../../../src";
 					Header text
 				</a>
 				<span *ngIf="drilledin">
-					<cdl-glyphicon icon="chevron_right" size="sm" style="fill: white;"></cdl-glyphicon>
+					<cdl-icon icon="chevron_right" size="sm" style="fill: white;"></cdl-icon>
 					Drilled down
 				</span>
 			</cdl-modal-header>

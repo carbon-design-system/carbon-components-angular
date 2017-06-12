@@ -40,7 +40,7 @@ import { Modal } from "../../../src";
 						<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 					</cdl-dropdown>
 					<br><br>
-					<button class="btn" cdlPopover="Hello there" placement="bottom">Popover bottom</button>
+					<button class="btn" cdlPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<cdl-modal-footer>
 					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Close</button>

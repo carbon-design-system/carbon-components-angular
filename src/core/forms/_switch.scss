@@ -5,11 +5,15 @@
 // needs refactoring
 
 .switch {
-	margin-bottom:$switch-bottom-margin;
+	margin-bottom: $switch-bottom-margin;
 	label {
 		display: inline-block;
-		span{
+		span {
 			vertical-align: middle;
+			&.label {
+				float: left;
+				line-height: 28px;
+			}
 		}
 		input[type=checkbox] {
 			opacity: 0;
@@ -25,7 +29,7 @@
 				padding: $switch-padding;
 				transition: padding 0.3s ease, background 0.3s ease;
 				margin-left: $switch-label-margin;
-				&:hover, &.hover{
+				&:hover, &.hover {
 					box-shadow: inset 0px 0px 0px 2px $switch-bg-color, inset 0px 0px 0px 3px color("white", 0);
 				}
 				&:before {
@@ -47,7 +51,7 @@
 					content: "";
 					display: inline-block;
 					background-color: color("white", 0);
-					border-radius:$switch-border-radius;
+					border-radius: $switch-border-radius;
 				}
 			}
 			&:checked + span {
@@ -60,23 +64,26 @@
 					opacity: 1;
 				}
 			}
-			&:disabled + span, &.disabled + span{
+			&:disabled + span, &.disabled + span {
 				padding-top: 4px; // to fix the button looking stupid (might also be fixed by adding a transparent border)
 				background-color: transparent;
     			cursor: not-allowed;
     			border-style: dashed;
 			    border-width: 1px;
-			    &:hover, &.hover{
+			    &:hover, &.hover {
 			    	box-shadow: none;
 			    }
-				&:after{
+				&:after {
 					background-color: transparent;
 				    border-style: dashed;
 				    border-width: 1px;
 				}
-				&:before{
+				&:before {
 					border-color: $switch-innerbtn-disabled-bg-color;
 				}
+			}
+			&:disabled ~ span, &.disabled ~ span {
+				color: color("gray", 50);
 			}
 		}
 	}
@@ -136,10 +143,10 @@
 			}
 			&:disabled + span, &.disabled + span {
 				background-color: transparent;
-				&:hover, &.hover{
+				&:hover, &.hover {
 			    	box-shadow: none;
 			    }
-				&:before{
+				&:before {
 					border-color: color("white", 0);
 				}
 			}
@@ -155,10 +162,10 @@
 		label{
 			input[type=checkbox] {
 				& + span {
-					padding:3px 5px;
-					border:1px solid  color("black", 100);
+					padding: 3px 5px;
+					border: 1px solid  color("black", 100);
 					&:after {
-						border:1px solid color("black", 100);
+						border: 1px solid color("black", 100);
 					}
 				}
 				&:checked + span{

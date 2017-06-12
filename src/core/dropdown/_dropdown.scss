@@ -38,6 +38,9 @@
 		&.size-sm, .size-sm &{
 			font-size: $dropdown-font-size-sm;
 			height: $dropdown-height-sm;
+			.dropdown-icon {
+				top: 1px;
+			}
 		}
 
 		&.size-lg, .size-lg &{
@@ -45,6 +48,7 @@
 			height:  $dropdown-height-lg;
 			.dropdown-icon {
 				right: 20px;
+				top: 11px;
 			}
 		}
 
@@ -62,6 +66,7 @@
 			-ms-transform: rotate(0deg); /* IE 9 */
 			-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
 			transform: rotate(0deg);
+			top: 6px;
 			// make fancy morph transition
 
 			&.open {

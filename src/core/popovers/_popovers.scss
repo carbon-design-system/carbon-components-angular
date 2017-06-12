@@ -13,7 +13,7 @@
 .popover-menu-button {
 	padding-left: 4px;  // 6px from the dot to the side of the icon + these 4px to get to desired 10px
 	padding-right: 10px;
-	color: color("gray", 60);
+	color: color("gray", 50);
 	font-weight: 300;
 	height: $btn-height - 1px;  // border adds a pixel
 	border-bottom: 1px solid transparent;
@@ -23,11 +23,11 @@
 	}
 
 	&:hover, &.popover-selected {
-		color: color("blue", 40, 10);
-		border-bottom: 1px solid color("blue", 40, 10);
+		color: color("blue", 50);
+		border-bottom: 1px solid color("blue", 50);
 		cdl-glyphicon .cdl-glyphicon {
 			svg * {
-				fill: color("blue", 40, 10);
+				fill: color("blue", 50);
 			}
 		}
 	}
@@ -50,9 +50,10 @@
 				font-size: 13px;
 			}
 			.close-icon {
-				padding: 0;
+				padding: 2px;
 				margin: 0;
 				height: 18px;
+				display: flex;
 			}
 		}
 		.popover-content ul.list-view {
@@ -65,6 +66,7 @@
 				font-size: 13px;
 				margin-bottom: 0;
 				margin-top: 1px;
+				border-left: 3px solid transparent;
 				div {
 					width: 100%;
 					border-top: $listview-border;
@@ -77,8 +79,9 @@
 						top: 2px;
 					}
 				}
-				&:hover {
+				&:hover, &:focus {
 					margin-top: 1px;
+					border-left: 3px solid color("blue", 50);
 					div {
 						border-top: 1px solid transparent;
 					}
@@ -98,7 +101,7 @@
 		background-color: $popover-header-bg;
 		.popover-title {
 			color: $popover-title-color;
-			margin: 5px;
+			margin: 5px 25px 5px 5px;
 			float: left;
 			max-width: 890px;
 			@include text-overflow();
@@ -108,7 +111,8 @@
 			border: 1px solid rgba(0,0,0,0); // invisible border to compensate shift
 			padding: 3px;
 			margin: 3px 0;
-			height: 24px;
+			height: 20px;
+			display: flex;
 			svg * {
 				fill: color("white", 0);
 			}
@@ -279,8 +283,12 @@
 					top: 0;
 					right: 0;
 					line-height: 0;
-					margin: 10px;
+					margin: 8px;  // together with padding it makes 10px from icon
 					border: 1px solid transparent;
+
+					svg * {
+						fill: color("gray", 50);
+					}
 
 					&:hover, &:focus {
 						border: 1px solid color("gray", 50);

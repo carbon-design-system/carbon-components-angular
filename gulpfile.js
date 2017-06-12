@@ -29,35 +29,33 @@ const TSCONFG = require("./tsconfig.json").compilerOptions;
 
 gulp.task("build", ["build:angular", "build:sass", "build:css", "build:font", "build:package"]);
 
-gulp.task("build:angular", () => {
-	return gulp.src(TS_SRC)
+gulp.task("build:angular", _ =>
+	gulp.src(TS_SRC)
 		.pipe(replaceTemplates())
-		// .pipe(ts(TSCONFG))
-		.pipe(gulp.dest(DIST + "/src"))
-});
+		.pipe(gulp.dest(DIST + "/src")));
 
-gulp.task("build:sass", () => {
-	return gulp.src(SASS_SRC)
-		.pipe(gulp.dest(SASS_DIST));
-});
+gulp.task("build:sass", _ =>
+	gulp.src(SASS_SRC)
+		.pipe(gulp.dest(SASS_DIST)));
 
-gulp.task("build:css", () => {
-	return gulp.src("src/core/common.scss")
+gulp.task("build:css", _ =>
+	gulp.src("src/core/common.scss")
 		.pipe(gulpsass())
 		.pipe(concat("neutrino.css"))
-		.pipe(gulp.dest(SASS_DIST));
-});
+		.pipe(gulp.dest(SASS_DIST)));
 
-gulp.task("build:font", () => {
-	return gulp.src(FONT_SRC)
-		.pipe(gulp.dest(`${DIST}/core/fonts`));
-});
+gulp.task("build:font", _ =>
+	gulp.src(FONT_SRC)
+		.pipe(gulp.dest(`${DIST}/core/fonts`)));
 
-gulp.task("build:package", () => {
-	return gulp.src("./package.json")
+gulp.task("build:package", _ =>
+	gulp.src("./package.json")
 		.pipe(version())
-		.pipe(gulp.dest(DIST));
-});
+		.pipe(gulp.dest(DIST)));
+
+gulp.task("demo:fonts", _ =>
+	gulp.src(FONT_SRC)
+		.pipe(gulp.dest(`demo/fonts`)));
 
 function version() {
 	return tap(function(file) {
