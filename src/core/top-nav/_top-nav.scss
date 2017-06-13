@@ -20,6 +20,12 @@
 	svg * {
 		fill: $topnav-color;
 	}
+	.top-nav-search-input {
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid color("white");
+		color: color("white");
+	}
 	.top-nav-link-item {
 		color: $topnav-color;
 		cursor: pointer;

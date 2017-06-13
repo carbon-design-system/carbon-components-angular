@@ -37,9 +37,10 @@ import { Component, OnInit} from "@angular/core";
 		</div>
 		<ul class="top-nav-links fr" menu>
 			<li>
-				<a class="top-nav-link-item" href="#">
+				<input *ngIf="showSearchInput1" type="text" class="top-nav-search-input">
+				<label class="top-nav-link-item" (click)="showSearchInput1 = !showSearchInput1">
 					<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
-				</a>
+				</label>
 			</li>
 			<li>
 				<a class="top-nav-link-item" href="#">
@@ -97,9 +98,10 @@ import { Component, OnInit} from "@angular/core";
 		</ul>
 		<ul class="top-nav-links fr" menu>
 			<li>
-				<a class="top-nav-link-item" href="#">
+				<input *ngIf="showSearchInput2" type="text" class="top-nav-search-input">
+				<label class="top-nav-link-item" (click)="showSearchInput2 = !showSearchInput2">
 					<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
-				</a>
+				</label>
 			</li>
 			<li>
 				<a class="top-nav-link-item">
