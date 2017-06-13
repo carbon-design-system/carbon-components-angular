@@ -23,8 +23,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				focus: focus
 			}"
 			(click)="focusInput($event)"
-			(focus)="focusInput($event)"
-			tabindex="0"
 			[ngStyle]="{
 				'height.px': moreShown?expandedHeight:null
 			}">
@@ -48,8 +46,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						style="line-height: 20px;"
 						class="combo-input"
 						contenteditable
-						(focus)="focus = true"
-						(blur)="onBlur($event)"
 						(keydown)="onKeydown($event)"
 						(keyup)="onKeyup($event)">
 					</div>
@@ -60,8 +56,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					style="line-height: 20px;"
 					class="combo-input"
 					contenteditable
-					(focus)="focus = true"
-					(blur)="onBlur($event)"
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">
 				</div>
@@ -77,8 +71,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					style="line-height: 20px;"
 					class="combo-input"
 					contenteditable
-					(focus)="focus = true"
-					(blur)="onBlur($event)"
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">
 					{{ displayValue }}
@@ -152,11 +144,17 @@ export class PillInput {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
 				this.focus = false;
 				this.moreShown = false;
+			} else {
+				this.focus = true;
 			}
 		});
-		document.addEventListener("keydown", ev => {// ??
+		// keyup here because we want to get the element the event ends on
+		// **not** the element the event starts from (that would be keydown)
+		document.addEventListener("keyup", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
 				this.focus = false;
+			} else {
+				this.focus = true;
 			}
 		});
 	}
@@ -193,10 +191,10 @@ export class PillInput {
 
 	private setSelection(target) {
 		let selectionRange = document.createRange();
-			let selection = window.getSelection();
-			selectionRange.selectNodeContents(target);
-			selection.removeAllRanges();
-			selection.addRange(selectionRange);
+		let selection = window.getSelection();
+		selectionRange.selectNodeContents(target);
+		selection.removeAllRanges();
+		selection.addRange(selectionRange);
 	}
 
 	public showMore(ev) {
@@ -241,7 +239,14 @@ export class PillInput {
 		this.doResize();
 		if (ev.key === "Escape") {
 			this.moreShown = false;
-		} else if (ev.key === "Backspace" && ev.target["textContent"].trim() === "" && !this.empty(this.pills)) {
+		} else if (ev.key === "Backspace" && ev.target["textContent"] === "" && !this.empty(this.pills)) {
+			// _sigh_ this logic will need to be more complex
+			// in theory, this.pills and this.pillInstances and this.comboInputs should line up index wise
+			// which would mean we could findIndex on comboInputs and set the state the same (or same + 1?)
+			// entry in this.pills
+			// there's also the fact that pills are in list order not selected order ...
+			// but I don't think that's a big deal. It feels a little weird, but it's not
+			// really unexpected
 			this.pills[this.pills.length - 1].selected = false;
 			this.removePills.emit();
 		}
@@ -254,7 +259,7 @@ export class PillInput {
 
 	onBlur(ev) {
 		if (!this._elementRef.nativeElement.contains(ev.target)) {
-			this.focus = false;
+			// this.focus = false;
 		}
 	}
 }

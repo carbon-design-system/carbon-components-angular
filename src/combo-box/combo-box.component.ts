@@ -1,4 +1,11 @@
-import { Component, OnInit, ContentChild, Input, HostListener } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	ContentChild,
+	Input,
+	HostListener,
+	ElementRef
+} from "@angular/core";
 import { DropdownButton } from "./dropdown-button.component";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 
@@ -6,7 +13,7 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 	selector: "cdl-combo-box",
 	template: `
 		<cdl-pill-input
-			[pills]="items"
+			[pills]="pills"
 			[placeholder]="placeholder"
 			[displayValue]="selectedValue"
 			[type]="type"
@@ -20,21 +27,24 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 	}
 })
 export class ComboBox {
-	public items = null;
+	public pills = null;
 	public selectedValue = "";
 	private dropdownList = [];
-	private filteredList = [];
+	private dropdown;
 	@Input() placeholder = "";
 	@Input() type: "single" | "multi" = "single";
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
+
+	constructor(private _elementRef: ElementRef) {}
 
 	ngAfterContentInit() {
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe((ev) => {
 				if (this.type === "multi") {
-					this.items = ev;
+					// filter on the initial set because the view set could be filtered differently
+					this.pills = this.dropdownList.filter(x => x.selected);
 				} else {
 					if (ev.item.selected) {
 						this.selectedValue = ev.item.content;
@@ -43,8 +53,14 @@ export class ComboBox {
 					}
 				}
 			});
+			// get a reference to the loaded state of the item list
+			// (the obj refs will stay the same, so we can use that to populate the pills)
 			this.dropdownList = this.view.items;
 		}
+	}
+
+	ngAfterViewInit() {
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -52,10 +68,13 @@ export class ComboBox {
 		if (ev.key === "Escape") {
 			this.dropdownButton.open = false;
 		}
+		if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
+			this.view.getCurrentElement().focus();
+		}
 	}
 
 	public removePills() {
-		this.items = this.items.filter(x => x.selected);
+		this.pills = this.dropdownList.filter(x => x.selected);
 	}
 
 	public doSearch(ev) {
