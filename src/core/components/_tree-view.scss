@@ -1,33 +1,87 @@
 //
 // Treeview
 // --------------------------------------------------
-
-// Base style
-
-
-.tree-view{
+.tree-view {
     &, ul{
         @extend .list-unstyled;
+		li {
+			// border-bottom: 1px solid white;
+			&:last-child {
+				border-bottom: none;
+			}
+		}
     }
     .item-wrapper {
-        border-left:2px solid transparent;
+        border-left: 3px solid transparent;
+		position: relative;
         .item {
-            padding:$treeview-padding $treeview-padding $treeview-padding 0;
-            border-top:$treeview-border;
+            padding-right: 20px;
+            height: 35px;
+			position: relative;
+			display: flex;
+			align-items: center;
+			// border-bottom: 1px solid color("gray", 10);
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				width: 100%;
+				height: 1px;
+				bottom: 0px;
+				left: 0;
+				background: color("gray", 10);
+			}
         }
-        &:hover, &:focus,  &.selected {
-            background-color:$treeview-hover-bg;
-        }
+        &:hover, &:focus {
+			background-color: $treeview-hover-bg;
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				height: 35px;
+				width: 1px;
+				left: -3px; // account for the 3px border
+				top: 0;
+				background: color("blue", 50);
+			}
+		}
+		// &:hover, &:focus {
+		// 	&:after {
+		// 		content: "";
+		// 		display: block;
+		// 		position: absolute;
+		// 		width: calc(100% + 4px);
+		// 		height: 1px;
+		// 		bottom: 0px;
+		// 		left: -4px;
+		// 		background: white;
+		// 		z-index: 1;
+		// 	}
+		// }
         .arrow {
-            margin-left:-25px;
+            margin-left: -25px;
             margin-right: 5px;
             vertical-align: middle;
             transition: transform 0.1s linear;
+			position: absolute;
+			left: 0;
+			top: 9px;
+			width: 16px;
+			height: 16px;
         }
+		&.has-items.selected {
+			border-left-color: transparent;
+			background-color: white;
+			font-weight: inherit;
+			&:hover, &:focus {
+				background-color: $listview-hover-bg;
+			}
+		}
         &.selected {
-            border-left-color:$treeview-selected-border-color;
+            border-left-color: $treeview-selected-border-color;
+			background-color: $treeview-hover-bg;
             font-weight: 700;
-            color:$treeview-selected-color;
+            color: $treeview-selected-color;
             .arrow {
                 transform: rotate(90deg);
             }
@@ -35,8 +89,9 @@
     }
 	&.disabled {
 		&:hover, &:focus {
+			cursor: not-allowed;
 			background: color("white", 0);
-			border-left: 2px solid transparent;
+			border-left: 3px solid transparent;
 		}
 	}
     .checked {
@@ -59,10 +114,8 @@
     }
 	ul {
 		display: none;
-
 		&.open {
 			display: block;
 		}
 	}
-
 }

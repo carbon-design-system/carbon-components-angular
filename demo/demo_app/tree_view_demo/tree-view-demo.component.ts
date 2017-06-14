@@ -4,80 +4,110 @@ import { Component, OnInit } from "@angular/core";
 	selector: "tree-view-demo",
 	template: `
 	<h1>Tree View Demo</h1>
-	<ng-template #listTpl let-item="item"><cdl-icon icon="alert" size="md"></cdl-icon> {{item.content}}</ng-template>
+	<ng-template #listTpl let-item="item">
+		<cdl-icon icon="alert" size="md"></cdl-icon>
+		<span style="margin-left: 5px;">{{item.content}}</span>
+	</ng-template>
 
 	<h3>Default tree view</h3>
-	<cdl-tree-view [items]="demoItems" (select)="onSelect($event)" [label]="'Default Tree View'"></cdl-tree-view>
+	<cdl-tree-view
+		[items]="demoItems"
+		(select)="onSelect($event)"
+		[label]="'Default Tree View'">
+	</cdl-tree-view>
 
 	<h3>Tree view with custom template (Added Icon) with no selected icon</h3>
-	<cdl-tree-view [items]="demoItems1"
-					(select)="onSelect($event)"
-					[listTpl]="listTpl"
-					[selectedIcon]="false"
-					[label]="'Tree view with custom template (Added Icon) with no selected icon'" >
+	<cdl-tree-view
+		[items]="demoItems1"
+		(select)="onSelect($event)"
+		[listTpl]="listTpl"
+		[selectedIcon]="false"
+		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
 	</cdl-tree-view>
-	`
+
+	<h3>Searchable tree view</h3>
+	<div id="demo">
+		<input type="search" id="search" placeholder="Filter">
+		<cdl-tree-view
+			[items]="demoItems"
+			(select)="onSelect($event)"
+			[label]="'Default Tree View'">
+		</cdl-tree-view>
+	</div>
+	`,
+	styles: [
+		`
+			#search {
+				background: #f5f5f5;
+				height: 40px;
+				width: 100%;
+				border: none;
+				padding-left: 40px; // 10px padding + 20px icon
+			}
+			#demo {
+				width: 300px;
+			}
+		`
+	]
 })
 export class TreeViewDemo {
 	private demoItems = [
 		{
-			content: "item one",
+			content: "Item one",
 			selected: false
 		},
 		{
-			content: "item two",
+			content: "Item two",
 			selected: false,
-			subMenu: [
+			items: [
 				{
-					content: "sub item two 1",
+					content: "Sub item two 1",
 					selected: false
 				},
 				{
-					content: "sub item two 2",
+					content: "Sub item two 2",
 					selected: false,
-					subMenu: [
+					items: [
 						{
-							content: "sub item two 1b",
+							content: "Sub item two 1b",
 							selected: false,
 							disabled: true
 						},
 						{
-							content: "sub item two 2b",
+							content: "Sub item two 2b",
 							selected: false,
-
-
 						}
 					]
 				},
 			]
 		},
 		{
-			content: "item three",
+			content: "Item three",
 			selected: false,
 			disabled: true
 		},
 		{
-			content: "item four",
+			content: "Item four",
 			selected: false
 		},
 		{
-			content: "item six",
+			content: "Item six",
 			selected: false,
-			subMenu: [
+			items: [
 				{
-					content: "sub item six 1",
+					content: "Sub item six 1",
 					selected: false
 				},
 				{
-					content: "sub item six 2",
+					content: "Sub item six 2",
 					selected: false,
-					subMenu: [
+					items: [
 						{
-							content: "sub item six 1b",
+							content: "Sub item six 1b",
 							selected: false
 						},
 						{
-							content: "sub item six 2b",
+							content: "Sub item six 2b",
 							selected: false,
 						}
 					]

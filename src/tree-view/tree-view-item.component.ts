@@ -6,7 +6,6 @@ import {
 	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { TreeView } from "./tree-view.component";
 import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
 
 @Component({
@@ -17,26 +16,27 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
 				selected: listItem.selected,
-				disabled: listItem.disabled
+				disabled: listItem.disabled,
+				'has-items': !!listItem.items
 			}"
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
 			role="treeitem"
 			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
+			[attr.aria-expanded]="(!!listItem.items) ? ((listItem.selected) ? true : false) : null"
 			[attr.aria-selected]="listItem.selected">
 			<div
 				class="item"
-				[style.margin-left.px]="(indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent">
+				[style.margin-left.px]="calculateIndent()">
 				<svg
-					*ngIf="!!listItem.subMenu"
-					class="arrow"
+					*ngIf="!!listItem.items"
+					class="arrow icon"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16">
-					<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+					<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 				</svg>
 				<span *ngIf="!listTpl">{{listItem.content}}</span>
 				<ng-template
@@ -44,28 +44,21 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 					[ngOutletContext]="{item: listItem}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
-				<span
-					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
-					class="checked" aria-hidden="true">
-				</span>
 			</div>
 		</div>
-		<cdl-tree-view
-			*ngIf="!!listItem.subMenu"
+		<cdl-tree-view-wrapper
+			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
-			[items]="listItem.subMenu"
+			[items]="listItem.items"
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
 			[parent]="parent"
 			[selectedIcon]="selectedIcon"
 			[rootElem]="rootElem"
 			[indent]="indent+1"
-			[indentStart]="indentStart"
 			[role]="'group'"
-			[label]="listItem"
-			[elemSpacing]="elemSpacing"
-			>
-		</cdl-tree-view>
+			[label]="listItem">
+		</cdl-tree-view-wrapper>
 	`
 })
 export class TreeViewItem {
@@ -76,11 +69,13 @@ export class TreeViewItem {
 	@Input() parentRef = null;
 	@Input() listItem;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent = 1;
+	@Input() indent = 0;
 	@Input() rootElem = null;
 	@Input() selectedIcon = true;
-	@Input() indentStart = 0;
-	@Input() elemSpacing = 40;
+	@Input() isBase = false;
+	@Input() outerPadding = 20; // padding from left edge
+	@Input() iconWidth = 16;
+	@Input() innerPadding = 5; // padding between icon and content
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
@@ -93,6 +88,16 @@ export class TreeViewItem {
 		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
+	}
+
+	calculateIndent() {
+		if (this.isBase) {
+			// same calc, we just drop the icon width from the last item
+			return (this.outerPadding + this.iconWidth + this.innerPadding)
+					+ ((this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
+		}
+		return (this.outerPadding + this.iconWidth + this.innerPadding)
+					+ ((this.iconWidth + this.innerPadding) * this.indent);
 	}
 
 	onClick(evt) {

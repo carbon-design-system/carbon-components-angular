@@ -6,58 +6,87 @@ import {
 	forwardRef,
 	TemplateRef
 } from "@angular/core";
-import { TreeViewItem } from "./tree-view-item.component";
+import { ListItem } from "./../dropdown/list-item.interface";
+import { treetools } from "./../dropdown/dropdowntools";
 
 @Component({
 	selector: "cdl-tree-view",
 	template: `
-		<ul class="tree-view"
-			[class.open]="isOpen"
-			[attr.role]="role"
-			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
-			[attr.aria-label]="label">
-			<li *ngFor="let item of items">
-				<cdl-tree-view-item
-					[listTpl]="listTpl"
-					[listItem]="item"
-					[hasSubMenu]="!!item.subMenu"
-					[parentRef]="parent"
-					[rootElem]="rootElem"
-					[selectedIcon]="selectedIcon"
-					(select)="onClick($event)"
-					[indent]="indent"
-					[indentStart]="indentStart"
-					[elemSpacing]="elemSpacing">
-				</cdl-tree-view-item>
-			</li>
-		</ul>
+		<cdl-tree-view-wrapper
+			[items]="items"
+			[listTpl]="listTpl"
+			[selectedIcon]="selectedIcon"
+			[label]="label"
+			[role]="role"
+			[outerPadding]="outerPadding"
+			[iconWidth]="iconWidth"
+			[innerPadding]="innerPadding"
+			(select)="onClick($event)">
+		</cdl-tree-view-wrapper>
 	`,
 })
 export class TreeView {
-	@Input() items: Array<Object> = [];
-	@Input() isOpen = false;
-	@Input() parent: any = null;
+	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent = 1;
-	@Input() indentStart = 0;
-	@Input() rootElem: any = null;
-	@Input() selectedIcon = true;
-	@Input() role: "tree" | "group" = "tree" ;
+	@Input() selectedIcon = false;
+	@Input() role: "tree" | "group" = "tree";
 	@Input() label: string;
-	@Input() elemSpacing = 40;
+	@Input() type: "single" | "multi" = "single";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	onClick(evt) {
-		let item = evt.item;
+	public outerPadding = 20; // padding from left edge
+	public iconWidth = 16;
+	public innerPadding = 5; // padding between icon and content
 
-		if (!item.disabled) {
-			if (item.subMenu) {
-				item.selected = !item.selected;
+	private flatList: Array<ListItem> = [];
+	private index = -1;
+
+	ngOnChanges(changes) {
+		if (changes.items) {
+			this.items = JSON.parse(JSON.stringify(changes.items.currentValue));
+			this.flatList = [];
+			this.flattenTree(this.items);
+			this.index = this.flatList.findIndex(item => item.selected && !item.items);
+		}
+	}
+
+	flattenTree(items) {
+		for (let item of items) {
+			this.flatList.push(item);
+			if (item.items) {
+				this.flattenTree(item.items);
+			}
+		}
+	}
+
+	getSelected(): ListItem[] {
+		let selected = this.flatList.filter(item => item.selected && !item.items);
+		if (selected.length === 0) {
+			return null;
+		}
+		return selected;
+	}
+
+	onClick({item}) {
+		if (!item.disabled ) {
+			item.selected = !item.selected;
+			this.index = this.flatList.indexOf(item);
+			if (this.type === "single") {
+				let {path} = treetools.find(this.items, item);
+				// reset the selection taking care not to touch our selected item
+				for (let i = 0; i < this.flatList.length; i++) {
+					if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {
+						this.flatList[i].selected = true;
+					} else if (this.flatList[i] !== item) {
+						this.flatList[i].selected = false;
+					}
+				}
+				if (!item.items) {
+					this.select.emit({item});
+				}
 			} else {
-				this.select.emit({
-					item
-				});
+				this.select.emit(this.getSelected());
 			}
 		}
 	}
