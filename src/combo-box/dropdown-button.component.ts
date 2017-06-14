@@ -47,7 +47,7 @@ export class DropdownButton {
 		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 		document.addEventListener("click", (ev) => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
-				this.open = false;
+				// this.open = false;
 			}
 		});
 	}

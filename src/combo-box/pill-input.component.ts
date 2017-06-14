@@ -24,7 +24,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			}"
 			(click)="focusInput($event)"
 			[ngStyle]="{
-				'height.px': moreShown?expandedHeight:null
+				'height.px': expanded?expandedHeight:null
 			}">
 			<div
 				*ngIf="type === 'multi'"
@@ -77,12 +77,12 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				</div>
 			</div>
 			<a
-				*ngIf="!moreShown && numberMore > 0"
+				*ngIf="!expanded && numberMore > 0"
 				class="more"
 				href=""
 				(click)="showMore($event)">{{ numberMore }} more</a>
 			<a
-				*ngIf="moreShown && numberMore > 0"
+				*ngIf="expanded && numberMore > 0"
 				class="more"
 				href=""
 				(click)="showMore($event)">Hide</a>
@@ -93,15 +93,16 @@ import { ListItem } from "./../dropdown/list-item.interface";
 })
 export class PillInput {
 	public focus = false;
-	public moreShown = false;
 	public expandedHeight = 0;
 	public numberMore = 0;
+	@Input() expanded = false;
 	@Input() pills: Array<ListItem> = null;
 	@Input() placeholder = "";
 	@Input() displayValue = "";
 	@Input() type: "single" | "multi" = "single";
-	@Output() removePills = new EventEmitter();
+	@Output() updatePills = new EventEmitter();
 	@Output() search = new EventEmitter();
+	@Output() submit = new EventEmitter();
 	@ViewChild("pillWrapper") pillWrapper;
 	@ViewChildren("comboInput") comboInputs: QueryList<any>;
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
@@ -120,13 +121,16 @@ export class PillInput {
 				}
 				this.pillInstances.forEach(item => {
 					item.remove.subscribe(_ => {
-						this.removePills.emit();
+						this.updatePills.emit();
 						this.doResize();
-						if (this.numberMore === 0) { this.moreShown = false; }
+						if (this.numberMore === 0) { this.expanded = false; }
 					});
 				});
 				this.doResize();
 			}, 0);
+		}
+		if (changes.expanded) {
+			console.log("expanded");
 		}
 	}
 
@@ -143,7 +147,6 @@ export class PillInput {
 		document.addEventListener("click", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
 				this.focus = false;
-				this.moreShown = false;
 			} else {
 				this.focus = true;
 			}
@@ -173,7 +176,7 @@ export class PillInput {
 		console.log(ev);
 		if (this.numberMore > 0) {
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight + 10;
-			this.moreShown = true;
+			this.expanded = true;
 		}
 		if (this.comboInputs.find(input => input.nativeElement === ev.target)) {
 			this.clearInputText(ev.target);
@@ -200,12 +203,12 @@ export class PillInput {
 	public showMore(ev) {
 		ev.stopPropagation();
 		ev.preventDefault();
-		this.moreShown = !this.moreShown;
+		this.expanded = !this.expanded;
 		this.doResize();
 	}
 
 	public doResize() {
-		if (this.moreShown) {
+		if (this.expanded) {
 			// + 10 to accommodate weird heights, and non-actioned text
 			// if we clear when we hide/close the dropdown the + 10 can be dropped
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight + 10;
@@ -238,7 +241,7 @@ export class PillInput {
 	onKeydown(ev: KeyboardEvent) {
 		this.doResize();
 		if (ev.key === "Escape") {
-			this.moreShown = false;
+			this.expanded = false;
 		} else if (ev.key === "Backspace" && ev.target["textContent"] === "" && !this.empty(this.pills)) {
 			// _sigh_ this logic will need to be more complex
 			// in theory, this.pills and this.pillInstances and this.comboInputs should line up index wise
@@ -248,7 +251,13 @@ export class PillInput {
 			// but I don't think that's a big deal. It feels a little weird, but it's not
 			// really unexpected
 			this.pills[this.pills.length - 1].selected = false;
-			this.removePills.emit();
+			this.updatePills.emit();
+		} else if (ev.key === "Enter") {
+			ev.preventDefault();
+			if (this.getInputText()) {
+				this.submit.emit(this.getInputText());
+				this.clearInputText();
+			}
 		}
 	}
 

@@ -11,7 +11,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<br>
 		<cdl-pill [item]="{selected: false}">some text</cdl-pill>
 		<br>
-		<div style="position: relative; height: 120px;">
+		<div style="position: relative;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
 					<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
@@ -20,24 +20,32 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		</div>
 		<br>
 		<div style="width: 330px;">
-			<cdl-combo-box placeholder="Select one">
+			<cdl-combo-box
+				placeholder="Select one"
+				[items]="demoItems1">
 				<cdl-dropdown-button>
-					<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+					<cdl-dropdown-list></cdl-dropdown-list>
 				</cdl-dropdown-button>
 			</cdl-combo-box>
 		</div>
 		<br>
 		<div style="width: 330px;">
-			<cdl-combo-box placeholder="Select many" type="multi">
+			<cdl-combo-box
+				placeholder="Select many"
+				type="multi"
+				(submit)="onSubmit($event)"
+				[items]="demoItems1">
 				<cdl-dropdown-button>
-					<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+					<cdl-dropdown-list></cdl-dropdown-list>
 				</cdl-dropdown-button>
 			</cdl-combo-box>
 		</div>
 		<br>
-		<cdl-combo-box placeholder="Select">
+		<cdl-combo-box
+			placeholder="Select"
+			[items]="demoItems1">
 			<cdl-dropdown-button>
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+				<cdl-dropdown-list></cdl-dropdown-list>
 			</cdl-dropdown-button>
 		</cdl-combo-box>
 	`,
@@ -81,5 +89,11 @@ export class ComboboxDemo {
 			selected: true
 		}
 	];
+
+	onSubmit(ev) {
+		ev.selected = true;
+		this.demoItems1.push(ev);
+		this.demoItems1 = Array.from(this.demoItems1);
+	}
 
 }
