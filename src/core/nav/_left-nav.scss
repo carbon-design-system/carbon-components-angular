@@ -199,3 +199,77 @@
 	position: fixed;
 	top: $topnav-height;
 }
+
+html[dir=rtl], body[dir=rtl] {
+	.left-nav {
+		left: auto;
+		right: -$sidenav-width - 10px;
+		transition: right 0.2s ease;
+
+		.left-nav-container {
+			left: auto;
+			right: 0;
+			transition: right 0.2s ease;
+		}
+
+		// level one
+		.side-nav-item-wrapper {
+			.side-nav-item-button {
+				text-align: right;
+				.side-nav-arrow {
+					right: auto;
+					left: 0;
+					margin-right: 0;
+					margin-left: 15px;
+				}
+				&.selected {
+					&:after {
+						left: auto;
+						right: 0;
+					}
+				}
+			}
+			.side-nav-glyph {
+				left: auto;
+				right: 0;
+			}
+			.side-nav-item {
+				left: auto;
+				right: $sidenav-item-height + 20px;
+			}
+		}
+		.side-nav-sub-item {
+			// level two
+			.side-nav-item-wrapper .side-nav-item-button {
+				.side-nav-arrow {
+					transform: rotate(180deg); //rotate(0deg);
+				}
+			}
+		}
+
+		.side-nav-pane-sub-template {
+			left: auto;
+			right: $sidenav-width;
+		}
+
+		.side-nav-pane-sub-template-visible {
+			right: -$sidenav-width;
+		}
+
+		cdl-side-nav-pane-title {
+			.side-nav-pane-title {
+				text-align: right;
+				padding: 0;
+				padding-left: 15px;
+				.side-nav-arrow {
+					float: right;
+					transform: rotate(0deg); //rotate(180deg);
+				}
+			}
+		}
+
+		&.isOpen {
+			right: 0;
+		}
+	}
+}
