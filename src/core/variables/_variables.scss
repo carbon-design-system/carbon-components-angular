@@ -387,7 +387,11 @@ $topnav-badge-bg-color:  color("purple", 60) !default;
 $topnav-badge-color: $topnav-color !default;
 $topnav-badge-padding: 4px 10px !default;
 $topnav-badge-height: 24px !default;
-$topnav-badge-margin: -2px 0 -2px 20px !default;
+$topnav-badge-margin: 10px 0 10px 0 !default;
+
+// top nav dropdown
+$topnav-dropdown-bg-color: color("blue", 50) !default;
+$topnav-dropdown-color: color("white") !default;
 
 // main title anchor
 $topnav-header-color: $topnav-color !default;

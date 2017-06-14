@@ -34,6 +34,7 @@ import { Component, OnInit} from "@angular/core";
 			<!--<span class="top-nav-link-item top-nav-product-title" href="#">
 				{{topNavTitle}}
 			</span>-->
+			<span class="top-nav-badge">Beta</span>
 		</div>
 		<ul class="top-nav-links fr" menu>
 			<li>
@@ -43,7 +44,9 @@ import { Component, OnInit} from "@angular/core";
 				</label>
 			</li>
 			<li>
-				<a class="top-nav-link-item" href="#">
+				<a class="top-nav-link-item"
+					(click)="showNotifications1 = !showNotifications1"
+					[ngClass]="{'top-nav-link-item-selected': showNotifications1}">
 					<div class="menu-icon menu-icon-only">
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="16" height="16" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
@@ -55,23 +58,36 @@ import { Component, OnInit} from "@angular/core";
 						</svg>
 					</div>
 				</a>
+				<div *ngIf="showNotifications1" class="top-nav-dropdown">
+					There will be a drop down here of sorts.
+				</div>
 			</li>
 			<li>
 				<div class="top-nav-divider"></div>
 			</li>
 			<li>
-				<a class="top-nav-link-item" href="#">
+				<a class="top-nav-link-item"
+					(click)="showUser1 = !showUser1"
+					[ngClass]="{'top-nav-link-item-selected': showUser1}">
 					<div class="menu-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20"><path d="M10 2.9c-2.5 0-4.5 2-4.5 4.5S7.5 12 10 12s4.5-2 4.5-4.5-2-4.6-4.5-4.6zm0 7.9c-1.8 0-3.3-1.5-3.3-3.3S8.2 4.1 10 4.1s3.3 1.5 3.3 3.3-1.5 3.4-3.3 3.4z"/><path d="M10 0C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0zm6 16.4v-1.5c0-1-.9-1.9-2-1.9H6c-1.1 0-2 .9-2 1.9v1.5c-1.7-1.6-2.8-3.9-2.8-6.4 0-4.9 3.9-8.8 8.8-8.8s8.8 3.9 8.8 8.8c0 2.5-1.1 4.8-2.8 6.4z"/></svg>
 					</div>Sam Uncley
 				</a>
+				<div *ngIf="showUser1" class="top-nav-dropdown">
+					There will be a drop down here of sorts.
+				</div>
 			</li>
 			<li>
-				<a class="top-nav-link-item" href="#">
+				<a class="top-nav-link-item"
+					(click)="showHelp1 = !showHelp1"
+					[ngClass]="{'top-nav-link-item-selected': showHelp1}">
 					<div class="menu-icon">
 						<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20"><path class="st0" d="M10 0C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0zm0 18.8c-4.9 0-8.8-3.9-8.8-8.8S5.1 1.2 10 1.2s8.8 3.9 8.8 8.8-3.9 8.8-8.8 8.8z"/><path class="st0" d="M10 3.9c-1.1 0-2 .3-2.7.9-.6.6-1 1.5-1.2 2.6v.1l1.7.2v-.1c.1-.8.4-1.4.8-1.8.4-.3.9-.5 1.4-.5.6 0 1.1.2 1.5.6.4.4.6.9.6 1.4 0 .3-.1.6-.2.8-.1.3-.5.6-.9 1-.5.4-.8.8-1 1-.3.3-.5.7-.6 1-.2.4-.2.8-.2 1.3v.5h1.6v-.1c0-.6 0-.8.1-1.1.1-.2.2-.5.3-.7.1-.2.4-.5.9-.9.7-.6 1.2-1.2 1.4-1.6.2-.4.4-.9.4-1.5 0-.9-.4-1.7-1.1-2.4-.7-.4-1.6-.7-2.8-.7zM9.1 14.4h1.7v1.7H9.1z"/></svg>
 					</div>Help
 				</a>
+				<div *ngIf="showHelp1" class="top-nav-dropdown">
+					There will be a drop down here of sorts.
+				</div>
 			</li>
 		</ul>
 	</cdl-top-nav>
@@ -104,7 +120,9 @@ import { Component, OnInit} from "@angular/core";
 				</label>
 			</li>
 			<li>
-				<a class="top-nav-link-item">
+				<a class="top-nav-link-item"
+					(click)="showNotifications2 = !showNotifications2"
+					[ngClass]="{'top-nav-link-item-selected': showNotifications2}">
 					<div class="menu-icon menu-icon-only">
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="16" height="16" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
@@ -116,23 +134,36 @@ import { Component, OnInit} from "@angular/core";
 						</svg>
 					</div>
 				</a>
+				<div *ngIf="showNotifications2" class="top-nav-dropdown">
+					There will be a drop down here of sorts.
+				</div>
 			</li>
 			<li>
 				<div class="top-nav-divider"></div>
 			</li>
 			<li>
-				<a class="top-nav-link-item">
+				<a class="top-nav-link-item"
+					(click)="showUser2 = !showUser2"
+					[ngClass]="{'top-nav-link-item-selected': showUser2}">
 					<div class="menu-icon">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20"><path d="M10 2.9c-2.5 0-4.5 2-4.5 4.5S7.5 12 10 12s4.5-2 4.5-4.5-2-4.6-4.5-4.6zm0 7.9c-1.8 0-3.3-1.5-3.3-3.3S8.2 4.1 10 4.1s3.3 1.5 3.3 3.3-1.5 3.4-3.3 3.4z"/><path d="M10 0C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0zm6 16.4v-1.5c0-1-.9-1.9-2-1.9H6c-1.1 0-2 .9-2 1.9v1.5c-1.7-1.6-2.8-3.9-2.8-6.4 0-4.9 3.9-8.8 8.8-8.8s8.8 3.9 8.8 8.8c0 2.5-1.1 4.8-2.8 6.4z"/></svg>
 					</div>Sam Uncley
 				</a>
+				<div *ngIf="showUser2" class="top-nav-dropdown">
+					There will be a drop down here of sorts.
+				</div>
 			</li>
 			<li>
-				<a class="top-nav-link-item">
+				<a class="top-nav-link-item"
+					(click)="showHelp2 = !showHelp2"
+					[ngClass]="{'top-nav-link-item-selected': showHelp2}">
 					<div class="menu-icon">
 						<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20"><path class="st0" d="M10 0C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0zm0 18.8c-4.9 0-8.8-3.9-8.8-8.8S5.1 1.2 10 1.2s8.8 3.9 8.8 8.8-3.9 8.8-8.8 8.8z"/><path class="st0" d="M10 3.9c-1.1 0-2 .3-2.7.9-.6.6-1 1.5-1.2 2.6v.1l1.7.2v-.1c.1-.8.4-1.4.8-1.8.4-.3.9-.5 1.4-.5.6 0 1.1.2 1.5.6.4.4.6.9.6 1.4 0 .3-.1.6-.2.8-.1.3-.5.6-.9 1-.5.4-.8.8-1 1-.3.3-.5.7-.6 1-.2.4-.2.8-.2 1.3v.5h1.6v-.1c0-.6 0-.8.1-1.1.1-.2.2-.5.3-.7.1-.2.4-.5.9-.9.7-.6 1.2-1.2 1.4-1.6.2-.4.4-.9.4-1.5 0-.9-.4-1.7-1.1-2.4-.7-.4-1.6-.7-2.8-.7zM9.1 14.4h1.7v1.7H9.1z"/></svg>
 					</div>Help
 				</a>
+				<div *ngIf="showHelp2" class="top-nav-dropdown">
+					There will be a drop down here of sorts.
+				</div>
 			</li>
 		</ul>
 	</cdl-top-nav>
