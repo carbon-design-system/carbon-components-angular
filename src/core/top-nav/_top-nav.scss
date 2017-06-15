@@ -114,7 +114,7 @@
     padding: 0;
 	display: inline-block;
     li {
-		float:left;
+		float: left;
         text-align: center;
         white-space: nowrap;
 		position: relative;
@@ -136,8 +136,47 @@
 }
 
 .a11y .top-nav {
-	border-bottom:1px solid color("black", 100);
+	border-bottom: 1px solid color("black", 100);
 	svg * {
 		fill: color("black", 100);
+	}
+}
+
+
+html[dir=rtl], body[dir=rtl] {
+	.top-nav {
+		left: 0;
+		padding-left: 68px;
+		padding-right: 0;
+
+		.hamburger {
+			float: right;
+		}
+		.top-nav-search-input {
+			margin-right: inherit;
+			margin-left: -3px;
+		}
+		.top-nav-badge {
+			float: right;
+		}
+		.top-nav-ibm {
+			left: 0;
+			right: auto;
+		}
+		.top-nav-dropdown {
+			left: 0;
+			right: auto;
+		}
+	}
+	.top-nav-links {
+		li {
+			float: right;
+		}
+		.menu-icon {
+			margin: $topnav-links-icon-margin-rtl;
+		}
+		.menu-icon-only {
+			margin: 0;
+		}
 	}
 }
