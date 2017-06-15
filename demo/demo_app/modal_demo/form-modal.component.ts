@@ -26,8 +26,9 @@ import { Modal } from "../../../src";
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
 				<div class="modal-body">
 					<div class="form-instructions">{{modalText}}</div>
-					<cdl-label *ngFor="let field of fields" [class.has-error]="form.get(field).touched && !form.get(field).valid">
-						<label class="label label-top">{{field}}</label>
+					<cdl-label *ngFor="let field of fields"
+						[class.has-error]="form.get(field).touched && !form.get(field).valid">
+						<label class="label">{{field}}</label>
 						<input type="text" class="input-field" formControlName="{{field}}"/>
 					</cdl-label>
 
@@ -43,7 +44,7 @@ import { Modal } from "../../../src";
 					<button class="btn" cdlPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<cdl-modal-footer>
-					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Close</button>
+					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Cancel</button>
                     <button class="btn submit-button" type="submit">Submit</button>
 				</cdl-modal-footer>
 			</form>
