@@ -27,9 +27,16 @@ import { Component, OnInit } from "@angular/core";
 
 	<h3>Searchable tree view</h3>
 	<div id="demo">
-		<input type="search" id="search" placeholder="Filter">
+		<div id="search">
+			<cdl-icon icon="search" size="md" id="search-icon"></cdl-icon>
+			<input
+				type="search"
+				id="search-input"
+				placeholder="Filter"
+				(keyup)="search($event)">
+		</div>
 		<cdl-tree-view
-			[items]="demoItems"
+			[items]="displayItems"
 			(select)="onSelect($event)"
 			[label]="'Default Tree View'">
 		</cdl-tree-view>
@@ -38,6 +45,14 @@ import { Component, OnInit } from "@angular/core";
 	styles: [
 		`
 			#search {
+				position: relative;
+			}
+			#search-icon {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}
+			#search-input {
 				background: #f5f5f5;
 				height: 40px;
 				width: 100%;
@@ -51,7 +66,7 @@ import { Component, OnInit } from "@angular/core";
 	]
 })
 export class TreeViewDemo {
-	private demoItems = [
+	demoItems = [
 		{
 			content: "Item one",
 			selected: false
@@ -116,13 +131,67 @@ export class TreeViewDemo {
 		}
 	];
 
-	private demoItems1 = Array.from(this.demoItems, this.clone);
+	demoItems1 = Array.from(this.demoItems, this.clone);
+
+	demoItems2 = Array.from(this.demoItems, this.clone);
+	displayItems = this.demoItems2;
 
 	private clone (el) {
 		return Object.assign({}, el);
 	}
 
+	flattenTree(_items) {
+		let flatList = [];
+		let flattenHelper = items => {
+			for (let item of items) {
+				flatList.push(item);
+				if (item.items) {
+					this.flattenTree(item.items);
+				}
+			}
+		};
+		flattenHelper(_items);
+		return flatList;
+	}
+
+	filter(items, cb) {
+		let filteredList = [];
+		for (let item of items) {
+			if (!item.items && cb(item)) {
+				filteredList.push(Object.assign({}, item));
+			}
+			if (item.items) {
+				let filteredItem = Object.assign({}, item, {
+					items: this.filter(item.items, cb),
+					selected: true
+				});
+				filteredList.push(filteredItem);
+			}
+		}
+		return filteredList;
+	}
+
 	onSelect(ev) {
-		ev.item.selected = !ev.item.selected;
+		// hmm ... for dropdown it made sense to handle all the selection
+		// logic in the component - consumers only care about what's selected
+		// but for tree view ... now we're in a weird place where maybe we want
+		// to do something special ... with dropdown you have to accept what
+		// the dropdown gives you - very limited customization (this is a good thing!)
+		// but with tree view ... it makes more sense to let the consumer handle most things
+		// we can deal with open/closing the tree ... but we still need a way to let consumers add:
+		// popovers, checkboxes (for fully multi select), checkmarks (for partial multi select),
+		// nav links, editable feilds (and related events), other magic ...
+		// the only thing I'm wondering might be worth supporting in the component is filtering
+		// and really just by adding a "filterBy" or "query" input ... though even then I'd
+		// be kinda concerned that we're filtering "correctly"
+		// ev.item.selected = !ev.item.selected;
+	}
+
+	search(ev) {
+		console.log(ev.target.value);
+		// this only does a top level filter
+		// we should demo a nested filter ... and/or provide a nested filter function (in a common/treeTools module)
+		// this.displayItems = this.demoItems2.filter(item => item.content.toLowerCase().includes(ev.target.value.toLowerCase()));
+		this.displayItems = this.filter(this.demoItems2, item => item.content.toLowerCase().includes(ev.target.value.toLowerCase()));
 	}
 }

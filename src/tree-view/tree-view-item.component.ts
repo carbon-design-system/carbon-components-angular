@@ -6,7 +6,7 @@ import {
 	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
+import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../common/a11y.service";
 
 @Component({
 	selector: "cdl-tree-view-item",
@@ -117,23 +117,23 @@ export class TreeViewItem {
 	onKeyDown(ev, item) {
 		if (ev.key === "ArrowUp") {
 			ev.preventDefault();
-
-			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
+			//
 		} else if (ev.key === "ArrowDown") {
 			ev.preventDefault();
+			// if we have items and are open step into the tree
+			if (item.items && item.selected) {
 
-			if (!item.subMenu || !item.selected) {
-				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
-			} else if (item.subMenu && item.selected) {
-				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
+			} else { // otherwise try to move to the next sibling
+
 			}
-		} else if (ev.key === "Enter" || ev.key === " "
-					|| ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
+			// otherwise the event _should_ be picked up by the parent?
+		} else
+		if (ev.key === "Enter"
+			|| ev.key === " "
+			|| ev.key === "ArrowRight"
+			|| ev.key === "ArrowLeft") {
 			ev.preventDefault();
-
-			this.select.emit({
-				item
-			});
+			this.select.emit({item});
 		}
 	}
 }

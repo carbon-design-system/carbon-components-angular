@@ -4,7 +4,9 @@ import {
 	Output,
 	EventEmitter,
 	forwardRef,
-	TemplateRef
+	TemplateRef,
+	HostListener,
+	ElementRef
 } from "@angular/core";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { treetools } from "./../dropdown/dropdowntools";
@@ -42,6 +44,8 @@ export class TreeView {
 	private flatList: Array<ListItem> = [];
 	private index = -1;
 
+	constructor(private _elementRef: ElementRef) {}
+
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.items = JSON.parse(JSON.stringify(changes.items.currentValue));
@@ -68,17 +72,23 @@ export class TreeView {
 		return selected;
 	}
 
+	@HostListener("keydown", ["$event"])
+	onKeyDown(ev) {
+		let visibleItems = this._elementRef.nativeElement.querySelectorAll(".item-wrapper[tabindex='0']");
+		console.log(ev, visibleItems);
+	}
+
 	onClick({item}) {
 		if (!item.disabled ) {
 			item.selected = !item.selected;
 			this.index = this.flatList.indexOf(item);
 			if (this.type === "single") {
 				let {path} = treetools.find(this.items, item);
-				// reset the selection taking care not to touch our selected item
+				// reset the selection taking care not to touch our selected item or items with sub items
 				for (let i = 0; i < this.flatList.length; i++) {
-					if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item) {
+					if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item && !this.flatList[i].items) {
 						this.flatList[i].selected = true;
-					} else if (this.flatList[i] !== item) {
+					} else if (this.flatList[i] !== item && !this.flatList[i].items) {
 						this.flatList[i].selected = false;
 					}
 				}

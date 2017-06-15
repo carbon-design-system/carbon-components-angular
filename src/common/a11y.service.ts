@@ -41,25 +41,32 @@ export function focusNextTree(elem, rootElem = null) {
 	}
 }
 
-export function	focusNextElem(elem, rootElem = null) {
+export function	focusNextElem(elem, parentRef = null) {
 	if (elem) {
 		let nextElem = elem.nextElementSibling;
 
 		if (nextElem) {
 			let focusableElem = nextElem.querySelector("[tabindex='0']");
-
 			if (focusableElem) {
+
+				if (focusableElem.getAttribute("aria-expanded") === "true") {
+					let lastFocElms = nextElem.querySelectorAll("[tabindex='0']");
+					let arrLen = lastFocElms.length - 1;
+					for (let i = arrLen; i >= 0; i--) {
+						if (!!( lastFocElms[i].offsetWidth || lastFocElms[i].offsetHeight ||
+								lastFocElms[i].getClientRects().length)) {
+							focusableElem = lastFocElms[i];
+							break;
+						}
+					}
+				}
 				focusableElem.focus();
 			} else {
-				focusNextElem(nextElem, rootElem);
+				focusNextElem(nextElem, parentRef);
 			}
 		} else {
-			if (rootElem) {
-				let nextRootElem = rootElem.nextElementSibling;
-
-				if (nextRootElem) {
-					focusNextTree(nextRootElem, rootElem);
-				}
+			if (parentRef) {
+				parentRef.querySelector("[tabindex='0']").focus();
 			}
 		}
 	}
