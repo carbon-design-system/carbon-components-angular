@@ -20,7 +20,7 @@
 			position: relative;
 			display: flex;
 			align-items: center;
-			// border-bottom: 1px solid color("gray", 10);
+			cursor: default;
 			&:after {
 				content: "";
 				display: block;
@@ -30,6 +30,12 @@
 				bottom: 0px;
 				left: 0;
 				background: color("gray", 10);
+			}
+			span {
+				text-overflow: ellipsis;
+				max-width: 100%;
+				overflow: hidden;
+				white-space: nowrap;
 			}
         }
         &:hover, &:focus {

@@ -159,11 +159,11 @@ export class SideNavDemo {
 			content: "Understand",
 			selected: false,
 			icon: "alert",
-			subMenu: [
+			items: [
 				{
 					content: "Experience integrations",
 					selected: false,
-					subMenu: [
+					items: [
 						{
 							content: "Experience integrations",
 							selected: false

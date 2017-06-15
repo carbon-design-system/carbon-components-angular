@@ -102,7 +102,7 @@ export class TreeViewDemo {
 			disabled: true
 		},
 		{
-			content: "Item four",
+			content: "Item four which is a seriously long item so we can demo text overflow",
 			selected: false
 		},
 		{
@@ -184,7 +184,7 @@ export class TreeViewDemo {
 		// the only thing I'm wondering might be worth supporting in the component is filtering
 		// and really just by adding a "filterBy" or "query" input ... though even then I'd
 		// be kinda concerned that we're filtering "correctly"
-		// ev.item.selected = !ev.item.selected;
+		ev.item.selected = !ev.item.selected;
 	}
 
 	search(ev) {
