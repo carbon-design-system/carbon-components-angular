@@ -46,7 +46,9 @@
 		}
 	}
     .top-nav-heading {
-        display: inline-block;
+        display: inline-flex;
+		align-items: center;
+		align-content: center;
         padding: $topnav-title-padding;
 		vertical-align: top;
 		span {
