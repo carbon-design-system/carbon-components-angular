@@ -54,10 +54,9 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		<label for="textInput4" class="disabled">Field disabled</label>
 		<input type="text" class="input-field" id="textInput4" disabled>
 	</cdl-label>
-	<br>
 
 	<cdl-label>
-		<label for="textareaText1">Textarea</label>
+		<label for="textareaText1">Text area</label>
 		<textarea [(ngModel)]="textareaText1" class="input-field" id="textareaText1"></textarea>
 	</cdl-label>
 	<p>Text: {{textareaText1}}</p>
@@ -67,19 +66,16 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		<label for="textInput5">Field with success</label>
 		<input type="text" class="input-field input-field-success" id="textInput5">
 	</cdl-label>
-	<br>
 
 	<cdl-label class="ng-invalid ng-touched" labelState="warning">
 		<label for="textInput6">Field with warning</label>
 		<input type="text" class="input-field input-field-warning" id="textInput6">
 	</cdl-label>
-	<br>
 
 	<cdl-label class="ng-invalid ng-touched" labelState="error">
 		<label for="textInput7">Field with error</label>
 		<input type="text" class="input-field input-field-error" id="textInput7">
 	</cdl-label>
-	<br>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]
 })
