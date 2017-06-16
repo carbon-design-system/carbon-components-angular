@@ -46,7 +46,9 @@
 		}
 	}
     .top-nav-heading {
-        display: inline-block;
+        display: inline-flex;
+		align-items: center;
+		align-content: center;
         padding: $topnav-title-padding;
 		vertical-align: top;
 		span {
@@ -64,13 +66,14 @@
 		height: $topnav-badge-height;
 		color: $topnav-badge-color;
 		line-height: inherit;
-		float: left;
+		float: right;
 	}
 	.top-nav-brand {
 		font-size: $topnav-header-font-size;
 		margin: $topnav-header-margin;
 		line-height: inherit;
 		font-weight: $topnav-header-font-family;
+		display: inline-block;
 	}
     .top-nav-ibm {
         padding: $topnav-ibm-logo-padding;
