@@ -15,14 +15,15 @@ import { Component, OnInit } from "@angular/core";
 	<h3>Tree view with custom template</h3>
 	<cdl-tree-view
 		[items]="demoItems1"
-		(select)="onSelect($event)"
+		(select)="expand($event)"
 		[template]="treeTpl"
 		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
 		<ng-template #treeTpl let-item="item">
 			<cdl-checkbox
 				[checked]="item.selected"
 				[indeterminate]="isIndeterminate(item)"
-				(change)="onCheck({item: item})">
+				(change)="onCheck({item: item})"
+				[disabled]="item.disabled">
 				{{item.content}}
 			</cdl-checkbox>
 		</ng-template>
@@ -172,7 +173,7 @@ export class TreeViewDemo {
 			if (item.items) {
 				let filteredItem = Object.assign({}, item, {
 					items: this.filter(item.items, cb),
-					selected: true
+					opened: true
 				});
 				filteredList.push(filteredItem);
 			}
@@ -181,34 +182,17 @@ export class TreeViewDemo {
 	}
 
 	onSelect(ev) {
-		// let setSelect = (items, state) => {
-		// 	items.forEach(item => {
-		// 		item.selected = state;
-		// 		if (item.items) {
-		// 			setSelect(item.items, state);
-		// 		}
-		// 	});
-		// };
-		// let selectAll = items => setSelect(items, true);
-		// let deselectAll = items => setSelect(items, false);
-		// if (ev.item.items) {
-		// 	ev.item.opened = !ev.item.opened;
-		// 	ev.item.selected = !ev.item.selected;
-		// 	if (ev.item.selected) {
-		// 		selectAll(ev.item.items);
-		// 	} else {
-		// 		deselectAll(ev.item.items);
-		// 	}
-		// } else {
-		// 	ev.item.selected = !ev.item.selected;
-		// }
-		// console.log("select", ev.item);
+		if (ev.item.items) {
+			ev.item.opened = !ev.item.opened;
+		} else {
+			ev.item.selected = !ev.item.selected;
+		}
+	}
+
+	expand(ev) {
 		if (ev.item.items) {
 			ev.item.opened = !ev.item.opened;
 		}
-		// else {
-		// 	ev.item.selected = !ev.item.selected;
-		// }
 	}
 
 	onCheck(ev) {
@@ -220,26 +204,40 @@ export class TreeViewDemo {
 				}
 			});
 		};
-		let findParent = (items, toFind) => {
+		let findParents = (items, toFind) => {
 			for (let item of items) {
 				if (item.items && item.items.includes(toFind)) {
-					return item;
+					return [item];
 				} else if (item.items) {
-					return findParent(item.items, toFind);
+					let tmpItem = findParents(item.items, toFind);
+					if (tmpItem) {
+						return [item, ...tmpItem];
+					}
 				}
 			}
 		};
-		let selectAll = items => setSelect(items, true);
-		let deselectAll = items => setSelect(items, false);
+		ev.item.selected = !ev.item.selected;
 		if (ev.item.items) {
-			ev.item.selected = !ev.item.selected;
 			setSelect(ev.item.items, ev.item.selected);
-		} else {
-			ev.item.selected = !ev.item.selected;
 		}
 		// this doesn't matter if only the parents are selectable
-		let parent = findParent(this.demoItems1, ev.item);
-		if (parent && parent.items.every(i => i.selected)) { parent.selected = ev.item.selected; }
+		// in that case use check/blank icons for children
+		// and checkboxes for the parents. Of course, if you have
+		// highly nested trees, a version of this may be useful
+		// also I'm not entirely sure why I have to settimeout this
+		// for it to behave :(
+		setTimeout(() => {
+			let parents = findParents(this.demoItems1, ev.item);
+			if (parents) {
+				parents.forEach(parent => {
+					console.log(parent.items.every(i => { console.log(i.selected); return i.selected; }));
+					if (parent.items.every(i => i.selected)) {
+						console.log(parent);
+						parent.selected = ev.item.selected;
+					}
+				});
+			}
+		}, 0);
 	}
 
 	isIndeterminate(item) {
@@ -262,7 +260,6 @@ export class TreeViewDemo {
 	}
 
 	search(ev) {
-		console.log(ev.target.value);
 		this.displayItems = this.filter(this.demoItems2, item => item.content.toLowerCase().includes(ev.target.value.toLowerCase()));
 	}
 }

@@ -151,7 +151,7 @@ export class TreeViewItem {
 				let next = ev.target.nextElementSibling.querySelector(".item-wrapper");
 				if (next) { next.focus(); }
 			} else { // otherwise try to move to the next sibling
-				let next = exists(exists(ev.target.closest("li"), el => el.nextElementSibling),el => el.querySelector(".item-wrapper"));
+				let next = exists(exists(ev.target.closest("li"), el => el.nextElementSibling), el => el.querySelector(".item-wrapper"));
 				if (next) {
 					next.focus();
 				} else {
