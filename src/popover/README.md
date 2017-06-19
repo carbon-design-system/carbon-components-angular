@@ -91,17 +91,6 @@ Ex:
 </button>
 ```
 
-```css
-.filter-options {
-	padding: 20px 20px 10px 20px;
-	border-bottom: 1px solid color("gray", 10);
-}
-
-.filter-options-buttons {
-	padding: 10px 20px;
-}
-```
-
 # Tooltip directive
 
 class: TooltipDirective (extends PopoverDirective)
