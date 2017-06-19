@@ -55,7 +55,7 @@ gulp.task("build:package", _ =>
 
 gulp.task("demo:fonts", _ =>
 	gulp.src(FONT_SRC)
-		.pipe(gulp.dest(`demo/fonts`)));
+		.pipe(gulp.dest(`./demo/fonts`)));
 
 function version() {
 	return tap(function(file) {
