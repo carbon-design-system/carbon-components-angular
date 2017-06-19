@@ -8,16 +8,16 @@ import {
 	ApplicationRef,
 	ViewContainerRef
 } from "@angular/core";
-
+import { Subscription } from "rxjs/Subscription";
 
 @Injectable()
 export class PopoverService {
+	private popOverSubscription: Subscription;
 
 	public isOpen = false;
 	public componentFactory: ComponentFactory<any>;
 	public onClose: EventEmitter<any> = new EventEmitter();
 	public popoverRef: ComponentRef<any>;
-
 	public viewContainerRef: ViewContainerRef;
 	public injector: Injector;
 
@@ -51,10 +51,12 @@ export class PopoverService {
 			this.onClose = this.popoverRef.instance.close;
 			this.isOpen = true;
 			if (popOverConfig.appendToBody) {
-				window.document.querySelector("body").appendChild(this.popoverRef.location.nativeElement);
+				setTimeout(() => {
+					window.document.querySelector("body").appendChild(this.popoverRef.location.nativeElement);
+				});
 			}
 
-			this.onClose.subscribe((evt) => {
+			this.popOverSubscription = this.onClose.subscribe((evt) => {
 				this.close(evt);
 			});
 
@@ -76,6 +78,10 @@ export class PopoverService {
 			this.popoverRef = null;
 			this.isOpen = false;
 			elementToFocus.focus();
+
+			if (this.popOverSubscription) {
+				this.popOverSubscription.unsubscribe();
+			}
 		}
 	}
 }
