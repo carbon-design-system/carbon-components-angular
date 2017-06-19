@@ -26,7 +26,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
 					[rootElem]="rootElem"
-					[selectedIcon]="selectedIcon"
+					[selected]="item.selected"
 					[indent]="indent"
 					[isBase]="isBase(items)"
 					[outerPadding]="outerPadding"
@@ -45,7 +45,6 @@ export class TreeViewWrapper {
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent = 0;
 	@Input() rootElem: any = null;
-	@Input() selectedIcon = true;
 	@Input() role: "tree" | "group" = "tree" ;
 	@Input() label: string;
 	@Input() outerPadding = 20; // padding from left edge

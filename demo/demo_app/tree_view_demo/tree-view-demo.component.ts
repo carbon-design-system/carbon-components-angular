@@ -4,10 +4,6 @@ import { Component, OnInit } from "@angular/core";
 	selector: "tree-view-demo",
 	template: `
 	<h1>Tree View Demo</h1>
-	<ng-template #listTpl let-item="item">
-		<cdl-icon icon="alert" size="md"></cdl-icon>
-		<span style="margin-left: 5px;">{{item.content}}</span>
-	</ng-template>
 
 	<h3>Default tree view</h3>
 	<cdl-tree-view
@@ -16,13 +12,20 @@ import { Component, OnInit } from "@angular/core";
 		[label]="'Default Tree View'">
 	</cdl-tree-view>
 
-	<h3>Tree view with custom template (Added Icon) with no selected icon</h3>
+	<h3>Tree view with custom template</h3>
 	<cdl-tree-view
 		[items]="demoItems1"
 		(select)="onSelect($event)"
-		[listTpl]="listTpl"
-		[selectedIcon]="false"
+		[template]="treeTpl"
 		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
+		<ng-template #treeTpl let-item="item">
+			<cdl-checkbox
+				[checked]="item.selected"
+				[indeterminate]="isIndeterminate(item)"
+				(change)="onCheck({item: item})">
+				{{item.content}}
+			</cdl-checkbox>
+		</ng-template>
 	</cdl-tree-view>
 
 	<h3>Searchable tree view</h3>
@@ -62,6 +65,9 @@ import { Component, OnInit } from "@angular/core";
 			#demo {
 				width: 300px;
 			}
+			/deep/ cdl-checkbox .checkbox {
+				margin-bottom: 0;
+			}
 		`
 	]
 })
@@ -74,6 +80,7 @@ export class TreeViewDemo {
 		{
 			content: "Item two",
 			selected: false,
+			opened: false,
 			items: [
 				{
 					content: "Sub item two 1",
@@ -82,15 +89,15 @@ export class TreeViewDemo {
 				{
 					content: "Sub item two 2",
 					selected: false,
+					opened: false,
 					items: [
 						{
 							content: "Sub item two 1b",
-							selected: false,
-							disabled: true
+							selected: false
 						},
 						{
 							content: "Sub item two 2b",
-							selected: false,
+							selected: false
 						}
 					]
 				},
@@ -108,6 +115,7 @@ export class TreeViewDemo {
 		{
 			content: "Item six",
 			selected: false,
+			opened: false,
 			items: [
 				{
 					content: "Sub item six 1",
@@ -116,6 +124,7 @@ export class TreeViewDemo {
 				{
 					content: "Sub item six 2",
 					selected: false,
+					opened: false,
 					items: [
 						{
 							content: "Sub item six 1b",
@@ -172,26 +181,88 @@ export class TreeViewDemo {
 	}
 
 	onSelect(ev) {
-		// hmm ... for dropdown it made sense to handle all the selection
-		// logic in the component - consumers only care about what's selected
-		// but for tree view ... now we're in a weird place where maybe we want
-		// to do something special ... with dropdown you have to accept what
-		// the dropdown gives you - very limited customization (this is a good thing!)
-		// but with tree view ... it makes more sense to let the consumer handle most things
-		// we can deal with open/closing the tree ... but we still need a way to let consumers add:
-		// popovers, checkboxes (for fully multi select), checkmarks (for partial multi select),
-		// nav links, editable feilds (and related events), other magic ...
-		// the only thing I'm wondering might be worth supporting in the component is filtering
-		// and really just by adding a "filterBy" or "query" input ... though even then I'd
-		// be kinda concerned that we're filtering "correctly"
-		ev.item.selected = !ev.item.selected;
+		// let setSelect = (items, state) => {
+		// 	items.forEach(item => {
+		// 		item.selected = state;
+		// 		if (item.items) {
+		// 			setSelect(item.items, state);
+		// 		}
+		// 	});
+		// };
+		// let selectAll = items => setSelect(items, true);
+		// let deselectAll = items => setSelect(items, false);
+		// if (ev.item.items) {
+		// 	ev.item.opened = !ev.item.opened;
+		// 	ev.item.selected = !ev.item.selected;
+		// 	if (ev.item.selected) {
+		// 		selectAll(ev.item.items);
+		// 	} else {
+		// 		deselectAll(ev.item.items);
+		// 	}
+		// } else {
+		// 	ev.item.selected = !ev.item.selected;
+		// }
+		// console.log("select", ev.item);
+		if (ev.item.items) {
+			ev.item.opened = !ev.item.opened;
+		}
+		// else {
+		// 	ev.item.selected = !ev.item.selected;
+		// }
+	}
+
+	onCheck(ev) {
+		let setSelect = (items, state) => {
+			items.forEach(item => {
+				item.selected = state;
+				if (item.items) {
+					setSelect(item.items, state);
+				}
+			});
+		};
+		let findParent = (items, toFind) => {
+			for (let item of items) {
+				if (item.items && item.items.includes(toFind)) {
+					return item;
+				} else if (item.items) {
+					return findParent(item.items, toFind);
+				}
+			}
+		};
+		let selectAll = items => setSelect(items, true);
+		let deselectAll = items => setSelect(items, false);
+		if (ev.item.items) {
+			ev.item.selected = !ev.item.selected;
+			setSelect(ev.item.items, ev.item.selected);
+		} else {
+			ev.item.selected = !ev.item.selected;
+		}
+		// this doesn't matter if only the parents are selectable
+		let parent = findParent(this.demoItems1, ev.item);
+		if (parent && parent.items.every(i => i.selected)) { parent.selected = ev.item.selected; }
+	}
+
+	isIndeterminate(item) {
+		if (item.items) {
+			let selected = item.items.filter(i => i.selected);
+			if (selected.length < item.items.length && selected.length > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	isChecked(item) {
+		if (item.items && item.items.every(i => i.selected)) {
+			return true;
+		} else if (!item.items && item.selected) {
+			return true;
+		}
+		return false;
 	}
 
 	search(ev) {
 		console.log(ev.target.value);
-		// this only does a top level filter
-		// we should demo a nested filter ... and/or provide a nested filter function (in a common/treeTools module)
-		// this.displayItems = this.demoItems2.filter(item => item.content.toLowerCase().includes(ev.target.value.toLowerCase()));
 		this.displayItems = this.filter(this.demoItems2, item => item.content.toLowerCase().includes(ev.target.value.toLowerCase()));
 	}
 }

@@ -52,7 +52,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And even longer one here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems"
-								[listTpl]="listTpl">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
@@ -62,7 +62,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems2"
-								[listTpl]="listTpl">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
@@ -83,7 +83,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And this is how ellipsis happens</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems3"
-								[listTpl]="listTpl">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
@@ -98,7 +98,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems4"
-								[listTpl]="listTpl">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
@@ -128,7 +128,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And even longer one here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems"
-								[listTpl]="listTpl">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>

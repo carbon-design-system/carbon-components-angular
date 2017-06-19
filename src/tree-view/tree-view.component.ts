@@ -16,8 +16,7 @@ import { treetools } from "./../dropdown/dropdowntools";
 	template: `
 		<cdl-tree-view-wrapper
 			[items]="items"
-			[listTpl]="listTpl"
-			[selectedIcon]="selectedIcon"
+			[listTpl]="template"
 			[label]="label"
 			[role]="role"
 			[outerPadding]="outerPadding"
@@ -29,8 +28,7 @@ import { treetools } from "./../dropdown/dropdowntools";
 })
 export class TreeView {
 	@Input() items: Array<ListItem> = [];
-	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() selectedIcon = false;
+	@Input() template: string | TemplateRef<any> = "";
 	@Input() role: "tree" | "group" = "tree";
 	@Input() label: string;
 	@Input() type: "single" | "multi" = "single";
@@ -40,6 +38,7 @@ export class TreeView {
 	public outerPadding = 20; // padding from left edge
 	public iconWidth = 16;
 	public innerPadding = 5; // padding between icon and content
+	public selectedIcon = false;
 
 	private flatList: Array<ListItem> = [];
 	private index = -1;
@@ -48,7 +47,7 @@ export class TreeView {
 
 	ngOnChanges(changes) {
 		if (changes.items) {
-			this.items = JSON.parse(JSON.stringify(changes.items.currentValue));
+			// this.items = JSON.parse(JSON.stringify(changes.items.currentValue));
 			this.flatList = [];
 			this.flattenTree(this.items);
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
@@ -75,7 +74,7 @@ export class TreeView {
 	@HostListener("keydown", ["$event"])
 	onKeyDown(ev) {
 		let visibleItems = this._elementRef.nativeElement.querySelectorAll(".item-wrapper[tabindex='0']");
-		console.log(ev, visibleItems);
+		// console.log(ev, visibleItems);
 	}
 
 	onClick({item}) {

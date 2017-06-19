@@ -31,11 +31,15 @@
 				left: 0;
 				background: color("gray", 10);
 			}
-			span {
+			label, .label {
+				font-weight: 200;
+			}
+			span:not(.label) {
 				text-overflow: ellipsis;
 				max-width: 100%;
 				overflow: hidden;
 				white-space: nowrap;
+
 			}
         }
         &:hover, &:focus {
@@ -75,23 +79,30 @@
 			width: 16px;
 			height: 16px;
         }
-		&.has-items.selected {
-			border-left-color: transparent;
-			background-color: white;
-			font-weight: inherit;
-			&:hover, &:focus {
-				background-color: $listview-hover-bg;
-			}
-		}
+		// &.has-items.selected {
+		// 	border-left-color: transparent;
+		// 	background-color: white;
+		// 	font-weight: inherit;
+		// 	&:hover, &:focus {
+		// 		background-color: $listview-hover-bg;
+		// 	}
+		// }
         &.selected {
             border-left-color: $treeview-selected-border-color;
 			background-color: $treeview-hover-bg;
             font-weight: 700;
             color: $treeview-selected-color;
-            .arrow {
+			.item {
+				label, .label {
+					font-weight: 700;
+				}
+			}
+        }
+		&.opened {
+			.arrow {
                 transform: rotate(90deg);
             }
-        }
+		}
     }
 	&.disabled {
 		&:hover, &:focus {
