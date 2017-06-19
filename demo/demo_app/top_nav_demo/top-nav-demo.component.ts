@@ -6,9 +6,9 @@ import { Component, OnInit} from "@angular/core";
 	// disable warning for max-line-length in template because of the svgs
 	// tslint:disable:max-line-length
 	template: `
-	<h1>Top Nav Demo</h1>
+	<h1>Top nav demo</h1>
 
-	<h3>Default Top-nav</h3>
+	<h3>Default top nav</h3>
 	<cdl-top-nav [fixed]="false">
 		<div title>
 			<a class="top-nav-heading top-nav-heading-no-hamburger top-nav-link-item fl" href="#">
@@ -22,7 +22,7 @@ import { Component, OnInit} from "@angular/core";
 		</div>
 	</cdl-top-nav>
 
-	<h3>Top-nav with hamburger and nav links</h3>
+	<h3>Top nav with hamburger and nav links</h3>
 	<cdl-top-nav [fixed]="false">
 		<cdl-hamburger hamburger></cdl-hamburger>
 		<div title>
@@ -30,11 +30,11 @@ import { Component, OnInit} from "@angular/core";
 				<h1 class="top-nav-brand">
 					IBM <strong>{{topNavBrand}}</strong>
 				</h1>
+				<span class="top-nav-badge">Beta</span>
 			</a>
 			<!--<span class="top-nav-link-item top-nav-product-title" href="#">
 				{{topNavTitle}}
 			</span>-->
-			<span class="top-nav-badge">Beta</span>
 		</div>
 		<ul class="top-nav-links fr" menu>
 			<li>
@@ -92,7 +92,7 @@ import { Component, OnInit} from "@angular/core";
 		</ul>
 	</cdl-top-nav>
 
-	<h3>Top Nav without hamburger menu</h3>
+	<h3>Top nav without hamburger menu</h3>
 	<cdl-top-nav [fixed]="false">
 		<div class="top-nav-title-container" title>
 			<a class="top-nav-heading top-nav-heading-no-hamburger top-nav-link-item fl" href="#">
@@ -107,9 +107,6 @@ import { Component, OnInit} from "@angular/core";
 			</li>
 			<li>
 				<a class="top-nav-link-item">Reports</a>
-			</li>
-			<li>
-				<a class="top-nav-link-item">Help</a>
 			</li>
 		</ul>
 		<ul class="top-nav-links fr" menu>
