@@ -11,7 +11,6 @@ import { IconService } from "./icon.service";
 	template: `<span
 					[ngStyle]="{width: iconSize + 'px', height: iconSize + 'px'}">
 					<svg
-						class="icon"
 						[attr.width]="iconSize"
 						[attr.height]="iconSize">
 						<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
@@ -23,6 +22,9 @@ import { IconService } from "./icon.service";
 			display: inline-block;
 		}
 	`],
+	host: {
+		class: "icon"
+	},
 	providers: [IconService]
 })
 export class Icon implements OnChanges {

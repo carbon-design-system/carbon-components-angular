@@ -36,7 +36,6 @@ export class DropdownTree implements AbstractDropdownView {
 	@Input() selectedIcon = false;
 	@Input() role: "tree" | "group" = "tree";
 	@Input() label: string;
-	@Input() elemSpacing = 40;
 	@Input() type: "single" | "multi" = "single";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();

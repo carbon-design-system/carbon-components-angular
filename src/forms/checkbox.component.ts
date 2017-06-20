@@ -138,8 +138,6 @@ export class CheckboxComponent implements ControlValueAccessor {
 	}
 
 	onClick(event) {
-		event.stopPropagation();
-
 		if (!this.disabled) {
 			this.toggle();
 			this.transitionCheckboxState(this._checked ? CheckboxState.Checked : CheckboxState.Unchecked);
