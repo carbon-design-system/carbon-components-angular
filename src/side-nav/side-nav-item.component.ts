@@ -32,7 +32,7 @@ import {
 	<div class="side-nav-sub-item" [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}" #subItem>
 		<ng-content select="cdl-side-nav-item"></ng-content>
 	</div>
-  `
+	`
 })
 export class SideNavItem {
 	@Input() selected = false;

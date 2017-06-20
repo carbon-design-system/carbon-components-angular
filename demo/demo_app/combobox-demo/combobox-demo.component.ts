@@ -4,12 +4,12 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	selector: "combobox-demo",
 	template: `
 		<h1>Combobox demo</h1>
-		<cdl-pill-input [pills]="demoItems2" type="multi"></cdl-pill-input>
+		<cdl-pill-input [pills]="demoItems1" type="multi"></cdl-pill-input>
 		<br>
 		<cdl-dropdown-button></cdl-dropdown-button>
 		<br>
 		<br>
-		<cdl-pill [item]="{selected: false}">some text</cdl-pill>
+		<cdl-pill [item]="{selected: false}">Some text</cdl-pill>
 		<br>
 		<div style="position: relative;">
 			<div class="dropdown-wrapper">
@@ -19,10 +19,18 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</div>
 		</div>
 		<br>
+		<div style="position: relative;">
+			<div class="dropdown-wrapper">
+				<div class="dropdown-menu open" style="position: relative;">
+					<cdl-dropdown-list [items]="demoItems1" type="multi"></cdl-dropdown-list>
+				</div>
+			</div>
+		</div>
+		<br>
 		<div style="width: 330px;">
 			<cdl-combo-box
 				placeholder="Select one"
-				[items]="demoItems1">
+				[items]="demoItems2">
 				<cdl-dropdown-button>
 					<cdl-dropdown-list></cdl-dropdown-list>
 				</cdl-dropdown-button>
@@ -33,8 +41,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<cdl-combo-box
 				placeholder="Select many"
 				type="multi"
-				(submit)="onSubmit($event)"
-				[items]="demoItems1">
+				[items]="demoItems3"
+				(submit)="onSubmit($event)">
 				<cdl-dropdown-button>
 					<cdl-dropdown-list></cdl-dropdown-list>
 				</cdl-dropdown-button>
@@ -42,8 +50,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		</div>
 		<br>
 		<cdl-combo-box
-			placeholder="Select"
-			[items]="demoItems1">
+			placeholder="Select or enter"
+			[items]="demoItems4">
 			<cdl-dropdown-button>
 				<cdl-dropdown-list></cdl-dropdown-list>
 			</cdl-dropdown-button>
@@ -62,7 +70,7 @@ export class ComboboxDemo {
 			selected: false,
 		},
 		{
-			content: "Cathode",
+			content: "Computer",
 			selected: false
 		},
 		{
@@ -70,30 +78,12 @@ export class ComboboxDemo {
 			selected: false
 		}
 	];
-
-	demoItems2 = [
-		{
-			content: "Abacus",
-			selected: true
-		},
-		{
-			content: "Byte",
-			selected: true,
-		},
-		{
-			content: "Cathode",
-			selected: true
-		},
-		{
-			content: "Digital",
-			selected: true
-		}
-	];
+	demoItems2 = Array.from(this.demoItems1, item => Object.assign({}, item));
+	demoItems3 = Array.from(this.demoItems1, item => Object.assign({}, item));
+	demoItems4 = Array.from(this.demoItems1, item => Object.assign({}, item));
 
 	onSubmit(ev) {
-		ev.selected = true;
-		this.demoItems1.push(ev);
-		this.demoItems1 = Array.from(this.demoItems1);
+		ev.value.selected = true;
+		this.demoItems3 = [...ev.items, ev.value];
 	}
-
 }

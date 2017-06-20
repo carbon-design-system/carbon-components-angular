@@ -40,7 +40,7 @@ export class ComboBox {
 	@Input() items: Array<ListItem> = [];
 	@Input() placeholder = "";
 	@Input() type: "single" | "multi" = "single";
-	@Output() submit: EventEmitter<ListItem> = new EventEmitter<ListItem>();
+	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
 	@ViewChild(PillInput) pillInput: PillInput;
@@ -48,22 +48,18 @@ export class ComboBox {
 	constructor(private _elementRef: ElementRef) {}
 
 	ngOnChanges(changes) {
-		console.log(changes);
 		if (changes.items) {
+			this.view["updateList"](changes.items.currentValue);
 			this.updatePills();
 		}
 	}
 
 	ngAfterContentInit() {
 		if (this.view) {
-			if (this.view.items) {
-				console.error("list items should be passed to combobox");
-			}
 			this.view.type = this.type;
 			this.view.select.subscribe((ev) => {
 				if (this.type === "multi") {
-					// filter on the initial set because the view set could be filtered differently
-					this.pills = this.items.filter(x => x.selected);
+					this.updatePills();
 				} else {
 					if (ev.item.selected) {
 						this.selectedValue = ev.item.content;
@@ -72,7 +68,7 @@ export class ComboBox {
 					}
 				}
 			});
-			this.view.items = this.items;
+			this.view["updateList"](this.items);
 		}
 	}
 
@@ -90,30 +86,38 @@ export class ComboBox {
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.dropdownButton.open = false;
-		}
-		if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
-			this.view.getCurrentElement().focus();
+		} else if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
+			ev.stopPropagation();
+			setTimeout(() => this.view.getCurrentElement().focus(), 0);
+		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view.getPrevElement()) {
+			// setTimeout(() => this.pillInput._elementRef.nativeElement.focus(), 0);
 		}
 	}
 
 	public updatePills() {
-		this.pills = this.items.filter(x => x.selected);
+		this.pills = this.view.getSelected();
 	}
 
 	public doSearch(ev) {
+		this.view["filterBy"](ev);
 		if (ev !== "") {
 			this.dropdownButton.open = true;
-			// also take a ref to the original dropdown list, filter it, and re-populate the dropdown
-			this.view.items = this.items.filter(x => x.content.toLowerCase().includes(ev.toLowerCase()));
-		} else {
-			this.view.items = this.items;
+		}
+		if (this.type === "single") {
+			if (!this.view.items.some(item => item.content === ev)) {
+				let selected = this.view.getSelected();
+				if (selected) { selected[0].selected = false; }
+			}
 		}
 	}
 
 	doSubmit(ev) {
 		this.submit.emit({
-			content: ev,
-			selected: false
+			items: this.view.items,
+			value: {
+				content: ev,
+				selected: false
+			}
 		});
 	}
 }
