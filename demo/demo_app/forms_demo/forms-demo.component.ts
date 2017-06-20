@@ -24,6 +24,16 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	</cdl-checkbox>
 
 
+	<h2>Select all</h2>
+	<div class="select-clear-example">
+		<p>Schedule on these days</p>
+		<button *ngIf="!allSelected()" class="btn btn-link" (click)="selectAll(week)">Select all</button>
+		<button *ngIf="allSelected()" class="btn btn-link" (click)="clearAll(week)">Clear all</button>
+		<cdl-checkbox *ngFor="let day of week"
+			[(ngModel)]="day.checked">{{day.day}}
+		</cdl-checkbox>
+	</div>
+
 	<h2>Switch</h2>
 
 	<cdl-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</cdl-switch>
@@ -86,6 +96,14 @@ export class FormsDemo {
 	firstSwitchState = false;
 
 	manyCheckboxes = [{checked: false}, {checked: false}, {checked: false}, {checked: false}];
+	week = [
+		{checked: false, day: "Sunday"},
+		{checked: false, day: "Monday"},
+		{checked: false, day: "Tuesday"},
+		{checked: false, day: "Wednseday"},
+		{checked: false, day: "Thursday"},
+		{checked: false, day: "Friday"},
+		{checked: false, day: "Saturday"}];
 
 	constructor(private applicationRef: ApplicationRef) {}
 
@@ -117,5 +135,17 @@ export class FormsDemo {
 
 		this.someSelected = false;
 		this.secondCheckboxState = startValue;
+	}
+
+	selectAll(list: any[]) {
+		list.forEach(item => item.checked = true);
+	}
+
+	clearAll(list: any[]) {
+		list.forEach(item => item.checked = false);
+	}
+
+	allSelected() {
+		return this.week.every(item => item.checked);
 	}
 }

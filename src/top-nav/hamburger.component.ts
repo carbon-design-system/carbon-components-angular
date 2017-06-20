@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter} from "@angular/core";
+import { Component, Input, Output, EventEmitter} from "@angular/core";
 
 @Component({
 	selector: "cdl-hamburger",
 	template: `
 	<button class="hamburger"
+			[ngClass]="{'hamburger-selected': selected}"
 			(click)="clickFn()"
 			aria-label="toggle primary navigation menu"
 			tabindex="0"
@@ -18,6 +19,7 @@ import { Component, Output, EventEmitter} from "@angular/core";
 	styleUrls: ["./hamburger.component.scss"]
 })
 export class Hamburger {
+	@Input() selected = false;
 	@Output() onClick: EventEmitter<Object> = new EventEmitter<Object>();
 
 	public clickFn() {
