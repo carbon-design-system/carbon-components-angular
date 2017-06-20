@@ -4,6 +4,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	selector: "forms-demo",
 	template: `
 	<h2>Check box</h2>
+	<p class="checkbox-group-label">Check box group label</p>
 	<cdl-checkbox [(ngModel)]="firstCheckboxState">Check box ({{firstCheckboxState}})</cdl-checkbox>
 	<cdl-checkbox disabled="true">Check box disabled</cdl-checkbox>
 
@@ -26,7 +27,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 
 	<h2>Select all</h2>
 	<div class="select-clear-example">
-		<p>Schedule on these days</p>
+		<p class="checkbox-group-label">Schedule on these days</p>
 		<button *ngIf="!allSelected()" class="btn btn-link" (click)="selectAll(week)">Select all</button>
 		<button *ngIf="allSelected()" class="btn btn-link" (click)="clearAll(week)">Clear all</button>
 		<cdl-checkbox *ngFor="let day of week"
