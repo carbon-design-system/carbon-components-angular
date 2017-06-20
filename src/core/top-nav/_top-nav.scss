@@ -46,6 +46,12 @@
 			border-top: 1px solid color("white");
 		}
 	}
+	.hamburger.hamburger-selected {
+		fill: color("white", 0);
+		color: color("white", 0);
+		background-color: color("blue", 50);
+		border-top: 1px solid color("white");
+	}
     .top-nav-heading {
         display: inline-flex;
 		align-items: center;

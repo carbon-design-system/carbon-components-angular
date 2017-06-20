@@ -26,7 +26,7 @@
 	.side-nav-item-wrapper {
 		width: 100%;
 		height: $sidenav-item-height + 1; // border compenstation
-		border-bottom: 1px solid color("gray", 10);
+		border-bottom: 1px solid color("white");
 
 		.side-nav-item-button {
 			font-weight: 600;
@@ -59,7 +59,7 @@
 				}
 				background: color("blue", 50);
 				.side-nav-arrow {
-					transform: rotate(-90deg);
+					transform: rotate(90deg) scaleX(-1);
 				}
 			}
 			&:hover, &:focus {
@@ -91,7 +91,7 @@
 			left: $sidenav-item-height + 20px;
 			display: inline-block;
 			@include text-overflow;
-			width: $sidenav-width - $sidenav-item-height - 15px - 20px - 16px;  // width - glyphicon - padding - arrow margin - arrow width
+			width: $sidenav-width - $sidenav-item-height - 15px - 20px - 16px - 6px;  // width - glyphicon - padding - arrow margin - arrow width - some margin
 			vertical-align: middle;
 		}
 	}
@@ -101,22 +101,34 @@
 		color: color("gray", 60);
 
 		// level two
-		.side-nav-item-wrapper .side-nav-item-button {
-			font-weight: 300;
-			color: color("gray", 60);
-			&:hover, &:focus {
-				&:before {
-					display: none;  // removes white inner border
+		.side-nav-item-wrapper {
+			border-bottom: 1px solid color("gray", 10);
+
+			.side-nav-item-button {
+				font-weight: 300;
+				color: color("gray", 60);
+				border-left: 1px solid transparent;
+				.side-nav-item {
+					left: 44px;
+					width: $sidenav-width - $sidenav-item-height - 15px - 16px - 6px;  // width - padding - arrow margin - arrow width - some margin
 				}
-				background: color("blue", 40, 0.1);
-			}
-			&.selected {
-				font-weight: 600;
-				background: color("blue", 40, 0.1);
-			}
-			.side-nav-arrow {
-				transform: rotate(0deg);
-				fill: color("gray", 60);
+				&:hover, &:focus {
+					&:before {
+						display: none;  // removes white inner border
+					}
+					background: color("blue", 40, 0.1);
+					border-left: 1px solid color("blue", 50);
+				}
+				&.selected {
+					font-weight: 600;
+					background: color("blue", 40, 0.1);
+					border-left: 3px solid color("blue", 50);
+					left: -2px;  // compensate for a wider-than-default border
+				}
+				.side-nav-arrow {
+					transform: rotate(0deg);
+					fill: color("gray", 50);
+				}
 			}
 		}
 	}
