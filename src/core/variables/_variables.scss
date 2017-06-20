@@ -133,7 +133,7 @@ $popover-arrow-height:		10px !default;
 $tooltip-padding: 	8px 15px 10px 15px !default;
 $tooltip-border: 	1px solid color("gray", 10) !default;
 $tooltip-max-width: 200px !default;
-$tooltip-min-width: 146px !default;
+$tooltip-min-width: 110px !default;
 
 $tooltip-highlight-border-width:	4px !default;
 
@@ -378,7 +378,7 @@ $topnav-color: 	   color("white", 0) !default;
 
 $topnav-height: 44px !default;
 
-$topnav-title-padding: 12px 10px 14px 12px !default;
+$topnav-title-padding: 0 10px !default;
 $topnav-title-padding-no-hamburger: 12px 20px 14px 20px !default;
 $topnav-z-index: 3 !default;
 
@@ -387,7 +387,11 @@ $topnav-badge-bg-color:  color("purple", 60) !default;
 $topnav-badge-color: $topnav-color !default;
 $topnav-badge-padding: 4px 10px !default;
 $topnav-badge-height: 24px !default;
-$topnav-badge-margin: -2px 0 -2px 20px !default;
+$topnav-badge-margin: 0 0 0 10px !default;
+
+// top nav dropdown
+$topnav-dropdown-bg-color: color("blue", 50) !default;
+$topnav-dropdown-color: color("white") !default;
 
 // main title anchor
 $topnav-header-color: $topnav-color !default;
@@ -400,6 +404,7 @@ $topnav-ibm-logo-padding: 14px 20px 14px 10px !default;
 // inner links styles
 $topnav-links-padding: 12px 10px 14px 10px !default;
 $topnav-links-icon-margin: 0 7px 0 0 !default;
+$topnav-links-icon-margin-rtl: 0 0 0 7px !default;
 
 //top-nav product title
 $topnav-product-title-padding: 13px 19px 13px 19px !default;

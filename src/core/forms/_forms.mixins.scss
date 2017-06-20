@@ -32,6 +32,7 @@
 			    border: 1px solid color("gray", 50);
 			    vertical-align: middle;
                 border-radius: $el-brd-radius;
+				background: color("white");
 		    }
 		    &:after {
 				content: '';
@@ -110,7 +111,7 @@
 	.size-sm &, &.size-sm {
 		height: $el-sm-height;
 		label {
-			span{
+			span {
 				height: $el-sm-height;
 				 &:before {
 					 width: $el-sm-width;

@@ -4,6 +4,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	selector: "forms-demo",
 	template: `
 	<h2>Check box</h2>
+	<p class="checkbox-group-label">Check box group label</p>
 	<cdl-checkbox [(ngModel)]="firstCheckboxState">Check box ({{firstCheckboxState}})</cdl-checkbox>
 	<cdl-checkbox disabled="true">Check box disabled</cdl-checkbox>
 
@@ -23,6 +24,16 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		[(ngModel)]="thirdCheckboxState">Check box (State: {{thirdCheckboxState}})
 	</cdl-checkbox>
 
+
+	<h2>Select all</h2>
+	<div class="select-clear-example">
+		<p class="checkbox-group-label">Schedule on these days</p>
+		<button *ngIf="!allSelected()" class="btn btn-link" (click)="selectAll(week)">Select all</button>
+		<button *ngIf="allSelected()" class="btn btn-link" (click)="clearAll(week)">Clear all</button>
+		<cdl-checkbox *ngFor="let day of week"
+			[(ngModel)]="day.checked">{{day.day}}
+		</cdl-checkbox>
+	</div>
 
 	<h2>Switch</h2>
 
@@ -54,10 +65,9 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		<label for="textInput4" class="disabled">Field disabled</label>
 		<input type="text" class="input-field" id="textInput4" disabled>
 	</cdl-label>
-	<br>
 
 	<cdl-label>
-		<label for="textareaText1">Textarea</label>
+		<label for="textareaText1">Text area</label>
 		<textarea [(ngModel)]="textareaText1" class="input-field" id="textareaText1"></textarea>
 	</cdl-label>
 	<p>Text: {{textareaText1}}</p>
@@ -67,19 +77,16 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		<label for="textInput5">Field with success</label>
 		<input type="text" class="input-field input-field-success" id="textInput5">
 	</cdl-label>
-	<br>
 
 	<cdl-label class="ng-invalid ng-touched" labelState="warning">
 		<label for="textInput6">Field with warning</label>
 		<input type="text" class="input-field input-field-warning" id="textInput6">
 	</cdl-label>
-	<br>
 
 	<cdl-label class="ng-invalid ng-touched" labelState="error">
 		<label for="textInput7">Field with error</label>
 		<input type="text" class="input-field input-field-error" id="textInput7">
 	</cdl-label>
-	<br>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]
 })
@@ -90,6 +97,14 @@ export class FormsDemo {
 	firstSwitchState = false;
 
 	manyCheckboxes = [{checked: false}, {checked: false}, {checked: false}, {checked: false}];
+	week = [
+		{checked: false, day: "Sunday"},
+		{checked: false, day: "Monday"},
+		{checked: false, day: "Tuesday"},
+		{checked: false, day: "Wednseday"},
+		{checked: false, day: "Thursday"},
+		{checked: false, day: "Friday"},
+		{checked: false, day: "Saturday"}];
 
 	constructor(private applicationRef: ApplicationRef) {}
 
@@ -121,5 +136,17 @@ export class FormsDemo {
 
 		this.someSelected = false;
 		this.secondCheckboxState = startValue;
+	}
+
+	selectAll(list: any[]) {
+		list.forEach(item => item.checked = true);
+	}
+
+	clearAll(list: any[]) {
+		list.forEach(item => item.checked = false);
+	}
+
+	allSelected() {
+		return this.week.every(item => item.checked);
 	}
 }

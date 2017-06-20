@@ -20,21 +20,42 @@
 	svg * {
 		fill: $topnav-color;
 	}
+	.top-nav-search-input {
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid color("white");
+		color: color("white");
+		margin-right: -3px;
+		width: 220px;
+	}
 	.top-nav-link-item {
 		color: $topnav-color;
 		cursor: pointer;
- 		@include hover-blue;
 		transition: background-color 0.2s ease-in-out;
 		text-decoration: none;
 		line-height: inherit;
 		height: $topnav-height;
-		border-top: 2px solid transparent;
+		border-top: 1px solid transparent;
 		&:active {
-			border-top:2px solid white;
+			border-top: 2px solid color("white");
+		}
+		&.top-nav-link-item-selected, &:hover {
+			fill: color("white", 0);
+			color: color("white", 0);
+			background-color: color("blue", 50);
+			border-top: 1px solid color("white");
 		}
 	}
+	.hamburger.hamburger-selected {
+		fill: color("white", 0);
+		color: color("white", 0);
+		background-color: color("blue", 50);
+		border-top: 1px solid color("white");
+	}
     .top-nav-heading {
-        display: inline-block;
+        display: inline-flex;
+		align-items: center;
+		align-content: center;
         padding: $topnav-title-padding;
 		vertical-align: top;
 		span {
@@ -52,12 +73,14 @@
 		height: $topnav-badge-height;
 		color: $topnav-badge-color;
 		line-height: inherit;
+		float: right;
 	}
 	.top-nav-brand {
 		font-size: $topnav-header-font-size;
 		margin: $topnav-header-margin;
 		line-height: inherit;
 		font-weight: $topnav-header-font-family;
+		display: inline-block;
 	}
     .top-nav-ibm {
         padding: $topnav-ibm-logo-padding;
@@ -81,6 +104,15 @@
 		background: color("white");
 		margin: 12px 10px;
 	}
+	.top-nav-dropdown {
+		background: $topnav-dropdown-bg-color;
+		color: $topnav-dropdown-color;
+		position: absolute;
+		right: 0;
+		white-space: normal;
+		min-width: 150px;
+		padding: 10px;
+	}
 }
 .top-nav-fixed {
 	position: fixed;
@@ -92,9 +124,10 @@
     padding: 0;
 	display: inline-block;
     li {
-		float:left;
+		float: left;
         text-align: center;
         white-space: nowrap;
+		position: relative;
     }
 	.top-nav-link-item {
 		display: inline-block;
@@ -113,8 +146,47 @@
 }
 
 .a11y .top-nav {
-	border-bottom:1px solid color("black", 100);
+	border-bottom: 1px solid color("black", 100);
 	svg * {
 		fill: color("black", 100);
+	}
+}
+
+
+html[dir=rtl], body[dir=rtl] {
+	.top-nav {
+		left: 0;
+		padding-left: 68px;
+		padding-right: 0;
+
+		.hamburger {
+			float: right;
+		}
+		.top-nav-search-input {
+			margin-right: inherit;
+			margin-left: -3px;
+		}
+		.top-nav-badge {
+			float: right;
+		}
+		.top-nav-ibm {
+			left: 0;
+			right: auto;
+		}
+		.top-nav-dropdown {
+			left: 0;
+			right: auto;
+		}
+	}
+	.top-nav-links {
+		li {
+			float: right;
+		}
+		.menu-icon {
+			margin: $topnav-links-icon-margin-rtl;
+		}
+		.menu-icon-only {
+			margin: 0;
+		}
 	}
 }

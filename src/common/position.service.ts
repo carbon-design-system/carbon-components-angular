@@ -106,6 +106,7 @@ export class Positioning {
 			center: hostElPosition.top + hostElPosition.height / 2 - targetElement.offsetHeight / 2,
 			bottom: hostElPosition.top + hostElPosition.height
 		};
+
 		const targetElBCR = targetElement.getBoundingClientRect();
 		const placementPrimary = placement.split("-")[0] || "top";
 		const placementSecondary = placement.split("-")[1] || "center";
@@ -143,7 +144,7 @@ export class Positioning {
 
 					if (isPopoverFilter) {
 						// needs to be position so title is in line with element that requested it
-						targetElPosition.top = hostElPosition.top;
+						targetElPosition.top = hostElPosition.top - hostElPosition.height / 2 - 3;  // it's magic
 					}
 
 					targetElPosition.left = hostElPosition.left - targetElement.offsetWidth - gap;
@@ -157,9 +158,10 @@ export class Positioning {
 						targetElPosition.top = shiftHeight[placementSecondary];
 						targetElPosition.bottom += shiftHeight[placementSecondary];
 					}
+
 					if (isPopoverFilter) {
 						// needs to be positioned so title is in line with element that requested it
-						targetElPosition.top = hostElPosition.top;
+						targetElPosition.top = hostElPosition.top - hostElPosition.height / 2 - 3;  // it's magic
 					}
 
 					targetElPosition.left = shiftWidth[position] + gap;

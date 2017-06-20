@@ -12,8 +12,8 @@ button.btn {
     height: $btn-height;
 	font-weight: $btn-font;
     .size-sm &, &.size-sm {
-        height:$btn-height-sm;
-		font-size:$btn-font--size-sm;
+        height: $btn-height-sm;
+		font-size: $btn-font--size-sm;
     }
     .size-lg &, &.size-lg {
         height: $btn-height-lg
@@ -23,6 +23,20 @@ button.btn {
     }
     @include btn-variant('primary');
 
+	&.btn-link {
+		padding: 0;
+		border: none;
+		text-decoration: underline;
+		font-size: 14px;
+		color: color("blue", 50);
+		margin: 10px auto 14px auto;
+		background: none;
+		height: auto;
+
+		&:hover {
+			box-shadow: none;
+		}
+	}
     .theme-blue & {
         @include btn-variant('primary-bt');
     }
