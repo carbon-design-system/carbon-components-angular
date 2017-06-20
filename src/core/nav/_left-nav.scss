@@ -253,6 +253,10 @@ html[dir=rtl], body[dir=rtl] {
 		.side-nav-sub-item {
 			// level two
 			.side-nav-item-wrapper .side-nav-item-button {
+				.side-nav-item {
+					left: auto;
+					right: 44px;
+				}
 				.side-nav-arrow {
 					transform: rotate(180deg); //rotate(0deg);
 				}
