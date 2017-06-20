@@ -24,7 +24,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 			</cdl-top-nav>
 
 			<cdl-side-nav [open]="sideNavOpen">
-				<cdl-side-nav-item routerLink="/table">
+				<cdl-side-nav-item routerLink="/table" tabindex="-1">
 					<cdl-icon
 						class="side-nav-glyph"
 						icon="lightbulb"
