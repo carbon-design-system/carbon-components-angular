@@ -1,4 +1,12 @@
-import { Component, OnInit, ElementRef, Input } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	ElementRef,
+	Input,
+	HostListener,
+	ContentChild
+} from "@angular/core";
+import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 
 @Component({
 	selector: "cdl-dropdown-button",
@@ -29,19 +37,33 @@ import { Component, OnInit, ElementRef, Input } from "@angular/core";
 	`,
 })
 export class DropdownButton {
+	private dropdown;
 	@Input() open = false;
+	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 
 	constructor(private _elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 		document.addEventListener("click", (ev) => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
-				this.open = false;
+				// this.open = false;
 			}
 		});
 	}
 
-	toggleDropdown() {
+	@HostListener("keydown", ["$event"])
+	private keyDown(ev: KeyboardEvent) {
+		if (ev.key === "Tab") {
+			this.open = false;
+		}
+		if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
+			ev.stopImmediatePropagation();
+			this.view.getCurrentElement().focus();
+		}
+	}
+
+	public toggleDropdown() {
 		this.open = !this.open;
 	}
 }

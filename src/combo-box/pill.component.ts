@@ -13,8 +13,7 @@ import {
 			<svg class="icon" width="16" height="16"><use xlink:href="#x_16"></use></svg>
 		</button>`,
 	host: {
-		class: "pill",
-		tabindex: "0"
+		class: "pill"
 	}
 })
 export class Pill {
