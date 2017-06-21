@@ -9,12 +9,14 @@ import { IconService } from "./icon.service";
 @Component({
 	selector: "cdl-icon",
 	template: `<svg
-					class="icon"
 					[attr.width]="iconSize"
 					[attr.height]="iconSize">
 					<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
 				</svg>`,
-	providers: [IconService]
+	providers: [IconService],
+	host: {
+		class: "icon"
+	}
 })
 export class Icon implements OnChanges {
 	public iconSize: string;
