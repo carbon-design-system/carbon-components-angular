@@ -40,7 +40,7 @@ import {
 		 #subItem>
 		<ng-content select="cdl-side-nav-item"></ng-content>
 	</div>
-  `
+	`
 })
 export class SideNavItem {
 	static sideNavItemCount = 0;

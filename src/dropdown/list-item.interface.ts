@@ -1,6 +1,6 @@
 export interface ListItem {
 	content: string;
-	disabled: boolean;
 	selected: boolean;
+	disabled?: boolean;
 	items?: ListItem[];
 }

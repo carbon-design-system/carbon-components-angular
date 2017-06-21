@@ -4,8 +4,9 @@
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	margin-right: 5px;
 	margin-bottom: 10px;
+	margin-left: -3px; // there's some weird ghost margins, this fixes that
+    margin-right: -4px;
 
 	span {
 		height: 100%;
@@ -42,9 +43,10 @@
 .pill-input {
 	height: 30px;
 	border: 1px solid color("gray", 50);
-	padding: 4px 50px 4px 10px;
+	padding: 3px 50px 4px 10px; // 3px border top, probably some border eating a pixel
 	position: relative;
 	overflow: hidden;
+	z-index: 1;
 	&.focus {
 		border-color: color("blue", 50);
 	}
@@ -54,6 +56,13 @@
 		position: absolute;
 		right: 10px;
 		top: 5px;
+		font-weight: bold;
+	}
+	.placeholder {
+		line-height: 20px;
+		pointer-events: none;
+		font-style: italic;
+		color: color("gray", 50);
 	}
 }
 
@@ -79,19 +88,19 @@
 	&:hover, &:focus {
 		box-shadow: inset 0px 0px 0px 1px white, inset 0px 0px 0px 2px color("blue", 50);
 	}
-	&.open {
-		transform: rotate(180deg);
-	}
 	svg {
 		position: absolute;
 		top: 7px;
+		&.open {
+			transform: rotate(180deg);
+		}
 	}
 }
 
 .combo-input {
 	max-width: 100%;
-	min-width: 1px;
-	margin-left: 5px;
+	min-width: 10px;
+	padding-left: 2px; // so the cursor isn't right up agains the pill
 	display: inline-block;
 	&:first-child {
 		margin-left: 0;
