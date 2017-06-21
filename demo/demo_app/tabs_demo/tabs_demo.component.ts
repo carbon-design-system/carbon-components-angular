@@ -76,7 +76,12 @@ import { Component, OnInit } from "@angular/core";
 
 	<h2>Tabs with custom header template</h2>
 	<ng-template #tabHeading>
-		<cdl-icon icon="alert" size="sm"></cdl-icon>&nbsp;Hello,&nbsp;<a href="#" (click)="test($event)">click me</a>
+		<cdl-icon
+			icon="facebook"
+			size="sm"
+			style="margin-right: 7px;">
+		</cdl-icon>
+		Hello,&nbsp;<span (click)="test($event)">click me</span>
 	</ng-template>
 	<cdl-tabs>
 		<cdl-tab [heading]="tabHeading">
