@@ -156,6 +156,7 @@ strong {
 // set svg icon fill
 .icon {
 	fill: color("gray", 50);
+	vertical-align: middle;
 }
 
 html[dir=rtl], body[dir=rtl] {
