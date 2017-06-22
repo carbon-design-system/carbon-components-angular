@@ -3,6 +3,8 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 @Component({
 	selector: "forms-demo",
 	template: `
+	<h1>Forms demo</h1>
+
 	<h2>Check box</h2>
 	<p class="checkbox-group-label">Check box group label</p>
 	<cdl-checkbox [(ngModel)]="firstCheckboxState">Check box ({{firstCheckboxState}})</cdl-checkbox>
