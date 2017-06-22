@@ -47,7 +47,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						class="combo-input"
 						contenteditable
 						(keydown)="onKeydown($event)"
-						(keyup)="onKeyup($event)"></div>
+						(keyup)="onKeyup($event)"> </div>
 				</span>
 				<div
 					#comboInput
@@ -56,7 +56,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					class="combo-input"
 					contenteditable
 					(keydown)="onKeydown($event)"
-					(keyup)="onKeyup($event)"></div>
+					(keyup)="onKeyup($event)"> </div>
 			</div>
 			<div *ngIf="type === 'single'">
 				<span

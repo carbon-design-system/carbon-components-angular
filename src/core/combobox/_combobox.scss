@@ -74,6 +74,7 @@
 	.dropdown-wrapper {
 		position: absolute;
 		left: 0;
+		top: 30px;
 	}
 }
 
@@ -91,6 +92,7 @@
 	svg {
 		position: absolute;
 		top: 7px;
+		left: 6px;
 		&.open {
 			transform: rotate(180deg);
 		}
