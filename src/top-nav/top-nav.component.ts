@@ -14,7 +14,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 	template: `
 	<header class="top-nav clearfix" [ngClass]="{'top-nav-fixed': fixed}" role="banner">
 		<nav role="menu">
-			<a href="#main-content" class="sr-only">Skip to main content</a>
+			<a href="#main-content" class="sr-only">{{ 'TOPNAV.SKIP_TO_MAIN' | translate }}</a>
 			<ng-content select="[hamburger]"></ng-content>
 			<ng-content select="[title]"></ng-content>
 			<ng-content select="[links]"></ng-content>
