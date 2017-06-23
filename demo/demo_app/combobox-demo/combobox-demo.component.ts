@@ -29,7 +29,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<br>
 		<div style="width: 330px;">
 			<cdl-combo-box
-				placeholder="Select one"
+				placeholder="Select or enter"
 				[items]="demoItems2">
 				<cdl-dropdown-button>
 					<cdl-dropdown-list></cdl-dropdown-list>
@@ -39,7 +39,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<br>
 		<div style="width: 330px;">
 			<cdl-combo-box
-				placeholder="Select many"
+				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
 				(submit)="onSubmit($event)">
