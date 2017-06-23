@@ -8,24 +8,15 @@ import { IconService } from "./icon.service";
 
 @Component({
 	selector: "cdl-icon",
-	template: `<span
-					[ngStyle]="{width: iconSize + 'px', height: iconSize + 'px'}">
-					<svg
-						[attr.width]="iconSize"
-						[attr.height]="iconSize">
-						<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
-					</svg>
-				</span>`,
-	styles: [`
-		:host {
-			vertical-align: middle;
-			display: inline-block;
-		}
-	`],
+	template: `<svg
+					[attr.width]="iconSize"
+					[attr.height]="iconSize">
+					<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
+				</svg>`,
+	providers: [IconService],
 	host: {
 		class: "icon"
-	},
-	providers: [IconService]
+	}
 })
 export class Icon implements OnChanges {
 	public iconSize: string;

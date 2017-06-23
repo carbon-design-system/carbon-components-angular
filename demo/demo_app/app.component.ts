@@ -132,6 +132,9 @@ export class AppComponent implements OnInit {
 					SEARCH: "Search",
 					NO_RESULTS: "No search results"
 				}
+			},
+			TOPNAV: {
+				SKIP_TO_MAIN: "Skip to main content"
 			}
 		});
 	}

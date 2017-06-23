@@ -238,7 +238,7 @@ $listview-border:      1px solid color("gray", 10) !default;
 $listview-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
 $listview-active-border-color:  color("white", 0) !default;
-$listview-selected-border:		2px solid color("blue", 50) !default; // left border
+$listview-selected-border:		3px solid color("blue", 50) !default; // left border
 $listview-selected-color: 		$text-color !default;
 
 //== tree-view

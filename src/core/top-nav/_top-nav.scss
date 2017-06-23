@@ -5,7 +5,7 @@
 // top-nav base styles
 // -------------------------
 
-.top-nav {
+.top-nav nav {
 	position: relative;
     background-color: $topnav-bg-color;
 	height: $topnav-height;
@@ -16,6 +16,7 @@
     z-index: $topnav-z-index;
 	color: $topnav-color;
 	padding-right: 68px;
+	padding-left: 0;
 
 	svg * {
 		fill: $topnav-color;
@@ -39,12 +40,18 @@
 		&:active {
 			border-top: 2px solid color("white");
 		}
-		&.top-nav-link-item-selected, &:hover {
+		&.top-nav-link-item-selected, &:hover, &:focus {
 			fill: color("white", 0);
 			color: color("white", 0);
 			background-color: color("blue", 50);
 			border-top: 1px solid color("white");
 		}
+	}
+	.hamburger.hamburger-selected {
+		fill: color("white", 0);
+		color: color("white", 0);
+		background-color: color("blue", 50);
+		border-top: 1px solid color("white");
 	}
     .top-nav-heading {
         display: inline-flex;
@@ -139,7 +146,7 @@
 	}
 }
 
-.a11y .top-nav {
+.a11y .top-nav nav {
 	border-bottom: 1px solid color("black", 100);
 	svg * {
 		fill: color("black", 100);
@@ -148,7 +155,7 @@
 
 
 html[dir=rtl], body[dir=rtl] {
-	.top-nav {
+	.top-nav nav {
 		left: 0;
 		padding-left: 68px;
 		padding-right: 0;

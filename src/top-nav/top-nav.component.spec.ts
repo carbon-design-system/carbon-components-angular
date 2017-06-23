@@ -1,6 +1,7 @@
 import {Component, DebugElement} from "@angular/core";
 
 import {TestBed, ComponentFixture} from "@angular/core/testing";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { By } from "@angular/platform-browser";
 
@@ -12,7 +13,12 @@ import {Hamburger} from "./hamburger.component";
 describe("Top Nav", () => {
 
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [TopNav, Hamburger]});
+		TestBed.configureTestingModule({
+			declarations: [TopNav, Hamburger],
+			imports: [
+				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}})
+			]
+		});
 
 	});
 
