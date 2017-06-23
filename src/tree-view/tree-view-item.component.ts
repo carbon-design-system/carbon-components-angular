@@ -52,13 +52,16 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 			*ngIf="listItem.items && listItem.opened"
 			[isOpen]="listItem.opened"
 			[items]="listItem.items"
-			(select)="bubble($event)"
 			[listTpl]="listTpl"
 			[parent]="parent"
 			[rootElem]="rootElem"
 			[indent]="indent+1"
 			[role]="'group'"
-			[label]="listItem">
+			[outerPadding]="outerPadding"
+			[iconWidth]="iconWidth"
+			[innerPadding]="innerPadding"
+			[label]="listItem"
+			(select)="bubble($event)">
 		</cdl-tree-view-wrapper>
 	`
 })
@@ -95,10 +98,11 @@ export class TreeViewItem {
 		if (this.isBase) {
 			// same calc, we just drop the icon width from the last item
 			return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
 		}
+		// we add innerPadding twice to account for the padding from the previous level
 		return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.iconWidth + this.innerPadding) * this.indent);
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent);
 	}
 
 	bubble(ev) {
