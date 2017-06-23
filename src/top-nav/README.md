@@ -97,7 +97,7 @@ Ex:
 				(click)="showUser1 = !showUser1"
 				[ngClass]="{'top-nav-link-item-selected': showUser1}"
 				[attr.aria-expanded]="!!showUser1">
-				<cdl-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="user" size="16"></cdl-icon>
+				<cdl-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="profile" size="16"></cdl-icon>
 				<span *ngIf="!showSearchInput1">Sam Uncley</span>
 			</a>
 			<div [ngClass]="{'hidden': !showUser1}" class="top-nav-dropdown">
