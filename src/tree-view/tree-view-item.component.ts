@@ -52,13 +52,16 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 			*ngIf="listItem.items && listItem.opened"
 			[isOpen]="listItem.opened"
 			[items]="listItem.items"
-			(select)="bubble($event)"
 			[listTpl]="listTpl"
 			[parent]="parent"
 			[rootElem]="rootElem"
 			[indent]="indent+1"
 			[role]="'group'"
-			[label]="listItem">
+			[outerPadding]="outerPadding"
+			[iconWidth]="iconWidth"
+			[innerPadding]="innerPadding"
+			[label]="listItem"
+			(select)="bubble($event)">
 		</cdl-tree-view-wrapper>
 	`
 })
@@ -79,8 +82,6 @@ export class TreeViewItem {
 	@Input() innerPadding = 5; // padding between icon and content
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
-	// @ViewChild("checkbox") checkbox;
-
 	constructor(public _elementRef: ElementRef) {}
 
 	ngOnInit() {
@@ -97,34 +98,19 @@ export class TreeViewItem {
 		if (this.isBase) {
 			// same calc, we just drop the icon width from the last item
 			return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
 		}
+		// we add innerPadding twice to account for the padding from the previous level
 		return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.iconWidth + this.innerPadding) * this.indent);
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent);
 	}
 
 	bubble(ev) {
 		this.select.emit(ev);
-		// let selected = this.listItem.items.filter(item => item.selected);
-		// if (selected.length < this.listItem.items.length && selected.length > 0) {
-		// 	this.checkbox.nativeElement.indeterminate = true;
-		// } else {
-		// 	this.checkbox.nativeElement.indeterminate = false;
-		// 	if (selected.length === this.listItem.items.length) {
-		// 		this.listItem.selected = true;
-		// 	} else {
-		// 		this.listItem.selected = false;
-		// 	}
-		// }
 	}
 
 	doClick(ev, item) {
-		// ev.stopPropagation();
-		// if (item.items) {
-		// 	item.opened = !item.opened;
-		// } else {
-			this.select.emit({item});
-		// }
+		this.select.emit({item});
 	}
 
 	// Keyboard accessibility
@@ -136,33 +122,6 @@ export class TreeViewItem {
 			}
 			return cb(obj);
 		};
-		if (ev.key === "ArrowUp") {
-			ev.preventDefault();
-			exists(
-				exists(
-					exists(ev.target.closest("li"), el => el.previousElementSibling),
-				el => el.querySelector(".item-wrapper"),
-				),
-			prev => prev.focus());
-		} else if (ev.key === "ArrowDown") {
-			ev.preventDefault();
-			// if we have items and are open step into the tree
-			if (item.items && item.selected) {
-				let next = ev.target.nextElementSibling.querySelector(".item-wrapper");
-				if (next) { next.focus(); }
-			} else { // otherwise try to move to the next sibling
-				let next = exists(exists(ev.target.closest("li"), el => el.nextElementSibling), el => el.querySelector(".item-wrapper"));
-				if (next) {
-					next.focus();
-				} else {
-					next = ev.target.parentElement;
-					while (!next.nextElementSibling.querySelector(".item-wrapper")) {
-
-					}
-				}
-			}
-			// otherwise the event _should_ be picked up by the parent?
-		} else
 		if (ev.key === "Enter"
 			|| ev.key === " "
 			|| ev.key === "ArrowRight"
