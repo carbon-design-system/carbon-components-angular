@@ -26,7 +26,7 @@ button.btn {
 	&.btn-link {
 		padding: 0;
 		border: none;
-		text-decoration: underline;
+		border-bottom: 1px solid color("blue", 50);
 		font-size: 14px;
 		color: color("blue", 50);
 		margin: 10px auto 14px auto;
@@ -35,6 +35,8 @@ button.btn {
 
 		&:hover {
 			box-shadow: none;
+			border-bottom-width: 3px;
+			margin-bottom: 12px;  // change margin to compensate for thicker border
 		}
 	}
     .theme-blue & {
