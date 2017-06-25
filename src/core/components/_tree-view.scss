@@ -20,7 +20,6 @@
 			position: relative;
 			display: flex;
 			align-items: center;
-			cursor: default;
 			&:after {
 				content: "";
 				display: block;
@@ -41,7 +40,10 @@
 				white-space: nowrap;
 			}
         }
-        &:hover, &:focus {
+		.item:not(.disabled) {
+			cursor: default;
+		}
+        &:hover:not(.disabled), &:focus:not(.disabled) {
 			background-color: $treeview-hover-bg;
 			&:before {
 				content: "";
@@ -54,19 +56,7 @@
 				background: color("blue", 50);
 			}
 		}
-		// &:hover, &:focus {
-		// 	&:after {
-		// 		content: "";
-		// 		display: block;
-		// 		position: absolute;
-		// 		width: calc(100% + 4px);
-		// 		height: 1px;
-		// 		bottom: 0px;
-		// 		left: -4px;
-		// 		background: white;
-		// 		z-index: 1;
-		// 	}
-		// }
+
         .arrow {
             margin-left: -25px;
             margin-right: 5px;
@@ -78,14 +68,7 @@
 			width: 16px;
 			height: 16px;
         }
-		// &.has-items.selected {
-		// 	border-left-color: transparent;
-		// 	background-color: white;
-		// 	font-weight: inherit;
-		// 	&:hover, &:focus {
-		// 		background-color: $listview-hover-bg;
-		// 	}
-		// }
+
         &.selected {
             border-left-color: $treeview-selected-border-color;
 			background-color: $treeview-hover-bg;
@@ -102,31 +85,6 @@
                 transform: rotate(90deg);
             }
 		}
-    }
-	&.disabled {
-		&:hover, &:focus {
-			cursor: not-allowed;
-			background: color("white", 0);
-			border-left: 3px solid transparent;
-		}
-	}
-    .checked {
-		float: right;
-		position: relative;
-		vertical-align: middle;
-
-        @extend .badge;
-        &:before {
-            content:'';
-            border-right: 1px solid color("white", 0);
-            border-bottom: 1px solid color("white", 0);
-            transform: rotate(45deg);
-            position: absolute;
-            left: 6px;
-            top: 3px;
-            height: 8px;
-            width: 4px;
-        }
     }
 	ul {
 		display: none;
