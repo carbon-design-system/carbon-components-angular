@@ -1,30 +1,52 @@
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
+import { DebugElement } from "@angular/core";
 
-import {TestBed, ComponentFixture} from "@angular/core/testing";
+import { TestBed, ComponentFixture } from "@angular/core/testing";
 
-import {SideNav} from "./side-nav.component";
+import { SideNav } from "./side-nav.component";
 
 
 describe("Side Nav", () => {
+	let component: SideNav;
+	let fixture: ComponentFixture<SideNav>;
+	let de: DebugElement;
+	let el: HTMLElement;
+
 	beforeEach(() => {
 		TestBed.configureTestingModule({declarations: [SideNav]});
-
+		fixture = TestBed.createComponent(SideNav);
+		el = fixture.nativeElement.querySelector("nav");
+		component = fixture.componentInstance;
 	});
 
 	it("should work", () => {
-		const fixture = TestBed.createComponent(SideNav);
-		expect(fixture.componentInstance instanceof SideNav).toBe(true);
+		expect(component instanceof SideNav).toBe(true);
 	});
 
 	it("should be open", () => {
-		const fixture = TestBed.createComponent(SideNav);
-		const comp    = fixture.nativeElement.querySelector("nav");
-		comp.open = true;
+		component.open = true;
 		fixture.detectChanges();
-		expect(comp.className).toBe("left-nav isOpen");
+		expect(el.classList).toContain("isOpen");
 	});
 });
 
+// this has to be separated because reasons
+describe("Side Nav", () => {
+	let component: SideNav;
+	let fixture: ComponentFixture<SideNav>;
+	let de: DebugElement;
+	let el: HTMLElement;
 
+	beforeEach(() => {
+		TestBed.configureTestingModule({declarations: [SideNav]});
+		fixture = TestBed.createComponent(SideNav);
+		el = fixture.nativeElement.querySelector("nav");
+		component = fixture.componentInstance;
+	});
 
-
+	it("should be fixed", () => {
+		component.fixed = true;
+		fixture.detectChanges();
+		expect(el.classList).toContain("left-nav");
+	});
+});
