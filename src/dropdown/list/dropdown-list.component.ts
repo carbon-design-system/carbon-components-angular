@@ -22,7 +22,7 @@ import { watchFocusJump } from "./../dropdowntools";
 		<ul #list class="list" role="listbox">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
-				*ngFor="let item of items"
+				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"
 				(keydown)="doKeyDown($event, item)"
 				[ngClass]="{
@@ -58,6 +58,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@ViewChild("list") list: ElementRef;
 	@Input() type: "single" | "multi" = "single";
+	public size: "sm" | "default" | "lg" = "default";
+	public displayItems: Array<ListItem> = [];
 	protected index = -1;
 	protected listList: HTMLElement[];
 	private focusJump;
@@ -66,12 +68,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 
 	ngOnChanges(changes) {
 		if (changes.items) {
-			this.items = changes.items.currentValue.map(item => Object.assign({}, item));
-			setTimeout(() => {
-				this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
-			}, 0);
-			this.index = this.items.findIndex(item => item.selected);
-			this.setupFocusObservable();
+			this.updateList(changes.items.currentValue);
 		}
 	}
 
@@ -79,6 +76,24 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
 		this.setupFocusObservable();
+	}
+
+	updateList(items) {
+		this.items = items.map(item => Object.assign({}, item));
+		this.displayItems = this.items;
+		setTimeout(() => {
+			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+		}, 0);
+		this.index = this.items.findIndex(item => item.selected);
+		this.setupFocusObservable();
+	}
+
+	filterBy(query = "") {
+		if (query) {
+			this.displayItems = this.items.filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
+		} else {
+			this.displayItems = this.items;
+		}
 	}
 
 	setupFocusObservable() {

@@ -17,19 +17,22 @@
 	    span {
 		    height: $el-size;
 		    cursor: pointer;
-		    display: inline-block;
+		    display: inline-flex;
+			align-items: center;
 			position: relative;
-			top:0;
-			left:0;
+			top: 0;
+			left: 0;
 		    &:before {
 		    	content: '';
 			    width: $el-size;
+				padding-left: $el-size - 1; //1px for border
 				margin-right: $label-margin;
 			    display: inline-block;
 			    height: $el-size;
 			    border: 1px solid color("gray", 50);
 			    vertical-align: middle;
                 border-radius: $el-brd-radius;
+				background: color("white");
 		    }
 		    &:after {
 				content: '';
@@ -78,14 +81,14 @@
 		}
 		&:disabled {
 			+ span {
-				color: color("gray", 20);
+				color: color("gray", 50);
 				cursor: not-allowed;
 				&:before {
-					border-color: color("gray", 20);
+					border-color: color("gray", 50);
 					border-style: dashed;
 				}
 				&:after {
-					border-color: color("gray", 20);
+					border-color: color("gray", 50);
 				}
 			}
 			&:hover {
@@ -108,11 +111,12 @@
 	.size-sm &, &.size-sm {
 		height: $el-sm-height;
 		label {
-			span{
+			span {
 				height: $el-sm-height;
 				 &:before {
 					 width: $el-sm-width;
 					 height: $el-sm-height;
+					 padding-left: $el-sm-width - 1; //1px for border
 				 }
 				 &:after {
 					width:$el-selected-sm-width;

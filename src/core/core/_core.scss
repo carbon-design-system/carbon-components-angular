@@ -30,27 +30,27 @@ textarea {
 .sr-only-focusable {
   &:active,
   &:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
+	position: static;
+	width: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	clip: auto;
   }
 }
 
 
 // Body reset
 html {
-  font-size:1em;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-size: 1em;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 body {
-  font-weight:$font-roman;
-	font-family:$font-family-base;
+	font-weight: $font-roman;
+	font-family: $font-family-base;
 	font-size: $font-size-main;
-  color: $text-color;
+	color: $text-color;
 }
 
 
@@ -61,12 +61,12 @@ a {
 
   &:hover,
   &:focus {
-    color: $link-hover-color;
-    text-decoration: $link-hover-decoration;
+	color: $link-hover-color;
+	text-decoration: $link-hover-decoration;
   }
 
   &:focus {
-    // @include tab-focus;
+	// @include tab-focus;
   }
 }
 
@@ -85,12 +85,12 @@ a {
 	outline: none;
 }
 
-button{
-	cursor:pointer;
-	appearance:none;
-	-webkit-appearance:none;
+button {
+	cursor: pointer;
+	appearance: none;
+	-webkit-appearance: none;
 	background: none;
-	border:0;
+	border: 0;
 }
 
 .hidden {
@@ -98,62 +98,72 @@ button{
 }
 
 .list-unstyled {
-    list-style: none;
-    padding: 0;
-    margin: 0
+	list-style: none;
+	padding: 0;
+	margin: 0
 }
 
-.disabled, [disabled]{
-    cursor:no-drop;
-		color: color("gray", 20);
+.disabled, [disabled] {
+	cursor: no-drop;
+	color: color("gray", 20);
 }
 
-.valign-wrapper{
+.valign-wrapper {
 	display: table;
-	width:100%;
+	width: 100%;
 	height: 100%;
-	> .valign-element{
+	> .valign-element {
 		display: table-cell;
 		vertical-align: middle;
-		height:100%;
+		height: 100%;
 		width: 100%;
 		text-align: center;
 	}
 }
 
-.valign-element{
-	> *{
+.valign-element {
+	> * {
 		margin: 0 auto;
-		text-align:inherit
+		text-align: inherit
 	}
 }
 
- .badge{
+ .badge {
 	height: 18px;
 	min-width: 18px;
-	padding:0 5px;
+	padding: 0 5px;
 	border-radius: 18px;
 	border: 1px solid color("white", 0);
 	background-color: color("blue", 50);
-	color:color("white", 0);
+	color: color("white", 0);
 	text-align: center;
 	font-size: rem(12);
 	line-height: 1rem;
 }
 
-strong{
+strong {
 	font-weight: 700;
 }
 
 
-.fr{
+.fr {
 	float: right;
 }
-.fl{
+.fl {
 	float: left;
 }
 
 // set svg icon fill
 .icon {
-	fill: #959494;
+	fill: color("gray", 50);
+	vertical-align: middle;
+}
+
+html[dir=rtl], body[dir=rtl] {
+	.fr {
+		float: left;
+	}
+	.fl {
+		float: right;
+	}
 }

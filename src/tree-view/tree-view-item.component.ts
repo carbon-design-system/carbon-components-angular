@@ -4,10 +4,10 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	ViewChild
 } from "@angular/core";
-import { TreeView } from "./tree-view.component";
-import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.service";
+import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../common/a11y.service";
 
 @Component({
 	selector: "cdl-tree-view-item",
@@ -16,27 +16,29 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 			class="item-wrapper item-level-{{indent}}"
 			tabindex="{{listItem.disabled?-1:0}}"
 			[ngClass]="{
-				selected: listItem.selected,
-				disabled: listItem.disabled
+				selected: selected,
+				opened: listItem.opened,
+				disabled: listItem.disabled,
+				'has-items': listItem.items
 			}"
-			(click)="doClick(listItem)"
+			(click)="doClick($event, listItem)"
 			(keydown)="onKeyDown($event, listItem)"
 			role="treeitem"
 			[attr.aria-level]="indent"
 			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.subMenu) ? ((listItem.selected) ? true : false) : null"
-			[attr.aria-selected]="listItem.selected">
+			[attr.aria-expanded]="listItem.items ? (listItem.opened ? true : false) : null"
+			[attr.aria-selected]="selected">
 			<div
 				class="item"
-				[style.margin-left.px]="(indentStart <= indent) ? elemSpacing*(indent-indentStart) : indent">
+				[style.margin-left.px]="calculateIndent()">
 				<svg
-					*ngIf="!!listItem.subMenu"
-					class="arrow"
+					*ngIf="listItem.items"
+					class="arrow icon"
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
 					height="16"
 					viewBox="0 0 16 16">
-					<path class="st0" d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+					<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 				</svg>
 				<span *ngIf="!listTpl">{{listItem.content}}</span>
 				<ng-template
@@ -44,28 +46,23 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "../common/a11y.serv
 					[ngOutletContext]="{item: listItem}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
-				<span
-					*ngIf="selectedIcon && listItem.selected && !listItem.subMenu"
-					class="checked" aria-hidden="true">
-				</span>
 			</div>
 		</div>
-		<cdl-tree-view
-			*ngIf="!!listItem.subMenu"
-			[isOpen]="listItem.selected"
-			[items]="listItem.subMenu"
-			(select)="onClick($event)"
+		<cdl-tree-view-wrapper
+			*ngIf="listItem.items && listItem.opened"
+			[isOpen]="listItem.opened"
+			[items]="listItem.items"
 			[listTpl]="listTpl"
 			[parent]="parent"
-			[selectedIcon]="selectedIcon"
 			[rootElem]="rootElem"
 			[indent]="indent+1"
-			[indentStart]="indentStart"
 			[role]="'group'"
+			[outerPadding]="outerPadding"
+			[iconWidth]="iconWidth"
+			[innerPadding]="innerPadding"
 			[label]="listItem"
-			[elemSpacing]="elemSpacing"
-			>
-		</cdl-tree-view>
+			(select)="bubble($event)">
+		</cdl-tree-view-wrapper>
 	`
 })
 export class TreeViewItem {
@@ -76,11 +73,13 @@ export class TreeViewItem {
 	@Input() parentRef = null;
 	@Input() listItem;
 	@Input() listTpl: string | TemplateRef<any> = "";
-	@Input() indent = 1;
+	@Input() indent = 0;
 	@Input() rootElem = null;
-	@Input() selectedIcon = true;
-	@Input() indentStart = 0;
-	@Input() elemSpacing = 40;
+	@Input() selected = false;
+	@Input() isBase = false;
+	@Input() outerPadding = 20; // padding from left edge
+	@Input() iconWidth = 16;
+	@Input() innerPadding = 5; // padding between icon and content
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}
@@ -95,40 +94,40 @@ export class TreeViewItem {
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
-	onClick(evt) {
-		let item = evt.item;
-		this.select.emit({
-			item
-		});
+	calculateIndent() {
+		if (this.isBase) {
+			// same calc, we just drop the icon width from the last item
+			return (this.outerPadding + this.iconWidth + this.innerPadding)
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
+		}
+		// we add innerPadding twice to account for the padding from the previous level
+		return (this.outerPadding + this.iconWidth + this.innerPadding)
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent);
 	}
 
-	doClick(item) {
-		this.select.emit({
-			item
-		});
+	bubble(ev) {
+		this.select.emit(ev);
+	}
+
+	doClick(ev, item) {
+		this.select.emit({item});
 	}
 
 	// Keyboard accessibility
 	onKeyDown(ev, item) {
-		if (ev.key === "ArrowUp") {
-			ev.preventDefault();
-
-			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
-		} else if (ev.key === "ArrowDown") {
-			ev.preventDefault();
-
-			if (!item.subMenu || !item.selected) {
-				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
-			} else if (item.subMenu && item.selected) {
-				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
+		// checks for existance, and either calls cb with the object, or returns false
+		let exists = (obj: any, cb: Function) => {
+			if (obj === undefined || obj === null) {
+				return null;
 			}
-		} else if (ev.key === "Enter" || ev.key === " "
-					|| ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
+			return cb(obj);
+		};
+		if (ev.key === "Enter"
+			|| ev.key === " "
+			|| ev.key === "ArrowRight"
+			|| ev.key === "ArrowLeft") {
 			ev.preventDefault();
-
-			this.select.emit({
-				item
-			});
+			this.select.emit({item});
 		}
 	}
 }

@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 @Component({
-	selector: "glyphicon-demo",
+	selector: "icon-demo",
 	template: `
-	<h1>Glyphicon Demo</h1>
-	<svg width="30" height="30"><use href="#alert_30"></use></svg>
-	<cdl-glyphicon icon="alert" size="xs"></cdl-glyphicon>
-	<cdl-glyphicon icon="alert" size="sm"></cdl-glyphicon>
-	<cdl-glyphicon icon="alert" size="md"></cdl-glyphicon>
-	<cdl-glyphicon icon="alert" size="lg"></cdl-glyphicon>
+	<h1>Iconography Demo</h1>
+	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
+	<cdl-icon icon="alert" size="xs"></cdl-icon>
+	<cdl-icon icon="alert" size="sm"></cdl-icon>
+	<cdl-icon icon="alert" size="md"></cdl-icon>
+	<cdl-icon icon="alert" size="lg"></cdl-icon>
 	<div>
 		<input
 			type="search"
@@ -17,7 +17,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			placeholder="Filter"
 			[attr.disabled]="waitingForLoad?true:null">
 		<cdl-dropdown
-			placeholder="Chose a set" style="width: 200px;"
+			placeholder="Select a set"
+			style="width: 200px;"
 			type="multi"
 			(select)="onSelect()"
 			[(ngModel)]="selected"
@@ -37,10 +38,10 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<div class="set">
 				<span
 					*ngFor="let icon of set.icons"
-					class="icon"
+					class="set-icon"
 					[ngClass]="{hide: !icon.visible}">
 					<h3>{{ icon.name }}</h3>
-					<cdl-glyphicon [icon]="icon.name" size="lg"></cdl-glyphicon>
+					<cdl-icon [icon]="icon.name" size="lg"></cdl-icon>
 				</span>
 			</div>
 		</div>
@@ -63,7 +64,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			justify-content: center;
 			grid-gap: 10px;
 		}
-		.set .icon {
+		.set .set-icon {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -148,7 +149,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	`],
 	encapsulation: ViewEncapsulation.None
 })
-export class GlyphiconDemo {
+export class IconDemo {
 	iconMeta;
 	sets = [];
 	selected = [];

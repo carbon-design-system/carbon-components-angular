@@ -87,8 +87,8 @@ $alert-close-margin:		0 0 0 20px !default;
 
 $alert-success-bg:            mix(color("green", 10), color("white", 0), 25%) !default;
 $alert-success-text:          $alert-font-color !default;
-$alert-success-border:        color("green", 40) !default;
-$alert-success-icon:          color("green", 40) !default;
+$alert-success-border:        color("green", 50) !default;
+$alert-success-icon:          color("green", 50) !default;
 
 $alert-info-bg:               mix(color("blue", 10), color("white", 0), 25%) !default;
 $alert-info-text:             $alert-font-color !default;
@@ -122,7 +122,7 @@ $popover-header-height: 	45px !default;
 $popover-header-bg: 		color("blue", 50) !default;
 $popover-title-color: 		color("white", 0) !default;
 
-$popover-content-padding: 	30px 20px !default;
+$popover-content-padding: 	20px !default;
 $popover-arrow-width:		20px !default;
 $popover-arrow-height:		10px !default;
 
@@ -130,10 +130,10 @@ $popover-arrow-height:		10px !default;
 //
 //## Define
 
-$tooltip-padding: 	11px 16px !default;
+$tooltip-padding: 	8px 15px 10px 15px !default;
 $tooltip-border: 	1px solid color("gray", 10) !default;
 $tooltip-max-width: 200px !default;
-$tooltip-min-width: 146px !default;
+$tooltip-min-width: 110px !default;
 
 $tooltip-highlight-border-width:	4px !default;
 
@@ -149,8 +149,8 @@ $input-field-color:			   color("gray", 60) !default;
 
 $input-field-border-hover: 	   color("gray", 50) !default;
 $input-field-border-focus: 	   color("gray", 50) !default;
-$input-field-border-disabled:  color("gray", 20) !default;
-$input-field-color-disabled:   color("gray", 20) !default;
+$input-field-border-disabled:  color("gray", 50) !default;
+$input-field-color-disabled:   color("gray", 50) !default;
 
 
 // sizes
@@ -238,7 +238,7 @@ $listview-border:      1px solid color("gray", 10) !default;
 $listview-hover-bg:    color-tint(color("blue", 40), 90) !default;
 
 $listview-active-border-color:  color("white", 0) !default;
-$listview-selected-border:		2px solid color("blue", 50) !default; // left border
+$listview-selected-border:		3px solid color("blue", 50) !default; // left border
 $listview-selected-color: 		$text-color !default;
 
 //== tree-view
@@ -356,7 +356,7 @@ $dropdown-padding-lg: 	0 20px !default;
 $dropdown-font-size-sm: rem(12) !default;
 
 //colors
-$dropdown-color: 		  color("black", 100) !default;
+$dropdown-color: 		  color("gray", 60) !default;
 $dropdown-border: 		  1px solid  color("gray", 50) !default;
 $dropdown-bg-color: 	  color("white", 0) !default;
 $dropdown-bg-color-hover: color("blue", 40, $alpha: 0.10) !default;
@@ -378,7 +378,7 @@ $topnav-color: 	   color("white", 0) !default;
 
 $topnav-height: 44px !default;
 
-$topnav-title-padding: 12px 10px 14px 12px !default;
+$topnav-title-padding: 0 10px !default;
 $topnav-title-padding-no-hamburger: 12px 20px 14px 20px !default;
 $topnav-z-index: 3 !default;
 
@@ -387,7 +387,11 @@ $topnav-badge-bg-color:  color("purple", 60) !default;
 $topnav-badge-color: $topnav-color !default;
 $topnav-badge-padding: 4px 10px !default;
 $topnav-badge-height: 24px !default;
-$topnav-badge-margin: -2px 0 -2px 20px !default;
+$topnav-badge-margin: 0 0 0 10px !default;
+
+// top nav dropdown
+$topnav-dropdown-bg-color: color("blue", 50) !default;
+$topnav-dropdown-color: color("white") !default;
 
 // main title anchor
 $topnav-header-color: $topnav-color !default;
@@ -400,6 +404,7 @@ $topnav-ibm-logo-padding: 14px 20px 14px 10px !default;
 // inner links styles
 $topnav-links-padding: 12px 10px 14px 10px !default;
 $topnav-links-icon-margin: 0 7px 0 0 !default;
+$topnav-links-icon-margin-rtl: 0 0 0 7px !default;
 
 //top-nav product title
 $topnav-product-title-padding: 13px 19px 13px 19px !default;

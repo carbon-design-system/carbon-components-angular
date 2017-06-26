@@ -19,7 +19,7 @@ import { Component, OnInit } from "@angular/core";
 	/>
 	<button class="btn" (click)="cdlDatepicker.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
-		<cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon>
+		<cdl-icon icon="Calendar" size="md"></cdl-icon>
 		</span>
 	</button>
 	</div>
@@ -41,7 +41,7 @@ import { Component, OnInit } from "@angular/core";
 	/>
 	<button class="btn" (click)="cdlDatepicker3.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
-		<cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon>
+		<cdl-icon icon="Calendar" size="md"></cdl-icon>
 		</span>
 	</button>
 	</div>
@@ -63,7 +63,7 @@ import { Component, OnInit } from "@angular/core";
 	/>
 	<button class="btn" (click)="cdlDatepicker2.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
-		<cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon>
+		<cdl-icon icon="Calendar" size="md"></cdl-icon>
 		</span>
 	</button>
 	</div>

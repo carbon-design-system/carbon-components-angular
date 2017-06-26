@@ -1,7 +1,7 @@
-# Gylphicon
+# Icon
 
-class: Glyphicon  
-selector: `cdl-glyphicon`
+class: Icon
+selector: `cdl-icon`
 
 | @Input  | Type   | Default Value |
 | ------- | ------ | ------------- |

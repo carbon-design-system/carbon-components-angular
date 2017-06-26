@@ -5,7 +5,7 @@ import {
 	AfterViewInit
 } from "@angular/core";
 import { Http } from "@angular/http";
-import { IconService } from "./glyphicon.service";
+import { IconService } from "./icon.service";
 
 @Component({
 	selector: "cdl-sprite",

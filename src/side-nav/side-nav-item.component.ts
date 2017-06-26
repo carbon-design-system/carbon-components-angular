@@ -16,7 +16,10 @@ import {
 			class="side-nav-item-button"
 			[ngClass]="{'selected': selected}"
 			(click)="onClick()"
-			[attr.aria-expanded]="selected">
+			[attr.aria-expanded]="selected"
+			[attr.aria-controls]="subItemId"
+			[attr.aria-expanded]="hasSubmenu() && selected"
+			[id]="buttonId">
 			<ng-content></ng-content>
 			<svg
 				*ngIf="hasSubmenu()"
@@ -29,18 +32,31 @@ import {
 			</svg>
 		</button>
 	</div>
-	<div class="side-nav-sub-item" [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}" #subItem>
+	<div class="side-nav-sub-item"
+		 [ngClass]="{'hide-side-nav-sub-item': !hasSubmenu() || !selected}"
+		 role="region"
+		 [attr.aria-labelledby]="buttonId"
+		 [id]="subItemId"
+		 #subItem>
 		<ng-content select="cdl-side-nav-item"></ng-content>
 	</div>
-  `
+	`
 })
 export class SideNavItem {
+	static sideNavItemCount = 0;
+	buttonId = "side-nav-item-button-" + SideNavItem.sideNavItemCount;
+	subItemId = "side-nav-sub-item-" + SideNavItem.sideNavItemCount;
+
 	@Input() selected = false;
 	@Input("aria-level") ariaLevel = 1;
 	@Output() select: EventEmitter<any> = new EventEmitter<any>();
 
 	@ViewChild("item") item;
 	@ViewChild("subItem") subItem;
+
+	constructor() {
+		SideNavItem.sideNavItemCount++;
+	}
 
 	ngAfterViewInit() {
 		if (this.selected && this.getPaneTemplateElement()) {

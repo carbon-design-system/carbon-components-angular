@@ -5,10 +5,10 @@ import { Component, ViewEncapsulation } from "@angular/core";
 	selector: "side-nav-demo",
 	template: `
 	<div>
-		<h1>Side Nav Demo</h1>
-		<div style="position: relative; height: 600px; margin-bottom: 50px;">
+		<h1>Side nav demo</h1>
+		<div style="position: relative; height: 600px; margin-bottom: 50px; overflow: hidden;">
 			<ng-template #listTpl let-item="item">
-				<cdl-glyphicon *ngIf="item.icon" icon="{{item.icon}}" size="md"></cdl-glyphicon>
+				<cdl-icon *ngIf="item.icon" icon="{{item.icon}}" size="md"></cdl-icon>
 				{{item.content}}
 			</ng-template>
 
@@ -18,32 +18,28 @@ import { Component, ViewEncapsulation } from "@angular/core";
 				[fixed]="false">
 					<cdl-hamburger
 						(onClick)="onClick($event)"
+						[selected]="sideNavOpen"
 						hamburger>
 					</cdl-hamburger>
 			</cdl-top-nav>
 
 			<cdl-side-nav [open]="sideNavOpen">
-				<cdl-side-nav-item routerLink="/table">
-					<cdl-glyphicon
+				<cdl-side-nav-item routerLink="/table" tabindex="-1">
+					<cdl-icon
 						class="side-nav-glyph"
 						icon="lightbulb"
 						size="md">
-					</cdl-glyphicon>
+					</cdl-icon>
 					<span class="side-nav-item">Understand</span>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
-					<cdl-glyphicon
+					<cdl-icon
 						class="side-nav-glyph"
 						icon="gears"
 						size="md">
-					</cdl-glyphicon>
+					</cdl-icon>
 					<span class="side-nav-item">More</span>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
-							class="side-nav-glyph"
-							icon="active_work"
-							size="md">
-						</cdl-glyphicon>
 						<span class="side-nav-item">Some long content here</span>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item>
@@ -52,8 +48,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And even longer one here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems"
-								[listTpl]="listTpl"
-								[elemSpacing]="44" >
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
@@ -63,88 +58,41 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems2"
-								[listTpl]="listTpl"
-								[elemSpacing]="44">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
 				</cdl-side-nav-item>
 				<cdl-side-nav-item>
+					<cdl-icon
+						class="side-nav-glyph"
+						icon="attributes"
+						size="md">
+					</cdl-icon>
 					<span class="side-nav-item">Even more</span>
 					<cdl-side-nav-item>
 						<span class="side-nav-item">To show how ellipsis gets activated</span>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
-							class="side-nav-glyph"
-							icon="analyze"
-							size="md">
-						</cdl-glyphicon>
 						<span class="side-nav-item">And this is how ellipsis happens</span>
 						<div class="side-nav-pane-sub-template">
 							<cdl-side-nav-pane-title>And this is how ellipsis happens</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems3"
-								[listTpl]="listTpl"
-								[elemSpacing]="44">
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
 					<cdl-side-nav-item>
-						<cdl-glyphicon
-							class="side-nav-glyph"
-							icon="attributes"
-							size="md">
-						</cdl-glyphicon>
 						<span class="side-nav-item">And here</span>
 						<div class="side-nav-pane-sub-template">
 							<cdl-side-nav-pane-title>And here</cdl-side-nav-pane-title>
 							<cdl-tree-view
 								[items]="demoItems4"
-								[listTpl]="listTpl"
-								[elemSpacing]="44" >
+								[template]="listTpl">
 							</cdl-tree-view>
 						</div>
 					</cdl-side-nav-item>
-				</cdl-side-nav-item>
-			</cdl-side-nav>
-		</div>
-		<div style="position: relative; height: 600px; padding-top: 50px;">
-			<cdl-side-nav [open]="sideNavOpen">
-				<cdl-side-nav-item selected="true">
-					<cdl-glyphicon
-						class="side-nav-glyph"
-						icon="gears"
-						size="md">
-					</cdl-glyphicon>
-					<span class="side-nav-item">More</span>
-					<cdl-side-nav-item>
-						<cdl-glyphicon
-							class="side-nav-glyph"
-							icon="active_work"
-							size="md">
-						</cdl-glyphicon>
-						<span class="side-nav-item">Some long content here</span>
-					</cdl-side-nav-item>
-					<cdl-side-nav-item selected="true">
-						<span class="side-nav-item">And even longer one here</span>
-						<div class="side-nav-pane-sub-template">
-							<cdl-side-nav-pane-title>And even longer one here</cdl-side-nav-pane-title>
-							<cdl-tree-view
-								[items]="demoItems"
-								[listTpl]="listTpl"
-								[elemSpacing]="44" >
-							</cdl-tree-view>
-						</div>
-					</cdl-side-nav-item>
-				</cdl-side-nav-item>
-				<cdl-side-nav-item>
-					<cdl-glyphicon
-						class="side-nav-glyph"
-						icon="gear"
-						size="md">
-					</cdl-glyphicon>
-					<span class="side-nav-item">Gear Here</span>
 				</cdl-side-nav-item>
 			</cdl-side-nav>
 		</div>
@@ -164,11 +112,11 @@ export class SideNavDemo {
 			content: "Understand",
 			selected: false,
 			icon: "alert",
-			subMenu: [
+			items: [
 				{
 					content: "Experience integrations",
 					selected: false,
-					subMenu: [
+					items: [
 						{
 							content: "Experience integrations",
 							selected: false

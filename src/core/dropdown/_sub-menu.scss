@@ -37,58 +37,84 @@
 }
 
 .sub-menu-item-wrapper {
-	border-left: 2px solid transparent; // transparent border to prevent shifting
 	background: $submenu-bg;
 	&.disabled {
-		color: color("gray", 20);
-		cursor: no-drop;
 		&:hover, &:focus {
+			cursor: not-allowed;
 			background-color: color("white", 0);
-			border-left: 2px solid transparent;
-			outline: none;
+
+			&:before{
+				border-left: none;
+			}
 		}
 	}
-	&:hover, &:focus, &.selected {
-		background-color: $submenu-hover-bg;
+
+	&:hover, &.selected, &:focus {
+		background-color: $listview-hover-bg;
+		position: relative;
+		z-index: 1;
+		&:before{
+			content:'';
+			height: 100%;
+			left: 0;
+			top: 0;
+			position: absolute;
+			border-left: 1px solid color("blue", 50);
+		}
+	}
+
+	&.has-items.selected {
+		border-left-width: 1px;
+		font-weight: inherit;
 	}
 
 	&.selected {
-		border-left: 2px solid color("blue", 50);
-		color: $submenu-selected-color;
+		color: $listview-selected-color;
 		font-weight: bold;
+		&:before {
+			content:'';
+			height: 100%;
+			left: 0;
+			top: 0;
+			position: absolute;
+			border-left: $listview-selected-border;
+		}
 	}
 
 	.arrow {
 		position: absolute;
 		right: 10px;
+		height: 16px;
+		width: 16px;
+		top: 7px;
 	}
-
-	.checked {
-		float: right;
-		position: relative;
-		vertical-align: middle;
-		@extend .badge;
-		&:before{
-			content:'';
-			border-right: 1px solid color("white", 0);
-			border-bottom: 1px solid color("white", 0);
-			transform: rotate(45deg);
-			position: absolute;
-			left: 6px;
+}
+&.size-sm {
+	.sub-menu-item-wrapper {
+		.arrow {
+			width: 14px;
+			height: 14px;
 			top: 3px;
-			height: 8px;
-			width: 4px;
 		}
 	}
-}
-&.size-sm .sub-menu-item {
-    font-size: $dropdown-font-size-sm;
-    height: $dropdown-height-sm;
+	.sub-menu-item {
+		font-size: $dropdown-font-size-sm;
+		height: $dropdown-height-sm;
+	}
 }
 
-&.size-lg .sub-menu-item {
-    padding: 10px 20px;
-    height: $dropdown-height-lg;
+
+&.size-lg {
+	.sub-menu-item-wrapper {
+		.arrow {
+			top: 12px;
+			right: 20px;
+		}
+	}
+	.sub-menu-item {
+		padding: 10px 20px;
+		height: $dropdown-height-lg;
+	}
 }
 .sub-menu-item {
 	position: relative;

@@ -48,11 +48,6 @@ import "rxjs/add/operator/filter";
 })
 export class AppComponent implements OnInit {
 	private navItems = [
-		// {
-		// 	content: "Table Demo",
-		// 	link: "/table",
-		// 	selected: false
-		// },
 		{
 			content: "CSS Demo",
 			link: "/css",
@@ -64,8 +59,8 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Glyphicon Demo",
-			link: "/glyphicon",
+			content: "Iconography Demo",
+			link: "/icon",
 			selected: false
 		},
 		{
@@ -94,7 +89,7 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Dropdown Demo",
+			content: "Drop-down Demo",
 			link: "/dropdown",
 			selected: false
 		},
@@ -118,11 +113,6 @@ export class AppComponent implements OnInit {
 			link: "/alert",
 			selected: false
 		},
-		// {
-		// 	content: "Charts Demo",
-		// 	link: "/charts",
-		// 	selected: false
-		// },
 		{
 			content: "Combobox Demo",
 			link: "/combobox",
@@ -142,6 +132,9 @@ export class AppComponent implements OnInit {
 					SEARCH: "Search",
 					NO_RESULTS: "No search results"
 				}
+			},
+			TOPNAV: {
+				SKIP_TO_MAIN: "Skip to main content"
 			}
 		});
 	}
@@ -180,6 +173,8 @@ export class AppComponent implements OnInit {
 		}
 		this.previousItem = item;
 		item.selected = true;
-		this._router.navigate([item.link]);
+		this._router.navigate([item.link]);  // do we need to remove this since we have routerLink already?
+											 // also, replace selected with routerLinkActive?
+											 // https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html
 	}
 }

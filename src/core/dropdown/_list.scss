@@ -27,8 +27,8 @@
 			&:before{
 				content:'';
 				height: 100%;
-				left:0;
-				top:0;
+				left: 0;
+				top: 0;
 				position: absolute;
 				border-left: 1px solid color("blue", 50);
 			}
@@ -38,7 +38,7 @@
 			display: inline-block;
 			margin-right: 10px;
 			margin-bottom: 0;
-		    top: -1px;
+		    top: 0;
 			.size-sm & .label {
 				width: 15px;
 			}
@@ -54,7 +54,7 @@
 		&.selected {
 			color: $listview-selected-color;
 			font-weight: bold;
-			&:before{
+			&:before {
 				content:'';
 				height: 100%;
 				left:0;

@@ -10,18 +10,32 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	</ng-template>
 
 	<h3>Basic popover</h3>
-	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="left">Popover left</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="top-left">Popover top left</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="top">Popover top</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="top-right">Popover top right</button>
-	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="right">Popover right</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="bottom-left">Popover bottom left</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="bottom">Popover bottom</button>
-	<button class="btn" cdlPopover="Hello there" title="Popover title" placement="bottom-right">Popover bottom right</button>
-	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="auto">Popover auto position</button>
+	Popover left
+	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="left">
+		<cdl-icon icon="info" size="16"></cdl-icon>
+	</button>
+	Popover top
+	<button class="popover-button" cdlPopover="Hello there" title="Popover title" placement="top">
+		<cdl-icon icon="info" size="16"></cdl-icon>
+	</button>
+	Popover right
+	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="right">
+		<cdl-icon icon="info" size="16"></cdl-icon>
+	</button>
+	Popover bottom
+	<button class="popover-button" cdlPopover="Hello there" title="Popover title" placement="bottom">
+		<cdl-icon icon="info" size="16"></cdl-icon>
+	</button>
+	Popover auto position
+	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="auto">
+		<cdl-icon icon="info" size="16"></cdl-icon>
+	</button>
 
 	<h3>Popover can be opened or closed manualy</h3>
-	<button class="btn" [cdlPopover]="customPopover" title="Popover title" placement="right" #popover="cdlPopover">Popover right</button>
+	Have a popover
+	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="right" #popover="cdlPopover">
+		<cdl-icon icon="info" size="16"></cdl-icon>
+	</button>
 	<br>
 	<button class="btn" (click)="popover.close()">Close above popover</button>
 	<button class="btn" (click)="this.open()">Open above popover</button>
@@ -38,14 +52,14 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	</ng-template>
 
 	<h3>Popover menu</h3>
-	<button class="popover-menu-button"
+	<button class="popover-button popover-menu-button"
 		[cdlPopover]="list"
 		placement="bottom-right"
 		wrapperClass="popover-content-fullwidth"
 		popoverMenu="true"
 		title="Actions"
 		[gap]="13">
-		<cdl-glyphicon icon="dotdotdot_vert" size="16"></cdl-glyphicon>Menu
+		<cdl-icon icon="dotdotdot_vert" size="16"></cdl-icon>Menu
 	</button>
 
 	<h3>Popover filter</h3>
@@ -61,40 +75,45 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			<button class="btn btn-secondary">Cancel</button>
 		</div>
 	</ng-template>
-	<button class="btn"
+	Filter left
+	<button class="popover-button"
 		[cdlPopover]="filter"
 		title="Popover filter"
 		placement="left"
 		wrapperClass="popover-content-filter"
 		popoverFilter="true">
-		Filter left
+		<cdl-icon icon="filter" size="16"></cdl-icon>
 	</button>
 
-	<button class="btn"
+	Filter right
+	<button class="popover-button"
 		[cdlPopover]="filter"
 		title="Popover filter"
 		placement="right"
 		wrapperClass="popover-content-filter"
 		popoverFilter="true">
-		Filter right
+		<cdl-icon icon="filter" size="16"></cdl-icon>
 	</button>
 
 	<h3>Popover append to body</h3>
 
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
-		<button class="btn" [cdlPopover]="list" placement="right" title="Select item">Regular popover</button>
+		Regular popover
+		<button class="popover-button" [cdlPopover]="customPopover" placement="right" title="Select item">
+			<cdl-icon icon="info" size="16"></cdl-icon>
+		</button>
 	</div>
 
 	<br><br>
 
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
-		<button class="btn"
-			[cdlPopover]="list"
-			wrapperClass="popover-content-fullwidth"
+		Popover with appendToBody = true
+		<button class="popover-button"
+			[cdlPopover]="customPopover"
 			placement="right"
 			title="Select item"
 			[appendToBody]="true">
-			Popover with appendToBody = true
+			<cdl-icon icon="info" size="16"></cdl-icon>
 		</button>
 	</div>
 
