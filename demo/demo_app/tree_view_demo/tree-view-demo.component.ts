@@ -36,7 +36,7 @@ import { Component, OnInit } from "@angular/core";
 			<input
 				type="search"
 				id="search-input"
-				placeholder="Filter"
+				placeholder="Search"
 				(keyup)="search($event)">
 		</div>
 		<cdl-tree-view
@@ -44,6 +44,7 @@ import { Component, OnInit } from "@angular/core";
 			(select)="onSelect($event)"
 			[label]="'Default Tree View'">
 		</cdl-tree-view>
+		<em *ngIf="displayItems.length === 0" class="empty">No search results</em>
 	</div>
 	`,
 	styles: [
@@ -65,6 +66,14 @@ import { Component, OnInit } from "@angular/core";
 			}
 			#demo {
 				width: 300px;
+				height: 600px;
+			}
+			#demo .empty {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 			/deep/ cdl-checkbox .checkbox {
 				margin-bottom: 0;
@@ -171,11 +180,14 @@ export class TreeViewDemo {
 				filteredList.push(Object.assign({}, item));
 			}
 			if (item.items) {
-				let filteredItem = Object.assign({}, item, {
-					items: this.filter(item.items, cb),
-					opened: true
-				});
-				filteredList.push(filteredItem);
+				let filteredItems = this.filter(item.items, cb);
+				if (filteredItems.length !== 0) {
+					let filteredItem = Object.assign({}, item, {
+						items: filteredItems,
+						opened: true
+					});
+					filteredList.push(filteredItem);
+				}
 			}
 		}
 		return filteredList;

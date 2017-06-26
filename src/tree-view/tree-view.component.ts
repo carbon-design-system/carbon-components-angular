@@ -47,7 +47,6 @@ export class TreeView {
 
 	ngOnChanges(changes) {
 		if (changes.items) {
-			// this.items = JSON.parse(JSON.stringify(changes.items.currentValue));
 			this.flatList = [];
 			this.flattenTree(this.items);
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
@@ -73,31 +72,17 @@ export class TreeView {
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(ev) {
-		let visibleItems = this._elementRef.nativeElement.querySelectorAll(".item-wrapper[tabindex='0']");
-		// console.log(ev, visibleItems);
+		let visibleItems = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper[tabindex='0']"));
+		let eli = visibleItems.indexOf(document.activeElement);
+		if (ev.key === "ArrowUp" && visibleItems[eli - 1]) {
+			(visibleItems[eli - 1] as HTMLElement).focus();
+		} else if (ev.key === "ArrowDown" && visibleItems[eli + 1]) {
+			(visibleItems[eli + 1] as HTMLElement).focus();
+		}
 	}
 
 	onClick({item}) {
 		if (!item.disabled ) {
-		// 	item.selected = !item.selected;
-		// 	this.index = this.flatList.indexOf(item);
-		// 	if (this.type === "single") {
-		// 		let {path} = treetools.find(this.items, item);
-		// 		// reset the selection taking care not to touch our selected item or items with sub items
-		// 		for (let i = 0; i < this.flatList.length; i++) {
-		// 			if (path.indexOf(this.flatList[i]) !== -1 && this.flatList[i] !== item && !this.flatList[i].items) {
-		// 				this.flatList[i].selected = true;
-		// 			} else if (this.flatList[i] !== item && !this.flatList[i].items) {
-		// 				this.flatList[i].selected = false;
-		// 			}
-		// 		}
-		// 		if (!item.items) {
-		// 			this.select.emit({item});
-		// 		}
-		// 	} else {
-		// 		this.select.emit(this.getSelected());
-		// 	}
-		// }
 			this.select.emit({item});
 		}
 	}

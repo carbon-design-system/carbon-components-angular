@@ -66,6 +66,7 @@ export class ComboBox {
 					} else {
 						this.selectedValue = "";
 					}
+					this.dropdownButton.open = false;
 				}
 			});
 			this.view["updateList"](this.items);

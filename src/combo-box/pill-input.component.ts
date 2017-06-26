@@ -160,6 +160,7 @@ export class PillInput {
 			}
 			this.checkPlaceholderVisibility();
 		});
+		this.clearInputText();
 	}
 
 	private checkPlaceholderVisibility(): void {
@@ -186,6 +187,9 @@ export class PillInput {
 			this.expanded = true;
 		}
 		if (this.comboInputs.find(input => input.nativeElement === ev.target)) {
+			if (ev.target.textContent === "") {
+				ev.target.textContent = "";
+			}
 			this.clearInputText(ev.target);
 			this.setSelection(ev.target);
 		} else if (this.getInputText()) {
@@ -195,6 +199,9 @@ export class PillInput {
 				}
 			});
 		} else {
+			if (this.comboInputs.last.nativeElement.textContent === "") {
+				this.comboInputs.last.nativeElement.textContent = "";
+			}
 			this.setSelection(this.comboInputs.last.nativeElement);
 		}
 	}

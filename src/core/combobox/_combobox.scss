@@ -48,7 +48,7 @@
 	overflow: hidden;
 	z-index: 1;
 	&.focus {
-		border-color: color("blue", 50);
+		box-shadow: inset 0px 0px 0px 1px white, inset 0px 0px 0px 2px color("blue", 50);
 	}
 	.more {
 		margin-left: 5px;
@@ -56,7 +56,12 @@
 		position: absolute;
 		right: 10px;
 		top: 5px;
-		font-weight: bold;
+		font-weight: normal;
+		border-bottom: 1px solid color("blue", 50);
+		&:hover {
+			border-bottom-width: 3px;
+			text-decoration: none;
+		}
 	}
 	.placeholder {
 		line-height: 20px;
@@ -74,6 +79,7 @@
 	.dropdown-wrapper {
 		position: absolute;
 		left: 0;
+		top: 30px;
 	}
 }
 
@@ -91,6 +97,7 @@
 	svg {
 		position: absolute;
 		top: 7px;
+		left: 6px;
 		&.open {
 			transform: rotate(180deg);
 		}
@@ -100,7 +107,8 @@
 .combo-input {
 	max-width: 100%;
 	min-width: 10px;
-	padding-left: 2px; // so the cursor isn't right up agains the pill
+	height: 15px;
+	padding-left: 2px; // so the cursor isn't right up against the pill
 	display: inline-block;
 	&:first-child {
 		margin-left: 0;
