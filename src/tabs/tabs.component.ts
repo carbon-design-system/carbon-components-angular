@@ -20,21 +20,20 @@ export class Tabs implements AfterContentInit {
 	@Input() position: "top" | "bottom" = "top";
 
 	ngAfterContentInit() {
-		let active = false;
-		let firstTab;
-
-		this.tabs.forEach((tab, index) => {
-			if (!index) {
-				firstTab = tab;
-			}
-
-			if (tab.active) {
-				active = true;
-			}
+		this.tabs.changes.subscribe(changes => {
+			this.setFirstTab();
 		});
+		this.setFirstTab();
+	}
 
-		if (firstTab && !active) {
+	private setFirstTab(): void {
+		let firstTab = this.tabs.find(tab => tab.active);
+		if (!firstTab && this.tabs.first) {
+			firstTab = this.tabs.first;
 			firstTab.active = true;
+		}
+		if (firstTab) {
+			firstTab.doSelect();
 		}
 	}
 }

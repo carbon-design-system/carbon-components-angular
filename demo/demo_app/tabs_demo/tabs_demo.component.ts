@@ -7,10 +7,10 @@ import { Component, OnInit } from "@angular/core";
 
 	<h2>Static tabs</h2>
 		<cdl-tabs>
-			<cdl-tab heading='Tab1'>
+			<cdl-tab heading='Tab1' (select)="onSelect('tab1')">
 				Tab 1 content
 			</cdl-tab>
-			<cdl-tab heading='Tab2'>
+			<cdl-tab heading='Tab2' (select)="onSelect('tab2')">
 				Tab 2 content
 			</cdl-tab>
 			<cdl-tab heading='Tab3'>
@@ -50,7 +50,7 @@ import { Component, OnInit } from "@angular/core";
 		<cdl-tab heading='Tab1'>
 			Tab 1 content
 		</cdl-tab>
-		<cdl-tab heading='Tab2' active='true'>
+		<cdl-tab heading='Tab2' active='true' (select)="onSelect('bottom tab 2')">
 			Tab 2 content
 		</cdl-tab>
 		<cdl-tab heading='Tab3'>
@@ -60,7 +60,12 @@ import { Component, OnInit } from "@angular/core";
 
 	<h2>Dynamic tabs</h2>
 	<cdl-tabs>
-		<cdl-tab *ngFor="let tab of sampleTabs" [heading]="tab.heading" [active]="tab.active" [disabled]="tab.disabled">
+		<cdl-tab
+			*ngFor="let tab of sampleTabs"
+			[heading]="tab.heading"
+			[active]="tab.active"
+			[disabled]="tab.disabled"
+			(select)="onSelect(tab.heading)">
 			{{tab.content}}
 		</cdl-tab>
 	</cdl-tabs>
@@ -68,7 +73,11 @@ import { Component, OnInit } from "@angular/core";
 	<h2>Dynamic tabs with timeout</h2>
 	<div>
 		<cdl-tabs>
-			<cdl-tab *ngFor="let tab of sampleTabs2" [heading]="tab.heading" [active]="tab.active">
+			<cdl-tab
+				*ngFor="let tab of sampleTabs2"
+				[heading]="tab.heading"
+				[active]="tab.active"
+				(select)="onSelect(tab.heading)">
 				{{tab.content}}
 			</cdl-tab>
 		</cdl-tabs>
@@ -161,5 +170,9 @@ export class TabsDemo {
 	test(ev) {
 		ev.preventDefault();
 		alert("You just clicked me");
+	}
+
+	onSelect(name: String) {
+		console.log(`selected: ${name}`);
 	}
 }
