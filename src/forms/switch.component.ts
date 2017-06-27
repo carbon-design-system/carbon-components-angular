@@ -29,12 +29,13 @@ export class SwitchChange {
 	selector: "cdl-switch",
 	template: `
 		<div class="switch">
-			<label>
+			<label [for]="id">
 				<input type="checkbox" #inputCheckbox
 					[checked]="checked"
 					[disabled]="disabled"
 					[indeterminate]="indeterminate"
 					[name]="name"
+					[id]="id"
 					[required]="required"
 					[value]="value"
 					[attr.aria-label]="ariaLabel"
@@ -57,4 +58,12 @@ export class SwitchChange {
 	]
 })
 export class SwitchComponent extends CheckboxComponent {
+	static switchCount = 0;
+
+	id = "switch-" + SwitchComponent.switchCount;
+
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+		super(changeDetectorRef);
+		SwitchComponent.switchCount++;
+	}
 }

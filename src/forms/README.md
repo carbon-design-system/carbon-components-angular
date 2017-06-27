@@ -14,16 +14,17 @@ source: `src/forms/checkbox.component.ts`
 
 **Inputs:**
 
-| @Input          | Type     | Default value |
-| --------------- | -------- | ------------- |
-| disabled        | boolean  | false         |
-| name            | string   |               |
-| required        | boolean  |               |
-| value           | string   |               |
-| aria-label      | string   | ""            |
-| aria-labelledby | string   |               |
-| indeterminate   | boolean  |               |
-| checked         | boolean  |               |
+| @Input          | Type     | Default value       |
+| --------------- | -------- | ------------------- |
+| disabled        | boolean  | false               |
+| name            | string   |                     |
+| id              | string   | "checkbox-<number>" |
+| required        | boolean  |                     |
+| value           | string   |                     |
+| aria-label      | string   | ""                  |
+| aria-labelledby | string   |                     |
+| indeterminate   | boolean  |                     |
+| checked         | boolean  |                     |
 
 **Outputs:**
 
@@ -102,16 +103,17 @@ source: `src/forms/switch.component.ts`
 
 **Inputs:**
 
-| @Input          | Type     | Default value |
-| --------------- | -------- | ------------- |
-| disabled        | boolean  | false         |
-| name            | string   |               |
-| required        | boolean  |               |
-| value           | string   |               |
-| aria-label      | string   | ""            |
-| aria-labelledby | string   |               |
-| indeterminate   | boolean  |               |
-| checked         | boolean  |               |
+| @Input          | Type     | Default value     |
+| --------------- | -------- | ----------------- |
+| disabled        | boolean  | false             |
+| name            | string   |                   |
+| id              | string   | "switch-<number>" |
+| required        | boolean  |                   |
+| value           | string   |                   |
+| aria-label      | string   | ""                |
+| aria-labelledby | string   |                   |
+| indeterminate   | boolean  |                   |
+| checked         | boolean  |                   |
 
 **Outputs:**
 
