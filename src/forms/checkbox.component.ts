@@ -28,12 +28,13 @@ export class CheckboxChange {
 	selector: "cdl-checkbox",
 	template: `
 		<div class="checkbox">
-			<label>
+			<label [for]="id">
 				<input type="checkbox" #inputCheckbox
 					[checked]="checked"
 					[disabled]="disabled"
 					[indeterminate]="indeterminate"
 					[name]="name"
+					[id]="id"
 					[required]="required"
 					[value]="value"
 					[attr.aria-label]="ariaLabel"
@@ -56,8 +57,11 @@ export class CheckboxChange {
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
+	static checkboxCount = 0;
+
 	@Input() disabled = false;
 	@Input() name: string;
+	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
 	@Input() required: boolean;
 	@Input() value: string;
 	@Input("aria-label") ariaLabel = "";
@@ -108,8 +112,8 @@ export class CheckboxComponent implements ControlValueAccessor {
 
 
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {
-
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+		CheckboxComponent.checkboxCount++;
 	}
 
 	public toggle() {
