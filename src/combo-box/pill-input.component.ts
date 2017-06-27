@@ -128,6 +128,9 @@ export class PillInput {
 			}, 0);
 		}
 		if (changes.displayValue) {
+			if (this.type === "single" && this.comboInputs) {
+				this.comboInputs.first.nativeElement.textContent = changes.displayValue.currentValue;
+			}
 			this.checkPlaceholderVisibility();
 		}
 	}

@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ContentChild, TemplateRef } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	ContentChild,
+	TemplateRef
+} from "@angular/core";
 
 let nextId = 0;
 
@@ -18,16 +26,21 @@ let nextId = 0;
 	}
 })
 export class Tab implements OnInit {
+	public headingIsTemplate = false;
 	@Input() heading: string | TemplateRef<any>;
 	@Input() active = false;
 	@Input() disabled = false;
 	// do we need id's?
 	@Input() id = `cdl-tab-${nextId++}`;
-	headingIsTemplate = false;
+	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 
 	ngOnInit() {
 		if (this.heading instanceof TemplateRef) {
 			this.headingIsTemplate = true;
 		}
+	}
+
+	doSelect() {
+		this.select.emit();
 	}
 }

@@ -4,6 +4,32 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	selector: "combobox-demo",
 	template: `
 		<h1>Combobox demo</h1>
+
+		<h2>Single select combobox</h2>
+		<div style="width: 330px;">
+			<cdl-combo-box
+				placeholder="Select or enter"
+				[items]="demoItems2">
+				<cdl-dropdown-button>
+					<cdl-dropdown-list></cdl-dropdown-list>
+				</cdl-dropdown-button>
+			</cdl-combo-box>
+		</div>
+
+		<h2>Multi select combobox</h2>
+		<div style="width: 330px;">
+			<cdl-combo-box
+				placeholder="Select or enter"
+				type="multi"
+				[items]="demoItems3"
+				(submit)="onSubmit($event)">
+				<cdl-dropdown-button>
+					<cdl-dropdown-list></cdl-dropdown-list>
+				</cdl-dropdown-button>
+			</cdl-combo-box>
+		</div>
+
+		<h2>Internal component demos</h2>
 		<cdl-pill-input [pills]="demoItems1" type="multi"></cdl-pill-input>
 		<br>
 		<cdl-dropdown-button></cdl-dropdown-button>
@@ -26,36 +52,6 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				</div>
 			</div>
 		</div>
-		<br>
-		<div style="width: 330px;">
-			<cdl-combo-box
-				placeholder="Select or enter"
-				[items]="demoItems2">
-				<cdl-dropdown-button>
-					<cdl-dropdown-list></cdl-dropdown-list>
-				</cdl-dropdown-button>
-			</cdl-combo-box>
-		</div>
-		<br>
-		<div style="width: 330px;">
-			<cdl-combo-box
-				placeholder="Select or enter"
-				type="multi"
-				[items]="demoItems3"
-				(submit)="onSubmit($event)">
-				<cdl-dropdown-button>
-					<cdl-dropdown-list></cdl-dropdown-list>
-				</cdl-dropdown-button>
-			</cdl-combo-box>
-		</div>
-		<br>
-		<cdl-combo-box
-			placeholder="Select or enter"
-			[items]="demoItems4">
-			<cdl-dropdown-button>
-				<cdl-dropdown-list></cdl-dropdown-list>
-			</cdl-dropdown-button>
-		</cdl-combo-box>
 	`,
 	encapsulation: ViewEncapsulation.None
 })

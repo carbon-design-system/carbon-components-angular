@@ -271,6 +271,7 @@ export class TabHeaders implements AfterViewInit {
 		this.currentSelectedTab = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
+		tab.doSelect();
 		this.moveTabIntoView(ref);
 	}
 

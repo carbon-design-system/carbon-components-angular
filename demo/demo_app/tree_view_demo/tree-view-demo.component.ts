@@ -236,20 +236,15 @@ export class TreeViewDemo {
 		// in that case use check/blank icons for children
 		// and checkboxes for the parents. Of course, if you have
 		// highly nested trees, a version of this may be useful
-		// also I'm not entirely sure why I have to settimeout this
-		// for it to behave :(
-		setTimeout(() => {
-			let parents = findParents(this.demoItems1, ev.item);
-			if (parents) {
-				parents.forEach(parent => {
-					console.log(parent.items.every(i => { console.log(i.selected); return i.selected; }));
-					if (parent.items.every(i => i.selected)) {
-						console.log(parent);
-						parent.selected = ev.item.selected;
-					}
-				});
-			}
-		}, 0);
+		let parents = findParents(this.demoItems1, ev.item);
+		if (parents && parents.length > 0) {
+			parents.forEach(parent => {
+				// ignores the event item
+				if (parent.items.every(i => i === ev.item ? true : i.selected)) {
+					parent.selected = ev.item.selected;
+				}
+			});
+		}
 	}
 
 	isIndeterminate(item) {
