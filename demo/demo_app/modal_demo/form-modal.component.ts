@@ -32,15 +32,13 @@ import { Modal } from "../../../src";
 						<input type="text" class="input-field" formControlName="{{field}}"/>
 					</cdl-label>
 
-					<br><br>
-
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
 					<label class="label label-top">Dropdown</label>
 					<cdl-dropdown
 						placeholder="Select an option">
 						<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
 					</cdl-dropdown>
-					<br><br>
+					<div style="height: 17px"></div>
 					<button class="btn" cdlPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<cdl-modal-footer>

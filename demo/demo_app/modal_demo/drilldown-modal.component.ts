@@ -39,11 +39,11 @@ import { Modal } from "../../../src";
 				</cdl-modal-header>
 				<section class="modal-body">
 					<div>
-						<h1>Hello, from drilled down content.</h1>
+						<h2>Hello, from drilled down content.</h2>
 					</div>
 				</section>
 				<cdl-modal-footer>
-					<button class="btn cancel-button btn-secondary" (click)="drill($event, false)">Cancel</button>
+					<button class="btn cancel-button btn-secondary" (click)="drill($event, false)">Back</button>
 				</cdl-modal-footer>
 			</ng-container>
 		</cdl-modal>
