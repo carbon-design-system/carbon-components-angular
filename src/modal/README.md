@@ -12,7 +12,7 @@ Use `n-modal`, `n-modal-header` and `n-modal-footer` in the template.
 Ex:
 ```typescript
 import { Component, Injector } from "@angular/core";
-import { Modal } from "@neutrino/modal";
+import { Modal } from "@peretz/neutrino";
 
 @Modal()
 @Component({
@@ -46,7 +46,7 @@ Ex:
 ```typescript
 import { Component } from "@angular/core";
 import { SampleModalComponent } from "./sample-modal.component";
-import { ModalService } from "@neutrino/modal;
+import { ModalService } from "@peretz/neutrino;
 
 @Component({
 	selector: "modal-demo",

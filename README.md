@@ -2,11 +2,11 @@
 Next generation components
 
 ### Getting started
-You'll need access to the whitewater hosted npm instalation. We reccomend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@neutrino" scope.
+You'll need access to the whitewater hosted npm instalation. We reccomend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@peretz" scope.
 
 Your project should use a module bundler - we recommend [webpack](https://webpack.js.org/).
 
-Then you'll be able to `npm install @neutrino/neutrino` and start importing components and styles.
+Then you'll be able to `npm install @peretz/neutrino` and start importing components and styles.
 
 ### Component status
 
