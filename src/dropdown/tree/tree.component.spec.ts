@@ -7,7 +7,7 @@ import { TreeItem } from "./tree-item.component";
 import { ListItem } from "./../list-item.interface";
 
 @Component({
-	template: `<cdl-dropdown-tree [items]="items" (select)="onSelect($event)"></cdl-dropdown-tree>`
+	template: `<n-dropdown-tree [items]="items" (select)="onSelect($event)"></n-dropdown-tree>`
 })
 class TestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -18,7 +18,7 @@ class TestComponent {
 }
 
 @Component({
-	template: `<cdl-dropdown-tree [items]="items" (select)="onSelect($event)" type="multi"></cdl-dropdown-tree>`
+	template: `<n-dropdown-tree [items]="items" (select)="onSelect($event)" type="multi"></n-dropdown-tree>`
 })
 class TestMultiComponent {
 	items = [

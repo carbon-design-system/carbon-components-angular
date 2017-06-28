@@ -8,7 +8,7 @@ Forms module adds convenience components for forms to Neutrino.
 ### CheckboxComponent
 class: CheckboxComponent
 
-selector: `cdl-checkbox`
+selector: `n-checkbox`
 
 source: `src/forms/checkbox.component.ts`
 
@@ -35,7 +35,7 @@ source: `src/forms/checkbox.component.ts`
 
 Ex:
 ```html
-<cdl-checkbox [(ngModel)]="checkboxState">Checkbox</cdl-checkbox>
+<n-checkbox [(ngModel)]="checkboxState">Checkbox</n-checkbox>
 ```
 
 #### Using indeterminate state
@@ -44,19 +44,19 @@ Ex:
 @Component({
 	selector: "indeterminate-checkbox-demo",
 	template: `
-	<cdl-checkbox
+	<n-checkbox
 		[(ngModel)]="checkboxState"
 		[indeterminate]="someSelected"
 		(change)="onTristateChange()">
 		Tristate Checkbox (State: {{checkboxState}} Indeterminate: {{someSelected}})
-	</cdl-checkbox>
+	</n-checkbox>
 
-	<cdl-checkbox *ngFor="let one of manyCheckboxes"
+	<n-checkbox *ngFor="let one of manyCheckboxes"
 		[(ngModel)]="one.checked"
 		(change) = "multiCheckboxChanged()"
 		class="indent">
 		Check ({{one.checked}})
-	</cdl-checkbox>
+	</n-checkbox>
 	`
 })
 export class FormsDemo {
@@ -97,7 +97,7 @@ export class FormsDemo {
 ### SwitchComponent
 class: SwitchComponent (extends CheckboxComponent)
 
-selector: `cdl-switch`
+selector: `n-switch`
 
 source: `src/forms/switch.component.ts`
 
@@ -124,13 +124,13 @@ source: `src/forms/switch.component.ts`
 
 Ex:
 ```html
-<cdl-switch [(ngModel)]="switchState">Switch</cdl-switch>
+<n-switch [(ngModel)]="switchState">Switch</n-switch>
 ```
 
 ### LabelComponent
 class: LabelComponent
 
-selector: `cdl-label`
+selector: `n-label`
 
 source: `src/forms/label.component.ts`
 
@@ -142,18 +142,18 @@ source: `src/forms/label.component.ts`
 
 Ex:
 ```html
-<cdl-label labelState="success">
+<n-label labelState="success">
 	<label label>Field with success</label>
 	<input type="text" class="input-field">
-</cdl-label>
+</n-label>
 
-<cdl-label labelState="warning">
+<n-label labelState="warning">
 	<label label>Field with warning</label>
 	<input type="text" class="input-field">
-</cdl-label>
+</n-label>
 
-<cdl-label labelState="error">
+<n-label labelState="error">
 	<label label>Field with error</label>
 	<input type="text" class="input-field">
-</cdl-label>
+</n-label>
 ```

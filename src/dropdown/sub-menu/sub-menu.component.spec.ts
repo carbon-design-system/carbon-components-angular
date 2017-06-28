@@ -7,7 +7,7 @@ import { SubMenuItem } from "./sub-menu-item.component";
 import { ListItem } from "./../list-item.interface";
 
 @Component({
-	template: `<cdl-dropdown-sub-menu [items]="items" (select)="onSelect($event)"></cdl-dropdown-sub-menu>`
+	template: `<n-dropdown-sub-menu [items]="items" (select)="onSelect($event)"></n-dropdown-sub-menu>`
 })
 class TestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -18,7 +18,7 @@ class TestComponent {
 }
 
 @Component({
-	template: `<cdl-dropdown-sub-menu [items]="items" (select)="onSelect($event)" type="multi"></cdl-dropdown-sub-menu>`
+	template: `<n-dropdown-sub-menu [items]="items" (select)="onSelect($event)" type="multi"></n-dropdown-sub-menu>`
 })
 class TestMultiComponent {
 	items = [

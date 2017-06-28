@@ -1,0 +1,13 @@
+{
+	"DROPDOWN": {
+		"SELECTED": "{{ number }} selected",
+		"FILTER": {
+			"SELECTED_ONLY": "Show selected only",
+			"SEARCH": "Search",
+			"NO_RESULTS": "No search results"
+		}
+	},
+	"TOPNAV": {
+		"SKIP_TO_MAIN": "Skip to main content"
+	}
+}

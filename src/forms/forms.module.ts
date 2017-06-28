@@ -21,4 +21,4 @@ import { LabelComponent } from "./label.component";
 		LabelComponent
 	]
 })
-export class CDLFormsModule { }
+export class NFormsModule { }

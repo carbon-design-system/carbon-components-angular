@@ -2,7 +2,7 @@
 
 class: TopNav
 
-selector: `cdl-top-nav`
+selector: `n-top-nav`
 
 | @Input    | Type        | Default Value |
 | --------- | ----------- | ------------- |
@@ -13,16 +13,16 @@ selector: `cdl-top-nav`
 
 Ex:
 ```html
-<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="true"></cdl-top-nav>
+<n-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="true"></n-top-nav>
 ```
 
 Top-nav takes 3 optional projections for hamburger, links and menu:
 Ex:
 ```html
-<cdl-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false">
-	<cdl-hamburger hamburger></cdl-hamburger>
-	<cdl-list-view links [items]="demoItems"></cdl-list-view>
-</cdl-top-nav>
+<n-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false">
+	<n-hamburger hamburger></n-hamburger>
+	<n-list-view links [items]="demoItems"></n-list-view>
+</n-top-nav>
 ```
 
 `items` expects an array of objects where the objects follow the format:
@@ -38,7 +38,7 @@ See list-view component.
 # Hamburger component
 
 class: Hamburger (extends PopoverDirective)
-selector: `cdl-hamburger`
+selector: `n-hamburger`
 
 | @Input    | Type        | Default Value |
 | --------- | ----------- | ------------- |
@@ -51,14 +51,14 @@ selector: `cdl-hamburger`
 
 Ex:
 ```html
-<cdl-hamburger (onClick)="onClick($event)" hamburger></cdl-hamburger>
+<n-hamburger (onClick)="onClick($event)" hamburger></n-hamburger>
 ```
 
 # Example
 
 ```html
-<cdl-top-nav [fixed]="false">
-	<cdl-hamburger hamburger></cdl-hamburger>
+<n-top-nav [fixed]="false">
+	<n-hamburger hamburger></n-hamburger>
 	<div title>
 		<a class="top-nav-heading top-nav-link-item fl" href="#">
 			<h1 class="top-nav-brand">
@@ -73,7 +73,7 @@ Ex:
 			<label class="top-nav-link-item"
 				(click)="showSearchInput1 = toggleSearch(showSearchInput1)"
 				tabindex="0">
-				<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
+				<n-icon class="menu-icon menu-icon-only" icon="search" size="16"></n-icon>
 			</label>
 		</li>
 		<li>
@@ -82,7 +82,7 @@ Ex:
 				(click)="showNotifications1 = !showNotifications1"
 				[ngClass]="{'top-nav-link-item-selected': showNotifications1}"
 				[attr.aria-expanded]="!!showNotifications1">
-				<cdl-icon class="menu-icon menu-icon-only" icon="alert" size="16"></cdl-icon>
+				<n-icon class="menu-icon menu-icon-only" icon="alert" size="16"></n-icon>
 			</a>
 			<div [ngClass]="{'hidden': !showNotifications1}" class="top-nav-dropdown">
 				There will be a drop down here of sorts.
@@ -97,7 +97,7 @@ Ex:
 				(click)="showUser1 = !showUser1"
 				[ngClass]="{'top-nav-link-item-selected': showUser1}"
 				[attr.aria-expanded]="!!showUser1">
-				<cdl-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="profile" size="16"></cdl-icon>
+				<n-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="profile" size="16"></n-icon>
 				<span *ngIf="!showSearchInput1">Sam Uncley</span>
 			</a>
 			<div [ngClass]="{'hidden': !showUser1}" class="top-nav-dropdown">
@@ -110,7 +110,7 @@ Ex:
 				(click)="showHelp1 = !showHelp1"
 				[ngClass]="{'top-nav-link-item-selected': showHelp1}"
 				[attr.aria-expanded]="!!showHelp1">
-				<cdl-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="help" size="16"></cdl-icon>
+				<n-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="help" size="16"></n-icon>
 				<span *ngIf="!showSearchInput1">Help</span>
 			</a>
 			<div [ngClass]="{'hidden': !showHelp1}" class="top-nav-dropdown">
@@ -118,7 +118,7 @@ Ex:
 			</div>
 		</li>
 	</ul>
-</cdl-top-nav>
+</n-top-nav>
 ```
 
 ```typescript

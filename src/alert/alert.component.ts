@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "cdl-alert",
+	selector: "n-alert",
 	template: `
 	<div class="alert alert-{{alertObj.type}}" *ngIf="alertObj" role="alert">
 		<button class="close-btn" (click)="onClose()" aria-label="Close">

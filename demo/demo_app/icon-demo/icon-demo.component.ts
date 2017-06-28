@@ -5,10 +5,10 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	template: `
 	<h1>Iconography Demo</h1>
 	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
-	<cdl-icon icon="alert" size="xs"></cdl-icon>
-	<cdl-icon icon="alert" size="sm"></cdl-icon>
-	<cdl-icon icon="alert" size="md"></cdl-icon>
-	<cdl-icon icon="alert" size="lg"></cdl-icon>
+	<n-icon icon="alert" size="xs"></n-icon>
+	<n-icon icon="alert" size="sm"></n-icon>
+	<n-icon icon="alert" size="md"></n-icon>
+	<n-icon icon="alert" size="lg"></n-icon>
 	<div>
 		<input
 			type="search"
@@ -16,15 +16,15 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			class="input-field" style="width: calc(100% - 220px); margin-left: 0;"
 			placeholder="Filter"
 			[attr.disabled]="waitingForLoad?true:null">
-		<cdl-dropdown
+		<n-dropdown
 			placeholder="Select a set"
 			style="width: 200px;"
 			type="multi"
 			(select)="onSelect()"
 			[(ngModel)]="selected"
 			[disabled]="waitingForLoad">
-			<cdl-dropdown-list [items]="sets"></cdl-dropdown-list>
-		</cdl-dropdown>
+			<n-dropdown-list [items]="sets"></n-dropdown-list>
+		</n-dropdown>
 	</div>
 	<div
 		class="loading"
@@ -41,7 +41,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 					class="set-icon"
 					[ngClass]="{hide: !icon.visible}">
 					<h3>{{ icon.name }}</h3>
-					<cdl-icon [icon]="icon.name" size="lg"></cdl-icon>
+					<n-icon [icon]="icon.name" size="lg"></n-icon>
 				</span>
 			</div>
 		</div>

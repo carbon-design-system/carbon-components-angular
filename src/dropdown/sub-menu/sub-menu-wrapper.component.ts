@@ -14,7 +14,7 @@ import { ListItem } from "./../list-item.interface";
 import { SubMenuItem } from "./sub-menu-item.component";
 
 @Component({
-	selector: "cdl-sub-menu-wrapper",
+	selector: "n-sub-menu-wrapper",
 	template: `
 		<ul #list class="sub-menu-view"
 			[class.open]="isOpen"
@@ -22,7 +22,7 @@ import { SubMenuItem } from "./sub-menu-item.component";
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label" >
 			<li *ngFor="let item of items">
-				<cdl-sub-menu-item
+				<n-sub-menu-item
 					[listTpl]="listTpl"
 					[listItem]="item"
 					[hasSubMenu]="!!item.items"
@@ -30,7 +30,7 @@ import { SubMenuItem } from "./sub-menu-item.component";
 					[selectedIcon]="selectedIcon"
 					[rootElem]="rootElem"
 					(select)="bubbleSelect($event)">
-				</cdl-sub-menu-item>
+				</n-sub-menu-item>
 			</li>
 		</ul>
 	`

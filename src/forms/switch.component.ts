@@ -26,7 +26,7 @@ export class SwitchChange {
 }
 
 @Component({
-	selector: "cdl-switch",
+	selector: "n-switch",
 	template: `
 		<div class="switch">
 			<label [for]="id">

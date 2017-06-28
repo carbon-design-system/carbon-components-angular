@@ -15,7 +15,7 @@ import "rxjs/add/observable/fromEvent";
 import { Tab } from "./tab.component";
 
 @Component({
-	selector: "cdl-tab-headers",
+	selector: "n-tab-headers",
 	template: `
 		<div [class.is-over-flow]="overflow">
 			<button
@@ -55,7 +55,7 @@ import { Tab } from "./tab.component";
 			</button>
 			<ul
 				#tabList
-				class="cdl-tab-heading"
+				class="n-tab-heading"
 				role="tablist"
 				[ngStyle]="{'left.px':scrollLeft}"
 				[class.touch-transition]="touchMove">

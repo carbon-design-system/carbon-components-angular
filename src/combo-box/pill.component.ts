@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "cdl-pill",
+	selector: "n-pill",
 	template: `
 		<span><ng-content></ng-content></span>
 		<button class="pill-close" (click)="doRemove($event)">

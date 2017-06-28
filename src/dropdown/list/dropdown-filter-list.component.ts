@@ -18,7 +18,7 @@ import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
 
 @Component({
-	selector: "cdl-dropdown-filter",
+	selector: "n-dropdown-filter",
 	template: `
 		<div
 			*ngIf="type === 'multi'"

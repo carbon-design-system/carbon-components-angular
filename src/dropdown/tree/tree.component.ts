@@ -14,9 +14,9 @@ import { TreeItem } from "./tree-item.component";
 import { watchFocusJump, treetools } from "./../dropdowntools";
 
 @Component({
-	selector: "cdl-dropdown-tree",
+	selector: "n-dropdown-tree",
 	template: `
-		<cdl-tree-wrapper
+		<n-tree-wrapper
 			[items]="items"
 			[listTpl]="listTpl"
 			[selectedIcon]="selectedIcon"
@@ -26,7 +26,7 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			[iconWidth]="iconWidth"
 			[innerPadding]="innerPadding"
 			(select)="onClick($event)">
-		</cdl-tree-wrapper>
+		</n-tree-wrapper>
 	`,
 	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownTree)}]
 })

@@ -11,15 +11,15 @@ import { Component, OnInit } from "@angular/core";
 	<div style="position: relative">
 	<input type="text"
 		[(ngModel)]="date1"
-		cdlDatepicker
+		nDatepicker
 		placement="bottom"
-		#cdlDatepicker="cdlDatepicker"
+		#nDatepicker="nDatepicker"
 		[(selectedDate)]="selectedDate1"
 		[(validDate)]="validDate1"
 	/>
-	<button class="btn" (click)="cdlDatepicker.toggle($event)">
+	<button class="btn" (click)="nDatepicker.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
-		<cdl-icon icon="Calendar" size="md"></cdl-icon>
+		<n-icon icon="Calendar" size="md"></n-icon>
 		</span>
 	</button>
 	</div>
@@ -30,18 +30,18 @@ import { Component, OnInit } from "@angular/core";
 	Valid Date: {{validDate3}}
 	<div style="position: relative">
 	<input type="text"
-		cdlDatepicker
+		nDatepicker
 		placement="right"
 		[(ngModel)]="date3"
 		format="dd/mm/yy"
 		[(selectedDate)]="selectedDate3"
 		[(validDate)]="validDate3"
 		[appendToBody]="true"
-		#cdlDatepicker3="cdlDatepicker"
+		#nDatepicker3="nDatepicker"
 	/>
-	<button class="btn" (click)="cdlDatepicker3.toggle($event)">
+	<button class="btn" (click)="nDatepicker3.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
-		<cdl-icon icon="Calendar" size="md"></cdl-icon>
+		<n-icon icon="Calendar" size="md"></n-icon>
 		</span>
 	</button>
 	</div>
@@ -52,18 +52,18 @@ import { Component, OnInit } from "@angular/core";
 	Valid Date: {{validDate}}
 	<div style="position: relative">
 	<input type="text"
-		cdlDatepicker
+		nDatepicker
 		placement="top"
 		[(ngModel)]="date2"
 		format="dd/mm/yy"
 		[(selectedDate)]="selectedDate"
 		[(validDate)]="validDate"
 		[appendToBody]="true"
-		#cdlDatepicker2="cdlDatepicker"
+		#nDatepicker2="nDatepicker"
 	/>
-	<button class="btn" (click)="cdlDatepicker2.toggle($event)">
+	<button class="btn" (click)="nDatepicker2.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
-		<cdl-icon icon="Calendar" size="md"></cdl-icon>
+		<n-icon icon="Calendar" size="md"></n-icon>
 		</span>
 	</button>
 	</div>

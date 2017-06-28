@@ -10,7 +10,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 
 
 @Component({
-	selector: "cdl-top-nav",
+	selector: "n-top-nav",
 	template: `
 	<header class="top-nav clearfix" [ngClass]="{'top-nav-fixed': fixed}" role="banner">
 		<nav role="menu">
@@ -46,7 +46,7 @@ export class TopNav {
 
 	ngAfterViewInit() {
 		// add aria-hidden to icon elements
-		let icons = this._elementRef.nativeElement.querySelectorAll("cdl-icon, .menu-icon, .icon");
+		let icons = this._elementRef.nativeElement.querySelectorAll("n-icon, .menu-icon, .icon");
 		icons.forEach(icon => icon.setAttribute("aria-hidden", "true"));
 
 		let menuItems = this._elementRef.nativeElement.querySelectorAll(".top-nav-link-item");

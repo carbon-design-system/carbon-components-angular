@@ -7,7 +7,7 @@ Modal module adds modal support to Neutrino.
 It's intended to be used with `ModalService`.
 
 Start by creating your modal component and adding `@Modal` decorator to it.
-Use `cdl-modal`, `cdl-modal-header` and `cdl-modal-footer` in the template.
+Use `n-modal`, `n-modal-header` and `n-modal-footer` in the template.
 
 Ex:
 ```typescript
@@ -18,15 +18,15 @@ import { Modal } from "@neutrino/modal";
 @Component({
 	selector: "sample-modal",
 	template: `
-		<cdl-modal size="xl" (overlaySelected)="closeModal()">
-			<cdl-modal-header (closeSelect)="closeModal()">Header text
-			</cdl-modal-header>
+		<n-modal size="xl" (overlaySelected)="closeModal()">
+			<n-modal-header (closeSelect)="closeModal()">Header text
+			</n-modal-header>
 			<section class="modal-body">
 				<h1>sample-modal Works!</h1>
 				{{modalText}}
 			</section>
-			<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
-		</cdl-modal>
+			<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
+		</n-modal>
 	`,
 	styleUrls: ["./sample-modal.component.scss"]
 })
@@ -38,7 +38,7 @@ export class SampleModalComponent {
 }
 ```
 
-Add `<cdl-modal-placeholder></cdl-modal-placeholder>` to a place where actual modal code will be added to. Commonly bottom of your app component template.
+Add `<n-modal-placeholder></n-modal-placeholder>` to a place where actual modal code will be added to. Commonly bottom of your app component template.
 
 To invoke the dialog call `create()` method on `ModalService`.
 
@@ -67,7 +67,7 @@ export class ModalDemo {
 ### ModalComponent
 class: ModalComponent
 
-selector: `cdl-modal`
+selector: `n-modal`
 
 source: `src/modal/modal.component.ts`
 
@@ -86,21 +86,21 @@ source: `src/modal/modal.component.ts`
 
 Ex:
 ```html
-<cdl-modal size="xl" (overlaySelected)="closeModal()">
-	<cdl-modal-header (closeSelect)="closeModal()">Header text</cdl-modal-header>
+<n-modal size="xl" (overlaySelected)="closeModal()">
+	<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
 	<section class="modal-body">
 		<h1>It Works!</h1>
 		{{modalText}}
 	</section>
-	<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></cdl-modal-footer>
-</cdl-modal>
+	<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
+</n-modal>
 ```
 
 
 ### ModalFooterComponent
 class: ModalFooterComponent
 
-selector: `cdl-modal-footer`
+selector: `n-modal-footer`
 
 source: `src/modal/modal-footer.component.ts`
 
@@ -108,7 +108,7 @@ source: `src/modal/modal-footer.component.ts`
 ### ModalHeaderComponent
 class: ModalHeaderComponent
 
-selector: `cdl-modal-header`
+selector: `n-modal-header`
 
 source: `src/modal/list/modal-header.component.ts`
 
@@ -120,7 +120,7 @@ source: `src/modal/list/modal-header.component.ts`
 
 Ex:
 ```html
-<cdl-modal-header [modalType]="default">Header text</cdl-modal-header>
+<n-modal-header [modalType]="default">Header text</n-modal-header>
 ```
 
 **Outputs:**
@@ -131,13 +131,13 @@ Ex:
 
 Ex:
 ```html
-<cdl-modal-header (closeSelect)="closeModal()">Header text</cdl-modal-header>
+<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
 ```
 
 ### ModalPlaceholderComponent
 class: ModalPlaceholderComponent
 
-selector: `cdl-modal-placeholder`
+selector: `n-modal-placeholder`
 
 source: `src/modal/modal-placeholder.component.ts`
 
@@ -145,7 +145,7 @@ source: `src/modal/modal-placeholder.component.ts`
 ### OverlayComponent
 class: OverlayComponent
 
-selector: `cdl-overlay`
+selector: `n-overlay`
 
 source: `src/modal/overlay.component.ts`
 

@@ -9,7 +9,7 @@ import {
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 
 @Component({
-	selector: "cdl-dropdown-button",
+	selector: "n-dropdown-button",
 	template: `
 		<button
 			class="combo-button"

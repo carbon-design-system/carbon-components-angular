@@ -9,7 +9,7 @@ import { Component, OnInit} from "@angular/core";
 	<h1>Top nav demo</h1>
 
 	<h3>Default top nav</h3>
-	<cdl-top-nav [fixed]="false">
+	<n-top-nav [fixed]="false">
 		<div title>
 			<a class="top-nav-heading top-nav-heading-no-hamburger top-nav-link-item fl" href="#">
 				<h1 class="top-nav-brand">
@@ -20,11 +20,11 @@ import { Component, OnInit} from "@angular/core";
 				{{topNavTitle}}
 			</span>-->
 		</div>
-	</cdl-top-nav>
+	</n-top-nav>
 
 	<h3>Top nav with hamburger and nav links</h3>
-	<cdl-top-nav [fixed]="false">
-		<cdl-hamburger hamburger></cdl-hamburger>
+	<n-top-nav [fixed]="false">
+		<n-hamburger hamburger></n-hamburger>
 		<div title>
 			<a class="top-nav-heading top-nav-link-item fl" href="#">
 				<h1 class="top-nav-brand">
@@ -42,7 +42,7 @@ import { Component, OnInit} from "@angular/core";
 				<label class="top-nav-link-item"
 					(click)="showSearchInput1 = toggleSearch(showSearchInput1)"
 					tabindex="0">
-					<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
+					<n-icon class="menu-icon menu-icon-only" icon="search" size="16"></n-icon>
 				</label>
 			</li>
 			<li>
@@ -102,10 +102,10 @@ import { Component, OnInit} from "@angular/core";
 				</div>
 			</li>
 		</ul>
-	</cdl-top-nav>
+	</n-top-nav>
 
 	<h3>Top nav without hamburger menu</h3>
-	<cdl-top-nav [fixed]="false">
+	<n-top-nav [fixed]="false">
 		<div class="top-nav-title-container" title>
 			<a class="top-nav-heading top-nav-heading-no-hamburger top-nav-link-item fl"
 				tabindex="0">
@@ -134,7 +134,7 @@ import { Component, OnInit} from "@angular/core";
 				<label class="top-nav-link-item"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
-					<cdl-icon class="menu-icon menu-icon-only" icon="search" size="16"></cdl-icon>
+					<n-icon class="menu-icon menu-icon-only" icon="search" size="16"></n-icon>
 				</label>
 			</li>
 			<li>
@@ -193,7 +193,7 @@ import { Component, OnInit} from "@angular/core";
 				</div>
 			</li>
 		</ul>
-	</cdl-top-nav>
+	</n-top-nav>
 	`
 	// re-enable max-line-length warnings
 	// tslint:enable:max-line-length

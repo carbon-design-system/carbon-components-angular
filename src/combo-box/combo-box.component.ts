@@ -15,9 +15,9 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 import { ListItem } from "./../dropdown/list-item.interface";
 
 @Component({
-	selector: "cdl-combo-box",
+	selector: "n-combo-box",
 	template: `
-		<cdl-pill-input
+		<n-pill-input
 			[pills]="pills"
 			[placeholder]="placeholder"
 			[displayValue]="selectedValue"
@@ -25,7 +25,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			(updatePills)="updatePills()"
 			(search)="doSearch($event)"
 			(submit)="doSubmit($event)">
-		</cdl-pill-input>
+		</n-pill-input>
 		<ng-content></ng-content>
 	`,
 	host: {

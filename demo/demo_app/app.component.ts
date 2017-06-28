@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
+import * as en from  "./../../src/i18n/en.json";
 
 @Component({
 	selector: "app-root",
@@ -21,27 +22,27 @@ import "rxjs/add/operator/filter";
 			style="width: 100%; margin-left: 0;"
 			placeholder="Filter"
 			aria-label="filter components">
-		<cdl-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+		<n-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
 			<ng-template #item let-item="item">
 				<a routerLink="{{item.link}}">{{item.content}}</a>
 			</ng-template>
-		</cdl-list-view>
+		</n-list-view>
 	</nav>
 	<main class="main">
 		<router-outlet></router-outlet>
 	</main>
-	<cdl-modal-placeholder></cdl-modal-placeholder>
-	<cdl-sprite sprite="core"></cdl-sprite>
-	<cdl-sprite sprite="alerts_status"></cdl-sprite>
-	<cdl-sprite sprite="arrows_chevrons"></cdl-sprite>
-	<cdl-sprite sprite="brands"></cdl-sprite>
-	<cdl-sprite sprite="calculator"></cdl-sprite>
-	<cdl-sprite sprite="emoticons"></cdl-sprite>
-	<cdl-sprite sprite="formatting"></cdl-sprite>
-	<cdl-sprite sprite="mobile_controls"></cdl-sprite>
-	<cdl-sprite sprite="playback_controls"></cdl-sprite>
-	<cdl-sprite sprite="window_controls"></cdl-sprite>
-	<cdl-sprite sprite="should_fail"></cdl-sprite>
+	<n-modal-placeholder></n-modal-placeholder>
+	<n-sprite sprite="core"></n-sprite>
+	<n-sprite sprite="alerts_status"></n-sprite>
+	<n-sprite sprite="arrows_chevrons"></n-sprite>
+	<n-sprite sprite="brands"></n-sprite>
+	<n-sprite sprite="calculator"></n-sprite>
+	<n-sprite sprite="emoticons"></n-sprite>
+	<n-sprite sprite="formatting"></n-sprite>
+	<n-sprite sprite="mobile_controls"></n-sprite>
+	<n-sprite sprite="playback_controls"></n-sprite>
+	<n-sprite sprite="window_controls"></n-sprite>
+	<n-sprite sprite="should_fail"></n-sprite>
 	`,
 	styleUrls: ["./app.component.scss"],
 	encapsulation: ViewEncapsulation.None
@@ -124,19 +125,7 @@ export class AppComponent implements OnInit {
 	constructor (private _router: Router, private _translate: TranslateService) {
 		this._translate.setDefaultLang("en");
 		this._translate.use("en");
-		this._translate.setTranslation("en", {
-			DROPDOWN: {
-				SELECTED: "{{ number }} selected",
-				FILTER: {
-					SELECTED_ONLY: "Show selected only",
-					SEARCH: "Search",
-					NO_RESULTS: "No search results"
-				}
-			},
-			TOPNAV: {
-				SKIP_TO_MAIN: "Skip to main content"
-			}
-		});
+		this._translate.setTranslation("en", en);
 	}
 
 	ngOnInit() {
