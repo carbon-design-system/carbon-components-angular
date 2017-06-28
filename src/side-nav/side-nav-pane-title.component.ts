@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from "@angular/core";
 
 @Component({
-	selector: "cdl-side-nav-pane-title",
+	selector: "n-side-nav-pane-title",
 	template: `
 	<button class="side-nav-pane-title" (click)="hidePane()" #item>
 		<svg

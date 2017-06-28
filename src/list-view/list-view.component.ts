@@ -10,7 +10,7 @@ import {
 import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 @Component({
-	selector: "cdl-list-view",
+	selector: "n-list-view",
 	template: `
 		<ul #listView class="list-view">
 			<li tabindex="{{item.disabled?-1:0}}"

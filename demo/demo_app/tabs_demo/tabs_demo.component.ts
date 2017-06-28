@@ -6,145 +6,145 @@ import { Component, OnInit } from "@angular/core";
 	<h1>Tabs Demo</h1>
 
 	<h2>Static tabs</h2>
-		<cdl-tabs>
-			<cdl-tab heading='Tab1' (select)="onSelect('tab1')">
+		<n-tabs>
+			<n-tab heading='Tab1' (select)="onSelect('tab1')">
 				Tab 1 content
-			</cdl-tab>
-			<cdl-tab heading='Tab2' (select)="onSelect('tab2')">
+			</n-tab>
+			<n-tab heading='Tab2' (select)="onSelect('tab2')">
 				Tab 2 content
-			</cdl-tab>
-			<cdl-tab heading='Tab3'>
+			</n-tab>
+			<n-tab heading='Tab3'>
 				Tab 3 content
-			</cdl-tab>
-			<cdl-tab heading='Tab4'>
+			</n-tab>
+			<n-tab heading='Tab4'>
 				Tab 4 content
-			</cdl-tab>
-			<cdl-tab heading='Tab5'>
+			</n-tab>
+			<n-tab heading='Tab5'>
 				Tab 5 content
-			</cdl-tab>
-			<cdl-tab heading='Tab6'>
+			</n-tab>
+			<n-tab heading='Tab6'>
 				Tab 6 content
-			</cdl-tab>
-			<cdl-tab heading='Tab7'>
+			</n-tab>
+			<n-tab heading='Tab7'>
 				Tab 7 content
-			</cdl-tab>
-			<cdl-tab heading='Tab8'>
+			</n-tab>
+			<n-tab heading='Tab8'>
 				Tab 8 content
-			</cdl-tab>
-			<cdl-tab heading='Tab9'>
+			</n-tab>
+			<n-tab heading='Tab9'>
 				Tab 9 content
-			</cdl-tab>
-			<cdl-tab heading='Tab10'>
+			</n-tab>
+			<n-tab heading='Tab10'>
 				Tab 10 content
-			</cdl-tab>
-			<cdl-tab heading='Tab11'>
+			</n-tab>
+			<n-tab heading='Tab11'>
 				Tab 11 content
-			</cdl-tab>
-			<cdl-tab heading='Tab12'>
+			</n-tab>
+			<n-tab heading='Tab12'>
 				Tab 12 content
-			</cdl-tab>
-		</cdl-tabs>
+			</n-tab>
+		</n-tabs>
 
 	<h2>Static tabs with tab2 active and the tabs are at the bottom</h2>
-	<cdl-tabs position='bottom'>
-		<cdl-tab heading='Tab1'>
+	<n-tabs position='bottom'>
+		<n-tab heading='Tab1'>
 			Tab 1 content
-		</cdl-tab>
-		<cdl-tab heading='Tab2' active='true' (select)="onSelect('bottom tab 2')">
+		</n-tab>
+		<n-tab heading='Tab2' active='true' (select)="onSelect('bottom tab 2')">
 			Tab 2 content
-		</cdl-tab>
-		<cdl-tab heading='Tab3'>
+		</n-tab>
+		<n-tab heading='Tab3'>
 			Tab 3 content
-		</cdl-tab>
-	</cdl-tabs>
+		</n-tab>
+	</n-tabs>
 
 	<h2>Dynamic tabs</h2>
-	<cdl-tabs>
-		<cdl-tab
+	<n-tabs>
+		<n-tab
 			*ngFor="let tab of sampleTabs"
 			[heading]="tab.heading"
 			[active]="tab.active"
 			[disabled]="tab.disabled"
 			(select)="onSelect(tab.heading)">
 			{{tab.content}}
-		</cdl-tab>
-	</cdl-tabs>
+		</n-tab>
+	</n-tabs>
 
 	<h2>Dynamic tabs with timeout</h2>
 	<div>
-		<cdl-tabs>
-			<cdl-tab
+		<n-tabs>
+			<n-tab
 				*ngFor="let tab of sampleTabs2"
 				[heading]="tab.heading"
 				[active]="tab.active"
 				(select)="onSelect(tab.heading)">
 				{{tab.content}}
-			</cdl-tab>
-		</cdl-tabs>
+			</n-tab>
+		</n-tabs>
 	</div>
 
 	<h2>Tabs with custom header template</h2>
 	<ng-template #tabHeading>
-		<cdl-icon
+		<n-icon
 			icon="facebook"
 			size="sm"
 			style="margin-right: 7px;">
-		</cdl-icon>
+		</n-icon>
 		Hello,&nbsp;<span (click)="test($event)">click me</span>
 	</ng-template>
-	<cdl-tabs>
-		<cdl-tab [heading]="tabHeading">
-			Tab 1 content <cdl-icon icon="alert" size="lg"></cdl-icon>
-		</cdl-tab>
-		<cdl-tab heading='Tab2'>
+	<n-tabs>
+		<n-tab [heading]="tabHeading">
+			Tab 1 content <n-icon icon="alert" size="lg"></n-icon>
+		</n-tab>
+		<n-tab heading='Tab2'>
 			Tab 2 content
-		</cdl-tab>
-		<cdl-tab   heading='Tab3'>
+		</n-tab>
+		<n-tab   heading='Tab3'>
 			Tab 3 content
-		</cdl-tab>
-	</cdl-tabs>
+		</n-tab>
+	</n-tabs>
 
 
 	<h2>Scroll tabs</h2>
 	<div style="max-width: 600px">
-		<cdl-tabs>
-			<cdl-tab heading='Tab1'>
+		<n-tabs>
+			<n-tab heading='Tab1'>
 				Tab 1 content
-			</cdl-tab>
-			<cdl-tab heading='Tab2 with a long header'>
+			</n-tab>
+			<n-tab heading='Tab2 with a long header'>
 				Tab 2 content
-			</cdl-tab>
-			<cdl-tab heading='Tab3'>
+			</n-tab>
+			<n-tab heading='Tab3'>
 				Tab 3 content
-			</cdl-tab>
-			<cdl-tab heading='Tab4'>
+			</n-tab>
+			<n-tab heading='Tab4'>
 				Tab 4content
-			</cdl-tab>
-			<cdl-tab heading='Tab5 with a long header'>
+			</n-tab>
+			<n-tab heading='Tab5 with a long header'>
 				Tab 5 content
-			</cdl-tab>
-			<cdl-tab heading='Tab6 with a long header'>
+			</n-tab>
+			<n-tab heading='Tab6 with a long header'>
 				Tab 6 content
-			</cdl-tab>
-			<cdl-tab heading='Tab7'>
+			</n-tab>
+			<n-tab heading='Tab7'>
 				Tab 7 content
-			</cdl-tab>
-			<cdl-tab heading='Tab8'>
+			</n-tab>
+			<n-tab heading='Tab8'>
 				Tab 8 content
-			</cdl-tab>
-			<cdl-tab heading='Tab9 with a long header'>
+			</n-tab>
+			<n-tab heading='Tab9 with a long header'>
 				Tab 9 content
-			</cdl-tab>
-			<cdl-tab heading='Tab10'>
+			</n-tab>
+			<n-tab heading='Tab10'>
 				Tab 10 content
-			</cdl-tab>
-			<cdl-tab heading='Tab11'>
+			</n-tab>
+			<n-tab heading='Tab11'>
 				Tab 11 content
-			</cdl-tab>
-			<cdl-tab heading='Tab12'>
+			</n-tab>
+			<n-tab heading='Tab12'>
 				tab 12 content
-			</cdl-tab>
-		</cdl-tabs>
+			</n-tab>
+		</n-tabs>
 	</div>
 
 	<br><br>

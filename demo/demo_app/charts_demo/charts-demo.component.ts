@@ -7,13 +7,13 @@ import { Component, ViewEncapsulation } from "@angular/core";
 	<p>!!FOR DEMO PURPOSES ONLY!!</p>
 	<section class="chart">
 		<span class="chart-title">Parts</span>
-		<cdl-bar-chart [config]="barConfig" [data]="chartData"></cdl-bar-chart>
+		<n-bar-chart [config]="barConfig" [data]="chartData"></n-bar-chart>
 	</section>
 	`,
 	encapsulation: ViewEncapsulation.None,
 	styles: [
 		`
-			cdl-bar-chart {
+			n-bar-chart {
 				display: block;
 				padding-left: 20px;
 				padding-top: 20px;

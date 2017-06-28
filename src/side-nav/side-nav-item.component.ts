@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "cdl-side-nav-item",
+	selector: "n-side-nav-item",
 	template: `
 	<div class="side-nav-item-wrapper" role="heading" [attr.aria-level]="ariaLevel" #item>
 		<ng-content select=".side-nav-pane-sub-template"></ng-content>
@@ -38,7 +38,7 @@ import {
 		 [attr.aria-labelledby]="buttonId"
 		 [id]="subItemId"
 		 #subItem>
-		<ng-content select="cdl-side-nav-item"></ng-content>
+		<ng-content select="n-side-nav-item"></ng-content>
 	</div>
 	`
 })
@@ -63,8 +63,8 @@ export class SideNavItem {
 			this.showPane();
 			this.selected = false;
 		}
-		// get all cdl-side-nav-items in subItem and set aria-level to ariaLevel+1 on them
-		const items = this.subItem.nativeElement.querySelectorAll("cdl-side-nav-item") as HTMLElement[];
+		// get all n-side-nav-items in subItem and set aria-level to ariaLevel+1 on them
+		const items = this.subItem.nativeElement.querySelectorAll("n-side-nav-item") as HTMLElement[];
 		items.forEach((item) => item.querySelector(".side-nav-item-wrapper").setAttribute("aria-level", (this.ariaLevel + 1).toString()));
 	}
 

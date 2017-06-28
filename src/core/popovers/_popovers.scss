@@ -20,7 +20,7 @@
 	&:hover, &.popover-selected {
 		color: color("blue", 50);
 		border-bottom: 1px solid color("blue", 50);
-		cdl-icon .icon {
+		n-icon .icon {
 			fill: color("blue", 50);
 		}
 	}
@@ -31,12 +31,12 @@
 	padding-right: 10px;
 	height: $btn-height - 1px;  // border adds a pixel
 
-	cdl-icon {
+	n-icon {
 		padding-right: 1px;  // 6px from the dot to the side of the icon + this pixel to get to desired 7px
 	}
 }
 
-cdl-popover .tooltip {
+n-popover .tooltip {
 	top: 0;
 }
 

@@ -15,16 +15,16 @@ import { SubMenuItem } from "./sub-menu-item.component";
 import { watchFocusJump, treetools } from "./../dropdowntools";
 
 @Component({
-	selector: "cdl-dropdown-sub-menu",
+	selector: "n-dropdown-sub-menu",
 	template: `
-		<cdl-sub-menu-wrapper
+		<n-sub-menu-wrapper
 			[items]="items"
 			[listTpl]="listTpl"
 			[role]="role"
 			[label]="label"
 			[selectedIcon]="selectedIcon"
 			(select)="onClick($event)">
-		</cdl-sub-menu-wrapper>
+		</n-sub-menu-wrapper>
 	`,
 	host: {
 		"class": "sub-menu"

@@ -27,7 +27,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the top", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='top'>Me</button>"
+				template: "<button nPopover='Hello There' placement='top'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -60,7 +60,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the top left", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='top-left'>Me</button>"
+				template: "<button nPopover='Hello There' placement='top-left'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -79,7 +79,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the bottom left", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='bottom-left'>Me</button>"
+				template: "<button nPopover='Hello There' placement='bottom-left'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -98,7 +98,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the top right", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='top-right'>Me</button>"
+				template: "<button nPopover='Hello There' placement='top-right'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -117,7 +117,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the bottom right", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='bottom-right'>Me</button>"
+				template: "<button nPopover='Hello There' placement='bottom-right'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -136,7 +136,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the left", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='left'>Me</button>"
+				template: "<button nPopover='Hello There' placement='left'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -155,7 +155,7 @@ describe("Popover directive", () => {
 	it("should create the popover component and popover should appear at the right", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='Hello There' placement='right'>Me</button>"
+				template: "<button nPopover='Hello There' placement='right'>Me</button>"
 			}
 		});
 		const fixture = TestBed.createComponent(TestComponent);
@@ -174,7 +174,7 @@ describe("Popover directive", () => {
 	it("popover should appear auto as default", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
-				template: "<button cdlPopover='test content'>Pop over right</button>"
+				template: "<button nPopover='test content'>Pop over right</button>"
 			}
 		});
 
@@ -194,7 +194,7 @@ describe("Popover directive", () => {
 			set: {
 				template: `
 				<ng-template #customPopover>custom template</ng-template>
-				<button [cdlPopover]='customPopover'>Pop over right</button>
+				<button [nPopover]='customPopover'>Pop over right</button>
 				`
 			}
 		});
@@ -205,13 +205,13 @@ describe("Popover directive", () => {
 		const directiveEl = fixture.debugElement.query(By.directive(PopoverDirective));
 		const directiveInstance = directiveEl.injector.get(PopoverDirective);
 
-		expect(directiveInstance.cdlPopover instanceof TemplateRef).toBe(true);
+		expect(directiveInstance.nPopover instanceof TemplateRef).toBe(true);
 	});
 });
 
 @Component({
 	selector: "test-cmp",
-	template: "<button cdlPopover='Hello There' placement='bottom'>Me</button>",
+	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
 	entryComponents: [Popover]
 })
 class TestComponent {}

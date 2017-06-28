@@ -8,11 +8,11 @@ import { ListItem } from "./list-item.interface";
 
 @Component({
 	template: `
-	<cdl-dropdown
+	<n-dropdown
 		placeholder="test"
 		(select)="onSelect($event)">
-		<cdl-dropdown-list [items]="items"></cdl-dropdown-list>
-	</cdl-dropdown>`
+		<n-dropdown-list [items]="items"></n-dropdown-list>
+	</n-dropdown>`
 })
 class TestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];

@@ -7,16 +7,16 @@ import { ErrorModalComponent } from "./error-modal.component";
 @Component({
 	selector: "xxl-modal",
 	template: `
-	<cdl-modal size="xxl" (overlaySelected)="closeModal()">
-		<cdl-modal-header (closeSelect)="closeModal()">XXL</cdl-modal-header>
+	<n-modal size="xxl" (overlaySelected)="closeModal()">
+		<n-modal-header (closeSelect)="closeModal()">XXL</n-modal-header>
 		<section class="modal-body">
 			<p>This is an XXL modal.</p>
 		</section>
-		<cdl-modal-footer>
+		<n-modal-footer>
 			<button class="btn btn-secondary cancel-button" (click)="closeModal()">Cancel</button>
 			<button class="btn submit-button" (click)="openModal()">Submit and get error message</button>
-		</cdl-modal-footer>
-	</cdl-modal>
+		</n-modal-footer>
+	</n-modal>
 	`,
 	styleUrls: ["./form-modal.component.scss"]
 })

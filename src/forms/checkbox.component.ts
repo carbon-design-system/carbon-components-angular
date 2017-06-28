@@ -25,7 +25,7 @@ export class CheckboxChange {
 }
 
 @Component({
-	selector: "cdl-checkbox",
+	selector: "n-checkbox",
 	template: `
 		<div class="checkbox">
 			<label>

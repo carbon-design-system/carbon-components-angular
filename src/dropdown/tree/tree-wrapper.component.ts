@@ -13,7 +13,7 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 
 @Component({
-	selector: "cdl-tree-wrapper",
+	selector: "n-tree-wrapper",
 	template: `
 		<ul class="tree"
 			[class.open]="isOpen"
@@ -21,7 +21,7 @@ import { ListItem } from "./../list-item.interface";
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
 			<li *ngFor="let item of items">
-				<cdl-tree-item
+				<n-tree-item
 					[listTpl]="listTpl"
 					[listItem]="item"
 					[hasSubMenu]="!!item.items"
@@ -34,7 +34,7 @@ import { ListItem } from "./../list-item.interface";
 					[iconWidth]="iconWidth"
 					[innerPadding]="innerPadding"
 					(select)="bubbleSelect($event)">
-				</cdl-tree-item>
+				</n-tree-item>
 			</li>
 		</ul>
 	`

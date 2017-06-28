@@ -11,7 +11,7 @@ import { Component, OnInit } from "@angular/core";
 	Selected Date: {{selectedDate}}
 
 	<br><br>
-	<cdl-calendar [date]="date" [selectedDate]="selected" (onSelect)="onSelect($event)"></cdl-calendar>
+	<n-calendar [date]="date" [selectedDate]="selected" (onSelect)="onSelect($event)"></n-calendar>
 	`
 })
 

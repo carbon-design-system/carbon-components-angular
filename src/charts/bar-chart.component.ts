@@ -14,7 +14,7 @@ enum ChartValues {
 }
 
 @Component({
-	selector: "cdl-bar-chart",
+	selector: "n-bar-chart",
 	template: `<svg></svg>`
 })
 export class BarChart implements OnChanges {

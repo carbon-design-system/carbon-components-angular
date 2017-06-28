@@ -21,34 +21,34 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "form-modal",
 	template: `
-		<cdl-modal size="sm" (overlaySelected)="closeModal()">
-			<cdl-modal-header (closeSelect)="closeModal()">Form</cdl-modal-header>
+		<n-modal size="sm" (overlaySelected)="closeModal()">
+			<n-modal-header (closeSelect)="closeModal()">Form</n-modal-header>
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
 				<div class="modal-body">
 					<div class="form-instructions">{{modalText}}</div>
-					<cdl-label *ngFor="let field of fields"
+					<n-label *ngFor="let field of fields"
 						[class.has-error]="form.get(field).touched && !form.get(field).valid">
 						<label class="label">{{field}}</label>
 						<input type="text" class="input-field" formControlName="{{field}}"/>
-					</cdl-label>
+					</n-label>
 
 					<br><br>
 
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
 					<label class="label label-top">Dropdown</label>
-					<cdl-dropdown
+					<n-dropdown
 						placeholder="Select an option">
-						<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-					</cdl-dropdown>
+						<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+					</n-dropdown>
 					<br><br>
-					<button class="btn" cdlPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
+					<button class="btn" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
-				<cdl-modal-footer>
+				<n-modal-footer>
 					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Cancel</button>
                     <button class="btn submit-button" type="submit">Submit</button>
-				</cdl-modal-footer>
+				</n-modal-footer>
 			</form>
-		</cdl-modal>
+		</n-modal>
 	`,
 	styleUrls: ["./form-modal.component.scss"]
 })

@@ -9,8 +9,8 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "cdl-calendar",
-	exportAs: "cdlCalendar",
+	selector: "n-calendar",
+	exportAs: "nCalendar",
 	template: `
 		<div *ngIf="showYear" class="calendar-month"><h2>{{year}}</h2></div>
 		<div *ngIf="showMonth" class="calendar-month"><h3>{{months[month]}}</h3></div>

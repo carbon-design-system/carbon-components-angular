@@ -19,7 +19,7 @@ import { positionElements } from "../common/position.service";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
 @Component({
-	selector: "cdl-popover",
+	selector: "n-popover",
 	template: `
 		<div class="popover {{popoverConfig.wrapperClass}} {{popoverConfig.placement}} {{popoverConfig.type}}
 		{{popoverConfig.trigger}}"

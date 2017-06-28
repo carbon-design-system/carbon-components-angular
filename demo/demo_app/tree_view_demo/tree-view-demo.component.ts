@@ -6,44 +6,44 @@ import { Component, OnInit } from "@angular/core";
 	<h1>Tree View Demo</h1>
 
 	<h3>Default tree view</h3>
-	<cdl-tree-view
+	<n-tree-view
 		[items]="demoItems"
 		(select)="onSelect($event)"
 		[label]="'Default Tree View'">
-	</cdl-tree-view>
+	</n-tree-view>
 
 	<h3>Tree view with custom template</h3>
-	<cdl-tree-view
+	<n-tree-view
 		[items]="demoItems1"
 		(select)="expand($event)"
 		[template]="treeTpl"
 		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
 		<ng-template #treeTpl let-item="item">
-			<cdl-checkbox
+			<n-checkbox
 				[checked]="item.selected"
 				[indeterminate]="isIndeterminate(item)"
 				(change)="onCheck({item: item})"
 				[disabled]="item.disabled">
 				{{item.content}}
-			</cdl-checkbox>
+			</n-checkbox>
 		</ng-template>
-	</cdl-tree-view>
+	</n-tree-view>
 
 	<h3>Searchable tree view</h3>
 	<div id="demo">
 		<div id="search">
-			<cdl-icon icon="search" size="md" id="search-icon"></cdl-icon>
+			<n-icon icon="search" size="md" id="search-icon"></n-icon>
 			<input
 				type="search"
 				id="search-input"
 				placeholder="Search"
 				(keyup)="search($event)">
 		</div>
-		<cdl-tree-view
+		<n-tree-view
 			[items]="displayItems"
 			(select)="onSelect($event)"
 			[label]="'Default Tree View'">
-		</cdl-tree-view>
+		</n-tree-view>
 		<em *ngIf="displayItems.length === 0" class="empty">No search results</em>
 	</div>
 	`,
@@ -75,7 +75,7 @@ import { Component, OnInit } from "@angular/core";
 				align-items: center;
 				justify-content: center;
 			}
-			/deep/ cdl-checkbox .checkbox {
+			/deep/ n-checkbox .checkbox {
 				margin-bottom: 0;
 			}
 		`

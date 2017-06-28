@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "cdl-column",
+	selector: "n-column",
 	template: ""
 })
 export class Column {

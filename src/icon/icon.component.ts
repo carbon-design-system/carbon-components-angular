@@ -7,7 +7,7 @@ import {
 import { IconService } from "./icon.service";
 
 @Component({
-	selector: "cdl-icon",
+	selector: "n-icon",
 	template: `<svg
 					[attr.width]="iconSize"
 					[attr.height]="iconSize">

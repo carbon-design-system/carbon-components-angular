@@ -1,31 +1,31 @@
 # Tabs
 
 class: Tabs
-selector: `cdl-tabs`
+selector: `n-tabs`
 
 | @Input   | Type                   | Default Value |
 | -------- | ---------------------- | ------------- |
 | position | "top" \| "bottom"      | "top"         |
 
-Tabs expects a set of `cdl-tab` elements
+Tabs expects a set of `n-tab` elements
 Ex:
 ```html
-<cdl-tabs>
-	<cdl-tab heading='tab1'>
+<n-tabs>
+	<n-tab heading='tab1'>
 		tab 1 content
-	</cdl-tab>
-	<cdl-tab heading='tab1'>
+	</n-tab>
+	<n-tab heading='tab1'>
 		tab 2 content
-	</cdl-tab>
+	</n-tab>
 	<!-- ... -->
-	<cdl-tab heading='tab1'>
+	<n-tab heading='tab1'>
 		tab n content
-	</cdl-tab>
-</cdl-tabs>
+	</n-tab>
+</n-tabs>
 ```
 
 class: Tab
-selector: `cdl-tab`
+selector: `n-tab`
 
 **Inputs:**
 
@@ -46,30 +46,30 @@ When the tab is selected the `select` output will be triggered. `select` will al
 
 Ex:
 ```html
-<cdl-tab heading='tab1'>
+<n-tab heading='tab1'>
 	tab 1 content
-</cdl-tab>
+</n-tab>
 ```
 
 Custom header example:
 ```html
 <ng-template #tabHeading>
-	<cdl-icon
+	<n-icon
 		icon="facebook"
 		size="sm"
 		style="margin-right: 7px;">
-	</cdl-icon>
+	</n-icon>
 	Hello Tab 1
 </ng-template>
-<cdl-tabs>
-	<cdl-tab [heading]="tabHeading">
-		Tab 1 content <cdl-icon icon="alert" size="lg"></cdl-icon>
-	</cdl-tab>
-	<cdl-tab heading='Tab2'>
+<n-tabs>
+	<n-tab [heading]="tabHeading">
+		Tab 1 content <n-icon icon="alert" size="lg"></n-icon>
+	</n-tab>
+	<n-tab heading='Tab2'>
 		Tab 2 content
-	</cdl-tab>
-	<cdl-tab   heading='Tab3'>
+	</n-tab>
+	<n-tab heading='Tab3'>
 		Tab 3 content
-	</cdl-tab>
-</cdl-tabs>
+	</n-tab>
+</n-tabs>
 ```

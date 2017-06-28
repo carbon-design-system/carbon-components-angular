@@ -4,7 +4,7 @@ Charts exports various types of reusable D3 visualizations like bar chart.
 
 ### Bar Chart
 class: BarChart (implements OnInit, OnChanges)
-selector: `cdl-bar-chart`
+selector: `n-bar-chart`
 
 | @Input       | Type                       | Accepted Value                 | Default Value |
 | ---------    | -------------------------- | ------------------------------ | ------------- |
@@ -18,5 +18,5 @@ Bar Chart builds a simple bar-graph that accepts an configuration object and dat
 
 Ex:
 ```html
-    <cdl-bar-chart [config]="barConfig" [data]="chartData"></sci-bar-chart>
+    <n-bar-chart [config]="barConfig" [data]="chartData"></n-bar-chart>
 ```

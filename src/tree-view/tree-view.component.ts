@@ -12,9 +12,9 @@ import { ListItem } from "./../dropdown/list-item.interface";
 import { treetools } from "./../dropdown/dropdowntools";
 
 @Component({
-	selector: "cdl-tree-view",
+	selector: "n-tree-view",
 	template: `
-		<cdl-tree-view-wrapper
+		<n-tree-view-wrapper
 			[items]="items"
 			[listTpl]="template"
 			[label]="label"
@@ -23,7 +23,7 @@ import { treetools } from "./../dropdown/dropdowntools";
 			[iconWidth]="iconWidth"
 			[innerPadding]="innerPadding"
 			(select)="onClick($event)">
-		</cdl-tree-view-wrapper>
+		</n-tree-view-wrapper>
 	`,
 })
 export class TreeView {

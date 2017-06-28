@@ -23,8 +23,8 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 @Directive({
-	selector: "[cdlDatepicker]",
-	exportAs: "cdlDatepicker",
+	selector: "[nDatepicker]",
+	exportAs: "nDatepicker",
 	providers: [DatepickerService]
 })
 export class DatepickerDirective implements OnInit {

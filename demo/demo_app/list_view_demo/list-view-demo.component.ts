@@ -5,13 +5,13 @@ import { Component, OnInit } from "@angular/core";
 	template: `
 	<h1>List View Demo</h1>
 
-	<ng-template #listTpl let-item="item"><cdl-icon icon="alert" size="md"></cdl-icon> {{item.content}}</ng-template>
+	<ng-template #listTpl let-item="item"><n-icon icon="alert" size="md"></n-icon> {{item.content}}</ng-template>
 
 	<h3>Default list view</h3>
-	<cdl-list-view [items]="demoItems" (select)="onSelect($event)"></cdl-list-view>
+	<n-list-view [items]="demoItems" (select)="onSelect($event)"></n-list-view>
 
 	<h3>List view with custom template (Added Icon) and no check mark</h3>
-	<cdl-list-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></cdl-list-view>
+	<n-list-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></n-list-view>
 	`
 })
 export class ListViewDemo {

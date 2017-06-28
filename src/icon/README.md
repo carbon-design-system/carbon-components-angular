@@ -1,7 +1,7 @@
 # Icon
 
 class: Icon
-selector: `cdl-icon`
+selector: `n-icon`
 
 | @Input  | Type   | Default Value |
 | ------- | ------ | ------------- |

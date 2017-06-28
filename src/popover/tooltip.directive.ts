@@ -13,11 +13,11 @@ import { PopoverDirective } from "./popover.directive";
 let tooltipCounter = 0;
 
 @Directive({
-	selector: "[cdlTooltip]",
-	exportAs: "cdlTooltip"
+	selector: "[nTooltip]",
+	exportAs: "nTooltip"
 })
 export class TooltipDirective extends PopoverDirective {
-	@Input() cdlTooltip: string | TemplateRef<any>;
+	@Input() nTooltip: string | TemplateRef<any>;
 	tooltipID: string;
 
 	constructor(
@@ -36,7 +36,7 @@ export class TooltipDirective extends PopoverDirective {
 
 		this.popoverConfig.compID = "tooltip-" + tooltipCounter;
 		this.popoverConfig.isTooltip = true;
-		this.popoverConfig.content = this.cdlTooltip;
+		this.popoverConfig.content = this.nTooltip;
 		this._elementRef.nativeElement.setAttribute("aria-describedby", this.popoverConfig.compID);
 	}
 }

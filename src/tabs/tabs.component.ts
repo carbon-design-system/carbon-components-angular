@@ -4,13 +4,13 @@ import { TabHeaders } from  "./tab-headers.component";
 
 
 @Component({
-	selector: "cdl-tabs",
+	selector: "n-tabs",
 	template: `
-			<cdl-tab-headers *ngIf="position === 'top'" [tabs]="tabs"></cdl-tab-headers>
-			<div class="cdl-tabs-content">
+			<n-tab-headers *ngIf="position === 'top'" [tabs]="tabs"></n-tab-headers>
+			<div class="n-tabs-content">
 				<ng-content></ng-content>
 			</div>
-			<cdl-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></cdl-tab-headers>
+			<n-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></n-tab-headers>
 	 `,
 	styleUrls: ["./tabs.component.scss"]
 })

@@ -8,172 +8,172 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Default drop-down list</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="sm">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown placeholder="Select an option">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-			</cdl-dropdown>
+			<n-dropdown placeholder="Select an option">
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="lg">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+			</n-dropdown>
 		</div>
 
 		<h3>Multi-select default drop-down list</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="sm"
 				type="multi">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				type="multi">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="lg"
 				type="multi">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+			</n-dropdown>
 		</div>
 
 		<h3>Search drop-down list</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="sm">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
-			</cdl-dropdown>
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown placeholder="Select an option">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
-			</cdl-dropdown>
+			<n-dropdown placeholder="Select an option">
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="lg">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
-			</cdl-dropdown>
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+			</n-dropdown>
 		</div>
 
 		<h3>Multi-select search drop-down list</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="sm"
 				type="multi">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
-			</cdl-dropdown>
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				type="multi">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
-			</cdl-dropdown>
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="lg"
 				type="multi">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
-			</cdl-dropdown>
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+			</n-dropdown>
 		</div>
 
 		<h3>Drop-down tree</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="sm">
-				<cdl-dropdown-tree
+				<n-dropdown-tree
 					[items]="demoItems3"
 					[label]="'Drop-down with Tree view'">
-				</cdl-dropdown-tree>
-			</cdl-dropdown>
+				</n-dropdown-tree>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown placeholder="Select an option">
-				<cdl-dropdown-tree
+			<n-dropdown placeholder="Select an option">
+				<n-dropdown-tree
 					[items]="demoItems3"
 					[label]="'Drop-down with Tree view'">
-				</cdl-dropdown-tree>
-			</cdl-dropdown>
+				</n-dropdown-tree>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="lg">
-				<cdl-dropdown-tree
+				<n-dropdown-tree
 					[items]="demoItems3"
 					[label]="'Drop-down with Tree view'">
-				</cdl-dropdown-tree>
-			</cdl-dropdown>
+				</n-dropdown-tree>
+			</n-dropdown>
 		</div>
 
 		<h3>Drop-down sub menu</h3>
 		<div style="width: 250px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="sm">
-				<cdl-dropdown-sub-menu [items]="demoItems4"></cdl-dropdown-sub-menu>
-			</cdl-dropdown>
+				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				[displayValue]="subdisplay2"
 				(select)="subdisplay2 = getDisplay($event.item)">
-				<cdl-dropdown-sub-menu [items]="demoItems4"></cdl-dropdown-sub-menu>
-			</cdl-dropdown>
+				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
+			</n-dropdown>
 			<br><br>
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				size="lg">
-				<cdl-dropdown-sub-menu [items]="demoItems4"></cdl-dropdown-sub-menu>
-			</cdl-dropdown>
+				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
+			</n-dropdown>
 		</div>
 
 		<h3>Disabled drop-down list</h3>
-		<cdl-dropdown
+		<n-dropdown
 			placeholder="Drop-down 7"
 			[disabled]="true"
 			(select)="onSelect($event)">
-			<cdl-dropdown-list
+			<n-dropdown-list
 				[items]="demoItems1">
-			</cdl-dropdown-list>
-		</cdl-dropdown>
+			</n-dropdown-list>
+		</n-dropdown>
 
 		<h3>Default drop-down list with appendToBody true</h3>
 		<div class="dropdown-appendbody-container" style="height: 150px;
 		border: solid 1px red; overflow: scroll; width: 100%; position: relative;">
 			<div style="width: 300px; display: inline-block">
 				<b>AppendToBody: false</b>
-				<cdl-dropdown
+				<n-dropdown
 					placeholder="Select an option"
 					[(ngModel)]="dropdown3"
 					type="multi">
-					<cdl-dropdown-list [items]="demoItems5"></cdl-dropdown-list>
-				</cdl-dropdown>
+					<n-dropdown-list [items]="demoItems5"></n-dropdown-list>
+				</n-dropdown>
 				{{ dropdown3 | json }}
 			</div>
 
 			<div style="width: 300px; display: inline-block">
 				<b>appendToBody: true</b>
-				<cdl-dropdown
+				<n-dropdown
 					scrollableContainer=".dropdown-appendbody-container"
 					[appendToBody]="true"
 					placeholder="Select an option"
 					type="multi"
 					[(ngModel)]="dropdown3">
-					<cdl-dropdown-list [items]="demoItems5"></cdl-dropdown-list>
-				</cdl-dropdown>
+					<n-dropdown-list [items]="demoItems5"></n-dropdown-list>
+				</n-dropdown>
 				{{ dropdown3 | json }}
 				<button class="btn" (click)="reset(dropdown3)">Reset selected</button>
 			</div>
@@ -183,54 +183,54 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Default drop-down list (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				[(ngModel)]="dropdown1">
-				<cdl-dropdown-list [items]="demoItems5"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems5"></n-dropdown-list>
+			</n-dropdown>
 			{{ dropdown1 | json }}
 		</div>
 		<button (click)="reset2()" class="btn">Reset</button>
 
 		<h3>Drop-down list with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				[(ngModel)]="dropdown2"
 				(onClose)="onClose()"
 				type="multi">
-				<cdl-dropdown-list [items]="demoItems2"></cdl-dropdown-list>
-			</cdl-dropdown>
+				<n-dropdown-list [items]="demoItems2"></n-dropdown-list>
+			</n-dropdown>
 			{{ dropdown2 | json }}
 		</div>
 
 		<h3>Drop-down list with multi-select</h3>
-		<cdl-dropdown
+		<n-dropdown
 			placeholder="Select an option"
 			(select)="multidisplay1 = getMultiDisplay($event.item)"
 			type="multi">
-			<cdl-dropdown-list
+			<n-dropdown-list
 				[items]="demoItems1">
-			</cdl-dropdown-list>
-		</cdl-dropdown>
+			</n-dropdown-list>
+		</n-dropdown>
 
 		<h3>Reactive form drop-down list</h3>
-		<cdl-dropdown
+		<n-dropdown
 			placeholder="Select an option"
 			[formControl]="test">
-			<cdl-dropdown-list [items]="testData"></cdl-dropdown-list>
-		</cdl-dropdown>
+			<n-dropdown-list [items]="testData"></n-dropdown-list>
+		</n-dropdown>
 		{{ test.value | json }}
 		<br>
 		{{ test.status | json }}
 		<br>
 		<br>
-		<cdl-dropdown
+		<n-dropdown
 			placeholder="Select an option"
 			[formControl]="test2"
 			type="multi">
-			<cdl-dropdown-list [items]="testData2"></cdl-dropdown-list>
-		</cdl-dropdown>
+			<n-dropdown-list [items]="testData2"></n-dropdown-list>
+		</n-dropdown>
 		{{ test2.value | json }}
 		<br>
 		form
@@ -239,12 +239,12 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<div formArrayName="tests">
 				<div *ngFor="let testDrop of testForm.controls.tests.controls; let i = index">
 					<div [formGroupName]="i">
-						<cdl-dropdown
+						<n-dropdown
 							formControlName="drop"
 							type="multi"
 							placeholder="Select an option">
-							<cdl-dropdown-list [items]="formitems"></cdl-dropdown-list>
-						</cdl-dropdown>
+							<n-dropdown-list [items]="formitems"></n-dropdown-list>
+						</n-dropdown>
 						{{ testDrop.value | json }}
 					</div>
 				</div>
@@ -255,57 +255,57 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h3>Default drop-down list with custom template</h3>
 		<ng-template #listTpl let-item="item">
-			<cdl-icon
+			<n-icon
 				*ngIf="item.selected"
 				icon="Checkbox Selected"
 				size="md">
-			</cdl-icon>
-			<cdl-icon
+			</n-icon>
+			<n-icon
 				*ngIf="!item.selected"
 				icon="Checkbox Empty"
 				size="md">
-			</cdl-icon>
+			</n-icon>
 			{{ item.content }}
 		</ng-template>
 		<div style="width: 400px">
-			<cdl-dropdown
+			<n-dropdown
 				placeholder="Select an option"
 				type="multi">
-				<cdl-dropdown-list
+				<n-dropdown-list
 					[items]="demoItems1"
 					[listTpl]="listTpl">
-				</cdl-dropdown-list>
-			</cdl-dropdown>
+				</n-dropdown-list>
+			</n-dropdown>
 		</div>
 
 		<h3>Drop-down list item containers</h3>
 		<div class="dropdown-wrapper">
 			<div class="dropdown-menu open" style="position: relative;">
-				<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 			</div>
 		</div>
 		<br><br>
 		<div class="dropdown-wrapper">
 			<div class="dropdown-menu open" style="position: relative;">
-				<cdl-dropdown-filter [items]="demoItems1"></cdl-dropdown-filter>
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
 			</div>
 		</div>
 		<br><br>
 		<div class="dropdown-wrapper">
 			<div class="dropdown-menu open" style="position: relative;">
-				<cdl-dropdown-filter [items]="demoItems1" type="multi"></cdl-dropdown-filter>
+				<n-dropdown-filter [items]="demoItems1" type="multi"></n-dropdown-filter>
 			</div>
 		</div>
 		<br><br>
 		<div class="dropdown-wrapper">
 			<div class="dropdown-menu open" style="position: relative;">
-				<cdl-dropdown-tree [items]="demoItems3"></cdl-dropdown-tree>
+				<n-dropdown-tree [items]="demoItems3"></n-dropdown-tree>
 			</div>
 		</div>
 		<br><br>
 		<div class="dropdown-wrapper" style="width: 250px;">
 			<div class="dropdown-menu open" style="position: relative;">
-				<cdl-dropdown-sub-menu [items]="demoItems4"></cdl-dropdown-sub-menu>
+				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
 			</div>
 		</div>
 	`,

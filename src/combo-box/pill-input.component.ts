@@ -15,7 +15,7 @@ import { Pill } from "./pill.component";
 import { ListItem } from "./../dropdown/list-item.interface";
 
 @Component({
-	selector: "cdl-pill-input",
+	selector: "n-pill-input",
 	template: `
 		<div
 			class="pill-input"
@@ -36,10 +36,10 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					{{ placeholder }}
 				</span>
 				<span *ngFor="let pill of pills; let last = last">
-					<cdl-pill
+					<n-pill
 						[item]="pill">
 						{{ pill.content }}
-					</cdl-pill>
+					</n-pill>
 					<div
 						#comboInput
 						*ngIf="!last"

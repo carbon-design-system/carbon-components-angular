@@ -49,16 +49,16 @@ import { AlertCustom } from "./alert-demo-custom";
 	<h1>Alert Component</h1>
 
 	<div class="alerts-container">
-	<cdl-alert [alertObj]="infoAlert" (close)="onClose($event)"></cdl-alert>
+	<n-alert [alertObj]="infoAlert" (close)="onClose($event)"></n-alert>
 	</div>
 	<div class="alerts-container">
-	<cdl-alert [alertObj]="errorAlert" (close)="onCloseError($event)"></cdl-alert>
+	<n-alert [alertObj]="errorAlert" (close)="onCloseError($event)"></n-alert>
 	</div>
 	<div class="alerts-container">
-	<cdl-alert [alertObj]="warningAlert" (close)="onCloseWarning($event)"></cdl-alert>
+	<n-alert [alertObj]="warningAlert" (close)="onCloseWarning($event)"></n-alert>
 	</div>
 	<div class="alerts-container">
-	<cdl-alert [alertObj]="successAlert" (close)="onCloseSuccess($event)"></cdl-alert>
+	<n-alert [alertObj]="successAlert" (close)="onCloseSuccess($event)"></n-alert>
 	</div>
 	`,
 	styleUrls: ["./alert-demo.component.scss"]
