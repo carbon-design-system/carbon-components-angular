@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
+import * as en from  "./../../src/i18n/en.json";
 
 @Component({
 	selector: "app-root",
@@ -124,19 +125,7 @@ export class AppComponent implements OnInit {
 	constructor (private _router: Router, private _translate: TranslateService) {
 		this._translate.setDefaultLang("en");
 		this._translate.use("en");
-		this._translate.setTranslation("en", {
-			DROPDOWN: {
-				SELECTED: "{{ number }} selected",
-				FILTER: {
-					SELECTED_ONLY: "Show selected only",
-					SEARCH: "Search",
-					NO_RESULTS: "No search results"
-				}
-			},
-			TOPNAV: {
-				SKIP_TO_MAIN: "Skip to main content"
-			}
-		});
+		this._translate.setTranslation("en", en);
 	}
 
 	ngOnInit() {
