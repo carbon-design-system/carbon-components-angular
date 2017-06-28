@@ -32,8 +32,6 @@ import { Modal } from "../../../src";
 						<input type="text" class="input-field" formControlName="{{field}}"/>
 					</n-label>
 
-					<br><br>
-
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
 					<label class="label label-top">Dropdown</label>
 					<n-dropdown

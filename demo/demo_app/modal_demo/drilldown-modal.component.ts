@@ -39,7 +39,7 @@ import { Modal } from "../../../src";
 				</n-modal-header>
 				<section class="modal-body">
 					<div>
-						<h1>Hello, from drilled down content.</h1>
+						<h2>Hello, from drilled down content.</h2>
 					</div>
 				</section>
 				<n-modal-footer>
