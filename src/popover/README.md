@@ -8,7 +8,7 @@ selector: `nPopover`
 | @Input        | Type                       | Accepted Value                 | Default Value |
 | ---------     | -------------------------- | ------------------------------ | ------------- |
 | title         | string                     |                                | null          |
-| nPopover    | string \| TemplateRef<any> |                                | null          |
+| nPopover      | string \| TemplateRef<any> |                                | null          |
 | trigger       | string                     | click, mouseenter              | click         |
 | waitTime      | number                     |                                | 0             |
 | gap           | number                     |                                | 10            |
@@ -99,7 +99,7 @@ selector: `nTooltip`
 | @Input       | Type                       | Accepted Value                 | Default Value |
 | ---------    | -------------------------- | ------------------------------ | ------------- |
 | title        | string                     |                                | null          |
-| nTooltip   | string \| TemplateRef<any> |                                | null          |
+| nTooltip     | string \| TemplateRef<any> |                                | null          |
 | trigger      | string                     | click, mouseenter              | click         |
 | waitTime     | number                     |                                | 0             |
 | gap          | number                     |                                | 10            |
