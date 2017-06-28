@@ -5,115 +5,119 @@
 // top-nav base styles
 // -------------------------
 
-.top-nav nav {
-	position: relative;
-    background-color: $topnav-bg-color;
-	height: $topnav-height;
-	font-size: $topnav-header-font-size;
+.top-nav {
+  width: 100%;
+
+  nav {
+    position: relative;
+      background-color: $topnav-bg-color;
+    height: $topnav-height;
+    font-size: $topnav-header-font-size;
     top: 0;
     width: 100%;
     left: 0;
     z-index: $topnav-z-index;
-	color: $topnav-color;
-	padding-right: 68px;
-	padding-left: 0;
+    color: $topnav-color;
+    padding-right: 68px;
+    padding-left: 0;
 
-	svg * {
-		fill: $topnav-color;
-	}
-	.top-nav-search-input {
-		background: transparent;
-		border: none;
-		border-bottom: 1px solid color("white");
-		color: color("white");
-		margin-right: -3px;
-		width: 220px;
-	}
-	.top-nav-link-item {
-		color: $topnav-color;
-		cursor: pointer;
-		transition: background-color 0.2s ease-in-out;
-		text-decoration: none;
-		line-height: inherit;
-		height: $topnav-height;
-		border-top: 1px solid transparent;
-		&:active {
-			border-top: 2px solid color("white");
-		}
-		&.top-nav-link-item-selected, &:hover, &:focus {
-			fill: color("white", 0);
-			color: color("white", 0);
-			background-color: color("blue", 50);
-			border-top: 1px solid color("white");
-		}
-	}
-	.hamburger.hamburger-selected {
-		fill: color("white", 0);
-		color: color("white", 0);
-		background-color: color("blue", 50);
-		border-top: 1px solid color("white");
-	}
-    .top-nav-heading {
-        display: inline-flex;
-		align-items: center;
-		align-content: center;
-        padding: $topnav-title-padding;
-		vertical-align: top;
-		span {
-            display: inline-block;
-        }
+    svg * {
+      fill: $topnav-color;
+    }
+    .top-nav-search-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid color("white");
+      color: color("white");
+      margin-right: -3px;
+      width: 220px;
+    }
+    .top-nav-link-item {
+      color: $topnav-color;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      text-decoration: none;
+      line-height: inherit;
+      height: $topnav-height;
+      border-top: 1px solid transparent;
+      &:active {
+        border-top: 2px solid color("white");
+      }
+      &.top-nav-link-item-selected, &:hover, &:focus {
+        fill: color("white", 0);
+        color: color("white", 0);
+        background-color: color("blue", 50);
+        border-top: 1px solid color("white");
+      }
+    }
+    .hamburger.hamburger-selected {
+      fill: color("white", 0);
+      color: color("white", 0);
+      background-color: color("blue", 50);
+      border-top: 1px solid color("white");
+    }
+      .top-nav-heading {
+          display: inline-flex;
+      align-items: center;
+      align-content: center;
+          padding: $topnav-title-padding;
+      vertical-align: top;
+      span {
+              display: inline-block;
+          }
+          @include unselectable;
+      }
+    .top-nav-heading-no-hamburger {
+      padding: $topnav-title-padding-no-hamburger;
+    }
+    .top-nav-badge {
+      background-color: $topnav-badge-bg-color;
+      padding: $topnav-badge-padding;
+      margin: $topnav-badge-margin;
+      height: $topnav-badge-height;
+      color: $topnav-badge-color;
+      line-height: inherit;
+      float: right;
+    }
+    .top-nav-brand {
+      font-size: $topnav-header-font-size;
+      margin: $topnav-header-margin;
+      line-height: inherit;
+      font-weight: $topnav-header-font-family;
+      display: inline-block;
+    }
+      .top-nav-ibm {
+          padding: $topnav-ibm-logo-padding;
+      position: absolute;
+      right: 0;
+          display: inline-block;
+      height: $topnav-height;
+      svg * {
+        fill: color("gray", 30);
+      }
+      }
+      .top-nav-product-title {
+        padding: $topnav-product-title-padding;
+        color: $topnav-product-title-color;
+        position: absolute;
         @include unselectable;
+      }
+    .top-nav-divider {
+      width: 1px;
+      height: 20px;
+      background: color("white");
+      margin: 12px 10px;
     }
-	.top-nav-heading-no-hamburger {
-		padding: $topnav-title-padding-no-hamburger;
-	}
-	.top-nav-badge {
-		background-color: $topnav-badge-bg-color;
-		padding: $topnav-badge-padding;
-		margin: $topnav-badge-margin;
-		height: $topnav-badge-height;
-		color: $topnav-badge-color;
-		line-height: inherit;
-		float: right;
-	}
-	.top-nav-brand {
-		font-size: $topnav-header-font-size;
-		margin: $topnav-header-margin;
-		line-height: inherit;
-		font-weight: $topnav-header-font-family;
-		display: inline-block;
-	}
-    .top-nav-ibm {
-        padding: $topnav-ibm-logo-padding;
-		position: absolute;
-		right: 0;
-        display: inline-block;
-		height: $topnav-height;
-		svg * {
-			fill: color("gray", 30);
-		}
+    .top-nav-dropdown {
+      background: $topnav-dropdown-bg-color;
+      color: $topnav-dropdown-color;
+      position: absolute;
+      right: 0;
+      white-space: normal;
+      min-width: 150px;
+      padding: 10px;
     }
-    .top-nav-product-title {
-    	padding: $topnav-product-title-padding;
-    	color: $topnav-product-title-color;
-    	position: absolute;
-    	@include unselectable;
-    }
-	.top-nav-divider {
-		width: 1px;
-		height: 20px;
-		background: color("white");
-		margin: 12px 10px;
-	}
-	.top-nav-dropdown {
-		background: $topnav-dropdown-bg-color;
-		color: $topnav-dropdown-color;
-		position: absolute;
-		right: 0;
-		white-space: normal;
-		min-width: 150px;
-		padding: 10px;
-	}
+  }
 }
 .top-nav-fixed {
 	position: fixed;
