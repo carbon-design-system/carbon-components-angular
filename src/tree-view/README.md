@@ -1,7 +1,7 @@
 # Tree View
 
 class: TreeView (implements View)
-selector: `cdl-tree-view`
+selector: `n-tree-view`
 
 | @Input  | Type                       | Default Value |
 | ------- | -------------------------- | ------------- |

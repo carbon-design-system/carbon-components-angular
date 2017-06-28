@@ -9,7 +9,7 @@ import { DatepickerService } from "./datepicker.service";
 import { positionElements } from "../common/position.service";
 
 @Component({
-	selector: "cdl-date-picker-popover",
+	selector: "n-date-picker-popover",
 	template: `
 		<div class="popover date-picker-popover">
 			<div class="popover-header">
@@ -21,7 +21,7 @@ import { positionElements } from "../common/position.service";
 				</button>
 			</div>
 			<div>
-				<cdl-date-picker [selectedDate]="selectedDate" (onSelectDate)="onSelect($event)"></cdl-date-picker>
+				<n-date-picker [selectedDate]="selectedDate" (onSelectDate)="onSelect($event)"></n-date-picker>
 			</div>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>

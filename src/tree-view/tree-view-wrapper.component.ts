@@ -12,7 +12,7 @@ import {
 import { ListItem } from "./../dropdown/list-item.interface";
 
 @Component({
-	selector: "cdl-tree-view-wrapper",
+	selector: "n-tree-view-wrapper",
 	template: `
 		<ul class="tree-view"
 			[class.open]="isOpen"
@@ -20,7 +20,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
 			<li *ngFor="let item of items">
-				<cdl-tree-view-item
+				<n-tree-view-item
 					[listTpl]="listTpl"
 					[listItem]="item"
 					[hasSubMenu]="!!item.items"
@@ -33,7 +33,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					[iconWidth]="iconWidth"
 					[innerPadding]="innerPadding"
 					(select)="bubbleSelect($event)">
-				</cdl-tree-view-item>
+				</n-tree-view-item>
 			</li>
 		</ul>
 	`

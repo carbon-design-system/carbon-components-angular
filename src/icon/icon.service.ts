@@ -6,7 +6,7 @@ import "rxjs/add/operator/toPromise";
 // returns promises of the data
 class LocalPromiseCache {
 	// key so we avoid collisions
-	static key = "cdl-";
+	static key = "n-";
 	constructor() {}
 
 	get(item: string): Promise<string> {

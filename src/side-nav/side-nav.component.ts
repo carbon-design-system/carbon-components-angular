@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 
 @Component({
-	selector: "cdl-side-nav",
+	selector: "n-side-nav",
 	template: `
     <nav class="left-nav"
     	   [ngClass]="{isOpen: open, 'left-nav-fixed': fixed}"

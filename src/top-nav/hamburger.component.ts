@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter} from "@angular/core";
 
 @Component({
-	selector: "cdl-hamburger",
+	selector: "n-hamburger",
 	template: `
 	<button class="hamburger"
 			[ngClass]="{'hamburger-selected': selected}"

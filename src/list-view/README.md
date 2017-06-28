@@ -1,7 +1,7 @@
 # List View
 
-class: ListView (implements View)  
-selector: `cdl-list-view`  
+class: ListView (implements View)
+selector: `n-list-view`
 
 | @Input    | Type                       | Default Value |
 | --------- | -------------------------- | ------------- |

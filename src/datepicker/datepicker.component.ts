@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "cdl-date-picker",
+	selector: "n-date-picker",
 	template: `
 	<div class="date-picker">
 		<div class="date-picker-year">
@@ -41,23 +41,23 @@ import {
 			</button>
 		</div>
 		<div class="first">
-			<cdl-calendar
+			<n-calendar
 				[date]="date"
 				[selectedDate]="selectedDate"
 				[showYear]="false"
 				(onSelect)="onSelect($event, calendar2)"
-				#calendar1="cdlCalendar">
-			</cdl-calendar>
+				#calendar1="nCalendar">
+			</n-calendar>
 		</div>
 
 		<div class="second">
-			<cdl-calendar
+			<n-calendar
 				[date]="nextMonth"
 				[showYear]="false"
 				[selectedDate]="selectedDate"
 				(onSelect)="onSelect($event, calendar1)"
-				#calendar2="cdlCalendar">
-			</cdl-calendar>
+				#calendar2="nCalendar">
+			</n-calendar>
 		</div>
 	 </div>
 		`

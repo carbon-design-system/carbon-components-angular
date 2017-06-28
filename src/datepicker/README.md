@@ -1,7 +1,7 @@
 # Datepicker directive
 
 class: DatepickerDirective (implements OnInit)
-selector: `cdlDatepicker`
+selector: `nDatepicker`
 
 | @Input       | Type                       | Accepted Value                 | Default Value |
 | ---------    | -------------------------- | ------------------------------ | ------------- |
@@ -25,15 +25,15 @@ Ex:
 <div style="position: relative">
   <input type="text"
     [(ngModel)]="date1"
-    cdlDatepicker
+    nDatepicker
     placement="bottom"
-    #cdlDatepicker="cdlDatepicker"
+    #nDatepicker="nDatepicker"
     [(selectedDate)]="selectedDate1"
     [(validDate)]="validDate1"
   />
-  <button class="btn" (click)="cdlDatepicker.toggle($event)">
+  <button class="btn" (click)="nDatepicker.toggle($event)">
     <span style="pointer-events: none; display: inline-block">
-      <cdl-glyphicon icon="Calendar" size="md"></cdl-glyphicon>
+      <n-icon icon="Calendar" size="md"></n-icon>
     </span>
   </button>
 </div>

@@ -8,6 +8,8 @@ const htmlmin = require("html-minifier").minify;
 const fs = require("fs");
 const ts = require("gulp-typescript");
 
+const SRC = "src";
+
 const TS_SRC = [
 	"src/**/*.ts",
 	"!src/**/*.spec.ts"
@@ -27,7 +29,7 @@ const SASS_DIST = `${DIST}/core`;
 const TSCONFG = require("./tsconfig.json").compilerOptions;
 
 
-gulp.task("build", ["build:angular", "build:sass", "build:css", "build:font", "build:package"]);
+gulp.task("build", ["build:angular", "build:sass", "build:css", "build:font", "build:i18n", "build:package"]);
 
 gulp.task("build:angular", _ =>
 	gulp.src(TS_SRC)
@@ -47,6 +49,10 @@ gulp.task("build:css", _ =>
 gulp.task("build:font", _ =>
 	gulp.src(FONT_SRC)
 		.pipe(gulp.dest(`${DIST}/core/fonts`)));
+
+gulp.task("build:i18n", _ =>
+	gulp.src(SRC + "/i18n/**/*.json")
+	.pipe(gulp.dest(DIST + "/i18n")));
 
 gulp.task("build:package", _ =>
 	gulp.src("./package.json")

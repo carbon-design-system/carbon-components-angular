@@ -6,7 +6,7 @@ import { DropdownFilter } from "./dropdown-filter-list.component";
 import { ListItem } from "./../list-item.interface";
 
 @Component({
-	template: `<cdl-dropdown-filter [items]="items" (select)="onSelect($event)"></cdl-dropdown-filter>`
+	template: `<n-dropdown-filter [items]="items" (select)="onSelect($event)"></n-dropdown-filter>`
 })
 class TestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -17,7 +17,7 @@ class TestComponent {
 }
 
 @Component({
-	template: `<cdl-dropdown-filter [items]="items" (select)="onSelect($event)" type="multi"></cdl-dropdown-filter>`
+	template: `<n-dropdown-filter [items]="items" (select)="onSelect($event)" type="multi"></n-dropdown-filter>`
 })
 class TestMultiComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];

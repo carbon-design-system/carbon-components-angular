@@ -11,7 +11,7 @@ import {  } from "./../../constant/keys";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
 @Component({
-	selector: "cdl-tree-item",
+	selector: "n-tree-item",
 	template: `
 		<div
 			class="item-wrapper item-level-{{indent}}"
@@ -50,7 +50,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				</span>
 			</div>
 		</div>
-		<cdl-tree-wrapper
+		<n-tree-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
@@ -62,7 +62,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[indent]="indent+1"
 			[role]="'group'"
 			[label]="listItem">
-		</cdl-tree-wrapper>
+		</n-tree-wrapper>
 	`
 })
 export class TreeItem {

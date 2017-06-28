@@ -11,7 +11,7 @@ import {
 import { PopoverDirective } from "./popover.directive";
 
 @Directive({
-	selector: "[cdlEllipsisTooltip]"
+	selector: "[nEllipsisTooltip]"
 })
 export class EllipsisTooltipDirective extends PopoverDirective {
 	constructor(public _elementRef: ElementRef, public _injector: Injector,

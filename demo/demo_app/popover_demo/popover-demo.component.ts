@@ -11,30 +11,30 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<h3>Basic popover</h3>
 	Popover left
-	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="left">
-		<cdl-icon icon="info" size="16"></cdl-icon>
+	<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="left">
+		<n-icon icon="info" size="16"></n-icon>
 	</button>
 	Popover top
-	<button class="popover-button" cdlPopover="Hello there" title="Popover title" placement="top">
-		<cdl-icon icon="info" size="16"></cdl-icon>
+	<button class="popover-button" nPopover="Hello there" title="Popover title" placement="top">
+		<n-icon icon="info" size="16"></n-icon>
 	</button>
 	Popover right
-	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="right">
-		<cdl-icon icon="info" size="16"></cdl-icon>
+	<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="right">
+		<n-icon icon="info" size="16"></n-icon>
 	</button>
 	Popover bottom
-	<button class="popover-button" cdlPopover="Hello there" title="Popover title" placement="bottom">
-		<cdl-icon icon="info" size="16"></cdl-icon>
+	<button class="popover-button" nPopover="Hello there" title="Popover title" placement="bottom">
+		<n-icon icon="info" size="16"></n-icon>
 	</button>
 	Popover auto position
-	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="auto">
-		<cdl-icon icon="info" size="16"></cdl-icon>
+	<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="auto">
+		<n-icon icon="info" size="16"></n-icon>
 	</button>
 
 	<h3>Popover can be opened or closed manualy</h3>
 	Have a popover
-	<button class="popover-button" [cdlPopover]="customPopover" title="Popover title" placement="right" #popover="cdlPopover">
-		<cdl-icon icon="info" size="16"></cdl-icon>
+	<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="right" #popover="nPopover">
+		<n-icon icon="info" size="16"></n-icon>
 	</button>
 	<br>
 	<button class="btn" (click)="popover.close()">Close above popover</button>
@@ -53,22 +53,22 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<h3>Popover menu</h3>
 	<button class="popover-button popover-menu-button"
-		[cdlPopover]="list"
+		[nPopover]="list"
 		placement="bottom-right"
 		wrapperClass="popover-content-fullwidth"
 		popoverMenu="true"
 		title="Actions"
 		[gap]="13">
-		<cdl-icon icon="dotdotdot_vert" size="16"></cdl-icon>Menu
+		<n-icon icon="dotdotdot_vert" size="16"></n-icon>Menu
 	</button>
 
 	<h3>Popover filter</h3>
 	<ng-template #filter>
 		<div class="filter-options">
-			<cdl-checkbox>High</cdl-checkbox>
-			<cdl-checkbox>Medium</cdl-checkbox>
-			<cdl-checkbox>Low</cdl-checkbox>
-			<cdl-checkbox>Danger</cdl-checkbox>
+			<n-checkbox>High</n-checkbox>
+			<n-checkbox>Medium</n-checkbox>
+			<n-checkbox>Low</n-checkbox>
+			<n-checkbox>Danger</n-checkbox>
 		</div>
 		<div class="filter-options-buttons">
 			<button class="btn">Apply</button>
@@ -77,30 +77,30 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	</ng-template>
 	Filter left
 	<button class="popover-button"
-		[cdlPopover]="filter"
+		[nPopover]="filter"
 		title="Popover filter"
 		placement="left"
 		wrapperClass="popover-content-filter"
 		popoverFilter="true">
-		<cdl-icon icon="filter" size="16"></cdl-icon>
+		<n-icon icon="filter" size="16"></n-icon>
 	</button>
 
 	Filter right
 	<button class="popover-button"
-		[cdlPopover]="filter"
+		[nPopover]="filter"
 		title="Popover filter"
 		placement="right"
 		wrapperClass="popover-content-filter"
 		popoverFilter="true">
-		<cdl-icon icon="filter" size="16"></cdl-icon>
+		<n-icon icon="filter" size="16"></n-icon>
 	</button>
 
 	<h3>Popover append to body</h3>
 
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
 		Regular popover
-		<button class="popover-button" [cdlPopover]="customPopover" placement="right" title="Select item">
-			<cdl-icon icon="info" size="16"></cdl-icon>
+		<button class="popover-button" [nPopover]="customPopover" placement="right" title="Select item">
+			<n-icon icon="info" size="16"></n-icon>
 		</button>
 	</div>
 
@@ -109,11 +109,11 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
 		Popover with appendToBody = true
 		<button class="popover-button"
-			[cdlPopover]="customPopover"
+			[nPopover]="customPopover"
 			placement="right"
 			title="Select item"
 			[appendToBody]="true">
-			<cdl-icon icon="info" size="16"></cdl-icon>
+			<n-icon icon="info" size="16"></n-icon>
 		</button>
 	</div>
 
@@ -122,14 +122,14 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<button class="btn" (click)="toggleFlower()">Show</button>
 
 	<div class="flower-wrapper" #flower>
-		<div class="flower-center" cdlPopover="Loves me!" title="Popover title" placement="top" #petal1="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me not!" title="Popover title" placement="top-right" #petal2="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me!" title="Popover title" placement="right" #petal3="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me not!" title="Popover title" placement="bottom-right" #petal4="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me!" title="Popover title" placement="bottom" #petal5="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me not!" title="Popover title" placement="bottom-left" #petal6="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me!" title="Popover title" placement="left" #petal7="cdlPopover"></div>
-		<div class="flower-center" cdlPopover="Loves me not!" title="Popover title" placement="top-left" #petal8="cdlPopover"></div>
+		<div class="flower-center" nPopover="Loves me!" title="Popover title" placement="top" #petal1="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me not!" title="Popover title" placement="top-right" #petal2="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me!" title="Popover title" placement="right" #petal3="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me not!" title="Popover title" placement="bottom-right" #petal4="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me!" title="Popover title" placement="bottom" #petal5="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me not!" title="Popover title" placement="bottom-left" #petal6="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me!" title="Popover title" placement="left" #petal7="nPopover"></div>
+		<div class="flower-center" nPopover="Loves me not!" title="Popover title" placement="top-left" #petal8="nPopover"></div>
 	</div>
 	`,
 	styleUrls: ["./popover-demo.component.scss"]

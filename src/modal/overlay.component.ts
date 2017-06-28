@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 
 @Component({
-	selector: "cdl-overlay",
+	selector: "n-overlay",
 	template: `
 		<section class="overlay" (click)="overlayClick($event)"></section>
 	`

@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
 
 @Component({
-	selector: "cdl-modal-header",
+	selector: "n-modal-header",
 	template: `
 		<header class="{{modalType}}" role="banner">
 			<h4 class="header-text">

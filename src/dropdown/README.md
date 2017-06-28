@@ -43,7 +43,7 @@ A component that intends to be used within Dropdown must provide an implementati
 ### Dropdown
 class: Dropdown
 
-selector: `cdl-dropdown`
+selector: `n-dropdown`
 
 source: `src/dropdown/dropdown.component.ts`
 
@@ -71,18 +71,18 @@ Dropdown expects a component that implements the AbstractDropdownView base class
 
 Ex:
 ```html
-<cdl-dropdown
+<n-dropdown
 	placeholder="Select an option"
 	(select)="display = getDisplay($event.item)">
-	<cdl-dropdown-list [items]="items"></cdl-dropdown-list>
-</cdl-dropdown>
+	<n-dropdown-list [items]="items"></n-dropdown-list>
+</n-dropdown>
 ```
 
 
 ### DropdownList
 class: DropdownList
 
-selector: `cdl-dropdown-list`
+selector: `n-dropdown-list`
 
 source: `src/dropdown/list/list.component.ts`
 
@@ -95,7 +95,7 @@ source: `src/dropdown/list/list.component.ts`
 
 Ex:
 ```html
-<cdl-dropdown-list [items]="listItems"></cdl-dropdown-list>
+<n-dropdown-list [items]="listItems"></n-dropdown-list>
 ```
 ```typescript
 listItems = [
@@ -121,7 +121,7 @@ listItems = [
 ### DropdownFilter
 class: DropdownFilter (extends DropdownList)
 
-selector: `cdl-dropdown-filter`
+selector: `n-dropdown-filter`
 
 source: `src/dropdown/list/dropdown-filter-list.component.ts`
 
@@ -134,13 +134,13 @@ source: `src/dropdown/list/dropdown-filter-list.component.ts`
 
 Ex:
 ```html
-<cdl-dropdown-filter [items]="listItems"></cdl-dropdown-filter>
+<n-dropdown-filter [items]="listItems"></n-dropdown-filter>
 ```
 
 ### DropdownTree
 class: DropdownTree
 
-selector: `cdl-dropdown-tree`
+selector: `n-dropdown-tree`
 
 source: `src/dropdown/tree/tree.component.ts`
 
@@ -153,7 +153,7 @@ source: `src/dropdown/tree/tree.component.ts`
 
 Ex:
 ```html
-<cdl-dropdown-tree [items]="treeItems"></cdl-dropdown-tree>
+<n-dropdown-tree [items]="treeItems"></n-dropdown-tree>
 ```
 ```typescript
 treeItems = [
@@ -199,7 +199,7 @@ treeItems = [
 ### DropdownSubMenu
 class: DropdownSubMenu
 
-selector: `cdl-dropdown-sub-menu`
+selector: `n-dropdown-sub-menu`
 
 source: `src/dropdown/sub-menu/sub-menu.component.ts`
 
@@ -212,5 +212,5 @@ source: `src/dropdown/sub-menu/sub-menu.component.ts`
 
 Ex:
 ```html
-<cdl-dropdown-sub-menu [items]="treeItems"></cdl-dropdown-sub-menu>
+<n-dropdown-sub-menu [items]="treeItems"></n-dropdown-sub-menu>
 ```

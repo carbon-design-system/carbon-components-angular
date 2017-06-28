@@ -17,7 +17,7 @@ import { ListView } from "./../../list-view/list-view.component";
 import { watchFocusJump } from "./../dropdowntools";
 
 @Component({
-	selector: "cdl-dropdown-list",
+	selector: "n-dropdown-list",
 	template: `
 		<ul #list class="list" role="listbox">
 			<li tabindex="{{item.disabled?-1:0}}"

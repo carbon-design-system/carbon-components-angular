@@ -11,7 +11,7 @@ import {
 let nextId = 0;
 
 @Component({
-	selector: "cdl-tab",
+	selector: "n-tab",
 	template: `
 		<div
 			role="tabpanel"
@@ -31,7 +31,7 @@ export class Tab implements OnInit {
 	@Input() active = false;
 	@Input() disabled = false;
 	// do we need id's?
-	@Input() id = `cdl-tab-${nextId++}`;
+	@Input() id = `n-tab-${nextId++}`;
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 
 	ngOnInit() {

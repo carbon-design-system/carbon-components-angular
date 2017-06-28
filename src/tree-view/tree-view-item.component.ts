@@ -10,7 +10,7 @@ import {
 import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../common/a11y.service";
 
 @Component({
-	selector: "cdl-tree-view-item",
+	selector: "n-tree-view-item",
 	template: `
 		<div
 			class="item-wrapper item-level-{{indent}}"
@@ -48,7 +48,7 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 				</ng-template>
 			</div>
 		</div>
-		<cdl-tree-view-wrapper
+		<n-tree-view-wrapper
 			*ngIf="listItem.items && listItem.opened"
 			[isOpen]="listItem.opened"
 			[items]="listItem.items"
@@ -62,7 +62,7 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 			[innerPadding]="innerPadding"
 			[label]="listItem"
 			(select)="bubble($event)">
-		</cdl-tree-view-wrapper>
+		</n-tree-view-wrapper>
 	`
 })
 export class TreeViewItem {

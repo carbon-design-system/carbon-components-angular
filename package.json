@@ -1,6 +1,6 @@
 {
-  "name": "@neutrino/neutrino",
-  "version": "0.0.6",
+  "name": "@peretz/neutrino",
+  "version": "0.1.0",
   "description": "Next generation components",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,8 @@
     "registry": "npm-registry.whitewater.ibm.com"
   },
   "license": "SEE LICENSE IN LICENSE",
-  "author": "",
-  "dependencies": {
+  "author": "IBM",
+  "peerDependencies": {
     "@angular/animations": "^4.2.0",
     "@angular/common": "^4.2.0",
     "@angular/compiler": "^4.2.0",
@@ -35,6 +35,19 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
+		"@angular/animations": "^4.2.0",
+    "@angular/common": "^4.2.0",
+    "@angular/compiler": "^4.2.0",
+    "@angular/core": "^4.2.0",
+    "@angular/forms": "^4.2.0",
+    "@angular/http": "^4.2.0",
+    "@angular/platform-browser": "^4.2.0",
+    "@angular/platform-browser-dynamic": "^4.2.0",
+    "@ngx-translate/core": "^6.0.1",
+    "core-js": "^2.4.1",
+    "d3": "4.7.4",
+    "rxjs": "^5.0.1",
+    "zone.js": "^0.8.4",
     "@angular/compiler-cli": "^4.2.0",
     "@angular/platform-server": "^4.2.0",
     "@angular/router": "^4.2.0",

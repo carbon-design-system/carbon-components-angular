@@ -19,10 +19,10 @@ import {
 import { cycleTabs } from "./../common/tab.service";
 
 @Component({
-	selector: "cdl-modal",
+	selector: "n-modal",
 	template: `
 		<div class="modal-wrapper">
-			<cdl-overlay (overlaySelect)="overlaySelected.emit()"></cdl-overlay>
+			<n-overlay (overlaySelect)="overlaySelected.emit()"></n-overlay>
 			<div class="valign-wrapper">
 				<div class="valign-element">
 					<section [@modalState]="modalState" class="modal modal-size-{{size}}" role="main" aria-modal="true" tabindex="0" #modal>

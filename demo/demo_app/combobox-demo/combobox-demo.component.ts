@@ -7,40 +7,40 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 		<h2>Single select combobox</h2>
 		<div style="width: 330px;">
-			<cdl-combo-box
+			<n-combo-box
 				placeholder="Select or enter"
 				[items]="demoItems2">
-				<cdl-dropdown-button>
-					<cdl-dropdown-list></cdl-dropdown-list>
-				</cdl-dropdown-button>
-			</cdl-combo-box>
+				<n-dropdown-button>
+					<n-dropdown-list></n-dropdown-list>
+				</n-dropdown-button>
+			</n-combo-box>
 		</div>
 
 		<h2>Multi select combobox</h2>
 		<div style="width: 330px;">
-			<cdl-combo-box
+			<n-combo-box
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
 				(submit)="onSubmit($event)">
-				<cdl-dropdown-button>
-					<cdl-dropdown-list></cdl-dropdown-list>
-				</cdl-dropdown-button>
-			</cdl-combo-box>
+				<n-dropdown-button>
+					<n-dropdown-list></n-dropdown-list>
+				</n-dropdown-button>
+			</n-combo-box>
 		</div>
 
 		<h2>Internal component demos</h2>
-		<cdl-pill-input [pills]="demoItems1" type="multi"></cdl-pill-input>
+		<n-pill-input [pills]="demoItems1" type="multi"></n-pill-input>
 		<br>
-		<cdl-dropdown-button></cdl-dropdown-button>
+		<n-dropdown-button></n-dropdown-button>
 		<br>
 		<br>
-		<cdl-pill [item]="{selected: false}">Some text</cdl-pill>
+		<n-pill [item]="{selected: false}">Some text</n-pill>
 		<br>
 		<div style="position: relative;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
-					<cdl-dropdown-list [items]="demoItems1"></cdl-dropdown-list>
+					<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div style="position: relative;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
-					<cdl-dropdown-list [items]="demoItems1" type="multi"></cdl-dropdown-list>
+					<n-dropdown-list [items]="demoItems1" type="multi"></n-dropdown-list>
 				</div>
 			</div>
 		</div>

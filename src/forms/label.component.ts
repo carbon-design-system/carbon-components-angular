@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-	selector: "cdl-label",
+	selector: "n-label",
 	// tslint:disable:max-line-length
 	template: `
 	<label class="label">

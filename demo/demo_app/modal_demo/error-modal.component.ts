@@ -5,13 +5,13 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "error-modal",
 	template: `
-		<cdl-modal size="sm" (overlaySelected)="closeModal()">
-			<cdl-modal-header modalType="error" (closeSelect)="closeModal()">Error</cdl-modal-header>
+		<n-modal size="sm" (overlaySelected)="closeModal()">
+			<n-modal-header modalType="error" (closeSelect)="closeModal()">Error</n-modal-header>
 			<section class="modal-body">
 				<p>The connection was lost. Try to log in again.</p>
 			</section>
-			<cdl-modal-footer><button class="btn cancel-button" (click)="closeModal()">Close</button></cdl-modal-footer>
-		</cdl-modal>
+			<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
+		</n-modal>
 	`,
 	styleUrls: ["./error-modal.component.scss"]
 })

@@ -7,24 +7,24 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 
 	<h2>Check box</h2>
 	<p class="checkbox-group-label">Check box group label</p>
-	<cdl-checkbox [(ngModel)]="firstCheckboxState">Check box ({{firstCheckboxState}})</cdl-checkbox>
-	<cdl-checkbox disabled="true">Check box disabled</cdl-checkbox>
+	<n-checkbox [(ngModel)]="firstCheckboxState">Check box ({{firstCheckboxState}})</n-checkbox>
+	<n-checkbox disabled="true">Check box disabled</n-checkbox>
 
-	<cdl-checkbox
+	<n-checkbox
 		[(ngModel)]="secondCheckboxState"
 		[indeterminate]="someSelected"
 		(change)="onTristateChange()">Tri-state check box (State: {{secondCheckboxState}}, Indeterminate: {{someSelected}})
-	</cdl-checkbox>
+	</n-checkbox>
 
-	<cdl-checkbox *ngFor="let one of manyCheckboxes"
+	<n-checkbox *ngFor="let one of manyCheckboxes"
 		[(ngModel)]="one.checked"
 		(change) = "multiCheckboxChanged()"
 		class="indent">Check ({{one.checked}})
-	</cdl-checkbox>
+	</n-checkbox>
 
-	<cdl-checkbox
+	<n-checkbox
 		[(ngModel)]="thirdCheckboxState">Check box (State: {{thirdCheckboxState}})
-	</cdl-checkbox>
+	</n-checkbox>
 
 
 	<h2>Select all</h2>
@@ -32,63 +32,63 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		<p class="checkbox-group-label">Schedule on these days</p>
 		<button *ngIf="!allSelected()" class="btn btn-link" (click)="selectAll(week)">Select all</button>
 		<button *ngIf="allSelected()" class="btn btn-link" (click)="clearAll(week)">Clear all</button>
-		<cdl-checkbox *ngFor="let day of week"
+		<n-checkbox *ngFor="let day of week"
 			[(ngModel)]="day.checked">{{day.day}}
-		</cdl-checkbox>
+		</n-checkbox>
 	</div>
 
 	<h2>Switch</h2>
 
-	<cdl-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</cdl-switch>
-	<cdl-switch disabled="true">Switch disabled</cdl-switch>
+	<n-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</n-switch>
+	<n-switch disabled="true">Switch disabled</n-switch>
 
 
 	<h2>Forms (Label)</h2>
 
-	<cdl-label>
+	<n-label>
 		<label for="textInput1">Field small</label>
 		<input type="text" [(ngModel)]="textInput1" class="input-field size-sm" id="textInput1">
-	</cdl-label>
+	</n-label>
 	<p>Text: {{textInput1}}</p>
 
-	<cdl-label>
+	<n-label>
 		<label for="textInput2">Field</label>
 		<input type="text" [(ngModel)]="textInput2" class="input-field" id="textInput2">
-	</cdl-label>
+	</n-label>
 	<p>Text: {{textInput2}}</p>
 
-	<cdl-label>
+	<n-label>
 		<label for="textInput3">Field large</label>
 		<input type="text" [(ngModel)]="textInput3" class="input-field size-lg" id="textInput3">
-	</cdl-label>
+	</n-label>
 	<p>Text: {{textInput3}}</p>
 
-	<cdl-label>
+	<n-label>
 		<label for="textInput4" class="disabled">Field disabled</label>
 		<input type="text" class="input-field" id="textInput4" disabled>
-	</cdl-label>
+	</n-label>
 
-	<cdl-label>
+	<n-label>
 		<label for="textareaText1">Text area</label>
 		<textarea [(ngModel)]="textareaText1" class="input-field" id="textareaText1"></textarea>
-	</cdl-label>
+	</n-label>
 	<p>Text: {{textareaText1}}</p>
 
 
-	<cdl-label class="ng-invalid ng-touched" labelState="success">
+	<n-label class="ng-invalid ng-touched" labelState="success">
 		<label for="textInput5">Field with success</label>
 		<input type="text" class="input-field input-field-success" id="textInput5">
-	</cdl-label>
+	</n-label>
 
-	<cdl-label class="ng-invalid ng-touched" labelState="warning">
+	<n-label class="ng-invalid ng-touched" labelState="warning">
 		<label for="textInput6">Field with warning</label>
 		<input type="text" class="input-field input-field-warning" id="textInput6">
-	</cdl-label>
+	</n-label>
 
-	<cdl-label class="ng-invalid ng-touched" labelState="error">
+	<n-label class="ng-invalid ng-touched" labelState="error">
 		<label for="textInput7">Field with error</label>
 		<input type="text" class="input-field input-field-error" id="textInput7">
-	</cdl-label>
+	</n-label>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]
 })

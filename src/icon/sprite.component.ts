@@ -8,7 +8,7 @@ import { Http } from "@angular/http";
 import { IconService } from "./icon.service";
 
 @Component({
-	selector: "cdl-sprite",
+	selector: "n-sprite",
 	template: ``,
 	styles: [`
 		:host {

@@ -10,7 +10,7 @@ import { DropdownSubMenu } from "./sub-menu.component";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
 @Component({
-	selector: "cdl-sub-menu-item",
+	selector: "n-sub-menu-item",
 	template: `
 		<div class="sub-menu-item-wrapper"
 			tabindex="{{listItem.disabled?-1:0}}"
@@ -46,7 +46,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 				</span>
 			</div>
 		</div>
-		<cdl-sub-menu-wrapper
+		<n-sub-menu-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
@@ -56,7 +56,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[selectedIcon]="selectedIcon"
 			[role]="'group'"
 			[parent]="parent">
-		</cdl-sub-menu-wrapper>
+		</n-sub-menu-wrapper>
 	`
 })
 export class SubMenuItem {

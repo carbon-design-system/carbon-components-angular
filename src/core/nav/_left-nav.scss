@@ -159,7 +159,7 @@
 		display: block;
 	}
 
-	cdl-side-nav-pane-title {
+	n-side-nav-pane-title {
 		.side-nav-pane-title {
 			height: $sidenav-item-height;
 			width: 100%;
@@ -272,7 +272,7 @@ html[dir=rtl], body[dir=rtl] {
 			right: -$sidenav-width;
 		}
 
-		cdl-side-nav-pane-title {
+		n-side-nav-pane-title {
 			.side-nav-pane-title {
 				text-align: right;
 				padding: 0;

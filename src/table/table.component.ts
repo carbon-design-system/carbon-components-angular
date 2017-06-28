@@ -10,9 +10,9 @@ import {
 import { Column } from "./column.component";
 
 @Component({
-	selector: "cdl-table",
+	selector: "n-table",
 	template: `
-	<div 
+	<div
 		class="table-container"
 		(window:resize)="viewResize()">
 		<table-header

@@ -50,7 +50,7 @@ import {
 	ModalModule,
 	AlertModule,
 	AlertService,
-	CDLFormsModule,
+	NFormsModule,
 	ChartsModule,
 	ComboBoxModule
 } from "./../../src";
@@ -108,7 +108,7 @@ import {
 		SideNavModule,
 		ModalModule,
 		AlertModule,
-		CDLFormsModule,
+		NFormsModule,
 		ChartsModule,
 		ComboBoxModule,
 		RouterModule.forRoot([

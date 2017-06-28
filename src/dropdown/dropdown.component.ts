@@ -28,7 +28,7 @@ import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
 @Component({
-	selector: "cdl-dropdown",
+	selector: "n-dropdown",
 	template: `
 		<button
 			type="button"

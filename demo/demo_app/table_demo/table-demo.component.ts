@@ -12,36 +12,36 @@ import { Column } from "./../../../src/table/table.module";
 	<button (click)="cvis = !cvis" class="btn" >toggle col c</button>
 	<hr/>
 	<div class="table">
-		<cdl-table
+		<n-table
 			[rows]="availableRows"
 			striped="true"
 			(selectAll)="selectAll($event)"
 			(selectRow)="select($event)">
-			<cdl-column
+			<n-column
 				key="a"
 				title="A"
 				width="200"
 				(sort)="sortA($event)">
 				<ng-template #headerTemplate>A</ng-template>
 				<ng-template #cellTemplate let-data="data">col 1 {{data}}</ng-template>
-			</cdl-column>
-			<cdl-column
+			</n-column>
+			<n-column
 				key="b"
 				title="B"
 				(sort)="sort($event)"
 				resizeable="false">
 				<ng-template #headerTemplate>B</ng-template>
 				<ng-template #cellTemplate let-data="data">column two {{data}}</ng-template>
-			</cdl-column>
-			<cdl-column
+			</n-column>
+			<n-column
 				*ngIf="cvis"
 				key="c"
 				title="C"
 				width="200">
 				<ng-template #headerTemplate>C</ng-template>
 				<ng-template #cellTemplate let-data="data">{{data}}</ng-template>
-			</cdl-column>
-		</cdl-table>
+			</n-column>
+		</n-table>
 	</div>
 	`,
 	styleUrls: ["./table-demo.component.css"]

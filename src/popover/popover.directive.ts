@@ -21,15 +21,15 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 @Directive({
-	selector: "[cdlPopover]",
-	exportAs: "cdlPopover"
+	selector: "[nPopover]",
+	exportAs: "nPopover"
 })
 export class PopoverDirective implements OnInit {
 	popoverService: PopoverService;
 	popoverConfig: any;
 
 	@Input() title: string;
-	@Input() cdlPopover: string | TemplateRef<any>;
+	@Input() nPopover: string | TemplateRef<any>;
 	@Input() trigger: "click" | "mouseenter" = "click";
 	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "auto" = "auto";
 	@Input() waitTime = 0;
@@ -60,7 +60,7 @@ export class PopoverDirective implements OnInit {
 		document.body.firstElementChild.addEventListener("click", () => null, true);
 		this.popoverConfig = {
 			title: this.title,
-			content: this.cdlPopover,
+			content: this.nPopover,
 			placement: this.placement,
 			parentRef: this.elementRef,
 			gap: this.gap,
