@@ -7,16 +7,16 @@
 
 .top-nav {
   width: 100%;
+  z-index: $topnav-z-index;
 
   nav {
     position: relative;
-      background-color: $topnav-bg-color;
+	background-color: $topnav-bg-color;
     height: $topnav-height;
     font-size: $topnav-header-font-size;
     top: 0;
     width: 100%;
     left: 0;
-    z-index: $topnav-z-index;
     color: $topnav-color;
     padding-right: 68px;
     padding-left: 0;
