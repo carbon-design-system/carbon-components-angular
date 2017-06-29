@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "icon-demo",
 	template: `
-	<h1>Iconography Demo</h1>
+	<h1>Iconography demo</h1>
 	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
 	<n-icon icon="alert" size="xs"></n-icon>
 	<n-icon icon="alert" size="sm"></n-icon>

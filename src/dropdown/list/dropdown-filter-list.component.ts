@@ -60,14 +60,22 @@ import { DropdownList } from "./dropdown-list.component";
 				type="text"
 				class="input-field"
 				tabindex="0"
+				(focus)="filterFocus = true"
+				(blur)="filterFocus = false"/>
+			<span
+				class="placeholder"
 				[ngClass]="{
-					placeholder: !filter.value
-				}"
-				placeholder="{{ 'DROPDOWN.FILTER.SEARCH' | translate }}"/>
+					visible: !filterFocus
+				}">
+				{{ 'DROPDOWN.FILTER.SEARCH' | translate }}
+			</span>
 			<button
 				class="search-cancel"
 				type="button"
 				aria-label="cancel"
+				[ngClass]="{
+					visible: filter.value.trim()
+				}"
 				(click)="clearFilter()">
 				<svg
 					class="icon"
@@ -219,10 +227,10 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			} else {
 				this.disableSelectedOnly = true;
 				this.selectedOnlyNative.checked = false;
-				this.displayItems = this.getDisplayItems(this.items,
+			}
+			this.displayItems = this.getDisplayItems(this.items,
 					this.filterNative.value,
 					this.selectedOnlyNative.checked);
-			}
 			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);

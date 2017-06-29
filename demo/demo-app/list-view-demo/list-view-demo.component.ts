@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "list-view-demo",
 	template: `
-	<h1>List View Demo</h1>
+	<h1>List view demo</h1>
 
 	<ng-template #listTpl let-item="item"><n-icon icon="alert" size="md"></n-icon> {{item.content}}</ng-template>
 

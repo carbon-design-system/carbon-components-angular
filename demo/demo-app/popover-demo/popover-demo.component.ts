@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 @Component({
 	selector: "popover-demo",
 	template: `
-	<h1>Popover Demo</h1>
+	<h1>Popover demo</h1>
 
 	<ng-template #customPopover>
 		Cool content <br> Another cool content <br><br><br><br><br>

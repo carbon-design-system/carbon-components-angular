@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "tree-view-demo",
 	template: `
-	<h1>Tree View Demo</h1>
+	<h1>Tree view demo</h1>
 
 	<h3>Default tree view</h3>
 	<n-tree-view
@@ -150,14 +150,10 @@ export class TreeViewDemo {
 		}
 	];
 
-	demoItems1 = Array.from(this.demoItems, this.clone);
+	demoItems1 = JSON.parse(JSON.stringify(this.demoItems));
 
-	demoItems2 = Array.from(this.demoItems, this.clone);
+	demoItems2 = JSON.parse(JSON.stringify(this.demoItems));
 	displayItems = this.demoItems2;
-
-	private clone (el) {
-		return Object.assign({}, el);
-	}
 
 	flattenTree(_items) {
 		let flatList = [];

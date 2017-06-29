@@ -61,7 +61,10 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[rootElem]="rootElem"
 			[indent]="indent+1"
 			[role]="'group'"
-			[label]="listItem">
+			[label]="listItem"
+			[outerPadding]="outerPadding"
+			[iconWidth]="iconWidth"
+			[innerPadding]="innerPadding">
 		</n-tree-wrapper>
 	`
 })
@@ -98,10 +101,11 @@ export class TreeItem {
 		if (this.isBase) {
 			// same calc, we just drop the icon width from the last item
 			return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
 		}
+		// we add innerPadding twice to account for the padding from the previous level
 		return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.iconWidth + this.innerPadding) * this.indent);
+					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent);
 	}
 
 	bubbleSelect(evt) {
