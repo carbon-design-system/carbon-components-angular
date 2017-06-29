@@ -8,11 +8,10 @@ import { Modal } from "../../../src";
 		<n-modal size="xl" (overlaySelected)="closeModal()" [ngSwitch]="drilledin">
 			<ng-container *ngSwitchCase="false">
 				<n-modal-header (closeSelect)="closeModal()">
-					<a
-						class="breadcrumb"
-						href="#">
+					<span
+						class="breadcrumb">
 						Header text
-					</a>
+					</span>
 				</n-modal-header>
 				<section class="modal-body">
 					<div>
@@ -43,7 +42,7 @@ import { Modal } from "../../../src";
 					</div>
 				</section>
 				<n-modal-footer>
-					<button class="btn cancel-button btn-secondary" (click)="drill($event, false)">Cancel</button>
+					<button class="btn cancel-button btn-secondary" (click)="drill($event, false)">Back</button>
 				</n-modal-footer>
 			</ng-container>
 		</n-modal>
