@@ -64,7 +64,9 @@
 	}
 
 	&.has-items.selected {
-		border-left-width: 1px;
+		&:before {
+			border-left-width: 1px;
+		}
 		font-weight: inherit;
 	}
 

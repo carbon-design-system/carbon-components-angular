@@ -68,6 +68,12 @@
 			font-weight: inherit;
 			&:hover, &:focus {
 				background-color: $listview-hover-bg;
+				&:before {
+					border-left: 1px solid color("blue", 50);
+				}
+			}
+			&:before {
+				border-left: 1px solid transparent;
 			}
 		}
 
