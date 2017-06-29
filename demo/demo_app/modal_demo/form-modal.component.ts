@@ -26,9 +26,10 @@ import { Modal } from "../../../src";
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
 				<div class="modal-body">
 					<div class="form-instructions">{{modalText}}</div>
-					<n-label *ngFor="let field of fields"
+					<n-label *ngFor="let field of fields" [labelState]="form.get(field).touched && !form.get(field).valid ? 'error' : ''"
 						[class.has-error]="form.get(field).touched && !form.get(field).valid">
-						<label class="label">{{field}}</label>
+						<label *ngIf="!(form.get(field).touched && !form.get(field).valid)" class="label">{{field}}</label>
+						<label *ngIf="form.get(field).touched && !form.get(field).valid" class="label">Field with error</label>
 						<input type="text" class="input-field" formControlName="{{field}}"/>
 					</n-label>
 
