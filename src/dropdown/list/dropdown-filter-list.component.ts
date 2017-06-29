@@ -219,10 +219,10 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			} else {
 				this.disableSelectedOnly = true;
 				this.selectedOnlyNative.checked = false;
-				this.displayItems = this.getDisplayItems(this.items,
+			}
+			this.displayItems = this.getDisplayItems(this.items,
 					this.filterNative.value,
 					this.selectedOnlyNative.checked);
-			}
 			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);
