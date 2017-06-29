@@ -60,14 +60,22 @@ import { DropdownList } from "./dropdown-list.component";
 				type="text"
 				class="input-field"
 				tabindex="0"
+				(focus)="filterFocus = true"
+				(blur)="filterFocus = false"/>
+			<span
+				class="placeholder"
 				[ngClass]="{
-					placeholder: !filter.value
-				}"
-				placeholder="{{ 'DROPDOWN.FILTER.SEARCH' | translate }}"/>
+					visible: !filterFocus
+				}">
+				{{ 'DROPDOWN.FILTER.SEARCH' | translate }}
+			</span>
 			<button
 				class="search-cancel"
 				type="button"
 				aria-label="cancel"
+				[ngClass]="{
+					visible: filter.value.trim()
+				}"
 				(click)="clearFilter()">
 				<svg
 					class="icon"

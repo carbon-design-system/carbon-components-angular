@@ -3,9 +3,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "combobox-demo",
 	template: `
-		<h1>Combobox demo</h1>
+		<h1>Combo box demo</h1>
 
-		<h2>Single select combobox</h2>
+		<h2>Single select combo box</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -16,7 +16,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Multi select combobox</h2>
+		<h2>Multi select combo box</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"

@@ -4,7 +4,7 @@ import { Column } from "./../../../src/table/table.module";
 @Component({
 	selector: "table-demo",
 	template: `
-	<h1>Table Demo</h1>
+	<h1>Table demo</h1>
 
 	<p>demo controls</p>
 	<button (click)="update()" class="btn">update rows</button>

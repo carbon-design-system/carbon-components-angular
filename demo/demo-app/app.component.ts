@@ -50,72 +50,72 @@ import * as en from  "./../../src/i18n/en.json";
 export class AppComponent implements OnInit {
 	private navItems = [
 		{
-			content: "CSS Demo",
+			content: "CSS demo",
 			link: "/css",
 			selected: false
 		},
 		{
-			content: "Forms Demo",
+			content: "Forms demo",
 			link: "/forms",
 			selected: false
 		},
 		{
-			content: "Iconography Demo",
+			content: "Iconography demo",
 			link: "/icon",
 			selected: false
 		},
 		{
-			content: "Popover Demo",
+			content: "Popover demo",
 			link: "/popover",
 			selected: false
 		},
 		{
-			content: "Tooltip Demo",
+			content: "Tooltip demo",
 			link: "/tooltip",
 			selected: false
 		},
 		{
-			content: "Tabs Demo",
+			content: "Tabs demo",
 			link: "/tabs",
 			selected: false
 		},
 		{
-			content: "List View Demo",
+			content: "List view demo",
 			link: "/list-view",
 			selected: false
 		},
 		{
-			content: "Tree View Demo",
+			content: "Tree view demo",
 			link: "/tree-view",
 			selected: false
 		},
 		{
-			content: "Drop-down Demo",
+			content: "Drop-down demo",
 			link: "/dropdown",
 			selected: false
 		},
 		{
-			content: "Top Nav Demo",
+			content: "Top-nav demo",
 			link: "/top-nav",
 			selected: false
 		},
 		{
-			content: "Side Nav Demo",
+			content: "Side-nav demo",
 			link: "/side-nav",
 			selected: false
 		},
 		{
-			content: "Modal Demo",
+			content: "Modal demo",
 			link: "/modal",
 			selected: false
 		},
 		{
-			content: "Alert Demo",
+			content: "Alert demo",
 			link: "/alert",
 			selected: false
 		},
 		{
-			content: "Combobox Demo",
+			content: "Combo box demo",
 			link: "/combobox",
 			selected: false
 		}
