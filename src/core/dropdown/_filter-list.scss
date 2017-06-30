@@ -15,6 +15,12 @@
 			height: 20px;
 			font-size: 12px;
 			padding: 0 28px;
+			line-height: 20px;
+		}
+		.placeholder {
+			top: 13px;
+			left: 40px;
+			font-size: 12px;
 		}
 		.search-cancel {
 			top: 12px;
@@ -23,7 +29,6 @@
 			.icon {
 				height: 14px;
 				width: 14px;
-				top: -2px;
 				position: relative;
 			}
 		}
@@ -68,11 +73,17 @@
 	}
 	.input-field {
 		padding: 0 36px;
-		&:focus + .search-cancel {
-			opacity: 1;
-		}
-		&.placeholder {
-			font-style: italic;
+		line-height: 30px;
+	}
+	.placeholder {
+		font-style: italic;
+		color: color("gray", 50);
+		display: none;
+		position: absolute;
+		top: 17px;
+		left: 50px;
+		&.visible {
+			display: block;
 		}
 	}
 	.search-cancel {
@@ -85,13 +96,19 @@
 		padding: 0;
 		border: 1px solid transparent;
 		opacity: 0;
+		display: inline-flex;
+		align-items: center;
+		align-content: center;
 		&:focus, &:hover {
 			border: 1px solid color("gray", 50);
-			opacity: 1;
+			// opacity: 1;
 		}
 		.icon {
 			width: 16px;
 			height: 16px;
+		}
+		&.visible {
+			opacity: 1;
 		}
 	}
 }

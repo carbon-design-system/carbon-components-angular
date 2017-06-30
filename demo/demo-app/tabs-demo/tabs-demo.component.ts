@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "tabs-demo",
 	template: `
-	<h1>Tabs Demo</h1>
+	<h1>Tabs demo</h1>
 
 	<h2>Static tabs</h2>
 		<n-tabs>

@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 	<br>
 	Selected date: {{selectedDate1}}
 	<br>
-	Valid Date: {{validDate1}}
+	Valid date: {{validDate1}}
 	<div style="position: relative">
 	<input type="text"
 		[(ngModel)]="date1"
@@ -27,7 +27,7 @@ import { Component, OnInit } from "@angular/core";
 	<br>
 	Selected date: {{selectedDate3}}
 	<br>
-	Valid Date: {{validDate3}}
+	Valid date: {{validDate3}}
 	<div style="position: relative">
 	<input type="text"
 		nDatepicker
@@ -49,7 +49,7 @@ import { Component, OnInit } from "@angular/core";
 	<br>
 	Selected date: {{selectedDate}}
 	<br>
-	Valid Date: {{validDate}}
+	Valid date: {{validDate}}
 	<div style="position: relative">
 	<input type="text"
 		nDatepicker

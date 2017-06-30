@@ -13,27 +13,27 @@ import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 
 // demo imports
-import { AlertCustom } from "./alert_demo/alert-demo-custom";
-import { AlertDemo } from "./alert_demo/alert-demo-component";
-import { ChartsDemo } from "./charts_demo/charts-demo.component";
-import { CoreDemo } from "./core_demo/core-demo.component";
-import { DropdownDemo } from "./dropdown_demo/dropdown_demo.component";
-import { ErrorModalComponent } from "./modal_demo/error-modal.component";
-import { FormModalComponent } from "./modal_demo/form-modal.component";
-import { DrilldownModalComponent } from "./modal_demo/drilldown-modal.component";
-import { FormsDemo } from "./forms_demo/forms-demo.component";
+import { AlertCustom } from "./alert-demo/alert-demo-custom";
+import { AlertDemo } from "./alert-demo/alert-demo-component";
+import { ChartsDemo } from "./charts-demo/charts-demo.component";
+import { CoreDemo } from "./core-demo/core-demo.component";
+import { DropdownDemo } from "./dropdown-demo/dropdown-demo.component";
+import { ErrorModalComponent } from "./modal-demo/error-modal.component";
+import { FormModalComponent } from "./modal-demo/form-modal.component";
+import { DrilldownModalComponent } from "./modal-demo/drilldown-modal.component";
+import { FormsDemo } from "./forms-demo/forms-demo.component";
 import { IconDemo } from "./icon-demo/icon-demo.component";
-import { ListViewDemo } from "./list_view_demo/list-view-demo.component";
-import { ModalDemo } from "./modal_demo/modal-demo.component";
-import { PopoverDemo } from "./popover_demo/popover-demo.component";
-import { SampleModalComponent } from "./modal_demo/sample-modal.component";
-import { SideNavDemo } from "./side_nav_demo/side-nav-demo.component";
-import { TableDemo } from "./table_demo/table-demo.component";
-import { TabsDemo } from "./tabs_demo/tabs_demo.component";
-import { TooltipDemo } from "./tooltip_demo/tooltip-demo.component";
-import { TopNavDemo } from "./top_nav_demo/top-nav-demo.component";
-import { TreeViewDemo } from "./tree_view_demo/tree-view-demo.component";
-import { XLModalComponent } from "./modal_demo/extra-large.component";
+import { ListViewDemo } from "./list-view-demo/list-view-demo.component";
+import { ModalDemo } from "./modal-demo/modal-demo.component";
+import { PopoverDemo } from "./popover-demo/popover-demo.component";
+import { SampleModalComponent } from "./modal-demo/sample-modal.component";
+import { SideNavDemo } from "./side-nav-demo/side-nav-demo.component";
+import { TableDemo } from "./table-demo/table-demo.component";
+import { TabsDemo } from "./tabs-demo/tabs-demo.component";
+import { TooltipDemo } from "./tooltip-demo/tooltip-demo.component";
+import { TopNavDemo } from "./top-nav-demo/top-nav-demo.component";
+import { TreeViewDemo } from "./tree-view-demo/tree-view-demo.component";
+import { XLModalComponent } from "./modal-demo/extra-large.component";
 import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
 
 // component imports

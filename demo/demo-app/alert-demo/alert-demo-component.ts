@@ -10,21 +10,21 @@ import { AlertCustom } from "./alert-demo-custom";
 @Component({
 	selector: "alert-demo",
 	template: `
-	<h1>Alert Service</h1>
+	<h1>Alert service</h1>
 
-	<h3>Default Alert</h3>
+	<h3>Default alert</h3>
 	<button class="btn" (click)="callAlert('info')">Alert Info</button>
 	<button class="btn" (click)="callAlert('danger')">Alert Error</button>
 	<button class="btn" (click)="callAlert('warning')">Alert Warning</button>
 	<button class="btn" (click)="callAlert('success')">Alert Success</button>
 
 
-	<h3>Custom Alert</h3>
+	<h3>Custom alert</h3>
 
 	<button class="btn" (click)="callAlertCustom()">show custom alert</button>
 
 
-	<h3>Fade away Alert(2secs)</h3>
+	<h3>Fade away alert(2secs)</h3>
 
 	<button class="btn" (click)="callAlertFadeAway()">show fade away alert</button>
 
@@ -36,7 +36,7 @@ import { AlertCustom } from "./alert-demo-custom";
 	</div>
 
 
-	<h3>Smart Alert</h3>
+	<h3>Smart alert</h3>
 
 	<p><textarea [(ngModel)]="smartAlertText" rows="6" cols="60"></textarea></p>
 
@@ -46,7 +46,7 @@ import { AlertCustom } from "./alert-demo-custom";
 	<button class="btn" (click)="callAlertSmart('success')">Alert Success</button>
 
 
-	<h1>Alert Component</h1>
+	<h1>Alert component</h1>
 
 	<div class="alerts-container">
 	<n-alert [alertObj]="infoAlert" (close)="onClose($event)"></n-alert>

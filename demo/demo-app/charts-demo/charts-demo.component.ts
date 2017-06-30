@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "charts-demo",
 	template: `
-	<h1>Charts Demo</h1>
+	<h1>Charts demo</h1>
 	<p>!!FOR DEMO PURPOSES ONLY!!</p>
 	<section class="chart">
 		<span class="chart-title">Parts</span>

@@ -53,12 +53,6 @@ export class DropdownTree implements AbstractDropdownView {
 	constructor(public _elementRef: ElementRef) {}
 
 	ngOnInit() {
-		if (this.size === "lg") {
-			this.outerPadding = 20;
-		}
-		if (this.size === "sm") {
-			this.iconWidth = 14;
-		}
 	}
 
 	ngOnChanges(changes) {
@@ -79,6 +73,12 @@ export class DropdownTree implements AbstractDropdownView {
 	ngAfterViewInit() {
 		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper")) as HTMLElement[];
 		this.setupFocusObservable();
+		if (this.size === "lg") {
+			this.outerPadding = 20;
+		}
+		if (this.size === "sm") {
+			this.iconWidth = 14;
+		}
 	}
 
 	setupFocusObservable() {
