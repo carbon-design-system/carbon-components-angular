@@ -14,7 +14,7 @@ import { ModalService } from "../../../src";
 	<button class="btn" (click)="openModal('error')">Error modal</button>
 	<button class="btn" (click)="openModal('form')">Form modal</button>
 	<button class="btn" (click)="openModal('close')">Programmatic close</button>
-	<button class="btn" (click)="openModal('drill')">Drilldown modal</button>
+	<button class="btn" (click)="openModal('drill')">Drill-down modal</button>
 
 	<div>{{this.data | json}}</div>
 	`

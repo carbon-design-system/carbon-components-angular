@@ -34,7 +34,7 @@ import { Modal } from "../../../src";
 					</n-label>
 
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
-					<label class="label label-top">Dropdown</label>
+					<label class="label label-top">Drop-down</label>
 					<n-dropdown
 						placeholder="Select an option">
 						<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
