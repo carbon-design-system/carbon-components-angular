@@ -8,6 +8,7 @@
 		width: 14px;
 		height: 14px;
 		top: 3px;
+		margin-left: -24px; // 14px icon + 10px padding
 	}
 }
 
@@ -52,7 +53,7 @@
 			}
 		}
         .arrow {
-            margin-left: -25px;
+            margin-left: -26px; // 16px icon width + 10px padding
             margin-right: 5px;
             vertical-align: middle;
             transition: transform 0.1s linear;

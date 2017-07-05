@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 @Component({
 	selector: "core-demo",
 	template: `
-	<h1>Core CSS Demo</h1>
+	<h1>Core CSS demo</h1>
 	<h2>Buttons</h2>
 	<section>
 		<h3>Primary buttons</h3>
