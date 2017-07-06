@@ -1,9 +1,9 @@
 // Alerts
-@mixin alert-variant($background, $border, $text-color) {
+@mixin banner-variant($background, $border, $text-color) {
 	background-color: $background;
 	border-color: $border;
 	color: $text-color;
-	.alert-icon svg * {
+	.banner-icon svg * {
 		fill:$border
 	}
 }

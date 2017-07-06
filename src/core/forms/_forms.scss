@@ -25,15 +25,15 @@ label {
 }
 
 .label-icon-success {
-	fill: $alert-success-icon;
+	fill: $banner-success-icon;
 }
 
 .label-icon-warning {
-	fill: $alert-warning-icon;
+	fill: $banner-warning-icon;
 }
 
 .label-icon-error {
-	fill: $alert-danger-icon;
+	fill: $banner-danger-icon;
 }
 
 // text field
@@ -46,15 +46,15 @@ label {
     padding: $input-field-padding;
 
 	&.input-field-success {
-		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $alert-success-icon)
+		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $banner-success-icon)
 	}
 
 	&.input-field-warning {
-		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $alert-warning-icon)
+		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $banner-warning-icon)
 	}
 
 	&.input-field-error {
-		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $alert-danger-icon)
+		@include box-shadow(inset 0 0 0 1px color("white", 0), inset 0 0 0 2px $banner-danger-icon)
 	}
 
     &:hover {
