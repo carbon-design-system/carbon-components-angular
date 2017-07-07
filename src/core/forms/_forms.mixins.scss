@@ -3,14 +3,14 @@
 // --------------------------------------------------
 
 
-@mixin radio-checkbox($type, $el-size, $el-brd-radius , $label-margin, $selected-width,
+@mixin radio-checkbox($type, $el-size, $el-brd-radius, $label-margin, $selected-width,
 					  $selected-height, $el-sm-width, $el-sm-height, $el-selected-sm-width,
 					  $el-selected-sm-height) {
 	max-width: 100%;
 	height: $el-size;
 	position: relative;
 	display: block;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 
 	label {
 	    display: block;
@@ -25,7 +25,7 @@
 		    &:before {
 		    	content: '';
 			    width: $el-size;
-				padding-left: $el-size - 1; //1px for border
+				padding-left: $el-size - 1;  // 1px for border
 				margin-right: $label-margin;
 			    display: inline-block;
 			    height: $el-size;
@@ -39,7 +39,7 @@
 				width: $selected-width;
 				height: $selected-height;
 				position: absolute;
-				left: ($el-size - $selected-width) / 2;
+				left: ($el-size + 1 - $selected-width) / 2;
 				border-color: color("blue", 50);
 				border-style: solid;
 				opacity: 0;
@@ -119,12 +119,12 @@
 					 padding-left: $el-sm-width - 1; //1px for border
 				 }
 				 &:after {
-					width:$el-selected-sm-width;
-					height:$el-selected-sm-height;
+					width: $el-selected-sm-width;
+					height: $el-selected-sm-height;
 
 					left: 3px;
 					@if $type == radio {
-						border-width:5px;
+						border-width: 5px;
 						top: 3.5px;
 					} @else {
 						top: 4px;

@@ -127,6 +127,40 @@ Ex:
 <n-switch [(ngModel)]="switchState">Switch</n-switch>
 ```
 
+### RadioComponent<a name="n-radio"></a>
+class: RadioComponent (extends CheckboxComponent)
+
+selector: `n-radio`
+
+source: `src/forms/radio.component.ts`
+
+**Inputs:**
+
+| @Input          | Type     | Default value     |
+| --------------- | -------- | ----------------- |
+| disabled        | boolean  | false             |
+| name            | string   |                   |
+| id              | string   | "radio-<number>" |
+| required        | boolean  |                   |
+| value           | any      |                   |
+| aria-label      | string   | ""                |
+| aria-labelledby | string   |                   |
+| checked         | boolean  |                   |
+
+**Outputs:**
+
+| @Output             | Value          |
+| ------------------- | -------------- |
+| change              | CheckboxChange |
+| indeterminateChange | boolean        |
+
+Ex:
+```html
+<n-radio [(ngModel)]="radioState">Radio</n-radio>
+```
+
+Also see: [`RadioGroup`](#n-radio-group)
+
 ### LabelComponent
 class: LabelComponent
 
@@ -157,3 +191,44 @@ Ex:
 	<input type="text" class="input-field">
 </n-label>
 ```
+
+
+## Directives
+### RadioGroup<a name="n-radio-group"></a>
+class: RadioGroup
+
+selector: `n-radio-group`
+
+source: `src/forms/radio.component.ts`
+
+**Inputs:**
+
+| @Input          | Type           | Default value |
+| --------------- | -------------- | ------------- |
+| disabled        | boolean        | false         |
+| selected        | RadioComponent | null          |
+| name            | string         |               |
+| value           | any            |               |
+
+**Outputs:**
+
+| @Output | Value       |
+| ------- | ----------- |
+| change  | RadioChange	|
+
+Ex:
+```html
+<n-radio-group [(ngModel)]="radio">
+	<n-radio *ngFor="let one of manyRadios" [value]="one">
+		Radio {{one}}
+	</n-radio>
+</n-radio-group>
+
+Radio selected: {{radio}}
+```
+
+```typescript
+manyRadios = ["one", "two", "three", "four", "five", "six"];
+```
+
+Also see: [`RadioComponent`](#n-radio)
