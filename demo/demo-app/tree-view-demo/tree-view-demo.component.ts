@@ -24,8 +24,8 @@ import { Component, OnInit } from "@angular/core";
 				[indeterminate]="isIndeterminate(item)"
 				(change)="onCheck({item: item})"
 				[disabled]="item.disabled">
-				{{item.content}}
 			</n-checkbox>
+			{{item.content}}
 		</ng-template>
 	</n-tree-view>
 
@@ -155,20 +155,6 @@ export class TreeViewDemo {
 	demoItems2 = JSON.parse(JSON.stringify(this.demoItems));
 	displayItems = this.demoItems2;
 
-	flattenTree(_items) {
-		let flatList = [];
-		let flattenHelper = items => {
-			for (let item of items) {
-				flatList.push(item);
-				if (item.items) {
-					this.flattenTree(item.items);
-				}
-			}
-		};
-		flattenHelper(_items);
-		return flatList;
-	}
-
 	filter(items, cb) {
 		let filteredList = [];
 		for (let item of items) {
@@ -224,9 +210,30 @@ export class TreeViewDemo {
 				}
 			}
 		};
-		ev.item.selected = !ev.item.selected;
+		let any = (items, cb) => {
+			for (let item of items) {
+				if (cb(item)) {
+					return true;
+				}
+				if (item.items) {
+					return any(item.items, cb);
+				}
+			}
+			return false;
+		};
 		if (ev.item.items) {
-			setSelect(ev.item.items, ev.item.selected);
+			if (any(ev.item.items, item => item.selected)) {
+				setSelect(ev.item.items, false);
+				setTimeout(() => ev.item.selected = false, 0);
+				// ev.item.selected = false;
+				console.log("set", ev.item.content, ev.item.selected);
+			} else {
+				setSelect(ev.item.items, true);
+				// ev.item.selected = true;
+				setTimeout(() => ev.item.selected = true, 0);
+			}
+		} else {
+			ev.item.selected = !ev.item.selected;
 		}
 		// this doesn't matter if only the parents are selectable
 		// in that case use check/blank icons for children
