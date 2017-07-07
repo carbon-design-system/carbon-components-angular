@@ -41,8 +41,7 @@ export class CheckboxChange {
 					[attr.aria-labelledby]="ariaLabelledby"
 					[attr.aria-checked]="indeterminate ? 'mixed' : checked"
 					(change)="onChange($event)"
-					(click)="onClick($event)"
-					role="checkbox">
+					(click)="onClick($event)">
 				<span class="label"><ng-content></ng-content></span>
 			</label>
 		</div>
@@ -54,6 +53,9 @@ export class CheckboxChange {
 			multi: true
 		}
 	],
+	host: {
+		"role": "checkbox"
+	},
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
