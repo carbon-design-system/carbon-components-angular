@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	AfterViewInit,
 	ViewChild,
-	ElementRef
+	ElementRef,
+	OnDestroy
 } from "@angular/core";
 
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
@@ -131,7 +132,7 @@ import { DropdownList } from "./dropdown-list.component";
 		</ul>`,
 		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownFilter)}]
 }) // conceptually this extends list-view, but we dont have to
-export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit {
+export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	@ViewChild("selectedOnly") selectedOnly;
 	@ViewChild("list") list;
 	@ViewChild("filter") filter;
@@ -141,6 +142,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	public disableSelectedOnly = true;
 	public displayItems: Array<ListItem> = [];
 	public filterFocus = false;
+	protected overrideKeydown = this._overrideKeydown.bind(this);
 
 	constructor(public _elementRef: ElementRef) {
 		super(_elementRef);
@@ -173,18 +175,27 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 		// just makes dealing with the nativeElement slightly less verbose
 		this.filterNative = this.filter.nativeElement;
 		this.selectedOnlyNative = this.selectedOnly ? this.selectedOnly.nativeElement : null;
-		// we've got to highjack a few key events so we don't close the dropdown early
-		this._elementRef.nativeElement.addEventListener("keydown", (ev) => {
-			if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target) && this.displayItems.length !== 0) {
-				ev.stopPropagation();
-			} else if (ev.key === "Tab" && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
-				ev.stopPropagation();
-				ev.preventDefault();
-				this.filterNative.focus();
-			} else if (ev.key === "Enter" || (ev.key === "ArrowDown" && !this.list.nativeElement.contains(ev.target))) {
-				this.listList[0].focus();
-			}
-		});
+		this._elementRef.nativeElement.addEventListener("keydown", this.overrideKeydown);
+	}
+
+	ngOnDestroy() {
+		this._elementRef.nativeElement.removeEventListener("keydown", this.overrideKeydown);
+		if (this.focusJump) {
+			this.focusJump.unsubscribe();
+		}
+	}
+
+	// we've got to hijack a few key events so we don't close the dropdown early
+	_overrideKeydown(ev) {
+		if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target) && this.displayItems.length !== 0) {
+			ev.stopPropagation();
+		} else if (ev.key === "Tab" && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
+			ev.stopPropagation();
+			ev.preventDefault();
+			this.filterNative.focus();
+		} else if (ev.key === "Enter" || (ev.key === "ArrowDown" && !this.list.nativeElement.contains(ev.target))) {
+			this.listList[0].focus();
+		}
 	}
 
 	getDisplayItems(items: ListItem[], query = "", selectedOnly = false): ListItem[] {
