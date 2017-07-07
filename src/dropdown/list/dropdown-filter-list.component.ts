@@ -61,7 +61,7 @@ import { DropdownList } from "./dropdown-list.component";
 				class="input-field"
 				tabindex="0"
 				(focus)="filterFocus = true"
-				(blur)="filterFocus = false"/>
+				(blur)="filterFocus = filter.value?true:false"/>
 			<span
 				class="placeholder"
 				[ngClass]="{
@@ -140,6 +140,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	public selectedOnlyNative;
 	public disableSelectedOnly = true;
 	public displayItems: Array<ListItem> = [];
+	public filterFocus = false;
 
 	constructor(public _elementRef: ElementRef) {
 		super(_elementRef);
@@ -206,6 +207,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	clearFilter() {
 		this.filter.nativeElement.value = "";
 		this.displayItems = this.items;
+		this.filterFocus = false;
 		// wait a tick to let the view update
 		setTimeout(() => this.setupFocusObservable());
 	}
