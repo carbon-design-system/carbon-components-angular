@@ -1,14 +1,14 @@
 //
-// Alerts
+// Banners
 // --------------------------------------------------
 
 // Mixins
 // -------------------------
-@import './alerts.mixins';
+@import './banners.mixins';
 
 // Base styles
 // -------------------------
-.body-alerts {
+.body-banner {
 	position: fixed;
 	top: 0px;
 	left: 50%;
@@ -17,7 +17,7 @@
 	width: 704px;
 }
 
-.alert {
+.banner {
 	position: relative;
 	z-index: 1000;
 	top: 0px;
@@ -25,11 +25,10 @@
 	display: inline-block;
 	clear: both;
 	width:100%;
-	color: $alert-font-color;
-	padding: $alert-padding;
-	line-height: $alert-height - 2;
-	height: $alert-height;
-	border:$alert-border-width solid transparent;
+	color: $banner-font-color;
+	padding: $banner-padding;
+	min-height: $banner-height;
+	border:$banner-border-width solid transparent;
 	vertical-align: middle;
 	animation-name: dropin;
     animation-duration: 0.25s;
@@ -41,21 +40,21 @@
 
 		p {
 			margin:0;
-			@include text-overflow();
+			padding: $banner-text-padding;
 			display: inline-block;
 			max-width: calc(100% - 50px);
 			a {
 				font-weight: 700;
-				color:$alert-font-color;
+				color:$banner-font-color;
 			}
 		}
 
 		.close-btn {
 			float: right;
 			cursor: pointer;
-			margin: $alert-close-margin;
-			height: $alert-height;
-			line-height: $alert-height - 2; //subtract border
+			margin: $banner-close-margin;
+			height: $banner-height;
+			line-height: $banner-height - 2; //subtract border
 
 			& ~ p {
 				max-width: calc(100% - 90px);
@@ -66,7 +65,7 @@
 			}
 		}
 
-	.alert-icon{
+	.banner-icon{
 		width: 30px;
 		height: 30px;
 		padding-top: 6px;
@@ -76,7 +75,7 @@
 	}
 }
 
-.alert-dropout {
+.banner-dropout {
 	animation-name: dropout;
     animation-duration: 0.20s;
 	animation-timing-function: ease-out;
@@ -90,20 +89,20 @@
 
 // Alternate styles
 //
-// Generate contextual modifier classes for colorizing the alert.
+// Generate contextual modifier classes for colorizing the banner.
 
-.alert-success {
-	@include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+.banner-success {
+	@include banner-variant($banner-success-bg, $banner-success-border, $banner-success-text);
 }
 
-.alert-info {
-	@include alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+.banner-info {
+	@include banner-variant($banner-info-bg, $banner-info-border, $banner-info-text);
 }
 
-.alert-warning {
-	@include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+.banner-warning {
+	@include banner-variant($banner-warning-bg, $banner-warning-border, $banner-warning-text);
 
 }
-.alert-danger {
-	@include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+.banner-danger {
+	@include banner-variant($banner-danger-bg, $banner-danger-border, $banner-danger-text);
 }

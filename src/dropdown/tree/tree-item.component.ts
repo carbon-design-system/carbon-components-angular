@@ -100,12 +100,12 @@ export class TreeItem {
 	calculateIndent() {
 		if (this.isBase) {
 			// same calc, we just drop the icon width from the last item
-			return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent) - this.iconWidth;
+			return ((this.outerPadding + this.iconWidth + this.innerPadding)
+				+ ((this.iconWidth + this.innerPadding) * this.indent)) - this.iconWidth;
 		}
 		// we add innerPadding twice to account for the padding from the previous level
 		return (this.outerPadding + this.iconWidth + this.innerPadding)
-					+ ((this.innerPadding + this.iconWidth + this.innerPadding) * this.indent);
+			+ ((this.iconWidth + this.innerPadding) * this.indent);
 	}
 
 	bubbleSelect(evt) {

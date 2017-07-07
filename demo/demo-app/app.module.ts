@@ -13,8 +13,8 @@ import { RouterModule } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 
 // demo imports
-import { AlertCustom } from "./alert-demo/alert-demo-custom";
-import { AlertDemo } from "./alert-demo/alert-demo-component";
+import { BannerCustom } from "./banner-demo/banner-demo-custom";
+import { BannerDemo } from "./banner-demo/banner-demo-component";
 import { ChartsDemo } from "./charts-demo/charts-demo.component";
 import { CoreDemo } from "./core-demo/core-demo.component";
 import { DropdownDemo } from "./dropdown-demo/dropdown-demo.component";
@@ -49,8 +49,8 @@ import {
 	TopNavModule,
 	SideNavModule,
 	ModalModule,
-	AlertModule,
-	AlertService,
+	BannerModule,
+	BannerService,
 	NFormsModule,
 	ChartsModule,
 	ComboBoxModule
@@ -80,8 +80,8 @@ import {
 		FormModalComponent,
 		DrilldownModalComponent,
 		TooltipDemo,
-		AlertDemo,
-		AlertCustom,
+		BannerDemo,
+		BannerCustom,
 		ChartsDemo,
 		ComboboxDemo
 	],
@@ -91,7 +91,7 @@ import {
 		XLModalComponent,
 		FormModalComponent,
 		DrilldownModalComponent,
-		AlertCustom
+		BannerCustom
 	],
 	imports: [
 		BrowserModule,
@@ -109,7 +109,7 @@ import {
 		TopNavModule,
 		SideNavModule,
 		ModalModule,
-		AlertModule,
+		BannerModule,
 		NFormsModule,
 		ChartsModule,
 		ComboBoxModule,
@@ -171,8 +171,8 @@ import {
 				component: ModalDemo
 			},
 			{
-				path: "alert",
-				component: AlertDemo
+				path: "banner",
+				component: BannerDemo
 			},
 			{
 				path: "charts",
@@ -187,7 +187,7 @@ import {
 		}),
 		TranslateModule.forRoot()
 	],
-	providers: [IconService, AlertService],
+	providers: [IconService, BannerService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
