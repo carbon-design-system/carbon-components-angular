@@ -42,6 +42,20 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	<n-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</n-switch>
 	<n-switch disabled="true">Switch disabled</n-switch>
 
+	<h2>Radio</h2>
+
+	<n-radio [(ngModel)]="firstRadioState">Radio ({{firstRadioState}})</n-radio>
+	<n-radio disabled="true">Radio disabled</n-radio>
+
+	<h3>Radio group</h3>
+	<n-radio-group [(ngModel)]="radio">
+		<n-radio *ngFor="let one of manyRadios" [value]="one"
+			class="indent">Radio {{one}}
+		</n-radio>
+	</n-radio-group>
+
+	Radio selected: {{radio}}
+
 
 	<h2>Forms (Label)</h2>
 
@@ -97,8 +111,10 @@ export class FormsDemo {
 	secondCheckboxState = false;
 	someSelected = false;
 	firstSwitchState = false;
+	firstRadioState = false;
 
 	manyCheckboxes = [{checked: false}, {checked: false}, {checked: false}, {checked: false}];
+	manyRadios = ["one", "two", "three", "four", "five", "six"];
 	week = [
 		{checked: false, day: "Sunday"},
 		{checked: false, day: "Monday"},
