@@ -70,40 +70,41 @@ $line-height-h6:	    rem(13 + $line-height-difference) !default;
 $line-height-main:      rem(16 + $line-height-difference) !default;
 
 
-//== Alerts
+//== Banner
 //
-//## Define alert colors, border radius, and padding.
+//## Define Banner colors, border radius, and padding.
 
-$alert-height:				44px !default;
-$alert-padding:				0 10px !default;
-$alert-border-radius:		none !default;
-$alert-border-width:		1px !default;
-$alert-link-font-weight:	700 !default;
-$alert-font-color:			color("gray", 80) !default;
+$banner-height:				44px !default;
+$banner-padding:			0 10px !default;
+$banner-border-radius:		none !default;
+$banner-border-width:		1px !default;
+$banner-link-font-weight:	700 !default;
+$banner-font-color:			color("gray", 80) !default;
+$banner-text-padding: 		12px 0 !default;
 
-$alert-icon-margin:			0 10px 0 0 !default;
-$alert-icon-font-size:		22px !default;
-$alert-close-margin:		0 0 0 20px !default;
+$banner-icon-margin:			0 10px 0 0 !default;
+$banner-icon-font-size:		22px !default;
+$banner-close-margin:		0 0 0 20px !default;
 
-$alert-success-bg:            mix(color("green", 10), color("white", 0), 25%) !default;
-$alert-success-text:          $alert-font-color !default;
-$alert-success-border:        color("green", 50) !default;
-$alert-success-icon:          color("green", 50) !default;
+$banner-success-bg:            mix(color("green", 10), color("white", 0), 25%) !default;
+$banner-success-text:          $banner-font-color !default;
+$banner-success-border:        color("green", 50) !default;
+$banner-success-icon:          color("green", 50) !default;
 
-$alert-info-bg:               mix(color("blue", 10), color("white", 0), 25%) !default;
-$alert-info-text:             $alert-font-color !default;
-$alert-info-border:           color("blue", 30) !default;
-$alert-info-icon:             color("blue", 30) !default;
+$banner-info-bg:               mix(color("blue", 10), color("white", 0), 25%) !default;
+$banner-info-text:             $banner-font-color !default;
+$banner-info-border:           color("blue", 30) !default;
+$banner-info-icon:             color("blue", 30) !default;
 
-$alert-warning-bg:            mix(color("yellow", 10), color("white", 0), 25%) !default;
-$alert-warning-text:          $alert-font-color !default;
-$alert-warning-border:        color("yellow", 10) !default;
-$alert-warning-icon:          color("yellow", 10) !default;
+$banner-warning-bg:            mix(color("yellow", 10), color("white", 0), 25%) !default;
+$banner-warning-text:          $banner-font-color !default;
+$banner-warning-border:        color("yellow", 10) !default;
+$banner-warning-icon:          color("yellow", 10) !default;
 
-$alert-danger-bg:             mix(color("red", 10), color("white", 0), 25%) !default;
-$alert-danger-text:           $alert-font-color !default;
-$alert-danger-border:         color("red", 50) !default;
-$alert-danger-icon:           color("red", 50) !default;
+$banner-danger-bg:             mix(color("red", 10), color("white", 0), 25%) !default;
+$banner-danger-text:           $banner-font-color !default;
+$banner-danger-border:         color("red", 50) !default;
+$banner-danger-icon:           color("red", 50) !default;
 
 
 

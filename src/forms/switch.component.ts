@@ -42,8 +42,7 @@ export class SwitchChange {
 					[attr.aria-labelledby]="ariaLabelledby"
 					[attr.aria-checked]="indeterminate ? 'mixed' : checked"
 					(change)="onChange($event)"
-					(click)="onClick($event)"
-					role="checkbox">
+					(click)="onClick($event)">
 					<span></span>
 				<span class="label"><ng-content></ng-content></span>
 			</label>
@@ -55,7 +54,10 @@ export class SwitchChange {
 			useExisting: forwardRef(() => SwitchComponent),
 			multi: true
 		}
-	]
+	],
+	host: {
+		"role": "checkbox"
+	}
 })
 export class SwitchComponent extends CheckboxComponent {
 	static switchCount = 0;

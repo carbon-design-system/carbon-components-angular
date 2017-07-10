@@ -6,9 +6,9 @@ import {
 } from "@angular/core";
 
 @Component({
-	selector: "n-alert",
+	selector: "n-banner",
 	template: `
-	<div class="alert alert-{{alertObj.type}}" *ngIf="alertObj" role="alert">
+	<div class="banner banner-{{bannerObj.type}}" *ngIf="bannerObj" role="alert">
 		<button class="close-btn" (click)="onClose()" aria-label="Close">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -18,8 +18,8 @@ import {
 					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
 				</svg>
 		</button>
-		<span class="alert-icon" aria-hidden="true">
-			<svg *ngIf="alertObj.type==='info'"
+		<span class="banner-icon" aria-hidden="true">
+			<svg *ngIf="bannerObj.type==='info'"
 				xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 				width="30px"
 				height="30px"
@@ -29,7 +29,7 @@ import {
 				<path class="st0" d="M15,1C7.3,1,1,7.3,1,15s6.3,14,14,14s14-6.3,14-14S22.7,1,15,1z M15,27C8.4,27,3,21.6,3,15S8.4,3,15,3
 				s12,5.4,12,12S21.6,27,15,27z"/>
 			</svg>
-			<svg *ngIf="alertObj.type==='warning'"
+			<svg *ngIf="bannerObj.type==='warning'"
 				xmlns="http://www.w3.org/2000/svg"
 				width="30"
 				height="30"
@@ -39,7 +39,7 @@ import {
 				<path class="st0" d="M15 1C7.3 1 1 7.3 1 15s6.3 14 14 14 14-6.3 14-14S22.7 1 15 1zm0
 				26C8.4 27 3 21.6 3 15S8.4 3 15 3s12 5.4 12 12-5.4 12-12 12z"/>
 			</svg>
-			<svg *ngIf="alertObj.type==='danger'"
+			<svg *ngIf="bannerObj.type==='danger'"
 				xmlns="http://www.w3.org/2000/svg"
 				width="30"
 				height="30"
@@ -48,7 +48,7 @@ import {
 				<path class="st0" d="M29.9 27.5l-14-25.9c-.2-.4-.5-.6-.9-.6s-.7.2-.9.5L.1 27.4c-.3.8.2
 				1.6.9 1.6h28c.7 0 1.2-.8.9-1.5zM2.6 27L15 4.1 27.4 27H2.6z"/>
 			</svg>
-			<svg *ngIf="alertObj.type==='success'"
+			<svg *ngIf="bannerObj.type==='success'"
 				xmlns="http://www.w3.org/2000/svg"
 				width="30"
 				height="30"
@@ -59,13 +59,13 @@ import {
 			</svg>
 		</span>
 		<p>
-			{{alertObj.message}}
+			{{bannerObj.message}}
 		</p>
 	</div>
 	`
 })
-export class Alert {
-	@Input() alertObj: Object;
+export class Banner {
+	@Input() bannerObj: Object;
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
 

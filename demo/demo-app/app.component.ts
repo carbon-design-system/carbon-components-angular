@@ -110,8 +110,8 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Alert demo",
-			link: "/alert",
+			content: "Banner demo",
+			link: "/banner",
 			selected: false
 		},
 		{

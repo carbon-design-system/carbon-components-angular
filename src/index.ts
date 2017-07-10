@@ -1,4 +1,4 @@
-export * from "./alert/alert.module";
+export * from "./banner/banner.module";
 export * from "./charts/charts.module";
 export * from "./combo-box/combo-box.module";
 export * from "./common/common.module";
