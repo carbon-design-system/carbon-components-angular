@@ -34,7 +34,12 @@ module.exports = [{
 		{
 			"@angular/core": angularExt("core"),
 			"@angular/common": angularExt("common"),
-			"@angular/platform-browser": angularExt("platformBrowser"),
+			"@angular/platform-browser": {
+				root: ["ng", "platformBrowser"],
+				commonjs: "platform-browser",
+				commonjs2: "platform-browser",
+				amd: "platform-browser"
+			},
 			"@angular/forms": angularExt("forms"),
 			"@angular/compiler": angularExt("compiler"),
 			"@angular/http": angularExt("http"),

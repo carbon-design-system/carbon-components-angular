@@ -102,9 +102,12 @@
 		display: inline-flex;
 		align-items: center;
 		align-content: center;
-		&:focus, &:hover {
+		&:hover {
 			border: 1px solid color("gray", 50);
-			// opacity: 1;
+		}
+		&:focus {
+			border: 1px solid color("gray", 50);
+			opacity: 1;
 		}
 		.icon {
 			width: 16px;

@@ -80,6 +80,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	// but .bind them up here
 	noop = this._noop.bind(this);
 	outsideClick = this._outsideClick.bind(this);
+	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	resize;
 	scroll;
@@ -127,11 +128,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngAfterViewInit() {
 		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
-		document.addEventListener("keydown", (ev) => {
-			if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
-				this.closeMenu();
-			}
-		});
+	}
+
+	ngOnDestroy() {
+		if (this.appendToBody) {
+			this._appendToDropdown();
+		}
 	}
 
 	writeValue(value: any) {
@@ -161,7 +163,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@HostListener("keydown", ["$event"])
 	onKeyDown(ev: KeyboardEvent) {
 		if (ev.key === "Escape" && !this.menuIsClosed) {
-			ev.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+			ev.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
 		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
 			ev.preventDefault();
@@ -226,6 +228,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
 			!this.dropdown.contains(ev.target)) {
+			this.closeMenu();
+		}
+	}
+	_outsideKey(ev) {
+		if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
 			this.closeMenu();
 		}
 	}
@@ -327,8 +334,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	toggleMenu() {
 		if (this.menuIsClosed) {
 			this.openMenu();
+			document.addEventListener("keydown", this.outsideKey);
 		} else {
 			this.closeMenu();
+			document.removeEventListener("keydown", this.outsideKey);
 		}
 	}
 
@@ -343,11 +352,5 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 
 		return false;
-	}
-
-	ngOnDestroy() {
-		if (this.appendToBody) {
-			this._appendToDropdown();
-		}
 	}
 }
