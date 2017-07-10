@@ -19,6 +19,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	template: `
 		<div
 			class="pill-input"
+			role="textbox"
 			[ngClass]="{
 				focus: focus
 			}"
