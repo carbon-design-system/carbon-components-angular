@@ -45,7 +45,7 @@ n-popover .tooltip {
 	background-color: color("white", 0);
 	position: relative;
 	max-width: 280px;
-	top: -10px;
+
 
 	&.popover-menu {
 		min-width: 130px;
@@ -201,6 +201,7 @@ n-popover .tooltip {
 		}
 	}
 	&.left {
+		top: -10px;
 		.arrow {
 			right: -15px;
 			transform: rotate(270deg);
@@ -210,6 +211,7 @@ n-popover .tooltip {
 		}
 	}
 	&.right {
+		top: -10px;
 		.arrow {
 			left: -15px;
 			transform: rotate(90deg);
