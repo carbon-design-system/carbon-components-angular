@@ -83,27 +83,31 @@
 	.dropdown-wrapper {
 		position: absolute;
 		left: 0;
-		top: 30px;
+		top: 100%;
+		width: calc(100% + 30px);
 	}
 }
-
-.combo-button {
-	display: inline-flex;
-	min-height: 30px;
+.combo-button-wrapper {
+	position: absolute;
 	height: 100%;
-	width: 30px;
-	border: 1px solid color("gray", 50);
-	margin-left: -1px;
-	position: relative;
-	&:hover, &:focus {
-		box-shadow: inset 0px 0px 0px 1px white, inset 0px 0px 0px 2px color("blue", 50);
-	}
-	svg {
-		position: absolute;
-		top: 7px;
-		left: 6px;
-		&.open {
-			transform: rotate(180deg);
+	.combo-button {
+		display: inline-flex;
+		min-height: 30px;
+		height: 100%;
+		width: 30px;
+		border: 1px solid color("gray", 50);
+		margin-left: -1px;
+		position: relative;
+		&:hover, &:focus {
+			box-shadow: inset 0px 0px 0px 1px white, inset 0px 0px 0px 2px color("blue", 50);
+		}
+		svg {
+			position: absolute;
+			top: 7px;
+			left: 6px;
+			&.open {
+				transform: rotate(180deg);
+			}
 		}
 	}
 }

@@ -32,12 +32,14 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<h2>Internal component demos</h2>
 		<n-pill-input [pills]="demoItems1" type="multi"></n-pill-input>
 		<br>
-		<n-dropdown-button></n-dropdown-button>
+		<div style="position: relative;">
+			<n-dropdown-button></n-dropdown-button>
+		</div>
 		<br>
 		<br>
 		<n-pill [item]="{selected: false}">Some text</n-pill>
 		<br>
-		<div style="position: relative;">
+		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
 					<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
@@ -45,7 +47,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</div>
 		</div>
 		<br>
-		<div style="position: relative;">
+		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
 					<n-dropdown-list [items]="demoItems1" type="multi"></n-dropdown-list>

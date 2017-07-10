@@ -11,19 +11,25 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 @Component({
 	selector: "n-dropdown-button",
 	template: `
-		<button
-			class="combo-button"
-			(click)="toggleDropdown()">
-			<svg
-				class="icon"
-				[ngClass]="{
-					open: open
+		<div class="combo-button-wrapper">
+			<button
+				role="button"
+				class="combo-button"
+				[ngStyle]="{
+					height: open?null:'30px'
 				}"
-				width="16"
-				height="16">
-				<use xlink:href="#chevron_down_16"></use>
-			</svg>
-		</button>
+				(click)="toggleDropdown()">
+				<svg
+					class="icon"
+					[ngClass]="{
+						open: open
+					}"
+					width="16"
+					height="16">
+					<use xlink:href="#chevron_down_16"></use>
+				</svg>
+			</button>
+		</div>
 		<div class="dropdown-wrapper">
 			<div
 				class="dropdown-menu"

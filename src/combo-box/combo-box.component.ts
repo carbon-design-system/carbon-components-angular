@@ -29,7 +29,10 @@ import { ListItem } from "./../dropdown/list-item.interface";
 		<ng-content></ng-content>
 	`,
 	host: {
-		class: "combo"
+		class: "combo",
+		role: "combobox",
+		"[attr.aria-expanded]": "dropdownButton?dropdownButton.open:false",
+		"[attr.aria-disabled]": "disabled?true:null"
 	}
 })
 export class ComboBox {
