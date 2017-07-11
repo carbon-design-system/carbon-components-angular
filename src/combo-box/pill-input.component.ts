@@ -29,22 +29,23 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			}">
 			<div
 				*ngIf="type === 'multi'"
-				#pillWrapper>
+				#pillWrapper
+				class="pills-wrapper">
 				<ng-content></ng-content>
 				<span
 					*ngIf="showPlaceholder"
 					class="placeholder">
 					{{ placeholder }}
 				</span>
-				<span *ngFor="let pill of pills; let last = last">
+				<span
+					class="pill-wrapper"
+					*ngFor="let pill of pills; let last = last">
 					<n-pill
 						[item]="pill">
 						{{ pill.content }}
 					</n-pill>
 					<div
 						#comboInput
-						*ngIf="!last"
-						style="line-height: 20px;"
 						class="combo-input"
 						contenteditable
 						(keydown)="onKeydown($event)"
@@ -52,14 +53,15 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				</span>
 				<div
 					#comboInput
-					*ngIf="!last"
-					style="line-height: 20px;"
+					*ngIf="empty(pills)"
 					class="combo-input"
 					contenteditable
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)"></div>
 			</div>
-			<div *ngIf="type === 'single'">
+			<div
+				*ngIf="type === 'single'"
+				class="pills-wrapper">
 				<span
 					*ngIf="showPlaceholder"
 					class="placeholder">
@@ -67,7 +69,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				</span>
 				<div
 					#comboInput
-					style="line-height: 20px;"
 					class="combo-input"
 					contenteditable
 					(keydown)="onKeydown($event)"
@@ -94,7 +95,7 @@ export class PillInput {
 	public numberMore = 0;
 	public showPlaceholder = true;
 	@Input() expanded = false;
-	@Input() pills: Array<ListItem> = null;
+	@Input() pills: Array<ListItem> = [];
 	@Input() placeholder = "";
 	@Input() displayValue = "";
 	@Input() type: "single" | "multi" = "single";
@@ -216,6 +217,7 @@ export class PillInput {
 		selectionRange.selectNodeContents(target);
 		selection.removeAllRanges();
 		selection.addRange(selectionRange);
+		target.focus();
 	}
 
 	public showMore(ev) {
@@ -227,9 +229,7 @@ export class PillInput {
 
 	public doResize() {
 		if (this.expanded) {
-			// + 10 to accommodate weird heights, and non-actioned text
-			// if we clear when we hide/close the dropdown the + 10 can be dropped
-			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight; /*+ 10;*/
+			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight;
 		}
 	}
 
@@ -273,7 +273,11 @@ export class PillInput {
 		} else if (ev.key === "Enter") {
 			ev.preventDefault();
 			if (this.getInputText()) {
-				this.submit.emit(this.getInputText());
+				let inputIndex = this.comboInputs.toArray().findIndex(input => input.nativeElement.textContent.trim() !== "");
+				this.submit.emit({
+					after: this.pills[inputIndex],
+					value: this.getInputText()
+				});
 				this.clearInputText();
 			}
 		} else if (ev.key === "ArrowLeft") {

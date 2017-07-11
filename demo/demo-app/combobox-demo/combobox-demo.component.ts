@@ -30,7 +30,20 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		</div>
 
 		<h2>Internal component demos</h2>
-		<n-pill-input [pills]="demoItems1" type="multi"></n-pill-input>
+		<div style="display:flex;">
+			<n-pill-input
+				[pills]="visibleItems1"
+				(updatePills)="filterPills()"
+				(submit)="demoSubmit($event)"
+				type="multi">
+			</n-pill-input>
+			<button
+				class="btn"
+				(click)="resetPills()"
+				style="margin-left: 10px;">
+				Reset
+			</button>
+		</div>
 		<br>
 		<div style="position: relative;">
 			<n-dropdown-button></n-dropdown-button>
@@ -42,7 +55,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
-					<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+					<n-dropdown-list [items]="demoItems4"></n-dropdown-list>
 				</div>
 			</div>
 		</div>
@@ -50,7 +63,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
-					<n-dropdown-list [items]="demoItems1" type="multi"></n-dropdown-list>
+					<n-dropdown-list [items]="demoItems4" type="multi"></n-dropdown-list>
 				</div>
 			</div>
 		</div>
@@ -79,9 +92,35 @@ export class ComboboxDemo {
 	demoItems2 = Array.from(this.demoItems1, item => Object.assign({}, item));
 	demoItems3 = Array.from(this.demoItems1, item => Object.assign({}, item));
 	demoItems4 = Array.from(this.demoItems1, item => Object.assign({}, item));
+	visibleItems1 = this.demoItems1.map(item => { item.selected = true; return item; });
+
+	ngOnInit() {
+		this.demoItems1.forEach(item => item.selected = true);
+	}
 
 	onSubmit(ev) {
+		console.log(ev);
 		ev.value.selected = true;
-		this.demoItems3 = [...ev.items, ev.value];
+		this.demoItems3 = [...ev.items.slice(0, ev.index), ev.value, ...ev.items.slice(ev.index)];
+	}
+
+	filterPills() {
+		console.log(this.visibleItems1, this.demoItems1);
+		this.visibleItems1 = this.demoItems1.filter(item => item.selected);
+	}
+
+	demoSubmit(ev) {
+		console.log(ev);
+		let index = this.demoItems1.indexOf(ev.after) + 1;
+		this.demoItems1 = [
+			...this.demoItems1.slice(0, index),
+			{content: ev.value, selected: true},
+			...this.demoItems1.slice(index)
+		];
+		this.visibleItems1 = this.demoItems1.filter(item => item.selected);
+	}
+
+	resetPills() {
+		this.visibleItems1 = this.demoItems1.map(item => { item.selected = true; return item; });
 	}
 }

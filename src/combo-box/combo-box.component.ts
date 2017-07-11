@@ -36,7 +36,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	}
 })
 export class ComboBox {
-	public pills = null;
+	public pills = [];
 	public selectedValue = "";
 	private dropdownList = [];
 	private dropdown;
@@ -99,7 +99,7 @@ export class ComboBox {
 	}
 
 	public updatePills() {
-		this.pills = this.view.getSelected();
+		this.pills = this.view.getSelected() || [];
 	}
 
 	public doSearch(ev) {
@@ -116,10 +116,15 @@ export class ComboBox {
 	}
 
 	doSubmit(ev) {
+		let index = 0;
+		if (ev.after) {
+			index = this.view.items.indexOf(ev.after) + 1;
+		}
 		this.submit.emit({
 			items: this.view.items,
+			index,
 			value: {
-				content: ev,
+				content: ev.value,
 				selected: false
 			}
 		});

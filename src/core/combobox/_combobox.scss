@@ -47,7 +47,7 @@
 .pill-input {
 	height: 30px;
 	border: 1px solid color("gray", 50);
-	padding: 3px 50px 4px 10px; // 3px border top, probably some border eating a pixel
+	padding: 4px 50px 4px 10px;
 	position: relative;
 	overflow: hidden;
 	z-index: 1;
@@ -72,6 +72,13 @@
 		pointer-events: none;
 		font-style: italic;
 		color: color("gray", 50);
+	}
+	.pills-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		.pill-wrapper {
+			display: flex;
+		}
 	}
 }
 
@@ -114,10 +121,13 @@
 
 .combo-input {
 	max-width: 100%;
-	min-width: 10px;
-	height: 15px;
-	padding-left: 2px; // so the cursor isn't right up against the pill
-	display: inline-block;
+    min-width: 10px;
+    height: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+	line-height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
 	&:first-child {
 		margin-left: 0;
 	}
