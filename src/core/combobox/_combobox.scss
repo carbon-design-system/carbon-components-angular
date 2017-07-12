@@ -90,6 +90,7 @@
 	.dropdown-wrapper {
 		position: absolute;
 		left: 0;
+		right: 0;
 		top: 100%;
 		width: calc(100% + 30px);
 	}
@@ -130,5 +131,21 @@
 	margin-right: 5px;
 	&:first-child {
 		margin-left: 0;
+	}
+}
+
+html[dir=rtl], body[dir=rtl] {
+	.pill-input {
+		padding: 4px 10px 4px 50px;
+		.more {
+			left: 10px;
+			right: initial;
+		}
+	}
+	.combo-button-wrapper {
+		.combo-button {
+			margin-right: -1px;
+			margin-left: initial;
+		}
 	}
 }
