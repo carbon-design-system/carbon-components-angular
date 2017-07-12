@@ -81,7 +81,7 @@ import { Component, OnInit } from "@angular/core";
 				align-items: center;
 				justify-content: center;
 			}
-			/deep/ n-checkbox .checkbox {
+			div.checkbox {
 				margin-bottom: 0;
 			}
 		`
