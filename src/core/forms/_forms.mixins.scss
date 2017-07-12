@@ -142,7 +142,8 @@
 			span {
 				color: color("white", 0);
 				&:before {
-					 border-color: color("white", 0);
+					border-color: color("white", 0);
+					background: color("blue", 50);
 				}
 				&:after {
 					border-color: color("white", 0);

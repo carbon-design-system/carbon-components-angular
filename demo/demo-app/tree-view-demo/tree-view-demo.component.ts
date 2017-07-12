@@ -19,12 +19,18 @@ import { Component, OnInit } from "@angular/core";
 		[template]="treeTpl"
 		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
 		<ng-template #treeTpl let-item="item">
-			<n-checkbox
-				[checked]="item.selected"
-				[indeterminate]="isIndeterminate(item)"
-				(change)="onCheck({item: item})"
-				[disabled]="item.disabled">
-			</n-checkbox>
+			<div class="checkbox">
+				<label>
+					<input
+						#cb
+						[checked]="isChecked(item, cb)"
+						[indeterminate]="isIndeterminate(item)"
+						(change)="onCheck({item: item}, $event)"
+						[disabled]="item.disabled"
+						type="checkbox">
+					<span class="label"></span>
+				</label>
+			</div>
 			{{item.content}}
 		</ng-template>
 	</n-tree-view>
@@ -75,7 +81,7 @@ import { Component, OnInit } from "@angular/core";
 				align-items: center;
 				justify-content: center;
 			}
-			/deep/ n-checkbox .checkbox {
+			div.checkbox {
 				margin-bottom: 0;
 			}
 		`
@@ -189,7 +195,7 @@ export class TreeViewDemo {
 		}
 	}
 
-	onCheck(ev) {
+	onCheck(ev, event) {
 		let setSelect = (items, state) => {
 			items.forEach(item => {
 				item.selected = state;
@@ -224,13 +230,12 @@ export class TreeViewDemo {
 		if (ev.item.items) {
 			if (any(ev.item.items, item => item.selected)) {
 				setSelect(ev.item.items, false);
-				setTimeout(() => ev.item.selected = false, 0);
-				// ev.item.selected = false;
-				console.log("set", ev.item.content, ev.item.selected);
+				ev.item.selected = false;
+				event.target.checked = false;
 			} else {
 				setSelect(ev.item.items, true);
-				// ev.item.selected = true;
-				setTimeout(() => ev.item.selected = true, 0);
+				ev.item.selected = true;
+				event.target.checked = true;
 			}
 		} else {
 			ev.item.selected = !ev.item.selected;
@@ -243,11 +248,14 @@ export class TreeViewDemo {
 		if (parents && parents.length > 0) {
 			parents.forEach(parent => {
 				// ignores the event item
-				if (parent.items.every(i => i === ev.item ? true : i.selected)) {
-					parent.selected = ev.item.selected;
+				if (parent.items.every(i => i.selected)) {
+					parent.selected = true;
+				} else {
+					parent.selected = false;
 				}
 			});
 		}
+		setTimeout(() => {}, 0);
 	}
 
 	isIndeterminate(item) {
@@ -260,12 +268,15 @@ export class TreeViewDemo {
 		return false;
 	}
 
-	isChecked(item) {
-		if (item.items && item.items.every(i => i.selected)) {
+	isChecked(item, cb) {
+		if (item.items && item.items.every(i => i.selected === true)) {
+			cb.checked = true;
 			return true;
 		} else if (!item.items && item.selected) {
+			cb.checked = true;
 			return true;
 		}
+		cb.checked = false;
 		return false;
 	}
 

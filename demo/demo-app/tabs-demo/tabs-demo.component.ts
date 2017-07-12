@@ -88,13 +88,13 @@ import { Component, OnInit } from "@angular/core";
 		<n-icon
 			icon="facebook"
 			size="sm"
-			style="margin-right: 7px;">
+			style="margin-right: 7px; height: 16px; line-height: 16px;">
 		</n-icon>
 		Hello,&nbsp;<span (click)="test($event)">click me</span>
 	</ng-template>
 	<n-tabs>
 		<n-tab [heading]="tabHeading">
-			Tab 1 content <n-icon icon="alert" size="lg"></n-icon>
+			Tab 1 content <n-icon icon="alert" size="lg" style="height: 30px; line-height: 30px; display: inline-block;"></n-icon>
 		</n-tab>
 		<n-tab heading='Tab2'>
 			Tab 2 content
