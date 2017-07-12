@@ -88,12 +88,6 @@ import { Component, OnInit } from "@angular/core";
 	]
 })
 export class TreeViewDemo {
-	// <n-checkbox
-	// 			[checked]="item.selected"
-	// 			[indeterminate]="isIndeterminate(item)"
-	// 			(change)="onCheck({item: item})"
-	// 			[disabled]="item.disabled">
-	// 		</n-checkbox>
 	demoItems = [
 		{
 			content: "Item one",
@@ -238,7 +232,6 @@ export class TreeViewDemo {
 				setSelect(ev.item.items, false);
 				ev.item.selected = false;
 				event.target.checked = false;
-				console.log("set", ev.item.content, ev.item.selected);
 			} else {
 				setSelect(ev.item.items, true);
 				ev.item.selected = true;
@@ -252,7 +245,6 @@ export class TreeViewDemo {
 		// and checkboxes for the parents. Of course, if you have
 		// highly nested trees, a version of this may be useful
 		let parents = findParents(this.demoItems1, ev.item);
-		console.log(parents);
 		if (parents && parents.length > 0) {
 			parents.forEach(parent => {
 				// ignores the event item

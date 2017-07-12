@@ -14,7 +14,13 @@
 	left: 50%;
 	transform: translate(-50%, 0);
 	z-index: 1000;
-	width: 704px;
+	max-width: 704px;
+	width: 100%;
+	.banner {
+		//This looks a lot better in my opinion
+		margin-top: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+	}
 }
 
 .banner {
@@ -52,9 +58,19 @@
 		.close-btn {
 			float: right;
 			cursor: pointer;
-			margin: $banner-close-margin;
-			height: $banner-height;
-			line-height: $banner-height - 2; //subtract border
+			margin: 11px 0 0 20px;
+			height: 20px;
+			width: 20px;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			border: 1px solid transparent;
+
+			&:hover, &:focus {
+				border: 1px solid black;
+			}
 
 			& ~ p {
 				max-width: calc(100% - 90px);
