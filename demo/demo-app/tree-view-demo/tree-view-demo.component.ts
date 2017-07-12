@@ -19,12 +19,17 @@ import { Component, OnInit } from "@angular/core";
 		[template]="treeTpl"
 		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
 		<ng-template #treeTpl let-item="item">
-			<n-checkbox
-				[checked]="item.selected"
-				[indeterminate]="isIndeterminate(item)"
-				(change)="onCheck({item: item})"
-				[disabled]="item.disabled">
-			</n-checkbox>
+			<div class="checkbox">
+				<label>
+					<input
+						[checked]="isChecked(item)"
+						[indeterminate]="isIndeterminate(item)"
+						(change)="onCheck({item: item})"
+						[disabled]="item.disabled"
+						type="checkbox">
+					<span class="label"></span>
+				</label>
+			</div>
 			{{item.content}}
 		</ng-template>
 	</n-tree-view>
@@ -82,6 +87,12 @@ import { Component, OnInit } from "@angular/core";
 	]
 })
 export class TreeViewDemo {
+	// <n-checkbox
+	// 			[checked]="item.selected"
+	// 			[indeterminate]="isIndeterminate(item)"
+	// 			(change)="onCheck({item: item})"
+	// 			[disabled]="item.disabled">
+	// 		</n-checkbox>
 	demoItems = [
 		{
 			content: "Item one",
