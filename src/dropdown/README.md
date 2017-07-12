@@ -9,11 +9,11 @@ interface: ListItem
 source: `src/dropdown/list-item.interface.ts`
 
 ```typescript
-interface ListItem {
+export interface ListItem {
 	content: string;
 	selected: boolean;
-	items?: ListItem[];
 	disabled?: boolean;
+	items?: ListItem[];
 }
 ```
 `content` and `selected` are the only **required** properties you **must** provide. When using a custom item template (supported by all the Neutrino item views, not required by AbstractDropdownView) the entire ListItem will be passed to the template as `item`.
@@ -28,11 +28,13 @@ export class AbstractDropdownView {
 	@Input() items: Array<ListItem>;
 	@Output() select: EventEmitter<Object>;
 	public type: "single" | "multi" = "single";
+	public size: "sm" | "default" | "lg" = "default";
 	getNextItem(): ListItem { return; }
 	getNextElement(): HTMLElement { return; }
 	getPrevItem(): ListItem { return; }
 	getPrevElement(): HTMLElement { return; }
 	getSelected(): ListItem[] { return; }
+	getCurrentItem(): ListItem { return; }
 	getCurrentElement(): HTMLElement { return; }
 	propagateSelected(value: Array<ListItem>): void {}
 }

@@ -9,7 +9,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
-				[items]="demoItems2">
+				[items]="demoItems2"
+				(select)="onSelect($event)">
 				<n-dropdown-button>
 					<n-dropdown-list></n-dropdown-list>
 				</n-dropdown-button>
@@ -22,6 +23,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
+				(select)="onSelect($event)"
 				(submit)="onSubmit($event)">
 				<n-dropdown-button>
 					<n-dropdown-list></n-dropdown-list>
@@ -96,6 +98,10 @@ export class ComboboxDemo {
 
 	ngOnInit() {
 		this.demoItems1.forEach(item => item.selected = true);
+	}
+
+	onSelect(ev) {
+		console.log(ev);
 	}
 
 	onSubmit(ev) {

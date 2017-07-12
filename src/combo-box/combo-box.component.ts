@@ -43,6 +43,7 @@ export class ComboBox {
 	@Input() items: Array<ListItem> = [];
 	@Input() placeholder = "";
 	@Input() type: "single" | "multi" = "single";
+	@Output() select: EventEmitter<ListItem> = new EventEmitter<ListItem>();
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
@@ -69,8 +70,14 @@ export class ComboBox {
 					} else {
 						this.selectedValue = "";
 					}
+					// not gaurding these since the nativeElement has to be loaded
+					// for select to even fire
+					this._elementRef.nativeElement.querySelector(".pill-input").focus();
+					this._elementRef.nativeElement.querySelector(".combo-input").focus();
 					this.dropdownButton.open = false;
 				}
+				this.select.emit(ev);
+				this.view["filterBy"]("");
 			});
 			this.view["updateList"](this.items);
 		}
@@ -103,14 +110,21 @@ export class ComboBox {
 	}
 
 	public doSearch(ev) {
+		console.log(ev);
 		this.view["filterBy"](ev);
 		if (ev !== "") {
 			this.dropdownButton.open = true;
+		} else {
+			this.selectedValue = "";
 		}
 		if (this.type === "single") {
+			// deselect if the input doesn't match the content
+			// of any given item
 			if (!this.view.items.some(item => item.content === ev)) {
 				let selected = this.view.getSelected();
 				if (selected) { selected[0].selected = false; }
+			} else {
+				this.view["filterBy"]("");
 			}
 		}
 	}
