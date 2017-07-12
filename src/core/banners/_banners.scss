@@ -15,6 +15,7 @@
 	transform: translate(-50%, 0);
 	z-index: 1000;
 	max-width: 704px;
+	padding: 0 5px; //so the banner isn't right up against the sides
 	width: 100%;
 	.banner {
 		//This looks a lot better in my opinion
@@ -69,7 +70,7 @@
 			border: 1px solid transparent;
 
 			&:hover, &:focus {
-				border: 1px solid black;
+				border: 1px solid color("gray", 80);
 			}
 
 			& ~ p {
