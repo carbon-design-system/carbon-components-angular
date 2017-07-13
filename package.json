@@ -4,7 +4,7 @@
   "description": "Next generation components",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && gulp build && ngc -p tsconfig-aot.json && webpack --config webpack.build.js && rm -rf dist/src dist/waste",
+    "build": "bash scripts/build.sh",
     "demo:build": "webpack --config webpack.config.js && gulp demo:fonts",
     "demo:server": "webpack-dev-server --config webpack.config.js --watch",
     "lint": "tslint -e spec.ts src/**/*.ts",

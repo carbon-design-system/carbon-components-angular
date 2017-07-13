@@ -26,6 +26,18 @@ const FONT_SRC = [
 const DIST = "dist";
 const SASS_DIST = `${DIST}/core`;
 
+const LICENSE = `
+/**
+ *
+ * Licensed Materials - Property of IBM
+ * @FILE_NAME@
+ * © Copyright IBM Corporation 2014, @THIS_YEAR@
+ * U.S. Government Users Restricted Rights: Use, duplication or disclosure
+ * restricted by GSA ADP Schedule Contract with IBM Corp.
+ *
+ */
+`;
+
 const TSCONFG = require("./tsconfig.json").compilerOptions;
 
 
@@ -59,9 +71,32 @@ gulp.task("build:package", _ =>
 		.pipe(version())
 		.pipe(gulp.dest(DIST)));
 
+gulp.task("build:license", _ =>
+	gulp.src([
+		`${DIST}/**/*.scss`,
+		`${DIST}/**/*.css`,
+		`${DIST}/**/*.ts`,
+		`${DIST}/**/*.js`
+	]).pipe(licenseHeaders())
+		.pipe(gulp.dest(DIST)));
+
 gulp.task("demo:fonts", _ =>
 	gulp.src(FONT_SRC)
 		.pipe(gulp.dest(`./demo/bundle/fonts`)));
+
+
+function licenseHeaders() {
+  return tap(function(file) {
+    if (/scss|css|ts|js/.test(path.extname(file.path))) {
+      if (file.contents.toString("utf-8").indexOf("Copyright IBM Corporation") < 0) {
+        var updatedTemplate = LICENSE
+          .replace("@FILE_NAME@", path.basename(file.path))
+          .replace("@THIS_YEAR@", new Date().getFullYear());
+        file.contents = Buffer.concat([new Buffer(updatedTemplate), file.contents]);
+      }
+    }
+  });
+}
 
 function version() {
 	return tap(function(file) {
