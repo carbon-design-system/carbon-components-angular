@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { By	 } from "@angular/platform-browser";
+import { By	} from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combo-box.component";
