@@ -1,28 +1,65 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
+import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { HttpModule } from "@angular/http";
+import { By	} from "@angular/platform-browser";
+import { HttpModule, Response, ResponseOptions, Http, BaseRequestOptions } from "@angular/http";
+import { MockBackend, MockConnection } from "@angular/http/testing";
 import { Icon } from "./icon.component";
+import { Sprite } from "./sprite.component";
 import { IconService } from "./icon.service";
 
+@Component({
+	template: `
+		<n-icon></n-icon>
+		<n-sprite></n-sprite>
+	`
+})
+class TestComponent {}
+
+function iconBackendFactory(backend: MockBackend, options: BaseRequestOptions) {
+	backend.connections.subscribe((connection: MockConnection) => {
+		connection.mockRespond(new Response(new ResponseOptions({
+			status: 200,
+			body: `<svg></svg>`
+		})));
+	});
+	return new Http(backend, options);
+}
+
 describe("Icon", () => {
+	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Icon],
-			providers: [IconService],
+			declarations: [
+				Icon,
+				Sprite,
+				TestComponent
+			],
+			providers: [
+				{
+					provide: Http,
+					useFactory: iconBackendFactory,
+					deps: [ MockBackend, BaseRequestOptions]
+				},
+				MockBackend,
+				BaseRequestOptions,
+				IconService
+			],
 			imports: [HttpModule]
 		});
 	});
 
-	xit("should work", () => {
-		let fixture = TestBed.createComponent(Icon);
-		let iconService = fixture.debugElement.injector.get(IconService);
-		let fakeicon = `<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"></svg>`;
-		let spy = spyOn(iconService, "getIcon").and.returnValue(Promise.resolve(fakeicon));
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TestComponent);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+	});
+
+	it("should work", () => {
+		fixture = TestBed.createComponent(Icon);
 		expect(fixture.componentInstance instanceof Icon).toBe(true);
 	});
 
-	xit("should return the correct sizes", () => {
+	it("should return the correct sizes", () => {
 		let iconService = TestBed.get(IconService);
 		expect(iconService.size2px("")).toEqual("16px");
 		expect(iconService.size2px("xs")).toEqual("14px");
