@@ -3,6 +3,8 @@ import {
 	OnInit,
 	ElementRef,
 	Input,
+	Output,
+	EventEmitter,
 	HostListener,
 	ContentChild
 } from "@angular/core";
@@ -15,6 +17,7 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 			<button
 				role="button"
 				class="combo-button"
+				[disabled]="disabled"
 				[ngStyle]="{
 					height: open?null:'30px'
 				}"
@@ -45,6 +48,8 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 export class DropdownButton {
 	private dropdown;
 	@Input() open = false;
+	@Input() disabled = false;
+	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 
 	constructor(private _elementRef: ElementRef) {}
@@ -69,7 +74,20 @@ export class DropdownButton {
 		}
 	}
 
+	public closeDropdown() {
+		this.open = false;
+		this.close.emit();
+	}
+
+	public openDropdown() {
+		this.open = true;
+	}
+
 	public toggleDropdown() {
-		this.open = !this.open;
+		if (this.open) {
+			this.closeDropdown();
+		} else {
+			this.openDropdown();
+		}
 	}
 }

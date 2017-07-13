@@ -80,6 +80,10 @@
 			display: flex;
 		}
 	}
+
+	&.disabled {
+		border: 1px dashed color("gray", 50);
+	}
 }
 
 .combo {
@@ -115,6 +119,15 @@
 			left: 6px;
 			&.open {
 				transform: rotate(180deg);
+			}
+		}
+		&:disabled {
+			border: 1px dashed color("gray", 50);
+			&:hover, &:focus {
+				box-shadow: initial;
+			}
+			svg {
+				fill: color("gray", 50);
 			}
 		}
 	}

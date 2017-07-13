@@ -22,6 +22,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			[placeholder]="placeholder"
 			[displayValue]="selectedValue"
 			[type]="type"
+			[disabled]="disabled"
 			(updatePills)="updatePills()"
 			(search)="doSearch($event)"
 			(submit)="doSubmit($event)">
@@ -43,6 +44,8 @@ export class ComboBox {
 	@Input() items: Array<ListItem> = [];
 	@Input() placeholder = "";
 	@Input() type: "single" | "multi" = "single";
+	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() disabled = false;
 	@Output() select: EventEmitter<ListItem> = new EventEmitter<ListItem>();
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
@@ -59,6 +62,7 @@ export class ComboBox {
 	}
 
 	ngAfterContentInit() {
+		this.dropdownButton.disabled = this.disabled;
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe((ev) => {
@@ -74,7 +78,7 @@ export class ComboBox {
 					// for select to even fire
 					this._elementRef.nativeElement.querySelector(".pill-input").focus();
 					this._elementRef.nativeElement.querySelector(".combo-input").focus();
-					this.dropdownButton.open = false;
+					this.dropdownButton.closeDropdown();
 				}
 				this.select.emit(ev);
 				this.view["filterBy"]("");
@@ -88,7 +92,9 @@ export class ComboBox {
 		document.addEventListener("click", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
 				this.pillInput.expanded = false;
-				this.dropdownButton.open = false;
+				if (this.dropdownButton.open) {
+					this.dropdownButton.closeDropdown();
+				}
 			}
 		});
 	}
@@ -96,12 +102,15 @@ export class ComboBox {
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
-			this.dropdownButton.open = false;
+			this.dropdownButton.closeDropdown();
 		} else if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
 			ev.stopPropagation();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
-		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view.getPrevElement()) {
+		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
+			console.log(this.view.getCurrentElement());
 			// setTimeout(() => this.pillInput._elementRef.nativeElement.focus(), 0);
+			this._elementRef.nativeElement.querySelector(".pill-input").focus();
+			this._elementRef.nativeElement.querySelector(".combo-input").focus();
 		}
 	}
 
@@ -110,10 +119,9 @@ export class ComboBox {
 	}
 
 	public doSearch(ev) {
-		console.log(ev);
 		this.view["filterBy"](ev);
 		if (ev !== "") {
-			this.dropdownButton.open = true;
+			this.dropdownButton.closeDropdown();
 		} else {
 			this.selectedValue = "";
 		}
@@ -124,6 +132,7 @@ export class ComboBox {
 				let selected = this.view.getSelected();
 				if (selected) { selected[0].selected = false; }
 			} else {
+				// otherwise we remove the filter
 				this.view["filterBy"]("");
 			}
 		}
