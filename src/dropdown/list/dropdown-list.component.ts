@@ -120,11 +120,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		return this.items[this.index];
 	}
 
+	hasNextElement(): boolean {
+		if (this.index < this.items.length - 1) {
+			return true;
+		}
+		return false;
+	}
+
 	getNextElement(): HTMLElement {
 		if (this.index < this.items.length - 1) {
 			this.index++;
-		} else {
-			return null;
 		}
 		let elem = this.listList[this.index];
 		let item = this.items[this.index];
@@ -141,11 +146,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 		return this.items[this.index];
 	}
 
+	hasPrevElement(): boolean {
+		if (this.index >= 0) {
+			return true;
+		}
+		return false;
+	}
+
 	getPrevElement(): HTMLElement {
 		if (this.index > 0) {
 			this.index--;
-		} else {
-			return null;
 		}
 		let elem = this.listList[this.index];
 		let item = this.items[this.index];
@@ -206,10 +216,15 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit {
 			this.doClick(ev, item);
 		} else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
 			ev.preventDefault();
-			if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
-				findNextElem(ev.target).focus();
-			} else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
-				findPrevElem(ev.target).focus();
+			// if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
+			// 	findNextElem(ev.target).focus();
+			// } else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
+			// 	findPrevElem(ev.target).focus();
+			// }
+			if (ev.key === "ArrowDown" && this.hasNextElement()) {
+				this.getNextElement().focus();
+			} else if (ev.key === "ArrowUp" && this.hasPrevElement()) {
+				this.getPrevElement().focus();
 			}
 			if (ev.shiftKey) {
 				ev.target.click();

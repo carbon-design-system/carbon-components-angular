@@ -62,10 +62,11 @@ source: `src/dropdown/dropdown.component.ts`
 
 **Outputs:**
 
-| @Output | Value       |
-| ------- | ----------- |
-| select  | ListItem    |
-| onClose | undefined   |
+| @Output                                   | Value       |
+| ----------------------------------------- | ----------- |
+| select                                    | ListItem    |
+| close                                     | undefined   |
+| onClose (deprecated! use `close` instead) | undefined   |
 
 `placeholder` will __always__ be rendered when no options are selected. Either the `content` property of the ListItem (for single select dropdowns) or "# selected" (for multi select dropdowns) will be rendered when options are selected. `displayValue` can be used to set custom text to be shown when options are selected.
 

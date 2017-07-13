@@ -95,6 +95,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() scrollableContainer: string;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
+	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
@@ -297,6 +298,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	closeMenu() {
 		this.menuIsClosed = true;
 		this.onClose.emit();
+		this.close.emit();
 
 		// move the list back in the component on close
 		if (this.appendToBody) {

@@ -93,6 +93,12 @@ source: `src/combo-box/dropdown-button.component.ts`
 | ------ | ------- | ------------- |
 | open   | boolean | false         |
 
+**Outputs:**
+
+| @Output | Value |
+| ------- | ----- |
+| close   | void  |
+
 Dropdown button expects a component that implements the AbstractDropdownView base class; in Neutrino those are DropdownList, DropdownTree, and DropdownSubMenu. **note:** According to the design specs you should **only** use DropdownList or DropdownTree.
 
 ###Pill input
