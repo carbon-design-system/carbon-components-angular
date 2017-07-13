@@ -28,15 +28,6 @@ export class Sprite implements AfterViewInit {
 		private icons: IconService) {}
 
 	ngAfterViewInit() {
-		// if we do this as a service we can cache the sprites...
-		// ... but thats a lot of memory, and the sprites shouldn't
-		// be unloaded across pages in most apps
-		// this.http.get(`${this.baseURL}${this.sprite}.svg`)
-		// 	.toPromise()
-		// 	.then(data => data.text())
-		// 	.then(rawSVG => {
-		// 		this._elementRef.nativeElement.innerHTML = rawSVG;
-		// 	});
 		this.icons.getSprite(this.sprite).then(rawSVG => {
 			this._elementRef.nativeElement.innerHTML = rawSVG;
 		});

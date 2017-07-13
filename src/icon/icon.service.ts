@@ -2,37 +2,10 @@ import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
-// stores data in localStorage (which is strings only)
-// returns promises of the data
-class LocalPromiseCache {
-	// key so we avoid collisions
-	static key = "n-";
-	constructor() {}
-
-	get(item: string): Promise<string> {
-		return new Promise((resolve, reject) => {
-			resolve(localStorage.getItem(LocalPromiseCache.key + item));
-		});
-	}
-
-	set(item: string, promise: Promise<string>): void {
-		promise.then(data => {
-			localStorage.setItem(LocalPromiseCache.key + item, data);
-		}).catch(err => {
-			console.error("error caching", err);
-		});
-	}
-
-	has(item: string): boolean {
-		if (localStorage.getItem(LocalPromiseCache.key + item)) { return true; }
-		return false;
-	}
-}
-
 @Injectable()
 export class IconService {
-	private static spriteCache: Map<string, Promise<string>> | LocalPromiseCache = new Map<string, Promise<string>>();
-	private static cacheLevel: "none" | "simple" | "aggressive" = "simple";
+	private static spriteCache: Map<string, Promise<string>> = new Map<string, Promise<string>>();
+	private static cacheLevel: "none" | "simple" = "simple";
 	private static baseURL = "https://peretz-icons.mybluemix.net/";
 
 	static setBaseURL(url: string) {
@@ -40,12 +13,8 @@ export class IconService {
 		return IconService;
 	}
 
-	static setCacheLevel(level: "none" | "simple" | "aggressive") {
+	static setCacheLevel(level: "none" | "simple") {
 		IconService.cacheLevel = level;
-		if (level === "aggressive") {
-			console.warn("aggressive caching is experimental!");
-			IconService.spriteCache = new LocalPromiseCache();
-		}
 		return IconService;
 	}
 
