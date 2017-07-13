@@ -154,7 +154,7 @@ export class TabsDemo {
 	public sampleTabs = [
 		{ heading: "Tab 10", content: "Tab 10" },
 		{ heading: "Tab 11", content: "Tab 11", active: true },
-		{ heading: "Disabled Tab", content: "Disabled tab content. The application should display some message as to why."}
+		{ heading: "Disabled tab", content: "Disabled tab content. The application should display some message as to why."}
 	];
 	public sampleTabs2 = [];
 

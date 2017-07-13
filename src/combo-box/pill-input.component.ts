@@ -19,6 +19,9 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	template: `
 		<div
 			class="pill-input"
+			[ngClass]="{
+				disabled: disabled
+			}"
 			role="textbox"
 			[ngClass]="{
 				focus: focus
@@ -99,6 +102,8 @@ export class PillInput {
 	@Input() placeholder = "";
 	@Input() displayValue = "";
 	@Input() type: "single" | "multi" = "single";
+	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() disabled = false;
 	@Output() updatePills = new EventEmitter();
 	@Output() search = new EventEmitter();
 	@Output() submit = new EventEmitter();
@@ -146,6 +151,8 @@ export class PillInput {
 				}
 			}
 		}
+		// TODO: move these to methods and late bind/eager unbind
+		if (this.disabled) { return; }
 		// collapse input on outside click
 		document.addEventListener("click", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
@@ -187,6 +194,7 @@ export class PillInput {
 	}
 
 	public focusInput(ev) {
+		if (this.disabled) { return; }
 		if (this.numberMore > 0) {
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight; /*+ 10;*/
 			this.expanded = true;

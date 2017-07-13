@@ -80,6 +80,10 @@
 			display: flex;
 		}
 	}
+
+	&.disabled {
+		border: 1px dashed color("gray", 50);
+	}
 }
 
 .combo {
@@ -90,6 +94,7 @@
 	.dropdown-wrapper {
 		position: absolute;
 		left: 0;
+		right: 0;
 		top: 100%;
 		width: calc(100% + 30px);
 	}
@@ -116,6 +121,15 @@
 				transform: rotate(180deg);
 			}
 		}
+		&:disabled {
+			border: 1px dashed color("gray", 50);
+			&:hover, &:focus {
+				box-shadow: initial;
+			}
+			svg {
+				fill: color("gray", 50);
+			}
+		}
 	}
 }
 
@@ -130,5 +144,21 @@
 	margin-right: 5px;
 	&:first-child {
 		margin-left: 0;
+	}
+}
+
+html[dir=rtl], body[dir=rtl] {
+	.pill-input {
+		padding: 4px 10px 4px 50px;
+		.more {
+			left: 10px;
+			right: initial;
+		}
+	}
+	.combo-button-wrapper {
+		.combo-button {
+			margin-right: -1px;
+			margin-left: initial;
+		}
 	}
 }

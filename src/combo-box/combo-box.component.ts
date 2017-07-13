@@ -22,6 +22,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			[placeholder]="placeholder"
 			[displayValue]="selectedValue"
 			[type]="type"
+			[disabled]="disabled"
 			(updatePills)="updatePills()"
 			(search)="doSearch($event)"
 			(submit)="doSubmit($event)">
@@ -43,6 +44,9 @@ export class ComboBox {
 	@Input() items: Array<ListItem> = [];
 	@Input() placeholder = "";
 	@Input() type: "single" | "multi" = "single";
+	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() disabled = false;
+	@Output() select: EventEmitter<ListItem> = new EventEmitter<ListItem>();
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
@@ -58,6 +62,7 @@ export class ComboBox {
 	}
 
 	ngAfterContentInit() {
+		this.dropdownButton.disabled = this.disabled;
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe((ev) => {
@@ -69,8 +74,14 @@ export class ComboBox {
 					} else {
 						this.selectedValue = "";
 					}
-					this.dropdownButton.open = false;
+					// not gaurding these since the nativeElement has to be loaded
+					// for select to even fire
+					this._elementRef.nativeElement.querySelector(".pill-input").focus();
+					this._elementRef.nativeElement.querySelector(".combo-input").focus();
+					this.dropdownButton.closeDropdown();
 				}
+				this.select.emit(ev);
+				this.view["filterBy"]("");
 			});
 			this.view["updateList"](this.items);
 		}
@@ -81,7 +92,9 @@ export class ComboBox {
 		document.addEventListener("click", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
 				this.pillInput.expanded = false;
-				this.dropdownButton.open = false;
+				if (this.dropdownButton.open) {
+					this.dropdownButton.closeDropdown();
+				}
 			}
 		});
 	}
@@ -89,12 +102,15 @@ export class ComboBox {
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
-			this.dropdownButton.open = false;
+			this.dropdownButton.closeDropdown();
 		} else if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
 			ev.stopPropagation();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
-		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view.getPrevElement()) {
+		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
+			console.log(this.view.getCurrentElement());
 			// setTimeout(() => this.pillInput._elementRef.nativeElement.focus(), 0);
+			this._elementRef.nativeElement.querySelector(".pill-input").focus();
+			this._elementRef.nativeElement.querySelector(".combo-input").focus();
 		}
 	}
 
@@ -105,12 +121,19 @@ export class ComboBox {
 	public doSearch(ev) {
 		this.view["filterBy"](ev);
 		if (ev !== "") {
-			this.dropdownButton.open = true;
+			this.dropdownButton.closeDropdown();
+		} else {
+			this.selectedValue = "";
 		}
 		if (this.type === "single") {
+			// deselect if the input doesn't match the content
+			// of any given item
 			if (!this.view.items.some(item => item.content === ev)) {
 				let selected = this.view.getSelected();
 				if (selected) { selected[0].selected = false; }
+			} else {
+				// otherwise we remove the filter
+				this.view["filterBy"]("");
 			}
 		}
 	}
