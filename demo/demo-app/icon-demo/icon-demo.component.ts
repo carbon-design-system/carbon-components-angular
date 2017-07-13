@@ -10,12 +10,64 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	<n-icon icon="alert" size="md"></n-icon>
 	<n-icon icon="alert" size="lg"></n-icon>
 	<div>
-		<input
-			type="search"
-			(keyup)="search($event)"
-			class="input-field" style="width: calc(100% - 220px); margin-left: 0;"
-			placeholder="Filter"
-			[attr.disabled]="waitingForLoad?true:null">
+		<div class="filter-search" style="width: calc(100% - 205px);">
+			<div class="search-icon">
+				<svg
+					class="icon"
+					viewBox="0 0 16 16">
+					<g>
+						<path
+							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
+							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
+							S8.8,11,6,11z"/>
+						<rect
+							x="12"
+							y="10.2"
+							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
+							width="2"
+							height="5.7"/>
+					</g>
+				</svg>
+			</div>
+			<input
+				#filter
+				(keyup)="search($event)"
+				type="text"
+				class="input-field"
+				tabindex="0"
+				(focus)="filterFocus = true"
+				(blur)="filterFocus = filter.value?true:false"/>
+			<span
+				class="placeholder"
+				[ngClass]="{
+					visible: !filterFocus
+				}">
+				Search
+			</span>
+			<button
+				class="search-cancel"
+				type="button"
+				aria-label="cancel"
+				[ngClass]="{
+					visible: filter.value.trim()
+				}"
+				(click)="filter.value = ''; search($event); filterFocus = false">
+				<svg
+					class="icon"
+					viewBox="0 0 16 16">
+					<polygon
+						points="14.5,2.6 13.4,1.5
+						8,6.9 2.6,1.5
+						1.5,2.6 6.9,8
+						1.5,13.4
+						2.6,14.5
+						8,9.1
+						13.4,14.5
+						14.5,13.4
+						9.1,8"/>
+				</svg>
+			</button>
+		</div>
 		<n-dropdown
 			placeholder="Select a set"
 			style="width: 200px;"

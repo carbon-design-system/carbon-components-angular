@@ -9,7 +9,7 @@ import { Component, OnInit } from "@angular/core";
 	<n-tree-view
 		[items]="demoItems"
 		(select)="onSelect($event)"
-		[label]="'Default Tree View'">
+		label="Default Tree View">
 	</n-tree-view>
 
 	<h3>Tree view with custom template</h3>

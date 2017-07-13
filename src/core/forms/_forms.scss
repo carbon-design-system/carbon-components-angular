@@ -90,6 +90,63 @@ label {
 
 }
 
+.filter-search {
+	position: relative;
+	display: inline-block;
+	.search-icon {
+		position: absolute;
+	    top: 7px;
+	    left: 10px;
+		.icon {
+			width: 16px;
+			height: 16px;
+		}
+	}
+	.input-field {
+		padding: 0 36px;
+		line-height: 30px;
+	}
+	.placeholder {
+		font-style: italic;
+		color: color("gray", 50);
+		display: none;
+		position: absolute;
+		top: 8px;
+		left: 40px;
+		&.visible {
+			display: block;
+		}
+	}
+	.search-cancel {
+		background: transparent;
+		position: absolute;
+		right: 10px;
+		top: 6px;
+		height: 18px;
+		width: 18px;
+		padding: 0;
+		border: 1px solid transparent;
+		opacity: 0;
+		display: inline-flex;
+		align-items: center;
+		align-content: center;
+		&:hover {
+			border: 1px solid color("gray", 50);
+		}
+		&:focus {
+			border: 1px solid color("gray", 50);
+			opacity: 1;
+		}
+		.icon {
+			width: 16px;
+			height: 16px;
+		}
+		&.visible {
+			opacity: 1;
+		}
+	}
+}
+
 html[dir=rtl], body[dir=rtl] {
 	.label-icon {
 		margin-right: 0px;
