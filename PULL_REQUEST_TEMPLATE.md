@@ -1,13 +1,11 @@
-Placeholder
-1. steps
-2. go
-3. here
+Changes:
+- use this space to document what's changed
 
 @peretz-next/development
 
 review checklist:
 - [ ] accessible
-- [ ] documented
+- [ ] documentation
 - [ ] matches UI/UX specs
 - [ ] unit tests
 - [ ] mobile first
