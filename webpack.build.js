@@ -36,15 +36,23 @@ module.exports = [{
 			"@angular/common": angularExt("common"),
 			"@angular/platform-browser": {
 				root: ["ng", "platformBrowser"],
-				commonjs: "platform-browser",
-				commonjs2: "platform-browser",
-				amd: "platform-browser"
+				commonjs: "@angular/platform-browser",
+				commonjs2: "@angular/platform-browser",
+				amd: "@angular/platform-browser"
 			},
 			"@angular/forms": angularExt("forms"),
 			"@angular/compiler": angularExt("compiler"),
 			"@angular/http": angularExt("http"),
 		},
-		rxjsExternal
+		rxjsExternal,
+		{
+			"@ngx-translate/core": {
+				root: "ngx-translate-core",
+				commonjs: "@ngx-translate/core",
+				commonjs2: "@ngx-translate/core",
+				amd: "@ngx-translate/core"
+			}
+		}
 	],
 	module: {
 		loaders: [
