@@ -36,7 +36,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				class="input-field"
 				tabindex="0"
 				(focus)="filterFocus = true"
-				(blur)="filterFocus = filter.value?true:false"/>
+				(blur)="filterFocus = filter.value?true:false"
+				[disabled]="waitingForLoad"/>
 			<span
 				class="placeholder"
 				[ngClass]="{

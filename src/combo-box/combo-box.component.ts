@@ -107,7 +107,6 @@ export class ComboBox {
 			ev.stopPropagation();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
 		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
-			console.log(this.view.getCurrentElement());
 			// setTimeout(() => this.pillInput._elementRef.nativeElement.focus(), 0);
 			this._elementRef.nativeElement.querySelector(".pill-input").focus();
 			this._elementRef.nativeElement.querySelector(".combo-input").focus();
