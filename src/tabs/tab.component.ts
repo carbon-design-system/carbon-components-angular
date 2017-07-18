@@ -21,7 +21,6 @@ let nextId = 0;
 			<ng-content></ng-content>
 		</div>
 	 `,
-	styleUrls: ["./tabs.component.scss"],
 	host: {
 		"[attr.id]": "id"
 	}

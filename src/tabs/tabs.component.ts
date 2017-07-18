@@ -11,8 +11,7 @@ import { TabHeaders } from  "./tab-headers.component";
 				<ng-content></ng-content>
 			</div>
 			<n-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></n-tab-headers>
-	 `,
-	styleUrls: ["./tabs.component.scss"]
+	 `
 })
 export class Tabs implements AfterContentInit {
 	@ContentChildren(Tab) tabs: QueryList<Tab>;
