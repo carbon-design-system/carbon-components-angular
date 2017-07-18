@@ -291,7 +291,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// we bind noop to document.body.firstElementChild to allow safari to fire events
 		// from document. Then we unbind everything later to keep things light.
 		document.body.firstElementChild.addEventListener("click", this.noop, true);
+		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
+		document.addEventListener("keydown", this.outsideKey, true);
 		setTimeout(() => this.view.getCurrentElement().focus(), 0);
 	}
 
@@ -306,7 +308,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			this._appendToDropdown();
 		}
 		document.body.firstElementChild.removeEventListener("click", this.noop, true);
+		document.body.firstElementChild.removeEventListener("keydown", this.noop, true);
 		document.removeEventListener("click", this.outsideClick, true);
+		document.removeEventListener("keydown", this.outsideKey, true);
 	}
 
 	addScrollEventListener() {
@@ -336,10 +340,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	toggleMenu() {
 		if (this.menuIsClosed) {
 			this.openMenu();
-			document.addEventListener("keydown", this.outsideKey);
 		} else {
 			this.closeMenu();
-			document.removeEventListener("keydown", this.outsideKey);
 		}
 	}
 
