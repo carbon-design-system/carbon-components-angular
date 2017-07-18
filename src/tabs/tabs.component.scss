@@ -5,6 +5,12 @@ $tabs-height: 39px;
 $tabs-padding: 10px;
 $tabs-margin: 15px;
 
+.hide {
+	visibility: hidden;
+	height: 0;
+	position: absolute;
+}
+
 .left-arrow, .right-arrow {
 	display: none;
 }

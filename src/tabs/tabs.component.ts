@@ -18,8 +18,11 @@ export class Tabs implements AfterContentInit {
 	@ContentChildren(Tab) tabs: QueryList<Tab>;
 
 	@Input() position: "top" | "bottom" = "top";
+	@Input() cacheActive = false;
 
 	ngAfterContentInit() {
+		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
+
 		this.tabs.changes.subscribe(changes => {
 			this.setFirstTab();
 		});
