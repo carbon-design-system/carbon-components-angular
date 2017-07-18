@@ -118,8 +118,7 @@ import { Tab } from "./tab.component";
 				</svg>
 			</button>
 		</div>
-	 `,
-	styleUrls: ["./tabs.component.scss"]
+	 `
 })
 
 export class TabHeaders implements AfterViewInit {

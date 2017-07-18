@@ -5,65 +5,67 @@ $tabs-height: 39px;
 $tabs-padding: 10px;
 $tabs-margin: 15px;
 
-.hide {
-	visibility: hidden;
-	height: 0;
-	position: absolute;
-}
-
-.left-arrow, .right-arrow {
-	display: none;
-}
-
-.is-over-flow {
-	padding: 0px 30px 0px 30px;
-	position: relative;
-	overflow: hidden;
-
-	.left-arrow {
-		left: 0px;
-		box-shadow: 5px 0px 9px -5px color("gray", 50);
-		z-index: 1;
-	}
-
-	.right-arrow {
-		right: 0px;
-		box-shadow: -5px 0px 9px -5px color("gray", 50);
-	}
-
-	.left-arrow {
-		padding-right: 10px;
-		padding-left: 5px;
-	}
-	.right-arrow {
-		padding-right: 5px;
-		padding-left: 10px;
-	}
-	.left-arrow, .right-arrow {
-		display: inline-flex;
+n-tabs {
+	.hide {
+		visibility: hidden;
+		height: 0;
 		position: absolute;
-		top: 0;
-		height: 40px;
-		background: color("white", 0);
-		width: 30px;
-		margin: 0;
-		align-items: center;
+	}
 
-		svg * {
-			fill: color("gray", 50);
+	.left-arrow, .right-arrow {
+		display: none;
+	}
+
+	.is-over-flow {
+		padding: 0px 30px 0px 30px;
+		position: relative;
+		overflow: hidden;
+
+		.left-arrow {
+			left: 0px;
+			box-shadow: 5px 0px 9px -5px color("gray", 50);
+			z-index: 1;
 		}
 
-		&:hover {
+		.right-arrow {
+			right: 0px;
+			box-shadow: -5px 0px 9px -5px color("gray", 50);
+		}
+
+		.left-arrow {
+			padding-right: 10px;
+			padding-left: 5px;
+		}
+		.right-arrow {
+			padding-right: 5px;
+			padding-left: 10px;
+		}
+		.left-arrow, .right-arrow {
+			display: inline-flex;
+			position: absolute;
+			top: 0;
+			height: 40px;
+			background: color("white", 0);
+			width: 30px;
+			margin: 0;
+			align-items: center;
+
 			svg * {
-				fill: color("blue", 50);
+				fill: color("gray", 50);
 			}
-		}
 
-		&.disabled {
-			cursor: no-drop;
-			box-shadow: none;
-			svg * {
-				fill: color("gray", 20);
+			&:hover {
+				svg * {
+					fill: color("blue", 50);
+				}
+			}
+
+			&.disabled {
+				cursor: no-drop;
+				box-shadow: none;
+				svg * {
+					fill: color("gray", 20);
+				}
 			}
 		}
 	}
