@@ -15,12 +15,12 @@ let nextId = 0;
 	template: `
 		<div
 			role="tabpanel"
-			*ngIf="active"
+			*ngIf="shouldRender()"
+			[ngClass]="{hide: !active}"
 			[attr.aria-labelledby]="id + '-header'">
 			<ng-content></ng-content>
 		</div>
 	 `,
-	styleUrls: ["./tabs.component.scss"],
 	host: {
 		"[attr.id]": "id"
 	}
@@ -32,6 +32,7 @@ export class Tab implements OnInit {
 	@Input() disabled = false;
 	// do we need id's?
 	@Input() id = `n-tab-${nextId++}`;
+	@Input() cacheActive = false;
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 
 	ngOnInit() {
@@ -42,5 +43,9 @@ export class Tab implements OnInit {
 
 	doSelect() {
 		this.select.emit();
+	}
+
+	shouldRender() {
+		return this.active || this.cacheActive;
 	}
 }
