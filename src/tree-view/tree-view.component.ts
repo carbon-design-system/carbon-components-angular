@@ -34,6 +34,7 @@ export class TreeView {
 	@Input() type: "single" | "multi" = "single";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 
 	public outerPadding = 20; // padding from left edge
 	public iconWidth = 16;
@@ -84,6 +85,7 @@ export class TreeView {
 	onClick({item}) {
 		if (!item.disabled ) {
 			this.select.emit({item});
+			this.selected.emit({item});
 		}
 	}
 }

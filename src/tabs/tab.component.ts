@@ -34,6 +34,7 @@ export class Tab implements OnInit {
 	@Input() id = `n-tab-${nextId++}`;
 	@Input() cacheActive = false;
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
+	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
 
 	ngOnInit() {
 		if (this.heading instanceof TemplateRef) {
@@ -43,6 +44,7 @@ export class Tab implements OnInit {
 
 	doSelect() {
 		this.select.emit();
+		this.selected.emit();
 	}
 
 	shouldRender() {

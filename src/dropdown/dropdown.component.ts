@@ -136,7 +136,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (this.appendToBody) {
 			this._appendToDropdown();
 		}
-		this._elementRef.nativeElement.parentElement.removeEventListener("select", this.preventAllEv);
 	}
 
 	writeValue(value: any) {

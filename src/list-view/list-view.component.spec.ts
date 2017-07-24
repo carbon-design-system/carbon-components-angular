@@ -60,11 +60,11 @@ describe("List View", () => {
 			}
 		];
 		fixture.detectChanges();
-		spyOn(fixture.componentInstance.select, "emit");
+		spyOn(fixture.componentInstance.selected, "emit");
 		let li = fixture.nativeElement.querySelector("li");
 		li.click();
 		fixture.detectChanges();
-		expect(fixture.componentInstance.select.emit).toHaveBeenCalled();
+		expect(fixture.componentInstance.selected.emit).toHaveBeenCalled();
 	});
 
 });
