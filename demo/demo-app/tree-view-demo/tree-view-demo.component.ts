@@ -24,14 +24,13 @@ import { Component, OnInit } from "@angular/core";
 					<input
 						#cb
 						[checked]="isChecked(item, cb)"
-						[indeterminate]="isIndeterminate(item)"
+						[indeterminate]="isIndeterminate(item, cb)"
 						(change)="onCheck({item: item}, $event)"
 						[disabled]="item.disabled"
 						type="checkbox">
-					<span class="label"></span>
+					<span class="label">{{item.content}}</span>
 				</label>
 			</div>
-			{{item.content}}
 		</ng-template>
 	</n-tree-view>
 
@@ -125,6 +124,9 @@ import { Component, OnInit } from "@angular/core";
 			}
 			div.checkbox {
 				margin-bottom: 0;
+			}
+			.selected .label {
+				color: #595859;
 			}
 		`
 	]
@@ -299,18 +301,31 @@ export class TreeViewDemo {
 		setTimeout(() => {}, 0);
 	}
 
-	isIndeterminate(item) {
+	isIndeterminate(item, box) {
+		let any = (items, cb) => {
+			for (let i of items) {
+				if (cb(i)) {
+					return true;
+				}
+				if (i.items) {
+					return any(i.items, cb);
+				}
+			}
+			return false;
+		};
 		if (item.items) {
 			let selected = item.items.filter(i => i.selected);
-			if (selected.length < item.items.length && selected.length > 0) {
+			if (any(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
+				box.indeterminate = true;
 				return true;
 			}
 		}
+		box.indeterminate = false;
 		return false;
 	}
 
 	isChecked(item, cb) {
-		if (item.items && item.items.every(i => i.selected === true)) {
+		if (item.items && item.items.every(i => i.selected)) {
 			cb.checked = true;
 			return true;
 		} else if (!item.items && item.selected) {
