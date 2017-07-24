@@ -1,3 +1,4 @@
+import { APP_BASE_HREF } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -182,12 +183,14 @@ import {
 				path: "combobox",
 				component: ComboboxDemo
 			}
-		], {
-			useHash: true
-		}),
+		]),
 		TranslateModule.forRoot()
 	],
-	providers: [IconService, BannerService],
+	providers: [
+		IconService,
+		BannerService,
+		{provide: APP_BASE_HREF, useValue : "/" }
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
