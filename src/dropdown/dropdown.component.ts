@@ -94,6 +94,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() appendToBody = false;
 	@Input() scrollableContainer: string;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 
@@ -124,17 +125,18 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				}
 			}
 			this.select.emit(evt);
+			this.selected.emit(evt);
 		});
 	}
 
 	ngAfterViewInit() {
-		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 	}
 
 	ngOnDestroy() {
 		if (this.appendToBody) {
 			this._appendToDropdown();
 		}
+		this._elementRef.nativeElement.parentElement.removeEventListener("select", this.preventAllEv);
 	}
 
 	writeValue(value: any) {
