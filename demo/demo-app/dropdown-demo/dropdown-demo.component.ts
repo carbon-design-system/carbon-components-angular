@@ -79,7 +79,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<n-dropdown
 				placeholder="Select an option"
 				type="multi">
-				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+				<n-dropdown-filter [items]="demoItems1" (select)="onSelect($event)"></n-dropdown-filter>
 			</n-dropdown>
 			<br><br>
 			<n-dropdown
@@ -482,8 +482,7 @@ export class DropdownDemo {
 	}
 
 	onSelect(ev) {
-		console.log("this shouldnt fire");
-		ev.item.selected = !ev.item.selected;
+		console.log("test", ev);
 	}
 
 }
