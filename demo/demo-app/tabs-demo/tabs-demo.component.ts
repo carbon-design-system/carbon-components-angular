@@ -88,7 +88,7 @@ import { Component, OnInit } from "@angular/core";
 		<n-icon
 			icon="facebook"
 			size="sm"
-			style="margin-right: 7px;position: relative;top: 3px;">
+			style="margin-right: 7px; position: relative; top: 3px;">
 		</n-icon>
 		Hello,&nbsp;<span (click)="test($event)">click me</span>
 	</ng-template>
