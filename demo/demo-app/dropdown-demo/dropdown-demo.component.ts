@@ -78,8 +78,9 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<br><br>
 			<n-dropdown
 				placeholder="Select an option"
-				type="multi">
-				<n-dropdown-filter [items]="demoItems1" (select)="onSelect($event)"></n-dropdown-filter>
+				type="multi"
+				(selected)="onSelect($event)">
+				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
 			</n-dropdown>
 			<br><br>
 			<n-dropdown
@@ -129,7 +130,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<n-dropdown
 				placeholder="Select an option"
 				[displayValue]="subdisplay2"
-				(select)="subdisplay2 = getDisplay($event.item)">
+				(selected)="subdisplay2 = getDisplay($event.item)">
 				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
 			</n-dropdown>
 			<br><br>
@@ -144,7 +145,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<n-dropdown
 			placeholder="Drop-down 7"
 			[disabled]="true"
-			(select)="onSelect($event)">
+			(selected)="onSelect($event)">
 			<n-dropdown-list
 				[items]="demoItems1">
 			</n-dropdown-list>
@@ -207,7 +208,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h3>Drop-down list with multi-select</h3>
 		<n-dropdown
 			placeholder="Select an option"
-			(select)="multidisplay1 = getMultiDisplay($event.item)"
+			(selected)="multidisplay1 = getMultiDisplay($event.item)"
 			type="multi">
 			<n-dropdown-list
 				[items]="demoItems1">

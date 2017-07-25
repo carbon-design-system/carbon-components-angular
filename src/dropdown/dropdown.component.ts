@@ -108,6 +108,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	ngAfterContentInit() {
+		this.dropdown = this._elementRef.nativeElement;
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(evt => {
