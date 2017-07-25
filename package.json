@@ -35,7 +35,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-		"@angular/animations": "^4.2.0",
+    "@angular/animations": "^4.2.0",
     "@angular/common": "^4.2.0",
     "@angular/compiler": "^4.2.0",
     "@angular/core": "^4.2.0",
