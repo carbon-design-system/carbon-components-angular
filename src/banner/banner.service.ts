@@ -29,7 +29,6 @@ public onClose: EventEmitter<any> = new EventEmitter();
 
 		let bannerRef = this.componentFactory.create(this.injector);
 		bannerRef.instance.bannerObj = bannerObj;
-		console.log(bannerRef.instance.bannerObj);
 		this.bannerRefs.push(bannerRef);
 
 		this.onClose = bannerRef.instance.close;
