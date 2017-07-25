@@ -39,7 +39,7 @@
 				width: $selected-width;
 				height: $selected-height;
 				position: absolute;
-				left: ($el-size + 1 - $selected-width) / 2;
+				left: ($el-size - $selected-width) / 2;
 				border-color: color("blue", 50);
 				border-style: solid;
 				opacity: 0;

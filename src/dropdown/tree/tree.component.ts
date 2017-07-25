@@ -74,10 +74,14 @@ export class DropdownTree implements AbstractDropdownView {
 		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper")) as HTMLElement[];
 		this.setupFocusObservable();
 		if (this.size === "lg") {
-			this.outerPadding = 20;
+			setTimeout(() => {
+				this.outerPadding = 20;
+			}, 0);
 		}
 		if (this.size === "sm") {
-			this.iconWidth = 14;
+			setTimeout(() => {
+				this.outerPadding = 14;
+			}, 0);
 		}
 	}
 

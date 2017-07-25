@@ -24,26 +24,82 @@ import { Component, OnInit } from "@angular/core";
 					<input
 						#cb
 						[checked]="isChecked(item, cb)"
-						[indeterminate]="isIndeterminate(item)"
+						[indeterminate]="isIndeterminate(item, cb)"
 						(change)="onCheck({item: item}, $event)"
 						[disabled]="item.disabled"
 						type="checkbox">
-					<span class="label"></span>
+					<span class="label">{{item.content}}</span>
 				</label>
 			</div>
-			{{item.content}}
 		</ng-template>
 	</n-tree-view>
 
 	<h3>Searchable tree view</h3>
 	<div id="demo">
-		<div id="search">
-			<n-icon icon="search" size="md" id="search-icon"></n-icon>
+		<div
+			class="filter-search"
+			style="width: 100%; background: #f5f5f5;">
+			<div
+				class="search-icon"
+				style="top: 11px;">
+				<svg
+					class="icon"
+					viewBox="0 0 16 16">
+					<g>
+						<path
+							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
+							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
+							S8.8,11,6,11z"/>
+						<rect
+							x="12"
+							y="10.2"
+							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
+							width="2"
+							height="5.7"/>
+					</g>
+				</svg>
+			</div>
 			<input
-				type="search"
-				id="search-input"
-				placeholder="Search"
-				(keyup)="search($event)">
+				style="background: transparent; border: none; height: 40px;"
+				#filter
+				(keyup)="search($event)"
+				type="text"
+				class="input-field"
+				tabindex="0"
+				(focus)="filterFocus = true"
+				(blur)="filterFocus = filter.value?true:false"/>
+			<span
+				class="placeholder"
+				[ngClass]="{
+					visible: !filterFocus
+				}"
+				style="top: 12px;">
+				Search
+			</span>
+			<button
+				class="search-cancel"
+				type="button"
+				aria-label="cancel"
+				[ngClass]="{
+					visible: filter.value.trim()
+				}"
+				(click)="filter.value = ''; search($event); filterFocus = false"
+				style="top: 11px;">
+				<svg
+					class="icon"
+					viewBox="0 0 16 16">
+					<polygon
+						points="14.5,2.6 13.4,1.5
+						8,6.9 2.6,1.5
+						1.5,2.6 6.9,8
+						1.5,13.4
+						2.6,14.5
+						8,9.1
+						13.4,14.5
+						14.5,13.4
+						9.1,8"/>
+				</svg>
+			</button>
 		</div>
 		<n-tree-view
 			[items]="displayItems"
@@ -55,21 +111,6 @@ import { Component, OnInit } from "@angular/core";
 	`,
 	styles: [
 		`
-			#search {
-				position: relative;
-			}
-			#search-icon {
-				position: absolute;
-				top: 10px;
-				left: 10px;
-			}
-			#search-input {
-				background: #f5f5f5;
-				height: 40px;
-				width: 100%;
-				border: none;
-				padding-left: 40px; // 10px padding + 20px icon
-			}
 			#demo {
 				width: 300px;
 				height: 600px;
@@ -83,6 +124,9 @@ import { Component, OnInit } from "@angular/core";
 			}
 			div.checkbox {
 				margin-bottom: 0;
+			}
+			.selected .label {
+				color: #595859;
 			}
 		`
 	]
@@ -122,7 +166,6 @@ export class TreeViewDemo {
 		{
 			content: "Item three",
 			selected: false,
-			disabled: true
 		},
 		{
 			content: "Item four which is a seriously long item so we can demo text overflow",
@@ -258,18 +301,31 @@ export class TreeViewDemo {
 		setTimeout(() => {}, 0);
 	}
 
-	isIndeterminate(item) {
+	isIndeterminate(item, box) {
+		let any = (items, cb) => {
+			for (let i of items) {
+				if (cb(i)) {
+					return true;
+				}
+				if (i.items) {
+					return any(i.items, cb);
+				}
+			}
+			return false;
+		};
 		if (item.items) {
 			let selected = item.items.filter(i => i.selected);
-			if (selected.length < item.items.length && selected.length > 0) {
+			if (any(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
+				box.indeterminate = true;
 				return true;
 			}
 		}
+		box.indeterminate = false;
 		return false;
 	}
 
 	isChecked(item, cb) {
-		if (item.items && item.items.every(i => i.selected === true)) {
+		if (item.items && item.items.every(i => i.selected)) {
 			cb.checked = true;
 			return true;
 		} else if (!item.items && item.selected) {

@@ -19,12 +19,10 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	template: `
 		<div
 			class="pill-input"
-			[ngClass]="{
-				disabled: disabled
-			}"
 			role="textbox"
 			[ngClass]="{
-				focus: focus
+				focus: focus,
+				disabled: disabled
 			}"
 			(click)="focusInput($event)"
 			[ngStyle]="{
@@ -155,10 +153,10 @@ export class PillInput {
 		if (this.disabled) { return; }
 		// collapse input on outside click
 		document.addEventListener("click", ev => {
-			if (!this._elementRef.nativeElement.contains(ev.target)) {
-				this.focus = false;
+			if (this._elementRef.nativeElement.contains(ev.target)) {
+				this.setFocus(true);
 			} else {
-				this.focus = true;
+				this.setFocus(false);
 			}
 			this.checkPlaceholderVisibility();
 		});
@@ -166,9 +164,9 @@ export class PillInput {
 		// **not** the element the event starts from (that would be keydown)
 		document.addEventListener("keyup", ev => {
 			if (!this._elementRef.nativeElement.contains(ev.target)) {
-				this.focus = false;
+				this.setFocus(false);
 			} else {
-				this.focus = true;
+				this.setFocus(true);
 			}
 			this.checkPlaceholderVisibility();
 		});
@@ -193,8 +191,13 @@ export class PillInput {
 		return false;
 	}
 
+	public setFocus(state) {
+		this.focus = state;
+	}
+
 	public focusInput(ev) {
 		if (this.disabled) { return; }
+		this.setFocus(true);
 		if (this.numberMore > 0) {
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight; /*+ 10;*/
 			this.expanded = true;

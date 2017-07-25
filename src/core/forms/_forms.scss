@@ -115,6 +115,7 @@ label {
 		left: 40px;
 		&.visible {
 			display: block;
+			pointer-events: none;
 		}
 	}
 	.search-cancel {

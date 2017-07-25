@@ -94,6 +94,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() appendToBody = false;
 	@Input() scrollableContainer: string;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 
@@ -124,6 +125,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				}
 			}
 			this.select.emit(evt);
+			this.selected.emit(evt);
 		});
 	}
 

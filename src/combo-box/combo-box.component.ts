@@ -46,7 +46,7 @@ export class ComboBox {
 	@Input() type: "single" | "multi" = "single";
 	@Input() size: "sm" | "default" | "lg" = "default";
 	@Input() disabled = false;
-	@Output() select: EventEmitter<ListItem> = new EventEmitter<ListItem>();
+	@Output() selected: EventEmitter<ListItem> = new EventEmitter<ListItem>();
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
@@ -80,7 +80,7 @@ export class ComboBox {
 					this._elementRef.nativeElement.querySelector(".combo-input").focus();
 					this.dropdownButton.closeDropdown();
 				}
-				this.select.emit(ev);
+				this.selected.emit(ev);
 				this.view["filterBy"]("");
 			});
 			this.view["updateList"](this.items);
@@ -107,7 +107,6 @@ export class ComboBox {
 			ev.stopPropagation();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
 		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
-			console.log(this.view.getCurrentElement());
 			// setTimeout(() => this.pillInput._elementRef.nativeElement.focus(), 0);
 			this._elementRef.nativeElement.querySelector(".pill-input").focus();
 			this._elementRef.nativeElement.querySelector(".combo-input").focus();

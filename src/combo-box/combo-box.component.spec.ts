@@ -28,7 +28,7 @@ class TestComponent {
 	}
 }
 
-describe("Dropdown", () => {
+describe("Combo box", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -57,11 +57,11 @@ describe("Dropdown", () => {
 		expect(fixture.componentInstance instanceof ComboBox).toBe(true);
 	});
 
-	it("should select an item", () => {
-		let itemEl = fixture.debugElement.query(By.css(".option"));
-		itemEl.triggerEventHandler("click", null);
-		expect(wrapper.selected.content).toBe("one");
-	});
+	// it("should select an item", () => {
+	// 	let itemEl = fixture.debugElement.query(By.css(".option"));
+	// 	itemEl.triggerEventHandler("click", null);
+	// 	expect(wrapper.selected.content).toBe("one");
+	// });
 
 	it("should have a placeholder of 'placeholder'", () => {
 		let placeholder = fixture.debugElement.query(By.css(".placeholder"));

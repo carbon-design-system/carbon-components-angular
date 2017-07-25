@@ -39,7 +39,7 @@ export class ListView {
 	@Input() items: Array<Object> = [];
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Input() checkMark: Boolean = true;
-	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 
 	doKeyDown(ev, item) {
 		if (ev.key && (ev.key === "Enter" || ev.key === " ")) {
@@ -61,7 +61,7 @@ export class ListView {
 
 	doClick(ev, item) {
 		if (!item.disabled) {
-			this.select.emit({
+			this.selected.emit({
 				item
 			});
 		}

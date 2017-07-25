@@ -9,8 +9,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	<n-icon icon="alert" size="sm"></n-icon>
 	<n-icon icon="alert" size="md"></n-icon>
 	<n-icon icon="alert" size="lg"></n-icon>
-	<div>
-		<div class="filter-search" style="width: calc(100% - 205px);">
+	<div style="display: flex;">
+		<div class="filter-search" style="width: calc(100% - 200px); margin-right: 5px;">
 			<div class="search-icon">
 				<svg
 					class="icon"
@@ -36,7 +36,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				class="input-field"
 				tabindex="0"
 				(focus)="filterFocus = true"
-				(blur)="filterFocus = filter.value?true:false"/>
+				(blur)="filterFocus = filter.value?true:false"
+				[disabled]="waitingForLoad"/>
 			<span
 				class="placeholder"
 				[ngClass]="{
