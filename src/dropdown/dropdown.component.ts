@@ -108,7 +108,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	ngAfterContentInit() {
-		this.dropdown = this._elementRef.nativeElement;
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(evt => {
@@ -131,6 +130,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	ngAfterViewInit() {
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 	}
 
 	ngOnDestroy() {
