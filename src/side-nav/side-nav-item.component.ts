@@ -81,7 +81,6 @@ export class SideNavItem {
 			this.showPane();
 		}
 		this.select.emit();
-		// this.selected.emit();
 	}
 
 	getPaneTemplateElement() {
