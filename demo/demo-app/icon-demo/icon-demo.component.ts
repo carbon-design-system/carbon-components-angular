@@ -9,6 +9,17 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	<n-icon icon="alert" size="sm"></n-icon>
 	<n-icon icon="alert" size="md"></n-icon>
 	<n-icon icon="alert" size="lg"></n-icon>
+
+	<ul>
+		<li *ngFor="let set of iconMeta">
+			<a
+				href="{{formatURL(set.sprite)}}"
+				download="{{formatFileName(set.sprite)}}">
+				download {{formatFileName(set.sprite)}}
+			</a>
+		</li>
+	</ul>
+
 	<div style="display: flex;">
 		<div class="filter-search" style="width: calc(100% - 200px); margin-right: 5px;">
 			<div class="search-icon">
@@ -87,7 +98,11 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div
 			*ngFor="let set of iconMeta"
 			[ngClass]="{hide: !set.visible}">
-			<h2>{{ formatName(set.sprite) }}</h2>
+			<h2>{{ formatName(set.sprite) }}
+				(<a
+					href="{{formatURL(set.sprite)}}"
+					download="{{formatFileName(set.sprite)}}">download</a>)
+			</h2>
 			<div class="set">
 				<span
 					*ngFor="let icon of set.icons"
@@ -210,6 +225,14 @@ export class IconDemo {
 
 	formatName(name) {
 		return name.slice(0, 1).toUpperCase() + name.slice(1).replace("_", " ");
+	}
+
+	formatURL(name) {
+		return `http://peretz-icons.mybluemix.net/${name}.svg`;
+	}
+
+	formatFileName(name) {
+		return `${name}.svg`;
 	}
 
 	onSelect(ev) {
