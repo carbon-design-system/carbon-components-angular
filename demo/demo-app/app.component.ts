@@ -121,7 +121,7 @@ export class AppComponent implements OnInit {
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
 	private filteredItems = this.navItems;
-	public previousItem = null;
+	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {
 		this._translate.setDefaultLang("en");
 		this._translate.use("en");
