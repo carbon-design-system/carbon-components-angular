@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
+import * as readme from "./../../../src/icon/README.md";
+
 @Component({
 	selector: "icon-demo",
 	template: `
 	<h1>Iconography demo</h1>
+
+	<app-doc [content]="docs"></app-doc>
+
 	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
 	<n-icon icon="alert" size="xs"></n-icon>
 	<n-icon icon="alert" size="sm"></n-icon>
@@ -222,6 +227,36 @@ export class IconDemo {
 	sets = [];
 	selected = [];
 	waitingForLoad = true;
+	docs: any = "";
+
+	ngOnInit() {
+		this.docs = readme;
+	}
+
+	async ngAfterViewInit() {
+		this.iconMeta = await fetch("https://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
+		// gather and nest the avliable icons sizes into set.icons[].sizes[]
+		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
+		this.iconMeta.sort((a, b) => {
+			if (b.sprite.includes("core")) { return 1; }
+			return a.sprite.localeCompare(b.sprite);
+		});
+		console.log(this.iconMeta);
+		let newSets = [];
+		for (let set of this.iconMeta) {
+			newSets.push({
+				content: this.formatName(set.sprite),
+				sprite: set.sprite,
+				selected: false
+			});
+			set.visible = true;
+			set.icons.forEach(icon => {
+				icon.visible = true;
+			});
+		}
+		this.sets = newSets;
+		this.waitingForLoad = false;
+	}
 
 	formatName(name) {
 		return name.slice(0, 1).toUpperCase() + name.slice(1).replace("_", " ");
@@ -269,30 +304,5 @@ export class IconDemo {
 				}
 			});
 		});
-	}
-
-	async ngAfterViewInit() {
-		this.iconMeta = await fetch("https://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
-		// gather and nest the avliable icons sizes into set.icons[].sizes[]
-		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
-		this.iconMeta.sort((a, b) => {
-			if (b.sprite.includes("core")) { return 1; }
-			return a.sprite.localeCompare(b.sprite);
-		});
-		console.log(this.iconMeta);
-		let newSets = [];
-		for (let set of this.iconMeta) {
-			newSets.push({
-				content: this.formatName(set.sprite),
-				sprite: set.sprite,
-				selected: false
-			});
-			set.visible = true;
-			set.icons.forEach(icon => {
-				icon.visible = true;
-			});
-		}
-		this.sets = newSets;
-		this.waitingForLoad = false;
 	}
 }
