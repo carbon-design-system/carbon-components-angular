@@ -3,7 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { ListItem } from "./../dropdown/list-item.interface";
-import { ComboBox } from "./combo-box.component";
+import { ComboBox } from "./combobox.component";
 import { DropdownButton } from "./dropdown-button.component";
 import { Pill } from "./pill.component";
 import { PillInput } from "./pill-input.component";
