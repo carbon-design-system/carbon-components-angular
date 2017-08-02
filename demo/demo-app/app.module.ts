@@ -37,6 +37,8 @@ import { TreeViewDemo } from "./tree-view-demo/tree-view-demo.component";
 import { XLModalComponent } from "./modal-demo/extra-large.component";
 import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
 
+import { AppDoc } from "./doc.component";
+
 // component imports
 import {
 	TableModule,
@@ -62,6 +64,7 @@ import {
 	declarations: [
 		AppComponent,
 		HomeComponent,
+		AppDoc,
 		TableDemo,
 		CoreDemo,
 		FormsDemo,
@@ -189,7 +192,7 @@ import {
 	providers: [
 		IconService,
 		BannerService,
-		{provide: APP_BASE_HREF, useValue : "/" }
+		{provide: APP_BASE_HREF, useValue : "./" }
 	],
 	bootstrap: [AppComponent]
 })
