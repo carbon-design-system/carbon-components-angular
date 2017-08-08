@@ -186,13 +186,14 @@ import {
 				path: "combobox",
 				component: ComboboxDemo
 			}
-		]),
+		], {
+			useHash: true
+		}),
 		TranslateModule.forRoot()
 	],
 	providers: [
 		IconService,
 		BannerService,
-		{provide: APP_BASE_HREF, useValue : "./" }
 	],
 	bootstrap: [AppComponent]
 })
