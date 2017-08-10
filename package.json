@@ -7,6 +7,9 @@
     "build": "bash scripts/build.sh",
     "demo:build": "webpack --config webpack.config.js && gulp demo:fonts",
     "demo:server": "webpack-dev-server --config webpack.config.js --watch",
+    "docs:build": "compodoc src -p tsconfig.json",
+    "docs:server": "compodoc -s",
+    "docs:run": "compodoc src -p tsconfig.json -s",
     "lint": "tslint -e spec.ts src/**/*.ts",
     "test": "karma start"
   },
@@ -46,6 +49,7 @@
     "@angular/platform-browser-dynamic": "^4.2.0",
     "@angular/platform-server": "^4.2.0",
     "@angular/router": "^4.2.0",
+    "@compodoc/compodoc": "1.0.0-beta.13",
     "@ngx-translate/core": "^6.0.1",
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
@@ -91,5 +95,6 @@
     "webpack-node-externals": "^1.5.4",
     "whatwg-fetch": "^2.0.3",
     "zone.js": "^0.8.4"
-  }
+  },
+  "dependencies": {}
 }

@@ -8,4 +8,5 @@ demo/bundle
 .idea
 .vscode
 doc/
+documentation/
 dist/
