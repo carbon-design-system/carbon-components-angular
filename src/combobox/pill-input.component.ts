@@ -14,6 +14,11 @@ import {
 import { Pill } from "./pill.component";
 import { ListItem } from "./../dropdown/list-item.interface";
 
+/**
+ * Internal component used to render pills and the combobox text input.
+ *
+ * There is a sizeable chunk of logic here handling focus and keyboard state around pills.
+ */
 @Component({
 	selector: "n-pill-input",
 	template: `
@@ -91,26 +96,51 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	}
 })
 export class PillInput {
+	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
 	public focus = false;
+	/** height of the expanded input */
 	public expandedHeight = 0;
+	/** number of pills hidden by overflow */
 	public numberMore = 0;
+	/** should we show the placeholder value? */
 	public showPlaceholder = true;
+	/** sets the expanded state (hide/show all selected pills) */
 	@Input() expanded = false;
+	/** array of selected items */
 	@Input() pills: Array<ListItem> = [];
+	/** value to display when nothing is selected */
 	@Input() placeholder = "";
+	/** value to display when something is selected */
 	@Input() displayValue = "";
+	/** "single" or "multi" for single or multi select lists */
 	@Input() type: "single" | "multi" = "single";
+	/** "sm"|"default"|"lg" */
 	@Input() size: "sm" | "default" | "lg" = "default";
+	/** is the input disabled. true/false */
 	@Input() disabled = false;
+	/** empty event to trigger an update of the selected items */
 	@Output() updatePills = new EventEmitter();
+	/** emitted when the user types into an input */
 	@Output() search = new EventEmitter();
+	/** emitted when the user presses enter and a value is present */
 	@Output() submit = new EventEmitter();
+	/** ViewChld of the pill wrapper */
 	@ViewChild("pillWrapper") pillWrapper;
+	/** List of inputs */
 	@ViewChildren("comboInput") comboInputs: QueryList<any>;
+	/** list of instantiated pills */
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
 
+	/** instaniates a pill-input */
 	constructor(private _elementRef: ElementRef) {}
 
+	/**
+	 * updates the pills, and subscribes to their `remove` events
+	 *
+	 * updates the displayValue and checks if it should be displayed
+	 *
+	 * @param changes
+	 */
 	ngOnChanges(changes) {
 		if (changes.pills) {
 			this.pills = changes.pills.currentValue;
@@ -140,6 +170,9 @@ export class PillInput {
 		}
 	}
 
+	/**
+	 * binds events on the view
+	 */
 	ngAfterViewInit() {
 		if (this.type === "multi") {
 			let pills = this._elementRef.nativeElement.querySelectorAll(".pill");
@@ -173,6 +206,9 @@ export class PillInput {
 		this.clearInputText();
 	}
 
+	/**
+	 * checks weather the placeholder should be displayed or not.
+	 */
 	private checkPlaceholderVisibility(): void {
 		if (this.type === "single") {
 			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focus && !this.getInputText());
@@ -181,6 +217,11 @@ export class PillInput {
 		}
 	}
 
+	/**
+	 * Helper method to check if an array is empty
+	 *
+	 * @param {Array<any>} array
+	 */
 	public empty(array: Array<any>) {
 		if (!array) {
 			return true;
@@ -191,10 +232,20 @@ export class PillInput {
 		return false;
 	}
 
-	public setFocus(state) {
+	/**
+	 * sets focus to state
+	 *
+	 * @param {boolean} state
+	 */
+	public setFocus(state:boolean) {
 		this.focus = state;
 	}
 
+	/**
+	 * focuses the correct input and handles clearing any unnecessary values from any other input
+	 *
+	 * @param ev
+	 */
 	public focusInput(ev) {
 		if (this.disabled) { return; }
 		this.setFocus(true);
@@ -222,6 +273,11 @@ export class PillInput {
 		}
 	}
 
+	/**
+	 * selects all the text in a given node
+	 *
+	 * @param target node to set the selection on
+	 */
 	private setSelection(target) {
 		let selectionRange = document.createRange();
 		let selection = window.getSelection();
@@ -231,6 +287,11 @@ export class PillInput {
 		target.focus();
 	}
 
+	/**
+	 * toggles the expanded state of the input wrapper to show all pills
+	 *
+	 * @param ev
+	 */
 	public showMore(ev) {
 		ev.stopPropagation();
 		ev.preventDefault();
@@ -238,13 +299,20 @@ export class PillInput {
 		this.doResize();
 	}
 
+	/**
+	 * sets the height of the input wrapper to the correct height for all selected pills
+	 */
 	public doResize() {
 		if (this.expanded) {
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight;
 		}
 	}
 
-	// clears the comboInputs
+	/**
+	 * clears the content of inputs
+	 *
+	 * @param toSkip input element to skip clearing
+	 */
 	public clearInputText(toSkip = null) {
 		if (this.comboInputs) {
 			this.comboInputs.forEach(input => {
@@ -255,8 +323,12 @@ export class PillInput {
 		}
 	}
 
-	// returns the text from an event, the textContent of the first filled comboInput, or an empty string
-	public getInputText(ev = null) {
+	/**
+	 * returns the text from an event, the textContent of the first filled comboInput, or an empty string
+	 *
+	 * @param ev optional event to pull text from
+	 */
+	public getInputText(ev = null): string {
 		if (ev) {
 			return ev.target.textContent.trim();
 		}
@@ -267,8 +339,12 @@ export class PillInput {
 		return "";
 	}
 
+	/**
+	 * handles deleting pills on backspace, submitting user input on enter, and navigating the pill list with arrow left/right
+	 *
+	 * @param ev
+	 */
 	onKeydown(ev: KeyboardEvent) {
-		// this.doResize();
 		if (ev.key === "Escape") {
 			this.expanded = false;
 		} else if (ev.key === "Backspace" && ev.target["textContent"] === "" && !this.empty(this.pills)) {
@@ -302,6 +378,7 @@ export class PillInput {
 		}
 	}
 
+	/** handles emmiting the search event */
 	onKeyup(ev: KeyboardEvent) {
 		this.doResize();
 		this.clearInputText(ev.target);

@@ -14,6 +14,10 @@ import { PillInput } from "./pill-input.component";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
 
+/**
+ * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
+ * Multi-select comboboxes also provide "pills" of selected items.
+ */
 @Component({
 	selector: "n-combo-box",
 	template: `
@@ -37,9 +41,11 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	}
 })
 export class ComboBox {
+	/** Selected items for multi-select combo-boxes. */
 	public pills = [];
+	/** used to update the displayValue of `n-pill-input` */
 	public selectedValue = "";
-	private dropdownList = [];
+	/** internal reference to the dropdown list */
 	private dropdown;
 	/**
 	 * List of items to fill the content with.
@@ -47,22 +53,22 @@ export class ComboBox {
 	 * **Example:**
 	 * ```javascript
 	 * items = [
-	 *	{
-	 *		content: "Abacus",
-	 *		selected: false
-	 *	},
-	 *	{
-	 *		content: "Byte",
-	 *		selected: false,
-	 *	},
-	 *	{
-	 *		content: "Computer",
-	 *		selected: false
-	 *	},
-	 *	{
-	 *		content: "Digital",
-	 *		selected: false
-	 *	}
+	 *		{
+	 *			content: "Abacus",
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: "Byte",
+	 *			selected: false,
+	 *		},
+	 *		{
+	 *			content: "Computer",
+	 *			selected: false
+	 *		},
+	 *		{
+	 *			content: "Digital",
+	 *			selected: false
+	 *		}
 	 * ];
 	 * ```
 	 *
@@ -100,10 +106,51 @@ export class ComboBox {
 	 * @memberof ComboBox
 	 */
 	@Input() disabled = false;
+	/**
+	 * Emits a ListItem
+	 *
+	 * Example:
+	 * ```javascript
+	 * {
+	 * 		content: "one",
+	 * 		selected: true
+	 * }
+	 * ```
+	 */
 	@Output() selected: EventEmitter<ListItem> = new EventEmitter<ListItem>();
+	/**
+	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
+	 *
+	 * Emits an event that includes the current item list, the suggested index for the new item, and a simple ListItem
+	 *
+	 * Example:
+	 * ```javascript
+	 *	{
+	 *		items: [{content: "one", selected: true}, {content: "two", selected: true}],
+	 *		index: 1,
+	 *		value: {
+	 *			content: "some user string",
+	 *			selected: false
+	 *		}
+	 *	}
+	 * ```
+	 *
+	 * @param ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
+	 *
+	 * Example:
+	 * ```javascript
+	 * {
+	 *	after: 1,
+	 *	value: "some user string"
+	 * }
+	 * ```
+	 */
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
+	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
+	/** ContentChild reference to the instantiated dropdown button */
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
+	/** ViewChild of the pill input component */
 	@ViewChild(PillInput) pillInput: PillInput;
 
 	/**
@@ -128,6 +175,11 @@ export class ComboBox {
 		}
 	}
 
+	/**
+	 * Sets initial state that depends on child components
+	 *
+	 * Subscribes to select events and handles focus/filtering/initial list updates
+	 */
 	ngAfterContentInit() {
 		this.dropdownButton.disabled = this.disabled;
 		if (this.view) {
@@ -154,6 +206,9 @@ export class ComboBox {
 		}
 	}
 
+	/**
+	 * Binds event handlers against the rendered view
+	 */
 	ngAfterViewInit() {
 		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
 		document.addEventListener("click", ev => {
@@ -166,6 +221,11 @@ export class ComboBox {
 		});
 	}
 
+	/**
+	 * Handles escape closing the dropdown, and arrow up/down focus to/from the dropdown list
+	 *
+	 * @param {KeyboardEvent} ev
+	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
@@ -174,19 +234,26 @@ export class ComboBox {
 			ev.stopPropagation();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
 		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
-			// setTimeout(() => this.pillInput._elementRef.nativeElement.focus(), 0);
 			this._elementRef.nativeElement.querySelector(".pill-input").focus();
 			this._elementRef.nativeElement.querySelector(".combo-input").focus();
 		}
 	}
 
+	/**
+	 * called by `n-pill-input` when the selected pills have changed
+	 */
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 	}
 
-	public doSearch(ev) {
-		this.view["filterBy"](ev);
-		if (ev !== "") {
+	/**
+	 * Sets the list view filter, and manages single select item selection
+	 *
+	 * @param {string} searchString
+	 */
+	public doSearch(searchString) {
+		this.view["filterBy"](searchString);
+		if (searchString !== "") {
 			this.dropdownButton.closeDropdown();
 		} else {
 			this.selectedValue = "";
@@ -194,7 +261,7 @@ export class ComboBox {
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
 			// of any given item
-			if (!this.view.items.some(item => item.content === ev)) {
+			if (!this.view.items.some(item => item.content === searchString)) {
 				let selected = this.view.getSelected();
 				if (selected) { selected[0].selected = false; }
 			} else {
@@ -204,6 +271,19 @@ export class ComboBox {
 		}
 	}
 
+	/**
+	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
+	 *
+	 * @param {any} ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
+	 *
+	 * Example:
+	 * ```javascript
+	 *	{
+	 *	after: 1,
+	 *	value: "some user string"
+	 *	}
+	 * ```
+	 */
 	doSubmit(ev) {
 		let index = 0;
 		if (ev.after) {
