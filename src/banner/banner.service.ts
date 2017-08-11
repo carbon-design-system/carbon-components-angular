@@ -66,6 +66,19 @@ export class BannerService {
 	 * it's added to the calculated timeout
 	 * * `smart`, set to `true` if you want to use smart banner.
 	 *
+	 * **Example:**
+	 * ```javascript
+	 * // Info banner, saying "Sample message." added to the element with id banner-container
+	 * // uses smart timeout with added duration of 1 second.
+	 * {
+	 *	type: "info",
+	 *	message: "Sample message.",
+	 *	target: "#banner-container",
+	 *	duration: 1000,
+	 *	smart: true
+	 * }
+	 * ```
+	 *
 	 * @param {any} [bannerComp=null] If provided, used to resolve component factory
 	 * @memberof BannerService
 	 */
