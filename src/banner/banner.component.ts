@@ -5,6 +5,12 @@ import {
 	EventEmitter
 } from "@angular/core";
 
+/**
+ * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
+ *
+ * @export
+ * @class Banner
+ */
 @Component({
 	selector: "n-banner",
 	template: `
@@ -61,10 +67,31 @@ import {
 	`
 })
 export class Banner {
+	/**
+	 * Can have `type` and `message` members.
+	 *
+	 * `type` can be one of `"info"`, `"warning"`, `"danger"`, `"success"`
+	 *
+	 * `message` is message for banner to display
+	 *
+	 * @type {Object}
+	 * @memberof Banner
+	 */
 	@Input() bannerObj: Object;
 
+	/**
+	 * Emits on close.
+	 *
+	 * @type {EventEmitter<any>}
+	 * @memberof Banner
+	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
+	/**
+	 * Emits close event.
+	 *
+	 * @memberof Banner
+	 */
 	onClose() {
 		this.close.emit();
 	}

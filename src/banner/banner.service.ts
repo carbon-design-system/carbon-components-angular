@@ -10,16 +10,65 @@ import {
 
 import { Banner } from "./banner.component";
 
+/**
+ * Provides a way to use the banner component.
+ *
+ * Banners are displayed toward the top of the UI and do not interrupt the user’s work.
+ *
+ * @export
+ * @class BannerService
+ */
 @Injectable()
 export class BannerService {
-public componentFactory: ComponentFactory<any>;
-public bannerRefs = new Array<ComponentRef<any>>();
-public onClose: EventEmitter<any> = new EventEmitter();
+	/**
+	 * Used to create banners.
+	 *
+	 * @private
+	 * @type {ComponentFactory<any>}
+	 * @memberof BannerService
+	 */
+	private componentFactory: ComponentFactory<any>;
+	/**
+	 * An array containing `ComponentRef`s to all the banners this service instance
+	 * is responsible for.
+	 *
+	 * @memberof BannerService
+	 */
+	public bannerRefs = new Array<ComponentRef<any>>();
+	public onClose: EventEmitter<any> = new EventEmitter();
 
-	constructor(public injector: Injector,
-		public componentFactoryResolver: ComponentFactoryResolver, public applicationRef: ApplicationRef) {
+	/**
+	 * Constructs BannerService.
+	 *
+	 * @param {Injector} injector
+	 * @param {ComponentFactoryResolver} componentFactoryResolver
+	 * @param {ApplicationRef} applicationRef
+	 * @memberof BannerService
+	 */
+	constructor(
+		private injector: Injector,
+		private componentFactoryResolver: ComponentFactoryResolver,
+		private applicationRef: ApplicationRef) {
 	}
 
+	/**
+	 * Shows the banner based on the `bannerObj`.
+	 *
+	 * @param {any} bannerObj Can have `type`, `message`, `target`, `duration` and `smart` members.
+	 *
+	 * **Members:**
+	 *
+	 * * `type` can be one of `"info"`, `"warning"`, `"danger"`, `"success"`
+	 * * `message` is message for banner to display
+	 * * `target` is css selector defining an element to append banner to. If not provided,
+	 * `showBanner()` creates a place for the banner in `body`
+	 * * `duration` is number of ms to close the banner after. If used in combination with `smart`,
+	 * it's added to the calculated timeout
+	 * * `smart`, set to `true` if you want to use smart banner.
+	 *
+	 * @param {any} [bannerComp=null] If provided, used to resolve component factory
+	 * @memberof BannerService
+	 */
 	showBanner(bannerObj, bannerComp = null) {
 		if (!bannerComp) {
 			this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(Banner);
@@ -74,6 +123,12 @@ public onClose: EventEmitter<any> = new EventEmitter();
 		});
 	}
 
+	/**
+	 * Programatically closes banner based on `bannerRef`.
+	 *
+	 * @param {ComponentRef<any>} bannerRef `ComponentRef` of a banner you wish to close
+	 * @memberof BannerService
+	 */
 	close(bannerRef: ComponentRef<any>) {
 		if (bannerRef) {
 			// animation and delayed distruction
@@ -85,7 +140,17 @@ public onClose: EventEmitter<any> = new EventEmitter();
 		}
 	}
 
-	getSmartTimeout(bannerObj) {
+	/**
+	 * Calculates the amount of time user needs to read the message in the banner.
+	 *
+	 * @param {any} bannerObj Same object used to instantiate banner.
+	 *
+	 * In addition to `type` and `message` members, use `duration` member to add
+	 * some extra time (in ms) to timeout if you need to.
+	 * @returns {number} calculated timeout (in ms) for smart banner
+	 * @memberof BannerService
+	 */
+	getSmartTimeout(bannerObj): number {
 		// calculate timeout
 		let timeout = 600; // start with reaction time
 
@@ -118,6 +183,13 @@ public onClose: EventEmitter<any> = new EventEmitter();
 		return timeout;
 	}
 
+	/**
+	 * OnDestroy hook.
+	 *
+	 * Destroys all living banners it is responsible for.
+	 *
+	 * @memberof BannerService
+	 */
 	ngOnDestroy() {
 		if (this.bannerRefs.length > 0) {
 			for (let i = 0; i < this.bannerRefs.length; i++) {
