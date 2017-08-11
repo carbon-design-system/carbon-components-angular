@@ -41,10 +41,64 @@ export class ComboBox {
 	public selectedValue = "";
 	private dropdownList = [];
 	private dropdown;
+	/**
+	 * List of items to fill the content with.
+	 *
+	 * **Example:**
+	 * ```javascript
+	 * items = [
+	 *	{
+	 *		content: "Abacus",
+	 *		selected: false
+	 *	},
+	 *	{
+	 *		content: "Byte",
+	 *		selected: false,
+	 *	},
+	 *	{
+	 *		content: "Computer",
+	 *		selected: false
+	 *	},
+	 *	{
+	 *		content: "Digital",
+	 *		selected: false
+	 *	}
+	 * ];
+	 * ```
+	 *
+	 * @type {Array<ListItem>}
+	 * @memberof ComboBox
+	 */
 	@Input() items: Array<ListItem> = [];
+	/**
+	 * Text to show when nothing is selected.
+	 *
+	 * @memberof ComboBox
+	 */
 	@Input() placeholder = "";
+	/**
+	 * Combo box type.
+	 *
+	 * `"single"` | `"multi"`
+	 *
+	 * @type {("single" | "multi")}
+	 * @memberof ComboBox
+	 */
 	@Input() type: "single" | "multi" = "single";
+	/**
+	 * Combo box size.
+	 *
+	 * `"sm"` | `"default"` | `"lg"`
+	 *
+	 * @type {("sm" | "default" | "lg")}
+	 * @memberof ComboBox
+	 */
 	@Input() size: "sm" | "default" | "lg" = "default";
+	/**
+	 * Set to `true` to disable combobox.
+	 *
+	 * @memberof ComboBox
+	 */
 	@Input() disabled = false;
 	@Output() selected: EventEmitter<ListItem> = new EventEmitter<ListItem>();
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
@@ -52,8 +106,21 @@ export class ComboBox {
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
 	@ViewChild(PillInput) pillInput: PillInput;
 
+	/**
+	 * Creates an instance of ComboBox.
+	 * @param {ElementRef} _elementRef
+	 * @memberof ComboBox
+	 */
 	constructor(private _elementRef: ElementRef) {}
 
+	/**
+	 * Lifecycle hook.
+	 *
+	 * Updates pills if necessary.
+	 *
+	 * @param {any} changes
+	 * @memberof ComboBox
+	 */
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view["updateList"](changes.items.currentValue);
