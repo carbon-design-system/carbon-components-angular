@@ -27,6 +27,16 @@ import { positionElements } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
+/**
+ * Drop-down lists enable users to select one or more items from a list.
+ *
+ * @export
+ * @class Dropdown
+ * @implements {OnInit}
+ * @implements {AfterContentInit}
+ * @implements {AfterViewInit}
+ * @implements {OnDestroy}
+ */
 @Component({
 	selector: "n-dropdown",
 	template: `
@@ -86,10 +96,37 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	scroll;
 	private onTouchedCallback: () => void = this._noop;
 
+	/**
+	 * Value to show when nothing is selected.
+	 *
+	 * @memberof Dropdown
+	 */
 	@Input() placeholder = "";
 	@Input() displayValue = "";
+	/**
+	 * Size of the dropdown.
+	 *
+	 * `"sm"` | `"default"` | `"lg"`
+	 *
+	 * @type {("sm" | "default" | "lg")}
+	 * @memberof Dropdown
+	 */
 	@Input() size: "sm" | "default" | "lg" = "default";
+	/**
+	 * Dropdown type.
+	 *
+	 * `"single"` | `"multi"`
+	 *
+	 * @type {("single" | "multi")}
+	 * @memberof Dropdown
+	 */
 	@Input() type: "single" | "multi" = "single";
+
+	/**
+	 * Set to `true` to disable the dropdown.
+	 *
+	 * @memberof Dropdown
+	 */
 	@Input() disabled = false;
 	@Input() appendToBody = false;
 	@Input() scrollableContainer: string;
