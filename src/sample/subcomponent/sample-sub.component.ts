@@ -36,5 +36,5 @@ export class SampleSub implements SampleBase, OnChanges {
 	}
 
 	/** an instance method */
-	private getNextFoo(): SampleInterface { return; }
+	getNextFoo(): SampleInterface { return; }
 }

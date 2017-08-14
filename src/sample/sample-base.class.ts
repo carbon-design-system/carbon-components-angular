@@ -12,5 +12,5 @@ export class SampleBase {
 	/** required template types */
 	public type: "single" | "multi" = "single";
 	/** required methods */
-	private getNextFoo(): SampleInterface { return; }
+	getNextFoo(): SampleInterface { return; }
 }
