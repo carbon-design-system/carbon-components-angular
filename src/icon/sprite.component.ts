@@ -8,7 +8,7 @@ import { Http } from "@angular/http";
 import { IconService } from "./icon.service";
 
 /**
- * Used to load sprites and is generally used at the root of the application. 
+ * Used to load sprites and is generally used at the root of the application.
  * Page specific sprites may be loaded on that page, but do note that may result in unintened network requets.
  */
 @Component({
@@ -29,10 +29,10 @@ export class Sprite implements AfterViewInit {
 
 	/**
 	 * instantiate the component and instances of http and iconService
-	 * 
-	 * @param {Http} http 
-	 * @param {ElementRef} _elementRef 
-	 * @param {IconService} icons 
+	 *
+	 * @param {Http} http
+	 * @param {ElementRef} _elementRef
+	 * @param {IconService} icons
 	 */
 	constructor(private http: Http,
 		private _elementRef: ElementRef,
