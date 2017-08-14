@@ -1,10 +1,38 @@
+/**
+ * Used (mostly) internally to position things to places.
+ *
+ * @export
+ * @class Positioning
+ */
 export class Positioning {
+	/**
+	 * Gets computed style of element's prop
+	 *
+	 * @param {HTMLElement} element
+	 * @param {string} prop
+	 * @returns {string}
+	 * @memberof Positioning
+	 */
 	public getStyle(element: HTMLElement, prop: string): string { return window.getComputedStyle(element)[prop]; }
 
+	/**
+	 * Checks if element is statically positioned
+	 *
+	 * @param {HTMLElement} element
+	 * @returns {boolean}
+	 * @memberof Positioning
+	 */
 	public isStaticPositioned(element: HTMLElement): boolean {
 		return (this.getStyle(element, "position") || "static") === "static";
 	}
 
+	/**
+	 * Gets the `offsetParent` of an element.
+	 *
+	 * @param {HTMLElement} element
+	 * @returns {HTMLElement}
+	 * @memberof Positioning
+	 */
 	public offsetParent(element: HTMLElement): HTMLElement {
 		let offsetParentEl = <HTMLElement>element.offsetParent || document.documentElement;
 
@@ -15,6 +43,14 @@ export class Positioning {
 		return offsetParentEl || document.documentElement;
 	}
 
+	/**
+	 * Calculates and returns element's position
+	 *
+	 * @param {HTMLElement} element
+	 * @param {boolean} [round=true]
+	 * @returns {ClientRect}
+	 * @memberof Positioning
+	 */
 	position(element: HTMLElement, round = true): ClientRect {
 		let elPosition: ClientRect;
 		let parentOffset: ClientRect = {width: 0, height: 0, top: 0, bottom: 0, left: 0, right: 0};
@@ -49,6 +85,14 @@ export class Positioning {
 		return elPosition;
 	}
 
+	/**
+	 * Calculates and returns element's offset
+	 *
+	 * @param {HTMLElement} element
+	 * @param {boolean} [round=true]
+	 * @returns {ClientRect}
+	 * @memberof Positioning
+	 */
 	offset(element: HTMLElement, round = true): ClientRect {
 		let bodyOffsetLeft = 0;
 
@@ -84,6 +128,38 @@ export class Positioning {
 		return elOffset;
 	}
 
+	/**
+	 * Calculates and returns element's target position
+	 *
+	 * @param {HTMLElement} hostElement
+	 * @param {HTMLElement} targetElement
+	 * @param {string} placement
+	 * `"auto"` | `"top"` | `"bottom"` | `"left"` | `"right"` | `"center"` |
+	 * `"top-left"` | `"top-right"` | `"bottom-left"` | `"bottom-right"`
+	 * @param {boolean} [appendToBody]
+	 * Optional.
+	 *
+	 * Set to `true` if you're calculating a position of an element you're
+	 * appending to body.
+	 * @param {number} [gap]
+	 * *Optional.*
+	 *
+	 * Adds this amount of pixels to the position to create a gap.
+	 * @param {number} [offsetTop]
+	 * *Optional.*
+	 *
+	 * Manually set the top offset in pixels.
+	 * @param {boolean} [isPopover]
+	 * *Optional.*
+	 *
+	 * Set to `true` in case of popover.
+	 * @param {boolean} [isPopoverFilter]
+	 * *Optional.*
+	 *
+	 * Set to `true` in case of popover filter.
+	 * @returns {ClientRect}
+	 * @memberof Positioning
+	 */
 	positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string,
 		appendToBody?: boolean, gap?: number, offsetTop?: number, isPopover?: boolean, isPopoverFilter?: boolean):
 	ClientRect {
