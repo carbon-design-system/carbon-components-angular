@@ -5,6 +5,9 @@ import {
 	Input
 } from "@angular/core";
 
+/**
+ * Internal component that represents a single pill/selected item
+ */
 @Component({
 	selector: "n-pill",
 	template: `
@@ -17,10 +20,13 @@ import {
 	}
 })
 export class Pill {
+	/** ListItem to render */
 	@Input() item;
+	/** emits an empty event when the close button is clicked */
 	@Output() remove = new EventEmitter();
 
-	doRemove(ev) {
+	/** close button handler */
+	public doRemove(ev) {
 		this.item.selected = false;
 		ev.stopPropagation();
 		this.remove.emit(this.item);
