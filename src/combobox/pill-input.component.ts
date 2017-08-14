@@ -237,7 +237,7 @@ export class PillInput {
 	 *
 	 * @param {boolean} state
 	 */
-	public setFocus(state:boolean) {
+	public setFocus(state: boolean) {
 		this.focus = state;
 	}
 
