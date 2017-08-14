@@ -21,9 +21,7 @@
 		padding-right: 68px;
 		padding-left: 0;
 
-		svg * {
-			fill: $topnav-color;
-		}
+
 		.top-nav-search-input {
 			background: transparent;
 			border: none;
@@ -142,7 +140,10 @@
     .menu-icon {
         display: inline-block;
         margin: $topnav-links-icon-margin;
-        vertical-align: middle;
+		vertical-align: middle;
+		> svg * {
+			fill: $topnav-color;
+		}
     }
 	.menu-icon-only {
 		margin: 0;
