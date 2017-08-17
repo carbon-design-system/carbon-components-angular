@@ -6,6 +6,7 @@ import {
 
 import { BannerService } from "./../../../src";
 import { BannerCustom } from "./banner-demo-custom";
+import { Banner } from "./../../../src";
 
 @Component({
 	selector: "banner-demo",
@@ -60,6 +61,9 @@ import { BannerCustom } from "./banner-demo-custom";
 	<div class="banners-container">
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
+
+	<button class="btn" (click)="callBanner('info')">show</button>
+	<button id="hidebutton" class="btn" (click)="close(this.testbanner)">hide</button>	
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
@@ -86,22 +90,24 @@ export class BannerDemo {
 
 	smartBannerText = "The length of this text, along with Banner type, affects how long Banner displays. Try it out!";
 
-	constructor(private banner: BannerService) {
+	constructor(private banner: BannerService) {}
 
-	}
+	closeBanner: Banner;
 
 	callBannerCustom() {
 		this.banner.showBanner({
 			type: "info",
 			message: "sample message"
 		}, BannerCustom);
+		
 	}
 
 	callBanner(type) {
-		this.banner.showBanner({
+		this.closeBanner = this.banner.showBanner({
 			type: type,
 			message: "sample message"
 		});
+		console.log(this.closeBanner)		
 	}
 
 	callBannerSmart(type) {
@@ -126,6 +132,10 @@ export class BannerDemo {
 			message: "sample message",
 			duration: 2000
 		});
+	}
+
+	close(){
+		this.closeBanner.destroy();
 	}
 
 	onClose() {
