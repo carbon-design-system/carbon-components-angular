@@ -70,10 +70,6 @@ import { BannerService } from "./banner.service";
 	`
 })
 export class Banner {
-	componentRef: ComponentRef<Banner>;
-
-	constructor(private bannerService: BannerService) {}
-
 	/**
 	 * Can have `type` and `message` members.
 	 *
@@ -93,6 +89,10 @@ export class Banner {
 	 * @memberof Banner
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
+
+	componentRef: ComponentRef<Banner>;
+
+	constructor(private bannerService: BannerService) {}
 
 	/**
 	 * Emits close event.
