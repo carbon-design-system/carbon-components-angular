@@ -63,7 +63,7 @@ import { Banner } from "./../../../src";
 	</div>
 
 	<button class="btn" (click)="callBanner('info')">show</button>
-	<button id="hidebutton" class="btn" (click)="close(this.testbanner)">hide</button>	
+	<button id="hidebutton" class="btn" (click)="close()">hide</button>	
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
@@ -134,7 +134,7 @@ export class BannerDemo {
 		});
 	}
 
-	close(){
+	close() {
 		this.closeBanner.destroy();
 	}
 
