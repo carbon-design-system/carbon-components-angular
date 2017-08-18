@@ -99,7 +99,6 @@ export class BannerDemo {
 			type: "info",
 			message: "sample message"
 		}, BannerCustom);
-		
 	}
 
 	callBanner(type) {
@@ -107,7 +106,6 @@ export class BannerDemo {
 			type: type,
 			message: "sample message"
 		});
-		console.log(this.closeBanner)		
 	}
 
 	callBannerSmart(type) {
