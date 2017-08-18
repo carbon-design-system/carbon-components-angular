@@ -68,6 +68,10 @@ import { Banner } from "./../../../src";
 	styleUrls: ["./banner-demo.component.scss"]
 })
 export class BannerDemo {
+	closeBanner: Banner;
+
+	smartBannerText = "The length of this text, along with Banner type, affects how long Banner displays. Try it out!";
+
 	infoBanner = {
 		type: "info",
 		message: "sample message"
@@ -88,11 +92,7 @@ export class BannerDemo {
 		message: "sample message",
 	};
 
-	smartBannerText = "The length of this text, along with Banner type, affects how long Banner displays. Try it out!";
-
 	constructor(private banner: BannerService) {}
-
-	closeBanner: Banner;
 
 	callBannerCustom() {
 		this.banner.showBanner({

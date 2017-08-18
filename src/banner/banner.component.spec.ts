@@ -3,10 +3,17 @@ import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Banner } from "./banner.component";
+import { BannerService } from "./banner.service";
+
 
 describe("Banner", () => {
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [Banner]});
+		TestBed.configureTestingModule({
+			declarations: [Banner],
+			providers: [
+				BannerService
+			]
+		});
 	});
 
 	it("should work", () => {
