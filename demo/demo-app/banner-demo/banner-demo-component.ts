@@ -62,13 +62,19 @@ import { Banner } from "./../../../src";
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<button class="btn" (click)="callBanner('info')">show</button>
-	<button id="hidebutton" class="btn" (click)="close()">hide</button>	
+	<button class="btn" (click)="toggleBanner('info')">
+		<span *ngIf="!this.bannerToClose">
+			Show
+		</span>
+		<span *ngIf="this.bannerToClose">
+			Hide
+		</span>
+	</button>
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
 export class BannerDemo {
-	closeBanner: Banner;
+	bannerToClose: Banner;
 
 	smartBannerText = "The length of this text, along with Banner type, affects how long Banner displays. Try it out!";
 
@@ -102,7 +108,7 @@ export class BannerDemo {
 	}
 
 	callBanner(type) {
-		this.closeBanner = this.banner.showBanner({
+		this.bannerToClose = this.banner.showBanner({
 			type: type,
 			message: "sample message"
 		});
@@ -132,8 +138,13 @@ export class BannerDemo {
 		});
 	}
 
-	close() {
-		this.closeBanner.destroy();
+	toggleBanner(bannerType) {
+		if (!this.bannerToClose) {
+			this.callBanner(bannerType);
+		} else {
+			this.bannerToClose.destroy();
+			this.bannerToClose = null;
+		}
 	}
 
 	onClose() {

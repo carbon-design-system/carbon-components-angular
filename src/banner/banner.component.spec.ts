@@ -10,9 +10,7 @@ describe("Banner", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Banner],
-			providers: [
-				BannerService
-			]
+			providers: [BannerService]
 		});
 	});
 
