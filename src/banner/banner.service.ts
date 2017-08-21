@@ -82,7 +82,7 @@ export class BannerService {
 	 * @param {any} [bannerComp=null] If provided, used to resolve component factory
 	 * @memberof BannerService
 	 */
-	showBanner(bannerObj, bannerComp = null) {
+	showBanner(bannerObj, bannerComp = null): Banner {
 		if (!bannerComp) {
 			this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(Banner);
 		} else {
@@ -134,22 +134,29 @@ export class BannerService {
 		this.onClose.subscribe(() => {
 			this.close(bannerRef);
 		});
+
+		bannerRef.instance.componentRef = bannerRef;
+		return bannerRef.instance;
 	}
 
 	/**
 	 * Programatically closes banner based on `bannerRef`.
 	 *
-	 * @param {ComponentRef<any>} bannerRef `ComponentRef` of a banner you wish to close
+	 * @param bannerRef `ComponentRef` of a banner or `Banner` component you wish to close
 	 * @memberof BannerService
 	 */
-	close(bannerRef: ComponentRef<any>) {
+	close(bannerRef: any) {
 		if (bannerRef) {
-			// animation and delayed distruction
-			bannerRef.location.nativeElement.querySelector(".banner").classList.add("banner-dropout");
-			setTimeout( () => {
-				this.applicationRef.detachView(bannerRef.hostView);
-				bannerRef.destroy();
-			}, 200);
+			if (bannerRef instanceof Banner) {
+				this.close(bannerRef.componentRef);
+			} else {
+				// animation and delayed distruction
+				bannerRef.location.nativeElement.querySelector(".banner").classList.add("banner-dropout");
+				setTimeout( () => {
+					this.applicationRef.detachView(bannerRef.hostView);
+					bannerRef.destroy();
+				}, 200);
+			}
 		}
 	}
 

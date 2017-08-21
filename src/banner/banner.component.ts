@@ -2,8 +2,11 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ComponentRef
 } from "@angular/core";
+
+import { BannerService } from "./banner.service";
 
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -87,6 +90,10 @@ export class Banner {
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
+	componentRef: ComponentRef<Banner>;
+
+	constructor(private bannerService: BannerService) {}
+
 	/**
 	 * Emits close event.
 	 *
@@ -94,5 +101,9 @@ export class Banner {
 	 */
 	onClose() {
 		this.close.emit();
+	}
+
+	destroy() {
+		this.bannerService.close(this);
 	}
 }

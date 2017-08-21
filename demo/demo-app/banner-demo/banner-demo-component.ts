@@ -6,6 +6,7 @@ import {
 
 import { BannerService } from "./../../../src";
 import { BannerCustom } from "./banner-demo-custom";
+import { Banner } from "./../../../src";
 
 @Component({
 	selector: "banner-demo",
@@ -60,10 +61,23 @@ import { BannerCustom } from "./banner-demo-custom";
 	<div class="banners-container">
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
+
+	<button class="btn" (click)="toggleBanner('info')">
+		<span *ngIf="!this.bannerToClose">
+			Show
+		</span>
+		<span *ngIf="this.bannerToClose">
+			Hide
+		</span>
+	</button>
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
 export class BannerDemo {
+	bannerToClose: Banner;
+
+	smartBannerText = "The length of this text, along with Banner type, affects how long Banner displays. Try it out!";
+
 	infoBanner = {
 		type: "info",
 		message: "sample message"
@@ -84,11 +98,7 @@ export class BannerDemo {
 		message: "sample message",
 	};
 
-	smartBannerText = "The length of this text, along with Banner type, affects how long Banner displays. Try it out!";
-
-	constructor(private banner: BannerService) {
-
-	}
+	constructor(private banner: BannerService) {}
 
 	callBannerCustom() {
 		this.banner.showBanner({
@@ -98,7 +108,7 @@ export class BannerDemo {
 	}
 
 	callBanner(type) {
-		this.banner.showBanner({
+		this.bannerToClose = this.banner.showBanner({
 			type: type,
 			message: "sample message"
 		});
@@ -126,6 +136,15 @@ export class BannerDemo {
 			message: "sample message",
 			duration: 2000
 		});
+	}
+
+	toggleBanner(bannerType) {
+		if (!this.bannerToClose) {
+			this.callBanner(bannerType);
+		} else {
+			this.bannerToClose.destroy();
+			this.bannerToClose = null;
+		}
 	}
 
 	onClose() {
