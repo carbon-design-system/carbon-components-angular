@@ -1,6 +1,6 @@
 # Combobox
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/combobox](https://pages.github.ibm.com/peretz-next/neutrino/#/combobox)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/combobox](https://pages.github.ibm.com/peretz/neutrino/#/combobox)
 
 ## Interfaces
 ### ListItem interface

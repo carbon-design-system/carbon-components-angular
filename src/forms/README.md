@@ -1,6 +1,6 @@
 # Forms
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/forms](https://pages.github.ibm.com/peretz-next/neutrino/#/forms)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/forms](https://pages.github.ibm.com/peretz/neutrino/#/forms)
 
 Forms module adds convenience components for forms to Neutrino.
 
