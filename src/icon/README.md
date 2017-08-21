@@ -1,6 +1,6 @@
 # Iconography
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/icon](https://pages.github.ibm.com/peretz-next/neutrino/icon)
+demo: [https://pages.github.ibm.com/peretz/neutrino/icon](https://pages.github.ibm.com/peretz/neutrino/icon)
 
 ## Usage
 
@@ -17,7 +17,7 @@ Using icons in your application requires two components: `n-sprite` and `n-icon`
 
 By default `n-sprite` uses http://peretz-icons.mybluemix.net/ for sprites - this is suffciant for prototyping, but for development and production it is reccomended to build streamlined sprites and host them statically. The base url should be set once through `IconService`s `setBaseURL` method.
 
-raw SVGs live here: [https://github.ibm.com/peretz-next/iconography](https://github.ibm.com/peretz-next/iconography)
+raw SVGs live here: [https://github.ibm.com/peretz/iconography](https://github.ibm.com/peretz/iconography)
 
 ## Components
 ### Icon

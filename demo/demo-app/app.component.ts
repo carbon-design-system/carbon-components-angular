@@ -12,7 +12,7 @@ import * as en from  "./../../src/i18n/en.json";
 		<h1 style="display: inline-block;">
 			<a routerLink="/">Neutrino</a>
 		</h1>
-		<a href="https://github.ibm.com/peretz-next/neutrino">Project</a>
+		<a href="https://github.ibm.com/peretz/neutrino">Project</a>
 	</header>
 	<nav>
 		<input
