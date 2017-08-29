@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.ibm.com:peretz-next/next.git"
+    "url": "git@github.ibm.com:peretz/next.git"
   },
   "publishConfig": {
     "registry": "npm-registry.whitewater.ibm.com"

@@ -1,6 +1,6 @@
 # Sample
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/sample](https://pages.github.ibm.com/peretz-next/neutrino/sample)
+demo: [https://pages.github.ibm.com/peretz/neutrino/sample](https://pages.github.ibm.com/peretz/neutrino/sample)
 
 ## Interfaces
 ### Sample interface
