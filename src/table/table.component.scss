@@ -1,0 +1,116 @@
+.table-container {
+	height: calc(100% + 40px);
+	font-size: 14px;
+    color: #323232;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    white-space: nowrap;
+	table-layout: fixed;
+
+	tbody {
+		display: table;
+		width: 100%;
+	}
+
+	thead {
+		display: table;
+		width: 100%;
+		th {
+			text-align: left;
+			padding-left: 20px;
+			padding-right: 20px;
+			background: rgba(224,224,224,0.5);
+			border-left: 1px solid white;
+			// fix for firefox not rendering borders correctly
+			background-clip: padding-box;
+			position: relative;
+
+			.resizer {
+				display: inline-block;
+				width: 15px;
+				height: 100%;
+				position: absolute;
+				right: -5px;
+				top: 0;
+				cursor: col-resize;
+			}
+
+			.col-actions {
+				position: absolute;
+				right: 20px;
+				top: 10px;
+			}
+
+			&:first-of-type {
+				border-left: none;
+			}
+
+			&:hover {
+				background: rgba(224,224,224,0.3);
+			}
+
+			tr {
+				height: 40px;
+
+				&:hover {
+					background: none;
+				}
+			}
+		}
+	}
+
+	tr {
+		height: 40px;
+		padding-bottom: 12.5px;
+		padding-top: 12.5px;
+		color: #5A5A5A;
+
+		&.striped {
+			background: rgba(224,224,224,0.25);
+		}
+
+		&.selected {
+			background: rgba(85,150,230,0.10);
+		}
+
+		&:hover {
+			background: rgba(85,150,230,0.10);
+		}
+	}
+
+	td {
+		padding-left: 20px;
+		padding-right: 20px;
+		border-bottom: 1px solid #E0E0E0;
+		overflow: hidden;
+	}
+}
+
+.check-column {
+    width: 60px !important;
+    text-align: center;
+}
+
+.checkbox {
+    width: 20px;
+    margin: 0 auto;
+}
+
+.scroll-table {
+	overflow-y: auto;
+    // ipad
+    -webkit-overflow-scrolling: touch;
+	height: calc(100% - 80px);
+}
+
+svg {
+    fill: #959595;
+}
+
+svg:hover {
+    fill: #4178BE;
+}
