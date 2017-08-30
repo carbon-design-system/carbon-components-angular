@@ -85,6 +85,11 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
+			content: "Table demo",
+			link: "/table",
+			selected: false
+		},
+		{
 			content: "Tree view demo",
 			link: "/tree-view",
 			selected: false

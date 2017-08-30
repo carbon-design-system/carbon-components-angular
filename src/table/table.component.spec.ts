@@ -1,13 +1,20 @@
 import { TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
 import { TableModule } from "./table.module";
 import { Table } from "./table.component";
-import { TableBody } from "./table-body.component";
-import { TableHeader } from "./table-header.component";
 import { By } from "@angular/platform-browser";
+
+import { NFormsModule } from "./../forms/forms.module";
 
 describe("Table", () => {
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [Table, TableBody, TableHeader]});
+		TestBed.configureTestingModule({
+			imports: [
+				FormsModule,
+				NFormsModule
+			],
+			declarations: [Table]
+		});
 	});
 
 	it("should work", () => {
