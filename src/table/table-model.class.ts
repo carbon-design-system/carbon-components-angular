@@ -250,6 +250,54 @@ export class TableModel {
 		}
 	}
 
+	/**
+	 * Sorts the data currently present in the model based on `compare()`
+	 *
+	 * Direction is set by `ascending` and `descending` properties of `TableHeaderItem`
+	 * in `index`th column.
+	 *
+	 * @param {number} index The column based on which it's sorting
+	 * @memberof TableModel
+	 */
+	sort(index: number) {
+		this.pushRowSelectionToModelData();
+		this.data.sort((a, b) => (this.header[index].descending ? -1 : 1) * this.header[index].compare(a[index], b[index]));
+		this.popRowSelectionFromModelData();
+		this.header[index].sorted = true;
+	}
+
+	/**
+	 * Appends `rowsSelected` info to model data.
+	 *
+	 * When sorting rows, do this first so information about row selection
+	 * gets sorted with the other row info.
+	 *
+	 * Call `popRowSelectionFromModelData()` after sorting to make everything
+	 * right with the world again.
+	 *
+	 * @memberof TableModel
+	 */
+	pushRowSelectionToModelData() {
+		for (let i = 0; i < this.data.length; i++) {
+			const rowSelectedMark = new TableItem();
+			rowSelectedMark.data = this.rowsSelected[i];
+			this.data[i].push(rowSelectedMark);
+		}
+	}
+
+	/**
+	 * Restores `rowsSelected` from data pushed by `pushRowSelectionToModelData()`
+	 *
+	 * Call after sorting data (if you previously pushed to maintain selection order)
+	 * to make everything right with the world again.
+	 *
+	 * @memberof TableModel
+	 */
+	popRowSelectionFromModelData() {
+		for (let i = 0; i < this.data.length; i++) {
+			this.rowsSelected[i] = !!this.data[i].pop().data;
+		}
+	}
 
 	private realRowIndex(index: number): number {
 		return this.realIndex(index, this.data.length);

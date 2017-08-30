@@ -41,9 +41,9 @@ export class TableDemo implements OnInit {
 
 	ngOnInit() {
 		this.model.data = [
-			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "asdf"}), new TableItem({data: "rwer"})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "bsdf"}), new TableItem({data: "rwer"})]
+			[new TableItem({data: "bsdf"}), new TableItem({data: "qwer"})]
 		];
 
 		this.model.header = [

@@ -21,6 +21,24 @@ export class TableHeaderItem {
 	 */
 	filterCount = 0;
 
+	private _ascending = true;
+
+	set ascending(asc) {
+		this._ascending = asc;
+	}
+	get ascending() {
+		return this._ascending;
+	}
+
+	set descending(desc) {
+		this._ascending = !desc;
+	}
+	get descending() {
+		return !this._ascending;
+	}
+
+	sorted = false;
+
 	data: any;
 
 
