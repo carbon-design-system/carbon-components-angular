@@ -79,6 +79,46 @@ describe("Table", () => {
 		expect(tableModel.row(1)[1].data).toEqual("test");
 	});
 
+
+	/* ****************************************************************
+	***********                                             ***********
+	***********                  SORTING                    ***********
+	***********                                             ***********
+	***************************************************************** */
+
+	it("should sort data ascending", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]
+		];
+		tableModel.rowsSelected[1] = true;
+
+		tableModel.sort(1);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+		expect(tableModel.rowsSelected).toEqual([false, false, true]);
+	});
+
+	it("should sort data descending", () => {
+		let tableModel = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})],
+			[new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})],
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]
+		];
+		tableModel.rowsSelected[1] = true;
+		tableModel.header[1].descending = true;
+
+		tableModel.sort(1);
+		expect(tableModel.row(0)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
+		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
+		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
+		expect(tableModel.rowsSelected).toEqual([true, false, false]);
+	});
+
 	/* ****************************************************************
 	***********                                             ***********
 	***********                   ROWS                      ***********

@@ -26,7 +26,7 @@ import {
 		Delete {{column.data}}
 	</button>
 
-	<n-table [model]="model" #table></n-table>
+	<n-table [model]="model" (sort)="sort($event)" #table></n-table>
 
 
 	<h2>Default table</h2>
@@ -41,15 +41,23 @@ export class TableDemo implements OnInit {
 
 	ngOnInit() {
 		this.model.data = [
-			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "asdf"}), new TableItem({data: "rwer"})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "bsdf"}), new TableItem({data: "rwer"})]
+			[new TableItem({data: "bsdf"}), new TableItem({data: "qwer"})]
 		];
 
 		this.model.header = [
 			new TableHeaderItem({data: "hwer"}),
 			new TableHeaderItem({data: "hsdf"})
 		];
+	}
+
+	sort(index: number) {
+		if (this.model.header[index].sorted) {
+			// if already sorted flip sorting direction
+			this.model.header[index].ascending = this.model.header[index].descending;
+		}
+		this.model.sort(index);
 	}
 
 	// sortA(ev) {

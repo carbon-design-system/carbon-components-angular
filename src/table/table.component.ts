@@ -1,4 +1,4 @@
-import { TableModel } from "./table.module";
+import { TableModel, TableItem } from "./table.module";
 import {
 	Component,
 	AfterContentChecked,
@@ -36,11 +36,11 @@ import {
 								<button
 									class="sm"
 									*ngIf="filter"
-									(click)="filter(column)">
+									(click)="filter(i)">
 										filter
 									</button>
 								<span
-									(click)="filter(column)">
+									(click)="filter(i)">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -51,10 +51,10 @@ import {
 								</span>
 								<span
 									*ngIf="sort"
-									(click)="sort(column)">
+									(click)="sort.emit(i)">
 									<!-- arrow up -->
 									<svg
-										*ngIf="column.direction === sorts.ascending && column.sorted"
+										*ngIf="column.ascending && column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
 										height="16"
@@ -63,7 +63,7 @@ import {
 									</svg>
 									<!-- arrow down -->
 									<svg
-										*ngIf="column.direction === sorts.descending && column.sorted"
+										*ngIf="column.descending && column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
 										height="16"
@@ -115,6 +115,14 @@ export class Table implements AfterContentChecked {
 	colWidth = 150;
 
 	@Input() striped = false;
+
+	/**
+	 * Emits an index of the column that wants to be sorted.
+	 *
+	 * @memberof Table
+	 */
+	@Output() sort = new EventEmitter<number>();
+
 	@Output() selectAll = new EventEmitter<Object>();
 	@Output() selectRow = new EventEmitter<Object>();
 	@ViewChild("body") body;
@@ -150,20 +158,5 @@ export class Table implements AfterContentChecked {
 
 		this.selectAllCheckboxSomeSelected = false;
 		this.selectAllCheckbox = startValue;
-	}
-
-	bubble(ev, to) {
-		to.emit(ev);
-	}
-
-	emitSelectAll(ev) {
-		if (ev.target.checked) {
-			this.body.selected["all"] = true;
-		} else {
-			this.body.selected = {};
-		}
-		this.selectAll.emit({
-			selected: ev.target.checked,
-		});
 	}
 }
