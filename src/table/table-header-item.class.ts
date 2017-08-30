@@ -88,12 +88,12 @@ export class TableHeaderItem {
 	 *
 	 * @param {TableItem} item
 	 * @returns {boolean}
-	 * `true` to show the row
-	 * `false` to hide the row
+	 * `true` to hide the row
+	 * `false` to show the row
 	 * @memberof TableHeaderItem
 	 */
 	filter(item: TableItem): boolean {
 		this.filterCount = 0;
-		return true;
+		return false;
 	}
 }
