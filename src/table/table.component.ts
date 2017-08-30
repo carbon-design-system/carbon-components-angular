@@ -51,7 +51,7 @@ import {
 								</span>
 								<span
 									*ngIf="sort"
-									(click)="sort(i)">
+									(click)="sort.emit(i)">
 									<!-- arrow up -->
 									<svg
 										*ngIf="column.ascending && column.sorted"
@@ -115,6 +115,14 @@ export class Table implements AfterContentChecked {
 	colWidth = 150;
 
 	@Input() striped = false;
+
+	/**
+	 * Emits an index of the column that wants to be sorted.
+	 *
+	 * @memberof Table
+	 */
+	@Output() sort = new EventEmitter<number>();
+
 	@Output() selectAll = new EventEmitter<Object>();
 	@Output() selectRow = new EventEmitter<Object>();
 	@ViewChild("body") body;
@@ -150,32 +158,5 @@ export class Table implements AfterContentChecked {
 
 		this.selectAllCheckboxSomeSelected = false;
 		this.selectAllCheckbox = startValue;
-	}
-
-
-
-	sort(index: number) {
-		if (this.model.header[index].sorted) {
-			// if already sorted flip sorting direction
-			this.model.header[index].ascending = this.model.header[index].descending;
-		}
-		this.model.sort(index);
-	}
-
-
-
-	bubble(ev, to) {
-		to.emit(ev);
-	}
-
-	emitSelectAll(ev) {
-		if (ev.target.checked) {
-			this.body.selected["all"] = true;
-		} else {
-			this.body.selected = {};
-		}
-		this.selectAll.emit({
-			selected: ev.target.checked,
-		});
 	}
 }
