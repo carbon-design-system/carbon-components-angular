@@ -1,6 +1,7 @@
 import { TableItem } from "./table-item.class";
 import {
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 
 
@@ -41,6 +42,7 @@ export class TableHeaderItem {
 
 	data: any;
 
+	template: TemplateRef<any>;
 
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty
@@ -54,6 +56,7 @@ export class TableHeaderItem {
 		this.data = data.data;
 		this.visible = data.visible;
 		this.filterCount = data.filterCount;
+		this.template = data.template;
 	}
 	/**
 	 * Used for sorting rows of the table.

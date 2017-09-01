@@ -299,6 +299,17 @@ export class TableModel {
 		}
 	}
 
+	/**
+	 *
+	 * @param {number} index
+	 * @returns true if any of the filters in header filters out the `index`th row
+	 * @memberof TableModel
+	 */
+	isRowFiltered(index: number) {
+		const ind = this.realRowIndex(index);
+		return this.header.some((item, i) => item.filter(this.row(ind)[i]));
+	}
+
 	private realRowIndex(index: number): number {
 		return this.realIndex(index, this.data.length);
 	}

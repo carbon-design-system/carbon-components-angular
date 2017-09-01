@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
+import { PopoverModule } from "./../popover/popover.module";
 import { NFormsModule } from "./../forms/forms.module";
 
 import { Table } from "./table.component";
@@ -24,7 +25,8 @@ export { TableHeaderItem } from "./table-header-item.class";
 	imports: [
 		CommonModule,
 		NFormsModule,
-		FormsModule
+		FormsModule,
+		PopoverModule
 	]
 })
 export class TableModule {}

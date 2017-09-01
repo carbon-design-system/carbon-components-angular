@@ -28,19 +28,17 @@ import {
 						<th
 							*ngIf="column.visible"
 							[ngStyle]="{'width': i < model.header.length - 1 ? (colWidth) + 'px' : ''}">
-							{{column.data}}
+							<span *ngIf="!column.template">{{column.data}}</span>
 							<ng-template
-								[ngTemplateOutlet]="column.headerTemplate">
+								[ngTemplateOutlet]="column.template" [ngOutletContext]="{data: column.data}">
 							</ng-template>
 							<div class="col-actions">
-								<button
-									class="sm"
-									*ngIf="filter"
-									(click)="filter(i)">
-										filter
-									</button>
-								<span
-									(click)="filter(i)">
+								<button class="popover-button"
+									nPopover="Hello there"
+									title="Filter"
+									placement="right"
+									wrapperClass="popover-content-filter"
+									popoverFilter="true">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -48,7 +46,7 @@ import {
 										viewBox="0 0 16 16">
 										<path fill="#949494" d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
 									</svg>
-								</span>
+								</button>
 								<span
 									*ngIf="sort"
 									(click)="sort.emit(i)">
@@ -86,20 +84,25 @@ import {
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let row of model.data; let i = index" [ngClass]="{selected: model.rowsSelected[i]}">
-					<td class="check-column" *ngIf="enableRowSelect">
-						<n-checkbox
-							[(ngModel)]="model.rowsSelected[i]"
-							(change)="onRowCheckboxChange()">
-						</n-checkbox>
-					</td>
-					<ng-container *ngFor="let item of row; let i = index">
-						<td *ngIf="model.header[i].visible"
-							[ngStyle]="{'width': i < row.length - 1 ? (colWidth) + 'px' : ''}">
-							{{item.data}}
+				<ng-container *ngFor="let row of model.data; let i = index">
+					<tr *ngIf="!model.isRowFiltered(i)" [ngClass]="{selected: model.rowsSelected[i]}">
+						<td class="check-column" *ngIf="enableRowSelect">
+							<n-checkbox
+								[(ngModel)]="model.rowsSelected[i]"
+								(change)="onRowCheckboxChange()">
+							</n-checkbox>
 						</td>
-					</ng-container>
-				</tr>
+						<ng-container *ngFor="let item of row; let i = index">
+							<td *ngIf="model.header[i].visible"
+								[ngStyle]="{'width': i < row.length - 1 ? (colWidth) + 'px' : ''}">
+								<span *ngIf="!item.template">{{item.data}}</span>
+								<ng-template
+									[ngTemplateOutlet]="item.template" [ngOutletContext]="{data: item.data}">
+								</ng-template>
+							</td>
+						</ng-container>
+					</tr>
+				</ng-container>
 			</tbody>
 		</table>
 	</div>
