@@ -24,6 +24,11 @@ export class TableHeaderItem {
 
 	private _ascending = true;
 
+	/**
+	 * If true, sort is set to ascending, if false descending will be true.
+	 *
+	 * @memberof TableHeaderItem
+	 */
 	set ascending(asc) {
 		this._ascending = asc;
 	}
@@ -31,6 +36,11 @@ export class TableHeaderItem {
 		return this._ascending;
 	}
 
+	/**
+	 * If true, sort is set to descending, if false ascending will be true.
+	 *
+	 * @memberof TableHeaderItem
+	 */
 	set descending(desc) {
 		this._ascending = !desc;
 	}
@@ -40,8 +50,48 @@ export class TableHeaderItem {
 
 	sorted = false;
 
+	/**
+	 * Data for the header item.
+	 *
+	 * @type {*}
+	 * @memberof TableHeaderItem
+	 */
 	data: any;
 
+	/**
+	 * Used to display data in a desired way.
+	 *
+	 * If not provided, displays data as a simple string.
+	 *
+	 * Usage:
+	 *
+	 * In a component where you're using the table create a template like:
+	 *
+	 * ```html
+	 * <ng-template #customHeaderTemplate let-data="data">
+	 * 		<i><a [routerLink]="data.link">{{data.name}}</a></i>
+	 * </ng-template>
+	 * ```
+	 * where we assume your data contains `link` and `name`. `let-data="data"` is
+	 * necessary for you to be able to access item's data in the template.
+	 *
+	 * Create `ViewChild` property with:
+	 *
+	 * ```typescript
+	 * @ViewChild("customHeaderTemplate")
+	 * private customHeaderTemplate: TemplateRef<any>;
+	 * ```
+	 *
+	 * Set the template to the header item, for example:
+	 *
+	 * ```typescript
+	 * this.model.header = [
+	 * 		new TableHeaderItem({data: {name: "Custom header", link: "/table"}, template: this.customHeaderTemplate})
+	 * ];
+	 * ```
+	 * @type {TemplateRef<any>}
+	 * @memberof TableHeaderItem
+	 */
 	template: TemplateRef<any>;
 
 	constructor(rawData?: any) {
