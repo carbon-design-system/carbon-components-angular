@@ -1,9 +1,29 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
 import {
 	TableItem,
 	TableHeaderItem,
 	TableModel
 } from "./../../../src/table/table.module";
+
+class FilterableHeaderItem extends TableHeaderItem {
+	filterString: string;
+
+	constructor(rawData?: any) {
+		super(rawData);
+		this.filterString = rawData ? rawData.filterString : this.filterString;
+	}
+
+	filter(item: TableItem): boolean {
+		if (item.data instanceof String && item.data.indexOf(this.filterString) >= 0 ||
+		item.data.name && item.data.name.indexOf(this.filterString) >= 0 ||
+		item.data.surname && item.data.surname.indexOf(this.filterString) >= 0) {
+			this.filterCount = 1;
+			return true;
+		}
+		this.filterCount = 0;
+		return false;
+	}
+}
 
 @Component({
 	selector: "table-demo",
@@ -26,6 +46,15 @@ import {
 		Delete {{column.data}}
 	</button>
 
+
+	<ng-template #filterableHeaderTemplate let-data="data">
+		<i><a [routerLink]="data.link">{{data.name}}</a></i>
+	</ng-template>
+
+	<ng-template #customTableItemTemplate let-data="data">
+		<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
+	</ng-template>
+
 	<n-table [model]="model" (sort)="sort($event)" #table></n-table>
 
 
@@ -39,16 +68,21 @@ import {
 export class TableDemo implements OnInit {
 	public model = new TableModel();
 
+	@ViewChild("filterableHeaderTemplate")
+	private filterableHeaderTemplate: TemplateRef<any>;
+	@ViewChild("customTableItemTemplate")
+	private customTableItemTemplate: TemplateRef<any>;
+
 	ngOnInit() {
 		this.model.data = [
-			[new TableItem({data: "asdf"}), new TableItem({data: "rwer"})],
+			[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "bsdf"}), new TableItem({data: "qwer"})]
+			[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})]
 		];
 
 		this.model.header = [
 			new TableHeaderItem({data: "hwer"}),
-			new TableHeaderItem({data: "hsdf"})
+			new FilterableHeaderItem({data: {name: "Custom header", link: "/table"}, template: this.filterableHeaderTemplate})
 		];
 	}
 
@@ -59,20 +93,4 @@ export class TableDemo implements OnInit {
 		}
 		this.model.sort(index);
 	}
-
-	// sortA(ev) {
-	// 	if (ev.direction === Column.sort.descending) {
-	// 		this.availableRows.sort((a, b) => a[ev.key] - b[ev.key]);
-	// 	} else {
-	// 		this.availableRows.sort((a, b) => b[ev.key] - a[ev.key]);
-	// 	}
-	// }
-
-	// sort(ev) {
-	// 	if (ev.direction === Column.sort.descending) {
-	// 		this.availableRows.sort();
-	// 	} else {
-	// 		this.availableRows.sort().reverse();
-	// 	}
-	// }
 }
