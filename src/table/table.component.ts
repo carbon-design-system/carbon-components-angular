@@ -21,7 +21,8 @@ import {
 					<th class="check-column" *ngIf="enableRowSelect">
 						<n-checkbox [(ngModel)]="selectAllCheckbox"
 							[indeterminate]="selectAllCheckboxSomeSelected"
-							(change)="onSelectAllCheckboxChange()">
+							(change)="onSelectAllCheckboxChange()"
+							class="select-checkbox">
 						</n-checkbox>
 					</th>
 					<ng-container *ngFor="let column of model.header; let i = index">
@@ -34,11 +35,12 @@ import {
 							</ng-template>
 							<div class="col-actions">
 								<button class="popover-button"
-									nPopover="Hello there"
+									[nPopover]="column.filterTemplate ? column.filterTemplate : 'Filter unavailable'"
 									title="Filter"
 									placement="right"
 									wrapperClass="popover-content-filter"
-									popoverFilter="true">
+									popoverFilter="true"
+									[filter]="column.filterData">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -88,6 +90,7 @@ import {
 					<tr *ngIf="!model.isRowFiltered(i)" [ngClass]="{selected: model.rowsSelected[i]}">
 						<td class="check-column" *ngIf="enableRowSelect">
 							<n-checkbox
+								class="select-checkbox"
 								[(ngModel)]="model.rowsSelected[i]"
 								(change)="onRowCheckboxChange()">
 							</n-checkbox>

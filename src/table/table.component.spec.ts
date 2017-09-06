@@ -1,3 +1,4 @@
+import { PopoverModule } from "./../popover/popover.module";
 import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "./table.module";
@@ -11,7 +12,8 @@ describe("Table", () => {
 		TestBed.configureTestingModule({
 			imports: [
 				FormsModule,
-				NFormsModule
+				NFormsModule,
+				PopoverModule
 			],
 			declarations: [Table]
 		});

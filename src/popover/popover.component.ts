@@ -40,7 +40,7 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 			<div class="popover-content" role="main">
 				<ng-template
 					*ngIf="isTpl"
-					[ngTemplateOutlet]="popoverConfig.content">
+					[ngTemplateOutlet]="popoverConfig.content" [ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
 				</ng-template>
 				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
 
