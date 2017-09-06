@@ -103,10 +103,6 @@ export class TableDemo implements OnInit {
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
 
-	log(sth) {
-		console.log(sth);
-	}
-
 	ngOnInit() {
 		this.model.data = [
 			[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
