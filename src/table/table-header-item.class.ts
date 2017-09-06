@@ -94,12 +94,80 @@ export class TableHeaderItem {
 	 */
 	template: TemplateRef<any>;
 
+	/**
+	 * Used as a template for popover filter.
+	 *
+	 * `let-popover="popover"` will give you access to popover component and allow you to
+	 * manipulate it if needed.
+	 *
+	 * `let-filter="filter"` will give you access to the "filter". The main takeaway is
+	 * store the data you need to `filter.data`. You will be able to access it as
+	 * `this.filterData.data` from your `filter()` function when you extend `TableHeaderItem`
+	 *
+	 * Example:
+	 * ```html
+	 * <ng-template #filter let-popover="popover" let-filter="filter">
+	 * 	<div class="filter-options">
+	 * 		<n-label>
+	 * 			<label for="filter1">Value</label>
+	 * 			<input type="text" [(ngModel)]="filter1" class="input-field" id="filter1">
+	 * 		</n-label>
+	 * 	</div>
+	 * 	<div class="filter-options-buttons">
+	 * 		<button class="btn" (click)="filter.data = filter1; popover.onClose()">Apply</button>
+	 * 		<button class="btn btn-secondary" (click)="popover.onClose()">Cancel</button>
+	 * 	</div>
+	 * </ng-template>
+	 * ```
+	 *
+	 * Set the template with, for example:
+	 * ```typescript
+	 * new FilterableHeaderItem({
+	 * 	filterTemplate: this.filter
+	 * })
+	 * ```
+	 *
+	 * ```typescript
+	 * class FilterableHeaderItem extends TableHeaderItem {
+	 * 	// custom filter function
+	 * 	filter(item: TableItem): boolean {
+	 * 		if (typeof item.data === "string" && item.data.indexOf(this.filterData.data) >= 0) {
+	 * 			this.filterCount = 1;
+	 * 			return false;
+	 * 		}
+	 * 		this.filterCount = 0;
+	 * 		return true;
+	 * 	}
+	 * }
+	 * ```
+	 *
+	 * @type {TemplateRef<any>}
+	 * @memberof TableHeaderItem
+	 */
+	filterTemplate: TemplateRef<any>;
+
+	/**
+	 * This is where you store your data when applying filter.
+	 *
+	 * It is the actual object you have access to with `let-filter="filter"` in your template.
+	 *
+	 * Make sure to store data in `filter.data` in your template, and you will have it
+	 * available in `filterData.data` in your extension of `TableHeaderItem`.
+	 *
+	 * Because angular and object references.
+	 *
+	 * @type {*}
+	 * @memberof TableHeaderItem
+	 */
+	filterData: any;
+
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty
 		const defaults = {
 			data: "",
 			visible: this.visible,
-			filterCount: this.filterCount
+			filterCount: this.filterCount,
+			filterData: {data: ""}
 		};
 		// fill our object with provided props, and fallback to defaults
 		const data = Object.assign({}, defaults, rawData);
@@ -107,6 +175,8 @@ export class TableHeaderItem {
 		this.visible = data.visible;
 		this.filterCount = data.filterCount;
 		this.template = data.template;
+		this.filterTemplate = data.filterTemplate;
+		this.filterData = data.filterData;
 	}
 	/**
 	 * Used for sorting rows of the table.
