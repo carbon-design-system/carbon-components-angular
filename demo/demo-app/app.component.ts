@@ -32,7 +32,7 @@ import * as en from  "./../../src/i18n/en.json";
 		<router-outlet></router-outlet>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
-	<n-sprite sprite="core"></n-sprite>
+	<n-sprite sprite="core_set"></n-sprite>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
 	<n-sprite sprite="brands"></n-sprite>
