@@ -85,9 +85,10 @@ import {
 					</ng-container>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody [ngClass]="{striped: striped}">
 				<ng-container *ngFor="let row of model.data; let i = index">
-					<tr *ngIf="!model.isRowFiltered(i)" [ngClass]="{selected: model.rowsSelected[i]}">
+					<tr *ngIf="!model.isRowFiltered(i)"
+						[ngClass]="{selected: model.rowsSelected[i]}">
 						<td class="check-column" *ngIf="enableRowSelect">
 							<n-checkbox
 								class="select-checkbox"
@@ -120,6 +121,11 @@ export class Table implements AfterContentChecked {
 	selectAllCheckboxSomeSelected = false;
 	colWidth = 150;
 
+	/**
+	 * Set to `true` to make table rows striped.
+	 *
+	 * @memberof Table
+	 */
 	@Input() striped = false;
 
 	/**
@@ -154,7 +160,7 @@ export class Table implements AfterContentChecked {
 		for (let i = 1; i < this.model.rowsSelected.length; i++) {
 			let one = this.model.rowsSelected[i];
 
-			if (one !== startValue) {
+			if (!!one !== !!startValue) {  // !! essentially converts to boolean and we want undefined to be false
 				// set indeterminate
 				this.selectAllCheckbox = false;
 				this.selectAllCheckboxSomeSelected = true;

@@ -14,6 +14,22 @@ table {
 	tbody {
 		display: table;
 		width: 100%;
+
+		&.striped {
+			tr {
+				&:nth-child(even) {
+					background: rgba(224,224,224,0.25);
+				}
+
+				&.selected {
+					background: rgba(85,150,230,0.10);
+				}
+
+				&:hover {
+					background: rgba(85,150,230,0.10);
+				}
+			}
+		}
 	}
 
 	thead {
@@ -68,10 +84,6 @@ table {
 		padding-bottom: 12.5px;
 		padding-top: 12.5px;
 		color: #5A5A5A;
-
-		&.striped {
-			background: rgba(224,224,224,0.25);
-		}
 
 		&.selected {
 			background: rgba(85,150,230,0.10);
