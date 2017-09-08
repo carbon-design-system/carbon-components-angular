@@ -48,7 +48,8 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<p>Default state</p>
 
 	<button class="btn" (click)="model.addRow()">Add row</button>
-	<button class="btn" (click)="model.addColumn()">Add column</button><br>
+	<button class="btn" (click)="model.addColumn()">Add column</button>
+	<button class="btn" (click)="striped = !striped">Toggle striped</button><br>
 
 	<button class="btn" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
 	<button class="btn" *ngFor="let column of model.header" (click)="column.visible = !column.visible">
@@ -82,7 +83,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 		</div>
 	</ng-template>
 
-	<n-table [model]="model" (sort)="sort($event)" #table></n-table>
+	<n-table [model]="model" [striped]="striped" (sort)="sort($event)" #table></n-table>
 
 
 	<h2>Default table</h2>
@@ -107,7 +108,8 @@ export class TableDemo implements OnInit {
 		this.model.data = [
 			[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
-			[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})]
+			[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
 		];
 
 		this.model.header = [
