@@ -121,6 +121,11 @@ export class Table implements AfterContentChecked {
 	selectAllCheckboxSomeSelected = false;
 	colWidth = 150;
 
+	/**
+	 * Set to `true` to make table rows striped.
+	 *
+	 * @memberof Table
+	 */
 	@Input() striped = false;
 
 	/**
