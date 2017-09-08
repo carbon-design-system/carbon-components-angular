@@ -84,7 +84,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 	</ng-template>
 
 	<n-table [model]="model" [striped]="striped" (sort)="sort($event)" #table></n-table>
-
+	<p>{{model.selectedRowsCount()}} of {{model.data.length}} rows selected</p>
 
 	<h2>Default table</h2>
 	<p>Default state</p>

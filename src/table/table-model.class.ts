@@ -41,10 +41,21 @@ export class TableModel {
 	get data() {
 		return this._data;
 	}
+
+
 	rowsSelected: Array<boolean>;
 	header: Array<TableHeaderItem>;
 
 
+	selectedRowsCount(): number {
+		let retVal = 0;
+		this.rowsSelected.forEach((rowSelected => {
+			if (rowSelected) {
+				retVal++;
+			}
+		}));
+		return retVal;
+	}
 	/**
 	 * Returns `index`th row of the table.
 	 *
