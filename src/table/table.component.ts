@@ -35,7 +35,8 @@ import {
 							</ng-template>
 							<div class="col-actions">
 								<button class="popover-button"
-									[nPopover]="column.filterTemplate ? column.filterTemplate : 'Filter unavailable'"
+									*ngIf="column.filterTemplate"
+									[nPopover]="column.filterTemplate"
 									title="Filter"
 									placement="right"
 									wrapperClass="popover-content-filter"
