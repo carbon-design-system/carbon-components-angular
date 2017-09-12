@@ -43,10 +43,23 @@ export class TableModel {
 	}
 
 
+	/**
+	 * Contains information about selection state of rows in the table.
+	 *
+	 * @type {Array<boolean>}
+	 * @memberof TableModel
+	 */
 	rowsSelected: Array<boolean>;
+
 	header: Array<TableHeaderItem>;
 
 
+	/**
+	 * Returns how many rows is currently selected
+	 *
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
 	selectedRowsCount(): number {
 		let retVal = 0;
 		this.rowsSelected.forEach((rowSelected => {
