@@ -39,6 +39,13 @@ export class PopoverDirective implements OnInit {
 	@Input() type: "warning" | "danger" | "" = "";
 	@Input() popoverMenu = false;
 	@Input() popoverFilter = false;
+	/**
+	 * Set by filter popover by you.
+	 *
+	 * @type {*}
+	 * @memberof PopoverDirective
+	 */
+	@Input() filter: any;
 
 	isTooltip = false;
 
@@ -70,7 +77,8 @@ export class PopoverDirective implements OnInit {
 			type: this.type,
 			isTooltip: this.isTooltip,
 			popoverMenu: this.popoverMenu,
-			popoverFilter: this.popoverFilter
+			popoverFilter: this.popoverFilter,
+			filter: this.filter
 		};
 
 		Observable.fromEvent(this.elementRef.nativeElement, this.trigger).subscribe(evt => {

@@ -42,7 +42,7 @@ Status explination:
 ### Contributing
 
 #### Quickstart
-- fork peretz-next/neutrino and clone it locally
+- fork peretz/neutrino and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run demo:server` to start the demo server
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests, and documentation README.md under `src`
@@ -51,7 +51,7 @@ Status explination:
 - **if you are contributing a fix**:
   - add your fix, update the documentation as needed
   - consider adding or modifying a test case to cover the fix
-- follow the [Angular style guide](https://angular.io/styleguide) and [our general component guidelines](https://github.ibm.com/peretz-next/neutrino/wiki/General-component-API-guidelines)
+- follow the [Angular style guide](https://angular.io/styleguide) and [our general component guidelines](https://github.ibm.com/peretz/neutrino/wiki/General-component-API-guidelines)
 - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
 - DO NOT change the version number.
 - submit a PR
@@ -66,7 +66,7 @@ Status explination:
   	- "issue #123" just refences the issue. Only use this if you definitly need the issue to remain open.
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
-- DO NOT @mention @peretz-next/Development - we have a bot in ibm-front-end#peretz-next that will let us know
+- DO NOT @mention @peretz/Development - we have a bot in ibm-front-end#peretz that will let us know
 - [link to code review checklist goes here](#)
 
 #### Issues submission guidelines

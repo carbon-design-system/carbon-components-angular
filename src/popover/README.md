@@ -1,6 +1,6 @@
 # Popover directive
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/popover](https://pages.github.ibm.com/peretz-next/neutrino/#/popover)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/popover](https://pages.github.ibm.com/peretz/neutrino/#/popover)
 
 class: PopoverDirective (implements OnInit)
 selector: `nPopover`

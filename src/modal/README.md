@@ -1,6 +1,6 @@
 # Modal
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/modal](https://pages.github.ibm.com/peretz-next/neutrino/#/modal)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/modal](https://pages.github.ibm.com/peretz/neutrino/#/modal)
 
 Modal module adds modal support to Neutrino.
 

@@ -1,6 +1,6 @@
 # Tree view
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/tree-view](https://pages.github.ibm.com/peretz-next/neutrino/#/tree-view)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/tree-view](https://pages.github.ibm.com/peretz/neutrino/#/tree-view)
 
 ## Components
 ### Tree view

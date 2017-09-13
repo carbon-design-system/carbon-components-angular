@@ -1,6 +1,6 @@
 # Dropdown
 
-demo: [https://pages.github.ibm.com/peretz-next/neutrino/#/dropdown](https://pages.github.ibm.com/peretz-next/neutrino/#/dropdown)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/dropdown](https://pages.github.ibm.com/peretz/neutrino/#/dropdown)
 
 ## Interfaces
 ### ListItem interface

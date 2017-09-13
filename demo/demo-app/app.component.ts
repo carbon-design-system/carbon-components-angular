@@ -12,7 +12,7 @@ import * as en from  "./../../src/i18n/en.json";
 		<h1 style="display: inline-block;">
 			<a routerLink="/">Neutrino</a>
 		</h1>
-		<a href="https://github.ibm.com/peretz-next/neutrino">Project</a>
+		<a href="https://github.ibm.com/peretz/neutrino">Project</a>
 	</header>
 	<nav>
 		<input
@@ -32,7 +32,7 @@ import * as en from  "./../../src/i18n/en.json";
 		<router-outlet></router-outlet>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
-	<n-sprite sprite="core"></n-sprite>
+	<n-sprite sprite="core_set"></n-sprite>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
 	<n-sprite sprite="brands"></n-sprite>
@@ -82,6 +82,11 @@ export class AppComponent implements OnInit {
 		{
 			content: "List view demo",
 			link: "/list-view",
+			selected: false
+		},
+		{
+			content: "Table demo",
+			link: "/table",
 			selected: false
 		},
 		{

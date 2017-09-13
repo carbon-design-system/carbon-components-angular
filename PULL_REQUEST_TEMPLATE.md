@@ -1,7 +1,7 @@
 Changes:
 - use this space to document what's changed
 
-@peretz-next/development
+@peretz/development
 
 review checklist:
 - [ ] accessible

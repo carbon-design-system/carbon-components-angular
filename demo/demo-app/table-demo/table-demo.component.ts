@@ -1,124 +1,132 @@
-import { Component, OnInit } from "@angular/core";
-import { Column } from "./../../../src/table/table.module";
+import {
+	Component,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation,
+	TemplateRef
+} from "@angular/core";
+import {
+	TableItem,
+	TableHeaderItem,
+	TableModel
+} from "./../../../src/table/table.module";
+
+class FilterableHeaderItem extends TableHeaderItem {
+	// custom filter function
+	filter(item: TableItem): boolean {
+		if (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+		item.data.name && item.data.name.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0) {
+			this.filterCount = 1;
+			return false;
+		}
+		this.filterCount = 0;
+		return true;
+	}
+
+	// used for custom sorting
+	compare(one: TableItem, two: TableItem) {
+		const stringOne = (one.data.name || one.data.surname || one.data).toLowerCase();
+		const stringTwo = (two.data.name || two.data.surname || two.data).toLowerCase();
+
+		if (stringOne > stringTwo) {
+			return 1;
+		} else if (stringOne < stringTwo) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+}
 
 @Component({
 	selector: "table-demo",
 	template: `
 	<h1>Table demo</h1>
 
-	<p>demo controls</p>
-	<button (click)="update()" class="btn">update rows</button>
-	<button (click)="deleteSelected()" class="btn" >delete selected</button>
-	<button (click)="cvis = !cvis" class="btn" >toggle col c</button>
-	<hr/>
-	<div class="table">
-		<n-table
-			[rows]="availableRows"
-			striped="true"
-			(selectAll)="selectAll($event)"
-			(selectRow)="select($event)">
-			<n-column
-				key="a"
-				title="A"
-				width="200"
-				(sort)="sortA($event)">
-				<ng-template #headerTemplate>A</ng-template>
-				<ng-template #cellTemplate let-data="data">col 1 {{data}}</ng-template>
-			</n-column>
-			<n-column
-				key="b"
-				title="B"
-				(sort)="sort($event)"
-				resizeable="false">
-				<ng-template #headerTemplate>B</ng-template>
-				<ng-template #cellTemplate let-data="data">column two {{data}}</ng-template>
-			</n-column>
-			<n-column
-				*ngIf="cvis"
-				key="c"
-				title="C"
-				width="200">
-				<ng-template #headerTemplate>C</ng-template>
-				<ng-template #cellTemplate let-data="data">{{data}}</ng-template>
-			</n-column>
-		</n-table>
-	</div>
+	<h2>Large table</h2>
+	<p>Default state</p>
+
+	<button class="btn" (click)="model.addRow()">Add row</button>
+	<button class="btn" (click)="model.addColumn()">Add column</button>
+	<button class="btn" (click)="striped = !striped">Toggle striped</button><br>
+
+	<button class="btn" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
+	<button class="btn" *ngFor="let column of model.header" (click)="column.visible = !column.visible">
+		Toggle {{column.data}}
+	</button><br>
+
+	<button class="btn" *ngFor="let column of model.header; let i = index"
+		(click)="model.deleteColumn(i)">
+		Delete {{column.data}}
+	</button>
+
+
+	<ng-template #filterableHeaderTemplate let-data="data">
+		<i><a [routerLink]="data.link">{{data.name}}</a></i>
+	</ng-template>
+
+	<ng-template #customTableItemTemplate let-data="data">
+		<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
+	</ng-template>
+
+	<ng-template #filter let-popover="popover" let-filter="filter">
+		<div class="filter-options">
+			<n-label class="first-label">
+				<label for="filter1">Value</label>
+				<input type="text" [(ngModel)]="filter1" class="input-field" id="filter1">
+			</n-label>
+		</div>
+		<div class="filter-options-buttons">
+			<button class="btn" (click)="filter.data = filter1; popover.onClose()">Apply</button>
+			<button class="btn btn-secondary" (click)="popover.onClose()">Cancel</button>
+		</div>
+	</ng-template>
+
+	<n-table [model]="model" [striped]="striped" (sort)="sort($event)" #table></n-table>
+	<p>{{model.selectedRowsCount()}} of {{model.data.length}} rows selected</p>
+
+	<h2>Default table</h2>
+	<p>Default state</p>
+
+	<n-table [model]="model"></n-table>
 	`,
-	styleUrls: ["./table-demo.component.css"]
+	styleUrls: ["./table-demo.component.scss"],
+	encapsulation: ViewEncapsulation.None
 })
 export class TableDemo implements OnInit {
-	private availableRows = [];
-	private updates = 0;
-	private cvis = false;
-	private selected = {};
+	public model = new TableModel();
+
+	@ViewChild("filterableHeaderTemplate")
+	private filterableHeaderTemplate: TemplateRef<any>;
+	@ViewChild("filter")
+	private filter: TemplateRef<any>;
+	@ViewChild("customTableItemTemplate")
+	private customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
-		this.rows();
+		this.model.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
+		];
+
+		this.model.header = [
+			new TableHeaderItem({data: "hwer"}),
+			new FilterableHeaderItem({
+				data: {name: "Custom header", link: "/table"},
+				template: this.filterableHeaderTemplate,
+				filterTemplate: this.filter
+			})
+		];
 	}
 
-	rows() {
-		let test = [];
-		for (let i = 0; i < 1000; i++) {
-			test.push({
-				a: i,
-				b: i + "B",
-				c: i + "C"
-			});
+	sort(index: number) {
+		if (this.model.header[index].sorted) {
+			// if already sorted flip sorting direction
+			this.model.header[index].ascending = this.model.header[index].descending;
 		}
-		this.availableRows = test;
-	}
-
-	update() {
-		let test = [];
-		this.updates++;
-		for (let i = 0; i < 100; i++) {
-			test.push({
-				a: i + `Aupdated${this.updates}`,
-				b: i + `Bupdated${this.updates}`,
-				c: 1 + `Cupdated${this.updates}`
-			});
-		}
-		this.availableRows = test;
-	}
-
-	sortA(ev) {
-		if (ev.direction === Column.sort.descending) {
-			this.availableRows.sort((a, b) => a[ev.key] - b[ev.key]);
-		} else {
-			this.availableRows.sort((a, b) => b[ev.key] - a[ev.key]);
-		}
-	}
-
-	sort(ev) {
-		if (ev.direction === Column.sort.descending) {
-			this.availableRows.sort();
-		} else {
-			this.availableRows.sort().reverse();
-		}
-	}
-
-	select(ev) {
-		if (ev.selected) {
-			this.selected[ev.index] = ev.row;
-		} else {
-			delete this.selected[ev.index];
-		}
-	}
-
-	selectAll(ev) {
-		if (ev.selected) {
-			this.selected = {all: true};
-		} else {
-			this.selected = {};
-		}
-	}
-
-	deleteSelected() {
-		let keys = Object.keys(this.selected);
-		for (let i = 0; i < keys.length; i++) {
-			let idx = this.availableRows.indexOf(this.selected[keys[i]]);
-			this.availableRows.splice(idx, 1);
-		}
-		this.selected = {};
+		this.model.sort(index);
 	}
 }
