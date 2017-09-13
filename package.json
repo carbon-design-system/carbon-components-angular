@@ -96,5 +96,7 @@
     "whatwg-fetch": "^2.0.3",
     "zone.js": "^0.8.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@peretz/matter": "0.0.1-alpha.762ad"
+  }
 }
