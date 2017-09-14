@@ -12,8 +12,9 @@ table {
 	table-layout: fixed;
 
 	tbody {
-		display: table;
+		display: block;
 		width: 100%;
+		overflow: scroll;
 
 		&.striped {
 			tr {
@@ -80,6 +81,8 @@ table {
 	}
 
 	tr {
+		display: table;
+		width: 100%;
 		height: 40px;
 		padding-bottom: 12.5px;
 		padding-top: 12.5px;
