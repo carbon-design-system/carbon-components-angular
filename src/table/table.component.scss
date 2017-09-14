@@ -1,7 +1,14 @@
 .table-container {
 	height: calc(100% + 40px);
 	font-size: 14px;
-    color: #323232;
+	color: #323232;
+	svg {
+		fill: #959595;
+	}
+
+	svg:hover {
+		fill: #4178BE;
+	}
 }
 
 table {
@@ -117,12 +124,4 @@ table {
     // ipad
     -webkit-overflow-scrolling: touch;
 	height: calc(100% - 80px);
-}
-
-svg {
-    fill: #959595;
-}
-
-svg:hover {
-    fill: #4178BE;
 }

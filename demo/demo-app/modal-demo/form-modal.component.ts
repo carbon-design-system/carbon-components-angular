@@ -40,11 +40,11 @@ import { Modal } from "../../../src";
 						<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 					</n-dropdown>
 					<br><br>
-					<button class="btn" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
+					<button class="btn--primary" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<n-modal-footer>
-					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Cancel</button>
-                    <button class="btn submit-button" type="submit">Submit</button>
+					<button class="btn--secondary cancel-button" (click)="closeModal()">Cancel</button>
+                    <button class="btn--primary submit-button" type="submit">Submit</button>
 				</n-modal-footer>
 			</form>
 		</n-modal>

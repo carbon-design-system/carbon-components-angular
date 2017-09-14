@@ -11,7 +11,7 @@ import { Modal } from "../../../src";
 				<h1>Sample modal works.</h1>
 				{{modalText}}
 			</section>
-			<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
+			<n-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
 		</n-modal>
 	`,
 	styleUrls: ["./sample-modal.component.scss"]

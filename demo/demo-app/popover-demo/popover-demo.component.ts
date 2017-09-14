@@ -37,8 +37,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		<n-icon icon="info" size="16"></n-icon>
 	</button>
 	<br>
-	<button class="btn" (click)="popover.close()">Close above popover</button>
-	<button class="btn" (click)="this.open()">Open above popover</button>
+	<button class="btn--primary" (click)="popover.close()">Close above popover</button>
+	<button class="btn--primary" (click)="this.open()">Open above popover</button>
 
 	<ng-template #list>
 		<div>
@@ -71,8 +71,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			<n-checkbox>Danger</n-checkbox>
 		</div>
 		<div class="filter-options-buttons">
-			<button class="btn">Apply</button>
-			<button class="btn btn-secondary">Cancel</button>
+			<button class="btn--primary">Apply</button>
+			<button class="btn--secondary">Cancel</button>
 		</div>
 	</ng-template>
 	Filter left
@@ -119,7 +119,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<h3>Popover flower</h3>
 	<p>Developers just wanna have fun.</p>
-	<button class="btn" (click)="toggleFlower()">Show</button>
+	<button class="btn--primary" (click)="toggleFlower()">Show</button>
 
 	<div class="flower-wrapper" #flower>
 		<div class="flower-center" nPopover="Loves me!" title="Popover title" placement="top" #petal1="nPopover"></div>

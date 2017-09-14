@@ -28,25 +28,24 @@ export class SwitchChange {
 @Component({
 	selector: "n-switch",
 	template: `
-		<div class="switch">
-			<label [for]="id">
-				<input type="checkbox" #inputCheckbox
-					[checked]="checked"
-					[disabled]="disabled"
-					[indeterminate]="indeterminate"
-					[name]="name"
-					[id]="id"
-					[required]="required"
-					[value]="value"
-					[attr.aria-label]="ariaLabel"
-					[attr.aria-labelledby]="ariaLabelledby"
-					[attr.aria-checked]="indeterminate ? 'mixed' : checked"
-					(change)="onChange($event)"
-					(click)="onClick($event)">
-					<span></span>
-				<span class="label"><ng-content></ng-content></span>
-			</label>
-		</div>
+		<label [for]="id" class="toggle">
+			<span class="toggle-label"><ng-content></ng-content></span>
+			<input type="checkbox"
+				#inputCheckbox
+				(change)="onChange($event)"
+				(click)="onClick($event)"
+				[checked]="checked"
+				[disabled]="disabled"
+				[indeterminate]="indeterminate"
+				[name]="name"
+				[id]="id"
+				[required]="required"
+				[value]="value"
+				[attr.aria-label]="ariaLabel"
+				[attr.aria-labelledby]="ariaLabelledby"
+				[attr.aria-checked]="indeterminate ? 'mixed' : checked">
+			<span></span>
+		</label>
 	`,
 	providers: [
 		{

@@ -24,16 +24,18 @@ import { DropdownList } from "./dropdown-list.component";
 		<div
 			*ngIf="type === 'multi'"
 			class="dropdown-selected-only">
-			<span class="checkbox" style="margin-bottom: 0px;">
-				<label>
-					<input
-						#selectedOnly
-						type="checkbox"
-						[attr.disabled]="disableSelectedOnly"
-						(click)="filterItems()">
-					<span class="label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
-				</label>
-			</span>
+			<label [ngClass]="{
+					'checkbox': size === 'default',
+					'checkbox--sm': size === 'sm'
+				}"
+				style="margin-bottom: 0px;">
+				<input
+					#selectedOnly
+					type="checkbox"
+					[attr.disabled]="disableSelectedOnly"
+					(click)="filterItems()">
+				<span class="checkbox_label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
+			</label>
 		</div>
 		<div class="dropdown-filter-search size-md">
 			<div class="search-icon">
@@ -106,17 +108,19 @@ import { DropdownList } from "./dropdown-list.component";
 					disabled: item.disabled
 				}"
 				class="option">
-				<span class="checkbox"
-					*ngIf="type === 'multi'">
-					<label>
-						<input
-							tabindex="-1"
-							type="checkbox"
-							[checked]="item.selected"
-							(click)="doClick($event, item)">
-						<span class="label"></span>
-					</label>
-				</span>
+				<label [ngClass]="{
+						'checkbox': size === 'default',
+						'checkbox--sm': size === 'sm'
+					}"
+					*ngIf="type === 'multi'"
+					style="margin: 0;">
+					<input
+						tabindex="-1"
+						type="checkbox"
+						[checked]="item.selected"
+						(click)="doClick($event, item)">
+					<label class="checkbox_label" style="margin: 0;"></label>
+				</label>
 				<span *ngIf="!listTpl">{{item.content}}</span>
 				<ng-template
 					*ngIf="listTpl"

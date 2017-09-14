@@ -14,7 +14,7 @@ import * as en from  "./../../src/i18n/en.json";
 		</h1>
 		<a href="https://github.ibm.com/peretz/neutrino">Project</a>
 	</header>
-	<nav>
+	<nav class="n-list">
 		<input
 			type="search"
 			(keyup)="search($event)"

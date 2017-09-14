@@ -16,7 +16,6 @@ import { TranslateModule } from "@ngx-translate/core";
 // demo imports
 import { BannerCustom } from "./banner-demo/banner-demo-custom";
 import { BannerDemo } from "./banner-demo/banner-demo-component";
-import { ChartsDemo } from "./charts-demo/charts-demo.component";
 import { CoreDemo } from "./core-demo/core-demo.component";
 import { DropdownDemo } from "./dropdown-demo/dropdown-demo.component";
 import { ErrorModalComponent } from "./modal-demo/error-modal.component";
@@ -55,7 +54,6 @@ import {
 	BannerModule,
 	BannerService,
 	NFormsModule,
-	ChartsModule,
 	ComboBoxModule
 } from "./../../src";
 
@@ -86,7 +84,6 @@ import {
 		TooltipDemo,
 		BannerDemo,
 		BannerCustom,
-		ChartsDemo,
 		ComboboxDemo
 	],
 	entryComponents: [
@@ -115,7 +112,6 @@ import {
 		ModalModule,
 		BannerModule,
 		NFormsModule,
-		ChartsModule,
 		ComboBoxModule,
 		RouterModule.forRoot([
 			{
@@ -177,10 +173,6 @@ import {
 			{
 				path: "banner",
 				component: BannerDemo
-			},
-			{
-				path: "charts",
-				component: ChartsDemo
 			},
 			{
 				path: "combobox",

@@ -21,36 +21,53 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 @Component({
 	selector: "n-popover",
 	template: `
-		<div class="popover {{popoverConfig.wrapperClass}} {{popoverConfig.placement}} {{popoverConfig.type}}
-		{{popoverConfig.trigger}}"
-		[class.tooltip]="popoverConfig.isTooltip"
-		[class.popover-menu]="popoverConfig.popoverMenu"
-		[class.popover-filter]="popoverConfig.popoverFilter"
-		[attr.role]="popoverConfig.isTooltip && !isRoleDialog() ? 'tooltip':'dialog'"
-		id="{{popoverConfig.compID}}" tabindex="0" #popover>
-			<header *ngIf="!popoverConfig.isTooltip" class="popover-header" aria-labelledby="Title" role="banner">
-				<h4 class="popover-title">{{popoverConfig.title}}</h4>
-				<button *ngIf="popoverConfig.trigger==='click' || popoverConfig.trigger==='mouseenter'"
-				class="close-icon"  (click)="onClose()" aria-label="Close popover">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
+		<div
+			class="popover popover--{{popoverConfig.placement}} {{popoverConfig.placement}} {{popoverConfig.wrapperClass}} {{popoverConfig.type}}
+			{{popoverConfig.trigger}}"
+			[class.tooltip]="popoverConfig.isTooltip"
+			[class.popover-menu]="popoverConfig.popoverMenu"
+			[class.popover-filter]="popoverConfig.popoverFilter"
+			[attr.role]="popoverConfig.isTooltip && !isRoleDialog() ? 'tooltip':'dialog'"
+			id="{{popoverConfig.compID}}"
+			tabindex="0"
+			style="position: initial;"
+			#popover>
+			<header
+				*ngIf="!popoverConfig.isTooltip"
+				class="popover_header"
+				aria-labelledby="Title"
+				role="banner">
+				<h3 class="header_title">{{popoverConfig.title}}</h3>
+				<button
+					*ngIf="popoverConfig.trigger==='click' || popoverConfig.trigger==='mouseenter'"
+					class="close--white-md"
+					(click)="onClose()"
+					aria-label="Close popover">
+					<svg
+						class="close_icon"
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 16 16">
+						<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
 					</svg>
 				</button>
 			</header>
-			<div class="popover-content" role="main">
+			<div class="popover_content" role="main">
 				<ng-template
 					*ngIf="isTpl"
-					[ngTemplateOutlet]="popoverConfig.content" [ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
+					[ngTemplateOutlet]="popoverConfig.content"
+					[ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
 				</ng-template>
 				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
 
 				<button
-				*ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'"
-				class="close-icon"
-				(click)="onClose()"
-				aria-label="Close Tooltip">
+					*ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'"
+					class="close-icon"
+					(click)="onClose()"
+					aria-label="Close Tooltip">
 					<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
-					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
+						<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
 					</svg>
 				</button>
 
@@ -58,7 +75,10 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
 		`,
-	host: {"class": "popover-wrapper"},
+	host: {
+		class: "popover-wrapper",
+		style: "position: absolute; z-index: 1000;"
+	},
 })
 export class Popover implements OnInit, AfterViewInit {
 	public offsetTop = 48; // 40px heading + 8px triangle

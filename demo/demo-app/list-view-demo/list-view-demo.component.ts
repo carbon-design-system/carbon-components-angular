@@ -8,10 +8,10 @@ import { Component, OnInit } from "@angular/core";
 	<ng-template #listTpl let-item="item"><n-icon icon="alert" size="md"></n-icon> {{item.content}}</ng-template>
 
 	<h3>Default list view</h3>
-	<n-list-view [items]="demoItems" (select)="onSelect($event)"></n-list-view>
+	<n-list-view [items]="demoItems" (selected)="onSelect($event)"></n-list-view>
 
 	<h3>List view with custom template (Added Icon) and no check mark</h3>
-	<n-list-view [items]="demoItems1" (select)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></n-list-view>
+	<n-list-view [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></n-list-view>
 	`
 })
 export class ListViewDemo {

@@ -22,7 +22,8 @@ import { IconService } from "./icon.service";
 				</svg>`,
 	providers: [IconService],
 	host: {
-		class: "icon"
+		class: "icon",
+		style: "display: inherit;"
 	}
 })
 export class Icon implements OnChanges {
