@@ -51,17 +51,17 @@ class FilterableHeaderItem extends TableHeaderItem {
 
 	<h2>Custom table</h2>
 
-	<button class="btn" (click)="model.addRow()">Add row</button>
-	<button class="btn" (click)="model.addColumn()">Add column</button>
+	<button class="btn" (click)="customModel.addRow()">Add row</button>
+	<button class="btn" (click)="customModel.addColumn()">Add column</button>
 	<button class="btn" (click)="striped = !striped">Toggle striped</button><br>
 
 	<button class="btn" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
-	<button class="btn" *ngFor="let column of model.header" (click)="column.visible = !column.visible">
+	<button class="btn" *ngFor="let column of customModel.header" (click)="column.visible = !column.visible">
 		Toggle {{column.data}}
 	</button><br>
 
-	<button class="btn" *ngFor="let column of model.header; let i = index"
-		(click)="model.deleteColumn(i)">
+	<button class="btn" *ngFor="let column of customModel.header; let i = index"
+		(click)="customModel.deleteColumn(i)">
 		Delete {{column.data}}
 	</button>
 
