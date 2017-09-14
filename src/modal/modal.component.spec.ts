@@ -22,7 +22,7 @@ describe("ModalComponent", () => {
 
 		fixture = TestBed.createComponent(ModalComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("div.modal-wrapper"));
+		de = fixture.debugElement.query(By.css("div"));
 		el = de.nativeElement;
 	});
 
@@ -32,7 +32,7 @@ describe("ModalComponent", () => {
 
 	it("should close modal when overlay is clicked", () => {
 		fixture.detectChanges();
-		let overlay = fixture.debugElement.query(By.css(".overlay")).nativeElement;
+		let overlay = fixture.debugElement.query(By.css(".modal-backdrop")).nativeElement;
 		spyOn(fixture.componentInstance.overlaySelected, "emit");
 		overlay.click();
 		expect(fixture.componentInstance.overlaySelected.emit).toHaveBeenCalled();
