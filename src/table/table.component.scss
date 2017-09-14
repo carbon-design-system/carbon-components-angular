@@ -19,8 +19,9 @@ table {
 	table-layout: fixed;
 
 	tbody {
-		display: table;
+		display: block;
 		width: 100%;
+		overflow: scroll;
 
 		&.striped {
 			tr {
@@ -87,10 +88,13 @@ table {
 	}
 
 	tr {
+		display: table;
+		width: 100%;
 		height: 40px;
 		padding-bottom: 12.5px;
 		padding-top: 12.5px;
 		color: #5A5A5A;
+		table-layout: fixed;
 
 		&.selected {
 			background: rgba(85,150,230,0.10);
@@ -124,4 +128,18 @@ table {
     // ipad
     -webkit-overflow-scrolling: touch;
 	height: calc(100% - 80px);
+}
+
+.table-footer {
+	text-align: center;
+
+	.table-selection-info {
+		float: left;
+	}
+	n-table-pagination {
+		margin: auto;
+	}
+	n-table-goto-page {
+		float: right;
+	}
 }
