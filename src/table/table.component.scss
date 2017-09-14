@@ -12,8 +12,9 @@ table {
 	table-layout: fixed;
 
 	tbody {
-		display: table;
+		display: block;
 		width: 100%;
+		overflow: scroll;
 
 		&.striped {
 			tr {
@@ -80,6 +81,8 @@ table {
 	}
 
 	tr {
+		display: table;
+		width: 100%;
 		height: 40px;
 		padding-bottom: 12.5px;
 		padding-top: 12.5px;
@@ -125,4 +128,18 @@ svg {
 
 svg:hover {
     fill: #4178BE;
+}
+
+.table-footer {
+	text-align: center;
+
+	.table-selection-info {
+		float: left;
+	}
+	n-table-pagination {
+		margin: auto;
+	}
+	n-table-goto-page {
+		float: right;
+	}
 }

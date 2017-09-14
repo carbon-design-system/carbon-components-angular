@@ -30,6 +30,7 @@ import { PopoverDemo } from "./popover-demo/popover-demo.component";
 import { SampleModalComponent } from "./modal-demo/sample-modal.component";
 import { SideNavDemo } from "./side-nav-demo/side-nav-demo.component";
 import { TableDemo } from "./table-demo/table-demo.component";
+import { TableDemoService } from "./table-demo/table-demo.service";
 import { TabsDemo } from "./tabs-demo/tabs-demo.component";
 import { TooltipDemo } from "./tooltip-demo/tooltip-demo.component";
 import { TopNavDemo } from "./top-nav-demo/top-nav-demo.component";
@@ -194,6 +195,7 @@ import {
 	providers: [
 		IconService,
 		BannerService,
+		TableDemoService
 	],
 	bootstrap: [AppComponent]
 })

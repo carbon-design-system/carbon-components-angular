@@ -11,6 +11,54 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 
+/**
+ * Build your table with this component by extending things that differ from default.
+ *
+ * ## Build your own table footer with neutrino components
+ *
+ * ```html
+ * <p class="table-footer">
+ * 	<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
+ * 	<n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
+ * 	<n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
+ * </p>
+ * ```
+ *
+ * `selectPage()` function should fetch the data from backend, create new `data`, apply it to `model.data`,
+ * and update `model.currentPage`.
+ *
+ * If the data your server returns is a two dimensional array of objects, it would look something like this:
+ *
+ * ```typescript
+ * selectPage(page) {
+ * 	this.service.getPage(page).then((data: Array<Array<any>>) => {
+ * 		let newData = [];
+ *
+ * 		// create new data from the service data
+ * 		data.forEach(dataRow => {
+ * 			let row = [];
+ * 			dataRow.forEach(dataElement => {
+ * 				row.push(new TableItem({
+ * 					data: dataElement,
+ * 					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+ * 					// your template can handle all the data types so you don't have to conditionally set it
+ * 					// you can also set different templates for different columns based on index
+ * 				}));
+ * 			});
+ * 			newData.push(row);
+ * 		});
+ *
+ * 		// set the data and update page
+ * 		this.model.data = newData;
+ * 		this.model.currentPage = page;
+ * 	});
+ * }
+ * ```
+ *
+ * @export
+ * @class Table
+ * @implements {AfterContentChecked}
+ */
 @Component({
 	selector: "n-table",
 	template: `

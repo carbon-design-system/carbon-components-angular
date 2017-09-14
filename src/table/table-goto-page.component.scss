@@ -1,0 +1,15 @@
+@import "../core/scss-tools";
+
+.table-goto-page {
+	display: inline-flex;
+
+	input {
+		display: inline-block;
+		width: 50px;
+		margin-right: 10px;
+	}
+
+	button.btn {
+		display: inline-block;
+	}
+}
