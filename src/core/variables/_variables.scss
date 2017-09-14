@@ -521,4 +521,84 @@ $modal-close-icon-svg-colour: color("white", 0) !default;
 $modal-close-icon-border: 1px solid !default;
 $modal-close-icon-border-color: color("white", 0) !default;
 
+// extra matter vars
 
+$stroke-color:  color("gray", 10) !default;
+$stroke-width:  1px !default;
+
+$stroke-disabled-style:  dashed !default;
+
+$font-size-root:  100% !default; // root must inherit browser settings
+$font-size-base:  rem(14) !default;
+$font-size-sm:    rem(12) !default;
+$font-size-xs:    rem(11) !default;
+$font-size-h1:    rem(36) !default;
+$font-size-h2:    rem(22) !default;
+$font-size-h3:    rem(17) !default;
+$font-size-h4:    rem(15) !default;
+$font-size-h5:    rem(15) !default;
+$font-size-h6:    rem(13) !default;
+
+$font-weight-light:   100 !default;
+$font-weight-roman:   300 !default;
+$font-weight-medium:  500 !default;
+$font-weight-bold:    700 !default;
+$font-weight-base:    $font-weight-roman !default;
+$font-weight-h1:      $font-weight-bold !default;
+$font-weight-h2:      $font-weight-light !default;
+$font-weight-h3:      $font-weight-bold !default;
+$font-weight-h4:      $font-weight-bold !default;
+$font-weight-h5:      $font-weight-roman !default;
+$font-weight-h6:      $font-weight-roman !default;
+$font-weight-dt:      $font-weight-medium !default;
+
+$spacer: 20px !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25, //= 5px
+  2: $spacer * 0.5, //= 10px
+  3: $spacer, //= 20px
+  4: $spacer * 1.5, //= 30px
+  5: $spacer * 2 //= 40px
+) !default;
+
+$zindex-dropdown:         1000 !default;
+$zindex-sticky:           1020 !default;
+$zindex-fixed:            1030 !default;
+$zindex-modal-backdrop:   1040 !default;
+$zindex-modal:            1050 !default;
+$zindex-popover:          1060 !default;
+$zindex-tooltip:          1070 !default;
+
+$text-colors: (
+	"white": color("white", 0),
+	"light": color("gray", 50),
+	"base": color("gray", 60),
+	"dark": color("gray", 80)
+) !default;
+
+$stroke-color:  color("gray", 10) !default;
+$stroke-width:  1px !default;
+
+$stroke-disabled-style:  dashed !default;
+
+// 3
+$drop-shadow-base:  0 0 10px color("black", 100, 0.15);
+
+$close-padding-x:     3px !default;
+$close-border-width:  1px !default;
+
+$close-size-default-key:  lg !default;
+$close-sizes: (
+  xs: 10px,
+  sm: 12px,
+  md: 14px,
+  lg: 16px // default
+) !default;
+
+$close-color-default-key:  "light" !default;
+$close-colors: (
+  "white": color("white", 0),
+  "light": color("gray", 50), // default
+  "dark": color("gray", 80)
+) !default;

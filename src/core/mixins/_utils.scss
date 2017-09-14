@@ -4,6 +4,13 @@ $browser-context: 16; // Default
   @return #{$pixels/$context}rem;
 }
 
+@mixin m_hover-focus {
+	&:focus,
+	&:hover {
+	  @content;
+	}
+  }
+
 
 // Text overflow
 // Requires inline-block or block for proper styling
