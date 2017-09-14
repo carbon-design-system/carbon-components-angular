@@ -126,3 +126,17 @@ svg {
 svg:hover {
     fill: #4178BE;
 }
+
+.table-footer {
+	text-align: center;
+
+	.table-selection-info {
+		float: left;
+	}
+	n-table-pagination {
+		margin: auto;
+	}
+	n-table-goto-page {
+		float: right;
+	}
+}
