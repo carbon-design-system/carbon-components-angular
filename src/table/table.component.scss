@@ -87,6 +87,7 @@ table {
 		padding-bottom: 12.5px;
 		padding-top: 12.5px;
 		color: #5A5A5A;
+		table-layout: fixed;
 
 		&.selected {
 			background: rgba(85,150,230,0.10);
