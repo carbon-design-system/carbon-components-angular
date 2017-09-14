@@ -23,11 +23,11 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 	template: `
 		<div
 			class="popover popover--{{popoverConfig.placement}} {{popoverConfig.placement}} {{popoverConfig.wrapperClass}} {{popoverConfig.type}}
-			{{popoverConfig.trigger}}"
+			{{popoverConfig.trigger}} {{popoverConfig.isTooltip?'tooltip--'+popoverConfig.placement:''}}"
 			[class.tooltip]="popoverConfig.isTooltip"
 			[class.popover-menu]="popoverConfig.popoverMenu"
 			[class.popover-filter]="popoverConfig.popoverFilter"
-			[attr.role]="popoverConfig.isTooltip && !isRoleDialog() ? 'tooltip':'dialog'"
+			[attr.role]="popoverConfig.isTooltip ? 'tooltip':'dialog'"
 			id="{{popoverConfig.compID}}"
 			tabindex="0"
 			style="position: initial;"
@@ -53,24 +53,36 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 					</svg>
 				</button>
 			</header>
-			<div class="popover_content" role="main">
+			<div
+				*ngIf="popoverConfig.isTooltip"
+				class="tooltip_text"
+				role="tooltip">
 				<ng-template
 					*ngIf="isTpl"
 					[ngTemplateOutlet]="popoverConfig.content"
 					[ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
 				</ng-template>
 				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
-
-				<button
-					*ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'"
-					class="close-icon"
-					(click)="onClose()"
-					aria-label="Close Tooltip">
-					<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 16 16">
-						<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
-					</svg>
-				</button>
-
+			</div>
+			<button
+				*ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'"
+				class="close--xs"
+				(click)="onClose()"
+				aria-label="Close Tooltip">
+				<svg class="close_icon" width="10" height="10" viewBox="0 0 16 16">
+					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
+				</svg>
+			</button>
+			<div
+				*ngIf="!popoverConfig.isTooltip"
+				class="popover_content"
+				role="main">
+				<ng-template
+					*ngIf="isTpl"
+					[ngTemplateOutlet]="popoverConfig.content"
+					[ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
+				</ng-template>
+				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
 			</div>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
