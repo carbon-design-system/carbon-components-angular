@@ -5,16 +5,18 @@
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    white-space: nowrap;
+	display: inline-grid;
+	overflow-x: scroll;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	white-space: nowrap;
 	table-layout: fixed;
 
 	tbody {
 		display: block;
 		width: 100%;
-		overflow: scroll;
+		overflow-y: scroll;
 
 		&.striped {
 			tr {
@@ -36,6 +38,7 @@ table {
 	thead {
 		display: table;
 		width: 100%;
+
 		th {
 			text-align: left;
 			padding-left: 20px;
