@@ -5,7 +5,7 @@ import { Component, OnInit } from "@angular/core";
 	template: `
 	<h1>Calendar</h1>
 
-	<button class="btn" (click)="changeDate()">Change</button>
+	<button class="btn--primary" (click)="changeDate()">Change</button>
 
 	<br><br>
 	Selected Date: {{selectedDate}}

@@ -55,7 +55,7 @@ import * as readme from "./../../../src/combobox/README.md";
 				type="multi">
 			</n-pill-input>
 			<button
-				class="btn"
+				class="btn--primary"
 				(click)="resetPills()"
 				style="margin-left: 10px;">
 				Reset

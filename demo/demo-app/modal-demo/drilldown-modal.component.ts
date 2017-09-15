@@ -16,11 +16,11 @@ import { Modal } from "../../../src";
 				<section class="modal-body">
 					<div>
 						<h1>Drill modal works.</h1>
-						<button class="btn" (click)="drill($event)">Drill down</button>
+						<button class="btn--primary" (click)="drill($event)">Drill down</button>
 					</div>
 				</section>
 				<n-modal-footer *ngIf="!drilledin">
-					<button class="btn cancel-button" (click)="closeModal()">Close</button>
+					<button class="btn--primary cancel-button" (click)="closeModal()">Close</button>
 				</n-modal-footer>
 			</ng-container>
 			<ng-container *ngSwitchCase="true">
@@ -42,7 +42,7 @@ import { Modal } from "../../../src";
 					</div>
 				</section>
 				<n-modal-footer>
-					<button class="btn cancel-button btn-secondary" (click)="drill($event, false)">Back</button>
+					<button class="btn--secondary" (click)="drill($event, false)">Back</button>
 				</n-modal-footer>
 			</ng-container>
 		</n-modal>

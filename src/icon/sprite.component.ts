@@ -24,7 +24,7 @@ import { IconService } from "./icon.service";
 	providers: [IconService]
 })
 export class Sprite implements AfterViewInit {
-	/** name used to requst sprite from the baseURL */
+	/** name used to request sprite from the baseURL */
 	@Input() sprite = "";
 
 	/**

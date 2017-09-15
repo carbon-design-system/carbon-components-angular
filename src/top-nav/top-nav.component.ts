@@ -12,14 +12,18 @@ import { DOCUMENT } from "@angular/platform-browser";
 @Component({
 	selector: "n-top-nav",
 	template: `
-	<header class="top-nav clearfix" [ngClass]="{'top-nav-fixed': fixed}" role="banner">
-		<nav role="menu">
+	<header
+		[ngClass]="{
+			'position-fixed--top': fixed
+		}"
+		role="banner">
+		<nav class="top-nav" role="menu">
 			<a href="#main-content" class="sr-only">{{ 'TOPNAV.SKIP_TO_MAIN' | translate }}</a>
 			<ng-content select="[hamburger]"></ng-content>
 			<ng-content select="[title]"></ng-content>
 			<ng-content select="[links]"></ng-content>
 			<ng-content select="[menu]"></ng-content>
-			<span class="top-nav-ibm" aria-hidden="true">
+			<span class="top-nav_ibm" aria-hidden="true">
 				<svg xmlns="http://www.w3.org/2000/svg" width="38" height="16" viewBox="0 0 38 15"><path class="st0" d="M0
 				0h7v1H0zM0 2h7v1H0zM0 12h7v1H0zM0 14h7v1H0zM2 10h3v1H2zM2 8h3v1H2zM2 6h3v1H2zM2 4h3v1H2zM10 4h3v1h-3zM23 8h3v1h-3zM23
 				10h3v1h-3zM21 12h5v1h-5zM33 12h5v1h-5zM33 14h5v1h-5zM21 14h5v1h-5zM33 8h3v1h-3zM33 10h3v1h-3zM10 10h3v1h-3zM26.3 0H21v1h5.7zM27.1

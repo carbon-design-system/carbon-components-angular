@@ -1,376 +1,503 @@
+////////////////////////////////////
+// Popover vars
+////////////////////////////////////
+
+$popover-bg:          color("white", 0) !default;
+$popover-max-width:   450px !default;
+
+$popover-padding-x:   $spacer !default;
+$popover-padding-y:   $spacer !default;
+
+$popover-truncate-spacer:  map-get($spacers, 4) !default;
+
+$popover-directions: (
+  top: bottom,
+  right: left,
+  bottom: top,
+  left: right,
+  right-bottom: left,
+  left-bottom: right
+) !default;
+
+$popover-header-height:   44px !default;
+$popover-header-bg:       color("blue", 50) !default;
+
+$popover-title-color:         map-get($text-colors, "white") !default;
+$popover-title-font-size:     $font-size-h4 !default;
+$popover-title-font-weight:   $font-weight-bold !default;
+
+$popover-content-border-width:  $stroke-width !default;
+$popover-content-border-style:  solid !default;
+$popover-content-border-color:  $stroke-color !default;
+
+$popover-footer-padding-y:    map-get($spacers, 2) !default;
+
+$popover-menu-directions: (
+  bottom-left: top,
+  bottom-right: top,
+) !default;
+
+$popover-menu-max-width:  300px !default;
+$popover-menu-padding-x:  map-get($spacers, 2) !default;
+
+$popover-menu-header-height:      30px !default;
+$popover-menu-title-font-size:    $font-size-h6 !default;
+
+$popover-menu-link-height:      30px !default;
+$popover-menu-link-color:       map-get($text-colors, "base") !default;
+$popover-menu-link-font-size:   $font-size-h6 !default;
+
+$popover-menu-link-hover-bg:        $blue40-10 !default;
+$popover-menu-link-hover-accent:    -1px 0 color("blue", 50) !default;
+
+////////////////////////////////////
+// Arrow mixin
+////////////////////////////////////
+
+$arrow-size:    10px !default;
+$arrow-offset:  $arrow-size / 2 !default;
+$arrow-color:   color("white", 0) !default;
+$arrow-directions: (
+  top: bottom,
+  right: left,
+  right-bottom: left,
+  bottom: top,
+  bottom-right: top,
+  bottom-left: top,
+  left-bottom: right,
+  left: right
+) !default;
+
 //
-// Popovers and Tooltips
-// --------------------------------------------------
+// Arrow
+//
+// Used for tooltips and popovers.
+// ====================================
 
-// Popovers
-// -------------------------
+@mixin m_arrow($direction: top, $color: $arrow-color) {
+	// Get opposite of $direction
+	$opposite-direction: map-get($arrow-directions, $direction);
 
-.popover-wrapper {
+	&::before,
+	&::after {
+	  position: absolute;
+
+	  border: $arrow-size solid transparent;
+	  border-bottom-width: 0; // sass-lint:disable-line property-sort-order
+
+	  content: "";
+
+	  @if $direction == top or $direction == bottom {
+		left: calc(50% - #{$arrow-size});
+	  } @else if $direction == left or $direction == right {
+		top: calc(50% - #{$arrow-offset});
+	  } @else if $direction == bottom-left {
+		top: -$arrow-offset;
+		right: -$arrow-offset;
+	  } @else if $direction == bottom-right {
+		top: -$arrow-offset;
+		left: -$arrow-offset;
+	  } @else if $direction == right-bottom or $direction == left-bottom {
+		top: $popover-header-height / 2 - $arrow-size + $arrow-offset;
+	  }
+
+	  @if $direction == right or $direction == right-bottom {
+		transform: rotate(90deg) translateY(#{$arrow-offset});
+	  } @else if $direction == bottom {
+		transform: rotate(180deg);
+	  } @else if $direction == bottom-right {
+		transform: rotate(-90deg);
+	  } @else if $direction == bottom-left {
+		transform: rotate(90deg);
+	  } @else if $direction == left-bottom {
+		transform: rotate(-90deg) translateY(#{$arrow-offset});
+	  } @else if $direction == left {
+		transform: rotate(270deg) translateY(#{$arrow-offset});
+	  }
+	}
+
+	@if $color == $arrow-color {
+	  &::before {
+		#{$opposite-direction}: -$arrow-size; // sass-lint:disable-line property-sort-order
+		border-top-color: $stroke-color; // sass-lint:disable-line property-sort-order
+		z-index: -1;
+	  }
+	} @else {
+	  &::before {
+		content: none;
+	  }
+	}
+
+	&::after {
+	  border-top-color: $color; // sass-lint:disable-line property-sort-order
+
+	  @if $direction != bottom-left and $direction != bottom-right {
+		#{$opposite-direction}: -$arrow-size + $stroke-width; // sass-lint:disable-line property-sort-order
+	  }
+	}
+  }
+
+  @mixin m_text-truncate {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+  }
+
+////////////////////////////////////
+// Popover mixins
+////////////////////////////////////
+
+//
+// Base styles
+// ====================================
+
+@mixin m_popover($direction, $is-menu: false) {
+	@if $direction == top or $direction == right or $direction == left {
+	  @include m_arrow($direction);
+	} @else {
+	  @include m_arrow($direction, $popover-header-bg);
+	}
+
+	display: block;
 	position: absolute;
-	z-index: 1000;
-}
 
-.popover-button {
-	padding-left: 5px;
-	padding-right: 5px;
-	color: color("gray", 50);
-	font-weight: 300;
-	border-bottom: 1px solid transparent;
-
-	&:hover, &.popover-selected {
-		color: color("blue", 50);
-		border-bottom: 1px solid color("blue", 50);
-		n-icon .icon {
-			fill: color("blue", 50);
-		}
-	}
-}
-
-.popover-menu-button {
-	padding-left: 4px;  // 6px from the dot to the side of the icon + these 4px to get to desired 10px
-	padding-right: 10px;
-	height: $btn-height - 1px;  // border adds a pixel
-
-	n-icon {
-		padding-right: 1px;  // 6px from the dot to the side of the icon + this pixel to get to desired 7px
-	}
-}
-
-n-popover .tooltip {
-	top: 0;
-}
-
-.popover {
-	@include box-shadow($default-box-shadow);
-	background-color: color("white", 0);
-	position: relative;
-	max-width: 280px;
-
-
-	&.popover-menu {
-		min-width: 130px;
-		top: 0;
-		.popover-header {
-			height: 30px;
-			padding: 6px 10px;
-			.popover-title {
-				margin: 0;
-				margin-right: 20px;
-				font-size: 13px;
-			}
-			.close-icon {
-				padding: 2px;
-				margin: 0;
-				height: 18px;
-				display: flex;
-
-				svg {
-					height: 12px;
-					width: 12px;
-				}
-			}
-		}
-		.popover-content ul.list-view {
-			overflow: hidden;
-			margin-top: -2px; // hide last border-bottom
-			li {
-				padding: 6px 10px 6px 0;
-				height: 30px;
-				border: 0;
-				font-size: 13px;
-				margin-bottom: 0;
-				margin-top: 1px;
-				border-left: 1px solid transparent;
-				div {
-					width: 100%;
-					border-top: $listview-border;
-					margin-left: 10px;
-					padding-top: 5px;
-					position: relative;
-					top: -7px;
-					span {
-						position: relative;
-						top: 2px;
-					}
-				}
-				&:hover, &:focus {
-					margin-top: 1px;
-					border-left: 1px solid color("blue", 50);
-					div {
-						border-top: 1px solid transparent;
-					}
-					& + li {
-						div {
-							border-top: 1px solid transparent;
-						}
-					}
-				}
-			}
-		}
+	@if $is-menu == true {
+	  max-width: $popover-menu-max-width;
+	} @else {
+	  max-width: $popover-max-width;
 	}
 
-	.popover-header {
-		padding: $popover-header-padding;
-		height: $popover-header-height;
-		background-color: $popover-header-bg;
-		.popover-title {
-			color: $popover-title-color;
-			margin: 5px 25px 5px 5px;
-			float: left;
-			max-width: 890px;
-			@include text-overflow();
-		}
-		.close-icon {
-			float: right;
-			border: 1px solid rgba(0,0,0,0); // invisible border to compensate shift
-			padding: 3px;
-			margin: 3px 0;
-			height: 24px;
-			display: flex;
-			svg * {
-				fill: color("white", 0);
-			}
-			&:hover {
-				border: 1px solid color("white", 0);
-			}
-			&:focus {
-				border: 1px solid color("white", 0);
-			}
-		}
-	}
-	.popover-content {
-		padding: $popover-content-padding;
-		overflow: auto;
-	}
-	.arrow {
-		@include arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
-	}
-	&.top {
-		top: 0;
-		.arrow {
-			bottom: - $popover-arrow-height;
-			left: calc(50% - 10px);
-		}
-	}
-	&.top-left {
-		.arrow {
-			bottom: - $popover-arrow-height;
-			left: 0;
-			transform: scaleX(-1);
-			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
-		}
-	}
-	&.top-right {
-		.arrow {
-			bottom: - $popover-arrow-height;
-			right: 0px;
-			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
-		}
-	}
-	&.bottom {
-		top: 0;
-		.arrow {
-			top: - $popover-arrow-height;
-			left: calc(50% - 10px);
-			transform: rotate(180deg);
-		}
-		.popover-header ~ .arrow:after {
-			background-color: $popover-header-bg;
-		}
-	}
-	&.bottom-left {
-		.arrow {
-			top: - $popover-arrow-height;
-			left: 0;
-			transform: rotate(180deg);
-			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
-		}
-		.popover-header ~ .arrow:after {
-			background-color: $popover-header-bg;
-		}
-	}
-	&.bottom-right {
-		.arrow {
-			top: - $popover-arrow-height;
-			right: 0;
-			transform: rotate(180deg) scaleX(-1);
-			@include diagonal-arrow($popover-arrow-width, $popover-arrow-height, color("white", 0), $default-box-shadow-overlayed);
-		}
-		.popover-header ~ .arrow:after {
-			background-color: $popover-header-bg;
-		}
-	}
-	&.left {
-		top: -10px;
-		.arrow {
-			right: -15px;
-			transform: rotate(270deg);
-		}
-		.popover-header ~ .arrow {
-			top: 60px;
-		}
-	}
-	&.right {
-		top: -10px;
-		.arrow {
-			left: -15px;
-			transform: rotate(90deg);
-		}
-		.popover-header ~ .arrow {
-			top: 60px;
-		}
+	background: $popover-bg;
+	box-shadow: $drop-shadow-base;
+
+	z-index: $zindex-popover;
+  }
+
+  //
+  // Header
+  //
+  // 1. Separate remaining space between title and close button.
+  // ====================================
+
+  @mixin m_popover-header($is-menu: false) {
+	display: flex;
+	align-items: center;
+	justify-content: space-between; // 1
+
+	background: $popover-header-bg;
+
+	@if $is-menu == true {
+	  height: $popover-menu-header-height;
+	  padding-right: $popover-menu-padding-x;
+	  padding-left: $popover-menu-padding-x;
+	} @else {
+	  height: $popover-header-height;
+	  padding-right: $popover-padding-x;
+	  padding-left: $popover-padding-x;
 	}
 
+	.header_title {
+	  @include m_text-truncate;
 
-	// tooltip
-	// -------------------------
-	&.tooltip {
-		min-width: $tooltip-min-width;
-		max-width: $tooltip-max-width;
+	  margin-right: $popover-truncate-spacer;
+	  margin-bottom: 0;
 
-		.popover-content {
-			border: $tooltip-border;
-			padding: $tooltip-padding;
-		}
+	  color: $popover-title-color;
+	  font-weight: $popover-title-font-weight;
 
-		.arrow::after {
-			border: $tooltip-border;
-		}
+	  @if $is-menu == true {
+		font-size: $popover-menu-title-font-size;
+		line-height: $popover-menu-header-height;
+	  } @else {
+		font-size: $popover-title-font-size;
+		line-height: $popover-header-height;
+	  }
+	}
+  }
 
-		&.top, &.bottom, &.right, &.left {
-			border-color: color("blue", 50);
-			border-width: 0;
-			border-style: solid;
+  //
+  // Borders
+  //
+  // Used for `.popover_content`, `.popover_content--menu`, and `.popover_footer`.
+  // ====================================
 
-			&.danger {
-				border-color: color("red", 50);
-			}
-			&.warning {
-				border-color: color("yellow", 10);
-			}
-		}
-		&.top {
-			border-top-width: $tooltip-highlight-border-width;
-			.popover-content {
-				border-top: 0;
-			}
-			.arrow {
-				margin-bottom: 1px;
-			}
+  @mixin m_popover-borders {
+	border-right: $popover-content-border-width $popover-content-border-style $popover-content-border-color;
+	border-bottom: $popover-content-border-width $popover-content-border-style $popover-content-border-color;
+	border-left: $popover-content-border-width $popover-content-border-style $popover-content-border-color;
+  }
 
-		}
-		&.bottom {
-			border-bottom-width: $tooltip-highlight-border-width;
-			.popover-content {
-				border-bottom: 0;
-			}
-			.arrow {
-				margin-top: 1px;
-			}
-		}
-		&.left {
-			border-left-width: $tooltip-highlight-border-width;
-				.popover-content {
-					border-left: 0;
-					padding-left: 11px;  // + 4px border = 15px
-			}
-			.arrow {
-				top: calc(50% - 5px);
-				margin-right: 1px;
-			}
+  //
+  // Styles for menu divider stroke
+  //
+  // 1. Undo top border for first menu item.
+  // 2. Stroke between menu items.
+  // 3. Fill in stoke between menu items when icon is present.
+  // ====================================
 
-		}
-		&.right {
-			border-right-width: $tooltip-highlight-border-width;
-			.popover-content {
-				border-right: 0;
-				padding-right: 10px;
-			}
-			.arrow {
-				top: calc(50% - 5px);
-				margin-left: 1px;
-			}
-		}
+  @mixin m_popover-menu-divider {
+	&:not(:first-child) {
+	  margin-top: -$popover-content-border-width; // 1
 
-		&.click {
-			.popover-content {
-				padding-right: 29px;  // + 1px border = 30px
-				.close-icon {
-					position: absolute;
-					padding: 2px;
-					top: 0;
-					right: 0;
-					line-height: 0;
-					margin: 8px;  // together with padding it makes 10px from icon
-					border: 1px solid transparent;
-
-					svg * {
-						fill: color("gray", 50);
-					}
-
-					&:hover, &:focus {
-						border: 1px solid color("gray", 50);
-					}
-				}
-			}
-		}
+	  .menu_text {
+		border-top: $popover-content-border-width $popover-content-border-style $popover-content-border-color; // 2
+	  }
 	}
 
-	.filter-options {
-		padding: 20px 20px 10px 20px;
-		border-bottom: 1px solid color("gray", 10);
-	}
-
-	.filter-options-buttons {
-		padding: 10px 20px;
-		display: flex;
-
-		.btn-secondary {
-			margin-left: 10px;
+	&:not(:last-child) {
+	  .menu_icon {
+		&:first-child {
+		  border-bottom: $popover-content-border-width $popover-content-border-style $popover-content-border-color; // 3
 		}
+	  }
+	}
+  }
+
+
+///////////////////////////////////////
+// Popovers
+///////////////////////////////////////
+
+//
+// Generate popover classes
+// ====================================
+
+[role="dialog"] {
+	@each $direction in map-keys($popover-directions) {
+	  &.popover--#{$direction} {
+		@include m_popover($direction);
+	  }
 	}
 
+	@each $direction in map-keys($popover-menu-directions) {
+	  &.popover--menu-#{$direction} {
+		@include m_popover($direction, true);
+	  }
+	}
+  }
 
-	// Accessibility
-	// -------------------------
+  //
+  // Headers
+  // ====================================
 
-	.a11y & {
-		border: 1px solid color("black", 100);
-		.popover-header {
-			border-bottom: 1px solid color("black", 100);
+  .popover_header {
+	@include m_popover-header;
+  }
 
-			svg * {
-				fill: color("black", 100)
-			}
+  .popover_header--menu {
+	@include m_popover-header(true);
+  }
+
+  //
+  // Body
+  // ====================================
+
+  .popover_content {
+	@include m_popover-borders;
+
+	padding: $popover-padding-y $popover-padding-x;
+  }
+
+  //
+  // Menu
+  //
+  // 1. Take up remaining space of parent.
+  // 2. Make sure menu divider doesn't dissappear on hover.
+  // 3. Random number to right align icon.
+  // ====================================
+
+  .popover_content--menu {
+	@include m_popover-borders;
+
+	.menu_link {
+	  @include m_popover-menu-divider;
+	  @include m_hover-focus {
+		background: $popover-menu-link-hover-bg;
+		box-shadow: $popover-menu-link-hover-accent;
+	  }
+
+	  display: flex;
+	  position: relative;
+	  align-items: center;
+
+	  padding-left: $popover-menu-padding-x;
+	  border: 0;
+
+	  color: $popover-menu-link-color;
+	  line-height: $popover-menu-link-height;
+
+	  cursor: pointer;
+	}
+
+	.menu_text {
+	  flex-grow: 2; // 1
+	  padding-right: $popover-truncate-spacer;
+	}
+
+	.menu_icon {
+	  padding-right: $popover-menu-padding-x;
+
+	  z-index: 1; // 2
+
+	  &:last-child {
+		position: absolute;
+		top: -1px;
+		right: -3px; // 3
+	  }
+	}
+  }
+
+  //
+  // Footer
+  //
+  // 1. Right align buttons with flex property because text-align doesn't work on flex items.
+  // ====================================
+
+  .popover_footer {
+	@include m_popover-borders;
+
+	display: flex;
+	justify-content: flex-end; // 1
+
+	padding: $popover-footer-padding-y $popover-padding-x;
+  }
+
+// 13) Tooltips
+// ====================================
+
+$tooltip-font-size:   $font-size-sm !default;
+$tooltip-bg:          color("white", 0) !default;
+
+$tooltip-max-width:   200px !default;
+$tooltip-min-width:   100px !default;
+
+$tooltip-padding-x:   15px !default;
+$tooltip-padding-y:   10px !default;
+
+$tooltip-border-style:          solid !default;
+$tooltip-border-width:          $stroke-width !default;
+$tooltip-border-width-accent:   4px !default;
+$tooltip-border-color:          $stroke-color !default;
+$tooltip-border-color-accent:   color("blue", 50) !default;
+
+$tooltip-directions: (
+  top: bottom,
+  right: left,
+  bottom: top,
+  left: right
+) !default;
+
+$tooltip-contexts: (
+  warning: color("yellow", 10),
+  error: color("red", 50)
+) !default;
+
+///////////////////////////////////////
+// Tooltip shortcuts
+///////////////////////////////////////
+
+//
+// Base styles
+//
+// 1. Allow breaking very long words so they don't overflow the tooltip's bounds.
+// ====================================
+
+@mixin m_tooltip($direction) {
+	@include m_tooltip-accent-border($direction);
+	@include m_arrow($direction);
+
+	display: flex;
+	position: absolute;
+	align-items: flex-start;
+
+	min-width: $tooltip-min-width;
+	max-width: $tooltip-max-width;
+
+	padding: $tooltip-padding-y $tooltip-padding-x;
+
+	border-style: $tooltip-border-style;
+	border-color: $tooltip-border-color;
+
+	background: $tooltip-bg;
+	z-index: $zindex-tooltip;
+	word-wrap: break-word; // 1
+
+	.close--xs {
+	  margin-top: -($close-padding-x + $close-border-width);
+	  margin-left: $tooltip-padding-y - ($close-padding-x + $close-border-width);
+	}
+  }
+
+  //
+  // Directional accent border
+  // ====================================
+
+  @mixin m_tooltip-accent-border($direction) {
+	// Get opposite of $direction
+	$opposite-direction: map-get($tooltip-directions, $direction);
+
+	border-width: $tooltip-border-width;
+	border-#{$direction}-width: 0; // sass-lint:disable-line property-sort-order
+	box-shadow: m_tooltip-generate-box-shadow($tooltip-border-color-accent, $direction), $drop-shadow-base;
+  }
+
+  //
+  // Contextual colors
+  // ====================================
+
+  @mixin m_tooltip-context($context, $direction) {
+	// Get color of $context
+	$color: map-get($tooltip-contexts, $context);
+
+	box-shadow: m_tooltip-generate-box-shadow($color, $direction), $drop-shadow-base;
+  }
+
+  //
+  // Accent border function
+  //
+  // Creates a value for `box-shadow`.
+  // ====================================
+
+  @function m_tooltip-generate-box-shadow($color, $direction) {
+	@if $direction == top {
+	  @return 0 (-$tooltip-border-width-accent) $color;
+	} @else if $direction == right {
+	  @return $tooltip-border-width-accent 0 $color;
+	} @else if $direction == bottom {
+	  @return 0 $tooltip-border-width-accent $color;
+	} @else if $direction == left {
+	  @return (-$tooltip-border-width-accent) 0 $color;
+	}
+  }
+
+
+///////////////////////////////////////
+// Tooltips
+///////////////////////////////////////
+
+//
+// Generate tooltip classes
+// ====================================
+
+[role="tooltip"] {
+	@each $direction in map-keys($tooltip-directions) {
+	  &.tooltip--#{$direction} {
+		@include m_tooltip($direction);
+	  }
+
+	  @each $context in map-keys($tooltip-contexts) {
+		&.tooltip--#{$context}-#{$direction} {
+		  @include m_tooltip($direction);
+		  @include m_tooltip-context($context, $direction);
 		}
-		.arrow:after {
-			border: 1px solid color("black", 100);
-		}
+	  }
 	}
-}
+  }
 
-// Custom popover attribute classes
+  //
+  // Tooltip text
+  // ====================================
 
-.popover-content-fullwidth {
-	.popover-content {
-		padding: 0;
-	}
-}
-
-.popover-content-filter {
-	&.popover {
-		top: 0;
-		&.right, &.left {
-			.arrow {
-				top: 17px;
-			}
-			.popover-header ~ .arrow:after {
-				background-color: $popover-header-bg;
-			}
-		}
-	}
-
-	.popover-content {
-		padding: 0;
-	}
-}
+  .tooltip_text {
+	font-size: $tooltip-font-size;
+  }

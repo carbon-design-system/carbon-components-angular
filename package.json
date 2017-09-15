@@ -33,9 +33,9 @@
     "@angular/platform-browser-dynamic": "^4.2.0",
     "@ngx-translate/core": "^6.0.1",
     "core-js": "^2.4.1",
-    "d3": "4.7.4",
     "rxjs": "^5.0.1",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "@peretz/matter": "0.0.1-alpha.abea2"
   },
   "devDependencies": {
     "@angular/animations": "^4.2.0",
@@ -96,5 +96,7 @@
     "whatwg-fetch": "^2.0.3",
     "zone.js": "^0.8.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@peretz/matter": "0.0.1-alpha.7bb06"
+  }
 }

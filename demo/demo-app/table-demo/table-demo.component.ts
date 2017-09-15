@@ -51,16 +51,16 @@ class FilterableHeaderItem extends TableHeaderItem {
 
 	<h2>Custom table</h2>
 
-	<button class="btn" (click)="customModel.addRow()">Add row</button>
-	<button class="btn" (click)="customModel.addColumn()">Add column</button>
-	<button class="btn" (click)="striped = !striped">Toggle striped</button><br>
+	<button class="btn--primary" (click)="customModel.addRow()">Add row</button>
+	<button class="btn--primary" (click)="customModel.addColumn()">Add column</button>
+	<button class="btn--primary" (click)="striped = !striped">Toggle striped</button><br>
 
-	<button class="btn" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
-	<button class="btn" *ngFor="let column of customModel.header" (click)="column.visible = !column.visible">
+	<button class="btn--primary" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
+	<button class="btn--primary" *ngFor="let column of customModel.header" (click)="column.visible = !column.visible">
 		Toggle {{column.data}}
 	</button><br>
 
-	<button class="btn" *ngFor="let column of customModel.header; let i = index"
+	<button class="btn--primary" *ngFor="let column of customModel.header; let i = index"
 		(click)="customModel.deleteColumn(i)">
 		Delete {{column.data}}
 	</button>
@@ -98,8 +98,8 @@ class FilterableHeaderItem extends TableHeaderItem {
 			</n-label>
 		</div>
 		<div class="filter-options-buttons">
-			<button class="btn" (click)="filter.data = filter1; popover.onClose()">Apply</button>
-			<button class="btn btn-secondary" (click)="popover.onClose()">Cancel</button>
+			<button class="btn--primary" (click)="filter.data = filter1; popover.onClose()">Apply</button>
+			<button class="btn--secondary" (click)="popover.onClose()">Cancel</button>
 		</div>
 	</ng-template>
 	`,
