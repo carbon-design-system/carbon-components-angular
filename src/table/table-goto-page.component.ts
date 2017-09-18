@@ -14,8 +14,8 @@ import {
 	selector: "n-table-goto-page",
 	template: `
 	<div class="table-goto-page">
-		<input type="number" [(ngModel)]="pageNumber" class="input-field size-sm">
-		<button class="btn size-sm" (click)="selectPage.emit(pageNumber)">Go to page</button>
+		<input type="number" [(ngModel)]="pageNumber" class="input-number--sm">
+		<button class="btn--primary-sm" (click)="selectPage.emit(pageNumber)">Go to page</button>
 	</div>
 	`,
 	styleUrls: ["./table-goto-page.component.scss"],
