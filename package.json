@@ -35,7 +35,7 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.0.1",
     "zone.js": "^0.8.4",
-    "@peretz/matter": "0.0.1-alpha.abea2"
+    "@peretz/matter": "0.0.1-alpha.581a2"
   },
   "devDependencies": {
     "@angular/animations": "^4.2.0",
@@ -97,6 +97,6 @@
     "zone.js": "^0.8.4"
   },
   "dependencies": {
-    "@peretz/matter": "0.0.1-alpha.7bb06"
+    "@peretz/matter": "0.0.1-alpha.581a2"
   }
 }

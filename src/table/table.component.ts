@@ -89,6 +89,7 @@ import {
 									placement="right"
 									wrapperClass="popover-content-filter"
 									popoverFilter="true"
+									[appendToBody]="true"
 									[filter]="column.filterData">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"

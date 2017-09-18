@@ -3,13 +3,9 @@
 .table-goto-page {
 	display: inline-flex;
 
-	input {
+	input.input-number--sm {
 		display: inline-block;
 		width: 50px;
 		margin-right: 10px;
-	}
-
-	button.btn {
-		display: inline-block;
 	}
 }

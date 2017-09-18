@@ -67,9 +67,16 @@ table {
 			}
 
 			.col-actions {
+				display: none;
 				position: absolute;
 				right: 20px;
 				top: 10px;
+			}
+
+			&:hover {
+				.col-actions {
+					display: inline-block;
+				}
 			}
 
 			&:first-of-type {
