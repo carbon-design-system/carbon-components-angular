@@ -112,7 +112,7 @@ import { Component, OnInit} from "@angular/core";
 		</ul>
 		<ul class="top-nav_menu-right" menu>
 			<li class="menu_item-search">
-				<input *ngIf="showSearchInput2" type="search">
+				<input *ngIf="showSearchInput2" type="search" class="top-nav-search-input">
 				<label class="menu_link"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
