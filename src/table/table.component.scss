@@ -1,3 +1,5 @@
+@import "../core/scss-tools";
+
 .table-container {
 	height: calc(100% + 40px);
 	font-size: 14px;
@@ -95,6 +97,25 @@ table {
 				}
 			}
 		}
+	}
+
+	.filter-enabled {
+		svg {
+			fill: color("blue", 50);
+		}
+	}
+
+	.filter-count {
+		position: absolute;
+		top: -6px;
+		left: 21px;
+		width: 15px;
+		line-height: 15px;
+		font-size: 11px;
+		text-align: center;
+		color: color("white", 0);
+		background: color("blue", 50);
+		border-radius: 50%;
 	}
 
 	tr {
