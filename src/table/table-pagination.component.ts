@@ -37,15 +37,15 @@ export class TablePagination {
 
 	constructor(private applicationRef: ApplicationRef) {}
 
-	private range(count: number, offset = 0) {
+	range(count: number, offset = 0) {
 		return count && count > 0 ? Array(Math.ceil(count)).fill(0).map((x, i) => i + offset) : [];
 	}
 
-	private previousPage(): number {
+	previousPage(): number {
 		return this.model.currentPage <= 1 ? 1 : this.model.currentPage - 1;
 	}
 
-	private nextPage(): number {
+	nextPage(): number {
 		const lastPage = Math.ceil(this.model.totalDataLength / this.model.pageLength);
 		return this.model.currentPage >= lastPage ? lastPage : this.model.currentPage + 1;
 	}

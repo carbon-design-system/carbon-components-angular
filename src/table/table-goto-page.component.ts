@@ -22,5 +22,6 @@ import {
 	encapsulation: ViewEncapsulation.None
 })
 export class TableGotoPage {
+	pageNumber: number;
 	@Output() selectPage = new EventEmitter<number>();
 }
