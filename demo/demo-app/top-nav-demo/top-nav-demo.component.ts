@@ -42,11 +42,11 @@ import { Component, OnInit} from "@angular/core";
 		<ul class="top-nav_menu-right" menu>
 			<li class="menu_item-search">
 				<input *ngIf="showSearchInput2" type="search" class="top-nav-search-input">
-				<label class="menu_link"
+				<a class="menu_link"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
 					<n-icon class="icon--white-sm" icon="search" size="16"></n-icon>
-				</label>
+				</a>
 			</li>
 			<li class="menu_item">
 				<a class="menu_link"
@@ -113,11 +113,11 @@ import { Component, OnInit} from "@angular/core";
 		<ul class="top-nav_menu-right" menu>
 			<li class="menu_item-search">
 				<input *ngIf="showSearchInput2" type="search" class="top-nav-search-input">
-				<label class="menu_link"
+				<a class="menu_link"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
 					<n-icon class="icon--white-sm" icon="search" size="16"></n-icon>
-				</label>
+				</a>
 			</li>
 			<li class="menu_item">
 				<a class="menu_link"

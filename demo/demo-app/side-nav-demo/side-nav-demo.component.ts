@@ -48,7 +48,8 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<n-side-nav-pane-title>And even longer one here</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems"
-								[template]="listTpl">
+								[template]="listTpl"
+								(selected)="onSelect($event)">
 							</n-tree-view>
 						</div>
 					</n-side-nav-item>
@@ -58,7 +59,8 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<n-side-nav-pane-title>And here</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems2"
-								[template]="listTpl">
+								[template]="listTpl"
+								(selected)="onSelect($event)">
 							</n-tree-view>
 						</div>
 					</n-side-nav-item>
@@ -79,7 +81,8 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<n-side-nav-pane-title>And this is how ellipsis happens</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems3"
-								[template]="listTpl">
+								[template]="listTpl"
+								(selected)="onSelect($event)">
 							</n-tree-view>
 						</div>
 					</n-side-nav-item>
@@ -89,7 +92,8 @@ import { Component, ViewEncapsulation } from "@angular/core";
 							<n-side-nav-pane-title>And here</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems4"
-								[template]="listTpl">
+								[template]="listTpl"
+								(selected)="onSelect($event)">
 							</n-tree-view>
 						</div>
 					</n-side-nav-item>
@@ -173,5 +177,13 @@ export class SideNavDemo {
 
 	private onClick() {
 		this.sideNavOpen = !this.sideNavOpen;
+	}
+
+	onSelect(ev) {
+		if (ev.item.items) {
+			ev.item.opened = !ev.item.opened;
+		} else {
+			ev.item.selected = !ev.item.selected;
+		}
 	}
 }
