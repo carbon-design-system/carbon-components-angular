@@ -1,3 +1,5 @@
+@import "../core/scss-tools";
+
 .table-container {
 	height: calc(100% + 40px);
 	font-size: 14px;
@@ -12,16 +14,18 @@
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    white-space: nowrap;
+	display: inline-grid;
+	overflow-x: scroll;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	white-space: nowrap;
 	table-layout: fixed;
 
 	tbody {
 		display: block;
 		width: 100%;
-		overflow: scroll;
+		overflow-y: scroll;
 
 		&.striped {
 			tr {
@@ -43,6 +47,7 @@ table {
 	thead {
 		display: table;
 		width: 100%;
+
 		th {
 			text-align: left;
 			padding-left: 20px;
@@ -64,9 +69,16 @@ table {
 			}
 
 			.col-actions {
+				display: none;
 				position: absolute;
 				right: 20px;
 				top: 10px;
+			}
+
+			&:hover {
+				.col-actions {
+					display: inline-block;
+				}
 			}
 
 			&:first-of-type {
@@ -85,6 +97,25 @@ table {
 				}
 			}
 		}
+	}
+
+	.filter-enabled {
+		svg {
+			fill: color("blue", 50);
+		}
+	}
+
+	.filter-count {
+		position: absolute;
+		top: -6px;
+		left: 21px;
+		width: 15px;
+		line-height: 15px;
+		font-size: 11px;
+		text-align: center;
+		color: color("white", 0);
+		background: color("blue", 50);
+		border-radius: 50%;
 	}
 
 	tr {

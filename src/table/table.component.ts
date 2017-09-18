@@ -83,20 +83,25 @@ import {
 							</ng-template>
 							<div class="col-actions">
 								<button class="popover-button"
+									[ngClass]="{'filter-enabled': column.filterCount > 0}"
 									*ngIf="column.filterTemplate"
 									[nPopover]="column.filterTemplate"
 									title="Filter"
 									placement="right"
 									wrapperClass="popover-content-filter"
 									popoverFilter="true"
+									[appendToBody]="true"
 									[filter]="column.filterData">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
-										<path fill="#949494" d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
+										<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
 									</svg>
+									<span *ngIf="column.filterCount > 0" class="filter-count">
+										{{column.filterCount}}
+									</span>
 								</button>
 								<span
 									*ngIf="sort"

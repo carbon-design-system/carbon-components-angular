@@ -19,11 +19,14 @@ class FilterableHeaderItem extends TableHeaderItem {
 		if (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
 		item.data.name && item.data.name.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
 		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0) {
-			this.filterCount = 1;
 			return false;
 		}
-		this.filterCount = 0;
 		return true;
+	}
+
+	set filterCount(number) {}
+	get filterCount() {
+		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
 	}
 
 	// used for custom sorting
