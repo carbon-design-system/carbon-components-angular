@@ -145,19 +145,21 @@ table {
 }
 
 .check-column {
-    width: 60px !important;
-    text-align: center;
+	width: 40px !important;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .select-checkbox .checkbox {
-    width: 20px;
-    margin: 0 auto;
+	width: 20px;
+	margin: 0 auto;
 }
 
 .scroll-table {
 	overflow-y: auto;
-    // ipad
-    -webkit-overflow-scrolling: touch;
+	// ipad
+	-webkit-overflow-scrolling: touch;
 	height: calc(100% - 80px);
 }
 
