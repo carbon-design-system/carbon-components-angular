@@ -145,8 +145,10 @@ table {
 }
 
 .check-column {
-    width: 60px !important;
-    text-align: center;
+    width: 40px !important;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .select-checkbox .checkbox {
