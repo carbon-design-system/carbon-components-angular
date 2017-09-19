@@ -78,7 +78,7 @@ export class TableHeaderItem {
 	 * Create `ViewChild` property with:
 	 *
 	 * ```typescript
-	 * @ViewChild("customHeaderTemplate")
+	 * (at)ViewChild("customHeaderTemplate")
 	 * private customHeaderTemplate: TemplateRef<any>;
 	 * ```
 	 *
