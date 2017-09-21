@@ -6,7 +6,7 @@ import {
 	ElementRef
 } from "@angular/core";
 import { DatepickerService } from "./datepicker.service";
-import { positionElements } from "../common/position.service";
+import { position, Positions } from "../common/position.service";
 
 @Component({
 	selector: "n-date-picker-popover",
@@ -40,15 +40,6 @@ export class DatepickerPopover {
 
 	ngAfterViewInit() {
 		this.elementRef.nativeElement.querySelector("button").focus();
-
-		positionElements(
-			this.popoverConfig.parentRef.nativeElement,
-			this.elementRef.nativeElement,
-			this.popoverConfig.placement,
-			this.popoverConfig.appendToBody,
-			10,
-			50
-		);
 	}
 
 	public onClose() {
