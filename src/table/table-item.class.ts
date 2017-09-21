@@ -24,7 +24,7 @@ export class TableItem {
 	 *
 	 * ```html
 	 * <ng-template #customItemTemplate let-data="data">
-	 * 		<i><a [routerLink]="data.link">{{data.name}}</a></i>
+	 * 	<i><a [routerLink]="data.link">{{data.name}}</a></i>
 	 * </ng-template>
 	 * ```
 	 * where we assume your data contains `link` and `name`. `let-data="data"` is
@@ -33,7 +33,7 @@ export class TableItem {
 	 * Create `ViewChild` property with:
 	 *
 	 * ```typescript
-	 * @ViewChild("customItemTemplate")
+	 * (at)ViewChild("customItemTemplate")
 	 * private customItemTemplate: TemplateRef<any>;
 	 * ```
 	 *
@@ -41,7 +41,7 @@ export class TableItem {
 	 *
 	 * ```typescript
 	 * this.model.data = [
-	 * 		[new TableItem({data: {name: "Custom item", link: "/table"}, template: this.customItemTemplate})]
+	 * 	[new TableItem({data: {name: "Custom item", link: "/table"}, template: this.customItemTemplate})]
 	 * ];
 	 * ```
 	 *

@@ -94,16 +94,16 @@ class FilterableHeaderItem extends TableHeaderItem {
 	</ng-template>
 
 	<ng-template #filter let-popover="popover" let-filter="filter">
-		<div class="filter-options">
+		<section class="popover_content">
 			<n-label class="first-label">
 				<label for="filter1">Value</label>
 				<input type="text" [(ngModel)]="filter1" class="input-field" id="filter1">
 			</n-label>
-		</div>
-		<div class="filter-options-buttons">
+		</section>
+		<footer class="popover_footer">
 			<button class="btn--primary" (click)="filter.data = filter1; popover.onClose()">Apply</button>
 			<button class="btn--secondary" (click)="popover.onClose()">Cancel</button>
-		</div>
+		</footer>
 	</ng-template>
 	`,
 	styleUrls: ["./table-demo.component.scss"],
@@ -143,7 +143,7 @@ export class TableDemo implements OnInit {
 			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
 		];
 		this.customModel.header = [
-			new TableHeaderItem({data: "hwer"}),
+			new TableHeaderItem({data: "Very long title indeed"}),
 			new FilterableHeaderItem({
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
