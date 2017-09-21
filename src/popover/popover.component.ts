@@ -1,39 +1,33 @@
 import {
 	Component,
 	Input,
-	Output,
-	EventEmitter,
 	OnInit,
 	AfterViewInit,
-	Injector,
 	ElementRef,
 	TemplateRef,
 	HostListener,
 	ViewChild
 } from "@angular/core";
+import { AbstractDialog } from "./abstract-dialog.component";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
-import { positionElements } from "../common/position.service";
-import { cycleTabs, getFocusElementList } from "./../common/tab.service";
+import { position, Positions } from "../common/position.service";
+import { cycleTabs } from "./../common/tab.service";
 
 @Component({
 	selector: "n-popover",
 	template: `
 		<div
-			class="popover popover--{{popoverConfig.placement}} {{popoverConfig.placement}} {{popoverConfig.wrapperClass}} {{popoverConfig.type}}
-			{{popoverConfig.trigger}} {{popoverConfig.isTooltip?'tooltip--'+popoverConfig.placement:''}}"
-			[class.tooltip]="popoverConfig.isTooltip"
+			class="popover--{{popoverConfig.placement}}"
 			[class.popover-menu]="popoverConfig.popoverMenu"
 			[class.popover-filter]="popoverConfig.popoverFilter"
-			[attr.role]="popoverConfig.isTooltip ? 'tooltip':'dialog'"
+			role="dialog"
 			id="{{popoverConfig.compID}}"
 			tabindex="0"
-			style="position: initial;"
 			#popover>
 			<header
-				*ngIf="!popoverConfig.isTooltip"
 				class="popover_header"
 				aria-labelledby="Title"
 				role="banner">
@@ -54,27 +48,6 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 				</button>
 			</header>
 			<div
-				*ngIf="popoverConfig.isTooltip"
-				class="tooltip_text"
-				role="tooltip">
-				<ng-template
-					*ngIf="isTpl"
-					[ngTemplateOutlet]="popoverConfig.content"
-					[ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
-				</ng-template>
-				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
-			</div>
-			<button
-				*ngIf="popoverConfig.isTooltip && popoverConfig.trigger==='click'"
-				class="close--xs"
-				(click)="onClose()"
-				aria-label="Close Tooltip">
-				<svg class="close_icon" width="10" height="10" viewBox="0 0 16 16">
-					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
-				</svg>
-			</button>
-			<div
-				*ngIf="!popoverConfig.isTooltip"
 				class="popover_content"
 				role="main">
 				<ng-template
@@ -86,20 +59,15 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 			</div>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
-		`,
+	`,
 	host: {
-		class: "popover-wrapper",
-		style: "position: absolute; z-index: 1000;"
-	},
+		style: "display: inline-block;"
+	}
 })
-export class Popover implements OnInit, AfterViewInit {
-	public offsetTop = 48; // 40px heading + 8px triangle
+export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
 	public isTpl: boolean;
 	@ViewChild("popover") popover: ElementRef;
-
 	@Input() popoverConfig;
-
-	@Output() close: EventEmitter<any> = new EventEmitter();
 
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
@@ -119,56 +87,39 @@ export class Popover implements OnInit, AfterViewInit {
 
 	@HostListener("document:click", ["$event"])
 	clickClose(event: MouseEvent) {
-		if (!this.elementRef.nativeElement.contains(event.target) && !this.popoverConfig.parentRef.nativeElement.contains(event.target) ) {
+		if (!this.elementRef.nativeElement.contains(event.target)
+			&& !this.popoverConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.onClose();
 		}
 	}
 
-	constructor(public elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {
+		super();
+	}
 
 	ngOnInit() {
 		this.isTpl = this.popoverConfig.content instanceof TemplateRef;
 
-		if (this.popoverConfig.isTooltip) {
-			this.offsetTop = undefined;
-		}
-
 		Observable.fromEvent(window, "resize")
 		.throttleTime(10)
 		.subscribe(() => {
-			positionElements(
-				this.popoverConfig.parentRef.nativeElement,
-				this.elementRef.nativeElement,
-				this.popoverConfig.placement,
-				this.popoverConfig.appendToBody,
-				this.popoverConfig.gap,
-				this.offsetTop,
-				true,
-				this.popoverConfig.popoverFilter
-			);
+
 		});
 
 		this.popover.nativeElement.focus();
 	}
 
 	ngAfterViewInit() {
-		positionElements(
-			this.popoverConfig.parentRef.nativeElement,
-			this.elementRef.nativeElement,
-			this.popoverConfig.placement,
-			this.popoverConfig.appendToBody,
-			this.popoverConfig.gap,
-			this.offsetTop,
-			true,
-			this.popoverConfig.popoverFilter
-		);
-	}
-
-	public onClose() {
-		this.close.emit();
-	}
-
-	isRoleDialog() {
-		return getFocusElementList(this.elementRef.nativeElement).length > 1;
+		let parentEl = this.popoverConfig.parentRef.nativeElement;
+		let el = this.popover.nativeElement;
+		let pos = position.findRelative(parentEl, el, Positions.top);
+		// top
+		position.setElement(el, position.addOffset(pos, -(this.popoverConfig.gap)));
+		// bottom
+		// position.setElement(el, position.addOffset(pos, this.popoverConfig.gap));
+		// left
+		// position.setElement(el, position.addOffset(pos, 0, -(this.popoverConfig.gap)));
+		// right
+		// position.setElement(el, position.addOffset(pos, 0, this.popoverConfig.gap));
 	}
 }
