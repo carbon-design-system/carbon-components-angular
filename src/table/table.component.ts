@@ -77,18 +77,41 @@ import {
 						<th
 							*ngIf="column.visible"
 							[ngStyle]="{'width': i < model.header.length - 1 ? (colWidth) + 'px' : ''}">
-							<span *ngIf="!column.template">{{column.data}}</span>
-							<ng-template
-								[ngTemplateOutlet]="column.template" [ngOutletContext]="{data: column.data}">
-							</ng-template>
-							<div class="col-actions">
-								<button class="popover-button"
+							<div class="header-item-wrapper">
+								<span class="cell-ellipsis"
+									(click)="sort.emit(i)">
+									<span *ngIf="!column.template">{{column.data}}</span>
+									<ng-template
+										[ngTemplateOutlet]="column.template" [ngOutletContext]="{data: column.data}">
+									</ng-template>
+								</span>
+								<span (click)="sort.emit(i)">
+									<!-- arrow up -->
+									<svg
+										*ngIf="column.descending && column.sorted"
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										viewBox="0 0 16 16">
+										<path d="M13.5 5.5L8 0 2.5 5.5l1 1 3.8-3.8V16h1.4V2.7l3.8 3.8z"/>
+									</svg>
+									<!-- arrow down -->
+									<svg
+										*ngIf="column.ascending && column.sorted"
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										viewBox="0 0 16 16">
+										<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
+									</svg>
+								</span>
+								<button class="btn--unstyled col-actions"
 									[ngClass]="{'filter-enabled': column.filterCount > 0}"
 									*ngIf="column.filterTemplate"
 									[nPopover]="column.filterTemplate"
 									title="Filter"
 									placement="right"
-									wrapperClass="popover-content-filter"
+									wrapperClass="popover--right-bottom"
 									popoverFilter="true"
 									[appendToBody]="true"
 									[filter]="column.filterData">
@@ -103,37 +126,6 @@ import {
 										{{column.filterCount}}
 									</span>
 								</button>
-								<span
-									*ngIf="sort"
-									(click)="sort.emit(i)">
-									<!-- arrow up -->
-									<svg
-										*ngIf="column.ascending && column.sorted"
-										xmlns="http://www.w3.org/2000/svg"
-										width="16"
-										height="16"
-										viewBox="0 0 16 16">
-										<path d="M13.5 5.5L8 0 2.5 5.5l1 1 3.8-3.8V16h1.4V2.7l3.8 3.8z"/>
-									</svg>
-									<!-- arrow down -->
-									<svg
-										*ngIf="column.descending && column.sorted"
-										xmlns="http://www.w3.org/2000/svg"
-										width="16"
-										height="16"
-										viewBox="0 0 16 16">
-										<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
-									</svg>
-									<!-- sort -->
-									<svg
-										*ngIf="!column.sorted"
-										xmlns="http://www.w3.org/2000/svg"
-										width="16"
-										height="16"
-										viewBox="0 0 16 16">
-										<path d="M7.5 6l1-1-4-4-4 4 1 1 2.3-2.3V14h1.4V3.7zM14.5 10l-2.3 2.3V2h-1.4v10.3L8.5 10l-1 1 4 4 4-4z"/>
-									</svg>
-								</span>
 							</div>
 						</th>
 					</ng-container>
@@ -153,7 +145,7 @@ import {
 						<ng-container *ngFor="let item of row; let i = index">
 							<td *ngIf="model.header[i].visible"
 								[ngStyle]="{'width': i < row.length - 1 ? (colWidth) + 'px' : ''}">
-								<span *ngIf="!item.template">{{item.data}}</span>
+								<span *ngIf="!item.template" class="cell-ellipsis">{{item.data}}</span>
 								<ng-template
 									[ngTemplateOutlet]="item.template" [ngOutletContext]="{data: item.data}">
 								</ng-template>
