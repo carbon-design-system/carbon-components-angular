@@ -76,7 +76,7 @@ import {
 					<ng-container *ngFor="let column of model.header; let i = index">
 						<th
 							*ngIf="column.visible"
-							[ngStyle]="{'width': i < model.header.length - 1 ? (colWidth) + 'px' : ''}">
+							[ngStyle]="column.style">
 							<div class="header-item-wrapper">
 								<span class="cell-ellipsis"
 									(click)="sort.emit(i)">
@@ -144,7 +144,7 @@ import {
 						</td>
 						<ng-container *ngFor="let item of row; let i = index">
 							<td *ngIf="model.header[i].visible"
-								[ngStyle]="{'width': i < row.length - 1 ? (colWidth) + 'px' : ''}">
+								[ngStyle]="model.header[i].style">
 								<span *ngIf="!item.template" class="cell-ellipsis">{{item.data}}</span>
 								<ng-template
 									[ngTemplateOutlet]="item.template" [ngOutletContext]="{data: item.data}">
@@ -185,7 +185,6 @@ export class Table implements AfterContentChecked {
 	@Input() scrollLoadDistance = 0;
 	selectAllCheckbox = false;
 	selectAllCheckboxSomeSelected = false;
-	colWidth = 150;
 
 	/**
 	 * Set to `true` to make table rows striped.
