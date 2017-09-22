@@ -17,31 +17,46 @@ export enum Positions {
 	bottom
 }
 
+function getAbsoluteOffset(target) {
+	let offsets = {
+		left: 0,
+		top: 0
+	};
+	while (target.offsetParent) {
+		console.log(target, target.offsetParent);
+		offsets.left += target.offsetLeft;
+		offsets.top += target.offsetTop;
+		target = target.offsetParent;
+	}
+	return offsets;
+}
+
 export namespace position {
 	// finds the position relative to the `reference` element
 	export function findRelative(reference: HTMLElement, toPosition: HTMLElement, position: Positions = Positions.auto): AbsolutePosition {
 		let referenceRect = reference.getBoundingClientRect();
+		let referenceOffset = getAbsoluteOffset(reference);
 		// calculate offsets for a given position
 		switch (position) {
 			case Positions.left:
 				return {
-					top: referenceRect.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
-					left: referenceRect.left - toPosition.offsetWidth
+					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
+					left: Math.round(referenceOffset.left - toPosition.offsetWidth)
 				};
 			case Positions.right:
 				return {
-					top: referenceRect.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
-					left: referenceRect.left  + referenceRect.width
+					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
+					left: Math.round(referenceOffset.left  + referenceRect.width)
 				};
 			case Positions.top:
 				return {
-					top: referenceRect.top - toPosition.offsetHeight,
-					left: referenceRect.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+					top: Math.round(referenceOffset.top - toPosition.offsetHeight),
+					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
 				};
 			case Positions.bottom:
 				return {
-					top: referenceRect.top + referenceRect.height,
-					left: referenceRect.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+					top: Math.round(referenceOffset.top + referenceRect.height),
+					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
 				};
 		}
 		// default to auto position

@@ -7,7 +7,7 @@ import {
 
 /**
  * Implements a lightweight abstract dialog that can be positioned anywhere on the page
- * could be used to implement a popoer or tooltip
+ * could be used to implement a popover or tooltip
  */
 @Component({
 	selector: "n-abstract-dialog",

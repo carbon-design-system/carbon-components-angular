@@ -47,16 +47,22 @@ import { cycleTabs } from "./../common/tab.service";
 					</svg>
 				</button>
 			</header>
-			<div
+			<section
 				class="popover_content"
 				role="main">
 				<ng-template
-					*ngIf="isTpl"
+					*ngIf="hasContentTemplate"
 					[ngTemplateOutlet]="popoverConfig.content"
 					[ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
 				</ng-template>
-				<div *ngIf="!isTpl">{{popoverConfig.content}}</div>
-			</div>
+				<div *ngIf="!hasContentTemplate">{{popoverConfig.content}}</div>
+			</section>
+			<footer *ngIf="hasFooterTemplate">
+				<ng-template
+					[ngTemplateOutlet]="popoverConfig.footer"
+					[ngOutletContext]="{popover: this}">
+				</ng-template>
+			</footer>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
 	`,
@@ -65,9 +71,72 @@ import { cycleTabs } from "./../common/tab.service";
 	}
 })
 export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
-	public isTpl: boolean;
+	public hasContentTemplate = false;
+	public hasFooterTemplate = false;
+	protected placement = Positions.auto;
 	@ViewChild("popover") popover: ElementRef;
 	@Input() popoverConfig;
+
+	constructor(public elementRef: ElementRef) {
+		super();
+	}
+
+	ngOnInit() {
+		this.hasContentTemplate = this.popoverConfig.content instanceof TemplateRef;
+		this.hasFooterTemplate = this.popoverConfig.footer instanceof TemplateRef;
+
+		switch (this.popoverConfig.placement) {
+			case "left":
+				this.placement = Positions.left;
+				this.addGap = (pos) => position.addOffset(pos, 0, -this.popoverConfig.gap);
+				break;
+			case "right":
+				this.placement = Positions.right;
+				this.addGap = (pos) => position.addOffset(pos, 0, this.popoverConfig.gap);
+				break;
+			case "top":
+				this.placement = Positions.top;
+				this.addGap = (pos) => position.addOffset(pos, -this.popoverConfig.gap);
+				break;
+			case "bottom":
+				this.placement = Positions.bottom;
+				this.addGap = (pos) => position.addOffset(pos, this.popoverConfig.gap);
+				break;
+		}
+
+		Observable.fromEvent(window, "resize")
+		.throttleTime(10)
+		.subscribe(() => {
+			this.placePopover();
+		});
+
+		this.popover.nativeElement.focus();
+	}
+
+	ngAfterViewInit() {
+		this.placePopover();
+	}
+
+	protected addGap = (pos) => position.addOffset(pos, 0, 0);
+
+	placePopover(): void {
+		let parentEl = this.popoverConfig.parentRef.nativeElement;
+		let el = this.popover.nativeElement;
+		let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
+		if (this.popoverConfig.appendToBody) {
+			console.log(pos, window.scrollY, window.scrollX);
+			pos = position.addOffset(pos, window.scrollY, window.scrollX);
+		}
+		position.setElement(el, pos);
+		// top
+		// position.setElement(el, position.addOffset(pos, -(this.popoverConfig.gap)));
+		// bottom
+		// position.setElement(el, position.addOffset(pos, this.popoverConfig.gap));
+		// left
+		// position.setElement(el, position.addOffset(pos, 0, -(this.popoverConfig.gap)));
+		// right
+		// position.setElement(el, position.addOffset(pos, 0, this.popoverConfig.gap));
+	}
 
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
@@ -77,7 +146,6 @@ export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
 				this.onClose();
 				break;
 			}
-
 			case "Tab": {
 				cycleTabs(event, this.elementRef.nativeElement);
 				break;
@@ -91,35 +159,5 @@ export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
 			&& !this.popoverConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.onClose();
 		}
-	}
-
-	constructor(public elementRef: ElementRef) {
-		super();
-	}
-
-	ngOnInit() {
-		this.isTpl = this.popoverConfig.content instanceof TemplateRef;
-
-		Observable.fromEvent(window, "resize")
-		.throttleTime(10)
-		.subscribe(() => {
-
-		});
-
-		this.popover.nativeElement.focus();
-	}
-
-	ngAfterViewInit() {
-		let parentEl = this.popoverConfig.parentRef.nativeElement;
-		let el = this.popover.nativeElement;
-		let pos = position.findRelative(parentEl, el, Positions.top);
-		// top
-		position.setElement(el, position.addOffset(pos, -(this.popoverConfig.gap)));
-		// bottom
-		// position.setElement(el, position.addOffset(pos, this.popoverConfig.gap));
-		// left
-		// position.setElement(el, position.addOffset(pos, 0, -(this.popoverConfig.gap)));
-		// right
-		// position.setElement(el, position.addOffset(pos, 0, this.popoverConfig.gap));
 	}
 }
