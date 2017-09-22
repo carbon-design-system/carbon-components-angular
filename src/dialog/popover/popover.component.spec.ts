@@ -1,7 +1,7 @@
 import { ElementRef } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { Popover } from "./popover.component";
-import {createElement} from "../common/test";
+import {createElement} from "../../common/test";
 
 describe("Popover component", () => {
 	beforeEach(() => {
@@ -21,7 +21,7 @@ describe("Popover component", () => {
 		let element = createElement(200, 300, 100, 150);
 		const fixture = TestBed.createComponent(Popover);
 
-		fixture.componentInstance.popoverConfig = {
+		fixture.componentInstance.dialogConfig = {
 			content: "test",
 			trigger: "click",
 			placement: "auto",
@@ -43,7 +43,7 @@ describe("Popover component", () => {
 		const fixture = TestBed.createComponent(Popover);
 		let element = createElement(200, 300, 100, 150);
 
-		fixture.componentInstance.popoverConfig = {
+		fixture.componentInstance.dialogConfig = {
 			content: "test",
 			trigger: "click",
 			placement: "left",

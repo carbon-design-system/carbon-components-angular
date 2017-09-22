@@ -16,7 +16,7 @@ import {
 	host: {
 	},
 })
-export class AbstractDialog {
+export class Dialog {
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
 	public onClose() {

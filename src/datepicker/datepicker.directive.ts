@@ -13,9 +13,9 @@ import {
 	ComponentFactoryResolver
 } from "@angular/core";
 
-import { PopoverDirective } from "./../popover/popover.directive";
+import { DialogDirective } from "./../dialog/dialog.directive";
 import { DatepickerPopover } from "./datepicker-popover.component";
-import { PopoverService } from "./../popover/popover.service";
+import { DialogService } from "./../dialog/dialog.service";
 import { DatepickerService } from "./datepicker.service";
 
 import { Observable } from "rxjs/Observable";
@@ -30,7 +30,7 @@ import "rxjs/add/observable/fromEvent";
 export class DatepickerDirective implements OnInit {
 	public separator: string;
 	public possibleSeparators = ["-", " ", "/"];
-	public popoverService: PopoverService;
+	public dialogService: DialogService;
 	public popoverConfig: any;
 	public changeOnSelect = false;
 
@@ -50,9 +50,9 @@ export class DatepickerDirective implements OnInit {
 			componentFactoryResolver: ComponentFactoryResolver, public viewContainerRef: ViewContainerRef,
 			public datepickerService: DatepickerService) {
 
-		this.popoverService = new PopoverService(DatepickerPopover, viewContainerRef, componentFactoryResolver, injector);
+		this.dialogService = new DialogService(DatepickerPopover, viewContainerRef, componentFactoryResolver, injector);
 
-		this.popoverService.isClosed.subscribe((date) => {
+		this.dialogService.isClosed.subscribe((date) => {
 			this.changeOnSelect = true;
 			this.ngModelChange.emit(this.formatDate(date));
 			this.selectedDateChange.emit(date);
@@ -175,10 +175,10 @@ export class DatepickerDirective implements OnInit {
 			this.popoverConfig.parentRef = new ElementRef(event.target);
 		}
 
-		this.popoverService.toggle(this.popoverConfig);
+		this.dialogService.toggle(this.popoverConfig);
 	}
 
 	close() {
-		this.popoverService.close();
+		this.dialogService.close();
 	}
 }

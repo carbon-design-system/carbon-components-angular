@@ -8,32 +8,32 @@ import {
 	HostListener,
 	ViewChild
 } from "@angular/core";
-import { AbstractDialog } from "./abstract-dialog.component";
+import { Dialog } from "./../dialog.component";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
-import { position, Positions } from "../common/position.service";
-import { cycleTabs } from "./../common/tab.service";
+import position, { Positions } from "../../common/position.service";
+import { cycleTabs } from "./../../common/tab.service";
 
 @Component({
 	selector: "n-popover",
 	template: `
 		<div
-			class="popover--{{popoverConfig.placement}}"
-			[class.popover-menu]="popoverConfig.popoverMenu"
-			[class.popover-filter]="popoverConfig.popoverFilter"
+			class="popover--{{dialogConfig.placement}}"
+			[class.popover-menu]="dialogConfig.popoverMenu"
+			[class.popover-filter]="dialogConfig.popoverFilter"
 			role="dialog"
-			id="{{popoverConfig.compID}}"
+			id="{{dialogConfig.compID}}"
 			tabindex="0"
 			#popover>
 			<header
 				class="popover_header"
 				aria-labelledby="Title"
 				role="banner">
-				<h3 class="header_title">{{popoverConfig.title}}</h3>
+				<h3 class="header_title">{{dialogConfig.title}}</h3>
 				<button
-					*ngIf="popoverConfig.trigger==='click' || popoverConfig.trigger==='mouseenter'"
+					*ngIf="dialogConfig.trigger==='click' || dialogConfig.trigger==='mouseenter'"
 					class="close--white-md"
 					(click)="onClose()"
 					aria-label="Close popover">
@@ -52,14 +52,14 @@ import { cycleTabs } from "./../common/tab.service";
 				role="main">
 				<ng-template
 					*ngIf="hasContentTemplate"
-					[ngTemplateOutlet]="popoverConfig.content"
-					[ngOutletContext]="{popover: this, filter: popoverConfig.filter}">
+					[ngTemplateOutlet]="dialogConfig.content"
+					[ngOutletContext]="{popover: this, filter: dialogConfig.filter}">
 				</ng-template>
-				<div *ngIf="!hasContentTemplate">{{popoverConfig.content}}</div>
+				<div *ngIf="!hasContentTemplate">{{dialogConfig.content}}</div>
 			</section>
 			<footer *ngIf="hasFooterTemplate">
 				<ng-template
-					[ngTemplateOutlet]="popoverConfig.footer"
+					[ngTemplateOutlet]="dialogConfig.footer"
 					[ngOutletContext]="{popover: this}">
 				</ng-template>
 			</footer>
@@ -70,42 +70,42 @@ import { cycleTabs } from "./../common/tab.service";
 		style: "display: inline-block;"
 	}
 })
-export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
+export class Popover extends Dialog implements OnInit, AfterViewInit {
 	public hasContentTemplate = false;
 	public hasFooterTemplate = false;
 	protected placement = Positions.auto;
 	@ViewChild("popover") popover: ElementRef;
-	@Input() popoverConfig;
+	@Input() dialogConfig;
 
 	constructor(public elementRef: ElementRef) {
 		super();
 	}
 
 	ngOnInit() {
-		this.hasContentTemplate = this.popoverConfig.content instanceof TemplateRef;
-		this.hasFooterTemplate = this.popoverConfig.footer instanceof TemplateRef;
+		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
+		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
 
-		switch (this.popoverConfig.placement) {
+		switch (this.dialogConfig.placement) {
 			case "left":
 				this.placement = Positions.left;
-				this.addGap = (pos) => position.addOffset(pos, 0, -this.popoverConfig.gap);
+				this.addGap = (pos) => position.addOffset(pos, 0, -this.dialogConfig.gap);
 				break;
 			case "right":
 				this.placement = Positions.right;
-				this.addGap = (pos) => position.addOffset(pos, 0, this.popoverConfig.gap);
+				this.addGap = (pos) => position.addOffset(pos, 0, this.dialogConfig.gap);
 				break;
 			case "top":
 				this.placement = Positions.top;
-				this.addGap = (pos) => position.addOffset(pos, -this.popoverConfig.gap);
+				this.addGap = (pos) => position.addOffset(pos, -this.dialogConfig.gap);
 				break;
 			case "bottom":
 				this.placement = Positions.bottom;
-				this.addGap = (pos) => position.addOffset(pos, this.popoverConfig.gap);
+				this.addGap = (pos) => position.addOffset(pos, this.dialogConfig.gap);
 				break;
 		}
 
 		Observable.fromEvent(window, "resize")
-		.throttleTime(10)
+		.throttleTime(100)
 		.subscribe(() => {
 			this.placePopover();
 		});
@@ -120,22 +120,21 @@ export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
 	protected addGap = (pos) => position.addOffset(pos, 0, 0);
 
 	placePopover(): void {
-		let parentEl = this.popoverConfig.parentRef.nativeElement;
+		let parentEl = this.dialogConfig.parentRef.nativeElement;
 		let el = this.popover.nativeElement;
 		let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
-		if (this.popoverConfig.appendToBody) {
-			console.log(pos, window.scrollY, window.scrollX);
+		if (this.dialogConfig.appendToBody) {
 			pos = position.addOffset(pos, window.scrollY, window.scrollX);
 		}
 		position.setElement(el, pos);
 		// top
-		// position.setElement(el, position.addOffset(pos, -(this.popoverConfig.gap)));
+		// position.setElement(el, position.addOffset(pos, -(this.dialogConfig.gap)));
 		// bottom
-		// position.setElement(el, position.addOffset(pos, this.popoverConfig.gap));
+		// position.setElement(el, position.addOffset(pos, this.dialogConfig.gap));
 		// left
-		// position.setElement(el, position.addOffset(pos, 0, -(this.popoverConfig.gap)));
+		// position.setElement(el, position.addOffset(pos, 0, -(this.dialogConfig.gap)));
 		// right
-		// position.setElement(el, position.addOffset(pos, 0, this.popoverConfig.gap));
+		// position.setElement(el, position.addOffset(pos, 0, this.dialogConfig.gap));
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -156,7 +155,7 @@ export class Popover extends AbstractDialog implements OnInit, AfterViewInit {
 	@HostListener("document:click", ["$event"])
 	clickClose(event: MouseEvent) {
 		if (!this.elementRef.nativeElement.contains(event.target)
-			&& !this.popoverConfig.parentRef.nativeElement.contains(event.target) ) {
+			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.onClose();
 		}
 	}

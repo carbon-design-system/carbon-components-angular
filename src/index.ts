@@ -6,7 +6,7 @@ export * from "./forms/forms.module";
 export * from "./icon/icon.module";
 export * from "./list-view/list-view.module";
 export * from "./modal/modal.module";
-export * from "./popover/popover.module";
+export * from "./dialog/dialog.module";
 export * from "./side-nav/side-nav.module";
 export * from "./table/table.module";
 export * from "./tabs/tabs.module";

@@ -12,9 +12,15 @@ export interface AbsolutePosition {
 export enum Positions {
 	auto,
 	left,
+	leftBottom,
 	right,
+	rightBottom,
 	top,
-	bottom
+	topLeft,
+	topRight,
+	bottom,
+	bottomLeft,
+	bottomRight
 }
 
 function getAbsoluteOffset(target) {
@@ -23,7 +29,6 @@ function getAbsoluteOffset(target) {
 		top: 0
 	};
 	while (target.offsetParent) {
-		console.log(target, target.offsetParent);
 		offsets.left += target.offsetLeft;
 		offsets.top += target.offsetTop;
 		target = target.offsetParent;
@@ -40,23 +45,23 @@ export namespace position {
 		switch (position) {
 			case Positions.left:
 				return {
-					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
+					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
 					left: Math.round(referenceOffset.left - toPosition.offsetWidth)
 				};
 			case Positions.right:
 				return {
-					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
-					left: Math.round(referenceOffset.left  + referenceRect.width)
+					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
+					left: Math.round(referenceOffset.left  + reference.offsetWidth)
 				};
 			case Positions.top:
 				return {
 					top: Math.round(referenceOffset.top - toPosition.offsetHeight),
-					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
 				};
 			case Positions.bottom:
 				return {
-					top: Math.round(referenceOffset.top + referenceRect.height),
-					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+					top: Math.round(referenceOffset.top + reference.offsetHeight),
+					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
 				};
 		}
 		// default to auto position
@@ -81,3 +86,5 @@ export namespace position {
 		element.style.left = `${position.left}px`;
 	}
 }
+
+export default position;

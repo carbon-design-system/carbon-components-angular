@@ -37,7 +37,11 @@ import { Component, OnInit } from "@angular/core";
 
 	<div class="ellipsis" nEllipsisTooltip>Text that fits</div>
 	<br>
-	<div class="ellipsis" nEllipsisTooltip>Text that is too long to fit and needs a tooltip to display the complete text</div>
+	<div
+		class="ellipsis"
+		nEllipsisTooltip
+		trigger="mouseenter"
+		placement="right">Text that is too long to fit and needs a tooltip to display the complete text</div>
 	`,
 	styleUrls: ["./tooltip-demo.component.scss"]
 })
