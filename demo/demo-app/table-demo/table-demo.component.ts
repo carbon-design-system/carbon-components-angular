@@ -68,7 +68,13 @@ class FilterableHeaderItem extends TableHeaderItem {
 		Delete {{column.data}}
 	</button>
 
-	<n-table [model]="customModel" [striped]="striped" (sort)="customSort($event)" #table></n-table>
+	<n-table
+		[model]="customModel"
+		[striped]="striped"
+		(sort)="customSort($event)"
+		(scrollLoad)="scrollLoad($event)"
+		#table>
+	</n-table>
 	<p>
 		{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
 	</p>
@@ -183,27 +189,37 @@ export class TableDemo implements OnInit {
 		model.sort(index);
 	}
 
+	private prepareData(data: Array<Array<any>>) {
+		// create new data from the service data
+		let newData = [];
+		data.forEach(dataRow => {
+			let row = [];
+			dataRow.forEach(dataElement => {
+				row.push(new TableItem({
+					data: dataElement,
+					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+					// your template can handle all the data types so you don't have to conditionally set it
+					// you can also set different templates for different columns based on index
+				}));
+			});
+			newData.push(row);
+		});
+		return newData;
+	}
+
 	selectPage(page) {
 		this.service.getPage(page).then((data: Array<Array<any>>) => {
-			let newData = [];
-
-			// create new data from the service data
-			data.forEach(dataRow => {
-				let row = [];
-				dataRow.forEach(dataElement => {
-					row.push(new TableItem({
-						data: dataElement,
-						template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
-						// your template can handle all the data types so you don't have to conditionally set it
-						// you can also set different templates for different columns based on index
-					}));
-				});
-				newData.push(row);
-			});
-
 			// set the data and update page
-			this.model.data = newData;
+			this.model.data = this.prepareData(data);
 			this.model.currentPage = page;
+		});
+	}
+
+	scrollLoad(model: TableModel) {
+		this.service.getPage(0).then((data: Array<Array<any>>) => {
+			this.prepareData(data).forEach(row => {
+				model.addRow(row);
+			});
 		});
 	}
 }

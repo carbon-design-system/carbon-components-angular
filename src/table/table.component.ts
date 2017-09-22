@@ -131,7 +131,7 @@ import {
 					</ng-container>
 				</tr>
 			</thead>
-			<tbody [ngClass]="{striped: striped}">
+			<tbody [ngClass]="{striped: striped}" (scroll)="onScroll($event)">
 				<ng-container *ngFor="let row of model.data; let i = index">
 					<tr *ngIf="!model.isRowFiltered(i)"
 						[ngClass]="{selected: model.rowsSelected[i]}">
@@ -161,8 +161,28 @@ import {
 	encapsulation: ViewEncapsulation.None
 })
 export class Table implements AfterContentChecked {
+	/**
+	 * `TableModel` with data the table is to display.
+	 *
+	 * @type {TableModel}
+	 * @memberof Table
+	 */
 	@Input() model: TableModel;
+
+	/**
+	 * Controls whether to show the selection checkboxes column or not.
+	 *
+	 * @memberof Table
+	 */
 	@Input() enableRowSelect = true;
+
+	/**
+	 * Distance (in px) from the bottom that view has to reach before
+	 * `scrollLoad` event is emitted.
+	 *
+	 * @memberof Table
+	 */
+	@Input() scrollLoadDistance = 0;
 	selectAllCheckbox = false;
 	selectAllCheckboxSomeSelected = false;
 	colWidth = 150;
@@ -183,6 +203,7 @@ export class Table implements AfterContentChecked {
 
 	@Output() selectAll = new EventEmitter<Object>();
 	@Output() selectRow = new EventEmitter<Object>();
+	@Output() scrollLoad = new EventEmitter<TableModel>();
 	@ViewChild("body") body;
 
 	constructor(private applicationRef: ApplicationRef) {}
@@ -216,5 +237,13 @@ export class Table implements AfterContentChecked {
 
 		this.selectAllCheckboxSomeSelected = false;
 		this.selectAllCheckbox = startValue;
+	}
+
+	onScroll(event) {
+		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
+
+		if (distanceFromBottom <= this.scrollLoadDistance) {
+			this.scrollLoad.emit(this.model);
+		}
 	}
 }
