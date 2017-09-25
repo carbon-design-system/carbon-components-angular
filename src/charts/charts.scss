@@ -1,0 +1,75 @@
+.n-chart {
+	svg {
+		overflow: visible;
+	}
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+.n-chart svg text {
+	font-weight: 300;
+	font-size: 11px;
+	fill: #AEAEAE;
+}
+.n-chart table {
+	height: 100%;
+	width: 100%;
+}
+.n-chart .chart-row {
+	height: 99%;
+}
+.n-chart .chart-row .chart-content {
+	position: relative;
+	width: 80%;
+}
+.n-chart .chart-row .legend-content {
+	position: absolute;
+	height: 100%;
+	width: 20%;
+	top: 50px;
+}
+.n-chart .legend-row {
+	height: 1%;
+}
+.n-chart .legend-row .legend {
+	max-height: 55px;
+	overflow-y: auto;
+}
+.n-chart .legend-row .legend.link-view {
+	overflow: hidden;
+	height: 36px;
+	float: none;
+}
+.n-chart .legend-row .legend .legend-link {
+	color: #5A5A5A;
+}
+.n-chart .legend-row .legend .legend-link:hover {
+	color: #323232;
+}
+
+button.close--xs {
+	width: 18px;
+	height: 18px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	margin-right: -4px;
+	padding: 0;
+	border: 1px solid transparent;
+	background: transparent;
+	cursor: pointer;
+}
+button.close--xs:focus, button.close--xs:hover {
+	border-color: #777677;
+}
+button.close--xs .close_icon {
+	width: 10px;
+	height: 10px;
+	fill: #777677;
+}
