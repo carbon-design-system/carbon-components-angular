@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NChartComponent } from "./charts.component";
-export { NChartComponent } from "./charts.component";
+import { Chart } from "./charts.component";
+
+export { Chart } from "./charts.component";
 
 @NgModule({
 	declarations: [
-		NChartComponent
+		Chart
 	],
 	exports: [
-		NChartComponent
+		Chart
 	],
 	imports: [CommonModule]
 })

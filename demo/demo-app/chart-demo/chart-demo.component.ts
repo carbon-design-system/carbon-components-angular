@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef } from "@angular/core";
-
 @Component({
 	selector: "chart-demo",
 	template: `
@@ -79,10 +78,6 @@ import { Component, OnInit, ElementRef } from "@angular/core";
 })
 
 export class ChartDemo {
-	constructor(private el:ElementRef) {}
-	ngOnInit() {
-		console.log(this.doubleAxisOption);
-	}
 	colors = [
 		"#009BEF",
 		"#95D13C",
@@ -133,7 +128,7 @@ export class ChartDemo {
 		y2Domain: ["Click rate"],
 		yFormatter: {
 			"Click rate"(value) {
-				return value + "%"
+				return value + "%";
 			}
 		},
 		yTicks: 5,
@@ -142,11 +137,11 @@ export class ChartDemo {
 		colors: this.colors
 	};
 
-	barOption = Object.assign({}, this.options, {type: 'bars'})
-	stackedBarsOption = Object.assign({}, this.options, {type: 'stackedBars'})
-	linesOption = Object.assign({}, this.options, {type: 'lines'})
-	doubleAxisOption = Object.assign({}, this.optionsWithFormatter, {type: 'doubleAxis'})
-	comboOption = Object.assign({}, this.doubleYAxisOptions, {type: 'combo'})
+	barOption = Object.assign({}, this.options, {type: "bars"});
+	stackedBarsOption = Object.assign({}, this.options, {type: "stackedBars"});
+	linesOption = Object.assign({}, this.options, {type: "lines"});
+	doubleAxisOption = Object.assign({}, this.optionsWithFormatter, {type: "doubleAxis"});
+	comboOption = Object.assign({}, this.doubleYAxisOptions, {type: "combo"});
 
 	data = [
 		{
@@ -218,13 +213,12 @@ export class ChartDemo {
 			"Clicks": 35000,
 			"Click rate": 59
 		},
-			{
-				"Day": "Sunday",
-				"Clicks": 35000,
-				"Click rate": 38
-			}
+		{
+			"Day": "Sunday",
+			"Clicks": 35000,
+			"Click rate": 38
+		}
 	];
-
 
 	longData = [
 		{
@@ -276,5 +270,5 @@ export class ChartDemo {
 			"Number of sold products": 190000
 		}
 	];
-
+	constructor(private el: ElementRef) {}
 }
