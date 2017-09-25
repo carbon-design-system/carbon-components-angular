@@ -2,7 +2,7 @@ class ModalContainer {
 	destroy: Function;
 	closeModal(): void {
 		this.destroy();
-	};
+	}
 }
 
 export default function Modal() {

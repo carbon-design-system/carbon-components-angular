@@ -21,11 +21,14 @@
 	"member-ordering": [
 		true,
 		{
-			"order": [
-				"static-before-instance",
-				"variables-before-functions"
-				]
-			}
+		"order": [
+			"static-field",
+			"instance-field",
+			"static-method",
+			"constructor",
+			"instance-method"
+			]
+		}
 	],
 	"no-arg": true,
 	"no-bitwise": true,
@@ -48,7 +51,6 @@
 	"no-switch-case-fall-through": true,
 	"no-trailing-whitespace": true,
 	"no-unused-expression": true,
-	"no-use-before-declare": true,
 	"no-var-keyword": true,
 	"object-literal-sort-keys": false,
 	"one-line": [

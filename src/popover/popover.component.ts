@@ -101,6 +101,8 @@ export class Popover implements OnInit, AfterViewInit {
 
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
+	constructor(public elementRef: ElementRef) {}
+
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
 		switch (event.key) {
@@ -124,7 +126,7 @@ export class Popover implements OnInit, AfterViewInit {
 		}
 	}
 
-	constructor(public elementRef: ElementRef) {}
+
 
 	ngOnInit() {
 		this.isTpl = this.popoverConfig.content instanceof TemplateRef;

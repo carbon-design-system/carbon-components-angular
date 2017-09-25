@@ -47,7 +47,7 @@ export class ModalService {
 		return component;
 	}
 
-	destroy(index: number = -1) {
+	destroy(index = -1) {
 		// return if nothing to destroy because it's already destroyed
 		if (index >= this.componentRefs.length || this.componentRefs.length === 0) {
 			return;
