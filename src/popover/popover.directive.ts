@@ -49,6 +49,12 @@ export class PopoverDirective implements OnInit {
 
 	isTooltip = false;
 
+	constructor(public elementRef: ElementRef, public injector: Injector,
+			componentFactoryResolver: ComponentFactoryResolver, public viewContainerRef: ViewContainerRef) {
+
+		this.popoverService = new PopoverService(Popover, viewContainerRef, componentFactoryResolver, injector);
+	}
+
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
 		evt.stopImmediatePropagation();
@@ -57,11 +63,7 @@ export class PopoverDirective implements OnInit {
 		this.toggle();
 	}
 
-	constructor(public elementRef: ElementRef, public injector: Injector,
-			componentFactoryResolver: ComponentFactoryResolver, public viewContainerRef: ViewContainerRef) {
 
-		this.popoverService = new PopoverService(Popover, viewContainerRef, componentFactoryResolver, injector);
-	}
 
 	ngOnInit() {
 		document.body.firstElementChild.addEventListener("click", () => null, true);

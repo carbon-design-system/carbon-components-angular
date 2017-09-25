@@ -76,7 +76,7 @@ import {
 					<ng-container *ngFor="let column of model.header; let i = index">
 						<th
 							*ngIf="column.visible"
-							[ngStyle]="{'width': i < model.header.length - 1 ? (colWidth) + 'px' : ''}">
+							[ngStyle]="column.style">
 							<div class="header-item-wrapper">
 								<span class="cell-ellipsis"
 									(click)="sort.emit(i)">
@@ -131,7 +131,7 @@ import {
 					</ng-container>
 				</tr>
 			</thead>
-			<tbody [ngClass]="{striped: striped}">
+			<tbody [ngClass]="{striped: striped}" (scroll)="onScroll($event)">
 				<ng-container *ngFor="let row of model.data; let i = index">
 					<tr *ngIf="!model.isRowFiltered(i)"
 						[ngClass]="{selected: model.rowsSelected[i]}">
@@ -144,7 +144,7 @@ import {
 						</td>
 						<ng-container *ngFor="let item of row; let i = index">
 							<td *ngIf="model.header[i].visible"
-								[ngStyle]="{'width': i < row.length - 1 ? (colWidth) + 'px' : ''}">
+								[ngStyle]="model.header[i].style">
 								<span *ngIf="!item.template" class="cell-ellipsis">{{item.data}}</span>
 								<ng-template
 									[ngTemplateOutlet]="item.template" [ngOutletContext]="{data: item.data}">
@@ -161,11 +161,30 @@ import {
 	encapsulation: ViewEncapsulation.None
 })
 export class Table implements AfterContentChecked {
+	/**
+	 * `TableModel` with data the table is to display.
+	 *
+	 * @type {TableModel}
+	 * @memberof Table
+	 */
 	@Input() model: TableModel;
+
+	/**
+	 * Controls whether to show the selection checkboxes column or not.
+	 *
+	 * @memberof Table
+	 */
 	@Input() enableRowSelect = true;
+
+	/**
+	 * Distance (in px) from the bottom that view has to reach before
+	 * `scrollLoad` event is emitted.
+	 *
+	 * @memberof Table
+	 */
+	@Input() scrollLoadDistance = 0;
 	selectAllCheckbox = false;
 	selectAllCheckboxSomeSelected = false;
-	colWidth = 150;
 
 	/**
 	 * Set to `true` to make table rows striped.
@@ -183,6 +202,7 @@ export class Table implements AfterContentChecked {
 
 	@Output() selectAll = new EventEmitter<Object>();
 	@Output() selectRow = new EventEmitter<Object>();
+	@Output() scrollLoad = new EventEmitter<TableModel>();
 	@ViewChild("body") body;
 
 	constructor(private applicationRef: ApplicationRef) {}
@@ -216,5 +236,13 @@ export class Table implements AfterContentChecked {
 
 		this.selectAllCheckboxSomeSelected = false;
 		this.selectAllCheckbox = startValue;
+	}
+
+	onScroll(event) {
+		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
+
+		if (distanceFromBottom <= this.scrollLoadDistance) {
+			this.scrollLoad.emit(this.model);
+		}
 	}
 }

@@ -66,15 +66,30 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<button class="btn--primary" *ngFor="let column of customModel.header; let i = index"
 		(click)="customModel.deleteColumn(i)">
 		Delete {{column.data}}
+	</button><br>
+
+	<button class="btn--primary" (click)="customModel.header[0].style.width = (toNumber(customModel.header[0].style.width)-10) + 'px'">
+		Decrease column width
+	</button>
+	<button class="btn--primary" (click)="customModel.header[0].style.width = (toNumber(customModel.header[0].style.width)+10) + 'px'">
+		Increase column width
 	</button>
 
-	<n-table [model]="customModel" [striped]="striped" (sort)="customSort($event)" #table></n-table>
+	<n-table
+		[model]="customModel"
+		[striped]="striped"
+		(sort)="customSort($event)"
+		(scrollLoad)="scrollLoad($event)"
+		#table>
+	</n-table>
 	<p>
 		{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
 	</p>
 
 	<h2>Full table</h2>
 
+	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength - model.pageLength">Remove page</button>
+	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength + model.pageLength">Add page</button>
 	<n-table [model]="model" (sort)="fullSort($event)"></n-table>
 	<p class="table-footer">
 		<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
@@ -132,7 +147,7 @@ export class TableDemo implements OnInit {
 			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
 		];
 		this.simpleModel.header = [
-			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer"})
+			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
 		];
 
 		// custom model
@@ -147,7 +162,8 @@ export class TableDemo implements OnInit {
 			new FilterableHeaderItem({
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
-				filterTemplate: this.filter
+				filterTemplate: this.filter,
+				style: {"width": "auto"}
 			})
 		];
 
@@ -157,7 +173,8 @@ export class TableDemo implements OnInit {
 			new FilterableHeaderItem({
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
-				filterTemplate: this.filter
+				filterTemplate: this.filter,
+				style: {"width": "auto"}
 			})
 		];
 
@@ -183,27 +200,41 @@ export class TableDemo implements OnInit {
 		model.sort(index);
 	}
 
+	private prepareData(data: Array<Array<any>>) {
+		// create new data from the service data
+		let newData = [];
+		data.forEach(dataRow => {
+			let row = [];
+			dataRow.forEach(dataElement => {
+				row.push(new TableItem({
+					data: dataElement,
+					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+					// your template can handle all the data types so you don't have to conditionally set it
+					// you can also set different templates for different columns based on index
+				}));
+			});
+			newData.push(row);
+		});
+		return newData;
+	}
+
 	selectPage(page) {
 		this.service.getPage(page).then((data: Array<Array<any>>) => {
-			let newData = [];
-
-			// create new data from the service data
-			data.forEach(dataRow => {
-				let row = [];
-				dataRow.forEach(dataElement => {
-					row.push(new TableItem({
-						data: dataElement,
-						template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
-						// your template can handle all the data types so you don't have to conditionally set it
-						// you can also set different templates for different columns based on index
-					}));
-				});
-				newData.push(row);
-			});
-
 			// set the data and update page
-			this.model.data = newData;
+			this.model.data = this.prepareData(data);
 			this.model.currentPage = page;
 		});
+	}
+
+	scrollLoad(model: TableModel) {
+		this.service.getPage(0).then((data: Array<Array<any>>) => {
+			this.prepareData(data).forEach(row => {
+				model.addRow(row);
+			});
+		});
+	}
+
+	toNumber(width: string): number {
+		return Number(width.substr(0, width.length - 2));
 	}
 }
