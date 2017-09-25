@@ -5,8 +5,10 @@ import { Component, OnInit, ElementRef } from "@angular/core";
 	template: `
 	<h1>Chart</h1>
 	<h2>Bars</h2>
-	<h4>options.type='bars'</h4>
-	<h4>options.containerResizable=true</h4>
+	<code>
+		options.type='bars'<br>
+		options.containerResizable=true
+	</code>
 	<div class="resizable">
 		<n-chart
 			[data]="data"
@@ -15,28 +17,35 @@ import { Component, OnInit, ElementRef } from "@angular/core";
 	</div>
 
 	<h2>Stacked Bars</h2>
-	<h4>options.type='stackedBars'</h4>
+	<code>options.type='stackedBars'</code>
 	<n-chart
 		[data]="data"
 		[option]="stackedBarsOption"
 	></n-chart>
 
 	<h2>Lines</h2>
-	<h4>options.type='lines'</h4>
+	<code>options.type='lines'</code>
 	<n-chart
 		[data]="data"
 		[option]="linesOption"
 	></n-chart>
 
 	<h2>Double Axis</h2>
-	<h4>options.type='doubleAxis'</h4>
+	<code>
+		options.type='doubleAxis'<br>
+		options.yFormatter: {{ '{' }} <br>
+		&nbsp;&nbsp;"Click rate"(value) {{ '{' }} <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;return value + "%" <br>
+		&nbsp;&nbsp;{{ '}' }} <br>
+		{{ '}' }}
+	</code>
 	<n-chart
 		[data]="doubleAxisData"
 		[option]="doubleAxisOption"
 	></n-chart>
 
 	<h2>Combo</h2>
-	<h4>options.type='combo'</h4>
+	<code>options.type='combo'</code>
 	<n-chart
 		[data]="data"
 		[option]="comboOption"
