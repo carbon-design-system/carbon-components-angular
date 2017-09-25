@@ -76,10 +76,6 @@ export class Popover extends Dialog implements OnInit, AfterViewInit {
 	protected placement = Positions.auto;
 	@ViewChild("popover") popover: ElementRef;
 
-	constructor(public elementRef: ElementRef) {
-		super();
-	}
-
 	ngOnInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
@@ -127,7 +123,7 @@ export class Popover extends Dialog implements OnInit, AfterViewInit {
 				break;
 			}
 			case "Tab": {
-				cycleTabs(event, this.elementRef.nativeElement);
+				cycleTabs(event, this._elementRef.nativeElement);
 				break;
 			}
 		}
@@ -135,7 +131,7 @@ export class Popover extends Dialog implements OnInit, AfterViewInit {
 
 	@HostListener("document:click", ["$event"])
 	clickClose(event: MouseEvent) {
-		if (!this.elementRef.nativeElement.contains(event.target)
+		if (!this._elementRef.nativeElement.contains(event.target)
 			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.onClose();
 		}

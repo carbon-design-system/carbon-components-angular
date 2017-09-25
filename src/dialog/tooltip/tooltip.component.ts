@@ -62,10 +62,6 @@ export class Tooltip extends Dialog implements OnInit, AfterViewInit {
 	public isTpl: boolean;
 	@ViewChild("tooltip") tooltip: ElementRef;
 
-	constructor(public elementRef: ElementRef) {
-		super();
-	}
-
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
 		switch (event.key) {
@@ -76,7 +72,7 @@ export class Tooltip extends Dialog implements OnInit, AfterViewInit {
 			}
 
 			case "Tab": {
-				cycleTabs(event, this.elementRef.nativeElement);
+				cycleTabs(event, this._elementRef.nativeElement);
 				break;
 			}
 		}
@@ -84,7 +80,7 @@ export class Tooltip extends Dialog implements OnInit, AfterViewInit {
 
 	@HostListener("document:click", ["$event"])
 	clickClose(event: MouseEvent) {
-		if (!this.elementRef.nativeElement.contains(event.target) && !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
+		if (!this._elementRef.nativeElement.contains(event.target) && !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.onClose();
 		}
 	}
@@ -127,6 +123,6 @@ export class Tooltip extends Dialog implements OnInit, AfterViewInit {
 	}
 
 	isRoleDialog() {
-		return getFocusElementList(this.elementRef.nativeElement).length > 1;
+		return getFocusElementList(this._elementRef.nativeElement).length > 1;
 	}
 }

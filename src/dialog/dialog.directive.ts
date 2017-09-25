@@ -44,18 +44,18 @@ export class DialogDirective implements OnInit {
 	 */
 	@Input() filter: any;
 
+	constructor(
+		protected _elementRef: ElementRef,
+		protected _injector: Injector,
+		protected _componentFactoryResolver: ComponentFactoryResolver,
+		protected _viewContainerRef: ViewContainerRef) {}
+
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
 		evt.stopImmediatePropagation();
 		evt.preventDefault();
 		this.toggle();
 	}
-
-	constructor(
-		protected _elementRef: ElementRef,
-		protected _injector: Injector,
-		protected _componentFactoryResolver: ComponentFactoryResolver,
-		protected _viewContainerRef: ViewContainerRef) {}
 
 	ngOnInit() {
 		document.body.firstElementChild.addEventListener("click", () => null, true);
