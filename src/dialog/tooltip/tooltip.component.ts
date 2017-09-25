@@ -61,8 +61,6 @@ import { cycleTabs, getFocusElementList } from "./../../common/tab.service";
 export class Tooltip extends Dialog implements OnInit, AfterViewInit {
 	public isTpl: boolean;
 	@ViewChild("tooltip") tooltip: ElementRef;
-	@Input() dialogConfig;
-	protected placement = Positions.auto;
 
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
@@ -116,34 +114,16 @@ export class Tooltip extends Dialog implements OnInit, AfterViewInit {
 		Observable.fromEvent(window, "resize")
 		.throttleTime(100)
 		.subscribe(() => {
-			this.placeTooltip();
+			// this.placeTooltip();
+			this.placeDialog(this.tooltip.nativeElement);
 		});
 
 		this.tooltip.nativeElement.focus();
 	}
 
 	ngAfterViewInit() {
-		this.placeTooltip();
-	}
-
-	protected addGap = (pos) => position.addOffset(pos, 0, 0);
-
-	placeTooltip(): void {
-		let parentEl = this.dialogConfig.parentRef.nativeElement;
-		let el = this.tooltip.nativeElement;
-		let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
-		if (this.dialogConfig.appendToBody) {
-			pos = position.addOffset(pos, window.scrollY, window.scrollX);
-		}
-		position.setElement(el, pos);
-		// top
-		// position.setElement(el, position.addOffset(pos, -(this.dialogConfig.gap)));
-		// bottom
-		// position.setElement(el, position.addOffset(pos, this.dialogConfig.gap));
-		// left
-		// position.setElement(el, position.addOffset(pos, 0, -(this.dialogConfig.gap)));
-		// right
-		// position.setElement(el, position.addOffset(pos, 0, this.dialogConfig.gap));
+		// this.placeTooltip();
+		this.placeDialog(this.tooltip.nativeElement);
 	}
 
 	isRoleDialog() {

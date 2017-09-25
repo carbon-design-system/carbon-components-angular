@@ -75,7 +75,6 @@ export class Popover extends Dialog implements OnInit, AfterViewInit {
 	public hasFooterTemplate = false;
 	protected placement = Positions.auto;
 	@ViewChild("popover") popover: ElementRef;
-	@Input() dialogConfig;
 
 	constructor(public elementRef: ElementRef) {
 		super();
@@ -107,34 +106,16 @@ export class Popover extends Dialog implements OnInit, AfterViewInit {
 		Observable.fromEvent(window, "resize")
 		.throttleTime(100)
 		.subscribe(() => {
-			this.placePopover();
+			// this.placePopover();
+			this.placeDialog(this.popover.nativeElement);
 		});
 
 		this.popover.nativeElement.focus();
 	}
 
 	ngAfterViewInit() {
-		this.placePopover();
-	}
-
-	protected addGap = (pos) => position.addOffset(pos, 0, 0);
-
-	placePopover(): void {
-		let parentEl = this.dialogConfig.parentRef.nativeElement;
-		let el = this.popover.nativeElement;
-		let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
-		if (this.dialogConfig.appendToBody) {
-			pos = position.addOffset(pos, window.scrollY, window.scrollX);
-		}
-		position.setElement(el, pos);
-		// top
-		// position.setElement(el, position.addOffset(pos, -(this.dialogConfig.gap)));
-		// bottom
-		// position.setElement(el, position.addOffset(pos, this.dialogConfig.gap));
-		// left
-		// position.setElement(el, position.addOffset(pos, 0, -(this.dialogConfig.gap)));
-		// right
-		// position.setElement(el, position.addOffset(pos, 0, this.dialogConfig.gap));
+		// this.placePopover();
+		this.placeDialog(this.popover.nativeElement);
 	}
 
 	@HostListener("keydown", ["$event"])
