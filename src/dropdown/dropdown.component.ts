@@ -309,10 +309,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		document.body.appendChild(this.dropdownWrapper);
 		position.setElement(
 			this.dropdownWrapper,
-			position.addOffset(
-				position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom),
-				window.scrollY
-			)
+			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom)
 		);
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
 		this.resize = Observable.fromEvent(window, "resize")
@@ -320,10 +317,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			.subscribe(() => {
 				position.setElement(
 					this.dropdownWrapper,
-					position.addOffset(
-						position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom),
-						window.scrollY
-					)
+					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom)
 				);
 			});
 	}
@@ -376,7 +370,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 							this.dropdownWrapper,
 							position.addOffset(
 								position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom),
-								window.scrollY
+								-container.scrollTop
 							)
 						);
 					} else {
