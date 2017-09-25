@@ -16,7 +16,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
-import position, { Positions } from "../../common/position.service";
+import position, { Positions, AbsolutePosition } from "../../common/position.service";
 import { cycleTabs, getFocusElementList } from "./../../common/tab.service";
 
 @Component({

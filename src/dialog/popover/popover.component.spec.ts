@@ -52,6 +52,6 @@ describe("Popover component", () => {
 
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.querySelector(".popover").classList.contains("left")).toEqual(true);
+		expect(fixture.nativeElement.querySelector(".popover--left")).not.toBe(null);
 	});
 });
