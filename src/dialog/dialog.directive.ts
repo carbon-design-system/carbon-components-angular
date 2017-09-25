@@ -85,7 +85,7 @@ export class DialogDirective implements OnInit {
 	}
 
 	// overriden by child classes to do things on init
-	protected dialogInit() {};
+	protected dialogInit() {}
 
 	open() {
 		this.popoverService.open(this.dialogConfig);
