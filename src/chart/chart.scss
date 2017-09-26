@@ -34,15 +34,15 @@
 			overflow-y: auto;
 			.legend-link {
 				color: #5A5A5A;
+				&:hover {
+					color: #323232;
+				}
 			}
-			.legend-link:hover {
-				color: #323232;
+			&.link-view {
+				overflow: hidden;
+				height: 36px;
+				float: none;
 			}
-		}
-		.legend.link-view {
-			overflow: hidden;
-			height: 36px;
-			float: none;
 		}
 	}
 }
