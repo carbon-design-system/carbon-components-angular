@@ -14,16 +14,16 @@ import {
 	HostListener
 } from "@angular/core";
 import { DialogDirective } from "./../dialog.directive";
-import { Popover } from "./popover.component";
+import { PopoverMenu } from "./popover-menu.component";
 import { DialogService } from "./../dialog.service";
 
 @Directive({
-	selector: "[nPopover]",
-	exportAs: "nPopover"
+	selector: "[nPopoverMenu]",
+	exportAs: "nPopoverMenu"
 })
-export class PopoverDirective extends DialogDirective {
+export class PopoverMenuDirective extends DialogDirective {
 	@Input() footer: TemplateRef<any>;
-	@Input() nPopover: string | TemplateRef<any>;
+	@Input() nPopoverMenu: string | TemplateRef<any>;
 
 	constructor(
 		protected _elementRef: ElementRef,
@@ -32,11 +32,10 @@ export class PopoverDirective extends DialogDirective {
 		protected _viewContainerRef: ViewContainerRef
 	) {
 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
-		this.dialogService = new DialogService(Popover, _viewContainerRef, _componentFactoryResolver, _injector);
+		this.dialogService = new DialogService(PopoverMenu, _viewContainerRef, _componentFactoryResolver, _injector);
 	}
 
 	onDialogInit() {
-		this.dialogConfig.content = this.nPopover;
-		this.dialogConfig.footer = this.footer;
+		this.dialogConfig.content = this.nPopoverMenu;
 	}
 }

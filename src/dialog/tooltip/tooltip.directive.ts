@@ -31,7 +31,7 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogService = new DialogService(Tooltip, _viewContainerRef, _componentFactoryResolver, _injector);
 	}
 
-	dialogInit() {
+	onDialogInit() {
 		tooltipCounter++;
 		this.dialogConfig.compID = "tooltip-" + tooltipCounter;
 		this.dialogConfig.content = this.nTooltip;

@@ -13,20 +13,17 @@ import {
 	ComponentFactoryResolver,
 	HostListener
 } from "@angular/core";
-import { DialogService } from "./dialog.service";
-
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
+import { DialogService } from "./dialog.service";
+import { DialogConfig } from "./dialog-config.interface";
 
 @Directive({
 	selector: "[nDialog]",
 	exportAs: "nDialog"
 })
 export class DialogDirective implements OnInit {
-	dialogService: DialogService;
-	dialogConfig: any;
-
 	@Input() title: string;
 	@Input() nDialog: string | TemplateRef<any>;
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
@@ -36,13 +33,8 @@ export class DialogDirective implements OnInit {
 	@Input() gap = 10;
 	@Input() appendToBody = false;
 	@Input() type: "warning" | "danger" | "" = "";
-	/**
-	 * Set by filter popover by you.
-	 *
-	 * @type {*}
-	 * @memberof PopoverDirective
-	 */
-	@Input() filter: any;
+	dialogService: DialogService;
+	dialogConfig: DialogConfig;
 
 	constructor(
 		protected _elementRef: ElementRef,
@@ -58,40 +50,38 @@ export class DialogDirective implements OnInit {
 	}
 
 	ngOnInit() {
+		// fix for safari highjacking clicks
 		document.body.firstElementChild.addEventListener("click", () => null, true);
+
+		// set the config object (this can [and should!] be added to in chld classes depending on what they need)
 		this.dialogConfig = {
 			title: this.title,
 			content: this.nDialog,
 			placement: this.placement,
 			parentRef: this._elementRef,
 			gap: this.gap,
-			wrapperClass: this.wrapperClass,
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
 			type: this.type,
-			filter: this.filter
+			wrapperClass: this.wrapperClass
 		};
-		this.dialogInit();
 
+		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(evt => {
-				this.toggle();
-			});
-		} else {
-			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(evt => {
-				this.toggle();
-			});
-		}
-
-		if (this.trigger === "hover" || this.trigger === "mouseenter") {
+			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(evt => this.toggle());
 			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this.dialogService.close());
 			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this.dialogService.open(this.dialogConfig) );
 			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this.dialogService.close() );
+		} else {
+			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(evt => this.toggle());
 		}
+
+		// run any code a child class may need
+		this.onDialogInit();
 	}
 
 	// overriden by child classes to do things on init
-	protected dialogInit() {}
+	protected onDialogInit() {}
 
 	open() {
 		this.dialogService.open(this.dialogConfig);

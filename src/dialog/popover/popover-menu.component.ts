@@ -12,16 +12,16 @@ import { Dialog } from "./../dialog.component";
 import position, { Positions, AbsolutePosition } from "../../common/position.service";
 
 @Component({
-	selector: "n-popover",
+	selector: "n-popover-menu",
 	template: `
 		<div
-			class="popover--{{dialogConfig.placement}}"
+			class="popover--menu-{{dialogConfig.placement}}"
 			role="dialog"
 			id="{{dialogConfig.compID}}"
 			tabindex="0"
 			#dialog>
 			<header
-				class="popover_header"
+				class="popover_header--menu"
 				aria-labelledby="Title"
 				role="banner">
 				<h3 class="header_title">{{dialogConfig.title}}</h3>
@@ -41,16 +41,16 @@ import position, { Positions, AbsolutePosition } from "../../common/position.ser
 				</button>
 			</header>
 			<section
-				class="popover_content"
+				class="popover_content--menu"
 				role="main">
 				<ng-template
 					*ngIf="hasContentTemplate"
 					[ngTemplateOutlet]="dialogConfig.content"
-					[ngOutletContext]="{popover: this}">
+					[ngOutletContext]="{popover: this, filter: dialogConfig.filter}">
 				</ng-template>
 				<div *ngIf="!hasContentTemplate">{{dialogConfig.content}}</div>
 			</section>
-			<footer *ngIf="hasFooterTemplate" class="popover_footer">
+			<footer *ngIf="hasFooterTemplate">
 				<ng-template
 					[ngTemplateOutlet]="dialogConfig.footer"
 					[ngOutletContext]="{popover: this}">
@@ -63,7 +63,7 @@ import position, { Positions, AbsolutePosition } from "../../common/position.ser
 		style: "display: inline-block;"
 	}
 })
-export class Popover extends Dialog {
+export class PopoverMenu extends Dialog {
 	public hasContentTemplate = false;
 	public hasFooterTemplate = false;
 
@@ -72,14 +72,15 @@ export class Popover extends Dialog {
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
 
 		switch (this.dialogConfig.placement) {
-			case "left-bottom":
-				this.placement = Positions.leftBottom;
-				this.addGap = (pos) => position.addOffset(pos, 0, -this.dialogConfig.gap);
+			case "bottom-left":
+				this.placement = Positions.bottomLeft;
 				break;
-			case "right-bottom":
-				this.placement = Positions.rightBottom;
-				this.addGap = (pos) => position.addOffset(pos, 0, this.dialogConfig.gap);
+			case "bottom-right":
+				this.placement = Positions.bottomRight;
 				break;
 		}
+
+		// gap will always be the same: + on the y
+		this.addGap = (pos) => position.addOffset(pos, this.dialogConfig.gap);
 	}
 }
