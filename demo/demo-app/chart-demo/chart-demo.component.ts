@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from "@angular/core";
+import { Component } from "@angular/core";
 @Component({
 	selector: "chart-demo",
 	template: `
@@ -270,5 +270,4 @@ export class ChartDemo {
 			"Number of sold products": 190000
 		}
 	];
-	constructor(private el: ElementRef) {}
 }
