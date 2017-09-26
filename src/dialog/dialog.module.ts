@@ -8,6 +8,8 @@ import { DialogDirective } from "./dialog.directive";
 
 import { Popover } from "./popover/popover.component";
 import { PopoverDirective } from "./popover/popover.directive";
+import { PopoverMenu } from "./popover/popover-menu.component";
+import { PopoverMenuDirective } from "./popover/popover-menu.directive";
 
 import { Tooltip } from "./tooltip/tooltip.component";
 import { TooltipDirective } from "./tooltip/tooltip.directive";
@@ -20,6 +22,8 @@ export { DialogDirective } from "./dialog.directive";
 
 export { Popover } from "./popover/popover.component";
 export { PopoverDirective } from "./popover/popover.directive";
+export { PopoverMenu } from "./popover/popover-menu.component";
+export { PopoverMenuDirective } from "./popover/popover-menu.directive";
 
 export { Tooltip } from "./tooltip/tooltip.component";
 export { TooltipDirective } from "./tooltip/tooltip.directive";
@@ -29,22 +33,31 @@ export { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
 	declarations: [
 		Dialog,
 		Popover,
+		PopoverMenu,
 		Tooltip,
 		DialogDirective,
 		PopoverDirective,
+		PopoverMenuDirective,
 		TooltipDirective,
 		EllipsisTooltipDirective
 	],
 	exports: [
 		Dialog,
 		Popover,
+		PopoverMenu,
 		Tooltip,
 		DialogDirective,
 		PopoverDirective,
+		PopoverMenuDirective,
 		TooltipDirective,
 		EllipsisTooltipDirective
 	],
-	entryComponents: [Dialog, Popover, Tooltip],
+	entryComponents: [
+		Dialog,
+		Popover,
+		PopoverMenu,
+		Tooltip
+	],
 	imports: [CommonModule]
 })
 export class DialogModule {}
