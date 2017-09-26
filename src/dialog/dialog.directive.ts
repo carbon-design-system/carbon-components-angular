@@ -33,14 +33,11 @@ export class DialogDirective implements OnInit {
 	@Input() gap = 10;
 	@Input() appendToBody = false;
 	@Input() type: "warning" | "danger" | "" = "";
-	dialogService: DialogService;
 	dialogConfig: DialogConfig;
 
 	constructor(
 		protected _elementRef: ElementRef,
-		protected _injector: Injector,
-		protected _componentFactoryResolver: ComponentFactoryResolver,
-		protected _viewContainerRef: ViewContainerRef) {}
+		protected _dialogService: DialogService) {}
 
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
@@ -69,9 +66,9 @@ export class DialogDirective implements OnInit {
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
 			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(evt => this.toggle());
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this.dialogService.close());
-			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this.dialogService.open(this.dialogConfig) );
-			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this.dialogService.close() );
+			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this._dialogService.close());
+			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this._dialogService.open(this.dialogConfig) );
+			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this._dialogService.close() );
 		} else {
 			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(evt => this.toggle());
 		}
@@ -84,14 +81,14 @@ export class DialogDirective implements OnInit {
 	protected onDialogInit() {}
 
 	open() {
-		this.dialogService.open(this.dialogConfig);
+		this._dialogService.open(this.dialogConfig);
 	}
 
 	toggle() {
-		this.dialogService.toggle(this.dialogConfig);
+		this._dialogService.toggle(this.dialogConfig);
 	}
 
 	close() {
-		this.dialogService.close();
+		this._dialogService.close();
 	}
 }

@@ -23,12 +23,10 @@ export class TooltipDirective extends DialogDirective {
 
 	constructor(
 		protected _elementRef: ElementRef,
-		protected _injector: Injector,
-		protected _componentFactoryResolver: ComponentFactoryResolver,
-		protected _viewContainerRef: ViewContainerRef
+		protected _dialogService: DialogService
 	) {
-		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
-		this.dialogService = new DialogService(Tooltip, _viewContainerRef, _componentFactoryResolver, _injector);
+		super(_elementRef, _dialogService);
+		_dialogService.create(Tooltip);
 	}
 
 	onDialogInit() {

@@ -1,6 +1,7 @@
 import {
 	EventEmitter,
 	Injector,
+	Component,
 	ComponentRef,
 	ComponentFactory,
 	ComponentFactoryResolver,
@@ -18,20 +19,17 @@ export class DialogService {
 	public componentFactory: ComponentFactory<any>;
 	public onClose: EventEmitter<any> = new EventEmitter();
 	public dialogRef: ComponentRef<any>;
-	public viewContainerRef: ViewContainerRef;
-	public injector: Injector;
 
 	isClosed: EventEmitter<any> = new EventEmitter();
 
 	constructor(
-		comp,
-		viewContainerRef: ViewContainerRef,
-		componentFactoryResolver: ComponentFactoryResolver,
-		injector: Injector
-	) {
-		this.viewContainerRef = viewContainerRef;
-		this.injector = injector;
-		this.componentFactory = componentFactoryResolver.resolveComponentFactory(comp);
+		protected _viewContainerRef: ViewContainerRef,
+		protected _componentFactoryResolver: ComponentFactoryResolver,
+		protected _injector: Injector
+	) {}
+
+	create(component) {
+		this.componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
 	}
 
 	toggle(dialogConfig) {
@@ -44,7 +42,7 @@ export class DialogService {
 
 	open(dialogConfig) {
 		if (!this.dialogRef) {
-			this.dialogRef = this.viewContainerRef.createComponent(this.componentFactory, 0, this.injector);
+			this.dialogRef = this._viewContainerRef.createComponent(this.componentFactory, 0, this._injector);
 			let focusedElement = document.activeElement;
 			dialogConfig["previouslyFocusedElement"] = focusedElement;
 			this.dialogRef.instance.dialogConfig = dialogConfig;
@@ -74,7 +72,7 @@ export class DialogService {
 		if (this.dialogRef) {
 			this.dialogRef.instance.dialogConfig.parentRef.nativeElement.classList.remove("dialog-selected");
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
-			this.viewContainerRef.remove(this.viewContainerRef.indexOf(this.dialogRef.hostView));
+			this._viewContainerRef.remove(this._viewContainerRef.indexOf(this.dialogRef.hostView));
 			this.dialogRef = null;
 			this.isOpen = false;
 			elementToFocus.focus();

@@ -27,12 +27,10 @@ export class PopoverMenuDirective extends DialogDirective {
 
 	constructor(
 		protected _elementRef: ElementRef,
-		protected _injector: Injector,
-		protected _componentFactoryResolver: ComponentFactoryResolver,
-		protected _viewContainerRef: ViewContainerRef
+		protected _dialogService: DialogService
 	) {
-		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
-		this.dialogService = new DialogService(PopoverMenu, _viewContainerRef, _componentFactoryResolver, _injector);
+		super(_elementRef, _dialogService);
+		_dialogService.create(PopoverMenu);
 	}
 
 	onDialogInit() {
