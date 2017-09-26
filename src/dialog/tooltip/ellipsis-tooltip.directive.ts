@@ -12,7 +12,10 @@ import { DialogService } from "./../dialog.service";
 import { Tooltip } from "./tooltip.component";
 
 @Directive({
-	selector: "[nEllipsisTooltip]"
+	selector: "[nEllipsisTooltip]",
+	providers: [
+		DialogService
+	]
 })
 export class EllipsisTooltipDirective extends TooltipDirective {
 	toggle() {

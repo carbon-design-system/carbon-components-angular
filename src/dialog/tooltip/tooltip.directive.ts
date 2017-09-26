@@ -15,7 +15,10 @@ let tooltipCounter = 0;
 
 @Directive({
 	selector: "[nTooltip]",
-	exportAs: "nTooltip"
+	exportAs: "nTooltip",
+	providers: [
+		DialogService
+	]
 })
 export class TooltipDirective extends DialogDirective {
 	@Input() nTooltip: string | TemplateRef<any>;
@@ -23,9 +26,10 @@ export class TooltipDirective extends DialogDirective {
 
 	constructor(
 		protected _elementRef: ElementRef,
+		protected _viewContainerRef: ViewContainerRef,
 		protected _dialogService: DialogService
 	) {
-		super(_elementRef, _dialogService);
+		super(_elementRef, _viewContainerRef, _dialogService);
 		_dialogService.create(Tooltip);
 	}
 

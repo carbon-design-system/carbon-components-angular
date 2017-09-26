@@ -21,7 +21,10 @@ import { DialogConfig } from "./dialog-config.interface";
 
 @Directive({
 	selector: "[nDialog]",
-	exportAs: "nDialog"
+	exportAs: "nDialog",
+	providers: [
+		DialogService
+	]
 })
 export class DialogDirective implements OnInit {
 	@Input() title: string;
@@ -37,6 +40,7 @@ export class DialogDirective implements OnInit {
 
 	constructor(
 		protected _elementRef: ElementRef,
+		protected _viewContainerRef: ViewContainerRef,
 		protected _dialogService: DialogService) {}
 
 	@HostListener("touchstart", ["$event"])
@@ -65,12 +69,12 @@ export class DialogDirective implements OnInit {
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(evt => this.toggle());
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this._dialogService.close());
-			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this._dialogService.open(this.dialogConfig) );
-			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this._dialogService.close() );
+			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
+			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this.close());
+			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this.open());
+			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
-			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(evt => this.toggle());
+			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(() => this.toggle());
 		}
 
 		// run any code a child class may need
@@ -81,14 +85,14 @@ export class DialogDirective implements OnInit {
 	protected onDialogInit() {}
 
 	open() {
-		this._dialogService.open(this.dialogConfig);
+		this._dialogService.open(this._viewContainerRef, this.dialogConfig);
 	}
 
 	toggle() {
-		this._dialogService.toggle(this.dialogConfig);
+		this._dialogService.toggle(this._viewContainerRef, this.dialogConfig);
 	}
 
 	close() {
-		this._dialogService.close();
+		this._dialogService.close(this._viewContainerRef);
 	}
 }

@@ -52,6 +52,9 @@ export { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
 		TooltipDirective,
 		EllipsisTooltipDirective
 	],
+	providers: [
+		DialogService
+	],
 	entryComponents: [
 		Dialog,
 		Popover,

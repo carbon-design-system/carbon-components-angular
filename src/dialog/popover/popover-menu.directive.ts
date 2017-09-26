@@ -19,7 +19,10 @@ import { DialogService } from "./../dialog.service";
 
 @Directive({
 	selector: "[nPopoverMenu]",
-	exportAs: "nPopoverMenu"
+	exportAs: "nPopoverMenu",
+	providers: [
+		DialogService
+	]
 })
 export class PopoverMenuDirective extends DialogDirective {
 	@Input() footer: TemplateRef<any>;
@@ -27,9 +30,10 @@ export class PopoverMenuDirective extends DialogDirective {
 
 	constructor(
 		protected _elementRef: ElementRef,
+		protected _viewContainerRef: ViewContainerRef,
 		protected _dialogService: DialogService
 	) {
-		super(_elementRef, _dialogService);
+		super(_elementRef, _viewContainerRef, _dialogService);
 		_dialogService.create(PopoverMenu);
 	}
 
