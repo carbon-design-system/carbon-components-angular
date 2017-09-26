@@ -88,6 +88,8 @@ class FilterableHeaderItem extends TableHeaderItem {
 
 	<h2>Full table</h2>
 
+	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength - model.pageLength">Remove page</button>
+	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength + model.pageLength">Add page</button>
 	<n-table [model]="model" (sort)="fullSort($event)"></n-table>
 	<p class="table-footer">
 		<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
