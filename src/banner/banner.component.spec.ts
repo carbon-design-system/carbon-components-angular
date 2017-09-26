@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
+import {TestBed, ComponentFixture, inject, tick, fakeAsync} from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Banner } from "./banner.component";
@@ -96,33 +96,16 @@ describe("Banner", () => {
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();
 	});
 
-
-	it("should display correct message", () => {
+	it("should emit change when banner is closed programmatically", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
-			type: "success",
+			type: "info",
 			message: "sample message"
 		};
 		fixture.detectChanges();
 
-		spyOn(fixture.componentInstance.close, "emit");
-		
 		fixture.componentInstance.destroy();
-		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();		
 
+		expect(fixture.componentInstance);
 	});
-
-
-
-
-	// it("should emit change when timer duration expires", () => {
-	// 	const fixture = TestBed.createComponent(Banner);
-	// 	fixture.componentInstance.bannerObj = {
-	// 		type: "info",
-	// 		message: "sample message",
-	// 		duration: 2000
-	// 	};
-	// 	setTimeout(fixture.detectChanges(),2000);
-	// 	expect(fixture.componentInstance.close.emit).toHaveBeenCalled();		
-	// });
 });
