@@ -11,23 +11,23 @@ import { Component } from "@angular/core";
 	<div class="resizable">
 		<n-chart
 			[data]="data"
-			[option]="options"
-		></n-chart>
+			[option]="options">
+		</n-chart>
 	</div>
 
 	<h2>Stacked Bars</h2>
 	<code>options.type='stackedBars'</code>
 	<n-chart
 		[data]="data"
-		[option]="stackedBarsOption"
-	></n-chart>
+		[option]="stackedBarsOption">
+	</n-chart>
 
 	<h2>Lines</h2>
 	<code>options.type='lines'</code>
 	<n-chart
 		[data]="data"
-		[option]="linesOption"
-	></n-chart>
+		[option]="linesOption">
+	</n-chart>
 
 	<h2>Double Axis</h2>
 	<code>
@@ -40,15 +40,15 @@ import { Component } from "@angular/core";
 	</code>
 	<n-chart
 		[data]="doubleAxisData"
-		[option]="doubleAxisOption"
-	></n-chart>
+		[option]="doubleAxisOption">
+	</n-chart>
 
 	<h2>Combo</h2>
 	<code>options.type='combo'</code>
 	<n-chart
 		[data]="data"
-		[option]="comboOption"
-	></n-chart>
+		[option]="comboOption">
+	</n-chart>
 
 	`,
 	styles: [`
