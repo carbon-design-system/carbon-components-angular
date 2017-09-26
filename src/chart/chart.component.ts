@@ -8,7 +8,7 @@ import {
 
 import { Charts } from "@peretz/charts/bundle/bundle.js";
 
-import "./charts.scss";
+import "./chart.scss";
 
 /**
  * Angular component built with common charting library.
@@ -18,8 +18,8 @@ import "./charts.scss";
  * ```html
  *<n-chart
  * [data]="data"
- *	[option]="stackedBarsOption"
- *></n-chart>
+ *	[option]="stackedBarsOption">
+ *</n-chart>
  * ```
  *
  * `data` and `option` are the inputs to the component.
