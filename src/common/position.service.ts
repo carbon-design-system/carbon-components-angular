@@ -39,7 +39,6 @@ function getAbsoluteOffset(target) {
 export namespace position {
 	// finds the position relative to the `reference` element
 	export function findRelative(reference: HTMLElement, toPosition: HTMLElement, position: Positions = Positions.auto): AbsolutePosition {
-		let referenceRect = reference.getBoundingClientRect();
 		let referenceOffset = getAbsoluteOffset(reference);
 		// calculate offsets for a given position
 		switch (position) {
@@ -73,6 +72,16 @@ export namespace position {
 				return {
 					top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
 					left: Math.round(referenceOffset.left  + reference.offsetWidth)
+				};
+			case Positions.bottomLeft:
+				return {
+					top: referenceOffset.top + reference.offsetHeight,
+					left: referenceOffset.left + reference.offsetWidth - toPosition.offsetWidth
+				};
+			case Positions.bottomRight:
+				return {
+					top: referenceOffset.top + reference.offsetHeight,
+					left: referenceOffset.left
 				};
 		}
 		// default to auto position
