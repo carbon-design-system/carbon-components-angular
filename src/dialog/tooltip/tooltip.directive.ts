@@ -28,7 +28,7 @@ export class TooltipDirective extends DialogDirective {
 		protected _viewContainerRef: ViewContainerRef
 	) {
 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
-		this.popoverService = new DialogService(Tooltip, _viewContainerRef, _componentFactoryResolver, _injector);
+		this.dialogService = new DialogService(Tooltip, _viewContainerRef, _componentFactoryResolver, _injector);
 	}
 
 	dialogInit() {

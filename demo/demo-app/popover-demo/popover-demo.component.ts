@@ -10,36 +10,48 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	</ng-template>
 
 	<h3>Basic popover</h3>
-	<span>
+	<div>
 		Popover left
 		<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="left">
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
-	</span>
-	<span>
+	</div>
+	<div>
 		Popover top
 		<button class="popover-button" nPopover="Hello there" title="Popover title" placement="top">
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
-	</span>
-	<span>
+	</div>
+	<div>
 		Popover right
 		<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="right">
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
-	</span>
-	<span>
+	</div>
+	<div>
+		Popover right-bottom
+		<button class="popover-button" nPopover="Hello there" title="Popover title" placement="right-bottom">
+			<n-icon icon="info" size="16"></n-icon>
+		</button>
+	</div>
+	<div>
+		Popover left-bottom
+		<button class="popover-button" nPopover="Hello there" title="Popover title" placement="left-bottom">
+			<n-icon icon="info" size="16"></n-icon>
+		</button>
+	</div>
+	<div>
 		Popover bottom
 		<button class="popover-button" nPopover="Hello there" title="Popover title" placement="bottom">
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
-	</span>
-	<span>
+	</div>
+	<div>
 		Popover auto position
 		<button class="popover-button" [nPopover]="customPopover" title="Popover title" placement="auto">
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
-	</span>
+	</div>
 
 	<h3>Popover can be opened or closed manualy</h3>
 	Have a popover

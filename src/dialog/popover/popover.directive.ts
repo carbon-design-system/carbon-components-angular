@@ -34,7 +34,7 @@ export class PopoverDirective extends DialogDirective {
 		protected _viewContainerRef: ViewContainerRef
 	) {
 		super(_elementRef, _injector, _componentFactoryResolver, _viewContainerRef);
-		this.popoverService = new DialogService(Popover, _viewContainerRef, _componentFactoryResolver, _injector);
+		this.dialogService = new DialogService(Popover, _viewContainerRef, _componentFactoryResolver, _injector);
 	}
 
 	dialogInit() {

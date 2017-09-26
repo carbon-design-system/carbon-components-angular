@@ -63,6 +63,17 @@ export namespace position {
 					top: Math.round(referenceOffset.top + reference.offsetHeight),
 					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
 				};
+			case Positions.leftBottom:
+				return {
+					// 22 == half of popover header height
+					top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+					left: Math.round(referenceOffset.left - toPosition.offsetWidth)
+				};
+			case Positions.rightBottom:
+				return {
+					top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+					left: Math.round(referenceOffset.left  + reference.offsetWidth)
+				};
 		}
 		// default to auto position
 		/**

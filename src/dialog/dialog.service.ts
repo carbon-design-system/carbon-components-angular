@@ -60,7 +60,7 @@ export class DialogService {
 				this.close(evt);
 			});
 
-			this.dialogRef.instance.elementRef.nativeElement.focus();
+			this.dialogRef.instance._elementRef.nativeElement.focus();
 
 			this.dialogRef.instance.dialogConfig.parentRef.nativeElement.classList.add("dialog-selected");
 		}

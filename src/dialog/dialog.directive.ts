@@ -24,7 +24,7 @@ import "rxjs/add/observable/fromEvent";
 	exportAs: "nDialog"
 })
 export class DialogDirective implements OnInit {
-	popoverService: DialogService;
+	dialogService: DialogService;
 	dialogConfig: any;
 
 	@Input() title: string;
@@ -73,14 +73,20 @@ export class DialogDirective implements OnInit {
 		};
 		this.dialogInit();
 
-		Observable.fromEvent(this._elementRef.nativeElement, this.trigger).subscribe(evt => {
-			this.toggle();
-		});
+		if (this.trigger === "hover" || this.trigger === "mouseenter") {
+			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(evt => {
+				this.toggle();
+			});
+		} else {
+			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(evt => {
+				this.toggle();
+			});
+		}
 
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this.popoverService.close());
-			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this.popoverService.open(this.dialogConfig) );
-			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this.popoverService.close() );
+			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this.dialogService.close());
+			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this.dialogService.open(this.dialogConfig) );
+			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this.dialogService.close() );
 		}
 	}
 
@@ -88,14 +94,14 @@ export class DialogDirective implements OnInit {
 	protected dialogInit() {}
 
 	open() {
-		this.popoverService.open(this.dialogConfig);
+		this.dialogService.open(this.dialogConfig);
 	}
 
 	toggle() {
-		this.popoverService.toggle(this.dialogConfig);
+		this.dialogService.toggle(this.dialogConfig);
 	}
 
 	close() {
-		this.popoverService.close();
+		this.dialogService.close();
 	}
 }

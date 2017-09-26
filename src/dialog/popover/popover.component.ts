@@ -9,12 +9,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/throttleTime";
-import "rxjs/add/observable/fromEvent";
-
 import position, { Positions, AbsolutePosition } from "../../common/position.service";
-import { cycleTabs } from "./../../common/tab.service";
 
 @Component({
 	selector: "n-popover",
@@ -26,7 +21,7 @@ import { cycleTabs } from "./../../common/tab.service";
 			role="dialog"
 			id="{{dialogConfig.compID}}"
 			tabindex="0"
-			#popover>
+			#dialog>
 			<header
 				class="popover_header"
 				aria-labelledby="Title"
@@ -70,70 +65,23 @@ import { cycleTabs } from "./../../common/tab.service";
 		style: "display: inline-block;"
 	}
 })
-export class Popover extends Dialog implements OnInit, AfterViewInit {
+export class Popover extends Dialog {
 	public hasContentTemplate = false;
 	public hasFooterTemplate = false;
-	protected placement = Positions.auto;
-	@ViewChild("popover") popover: ElementRef;
 
-	ngOnInit() {
+	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
 
 		switch (this.dialogConfig.placement) {
-			case "left":
-				this.placement = Positions.left;
+			case "left-bottom":
+				this.placement = Positions.leftBottom;
 				this.addGap = (pos) => position.addOffset(pos, 0, -this.dialogConfig.gap);
 				break;
-			case "right":
-				this.placement = Positions.right;
+			case "right-bottom":
+				this.placement = Positions.rightBottom;
 				this.addGap = (pos) => position.addOffset(pos, 0, this.dialogConfig.gap);
 				break;
-			case "top":
-				this.placement = Positions.top;
-				this.addGap = (pos) => position.addOffset(pos, -this.dialogConfig.gap);
-				break;
-			case "bottom":
-				this.placement = Positions.bottom;
-				this.addGap = (pos) => position.addOffset(pos, this.dialogConfig.gap);
-				break;
-		}
-
-		Observable.fromEvent(window, "resize")
-		.throttleTime(100)
-		.subscribe(() => {
-			// this.placePopover();
-			this.placeDialog(this.popover.nativeElement);
-		});
-
-		this.popover.nativeElement.focus();
-	}
-
-	ngAfterViewInit() {
-		// this.placePopover();
-		this.placeDialog(this.popover.nativeElement);
-	}
-
-	@HostListener("keydown", ["$event"])
-	escapeClose(event: KeyboardEvent) {
-		switch (event.key) {
-			case "Escape": {
-				event.stopImmediatePropagation();
-				this.onClose();
-				break;
-			}
-			case "Tab": {
-				cycleTabs(event, this._elementRef.nativeElement);
-				break;
-			}
-		}
-	}
-
-	@HostListener("document:click", ["$event"])
-	clickClose(event: MouseEvent) {
-		if (!this._elementRef.nativeElement.contains(event.target)
-			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
-			this.onClose();
 		}
 	}
 }
