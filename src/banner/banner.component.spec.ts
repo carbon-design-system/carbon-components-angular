@@ -95,4 +95,34 @@ describe("Banner", () => {
 		button.click();
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();
 	});
+
+
+	it("should display correct message", () => {
+		const fixture = TestBed.createComponent(Banner);
+		fixture.componentInstance.bannerObj = {
+			type: "success",
+			message: "sample message"
+		};
+		fixture.detectChanges();
+
+		spyOn(fixture.componentInstance.close, "emit");
+		
+		fixture.componentInstance.destroy();
+		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();		
+
+	});
+
+
+
+
+	// it("should emit change when timer duration expires", () => {
+	// 	const fixture = TestBed.createComponent(Banner);
+	// 	fixture.componentInstance.bannerObj = {
+	// 		type: "info",
+	// 		message: "sample message",
+	// 		duration: 2000
+	// 	};
+	// 	setTimeout(fixture.detectChanges(),2000);
+	// 	expect(fixture.componentInstance.close.emit).toHaveBeenCalled();		
+	// });
 });
