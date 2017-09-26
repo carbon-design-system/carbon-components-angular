@@ -33,8 +33,8 @@ import "./chart.scss";
 	selector: "n-chart",
 	template: `
 		<div #nChart
-			class='n-chart-container'
-		></div>
+			class='n-chart-container'>
+		</div>
 	`,
 	styles: [`
 		:host {

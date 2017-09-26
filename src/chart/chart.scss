@@ -1,14 +1,14 @@
 .n-chart {
-	svg {
-		overflow: visible;
-	}
 	display: block;
 	height: 100%;
 	width: 100%;
-	svg text {
-		font-weight: 300;
-		font-size: 11px;
-		fill: #AEAEAE;
+	svg {
+		overflow: visible;
+		text {
+				font-weight: 300;
+				font-size: 11px;
+				fill: #AEAEAE;
+		}
 	}
 	table {
 		height: 100%;
@@ -64,12 +64,12 @@ button.close--xs {
 	border: 1px solid transparent;
 	background: transparent;
 	cursor: pointer;
-}
-button.close--xs:focus, button.close--xs:hover {
-	border-color: #777677;
-}
-button.close--xs .close_icon {
-	width: 10px;
-	height: 10px;
-	fill: #777677;
+	&:focus, &:hover {
+		border-color: #777677;
+	}
+	.close_icon {
+		width: 10px;
+		height: 10px;
+		fill: #777677;
+	}
 }
