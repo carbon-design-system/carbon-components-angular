@@ -110,11 +110,9 @@ import {
 									*ngIf="column.filterTemplate"
 									[nPopover]="column.filterTemplate"
 									title="Filter"
-									placement="right"
-									wrapperClass="popover--right-bottom"
+									placement="right-bottom"
 									popoverFilter="true"
-									[appendToBody]="true"
-									[filter]="column.filterData">
+									[appendToBody]="true">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"

@@ -96,5 +96,8 @@
     "webpack-node-externals": "^1.5.4",
     "whatwg-fetch": "^2.0.3",
     "zone.js": "0.8.17"
+  },
+  "dependencies": {
+    "default-gateway": "2.5.0"
   }
 }
