@@ -82,7 +82,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 		(scrollLoad)="scrollLoad($event)"
 		#table>
 	</n-table>
-	<p>
+	<p class="table-footer-simple">
 		{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
 	</p>
 
