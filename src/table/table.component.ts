@@ -11,6 +11,54 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 
+/**
+ * Build your table with this component by extending things that differ from default.
+ *
+ * ## Build your own table footer with neutrino components
+ *
+ * ```html
+ * <p class="table-footer">
+ * 	<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
+ * 	<n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
+ * 	<n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
+ * </p>
+ * ```
+ *
+ * `selectPage()` function should fetch the data from backend, create new `data`, apply it to `model.data`,
+ * and update `model.currentPage`.
+ *
+ * If the data your server returns is a two dimensional array of objects, it would look something like this:
+ *
+ * ```typescript
+ * selectPage(page) {
+ * 	this.service.getPage(page).then((data: Array<Array<any>>) => {
+ * 		let newData = [];
+ *
+ * 		// create new data from the service data
+ * 		data.forEach(dataRow => {
+ * 			let row = [];
+ * 			dataRow.forEach(dataElement => {
+ * 				row.push(new TableItem({
+ * 					data: dataElement,
+ * 					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+ * 					// your template can handle all the data types so you don't have to conditionally set it
+ * 					// you can also set different templates for different columns based on index
+ * 				}));
+ * 			});
+ * 			newData.push(row);
+ * 		});
+ *
+ * 		// set the data and update page
+ * 		this.model.data = newData;
+ * 		this.model.currentPage = page;
+ * 	});
+ * }
+ * ```
+ *
+ * @export
+ * @class Table
+ * @implements {AfterContentChecked}
+ */
 @Component({
 	selector: "n-table",
 	template: `
@@ -28,34 +76,21 @@ import {
 					<ng-container *ngFor="let column of model.header; let i = index">
 						<th
 							*ngIf="column.visible"
-							[ngStyle]="{'width': i < model.header.length - 1 ? (colWidth) + 'px' : ''}">
-							<span *ngIf="!column.template">{{column.data}}</span>
-							<ng-template
-								[ngTemplateOutlet]="column.template" [ngOutletContext]="{data: column.data}">
-							</ng-template>
-							<div class="col-actions">
-								<button class="popover-button"
-									[nPopover]="column.filterTemplate ? column.filterTemplate : 'Filter unavailable'"
-									title="Filter"
-									placement="right"
-									wrapperClass="popover-content-filter"
-									popoverFilter="true"
-									[filter]="column.filterData">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="16"
-										height="16"
-										viewBox="0 0 16 16">
-										<path fill="#949494" d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
-									</svg>
-								</button>
-								<span
-									*ngIf="sort"
+							[ngStyle]="column.style">
+							<div class="header-item-wrapper">
+								<span class="cell-ellipsis"
 									(click)="sort.emit(i)">
+									<span *ngIf="!column.template">{{column.data}}</span>
+									<ng-template
+										[ngTemplateOutlet]="column.template" [ngOutletContext]="{data: column.data}">
+									</ng-template>
+								</span>
+								<span (click)="sort.emit(i)">
 									<!-- arrow up -->
 									<svg
-										*ngIf="column.ascending && column.sorted"
+										*ngIf="column.descending && column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
+										class="icon--blue-sm"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
@@ -63,29 +98,43 @@ import {
 									</svg>
 									<!-- arrow down -->
 									<svg
-										*ngIf="column.descending && column.sorted"
+										*ngIf="column.ascending && column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
+										class="icon--blue-sm"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
 										<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
 									</svg>
-									<!-- sort -->
+								</span>
+								<button class="btn--unstyled col-actions"
+									[ngClass]="{'filter-enabled': column.filterCount > 0}"
+									*ngIf="column.filterTemplate"
+									[nPopover]="column.filterTemplate"
+									title="Filter"
+									placement="right"
+									wrapperClass="popover--right-bottom"
+									popoverFilter="true"
+									[appendToBody]="true"
+									[filter]="column.filterData">
 									<svg
-										*ngIf="!column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
+										class="icon--sm"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
-										<path d="M7.5 6l1-1-4-4-4 4 1 1 2.3-2.3V14h1.4V3.7zM14.5 10l-2.3 2.3V2h-1.4v10.3L8.5 10l-1 1 4 4 4-4z"/>
+										<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
 									</svg>
-								</span>
+									<span *ngIf="column.filterCount > 0" class="filter-count">
+										{{column.filterCount}}
+									</span>
+								</button>
 							</div>
 						</th>
 					</ng-container>
 				</tr>
 			</thead>
-			<tbody [ngClass]="{striped: striped}">
+			<tbody [ngClass]="{striped: striped}" (scroll)="onScroll($event)">
 				<ng-container *ngFor="let row of model.data; let i = index">
 					<tr *ngIf="!model.isRowFiltered(i)"
 						[ngClass]="{selected: model.rowsSelected[i]}">
@@ -98,8 +147,8 @@ import {
 						</td>
 						<ng-container *ngFor="let item of row; let i = index">
 							<td *ngIf="model.header[i].visible"
-								[ngStyle]="{'width': i < row.length - 1 ? (colWidth) + 'px' : ''}">
-								<span *ngIf="!item.template">{{item.data}}</span>
+								[ngStyle]="model.header[i].style">
+								<span *ngIf="!item.template" class="cell-ellipsis">{{item.data}}</span>
 								<ng-template
 									[ngTemplateOutlet]="item.template" [ngOutletContext]="{data: item.data}">
 								</ng-template>
@@ -114,12 +163,31 @@ import {
 	styleUrls: ["./table.component.scss"],
 	encapsulation: ViewEncapsulation.None
 })
-export class Table implements AfterContentChecked {
+export class Table {
+	/**
+	 * `TableModel` with data the table is to display.
+	 *
+	 * @type {TableModel}
+	 * @memberof Table
+	 */
 	@Input() model: TableModel;
+
+	/**
+	 * Controls whether to show the selection checkboxes column or not.
+	 *
+	 * @memberof Table
+	 */
 	@Input() enableRowSelect = true;
+
+	/**
+	 * Distance (in px) from the bottom that view has to reach before
+	 * `scrollLoad` event is emitted.
+	 *
+	 * @memberof Table
+	 */
+	@Input() scrollLoadDistance = 0;
 	selectAllCheckbox = false;
 	selectAllCheckboxSomeSelected = false;
-	colWidth = 150;
 
 	/**
 	 * Set to `true` to make table rows striped.
@@ -137,12 +205,10 @@ export class Table implements AfterContentChecked {
 
 	@Output() selectAll = new EventEmitter<Object>();
 	@Output() selectRow = new EventEmitter<Object>();
+	@Output() scrollLoad = new EventEmitter<TableModel>();
 	@ViewChild("body") body;
 
 	constructor(private applicationRef: ApplicationRef) {}
-
-	ngAfterContentChecked() {
-	}
 
 	onSelectAllCheckboxChange(event) {
 		this.applicationRef.tick();  // give app time to process the click if needed
@@ -170,5 +236,13 @@ export class Table implements AfterContentChecked {
 
 		this.selectAllCheckboxSomeSelected = false;
 		this.selectAllCheckbox = startValue;
+	}
+
+	onScroll(event) {
+		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
+
+		if (distanceFromBottom <= this.scrollLoadDistance) {
+			this.scrollLoad.emit(this.model);
+		}
 	}
 }

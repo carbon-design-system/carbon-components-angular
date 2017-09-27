@@ -14,7 +14,7 @@ import * as en from  "./../../src/i18n/en.json";
 		</h1>
 		<a href="https://github.ibm.com/peretz/neutrino">Project</a>
 	</header>
-	<nav>
+	<nav class="n-list">
 		<input
 			type="search"
 			(keyup)="search($event)"
@@ -123,6 +123,11 @@ export class AppComponent implements OnInit {
 			content: "Combo box demo",
 			link: "/combobox",
 			selected: false
+		},
+		{
+			content: "Chart demo",
+			link: "/chart",
+			selected: false
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
 	private filteredItems = this.navItems;
@@ -167,8 +172,8 @@ export class AppComponent implements OnInit {
 		}
 		this.previousItem = item;
 		item.selected = true;
-		this._router.navigate([item.link]);  // do we need to remove this since we have routerLink already?
-											 // also, replace selected with routerLinkActive?
-											 // https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html
+		this._router.navigate([item.link]); // do we need to remove this since we have routerLink already?
+											// also, replace selected with routerLinkActive?
+											// https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html
 	}
 }

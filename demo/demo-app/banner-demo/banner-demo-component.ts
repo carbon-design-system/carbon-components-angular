@@ -14,24 +14,24 @@ import { Banner } from "./../../../src";
 	<h1>Banner service</h1>
 
 	<h3>Default banner</h3>
-	<button class="btn" (click)="callBanner('info')">Banner Info</button>
-	<button class="btn" (click)="callBanner('danger')">Banner Error</button>
-	<button class="btn" (click)="callBanner('warning')">Banner Warning</button>
-	<button class="btn" (click)="callBanner('success')">Banner Success</button>
+	<button class="btn--primary" (click)="callBanner('info')">Banner Info</button>
+	<button class="btn--primary" (click)="callBanner('danger')">Banner Error</button>
+	<button class="btn--primary" (click)="callBanner('warning')">Banner Warning</button>
+	<button class="btn--primary" (click)="callBanner('success')">Banner Success</button>
 
 
 	<h3>Custom banner</h3>
 
-	<button class="btn" (click)="callBannerCustom()">show custom banner</button>
+	<button class="btn--primary" (click)="callBannerCustom()">show custom banner</button>
 
 
 	<h3>Fade away banner(2secs)</h3>
 
-	<button class="btn" (click)="callBannerFadeAway()">show fade away banner</button>
+	<button class="btn--primary" (click)="callBannerFadeAway()">show fade away banner</button>
 
 
 	<h3>Banner to a container</h3>
-	<button class="btn" (click)="callBanner2()">show banner in the container below</button>
+	<button class="btn--primary" (click)="callBanner2()">show banner in the container below</button>
 	<div id="banner-container">
 	<span></span>
 	</div>
@@ -41,10 +41,10 @@ import { Banner } from "./../../../src";
 
 	<p><textarea [(ngModel)]="smartBannerText" rows="6" cols="60"></textarea></p>
 
-	<button class="btn" (click)="callBannerSmart('info')">Banner Info</button>
-	<button class="btn" (click)="callBannerSmart('danger')">Banner Error</button>
-	<button class="btn" (click)="callBannerSmart('warning')">Banner Warning</button>
-	<button class="btn" (click)="callBannerSmart('success')">Banner Success</button>
+	<button class="btn--primary" (click)="callBannerSmart('info')">Banner Info</button>
+	<button class="btn--primary" (click)="callBannerSmart('danger')">Banner Error</button>
+	<button class="btn--primary" (click)="callBannerSmart('warning')">Banner Warning</button>
+	<button class="btn--primary" (click)="callBannerSmart('success')">Banner Success</button>
 
 
 	<h1>Banner component</h1>
@@ -62,7 +62,7 @@ import { Banner } from "./../../../src";
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<button class="btn" (click)="toggleBanner('info')">
+	<button class="btn--primary" (click)="toggleBanner('info')">
 		<span *ngIf="!this.bannerToClose">
 			Show
 		</span>

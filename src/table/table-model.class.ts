@@ -43,17 +43,42 @@ export class TableModel {
 	}
 
 
+	/**
+	 * Contains information about selection state of rows in the table.
+	 *
+	 * @type {Array<boolean>}
+	 * @memberof TableModel
+	 */
 	rowsSelected: Array<boolean>;
+
 	header: Array<TableHeaderItem>;
 
+	currentPage: number;
+	pageLength: number;
+	private _totalDataLength: number;
+	set totalDataLength(length: number) {
+		this._totalDataLength = length;
+	}
+	get totalDataLength() {
+		return (this._totalDataLength && this._totalDataLength >= 0) ? this._totalDataLength : this.data.length;
+	}
 
+
+	/**
+	 * Returns how many rows is currently selected
+	 *
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
 	selectedRowsCount(): number {
 		let retVal = 0;
-		this.rowsSelected.forEach((rowSelected => {
-			if (rowSelected) {
-				retVal++;
-			}
-		}));
+		if (this.rowsSelected) {
+			this.rowsSelected.forEach((rowSelected => {
+				if (rowSelected) {
+					retVal++;
+				}
+			}));
+		}
 		return retVal;
 	}
 	/**

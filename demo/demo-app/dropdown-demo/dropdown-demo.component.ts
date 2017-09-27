@@ -176,7 +176,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 					<n-dropdown-list [items]="demoItems5"></n-dropdown-list>
 				</n-dropdown>
 				{{ dropdown3 | json }}
-				<button class="btn" (click)="reset(dropdown3)">Reset selected</button>
+				<button class="btn--primary" (click)="reset(dropdown3)">Reset selected</button>
 			</div>
 
 			<div style="width: 100%; height: 300px"></div>
@@ -191,7 +191,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 			{{ dropdown1 | json }}
 		</div>
-		<button (click)="reset2()" class="btn">Reset</button>
+		<button (click)="reset2()" class="btn--primary">Reset</button>
 
 		<h3>Drop-down list with multi-select (ngmodel)</h3>
 		<div style="width: 400px">
@@ -250,8 +250,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 					</div>
 				</div>
 			</div>
-			<button type="button" class="btn btn-secondary" (click)="addTestOption()">add</button>
-			<button type="submit" class="btn">submit</button>
+			<button type="button" class="btn--secondary" (click)="addTestOption()">add</button>
+			<button type="submit" class="btn--primary">submit</button>
 		</form>
 
 		<h3>Default drop-down list with custom template</h3>

@@ -21,26 +21,35 @@ import { cycleTabs } from "./../common/tab.service";
 @Component({
 	selector: "n-modal",
 	template: `
-		<div class="modal-wrapper">
-			<n-overlay (overlaySelect)="overlaySelected.emit()"></n-overlay>
-			<div class="valign-wrapper">
-				<div class="valign-element">
-					<section [@modalState]="modalState" class="modal modal-size-{{size}}" role="main" aria-modal="true" tabindex="0" #modal>
-							<ng-content></ng-content>
-					</section>
-				</div>
+		<n-overlay (overlaySelect)="overlaySelected.emit()">
+			<div [ngClass]="{
+					'modal--sm': size === 'sm',
+					'modal': size === 'default',
+					'modal--lg': size === 'lg',
+					'modal--xl': size === 'xl',
+					'modal--xxl': size === 'xxl',
+					'modal--warning': modalType === 'warning',
+					'modal--error': modalType === 'error'
+				}"
+				[@modalState]="modalState"
+				role="main"
+				aria-modal="true"
+				tabindex="0"
+				style="z-index:1;"
+				#modal>
+				<ng-content></ng-content>
 			</div>
-		</div>
+		</n-overlay>
 	`,
 	animations: [
 		trigger("modalState", [
-			state("in", style({opacity: 1, transform: "translate(0, 0)"})),
+			// state("in", style({opacity: 1, transform: "translate(0, 0)"})),
 			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
 			transition(":enter", [
 				animate("200ms ease-in"),
 			]),
 			transition(":leave", [
-				style({opacity: 1, transform: "translate(0, 0"}),
+				// style({opacity: 1, transform: "translate(0, 0"}),
 				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
 			])
 		])
@@ -48,6 +57,7 @@ import { cycleTabs } from "./../common/tab.service";
 })
 export class ModalComponent implements OnInit {
 	@Input() size = "xl";
+	@Input() modalType = "default";
 	@Output() overlaySelected = new EventEmitter();
 	@Output() close = new EventEmitter();
 	@ViewChild("modal") modal: ElementRef;

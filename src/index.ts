@@ -1,5 +1,4 @@
 export * from "./banner/banner.module";
-export * from "./charts/charts.module";
 export * from "./combo-box/combo-box.module";
 export * from "./common/common.module";
 export * from "./dropdown/dropdown.module";
@@ -13,3 +12,4 @@ export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./top-nav/top-nav.module";
 export * from "./tree-view/tree-view.module";
+export * from "./chart/chart.module";

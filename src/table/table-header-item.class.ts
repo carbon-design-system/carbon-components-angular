@@ -22,6 +22,15 @@ export class TableHeaderItem {
 	 */
 	filterCount = 0;
 
+	/**
+	 * Style for the column, applied to every element in the column.
+	 *
+	 * ngStyle-like format
+	 *
+	 * @memberof TableHeaderItem
+	 */
+	style = {"width": "150px"};
+
 	private _ascending = true;
 
 	/**
@@ -78,7 +87,7 @@ export class TableHeaderItem {
 	 * Create `ViewChild` property with:
 	 *
 	 * ```typescript
-	 * @ViewChild("customHeaderTemplate")
+	 * (at)ViewChild("customHeaderTemplate")
 	 * private customHeaderTemplate: TemplateRef<any>;
 	 * ```
 	 *
@@ -166,6 +175,7 @@ export class TableHeaderItem {
 		const defaults = {
 			data: "",
 			visible: this.visible,
+			style: this.style,
 			filterCount: this.filterCount,
 			filterData: {data: ""}
 		};
@@ -177,6 +187,7 @@ export class TableHeaderItem {
 		this.template = data.template;
 		this.filterTemplate = data.filterTemplate;
 		this.filterData = data.filterData;
+		this.style = data.style;
 	}
 	/**
 	 * Used for sorting rows of the table.

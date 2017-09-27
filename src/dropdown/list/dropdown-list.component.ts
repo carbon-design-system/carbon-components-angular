@@ -30,18 +30,21 @@ import { watchFocusJump } from "./../dropdowntools";
 					disabled: item.disabled
 				}"
 				class="option">
-				<span
-					class="checkbox"
+				<label
+					style="margin: 0;"
+					[ngClass]="{
+						'checkbox': size === 'default',
+						'checkbox--sm': size === 'sm'
+					}"
 					*ngIf="type === 'multi'">
-					<label>
-						<input
-							tabindex="-1"
-							type="checkbox"
-							[checked]="item.selected"
-							(click)="doClick($event, item)">
-						<span class="label"></span>
-					</label>
-				</span>
+					<input
+						tabindex="-1"
+						type="checkbox"
+						[attr.disabled]="item.disabled ? true : null"
+						[checked]="item.selected"
+						(click)="doClick($event, item)">
+					<span class="checkbox_label"></span>
+				</label>
 				<span *ngIf="!listTpl">{{item.content}}</span>
 				<ng-template
 					*ngIf="listTpl"

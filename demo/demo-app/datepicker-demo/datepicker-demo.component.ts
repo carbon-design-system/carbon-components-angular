@@ -17,7 +17,7 @@ import { Component, OnInit } from "@angular/core";
 		[(selectedDate)]="selectedDate1"
 		[(validDate)]="validDate1"
 	/>
-	<button class="btn" (click)="nDatepicker.toggle($event)">
+	<button class="btn--primary" (click)="nDatepicker.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
 		<n-icon icon="Calendar" size="md"></n-icon>
 		</span>
@@ -39,7 +39,7 @@ import { Component, OnInit } from "@angular/core";
 		[appendToBody]="true"
 		#nDatepicker3="nDatepicker"
 	/>
-	<button class="btn" (click)="nDatepicker3.toggle($event)">
+	<button class="btn--primary" (click)="nDatepicker3.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
 		<n-icon icon="Calendar" size="md"></n-icon>
 		</span>
@@ -61,7 +61,7 @@ import { Component, OnInit } from "@angular/core";
 		[appendToBody]="true"
 		#nDatepicker2="nDatepicker"
 	/>
-	<button class="btn" (click)="nDatepicker2.toggle($event)">
+	<button class="btn--primary" (click)="nDatepicker2.toggle($event)">
 		<span style="pointer-events: none; display: inline-block">
 		<n-icon icon="Calendar" size="md"></n-icon>
 		</span>
