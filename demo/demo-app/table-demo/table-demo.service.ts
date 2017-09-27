@@ -20,7 +20,7 @@ export class TableDemoService {
 				[["asdf", {name: "John", surname: "Wayne", link: "/table"}],
 				[{name: "Lenny"}, {surname: "Tin"}],
 				[`Whoa! ${page}!`, {name: "Bob", surname: "Smith"}],
-				["1001 nights", {name: "Isaac Bob", surname: "Murphey"}]]), 600);
+				["1001 nights", {name: "Isaac Bob", surname: "Murphey"}]]), 150);
 		});
 	}
 }
