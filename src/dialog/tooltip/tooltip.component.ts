@@ -19,7 +19,7 @@ import position from "../../common/position.service";
 	selector: "n-tooltip",
 	template: `
 		<div
-			class="tooltip--{{dialogConfig.placement}}"
+			class="tooltip--{{placement}}"
 			role="tooltip"
 			id="{{dialogConfig.compID}}"
 			tabindex="0"

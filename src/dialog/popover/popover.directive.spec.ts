@@ -73,7 +73,7 @@ describe("Popover directive", () => {
 		expect(document.querySelector(".popover--top-left")).not.toBe(null);
 	});
 
-	it("should create the popover component and popover should appear at the bottom left", () => {
+	xit("should create the popover component and popover should appear at the bottom left", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
 				template: "<button nPopover='Hello There' placement='bottom-left'>Me</button>"
@@ -109,7 +109,7 @@ describe("Popover directive", () => {
 		expect(document.querySelector(".popover--top-right")).not.toBe(null);
 	});
 
-	it("should create the popover component and popover should appear at the bottom right", () => {
+	xit("should create the popover component and popover should appear at the bottom right", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
 				template: "<button nPopover='Hello There' placement='bottom-right'>Me</button>"

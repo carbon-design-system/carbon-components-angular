@@ -37,7 +37,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		"left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
 		"right": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
 		"top": pos => position.addOffset(pos, -this.dialogConfig.gap),
-		"bottom": pos => position.addOffset(pos, this.dialogConfig.gap)
+		"bottom": pos => position.addOffset(pos, this.dialogConfig.gap),
+		"top-left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
+		"top-right": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
+		"left-bottom": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
+		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
 	};
 
 	constructor(protected _elementRef: ElementRef) {}

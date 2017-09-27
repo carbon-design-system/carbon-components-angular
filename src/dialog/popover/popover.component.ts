@@ -70,7 +70,5 @@ export class Popover extends Dialog {
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
-		this.addGap["left-bottom"] = pos => position.addOffset(pos, 0, -this.dialogConfig.gap);
-		this.addGap["right-bottom"] = pos => position.addOffset(pos, 0, this.dialogConfig.gap);
 	}
 }
