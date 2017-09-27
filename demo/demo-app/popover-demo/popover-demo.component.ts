@@ -48,7 +48,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	</div>
 	<div>
 		Popover auto position
-		<button class="btn--unstyled" [nPopover]="customPopover" title="Popover title" placement="auto">
+		<button class="btn--unstyled" [nPopover]="customPopover" title="Popover title" placement="right" [autoPosition]="true">
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
 	</div>

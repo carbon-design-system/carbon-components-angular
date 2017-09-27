@@ -22,9 +22,14 @@ describe("Popover component", () => {
 		const fixture = TestBed.createComponent(Popover);
 
 		fixture.componentInstance.dialogConfig = {
+			title: "test",
 			content: "test",
 			trigger: "click",
-			placement: "auto",
+			placement: "left",
+			gap: 0,
+			appendToBody: false,
+			type: "",
+			autoPosition: false,
 			parentRef: new ElementRef(element)
 		};
 
@@ -44,9 +49,14 @@ describe("Popover component", () => {
 		let element = createElement(200, 300, 100, 150);
 
 		fixture.componentInstance.dialogConfig = {
+			title: "test",
 			content: "test",
 			trigger: "click",
 			placement: "left",
+			gap: 0,
+			appendToBody: false,
+			type: "",
+			autoPosition: false,
 			parentRef: new ElementRef(element)
 		};
 

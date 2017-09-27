@@ -14,9 +14,9 @@ import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
-import position, { Positions, AbsolutePosition } from "../common/position.service";
+import position, { Position, AbsolutePosition } from "../common/position.service";
 import { cycleTabs } from "./../common/tab.service";
-
+import { DialogConfig } from "./dialog-config.interface";
 /**
  * Implements a dialog that can be positioned anywhere on the page
  * could be used to implement a popover or tooltip
@@ -29,33 +29,22 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/** One static resize observable to make sure we arent registering hundreds of event listeners */
 	protected static resizeObservable: Observable<any> = Observable.fromEvent(window, "resize").throttleTime(100);
 	@Output() close: EventEmitter<any> = new EventEmitter();
-	@Input() dialogConfig;
+	@Input() dialogConfig: DialogConfig;
 	@ViewChild("dialog") dialog: ElementRef;
-	protected placement = Positions.auto;
+	protected placement: Position;
 	protected resizeSubscription: Subscription;
+	protected addGap = {
+		"left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
+		"right": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
+		"top": pos => position.addOffset(pos, -this.dialogConfig.gap),
+		"bottom": pos => position.addOffset(pos, this.dialogConfig.gap)
+	};
 
 	constructor(protected _elementRef: ElementRef) {}
 
 	/** Initilize the dialog, set the placement and gap, and add a subscription to resize events */
 	ngOnInit() {
-		switch (this.dialogConfig.placement) {
-			case "left":
-				this.placement = Positions.left;
-				this.addGap = (pos) => position.addOffset(pos, 0, -this.dialogConfig.gap);
-				break;
-			case "right":
-				this.placement = Positions.right;
-				this.addGap = (pos) => position.addOffset(pos, 0, this.dialogConfig.gap);
-				break;
-			case "top":
-				this.placement = Positions.top;
-				this.addGap = (pos) => position.addOffset(pos, -this.dialogConfig.gap);
-				break;
-			case "bottom":
-				this.placement = Positions.bottom;
-				this.addGap = (pos) => position.addOffset(pos, this.dialogConfig.gap);
-				break;
-		}
+		this.placement = this.dialogConfig.placement;
 
 		this.resizeSubscription = Dialog.resizeObservable.subscribe(() => {
 			this.placeDialog();
@@ -75,25 +64,29 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	onDialogInit() {}
 
 	// reset/overridden based on what placement is set in the config
-	protected addGap = (pos) => position.addOffset(pos, 0, 0);
+	// protected addGap = (pos) => position.addOffset(pos, 0, 0);
 
 	/** uses the position service to position the dialog in screen space */
 	placeDialog(): void {
 		let parentEl = this.dialogConfig.parentRef.nativeElement;
 		let el = this.dialog.nativeElement;
-		let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
+		let pos = this.addGap[this.placement](position.findRelative(parentEl, el, this.placement));
+		// let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
 		if (this.dialogConfig.appendToBody) {
 			pos = position.addOffset(pos, window.scrollY, window.scrollX);
 		}
 		position.setElement(el, pos);
-		// top
-		// position.setElement(el, position.addOffset(pos, -(this.dialogConfig.gap)));
-		// bottom
-		// position.setElement(el, position.addOffset(pos, this.dialogConfig.gap));
-		// left
-		// position.setElement(el, position.addOffset(pos, 0, -(this.dialogConfig.gap)));
-		// right
-		// position.setElement(el, position.addOffset(pos, 0, this.dialogConfig.gap));
+		if (this.dialogConfig.autoPosition) {
+			// find new position
+			let { newPlacement } = position.checkPlacement(parentEl, el, this.placement);
+			if (newPlacement !== this.placement) {
+				// timeout to wait a tick before finalizing position
+				setTimeout(() => {
+					this.placement = newPlacement;
+					this.placeDialog();
+				});
+			}
+		}
 	}
 
 	@HostListener("keydown", ["$event"])

@@ -13,7 +13,7 @@ import {
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
 import { Observable } from "rxjs/Observable";
-import position, { Positions, AbsolutePosition } from "../../common/position.service";
+import position from "../../common/position.service";
 
 @Component({
 	selector: "n-tooltip",

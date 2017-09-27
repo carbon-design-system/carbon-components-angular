@@ -30,12 +30,13 @@ export class DialogDirective implements OnInit {
 	@Input() title: string;
 	@Input() nDialog: string | TemplateRef<any>;
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
-	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "auto" = "auto";
+	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
 	@Input() waitTime = 0;
 	@Input() wrapperClass: string;
 	@Input() gap = 10;
 	@Input() appendToBody = false;
 	@Input() type: "warning" | "danger" | "" = "";
+	@Input() autoPosition = false;
 	dialogConfig: DialogConfig;
 
 	constructor(
@@ -64,6 +65,7 @@ export class DialogDirective implements OnInit {
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
 			type: this.type,
+			autoPosition: this.autoPosition,
 			wrapperClass: this.wrapperClass
 		};
 

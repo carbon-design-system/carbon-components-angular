@@ -9,7 +9,7 @@ import {
 	ViewChild
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
-import position, { Positions, AbsolutePosition } from "../../common/position.service";
+import position from "../../common/position.service";
 
 @Component({
 	selector: "n-popover-menu",
@@ -71,16 +71,8 @@ export class PopoverMenu extends Dialog {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
 
-		switch (this.dialogConfig.placement) {
-			case "bottom-left":
-				this.placement = Positions.bottomLeft;
-				break;
-			case "bottom-right":
-				this.placement = Positions.bottomRight;
-				break;
-		}
-
 		// gap will always be the same: + on the y
-		this.addGap = (pos) => position.addOffset(pos, this.dialogConfig.gap);
+		this.addGap["bottom-left"] = pos => position.addOffset(pos, this.dialogConfig.gap);
+		this.addGap["bottom-right"] = pos => position.addOffset(pos, this.dialogConfig.gap);
 	}
 }

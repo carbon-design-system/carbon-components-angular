@@ -23,7 +23,7 @@ import "rxjs/add/operator/throttleTime";
 import { TranslateService } from "@ngx-translate/core";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { position, Positions } from "../common/position.service";
+import { position } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
@@ -309,7 +309,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		document.body.appendChild(this.dropdownWrapper);
 		position.setElement(
 			this.dropdownWrapper,
-			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom)
+			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
 		);
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
 		this.resize = Observable.fromEvent(window, "resize")
@@ -317,7 +317,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			.subscribe(() => {
 				position.setElement(
 					this.dropdownWrapper,
-					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom)
+					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
 				);
 			});
 	}
@@ -369,7 +369,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 						position.setElement(
 							this.dropdownWrapper,
 							position.addOffset(
-								position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, Positions.bottom),
+								position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom"),
 								-container.scrollTop
 							)
 						);

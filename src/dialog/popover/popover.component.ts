@@ -9,13 +9,13 @@ import {
 	ViewChild
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
-import position, { Positions, AbsolutePosition } from "../../common/position.service";
+import position from "../../common/position.service";
 
 @Component({
 	selector: "n-popover",
 	template: `
 		<div
-			class="popover--{{dialogConfig.placement}}"
+			class="popover--{{placement}}"
 			role="dialog"
 			id="{{dialogConfig.compID}}"
 			tabindex="0"
@@ -70,16 +70,7 @@ export class Popover extends Dialog {
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
-
-		switch (this.dialogConfig.placement) {
-			case "left-bottom":
-				this.placement = Positions.leftBottom;
-				this.addGap = (pos) => position.addOffset(pos, 0, -this.dialogConfig.gap);
-				break;
-			case "right-bottom":
-				this.placement = Positions.rightBottom;
-				this.addGap = (pos) => position.addOffset(pos, 0, this.dialogConfig.gap);
-				break;
-		}
+		this.addGap["left-bottom"] = pos => position.addOffset(pos, 0, -this.dialogConfig.gap);
+		this.addGap["right-bottom"] = pos => position.addOffset(pos, 0, this.dialogConfig.gap);
 	}
 }
