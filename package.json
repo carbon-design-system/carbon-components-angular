@@ -99,6 +99,6 @@
     "zone.js": "^0.8.4"
   },
   "optionalDependencies": {
-    "@peretz/charts": "0.0.1-alpha.f7654d"
+    "@peretz/charts": "0.0.1-alpha.f7654"
   }
 }
