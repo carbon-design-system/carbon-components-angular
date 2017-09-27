@@ -1,16 +1,9 @@
 @import "../core/scss-tools";
 
 .table-container {
-	// height: calc(100% + 40px);
 	font-size: 14px;
+	display: flex;
 	color: #323232;
-	svg {
-		fill: #959595;
-	}
-
-	svg:hover {
-		fill: #4178BE;
-	}
 }
 
 table {
@@ -26,6 +19,11 @@ table {
 		display: block;
 		width: 100%;
 		overflow-y: scroll;
+
+		tr:hover {
+			background: rgba(85,150,230,0.10);
+			box-shadow: inset 1px 0 0 0 color("blue", 50);
+		}
 
 		&.striped {
 			tr {
@@ -74,9 +72,30 @@ table {
 				align-items: center;
 			}
 
+			.icon--blue-sm {
+				fill: color("blue", 60);
+			}
+
+			.icon--sm {
+				fill: color("gray", 60);
+			}
+
 			.col-actions {
 				display: none;
 				position: relative;
+				width: 35px;
+
+				&.filter-enabled {
+					display: inline-block;
+
+					.icon--sm {
+						fill: color("blue", 60);
+					}
+				}
+
+				&:hover .icon--sm {
+					fill: color("blue", 60);
+				}
 			}
 
 			&:hover {
@@ -110,18 +129,10 @@ table {
 		overflow: hidden;
 	}
 
-	.filter-enabled {
-		display: inline-block;
-
-		svg {
-			fill: color("blue", 50);
-		}
-	}
-
 	.filter-count {
 		position: absolute;
-		top: -6px;
-		left: 21px;
+		top: -4px;
+		left: 18px;
 		width: 15px;
 		line-height: 15px;
 		font-size: 11px;
@@ -145,14 +156,6 @@ table {
 
 			> .check-column {
 				box-shadow: inset 3px 0 0 0 color("blue", 50);
-			}
-		}
-
-		&:hover {
-			background: rgba(85,150,230,0.10);
-
-			> .check-column {
-				box-shadow: inset 1px 0 0 0 color("blue", 50);
 			}
 		}
 	}
@@ -186,6 +189,9 @@ table {
 
 .table-footer {
 	text-align: center;
+	line-height: 40px;
+	color: color("gray", 60);
+	border-top: 1px solid color("gray", 50);
 
 	.table-selection-info {
 		float: left;
@@ -196,4 +202,10 @@ table {
 	n-table-goto-page {
 		float: right;
 	}
+}
+
+.table-footer-simple {
+	line-height: 30px;
+	color: color("gray", 60);
+	border-top: 1px solid color("gray", 50);
 }

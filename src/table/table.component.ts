@@ -90,6 +90,7 @@ import {
 									<svg
 										*ngIf="column.descending && column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
+										class="icon--blue-sm"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
@@ -99,6 +100,7 @@ import {
 									<svg
 										*ngIf="column.ascending && column.sorted"
 										xmlns="http://www.w3.org/2000/svg"
+										class="icon--blue-sm"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
@@ -115,6 +117,7 @@ import {
 									[appendToBody]="true">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
+										class="icon--sm"
 										width="16"
 										height="16"
 										viewBox="0 0 16 16">
@@ -158,7 +161,7 @@ import {
 	styleUrls: ["./table.component.scss"],
 	encapsulation: ViewEncapsulation.None
 })
-export class Table implements AfterContentChecked {
+export class Table {
 	/**
 	 * `TableModel` with data the table is to display.
 	 *
@@ -204,9 +207,6 @@ export class Table implements AfterContentChecked {
 	@ViewChild("body") body;
 
 	constructor(private applicationRef: ApplicationRef) {}
-
-	ngAfterContentChecked() {
-	}
 
 	onSelectAllCheckboxChange(event) {
 		this.applicationRef.tick();  // give app time to process the click if needed
