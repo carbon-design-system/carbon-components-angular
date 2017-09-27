@@ -123,6 +123,11 @@ export class AppComponent implements OnInit {
 			content: "Combo box demo",
 			link: "/combobox",
 			selected: false
+		},
+		{
+			content: "Chart demo",
+			link: "/chart",
+			selected: false
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
 	private filteredItems = this.navItems;
