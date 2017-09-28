@@ -28,24 +28,16 @@ export class SwitchChange {
 @Component({
 	selector: "n-switch",
 	template: `
-		<label [for]="id" class="toggle">
-			<span class="toggle-label"><ng-content></ng-content></span>
-			<input type="checkbox"
-				#inputCheckbox
-				(change)="onChange($event)"
-				(click)="onClick($event)"
-				[checked]="checked"
-				[disabled]="disabled"
-				[indeterminate]="indeterminate"
-				[name]="name"
-				[id]="id"
-				[required]="required"
-				[value]="value"
-				[attr.aria-label]="ariaLabel"
-				[attr.aria-labelledby]="ariaLabelledby"
-				[attr.aria-checked]="indeterminate ? 'mixed' : checked">
-			<span></span>
+		<label class="toggle-label" [for]="id">
+			<ng-content></ng-content>
 		</label>
+		<button class="toggle"
+			(click)="onClick($event)"
+			[id]="id"
+			role="switch"
+			[disabled]="disabled"
+			[attr.aria-checked]="checked">
+		</button>
 	`,
 	providers: [
 		{
@@ -53,10 +45,7 @@ export class SwitchChange {
 			useExisting: forwardRef(() => SwitchComponent),
 			multi: true
 		}
-	],
-	host: {
-		"role": "checkbox"
-	}
+	]
 })
 export class SwitchComponent extends CheckboxComponent {
 	static switchCount = 0;
