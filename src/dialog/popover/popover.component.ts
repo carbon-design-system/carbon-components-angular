@@ -28,7 +28,7 @@ import position from "../../common/position.service";
 				<button
 					*ngIf="dialogConfig.trigger==='click' || dialogConfig.trigger==='mouseenter'"
 					class="close--white-md"
-					(click)="onClose()"
+					(click)="doClose()"
 					aria-label="Close popover">
 					<svg
 						class="close_icon"
