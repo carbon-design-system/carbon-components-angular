@@ -51,11 +51,11 @@
     "@angular/router": "4.4.3",
     "@compodoc/compodoc": "1.0.1",
     "@ngx-translate/core": "^6.0.1",
+    "@peretz/charts": "0.0.1-alpha.f7654",
+    "@peretz/matter": "0.1.0-alpha.262a7",
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^8.0.30",
-    "@peretz/charts": "0.0.1-alpha.f7654",
-    "@peretz/matter": "0.1.0-alpha.262a7",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "3.2.3",
     "core-js": "2.5.1",
@@ -96,7 +96,7 @@
     "webpack-dev-server": "2.8.2",
     "webpack-node-externals": "^1.5.4",
     "whatwg-fetch": "^2.0.3",
-    "zone.js": "^0.8.4"
+    "zone.js": "0.8.18"
   },
   "optionalDependencies": {
     "@peretz/charts": "0.0.1-alpha.f7654"
