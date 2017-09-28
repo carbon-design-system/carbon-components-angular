@@ -19,7 +19,7 @@ import position from "../../common/position.service";
 	selector: "n-tooltip",
 	template: `
 		<div
-			class="tooltip--{{placement}}"
+			[class]="getClass()"
 			role="tooltip"
 			id="{{dialogConfig.compID}}"
 			tabindex="0"
@@ -59,5 +59,12 @@ export class Tooltip extends Dialog {
 
 	onDialogInit() {
 		this.contentTemplate = this.dialogConfig.content instanceof TemplateRef;
+	}
+
+	public getClass() {
+		if (this.dialogConfig.type) {
+			return `tooltip--${this.dialogConfig.type}-${this.placement}`;
+		}
+		return `tooltip--${this.placement}`;
 	}
 }

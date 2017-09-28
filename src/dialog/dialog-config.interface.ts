@@ -9,7 +9,6 @@ export interface DialogConfig {
 	gap: number;
 	parentRef: ElementRef;
 	appendToBody: boolean;
-	type: "warning" | "danger" | "";
 	autoPosition: boolean;
 	data: Object;
 	[propName: string]: any;

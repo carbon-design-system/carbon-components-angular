@@ -22,6 +22,8 @@ let tooltipCounter = 0;
 })
 export class TooltipDirective extends DialogDirective {
 	@Input() nTooltip: string | TemplateRef<any>;
+	/** warning and danger apply the relevant classes */
+	@Input() type: "warning" | "error" | "" = "";
 	tooltipID: string;
 
 	constructor(
@@ -37,6 +39,7 @@ export class TooltipDirective extends DialogDirective {
 		tooltipCounter++;
 		this.dialogConfig.compID = "tooltip-" + tooltipCounter;
 		this.dialogConfig.content = this.nTooltip;
+		this.dialogConfig.type = this.type;
 		this._elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
 	}
 }

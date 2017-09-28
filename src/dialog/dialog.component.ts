@@ -100,7 +100,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		switch (event.key) {
 			case "Escape": {
 				event.stopImmediatePropagation();
-				this.onClose();
+				this.doClose();
 				break;
 			}
 			case "Tab": {

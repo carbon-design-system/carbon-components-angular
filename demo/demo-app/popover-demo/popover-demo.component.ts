@@ -158,31 +158,9 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 export class PopoverDemo {
 	@ViewChild("popover") popover;
-	@ViewChild("flower") flower;
-	@ViewChild("petal1") petal1;
-	@ViewChild("petal2") petal2;
-	@ViewChild("petal3") petal3;
-	@ViewChild("petal4") petal4;
-	@ViewChild("petal5") petal5;
-	@ViewChild("petal6") petal6;
-	@ViewChild("petal7") petal7;
-	@ViewChild("petal8") petal8;
 
 	private open() {
 		setTimeout( () => {this.popover.open(); }, 1);
-	}
-
-	private toggleFlower() {
-		setTimeout( () => {
-			this.petal1.toggle();
-			this.petal2.toggle();
-			this.petal3.toggle();
-			this.petal4.toggle();
-			this.petal5.toggle();
-			this.petal6.toggle();
-			this.petal7.toggle();
-			this.petal8.toggle();
-		}, 1);
 	}
 
 	onSelect(ev) {

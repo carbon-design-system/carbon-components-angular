@@ -11,7 +11,7 @@ import { Component, OnInit } from "@angular/core";
 
 	<h3>Tooltip hover</h3>
 	<span>
-		<button class="btn--primary" nTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="danger">Tooltip right</button>
+		<button class="btn--primary" nTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="error">Tooltip right</button>
 	</span>
 	<span>
 		<button class="btn--primary" nTooltip="I am a tooltip" placement="top" trigger="mouseenter" type="warning">Tooltip top</button>
@@ -27,7 +27,7 @@ import { Component, OnInit } from "@angular/core";
 
 	<h3>Tooltip click</h3>
 	<span>
-		<button class="btn--primary" nTooltip="I am a tooltip" placement="right" type="danger">Tooltip right</button>
+		<button class="btn--primary" nTooltip="I am a tooltip" placement="right" type="error">Tooltip right</button>
 	</span>
 	<span>
 		<button class="btn--primary" nTooltip="I am a tooltip" placement="top" type="warning">Tooltip top</button>
@@ -43,7 +43,7 @@ import { Component, OnInit } from "@angular/core";
 
 	<h3>Tooltip click with custom template</h3>
 	<span>
-		<button class="btn--primary" [nTooltip]="customTooltip" placement="right" type="danger">Tooltip right</button>
+		<button class="btn--primary" [nTooltip]="customTooltip" placement="right" type="error">Tooltip right</button>
 	</span>
 	<span>
 		<button class="btn--primary" [nTooltip]="customTooltip" placement="top" type="warning">Tooltip top</button>

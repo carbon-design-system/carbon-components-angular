@@ -50,8 +50,6 @@ export class DialogDirective implements OnInit {
 	@Input() gap = 10;
 	/** should the dialog be appened to the body (to break out of containers) */
 	@Input() appendToBody = false;
-	/** warning and danger apply the relevant classes */
-	@Input() type: "warning" | "danger" | "" = "";
 	/** should the dialog attempt to place itself for maximum visibility? */
 	@Input() autoPosition = false;
 	/** optional data for templates */
@@ -84,7 +82,6 @@ export class DialogDirective implements OnInit {
 			gap: this.gap,
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
-			type: this.type,
 			autoPosition: this.autoPosition,
 			wrapperClass: this.wrapperClass,
 			data: this.data
