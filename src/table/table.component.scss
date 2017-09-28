@@ -1,9 +1,13 @@
 @import "../core/scss-tools";
 
+@import
+"~@peretz/matter/scss/tools";
+
 .table-container {
-	font-size: 14px;
+	font-size: 13px;
 	display: flex;
 	color: #323232;
+	margin-top: 20px;
 }
 
 table {
@@ -14,6 +18,14 @@ table {
 	width: 100%;
 	white-space: nowrap;
 	table-layout: fixed;
+
+	label.checkbox {
+		@include m_checkbox-variation($size: sm);
+	}
+
+	.checkbox_label {
+		height: 18px;
+	}
 
 	tbody {
 		display: block;
@@ -145,7 +157,7 @@ table {
 	tr {
 		display: table;
 		width: 100%;
-		height: 40px;
+		height: 30px;
 		padding-bottom: 12.5px;
 		padding-top: 12.5px;
 		color: #5A5A5A;
@@ -169,14 +181,14 @@ table {
 }
 
 .check-column {
-	width: 40px;
+	width: 35px;
 	text-align: center;
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
 .select-checkbox .checkbox {
-	width: 20px;
+	width: 15px;
 	margin: 0 auto;
 }
 
@@ -208,4 +220,39 @@ table {
 	line-height: 30px;
 	color: color("gray", 60);
 	border-top: 1px solid color("gray", 50);
+}
+
+
+.table--lg {
+	thead th, td {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	tr {
+		height: 40px;
+	}
+	.check-column {
+		width: 40px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.select-checkbox .checkbox {
+		width: 20px;
+	}
+	label.checkbox {
+		@include m_checkbox-variation();
+	}
+	.checkbox_label {
+		height: auto;
+	}
+}
+
+.table--sm {
+	thead th, td {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	tr {
+		height: 25px;
+	}
 }
