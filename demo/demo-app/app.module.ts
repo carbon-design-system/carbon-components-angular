@@ -36,6 +36,7 @@ import { TopNavDemo } from "./top-nav-demo/top-nav-demo.component";
 import { TreeViewDemo } from "./tree-view-demo/tree-view-demo.component";
 import { XLModalComponent } from "./modal-demo/extra-large.component";
 import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
+import { ChartDemo } from "./chart-demo/chart-demo.component";
 
 import { AppDoc } from "./doc.component";
 
@@ -55,7 +56,8 @@ import {
 	BannerModule,
 	BannerService,
 	NFormsModule,
-	ComboBoxModule
+	ComboBoxModule,
+	ChartModule
 } from "./../../src";
 
 
@@ -85,7 +87,8 @@ import {
 		TooltipDemo,
 		BannerDemo,
 		BannerCustom,
-		ComboboxDemo
+		ComboboxDemo,
+		ChartDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -114,6 +117,7 @@ import {
 		BannerModule,
 		NFormsModule,
 		ComboBoxModule,
+		ChartModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -178,6 +182,10 @@ import {
 			{
 				path: "combobox",
 				component: ComboboxDemo
+			},
+			{
+				path: "chart",
+				component: ChartDemo
 			}
 		], {
 			useHash: true
