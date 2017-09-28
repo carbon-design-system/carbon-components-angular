@@ -54,7 +54,7 @@
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.42",
-    "@peretz/charts": "0.0.1-alpha.f7654",
+    "@peretz/charts": "0.0.1-alpha.b848a",
     "@peretz/matter": "0.1.0-alpha.f70d2",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^3.1.3",
@@ -99,6 +99,6 @@
     "zone.js": "^0.8.4"
   },
   "optionalDependencies": {
-    "@peretz/charts": "0.0.1-alpha.f7654"
+    "@peretz/charts": "0.0.1-alpha.b848a"
   }
 }
