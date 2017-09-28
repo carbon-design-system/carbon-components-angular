@@ -62,14 +62,16 @@ import { Banner } from "./../../../src";
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<button class="btn--primary" (click)="toggleBanner('info')">
-		<span *ngIf="!this.bannerToClose">
-			Show
-		</span>
-		<span *ngIf="this.bannerToClose">
-			Hide
-		</span>
-	</button>
+	<div class="toggle-container">
+		<button class="btn--primary" (click)="toggleBanner('info')">
+			<span *ngIf="!this.bannerToClose">
+				Show
+			</span>
+			<span *ngIf="this.bannerToClose">
+				Hide
+			</span>
+		</button>
+	</div>
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
@@ -80,22 +82,26 @@ export class BannerDemo {
 
 	infoBanner = {
 		type: "info",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	errorBanner = {
 		type: "danger",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	warningBanner = {
 		type: "warning",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	successBanner = {
 		type: "success",
 		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	constructor(private banner: BannerService) {}
@@ -103,14 +109,24 @@ export class BannerDemo {
 	callBannerCustom() {
 		this.banner.showBanner({
 			type: "info",
-			message: "sample message"
+			message: "sample message",
+			target: ".main-banner-container"
 		}, BannerCustom);
 	}
 
 	callBanner(type) {
 		this.bannerToClose = this.banner.showBanner({
 			type: type,
-			message: "sample message"
+			message: "sample message",
+			target: ".main-banner-container"
+		});
+	}
+
+	callBannerToggle(type) {
+		this.bannerToClose = this.banner.showBanner({
+			type: type,
+			message: "sample message",
+			target: ".toggle-container"
 		});
 	}
 
@@ -134,13 +150,14 @@ export class BannerDemo {
 		this.banner.showBanner({
 			type: "info",
 			message: "sample message",
+			target: "#banner-container",
 			duration: 2000
 		});
 	}
 
 	toggleBanner(bannerType) {
 		if (!this.bannerToClose) {
-			this.callBanner(bannerType);
+			this.callBannerToggle(bannerType);
 		} else {
 			this.bannerToClose.destroy();
 			this.bannerToClose = null;

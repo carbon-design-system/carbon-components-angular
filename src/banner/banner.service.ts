@@ -67,7 +67,7 @@ export class BannerService {
 	 * * `smart`, set to `true` if you want to use smart banner.
 	 *
 	 * **Example:**
-	 * ```javascript
+	 * ```typescript
 	 * // Info banner, saying "Sample message." added to the element with id banner-container
 	 * // uses smart timeout with added duration of 1 second.
 	 * {
@@ -113,6 +113,7 @@ export class BannerService {
 			// add the banner to the top of the list
 			if (bannerList.firstChild) {
 				bannerList.insertBefore(bannerRef.location.nativeElement, bannerList.firstChild);
+				console.log(bannerList);
 			} else {
 				bannerList.appendChild(bannerRef.location.nativeElement);
 			}

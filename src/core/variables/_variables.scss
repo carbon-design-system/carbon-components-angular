@@ -23,9 +23,9 @@ $body-bg:               color("white", 0) !default;
 //** Global text color on `<body>`.
 $text-color:            color("gray", 60) !default;
 //** Global textual link color.
-$link-color:            color("blue", 50) !default;
+$link-color:            color("blue", 60) !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      color("blue", 50) !default;
+$link-hover-color:      color("blue", 60) !default;
 //** Link hover decoration.
 $link-hover-decoration: underline !default;
 
