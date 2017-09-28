@@ -107,9 +107,9 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		<n-checkbox>Low</n-checkbox>
 		<n-checkbox>Danger</n-checkbox>
 	</ng-template>
-	<ng-template #filterFooter>
+	<ng-template #filterFooter let-popover="popover">
 		<button class="btn--primary">Apply</button>
-		<button class="btn--secondary">Cancel</button>
+		<button class="btn--secondary" (click)="popover.doClose()">Cancel</button>
 	</ng-template>
 	<span>
 		Filter left
