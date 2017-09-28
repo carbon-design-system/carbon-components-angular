@@ -224,11 +224,7 @@ table {
 
 
 .table--lg {
-	thead th {
-		padding-left: 20px;
-		padding-right: 20px;
-	}
-	td {
+	thead th, td {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
@@ -252,11 +248,7 @@ table {
 }
 
 .table--sm {
-	thead th {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-	td {
+	thead th, td {
 		padding-left: 5px;
 		padding-right: 5px;
 	}
