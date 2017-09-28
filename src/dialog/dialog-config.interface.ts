@@ -11,5 +11,6 @@ export interface DialogConfig {
 	appendToBody: boolean;
 	type: "warning" | "danger" | "";
 	autoPosition: boolean;
+	data: Object;
 	[propName: string]: any;
 }

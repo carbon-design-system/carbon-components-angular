@@ -52,6 +52,15 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			<n-icon icon="info" size="16"></n-icon>
 		</button>
 	</div>
+	<div>
+		Popover right with additional data and a template
+		<ng-template #dataPopoverTemplate let-data="popover.data">
+			{{data | json}}
+		</ng-template>
+		<button class="btn--unstyled" [nPopover]="dataPopoverTemplate" title="Popover title" placement="right" [data]="{foo: 'bar'}">
+			<n-icon icon="info" size="16"></n-icon>
+		</button>
+	</div>
 
 	<h3>Popover can be opened or closed manualy</h3>
 	Have a popover

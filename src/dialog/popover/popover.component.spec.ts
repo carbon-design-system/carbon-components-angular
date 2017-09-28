@@ -30,6 +30,7 @@ describe("Popover component", () => {
 			appendToBody: false,
 			type: "",
 			autoPosition: false,
+			data: {},
 			parentRef: new ElementRef(element)
 		};
 
@@ -57,6 +58,7 @@ describe("Popover component", () => {
 			appendToBody: false,
 			type: "",
 			autoPosition: false,
+			data: {},
 			parentRef: new ElementRef(element)
 		};
 

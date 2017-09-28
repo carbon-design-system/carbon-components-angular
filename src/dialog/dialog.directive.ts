@@ -19,6 +19,15 @@ import "rxjs/add/observable/fromEvent";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
 
+/**
+ * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
+ *
+ * This class contains the relevant intilization code, specific templates, options, and additional inputs
+ * should be specified in the derived class.
+ *
+ * NOTE: All child classes should add `DialogService` as a provider, otherwise they will lose context that
+ * the service relies on.
+ */
 @Directive({
 	selector: "[nDialog]",
 	exportAs: "nDialog",
@@ -27,16 +36,27 @@ import { DialogConfig } from "./dialog-config.interface";
 	]
 })
 export class DialogDirective implements OnInit {
-	@Input() title: string;
+	/** string title for the dialog */
+	@Input() title = "";
+	/** dialog body, can be a string or template */
 	@Input() nDialog: string | TemplateRef<any>;
+	/** how to trigger the dialog, can be "click" or "hover" (hover and click behave the same on mobile - both respond to a single tap) */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
+	/** placement of the dialog, usually relative to the element the directive is on */
 	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
-	@Input() waitTime = 0;
+	/** class to add to the dialog container */
 	@Input() wrapperClass: string;
+	/** spacing between the dialog and it's triggering element */
 	@Input() gap = 10;
+	/** should the dialog be appened to the body (to break out of containers) */
 	@Input() appendToBody = false;
+	/** warning and danger apply the relevant classes */
 	@Input() type: "warning" | "danger" | "" = "";
+	/** should the dialog attempt to place itself for maximum visibility? */
 	@Input() autoPosition = false;
+	/** optional data for templates */
+	@Input() data = {};
+	/** config object passed to the rendered component */
 	dialogConfig: DialogConfig;
 
 	constructor(
@@ -66,7 +86,8 @@ export class DialogDirective implements OnInit {
 			appendToBody: this.appendToBody,
 			type: this.type,
 			autoPosition: this.autoPosition,
-			wrapperClass: this.wrapperClass
+			wrapperClass: this.wrapperClass,
+			data: this.data
 		};
 
 		// bind events for hovering or clicking the host
@@ -83,17 +104,29 @@ export class DialogDirective implements OnInit {
 		this.onDialogInit();
 	}
 
-	// overriden by child classes to do things on init
+	/**
+	 * empty method for child classes to override and specify additional init steps.
+	 * run after DialogDirective completes it's ngOnInit.
+	 */
 	protected onDialogInit() {}
 
+	/**
+	 * helper method to call dialogService#open
+	 */
 	open() {
 		this._dialogService.open(this._viewContainerRef, this.dialogConfig);
 	}
 
+	/**
+	 * helper method to call dialogService#toggle
+	 */
 	toggle() {
 		this._dialogService.toggle(this._viewContainerRef, this.dialogConfig);
 	}
 
+	/**
+	 * helper method to call dialogService#close
+	 */
 	close() {
 		this._dialogService.close(this._viewContainerRef);
 	}

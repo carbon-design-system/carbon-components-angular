@@ -43,12 +43,14 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		"left-bottom": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
 		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
 	};
+	public data = {};
 
 	constructor(protected _elementRef: ElementRef) {}
 
 	/** Initilize the dialog, set the placement and gap, and add a subscription to resize events */
 	ngOnInit() {
 		this.placement = this.dialogConfig.placement;
+		this.data = this.dialogConfig.data;
 
 		this.resizeSubscription = Dialog.resizeObservable.subscribe(() => {
 			this.placeDialog();
