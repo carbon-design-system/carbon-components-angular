@@ -35,7 +35,7 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.0.1",
     "zone.js": "^0.8.4",
-    "@peretz/matter": "0.1.0-alpha.f70d2"
+    "@peretz/matter": "0.1.0-alpha.262a7"
   },
   "devDependencies": {
     "@angular/animations": "4.4.3",
@@ -55,7 +55,7 @@
     "@types/jasmine": "2.5.41",
     "@types/node": "^8.0.30",
     "@peretz/charts": "0.0.1-alpha.f7654",
-    "@peretz/matter": "0.1.0-alpha.f70d2",
+    "@peretz/matter": "0.1.0-alpha.262a7",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "3.2.3",
     "core-js": "2.5.1",

@@ -49,8 +49,15 @@ class FilterableHeaderItem extends TableHeaderItem {
 	template: `
 	<h1>Table demo</h1>
 
-	<h2>Simple table</h2>
+	<h2>Small table</h2>
+	<n-table class="table--sm" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+
+	<h2>Normal table</h2>
 	<n-table [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+
+
+	<h2>Large table</h2>
+	<n-table class="table--lg" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
 
 	<h2>Custom table</h2>
 
