@@ -15,10 +15,10 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 		<ul #listView class="list-group" role="group" [attr.aria-multiselectable]= "checkMark ? true : false">
 			<li class="list-group_item--has-info">
 				<button
-				tabindex= "{{item.disabled?-1:0}}"
 				*ngFor="let item of items"
 				(click)= "doClick($event, item)"
 				(keydown)= "doKeyDown($event, item)"
+				[tabindex]= "item.disabled ? -1 : 0"
 				[attr.role]= "listView.attributes.role ? 'listitem' : null"
 				[attr.aria-selected]= "item.selected ? true : false"
 				[attr.disabled] = "item.disabled ? 'disabled' : null">
