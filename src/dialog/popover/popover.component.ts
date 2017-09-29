@@ -17,7 +17,7 @@ import position from "../../common/position.service";
 		<div
 			class="popover--{{placement}}"
 			role="dialog"
-			id="{{dialogConfig.compID}}"
+			[id]="dialogConfig.compID"
 			tabindex="0"
 			#dialog>
 			<header

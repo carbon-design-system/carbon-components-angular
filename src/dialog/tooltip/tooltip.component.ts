@@ -21,7 +21,7 @@ import position from "../../common/position.service";
 		<div
 			[class]="getClass()"
 			role="tooltip"
-			id="{{dialogConfig.compID}}"
+			[id]="dialogConfig.compID"
 			tabindex="0"
 			#dialog>
 			<div
