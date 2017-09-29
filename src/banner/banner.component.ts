@@ -17,16 +17,8 @@ import { BannerService } from "./banner.service";
 @Component({
 	selector: "n-banner",
 	template: `
-	<div class="banner banner-{{bannerObj.type}}" *ngIf="bannerObj" role="banner">
-		<button class="close-btn" (click)="onClose()" aria-label="Close">
-				<svg
-					width="16"
-					height="16"
-					viewBox="0 0 16 16">
-					<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
-				</svg>
-		</button>
-		<span class="banner-icon" aria-hidden="true">
+	<div class="banner banner--{{bannerObj.type}}" *ngIf="bannerObj" role="alert">
+		<span class="icon--lg" aria-hidden="true">
 			<svg *ngIf="bannerObj.type === 'info'"
 				width="30px"
 				height="30px"
@@ -66,6 +58,15 @@ import { BannerService } from "./banner.service";
 		<p>
 			{{bannerObj.message}}
 		</p>
+		<button class="close--dark-sm" (click)="onClose()" aria-label="Close alert banner">
+			<svg
+				class="close_icon"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16">
+				<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
+			</svg>
+		</button>
 	</div>
 	`
 })
