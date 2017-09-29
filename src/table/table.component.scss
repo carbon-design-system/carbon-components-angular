@@ -1,7 +1,6 @@
 @import "../core/scss-tools";
 
-@import
-"~@peretz/matter/scss/tools";
+@import "./../../node_modules/@peretz/matter/scss/tools";
 
 .table-container {
 	font-size: 13px;
