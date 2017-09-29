@@ -5,7 +5,12 @@ import { Component, OnInit } from "@angular/core";
 	template: `
 	<h1>List view demo</h1>
 
-	<ng-template #listTpl let-item="item"><n-icon icon="alert" size="md"></n-icon> {{item.content}}</ng-template>
+	<ng-template #listTpl let-item="item">
+		{{item.content}}
+		<button class="btn--unstyled" type="button" aria-expanded="false" aria-haspopup="true">
+			<n-icon class="icon--sm" icon="alert" size="md"></n-icon>
+		</button>
+	</ng-template>
 
 	<h3>Default list view</h3>
 	<n-list-view [items]="demoItems" (selected)="onSelect($event)"></n-list-view>
@@ -14,6 +19,7 @@ import { Component, OnInit } from "@angular/core";
 	<n-list-view [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></n-list-view>
 	`
 })
+
 export class ListViewDemo {
 	private demoItems = [
 		{
