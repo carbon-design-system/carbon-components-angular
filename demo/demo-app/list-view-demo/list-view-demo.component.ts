@@ -19,7 +19,6 @@ import { Component, OnInit } from "@angular/core";
 	<n-list-view [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></n-list-view>
 	`
 })
-
 export class ListViewDemo {
 	private demoItems = [
 		{
