@@ -22,7 +22,7 @@ import { IconService } from "./icon.service";
 				</svg>`,
 	providers: [IconService],
 	host: {
-		class: "icon",
+		"[class]": "className",
 		style: "display: inherit;"
 	}
 })
@@ -33,6 +33,8 @@ export class Icon implements OnChanges {
 	@Input() icon = "";
 	/** is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended) */
 	@Input() size = "sm";
+
+	className = `icon--${this.size}`;
 
 	/**
 	 * Initilize the component

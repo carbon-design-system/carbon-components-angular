@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
 	<ng-template #listTpl let-item="item">
 		{{item.content}}
 		<button class="btn--unstyled" type="button" aria-expanded="false" aria-haspopup="true">
-			<n-icon class="icon--sm" icon="alert" size="md"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</ng-template>
 
