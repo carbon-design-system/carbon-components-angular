@@ -15,24 +15,23 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 		<ul
 		#listView
 		class="list-group"
-		role="group"
+		role="listbox"
 		[attr.aria-multiselectable]= "checkMark ? true : false">
-			<li class="list-group_item--has-info">
-				<button
-				*ngFor="let item of items"
-				(click)= "doClick($event, item)"
-				(keydown)= "doKeyDown($event, item)"
-				[tabindex]= "item.disabled ? -1 : 0"
-				[attr.role]= "listView.attributes.role ? 'listitem' : null"
-				[attr.aria-selected]= "item.selected ? true : false"
-				[attr.disabled] = "item.disabled ? 'disabled' : null">
-					<span *ngIf="!listTpl">{{item.content}}</span>
-					<ng-template
-						*ngIf="listTpl"
-						[ngOutletContext]="{item: item}"
-						[ngTemplateOutlet]="listTpl">
-					</ng-template>
-				</button>
+			<li
+			class="list-group_item--has-info"
+			*ngFor="let item of items"
+			(click)= "doClick($event, item)"
+			(keydown)= "doKeyDown($event, item)"
+			[tabindex]= "item.disabled ? -1 : 0"
+			[attr.role]= "listView.attributes.role ? 'optionz' : null"
+			[attr.aria-selected]= "item.selected ? true : false"
+			[attr.disabled] = "item.disabled ? 'disabled' : null">
+				<ng-container *ngIf="!listTpl">{{item.content}}</ng-container>
+				<ng-template
+					*ngIf="listTpl"
+					[ngOutletContext]="{item: item}"
+					[ngTemplateOutlet]="listTpl">
+				</ng-template>
 				</li>
 		</ul>
 		`,
