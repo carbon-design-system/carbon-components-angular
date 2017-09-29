@@ -12,7 +12,11 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 @Component({
 	selector: "n-list-view",
 	template: `
-		<ul #listView class="list-group" role="group" [attr.aria-multiselectable]= "checkMark ? true : false">
+		<ul
+		#listView
+		class="list-group"
+		role="group"
+		[attr.aria-multiselectable]= "checkMark ? true : false">
 			<li class="list-group_item--has-info">
 				<button
 				*ngFor="let item of items"
