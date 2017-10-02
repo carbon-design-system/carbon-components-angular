@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
-import { PopoverModule } from "./../popover/popover.module";
+import { DialogModule } from "./../dialog/dialog.module";
 import { NFormsModule } from "./../forms/forms.module";
 
 import { Table } from "./table.component";
@@ -34,7 +34,7 @@ export { TableHeaderItem } from "./table-header-item.class";
 		NFormsModule,
 		FormsModule,
 		IconModule,
-		PopoverModule
+		DialogModule
 	]
 })
 export class TableModule {}

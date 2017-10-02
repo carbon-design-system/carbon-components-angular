@@ -1,4 +1,4 @@
-import { PopoverModule } from "./../popover/popover.module";
+import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { TableModule } from "./table.module";
@@ -13,7 +13,7 @@ describe("Table", () => {
 			imports: [
 				FormsModule,
 				NFormsModule,
-				PopoverModule
+				DialogModule
 			],
 			declarations: [Table]
 		});
