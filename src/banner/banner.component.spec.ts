@@ -28,7 +28,7 @@ describe("Banner", () => {
 		fixture.detectChanges();
 
 		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-info")).toBeTruthy();
+		expect(banner.classList.contains("banner--info")).toBeTruthy();
 	});
 
 	it("should render danger banner", () => {
@@ -40,7 +40,7 @@ describe("Banner", () => {
 		fixture.detectChanges();
 
 		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-danger")).toBeTruthy();
+		expect(banner.classList.contains("banner--danger")).toBeTruthy();
 	});
 
 	it("should render info warning", () => {
@@ -52,7 +52,7 @@ describe("Banner", () => {
 		fixture.detectChanges();
 
 		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-warning")).toBeTruthy();
+		expect(banner.classList.contains("banner--warning")).toBeTruthy();
 	});
 
 	it("should render info success", () => {
@@ -64,7 +64,7 @@ describe("Banner", () => {
 		fixture.detectChanges();
 
 		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-success")).toBeTruthy();
+		expect(banner.classList.contains("banner--success")).toBeTruthy();
 	});
 
 	it("should display correct message", () => {
@@ -90,7 +90,7 @@ describe("Banner", () => {
 
 		spyOn(fixture.componentInstance.close, "emit");
 
-		let button = fixture.nativeElement.querySelector(".close-btn");
+		let button = fixture.nativeElement.querySelector(".close--dark-sm");
 
 		button.click();
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();
