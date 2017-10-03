@@ -109,6 +109,8 @@ export class BannerService {
 				bannerList.className = bannerClassName;
 				body.appendChild(bannerList);
 			}
+			console.log(bannerRef.location.nativeElement.childNodes);
+			console.log(bannerRef.location.nativeElement.children);
 
 			// add the banner to the top of the list
 			if (bannerList.firstChild) {
@@ -150,8 +152,6 @@ export class BannerService {
 			if (bannerRef instanceof Banner) {
 				this.close(bannerRef.componentRef);
 			} else {
-				// animation and delayed distruction
-				bannerRef.location.nativeElement.querySelector(".banner").classList.add("banner-dropout");
 				setTimeout( () => {
 					this.applicationRef.detachView(bannerRef.hostView);
 					bannerRef.destroy();
