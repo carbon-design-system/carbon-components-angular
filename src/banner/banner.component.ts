@@ -17,7 +17,7 @@ import { BannerService } from "./banner.service";
 @Component({
 	selector: "n-banner",
 	template: `
-	<div class="banner banner-{{bannerObj.type}}" *ngIf="bannerObj" role="banner">
+	<div class="banner-{{bannerObj.type}}" *ngIf="bannerObj" role="alert">
 		<button class="close-btn" (click)="onClose()" aria-label="Close">
 				<svg
 					width="16"

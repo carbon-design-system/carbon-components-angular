@@ -18,12 +18,11 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 		role="listbox"
 		[attr.aria-multiselectable]= "checkMark ? true : false">
 			<li
-			class="list-group_item--has-info"
 			*ngFor="let item of items"
 			(click)= "doClick($event, item)"
 			(keydown)= "doKeyDown($event, item)"
 			[tabindex]= "item.disabled ? -1 : 0"
-			[attr.role]= "listView.attributes.role ? 'option' : null"
+			[attr.role]= "option"
 			[attr.aria-selected]= "item.selected ? true : false"
 			[attr.aria-disabled] = "item.disabled ? 'true' : null">
 				<ng-container *ngIf="!listTpl">{{item.content}}</ng-container>
