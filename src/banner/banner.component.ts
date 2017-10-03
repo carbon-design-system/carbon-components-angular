@@ -19,7 +19,7 @@ import { BannerService } from "./banner.service";
 	selector: "n-banner",
 	template: `
 	<div class="banner banner--{{bannerObj.type}}" *ngIf="bannerObj" role="alert" #banner>
-		<span class="icon--lg" aria-hidden="true">
+		<span class="icon" aria-hidden="true">
 			<svg *ngIf="bannerObj.type === 'info'"
 				width="30px"
 				height="30px"

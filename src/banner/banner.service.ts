@@ -109,8 +109,6 @@ export class BannerService {
 				bannerList.className = bannerClassName;
 				body.appendChild(bannerList);
 			}
-			console.log(bannerRef.location.nativeElement.childNodes);
-			console.log(bannerRef.location.nativeElement.children);
 
 			// add the banner to the top of the list
 			if (bannerList.firstChild) {
