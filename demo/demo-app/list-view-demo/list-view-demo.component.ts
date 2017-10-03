@@ -6,8 +6,14 @@ import { Component, OnInit } from "@angular/core";
 	<h1>List view demo</h1>
 
 	<ng-template #listTpl let-item="item">
-		{{item.content}}
-		<button class="btn--unstyled" type="button" aria-expanded="false" aria-haspopup="true">
+		<n-checkbox class="checkbox--inline"
+		[(ngModel)]="item.selected"
+		[disabled]="item.disabled"
+		aria-hidden="true"></n-checkbox>
+		<span>
+			{{item.content}}
+		</span>
+		<button class="btn--icon-link" type="button" aria-expanded="false" aria-haspopup="true">
 			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</ng-template>
@@ -15,28 +21,32 @@ import { Component, OnInit } from "@angular/core";
 	<h3>Default list view</h3>
 	<n-list-view [items]="demoItems" (selected)="onSelect($event)"></n-list-view>
 
-	<h3>List view with custom template (Added Icon) and no check mark</h3>
-	<n-list-view [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="false"></n-list-view>
+	<h3>List view with custom template (Added Icon)</h3>
+	<n-list-view [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="true"></n-list-view>
 	`
 })
 export class ListViewDemo {
 	private demoItems = [
 		{
 			content: "item one",
-			selected: false
+			selected: false,
+			checkbox: "true"
 		},
 		{
 			content: "item two",
 			selected: false,
-			disabled: true
+			disabled: true,
+			checkbox: "false"
 		},
 		{
 			content: "item three",
-			selected: false
+			selected: false,
+			checkbox: "false"
 		},
 		{
 			content: "item four",
-			selected: false
+			selected: false,
+			checkbox: "true"
 		}
 	];
 
