@@ -20,7 +20,7 @@ import { Banner } from "./../../../src";
 	<button class="btn--primary" (click)="callBanner('success')">Banner Success</button>
 
 
-	<h3>Custom alert</h3>
+	<h3>Custom banner</h3>
 
 	<button class="btn--primary" (click)="callBannerCustom()">show custom banner</button>
 

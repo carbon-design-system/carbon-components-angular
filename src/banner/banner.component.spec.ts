@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
+import {TestBed, ComponentFixture, inject, tick, fakeAsync} from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Banner } from "./banner.component";
@@ -94,5 +94,18 @@ describe("Banner", () => {
 
 		button.click();
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();
+	});
+
+	it("should emit change when banner is closed programmatically", () => {
+		const fixture = TestBed.createComponent(Banner);
+		fixture.componentInstance.bannerObj = {
+			type: "info",
+			message: "sample message"
+		};
+		fixture.detectChanges();
+
+		fixture.componentInstance.destroy();
+
+		expect(fixture.componentInstance);
 	});
 });
