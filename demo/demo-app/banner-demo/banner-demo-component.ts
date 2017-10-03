@@ -62,14 +62,16 @@ import { Banner } from "./../../../src";
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<button class="btn--primary" (click)="toggleBanner('info')">
-		<span *ngIf="!this.bannerToClose">
-			Show
-		</span>
-		<span *ngIf="this.bannerToClose">
-			Hide
-		</span>
-	</button>
+	<div class="toggleContainer">
+		<button class="btn--primary" (click)="toggleBanner('info')">
+			<span *ngIf="!this.bannerToClose">
+				Show
+			</span>
+			<span *ngIf="this.bannerToClose">
+				Hide
+			</span>
+		</button>
+	</div>
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
@@ -98,6 +100,11 @@ export class BannerDemo {
 		message: "sample message",
 	};
 
+	toggleBannerAlert = {
+		type: "info",
+		target: ".toggleContainer"
+	};
+
 	constructor(private banner: BannerService) {}
 
 	callBannerCustom() {
@@ -108,7 +115,7 @@ export class BannerDemo {
 	}
 
 	callBanner(type) {
-		this.bannerToClose = this.banner.showBanner({
+		this.banner.showBanner({
 			type: type,
 			message: "sample message"
 		});
@@ -130,6 +137,14 @@ export class BannerDemo {
 		});
 	}
 
+	callBanner3(type) {
+		this.bannerToClose = this.banner.showBanner({
+			type: type,
+			message: "sample message",
+			target: ".toggleContainer"
+		});
+	}
+
 	callBannerFadeAway() {
 		this.banner.showBanner({
 			type: "info",
@@ -140,7 +155,7 @@ export class BannerDemo {
 
 	toggleBanner(bannerType) {
 		if (!this.bannerToClose) {
-			this.callBanner(bannerType);
+			this.callBanner3(bannerType);
 		} else {
 			this.bannerToClose.destroy();
 			this.bannerToClose = null;

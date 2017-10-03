@@ -42,7 +42,6 @@ import * as en from  "./../../src/i18n/en.json";
 	<n-sprite sprite="mobile_controls"></n-sprite>
 	<n-sprite sprite="playback_controls"></n-sprite>
 	<n-sprite sprite="window_controls"></n-sprite>
-	<n-sprite sprite="should_fail"></n-sprite>
 	`,
 	styleUrls: ["./app.component.scss"],
 	encapsulation: ViewEncapsulation.None
