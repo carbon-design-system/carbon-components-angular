@@ -27,7 +27,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
 		expect(banner.classList.contains("banner--info")).toBeTruthy();
 	});
 
@@ -39,7 +39,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
 		expect(banner.classList.contains("banner--danger")).toBeTruthy();
 	});
 
@@ -51,7 +51,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
 		expect(banner.classList.contains("banner--warning")).toBeTruthy();
 	});
 
@@ -63,7 +63,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
 		expect(banner.classList.contains("banner--success")).toBeTruthy();
 	});
 
@@ -75,7 +75,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let p = fixture.nativeElement.querySelector(".banner p");
+		let p = fixture.nativeElement.querySelector("[role='alert'] p");
 
 		expect(p.innerHTML.trim()).toEqual("sample message");
 	});
