@@ -23,9 +23,9 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 			(click)= "doClick($event, item)"
 			(keydown)= "doKeyDown($event, item)"
 			[tabindex]= "item.disabled ? -1 : 0"
-			[attr.role]= "listView.attributes.role ? 'optionz' : null"
+			[attr.role]= "listView.attributes.role ? 'option' : null"
 			[attr.aria-selected]= "item.selected ? true : false"
-			[attr.disabled] = "item.disabled ? 'disabled' : null">
+			[attr.aria-disabled] = "item.disabled ? 'true' : null">
 				<ng-container *ngIf="!listTpl">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
