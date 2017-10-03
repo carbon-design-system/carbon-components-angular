@@ -8,7 +8,8 @@ import { Component, OnInit } from "@angular/core";
 	<ng-template #listTpl let-item="item">
 		<n-checkbox class="checkbox--inline"
 		[(ngModel)]="item.selected"
-		[disabled]="item.disabled"></n-checkbox>
+		[disabled]="item.disabled"
+		aria-hidden="true"></n-checkbox>
 		<span>
 			{{item.content}}
 		</span>
