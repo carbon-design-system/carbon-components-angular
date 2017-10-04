@@ -54,9 +54,6 @@ export class SideNavItem {
 			this.showPane();
 			this.selected = false;
 		}
-		// get all n-side-nav-items in subItem and set aria-level to ariaLevel+1 on them
-		// const items = this.subItem.nativeElement.querySelectorAll("n-side-nav-item") as HTMLElement[];
-		// items.forEach((item) => item.querySelector(".side-nav-item-wrapper").setAttribute("aria-level", (this.ariaLevel + 1).toString()));
 	}
 
 	@HostListener("keydown", ["$event"])
