@@ -113,7 +113,6 @@ export class BannerService {
 			// add the banner to the top of the list
 			if (bannerList.firstChild) {
 				bannerList.insertBefore(bannerRef.location.nativeElement, bannerList.firstChild);
-				console.log(bannerList);
 			} else {
 				bannerList.appendChild(bannerRef.location.nativeElement);
 			}
