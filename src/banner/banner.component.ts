@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ComponentRef
+	ComponentRef,
+	ViewChild
 } from "@angular/core";
 
 import { BannerService } from "./banner.service";
@@ -17,8 +18,8 @@ import { BannerService } from "./banner.service";
 @Component({
 	selector: "n-banner",
 	template: `
-	<div class="banner banner--{{bannerObj.type}}" *ngIf="bannerObj" role="alert">
-		<span class="icon--lg" aria-hidden="true">
+	<div class="banner--{{bannerObj.type}}" *ngIf="bannerObj" role="alert" #banner>
+		<span class="icon" aria-hidden="true">
 			<svg *ngIf="bannerObj.type === 'info'"
 				width="30px"
 				height="30px"
@@ -92,6 +93,8 @@ export class Banner {
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
 	componentRef: ComponentRef<Banner>;
+
+	@ViewChild("banner") banner;
 
 	constructor(private bannerService: BannerService) {}
 

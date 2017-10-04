@@ -62,7 +62,7 @@ import { Banner } from "./../../../src";
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<div class="toggle-container">
+	<div class="toggleContainer">
 		<button class="btn--primary" (click)="toggleBanner('info')">
 			<span *ngIf="!this.bannerToClose">
 				Show
@@ -104,6 +104,11 @@ export class BannerDemo {
 		target: ".main-banner-container"
 	};
 
+	toggleBannerAlert = {
+		type: "info",
+		target: ".toggleContainer"
+	};
+
 	constructor(private banner: BannerService) {}
 
 	callBannerCustom() {
@@ -115,7 +120,7 @@ export class BannerDemo {
 	}
 
 	callBanner(type) {
-		this.bannerToClose = this.banner.showBanner({
+		this.banner.showBanner({
 			type: type,
 			message: "sample message",
 			target: ".main-banner-container"
@@ -146,6 +151,14 @@ export class BannerDemo {
 		});
 	}
 
+	callBanner3(type) {
+		this.bannerToClose = this.banner.showBanner({
+			type: type,
+			message: "sample message",
+			target: ".toggleContainer"
+		});
+	}
+
 	callBannerFadeAway() {
 		this.banner.showBanner({
 			type: "info",
@@ -157,7 +170,7 @@ export class BannerDemo {
 
 	toggleBanner(bannerType) {
 		if (!this.bannerToClose) {
-			this.callBannerToggle(bannerType);
+			this.callBanner3(bannerType);
 		} else {
 			this.bannerToClose.destroy();
 			this.bannerToClose = null;

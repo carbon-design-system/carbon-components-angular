@@ -74,7 +74,7 @@ describe("RadioComponent", () => {
 
 		fixture = TestBed.createComponent(RadioComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("div.radio"));
+		de = fixture.debugElement.query(By.css("label.radio"));
 		el = de.nativeElement;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});

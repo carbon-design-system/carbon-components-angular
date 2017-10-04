@@ -181,22 +181,20 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 @Component({
 	selector: "n-radio",
 	template: `
-		<div class="radio">
-			<label [for]="id">
-				<input type="radio" #inputCheckbox
-					[checked]="checked"
-					[disabled]="disabled"
-					[name]="name"
-					[id]="id"
-					[required]="required"
-					[value]="value"
-					[attr.aria-label]="ariaLabel"
-					[attr.aria-labelledby]="ariaLabelledby"
-					(change)="onChange($event)"
-					(click)="onClick($event)">
-				<span class="label"><ng-content></ng-content></span>
-			</label>
-		</div>
+		<label class="radio" [for]="id">
+			<input type="radio" #inputCheckbox
+				[checked]="checked"
+				[disabled]="disabled"
+				[name]="name"
+				[id]="id"
+				[required]="required"
+				[value]="value"
+				[attr.aria-label]="ariaLabel"
+				[attr.aria-labelledby]="ariaLabelledby"
+				(change)="onChange($event)"
+				(click)="onClick($event)">
+			<span class="radio_label"><ng-content></ng-content></span>
+		</label>
 	`,
 	providers: [
 		{

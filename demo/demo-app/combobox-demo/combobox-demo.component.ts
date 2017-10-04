@@ -1,13 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
-import * as readme from "./../../../src/combobox/README.md";
-
 @Component({
 	selector: "combobox-demo",
 	template: `
 		<h1>Combo box demo</h1>
-
-		<app-doc [content]="docs"></app-doc>
 
 		<h2>Single-select combo box</h2>
 		<div style="width: 330px;">
@@ -113,7 +109,6 @@ export class ComboboxDemo {
 	public docs: any = "";
 
 	ngOnInit() {
-		this.docs = readme;
 		this.demoItems1.forEach(item => item.selected = true);
 	}
 

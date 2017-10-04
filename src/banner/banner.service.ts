@@ -102,7 +102,7 @@ export class BannerService {
 			let body = document.querySelector("body");
 
 			// get or create a container for alert list
-			let bannerClassName = "body-banner";
+			let bannerClassName = "banner-overlay";
 			let bannerList = body.querySelector("." + bannerClassName);
 			if (!bannerList) {
 				bannerList = document.createElement("div");
@@ -151,8 +151,6 @@ export class BannerService {
 			if (bannerRef instanceof Banner) {
 				this.close(bannerRef.componentRef);
 			} else {
-				// animation and delayed distruction
-				bannerRef.location.nativeElement.querySelector(".banner").classList.add("banner-dropout");
 				setTimeout( () => {
 					this.applicationRef.detachView(bannerRef.hostView);
 					bannerRef.destroy();

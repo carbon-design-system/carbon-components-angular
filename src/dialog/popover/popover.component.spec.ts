@@ -1,7 +1,7 @@
 import { ElementRef } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { Popover } from "./popover.component";
-import {createElement} from "../common/test";
+import {createElement} from "../../common/test";
 
 describe("Popover component", () => {
 	beforeEach(() => {
@@ -21,10 +21,16 @@ describe("Popover component", () => {
 		let element = createElement(200, 300, 100, 150);
 		const fixture = TestBed.createComponent(Popover);
 
-		fixture.componentInstance.popoverConfig = {
+		fixture.componentInstance.dialogConfig = {
+			title: "test",
 			content: "test",
 			trigger: "click",
-			placement: "auto",
+			placement: "left",
+			gap: 0,
+			appendToBody: false,
+			type: "",
+			autoPosition: false,
+			data: {},
 			parentRef: new ElementRef(element)
 		};
 
@@ -43,15 +49,21 @@ describe("Popover component", () => {
 		const fixture = TestBed.createComponent(Popover);
 		let element = createElement(200, 300, 100, 150);
 
-		fixture.componentInstance.popoverConfig = {
+		fixture.componentInstance.dialogConfig = {
+			title: "test",
 			content: "test",
 			trigger: "click",
 			placement: "left",
+			gap: 0,
+			appendToBody: false,
+			type: "",
+			autoPosition: false,
+			data: {},
 			parentRef: new ElementRef(element)
 		};
 
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.querySelector(".popover").classList.contains("left")).toEqual(true);
+		expect(fixture.nativeElement.querySelector(".popover--left")).not.toBe(null);
 	});
 });
