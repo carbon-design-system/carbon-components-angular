@@ -23,7 +23,7 @@ import "rxjs/add/operator/throttleTime";
 import { TranslateService } from "@ngx-translate/core";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { positionElements } from "../common/position.service";
+import { position } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
@@ -64,7 +64,6 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		</button>
 		<div
 			class="dropdown-menu size-{{size}}"
-			[class.popover]="appendToBody"
 			[class.open]="!menuIsClosed">
 			<ng-content></ng-content>
 		</div>
@@ -308,12 +307,18 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.appendChild(this.dropdown);
 		document.body.appendChild(this.dropdownWrapper);
-		positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+		position.setElement(
+			this.dropdownWrapper,
+			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
+		);
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
 		this.resize = Observable.fromEvent(window, "resize")
 			.throttleTime(100)
 			.subscribe(() => {
-				positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+				position.setElement(
+					this.dropdownWrapper,
+					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
+				);
 			});
 	}
 
@@ -361,7 +366,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				this.scroll = Observable.fromEvent(container, "scroll")
 				.subscribe(() => {
 					if (this.isVisibleInContainer(this._elementRef.nativeElement, container)) {
-						positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+						position.setElement(
+							this.dropdownWrapper,
+							position.addOffset(
+								position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom"),
+								-container.scrollTop
+							)
+						);
 					} else {
 						this.closeMenu();
 					}
