@@ -90,18 +90,18 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 
 
 	<n-label class="ng-invalid ng-touched" labelState="success">
-		<label for="textInput5">Field with success</label>
-		<input type="text" class="input-field input-field-success" id="textInput5">
+		Field with success
+		<input type="text" class="input-text valid--success">
 	</n-label>
 
 	<n-label class="ng-invalid ng-touched" labelState="warning">
-		<label for="textInput6">Field with warning</label>
-		<input type="text" class="input-field input-field-warning" id="textInput6">
+		Field with warning
+		<input type="text" class="input-text valid--warning">
 	</n-label>
 
 	<n-label class="ng-invalid ng-touched" labelState="error">
-		<label for="textInput7">Field with error</label>
-		<input type="text" class="input-field input-field-error" id="textInput7">
+		Field with error
+		<input type="text" class="input-text valid--error">
 	</n-label>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]

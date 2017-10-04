@@ -82,22 +82,26 @@ export class BannerDemo {
 
 	infoBanner = {
 		type: "info",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	errorBanner = {
 		type: "danger",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	warningBanner = {
 		type: "warning",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	successBanner = {
 		type: "success",
 		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	toggleBannerAlert = {
@@ -110,14 +114,24 @@ export class BannerDemo {
 	callBannerCustom() {
 		this.banner.showBanner({
 			type: "info",
-			message: "sample message"
+			message: "sample message",
+			target: ".main-banner-container"
 		}, BannerCustom);
 	}
 
 	callBanner(type) {
 		this.banner.showBanner({
 			type: type,
-			message: "sample message"
+			message: "sample message",
+			target: ".main-banner-container"
+		});
+	}
+
+	callBannerToggle(type) {
+		this.bannerToClose = this.banner.showBanner({
+			type: type,
+			message: "sample message",
+			target: ".toggle-container"
 		});
 	}
 
@@ -149,6 +163,7 @@ export class BannerDemo {
 		this.banner.showBanner({
 			type: "info",
 			message: "sample message",
+			target: "#banner-container",
 			duration: 2000
 		});
 	}
