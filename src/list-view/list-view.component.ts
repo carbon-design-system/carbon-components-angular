@@ -12,28 +12,28 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 @Component({
 	selector: "n-list-view",
 	template: `
-		<ul #listView class="list-view">
-			<li tabindex="{{item.disabled?-1:0}}"
-				[attr.role]="listView.attributes.role?'option':null"
-				*ngFor="let item of items"
-				(click)="doClick($event, item)"
-				(keydown)="doKeyDown($event, item)"
-				[ngClass]="{
-					selected: item.selected,
-					disabled: item.disabled
-				}">
-				<span
-					*ngIf="checkMark && item.selected"
-					class="checked" aria-hidden="true">
-				</span>
-				<span *ngIf="!listTpl">{{item.content}}</span>
+		<ul
+		#listView
+		class="list-group"
+		role="listbox"
+		[attr.aria-multiselectable]= "checkMark ? true : false">
+			<li
+			*ngFor="let item of items"
+			(click)= "doClick($event, item)"
+			(keydown)= "doKeyDown($event, item)"
+			[tabindex]= "item.disabled ? -1 : 0"
+			[attr.role]= "option"
+			[attr.aria-selected]= "item.selected ? true : false"
+			[attr.aria-disabled] = "item.disabled ? 'true' : null">
+				<ng-container *ngIf="!listTpl">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
 					[ngOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
-			</li>
-		</ul>`,
+				</li>
+		</ul>
+		`,
 })
 export class ListView {
 	@Input() items: Array<Object> = [];
