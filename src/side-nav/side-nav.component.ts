@@ -3,18 +3,19 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "n-side-nav",
 	template: `
-    <nav class="left-nav"
-    	   [ngClass]="{isOpen: open, 'left-nav-fixed': fixed}"
+	<aside class="side-nav"
+		[ngClass]="{'slide-in': open, 'slide-out': !open}">
+    	<nav
     	   [attr.aria-expanded]="open"
     	   role="navigation"
 		   aria-label="side navigation">
-			<div class="left-nav-container">
+			<dl class="side-nav_accordion" role="presentation">
 				<ng-content></ng-content>
-			</div>
-    </nav>
+			</dl>
+		</nav>
+	</aside>
   `
 })
 export class SideNav {
 	@Input() open = true;
-	@Input() fixed = false;
 }

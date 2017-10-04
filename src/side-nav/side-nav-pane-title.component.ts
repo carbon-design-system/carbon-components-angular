@@ -3,15 +3,12 @@ import { Component, Input, ViewChild } from "@angular/core";
 @Component({
 	selector: "n-side-nav-pane-title",
 	template: `
-	<button class="side-nav-pane-title" (click)="hidePane()" #item>
-		<svg
-			class="side-nav-arrow"
-			xmlns="http://www.w3.org/2000/svg"
-			width="16"
-			height="16"
-			viewBox="0 0 16 16">
-			<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
-		</svg>
+	<button
+	class="subpanel_heading"
+	type="button"
+	aria-level="3"
+	(click)="hidePane()"
+	#item>
 		<ng-content></ng-content>
 	</button>
   `
@@ -20,12 +17,12 @@ export class SideNavPaneTitle {
 	@ViewChild("item") item;
 
 	hidePane() {
-		this.item.nativeElement.closest(".left-nav-container").classList.remove("side-nav-pane-sub-template-visible");
+		this.item.nativeElement.closest(".side-nav_subpanel").classList.remove("slide-in");
 
 		// hide after the animation
 		setTimeout( () => {
-			this.item.nativeElement.closest(".side-nav-pane-sub-template").classList.remove("side-nav-pane-visible");
-			this.item.nativeElement.closest(".side-nav-item-wrapper").querySelector(".side-nav-item-button").focus();
-		}, 200);
+			this.item.nativeElement.closest(".side-nav_subpanel-wrapper").setAttribute("style", "display: none;");
+			this.item.nativeElement.closest("li").querySelector("a").focus();
+		}, 360);
 	}
 }
