@@ -15,7 +15,7 @@ describe("Side Nav", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({declarations: [SideNav]});
 		fixture = TestBed.createComponent(SideNav);
-		el = fixture.nativeElement.querySelector("nav");
+		el = fixture.nativeElement.querySelector("aside.side-nav");
 		component = fixture.componentInstance;
 	});
 
@@ -26,7 +26,7 @@ describe("Side Nav", () => {
 	it("should be open", () => {
 		component.open = true;
 		fixture.detectChanges();
-		expect(el.classList).toContain("isOpen");
+		expect(el.classList).toContain("slide-in");
 	});
 });
 
@@ -42,11 +42,5 @@ describe("Side Nav", () => {
 		fixture = TestBed.createComponent(SideNav);
 		el = fixture.nativeElement.querySelector("nav");
 		component = fixture.componentInstance;
-	});
-
-	it("should be fixed", () => {
-		component.fixed = true;
-		fixture.detectChanges();
-		expect(el.classList).toContain("left-nav");
 	});
 });
