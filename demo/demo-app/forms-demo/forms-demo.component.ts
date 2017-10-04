@@ -67,7 +67,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 
 	<n-label>
 		Field
-		<input type="text" [(ngModel)]="textInput2" class="defaultTextInput">
+		<input type="text" [(ngModel)]="textInput2">
 	</n-label>
 	<p>Text: {{textInput2}}</p>
 
