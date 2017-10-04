@@ -13,16 +13,95 @@ import "./chart.scss";
 /**
  * Angular component built with common charting library.
  *
- * ## Build your own table footer with neutrino components
+ * ## Build your own charts with neutrino components
  *
  * ```html
  *<n-chart
- * [data]="data"
- *	[option]="stackedBarsOption">
+ *	[data]="data"
+ *	[option]="option">
  *</n-chart>
  * ```
  *
  * `data` and `option` are the inputs to the component.
+ *
+ *
+ * ## Available `option` properties
+ * | Property        | Use           | Nullable  | Type |
+ * | ------------- |-------------|-----|-----|
+ * | type      | chart type | false | string, e.g. "bars", "stackedBars", "lines", "doubleAxis", "combo" |
+ * | xDomain      | value for x axis | false | string |
+ * | yDomain      | value for y axis | false | array of string |
+ * | y2Domain | value for second y axis | true for charts without second y axis | array of string |
+ * | yTicks      | tick numbers | false | number |
+ * | y2Ticks     | tick numbers | true | number |
+ * | legendClickable | make legend clickale to filter data | true | boolean |
+ * | containerResizable | resize charts as its container resizes | true | boolean |
+ * | yFormatter | y value formatter functions | true | object of metrics as key and formatter functions as the key's value |
+ *
+ * ## `Option` example
+ * ```javascript
+ * option: {
+ *		type: "bar",
+ *		xDomain: "Day",
+ *		yDomain: ["Clicks"],
+ *		y2Domain: ["Click rate"],
+ *		yFormatter: {
+ *			"Click rate"(value) {
+ *				return value + "%";
+ *			}
+ *		},
+ *		yTicks: 5,
+ *		legendClickable: true,
+ *		containerResizable: true,
+ *		colors: [
+ *			"#009BEF",
+ *			"#95D13C",
+ *			"#785EF0",
+ *			"#F87EAC",
+ *			"#FFB000"
+ *		]
+ * }```
+ *
+ * ## `Data` example
+ * Array of objects with xDomian and yDomain values.
+ * ```javascript
+ *	data: [
+ *		{
+ *			"Day": "Monday",
+ *			"Clicks": 60000,
+ *			"Click rate": 9
+ *		},
+ *		{
+ *			"Day": "Tuesday",
+ *			"Clicks": 50000,
+ *			"Click rate": 76
+ *		},
+ *		{
+ *			"Day": "Wednesday",
+ *			"Clicks": 9000,
+ *			"Click rate": 80
+ *		},
+ *		{
+ *			"Day": "Thursday",
+ *			"Clicks": 8000,
+ *			"Click rate": 1
+ *		},
+ *		{
+ *			"Day": "Friday",
+ *			"Clicks": 4000,
+ *			"Click rate": 30
+ *		},
+ *		{
+ *			"Day": "Saturday",
+ *			"Clicks": 35000,
+ *			"Click rate": 59
+ *		},
+ *		{
+ *			"Day": "Sunday",
+ *			"Clicks": 35000,
+ *			"Click rate": 38
+ *		}
+ *	]```
  *
  *
  * @export
