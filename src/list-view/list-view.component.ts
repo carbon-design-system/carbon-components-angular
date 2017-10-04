@@ -16,15 +16,15 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 		#listView
 		class="list-group"
 		role="listbox"
-		[attr.aria-multiselectable]= "checkMark ? true : false">
+		[attr.aria-multiselectable]="checkMark ? true : false">
 			<li
 			*ngFor="let item of items"
-			(click)= "doClick($event, item)"
-			(keydown)= "doKeyDown($event, item)"
-			[tabindex]= "item.disabled ? -1 : 0"
+			(click)="doClick($event, item)"
+			(keydown)="doKeyDown($event, item)"
+			[tabindex]="item.disabled ? -1 : 0"
 			role="option"
-			[attr.aria-selected]= "item.selected ? true : false"
-			[attr.aria-disabled] = "item.disabled ? 'true' : null">
+			[attr.aria-selected]="item.selected ? true : false"
+			[attr.aria-disabled]="item.disabled ? 'true' : null">
 				<ng-container *ngIf="!listTpl">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
