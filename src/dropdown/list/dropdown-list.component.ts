@@ -19,7 +19,12 @@ import { watchFocusJump } from "./../dropdowntools";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
-		<ul #list class="list" role="listbox">
+		<ul #list role="listbox"
+			[ngClass]="{
+				'listbox--sm': size === 'sm',
+				'listbox': size === 'default',
+				'listbox--lg': size === 'lg'
+			}">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -28,8 +33,7 @@ import { watchFocusJump } from "./../dropdowntools";
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
-				}"
-				class="option">
+				}">
 				<label
 					style="margin: 0;"
 					[ngClass]="{

@@ -18,17 +18,26 @@ import { ListView } from "./../../list-view/list-view.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
 
+// const a = `
+// <span
+// class="placeholder"
+// [ngClass]="{
+// 	visible: !filterFocus
+// }">
+// {{ 'DROPDOWN.FILTER.SEARCH' | translate }}
+// </span>
+// `;
+
 @Component({
 	selector: "n-dropdown-filter",
 	template: `
-		<div
-			*ngIf="type === 'multi'"
-			class="dropdown-selected-only">
-			<label [ngClass]="{
+		<div class="menu_filter-options">
+			<label
+				[ngClass]="{
 					'checkbox': size === 'default',
 					'checkbox--sm': size === 'sm'
 				}"
-				style="margin-bottom: 0px;">
+				*ngIf="type === 'multi'">
 				<input
 					#selectedOnly
 					type="checkbox"
@@ -36,11 +45,10 @@ import { DropdownList } from "./dropdown-list.component";
 					(click)="filterItems()">
 				<span class="checkbox_label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
 			</label>
-		</div>
-		<div class="dropdown-filter-search size-md">
-			<div class="search-icon">
+			<label class="search_group">
 				<svg
-					class="icon"
+					aria-hidden="true"
+					class="search_icon"
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 16 16">
 					<g>
@@ -56,48 +64,34 @@ import { DropdownList } from "./dropdown-list.component";
 							height="5.7"/>
 					</g>
 				</svg>
-			</div>
-			<input
-				#filter
-				(keyup)="filterItems()"
-				type="text"
-				class="input-field"
-				tabindex="0"
-				(focus)="filterFocus = true"
-				(blur)="filterFocus = filter.value?true:false"/>
-			<span
-				class="placeholder"
-				[ngClass]="{
-					visible: !filterFocus
-				}">
-				{{ 'DROPDOWN.FILTER.SEARCH' | translate }}
-			</span>
-			<button
-				class="search-cancel"
-				type="button"
-				aria-label="cancel"
-				[ngClass]="{
-					visible: filter.value.trim()
-				}"
-				(click)="clearFilter()">
-				<svg
-					class="icon"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 16 16">
-					<polygon
-						points="14.5,2.6 13.4,1.5
-						8,6.9 2.6,1.5
-						1.5,2.6 6.9,8
-						1.5,13.4
-						2.6,14.5
-						8,9.1
-						13.4,14.5
-						14.5,13.4
-						9.1,8"/>
-				</svg>
-			</button>
+				<input
+					#filter
+					(keyup)="filterItems()"
+					type="search"
+					tabindex="0"
+					(focus)="filterFocus = true"
+					(blur)="filterFocus = filter.value?true:false"/>
+				<button
+					class="close"
+					type="reset"
+					aria-label="Reset search"
+					[ngClass]="{
+						visible: filter.value.trim()
+					}"
+					(click)="clearFilter()">
+					<svg
+						class="close_icon"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 16 16">
+						<polygon
+							points="14.5,2.6 13.4,1.5 8,6.9 2.6,1.5
+							1.5,2.6 6.9,8 1.5,13.4 2.6,14.5
+							8,9.1 13.4,14.5 14.5,13.4 9.1,8"/>
+					</svg>
+				</button>
+			</label>
 		</div>
-		<ul #list class="list" role="listbox">
+		<ul #list class="listbox" role="listbox">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -106,8 +100,7 @@ import { DropdownList } from "./dropdown-list.component";
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
-				}"
-				class="option">
+				}">
 				<label [ngClass]="{
 						'checkbox': size === 'default',
 						'checkbox--sm': size === 'sm'
