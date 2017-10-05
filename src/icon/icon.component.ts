@@ -35,7 +35,24 @@ export class Icon implements OnChanges {
 	/** is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended) */
 	@Input() size = "sm";
 
-	className = `${this._elementRef.nativeElement.classList} icon--${this.size}`;
+	private _className: string;
+	get className() {
+		let cn: string;
+		if (this._elementRef.nativeElement.classList.length > 0) {
+			cn = this._elementRef.nativeElement.classList;
+		} else if (this.size === "md") {
+			cn = "icon";
+		} else {
+			cn = `icon--${this.size}`;
+		}
+
+		// tslint:disable-next-line:triple-equals
+		if (cn != this._className) {
+			this._className = cn;
+		}
+
+		return this._className;
+	}
 
 	/**
 	 * Initilize the component
