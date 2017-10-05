@@ -10,6 +10,12 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	<n-icon icon="alert" size="sm"></n-icon>
 	<n-icon icon="alert" size="md"></n-icon>
 	<n-icon icon="alert" size="lg"></n-icon>
+	<br>
+	<svg class="icon--blue" width="30" height="30"><use href="#alert_30"></use></svg>
+	<n-icon class="icon--blue-xs" icon="alert" size="xs"></n-icon>
+	<n-icon class="icon--blue-sm" icon="alert" size="sm"></n-icon>
+	<n-icon class="icon--blue" icon="alert" size="md"></n-icon>
+	<n-icon class="icon--blue-lg" icon="alert" size="lg"></n-icon>
 
 	<ul>
 		<li *ngFor="let set of iconMeta">

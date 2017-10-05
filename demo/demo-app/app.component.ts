@@ -29,6 +29,7 @@ import * as en from  "./../../src/i18n/en.json";
 		</n-list-view>
 	</nav>
 	<main class="main">
+	<div class="main-banner-container"></div>
 		<router-outlet></router-outlet>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
@@ -42,7 +43,6 @@ import * as en from  "./../../src/i18n/en.json";
 	<n-sprite sprite="mobile_controls"></n-sprite>
 	<n-sprite sprite="playback_controls"></n-sprite>
 	<n-sprite sprite="window_controls"></n-sprite>
-	<n-sprite sprite="should_fail"></n-sprite>
 	`,
 	styleUrls: ["./app.component.scss"],
 	encapsulation: ViewEncapsulation.None

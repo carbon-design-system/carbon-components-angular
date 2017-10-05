@@ -1,5 +1,6 @@
 import {
 	Component,
+	ElementRef,
 	OnChanges,
 	OnInit,
 	Input
@@ -22,7 +23,7 @@ import { IconService } from "./icon.service";
 				</svg>`,
 	providers: [IconService],
 	host: {
-		class: "icon",
+		"[class]": "className",
 		style: "display: inherit;"
 	}
 })
@@ -34,12 +35,31 @@ export class Icon implements OnChanges {
 	/** is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended) */
 	@Input() size = "sm";
 
+	private _className: string;
+	get className() {
+		let cn: string;
+		if (this._elementRef.nativeElement.classList.length > 0) {
+			cn = this._elementRef.nativeElement.classList;
+		} else if (this.size === "md") {
+			cn = "icon";
+		} else {
+			cn = `icon--${this.size}`;
+		}
+
+		// tslint:disable-next-line:triple-equals
+		if (cn != this._className) {
+			this._className = cn;
+		}
+
+		return this._className;
+	}
+
 	/**
 	 * Initilize the component
 	 *
 	 * @param {IconService} _icons
 	 */
-	constructor(private _icons: IconService) {}
+	constructor(private _icons: IconService, private _elementRef: ElementRef) {}
 
 	/**
 	 * Clamps the size to 14, 16, 20, or 30 px - the sizes most icons are available in
