@@ -2,24 +2,30 @@
 	display: block;
 	height: 100%;
 	width: 100%;
+
 	svg {
 		overflow: visible;
+
 		text {
-				font-weight: 300;
-				font-size: 11px;
-				fill: #AEAEAE;
+			font-weight: 300;
+			font-size: 11px;
+			fill: #AEAEAE;
 		}
 	}
+
 	table {
 		height: 100%;
 		width: 100%;
 	}
+
 	.chart-row {
 		height: 99%;
+
 		.chart-content {
 			position: relative;
 			width: 80%;
 		}
+
 		.legend-content {
 			position: absolute;
 			height: 100%;
@@ -29,15 +35,19 @@
 	}
 	.legend-row {
 		height: 1%;
+
 		.legend {
 			max-height: 55px;
 			overflow-y: auto;
+
 			.legend-link {
 				color: #5A5A5A;
+
 				&:hover {
 					color: #323232;
 				}
 			}
+
 			&.link-view {
 				overflow: hidden;
 				height: 36px;
@@ -64,9 +74,11 @@ button.close--xs {
 	border: 1px solid transparent;
 	background: transparent;
 	cursor: pointer;
+
 	&:focus, &:hover {
 		border-color: #777677;
 	}
+
 	.close_icon {
 		width: 10px;
 		height: 10px;
