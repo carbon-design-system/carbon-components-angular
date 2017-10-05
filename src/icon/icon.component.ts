@@ -35,7 +35,15 @@ export class Icon implements OnChanges {
 	/** is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended) */
 	@Input() size = "sm";
 
-	className = `${this._elementRef.nativeElement.classList} icon--${this.size}`;
+	get className() {
+		if (this._elementRef.nativeElement.classList.length > 0) {
+			return this._elementRef.nativeElement.classList;
+		} else if (this.size === "md") {
+			return "icon";
+		} else {
+			return `icon--${this.size}`;
+		}
+	}
 
 	/**
 	 * Initilize the component
