@@ -56,6 +56,7 @@ table {
 	thead {
 		display: table;
 		width: 100%;
+		height: 30px;  // this fixes thead height change when popover renders
 
 		th {
 			text-align: left;
@@ -223,6 +224,9 @@ table {
 
 
 .table--lg {
+	thead {
+		height: 40px;  // this fixes thead height change when popover renders
+	}
 	thead th, td {
 		padding-left: 20px;
 		padding-right: 20px;
@@ -247,6 +251,9 @@ table {
 }
 
 .table--sm {
+	thead {
+		height: 25px;  // this fixes thead height change when popover renders
+	}
 	thead th, td {
 		padding-left: 5px;
 		padding-right: 5px;
