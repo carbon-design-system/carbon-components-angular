@@ -60,48 +60,52 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	<h2>Forms (Label)</h2>
 
 	<n-label>
-		<label for="textInput1">Field small</label>
-		<input type="text" [(ngModel)]="textInput1" class="input-field size-sm" id="textInput1">
+		Field small
+		<input type="text" [(ngModel)]="textInput1" class="input-text--sm">
 	</n-label>
 	<p>Text: {{textInput1}}</p>
 
 	<n-label>
-		<label for="textInput2">Field</label>
-		<input type="text" [(ngModel)]="textInput2" class="input-field" id="textInput2">
+		Field
+		<input type="text" [(ngModel)]="textInput2">
 	</n-label>
 	<p>Text: {{textInput2}}</p>
 
 	<n-label>
-		<label for="textInput3">Field large</label>
-		<input type="text" [(ngModel)]="textInput3" class="input-field size-lg" id="textInput3">
+		Field large
+		<input type="text" [(ngModel)]="textInput3" class="input-text--lg">
 	</n-label>
 	<p>Text: {{textInput3}}</p>
 
 	<n-label>
-		<label for="textInput4" class="disabled">Field disabled</label>
-		<input type="text" class="input-field" id="textInput4" disabled>
+		<label class="disabled">Field disabled</label>
+		<input type="text" class="input-field" disabled>
 	</n-label>
 
 	<n-label>
-		<label for="textareaText1">Text area</label>
-		<textarea [(ngModel)]="textareaText1" class="input-field" id="textareaText1"></textarea>
+		Text area
+		<textarea></textarea>
 	</n-label>
 	<p>Text: {{textareaText1}}</p>
 
+	<n-label>
+		<label class="disabled">Disabled text area</label>
+		<textarea disabled></textarea>
+	</n-label>
 
 	<n-label class="ng-invalid ng-touched" labelState="success">
-		<label for="textInput5">Field with success</label>
-		<input type="text" class="input-field input-field-success" id="textInput5">
+		Field with success
+		<input type="text" class="input-text valid--success">
 	</n-label>
 
 	<n-label class="ng-invalid ng-touched" labelState="warning">
-		<label for="textInput6">Field with warning</label>
-		<input type="text" class="input-field input-field-warning" id="textInput6">
+		Field with warning
+		<input type="text" class="input-text valid--warning">
 	</n-label>
 
 	<n-label class="ng-invalid ng-touched" labelState="error">
-		<label for="textInput7">Field with error</label>
-		<input type="text" class="input-field input-field-error" id="textInput7">
+		Field with error
+		<input type="text" class="input-text valid--error">
 	</n-label>
 	`,
 	styleUrls: ["./forms-demo.component.scss"]

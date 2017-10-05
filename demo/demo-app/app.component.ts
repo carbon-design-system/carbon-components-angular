@@ -29,6 +29,7 @@ import * as en from  "./../../src/i18n/en.json";
 		</n-list-view>
 	</nav>
 	<main class="main">
+	<div class="main-banner-container"></div>
 		<router-outlet></router-outlet>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
