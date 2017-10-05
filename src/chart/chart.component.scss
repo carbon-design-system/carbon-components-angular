@@ -1,7 +1,14 @@
-.n-chart {
+
+n-chart {
 	display: block;
+	position: relative;
 	height: 100%;
 	width: 100%;
+
+	.n-chart-container {
+		width: 100%;
+		height: 100%;
+	}
 
 	svg {
 		overflow: visible;

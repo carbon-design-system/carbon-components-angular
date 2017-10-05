@@ -3,7 +3,8 @@ import {
 	Input,
 	OnInit,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	ViewEncapsulation
 } from "@angular/core";
 
 import { Charts } from "@peretz/charts/bundle/bundle.js";
@@ -35,16 +36,7 @@ import { Charts } from "@peretz/charts/bundle/bundle.js";
 		</div>
 	`,
 	styleUrls: ["./chart.component.scss"],
-	styles: [`
-		:host {
-			display: block;
-			position: relative;
-		}
-		:host /deep/ .n-chart-container {
-			width: 100%;
-			height: 100%;
-		}
-	`]
+	encapsulation: ViewEncapsulation.None
 })
 export class Chart implements AfterViewInit {
 	@Input() data: any;
