@@ -8,8 +8,6 @@ import {
 
 import { Charts } from "@peretz/charts/bundle/bundle.js";
 
-import "./chart.scss";
-
 /**
  * Angular component built with common charting library.
  *
@@ -36,6 +34,7 @@ import "./chart.scss";
 			class='n-chart-container'>
 		</div>
 	`,
+	styleUrls: ["./chart.component.scss"],
 	styles: [`
 		:host {
 			display: block;
