@@ -18,29 +18,29 @@ import "./chart.scss";
  * ```html
  *<n-chart
  *	[data]="data"
- *	[option]="option">
+ *	[options]="options">
  *</n-chart>
  * ```
  *
- * `data` and `option` are the inputs to the component.
+ * `data` and `options` are the inputs to the component.
  *
  *
- * ## Available `option` properties
- * | Property        | Use           | Nullable  | Type |
- * | ------------- |-------------|-----|-----|
- * | type      | chart type | false | string, e.g. "bars", "stackedBars", "lines", "doubleAxis", "combo" |
- * | xDomain      | value for x axis | false | string |
- * | yDomain      | value for y axis | false | array of string |
- * | y2Domain | value for second y axis | true for charts without second y axis | array of string |
- * | yTicks      | tick numbers | false | number |
- * | y2Ticks     | tick numbers | true | number |
- * | legendClickable | make legend clickale to filter data | true | boolean |
- * | containerResizable | resize charts as its container resizes | true | boolean |
- * | yFormatter | y value formatter functions | true | object of metrics as key and formatter functions as the key's value |
+ * ## Available `options` properties
+ * | Property        	| Use     							     | Nullable								 | Type																	 |
+ * | ------------------ |----------------------------------------|---------------------------------------|-----------------------------------------------------------------------|
+ * | type				| chart type							 | false								 | string, e.g. "bars", "stackedBars", "lines", "doubleAxis", "combo"	 |
+ * | xDomain			| value for x axis						 | false								 | string																 |
+ * | yDomain			| value for y axis						 | false								 | array of string														 |
+ * | y2Domain			| value for second y axis				 | true for charts without second y axis | array of string														 |
+ * | yTicks				| tick numbers							 | false								 | number																 |
+ * | y2Ticks			| tick numbers							 | true									 | number																 |
+ * | legendClickable	| make legend clickale to filter data	 | true									 | boolean																 |
+ * | containerResizable | resize charts as its container resizes | true									 | boolean																 |
+ * | yFormatter			| y value formatter functions			 | true									 | object of metrics as key and formatter functions as the key's value	 |
  *
- * ## `Option` example
+ * ## `Options` example
  * ```javascript
- * option: {
+ * options: {
  *		type: "bar",
  *		xDomain: "Day",
  *		yDomain: ["Clicks"],
@@ -128,7 +128,7 @@ import "./chart.scss";
 })
 export class Chart implements AfterViewInit {
 	@Input() data: any;
-	@Input() option: any;
+	@Input() options: any;
 	@ViewChild("nChart") chartRef;
 	chart: any = Charts;
 
@@ -137,24 +137,24 @@ export class Chart implements AfterViewInit {
 	}
 
 	drawChart() {
-		switch (this.option.type) {
+		switch (this.options.type) {
 			case "bars":
-				this.chart.bars.drawChart(this.data, this.chartRef.nativeElement, this.option);
+				this.chart.bars.drawChart(this.data, this.chartRef.nativeElement, this.options);
 				break;
 			case "stackedBars":
-				this.chart.stackedBars.drawChart(this.data, this.chartRef.nativeElement, this.option);
+				this.chart.stackedBars.drawChart(this.data, this.chartRef.nativeElement, this.options);
 				break;
 			case "lines":
-				this.chart.lines.drawChart(this.data, this.chartRef.nativeElement, this.option);
+				this.chart.lines.drawChart(this.data, this.chartRef.nativeElement, this.options);
 				break;
 			case "doubleAxis":
-				this.chart.doubleAxis.drawChart(this.data, this.chartRef.nativeElement, this.option);
+				this.chart.doubleAxis.drawChart(this.data, this.chartRef.nativeElement, this.options);
 				break;
 			case "combo":
-				this.chart.combo.drawChart(this.data, this.chartRef.nativeElement, this.option);
+				this.chart.combo.drawChart(this.data, this.chartRef.nativeElement, this.options);
 				break;
 			default:
-				this.chart.bars.drawChart(this.data, this.chartRef.nativeElement, this.option);
+				this.chart.bars.drawChart(this.data, this.chartRef.nativeElement, this.options);
 				break;
 		}
 	}
