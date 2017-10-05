@@ -115,17 +115,16 @@ class FilterableHeaderItem extends TableHeaderItem {
 		<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
 	</ng-template>
 
-	<ng-template #filter let-popover="popover" let-filter="filter">
-		<section class="popover_content">
-			<n-label class="first-label">
-				<label for="filter1">Value</label>
-				<input type="text" [(ngModel)]="filter1" class="input-field" id="filter1">
-			</n-label>
-		</section>
-		<footer class="popover_footer">
-			<button class="btn--primary" (click)="filter.data = filter1; popover.onClose()">Apply</button>
-			<button class="btn--secondary" (click)="popover.onClose()">Cancel</button>
-		</footer>
+	<ng-template #filter let-popover="popover" let-filter="data">
+		<n-label class="first-label">
+			Value
+			<input type="text" [(ngModel)]="filter1" class="input-field">
+		</n-label>
+	</ng-template>
+
+	<ng-template #filterFooter let-popover="popover" let-filter="data">
+		<button class="btn--primary" (click)="filter.data = filter1; popover.doClose()">Apply</button>
+		<button class="btn--secondary" (click)="popover.doClose()">Cancel</button>
 	</ng-template>
 	`,
 	styleUrls: ["./table-demo.component.scss"],
@@ -140,6 +139,8 @@ export class TableDemo implements OnInit {
 	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("filter")
 	private filter: TemplateRef<any>;
+	@ViewChild("filterFooter")
+	private filterFooter: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
 
@@ -170,6 +171,7 @@ export class TableDemo implements OnInit {
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
 				filterTemplate: this.filter,
+				filterFooter: this.filterFooter,
 				style: {"width": "auto"}
 			})
 		];
@@ -181,6 +183,7 @@ export class TableDemo implements OnInit {
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
 				filterTemplate: this.filter,
+				filterFooter: this.filterFooter,
 				style: {"width": "auto"}
 			})
 		];
