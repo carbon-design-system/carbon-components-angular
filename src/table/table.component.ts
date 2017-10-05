@@ -111,10 +111,12 @@ import {
 									[ngClass]="{'filter-enabled': column.filterCount > 0}"
 									*ngIf="column.filterTemplate"
 									[nPopover]="column.filterTemplate"
+									[footer]="column.filterFooter"
 									title="Filter"
 									placement="right-bottom"
 									popoverFilter="true"
-									[appendToBody]="true">
+									[appendToBody]="true"
+									[data]="column.filterData">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										class="icon--sm"

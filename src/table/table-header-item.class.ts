@@ -115,24 +115,24 @@ export class TableHeaderItem {
 	 *
 	 * Example:
 	 * ```html
-	 * <ng-template #filter let-popover="popover" let-filter="filter">
-	 * 	<div class="filter-options">
-	 * 		<n-label>
-	 * 			<label for="filter1">Value</label>
-	 * 			<input type="text" [(ngModel)]="filter1" class="input-field" id="filter1">
-	 * 		</n-label>
-	 * 	</div>
-	 * 	<div class="filter-options-buttons">
-	 * 		<button class="btn" (click)="filter.data = filter1; popover.onClose()">Apply</button>
-	 * 		<button class="btn btn-secondary" (click)="popover.onClose()">Cancel</button>
-	 * 	</div>
+	 * <ng-template #filter let-popover="popover">
+	 * 	<n-label class="first-label">
+	 * 		Value
+	 * 		<input type="text" [(ngModel)]="filter1" class="input-field">
+	 * 	</n-label>
+	 * </ng-template>
+	 *
+	 * <ng-template #filterFooter let-popover="popover" let-filter="data">
+	 * 	<button class="btn--primary" (click)="filter.data = filter1; popover.onClose()">Apply</button>
+	 * 	<button class="btn--secondary" (click)="popover.onClose()">Cancel</button>
 	 * </ng-template>
 	 * ```
 	 *
 	 * Set the template with, for example:
 	 * ```typescript
 	 * new FilterableHeaderItem({
-	 * 	filterTemplate: this.filter
+	 * 	filterTemplate: this.filter,
+	 *	filterFooter: this.filterFooter
 	 * })
 	 * ```
 	 *
@@ -156,9 +156,17 @@ export class TableHeaderItem {
 	filterTemplate: TemplateRef<any>;
 
 	/**
+	 * Used along with `filterTemplate` to construct the filter popover
+	 *
+	 * @type {TemplateRef<any>}
+	 * @memberof TableHeaderItem
+	 */
+	filterFooter: TemplateRef<any>;
+
+	/**
 	 * This is where you store your data when applying filter.
 	 *
-	 * It is the actual object you have access to with `let-filter="filter"` in your template.
+	 * It is the actual object you have access to with `let-filter="data"` in your template.
 	 *
 	 * Make sure to store data in `filter.data` in your template, and you will have it
 	 * available in `filterData.data` in your extension of `TableHeaderItem`.
@@ -186,6 +194,7 @@ export class TableHeaderItem {
 		this.filterCount = data.filterCount;
 		this.template = data.template;
 		this.filterTemplate = data.filterTemplate;
+		this.filterFooter = data.filterFooter;
 		this.filterData = data.filterData;
 		this.style = data.style;
 	}
