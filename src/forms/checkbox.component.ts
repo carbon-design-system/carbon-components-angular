@@ -28,7 +28,7 @@ export class CheckboxChange {
 @Component({
 	selector: "n-checkbox",
 	template: `
-		<label [for]="id">
+		<label [class]="getVariantClass()" [for]="id">
 			<input type="checkbox" #inputCheckbox
 				[checked]="checked"
 				[disabled]="disabled"
@@ -121,7 +121,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 	 * Creates a class name based on @input() size and @input() inline.
 	 * @return className {string}
 	 */
-	getSizeClass() {
+	public getVariantClass() {
 		if (this.size !== "default" && !this.inline) {
 			return "checkbox--" + this.size;
 		} else if (this.size !== "default" && this.inline) {
@@ -131,12 +131,6 @@ export class CheckboxComponent implements ControlValueAccessor {
 		} else {
 			return "checkbox";
 		}
-	}
-
-	ngOnInit() {
-		const labelEl = this._elementRef.nativeElement.querySelector("label");
-		// Add class to label element
-		this.renderer.addClass(labelEl, this.getSizeClass());
 	}
 
 	public toggle() {
