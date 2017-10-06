@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
 	<h1>List view demo</h1>
 
 	<ng-template #listTpl let-item="item">
-		<n-checkbox class="checkbox--inline"
+		<n-checkbox inline="true"
 		[(ngModel)]="item.selected"
 		[disabled]="item.disabled"
 		aria-hidden="true"></n-checkbox>
