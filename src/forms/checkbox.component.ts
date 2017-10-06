@@ -62,6 +62,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
 	@Input() size: "default" | "sm" = "default";
 	@Input() inline: boolean;
+	@Input() nested: boolean;
 	@Input() disabled = false;
 	@Input() name: string;
 	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
@@ -118,19 +119,22 @@ export class CheckboxComponent implements ControlValueAccessor {
 	}
 
 	/**
-	 * Creates a class name based on @input() size and @input() inline.
+	 * Creates a class name based on @input() size, inline, and nested.
 	 * @return className {string}
 	 */
 	public getVariantClass() {
-		if (this.size !== "default" && !this.inline) {
-			return "checkbox--" + this.size;
-		} else if (this.size !== "default" && this.inline) {
-			return "checkbox--inline-" + this.size;
-		} else if (this.size === "default" && this.inline) {
-			return "checkbox--inline";
+		let className = "checkbox";
+
+		if (this.size === "default") {
+			className += this.inline ? "--inline" : "";
+			className += this.nested ? "--nested" : "";
 		} else {
-			return "checkbox";
+			className += this.inline ? "--inline" : "";
+			className += this.nested ? "--nested" : "";
+			className += "-" + this.size;
 		}
+
+		return className;
 	}
 
 	public toggle() {

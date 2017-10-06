@@ -18,8 +18,8 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 
 	<n-checkbox *ngFor="let one of manyCheckboxes"
 		[(ngModel)]="one.checked"
-		(change) = "multiCheckboxChanged()"
-		class="indent">Check ({{one.checked}})
+		(change)="multiCheckboxChanged()"
+		nested="true">Check ({{one.checked}})
 	</n-checkbox>
 
 	<n-checkbox
@@ -30,10 +30,11 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	<h2>Select all small inline checkboxes</h2>
 	<div class="select-clear-example">
 		<p class="checkbox-group-label">Schedule on these days</p>
-		<button *ngIf="!allSelected()" class="btn btn-link" (click)="selectAll(week)">Select all</button>
-		<button *ngIf="allSelected()" class="btn btn-link" (click)="clearAll(week)">Clear all</button>
+		<button *ngIf="!allSelected()" class="btn--link" (click)="selectAll(week)">Select all</button>
+		<button *ngIf="allSelected()" class="btn--link" (click)="clearAll(week)">Clear all</button>
 		<n-checkbox *ngFor="let day of week"
-			size="sm" inline="true"
+			size="sm"
+			inline="true"
 			[(ngModel)]="day.checked">{{day.day}}
 		</n-checkbox>
 	</div>
@@ -46,15 +47,17 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	<h2>Radio</h2>
 	<h3>Default</h3>
 	<n-radio-group [(ngModel)]="radio">
-		<n-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled"
-			class="indent">Radio {{radio.num}}
+		<n-radio *ngFor="let radio of manyRadios"
+			[value]="radio.num"
+			[disabled]="radio.disabled">Radio {{radio.num}}
 		</n-radio>
 	</n-radio-group>
 
 	<h3>Small</h3>
 	<n-radio-group size="sm" [(ngModel)]="radio">
-		<n-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled"
-			class="indent">Radio {{radio.num}}
+		<n-radio *ngFor="let radio of manyRadios"
+			[value]="radio.num"
+			[disabled]="radio.disabled">Radio {{radio.num}}
 		</n-radio>
 	</n-radio-group>
 

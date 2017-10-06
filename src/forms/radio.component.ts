@@ -156,11 +156,13 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 	 * @return className {string}
 	 */
 	getSizeClass() {
+		let className = "radio";
+
 		if (this.size !== "default") {
-			return "radio--" + this.size;
-		} else {
-			return "radio";
+			className += "--" + this.size;
 		}
+
+		return className;
 	}
 
 	ngOnInit() {
