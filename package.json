@@ -35,7 +35,11 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.0.1",
     "zone.js": "^0.8.4",
+<<<<<<< Updated upstream
     "@peretz/matter": "0.1.0-alpha.623c6"
+=======
+    "@peretz/matter": "latest"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "@angular/animations": "4.4.3",
@@ -52,7 +56,11 @@
     "@compodoc/compodoc": "1.0.1",
     "@ngx-translate/core": "^6.0.1",
     "@peretz/charts": "0.0.1-alpha.f7654",
+<<<<<<< Updated upstream
     "@peretz/matter": "0.1.0-alpha.623c6",
+=======
+    "@peretz/matter": "latest",
+>>>>>>> Stashed changes
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.42",
