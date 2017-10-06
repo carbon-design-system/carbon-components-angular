@@ -9,46 +9,54 @@ import {
 import { DropdownSubMenu } from "./sub-menu.component";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
+// <div class="sub-menu-item-wrapper"
+// 	tabindex="{{listItem.disabled?-1:0}}"
+// 	[ngClass]="{
+// 		selected: listItem.selected,
+// 		disabled: listItem.disabled,
+// 		'has-items': !!listItem.items
+// 	}"
+// 	(click)="doClick(listItem)"
+// 	(keydown)="onKeyDown($event, listItem)"
+// 	role="treeitem"
+// 	[attr.aria-hidden]="listItem.disabled"
+// 	[attr.aria-expanded]="(!!listItem.items) ? ((listItem.selected) ? true : false) : null"
+// 	[attr.aria-selected]="listItem.selected"
+// 	>
+// 	<div class="sub-menu-item">
+// 		<svg
+// 			*ngIf="!!listItem.items"
+// 			class="arrow icon"
+// 			xmlns="http://www.w3.org/2000/svg"
+// 			viewBox="0 0 16 16">
+// 			<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
+// 		</svg>
+// 		<span *ngIf="!listTpl">{{listItem.content}}</span>
+// 		<ng-template
+// 			*ngIf="isTpl"
+// 			[ngOutletContext]="{item: listItem}"
+// 			[ngTemplateOutlet]="listTpl">
+// 		</ng-template>
+// 		<span
+// 			*ngIf="selectedIcon && listItem.selected && !listItem.items"
+// 			class="checked" aria-hidden="true">
+// 		</span>
+// 	</div>
+// </div>
+
 @Component({
 	selector: "n-sub-menu-item",
 	template: `
-		<div class="sub-menu-item-wrapper"
-			tabindex="{{listItem.disabled?-1:0}}"
-			[ngClass]="{
-				selected: listItem.selected,
-				disabled: listItem.disabled,
-				'has-items': !!listItem.items
-			}"
+		<span
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
-			role="treeitem"
-			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.items) ? ((listItem.selected) ? true : false) : null"
-			[attr.aria-selected]="listItem.selected"
-			>
-			<div class="sub-menu-item">
-				<svg
-					*ngIf="!!listItem.items"
-					class="arrow icon"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 16 16">
-					<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
-				</svg>
-				<span *ngIf="!listTpl">{{listItem.content}}</span>
-				<ng-template
-					*ngIf="isTpl"
-					[ngOutletContext]="{item: listItem}"
-					[ngTemplateOutlet]="listTpl">
-				</ng-template>
-				<span
-					*ngIf="selectedIcon && listItem.selected && !listItem.items"
-					class="checked" aria-hidden="true">
-				</span>
-			</div>
-		</div>
+			role="option">
+			{{listItem.content}}
+		</span>
 		<n-sub-menu-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
+			[level]="level"
 			[items]="listItem.items"
 			(select)="onClick($event)"
 			[listTpl]="listTpl"
@@ -64,6 +72,7 @@ export class SubMenuItem {
 	public isTpl = false;
 
 	@Input() hasSubMenu = false;
+	@Input() level = 1;
 	@Input() parentRef = null;
 	@Input() listItem: any;
 	@Input() listTpl: string | TemplateRef<any> = "";

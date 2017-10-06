@@ -15,8 +15,8 @@ import { ListItem } from "./../list-item.interface";
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
-		<ul class="menu_tree"
-			[class.open]="isOpen"
+		<ul
+			class="menu_tree"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
