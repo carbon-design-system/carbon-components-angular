@@ -21,7 +21,7 @@ describe("CheckboxComponent", () => {
 
 		fixture = TestBed.createComponent(CheckboxComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("label.checkbox"));
+		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});

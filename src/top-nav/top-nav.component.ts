@@ -1,7 +1,7 @@
 import {
 	Component,
 	Input,
-	Renderer,
+	Renderer2,
 	Inject,
 	ElementRef
 } from "@angular/core";
@@ -46,7 +46,7 @@ export class TopNav {
 
 	public displayType = "";
 
-	constructor(@Inject(DOCUMENT) public document, public renderer: Renderer, private _elementRef: ElementRef) {}
+	constructor(@Inject(DOCUMENT) public document, public renderer: Renderer2, private _elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
 		// add aria-hidden to icon elements

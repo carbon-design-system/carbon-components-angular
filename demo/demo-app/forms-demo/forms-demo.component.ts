@@ -27,12 +27,13 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	</n-checkbox>
 
 
-	<h2>Select all</h2>
+	<h2>Select all small inline checkboxes</h2>
 	<div class="select-clear-example">
 		<p class="checkbox-group-label">Schedule on these days</p>
 		<button *ngIf="!allSelected()" class="btn btn-link" (click)="selectAll(week)">Select all</button>
 		<button *ngIf="allSelected()" class="btn btn-link" (click)="clearAll(week)">Clear all</button>
 		<n-checkbox *ngFor="let day of week"
+			size="sm" inline="true"
 			[(ngModel)]="day.checked">{{day.day}}
 		</n-checkbox>
 	</div>
@@ -40,17 +41,20 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 	<h2>Switch</h2>
 
 	<n-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</n-switch>
-	<n-switch disabled="true">Switch disabled</n-switch>
+	<n-switch size="sm" disabled="true">Switch disabled</n-switch>
 
 	<h2>Radio</h2>
-
-	<n-radio [(ngModel)]="firstRadioState">Radio ({{firstRadioState}})</n-radio>
-	<n-radio disabled="true">Radio disabled</n-radio>
-
-	<h3>Radio group</h3>
+	<h3>Default</h3>
 	<n-radio-group [(ngModel)]="radio">
-		<n-radio *ngFor="let one of manyRadios" [value]="one"
-			class="indent">Radio {{one}}
+		<n-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled"
+			class="indent">Radio {{radio.num}}
+		</n-radio>
+	</n-radio-group>
+
+	<h3>Small</h3>
+	<n-radio-group size="sm" [(ngModel)]="radio">
+		<n-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled"
+			class="indent">Radio {{radio.num}}
 		</n-radio>
 	</n-radio-group>
 
@@ -118,7 +122,12 @@ export class FormsDemo {
 	firstRadioState = false;
 
 	manyCheckboxes = [{checked: false}, {checked: false}, {checked: false}, {checked: false}];
-	manyRadios = ["one", "two", "three", "four", "five", "six"];
+	manyRadios = [
+		{ num: "one" },
+		{ num: "two", disabled: true },
+		{ num: "three" },
+		{ num: "four" }
+	];
 	week = [
 		{checked: false, day: "Sunday"},
 		{checked: false, day: "Monday"},

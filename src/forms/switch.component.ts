@@ -9,6 +9,7 @@ import {
 	Input,
 	OnInit,
 	Output,
+	Renderer2,
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -28,10 +29,10 @@ export class SwitchChange {
 @Component({
 	selector: "n-switch",
 	template: `
-		<label class="toggle-label" [for]="id">
+		<label [for]="id">
 			<ng-content></ng-content>
 		</label>
-		<button class="toggle"
+		<button
 			(click)="onClick($event)"
 			[id]="id"
 			role="switch"
@@ -47,13 +48,42 @@ export class SwitchChange {
 		}
 	]
 })
+
 export class SwitchComponent extends CheckboxComponent {
 	static switchCount = 0;
 
+	private labelClass = "toggle-label";
+	private buttonClass = "toggle";
+
+	@Input() size: "default" | "sm" = "default";
+
 	id = "switch-" + SwitchComponent.switchCount;
 
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
-		super(changeDetectorRef);
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected _elementRef: ElementRef, protected renderer: Renderer2) {
+		super(changeDetectorRef, _elementRef, renderer);
 		SwitchComponent.switchCount++;
+	}
+
+	/**
+	 * Creates class names based on @input() size.
+	 */
+	createSizeClasses() {
+		if (this.size !== "default") {
+			this.labelClass = "toggle-label--" + this.size;
+			this.buttonClass = "toggle--" + this.size;
+		}
+	}
+
+	ngOnInit() {
+		this.createSizeClasses();
+
+		const labelEl = this._elementRef.nativeElement.querySelector("label");
+		const buttonEl = this._elementRef.nativeElement.querySelector("button");
+
+		// Add class to label element
+		this.renderer.addClass(labelEl, this.labelClass);
+
+		// Add class to button element
+		this.renderer.addClass(buttonEl, this.buttonClass);
 	}
 }

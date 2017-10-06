@@ -13,6 +13,7 @@ import {
 	Optional,
 	Output,
 	QueryList,
+	Renderer2,
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -48,6 +49,8 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 	@ContentChildren(forwardRef(() => RadioComponent)) _radios: QueryList<RadioComponent>;
+
+	@Input() size: "default" | "sm" = "default";
 
 	@Input()
 	get selected() {
@@ -90,11 +93,9 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 		this.markRadiosForCheck();
 	}
 
-
-	constructor(private changeDetectorRef: ChangeDetectorRef) {
+	constructor(private changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
 	}
-
 
 	checkSelectedRadio() {
 		if (this._selected && !this._selected.checked) {
@@ -150,6 +151,23 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 		}
 	}
 
+	/**
+	 * Creates a class name based on @input() size.
+	 * @return className {string}
+	 */
+	getSizeClass() {
+		if (this.size !== "default") {
+			return "radio--" + this.size;
+		} else {
+			return "radio";
+		}
+	}
+
+	ngOnInit() {
+		// Add class to host element
+		this.renderer.addClass(this._elementRef.nativeElement, this.getSizeClass());
+	}
+
 	ngAfterContentInit() {
 		// Mark this component as initialized in AfterContentInit because the initial value can
 		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
@@ -181,7 +199,7 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 @Component({
 	selector: "n-radio",
 	template: `
-		<label class="radio" [for]="id">
+		<label [for]="id">
 			<input type="radio" #inputCheckbox
 				[checked]="checked"
 				[disabled]="disabled"
@@ -214,8 +232,8 @@ export class RadioComponent extends CheckboxComponent {
 	_value: any = null;
 
 	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef) {
-		super(changeDetectorRef);
+				protected changeDetectorRef: ChangeDetectorRef, protected _elementRef: ElementRef, protected renderer: Renderer2) {
+		super(changeDetectorRef, _elementRef, renderer);
 		RadioComponent.radioCount++;
 		this.radioGroup = radioGroup;
 	}

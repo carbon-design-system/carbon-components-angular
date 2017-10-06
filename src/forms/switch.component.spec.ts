@@ -21,7 +21,7 @@ describe("SwitchComponent", () => {
 
 		fixture = TestBed.createComponent(SwitchComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("label.toggle-label"));
+		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
 		buttonElement = fixture.debugElement.query(By.css("button")).nativeElement;
 	});

@@ -8,6 +8,7 @@ import {
 	Input,
 	OnInit,
 	Output,
+	Renderer2,
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -27,7 +28,7 @@ export class CheckboxChange {
 @Component({
 	selector: "n-checkbox",
 	template: `
-		<label [for]="id" class="checkbox">
+		<label [for]="id">
 			<input type="checkbox" #inputCheckbox
 				[checked]="checked"
 				[disabled]="disabled"
@@ -59,6 +60,8 @@ export class CheckboxChange {
 export class CheckboxComponent implements ControlValueAccessor {
 	static checkboxCount = 0;
 
+	@Input() size: "default" | "sm" = "default";
+	@Input() inline: boolean;
 	@Input() disabled = false;
 	@Input() name: string;
 	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
@@ -110,10 +113,30 @@ export class CheckboxComponent implements ControlValueAccessor {
 
 	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
 
-
-
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected _elementRef: ElementRef, protected renderer: Renderer2) {
 		CheckboxComponent.checkboxCount++;
+	}
+
+	/**
+	 * Creates a class name based on @input() size and @input() inline.
+	 * @return className {string}
+	 */
+	getSizeClass() {
+		if (this.size !== "default" && !this.inline) {
+			return "checkbox--" + this.size;
+		} else if (this.size !== "default" && this.inline) {
+			return "checkbox--inline-" + this.size;
+		} else if (this.size === "default" && this.inline) {
+			return "checkbox--inline";
+		} else {
+			return "checkbox";
+		}
+	}
+
+	ngOnInit() {
+		const labelEl = this._elementRef.nativeElement.querySelector("label");
+		// Add class to label element
+		this.renderer.addClass(labelEl, this.getSizeClass());
 	}
 
 	public toggle() {
