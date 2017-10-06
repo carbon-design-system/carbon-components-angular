@@ -151,23 +151,12 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 		}
 	}
 
-	/**
-	 * Creates a class name based on @input() size.
-	 * @return className {string}
-	 */
-	getSizeClass() {
-		let className = "radio";
-
-		if (this.size !== "default") {
-			className += "--" + this.size;
-		}
-
-		return className;
-	}
-
 	ngOnInit() {
+		// Build variant class
+		const className = `radio${this.size !== "default" ? `--${this.size}` : ""}`;
+
 		// Add class to host element
-		this.renderer.addClass(this._elementRef.nativeElement, this.getSizeClass());
+		this.renderer.addClass(this._elementRef.nativeElement, className);
 	}
 
 	ngAfterContentInit() {
@@ -234,8 +223,8 @@ export class RadioComponent extends CheckboxComponent {
 	_value: any = null;
 
 	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef, protected _elementRef: ElementRef, protected renderer: Renderer2) {
-		super(changeDetectorRef, _elementRef, renderer);
+				protected changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
+		super(changeDetectorRef);
 		RadioComponent.radioCount++;
 		this.radioGroup = radioGroup;
 	}

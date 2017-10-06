@@ -8,7 +8,6 @@ import {
 	Input,
 	OnInit,
 	Output,
-	Renderer2,
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -114,27 +113,16 @@ export class CheckboxComponent implements ControlValueAccessor {
 
 	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
 
-	constructor(protected changeDetectorRef: ChangeDetectorRef, protected _elementRef: ElementRef, protected renderer: Renderer2) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		CheckboxComponent.checkboxCount++;
 	}
 
 	/**
-	 * Creates a class name based on @input() size, inline, and nested.
-	 * @return className {string}
+	 * Creates a class name based on @Input() size, inline, and nested.
+	 * @return {string}
 	 */
 	public getVariantClass() {
-		let className = "checkbox";
-
-		if (this.size === "default") {
-			className += this.inline ? "--inline" : "";
-			className += this.nested ? "--nested" : "";
-		} else {
-			className += this.inline ? "--inline" : "";
-			className += this.nested ? "--nested" : "";
-			className += "-" + this.size;
-		}
-
-		return className;
+		return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "default" ? `-${this.size}` : ""}`;
 	}
 
 	public toggle() {

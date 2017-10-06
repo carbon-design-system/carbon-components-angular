@@ -52,38 +52,26 @@ export class SwitchChange {
 export class SwitchComponent extends CheckboxComponent {
 	static switchCount = 0;
 
-	private labelClass = "toggle-label";
-	private buttonClass = "toggle";
-
 	@Input() size: "default" | "sm" = "default";
 
 	id = "switch-" + SwitchComponent.switchCount;
 
-	constructor(protected changeDetectorRef: ChangeDetectorRef, protected _elementRef: ElementRef, protected renderer: Renderer2) {
-		super(changeDetectorRef, _elementRef, renderer);
+	constructor(protected changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
+		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
 	}
 
-	/**
-	 * Creates class names based on @input() size.
-	 */
-	createSizeClasses() {
-		if (this.size !== "default") {
-			this.labelClass = "toggle-label--" + this.size;
-			this.buttonClass = "toggle--" + this.size;
-		}
-	}
-
 	ngOnInit() {
-		this.createSizeClasses();
+		// Build variant classes
+		const labelClass = `toggle-label${this.size !== "default" ? `--${this.size}` : ""}`;
+		const buttonClass = `toggle${this.size !== "default" ? `--${this.size}` : ""}`;
 
+		// Get elements
 		const labelEl = this._elementRef.nativeElement.querySelector("label");
 		const buttonEl = this._elementRef.nativeElement.querySelector("button");
 
-		// Add class to label element
-		this.renderer.addClass(labelEl, this.labelClass);
-
-		// Add class to button element
-		this.renderer.addClass(buttonEl, this.buttonClass);
+		// Add classes to elements
+		this.renderer.addClass(labelEl, labelClass);
+		this.renderer.addClass(buttonEl, buttonClass);
 	}
 }
