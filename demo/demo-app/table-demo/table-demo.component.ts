@@ -24,7 +24,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 		return true;
 	}
 
-	set filterCount(number) {}
+	set filterCount(n) {}
 	get filterCount() {
 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
 	}
@@ -45,7 +45,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 }
 
 @Component({
-	selector: "table-demo",
+	selector: "app-table-demo",
 	template: `
 	<h1>Table demo</h1>
 
@@ -210,24 +210,6 @@ export class TableDemo implements OnInit {
 		model.sort(index);
 	}
 
-	private prepareData(data: Array<Array<any>>) {
-		// create new data from the service data
-		let newData = [];
-		data.forEach(dataRow => {
-			let row = [];
-			dataRow.forEach(dataElement => {
-				row.push(new TableItem({
-					data: dataElement,
-					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
-					// your template can handle all the data types so you don't have to conditionally set it
-					// you can also set different templates for different columns based on index
-				}));
-			});
-			newData.push(row);
-		});
-		return newData;
-	}
-
 	selectPage(page) {
 		this.service.getPage(page).then((data: Array<Array<any>>) => {
 			// set the data and update page
@@ -246,5 +228,23 @@ export class TableDemo implements OnInit {
 
 	toNumber(width: string): number {
 		return Number(width.substr(0, width.length - 2));
+	}
+
+	private prepareData(data: Array<Array<any>>) {
+		// create new data from the service data
+		let newData = [];
+		data.forEach(dataRow => {
+			let row = [];
+			dataRow.forEach(dataElement => {
+				row.push(new TableItem({
+					data: dataElement,
+					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+					// your template can handle all the data types so you don't have to conditionally set it
+					// you can also set different templates for different columns based on index
+				}));
+			});
+			newData.push(row);
+		});
+		return newData;
 	}
 }

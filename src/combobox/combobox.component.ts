@@ -1,5 +1,6 @@
 import {
 	Component,
+	OnChanges,
 	OnInit,
 	ContentChild,
 	Input,
@@ -7,7 +8,10 @@ import {
 	HostListener,
 	ElementRef,
 	ViewChild,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit,
+	AfterContentInit,
+	HostBinding
 } from "@angular/core";
 import { DropdownButton } from "./dropdown-button.component";
 import { PillInput } from "./pill-input.component";
@@ -32,21 +36,9 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			(submit)="doSubmit($event)">
 		</n-pill-input>
 		<ng-content></ng-content>
-	`,
-	host: {
-		class: "combo",
-		role: "combobox",
-		"[attr.aria-expanded]": "dropdownButton?dropdownButton.open:false",
-		"[attr.aria-disabled]": "disabled?true:null"
-	}
+	`
 })
-export class ComboBox {
-	/** Selected items for multi-select combo-boxes. */
-	public pills = [];
-	/** used to update the displayValue of `n-pill-input` */
-	public selectedValue = "";
-	/** internal reference to the dropdown list */
-	private dropdown;
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * List of items to fill the content with.
 	 *
@@ -152,6 +144,18 @@ export class ComboBox {
 	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
 	/** ViewChild of the pill input component */
 	@ViewChild(PillInput) pillInput: PillInput;
+
+	@HostBinding("attr.role") role = "combobox";
+	@HostBinding("attr.class") class = "combo";
+	@HostBinding("attr.aria-expanded") ariaExpanded = this.dropdownButton ? this.dropdownButton.open : false;
+	@HostBinding("attr.aria-disabled") ariaDisabled = this.disabled ? true : null;
+
+	/** Selected items for multi-select combo-boxes. */
+	public pills = [];
+	/** used to update the displayValue of `n-pill-input` */
+	public selectedValue = "";
+	/** internal reference to the dropdown list */
+	private dropdown;
 
 	/**
 	 * Creates an instance of ComboBox.

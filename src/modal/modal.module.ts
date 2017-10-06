@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ModalPlaceholderComponent } from "./modal-placeholder.component";
 import { ModalService } from "./modal.service";
 import { ModalComponent } from "./modal.component";
-import { ModalFooterComponent }  from "./modal-footer.component";
+import { ModalFooterComponent } from "./modal-footer.component";
 import { OverlayComponent } from "./overlay.component";
 import { ModalHeaderComponent } from "./modal-header.component";
 

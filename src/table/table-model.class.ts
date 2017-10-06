@@ -6,7 +6,6 @@ import {
 
 
 export class TableModel {
-	private _data: Array<Array<TableItem>>;
 	/**
 	 * Sets data of the table.
 	 *
@@ -63,6 +62,14 @@ export class TableModel {
 		return (this._totalDataLength && this._totalDataLength >= 0) ? this._totalDataLength : this.data.length;
 	}
 
+	/**
+	 * used in `data`
+	 *
+	 * @private
+	 * @type {Array<Array<TableItem>>}
+	 * @memberof TableModel
+	 */
+	private _data: Array<Array<TableItem>>;
 
 	/**
 	 * Returns how many rows is currently selected

@@ -19,7 +19,7 @@ import { Modal } from "../../../src";
 
 @Modal()
 @Component({
-	selector: "form-modal",
+	selector: "app-form-modal",
 	template: `
 		<n-modal size="sm" (overlaySelected)="closeModal()">
 			<n-modal-header (closeSelect)="closeModal()">Form</n-modal-header>
@@ -53,10 +53,9 @@ import { Modal } from "../../../src";
 })
 export class FormModalComponent implements OnInit {
 	closeModal: Function;
-	private modalText: string;
-	private fields = [];
-	private form: FormGroup;
-	private submitted: any;
+	public modalText: string;
+	public fields = [];
+	public form: FormGroup;
 
 	demoItems1 = [
 		{
@@ -76,6 +75,8 @@ export class FormModalComponent implements OnInit {
 			selected: false
 		}
 	];
+
+	private submitted: any;
 
 	constructor(private fb: FormBuilder, private injector: Injector) {
 		this.modalText = this.injector.get("modalText");

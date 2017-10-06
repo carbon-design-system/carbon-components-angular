@@ -42,7 +42,7 @@ export class SwitchChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => SwitchComponent),
+			useExisting: SwitchComponent,
 			multi: true
 		}
 	]

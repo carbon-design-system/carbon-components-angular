@@ -31,7 +31,7 @@ import {
 	</li>
 	`
 })
-export class SideNavItem {
+export class SideNavItem implements AfterViewInit {
 	static sideNavItemCount = 0;
 	subpanelId = "side-nav-subpanel-" + SideNavItem.sideNavItemCount;
 

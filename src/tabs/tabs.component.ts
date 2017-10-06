@@ -1,6 +1,6 @@
 import { Component, Input, ContentChildren, QueryList, AfterContentInit } from "@angular/core";
 import { Tab } from "./tab.component";
-import { TabHeaders } from  "./tab-headers.component";
+import { TabHeaders } from "./tab-headers.component";
 
 
 @Component({
