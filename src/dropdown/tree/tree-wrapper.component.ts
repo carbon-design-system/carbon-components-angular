@@ -15,12 +15,21 @@ import { ListItem } from "./../list-item.interface";
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
-		<ul class="tree"
+		<ul class="menu_tree"
 			[class.open]="isOpen"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
-			<li *ngFor="let item of items">
+			<li
+				*ngFor="let item of items; index as i"
+				class="treeitem"
+				role="treeitem"
+				[attr.aria-level]="indent + 1"
+				[attr.aria-posinset]="i"
+				[attr.aria-setsize]="3"
+				[attr.aria-expanded]="!!item.items?item.selected:null"
+				[attr.aria-selected]="(item.selected && !item.items)?true:null"
+				[style.text-indent.px]="calculateIndent()">
 				<n-tree-item
 					[listTpl]="listTpl"
 					[listItem]="item"
@@ -64,5 +73,16 @@ export class TreeWrapper {
 
 	public bubbleSelect(evt) {
 		this.select.emit(evt);
+	}
+
+	calculateIndent() {
+		if (this.isBase(this.items)) {
+			// same calc, we just drop the icon width from the last item
+			return ((this.outerPadding + this.iconWidth + this.innerPadding)
+				+ ((this.iconWidth + this.innerPadding) * this.indent)) - this.iconWidth;
+		}
+		// we add innerPadding twice to account for the padding from the previous level
+		return (this.outerPadding + this.iconWidth + this.innerPadding)
+			+ ((this.iconWidth + this.innerPadding) * this.indent);
 	}
 }
