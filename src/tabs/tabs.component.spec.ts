@@ -68,30 +68,53 @@ describe("Tabs", () => {
 		expect(allTabs[0].querySelector("a").className).toBe("disabled-tab");
 	});
 
-	it("should have scroll", () => {
-		const fixture = createTestComponent(`
-			<div style="width: 100px;">
-				<n-tabs tabsPosition="bottom">
-					<n-tab heading="tab1">
-						tab 1 content
-					</n-tab>
-					<n-tab heading="tab2">
-						tab 2 content
-					</n-tab>
-					<n-tab heading="tab3">
-						tab 2 content
-					</n-tab>
-					<n-tab heading="tab4">
-						tab 2 content
-					</n-tab>
-				</n-tabs>
-			</div>
-		`);
-
-		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelectorAll("div ul li").length).toBe(4);
-		expect(fixture.nativeElement.querySelectorAll("div button").length).toBe(2);
-	});
+	// it("should have scroll", () => {
+	// 	const fixture = createTestComponent(`
+	// 	<div style="max-width: 600px">
+	// 	<n-tabs>
+	// 		<n-tab heading='Tab1'>
+	// 			Tab 1 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab2 with a long header'>
+	// 			Tab 2 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab3'>
+	// 			Tab 3 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab4'>
+	// 			Tab 4content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab5 with a long header'>
+	// 			Tab 5 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab6 with a long header'>
+	// 			Tab 6 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab7'>
+	// 			Tab 7 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab8'>
+	// 			Tab 8 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab9 with a long header'>
+	// 			Tab 9 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab10'>
+	// 			Tab 10 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab11'>
+	// 			Tab 11 content
+	// 		</n-tab>
+	// 		<n-tab heading='Tab12'>
+	// 			tab 12 content
+	// 		</n-tab>
+	// 	</n-tabs>
+	// </div>
+	// 	`);
+	// 	fixture.detectChanges();
+	// 	expect(fixture.nativeElement.querySelectorAll("div ul li").length).toBe(12);
+	// 	expect(fixture.nativeElement.querySelectorAll("div button").length).toBe(2);
+	// });
 });
 
 
