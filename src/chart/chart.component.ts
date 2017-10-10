@@ -1,4 +1,3 @@
-/* tslint:disable:max-line-length */
 import {
 	Component,
 	Input,
@@ -10,6 +9,7 @@ import {
 
 import { Charts } from "@peretz/charts/bundle/bundle.js";
 
+// tslint:disable:max-line-length
 /**
  * Angular component built with common charting library.
  *
@@ -107,6 +107,7 @@ import { Charts } from "@peretz/charts/bundle/bundle.js";
  * @export
  * @class Chart
  */
+ // tslint:enable:max-line-length
 
 @Component({
 	selector: "n-chart",
