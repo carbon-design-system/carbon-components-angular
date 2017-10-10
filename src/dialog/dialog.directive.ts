@@ -102,12 +102,6 @@ export class DialogDirective implements OnInit {
 	}
 
 	/**
-	 * empty method for child classes to override and specify additional init steps.
-	 * run after DialogDirective completes it's ngOnInit.
-	 */
-	protected onDialogInit() {}
-
-	/**
 	 * helper method to call dialogService#open
 	 */
 	open() {
@@ -127,4 +121,10 @@ export class DialogDirective implements OnInit {
 	close() {
 		this._dialogService.close(this._viewContainerRef);
 	}
+
+	/**
+	 * empty method for child classes to override and specify additional init steps.
+	 * run after DialogDirective completes it's ngOnInit.
+	 */
+	protected onDialogInit() {}
 }

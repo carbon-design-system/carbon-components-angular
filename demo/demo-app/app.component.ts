@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
-import * as en from  "./../../src/i18n/en.json";
+import * as en from "./../../src/i18n/en.json";
 
 @Component({
 	selector: "app-root",
@@ -48,7 +48,7 @@ import * as en from  "./../../src/i18n/en.json";
 	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-	private navItems = [
+	public navItems = [
 		{
 			content: "CSS demo",
 			link: "/css",
@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
 			selected: false
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
-	private filteredItems = this.navItems;
+	public filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {
 		this._translate.setDefaultLang("en");

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 @Component({
-	selector: "combobox-demo",
+	selector: "app-combobox-demo",
 	template: `
 		<h1>Combo box demo</h1>
 
@@ -83,7 +83,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	`,
 	encapsulation: ViewEncapsulation.None
 })
-export class ComboboxDemo {
+export class ComboboxDemo implements OnInit {
 	demoItems1 = [
 		{
 			content: "Abacus",

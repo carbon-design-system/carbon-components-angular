@@ -9,7 +9,7 @@ import { BannerCustom } from "./banner-demo-custom";
 import { Banner } from "./../../../src";
 
 @Component({
-	selector: "banner-demo",
+	selector: "app-banner-demo",
 	template: `
 	<h1>Banner service</h1>
 

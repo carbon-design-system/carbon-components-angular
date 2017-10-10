@@ -8,7 +8,7 @@ import {
 } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { DebugElement, Component }	 from "@angular/core";
+import { DebugElement, Component } from "@angular/core";
 
 import { RadioComponent, RadioGroup } from "./radio.component";
 

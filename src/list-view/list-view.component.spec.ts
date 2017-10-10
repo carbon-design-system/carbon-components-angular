@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
+import { Component } from "@angular/core";
+import { TestBed, ComponentFixture, inject } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ListView } from "./list-view.component";
