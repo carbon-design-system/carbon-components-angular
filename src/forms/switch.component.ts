@@ -49,7 +49,7 @@ export class SwitchChange {
 	]
 })
 
-export class SwitchComponent extends CheckboxComponent {
+export class SwitchComponent extends CheckboxComponent implements OnInit {
 	static switchCount = 0;
 
 	@Input() size: "default" | "sm" = "default";

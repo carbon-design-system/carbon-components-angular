@@ -38,7 +38,7 @@ export class RadioChange {
 		}
 	]
 })
-export class RadioGroup implements AfterContentInit, ControlValueAccessor {
+export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
 	static radioGroupCount = 0;
 
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
