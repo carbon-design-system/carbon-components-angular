@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
 @Component({
-	selector: "popover-demo",
+	selector: "app-popover-demo",
 	template: `
 	<h1>Popover demo</h1>
 
@@ -159,11 +159,11 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 export class PopoverDemo {
 	@ViewChild("popover") popover;
 
-	private open() {
-		setTimeout( () => {this.popover.open(); }, 1);
-	}
-
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
+	}
+
+	open() {
+		setTimeout( () => {this.popover.open(); }, 1);
 	}
 }

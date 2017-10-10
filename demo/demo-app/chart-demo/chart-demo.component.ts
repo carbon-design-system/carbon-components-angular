@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-	selector: "chart-demo",
+	selector: "app-chart-demo",
 	template: `
 	<h1>Chart</h1>
 	<h2>Bars</h2>

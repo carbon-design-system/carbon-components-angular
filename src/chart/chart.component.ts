@@ -4,12 +4,11 @@ import {
 	Input,
 	OnInit,
 	AfterViewInit,
-	ViewChild
+	ViewChild,
+	ViewEncapsulation
 } from "@angular/core";
 
 import { Charts } from "@peretz/charts/bundle/bundle.js";
-
-import "./chart.scss";
 
 /**
  * Angular component built with common charting library.
@@ -116,16 +115,8 @@ import "./chart.scss";
 			class='n-chart-container'>
 		</div>
 	`,
-	styles: [`
-		:host {
-			display: block;
-			position: relative;
-		}
-		:host /deep/ .n-chart-container {
-			width: 100%;
-			height: 100%;
-		}
-	`]
+	styleUrls: ["./chart.component.scss"],
+	encapsulation: ViewEncapsulation.None
 })
 export class Chart implements AfterViewInit {
 	@Input() data: any;

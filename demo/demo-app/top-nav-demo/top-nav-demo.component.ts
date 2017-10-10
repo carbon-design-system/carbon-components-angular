@@ -1,8 +1,8 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 
 @Component({
-	selector: "top-nav-demo",
+	selector: "app-top-nav-demo",
 	// disable warning for max-line-length in template because of the svgs
 	// tslint:disable:max-line-length
 	template: `
@@ -165,12 +165,9 @@ import { Component, OnInit} from "@angular/core";
 })
 
 export class TopNavDemo {
-	private topNavTitle = "Title";
-	private topNavBadge = "Beta";
-	private topNavBrand = "Product name";
-
-	constructor () {
-	}
+	topNavTitle = "Title";
+	topNavBadge = "Beta";
+	topNavBrand = "Product name";
 
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;

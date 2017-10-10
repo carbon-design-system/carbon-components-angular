@@ -1,11 +1,10 @@
 /// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
 
-import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
+import { TestBed, ComponentFixture, inject } from "@angular/core/testing";
 
-
-import {createGenericTestComponent} from "../common/test";
+import { createGenericTestComponent } from "../common/test";
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";

@@ -3,7 +3,8 @@ import {
 	ElementRef,
 	OnChanges,
 	OnInit,
-	Input
+	Input,
+	HostBinding
 } from "@angular/core";
 import { IconService } from "./icon.service";
 
@@ -21,11 +22,7 @@ import { IconService } from "./icon.service";
 					[attr.height]="iconSize">
 					<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
 				</svg>`,
-	providers: [IconService],
-	host: {
-		"[class]": "className",
-		style: "display: inherit;"
-	}
+	providers: [IconService]
 })
 export class Icon implements OnChanges {
 	/** computed size for the template */
@@ -35,7 +32,27 @@ export class Icon implements OnChanges {
 	/** is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended) */
 	@Input() size = "sm";
 
-	className = `${this._elementRef.nativeElement.classList} icon--${this.size}`;
+	@HostBinding("attr.class") attrClass = this.className;
+	@HostBinding("attr.style") attrStyle = "display: inherit;";
+
+	private _className: string;
+	get className() {
+		let cn: string;
+		if (this._elementRef.nativeElement.classList.length > 0) {
+			cn = this._elementRef.nativeElement.classList;
+		} else if (this.size === "md") {
+			cn = "icon";
+		} else {
+			cn = `icon--${this.size}`;
+		}
+
+		// tslint:disable-next-line:triple-equals
+		if (cn != this._className) {
+			this._className = cn;
+		}
+
+		return this._className;
+	}
 
 	/**
 	 * Initilize the component

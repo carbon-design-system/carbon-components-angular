@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/core";
 
 @Component({
-	selector: "icon-demo",
+	selector: "app-icon-demo",
 	template: `
 	<h1>Iconography demo</h1>
 
@@ -10,6 +10,12 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	<n-icon icon="alert" size="sm"></n-icon>
 	<n-icon icon="alert" size="md"></n-icon>
 	<n-icon icon="alert" size="lg"></n-icon>
+	<br>
+	<svg class="icon--blue" width="30" height="30"><use href="#alert_30"></use></svg>
+	<n-icon class="icon--blue-xs" icon="alert" size="xs"></n-icon>
+	<n-icon class="icon--blue-sm" icon="alert" size="sm"></n-icon>
+	<n-icon class="icon--blue" icon="alert" size="md"></n-icon>
+	<n-icon class="icon--blue-lg" icon="alert" size="lg"></n-icon>
 
 	<ul>
 		<li *ngFor="let set of iconMeta">
@@ -218,7 +224,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	`],
 	encapsulation: ViewEncapsulation.None
 })
-export class IconDemo {
+export class IconDemo implements AfterViewInit {
 	iconMeta;
 	sets = [];
 	selected = [];

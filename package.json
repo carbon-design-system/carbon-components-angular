@@ -58,6 +58,7 @@
     "@peretz/matter": "0.1.0-alpha.21cad",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "3.2.3",
+    "codelyzer": "~3.2.1",
     "core-js": "2.5.1",
     "css-loader": "^0.26.1",
     "d3": "4.7.4",

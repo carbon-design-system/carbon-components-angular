@@ -6,7 +6,8 @@ import {
 	forwardRef,
 	TemplateRef,
 	ElementRef,
-	AfterViewInit
+	AfterViewInit,
+	OnChanges
 } from "@angular/core";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
@@ -28,9 +29,9 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			(select)="onClick($event)">
 		</n-tree-wrapper>
 	`,
-	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownTree)}]
+	providers: [{provide: AbstractDropdownView, useExisting: DropdownTree}]
 })
-export class DropdownTree implements AbstractDropdownView {
+export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewInit {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() selectedIcon = false;
@@ -51,9 +52,6 @@ export class DropdownTree implements AbstractDropdownView {
 	private focusJump;
 
 	constructor(public _elementRef: ElementRef) {}
-
-	ngOnInit() {
-	}
 
 	ngOnChanges(changes) {
 		if (changes.items) {

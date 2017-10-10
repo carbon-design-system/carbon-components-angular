@@ -15,14 +15,14 @@ import { DialogConfig } from "./dialog-config.interface";
 
 @Injectable()
 export class DialogService {
-	private dialogSubscription: Subscription;
-
 	public isOpen = false;
 	public componentFactory: ComponentFactory<any>;
 	public onClose: EventEmitter<any> = new EventEmitter();
 	public dialogRef: ComponentRef<any>;
 
 	isClosed: EventEmitter<any> = new EventEmitter();
+
+	private dialogSubscription: Subscription;
 
 	constructor(
 		protected _componentFactoryResolver: ComponentFactoryResolver,

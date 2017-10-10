@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "home-root",
+	selector: "app-home-root",
 	template: `
 		<p>component demos</p>
 	`

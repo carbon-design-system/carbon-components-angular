@@ -1,7 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	ViewChild,
+	ElementRef,
+	AfterViewInit
+} from "@angular/core";
 
 @Component({
-	selector: "core-demo",
+	selector: "app-core-demo",
 	template: `
 	<h1>Core CSS demo</h1>
 
@@ -238,7 +244,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 	`,
 	styleUrls: ["./core-demo.component.scss"]
 })
-export class CoreDemo {
+export class CoreDemo implements AfterViewInit {
 
 	@ViewChild("interCheckbox") inCheckbox: ElementRef;
 	@ViewChild("interCheckbox2") inCheckbox2: ElementRef;
