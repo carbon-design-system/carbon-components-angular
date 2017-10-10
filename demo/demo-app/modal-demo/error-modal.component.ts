@@ -3,7 +3,7 @@ import { Modal } from "../../../src";
 
 @Modal()
 @Component({
-	selector: "error-modal",
+	selector: "app-error-modal",
 	template: `
 		<n-modal size="sm" modalType="error" (overlaySelected)="closeModal()">
 			<n-modal-header (closeSelect)="closeModal()">Error</n-modal-header>

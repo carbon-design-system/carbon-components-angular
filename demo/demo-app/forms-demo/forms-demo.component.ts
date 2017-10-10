@@ -1,7 +1,7 @@
 import { Component, OnInit, ApplicationRef } from "@angular/core";
 
 @Component({
-	selector: "forms-demo",
+	selector: "app-forms-demo",
 	template: `
 	<h1>Forms demo</h1>
 

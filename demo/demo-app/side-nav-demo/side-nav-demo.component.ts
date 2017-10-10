@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 
 @Component({
-	selector: "side-nav-demo",
+	selector: "app-side-nav-demo",
 	template: `
 	<div>
 		<h1>Side nav demo</h1>
@@ -111,12 +111,11 @@ import { Component, ViewEncapsulation } from "@angular/core";
 })
 
 export class SideNavDemo {
-	private topNavBadge = "Beta";
-	private topNavBrand = "Neutrino";
-	private sideNavOpen = true;
+	topNavBadge = "Beta";
+	topNavBrand = "Neutrino";
+	sideNavOpen = true;
 
-
-	private demoItems = [
+	demoItems = [
 		{
 			content: "Understand",
 			selected: false,
@@ -172,15 +171,11 @@ export class SideNavDemo {
 		}
 	];
 
-	private demoItems2 = this.clone(this.demoItems);
-	private demoItems3 = this.clone(this.demoItems);
-	private demoItems4 = this.clone(this.demoItems);
+	demoItems2 = this.clone(this.demoItems);
+	demoItems3 = this.clone(this.demoItems);
+	demoItems4 = this.clone(this.demoItems);
 
-	private clone (el) {
-		return JSON.parse(JSON.stringify(el));
-	}
-
-	private onClick() {
+	onClick() {
 		this.sideNavOpen = !this.sideNavOpen;
 	}
 
@@ -190,5 +185,9 @@ export class SideNavDemo {
 		} else {
 			ev.item.selected = !ev.item.selected;
 		}
+	}
+
+	private clone (el) {
+		return JSON.parse(JSON.stringify(el));
 	}
 }
