@@ -9,7 +9,7 @@ import { BannerCustom } from "./banner-demo-custom";
 import { Banner } from "./../../../src";
 
 @Component({
-	selector: "banner-demo",
+	selector: "app-banner-demo",
 	template: `
 	<h1>Banner service</h1>
 
@@ -20,7 +20,7 @@ import { Banner } from "./../../../src";
 	<button class="btn--primary" (click)="callBanner('success')">Banner Success</button>
 
 
-	<h3>Custom alert</h3>
+	<h3>Custom banner</h3>
 
 	<button class="btn--primary" (click)="callBannerCustom()">show custom banner</button>
 
@@ -62,14 +62,16 @@ import { Banner } from "./../../../src";
 	<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<button class="btn--primary" (click)="toggleBanner('info')">
-		<span *ngIf="!this.bannerToClose">
-			Show
-		</span>
-		<span *ngIf="this.bannerToClose">
-			Hide
-		</span>
-	</button>
+	<div class="toggleContainer">
+		<button class="btn--primary" (click)="toggleBanner('info')">
+			<span *ngIf="!this.bannerToClose">
+				Show
+			</span>
+			<span *ngIf="this.bannerToClose">
+				Hide
+			</span>
+		</button>
+	</div>
 	`,
 	styleUrls: ["./banner-demo.component.scss"]
 })
@@ -80,22 +82,31 @@ export class BannerDemo {
 
 	infoBanner = {
 		type: "info",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	errorBanner = {
 		type: "danger",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	warningBanner = {
 		type: "warning",
-		message: "sample message"
+		message: "sample message",
+		target: ".main-banner-container"
 	};
 
 	successBanner = {
 		type: "success",
 		message: "sample message",
+		target: ".main-banner-container"
+	};
+
+	toggleBannerAlert = {
+		type: "info",
+		target: ".toggleContainer"
 	};
 
 	constructor(private banner: BannerService) {}
@@ -103,14 +114,24 @@ export class BannerDemo {
 	callBannerCustom() {
 		this.banner.showBanner({
 			type: "info",
-			message: "sample message"
+			message: "sample message",
+			target: ".main-banner-container"
 		}, BannerCustom);
 	}
 
 	callBanner(type) {
+		this.banner.showBanner({
+			type: type,
+			message: "sample message",
+			target: ".main-banner-container"
+		});
+	}
+
+	callBannerToggle(type) {
 		this.bannerToClose = this.banner.showBanner({
 			type: type,
-			message: "sample message"
+			message: "sample message",
+			target: ".toggle-container"
 		});
 	}
 
@@ -130,17 +151,26 @@ export class BannerDemo {
 		});
 	}
 
+	callBanner3(type) {
+		this.bannerToClose = this.banner.showBanner({
+			type: type,
+			message: "sample message",
+			target: ".toggleContainer"
+		});
+	}
+
 	callBannerFadeAway() {
 		this.banner.showBanner({
 			type: "info",
 			message: "sample message",
+			target: "#banner-container",
 			duration: 2000
 		});
 	}
 
 	toggleBanner(bannerType) {
 		if (!this.bannerToClose) {
-			this.callBanner(bannerType);
+			this.callBanner3(bannerType);
 		} else {
 			this.bannerToClose.destroy();
 			this.bannerToClose = null;

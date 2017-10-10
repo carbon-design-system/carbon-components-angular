@@ -5,6 +5,7 @@
 // Mixins
 // -------------------------
 @import './banners.mixins';
+@import '../variables/_variables';
 
 // Base styles
 // -------------------------
@@ -19,8 +20,8 @@
 	width: 100%;
 	.banner {
 		//This looks a lot better in my opinion
-		margin-top: 5px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
+		margin-top: 10px;
+		// box-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
 	}
 }
 
@@ -52,7 +53,7 @@
 			max-width: calc(100% - 50px);
 			a {
 				font-weight: 700;
-				color:$banner-font-color;
+				color: $blue60-50;
 			}
 		}
 
@@ -122,4 +123,23 @@
 }
 .banner-danger {
 	@include banner-variant($banner-danger-bg, $banner-danger-border, $banner-danger-text);
+}
+
+
+html[dir=rtl], body[dir=rtl] {
+	.banner {
+			.close-btn {
+				float: left;
+				margin: 11px 20px 0 0;
+				& ~ p {
+					float:right;
+				}
+			}
+
+		.banner-icon {
+			margin-right: 0;
+			margin-left: 10px;
+			float: right;
+		}
+	}
 }

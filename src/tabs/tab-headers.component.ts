@@ -136,6 +136,9 @@ import { Tab } from "./tab.component";
 })
 
 export class TabHeaders implements AfterViewInit {
+	@Input() tabs: QueryList<Tab>;
+	@ViewChild("tabList") headerContainer;
+
 	public overflow = false;
 	public firstVisibleTab = 0;
 	public scrollLength = 0; // replace with local var containing this.tabHeading.nativeElement.offsetWidth
@@ -145,13 +148,11 @@ export class TabHeaders implements AfterViewInit {
 	public currentSelectedTab: number;
 	public touchMove: boolean;
 	public prevClientX: number;
-	private leftPadding = 15; // button width less tab left padding
-	private rightPadding = 70; // both button widths less some padding
 
 	public scrollLeft = 0;
 
-	@Input() tabs: QueryList<Tab>;
-	@ViewChild("tabList") headerContainer;
+	private leftPadding = 15; // button width less tab left padding
+	private rightPadding = 70; // both button widths less some padding
 
 	// keyboard accessibility
 	@HostListener("keydown", ["$event"])
@@ -291,11 +292,11 @@ export class TabHeaders implements AfterViewInit {
 		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
-		let tab_li = tab.offsetParent;
-		if (tab_li.offsetLeft + tab_li.offsetWidth > (headerContainer.offsetWidth - this.scrollLeft)) {
-			this.scrollLeft = -((tab_li.offsetLeft + tab_li.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
-		} else if (tab_li.offsetLeft + this.scrollLeft < 0) { // if the target is scrolled behind the left edge move it into view
-			this.scrollLeft = -(tab_li.offsetLeft - this.leftPadding);
+		let tabLi = tab.offsetParent;
+		if (tabLi.offsetLeft + tabLi.offsetWidth > (headerContainer.offsetWidth - this.scrollLeft)) {
+			this.scrollLeft = -((tabLi.offsetLeft + tabLi.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
+		} else if (tabLi.offsetLeft + this.scrollLeft < 0) { // if the target is scrolled behind the left edge move it into view
+			this.scrollLeft = -(tabLi.offsetLeft - this.leftPadding);
 		}
 		this.updateOverflowButtons();
 	}

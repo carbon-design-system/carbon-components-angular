@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {TestBed, ComponentFixture, inject} from "@angular/core/testing";
+import { Component } from "@angular/core";
+import { TestBed, ComponentFixture, inject, tick, fakeAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Banner } from "./banner.component";
@@ -27,8 +27,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-info")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
+		expect(banner.classList.contains("banner--info")).toBeTruthy();
 	});
 
 	it("should render danger banner", () => {
@@ -39,8 +39,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-danger")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
+		expect(banner.classList.contains("banner--danger")).toBeTruthy();
 	});
 
 	it("should render info warning", () => {
@@ -51,8 +51,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-warning")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
+		expect(banner.classList.contains("banner--warning")).toBeTruthy();
 	});
 
 	it("should render info success", () => {
@@ -63,8 +63,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector(".banner");
-		expect(banner.classList.contains("banner-success")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector("[role='alert']");
+		expect(banner.classList.contains("banner--success")).toBeTruthy();
 	});
 
 	it("should display correct message", () => {
@@ -75,7 +75,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let p = fixture.nativeElement.querySelector(".banner p");
+		let p = fixture.nativeElement.querySelector("[role='alert'] p");
 
 		expect(p.innerHTML.trim()).toEqual("sample message");
 	});
@@ -90,9 +90,22 @@ describe("Banner", () => {
 
 		spyOn(fixture.componentInstance.close, "emit");
 
-		let button = fixture.nativeElement.querySelector(".close-btn");
+		let button = fixture.nativeElement.querySelector(".close--dark-sm");
 
 		button.click();
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();
+	});
+
+	it("should emit change when banner is closed programmatically", () => {
+		const fixture = TestBed.createComponent(Banner);
+		fixture.componentInstance.bannerObj = {
+			type: "info",
+			message: "sample message"
+		};
+		fixture.detectChanges();
+
+		fixture.componentInstance.destroy();
+
+		expect(fixture.componentInstance);
 	});
 });

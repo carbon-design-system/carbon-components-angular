@@ -1,11 +1,12 @@
 import {
-	EventEmitter,
-	Injector,
-	ComponentRef,
+	ApplicationRef,
 	ComponentFactory,
 	ComponentFactoryResolver,
+	ComponentRef,
+	EventEmitter,
 	Injectable,
-	ApplicationRef
+	Injector,
+	OnDestroy
 } from "@angular/core";
 
 import { Banner } from "./banner.component";
@@ -19,15 +20,7 @@ import { Banner } from "./banner.component";
  * @class BannerService
  */
 @Injectable()
-export class BannerService {
-	/**
-	 * Used to create banners.
-	 *
-	 * @private
-	 * @type {ComponentFactory<any>}
-	 * @memberof BannerService
-	 */
-	private componentFactory: ComponentFactory<any>;
+export class BannerService implements OnDestroy {
 	/**
 	 * An array containing `ComponentRef`s to all the banners this service instance
 	 * is responsible for.
@@ -36,6 +29,15 @@ export class BannerService {
 	 */
 	public bannerRefs = new Array<ComponentRef<any>>();
 	public onClose: EventEmitter<any> = new EventEmitter();
+
+	/**
+	 * Used to create banners.
+	 *
+	 * @private
+	 * @type {ComponentFactory<any>}
+	 * @memberof BannerService
+	 */
+	private componentFactory: ComponentFactory<any>;
 
 	/**
 	 * Constructs BannerService.
@@ -67,7 +69,7 @@ export class BannerService {
 	 * * `smart`, set to `true` if you want to use smart banner.
 	 *
 	 * **Example:**
-	 * ```javascript
+	 * ```typescript
 	 * // Info banner, saying "Sample message." added to the element with id banner-container
 	 * // uses smart timeout with added duration of 1 second.
 	 * {
@@ -102,7 +104,7 @@ export class BannerService {
 			let body = document.querySelector("body");
 
 			// get or create a container for alert list
-			let bannerClassName = "body-banner";
+			let bannerClassName = "banner-overlay";
 			let bannerList = body.querySelector("." + bannerClassName);
 			if (!bannerList) {
 				bannerList = document.createElement("div");
@@ -150,8 +152,6 @@ export class BannerService {
 			if (bannerRef instanceof Banner) {
 				this.close(bannerRef.componentRef);
 			} else {
-				// animation and delayed distruction
-				bannerRef.location.nativeElement.querySelector(".banner").classList.add("banner-dropout");
 				setTimeout( () => {
 					this.applicationRef.detachView(bannerRef.hostView);
 					bannerRef.destroy();

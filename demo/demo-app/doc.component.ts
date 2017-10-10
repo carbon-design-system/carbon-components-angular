@@ -86,13 +86,13 @@ export class AppDoc implements OnChanges, AfterViewInit {
 		this.updateContent();
 	}
 
+	public toggle() {
+		this.open = !this.open;
+	}
+
 	private updateContent() {
 		if (this.contentView) {
 			this.contentView.nativeElement.innerHTML = marked(this.content);
 		}
-	}
-
-	public toggle() {
-		this.open = !this.open;
 	}
 }

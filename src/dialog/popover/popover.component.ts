@@ -6,7 +6,8 @@ import {
 	ElementRef,
 	TemplateRef,
 	HostListener,
-	ViewChild
+	ViewChild,
+	HostBinding
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
 import position from "../../common/position.service";
@@ -58,12 +59,11 @@ import position from "../../common/position.service";
 			</footer>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
-	`,
-	host: {
-		style: "display: inline-block;"
-	}
+	`
 })
 export class Popover extends Dialog {
+	@HostBinding("attr.style") style = "display: inline-block;";
+
 	public hasContentTemplate = false;
 	public hasFooterTemplate = false;
 

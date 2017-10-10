@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "tabs-demo",
+	selector: "app-tabs-demo",
 	template: `
 	<h1>Tabs demo</h1>
 
@@ -150,7 +150,7 @@ import { Component, OnInit } from "@angular/core";
 	<br><br>
 	`
 })
-export class TabsDemo {
+export class TabsDemo implements OnInit {
 	public sampleTabs = [
 		{ heading: "Tab 10", content: "Tab 10" },
 		{ heading: "Tab 11", content: "Tab 11", active: true },

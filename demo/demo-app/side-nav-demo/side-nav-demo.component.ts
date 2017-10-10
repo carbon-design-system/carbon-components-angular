@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 
 @Component({
-	selector: "side-nav-demo",
+	selector: "app-side-nav-demo",
 	template: `
 	<div>
 		<h1>Side nav demo</h1>
@@ -24,94 +24,98 @@ import { Component, ViewEncapsulation } from "@angular/core";
 			</n-top-nav>
 
 			<n-side-nav [open]="sideNavOpen">
-				<n-side-nav-item routerLink="/table" tabindex="-1">
+				<n-side-nav-group routerLink="/table" tabindex="-1">
 					<n-icon
-						class="side-nav-glyph"
+						class="accordion_icon"
 						icon="lightbulb"
 						size="md">
 					</n-icon>
-					<span class="side-nav-item">Understand</span>
-				</n-side-nav-item>
-				<n-side-nav-item>
+					<span class="accordion_title">Understand</span>
+				</n-side-nav-group>
+				<n-side-nav-group>
 					<n-icon
-						class="side-nav-glyph"
+						class="accordion_icon"
 						icon="gears"
 						size="md">
 					</n-icon>
-					<span class="side-nav-item">More</span>
+					<span class="accordion_title">More</span>
 					<n-side-nav-item>
 						<span class="side-nav-item">Some long content here</span>
 					</n-side-nav-item>
 					<n-side-nav-item>
 						<span class="side-nav-item">And even longer one here</span>
-						<div class="side-nav-pane-sub-template">
+						<n-side-nav-subpanel>
 							<n-side-nav-pane-title>And even longer one here</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems"
 								[template]="listTpl"
 								(selected)="onSelect($event)">
 							</n-tree-view>
-						</div>
+						</n-side-nav-subpanel>
 					</n-side-nav-item>
 					<n-side-nav-item>
 						<span class="side-nav-item">And here</span>
-						<div class="side-nav-pane-sub-template">
+						<n-side-nav-subpanel>
 							<n-side-nav-pane-title>And here</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems2"
 								[template]="listTpl"
 								(selected)="onSelect($event)">
 							</n-tree-view>
-						</div>
+						</n-side-nav-subpanel>
 					</n-side-nav-item>
-				</n-side-nav-item>
-				<n-side-nav-item>
+				</n-side-nav-group>
+				<n-side-nav-group>
 					<n-icon
-						class="side-nav-glyph"
+						class="accordion_icon"
 						icon="attributes"
 						size="md">
 					</n-icon>
-					<span class="side-nav-item">Even more</span>
+					<span class="accordion_title">Even more</span>
 					<n-side-nav-item>
 						<span class="side-nav-item">To show how ellipsis gets activated</span>
 					</n-side-nav-item>
 					<n-side-nav-item>
 						<span class="side-nav-item">And this is how ellipsis happens</span>
-						<div class="side-nav-pane-sub-template">
+						<n-side-nav-subpanel>
 							<n-side-nav-pane-title>And this is how ellipsis happens</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems3"
 								[template]="listTpl"
 								(selected)="onSelect($event)">
 							</n-tree-view>
-						</div>
+						</n-side-nav-subpanel>
 					</n-side-nav-item>
 					<n-side-nav-item>
 						<span class="side-nav-item">And here</span>
-						<div class="side-nav-pane-sub-template">
+						<n-side-nav-subpanel>
 							<n-side-nav-pane-title>And here</n-side-nav-pane-title>
 							<n-tree-view
 								[items]="demoItems4"
 								[template]="listTpl"
 								(selected)="onSelect($event)">
 							</n-tree-view>
-						</div>
+						</n-side-nav-subpanel>
 					</n-side-nav-item>
-				</n-side-nav-item>
+				</n-side-nav-group>
 			</n-side-nav>
 		</div>
 	</div>
 	`,
+	styles: [`
+		aside.side-nav {
+			position: absolute;
+		}
+	`],
 	encapsulation: ViewEncapsulation.None
 })
 
 export class SideNavDemo {
-	private topNavBadge = "Beta";
-	private topNavBrand = "Neutrino";
-	private sideNavOpen = true;
+	topNavBadge = "Beta";
+	topNavBrand = "Neutrino";
+	sideNavOpen = true;
 
-
-	private demoItems = [
+	demoItems = [
 		{
 			content: "Understand",
 			selected: false,
@@ -167,15 +171,11 @@ export class SideNavDemo {
 		}
 	];
 
-	private demoItems2 = this.clone(this.demoItems);
-	private demoItems3 = this.clone(this.demoItems);
-	private demoItems4 = this.clone(this.demoItems);
+	demoItems2 = this.clone(this.demoItems);
+	demoItems3 = this.clone(this.demoItems);
+	demoItems4 = this.clone(this.demoItems);
 
-	private clone (el) {
-		return JSON.parse(JSON.stringify(el));
-	}
-
-	private onClick() {
+	onClick() {
 		this.sideNavOpen = !this.sideNavOpen;
 	}
 
@@ -185,5 +185,9 @@ export class SideNavDemo {
 		} else {
 			ev.item.selected = !ev.item.selected;
 		}
+	}
+
+	private clone (el) {
+		return JSON.parse(JSON.stringify(el));
 	}
 }

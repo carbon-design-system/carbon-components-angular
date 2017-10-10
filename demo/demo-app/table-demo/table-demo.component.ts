@@ -24,7 +24,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 		return true;
 	}
 
-	set filterCount(number) {}
+	set filterCount(n) {}
 	get filterCount() {
 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
 	}
@@ -45,7 +45,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 }
 
 @Component({
-	selector: "table-demo",
+	selector: "app-table-demo",
 	template: `
 	<h1>Table demo</h1>
 
@@ -115,17 +115,16 @@ class FilterableHeaderItem extends TableHeaderItem {
 		<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
 	</ng-template>
 
-	<ng-template #filter let-popover="popover" let-filter="filter">
-		<section class="popover_content">
-			<n-label class="first-label">
-				<label for="filter1">Value</label>
-				<input type="text" [(ngModel)]="filter1" class="input-field" id="filter1">
-			</n-label>
-		</section>
-		<footer class="popover_footer">
-			<button class="btn--primary" (click)="filter.data = filter1; popover.onClose()">Apply</button>
-			<button class="btn--secondary" (click)="popover.onClose()">Cancel</button>
-		</footer>
+	<ng-template #filter let-popover="popover" let-filter="data">
+		<n-label class="first-label">
+			Value
+			<input type="text" [(ngModel)]="filter1" class="input-field">
+		</n-label>
+	</ng-template>
+
+	<ng-template #filterFooter let-popover="popover" let-filter="data">
+		<button class="btn--primary" (click)="filter.data = filter1; popover.doClose()">Apply</button>
+		<button class="btn--secondary" (click)="popover.doClose()">Cancel</button>
 	</ng-template>
 	`,
 	styleUrls: ["./table-demo.component.scss"],
@@ -140,6 +139,8 @@ export class TableDemo implements OnInit {
 	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("filter")
 	private filter: TemplateRef<any>;
+	@ViewChild("filterFooter")
+	private filterFooter: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
 
@@ -170,6 +171,7 @@ export class TableDemo implements OnInit {
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
 				filterTemplate: this.filter,
+				filterFooter: this.filterFooter,
 				style: {"width": "auto"}
 			})
 		];
@@ -181,6 +183,7 @@ export class TableDemo implements OnInit {
 				data: {name: "Custom header", link: "/table"},
 				template: this.filterableHeaderTemplate,
 				filterTemplate: this.filter,
+				filterFooter: this.filterFooter,
 				style: {"width": "auto"}
 			})
 		];
@@ -207,24 +210,6 @@ export class TableDemo implements OnInit {
 		model.sort(index);
 	}
 
-	private prepareData(data: Array<Array<any>>) {
-		// create new data from the service data
-		let newData = [];
-		data.forEach(dataRow => {
-			let row = [];
-			dataRow.forEach(dataElement => {
-				row.push(new TableItem({
-					data: dataElement,
-					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
-					// your template can handle all the data types so you don't have to conditionally set it
-					// you can also set different templates for different columns based on index
-				}));
-			});
-			newData.push(row);
-		});
-		return newData;
-	}
-
 	selectPage(page) {
 		this.service.getPage(page).then((data: Array<Array<any>>) => {
 			// set the data and update page
@@ -243,5 +228,23 @@ export class TableDemo implements OnInit {
 
 	toNumber(width: string): number {
 		return Number(width.substr(0, width.length - 2));
+	}
+
+	private prepareData(data: Array<Array<any>>) {
+		// create new data from the service data
+		let newData = [];
+		data.forEach(dataRow => {
+			let row = [];
+			dataRow.forEach(dataElement => {
+				row.push(new TableItem({
+					data: dataElement,
+					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+					// your template can handle all the data types so you don't have to conditionally set it
+					// you can also set different templates for different columns based on index
+				}));
+			});
+			newData.push(row);
+		});
+		return newData;
 	}
 }
