@@ -1,11 +1,14 @@
 import {
+	AfterViewInit,
 	Component,
-	Input,
-	Output,
+	ElementRef,
 	EventEmitter,
 	forwardRef,
-	TemplateRef,
-	ElementRef
+	Input,
+	OnChanges,
+	OnInit,
+	Output,
+	TemplateRef
 } from "@angular/core";
 
 @Component({
@@ -41,7 +44,7 @@ import {
 	`,
 	styleUrls: ["./calendar.component.scss"],
 })
-export class Calendar {
+export class Calendar implements OnInit, AfterViewInit, OnChanges {
 	@Input() date: Date = new Date();
 	@Input() selectedDate: Date;
 	@Input() showMonth = true;

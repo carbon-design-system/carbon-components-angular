@@ -14,7 +14,8 @@ import {
 	Output,
 	QueryList,
 	Renderer2,
-	ViewChild
+	ViewChild,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { CheckboxComponent, CheckboxState } from "./checkbox.component";
@@ -24,30 +25,24 @@ export class RadioChange {
 	value: any;
 }
 
-@Directive({
+@Component({
 	selector: "n-radio-group",
+	template: `
+		<ng-content></ng-content>
+	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => RadioGroup),
+			useExisting: RadioGroup,
 			multi: true
 		}
-	],
-	host: {
-		"role": "radiogroup"
-	},
-	inputs: ["disabled"]
+	]
 })
 export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 	static radioGroupCount = 0;
 
-	private _isInitialized = false;
-	private _disabled = false;
-	private _value: any = null;
-	private _selected: RadioComponent = null;
-	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
-
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
+	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => RadioComponent)) _radios: QueryList<RadioComponent>;
 
 	@Input() size: "default" | "sm" = "default";
@@ -92,6 +87,14 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 		this._disabled = value;
 		this.markRadiosForCheck();
 	}
+
+	@HostBinding("attr.role") role = "radiogroup";
+
+	private _isInitialized = false;
+	private _disabled = false;
+	private _value: any = null;
+	private _selected: RadioComponent = null;
+	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
 
 	constructor(private changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
@@ -208,16 +211,16 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => RadioComponent),
+			useExisting: RadioComponent,
 			multi: true
 		}
-	],
-	host: {
-		"role": "radio"
-	}
+	]
 })
-export class RadioComponent extends CheckboxComponent {
+export class RadioComponent extends CheckboxComponent implements OnInit {
 	static radioCount = 0;
+
+	@HostBinding("attr.role") role = "radio";
+
 	id = `radio-${RadioComponent.radioCount}`;
 	radioGroup: RadioGroup;
 	_value: any = null;

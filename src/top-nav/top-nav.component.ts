@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	Component,
 	Input,
 	Renderer2,
@@ -37,7 +38,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 	</header>`
 })
 
-export class TopNav {
+export class TopNav implements AfterViewInit {
 	static topNavCount = 0;
 
 	@Input() badge: string;

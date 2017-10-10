@@ -12,7 +12,8 @@ import {
 	AfterViewInit,
 	HostListener,
 	forwardRef,
-	OnDestroy
+	OnDestroy,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -69,32 +70,15 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		</div>
 	`,
 	encapsulation: ViewEncapsulation.None,
-	host: {
-		"class": "dropdown-wrapper",
-		"role": "combobox"
-	},
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => Dropdown),
+			useExisting: Dropdown,
 			multi: true
 		}
 	]
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
-	menuIsClosed = true;
-	dropdown: HTMLElement;
-	dropdownWrapper: HTMLElement;
-	// .bind creates a new function, so we decalre the methods below
-	// but .bind them up here
-	noop = this._noop.bind(this);
-	outsideClick = this._outsideClick.bind(this);
-	outsideKey = this._outsideKey.bind(this);
-	keyboardNav = this._keyboardNav.bind(this);
-	resize;
-	scroll;
-	private onTouchedCallback: () => void = this._noop;
-
 	/**
 	 * Value to show when nothing is selected.
 	 *
@@ -136,6 +120,23 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
+
+	@HostBinding("attr.role") role = "combobox";
+	@HostBinding("attr.class") class = "dropdown-wrapper";
+
+	menuIsClosed = true;
+	dropdown: HTMLElement;
+	dropdownWrapper: HTMLElement;
+	// .bind creates a new function, so we decalre the methods below
+	// but .bind them up here
+	noop = this._noop.bind(this);
+	outsideClick = this._outsideClick.bind(this);
+	outsideKey = this._outsideKey.bind(this);
+	keyboardNav = this._keyboardNav.bind(this);
+	resize;
+	scroll;
+
+	private onTouchedCallback: () => void = this._noop;
 
 	constructor(private _elementRef: ElementRef, private _translate: TranslateService) {}
 

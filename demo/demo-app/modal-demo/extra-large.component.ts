@@ -5,7 +5,7 @@ import { ErrorModalComponent } from "./error-modal.component";
 
 @Modal()
 @Component({
-	selector: "xxl-modal",
+	selector: "app-xxl-modal",
 	template: `
 	<n-modal size="xxl" (overlaySelected)="closeModal()">
 		<n-modal-header (closeSelect)="closeModal()">XXL</n-modal-header>

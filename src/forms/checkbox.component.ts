@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
@@ -8,7 +9,8 @@ import {
 	Input,
 	OnInit,
 	Output,
-	ViewChild
+	ViewChild,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -47,16 +49,13 @@ export class CheckboxChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => CheckboxComponent),
+			useExisting: CheckboxComponent,
 			multi: true
 		}
 	],
-	host: {
-		"role": "checkbox"
-	},
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent implements ControlValueAccessor {
+export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	static checkboxCount = 0;
 
 	@Input() size: "default" | "sm" = "default";
@@ -67,7 +66,9 @@ export class CheckboxComponent implements ControlValueAccessor {
 	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
 	@Input() required: boolean;
 	@Input() value: string;
+	// tslint:disable-next-line:no-input-rename
 	@Input("aria-label") ariaLabel = "";
+	// tslint:disable-next-line:no-input-rename
 	@Input("aria-labelledby") ariaLabelledby: string;
 	@Input() get indeterminate() {
 		return this._indeterminate;
@@ -112,6 +113,8 @@ export class CheckboxComponent implements ControlValueAccessor {
 	currentCheckboxState: CheckboxState = CheckboxState.Init;
 
 	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
+
+	@HostBinding("attr.role") role = "checkbox";
 
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		CheckboxComponent.checkboxCount++;

@@ -9,7 +9,8 @@ import {
 	ElementRef,
 	TemplateRef,
 	HostListener,
-	ViewChild
+	ViewChild,
+	HostBinding
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
 import { Observable } from "rxjs/Observable";
@@ -49,12 +50,11 @@ import position from "../../common/position.service";
 			</button>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
-		`,
-	host: {
-		style: "display: inline-block;"
-	},
+		`
 })
 export class Tooltip extends Dialog {
+	@HostBinding("attr.style") style = "display: inline-block";
+
 	public contentTemplate: boolean;
 
 	onDialogInit() {

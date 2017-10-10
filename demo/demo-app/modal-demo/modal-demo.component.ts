@@ -3,11 +3,11 @@ import { XLModalComponent } from "./extra-large.component";
 import { ErrorModalComponent } from "./error-modal.component";
 import { SampleModalComponent } from "./sample-modal.component";
 import { FormModalComponent } from "./form-modal.component";
-import {DrilldownModalComponent } from "./drilldown-modal.component";
+import { DrilldownModalComponent } from "./drilldown-modal.component";
 import { ModalService } from "../../../src";
 
 @Component({
-	selector: "modal-demo",
+	selector: "app-modal-demo",
 	template: `
 	<button class="btn--primary" (click)="openModal()">XL modal</button>
 	<button class="btn--primary" (click)="openModal('XXL')">XXL modal</button>

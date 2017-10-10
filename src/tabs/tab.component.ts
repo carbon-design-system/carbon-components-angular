@@ -5,7 +5,8 @@ import {
 	Output,
 	EventEmitter,
 	ContentChild,
-	TemplateRef
+	TemplateRef,
+	HostBinding
 } from "@angular/core";
 
 let nextId = 0;
@@ -20,10 +21,7 @@ let nextId = 0;
 			[attr.aria-labelledby]="id + '-header'">
 			<ng-content></ng-content>
 		</div>
-	 `,
-	host: {
-		"[attr.id]": "id"
-	}
+	 `
 })
 export class Tab implements OnInit {
 	public headingIsTemplate = false;
@@ -35,6 +33,8 @@ export class Tab implements OnInit {
 	@Input() cacheActive = false;
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
+
+	@HostBinding("attr.id") attrClass = this.id;
 
 	ngOnInit() {
 		if (this.heading instanceof TemplateRef) {

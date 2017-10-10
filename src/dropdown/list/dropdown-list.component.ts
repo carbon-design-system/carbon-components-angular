@@ -2,6 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
+	OnChanges,
+	OnDestroy,
 	EventEmitter,
 	forwardRef,
 	TemplateRef,
@@ -53,9 +55,9 @@ import { watchFocusJump } from "./../dropdowntools";
 				</ng-template>
 			</li>
 		</ul>`,
-		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownList)}]
+		providers: [{provide: AbstractDropdownView, useExisting: DropdownList}]
 }) // conceptually this extends list-view, but we dont have to
-export class DropdownList implements AbstractDropdownView, AfterViewInit {
+export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();

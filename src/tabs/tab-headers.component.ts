@@ -122,6 +122,9 @@ import { Tab } from "./tab.component";
 })
 
 export class TabHeaders implements AfterViewInit {
+	@Input() tabs: QueryList<Tab>;
+	@ViewChild("tabList") headerContainer;
+
 	public overflow = false;
 	public firstVisibleTab = 0;
 	public scrollLength = 0; // replace with local var containing this.tabHeading.nativeElement.offsetWidth
@@ -131,13 +134,11 @@ export class TabHeaders implements AfterViewInit {
 	public currentSelectedTab: number;
 	public touchMove: boolean;
 	public prevClientX: number;
-	private leftPadding = 15; // button width less tab left padding
-	private rightPadding = 70; // both button widths less some padding
 
 	public scrollLeft = 0;
 
-	@Input() tabs: QueryList<Tab>;
-	@ViewChild("tabList") headerContainer;
+	private leftPadding = 15; // button width less tab left padding
+	private rightPadding = 70; // both button widths less some padding
 
 	// keyboard accessibility
 	@HostListener("keydown", ["$event"])
