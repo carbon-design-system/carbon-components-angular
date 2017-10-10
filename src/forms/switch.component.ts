@@ -56,7 +56,7 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 
 	id = "switch-" + SwitchComponent.switchCount;
 
-	constructor(protected changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
 	}
@@ -67,8 +67,8 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 		const buttonClass = `toggle${this.size !== "default" ? `--${this.size}` : ""}`;
 
 		// Get elements
-		const labelEl = this._elementRef.nativeElement.querySelector("label");
-		const buttonEl = this._elementRef.nativeElement.querySelector("button");
+		const labelEl = this.elementRef.nativeElement.querySelector("label");
+		const buttonEl = this.elementRef.nativeElement.querySelector("button");
 
 		// Add classes to elements
 		this.renderer.addClass(labelEl, labelClass);

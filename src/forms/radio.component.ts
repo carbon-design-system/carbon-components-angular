@@ -90,13 +90,13 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	@HostBinding("attr.role") role = "radiogroup";
 
-	private _isInitialized = false;
+	private isInitialized = false;
 	private _disabled = false;
 	private _value: any = null;
 	private _selected: RadioComponent = null;
 	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(private changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
 	}
 
@@ -121,7 +121,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	emitChangeEvent() {
-		if (this._isInitialized) {
+		if (this.isInitialized) {
 			let event = new RadioChange();
 			event.source = this._selected;
 			event.value = this._value;
@@ -159,14 +159,14 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 		const className = `radio${this.size !== "default" ? `--${this.size}` : ""}`;
 
 		// Add class to host element
-		this.renderer.addClass(this._elementRef.nativeElement, className);
+		this.renderer.addClass(this.elementRef.nativeElement, className);
 	}
 
 	ngAfterContentInit() {
 		// Mark this component as initialized in AfterContentInit because the initial value can
 		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
 		// NgModel occurs *after* the OnInit of the RadioGroup.
-		this._isInitialized = true;
+		this.isInitialized = true;
 	}
 
 	public registerOnChange(fn: any) {
@@ -226,7 +226,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	_value: any = null;
 
 	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef, private _elementRef: ElementRef, private renderer: Renderer2) {
+				protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		super(changeDetectorRef);
 		RadioComponent.radioCount++;
 		this.radioGroup = radioGroup;
