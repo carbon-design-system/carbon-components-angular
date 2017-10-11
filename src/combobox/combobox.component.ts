@@ -58,7 +58,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			<!--<n-dropdown-button (close)="onClose()"></n-dropdown-button>-->
 		</div>
 		<ng-content></ng-content>
-<<<<<<< HEAD
 	`,
 	host: {
 		class: "combobox",
@@ -66,9 +65,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 		"[attr.aria-expanded]": "dropdownButton?dropdownButton.open:false",
 		"[attr.aria-disabled]": "disabled?true:null"
 	}
-=======
-	`
->>>>>>> b876b9bcb7be3da71a426de3da101667a6441dce
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**

@@ -99,7 +99,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				*ngIf="expanded && numberMore > 0"
 				class="btn--link"
 				href=""
-<<<<<<< HEAD
 				(click)="showMore($event)">Hide</button>
 		<!--</div>-->`,
 	host: {
@@ -107,10 +106,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 		role: "textbox",
 		style: "width: 100%"
 	}
-=======
-				(click)="showMore($event)">Hide</a>
-		</div>`
->>>>>>> b876b9bcb7be3da71a426de3da101667a6441dce
 })
 export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
