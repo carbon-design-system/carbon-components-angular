@@ -22,7 +22,7 @@ import { Tab } from "./tab.component";
 			<button
 				*ngIf="this.overflow"
 				aria-hidden="true"
-				aria-label="Scroll backward in tabs"
+				attr.aria-label="{{'TABS.BUTTON_ARIA_LEFT' | translate}}"
 				role="button"
 				class="tabs_scroll-btn--left"
 				[class.disabled]="disabledLeftArrow"
@@ -58,17 +58,14 @@ import { Tab } from "./tab.component";
 					<polygon points="7.3,8.9 6.4,9.8 7.2,10.7 8.2,9.8 "/>
 				</svg>
 			</button>
-			<div
-			[ngClass]="{'tablist-overflow': overflow}"
-			>
+			<div [ngClass]="{'tablist-overflow': overflow}">
 			<ul
 				#tabList
 				role="tablist"
 				[ngStyle]="{'left.px':scrollLeft}"
 				[class.touch-transition]="touchMove">
 				<li *ngFor="let tab of tabs; let i = index;"
-					class="tabs_item"
-					>
+					class="tabs_item">
 					<a
 						#tabref
 						href="javascript:void(0)"
@@ -95,7 +92,7 @@ import { Tab } from "./tab.component";
 			<button
 				*ngIf="this.overflow"
 				aria-hidden="true"
-				aria-label="Scroll forward in tabs"
+				attr.aria-label="{{'TABS.BUTTON_ARIA_RIGHT' | translate}}"
 				role="button"
 				class="tabs_scroll-btn--right"
 				[class.disabled]="disabledRightArrow"
@@ -242,15 +239,12 @@ export class TabHeaders implements AfterViewInit {
 		if (this.disabledLeftArrow) {
 			return;
 		}
-
 		if (this.disabledRightArrow) {
 			this.disabledRightArrow = false;
 		}
-
 		if (this.firstVisibleTab === 1) {
 			this.disabledLeftArrow = true;
 		}
-
 		if (this.firstVisibleTab >= 0) {
 			this.firstVisibleTab--;
 			let visibleTab = this.allTabHeaders[this.firstVisibleTab].parentElement;

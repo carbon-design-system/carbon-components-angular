@@ -68,6 +68,7 @@ describe("Tabs", () => {
 		expect(allTabs[0].querySelector("a").className).toBe("disabled-tab");
 	});
 
+	// this test is taken out because the buttons are added in during the ngAfterViewInit(), which runs after detectChanges()
 	// it("should have scroll", () => {
 	// 	const fixture = createTestComponent(`
 	// 	<div style="max-width: 600px">
