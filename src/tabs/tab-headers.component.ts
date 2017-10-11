@@ -17,14 +17,18 @@ import { Tab } from "./tab.component";
 @Component({
 	selector: "n-tab-headers",
 	template: `
-		<div [class.is-over-flow]="overflow">
+		<div
+			class="tabs">
 			<button
-				aria-label="left"
+				*ngIf="this.overflow"
 				aria-hidden="true"
-				class="left-arrow clear-button"
+				attr.aria-label="{{'TABS.BUTTON_ARIA_LEFT' | translate}}"
+				role="button"
+				class="tabs_scroll-btn--left"
 				[class.disabled]="disabledLeftArrow"
 				(click)="goLeft()">
 				<svg
+					class="icon--sm"
 					*ngIf="!disabledLeftArrow"
 					width="16"
 					height="16"
@@ -34,6 +38,7 @@ import { Tab } from "./tab.component";
 					1.2c3.7 0 6.8 3.1 6.8 6.8 0 3.7-3.1 6.8-6.8 6.8S1.2 11.7 1.2 8c0-3.7 3.1-6.8 6.8-6.8z"/>
 				</svg>
 				<svg
+					class="icon--sm"
 					*ngIf="disabledLeftArrow"
 					width="16px"
 					height="16px"
@@ -53,13 +58,14 @@ import { Tab } from "./tab.component";
 					<polygon points="7.3,8.9 6.4,9.8 7.2,10.7 8.2,9.8 "/>
 				</svg>
 			</button>
+			<div [ngClass]="{'tablist-overflow': overflow}">
 			<ul
 				#tabList
-				class="n-tab-heading"
 				role="tablist"
 				[ngStyle]="{'left.px':scrollLeft}"
 				[class.touch-transition]="touchMove">
-				<li *ngFor="let tab of tabs; let i = index;">
+				<li *ngFor="let tab of tabs; let i = index;"
+					class="tabs_item">
 					<a
 						#tabref
 						href="javascript:void(0)"
@@ -82,13 +88,17 @@ import { Tab } from "./tab.component";
 					</a>
 				</li>
 			</ul>
+			</div>
 			<button
-				aria-label="right"
+				*ngIf="this.overflow"
 				aria-hidden="true"
-				class="right-arrow clear-button"
+				attr.aria-label="{{'TABS.BUTTON_ARIA_RIGHT' | translate}}"
+				role="button"
+				class="tabs_scroll-btn--right"
 				[class.disabled]="disabledRightArrow"
 				(click)="goRight()">
 				<svg
+					class="icon--sm"
 					*ngIf="!disabledRightArrow"
 					width="16"
 					height="16"
@@ -98,6 +108,7 @@ import { Tab } from "./tab.component";
 					3.1-6.8 6.8-6.8s6.8 3.1 6.8 6.8c0 3.7-3.1 6.8-6.8 6.8z"/>
 				</svg>
 				<svg
+					class="icon--sm"
 					*ngIf="disabledRightArrow"
 					width="16px"
 					height="16px"
@@ -149,6 +160,7 @@ export class TabHeaders implements AfterViewInit {
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
 			}
 		}
+
 		if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
@@ -214,7 +226,7 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	public scrollCheck() {
-		if (this.headerContainer.nativeElement.offsetWidth > this.headerContainer.nativeElement.parentElement.offsetWidth) {
+		if (this.headerContainer.nativeElement.offsetWidth > this.headerContainer.nativeElement.parentElement.parentElement.offsetWidth) {
 			this.overflow = true;
 			this.disabledRightArrow = false;
 			this.scrollLength = this.headerContainer.nativeElement.offsetWidth;
@@ -239,7 +251,7 @@ export class TabHeaders implements AfterViewInit {
 
 		if (this.firstVisibleTab >= 0) {
 			this.firstVisibleTab--;
-			let visibleTab = this.allTabHeaders[this.firstVisibleTab];
+			let visibleTab = this.allTabHeaders[this.firstVisibleTab].parentElement;
 			this.scrollLeft = -(visibleTab.offsetLeft - this.leftPadding);
 		}
 	}
@@ -252,10 +264,11 @@ export class TabHeaders implements AfterViewInit {
 		if (this.disabledLeftArrow) {
 			this.disabledLeftArrow = false;
 		}
+
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		if (this.firstVisibleTab < this.allTabHeaders.length - 1) {
-			let visibleTab = this.allTabHeaders[this.firstVisibleTab];
-			this.scrollLeft = -(visibleTab.offsetLeft + visibleTab.offsetWidth - 15);
+			let visibleTab = this.allTabHeaders[this.firstVisibleTab].parentElement;
+			this.scrollLeft = -(visibleTab.offsetLeft + visibleTab.offsetWidth);
 			this.firstVisibleTab++;
 			if (this.scrollLength + this.scrollLeft <= headerContainer.offsetWidth) {
 				this.disabledRightArrow = true;
@@ -268,6 +281,7 @@ export class TabHeaders implements AfterViewInit {
 		if (tab.disabled) {
 			return;
 		}
+
 		this.currentSelectedTab = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
@@ -279,10 +293,12 @@ export class TabHeaders implements AfterViewInit {
 		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
-		if (tab.offsetLeft + tab.offsetWidth > headerContainer.offsetWidth - (this.scrollLeft + this.rightPadding)) {
-			this.scrollLeft = -((tab.offsetLeft + tab.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
-		} else if (tab.offsetLeft + this.scrollLeft < 0) { // if the target is scrolled behind the left edge move it into view
-			this.scrollLeft = -(tab.offsetLeft - this.leftPadding);
+		let tabLi = tab.offsetParent;
+
+		if (tabLi.offsetLeft + tabLi.offsetWidth > (headerContainer.offsetWidth - this.scrollLeft)) {
+			this.scrollLeft = -((tabLi.offsetLeft + tabLi.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
+		} else if (tabLi.offsetLeft + this.scrollLeft < 0) { // if the target is scrolled behind the left edge move it into view
+			this.scrollLeft = -(tabLi.offsetLeft - this.leftPadding);
 		}
 		this.updateOverflowButtons();
 	}
@@ -290,7 +306,7 @@ export class TabHeaders implements AfterViewInit {
 	public findFirstVisibleTab() {
 		for (let i = 0; i < this.allTabHeaders.length; i++) {
 			// find the first tab that isn't behind the left edge
-			if (this.allTabHeaders[i].offsetLeft + this.scrollLeft > 0) {
+			if (this.allTabHeaders[i].offsetParent.offsetLeft + this.scrollLeft > 0) {
 				return i;
 			}
 		}

@@ -88,13 +88,13 @@ import { Component, OnInit } from "@angular/core";
 		<n-icon
 			icon="facebook"
 			size="sm"
-			style="margin-right: 7px; position: relative; top: 3px;">
+			style="margin-right: 7px; position: relative; top: 3px; display: inline !important;">
 		</n-icon>
 		Hello,&nbsp;<span (click)="test($event)">click me</span>
 	</ng-template>
 	<n-tabs>
 		<n-tab [heading]="tabHeading">
-			Tab 1 content <n-icon icon="alert" size="lg" style="height: 30px; line-height: 30px; display: inline-block;"></n-icon>
+			Tab 1 content <n-icon icon="alert" size="lg" style="height: 30px; line-height: 30px;"></n-icon>
 		</n-tab>
 		<n-tab heading='Tab2'>
 			Tab 2 content
@@ -154,7 +154,7 @@ export class TabsDemo implements OnInit {
 	public sampleTabs = [
 		{ heading: "Tab 10", content: "Tab 10" },
 		{ heading: "Tab 11", content: "Tab 11", active: true },
-		{ heading: "Disabled tab", content: "Disabled tab content. The application should display some message as to why."}
+		{ heading: "Disabled tab", disabled: true, content: "Disabled tab content. The application should display some message as to why."}
 	];
 	public sampleTabs2 = [];
 

@@ -7,7 +7,7 @@ import { TabHeaders } from "./tab-headers.component";
 	selector: "n-tabs",
 	template: `
 			<n-tab-headers *ngIf="position === 'top'" [tabs]="tabs"></n-tab-headers>
-			<div class="n-tabs-content">
+			<div>
 				<ng-content></ng-content>
 			</div>
 			<n-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></n-tab-headers>
