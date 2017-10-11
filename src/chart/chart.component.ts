@@ -26,17 +26,17 @@ import { Charts } from "@peretz/charts/bundle/bundle.js";
  *
  *
  * ## Available `options` properties
- * | Property        	| Use     							     | Nullable								 | Type																	 |
+ * | Property           | Use                                    | Nullable                              | Type                                                                  |
  * | ------------------ |----------------------------------------|---------------------------------------|-----------------------------------------------------------------------|
- * | type				| chart type							 | false								 | string, e.g. "bars", "stackedBars", "lines", "doubleAxis", "combo"	 |
- * | xDomain			| value for x axis						 | false								 | string																 |
- * | yDomain			| value for y axis						 | false								 | array of string														 |
- * | y2Domain			| value for second y axis				 | true for charts without second y axis | array of string														 |
- * | yTicks				| tick numbers							 | false								 | number																 |
- * | y2Ticks			| tick numbers							 | true									 | number																 |
- * | legendClickable	| make legend clickale to filter data	 | true									 | boolean																 |
- * | containerResizable | resize charts as its container resizes | true									 | boolean																 |
- * | yFormatter			| y value formatter functions			 | true									 | object of metrics as key and formatter functions as the key's value	 |
+ * | type               | chart type                             | false                                 | string, e.g. "bars", "stackedBars", "lines", "doubleAxis", "combo"    |
+ * | xDomain            | value for x axis                       | false                                 | string                                                                |
+ * | yDomain            | value for y axis                       | false                                 | array of string                                                       |
+ * | y2Domain           | value for second y axis                | true for charts without second y axis | array of string                                                       |
+ * | yTicks             | tick numbers                           | false                                 | number                                                                |
+ * | y2Ticks            | tick numbers                           | true                                  | number                                                                |
+ * | legendClickable    | make legend clickale to filter data    | true                                  | boolean                                                               |
+ * | containerResizable | resize charts as its container resizes | true                                  | boolean                                                               |
+ * | yFormatter         | y value formatter functions            | true                                  | object of metrics as key and formatter functions as the key's value   |
  *
  * ## `Options` example
  * ```javascript
