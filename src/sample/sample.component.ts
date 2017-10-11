@@ -49,13 +49,13 @@ export class Sample implements OnInit, AfterViewInit, OnDestroy {
 		//
 	}
 
-	/** this is an instance method that can be inherited and used by subclasses */
-	protected setFoo() {
+	/** this is an instance method that can be used in templates */
+	public doBar() {
 		//
 	}
 
-	/** this is an instance method that can be used in templates */
-	public doBar() {
+	/** this is an instance method that can be inherited and used by subclasses */
+	protected setFoo() {
 		//
 	}
 }

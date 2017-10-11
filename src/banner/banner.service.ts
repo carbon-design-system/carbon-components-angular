@@ -1,11 +1,12 @@
 import {
-	EventEmitter,
-	Injector,
-	ComponentRef,
+	ApplicationRef,
 	ComponentFactory,
 	ComponentFactoryResolver,
+	ComponentRef,
+	EventEmitter,
 	Injectable,
-	ApplicationRef
+	Injector,
+	OnDestroy
 } from "@angular/core";
 
 import { Banner } from "./banner.component";
@@ -19,15 +20,7 @@ import { Banner } from "./banner.component";
  * @class BannerService
  */
 @Injectable()
-export class BannerService {
-	/**
-	 * Used to create banners.
-	 *
-	 * @private
-	 * @type {ComponentFactory<any>}
-	 * @memberof BannerService
-	 */
-	private componentFactory: ComponentFactory<any>;
+export class BannerService implements OnDestroy {
 	/**
 	 * An array containing `ComponentRef`s to all the banners this service instance
 	 * is responsible for.
@@ -36,6 +29,15 @@ export class BannerService {
 	 */
 	public bannerRefs = new Array<ComponentRef<any>>();
 	public onClose: EventEmitter<any> = new EventEmitter();
+
+	/**
+	 * Used to create banners.
+	 *
+	 * @private
+	 * @type {ComponentFactory<any>}
+	 * @memberof BannerService
+	 */
+	private componentFactory: ComponentFactory<any>;
 
 	/**
 	 * Constructs BannerService.

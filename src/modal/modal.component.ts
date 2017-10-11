@@ -5,6 +5,7 @@ import {
 	HostListener,
 	Input,
 	OnInit,
+	OnDestroy,
 	Output,
 	ElementRef,
 	ViewChild
@@ -55,7 +56,7 @@ import { cycleTabs } from "./../common/tab.service";
 		])
 	]
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
 	@Input() size = "xl";
 	@Input() modalType = "default";
 	@Output() overlaySelected = new EventEmitter();

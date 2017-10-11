@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	OnInit
 } from "@angular/core";
 import { DropdownSubMenu } from "./sub-menu.component";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
@@ -68,7 +69,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 		</n-sub-menu-wrapper>
 	`
 })
-export class SubMenuItem {
+export class SubMenuItem implements OnInit {
 	public parent;
 	public isTpl = false;
 

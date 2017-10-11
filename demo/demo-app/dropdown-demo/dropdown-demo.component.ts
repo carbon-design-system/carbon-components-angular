@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms";
 
 @Component({
-	selector: "dropdown-demo",
+	selector: "app-dropdown-demo",
 	template: `
 		<h1>Drop-down list demo</h1>
 
@@ -452,10 +452,6 @@ export class DropdownDemo {
 		};
 	}
 
-	private clone (el) {
-		return JSON.parse(JSON.stringify(el));
-	}
-
 	onClose() {
 		// handle on dropdown close event
 		console.log("modal closed!");
@@ -486,4 +482,8 @@ export class DropdownDemo {
 		console.log("test", ev);
 	}
 
+
+	private clone (el) {
+		return JSON.parse(JSON.stringify(el));
+	}
 }

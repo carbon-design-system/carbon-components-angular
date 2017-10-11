@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	OnInit
 } from "@angular/core";
 import { DropdownTree } from "./tree.component";
 import {  } from "./../../constant/keys";
@@ -77,7 +78,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 		</n-tree-wrapper>
 	`
 })
-export class TreeItem {
+export class TreeItem implements OnInit {
 	public parent;
 	public isTpl = false;
 

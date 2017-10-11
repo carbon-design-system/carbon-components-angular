@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/core";
 
 @Component({
-	selector: "icon-demo",
+	selector: "app-icon-demo",
 	template: `
 	<h1>Iconography demo</h1>
 
@@ -224,7 +224,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	`],
 	encapsulation: ViewEncapsulation.None
 })
-export class IconDemo {
+export class IconDemo implements AfterViewInit {
 	iconMeta;
 	sets = [];
 	selected = [];

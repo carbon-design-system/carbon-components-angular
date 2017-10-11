@@ -8,7 +8,8 @@ import {
 	AfterViewInit,
 	ViewChild,
 	ElementRef,
-	OnDestroy
+	OnDestroy,
+	OnChanges
 } from "@angular/core";
 
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
@@ -134,9 +135,9 @@ import { DropdownList } from "./dropdown-list.component";
 				<span>{{ 'DROPDOWN.FILTER.NO_RESULTS' | translate }}</span>
 			</li>
 		</ul>`,
-		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownFilter)}]
+		providers: [{provide: AbstractDropdownView, useExisting: DropdownFilter}]
 }) // conceptually this extends list-view, but we dont have to
-export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
+export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy, OnChanges {
 	@ViewChild("selectedOnly") selectedOnly;
 	@ViewChild("list") list;
 	@ViewChild("filter") filter;
