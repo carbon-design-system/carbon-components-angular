@@ -8,14 +8,10 @@
 // =================================
 const gulp = require("gulp");
 const sass = require("node-sass");
-const gulpsass = require("gulp-sass");
 const concat = require("gulp-concat");
 const tap = require("gulp-tap");
 const path = require("path");
-const htmlmin = require("html-minifier").minify;
 const fs = require("fs");
-const ts = require("gulp-typescript");
-const TSCONFG = require("./tsconfig.json").compilerOptions;
 const es = require("event-stream");
 const runSequence = require("run-sequence");
 
@@ -23,15 +19,14 @@ const runSequence = require("run-sequence");
 // Variables
 // =================================
 const dirs = {
-	SRC: "src",
-	TS_SRC: [
+	TS: [
 		"src/**/*.ts",
 		"!src/**/*.spec.ts"
 	],
-	SASS_SRC: "src/core/**/*.scss",
-	FONT_SRC: "src/core/fonts/**/*",
-	DIST: "dist",
-	SASS_DIST: "dist/core"
+	i18n: "src/i18n/**/*.json",
+	FONTS: "node_modules/@peretz/matter/fonts/**/*",
+	DEMO: "demo",
+	DIST: "dist"
 };
 
 const licenseTemplate = `/*!
@@ -51,36 +46,19 @@ const licenseTemplate = `/*!
 // Build tasks
 // =================================
 gulp.task("build:angular", _ =>
-	gulp.src(dirs.TS_SRC)
+	gulp.src(dirs.TS)
 		.pipe(replaceTemplates())
 		.pipe(gulp.dest(`${dirs.DIST}/src`))
 );
 
-gulp.task("build:sass", _ =>
-	gulp.src(dirs.SASS_SRC)
-		.pipe(gulp.dest(dirs.SASS_DIST))
-);
-
-gulp.task("build:css", _ =>
-	gulp.src("src/core/common.scss")
-		.pipe(gulpsass())
-		.pipe(concat("neutrino.css"))
-		.pipe(gulp.dest(dirs.SASS_DIST))
-);
-
-gulp.task("build:font", _ =>
-	gulp.src(dirs.FONT_SRC)
-		.pipe(gulp.dest(`${dirs.DIST}/core/fonts`))
-);
-
 gulp.task("build:i18n", _ =>
-	gulp.src(`${dirs.SRC}/i18n/**/*.json`)
+	gulp.src(dirs.i18n)
 		.pipe(gulp.dest(`${dirs.DIST}/i18n`))
 );
 
 gulp.task("build:license", _ =>
 	es.merge(
-		gulp.src("./LICENSE.md")
+		gulp.src("LICENSE.md")
 			.pipe(gulp.dest(dirs.DIST)),
 		gulp.src([
 			`${dirs.DIST}/**/*.scss`,
@@ -94,27 +72,27 @@ gulp.task("build:license", _ =>
 );
 
 gulp.task("build:package", _ =>
-	gulp.src("./package.json")
+	gulp.src("package.json")
 		.pipe(version())
 		.pipe(gulp.dest(dirs.DIST))
 );
 
 gulp.task("build:readme", _ =>
-	gulp.src("./README.md")
+	gulp.src("README.md")
 		.pipe(gulp.dest(dirs.DIST))
 );
 
 gulp.task("build:changelog", _ =>
-	gulp.src("./CHANGELOG.md")
+	gulp.src("CHANGELOG.md")
 		.pipe(gulp.dest(dirs.DIST))
 );
 
 //
 // Demo tasks
 // =================================
-gulp.task("demo:fonts", _ =>
-	gulp.src(dirs.FONT_SRC)
-		.pipe(gulp.dest(`./demo/bundle/fonts`))
+gulp.task("demo:font", _ =>
+	gulp.src(dirs.FONTS)
+		.pipe(gulp.dest(`${dirs.DEMO}/fonts`))
 );
 
 //
@@ -125,8 +103,10 @@ gulp.task("build:meta", _ =>
 );
 
 gulp.task("build", _ =>
-	runSequence(["build:angular", "build:sass", "build:css", "build:font", "build:i18n"], "build:meta")
+	runSequence(["build:angular", "build:i18n"], "build:meta")
 );
+
+gulp.task("demo", ["demo:font"]);
 
 //
 // Functions
