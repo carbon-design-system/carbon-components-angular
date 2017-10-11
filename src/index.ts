@@ -1,5 +1,5 @@
 export * from "./banner/banner.module";
-export * from "./combo-box/combo-box.module";
+export * from "./combobox/combobox.module";
 export * from "./common/common.module";
 export * from "./dropdown/dropdown.module";
 export * from "./forms/forms.module";
