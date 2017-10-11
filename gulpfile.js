@@ -98,12 +98,10 @@ gulp.task("demo:font", _ =>
 //
 // Running tasks
 // =================================
+gulp.task("build", ["build:angular", "build:i18n"]);
+
 gulp.task("build:meta", _ =>
 	runSequence("build:package", ["build:license", "build:readme", "build:changelog"])
-);
-
-gulp.task("build", _ =>
-	runSequence(["build:angular", "build:i18n"], "build:meta")
 );
 
 gulp.task("demo", ["demo:font"]);

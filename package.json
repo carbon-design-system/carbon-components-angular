@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "demo:build": "webpack --config webpack.config.js && gulp demo",
+    "demo:build": "gulp demo && webpack --config webpack.config.js",
     "demo:server": "gulp demo && webpack-dev-server --config webpack.config.js --watch",
     "docs:build": "compodoc src -p tsconfig.json",
     "docs:server": "compodoc -s",
