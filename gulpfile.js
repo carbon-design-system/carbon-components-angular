@@ -31,10 +31,10 @@ const dirs = {
 
 const licenseTemplate = `/*!
  *
- * Neutrino v@PACKAGE_VERSION@
+ * Neutrino v@PACKAGE_VERSION@ | @FILE_NAME@
  *
  * Licensed Materials - Property of IBM
- * @FILE_NAME@
+ *
  * © Copyright IBM Corporation 2014, @THIS_YEAR@
  * U.S. Government Users Restricted Rights: Use, duplication or disclosure
  * restricted by GSA ADP Schedule Contract with IBM Corp.
