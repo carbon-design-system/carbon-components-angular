@@ -160,6 +160,7 @@ export class TabHeaders implements AfterViewInit {
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
 			}
 		}
+
 		if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
@@ -239,12 +240,15 @@ export class TabHeaders implements AfterViewInit {
 		if (this.disabledLeftArrow) {
 			return;
 		}
+
 		if (this.disabledRightArrow) {
 			this.disabledRightArrow = false;
 		}
+
 		if (this.firstVisibleTab === 1) {
 			this.disabledLeftArrow = true;
 		}
+
 		if (this.firstVisibleTab >= 0) {
 			this.firstVisibleTab--;
 			let visibleTab = this.allTabHeaders[this.firstVisibleTab].parentElement;
@@ -256,9 +260,11 @@ export class TabHeaders implements AfterViewInit {
 		if (this.disabledRightArrow) {
 			return;
 		}
+
 		if (this.disabledLeftArrow) {
 			this.disabledLeftArrow = false;
 		}
+
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		if (this.firstVisibleTab < this.allTabHeaders.length - 1) {
 			let visibleTab = this.allTabHeaders[this.firstVisibleTab].parentElement;
@@ -275,6 +281,7 @@ export class TabHeaders implements AfterViewInit {
 		if (tab.disabled) {
 			return;
 		}
+
 		this.currentSelectedTab = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
@@ -287,6 +294,7 @@ export class TabHeaders implements AfterViewInit {
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		let tabLi = tab.offsetParent;
+
 		if (tabLi.offsetLeft + tabLi.offsetWidth > (headerContainer.offsetWidth - this.scrollLeft)) {
 			this.scrollLeft = -((tabLi.offsetLeft + tabLi.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
 		} else if (tabLi.offsetLeft + this.scrollLeft < 0) { // if the target is scrolled behind the left edge move it into view
