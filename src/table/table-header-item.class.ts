@@ -31,8 +31,6 @@ export class TableHeaderItem {
 	 */
 	style = {"width": "150px"};
 
-	private _ascending = true;
-
 	/**
 	 * If true, sort is set to ascending, if false descending will be true.
 	 *
@@ -177,6 +175,14 @@ export class TableHeaderItem {
 	 * @memberof TableHeaderItem
 	 */
 	filterData: any;
+
+	/**
+	 * used in `ascending`
+	 *
+	 * @private
+	 * @memberof TableHeaderItem
+	 */
+	private _ascending = true;
 
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty

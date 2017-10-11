@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "list-view-demo",
+	selector: "app-list-view-demo",
 	template: `
 	<h1>List view demo</h1>
 
 	<ng-template #listTpl let-item="item">
-		<n-checkbox class="checkbox--inline"
+		<n-checkbox inline="true"
 		[(ngModel)]="item.selected"
 		[disabled]="item.disabled"
 		aria-hidden="true"></n-checkbox>
@@ -27,7 +27,7 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class ListViewDemo {
-	private demoItems = [
+	public demoItems = [
 		{
 			content: "item one",
 			selected: false,
@@ -52,13 +52,14 @@ export class ListViewDemo {
 	];
 
 
-	private demoItems1 = Array.from(this.demoItems, this.clone);
+	public demoItems1 = Array.from(this.demoItems, this.clone);
 
-	private clone (el) {
-		return Object.assign({}, el);
-	}
 
 	onSelect(ev) {
 		ev.item.selected = !ev.item.selected;
+	}
+
+	private clone (el) {
+		return Object.assign({}, el);
 	}
 }

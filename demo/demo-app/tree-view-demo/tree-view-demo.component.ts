@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "tree-view-demo",
+	selector: "app-tree-view-demo",
 	template: `
 	<h1>Tree view demo</h1>
 
@@ -259,19 +259,19 @@ export class TreeViewDemo {
 				}
 			}
 		};
-		let any = (items, cb) => {
+		let anyF = (items, cb) => {
 			for (let item of items) {
 				if (cb(item)) {
 					return true;
 				}
 				if (item.items) {
-					return any(item.items, cb);
+					return anyF(item.items, cb);
 				}
 			}
 			return false;
 		};
 		if (ev.item.items) {
-			if (any(ev.item.items, item => item.selected)) {
+			if (anyF(ev.item.items, item => item.selected)) {
 				setSelect(ev.item.items, false);
 				ev.item.selected = false;
 				event.target.checked = false;
@@ -302,20 +302,20 @@ export class TreeViewDemo {
 	}
 
 	isIndeterminate(item, box) {
-		let any = (items, cb) => {
+		let anyF = (items, cb) => {
 			for (let i of items) {
 				if (cb(i)) {
 					return true;
 				}
 				if (i.items) {
-					return any(i.items, cb);
+					return anyF(i.items, cb);
 				}
 			}
 			return false;
 		};
 		if (item.items) {
 			let selected = item.items.filter(i => i.selected);
-			if (any(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
+			if (anyF(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
 				box.indeterminate = true;
 				return true;
 			}

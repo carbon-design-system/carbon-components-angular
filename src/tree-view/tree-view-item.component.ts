@@ -2,6 +2,7 @@ import {
 	Component,
 	Input,
 	Output,
+	OnInit,
 	EventEmitter,
 	ElementRef,
 	TemplateRef,
@@ -65,7 +66,7 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 		</n-tree-view-wrapper>
 	`
 })
-export class TreeViewItem {
+export class TreeViewItem implements OnInit {
 	public parent;
 	public isTpl = false;
 

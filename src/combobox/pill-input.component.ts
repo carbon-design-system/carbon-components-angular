@@ -9,7 +9,10 @@ import {
 	ViewChildren,
 	ContentChildren,
 	QueryList,
-	forwardRef
+	forwardRef,
+	OnChanges,
+	AfterViewInit,
+	HostBinding
 } from "@angular/core";
 import { Pill } from "./pill.component";
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -90,12 +93,9 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				class="more"
 				href=""
 				(click)="showMore($event)">Hide</a>
-		</div>`,
-	host: {
-		class: "pill-input-wrapper"
-	}
+		</div>`
 })
-export class PillInput {
+export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
 	public focus = false;
 	/** height of the expanded input */
@@ -130,6 +130,8 @@ export class PillInput {
 	@ViewChildren("comboInput") comboInputs: QueryList<any>;
 	/** list of instantiated pills */
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
+
+	@HostBinding("attr.class") class = "pill-input-wrapper";
 
 	/** instaniates a pill-input */
 	constructor(private _elementRef: ElementRef) {}
@@ -207,17 +209,6 @@ export class PillInput {
 	}
 
 	/**
-	 * checks weather the placeholder should be displayed or not.
-	 */
-	private checkPlaceholderVisibility(): void {
-		if (this.type === "single") {
-			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focus && !this.getInputText());
-		} else {
-			setTimeout(() => this.showPlaceholder = this.empty(this.pills) && !this.focus && !this.getInputText());
-		}
-	}
-
-	/**
 	 * Helper method to check if an array is empty
 	 *
 	 * @param {Array<any>} array
@@ -271,20 +262,6 @@ export class PillInput {
 			}
 			this.setSelection(this.comboInputs.last.nativeElement);
 		}
-	}
-
-	/**
-	 * selects all the text in a given node
-	 *
-	 * @param target node to set the selection on
-	 */
-	private setSelection(target) {
-		let selectionRange = document.createRange();
-		let selection = window.getSelection();
-		selectionRange.selectNodeContents(target);
-		selection.removeAllRanges();
-		selection.addRange(selectionRange);
-		target.focus();
 	}
 
 	/**
@@ -383,5 +360,30 @@ export class PillInput {
 		this.doResize();
 		this.clearInputText(ev.target);
 		this.search.emit(this.getInputText(ev));
+	}
+
+	/**
+	 * checks weather the placeholder should be displayed or not.
+	 */
+	private checkPlaceholderVisibility(): void {
+		if (this.type === "single") {
+			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focus && !this.getInputText());
+		} else {
+			setTimeout(() => this.showPlaceholder = this.empty(this.pills) && !this.focus && !this.getInputText());
+		}
+	}
+
+	/**
+	 * selects all the text in a given node
+	 *
+	 * @param target node to set the selection on
+	 */
+	private setSelection(target) {
+		let selectionRange = document.createRange();
+		let selection = window.getSelection();
+		selectionRange.selectNodeContents(target);
+		selection.removeAllRanges();
+		selection.addRange(selectionRange);
+		target.focus();
 	}
 }

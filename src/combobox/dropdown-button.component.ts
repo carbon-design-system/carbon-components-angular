@@ -1,4 +1,5 @@
 import {
+	AfterViewInit,
 	Component,
 	OnInit,
 	ElementRef,
@@ -50,9 +51,7 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 		</div>
 	`,
 })
-export class DropdownButton {
-	/** reference to the dropdown list dom node */
-	private dropdown;
+export class DropdownButton implements AfterViewInit {
 	/** specifies weather the dropdown should be visible or not. true/false */
 	@Input() open = false;
 	/** specifies weather the dropdown is disabled or not. true/false */
@@ -61,6 +60,8 @@ export class DropdownButton {
 	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 	/** ContentChild reference to the item list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
+	/** reference to the dropdown list dom node */
+	private dropdown;
 
 	/**
 	 * Instantiates DropdownButton
@@ -73,22 +74,6 @@ export class DropdownButton {
 	 */
 	ngAfterViewInit() {
 		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
-	}
-
-	/**
-	 * Handles tabs out of the list, and arrow keys into the list
-	 *
-	 * @param {KeyboardEvent} ev
-	 */
-	@HostListener("keydown", ["$event"])
-	private keyDown(ev: KeyboardEvent) {
-		if (ev.key === "Tab") {
-			this.open = false;
-		}
-		if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
-			ev.stopImmediatePropagation();
-			this.view.getCurrentElement().focus();
-		}
 	}
 
 	/** closes the dropdown and emits the close event */
@@ -108,6 +93,22 @@ export class DropdownButton {
 			this.closeDropdown();
 		} else {
 			this.openDropdown();
+		}
+	}
+
+	/**
+	 * Handles tabs out of the list, and arrow keys into the list
+	 *
+	 * @param {KeyboardEvent} ev
+	 */
+	@HostListener("keydown", ["$event"])
+	private keyDown(ev: KeyboardEvent) {
+		if (ev.key === "Tab") {
+			this.open = false;
+		}
+		if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
+			ev.stopImmediatePropagation();
+			this.view.getCurrentElement().focus();
 		}
 	}
 }
