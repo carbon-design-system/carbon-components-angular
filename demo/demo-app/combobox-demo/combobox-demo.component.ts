@@ -11,9 +11,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				placeholder="Select or enter"
 				[items]="demoItems2"
 				(select)="onSelect($event)">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -25,9 +23,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				[items]="demoItems3"
 				(select)="onSelect($event)"
 				(submit)="onSubmit($event)">
-				<n-dropdown-button (close)="onClose()">
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 

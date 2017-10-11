@@ -19,11 +19,14 @@ import { ListItem } from "./../dropdown/list-item.interface";
  *
  * There is a sizeable chunk of logic here handling focus and keyboard state around pills.
  */
+// 'height.px': expanded?expandedHeight:null
 @Component({
 	selector: "n-pill-input",
 	template: `
-		<div
-			class="pill-input"
+		<!--<div
+			class="combobox_input"
+			aria-multiline="true"
+			aria-autocomplete="list"
 			role="textbox"
 			[ngClass]="{
 				focus: focus,
@@ -31,41 +34,45 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			}"
 			(click)="focusInput($event)"
 			[ngStyle]="{
-				'height.px': expanded?expandedHeight:null
-			}">
+				'expand-overflow': expanded
+			}">-->
 			<div
 				*ngIf="type === 'multi'"
-				#pillWrapper
-				class="pills-wrapper">
-				<ng-content></ng-content>
-				<span
-					*ngIf="showPlaceholder"
-					class="placeholder">
-					{{ placeholder }}
-				</span>
-				<span
-					class="pill-wrapper"
-					*ngFor="let pill of pills; let last = last">
+				role="textbox"
+				class="combobox_input">
+				<div
+					#pillWrapper
+					class="input_pills">
+					<ng-content></ng-content>
+					<!--<span
+						*ngIf="showPlaceholder"
+						class="placeholder">
+						{{ placeholder }}
+					</span>-->
 					<n-pill
+						*ngFor="let pill of pills; let last = last"
 						[item]="pill">
 						{{ pill.content }}
 					</n-pill>
 					<div
 						#comboInput
-						class="combo-input"
+						class="input"
 						contenteditable
 						(keydown)="onKeydown($event)"
 						(keyup)="onKeyup($event)"></div>
-				</span>
-				<div
-					#comboInput
-					*ngIf="empty(pills)"
-					class="combo-input"
-					contenteditable
-					(keydown)="onKeydown($event)"
-					(keyup)="onKeyup($event)"></div>
+					<div
+						#comboInput
+						*ngIf="empty(pills)"
+						class="input"
+						contenteditable
+						(keydown)="onKeydown($event)"
+						(keyup)="onKeyup($event)"></div>
+				</div>
 			</div>
-			<div
+			<input
+				*ngIf="type === 'single'"
+				type="text"/>
+			<!--<div
 				*ngIf="type === 'single'"
 				class="pills-wrapper">
 				<span
@@ -79,20 +86,22 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					contenteditable
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">{{ displayValue }}</div>
-			</div>
-			<a
+			</div>-->
+			<button
 				*ngIf="!expanded && numberMore > 0"
-				class="more"
+				class="btn--link"
 				href=""
-				(click)="showMore($event)">{{ numberMore }} more</a>
-			<a
+				(click)="showMore($event)">{{ numberMore }} more</button>
+			<button
 				*ngIf="expanded && numberMore > 0"
-				class="more"
+				class="btn--link"
 				href=""
-				(click)="showMore($event)">Hide</a>
-		</div>`,
+				(click)="showMore($event)">Hide</button>
+		<!--</div>-->`,
 	host: {
-		class: "pill-input-wrapper"
+		"class": "",
+		role: "textbox",
+		style: "width: 100%"
 	}
 })
 export class PillInput {

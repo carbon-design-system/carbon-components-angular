@@ -16,7 +16,11 @@ import { ListItem } from "./../list-item.interface";
 	selector: "n-tree-wrapper",
 	template: `
 		<ul
-			class="menu_tree"
+			[ngClass]="{
+				'menu_tree--sm': size === 'sm',
+				'menu_tree': size === 'default',
+				'menu_tree--lg': size === 'lg'
+			}"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
 			[attr.aria-label]="label">
@@ -42,6 +46,7 @@ import { ListItem } from "./../list-item.interface";
 					[outerPadding]="outerPadding"
 					[iconWidth]="iconWidth"
 					[innerPadding]="innerPadding"
+					[size]="size"
 					(select)="bubbleSelect($event)">
 				</n-tree-item>
 			</li>
@@ -61,6 +66,7 @@ export class TreeWrapper {
 	@Input() outerPadding = 20; // padding from left edge
 	@Input() iconWidth = 16;
 	@Input() innerPadding = 10; // padding between icon and content
+	@Input() size: "sm" | "default" | "lg" = "default";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 

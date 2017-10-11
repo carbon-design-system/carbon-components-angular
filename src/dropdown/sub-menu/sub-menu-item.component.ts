@@ -50,6 +50,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 		<span
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
+			[class.active]="listItem.selected"
 			role="option">
 			{{listItem.content}}
 		</span>

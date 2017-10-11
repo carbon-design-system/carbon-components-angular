@@ -19,7 +19,9 @@ import { watchFocusJump } from "./../dropdowntools";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
-		<ul #list role="listbox"
+		<ul
+			#list
+			role="listbox"
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
 				'listbox': size === 'default',
@@ -37,8 +39,8 @@ import { watchFocusJump } from "./../dropdowntools";
 				<label
 					style="margin: 0;"
 					[ngClass]="{
-						'checkbox': size === 'default',
-						'checkbox--sm': size === 'sm'
+						'checkbox--sm': size === 'sm',
+						'checkbox': size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'">
 					<input

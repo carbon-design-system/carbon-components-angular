@@ -25,6 +25,7 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			[outerPadding]="outerPadding"
 			[iconWidth]="iconWidth"
 			[innerPadding]="innerPadding"
+			[size]="size"
 			(select)="onClick($event)">
 		</n-tree-wrapper>
 	`,
@@ -63,7 +64,7 @@ export class DropdownTree implements AbstractDropdownView {
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
 			if (this._elementRef) {
 				setTimeout(() => {
-					this.listList = this._elementRef.nativeElement.querySelectorAll(".item-wrapper");
+					this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 				}, 0);
 			}
 			this.setupFocusObservable();
@@ -71,7 +72,7 @@ export class DropdownTree implements AbstractDropdownView {
 	}
 
 	ngAfterViewInit() {
-		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper")) as HTMLElement[];
+		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 		this.setupFocusObservable();
 		if (this.size === "lg") {
 			setTimeout(() => {

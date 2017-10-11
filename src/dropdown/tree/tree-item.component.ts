@@ -72,6 +72,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[label]="listItem"
 			[outerPadding]="outerPadding"
 			[iconWidth]="iconWidth"
+			[size]="size"
 			[innerPadding]="innerPadding">
 		</n-tree-wrapper>
 	`
@@ -91,6 +92,7 @@ export class TreeItem {
 	@Input() outerPadding = 10; // padding from left edge
 	@Input() iconWidth = 16;
 	@Input() innerPadding = 10; // padding between icon and content
+	@Input() size: "sm" | "default" | "lg" = "default";
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}

@@ -21,14 +21,15 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 		<div class="combo-button-wrapper">
 			<button
 				role="button"
-				class="combo-button"
+				class="btn--add-on"
+				type="button"
 				[disabled]="disabled"
 				[ngStyle]="{
 					height: open?null:'30px'
 				}"
 				(click)="toggleDropdown()">
 				<svg
-					class="icon"
+					class="icon--xs"
 					[ngClass]="{
 						open: open
 					}"
@@ -38,16 +39,12 @@ import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class
 				</svg>
 			</button>
 		</div>
-		<div class="dropdown-wrapper">
+		<!--<div class="dropdown-wrapper">
 			<div
-				class="dropdown-menu"
-				style="position: relative;"
-				[ngClass]="{
-					open: open
-				}">
+				class="dropdown-menu">
 				<ng-content></ng-content>
 			</div>
-		</div>
+		</div>-->
 	`,
 })
 export class DropdownButton {

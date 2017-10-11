@@ -33,10 +33,7 @@ import { DropdownList } from "./dropdown-list.component";
 	template: `
 		<div class="menu_filter-options">
 			<label
-				[ngClass]="{
-					'checkbox': size === 'default',
-					'checkbox--sm': size === 'sm'
-				}"
+				class="checkbox"
 				*ngIf="type === 'multi'">
 				<input
 					#selectedOnly
@@ -47,6 +44,7 @@ import { DropdownList } from "./dropdown-list.component";
 			</label>
 			<label class="search_group">
 				<svg
+					style="top: 17px;"
 					aria-hidden="true"
 					class="search_icon"
 					xmlns="http://www.w3.org/2000/svg"
@@ -73,6 +71,7 @@ import { DropdownList } from "./dropdown-list.component";
 					(blur)="filterFocus = filter.value?true:false"/>
 				<button
 					class="close"
+					style="top: 13px;"
 					type="reset"
 					aria-label="Reset search"
 					[ngClass]="{
@@ -91,7 +90,14 @@ import { DropdownList } from "./dropdown-list.component";
 				</button>
 			</label>
 		</div>
-		<ul #list class="listbox" role="listbox">
+		<ul
+			#list
+			[ngClass]="{
+				'listbox--sm': size === 'sm',
+				'listbox': size === 'default',
+				'listbox--lg': size === 'lg'
+			}"
+			role="listbox">
 			<li tabindex="{{item.disabled?-1:0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -101,9 +107,10 @@ import { DropdownList } from "./dropdown-list.component";
 					selected: item.selected,
 					disabled: item.disabled
 				}">
-				<label [ngClass]="{
-						'checkbox': size === 'default',
-						'checkbox--sm': size === 'sm'
+				<label
+					[ngClass]="{
+						'checkbox--sm': size === 'sm',
+						'checkbox': size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'"
 					style="margin: 0;">

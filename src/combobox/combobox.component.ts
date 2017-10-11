@@ -21,20 +21,42 @@ import { ListItem } from "./../dropdown/list-item.interface";
 @Component({
 	selector: "n-combo-box",
 	template: `
-		<n-pill-input
-			[pills]="pills"
-			[placeholder]="placeholder"
-			[displayValue]="selectedValue"
-			[type]="type"
-			[disabled]="disabled"
-			(updatePills)="updatePills()"
-			(search)="doSearch($event)"
-			(submit)="doSubmit($event)">
-		</n-pill-input>
+		<div role="combobox">
+			<n-pill-input
+				[pills]="pills"
+				[placeholder]="placeholder"
+				[displayValue]="selectedValue"
+				[type]="type"
+				[disabled]="disabled"
+				(updatePills)="updatePills()"
+				(search)="doSearch($event)"
+				(submit)="doSubmit($event)">
+			</n-pill-input>
+			<button
+				role="button"
+				class="btn--add-on"
+				type="button"
+				[disabled]="disabled"
+				[ngStyle]="{
+					height: open?null:'30px'
+				}"
+				(click)="toggleDropdown()">
+				<svg
+					class="icon--xs"
+					[ngClass]="{
+						open: open
+					}"
+					width="16"
+					height="16">
+					<use xlink:href="#chevron_down_16"></use>
+				</svg>
+			</button>
+			<!--<n-dropdown-button (close)="onClose()"></n-dropdown-button>-->
+		</div>
 		<ng-content></ng-content>
 	`,
 	host: {
-		class: "combo",
+		class: "combobox",
 		role: "combobox",
 		"[attr.aria-expanded]": "dropdownButton?dropdownButton.open:false",
 		"[attr.aria-disabled]": "disabled?true:null"
