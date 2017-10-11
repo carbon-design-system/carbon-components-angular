@@ -1,6 +1,7 @@
 /// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
 import { Component } from "@angular/core";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { TestBed, ComponentFixture, inject } from "@angular/core/testing";
 
@@ -15,7 +16,12 @@ const createTestComponent = (html: string) =>
 
 describe("Tabs", () => {
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [Tabs, Tab, TabHeaders, TestComponent]});
+		TestBed.configureTestingModule({
+			declarations: [Tabs, Tab, TabHeaders, TestComponent],
+			imports: [
+				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}})
+			]
+		});
 	});
 
 	it("should work", () => {
