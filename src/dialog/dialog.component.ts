@@ -31,7 +31,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	@Output() close: EventEmitter<any> = new EventEmitter();
 	@Input() dialogConfig: DialogConfig;
 	@ViewChild("dialog") dialog: ElementRef;
-	protected placement: Position;
+	public placement: Position;
+	public data = {};
 	protected resizeSubscription: Subscription;
 	protected addGap = {
 		"left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
@@ -43,7 +44,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		"left-bottom": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
 		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
 	};
-	public data = {};
 
 	constructor(protected _elementRef: ElementRef) {}
 
