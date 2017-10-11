@@ -34,7 +34,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	public data = {};
 
-	protected placement: Position;
+	public placement: Position;
+
 	protected resizeSubscription: Subscription;
 	protected addGap = {
 		"left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
