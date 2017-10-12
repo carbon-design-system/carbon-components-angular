@@ -52,7 +52,7 @@
     "@compodoc/compodoc": "1.0.1",
     "@ngx-translate/core": "^6.0.1",
     "@peretz/charts": "0.0.1-alpha.6813c",
-    "@peretz/matter": "latest",
+    "@peretz/matter": "0.1.0-alpha.d64bf",
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.42",

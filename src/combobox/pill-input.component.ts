@@ -32,6 +32,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			role="textbox"
 			*ngIf="empty(pills)"-->
 			<div
+				#inputWrapper
 				*ngIf="type === 'multi'"
 				role="textbox"
 				class="combobox_input"
@@ -49,12 +50,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				<div
 					#pillWrapper
 					class="input_pills">
-					<div
-						#comboInput
-						class="input"
-						contenteditable
-						(keydown)="onKeydown($event)"
-						(keyup)="onKeyup($event)"></div>
 					<ng-container *ngFor="let pill of pills; let last = last">
 						<n-pill
 							[item]="pill">
@@ -62,11 +57,18 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						</n-pill>
 						<div
 							#comboInput
+							*ngIf="!last"
 							class="input"
 							contenteditable
 							(keydown)="onKeydown($event)"
 							(keyup)="onKeyup($event)"></div>
 					</ng-container>
+					<div
+						#comboInput
+						class="input"
+						contenteditable
+						(keydown)="onKeydown($event)"
+						(keyup)="onKeyup($event)"></div>
 				</div>
 				<button
 					*ngIf="!expanded && numberMore > 0"
@@ -80,6 +82,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					(click)="showMore($event)">Hide</button>
 			</div>
 			<input
+				#singleInput
 				*ngIf="type === 'single'"
 				type="text"
 				[disabled]="disabled"
@@ -132,8 +135,12 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@Output() search = new EventEmitter();
 	/** emitted when the user presses enter and a value is present */
 	@Output() submit = new EventEmitter();
-	/** ViewChld of the pill wrapper */
+	/** ViewChild of the pill wrapper */
 	@ViewChild("pillWrapper") pillWrapper;
+	/** ViewChild for the overall wrapper */
+	@ViewChild("inputWrapper") inputWrapper;
+	/** ViewChild for the single input input box */
+	@ViewChild("singleInput") singleInput;
 	/** List of inputs */
 	@ViewChildren("comboInput") comboInputs: QueryList<any>;
 	/** list of instantiated pills */
@@ -157,9 +164,11 @@ export class PillInput implements OnChanges, AfterViewInit {
 			setTimeout(() => {
 				this.numberMore = 0;
 				let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
-				for (let pill of pills) {
-					if (pill.offsetTop > 30) {
-						this.numberMore++;
+				if (pills.length > 1) {
+					for (let pill of pills) {
+						if (pill.offsetTop > 30) {
+							this.numberMore++;
+						}
 					}
 				}
 				this.pillInstances.forEach(item => {
@@ -173,8 +182,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 			}, 0);
 		}
 		if (changes.displayValue) {
-			if (this.type === "single" && this.comboInputs) {
-				this.comboInputs.first.nativeElement.textContent = changes.displayValue.currentValue;
+			if (this.type === "single" && this.singleInput) {
+				this.singleInput.nativeElement.value = changes.displayValue.currentValue;
 			}
 			this.checkPlaceholderVisibility();
 		}
@@ -184,6 +193,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 * binds events on the view
 	 */
 	ngAfterViewInit() {
+		if (this.inputWrapper) {
+			this.inputWrapper.nativeElement.scrollTop = 0;
+		}
 		if (this.type === "multi") {
 			let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
 			for (let pill of pills) {
@@ -270,6 +282,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 			}
 			this.setSelection(this.comboInputs.last.nativeElement);
 		}
+		this.inputWrapper.nativeElement.scrollTop = 0;
 	}
 
 	/**
