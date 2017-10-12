@@ -13,6 +13,7 @@ import {
 	Optional,
 	Output,
 	QueryList,
+	Renderer2,
 	ViewChild,
 	HostBinding
 } from "@angular/core";
@@ -37,12 +38,14 @@ export class RadioChange {
 		}
 	]
 })
-export class RadioGroup implements AfterContentInit, ControlValueAccessor {
+export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
 	static radioGroupCount = 0;
 
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => RadioComponent)) _radios: QueryList<RadioComponent>;
+
+	@Input() size: "default" | "sm" = "default";
 
 	@Input()
 	get selected() {
@@ -85,20 +88,17 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 		this.markRadiosForCheck();
 	}
 
-
 	@HostBinding("attr.role") role = "radiogroup";
 
-
-	private _isInitialized = false;
+	private isInitialized = false;
 	private _disabled = false;
 	private _value: any = null;
 	private _selected: RadioComponent = null;
 	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {
+	constructor(private changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
 	}
-
 
 	checkSelectedRadio() {
 		if (this._selected && !this._selected.checked) {
@@ -121,7 +121,7 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 	}
 
 	emitChangeEvent() {
-		if (this._isInitialized) {
+		if (this.isInitialized) {
 			let event = new RadioChange();
 			event.source = this._selected;
 			event.value = this._value;
@@ -154,11 +154,19 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 		}
 	}
 
+	ngOnInit() {
+		// Build variant class
+		const className = `radio${this.size !== "default" ? `--${this.size}` : ""}`;
+
+		// Add class to host element
+		this.renderer.addClass(this.elementRef.nativeElement, className);
+	}
+
 	ngAfterContentInit() {
 		// Mark this component as initialized in AfterContentInit because the initial value can
 		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
 		// NgModel occurs *after* the OnInit of the RadioGroup.
-		this._isInitialized = true;
+		this.isInitialized = true;
 	}
 
 	public registerOnChange(fn: any) {
@@ -185,7 +193,7 @@ export class RadioGroup implements AfterContentInit, ControlValueAccessor {
 @Component({
 	selector: "n-radio",
 	template: `
-		<label class="radio" [for]="id">
+		<label [for]="id">
 			<input type="radio" #inputCheckbox
 				[checked]="checked"
 				[disabled]="disabled"
@@ -218,7 +226,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	_value: any = null;
 
 	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef) {
+				protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		super(changeDetectorRef);
 		RadioComponent.radioCount++;
 		this.radioGroup = radioGroup;

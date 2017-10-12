@@ -16,6 +16,7 @@ let nextId = 0;
 	template: `
 		<div
 			role="tabpanel"
+			class="tabs-panel"
 			*ngIf="shouldRender()"
 			[ngClass]="{hide: !active}"
 			[attr.aria-labelledby]="id + '-header'">
