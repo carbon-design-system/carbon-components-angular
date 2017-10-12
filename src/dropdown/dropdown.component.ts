@@ -68,10 +68,6 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		</div>
 	`,
 	encapsulation: ViewEncapsulation.None,
-	host: {
-		"[class]": "buildClass()",
-		"role": "combobox"
-	},
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -124,7 +120,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ViewChild("dropdownHost") rootButton;
 
 	@HostBinding("attr.role") role = "combobox";
-	@HostBinding("attr.class") class = "dropdown-wrapper";
+	@HostBinding("attr.class") class: string;
 
 	menuIsClosed = true;
 	dropdown: HTMLElement;
@@ -144,6 +140,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngOnInit() {
 		this.view.type = this.type;
+		this.class = this.buildClass();
 	}
 
 	ngAfterContentInit() {

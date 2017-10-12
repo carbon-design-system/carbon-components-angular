@@ -35,8 +35,8 @@ import { ListItem } from "./../dropdown/list-item.interface";
 				[type]="type"
 				[disabled]="disabled"
 				(updatePills)="updatePills()"
-				(search)="doSearch($event)"
-				(submit)="doSubmit($event)">
+				(search)="onSearch($event)"
+				(submit)="onSubmit($event)">
 			</n-pill-input>
 			<button
 				#dropdownButton
@@ -58,7 +58,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					<use xlink:href="#chevron_down_16"></use>
 				</svg>
 			</button>
-			<!--<n-dropdown-button (close)="onClose()"></n-dropdown-button>-->
 		</div>
 		<ng-content></ng-content>
 	`
@@ -266,6 +265,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			this.closeDropdown();
 		} else if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
 			ev.stopPropagation();
+			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
 		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
 			this.elementRef.nativeElement.querySelector(".combobox_input").focus();
@@ -291,7 +291,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		this.open = true;
 	}
 
-	toggleDropdown() {
+	/** toggles the dropdown */
+	public toggleDropdown() {
 		if (this.open) {
 			this.closeDropdown();
 		} else {
@@ -304,10 +305,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *
 	 * @param {string} searchString
 	 */
-	public doSearch(searchString) {
+	public onSearch(searchString) {
 		this.view["filterBy"](searchString);
 		if (searchString !== "") {
-			// this.dropdownButton.closeDropdown();
+			this.openDropdown();
 		} else {
 			this.selectedValue = "";
 		}
@@ -337,7 +338,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 *	}
 	 * ```
 	 */
-	doSubmit(ev) {
+	public onSubmit(ev) {
 		let index = 0;
 		if (ev.after) {
 			index = this.view.items.indexOf(ev.after) + 1;

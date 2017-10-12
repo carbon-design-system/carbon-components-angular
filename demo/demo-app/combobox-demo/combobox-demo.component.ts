@@ -10,7 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<n-combo-box
 				placeholder="Select or enter"
 				[items]="demoItems2"
-				(select)="onSelect($event)">
+				(selected)="onSelect($event)">
 				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
@@ -21,7 +21,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
-				(select)="onSelect($event)"
+				(selected)="onSelect($event)"
 				(submit)="onSubmit($event)">
 				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>

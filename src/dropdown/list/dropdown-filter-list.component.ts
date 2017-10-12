@@ -45,7 +45,6 @@ import { DropdownList } from "./dropdown-list.component";
 			</label>
 			<label class="search_group">
 				<svg
-					style="top: 17px;"
 					aria-hidden="true"
 					class="search_icon"
 					xmlns="http://www.w3.org/2000/svg"
@@ -69,10 +68,9 @@ import { DropdownList } from "./dropdown-list.component";
 					type="search"
 					tabindex="0"
 					(focus)="filterFocus = true"
-					(blur)="filterFocus = filter.value?true:false"/>
+					(blur)="filterFocus = (filter.value?true:false)"/>
 				<button
 					class="close"
-					style="top: 13px;"
 					type="reset"
 					aria-label="Reset search"
 					[ngClass]="{
