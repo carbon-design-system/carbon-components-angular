@@ -48,7 +48,7 @@ import { watchFocusJump } from "./../dropdowntools";
 					<input
 						tabindex="-1"
 						type="checkbox"
-						[attr.disabled]="item.disabled ? true : null"
+						[attr.disabled]="(item.disabled ? true : null)"
 						[checked]="item.selected"
 						(click)="doClick($event, item)">
 					<span class="checkbox_label"></span>

@@ -79,13 +79,13 @@ describe("Dropdown tree", () => {
 	});
 
 	it("should select an item", () => {
-		let itemEl = fixture.debugElement.query(By.css(".item-wrapper"));
+		let itemEl = fixture.debugElement.query(By.css("[role=option]"));
 		itemEl.triggerEventHandler("click", null);
 		expect(wrapper.selected.content).toBe("one");
 	});
 
 	it("should select and change selection", () => {
-		let itemEls = fixture.debugElement.queryAll(By.css(".item-wrapper"));
+		let itemEls = fixture.debugElement.queryAll(By.css("[role=option]"));
 		itemEls[0].triggerEventHandler("click", null);
 		expect(wrapper.selected.content).toBe("one");
 		itemEls[1].triggerEventHandler("click", null);
@@ -119,7 +119,7 @@ describe("tree multi list", () => {
 	});
 
 	it("should multi select", () => {
-		let itemEls = fixture.debugElement.queryAll(By.css(".item-wrapper"));
+		let itemEls = fixture.debugElement.queryAll(By.css("[role=option]"));
 		itemEls[0].triggerEventHandler("click", null);
 		itemEls[1].triggerEventHandler("click", null);
 		expect(wrapper.selected.length).toBe(2);
@@ -128,7 +128,7 @@ describe("tree multi list", () => {
 	});
 
 	xit("should expand the selection and not emit the item", () => {
-		let itemEls = fixture.debugElement.queryAll(By.css(".item-wrapper"));
+		let itemEls = fixture.debugElement.queryAll(By.css("[role=option]"));
 		itemEls[2].triggerEventHandler("click", null);
 		expect(wrapper.selected).toBe(null);
 	});
