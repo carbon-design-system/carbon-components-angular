@@ -32,9 +32,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<n-combo-box
 				disabled="true"
 				placeholder="Select or enter">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 

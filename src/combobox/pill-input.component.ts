@@ -42,7 +42,10 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			<div
 				*ngIf="type === 'multi'"
 				role="textbox"
-				class="combobox_input">
+				class="combobox_input"
+				[ngClass]="{
+					'expand-overflow': expanded
+				}">
 				<div
 					#pillWrapper
 					class="input_pills">
@@ -52,17 +55,18 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						class="placeholder">
 						{{ placeholder }}
 					</span>-->
-					<n-pill
-						*ngFor="let pill of pills; let last = last"
-						[item]="pill">
-						{{ pill.content }}
-					</n-pill>
-					<div
-						#comboInput
-						class="input"
-						contenteditable
-						(keydown)="onKeydown($event)"
-						(keyup)="onKeyup($event)"></div>
+					<ng-container *ngFor="let pill of pills; let last = last">
+						<n-pill
+							[item]="pill">
+							{{ pill.content }}
+						</n-pill>
+						<div
+							#comboInput
+							class="input"
+							contenteditable
+							(keydown)="onKeydown($event)"
+							(keyup)="onKeyup($event)"></div>
+					</ng-container>
 					<div
 						#comboInput
 						*ngIf="empty(pills)"
@@ -71,6 +75,16 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						(keydown)="onKeydown($event)"
 						(keyup)="onKeyup($event)"></div>
 				</div>
+				<button
+					*ngIf="!expanded && numberMore > 0"
+					class="btn--link"
+					href=""
+					(click)="showMore($event)">{{ numberMore }} more</button>
+				<button
+					*ngIf="expanded && numberMore > 0"
+					class="btn--link"
+					href=""
+					(click)="showMore($event)">Hide</button>
 			</div>
 			<input
 				*ngIf="type === 'single'"
@@ -90,22 +104,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)">{{ displayValue }}</div>
 			</div>-->
-			<button
-				*ngIf="!expanded && numberMore > 0"
-				class="btn--link"
-				href=""
-				(click)="showMore($event)">{{ numberMore }} more</button>
-			<button
-				*ngIf="expanded && numberMore > 0"
-				class="btn--link"
-				href=""
-				(click)="showMore($event)">Hide</button>
-		<!--</div>-->`,
-	host: {
-		"class": "",
-		role: "textbox",
-		style: "width: 100%"
-	}
+		<!--</div>-->`
 })
 export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
@@ -143,7 +142,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	/** list of instantiated pills */
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
 
-	@HostBinding("attr.class") class = "pill-input-wrapper";
+	@HostBinding("attr.class") class = "";
+	@HostBinding("attr.role") role = "textbox";
+	@HostBinding("style.width.%") width = "100";
 
 	/** instaniates a pill-input */
 	constructor(private _elementRef: ElementRef) {}
