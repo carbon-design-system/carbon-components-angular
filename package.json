@@ -35,7 +35,7 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.0.1",
     "zone.js": "^0.8.4",
-    "@peretz/matter": "latest"
+    "@peretz/matter": "0.1.0-alpha.d64bf"
   },
   "devDependencies": {
     "@angular/animations": "4.4.3",
