@@ -29,7 +29,7 @@ export class CheckboxChange {
 @Component({
 	selector: "n-checkbox",
 	template: `
-		<label [for]="id" class="checkbox">
+		<label [class]="getVariantClass()" [for]="id">
 			<input type="checkbox" #inputCheckbox
 				[checked]="checked"
 				[disabled]="disabled"
@@ -58,6 +58,9 @@ export class CheckboxChange {
 export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	static checkboxCount = 0;
 
+	@Input() size: "default" | "sm" = "default";
+	@Input() inline: boolean;
+	@Input() nested: boolean;
 	@Input() disabled = false;
 	@Input() name: string;
 	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
@@ -113,9 +116,16 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	@HostBinding("attr.role") role = "checkbox";
 
-
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		CheckboxComponent.checkboxCount++;
+	}
+
+	/**
+	 * Creates a class name based on @Input() size, inline, and nested.
+	 * @return {string}
+	 */
+	public getVariantClass() {
+		return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "default" ? `-${this.size}` : ""}`;
 	}
 
 	public toggle() {
