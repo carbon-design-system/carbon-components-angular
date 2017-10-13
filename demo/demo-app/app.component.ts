@@ -50,11 +50,6 @@ import * as en from "./../../src/i18n/en.json";
 export class AppComponent implements OnInit {
 	public navItems = [
 		{
-			content: "CSS demo",
-			link: "/css",
-			selected: false
-		},
-		{
 			content: "Forms demo",
 			link: "/forms",
 			selected: false

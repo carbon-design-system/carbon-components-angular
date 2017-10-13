@@ -13,43 +13,43 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<div>
 		Popover left
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="left">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover top
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover right
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover right-bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right-bottom">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover left-bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="left-bottom">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="bottom">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover auto position
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" [autoPosition]="true">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
@@ -58,14 +58,14 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			{{data | json}}
 		</ng-template>
 		<button class="btn--icon-link" [nPopover]="dataPopoverTemplate" title="Popover title" placement="right" [data]="{foo: 'bar'}">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 
 	<h3>Popover can be opened or closed manualy</h3>
 	Have a popover
 	<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" #popover="nPopover">
-		<n-icon icon="info" size="16"></n-icon>
+		<n-icon icon="info" size="sm"></n-icon>
 	</button>
 	<br>
 	<button class="btn--primary" (click)="popover.close()">Close above popover</button>
@@ -88,7 +88,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			[nPopoverMenu]="list"
 			placement="bottom-left"
 			title="Actions">
-			<n-icon icon="dotdotdot_vert" size="16"></n-icon>Menu left
+			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>Menu left
 		</button>
 	</span>
 	<span>
@@ -96,7 +96,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			[nPopoverMenu]="list"
 			placement="bottom-right"
 			title="Actions">
-			<n-icon icon="dotdotdot_vert" size="16"></n-icon>Menu right
+			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>Menu right
 		</button>
 	</span>
 
@@ -118,7 +118,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			title="Popover filter"
 			placement="left"
 			[footer]="filterFooter">
-			<n-icon icon="filter" size="16"></n-icon>
+			<n-icon icon="filter" size="sm"></n-icon>
 		</button>
 	<span>
 		Filter right
@@ -127,7 +127,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			title="Popover filter"
 			placement="right"
 			[footer]="filterFooter">
-			<n-icon icon="filter" size="16"></n-icon>
+			<n-icon icon="filter" size="sm"></n-icon>
 		</button>
 	</span>
 
@@ -136,7 +136,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
 		Regular popover
 		<button class="btn--icon-link" [nPopover]="customPopover" placement="right" title="Select item">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 
@@ -149,7 +149,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			placement="right"
 			title="Select item"
 			[appendToBody]="true">
-			<n-icon icon="info" size="16"></n-icon>
+			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	`,
