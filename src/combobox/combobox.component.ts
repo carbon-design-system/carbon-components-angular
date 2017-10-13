@@ -53,7 +53,8 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						open: open
 					}"
 					width="16"
-					height="16">
+					height="16"
+					viewbox="0 0 16 16">
 					<g>
 						<polygon points="14.6,4 8,10.6 1.4,4 0.6,4.8 8,12.3 15.4,4.8"/>
 					</g>
