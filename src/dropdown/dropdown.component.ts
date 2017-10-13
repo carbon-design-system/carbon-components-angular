@@ -46,26 +46,24 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			#dropdownHost
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			class="dropdown-value size-{{size}}"
 			(click)="toggleMenu()"
 			(blur)="onBlur()"
-			[disabled]="disabled"
-			[class.open]="!menuIsClosed">
-			<span *ngIf="valueSelected()">{{getDisplayValue() | async}}</span>
-			<span *ngIf="!valueSelected()" class="placeholder">{{getDisplayValue() | async}}</span>
-			<span class="dropdown-icon" [class.open]="!menuIsClosed">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16">
-					<path d="M14.6 4L8 10.6 1.4 4l-.8.8L8 12.3l7.4-7.5z"/>
-				</svg>
-			</span>
+			[disabled]="disabled">
+			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
+			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
+			<svg
+				[ngClass]="{
+					'icon--sm': size === 'sm',
+					'icon': size === 'default' || size === 'lg'
+				}"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16">
+				<path d="M14.6 4L8 10.6 1.4 4l-.8.8L8 12.3l7.4-7.5z"/>
+			</svg>
 		</button>
 		<div
-			class="dropdown-menu size-{{size}}"
-			[class.open]="!menuIsClosed">
+			class="dropdown_menu">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -122,7 +120,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ViewChild("dropdownHost") rootButton;
 
 	@HostBinding("attr.role") role = "combobox";
-	@HostBinding("attr.class") class = "dropdown-wrapper";
+	@HostBinding("attr.class") class: string;
 
 	menuIsClosed = true;
 	dropdown: HTMLElement;
@@ -142,6 +140,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	ngOnInit() {
 		this.view.type = this.type;
+		this.class = this.buildClass();
 	}
 
 	ngAfterContentInit() {
@@ -167,13 +166,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	ngAfterViewInit() {
-		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown_menu");
 	}
 
 	ngOnDestroy() {
 		if (this.appendToBody) {
 			this._appendToDropdown();
 		}
+	}
+
+	buildClass() {
+		if (this.size === "sm") { return "dropdown--sm"; }
+		if (this.size === "default") { return "dropdown"; }
+		if (this.size === "lg") { return "dropdown--lg"; }
 	}
 
 	writeValue(value: any) {
@@ -304,7 +309,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	_appendToBody() {
 		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = "dropdown-wrapper append-body";
+		this.dropdownWrapper.className = "dropdown append-body";
 		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.appendChild(this.dropdown);
 		document.body.appendChild(this.dropdownWrapper);

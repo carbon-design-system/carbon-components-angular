@@ -57,7 +57,7 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
 			if (this._elementRef) {
 				setTimeout(() => {
-					this.listList = this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper");
+					this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 				}, 0);
 			}
 			this.setupFocusObservable();
@@ -65,7 +65,7 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	}
 
 	ngAfterViewInit() {
-		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper")) as HTMLElement[];
+		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 		this.setupFocusObservable();
 	}
 

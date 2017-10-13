@@ -16,14 +16,25 @@ import { SubMenuItem } from "./sub-menu-item.component";
 @Component({
 	selector: "n-sub-menu-wrapper",
 	template: `
-		<ul #list class="sub-menu-view"
-			[class.open]="isOpen"
+		<ul
+			[ngClass]="{
+				'menu_flyout': level === 1,
+				'dropdown_menu': level > 1
+			}"
 			[attr.role]="role"
 			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
-			[attr.aria-label]="label" >
-			<li *ngFor="let item of items">
+			[attr.aria-label]="label">
+			<li
+				*ngFor="let item of items; index as i"
+				role="treeitem"
+				[attr.aria-level]="level"
+				[attr.aria-posinset]="i"
+				[attr.aria-setsize]="3"
+				[attr.aria-expanded]="(!!item.items ? item.selected : null)"
+				[attr.aria-selected]="(item.selected && !item.items) ? true : null">
 				<n-sub-menu-item
 					[listTpl]="listTpl"
+					[level]="level + 1"
 					[listItem]="item"
 					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
@@ -37,6 +48,7 @@ import { SubMenuItem } from "./sub-menu-item.component";
 })
 export class SubMenuWrapper {
 	@Input() items: Array<ListItem> = [];
+	@Input() level = 1;
 	@Input() isOpen = false;
 	@Input() parent: any = null;
 	@Input() listTpl: string | TemplateRef<any> = "";

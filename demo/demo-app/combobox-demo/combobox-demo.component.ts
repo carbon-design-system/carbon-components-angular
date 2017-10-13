@@ -10,10 +10,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<n-combo-box
 				placeholder="Select or enter"
 				[items]="demoItems2"
-				(select)="onSelect($event)">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				(selected)="onSelect($event)">
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -23,11 +21,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
-				(select)="onSelect($event)"
+				(selected)="onSelect($event)"
 				(submit)="onSubmit($event)">
-				<n-dropdown-button (close)="onClose()">
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -36,9 +32,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<n-combo-box
 				disabled="true"
 				placeholder="Select or enter">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -57,13 +51,6 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				Reset
 			</button>
 		</div>
-		<br>
-		<div style="position: relative;">
-			<n-dropdown-button></n-dropdown-button>
-		</div>
-		<br>
-		<br>
-		<n-pill [item]="{selected: false}">Some text</n-pill>
 		<br>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">

@@ -21,8 +21,15 @@ import { watchFocusJump } from "./../dropdowntools";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
-		<ul #list class="list" role="listbox">
-			<li tabindex="{{item.disabled?-1:0}}"
+		<ul
+			#list
+			role="listbox"
+			[ngClass]="{
+				'listbox--sm': size === 'sm',
+				'listbox': size === 'default',
+				'listbox--lg': size === 'lg'
+			}">
+			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"
@@ -30,19 +37,18 @@ import { watchFocusJump } from "./../dropdowntools";
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
-				}"
-				class="option">
+				}">
 				<label
 					style="margin: 0;"
 					[ngClass]="{
-						'checkbox': size === 'default',
-						'checkbox--sm': size === 'sm'
+						'checkbox--sm': size === 'sm',
+						'checkbox': size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'">
 					<input
 						tabindex="-1"
 						type="checkbox"
-						[attr.disabled]="item.disabled ? true : null"
+						[attr.disabled]="(item.disabled ? true : null)"
 						[checked]="item.selected"
 						(click)="doClick($event, item)">
 					<span class="checkbox_label"></span>

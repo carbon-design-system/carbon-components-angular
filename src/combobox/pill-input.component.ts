@@ -26,74 +26,63 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	selector: "n-pill-input",
 	template: `
 		<div
-			class="pill-input"
+			#inputWrapper
+			*ngIf="type === 'multi'"
 			role="textbox"
+			class="combobox_input"
 			[ngClass]="{
+				'expand-overflow': expanded,
 				focus: focus,
 				disabled: disabled
 			}"
-			(click)="focusInput($event)"
-			[ngStyle]="{
-				'height.px': expanded?expandedHeight:null
-			}">
+			(click)="focusInput($event)">
+			<span
+				*ngIf="showPlaceholder"
+				class="input_placeholder">
+				{{ placeholder }}
+			</span>
 			<div
-				*ngIf="type === 'multi'"
 				#pillWrapper
-				class="pills-wrapper">
-				<ng-content></ng-content>
-				<span
-					*ngIf="showPlaceholder"
-					class="placeholder">
-					{{ placeholder }}
-				</span>
-				<span
-					class="pill-wrapper"
-					*ngFor="let pill of pills; let last = last">
+				class="input_pills">
+				<ng-container *ngFor="let pill of pills; let last = last">
 					<n-pill
 						[item]="pill">
 						{{ pill.content }}
 					</n-pill>
 					<div
 						#comboInput
-						class="combo-input"
+						*ngIf="!last"
+						class="input"
 						contenteditable
 						(keydown)="onKeydown($event)"
 						(keyup)="onKeyup($event)"></div>
-				</span>
+				</ng-container>
 				<div
 					#comboInput
-					*ngIf="empty(pills)"
-					class="combo-input"
+					class="input"
 					contenteditable
 					(keydown)="onKeydown($event)"
 					(keyup)="onKeyup($event)"></div>
 			</div>
-			<div
-				*ngIf="type === 'single'"
-				class="pills-wrapper">
-				<span
-					*ngIf="showPlaceholder"
-					class="placeholder">
-					{{ placeholder }}
-				</span>
-				<div
-					#comboInput
-					class="combo-input"
-					contenteditable
-					(keydown)="onKeydown($event)"
-					(keyup)="onKeyup($event)">{{ displayValue }}</div>
-			</div>
-			<a
+			<button
 				*ngIf="!expanded && numberMore > 0"
-				class="more"
+				class="btn--link"
 				href=""
-				(click)="showMore($event)">{{ numberMore }} more</a>
-			<a
+				(click)="showMore($event)">{{ numberMore }} more</button>
+			<button
 				*ngIf="expanded && numberMore > 0"
-				class="more"
+				class="btn--link"
 				href=""
-				(click)="showMore($event)">Hide</a>
-		</div>`
+				(click)="showMore($event)">Hide</button>
+		</div>
+		<input
+			#singleInput
+			*ngIf="type === 'single'"
+			type="text"
+			[disabled]="disabled"
+			[placeholder]="placeholder"
+			(keydown)="onKeydown($event)"
+			(keyup)="onKeyup($event)"/>`
 })
 export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
@@ -124,17 +113,21 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@Output() search = new EventEmitter();
 	/** emitted when the user presses enter and a value is present */
 	@Output() submit = new EventEmitter();
-	/** ViewChld of the pill wrapper */
+	/** ViewChild of the pill wrapper */
 	@ViewChild("pillWrapper") pillWrapper;
+	/** ViewChild for the overall wrapper */
+	@ViewChild("inputWrapper") inputWrapper;
+	/** ViewChild for the single input input box */
+	@ViewChild("singleInput") singleInput;
 	/** List of inputs */
 	@ViewChildren("comboInput") comboInputs: QueryList<any>;
 	/** list of instantiated pills */
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
-
-	@HostBinding("attr.class") class = "pill-input-wrapper";
+	// needed since matter doesn't/can't account for the host element
+	@HostBinding("style.width.%") width = "100";
 
 	/** instaniates a pill-input */
-	constructor(private _elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef) {}
 
 	/**
 	 * updates the pills, and subscribes to their `remove` events
@@ -148,10 +141,12 @@ export class PillInput implements OnChanges, AfterViewInit {
 			this.pills = changes.pills.currentValue;
 			setTimeout(() => {
 				this.numberMore = 0;
-				let pills = this._elementRef.nativeElement.querySelectorAll(".pill");
-				for (let pill of pills) {
-					if (pill.offsetTop > 30) {
-						this.numberMore++;
+				let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
+				if (pills.length > 1) {
+					for (let pill of pills) {
+						if (pill.offsetTop > 30) {
+							this.numberMore++;
+						}
 					}
 				}
 				this.pillInstances.forEach(item => {
@@ -165,8 +160,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 			}, 0);
 		}
 		if (changes.displayValue) {
-			if (this.type === "single" && this.comboInputs) {
-				this.comboInputs.first.nativeElement.textContent = changes.displayValue.currentValue;
+			if (this.type === "single" && this.singleInput) {
+				this.singleInput.nativeElement.value = changes.displayValue.currentValue;
 			}
 			this.checkPlaceholderVisibility();
 		}
@@ -176,8 +171,11 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 * binds events on the view
 	 */
 	ngAfterViewInit() {
+		if (this.inputWrapper) {
+			this.inputWrapper.nativeElement.scrollTop = 0;
+		}
 		if (this.type === "multi") {
-			let pills = this._elementRef.nativeElement.querySelectorAll(".pill");
+			let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
 			for (let pill of pills) {
 				if (pill.offsetTop > 30) {
 					this.numberMore++;
@@ -188,7 +186,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 		if (this.disabled) { return; }
 		// collapse input on outside click
 		document.addEventListener("click", ev => {
-			if (this._elementRef.nativeElement.contains(ev.target)) {
+			if (this.elementRef.nativeElement.contains(ev.target)) {
 				this.setFocus(true);
 			} else {
 				this.setFocus(false);
@@ -198,7 +196,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 		// keyup here because we want to get the element the event ends on
 		// **not** the element the event starts from (that would be keydown)
 		document.addEventListener("keyup", ev => {
-			if (!this._elementRef.nativeElement.contains(ev.target)) {
+			if (!this.elementRef.nativeElement.contains(ev.target)) {
 				this.setFocus(false);
 			} else {
 				this.setFocus(true);
@@ -262,6 +260,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 			}
 			this.setSelection(this.comboInputs.last.nativeElement);
 		}
+		this.inputWrapper.nativeElement.scrollTop = 0;
 	}
 
 	/**
@@ -306,12 +305,17 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 * @param ev optional event to pull text from
 	 */
 	public getInputText(ev = null): string {
-		if (ev) {
-			return ev.target.textContent.trim();
+		if (this.type === "multi") {
+			if (ev) {
+				return ev.target.textContent.trim();
+			}
+			if (this.comboInputs) {
+				let text = this.comboInputs.find(input => input.nativeElement.textContent.trim() !== "");
+				return text ? text.nativeElement.textContent.trim() : "";
+			}
 		}
-		if (this.comboInputs) {
-			let text = this.comboInputs.find(input => input.nativeElement.textContent.trim() !== "");
-			return text ? text.nativeElement.textContent.trim() : "";
+		if (this.type === "single" && ev) {
+			return ev.target.value.trim();
 		}
 		return "";
 	}
@@ -325,6 +329,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 		if (ev.key === "Escape") {
 			this.expanded = false;
 		} else if (ev.key === "Backspace" && ev.target["textContent"] === "" && !this.empty(this.pills)) {
+			// stop the window from navigating backwards
+			ev.preventDefault();
 			let inputIndex = this.comboInputs.toArray().findIndex(input => input.nativeElement === ev.target);
 			if (inputIndex > -1) {
 				this.pills[inputIndex].selected = false;
