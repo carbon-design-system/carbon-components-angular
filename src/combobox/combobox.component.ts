@@ -57,7 +57,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					<g>
 						<polygon points="14.6,4 8,10.6 1.4,4 0.6,4.8 8,12.3 15.4,4.8"/>
 					</g>
-					</svg>
 				</svg>
 			</button>
 		</div>
