@@ -114,7 +114,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	@HostListener("document:click", ["$event"])
-	clickClose(event: MouseEvent) {
+	clickClose(event) {
 		if (!this._elementRef.nativeElement.contains(event.target)
 			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.doClose();
