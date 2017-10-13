@@ -116,7 +116,7 @@ import { Component, OnInit } from "@angular/core";
 				<a class="menu_link"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
-					<n-icon icon="search" color="white" size="16"></n-icon>
+					<n-icon icon="search" color="white" size="sm"></n-icon>
 				</a>
 			</li>
 			<li class="menu_item">

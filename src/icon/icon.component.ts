@@ -17,9 +17,10 @@ import { IconService } from "./icon.service";
  */
 @Component({
 	selector: "n-icon",
-	template: `<svg [attr.class]="buildMatterClass()+' '+classList">
-					<use [attr.xlink:href]="'#'+icon+'_'+sizeMap[size]"></use>
-				</svg>`,
+	template: `
+		<svg [attr.class]="buildMatterClass()+' '+classList">
+			<use [attr.xlink:href]="'#'+icon+'_'+sizeMap[size]"></use>
+		</svg>`,
 	providers: [IconService]
 })
 export class Icon {
@@ -39,12 +40,11 @@ export class Icon {
 	};
 
 	/**
-	 * Pass down classList from host element.
+	 * Pass down `classList` from host element.
+	 * @return {object}
 	 */
 	get classList() {
-		if (this._elementRef.nativeElement.classList.length > 0) {
-			return this._elementRef.nativeElement.classList;
-		}
+		return this._elementRef.nativeElement.classList;
 	}
 
 	/**
@@ -55,7 +55,7 @@ export class Icon {
 	constructor(private _elementRef: ElementRef) {}
 
 	/**
-	 * Create a class name based on @Input() color and size.
+	 * Create a class name based on @Input() `color` and `size`.
 	 * @return {string}
 	 */
 	public buildMatterClass() {
