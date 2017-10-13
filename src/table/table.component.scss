@@ -1,22 +1,25 @@
-@import "../core/scss-tools";
+/* stylelint-disable max-nesting-depth */
 
-@import "./../../node_modules/@peretz/matter/scss/tools";
+@import "../../node_modules/@peretz/matter/scss/tools";
 
 .table-container {
-	font-size: 13px;
 	display: flex;
-	color: #323232;
 	margin-top: 20px;
+
+	font-size: 13px;
+	color: m_color("gray", 60);
 }
 
-table {
+table.table {
 	display: inline-grid;
+	width: 100%;
 	overflow-x: scroll;
+
 	border-collapse: collapse;
 	border-spacing: 0;
-	width: 100%;
-	white-space: nowrap;
+
 	table-layout: fixed;
+	white-space: nowrap;
 
 	label.checkbox {
 		@include m_checkbox-variation($size: sm);
@@ -32,22 +35,19 @@ table {
 		overflow-y: scroll;
 
 		tr:hover {
-			background: rgba(85,150,230,0.10);
-			box-shadow: inset 1px 0 0 0 color("blue", 50);
+			background-color: m_color("blue", "40-10");
+			box-shadow: inset 1px 0 0 0 m_color("blue", 50);
 		}
 
 		&.striped {
 			tr {
 				&:nth-child(even) {
-					background: rgba(224,224,224,0.25);
+					background-color: m_color("gray", "10-25");
 				}
 
+				&:hover,
 				&.selected {
-					background: rgba(85,150,230,0.10);
-				}
-
-				&:hover {
-					background: rgba(85,150,230,0.10);
+					background-color: m_color("blue", "40-10");
 				}
 			}
 		}
@@ -59,23 +59,27 @@ table {
 		height: 30px;  // this fixes thead height change when popover renders
 
 		th {
-			text-align: left;
-			color: color("gray", 80);
-			padding-left: 10px;
-			padding-right: 10px;
-			background: rgba(224,224,224,0.5);
-			border-left: 1px solid white;
-			// fix for firefox not rendering borders correctly
-			background-clip: padding-box;
 			position: relative;
+
+			padding-right: 10px;
+			padding-left: 10px;
+
+			border-left: 1px solid m_color("white");
+			background-color: m_color("gray", "10-50");
+			background-clip: padding-box; // fix for firefox not rendering borders correctly
+
+			color: color("gray", 80);
+			text-align: left;
 
 			.resizer {
 				display: inline-block;
+				position: absolute;
+				top: 0;
+				right: -5px;
+
 				width: 15px;
 				height: 100%;
-				position: absolute;
-				right: -5px;
-				top: 0;
+
 				cursor: col-resize;
 			}
 
@@ -85,11 +89,11 @@ table {
 			}
 
 			.icon--blue-sm {
-				fill: color("blue", 60);
+				fill: m_color("blue", 60);
 			}
 
 			.icon--sm {
-				fill: color("gray", 60);
+				fill: m_color("gray", 60);
 			}
 
 			.col-actions {
@@ -101,18 +105,12 @@ table {
 					display: inline-block;
 
 					.icon--sm {
-						fill: color("blue", 60);
+						fill: m_color("blue", 60);
 					}
 				}
 
 				&:hover .icon--sm {
-					fill: color("blue", 60);
-				}
-			}
-
-			&:hover {
-				.col-actions {
-					display: inline-block;
+					fill: m_color("blue", 60);
 				}
 			}
 
@@ -121,70 +119,79 @@ table {
 			}
 
 			&:hover {
-				background: color("blue", 40, 0.1);
-				box-shadow: inset 0 1px 0 0 color("blue", 50);
+				background-color: m_color("blue", "40-10");
+				box-shadow: inset 0 1px 0 0 m_color("blue", 50);
+
+				.col-actions {
+					display: inline-block;
+				}
 			}
 		}
 
 		tr {
 			&:hover {
-				background: none;
+				background-color: none;
 			}
 		}
 	}
 
 	.cell-ellipsis {
-		flex: 1;
+		@extend %m_text-truncate;
 
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
+		flex: 1;
 	}
 
 	.filter-count {
 		position: absolute;
 		top: -4px;
 		left: 18px;
+
 		width: 15px;
-		line-height: 15px;
-		font-size: 11px;
-		text-align: center;
-		color: color("white", 0);
-		background: color("blue", 50);
+		background-color: m_color("blue", 50);
 		border-radius: 50%;
+
+		color: m_color("white");
+		font-size: 11px;
+		line-height: 15px;
+		text-align: center;
 	}
 
 	tr {
 		display: table;
-		width: 100%;
-		height: 30px;
-		padding-bottom: 12.5px;
-		padding-top: 12.5px;
-		color: #5A5A5A;
 		table-layout: fixed;
 
+		width: 100%;
+		height: 30px;
+
+		padding-top: 12.5px;
+		padding-bottom: 12.5px;
+
 		&.selected {
-			background: rgba(85,150,230,0.10);
+			background-color: m_color("blue", "40-10");
 
 			> .check-column {
-				box-shadow: inset 3px 0 0 0 color("blue", 50);
+				box-shadow: inset 3px 0 0 0 m_color("blue", 50);
 			}
 		}
 	}
 
 	td {
-		padding-left: 10px;
 		padding-right: 10px;
-		border-bottom: 1px solid #E0E0E0;
+		padding-left: 10px;
+
+		border-bottom: 1px solid $stroke-color;
+
 		overflow: hidden;
 	}
 }
 
 .check-column {
 	width: 35px;
-	text-align: center;
+
 	padding-left: 10px;
 	padding-right: 10px;
+
+	text-align: center;
 }
 
 .select-checkbox .checkbox {
@@ -193,58 +200,67 @@ table {
 }
 
 .scroll-table {
-	overflow-y: auto;
-	// ipad
-	-webkit-overflow-scrolling: touch;
 	height: calc(100% - 80px);
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch; // ipad
 }
 
 .table-footer {
-	text-align: center;
+	border-top: 1px solid m_color("gray", 50);
+
+	color: m_color("gray", 60);
 	line-height: 40px;
-	color: color("gray", 60);
-	border-top: 1px solid color("gray", 50);
+	text-align: center;
 
 	.table-selection-info {
 		float: left;
 	}
+
 	n-table-pagination {
 		margin: auto;
 	}
+
 	n-table-goto-page {
 		float: right;
 	}
 }
 
 .table-footer-simple {
-	line-height: 30px;
-	color: color("gray", 60);
-	border-top: 1px solid color("gray", 50);
-}
+	border-top: 1px solid m_color("gray", 50);
 
+	color: m_color("gray", 60);
+	line-height: 30px;
+}
 
 .table--lg {
 	thead {
 		height: 40px;  // this fixes thead height change when popover renders
 	}
-	thead th, td {
-		padding-left: 20px;
+
+	thead th,
+	td {
 		padding-right: 20px;
+		padding-left: 20px;
 	}
+
 	tr {
 		height: 40px;
 	}
+
 	.check-column {
 		width: 40px;
-		padding-left: 10px;
 		padding-right: 10px;
+		padding-left: 10px;
 	}
+
 	.select-checkbox .checkbox {
 		width: 20px;
 	}
+
 	label.checkbox {
 		@include m_checkbox-variation();
 	}
+
 	.checkbox_label {
 		height: auto;
 	}
@@ -254,10 +270,13 @@ table {
 	thead {
 		height: 25px;  // this fixes thead height change when popover renders
 	}
-	thead th, td {
-		padding-left: 5px;
+
+	thead th,
+	td {
 		padding-right: 5px;
+		padding-left: 5px;
 	}
+
 	tr {
 		height: 25px;
 	}

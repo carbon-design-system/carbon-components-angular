@@ -1,2 +1,0 @@
-# Core
-Core styles

@@ -16,7 +16,6 @@ import { TranslateModule } from "@ngx-translate/core";
 // demo imports
 import { BannerCustom } from "./banner-demo/banner-demo-custom";
 import { BannerDemo } from "./banner-demo/banner-demo-component";
-import { CoreDemo } from "./core-demo/core-demo.component";
 import { DropdownDemo } from "./dropdown-demo/dropdown-demo.component";
 import { ErrorModalComponent } from "./modal-demo/error-modal.component";
 import { FormModalComponent } from "./modal-demo/form-modal.component";
@@ -67,7 +66,6 @@ import {
 		HomeComponent,
 		AppDoc,
 		TableDemo,
-		CoreDemo,
 		FormsDemo,
 		IconDemo,
 		PopoverDemo,
@@ -126,10 +124,6 @@ import {
 			{
 				path: "table",
 				component: TableDemo
-			},
-			{
-				path: "css",
-				component: CoreDemo
 			},
 			{
 				path: "forms",
