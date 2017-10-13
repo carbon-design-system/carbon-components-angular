@@ -16,14 +16,13 @@ import { TranslateModule } from "@ngx-translate/core";
 // demo imports
 import { BannerCustom } from "./banner-demo/banner-demo-custom";
 import { BannerDemo } from "./banner-demo/banner-demo-component";
-import { CoreDemo } from "./core-demo/core-demo.component";
 import { DropdownDemo } from "./dropdown-demo/dropdown-demo.component";
 import { ErrorModalComponent } from "./modal-demo/error-modal.component";
 import { FormModalComponent } from "./modal-demo/form-modal.component";
 import { DrilldownModalComponent } from "./modal-demo/drilldown-modal.component";
 import { FormsDemo } from "./forms-demo/forms-demo.component";
 import { IconDemo } from "./icon-demo/icon-demo.component";
-import { ListViewDemo } from "./list-view-demo/list-view-demo.component";
+import { ListGroupDemo } from "./list-group-demo/list-group-demo.component";
 import { ModalDemo } from "./modal-demo/modal-demo.component";
 import { PopoverDemo } from "./popover-demo/popover-demo.component";
 import { SampleModalComponent } from "./modal-demo/sample-modal.component";
@@ -47,7 +46,7 @@ import {
 	IconModule,
 	IconService,
 	DialogModule,
-	ListViewModule,
+	ListGroupModule,
 	TreeViewModule,
 	DropdownModule,
 	TopNavModule,
@@ -67,12 +66,11 @@ import {
 		HomeComponent,
 		AppDoc,
 		TableDemo,
-		CoreDemo,
 		FormsDemo,
 		IconDemo,
 		PopoverDemo,
 		TabsDemo,
-		ListViewDemo,
+		ListGroupDemo,
 		DropdownDemo,
 		TopNavDemo,
 		TreeViewDemo,
@@ -108,7 +106,7 @@ import {
 		TabsModule,
 		IconModule,
 		DialogModule,
-		ListViewModule,
+		ListGroupModule,
 		TreeViewModule,
 		DropdownModule,
 		TopNavModule,
@@ -126,10 +124,6 @@ import {
 			{
 				path: "table",
 				component: TableDemo
-			},
-			{
-				path: "css",
-				component: CoreDemo
 			},
 			{
 				path: "forms",
@@ -152,8 +146,8 @@ import {
 				component: TabsDemo
 			},
 			{
-				path: "list-view",
-				component: ListViewDemo
+				path: "list-group",
+				component: ListGroupDemo
 			},
 			{
 				path: "tree-view",

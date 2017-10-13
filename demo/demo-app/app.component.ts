@@ -22,11 +22,11 @@ import * as en from "./../../src/i18n/en.json";
 			style="width: 100%; margin-left: 0;"
 			placeholder="Filter"
 			aria-label="filter components">
-		<n-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+		<n-list-group [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
 			<ng-template #item let-item="item">
 				<a routerLink="{{item.link}}">{{item.content}}</a>
 			</ng-template>
-		</n-list-view>
+		</n-list-group>
 	</nav>
 	<main class="main">
 	<div class="main-banner-container"></div>
@@ -80,8 +80,8 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "List view demo",
-			link: "/list-view",
+			content: "List group demo",
+			link: "/list-group",
 			selected: false
 		},
 		{

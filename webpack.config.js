@@ -1,8 +1,9 @@
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractText = require("extract-text-webpack-plugin");
-var nodeExternals = require('webpack-node-externals');
-var path = require('path');
+var nodeExternals = require("webpack-node-externals");
+var path = require("path");
+var StyleLintPlugin = require("stylelint-webpack-plugin");
 
 module.exports = [{
 	devtool: "source-map",
@@ -45,6 +46,9 @@ module.exports = [{
 		extensions: [".ts", ".js", ".json"]
 	},
 	plugins: [
+		new StyleLintPlugin({
+			files: "src/**/*.scss"
+		}),
 		new HtmlWebpackPlugin({
 			template: './demo/index.html'
 		})

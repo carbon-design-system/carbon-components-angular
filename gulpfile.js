@@ -1,121 +1,142 @@
+////////////////////////////////////
+// Gulp all the things
+////////////////////////////////////
+"use strict";
+
+//
+// Requires
+// =================================
 const gulp = require("gulp");
 const sass = require("node-sass");
-const gulpsass = require("gulp-sass");
 const concat = require("gulp-concat");
 const tap = require("gulp-tap");
 const path = require("path");
-const htmlmin = require("html-minifier").minify;
 const fs = require("fs");
-const ts = require("gulp-typescript");
+const es = require("event-stream");
+const runSequence = require("run-sequence");
 
-const SRC = "src";
+//
+// Variables
+// =================================
+const dirs = {
+	TS: [
+		"src/**/*.ts",
+		"!src/**/*.spec.ts"
+	],
+	i18n: "src/i18n/**/*.json",
+	FONTS: "node_modules/@peretz/matter/fonts/**/*",
+	DEMO: "demo",
+	DIST: "dist"
+};
 
-const TS_SRC = [
-	"src/**/*.ts",
-	"!src/**/*.spec.ts"
-];
-
-const SASS_SRC = [
-	"src/core/**/*.scss"
-];
-
-const FONT_SRC = [
-	"src/core/fonts/**/*"
-];
-
-const DIST = "dist";
-const SASS_DIST = `${DIST}/core`;
-
-const LICENSE = `
-/**
+const licenseTemplate = `/*!
+ *
+ * Neutrino v@PACKAGE_VERSION@ | @FILE_NAME@
  *
  * Licensed Materials - Property of IBM
- * @FILE_NAME@
+ *
  * © Copyright IBM Corporation 2014, @THIS_YEAR@
  * U.S. Government Users Restricted Rights: Use, duplication or disclosure
  * restricted by GSA ADP Schedule Contract with IBM Corp.
  *
  */
+\n
 `;
 
-const TSCONFG = require("./tsconfig.json").compilerOptions;
-
-
-gulp.task("build", ["build:angular", "build:sass", "build:css", "build:font", "build:i18n", "build:package"]);
-
+//
+// Build tasks
+// =================================
 gulp.task("build:angular", _ =>
-	gulp.src(TS_SRC)
+	gulp.src(dirs.TS)
 		.pipe(replaceTemplates())
-		.pipe(gulp.dest(DIST + "/src")));
-
-gulp.task("build:sass", _ =>
-	gulp.src(SASS_SRC)
-		.pipe(gulp.dest(SASS_DIST)));
-
-gulp.task("build:css", _ =>
-	gulp.src("src/core/common.scss")
-		.pipe(gulpsass())
-		.pipe(concat("neutrino.css"))
-		.pipe(gulp.dest(SASS_DIST)));
-
-gulp.task("build:font", _ =>
-	gulp.src(FONT_SRC)
-		.pipe(gulp.dest(`${DIST}/core/fonts`)));
+		.pipe(gulp.dest(`${dirs.DIST}/src`))
+);
 
 gulp.task("build:i18n", _ =>
-	gulp.src(SRC + "/i18n/**/*.json")
-	.pipe(gulp.dest(DIST + "/i18n")));
-
-gulp.task("build:package", _ =>
-	gulp.src("./package.json")
-		.pipe(version())
-		.pipe(gulp.dest(DIST)));
+	gulp.src(dirs.i18n)
+		.pipe(gulp.dest(`${dirs.DIST}/i18n`))
+);
 
 gulp.task("build:license", _ =>
-	gulp.src([
-		`${DIST}/**/*.scss`,
-		`${DIST}/**/*.css`,
-		`${DIST}/**/*.ts`,
-		`${DIST}/**/*.js`
-	]).pipe(licenseHeaders())
-		.pipe(gulp.dest(DIST)));
+	es.merge(
+		gulp.src("LICENSE.md")
+			.pipe(gulp.dest(dirs.DIST)),
+		gulp.src([
+			`${dirs.DIST}/**/*.scss`,
+			`${dirs.DIST}/**/*.css`,
+			`${dirs.DIST}/**/*.ts`,
+			`${dirs.DIST}/**/*.js`
+		])
+			.pipe(licenseHeaders())
+			.pipe(gulp.dest(dirs.DIST))
+	)
+);
 
-gulp.task("demo:fonts", _ =>
-	gulp.src(FONT_SRC)
-		.pipe(gulp.dest(`./demo/bundle/fonts`)));
+gulp.task("build:package", _ =>
+	gulp.src("package.json")
+		.pipe(version())
+		.pipe(gulp.dest(dirs.DIST))
+);
 
+gulp.task("build:readme", _ =>
+	gulp.src("README.md")
+		.pipe(gulp.dest(dirs.DIST))
+);
 
+gulp.task("build:changelog", _ =>
+	gulp.src("CHANGELOG.md")
+		.pipe(gulp.dest(dirs.DIST))
+);
+
+//
+// Demo tasks
+// =================================
+gulp.task("demo:font", _ =>
+	gulp.src(dirs.FONTS)
+		.pipe(gulp.dest(`${dirs.DEMO}/fonts`))
+);
+
+//
+// Running tasks
+// =================================
+gulp.task("build", ["build:angular", "build:i18n"]);
+
+gulp.task("build:meta", _ =>
+	runSequence("build:package", ["build:license", "build:readme", "build:changelog"])
+);
+
+gulp.task("demo", ["demo:font"]);
+
+//
+// Functions
+// =================================
 function licenseHeaders() {
   return tap(function(file) {
-    if (/scss|css|ts|js/.test(path.extname(file.path))) {
-      if (file.contents.toString("utf-8").indexOf("Copyright IBM Corporation") < 0) {
-        var updatedTemplate = LICENSE
-          .replace("@FILE_NAME@", path.basename(file.path))
-          .replace("@THIS_YEAR@", new Date().getFullYear());
-        file.contents = Buffer.concat([new Buffer(updatedTemplate), file.contents]);
-      }
-    }
+	const packageJSON = require("./package.json");
+	const updatedTemplate = licenseTemplate
+		.replace("@PACKAGE_VERSION@", packageJSON.version)
+		.replace("@FILE_NAME@", path.basename(file.path))
+		.replace("@THIS_YEAR@", new Date().getFullYear());
+	file.contents = Buffer.concat([new Buffer(updatedTemplate), file.contents]);
   });
 }
 
 function version() {
 	return tap(function(file) {
-		if (path.extname(file.path) === ".json") {
-			let packageJSON = JSON.parse(file.contents.toString("utf-8"));
-			if (process.env.TRAVIS) {
-				// beta release (every time master is merged into the beta branch (nominally weekly))
-				if (process.env.TRAVIS_BRANCH === "beta") {
-					const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
-					packageJSON.version = `${packageJSON.version}-beta.${build}`;
-				// dev release (every push)
-				} else if (process.env.TRAVIS_BRANCH === "master") {
-					const commit = process.env.TRAVIS_COMMIT;
-					packageJSON.version = `${packageJSON.version}-alpha.${commit.slice(0, 5)}`;
-				}
+		let packageJSON = JSON.parse(file.contents.toString("utf-8"));
+		if (process.env.TRAVIS) {
+			// beta release (every time master is merged into the beta branch (nominally weekly))
+			if (process.env.TRAVIS_BRANCH === "beta") {
+				const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
+				packageJSON.version = `${packageJSON.version}-beta.${build}`;
+			// dev release (every push)
+			} else if (process.env.TRAVIS_BRANCH === "master") {
+				const commit = process.env.TRAVIS_COMMIT;
+				packageJSON.version = `${packageJSON.version}-alpha.${commit.slice(0, 5)}`;
 			}
-			// otherwise we'll do a standard release with whatever version is in the package.json
-			file.contents = new Buffer(JSON.stringify(packageJSON));
 		}
+		// otherwise we'll do a standard release with whatever version is in the package.json
+		file.contents = new Buffer(JSON.stringify(packageJSON));
 	});
 }
 
