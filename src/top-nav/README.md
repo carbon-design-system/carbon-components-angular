@@ -73,7 +73,7 @@ Ex:
 			<label class="top-nav-link-item"
 				(click)="showSearchInput1 = toggleSearch(showSearchInput1)"
 				tabindex="0">
-				<n-icon class="menu-icon menu-icon-only" icon="search" size="16"></n-icon>
+				<n-icon class="menu-icon menu-icon-only" icon="search" size="sm"></n-icon>
 			</label>
 		</li>
 		<li>
@@ -82,7 +82,7 @@ Ex:
 				(click)="showNotifications1 = !showNotifications1"
 				[ngClass]="{'top-nav-link-item-selected': showNotifications1}"
 				[attr.aria-expanded]="!!showNotifications1">
-				<n-icon class="menu-icon menu-icon-only" icon="alert" size="16"></n-icon>
+				<n-icon class="menu-icon menu-icon-only" icon="alert" size="sm"></n-icon>
 			</a>
 			<div [ngClass]="{'hidden': !showNotifications1}" class="top-nav-dropdown">
 				There will be a drop down here of sorts.
@@ -97,7 +97,7 @@ Ex:
 				(click)="showUser1 = !showUser1"
 				[ngClass]="{'top-nav-link-item-selected': showUser1}"
 				[attr.aria-expanded]="!!showUser1">
-				<n-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="profile" size="16"></n-icon>
+				<n-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="profile" size="sm"></n-icon>
 				<span *ngIf="!showSearchInput1">Sam Uncley</span>
 			</a>
 			<div [ngClass]="{'hidden': !showUser1}" class="top-nav-dropdown">
@@ -110,7 +110,7 @@ Ex:
 				(click)="showHelp1 = !showHelp1"
 				[ngClass]="{'top-nav-link-item-selected': showHelp1}"
 				[attr.aria-expanded]="!!showHelp1">
-				<n-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="help" size="16"></n-icon>
+				<n-icon class="menu-icon" [ngClass]="{'menu-icon-only': showSearchInput1}" icon="help" size="sm"></n-icon>
 				<span *ngIf="!showSearchInput1">Help</span>
 			</a>
 			<div [ngClass]="{'hidden': !showHelp1}" class="top-nav-dropdown">
