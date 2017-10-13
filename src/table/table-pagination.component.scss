@@ -1,15 +1,18 @@
-@import "../core/scss-tools";
+@import "../../node_modules/@peretz/matter/scss/tools";
 
 .table-pagination {
 	display: inline-block;
 
-	.page-number, .main-arrow {
+	.page-number,
+	.main-arrow {
 		display: inline-block;
-		color: color("gray", 60);
-		fill: color("gray", 60);
+
+		color: m_color("gray", 60);
 		line-height: 20px;
-		cursor: pointer;
 		text-align: center;
+
+		fill: m_color("gray", 60);
+		cursor: pointer;
 	}
 
 	.page-number {
@@ -17,8 +20,8 @@
 		margin-right: 5px;
 
 		&.selected {
-			color: white;
-			background-color: color("blue", 50);
+			background-color: m_color("blue", 50);
+			color: m_color("white");
 			cursor: auto;
 		}
 	}

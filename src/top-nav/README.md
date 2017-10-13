@@ -21,7 +21,7 @@ Ex:
 ```html
 <n-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false">
 	<n-hamburger hamburger></n-hamburger>
-	<n-list-view links [items]="demoItems"></n-list-view>
+	<n-list-group links [items]="demoItems"></n-list-group>
 </n-top-nav>
 ```
 
@@ -33,7 +33,7 @@ Ex:
 }
 ```
 
-See list-view component.
+See list-group component.
 
 # Hamburger component
 
