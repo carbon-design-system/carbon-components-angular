@@ -29,7 +29,7 @@ import { watchFocusJump } from "./../dropdowntools";
 				'listbox': size === 'default',
 				'listbox--lg': size === 'lg'
 			}">
-			<li tabindex="{{item.disabled?-1:0}}"
+			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"

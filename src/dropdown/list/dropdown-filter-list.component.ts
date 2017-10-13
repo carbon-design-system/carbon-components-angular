@@ -87,7 +87,7 @@ import { DropdownList } from "./dropdown-list.component";
 				'listbox--lg': size === 'lg'
 			}"
 			role="listbox">
-			<li tabindex="{{item.disabled?-1:0}}"
+			<li tabindex="{{item.disabled ? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"

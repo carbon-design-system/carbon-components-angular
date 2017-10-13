@@ -18,7 +18,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
 			role="option"
-			tabindex="{{listItem.disabled?-1:0}}">
+			tabindex="{{listItem.disabled ? -1 : 0}}">
 			{{listItem.content}}
 		</span>
 		<n-tree-wrapper

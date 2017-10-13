@@ -30,8 +30,8 @@ import { SubMenuItem } from "./sub-menu-item.component";
 				[attr.aria-level]="level"
 				[attr.aria-posinset]="i"
 				[attr.aria-setsize]="3"
-				[attr.aria-expanded]="!!item.items?item.selected:null"
-				[attr.aria-selected]="(item.selected && !item.items)?true:null">
+				[attr.aria-expanded]="(!!item.items ? item.selected : null)"
+				[attr.aria-selected]="(item.selected && !item.items) ? true : null">
 				<n-sub-menu-item
 					[listTpl]="listTpl"
 					[level]="level + 1"
