@@ -15,7 +15,7 @@ import {
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
-import { ListView } from "./../../list-view/list-view.component";
+import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
 
@@ -124,7 +124,7 @@ import { DropdownList } from "./dropdown-list.component";
 			</li>
 		</ul>`,
 		providers: [{provide: AbstractDropdownView, useExisting: DropdownFilter}]
-}) // conceptually this extends list-view, but we dont have to
+}) // conceptually this extends list-group, but we dont have to
 export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy, OnChanges {
 	@ViewChild("selectedOnly") selectedOnly;
 	@ViewChild("list") list;
