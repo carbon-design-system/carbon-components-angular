@@ -171,7 +171,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/** ViewChild of the pill input component */
 	@ViewChild(PillInput) pillInput: PillInput;
 
-	// @HostBinding("attr.role") role = "combobox";
 	@HostBinding("attr.class") class = "combobox";
 	@HostBinding("style.display") display = "block";
 
@@ -212,7 +211,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Subscribes to select events and handles focus/filtering/initial list updates
 	 */
 	ngAfterContentInit() {
-		// this.dropdownButton.disabled = this.disabled;
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe((ev) => {
