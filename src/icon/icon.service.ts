@@ -22,8 +22,8 @@ export class IconService {
 	/**
 	 * Sets the baseURL
 	 *
-	 * By default we use http://peretz-icons.mybluemix.net/ for sprites - this is suffciant for prototyping,
-	 * but for development and production it is reccomended to build streamlined sprites and host them statically.
+	 * By default we use http://peretz-icons.mybluemix.net/ for sprites - this is sufficient for prototyping,
+	 * but for development and production it is recommended to build streamlined sprites and host them statically.
 	 *
 	 * @param {string} url
 	 */
@@ -48,30 +48,7 @@ export class IconService {
 	constructor(private http: Http) {}
 
 	/**
-	 * Converts numbers or size strings (xs, sm, mg, lg) to a px value representation
-	 *
-	 * @param size number (or string that can be parsed as a number)
-	 */
-	size2px(size) {
-		if (parseFloat(size)) {
-			return parseFloat(size) + "px";
-		}
-		switch (size) {
-			case "xs":
-				return "14px";
-			case "sm":
-				return "16px";
-			case "md":
-				return "20px";
-			case "lg":
-				return "30px";
-			default:
-				return "16px";
-		}
-	}
-
-	/**
-	 * Responsiable for fetching sprites from the `baseURL`
+	 * Responsible for fetching sprites from the `baseURL`
 	 *
 	 * @param {string} name name of the sprite to request
 	 */

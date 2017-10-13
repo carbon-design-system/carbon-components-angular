@@ -1,10 +1,10 @@
 import {
 	Component,
 	ElementRef,
-	OnChanges,
-	OnInit,
+	HostBinding,
 	Input,
-	HostBinding
+	OnChanges,
+	OnInit
 } from "@angular/core";
 import { IconService } from "./icon.service";
 
@@ -17,80 +17,52 @@ import { IconService } from "./icon.service";
  */
 @Component({
 	selector: "n-icon",
-	template: `<svg
-					[attr.width]="iconSize"
-					[attr.height]="iconSize">
-					<use [attr.xlink:href]="'#'+icon+'_'+clampSize(iconSize)"></use>
-				</svg>`,
+	template: `
+		<svg [attr.class]="buildMatterClass()+' '+classList">
+			<use [attr.xlink:href]="'#'+icon+'_'+sizeMap[size]"></use>
+		</svg>`,
 	providers: [IconService]
 })
-export class Icon implements OnChanges {
-	/** computed size for the template */
-	public iconSize: string;
+export class Icon {
 	/** follows the naming convention found in the icon listing on the demo page */
-	@Input() icon = "";
-	/** is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended) */
-	@Input() size = "sm";
+	@Input() icon: string;
+	/** accepts color strings */
+	@Input() color: "blue" | "light" | "dark" | "white" = "dark";
+	/** accepts abbreviated size strings */
+	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
 
-	@HostBinding("attr.class") attrClass = this.className;
-	@HostBinding("attr.style") attrStyle = "display: inherit;";
+	/** map size strings to numeric values */
+	sizeMap = {
+		"xs": 14,
+		"sm": 16,
+		"md": 20,
+		"lg": 30
+	};
 
-	private _className: string;
-	get className() {
-		let cn: string;
-		if (this._elementRef.nativeElement.classList.length > 0) {
-			cn = this._elementRef.nativeElement.classList;
-		} else if (this.size === "md") {
-			cn = "icon";
+	/**
+	 * Pass down `classList` from host element.
+	 * @return {object}
+	 */
+	get classList() {
+		return this._elementRef.nativeElement.classList;
+	}
+
+	/**
+	 * Initialize the component
+	 *
+	 * @param {ElementRef} _elementRef
+	 */
+	constructor(private _elementRef: ElementRef) {}
+
+	/**
+	 * Create a class name based on @Input() `color` and `size`.
+	 * @return {string}
+	 */
+	public buildMatterClass() {
+		if (this.color === "dark" && this.size !== "md") {
+			return `icon--${this.size}`;
 		} else {
-			cn = `icon--${this.size}`;
-		}
-
-		// tslint:disable-next-line:triple-equals
-		if (cn != this._className) {
-			this._className = cn;
-		}
-
-		return this._className;
-	}
-
-	/**
-	 * Initilize the component
-	 *
-	 * @param {IconService} _icons
-	 */
-	constructor(private _icons: IconService, private _elementRef: ElementRef) {}
-
-	/**
-	 * Clamps the size to 14, 16, 20, or 30 px - the sizes most icons are available in
-	 *
-	 * @param {string} sizeStr pixel size string
-	 */
-	clampSize(sizeStr: string) {
-		let size = parseInt(sizeStr, 10);
-		if (size <= 14) {
-			return 14;
-		}
-		if (size > 14 && size <= 16) {
-			return 16;
-		}
-		if (size > 16 && size <= 20) {
-			return 20;
-		}
-		if (size >= 30) {
-			return 30;
-		}
-	}
-
-	/**
-	 * Updates `iconSize` with the relevant `size2px` value
-	 *
-	 * @param changes
-	 */
-	ngOnChanges(changes) {
-		// init icon and watch for changes
-		if (changes.size) {
-			this.iconSize = this._icons.size2px(changes.size.currentValue);
+			return `icon${this.color !== "dark" ? `--${this.color}` : ""}${this.color !== "dark" && this.size !== "md" ? `-${this.size}` : ""}`;
 		}
 	}
 }

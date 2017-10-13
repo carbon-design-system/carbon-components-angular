@@ -58,14 +58,4 @@ describe("Icon", () => {
 		fixture = TestBed.createComponent(Icon);
 		expect(fixture.componentInstance instanceof Icon).toBe(true);
 	});
-
-	it("should return the correct sizes", () => {
-		let iconService = TestBed.get(IconService);
-		expect(iconService.size2px("")).toEqual("16px");
-		expect(iconService.size2px("xs")).toEqual("14px");
-		expect(iconService.size2px("sm")).toEqual("16px");
-		expect(iconService.size2px("md")).toEqual("20px");
-		expect(iconService.size2px("lg")).toEqual("30px");
-		expect(iconService.size2px("100")).toEqual("100px");
-	});
 });

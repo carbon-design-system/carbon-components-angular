@@ -4,18 +4,18 @@ demo: [https://pages.github.ibm.com/peretz/neutrino/icon](https://pages.github.i
 
 ## Usage
 
-The Peretz iconography ecosystem is based around simple SVG sprites and the SVG `<use>` tag's `xlink:href` feature. The `use` tag and `xlink:href` is avliable in all [supported browsers](link to wild ducks).
+The Peretz iconography ecosystem is based around simple SVG sprites and the SVG `<use>` tag's `xlink:href` feature. The `use` tag and `xlink:href` is available in all [supported browsers](link to wild ducks).
 
 Using icons in your application requires two components: `n-sprite` and `n-icon`.
 
-`n-sprite` is used to load sprites (via the `sprite` attribute) and is generally used at the root of the application. Page specific sprites may be loaded on that page, but do note that may result in unintened network requets.
+`n-sprite` is used to load sprites (via the `sprite` attribute) and is generally used at the root of the application. Page specific sprites may be loaded on that page, but do note that may result in unintended network requests.
 
 `n-icon` pulls the icon from the loaded sprite, and renders it at the specified size. Under the hood, `n-icon` generates code similar to the following:
 ```
 <svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
 ```
 
-By default `n-sprite` uses http://peretz-icons.mybluemix.net/ for sprites - this is suffciant for prototyping, but for development and production it is reccomended to build streamlined sprites and host them statically. The base url should be set once through `IconService`s `setBaseURL` method.
+By default `n-sprite` uses http://peretz-icons.mybluemix.net/ for sprites - this is sufficient for prototyping, but for development and production it is recommended to build streamlined sprites and host them statically. The base url should be set once through `IconService`s `setBaseURL` method.
 
 raw SVGs live here: [https://github.ibm.com/peretz/iconography](https://github.ibm.com/peretz/iconography)
 
@@ -33,16 +33,21 @@ source: `src/icon/icon.component.ts`
 | @Input | Type   | Default Value |
 | ------ | ------ | ------------- |
 | icon   | string | ""            |
-| size   | string | "sm"          |
+| color  | string | "dark"        |
+| size   | string | "md"          |
 
 `icon` follows the naming convention found in the icon listing on the demo page
 
-`size` is one of xs, sm, md, lg, or a custom value specified as a number (will be parsed and "px" appended)
+`color` is one of blue, dark, light, white
+
+`size` is one of xs, sm, md, lg
 
 Ex:
 ```html
 <n-icon icon="Alert"></n-icon>
+<n-icon icon="Alert" color="white"></n-icon>
 <n-icon icon="Alert" size="lg"></n-icon>
+<n-icon icon="Alert" color="blue" size="xs"></n-icon>
 ```
 
 ### Sprite
@@ -73,10 +78,6 @@ specifies the root URL that sprites should be loaded from. **NOTE:** THIS **MUST
 `static setCacheLevel(level: "none" | "simple")`
 
 a cache level of "none" disables all caching (sprites will always be requested again) while a level of "simple" uses a Map as a simple cache
-
-`size2px(size)`
-
-converts `xs|sm|md|lg` or valid numeric values to px strings
 
 `doSpriteRequest(name)`
 

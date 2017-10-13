@@ -94,7 +94,7 @@ export class ChartDemo {
 		"#5A3EC8",
 		"#40D5BB",
 		"#FF509E"
-	]
+	];
 
 	chartConstant = {
 		longDataOptions: {

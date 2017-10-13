@@ -32,7 +32,7 @@ import { Modal } from "../../../src";
 						Header text
 					</a>
 					<span>
-						<n-icon icon="chevron_right" size="sm" style="fill: white;"></n-icon>
+						<n-icon icon="chevron_right" size="sm" color="white"></n-icon>
 						Drilled down
 					</span>
 				</n-modal-header>
