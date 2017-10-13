@@ -176,8 +176,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@HostBinding("style.display") display = "block";
 
 	public open = false;
-	// @HostBinding("attr.aria-expanded") ariaExpanded = this.open;
-	// @HostBinding("attr.aria-disabled") ariaDisabled = this.disabled ? true : null;
 
 	/** Selected items for multi-select combo-boxes. */
 	public pills = [];
@@ -268,7 +266,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
 		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
 			this.elementRef.nativeElement.querySelector(".combobox_input").focus();
-			// this.elementRef.nativeElement.querySelector(".combo-input").focus();
 		}
 	}
 

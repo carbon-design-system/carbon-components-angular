@@ -22,89 +22,67 @@ import { ListItem } from "./../dropdown/list-item.interface";
  *
  * There is a sizeable chunk of logic here handling focus and keyboard state around pills.
  */
-// 'height.px': expanded?expandedHeight:null
 @Component({
 	selector: "n-pill-input",
 	template: `
-		<!--<div
-			aria-multiline="true"
-			aria-autocomplete="list"
+		<div
+			#inputWrapper
+			*ngIf="type === 'multi'"
 			role="textbox"
-			*ngIf="empty(pills)"-->
+			class="combobox_input"
+			[ngClass]="{
+				'expand-overflow': expanded,
+				focus: focus,
+				disabled: disabled
+			}"
+			(click)="focusInput($event)">
+			<span
+				*ngIf="showPlaceholder"
+				class="input_placeholder">
+				{{ placeholder }}
+			</span>
 			<div
-				#inputWrapper
-				*ngIf="type === 'multi'"
-				role="textbox"
-				class="combobox_input"
-				[ngClass]="{
-					'expand-overflow': expanded,
-					focus: focus,
-					disabled: disabled
-				}"
-				(click)="focusInput($event)">
-				<span
-					*ngIf="showPlaceholder"
-					class="input_placeholder">
-					{{ placeholder }}
-				</span>
-				<div
-					#pillWrapper
-					class="input_pills">
-					<ng-container *ngFor="let pill of pills; let last = last">
-						<n-pill
-							[item]="pill">
-							{{ pill.content }}
-						</n-pill>
-						<div
-							#comboInput
-							*ngIf="!last"
-							class="input"
-							contenteditable
-							(keydown)="onKeydown($event)"
-							(keyup)="onKeyup($event)"></div>
-					</ng-container>
+				#pillWrapper
+				class="input_pills">
+				<ng-container *ngFor="let pill of pills; let last = last">
+					<n-pill
+						[item]="pill">
+						{{ pill.content }}
+					</n-pill>
 					<div
 						#comboInput
+						*ngIf="!last"
 						class="input"
 						contenteditable
 						(keydown)="onKeydown($event)"
 						(keyup)="onKeyup($event)"></div>
-				</div>
-				<button
-					*ngIf="!expanded && numberMore > 0"
-					class="btn--link"
-					href=""
-					(click)="showMore($event)">{{ numberMore }} more</button>
-				<button
-					*ngIf="expanded && numberMore > 0"
-					class="btn--link"
-					href=""
-					(click)="showMore($event)">Hide</button>
-			</div>
-			<input
-				#singleInput
-				*ngIf="type === 'single'"
-				type="text"
-				[disabled]="disabled"
-				[placeholder]="placeholder"
-				(keydown)="onKeydown($event)"
-				(keyup)="onKeyup($event)"/>
-			<!--<div
-				*ngIf="type === 'single'"
-				class="pills-wrapper">
-				<span
-					*ngIf="showPlaceholder"
-					class="placeholder">
-					{{ placeholder }}
-				</span>
+				</ng-container>
 				<div
 					#comboInput
-					class="combo-input"
+					class="input"
 					contenteditable
 					(keydown)="onKeydown($event)"
-					(keyup)="onKeyup($event)">{{ displayValue }}</div>
-			</div>-->
-		<!--</div>-->`
+					(keyup)="onKeyup($event)"></div>
+			</div>
+			<button
+				*ngIf="!expanded && numberMore > 0"
+				class="btn--link"
+				href=""
+				(click)="showMore($event)">{{ numberMore }} more</button>
+			<button
+				*ngIf="expanded && numberMore > 0"
+				class="btn--link"
+				href=""
+				(click)="showMore($event)">Hide</button>
+		</div>
+		<input
+			#singleInput
+			*ngIf="type === 'single'"
+			type="text"
+			[disabled]="disabled"
+			[placeholder]="placeholder"
+			(keydown)="onKeydown($event)"
+			(keyup)="onKeyup($event)"/>`
 })
 export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
