@@ -13,7 +13,6 @@ import {
 	AfterContentInit,
 	HostBinding
 } from "@angular/core";
-import { DropdownButton } from "./dropdown-button.component";
 import { PillInput } from "./pill-input.component";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -167,7 +166,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	/** ContentChild reference to the instantiated dropdown button */
-	@ViewChild("dropdownButton") dropdownButton: DropdownButton;
+	@ViewChild("dropdownButton") dropdownButton;
 	/** ViewChild of the pill input component */
 	@ViewChild(PillInput) pillInput: PillInput;
 

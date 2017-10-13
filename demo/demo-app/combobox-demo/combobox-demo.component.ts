@@ -52,13 +52,6 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</button>
 		</div>
 		<br>
-		<div style="position: relative;">
-			<n-dropdown-button></n-dropdown-button>
-		</div>
-		<br>
-		<br>
-		<n-pill [item]="{selected: false}">Some text</n-pill>
-		<br>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
