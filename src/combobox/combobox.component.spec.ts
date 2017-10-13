@@ -4,7 +4,6 @@ import { By	} from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combobox.component";
-import { DropdownButton } from "./dropdown-button.component";
 import { Pill } from "./pill.component";
 import { PillInput } from "./pill-input.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
@@ -32,7 +31,6 @@ describe("Combo box", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				ComboBox,
-				DropdownButton,
 				PillInput,
 				Pill,
 				DropdownList,
