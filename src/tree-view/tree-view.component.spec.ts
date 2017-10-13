@@ -48,7 +48,7 @@ describe("Treeview", () => {
 	});
 
 	it("should select an item", () => {
-		let itemEl = fixture.debugElement.query(By.css(".item-wrapper"));
+		let itemEl = fixture.debugElement.query(By.css(".tree-view_label"));
 		itemEl.triggerEventHandler("click", null);
 		expect(wrapper.selected.content).toBe("one");
 	});
