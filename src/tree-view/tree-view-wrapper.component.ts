@@ -16,7 +16,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 	template: `
 		<ul [class.tree-view]="role == 'tree'"
 		[attr.role]="role"
-		[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
+		[attr.aria-hidden]="(role == 'group') ? !isOpen : null"
 		[attr.aria-label]="label">
 			<li *ngFor="let item of items; let index = index"
 			role="treeitem"
@@ -49,7 +49,7 @@ export class TreeViewWrapper {
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent = 0;
 	@Input() rootElem: any = null;
-	@Input() role: "tree" | "group" = "group" ;
+	@Input() role: "tree" | "group" = "group";
 	@Input() label: string;
 	@Input() outerPadding = 20; // padding from left edge
 	@Input() iconWidth = 16;
