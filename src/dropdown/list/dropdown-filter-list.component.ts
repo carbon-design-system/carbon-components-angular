@@ -19,16 +19,6 @@ import { ListView } from "./../../list-view/list-view.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
 
-// const a = `
-// <span
-// class="placeholder"
-// [ngClass]="{
-// 	visible: !filterFocus
-// }">
-// {{ 'DROPDOWN.FILTER.SEARCH' | translate }}
-// </span>
-// `;
-
 @Component({
 	selector: "n-dropdown-filter",
 	template: `
