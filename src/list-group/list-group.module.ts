@@ -1,17 +1,17 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { ListView } from "./list-view.component";
+import { ListGroup } from "./list-group.component";
 
-export { ListView } from "./list-view.component";
+export { ListGroup } from "./list-group.component";
 
 @NgModule({
 	declarations: [
-		ListView
+		ListGroup
 	],
 	exports: [
-		ListView
+		ListGroup
 	],
 	imports: [CommonModule]
 })
-export class ListViewModule {}
+export class ListGroupModule {}

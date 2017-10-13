@@ -2,20 +2,20 @@ import { Component } from "@angular/core";
 import { TestBed, ComponentFixture, inject } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { ListView } from "./list-view.component";
+import { ListGroup } from "./list-group.component";
 
-describe("List View", () => {
+describe("List Group", () => {
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [ListView]});
+		TestBed.configureTestingModule({declarations: [ListGroup]});
 	});
 
 	it("should work", () => {
-		const fixture = TestBed.createComponent(ListView);
-		expect(fixture.componentInstance instanceof ListView).toBe(true);
+		const fixture = TestBed.createComponent(ListGroup);
+		expect(fixture.componentInstance instanceof ListGroup).toBe(true);
 	});
 
 	it("should render a list", () => {
-		const fixture = TestBed.createComponent(ListView);
+		const fixture = TestBed.createComponent(ListGroup);
 		fixture.componentInstance.items = [
 			{
 				content: "item one",
@@ -40,7 +40,7 @@ describe("List View", () => {
 	});
 
 	it("should emit a select event", () => {
-		const fixture = TestBed.createComponent(ListView);
+		const fixture = TestBed.createComponent(ListGroup);
 		fixture.componentInstance.items = [
 			{
 				content: "item one",

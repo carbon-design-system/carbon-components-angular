@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "app-list-view-demo",
+	selector: "app-list-group-demo",
 	template: `
-	<h1>List view demo</h1>
+	<h1>List group demo</h1>
 
 	<ng-template #listTpl let-item="item">
 		<n-checkbox inline="true"
@@ -18,15 +18,15 @@ import { Component, OnInit } from "@angular/core";
 		</button>
 	</ng-template>
 
-	<h3>Default list view</h3>
-	<n-list-view [items]="demoItems" (selected)="onSelect($event)"></n-list-view>
+	<h3>Default list group</h3>
+	<n-list-group [items]="demoItems" (selected)="onSelect($event)"></n-list-group>
 
-	<h3>List view with custom template (Added Icon)</h3>
-	<n-list-view [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="true"></n-list-view>
+	<h3>List group with custom template (Added Icon)</h3>
+	<n-list-group [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="true"></n-list-group>
 	`
 })
 
-export class ListViewDemo {
+export class ListGroupDemo {
 	public demoItems = [
 		{
 			content: "item one",

@@ -1,7 +1,7 @@
-# List View
+# List Group
 
-class: ListView (implements View)
-selector: `n-list-view`
+class: ListGroup (implements View)
+selector: `n-list-group`
 
 | @Input    | Type                       | Default Value |
 | --------- | -------------------------- | ------------- |
