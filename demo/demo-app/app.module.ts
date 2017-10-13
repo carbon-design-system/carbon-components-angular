@@ -22,7 +22,7 @@ import { FormModalComponent } from "./modal-demo/form-modal.component";
 import { DrilldownModalComponent } from "./modal-demo/drilldown-modal.component";
 import { FormsDemo } from "./forms-demo/forms-demo.component";
 import { IconDemo } from "./icon-demo/icon-demo.component";
-import { ListViewDemo } from "./list-view-demo/list-view-demo.component";
+import { ListGroupDemo } from "./list-group-demo/list-group-demo.component";
 import { ModalDemo } from "./modal-demo/modal-demo.component";
 import { PopoverDemo } from "./popover-demo/popover-demo.component";
 import { SampleModalComponent } from "./modal-demo/sample-modal.component";
@@ -46,7 +46,7 @@ import {
 	IconModule,
 	IconService,
 	DialogModule,
-	ListViewModule,
+	ListGroupModule,
 	TreeViewModule,
 	DropdownModule,
 	TopNavModule,
@@ -70,7 +70,7 @@ import {
 		IconDemo,
 		PopoverDemo,
 		TabsDemo,
-		ListViewDemo,
+		ListGroupDemo,
 		DropdownDemo,
 		TopNavDemo,
 		TreeViewDemo,
@@ -106,7 +106,7 @@ import {
 		TabsModule,
 		IconModule,
 		DialogModule,
-		ListViewModule,
+		ListGroupModule,
 		TreeViewModule,
 		DropdownModule,
 		TopNavModule,
@@ -146,8 +146,8 @@ import {
 				component: TabsDemo
 			},
 			{
-				path: "list-view",
-				component: ListViewDemo
+				path: "list-group",
+				component: ListGroupDemo
 			},
 			{
 				path: "tree-view",

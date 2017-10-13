@@ -10,10 +10,10 @@ import {
 import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 @Component({
-	selector: "n-list-view",
+	selector: "n-list-group",
 	template: `
 		<ul
-		#listView
+		#listGroup
 		class="list-group"
 		role="listbox"
 		[attr.aria-multiselectable]="checkMark ? true : false">
@@ -35,7 +35,7 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 		</ul>
 		`,
 })
-export class ListView {
+export class ListGroup {
 	@Input() items: Array<Object> = [];
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Input() checkMark: Boolean = true;

@@ -73,7 +73,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<ng-template #list>
 		<div>
-			<ul class="list-view">
+			<ul class="list-group">
 				<li tabindex="0"><div><span>Settings</span></div></li>
 				<li tabindex="0"><div><span>Save</span></div></li>
 				<li tabindex="0"><div><span>Preferences</span></div></li>

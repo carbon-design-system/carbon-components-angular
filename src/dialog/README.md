@@ -53,7 +53,7 @@ Ex:
 ```html
 <ng-template #list>
 	<div>
-		<n-list-view [items]="demoItems" (select)="onSelect($event)"></n-list-view>
+		<n-list-group [items]="demoItems" (select)="onSelect($event)"></n-list-group>
 	</div>
 </ng-template>
 <button class="popover-menu-button"

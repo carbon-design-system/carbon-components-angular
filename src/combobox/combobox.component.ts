@@ -251,7 +251,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Sets the list view filter, and manages single select item selection
+	 * Sets the list group filter, and manages single select item selection
 	 *
 	 * @param {string} searchString
 	 */
