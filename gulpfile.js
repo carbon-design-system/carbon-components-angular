@@ -40,6 +40,7 @@ const licenseTemplate = `/*!
  * restricted by GSA ADP Schedule Contract with IBM Corp.
  *
  */
+\n
 `;
 
 //
