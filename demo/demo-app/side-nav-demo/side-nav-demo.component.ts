@@ -25,19 +25,21 @@ import { Component, ViewEncapsulation } from "@angular/core";
 
 			<n-side-nav [open]="sideNavOpen">
 				<n-side-nav-group routerLink="/table" tabindex="-1">
-					<n-icon
-						class="accordion_icon"
-						icon="lightbulb"
-						size="md">
-					</n-icon>
+					<div class="accordion_icon">
+						<n-icon
+							icon="lightbulb"
+							size="md">
+						</n-icon>
+					</div>
 					<span class="accordion_title">Understand</span>
 				</n-side-nav-group>
 				<n-side-nav-group>
-					<n-icon
-						class="accordion_icon"
-						icon="gears"
-						size="md">
-					</n-icon>
+					<div class="accordion_icon">
+						<n-icon
+							icon="gears"
+							size="md">
+						</n-icon>
+					</div>
 					<span class="accordion_title">More</span>
 					<n-side-nav-item>
 						<span class="side-nav-item">Some long content here</span>
@@ -66,11 +68,12 @@ import { Component, ViewEncapsulation } from "@angular/core";
 					</n-side-nav-item>
 				</n-side-nav-group>
 				<n-side-nav-group>
-					<n-icon
-						class="accordion_icon"
-						icon="attributes"
-						size="md">
-					</n-icon>
+					<div class="accordion_icon">
+						<n-icon
+							icon="attributes"
+							size="md">
+						</n-icon>
+					</div>
 					<span class="accordion_title">Even more</span>
 					<n-side-nav-item>
 						<span class="side-nav-item">To show how ellipsis gets activated</span>
