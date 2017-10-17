@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter} from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
 	selector: "n-hamburger",
@@ -15,8 +15,7 @@ import { Component, Input, Output, EventEmitter} from "@angular/core";
  		<path d="M1
  		3h18v3H1zM1 9h18v3H1zM1 15h18v3H1z"/></svg>
 	</button>
-  `,
-	styleUrls: ["./hamburger.component.scss"]
+  `
 })
 export class Hamburger {
 	@Input() selected = false;

@@ -1,38 +1,39 @@
-@import "../core/scss-tools";
+@import "../../node_modules/@peretz/matter/scss/tools";
 
 .calendar-month {
-	text-align: center;
 	width: 250px;
+	text-align: center;
 }
 
 .calendar {
+	display: inline-block;
 	width: 250px;
 	height: 240px;
-	display: inline-block;
 
 	th {
-		color: color("blue", 50);
-		width: 30px;
-		height: 30px;
+		@include m_size(30px);
+
 		padding-left: 5px;
+		color: m_color("blue", 50);
 	}
 
 	button {
-		width: 30px;
-		height: 30px;
+		@include m_size(30px);
+
 		line-height: 30px;
 
 		&.current-date {
-			background: color("blue", 10);
+			background-color: m_color("blue", 10);
 		}
 
 		&.selected-date {
-			background: color("blue", 50);
-			color: color("white", 0);
+			background-color: m_color("blue", 50);
+			color: m_color("white");
 		}
 
-		&:hover, &:focus {
-			border-bottom: solid 4px color("blue", 50);
+		&:hover,
+		&:focus {
+			border-bottom: solid 4px m_color("blue", 50);
 		}
 	}
 }

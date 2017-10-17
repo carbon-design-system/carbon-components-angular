@@ -1,5 +1,6 @@
 import {
 	Component,
+	OnChanges,
 	OnInit,
 	ContentChild,
 	Input,
@@ -7,9 +8,11 @@ import {
 	HostListener,
 	ElementRef,
 	ViewChild,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit,
+	AfterContentInit,
+	HostBinding
 } from "@angular/core";
-import { DropdownButton } from "./dropdown-button.component";
 import { PillInput } from "./pill-input.component";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -21,32 +24,47 @@ import { ListItem } from "./../dropdown/list-item.interface";
 @Component({
 	selector: "n-combo-box",
 	template: `
-		<n-pill-input
-			[pills]="pills"
-			[placeholder]="placeholder"
-			[displayValue]="selectedValue"
-			[type]="type"
-			[disabled]="disabled"
-			(updatePills)="updatePills()"
-			(search)="doSearch($event)"
-			(submit)="doSubmit($event)">
-		</n-pill-input>
+		<div
+			role="combobox"
+			[attr.aria-expanded]="open">
+			<n-pill-input
+				[pills]="pills"
+				[placeholder]="placeholder"
+				[displayValue]="selectedValue"
+				[type]="type"
+				[disabled]="disabled"
+				(updatePills)="updatePills()"
+				(search)="onSearch($event)"
+				(submit)="onSubmit($event)">
+			</n-pill-input>
+			<button
+				#dropdownButton
+				role="button"
+				class="btn--add-on"
+				type="button"
+				[disabled]="disabled"
+				[ngStyle]="{
+					height: open?null:'30px'
+				}"
+				(click)="toggleDropdown()">
+				<svg
+					class="icon--xs"
+					[ngClass]="{
+						open: open
+					}"
+					width="16"
+					height="16"
+					viewbox="0 0 16 16">
+					<g>
+						<polygon points="14.6,4 8,10.6 1.4,4 0.6,4.8 8,12.3 15.4,4.8"/>
+					</g>
+				</svg>
+			</button>
+		</div>
 		<ng-content></ng-content>
-	`,
-	host: {
-		class: "combo",
-		role: "combobox",
-		"[attr.aria-expanded]": "dropdownButton?dropdownButton.open:false",
-		"[attr.aria-disabled]": "disabled?true:null"
-	}
+	`
 })
-export class ComboBox {
-	/** Selected items for multi-select combo-boxes. */
-	public pills = [];
-	/** used to update the displayValue of `n-pill-input` */
-	public selectedValue = "";
-	/** internal reference to the dropdown list */
-	private dropdown;
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * List of items to fill the content with.
 	 *
@@ -105,7 +123,7 @@ export class ComboBox {
 	 *
 	 * @memberof ComboBox
 	 */
-	@Input() disabled = false;
+	@HostBinding("attr.aria-disabled") @Input() disabled = false;
 	/**
 	 * Emits a ListItem
 	 *
@@ -146,19 +164,33 @@ export class ComboBox {
 	 * ```
 	 */
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
+	/** emits an empty event when the menu is closed */
+	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	/** ContentChild reference to the instantiated dropdown button */
-	@ContentChild(DropdownButton) dropdownButton: DropdownButton;
+	@ViewChild("dropdownButton") dropdownButton;
 	/** ViewChild of the pill input component */
 	@ViewChild(PillInput) pillInput: PillInput;
 
+	@HostBinding("attr.class") class = "combobox";
+	@HostBinding("style.display") display = "block";
+
+	public open = false;
+
+	/** Selected items for multi-select combo-boxes. */
+	public pills = [];
+	/** used to update the displayValue of `n-pill-input` */
+	public selectedValue = "";
+	/** internal reference to the dropdown list */
+	private dropdown;
+
 	/**
 	 * Creates an instance of ComboBox.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof ComboBox
 	 */
-	constructor(private _elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef) {}
 
 	/**
 	 * Lifecycle hook.
@@ -181,7 +213,6 @@ export class ComboBox {
 	 * Subscribes to select events and handles focus/filtering/initial list updates
 	 */
 	ngAfterContentInit() {
-		this.dropdownButton.disabled = this.disabled;
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe((ev) => {
@@ -195,9 +226,8 @@ export class ComboBox {
 					}
 					// not gaurding these since the nativeElement has to be loaded
 					// for select to even fire
-					this._elementRef.nativeElement.querySelector(".pill-input").focus();
-					this._elementRef.nativeElement.querySelector(".combo-input").focus();
-					this.dropdownButton.closeDropdown();
+					this.elementRef.nativeElement.querySelector("input").focus();
+					this.closeDropdown();
 				}
 				this.selected.emit(ev);
 				this.view["filterBy"]("");
@@ -210,12 +240,12 @@ export class ComboBox {
 	 * Binds event handlers against the rendered view
 	 */
 	ngAfterViewInit() {
-		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+		this.dropdown = this.elementRef.nativeElement.querySelector("ul");
 		document.addEventListener("click", ev => {
-			if (!this._elementRef.nativeElement.contains(ev.target)) {
+			if (!this.elementRef.nativeElement.contains(ev.target)) {
 				this.pillInput.expanded = false;
-				if (this.dropdownButton.open) {
-					this.dropdownButton.closeDropdown();
+				if (this.open) {
+					this.closeDropdown();
 				}
 			}
 		});
@@ -229,13 +259,13 @@ export class ComboBox {
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
-			this.dropdownButton.closeDropdown();
+			this.closeDropdown();
 		} else if (ev.key === "ArrowDown" && !this.dropdown.contains(ev.target)) {
 			ev.stopPropagation();
+			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
 		} else if (ev.key === "ArrowUp" && this.dropdown.contains(ev.target) && !this.view["hasPrevElement"]()) {
-			this._elementRef.nativeElement.querySelector(".pill-input").focus();
-			this._elementRef.nativeElement.querySelector(".combo-input").focus();
+			this.elementRef.nativeElement.querySelector(".combobox_input").focus();
 		}
 	}
 
@@ -246,15 +276,35 @@ export class ComboBox {
 		this.pills = this.view.getSelected() || [];
 	}
 
+	/** closes the dropdown and emits the close event */
+	public closeDropdown() {
+		this.open = false;
+		this.close.emit();
+	}
+
+	/** opens the dropdown */
+	public openDropdown() {
+		this.open = true;
+	}
+
+	/** toggles the dropdown */
+	public toggleDropdown() {
+		if (this.open) {
+			this.closeDropdown();
+		} else {
+			this.openDropdown();
+		}
+	}
+
 	/**
-	 * Sets the list view filter, and manages single select item selection
+	 * Sets the list group filter, and manages single select item selection
 	 *
 	 * @param {string} searchString
 	 */
-	public doSearch(searchString) {
+	public onSearch(searchString) {
 		this.view["filterBy"](searchString);
 		if (searchString !== "") {
-			this.dropdownButton.closeDropdown();
+			this.openDropdown();
 		} else {
 			this.selectedValue = "";
 		}
@@ -284,7 +334,7 @@ export class ComboBox {
 	 *	}
 	 * ```
 	 */
-	doSubmit(ev) {
+	public onSubmit(ev) {
 		let index = 0;
 		if (ev.after) {
 			index = this.view.items.indexOf(ev.after) + 1;

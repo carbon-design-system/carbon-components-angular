@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "tooltip-demo",
+	selector: "app-tooltip-demo",
 	template: `
 	<h1>Tooltip</h1>
 	<ng-template #customTooltip>

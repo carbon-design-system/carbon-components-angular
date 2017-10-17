@@ -3,7 +3,7 @@ import { Modal } from "../../../src";
 
 @Modal()
 @Component({
-	selector: "sample-modal",
+	selector: "app-sample-modal",
 	template: `
 		<n-modal size="xl" (overlaySelected)="closeModal()">
 			<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>

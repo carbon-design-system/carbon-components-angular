@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-	selector: "tree-view-demo",
+	selector: "app-tree-view-demo",
 	template: `
 	<h1>Tree view demo</h1>
 
@@ -19,89 +19,39 @@ import { Component, OnInit } from "@angular/core";
 		[template]="treeTpl"
 		[label]="'Tree view with custom template (Added Icon) with no selected icon'">
 		<ng-template #treeTpl let-item="item">
-			<div class="checkbox">
-				<label>
-					<input
-						#cb
-						[checked]="isChecked(item, cb)"
-						[indeterminate]="isIndeterminate(item, cb)"
-						(change)="onCheck({item: item}, $event)"
-						[disabled]="item.disabled"
-						type="checkbox">
-					<span class="label">{{item.content}}</span>
-				</label>
-			</div>
+			<n-checkbox
+				#cb
+				inline="true"
+				[checked]="isChecked(item, cb)"
+				[indeterminate]="isIndeterminate(item, cb)"
+				(change)="onCheck({item: item}, $event)"
+				[disabled]="item.disabled"
+				type="checkbox">
+				{{item.content}}
+			</n-checkbox>
 		</ng-template>
 	</n-tree-view>
 
 	<h3>Searchable tree view</h3>
 	<div id="demo">
-		<div
-			class="filter-search"
-			style="width: 100%; background: #f5f5f5;">
-			<div
-				class="search-icon"
-				style="top: 11px;">
-				<svg
-					class="icon"
-					viewBox="0 0 16 16">
-					<g>
-						<path
-							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
-							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
-							S8.8,11,6,11z"/>
-						<rect
-							x="12"
-							y="10.2"
-							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
-							width="2"
-							height="5.7"/>
-					</g>
-				</svg>
-			</div>
-			<input
-				style="background: transparent; border: none; height: 40px;"
-				#filter
-				(keyup)="search($event)"
-				type="text"
-				class="input-field"
-				tabindex="0"
-				(focus)="filterFocus = true"
-				(blur)="filterFocus = filter.value?true:false"/>
-			<span
-				class="placeholder"
-				[ngClass]="{
-					visible: !filterFocus
-				}"
-				style="top: 12px;">
-				Search
-			</span>
-			<button
-				class="search-cancel"
-				type="button"
-				aria-label="cancel"
-				[ngClass]="{
-					visible: filter.value.trim()
-				}"
-				(click)="filter.value = ''; search($event); filterFocus = false"
-				style="top: 11px;">
-				<svg
-					class="icon"
-					viewBox="0 0 16 16">
-					<polygon
-						points="14.5,2.6 13.4,1.5
-						8,6.9 2.6,1.5
-						1.5,2.6 6.9,8
-						1.5,13.4
-						2.6,14.5
-						8,9.1
-						13.4,14.5
-						14.5,13.4
-						9.1,8"/>
+		<label class="search_group--tree">
+			<svg class="search_icon" aria-hidden="true">
+				<use href="https://peretz-icons.mybluemix.net/core_set.svg#search_20"></use>
+			</svg>
+			<input placeholder="Find workspace" aria-controls="ex1treeView" type="search"
+			(keyup)="search($event)" #filter>
+			<button class="close" type="reset" aria-label="Reset search"
+			[ngClass]="{
+				visible: filter.value.trim()
+			}"
+			(click)="filter.value = ''; search($event); filterFocus = false">
+				<svg class="close_icon">
+					<use href="https://peretz-icons.mybluemix.net/core_set.svg#x_16"></use>
 				</svg>
 			</button>
-		</div>
+		</label>
 		<n-tree-view
+			id="ex1treeView"
 			[items]="displayItems"
 			(select)="onSelect($event)"
 			[label]="'Default Tree View'">
@@ -259,26 +209,24 @@ export class TreeViewDemo {
 				}
 			}
 		};
-		let any = (items, cb) => {
+		let anyF = (items, cb) => {
 			for (let item of items) {
 				if (cb(item)) {
 					return true;
 				}
 				if (item.items) {
-					return any(item.items, cb);
+					return anyF(item.items, cb);
 				}
 			}
 			return false;
 		};
 		if (ev.item.items) {
-			if (any(ev.item.items, item => item.selected)) {
+			if (anyF(ev.item.items, item => item.selected)) {
 				setSelect(ev.item.items, false);
 				ev.item.selected = false;
-				event.target.checked = false;
 			} else {
 				setSelect(ev.item.items, true);
 				ev.item.selected = true;
-				event.target.checked = true;
 			}
 		} else {
 			ev.item.selected = !ev.item.selected;
@@ -302,20 +250,20 @@ export class TreeViewDemo {
 	}
 
 	isIndeterminate(item, box) {
-		let any = (items, cb) => {
+		let anyF = (items, cb) => {
 			for (let i of items) {
 				if (cb(i)) {
 					return true;
 				}
 				if (i.items) {
-					return any(i.items, cb);
+					return anyF(i.items, cb);
 				}
 			}
 			return false;
 		};
 		if (item.items) {
 			let selected = item.items.filter(i => i.selected);
-			if (any(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
+			if (anyF(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
 				box.indeterminate = true;
 				return true;
 			}

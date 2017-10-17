@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
-import * as en from  "./../../src/i18n/en.json";
+import * as en from "./../../src/i18n/en.json";
 
 @Component({
 	selector: "app-root",
@@ -22,11 +22,11 @@ import * as en from  "./../../src/i18n/en.json";
 			style="width: 100%; margin-left: 0;"
 			placeholder="Filter"
 			aria-label="filter components">
-		<n-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+		<n-list-group [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
 			<ng-template #item let-item="item">
 				<a routerLink="{{item.link}}">{{item.content}}</a>
 			</ng-template>
-		</n-list-view>
+		</n-list-group>
 	</nav>
 	<main class="main">
 	<div class="main-banner-container"></div>
@@ -48,12 +48,7 @@ import * as en from  "./../../src/i18n/en.json";
 	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-	private navItems = [
-		{
-			content: "CSS demo",
-			link: "/css",
-			selected: false
-		},
+	public navItems = [
 		{
 			content: "Forms demo",
 			link: "/forms",
@@ -80,8 +75,8 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "List view demo",
-			link: "/list-view",
+			content: "List group demo",
+			link: "/list-group",
 			selected: false
 		},
 		{
@@ -130,7 +125,7 @@ export class AppComponent implements OnInit {
 			selected: false
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
-	private filteredItems = this.navItems;
+	public filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {
 		this._translate.setDefaultLang("en");

@@ -15,12 +15,25 @@ import { ListItem } from "./../list-item.interface";
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
-		<ul class="tree"
-			[class.open]="isOpen"
+		<ul
+			[ngClass]="{
+				'menu_tree--sm': size === 'sm',
+				'menu_tree': size === 'default',
+				'menu_tree--lg': size === 'lg'
+			}"
 			[attr.role]="role"
-			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
+			[attr.aria-hidden]="((role == 'group') ? !isOpen : null)"
 			[attr.aria-label]="label">
-			<li *ngFor="let item of items">
+			<li
+				*ngFor="let item of items; index as i"
+				class="treeitem"
+				role="treeitem"
+				[attr.aria-level]="indent + 1"
+				[attr.aria-posinset]="i"
+				[attr.aria-setsize]="3"
+				[attr.aria-expanded]="(!!item.items ? item.selected : null)"
+				[attr.aria-selected]="((item.selected && !item.items) ? true : null)"
+				[style.text-indent.px]="calculateIndent()">
 				<n-tree-item
 					[listTpl]="listTpl"
 					[listItem]="item"
@@ -33,6 +46,7 @@ import { ListItem } from "./../list-item.interface";
 					[outerPadding]="outerPadding"
 					[iconWidth]="iconWidth"
 					[innerPadding]="innerPadding"
+					[size]="size"
 					(select)="bubbleSelect($event)">
 				</n-tree-item>
 			</li>
@@ -52,6 +66,7 @@ export class TreeWrapper {
 	@Input() outerPadding = 20; // padding from left edge
 	@Input() iconWidth = 16;
 	@Input() innerPadding = 10; // padding between icon and content
+	@Input() size: "sm" | "default" | "lg" = "default";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
@@ -64,5 +79,16 @@ export class TreeWrapper {
 
 	public bubbleSelect(evt) {
 		this.select.emit(evt);
+	}
+
+	calculateIndent() {
+		if (this.isBase(this.items)) {
+			// same calc, we just drop the icon width from the last item
+			return ((this.outerPadding + this.iconWidth + this.innerPadding)
+				+ ((this.iconWidth + this.innerPadding) * this.indent)) - this.iconWidth;
+		}
+		// we add innerPadding twice to account for the padding from the previous level
+		return (this.outerPadding + this.iconWidth + this.innerPadding)
+			+ ((this.iconWidth + this.innerPadding) * this.indent);
 	}
 }

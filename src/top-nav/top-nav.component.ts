@@ -1,7 +1,7 @@
 import {
+	AfterViewInit,
 	Component,
 	Input,
-	Renderer,
 	Inject,
 	ElementRef
 } from "@angular/core";
@@ -37,7 +37,7 @@ import { DOCUMENT } from "@angular/platform-browser";
 	</header>`
 })
 
-export class TopNav {
+export class TopNav implements AfterViewInit {
 	static topNavCount = 0;
 
 	@Input() badge: string;
@@ -46,14 +46,14 @@ export class TopNav {
 
 	public displayType = "";
 
-	constructor(@Inject(DOCUMENT) public document, public renderer: Renderer, private _elementRef: ElementRef) {}
+	constructor(@Inject(DOCUMENT) public document, private elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
 		// add aria-hidden to icon elements
-		let icons = this._elementRef.nativeElement.querySelectorAll("n-icon, .menu-icon, .icon");
+		let icons = this.elementRef.nativeElement.querySelectorAll("n-icon, .menu-icon, .icon");
 		icons.forEach(icon => icon.setAttribute("aria-hidden", "true"));
 
-		let menuItems = this._elementRef.nativeElement.querySelectorAll(".top-nav-link-item");
+		let menuItems = this.elementRef.nativeElement.querySelectorAll(".top-nav-link-item");
 		menuItems.forEach(item => {
 			// add role menuitem to menu items
 			item.setAttribute("role", "menuitem");
@@ -66,7 +66,7 @@ export class TopNav {
 			};
 		});
 
-		let lis = this._elementRef.nativeElement.querySelectorAll("li");
+		let lis = this.elementRef.nativeElement.querySelectorAll("li");
 		lis.forEach(li => {
 			if (li.querySelector(".top-nav-dropdown")) {
 				li.querySelector(".top-nav-link-item").setAttribute("aria-haspop", "true");

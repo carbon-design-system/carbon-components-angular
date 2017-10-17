@@ -8,7 +8,7 @@ import {
 } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { DebugElement, Component }	 from "@angular/core";
+import { DebugElement, Component } from "@angular/core";
 
 import { RadioComponent, RadioGroup } from "./radio.component";
 
@@ -74,7 +74,7 @@ describe("RadioComponent", () => {
 
 		fixture = TestBed.createComponent(RadioComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("label.radio"));
+		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});

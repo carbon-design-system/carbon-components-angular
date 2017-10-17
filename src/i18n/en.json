@@ -9,5 +9,9 @@
 	},
 	"TOPNAV": {
 		"SKIP_TO_MAIN": "Skip to main content"
+	},
+	"TABS": {
+		"BUTTON_ARIA_LEFT": "Go to the previous tab",
+		"BUTTON_ARIA_RIGHT": "Go to the next tab"
 	}
 }

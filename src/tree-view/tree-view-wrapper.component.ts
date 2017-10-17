@@ -14,19 +14,23 @@ import { ListItem } from "./../dropdown/list-item.interface";
 @Component({
 	selector: "n-tree-view-wrapper",
 	template: `
-		<ul class="tree-view"
-			[class.open]="isOpen"
-			[attr.role]="role"
-			[attr.aria-hidden]="(role == 'group') ? !isOpen : null "
-			[attr.aria-label]="label">
-			<li *ngFor="let item of items">
+		<ul [class.tree-view]="role == 'tree'"
+		[attr.role]="role"
+		[attr.aria-hidden]="(role == 'group') ? !isOpen : null"
+		[attr.aria-label]="label">
+			<li *ngFor="let item of items; let index = index"
+			role="treeitem"
+			[attr.aria-level]="indent + 1"
+			[attr.aria-setsize]="items.length"
+			[attr.aria-posinset]="index + 1"
+			[attr.aria-hidden]="item.disabled"
+			[attr.aria-expanded]="item.items ? (item.opened ? true : false) : null"
+			[attr.aria-selected]="item.selected">
 				<n-tree-view-item
 					[listTpl]="listTpl"
 					[listItem]="item"
-					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
 					[rootElem]="rootElem"
-					[selected]="item.selected"
 					[indent]="indent"
 					[isBase]="isBase(items)"
 					[outerPadding]="outerPadding"
@@ -45,7 +49,7 @@ export class TreeViewWrapper {
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() indent = 0;
 	@Input() rootElem: any = null;
-	@Input() role: "tree" | "group" = "tree" ;
+	@Input() role: "tree" | "group" = "group";
 	@Input() label: string;
 	@Input() outerPadding = 20; // padding from left edge
 	@Input() iconWidth = 16;

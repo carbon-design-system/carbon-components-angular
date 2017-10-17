@@ -63,7 +63,7 @@ import {
 	selector: "n-table",
 	template: `
 	<div class="table-container">
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th class="check-column" *ngIf="enableRowSelect">

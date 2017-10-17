@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
-import { By }              			 from "@angular/platform-browser";
-import { DebugElement }    			 from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
 import { SwitchComponent } from "./switch.component";
 
@@ -21,7 +21,7 @@ describe("SwitchComponent", () => {
 
 		fixture = TestBed.createComponent(SwitchComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("label.toggle-label"));
+		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
 		buttonElement = fixture.debugElement.query(By.css("button")).nativeElement;
 	});

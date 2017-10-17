@@ -1,89 +1,73 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DialogService } from "./../../../src/dialog/dialog.service";
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/core";
 
 @Component({
-	selector: "icon-demo",
+	selector: "app-icon-demo",
 	template: `
 	<h1>Iconography demo</h1>
 
 	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
+
 	<n-icon icon="alert" size="xs"></n-icon>
 	<n-icon icon="alert" size="sm"></n-icon>
 	<n-icon icon="alert" size="md"></n-icon>
 	<n-icon icon="alert" size="lg"></n-icon>
 
-	<ul>
-		<li *ngFor="let set of iconMeta">
-			<a
-				href="{{formatURL(set.sprite)}}"
-				download="{{formatFileName(set.sprite)}}">
-				download {{formatFileName(set.sprite)}}
-			</a>
-		</li>
-	</ul>
+	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
+		<n-icon icon="alert" color="blue"></n-icon>
+		<n-icon icon="alert" color="light"></n-icon>
+		<n-icon icon="alert" color="dark"></n-icon>
+		<n-icon icon="alert" color="white"></n-icon>
+	</div>
+
+	<n-icon icon="alert" color="blue" size="xs"></n-icon>
+	<n-icon icon="alert" color="blue" size="sm"></n-icon>
+	<n-icon icon="alert" color="blue" size="md"></n-icon>
+	<n-icon icon="alert" color="blue" size="lg"></n-icon>
+
+	<n-icon icon="alert" color="light" size="xs"></n-icon>
+	<n-icon icon="alert" color="light" size="sm"></n-icon>
+	<n-icon icon="alert" color="light" size="md"></n-icon>
+	<n-icon icon="alert" color="light" size="lg"></n-icon>
+
+	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
+		<n-icon icon="alert" color="white" size="xs"></n-icon>
+		<n-icon icon="alert" color="white" size="sm"></n-icon>
+		<n-icon icon="alert" color="white" size="md"></n-icon>
+		<n-icon class="test-custom-class" icon="alert" color="white" size="lg"></n-icon>
+	</div>
 
 	<div style="display: flex;">
-		<div class="filter-search" style="width: calc(100% - 200px); margin-right: 5px;">
-			<div class="search-icon">
-				<svg
-					class="icon"
-					viewBox="0 0 16 16">
-					<g>
-						<path
-							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
-							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
-							S8.8,11,6,11z"/>
-						<rect
-							x="12"
-							y="10.2"
-							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
-							width="2"
-							height="5.7"/>
-					</g>
-				</svg>
-			</div>
+		<label class="search_group" style="width: calc(70% - 20px); margin-right: 20px;">
+			<svg class="search_icon" aria-hidden="true">
+				<use href="#search_16"></use>
+			</svg>
 			<input
 				#filter
 				(keyup)="search($event)"
-				type="text"
-				class="input-field"
+				type="search"
+				placeholder="Search"
 				tabindex="0"
 				(focus)="filterFocus = true"
 				(blur)="filterFocus = filter.value?true:false"
-				[disabled]="waitingForLoad"/>
-			<span
-				class="placeholder"
-				[ngClass]="{
-					visible: !filterFocus
-				}">
-				Search
-			</span>
+				[disabled]="waitingForLoad">
 			<button
-				class="search-cancel"
-				type="button"
-				aria-label="cancel"
+				class="close"
+				type="reset"
+				aria-label="Reset search"
 				[ngClass]="{
 					visible: filter.value.trim()
 				}"
 				(click)="filter.value = ''; search($event); filterFocus = false">
-				<svg
-					class="icon"
-					viewBox="0 0 16 16">
-					<polygon
-						points="14.5,2.6 13.4,1.5
-						8,6.9 2.6,1.5
-						1.5,2.6 6.9,8
-						1.5,13.4
-						2.6,14.5
-						8,9.1
-						13.4,14.5
-						14.5,13.4
-						9.1,8"/>
-				</svg>
+				<svg class="close_icon">
+					<use href="#x_16"></use>
+			  	</svg>
 			</button>
-		</div>
+		</label>
 		<n-dropdown
 			placeholder="Select a set"
-			style="width: 200px;"
+			style="width: 30%;"
 			type="multi"
 			(select)="onSelect()"
 			[(ngModel)]="selected"
@@ -218,7 +202,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	`],
 	encapsulation: ViewEncapsulation.None
 })
-export class IconDemo {
+export class IconDemo implements AfterViewInit {
 	iconMeta;
 	sets = [];
 	selected = [];
@@ -226,13 +210,12 @@ export class IconDemo {
 
 	async ngAfterViewInit() {
 		this.iconMeta = await fetch("https://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
-		// gather and nest the avliable icons sizes into set.icons[].sizes[]
+		// gather and nest the available icons sizes into set.icons[].sizes[]
 		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
 		this.iconMeta.sort((a, b) => {
 			if (b.sprite.includes("core")) { return 1; }
 			return a.sprite.localeCompare(b.sprite);
 		});
-		console.log(this.iconMeta);
 		let newSets = [];
 		for (let set of this.iconMeta) {
 			newSets.push({

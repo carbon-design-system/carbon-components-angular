@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 @Component({
-	selector: "combobox-demo",
+	selector: "app-combobox-demo",
 	template: `
 		<h1>Combo box demo</h1>
 
@@ -10,10 +10,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<n-combo-box
 				placeholder="Select or enter"
 				[items]="demoItems2"
-				(select)="onSelect($event)">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				(selected)="onSelect($event)">
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -23,11 +21,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
-				(select)="onSelect($event)"
+				(selected)="onSelect($event)"
 				(submit)="onSubmit($event)">
-				<n-dropdown-button (close)="onClose()">
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -36,9 +32,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<n-combo-box
 				disabled="true"
 				placeholder="Select or enter">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -58,13 +52,6 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</button>
 		</div>
 		<br>
-		<div style="position: relative;">
-			<n-dropdown-button></n-dropdown-button>
-		</div>
-		<br>
-		<br>
-		<n-pill [item]="{selected: false}">Some text</n-pill>
-		<br>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
@@ -83,7 +70,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	`,
 	encapsulation: ViewEncapsulation.None
 })
-export class ComboboxDemo {
+export class ComboboxDemo implements OnInit {
 	demoItems1 = [
 		{
 			content: "Abacus",

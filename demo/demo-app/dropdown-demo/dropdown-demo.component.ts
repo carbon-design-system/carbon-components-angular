@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@angular/forms";
 
 @Component({
-	selector: "dropdown-demo",
+	selector: "app-dropdown-demo",
 	template: `
 		<h1>Drop-down list demo</h1>
 
@@ -280,32 +280,32 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		</div>
 
 		<h3>Drop-down list item containers</h3>
-		<div class="dropdown-wrapper">
-			<div class="dropdown-menu open" style="position: relative;">
+		<div class="dropdown_wrapper">
+			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 			</div>
 		</div>
 		<br><br>
-		<div class="dropdown-wrapper">
-			<div class="dropdown-menu open" style="position: relative;">
+		<div class="dropdown_wrapper">
+			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
 			</div>
 		</div>
 		<br><br>
-		<div class="dropdown-wrapper">
-			<div class="dropdown-menu open" style="position: relative;">
+		<div class="dropdown_wrapper">
+			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-filter [items]="demoItems1" type="multi"></n-dropdown-filter>
 			</div>
 		</div>
 		<br><br>
-		<div class="dropdown-wrapper">
-			<div class="dropdown-menu open" style="position: relative;">
+		<div class="dropdown_wrapper">
+			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-tree [items]="demoItems3"></n-dropdown-tree>
 			</div>
 		</div>
 		<br><br>
-		<div class="dropdown-wrapper" style="width: 250px;">
-			<div class="dropdown-menu open" style="position: relative;">
+		<div class="dropdown_wrapper" style="width: 250px;">
+			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
 			</div>
 		</div>
@@ -452,10 +452,6 @@ export class DropdownDemo {
 		};
 	}
 
-	private clone (el) {
-		return JSON.parse(JSON.stringify(el));
-	}
-
 	onClose() {
 		// handle on dropdown close event
 		console.log("modal closed!");
@@ -486,4 +482,8 @@ export class DropdownDemo {
 		console.log("test", ev);
 	}
 
+
+	private clone (el) {
+		return JSON.parse(JSON.stringify(el));
+	}
 }
