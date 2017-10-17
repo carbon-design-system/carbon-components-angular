@@ -18,7 +18,7 @@ let nextId = 0;
 			role="tabpanel"
 			class="tabs-panel"
 			*ngIf="shouldRender()"
-			[ngClass]="{hide: !active}"
+			[ngStyle]="{'display': active ? null : 'none'}"
 			[attr.aria-labelledby]="id + '-header'">
 			<ng-content></ng-content>
 		</div>
