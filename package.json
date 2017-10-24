@@ -18,9 +18,6 @@
     "type": "git",
     "url": "git@github.ibm.com:peretz/next.git"
   },
-  "publishConfig": {
-    "registry": "npm-registry.whitewater.ibm.com"
-  },
   "license": "SEE LICENSE IN LICENSE",
   "author": "IBM",
   "peerDependencies": {
