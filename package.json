@@ -49,8 +49,8 @@
     "@angular/router": "4.4.3",
     "@compodoc/compodoc": "1.0.1",
     "@ngx-translate/core": "^6.0.1",
-    "@peretz/charts": "0.0.1-alpha.6813c",
-    "@peretz/matter": "1.0.0",
+    "@peretz/charts": "0.0.1-alpha.b31e3",
+    "@peretz/matter": "1.0.0-alpha.e6427",
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.42",
@@ -98,6 +98,6 @@
     "zone.js": "0.8.18"
   },
   "optionalDependencies": {
-    "@peretz/charts": "0.0.1-alpha.6813c"
+    "@peretz/charts": "0.0.1-alpha.b31e3"
   }
 }
