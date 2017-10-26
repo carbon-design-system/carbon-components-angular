@@ -2,9 +2,27 @@
 Next generation components
 
 ### Getting started
-You'll need access to the whitewater hosted npm instalation. We reccomend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@peretz" scope.
+
+#### Artifactory
+
+Run the following to add the needed information
+to your `~/.npmrc`. Replace `your.email@ibm.com` with your actual IBM email address and use your w3id password to
+authenticate when asked.
+
+```bash
+curl -uyour.email@ibm.com https://na.artifactory.swg-devops.com/artifactory/api/npm/wce-peretz-npm-local/auth/peretz >> ~/.npmrc
+```
+
+#### Whitewater (deprecated)
+
+You'll need access to the whitewater hosted npm installation. We recommend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@peretz" scope.
+
+#### Bundler
 
 Your project should use a module bundler - we recommend [webpack](https://webpack.js.org/).
+
+#### Install
+
 
 Then you'll be able to `npm install @peretz/neutrino` and start importing components and styles.
 
