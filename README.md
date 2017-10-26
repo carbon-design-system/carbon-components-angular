@@ -23,39 +23,7 @@ Your project should use a module bundler - we recommend [webpack](https://webpac
 
 #### Install
 
-
-Then you'll be able to `npm install @peretz/neutrino` and start importing components and styles.
-
-### Component status
-
-| Component       | Status    | Epic |
-| --------------- | --------- | ---- |
-| breadcrumbs     | Planning  | #346 |
-| charts          | Planning  | #366 |
-| combo box       | Planning  | #344 |
-| dropdown        | WIP       | #343 |
-| modal           | Done      | #342 |
-| popover         | WIP       | #341 |
-| forms           | WIP       | #340 |
-| side navigation | Prototype | #339 |
-| table           | Prototype | #338 |
-| tabs            | Prototype | #337 |
-| tooltip         | WIP       | #336 |
-| top navigation  | Prototype | #335 |
-| tree view       | Prototype | #334 |
-
-Status explination:
-- Planning: Technical requirements, UI specs, or UX specs (may be) incomplete, and/or no prototype created
-- WIP: Work In Progress
-- Done: Done according to the base requirements checklist, which consists of:
-	- accessible
-	- documented
-	- matches UI/UX specs
-	- unit tests
-	- mobile first
-	- l10n (globalization) + i18n (localization)
-	- RTL support
-	- performant
+Then you'll be able to `npm install @peretz/neutrino` and `npm install @peretz/matter` and start importing components and styles.
 
 ### Contributing
 
