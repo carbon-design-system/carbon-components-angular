@@ -2,42 +2,28 @@
 Next generation components
 
 ### Getting started
-You'll need access to the whitewater hosted npm instalation. We reccomend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@peretz" scope.
+
+#### Artifactory
+
+Run the following to add the needed information
+to your `~/.npmrc`. Replace `your.email@ibm.com` with your actual IBM email address and use your w3id password to
+authenticate when asked.
+
+```bash
+curl -uyour.email@ibm.com https://na.artifactory.swg-devops.com/artifactory/api/npm/wce-peretz-npm-local/auth/peretz >> ~/.npmrc
+```
+
+#### Whitewater (deprecated)
+
+You'll need access to the whitewater hosted npm installation. We recommend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@peretz" scope.
+
+#### Bundler
 
 Your project should use a module bundler - we recommend [webpack](https://webpack.js.org/).
 
-Then you'll be able to `npm install @peretz/neutrino` and start importing components and styles.
+#### Install
 
-### Component status
-
-| Component       | Status    | Epic |
-| --------------- | --------- | ---- |
-| breadcrumbs     | Planning  | #346 |
-| charts          | Planning  | #366 |
-| combo box       | Planning  | #344 |
-| dropdown        | WIP       | #343 |
-| modal           | Done      | #342 |
-| popover         | WIP       | #341 |
-| forms           | WIP       | #340 |
-| side navigation | Prototype | #339 |
-| table           | Prototype | #338 |
-| tabs            | Prototype | #337 |
-| tooltip         | WIP       | #336 |
-| top navigation  | Prototype | #335 |
-| tree view       | Prototype | #334 |
-
-Status explination:
-- Planning: Technical requirements, UI specs, or UX specs (may be) incomplete, and/or no prototype created
-- WIP: Work In Progress
-- Done: Done according to the base requirements checklist, which consists of:
-	- accessible
-	- documented
-	- matches UI/UX specs
-	- unit tests
-	- mobile first
-	- l10n (globalization) + i18n (localization)
-	- RTL support
-	- performant
+Then you'll be able to `npm install @peretz/neutrino` and `npm install @peretz/matter` and start importing components and styles.
 
 ### Contributing
 
