@@ -130,7 +130,7 @@ function version() {
 				const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
 				packageJSON.version = `${packageJSON.version}-beta.${build}`;
 			// dev release (every push)
-			} else if (process.env.TRAVIS_BRANCH === "master") {
+			} else if (!process.env.TRAVIS_TAG) {
 				const commit = process.env.TRAVIS_COMMIT;
 				packageJSON.version = `${packageJSON.version}-alpha.${commit.slice(0, 5)}`;
 			}
