@@ -12,7 +12,7 @@
     "docs:run": "compodoc src -p tsconfig.json -s",
     "lint": "tslint -e spec.ts src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
     "test": "karma start",
-    "prepush": "npm test"
+    "prepush": "bash scripts/prepush.sh"
   },
   "repository": {
     "type": "git",
@@ -49,8 +49,8 @@
     "@angular/router": "4.4.3",
     "@compodoc/compodoc": "1.0.1",
     "@ngx-translate/core": "^6.0.1",
-    "@peretz/charts": "0.0.1-alpha.b31e3",
-    "@peretz/matter": "1.0.0-alpha.e6427",
+    "@peretz/charts": "0.0.1-alpha.a48c1",
+    "@peretz/matter": "1.0.0-alpha.f9d67",
     "@types/d3": "4.7.0",
     "@types/jasmine": "2.5.41",
     "@types/node": "^6.0.42",
