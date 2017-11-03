@@ -1,6 +1,6 @@
 # Iconography
 
-demo: [https://pages.github.ibm.com/peretz/neutrino/icon](https://pages.github.ibm.com/peretz/neutrino/icon)
+demo: [https://pages.github.ibm.com/peretz/neutrino/#/icon](https://pages.github.ibm.com/peretz/neutrino/#/icon)
 
 ## Usage
 
