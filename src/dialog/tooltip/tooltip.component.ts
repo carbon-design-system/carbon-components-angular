@@ -30,7 +30,7 @@ import position from "../../common/position.service";
 				role="tooltip">
 				<ng-template
 					[ngTemplateOutlet]="dialogConfig.content"
-					[ngOutletContext]="{popover: this, filter: dialogConfig.filter}">
+					[ngTemplateOutletContext]="{popover: this, filter: dialogConfig.filter}">
 				</ng-template>
 			</div>
 			<p
