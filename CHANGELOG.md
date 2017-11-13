@@ -8,10 +8,13 @@
 
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
+- n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
 - Process for new contributions to Neutrino [\#598](https://github.ibm.com/peretz/neutrino/issues/598)
 
 **Merged pull requests:**
 
+- Fix link to the demo for icon [\#683](https://github.ibm.com/peretz/neutrino/pull/683) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Pull latest code and generate changelog prepush [\#681](https://github.ibm.com/peretz/neutrino/pull/681) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update version; update readme [\#675](https://github.ibm.com/peretz/neutrino/pull/675) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - changes to the build to only run release on tags [\#674](https://github.ibm.com/peretz/neutrino/pull/674) ([callums](https://github.ibm.com/callums))
 - Install from artifactory on travis [\#673](https://github.ibm.com/peretz/neutrino/pull/673) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
