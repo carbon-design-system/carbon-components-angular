@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
 	template: `
 	<h1>Top nav demo</h1>
 
-	<h3>Default top nav</h3>
+	<h2>Default</h2>
 	<n-top-nav [fixed]="false">
 		<a class="top-nav_brand" href="#" title>
 			<h1>
@@ -17,7 +17,7 @@ import { Component, OnInit } from "@angular/core";
 		</a>
 	</n-top-nav>
 
-	<h3>Top nav with hamburger and nav links</h3>
+	<h2>With hamburger and right nav</h2>
 	<n-top-nav [fixed]="false">
 		<n-hamburger hamburger></n-hamburger>
 		<a class="top-nav_brand" href="#" title>
@@ -25,20 +25,6 @@ import { Component, OnInit } from "@angular/core";
 				IBM <strong>{{topNavBrand}}</strong>
 			</h1>
 		</a>
-		<ul class="top-nav_menu-left" links>
-			<li class="menu_item">
-				<a class="menu_link"
-					tabindex="0">Dashboard</a>
-			</li>
-			<li class="menu_item">
-				<a class="menu_link"
-					tabindex="0">Reports</a>
-			</li>
-			<li class="menu_item">
-				<a class="menu_link"
-					tabindex="0">Analyze</a>
-			</li>
-		</ul>
 		<ul class="top-nav_menu-right" menu>
 			<li class="menu_item-search">
 				<input *ngIf="showSearchInput2" type="search" class="top-nav-search-input">
@@ -89,7 +75,7 @@ import { Component, OnInit } from "@angular/core";
 		</ul>
 	</n-top-nav>
 
-	<h3>Top nav without hamburger menu</h3>
+	<h2>Without hamburger menu and both navs</h2>
 	<n-top-nav [fixed]="false">
 		<a class="top-nav_brand" href="#" title>
 			<h1>

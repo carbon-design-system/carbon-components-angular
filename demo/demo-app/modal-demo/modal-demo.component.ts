@@ -9,6 +9,8 @@ import { ModalService } from "../../../src";
 @Component({
 	selector: "app-modal-demo",
 	template: `
+	<h1>Modal demo</h1>
+
 	<button class="btn--primary" (click)="openModal()">XL modal</button>
 	<button class="btn--primary" (click)="openModal('XXL')">XXL modal</button>
 	<button class="btn--primary" (click)="openModal('error')">Error modal</button>
@@ -16,7 +18,7 @@ import { ModalService } from "../../../src";
 	<button class="btn--primary" (click)="openModal('close')">Programmatic close</button>
 	<button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
 
-	<div>{{this.data | json}}</div>
+	<p>Form data: {{this.data | json}}</p>
 	`
 })
 export class ModalDemo {

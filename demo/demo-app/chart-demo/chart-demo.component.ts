@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 @Component({
 	selector: "app-chart-demo",
 	template: `
-	<h1>Chart</h1>
+	<h1>Chart demo</h1>
+
 	<h2>Bars</h2>
 	<code>options.type='bars'</code>
 	<p>Bar chart in a resizable container.</p>

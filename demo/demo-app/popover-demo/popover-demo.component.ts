@@ -9,7 +9,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		Cool content <br> Another cool content <br><br><br><br><br>
 	</ng-template>
 
-	<h3>Basic popover</h3>
+	<h2>Basic popover</h2>
 	<div>
 		Popover left
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="left">
@@ -62,7 +62,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</div>
 
-	<h3>Popover can be opened or closed manualy</h3>
+	<h3>Event triggered</h3>
 	Have a popover
 	<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" #popover="nPopover">
 		<n-icon icon="info" size="sm"></n-icon>
@@ -82,7 +82,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</div>
 	</ng-template>
 
-	<h3>Popover menu</h3>
+	<h2>Popover menu</h2>
 	<span>
 		<button class="btn--icon-link popover-menu-button"
 			[nPopoverMenu]="list"
@@ -100,7 +100,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</span>
 
-	<h3>Popover filter</h3>
+	<h2>Popover filter</h2>
 	<ng-template #filter>
 		<n-checkbox>High</n-checkbox>
 		<n-checkbox>Medium</n-checkbox>
@@ -131,18 +131,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</span>
 
-	<h3>Popover append to body</h3>
-
-	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
-		Regular popover
-		<button class="btn--icon-link" [nPopover]="customPopover" placement="right" title="Select item">
-			<n-icon icon="info" size="sm"></n-icon>
-		</button>
-	</div>
-
-	<br><br>
-
-	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red">
+	<h2>Append to body</h2>
+	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red; padding: 10px;">
 		Popover with appendToBody = true
 		<button class="btn--icon-link"
 			[nPopover]="customPopover"

@@ -67,7 +67,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 		</label>
 		<n-dropdown
 			placeholder="Select a set"
-			style="width: 30%;"
+			style="width: 30%; margin-bottom: 0;"
 			type="multi"
 			(select)="onSelect()"
 			[(ngModel)]="selected"
