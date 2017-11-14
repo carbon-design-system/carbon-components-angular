@@ -8,7 +8,6 @@ import {
 	OnInit
 } from "@angular/core";
 import { DropdownTree } from "./tree.component";
-import {  } from "./../../constant/keys";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
 @Component({
