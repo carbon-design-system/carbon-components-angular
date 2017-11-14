@@ -47,14 +47,14 @@ import position from "../../common/position.service";
 				<ng-template
 					*ngIf="hasContentTemplate"
 					[ngTemplateOutlet]="dialogConfig.content"
-					[ngOutletContext]="{popover: this, filter: dialogConfig.filter}">
+					[ngTemplateOutletContext]="{popover: this, filter: dialogConfig.filter}">
 				</ng-template>
 				<div *ngIf="!hasContentTemplate">{{dialogConfig.content}}</div>
 			</section>
 			<footer *ngIf="hasFooterTemplate">
 				<ng-template
 					[ngTemplateOutlet]="dialogConfig.footer"
-					[ngOutletContext]="{popover: this}">
+					[ngTemplateOutletContext]="{popover: this}">
 				</ng-template>
 			</footer>
 			<div class="arrow" aria-hidden="true"></div>

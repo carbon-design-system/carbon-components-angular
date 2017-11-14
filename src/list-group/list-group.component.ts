@@ -28,7 +28,7 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 				<ng-container *ngIf="!listTpl">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
-					[ngOutletContext]="{item: item}"
+					[ngTemplateOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 				</li>

@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
@@ -13,6 +14,8 @@
 
 **Merged pull requests:**
 
+- Fix to inform users what to do if github\_changelog\_generator doesn't run [\#688](https://github.ibm.com/peretz/neutrino/pull/688) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Add CHANGELOG generation step to build [\#686](https://github.ibm.com/peretz/neutrino/pull/686) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix link to the demo for icon [\#683](https://github.ibm.com/peretz/neutrino/pull/683) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Pull latest code and generate changelog prepush [\#681](https://github.ibm.com/peretz/neutrino/pull/681) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update version; update readme [\#675](https://github.ibm.com/peretz/neutrino/pull/675) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

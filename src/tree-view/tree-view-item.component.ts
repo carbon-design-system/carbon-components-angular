@@ -28,7 +28,7 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 		<ng-container *ngIf="!listTpl">{{listItem.content}}</ng-container>
 		<ng-template
 			*ngIf="isTpl"
-			[ngOutletContext]="{item: listItem}"
+			[ngTemplateOutletContext]="{item: listItem}"
 			[ngTemplateOutlet]="listTpl">
 		</ng-template>
 	</span>

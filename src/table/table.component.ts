@@ -82,7 +82,7 @@ import {
 									(click)="sort.emit(i)">
 									<span *ngIf="!column.template">{{column.data}}</span>
 									<ng-template
-										[ngTemplateOutlet]="column.template" [ngOutletContext]="{data: column.data}">
+										[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 									</ng-template>
 								</span>
 								<span (click)="sort.emit(i)">
@@ -150,7 +150,7 @@ import {
 								[ngStyle]="model.header[i].style">
 								<span *ngIf="!item.template" class="cell-ellipsis">{{item.data}}</span>
 								<ng-template
-									[ngTemplateOutlet]="item.template" [ngOutletContext]="{data: item.data}">
+									[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 								</ng-template>
 							</td>
 						</ng-container>
