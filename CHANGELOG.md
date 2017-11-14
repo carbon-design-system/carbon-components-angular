@@ -14,6 +14,8 @@
 
 **Merged pull requests:**
 
+- Fix something [\#691](https://github.ibm.com/peretz/neutrino/pull/691) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update version \(incl Angular v5\) [\#689](https://github.ibm.com/peretz/neutrino/pull/689) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix to inform users what to do if github\_changelog\_generator doesn't run [\#688](https://github.ibm.com/peretz/neutrino/pull/688) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add CHANGELOG generation step to build [\#686](https://github.ibm.com/peretz/neutrino/pull/686) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix link to the demo for icon [\#683](https://github.ibm.com/peretz/neutrino/pull/683) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
