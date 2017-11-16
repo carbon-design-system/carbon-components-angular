@@ -13,7 +13,15 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 import { Tab } from "./tab.component";
-
+/**
+ * The TabHeaders neutrino component contains the Tab items and controls scroll functionality
+ * if content has overflow.
+ *
+ *
+ * @export
+ * @class TabHeaders
+ * @implements {AfterViewInit}
+ */
 @Component({
 	selector: "n-tab-headers",
 	template: `
@@ -133,25 +141,107 @@ import { Tab } from "./tab.component";
 })
 
 export class TabHeaders implements AfterViewInit {
+	/**
+	 *
+	 * List of Tab components.
+	 * @type {QueryList<Tab>}
+	 * @memberof TabHeaders
+	 */
 	@Input() tabs: QueryList<Tab>;
+	/**
+	 *
+	 * Gets the Unordered List element that holds the Tab headings from the view DOM.
+	 * @memberof TabHeaders
+	 */
 	@ViewChild("tabList") headerContainer;
 
+	/**
+	 * Indicates whether or not the headings overflow
+	 * @type {boolean}
+	 * @memberof TabHeaders
+	 */
 	public overflow = false;
+	/**
+	 *
+	 * The index of the first visible tab
+	 * @type {number}
+	 * @memberof TabHeaders
+	 */
 	public firstVisibleTab = 0;
+	/**
+	 * The distance that the list will scroll when an overflow button onClick has fired.
+	 * @type {number}
+	 * @memberof TabHeaders
+	 */
 	public scrollLength = 0; // replace with local var containing this.tabHeading.nativeElement.offsetWidth
+	/**
+	 * Array of Tab items.
+	 * @type {Array<Tab>}
+	 * @memberof TabHeaders
+	 */
 	public allTabHeaders;
+	/**
+	 * Sets the right overflow arrow to disabled if value is 'true'.
+	 * Initially set to false.
+	 * @type {boolean}
+	 * @memberof TabHeaders
+	 */
 	public disabledRightArrow = false;
+	/**
+	 * Sets the left overflow arrow to disabled if value is 'true'.
+	 * Initially set to true.
+	 * @type {boolean}
+	 * @memberof TabHeaders
+	 */
 	public disabledLeftArrow = true;
+	/**
+	 * Controls the manual focusing done by tabbing through headings.
+	 * @type {number}
+	 * @memberof TabHeaders
+	 */
 	public currentSelectedTab: number;
+	/**
+	 * Represents whether user is currently touch scrolling the headings.
+	 * @type {boolean}
+	 * @memberof TabHeaders
+	 */
 	public touchMove: boolean;
+	/**
+	 *
+	 * Maintains the previous X position used to caculate how much to scroll
+	 * the headings.
+	 * @type {number}
+	 * @memberof TabHeaders
+	 */
 	public prevClientX: number;
 
+	/**
+	 * Variable that explicitly sets the amount in which the list of headings is scrolled.
+	 * @type {number}
+	 * @memberof TabHeaders
+	 */
 	public scrollLeft = 0;
 
+	/**
+	 * Accounts for button width and tab padding for the left side
+	 * @private
+	 * @memberof TabHeaders
+	 */
 	private leftPadding = 15; // button width less tab left padding
+	/**
+	 * Accounts for both overflow button widths.
+	 * @private
+	 * @memberof TabHeaders
+	 */
 	private rightPadding = 70; // both button widths less some padding
 
 	// keyboard accessibility
+	/**
+	 *
+	 * Controls the keydown events used for tabbing through the headings.
+	 * @param {any} event
+	 * @memberof TabHeaders
+	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
 		if (event.key === "ArrowRight" || event.key === "ArrowDown") {
@@ -171,12 +261,25 @@ export class TabHeaders implements AfterViewInit {
 
 	// TODO
 	// draggable
+	/**
+	 *
+	 * Stores the X coordinate of the 'touchstart'
+	 * event in order to calculate touch scrolling.
+	 * @param {any} event
+	 * @memberof TabHeaders
+	 */
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(event) {
 		this.touchMove = true;
 		this.prevClientX = event.touches[0].clientX;
 	}
-
+	/**
+	 *
+	 * Handles any touch scrolling where user scrolled past the bound
+	 * and updates the overflow buttons for touch scrolling on event 'touchend'.
+	 * @param {any} event
+	 * @memberof TabHeaders
+	 */
 	@HostListener("touchend", ["$event"])
 	onTouchEnd(event) {
 		this.touchMove = false;
@@ -193,7 +296,12 @@ export class TabHeaders implements AfterViewInit {
 			this.updateOverflowButtons();
 		}
 	}
-
+	/**
+	 *
+	 * Scrolls the list of Tab headings on 'touchmove'.
+	 * @param {any} event
+	 * @memberof TabHeaders
+	 */
 	@HostListener("touchmove", ["$event"])
 	onTouchMove(event) {
 		let touch = event.touches[0];
@@ -203,6 +311,10 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
+	/**
+	 * Performs check to see if there is overflow and needs scrolling.
+	 * @memberof TabHeaders
+	 */
 	ngAfterViewInit() {
 		// this needs to be rethough, and it's not an issue in prod mode
 		//  we just need this so that dev mode doesn't throw an error and
@@ -218,6 +330,12 @@ export class TabHeaders implements AfterViewInit {
 		this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 	}
 
+	/**
+	 * Controls manually focusing tabs.
+	 * @param {any} ref
+	 * @param {number} index
+	 * @memberof TabHeaders
+	 */
 	public onTabFocus(ref, index: number) {
 		this.currentSelectedTab = index;
 		this.moveTabIntoView(ref);
@@ -225,6 +343,10 @@ export class TabHeaders implements AfterViewInit {
 		this.headerContainer.nativeElement.parentElement.scrollLeft = 0;
 	}
 
+	/**
+	 * Checks if there is overflow while displaying all the Tab headings.
+	 * @memberof TabHeaders
+	 */
 	public scrollCheck() {
 		if (this.headerContainer.nativeElement.offsetWidth > this.headerContainer.nativeElement.parentElement.parentElement.offsetWidth) {
 			this.overflow = true;
@@ -236,6 +358,11 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
+	/**
+	 * Controls scrolling the headers left using the left overflow arrow.
+	 * @returns null
+	 * @memberof TabHeaders
+	 */
 	public goLeft() {
 		if (this.disabledLeftArrow) {
 			return;
@@ -256,6 +383,11 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
+	/**
+	 * Controls scrolling the headers right using the right overflow arrow.
+	 * @returns null
+	 * @memberof TabHeaders
+	 */
 	public goRight() {
 		if (this.disabledRightArrow) {
 			return;
@@ -277,11 +409,19 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
+	/**
+	 *
+	 * Selects Tab 'tab' and moves it into view on the view DOM if it is not already.
+	 * @param {any} ref
+	 * @param {Tab} tab
+	 * @param {number} tabIndex
+	 * @returns null
+	 * @memberof TabHeaders
+	 */
 	public selectTab(ref, tab: Tab, tabIndex: number) {
 		if (tab.disabled) {
 			return;
 		}
-
 		this.currentSelectedTab = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
@@ -289,6 +429,13 @@ export class TabHeaders implements AfterViewInit {
 		this.moveTabIntoView(ref);
 	}
 
+	/**
+	 *
+	 * Ensures 'tab' is in view in the view DOM.
+	 * @param {any} tab
+	 * @returns null
+	 * @memberof TabHeaders
+	 */
 	public moveTabIntoView(tab) {
 		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
@@ -303,6 +450,12 @@ export class TabHeaders implements AfterViewInit {
 		this.updateOverflowButtons();
 	}
 
+	/**
+	 *
+	 * Iterates through the tab items and returns first tab visible in the view DOM.
+	 * @returns index of the first visible tab
+	 * @memberof TabHeaders
+	 */
 	public findFirstVisibleTab() {
 		for (let i = 0; i < this.allTabHeaders.length; i++) {
 			// find the first tab that isn't behind the left edge
@@ -312,6 +465,12 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
+	/**
+	 *
+	 * Checks if the headings can scroll left or right and updates the
+	 * overflow arrows.
+	 * @memberof TabHeaders
+	 */
 	public updateOverflowButtons() {
 		this.firstVisibleTab = this.findFirstVisibleTab();
 		if (this.firstVisibleTab > 0) {
