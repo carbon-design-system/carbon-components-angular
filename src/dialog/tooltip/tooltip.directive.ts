@@ -16,6 +16,18 @@ let tooltipCounter = 0;
 
 /**
  * Directive for extending `Dialog` to create tooltips.
+ *
+ * class: TooltipDirective (extends PopoverDirective)
+ *
+ *
+ * selector: `nTooltip`
+ *
+ *
+ * ```html
+ * <button nTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="danger">Tooltip Right</button>
+ * <button nTooltip="I am a tooltip" type="warning">Tooltip Top warning on click</button>
+ * ```
+ *
  * @export
  * @class TooltipDirective
  * @extends {DialogDirective}
