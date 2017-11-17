@@ -81,7 +81,7 @@ let nextId = 0;
 })
 export class Tab implements OnInit {
 	/**
-	 * Boolean value reflects if the Tab is using a custom template for the heading.
+	 * Boolean value reflects if the `Tab` is using a custom template for the heading.
 	 * Default value is false.
 	 * @memberof Tab
 	 */
@@ -89,25 +89,25 @@ export class Tab implements OnInit {
 
 	/**
 	 *
-	 * The Tab's title to be displayed or custom temaplate for the Tab heading.
+	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
 	 * @type {(string | TemplateRef<any>)}
 	 * @memberof Tab
 	 */
 	@Input() heading: string | TemplateRef<any>;
 	/**
-	 * Indicates whether the Tab is active/selected.
-	 * Determines whether it's TabPanel is rendered.
+	 * Indicates whether the `Tab` is active/selected.
+	 * Determines whether it's `TabPanel` is rendered.
 	 * @memberof Tab
 	 */
 	@Input() active = false;
 	/**
-	 * Indicates whether or not the Tab item is disabled.
+	 * Indicates whether or not the `Tab` item is disabled.
 	 * @memberof Tab
 	 */
 	@Input() disabled = false;
 	// do we need id's?
 	/**
-	 * Sets the id of the Tab. Will be uniquely generated if not provided.
+	 * Sets the id of the `Tab`. Will be uniquely generated if not provided.
 	 * @memberof Tab
 	 */
 	@Input() id = `n-tab-${nextId++}`;
@@ -117,7 +117,7 @@ export class Tab implements OnInit {
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * Value 'select' to be emitted after a new Tab is selected.
+	 * Value 'select' to be emitted after a new `Tab` is selected.
 	 *
 	 * @type {EventEmitter<void>}
 	 * @memberof Tab
@@ -125,7 +125,7 @@ export class Tab implements OnInit {
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 	/**
 	 *
-	 * Value 'selected' to be emitted after a new Tab is selected.
+	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 * @type {EventEmitter<void>}
 	 * @memberof Tab
 	 */
@@ -149,7 +149,7 @@ export class Tab implements OnInit {
 	}
 
 	/**
-	 * Emit the status of the Tab, specifically 'select' and 'selected' properties.
+	 * Emit the status of the `Tab`, specifically 'select' and 'selected' properties.
 	 * @memberof Tab
 	 */
 	doSelect() {
@@ -158,7 +158,7 @@ export class Tab implements OnInit {
 	}
 
 	/**
- 	* Returns value indicating whether this Tab should be rendered in a TabPanel.
+ 	* Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
  	* @returns boolean
  	* @memberof Tab
  	*/

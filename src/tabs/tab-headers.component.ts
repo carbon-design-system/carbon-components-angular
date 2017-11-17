@@ -14,7 +14,7 @@ import "rxjs/add/observable/fromEvent";
 
 import { Tab } from "./tab.component";
 /**
- * The TabHeaders neutrino component contains the Tab items and controls scroll functionality
+ * The `TabHeaders` neutrino component contains the Tab items and controls scroll functionality
  * if content has overflow.
  * @export
  * @class TabHeaders
@@ -140,25 +140,25 @@ import { Tab } from "./tab.component";
 
 export class TabHeaders implements AfterViewInit {
 	/**
-	 * List of Tab components.
+	 * List of `Tab` components.
 	 * @type {QueryList<Tab>}
 	 * @memberof TabHeaders
 	 */
 	@Input() tabs: QueryList<Tab>;
 	/**
-	 * Gets the Unordered List element that holds the Tab headings from the view DOM.
+	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 * @memberof TabHeaders
 	 */
 	@ViewChild("tabList") headerContainer;
 
 	/**
-	 * Indicates whether or not the headings overflow
+	 * Indicates whether or not the headings overflow.
 	 * @type {boolean}
 	 * @memberof TabHeaders
 	 */
 	public overflow = false;
 	/**
-	 * The index of the first visible tab
+	 * The index of the first visible tab.
 	 * @type {number}
 	 * @memberof TabHeaders
 	 */
@@ -170,7 +170,7 @@ export class TabHeaders implements AfterViewInit {
 	 */
 	public scrollLength = 0; // replace with local var containing this.tabHeading.nativeElement.offsetWidth
 	/**
-	 * Array of Tab items.
+	 * Array of `Tab` items.
 	 * @type {Array<Tab>}
 	 * @memberof TabHeaders
 	 */
@@ -292,7 +292,7 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 *
-	 * Scrolls the list of Tab headings on 'touchmove'.
+	 * Scrolls the list of `Tab` headings on event 'touchmove'.
 	 * @param {any} event
 	 * @memberof TabHeaders
 	 */
@@ -338,7 +338,7 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 * Checks if there is overflow while displaying all the Tab headings.
+	 * Checks if there is overflow while displaying all the `Tab` headings.
 	 * @memberof TabHeaders
 	 */
 	public scrollCheck() {
@@ -405,7 +405,7 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 *
-	 * Selects Tab 'tab' and moves it into view on the view DOM if it is not already.
+	 * Selects `Tab` 'tab' and moves it into view on the view DOM if it is not already.
 	 * @param {ElementRef} ref
 	 * @param {Tab} tab
 	 * @param {number} tabIndex
