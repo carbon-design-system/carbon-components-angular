@@ -16,8 +16,6 @@ import { Tab } from "./tab.component";
 /**
  * The TabHeaders neutrino component contains the Tab items and controls scroll functionality
  * if content has overflow.
- *
- *
  * @export
  * @class TabHeaders
  * @implements {AfterViewInit}
@@ -142,14 +140,12 @@ import { Tab } from "./tab.component";
 
 export class TabHeaders implements AfterViewInit {
 	/**
-	 *
 	 * List of Tab components.
 	 * @type {QueryList<Tab>}
 	 * @memberof TabHeaders
 	 */
 	@Input() tabs: QueryList<Tab>;
 	/**
-	 *
 	 * Gets the Unordered List element that holds the Tab headings from the view DOM.
 	 * @memberof TabHeaders
 	 */
@@ -162,7 +158,6 @@ export class TabHeaders implements AfterViewInit {
 	 */
 	public overflow = false;
 	/**
-	 *
 	 * The index of the first visible tab
 	 * @type {number}
 	 * @memberof TabHeaders
@@ -207,7 +202,6 @@ export class TabHeaders implements AfterViewInit {
 	 */
 	public touchMove: boolean;
 	/**
-	 *
 	 * Maintains the previous X position used to caculate how much to scroll
 	 * the headings.
 	 * @type {number}
@@ -237,7 +231,6 @@ export class TabHeaders implements AfterViewInit {
 
 	// keyboard accessibility
 	/**
-	 *
 	 * Controls the keydown events used for tabbing through the headings.
 	 * @param {any} event
 	 * @memberof TabHeaders
@@ -262,7 +255,6 @@ export class TabHeaders implements AfterViewInit {
 	// TODO
 	// draggable
 	/**
-	 *
 	 * Stores the X coordinate of the 'touchstart'
 	 * event in order to calculate touch scrolling.
 	 * @param {any} event
@@ -273,6 +265,7 @@ export class TabHeaders implements AfterViewInit {
 		this.touchMove = true;
 		this.prevClientX = event.touches[0].clientX;
 	}
+
 	/**
 	 *
 	 * Handles any touch scrolling where user scrolled past the bound
@@ -296,6 +289,7 @@ export class TabHeaders implements AfterViewInit {
 			this.updateOverflowButtons();
 		}
 	}
+
 	/**
 	 *
 	 * Scrolls the list of Tab headings on 'touchmove'.
@@ -332,7 +326,7 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 * Controls manually focusing tabs.
-	 * @param {any} ref
+	 * @param {ElementRef} ref
 	 * @param {number} index
 	 * @memberof TabHeaders
 	 */
@@ -412,7 +406,7 @@ export class TabHeaders implements AfterViewInit {
 	/**
 	 *
 	 * Selects Tab 'tab' and moves it into view on the view DOM if it is not already.
-	 * @param {any} ref
+	 * @param {ElementRef} ref
 	 * @param {Tab} tab
 	 * @param {number} tabIndex
 	 * @returns null
@@ -432,7 +426,7 @@ export class TabHeaders implements AfterViewInit {
 	/**
 	 *
 	 * Ensures 'tab' is in view in the view DOM.
-	 * @param {any} tab
+	 * @param {ElementRef} tab
 	 * @returns null
 	 * @memberof TabHeaders
 	 */

@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 
 let nextId = 0;
+
 /**
 * The Tab component is a child of the neutrino Tabs component.
 * It represend one Tab item and its content within a panel of other Tab items.
@@ -78,7 +79,6 @@ let nextId = 0;
 		</div>
 	 `
 })
-
 export class Tab implements OnInit {
 	/**
 	 * Boolean value reflects if the Tab is using a custom template for the heading.
@@ -107,12 +107,12 @@ export class Tab implements OnInit {
 	@Input() disabled = false;
 	// do we need id's?
 	/**
-	 * Controls the dynamic id-ing of the Tabs.
+	 * Sets the id of the Tab. Will be uniquely generated if not provided.
 	 * @memberof Tab
 	 */
 	@Input() id = `n-tab-${nextId++}`;
 	/**
-	 * Set to true to have Tab items cached for fast loading.
+	 * Set to true to have Tab items cached and not reloaded on tab switching.
 	 * @memberof Tab
 	 */
 	@Input() cacheActive = false;
@@ -147,6 +147,7 @@ export class Tab implements OnInit {
 			this.headingIsTemplate = true;
 		}
 	}
+
 	/**
 	 * Emit the status of the Tab, specifically 'select' and 'selected' properties.
 	 * @memberof Tab
@@ -155,14 +156,13 @@ export class Tab implements OnInit {
 		this.select.emit();
 		this.selected.emit();
 	}
+
 	/**
- 	* If this tab is active (the selected tab) or tabs are caching, this will return
- 	* 'true' indicating this tab should be rendered in a TabPanel.
- 	*
- 	* @returns boolean indicating whether it should be rendered within the TabPanel.
+ 	* Returns value indicating whether this Tab should be rendered in a TabPanel.
+ 	* @returns boolean
  	* @memberof Tab
  	*/
 	shouldRender() {
-			return this.active || this.cacheActive;
+		return this.active || this.cacheActive;
 	}
 }

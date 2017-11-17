@@ -43,33 +43,28 @@ import { TabHeaders } from "./tab-headers.component";
 			<n-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></n-tab-headers>
 	 `
 })
-
 export class Tabs implements AfterContentInit {
 	/**
-	 *
-	 * Maintains a QueryList of the Tab elements and updates if Tabs are added or removed.
+	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
 	 * @type {QueryList<Tab>}
 	 * @memberof Tabs
 	 */
 	@ContentChildren(Tab) tabs: QueryList<Tab>;
-
 	/**
-	 *
 	 * Takes either the string value 'top' or 'bottom' to place TabHeader
-	 * relative to the TabPanels.
+	 * relative to the `TabPanel`s.
 	 * @type string
 	 * @memberof Tabs
 	 */
 	@Input() position: "top" | "bottom" = "top";
 	/**
-	 * Turn on TabPanel caching for faster loading when switching tabs.
+	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
 	 * @type boolean
 	 * @memberof Tabs
 	 */
 	@Input() cacheActive = false;
-
 	/**
-	 * After content is initialize update Tabs to cache (if turned on) and set the inital
+	 * After content is initialize update `Tab`s to cache (if turned on) and set the inital
 	 * selected Tab item.
 	 * @memberof Tabs
 	 */
@@ -83,7 +78,7 @@ export class Tabs implements AfterContentInit {
 	}
 
 	/**
-	 * Method to determine which Tab is initially selected.
+	 * Determines which `Tab` is initially selected.
 	 * @private
 	 * @memberof Tabs
 	 */
