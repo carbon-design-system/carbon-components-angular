@@ -12,6 +12,14 @@ import {
 import { Dialog } from "./../dialog.component";
 import position from "../../common/position.service";
 
+
+/**
+ * Extend the neutrino `Dialog` Component to create a popover styled element
+ * that displays a menu or list.
+ * @export
+ * @class PopoverMenu
+ * @extends {Dialog}
+ */
 @Component({
 	selector: "n-popover-menu",
 	template: `
@@ -62,11 +70,30 @@ import position from "../../common/position.service";
 	`
 })
 export class PopoverMenu extends Dialog {
+	/**
+	 * Binds display property to the `PopoverMenu` style attribute.
+	 * @memberof PopoverMenu
+	 */
 	@HostBinding("attr.style") style = "display: inline-block;";
 
+	/**
+	 * Set to 'true' if `PopoverMenu` has a template for the body content.
+	 * @type {boolean}
+	 * @memberof PopoverMenu
+	 */
 	public hasContentTemplate = false;
+	/**
+	 * Set to 'true' if `PopoverMenu` has a template for a footer.
+	 * @type {boolean}
+	 * @memberof PopoverMenu
+	 */
 	public hasFooterTemplate = false;
 
+	/**
+	 * Checks for existing content and footer templates and
+	 * handles offset for    the `PopoverMenu`.
+	 * @memberof PopoverMenu
+	 */
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
