@@ -13,6 +13,8 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 
 import { Tab } from "./tab.component";
+
+
 /**
  * The `TabHeaders` neutrino component contains the Tab items and controls scroll functionality
  * if content has overflow.
@@ -416,6 +418,7 @@ export class TabHeaders implements AfterViewInit {
 		if (tab.disabled) {
 			return;
 		}
+
 		this.currentSelectedTab = tabIndex;
 		this.tabs.forEach(_tab => _tab.active = false);
 		tab.active = true;
