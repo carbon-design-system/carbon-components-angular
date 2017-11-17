@@ -36,44 +36,99 @@ import { DialogConfig } from "./dialog-config.interface";
 	]
 })
 export class DialogDirective implements OnInit {
-	/** string title for the dialog */
+	/**
+	 * Title for the dialog
+	 * @type {string}
+	 * @memberof DialogDirective
+	 */
 	@Input() title = "";
-	/** dialog body, can be a string or template */
+	/**
+	 * Dialog body content.
+	 * @type {(string | TemplateRef<any>)}
+	 * @memberof DialogDirective
+	 */
 	@Input() nDialog: string | TemplateRef<any>;
-	/** how to trigger the dialog, can be "click" or "hover" (hover and click behave the same on mobile - both respond to a single tap) */
+	/**
+	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap)
+	 * @type {("click" | "hover" | "mouseenter")}
+	 * @memberof DialogDirective
+	 */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
-	/** placement of the dialog, usually relative to the element the directive is on */
+	/**
+	 * Placement of the dialog, usually relative to the element the directive is on.
+	 * @type {("top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right")}
+	 * @memberof DialogDirective
+	 */
 	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
-	/** class to add to the dialog container */
+	/**
+	 * Class to add to the dialog container
+	 * @type {string}
+	 * @memberof DialogDirective
+	 */
 	@Input() wrapperClass: string;
-	/** spacing between the dialog and it's triggering element */
+	/**
+	 * Spacing between the dialog and it's triggering element
+	 * @type {number}
+	 * @memberof DialogDirective
+	 */
 	@Input() gap = 10;
-	/** should the dialog be appened to the body (to break out of containers) */
+	/**
+	 * Value 'true' sets Dialog be appened to the body (to break out of containers)
+	 * @type {boolean}
+	 * @memberof DialogDirective
+	 */
 	@Input() appendToBody = false;
-	/** should the dialog attempt to place itself for maximum visibility? */
+	/**
+	 * Should the dialog attempt to place itself for maximum visibility?
+	 * @type {boolean}
+	 * @memberof DialogDirective
+	 */
 	@Input() autoPosition = false;
-	/** optional data for templates */
+	/**
+	 * Optional data for templates
+	 * @memberof DialogDirective
+	 */
 	@Input() data = {};
-	/** config object passed to the rendered component */
+	/**
+	 * Config object passed to the rendered component
+	 * @type {DialogConfig}
+	 * @memberof DialogDirective
+	 */
 	dialogConfig: DialogConfig;
 
+	/**
+	 * Creates an instance of DialogDirective.
+	 * @param {ElementRef} _elementRef
+	 * @param {ViewContainerRef} _viewContainerRef
+	 * @param {DialogService} _dialogService
+	 * @memberof DialogDirective
+	 */
 	constructor(
 		protected _elementRef: ElementRef,
 		protected _viewContainerRef: ViewContainerRef,
 		protected _dialogService: DialogService) {}
 
+	/**
+	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
+	 * @param {any} evt
+	 * @memberof DialogDirective
+	 */
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
 		evt.stopImmediatePropagation();
 		evt.preventDefault();
 		this.toggle();
 	}
-
+	/**
+	 * Sets the config object and binds events for hovering or clicking before
+	 * running code from child class.
+	 * @memberof DialogDirective
+	 */
 	ngOnInit() {
 		// fix for safari highjacking clicks
 		document.body.firstElementChild.addEventListener("click", () => null, true);
 
-		// set the config object (this can [and should!] be added to in chld classes depending on what they need)
+		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
 			title: this.title,
 			content: this.nDialog,
@@ -102,29 +157,34 @@ export class DialogDirective implements OnInit {
 	}
 
 	/**
-	 * helper method to call dialogService#open
+	 * Helper method to call dialogService 'open'
+	 * @memberof DialogDirective
 	 */
 	open() {
 		this._dialogService.open(this._viewContainerRef, this.dialogConfig);
 	}
 
 	/**
-	 * helper method to call dialogService#toggle
+	 * Helper method to call dialogService 'toggle'.
+	 * @memberof DialogDirective
 	 */
 	toggle() {
 		this._dialogService.toggle(this._viewContainerRef, this.dialogConfig);
 	}
 
 	/**
-	 * helper method to call dialogService#close
+	 * Helper method to call dialogService 'close'.
+	 * @memberof DialogDirective
 	 */
 	close() {
 		this._dialogService.close(this._viewContainerRef);
 	}
 
 	/**
-	 * empty method for child classes to override and specify additional init steps.
-	 * run after DialogDirective completes it's ngOnInit.
+	 * Empty method for child classes to override and specify additional init steps.
+	 * Run after DialogDirective completes it's ngOnInit.
+	 * @protected
+	 * @memberof DialogDirective
 	 */
 	protected onDialogInit() {}
 }
