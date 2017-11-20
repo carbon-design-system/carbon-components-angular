@@ -12,6 +12,8 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { DialogConfig } from "./dialog-config.interface";
+
+
 /**
  * Dialog object to be injected into other components.
  * @export
@@ -31,7 +33,7 @@ export class DialogService {
 	 */
 	public componentFactory: ComponentFactory<any>;
 	/**
-	 * To emit the Dialog on close event.
+	 * To emit the Dialog closing event.
 	 * @type {EventEmitter<any>}
 	 * @memberof DialogService
 	 */
@@ -123,7 +125,6 @@ export class DialogService {
 	}
 
 	/**
-	 *
 	 * On close of Dialog item, sets focus back to previous item, unsets
 	 * the current dialogRef item. Unsubscribes to the event of Dialog close.
 	 * @param {ViewContainerRef} viewContainer

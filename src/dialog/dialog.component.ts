@@ -18,8 +18,9 @@ import position, { Position, AbsolutePosition } from "../common/position.service
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
+
 /**
- * Implements a dialog that can be positioned anywhere on the page.
+ * Implements a `Dialog` that can be positioned anywhere on the page.
  * Used to implement a popover or tooltip.
  *
  * @export
@@ -34,7 +35,7 @@ import { DialogConfig } from "./dialog-config.interface";
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
-	 * One static resize observable to make sure we arent registering hundreds of event listeners
+	 * One static event observable to handle window resizing.
 	 * @protected
 	 * @static
 	 * @type {Observable<any>}
@@ -42,47 +43,47 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	protected static resizeObservable: Observable<any> = Observable.fromEvent(window, "resize").throttleTime(100);
 	/**
-	 * Emits event handling the closing of a dialog object.
+	 * Emits event that handles the closing of a `Dialog` object.
 	 * @type {EventEmitter<any>}
 	 * @memberof Dialog
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 	/**
-	 * Receives 'DialogConfig' interface object with properties of the dialog
+	 * Receives `DialogConfig` interface object with properties of `Dialog`
 	 * explictly defined.
 	 * @type {DialogConfig}
 	 * @memberof Dialog
 	 */
 	@Input() dialogConfig: DialogConfig;
 	/**
-	 * Maintains a reference to the view DOM element of the dialog.
+	 * Maintains a reference to the view DOM element of the `Dialog`.
 	 * @type {ElementRef}
 	 * @memberof Dialog
 	 */
 	@ViewChild("dialog") dialog: ElementRef;
 
 	/**
-	 * Stores the data received from dialogConfig.
+	 * Stores the data received from `dialogConfig`.
 	 * @memberof Dialog
 	 */
 	public data = {};
 
 	/**
-	 * The placement of the dialog is recieved from the Position service.
+	 * The placement of the `Dialog` is recieved from the `Position` service.
 	 * @type {Position}
 	 * @memberof Dialog
 	 */
 	public placement: Position;
 
 	/**
-	 * A Subscription used to update placement in the event of a window resize.
+	 * `Subscription` used to update placement in the event of a window resize.
 	 * @protected
 	 * @type {Subscription}
 	 * @memberof Dialog
 	 */
 	protected resizeSubscription: Subscription;
 	/**
-	 * Handles offsetting the Dialog item based on the defined position
+	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
 	 * @protected
 	 * @memberof Dialog
@@ -99,14 +100,14 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	};
 
 	/**
-	 * Creates an instance of Dialog.
+	 * Creates an instance of `Dialog`.
 	 * @param {ElementRef} _elementRef
 	 * @memberof Dialog
 	 */
 	constructor(protected _elementRef: ElementRef) {}
 
 	/**
-	 * Initilize the dialog, set the placement and gap, and add a subscription to resize events.
+	 * Initilize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
 	 * @memberof Dialog
 	 */
 	ngOnInit() {
@@ -132,7 +133,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/**
-	 * Method overridden by consuming classes to run any additional initialization code.
+	 * Empty method to be overridden by consuming classes to run any additional initialization code.
 	 * @memberof Dialog
 	 */
 	onDialogInit() {}
@@ -141,7 +142,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	// protected addGap = (pos) => position.addOffset(pos, 0, 0);
 
 	/**
-	 * Uses the position service to position the dialog in screen space
+	 * Uses the position service to position the `Dialog` in screen space
 	 * @memberof Dialog
 	 */
 	placeDialog(): void {
@@ -167,7 +168,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/**
-	 * Sets up a KeyboardEvent to close Dialog with Escape key.
+	 * Sets up a KeyboardEvent to close `Dialog` with Escape key.
 	 * @param {KeyboardEvent} event
 	 * @memberof Dialog
 	 */
@@ -187,8 +188,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/**
-	 * Sets up a event Listener to close Dialog if click event occurs outside
-	 * Dialog object.
+	 * Sets up a event Listener to close `Dialog` if click event occurs outside
+	 * `Dialog` object.
 	 * @param {any} event
 	 * @memberof Dialog
 	 */
@@ -201,7 +202,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/**
-	 * Closes Dialog object by emitting the close event upwards to parents.
+	 * Closes `Dialog` object by emitting the close event upwards to parents.
 	 * @memberof Dialog
 	 */
 	public doClose() {
@@ -209,7 +210,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/**
-	 * Upon destruction of component, Dialog unsubscribes from handling window resizing.
+	 * At destruction of component, `Dialog` unsubscribes from handling window resizing changes.
 	 * @memberof Dialog
 	 */
 	ngOnDestroy() {

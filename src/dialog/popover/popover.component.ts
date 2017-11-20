@@ -14,7 +14,7 @@ import position from "../../common/position.service";
 
 
 /**
- * Extend the neutrino `Dialog` Component to create a popover styled element for exposing content.
+ * Extend the neutrino `Dialog` component to create a popover styled element for exposing content.
  * @export
  * @class Popover
  * @extends {Dialog}

@@ -91,7 +91,7 @@ export class PopoverMenu extends Dialog {
 
 	/**
 	 * Checks for existing content and footer templates and
-	 * handles offset for    the `PopoverMenu`.
+	 * handles offset for the `PopoverMenu`.
 	 * @memberof PopoverMenu
 	 */
 	onDialogInit() {

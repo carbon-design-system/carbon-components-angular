@@ -16,6 +16,7 @@ import { Dialog } from "./../dialog.component";
 import { Observable } from "rxjs/Observable";
 import position from "../../common/position.service";
 
+
 /**
  * Extend the neutrino `Dialog` Component to create a tooltip for exposing content.
  * @export
@@ -65,7 +66,7 @@ export class Tooltip extends Dialog {
 	 */
 	@HostBinding("attr.style") style = "display: inline-block";
 	/**
-	 * Value is set to 'true' if the `Tooltip` is to display a TemplateRef instead of a string.
+	 * Value is set to 'true' if the `Tooltip` is to display a `TemplateRef` instead of a string.
 	 * @type {boolean}
 	 * @memberof Tooltip
 	 */

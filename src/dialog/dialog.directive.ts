@@ -19,6 +19,7 @@ import "rxjs/add/observable/fromEvent";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
 
+
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
  *
@@ -79,7 +80,7 @@ export class DialogDirective implements OnInit {
 	 */
 	@Input() appendToBody = false;
 	/**
-	 * Should the dialog attempt to place itself for maximum visibility?
+	 * Determines if the Dialog will attempt to place itself for maximum visibility.
 	 * @type {boolean}
 	 * @memberof DialogDirective
 	 */

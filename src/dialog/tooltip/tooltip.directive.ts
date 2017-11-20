@@ -54,7 +54,7 @@ export class TooltipDirective extends DialogDirective {
 	@Input() type: "warning" | "error" | "" = "";
 
 	/**
-	 * Creates an instance of TooltipDirective.
+	 * Creates an instance of `TooltipDirective`.
 	 * @param {ElementRef} _elementRef
 	 * @param {ViewContainerRef} _viewContainerRef
 	 * @param {DialogService} _dialogService
