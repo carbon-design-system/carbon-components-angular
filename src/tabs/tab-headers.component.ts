@@ -172,8 +172,8 @@ export class TabHeaders implements AfterViewInit {
 	 */
 	public scrollLength = 0; // replace with local var containing this.tabHeading.nativeElement.offsetWidth
 	/**
-	 * Array of `Tab` items.
-	 * @type {Array<Tab>}
+	 * The DOM element containing the `Tab` headings displayed.
+	 * @type {Array<any>}
 	 * @memberof TabHeaders
 	 */
 	public allTabHeaders;
@@ -198,7 +198,7 @@ export class TabHeaders implements AfterViewInit {
 	 */
 	public currentSelectedTab: number;
 	/**
-	 * Represents whether user is currently touch scrolling the headings.
+	 * Represents whether user is currently touch-scrolling the headings.
 	 * @type {boolean}
 	 * @memberof TabHeaders
 	 */
@@ -221,12 +221,14 @@ export class TabHeaders implements AfterViewInit {
 	/**
 	 * Accounts for button width and tab padding for the left side
 	 * @private
+	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	private leftPadding = 15; // button width less tab left padding
 	/**
 	 * Accounts for both overflow button widths.
 	 * @private
+	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	private rightPadding = 70; // both button widths less some padding
@@ -258,7 +260,7 @@ export class TabHeaders implements AfterViewInit {
 	// draggable
 	/**
 	 * Stores the X coordinate of the 'touchstart'
-	 * event in order to calculate touch scrolling.
+	 * event in order to calculate touch-scrolling.
 	 * @param {any} event
 	 * @memberof TabHeaders
 	 */
@@ -269,9 +271,8 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 *
-	 * Handles any touch scrolling where user scrolled past the bound
-	 * and updates the overflow buttons for touch scrolling on event 'touchend'.
+	 * Handles any touch-scrolling where user scrolled past the bound
+	 * and updates the overflow buttons for touch-scrolling on event 'touchend'.
 	 * @param {any} event
 	 * @memberof TabHeaders
 	 */
@@ -293,7 +294,6 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 *
 	 * Scrolls the list of `Tab` headings on event 'touchmove'.
 	 * @param {any} event
 	 * @memberof TabHeaders
@@ -328,7 +328,7 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 * Controls manually focusing tabs.
-	 * @param {ElementRef} ref
+	 * @param {any} ref
 	 * @param {number} index
 	 * @memberof TabHeaders
 	 */
@@ -406,9 +406,8 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 *
 	 * Selects `Tab` 'tab' and moves it into view on the view DOM if it is not already.
-	 * @param {ElementRef} ref
+	 * @param {any} ref
 	 * @param {Tab} tab
 	 * @param {number} tabIndex
 	 * @returns null
@@ -427,13 +426,12 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 *
 	 * Ensures 'tab' is in view in the view DOM.
-	 * @param {ElementRef} tab
+	 * @param {any} tab
 	 * @returns null
 	 * @memberof TabHeaders
 	 */
-	public moveTabIntoView(tab) {
+	public moveTabIntoView(tab: any) {
 		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
@@ -448,7 +446,6 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 *
 	 * Iterates through the tab items and returns first tab visible in the view DOM.
 	 * @returns index of the first visible tab
 	 * @memberof TabHeaders
@@ -463,7 +460,6 @@ export class TabHeaders implements AfterViewInit {
 	}
 
 	/**
-	 *
 	 * Checks if the headings can scroll left or right and updates the
 	 * overflow arrows.
 	 * @memberof TabHeaders

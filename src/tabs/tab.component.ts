@@ -89,7 +89,6 @@ export class Tab implements OnInit {
 	public headingIsTemplate = false;
 
 	/**
-	 *
 	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
 	 * @type {(string | TemplateRef<any>)}
 	 * @memberof Tab
