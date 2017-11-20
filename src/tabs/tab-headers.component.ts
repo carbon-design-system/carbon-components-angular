@@ -14,7 +14,6 @@ import "rxjs/add/observable/fromEvent";
 
 import { Tab } from "./tab.component";
 
-
 /**
  * The `TabHeaders` neutrino component contains the Tab items and controls scroll functionality
  * if content has overflow.
@@ -328,11 +327,11 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 * Controls manually focusing tabs.
-	 * @param {any} ref
+	 * @param {HTMLElement} ref
 	 * @param {number} index
 	 * @memberof TabHeaders
 	 */
-	public onTabFocus(ref, index: number) {
+	public onTabFocus(ref: HTMLElement, index: number) {
 		this.currentSelectedTab = index;
 		this.moveTabIntoView(ref);
 		// reset scroll left because we're already handling it
@@ -407,13 +406,13 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 * Selects `Tab` 'tab' and moves it into view on the view DOM if it is not already.
-	 * @param {any} ref
+	 * @param {HTMLElement} ref
 	 * @param {Tab} tab
 	 * @param {number} tabIndex
 	 * @returns null
 	 * @memberof TabHeaders
 	 */
-	public selectTab(ref, tab: Tab, tabIndex: number) {
+	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number) {
 		if (tab.disabled) {
 			return;
 		}
@@ -427,15 +426,15 @@ export class TabHeaders implements AfterViewInit {
 
 	/**
 	 * Ensures 'tab' is in view in the view DOM.
-	 * @param {any} tab
+	 * @param {HTMLElement} tab
 	 * @returns null
 	 * @memberof TabHeaders
 	 */
-	public moveTabIntoView(tab: any) {
+	public moveTabIntoView(tab: HTMLElement) {
 		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
-		let tabLi = tab.offsetParent;
+		let tabLi = tab.offsetParent as HTMLElement;
 
 		if (tabLi.offsetLeft + tabLi.offsetWidth > (headerContainer.offsetWidth - this.scrollLeft)) {
 			this.scrollLeft = -((tabLi.offsetLeft + tabLi.offsetWidth + this.rightPadding) - headerContainer.offsetWidth);
