@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- CompoDoc Documentation for Tab component  [\#692](https://github.ibm.com/peretz/neutrino/pull/692) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Fix something [\#691](https://github.ibm.com/peretz/neutrino/pull/691) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update version \(incl Angular v5\) [\#689](https://github.ibm.com/peretz/neutrino/pull/689) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix to inform users what to do if github\_changelog\_generator doesn't run [\#688](https://github.ibm.com/peretz/neutrino/pull/688) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
