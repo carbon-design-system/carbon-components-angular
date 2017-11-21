@@ -80,7 +80,7 @@ export class BannerDemo {
 
 	infoBanner = {
 		type: "info",
-		message: "sample message"
+		message: "sample message <b>this is important information!</b>"
 	};
 
 	errorBanner = {
@@ -110,7 +110,7 @@ export class BannerDemo {
 	callBanner(type) {
 		this.bannerToClose = this.banner.showBanner({
 			type: type,
-			message: "sample message"
+			message: "sample message <b>fun for everyone</b>"
 		});
 	}
 
