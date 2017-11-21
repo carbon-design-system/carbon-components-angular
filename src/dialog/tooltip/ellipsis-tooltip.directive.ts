@@ -40,11 +40,11 @@ export class EllipsisTooltipDirective extends TooltipDirective {
 	 * @memberof EllipsisTooltipDirective
 	 */
 	toggle() {
-		if (this._elementRef.nativeElement.scrollWidth <= this._elementRef.nativeElement.offsetWidth) {
+		if (this.elementRef.nativeElement.scrollWidth <= this.elementRef.nativeElement.offsetWidth) {
 			return;
 		}
 
-		this.dialogConfig.content = this._elementRef.nativeElement.innerText;
+		this.dialogConfig.content = this.elementRef.nativeElement.innerText;
 		super.toggle();
 	}
 }

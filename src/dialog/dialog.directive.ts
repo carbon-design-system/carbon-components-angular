@@ -2,8 +2,10 @@ import {
 	Component,
 	Directive,
 	Input,
+	Output,
 	EventEmitter,
 	OnInit,
+	OnDestroy,
 	Injector,
 	ComponentRef,
 	ElementRef,
@@ -36,7 +38,7 @@ import { DialogConfig } from "./dialog-config.interface";
 		DialogService
 	]
 })
-export class DialogDirective implements OnInit {
+export class DialogDirective implements OnInit, OnDestroy {
 	/**
 	 * Title for the dialog
 	 * @type {string}
@@ -57,10 +59,10 @@ export class DialogDirective implements OnInit {
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
 	 * Placement of the dialog, usually relative to the element the directive is on.
-	 * @type {("top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right")}
+	 * @type {("top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right")}
 	 * @memberof DialogDirective
 	 */
-	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
+	@Input() placement: "top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
 	/**
 	 * Class to add to the dialog container
 	 * @type {string}
@@ -95,19 +97,20 @@ export class DialogDirective implements OnInit {
 	 * @type {DialogConfig}
 	 * @memberof DialogDirective
 	 */
+	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	dialogConfig: DialogConfig;
 
 	/**
 	 * Creates an instance of DialogDirective.
-	 * @param {ElementRef} _elementRef
-	 * @param {ViewContainerRef} _viewContainerRef
-	 * @param {DialogService} _dialogService
+	 * @param {ElementRef} elementRef
+	 * @param {ViewContainerRef} viewContainerRef
+	 * @param {DialogService} dialogService
 	 * @memberof DialogDirective
 	 */
 	constructor(
-		protected _elementRef: ElementRef,
-		protected _viewContainerRef: ViewContainerRef,
-		protected _dialogService: DialogService) {}
+		protected elementRef: ElementRef,
+		protected viewContainerRef: ViewContainerRef,
+		protected dialogService: DialogService) {}
 
 	/**
 	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
@@ -134,7 +137,7 @@ export class DialogDirective implements OnInit {
 			title: this.title,
 			content: this.nDialog,
 			placement: this.placement,
-			parentRef: this._elementRef,
+			parentRef: this.elementRef,
 			gap: this.gap,
 			trigger: this.trigger,
 			appendToBody: this.appendToBody,
@@ -145,16 +148,32 @@ export class DialogDirective implements OnInit {
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
-			Observable.fromEvent(this._elementRef.nativeElement, "mouseout").subscribe(() => this.close());
-			Observable.fromEvent(this._elementRef.nativeElement, "focus").subscribe(() => this.open());
-			Observable.fromEvent(this._elementRef.nativeElement, "blur").subscribe(() => this.close());
+			Observable.fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
+			Observable.fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.close());
+			Observable.fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
+			Observable.fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
-			Observable.fromEvent(this._elementRef.nativeElement, "click").subscribe(() => this.toggle());
+			Observable.fromEvent(this.elementRef.nativeElement, "click").subscribe(() => this.toggle());
 		}
+
+		// call onClose when the dialog is closed
+		this.dialogService.isClosed.subscribe(value => {
+			if (value) {
+				this.onClose.emit();
+			}
+		});
 
 		// run any code a child class may need
 		this.onDialogInit();
+	}
+
+	/*
+	 * when the host dies, kill the popover
+	 * useful for use in a modal or similar
+	 * @memberof Dialogdirective
+	 */
+	ngOnDestroy() {
+		this.close();
 	}
 
 	/**
@@ -162,7 +181,7 @@ export class DialogDirective implements OnInit {
 	 * @memberof DialogDirective
 	 */
 	open() {
-		this._dialogService.open(this._viewContainerRef, this.dialogConfig);
+		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
 	}
 
 	/**
@@ -170,7 +189,7 @@ export class DialogDirective implements OnInit {
 	 * @memberof DialogDirective
 	 */
 	toggle() {
-		this._dialogService.toggle(this._viewContainerRef, this.dialogConfig);
+		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
 	}
 
 	/**
@@ -178,7 +197,7 @@ export class DialogDirective implements OnInit {
 	 * @memberof DialogDirective
 	 */
 	close() {
-		this._dialogService.close(this._viewContainerRef);
+		this.dialogService.close(this.viewContainerRef);
 	}
 
 	/**

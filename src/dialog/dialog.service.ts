@@ -117,12 +117,13 @@ export class DialogService {
 				});
 			}
 
-			this.dialogSubscription = this.onClose.subscribe((evt) => {
-				this.close(viewContainer, evt);
+			this.dialogSubscription = this.onClose.subscribe(() => {
+				this.close(viewContainer);
 			});
 
 			this.dialogRef.instance._elementRef.nativeElement.focus();
 		}
+		return this;
 	}
 
 	/**
@@ -132,10 +133,8 @@ export class DialogService {
 	 * @param {any} [evt]
 	 * @memberof DialogService
 	 */
-	close(viewContainer: ViewContainerRef, evt?) {
-		if (evt !== undefined) {
-			this.isClosed.emit(evt);
-		}
+	close(viewContainer: ViewContainerRef) {
+		this.isClosed.emit(true);
 
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
