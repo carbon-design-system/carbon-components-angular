@@ -55,18 +55,18 @@ export class TooltipDirective extends DialogDirective {
 
 	/**
 	 * Creates an instance of `TooltipDirective`.
-	 * @param {ElementRef} _elementRef
-	 * @param {ViewContainerRef} _viewContainerRef
-	 * @param {DialogService} _dialogService
+	 * @param {ElementRef} elementRef
+	 * @param {ViewContainerRef} viewContainerRef
+	 * @param {DialogService} dialogService
 	 * @memberof TooltipDirective
 	 */
 	constructor(
-		protected _elementRef: ElementRef,
-		protected _viewContainerRef: ViewContainerRef,
-		protected _dialogService: DialogService
+		protected elementRef: ElementRef,
+		protected viewContainerRef: ViewContainerRef,
+		protected dialogService: DialogService
 	) {
-		super(_elementRef, _viewContainerRef, _dialogService);
-		_dialogService.create(Tooltip);
+		super(elementRef, viewContainerRef, dialogService);
+		dialogService.create(Tooltip);
 	}
 
 	/**
@@ -78,6 +78,6 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID = "tooltip-" + tooltipCounter;
 		this.dialogConfig.content = this.nTooltip;
 		this.dialogConfig.type = this.type;
-		this._elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
+		this.elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
 	}
 }
