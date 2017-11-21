@@ -11,6 +11,22 @@ import { TooltipDirective } from "./tooltip.directive";
 import { DialogService } from "./../dialog.service";
 import { Tooltip } from "./tooltip.component";
 
+
+/**
+ * A directive that creates a tooltip `Dialog` for exposing truncated text.
+ *
+ * class: EllipsisTooltipDirective (extends PopoverDirective)
+ *
+ * selector: `nEllipsisTooltip`
+ *
+ * ```html
+ * <div class="ellipsis" nEllipsisTooltip>Tooltip for ellipsis because I can and I am really really long</div>
+ * ```
+ *
+ * @export
+ * @class EllipsisTooltipDirective
+ * @extends {TooltipDirective}
+ */
 @Directive({
 	selector: "[nEllipsisTooltip]",
 	providers: [
@@ -18,12 +34,17 @@ import { Tooltip } from "./tooltip.component";
 	]
 })
 export class EllipsisTooltipDirective extends TooltipDirective {
+	/**
+	 * Toggles tooltip in view if text is truncated.
+	 * @returns null
+	 * @memberof EllipsisTooltipDirective
+	 */
 	toggle() {
-		if (this._elementRef.nativeElement.scrollWidth <= this._elementRef.nativeElement.offsetWidth) {
+		if (this.elementRef.nativeElement.scrollWidth <= this.elementRef.nativeElement.offsetWidth) {
 			return;
 		}
 
-		this.dialogConfig.content = this._elementRef.nativeElement.innerText;
+		this.dialogConfig.content = this.elementRef.nativeElement.innerText;
 		super.toggle();
 	}
 }

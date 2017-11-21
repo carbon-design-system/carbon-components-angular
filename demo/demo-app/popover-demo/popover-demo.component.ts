@@ -12,13 +12,25 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 	<h3>Basic popover</h3>
 	<div>
 		Popover left
-		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="left">
+		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="left" (onClose)="whenClosed()">
 			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
 	<div>
 		Popover top
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top">
+			<n-icon icon="info" size="sm"></n-icon>
+		</button>
+	</div>
+	<div>
+		Popover top-left
+		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top-left">
+			<n-icon icon="info" size="sm"></n-icon>
+		</button>
+	</div>
+	<div>
+		Popover top-right
+		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top-right">
 			<n-icon icon="info" size="sm"></n-icon>
 		</button>
 	</div>
@@ -165,5 +177,9 @@ export class PopoverDemo {
 
 	open() {
 		setTimeout( () => {this.popover.open(); }, 1);
+	}
+
+	whenClosed() {
+		console.log("popover closed!");
 	}
 }
