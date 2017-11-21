@@ -4,6 +4,7 @@
  * @export
  */
 
+// possible positions ... this should probably be moved (along with some other types) to some central location
 export type Position =
 	"left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right"  | "left-bottom" | "right-bottom";
 
@@ -13,90 +14,105 @@ export interface AbsolutePosition {
 	position?: AbsolutePosition;
 }
 
-function getAbsoluteOffset(target) {
-	let offsets = {
-		left: 0,
-		top: 0
-	};
-	// get each static (i.e. not absolute or relative) offsetParent and sum the left/right offsets
-	while (target.offsetParent && getComputedStyle(target).position === "static") {
-		offsets.left += target.offsetLeft;
-		offsets.top += target.offsetTop;
-		target = target.offsetParent;
+export type Offset = { left: number, top: number };
+
+function calculatePosition(referenceOffset: Offset, reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
+	// calculate offsets for a given position
+	switch (position) {
+		case "left":
+			return {
+				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left - toPosition.offsetWidth)
+			};
+		case "right":
+			return {
+				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left + reference.offsetWidth)
+			};
+		case "top":
+			return {
+				top: Math.round(referenceOffset.top - toPosition.offsetHeight),
+				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
+			};
+		case "bottom":
+			return {
+				top: Math.round(referenceOffset.top + reference.offsetHeight),
+				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
+			};
+		case "left-bottom":
+			return {
+				// 22 == half of popover header height
+				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left - toPosition.offsetWidth)
+			};
+		case "right-bottom":
+			return {
+				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left + reference.offsetWidth)
+			};
+		case "bottom-left":
+			return {
+				top: referenceOffset.top + reference.offsetHeight,
+				left: referenceOffset.left + reference.offsetWidth - toPosition.offsetWidth
+			};
+		case "bottom-right":
+			return {
+				top: referenceOffset.top + reference.offsetHeight,
+				left: referenceOffset.left
+			};
 	}
-	console.log(offsets);
-	return offsets;
 }
 
 export namespace position {
+	export function getRelativeOffset(target: HTMLElement): Offset {
+		// start with the inital element offsets
+		let offsets = {
+			left: target.offsetLeft,
+			top: target.offsetTop
+		};
+		// get each static (i.e. not absolute or relative) offsetParent and sum the left/right offsets
+		while (target.offsetParent && getComputedStyle(target.offsetParent).position === "static") {
+			offsets.left += target.offsetLeft;
+			offsets.top += target.offsetTop;
+			target = target.offsetParent as HTMLElement;
+		}
+		return offsets;
+	}
+
+	export function getAbsoluteOffset(target: HTMLElement): Offset {
+		return {
+			top: target.getBoundingClientRect().top,
+			left: target.getBoundingClientRect().left
+		};
+	}
+
 	// finds the position relative to the `reference` element
 	export function findRelative(reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
-		let referenceOffset = getAbsoluteOffset(reference);
-		// calculate offsets for a given position
-		switch (position) {
-			case "left":
-				return {
-					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
-					left: Math.round(referenceOffset.left - toPosition.offsetWidth)
-				};
-			case "right":
-				return {
-					top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
-					left: Math.round(referenceOffset.left  + reference.offsetWidth)
-				};
-			case "top":
-				return {
-					top: Math.round(referenceOffset.top - toPosition.offsetHeight),
-					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
-				};
-			case "bottom":
-				return {
-					top: Math.round(referenceOffset.top + reference.offsetHeight),
-					left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
-				};
-			case "left-bottom":
-				return {
-					// 22 == half of popover header height
-					top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
-					left: Math.round(referenceOffset.left - toPosition.offsetWidth)
-				};
-			case "right-bottom":
-				return {
-					top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
-					left: Math.round(referenceOffset.left  + reference.offsetWidth)
-				};
-			case "bottom-left":
-				return {
-					top: referenceOffset.top + reference.offsetHeight,
-					left: referenceOffset.left + reference.offsetWidth - toPosition.offsetWidth
-				};
-			case "bottom-right":
-				return {
-					top: referenceOffset.top + reference.offsetHeight,
-					left: referenceOffset.left
-				};
-		}
-		// default to auto position
+		const referenceOffset = getRelativeOffset(reference);
+		return calculatePosition(referenceOffset, reference, toPosition, position);
+	}
+
+	export function findAbsolute(reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
+		const referenceOffset = getAbsoluteOffset(reference);
+		return calculatePosition(referenceOffset, reference, toPosition, position);
+	}
+
+	export function findPosition(reference: HTMLElement,
+		toPosition: HTMLElement,
+		position: Position,
+		offsetFunction = getRelativeOffset): AbsolutePosition {
+		const referenceOffset = offsetFunction(reference);
+		return calculatePosition(referenceOffset, reference, toPosition, position);
+	}
+
+	/** check if the placement is within the window. right now only handles top/left/bottom/right */
+	export function checkPlacement(reference: HTMLElement, toPosition: HTMLElement, position: Position): {newPlacement: Position} {
 		/**
 		* if (top > windowTop || containerTop) - position to the bottom
 		* if (top > windowBottom || containerBottom) - position to the top
 		* if (left > windowLeft || containerLeft) - position to the right
 		* if (left > windowRight || containerRight) - position to the left
 		*/
-		if (reference.offsetTop - toPosition.offsetHeight < 0) {
-			findRelative(reference, toPosition, "bottom");
-		} else if (reference.offsetHeight + reference.offsetTop + toPosition.offsetHeight > window.innerHeight) {
-			findRelative(reference, toPosition, "top");
-		} else if (reference.offsetLeft - toPosition.offsetWidth < 0) {
-			findRelative(reference, toPosition, "right");
-		} else if (reference.offsetLeft + reference.offsetWidth + toPosition.offsetWidth > window.innerWidth) {
-			findRelative(reference, toPosition, "left");
-		}
-		return findRelative(reference, toPosition, "left");
-	}
-
-	/** check if the placement is within the window. right now only handles top/left/bottom/right */
-	export function checkPlacement(reference: HTMLElement, toPosition: HTMLElement, position: Position): {newPlacement: Position} {
 		if (reference.offsetTop - toPosition.offsetHeight < 0) {
 			return { newPlacement: "bottom" };
 		} else if (reference.offsetHeight + reference.offsetTop + toPosition.offsetHeight > window.innerHeight) {
