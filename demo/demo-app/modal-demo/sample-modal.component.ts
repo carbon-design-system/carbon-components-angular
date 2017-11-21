@@ -9,7 +9,7 @@ import { Modal } from "../../../src";
 			<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
 			<section class="modal-body">
 				<h1>Sample modal works.</h1>
-				<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="true">
+				<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="false">
 					<n-icon icon="info" size="sm"></n-icon>
 				</button>
 				{{modalText}}
