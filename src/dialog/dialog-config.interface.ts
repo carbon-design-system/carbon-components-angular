@@ -21,6 +21,7 @@ export interface DialogConfig {
 	content: string | TemplateRef<any>;
 	/**
 	 * Parameter for triggering `Dialog` display.
+	 * With the release of v2.0 the type will just be "click" or "hover".
 	 * @type {("click" | "hover" | "mouseenter")}
 	 * @memberof DialogConfig
 	 */
@@ -47,14 +48,14 @@ export interface DialogConfig {
 	 */
 	parentRef: ElementRef;
 	/**
-	 * Set to 'true' will append `Dialog` to body causing
+	 * Set to `true` will append `Dialog` to body causing
 	 * it to break out of containers.
 	 * @type {boolean}
 	 * @memberof DialogConfig
 	 */
 	appendToBody: boolean;
 	/**
-	 * Set to 'true' will attempt to place
+	 * Set to `true` will attempt to place
 	 * `Dialog` for maximum visibility.
 	 * @type {boolean}
 	 * @memberof DialogConfig

@@ -74,7 +74,7 @@ export class DialogDirective implements OnInit {
 	 */
 	@Input() gap = 10;
 	/**
-	 * Value 'true' sets Dialog be appened to the body (to break out of containers)
+	 * Value `true` sets Dialog be appened to the body (to break out of containers)
 	 * @type {boolean}
 	 * @memberof DialogDirective
 	 */

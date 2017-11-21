@@ -76,13 +76,13 @@ export class Popover extends Dialog {
 	@HostBinding("attr.style") style = "display: inline-block;";
 
 	/**
-	 * Set to 'true' if `Popover` has a template for the body content.
+	 * Set to `true` if `Popover` has a template for the body content.
 	 * @type {boolean}
 	 * @memberof Popover
 	 */
 	public hasContentTemplate = false;
 	/**
-	 * Set to 'true' if `Popover` has a template for a footer.
+	 * Set to `true` if `Popover` has a template for a footer.
 	 * @type boolean
 	 * @memberof Popover
 	 */

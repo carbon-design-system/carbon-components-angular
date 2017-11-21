@@ -14,7 +14,7 @@ import position from "../../common/position.service";
 
 
 /**
- * Extend the neutrino `Dialog` Component to create a popover styled element
+ * Extend the `Dialog` Component to create a popover styled element
  * that displays a menu or list.
  * @export
  * @class PopoverMenu
@@ -77,13 +77,13 @@ export class PopoverMenu extends Dialog {
 	@HostBinding("attr.style") style = "display: inline-block;";
 
 	/**
-	 * Set to 'true' if `PopoverMenu` has a template for the body content.
+	 * Set to `true` if `PopoverMenu` has a template for the body content.
 	 * @type {boolean}
 	 * @memberof PopoverMenu
 	 */
 	public hasContentTemplate = false;
 	/**
-	 * Set to 'true' if `PopoverMenu` has a template for a footer.
+	 * Set to `true` if `PopoverMenu` has a template for a footer.
 	 * @type {boolean}
 	 * @memberof PopoverMenu
 	 */
