@@ -18,11 +18,13 @@ function getAbsoluteOffset(target) {
 		left: 0,
 		top: 0
 	};
-	while (target.offsetParent) {
+	// get each static (i.e. not absolute or relative) offsetParent and sum the left/right offsets
+	while (target.offsetParent && getComputedStyle(target).position === "static") {
 		offsets.left += target.offsetLeft;
 		offsets.top += target.offsetTop;
 		target = target.offsetParent;
 	}
+	console.log(offsets);
 	return offsets;
 }
 
