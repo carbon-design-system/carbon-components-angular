@@ -54,9 +54,7 @@ describe("ModalComponent", () => {
 
 		spyOn(modalService, "destroy");
 
-		let evt = document.createEvent("KeyboardEvent");
-		evt.initEvent("keydown", true, false);
-		(<any>evt).key = "Escape";
+		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "Escape"});
 		el.dispatchEvent(evt);
 		fixture.detectChanges();
 		fixture.whenStable().then(() => {

@@ -55,24 +55,6 @@ describe("Tooltip directive", () => {
 		expect(document.querySelector(".tooltip--bottom")).not.toBe(null);
 	});
 
-	it("should create the tooltip component and tooltip should appear at the top left", () => {
-		TestBed.overrideComponent(TestComponent, {
-			set: {
-				template: "<button nTooltip='Hello There' placement='top-left'>Me</button>"
-			}
-		});
-		const fixture = TestBed.createComponent(TestComponent);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
-		expect(document.querySelector(".tooltip--top-left")).not.toBe(null);
-	});
-
 	xit("should create the tooltip component and tooltip should appear at the bottom left", () => {
 		TestBed.overrideComponent(TestComponent, {
 			set: {
@@ -89,24 +71,6 @@ describe("Tooltip directive", () => {
 
 		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
 		expect(document.querySelector(".tooltip--bottom-left")).not.toBe(null);
-	});
-
-	it("should create the tooltip component and tooltip should appear at the top right", () => {
-		TestBed.overrideComponent(TestComponent, {
-			set: {
-				template: "<button nTooltip='Hello There' placement='top-right'>Me</button>"
-			}
-		});
-		const fixture = TestBed.createComponent(TestComponent);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
-		expect(document.querySelector(".tooltip--top-right")).not.toBe(null);
 	});
 
 	xit("should create the tooltip component and tooltip should appear at the bottom right", () => {

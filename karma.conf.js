@@ -1,8 +1,8 @@
 module.exports = function (config) {
   config.set({
-    plugins: ['karma-webpack', 'karma-jasmine', 'karma-phantomjs-launcher'],
+    plugins: ['karma-webpack', 'karma-jasmine', 'karma-chrome-launcher'],
     autoWatch: false,
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
     files: [{
       pattern: './karma-test-shim.js',
       watched: false
