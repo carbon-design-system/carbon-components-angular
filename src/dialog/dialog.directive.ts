@@ -4,6 +4,7 @@ import {
 	Input,
 	EventEmitter,
 	OnInit,
+	OnDestroy,
 	Injector,
 	ComponentRef,
 	ElementRef,
@@ -36,7 +37,7 @@ import { DialogConfig } from "./dialog-config.interface";
 		DialogService
 	]
 })
-export class DialogDirective implements OnInit {
+export class DialogDirective implements OnInit, OnDestroy {
 	/**
 	 * Title for the dialog
 	 * @type {string}
@@ -155,6 +156,15 @@ export class DialogDirective implements OnInit {
 
 		// run any code a child class may need
 		this.onDialogInit();
+	}
+
+	/*
+	 * when the host dies, kill the popover
+	 * useful for use in a modal or similar
+	 * @memberof Dialogdirective
+	 */
+	ngOnDestroy() {
+		this.close();
 	}
 
 	/**
