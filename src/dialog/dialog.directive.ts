@@ -59,10 +59,10 @@ export class DialogDirective implements OnInit, OnDestroy {
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
 	 * Placement of the dialog, usually relative to the element the directive is on.
-	 * @type {("top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right")}
+	 * @type {("top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right")}
 	 * @memberof DialogDirective
 	 */
-	@Input() placement: "top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
+	@Input() placement: "top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
 	/**
 	 * Class to add to the dialog container
 	 * @type {string}

@@ -23,6 +23,18 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</div>
 	<div>
+		Popover top-left
+		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top-left">
+			<n-icon icon="info" size="sm"></n-icon>
+		</button>
+	</div>
+	<div>
+		Popover top-right
+		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top-right">
+			<n-icon icon="info" size="sm"></n-icon>
+		</button>
+	</div>
+	<div>
 		Popover right
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right">
 			<n-icon icon="info" size="sm"></n-icon>

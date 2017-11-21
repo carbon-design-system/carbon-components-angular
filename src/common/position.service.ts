@@ -6,7 +6,7 @@
 
 // possible positions ... this should probably be moved (along with some other types) to some central location
 export type Position =
-	"left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right"  | "left-bottom" | "right-bottom";
+	"left" | "right" | "top" | "bottom" | "bottom-left" | "bottom-right"  | "left-bottom" | "right-bottom";
 
 export interface AbsolutePosition {
 	top: number;
