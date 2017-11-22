@@ -1,23 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
-import * as readme from "./../../../src/combobox/README.md";
-
 @Component({
-	selector: "combobox-demo",
+	selector: "app-combobox-demo",
 	template: `
 		<h1>Combo box demo</h1>
-
-		<app-doc [content]="docs"></app-doc>
 
 		<h2>Single-select combo box</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
 				[items]="demoItems2"
-				(select)="onSelect($event)">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				(selected)="onSelect($event)">
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -27,11 +21,9 @@ import * as readme from "./../../../src/combobox/README.md";
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
-				(select)="onSelect($event)"
+				(selected)="onSelect($event)"
 				(submit)="onSubmit($event)">
-				<n-dropdown-button (close)="onClose()">
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -40,9 +32,7 @@ import * as readme from "./../../../src/combobox/README.md";
 			<n-combo-box
 				disabled="true"
 				placeholder="Select or enter">
-				<n-dropdown-button>
-					<n-dropdown-list></n-dropdown-list>
-				</n-dropdown-button>
+				<n-dropdown-list></n-dropdown-list>
 			</n-combo-box>
 		</div>
 
@@ -55,19 +45,12 @@ import * as readme from "./../../../src/combobox/README.md";
 				type="multi">
 			</n-pill-input>
 			<button
-				class="btn"
+				class="btn--primary"
 				(click)="resetPills()"
 				style="margin-left: 10px;">
 				Reset
 			</button>
 		</div>
-		<br>
-		<div style="position: relative;">
-			<n-dropdown-button></n-dropdown-button>
-		</div>
-		<br>
-		<br>
-		<n-pill [item]="{selected: false}">Some text</n-pill>
 		<br>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
@@ -87,7 +70,7 @@ import * as readme from "./../../../src/combobox/README.md";
 	`,
 	encapsulation: ViewEncapsulation.None
 })
-export class ComboboxDemo {
+export class ComboboxDemo implements OnInit {
 	demoItems1 = [
 		{
 			content: "Abacus",
@@ -113,7 +96,6 @@ export class ComboboxDemo {
 	public docs: any = "";
 
 	ngOnInit() {
-		this.docs = readme;
 		this.demoItems1.forEach(item => item.selected = true);
 	}
 

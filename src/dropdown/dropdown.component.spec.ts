@@ -56,7 +56,7 @@ describe("Dropdown", () => {
 	// });
 
 	it("should change the placeholder value", () => {
-		let itemEl = fixture.debugElement.query(By.css(".option"));
+		let itemEl = fixture.debugElement.query(By.css("[role=option]"));
 		itemEl.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		let buttonEl = fixture.debugElement.query(By.css("button"));

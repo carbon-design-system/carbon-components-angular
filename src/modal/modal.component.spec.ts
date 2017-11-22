@@ -1,11 +1,22 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
-import { By }              			 from "@angular/platform-browser";
-import { DebugElement }    			 from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
 import { ModalComponent } from "./modal.component";
 import { OverlayComponent } from "./overlay.component";
 import { ModalService } from "./modal.service";
+
+// snippet to add transform to style so karma doesn't die with
+// 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
+Object.defineProperty(document.body.style, "transform", {
+	value: () => {
+		return {
+			enumerable: true,
+			configurable: true
+		};
+	},
+});
 
 describe("ModalComponent", () => {
 	let component: ModalComponent;
@@ -22,7 +33,7 @@ describe("ModalComponent", () => {
 
 		fixture = TestBed.createComponent(ModalComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("div.modal-wrapper"));
+		de = fixture.debugElement.query(By.css("div"));
 		el = de.nativeElement;
 	});
 
@@ -32,7 +43,7 @@ describe("ModalComponent", () => {
 
 	it("should close modal when overlay is clicked", () => {
 		fixture.detectChanges();
-		let overlay = fixture.debugElement.query(By.css(".overlay")).nativeElement;
+		let overlay = fixture.debugElement.query(By.css(".modal-backdrop")).nativeElement;
 		spyOn(fixture.componentInstance.overlaySelected, "emit");
 		overlay.click();
 		expect(fixture.componentInstance.overlaySelected.emit).toHaveBeenCalled();
@@ -43,9 +54,7 @@ describe("ModalComponent", () => {
 
 		spyOn(modalService, "destroy");
 
-		let evt = document.createEvent("KeyboardEvent");
-		evt.initEvent("keydown", true, false);
-		(<any>evt).key = "Escape";
+		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "Escape"});
 		el.dispatchEvent(evt);
 		fixture.detectChanges();
 		fixture.whenStable().then(() => {

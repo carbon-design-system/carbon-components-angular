@@ -1,180 +1,21 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	ViewChild,
+	ElementRef,
+	AfterViewInit
+} from "@angular/core";
 
 @Component({
-	selector: "core-demo",
+	selector: "app-core-demo",
 	template: `
 	<h1>Core CSS demo</h1>
-	<h2>Buttons</h2>
-	<section>
-		<h3>Primary buttons</h3>
 
-		<button class="btn size-sm">Button</button>
-		<button class="btn">Button</button>
-		<button class="btn size-lg">Button</button>
-		<button class="btn size-xlg">Button</button>
-		<button class="btn disabled">Button</button>
-		<br>
-
-		<h3>Secondary buttons</h3>
-
-		<button class="btn btn-secondary size-sm">Button</button>
-		<button class="btn btn-secondary">Button</button>
-		<button class="btn btn-secondary size-lg">Button</button>
-		<button class="btn btn-secondary size-xlg">Button</button>
-		<button class="btn btn-secondary disabled">Button</button>
-		<br>
-		<br>
-
-		<h3>Btns group</h3>
-		<div aria-label="" class="btn-group clearfix" role="group">
-			<button class="btn active">Standard</button>
-			<button class="btn">Standard</button>
-			<button class="btn " disabled="disabled">Standard</button>
-		</div>
-	</section>
-
-	<h3>Blue theme</h3>
-	<section class="theme-blue">
-		<h3>Primary buttons</h3>
-
-		<button class="btn size-sm">Button</button>
-		<button class="btn">Button</button>
-		<button class="btn size-lg">Button</button>
-		<button class="btn size-xlg">Button</button>
-		<button class="btn disabled">Button</button>
-		<br>
-
-		<h3>Secondary buttons</h3>
-
-		<button class="btn btn-secondary size-sm">Button</button>
-		<button class="btn btn-secondary">Button</button>
-		<button class="btn btn-secondary size-lg">Button</button>
-		<button class="btn btn-secondary size-xlg">Button</button>
-		<button class="btn btn-secondary disabled">Button</button>
-		<br>
-		<br>
-
-		<h3>Btns group</h3>
-		<div aria-label="" class="btn-group clearfix" role="group">
-			<button class="btn active">Standard</button>
-			<button class="btn">Standard</button>
-			<button class="btn " disabled="disabled">Standard</button>
-		</div>
-	</section>
-
-	<br>
-	<h2>Forms</h2>
-	<br>
-	<div class="form-container">
-		<label class="label label-top" for="">Field small</label>
-		<input type="text" class="input-field size-sm">
-	</div>
-	<br>
-	<div class="form-container">
-		<label class="label  label-top" for="">Field</label>
-		<input type="text" class="input-field">
-	</div>
-	<br>
-	<div class="form-container">
-		<label class="label label-top" for="">Field large</label>
-		<input type="text" class="input-field size-lg">
-	</div>
-	<br>
-	<div class="form-container disabled">
-		<label class="label label-top" for="">Field disabled</label>
-		<input type="text" class="input-field" disabled>
-	</div>
-	<br>
-	<div class="form-container">
-		<label class="label label-top" for="">Textarea </label>
-		<textarea class="input-field"></textarea>
-	</div>
-	<br>
-
-	<h2>Checkbox</h2>
-	<section>
-		<div class="checkbox">
-			<label>
-				<input type="checkbox">
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" disabled>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" disabled checked>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" #interCheckbox>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" class="ng-invalid ng-touched">
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-	</section>
-
-	<h3>Blue theme</h3>
-	<section class="theme-blue">
-		<div class="checkbox">
-			<label>
-				<input type="checkbox">
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" checked>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" disabled>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" disabled checked>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" #interCheckbox2>
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-
-
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" class="ng-invalid ng-touched">
-				<span class="label">Checkbox</span>
-			</label>
-		</div>
-	</section>
+	<h2>Neutrino's core CSS is being deprecated.</h2>
+	<h2>Refer to <a href="https://github.ibm.com/peretz/matter">Matter</a> for general styling.</h2>
+	<h2>To ease refactoring the CSS is still avliable,
+	however you should refactor Matter style as soon as possible.</h2>
+	<h2>Matter is the basis of the Peretz platform, and is the canonical style guide implementation</h2>
 
 	<br>
 
@@ -183,7 +24,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 		<div class="radio">
 			<label for="r1">
 				<input type="radio" name="rg1" id="r1" checked>
-					<span class="label">Radio Box 1</span>
+				<span class="label">Radio Box 1</span>
 			</label>
 		</div>
 		<div class="radio">
@@ -233,132 +74,8 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 			</label>
 		</div>
 	</section>
+
 	<br>
-
-
-	<h2>Switch</h2>
-	<section>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 1 </span>
-				<input type="checkbox" checked>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 2</span>
-				<input type="checkbox">
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 3</span>
-				<input type="checkbox" disabled>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 4</span>
-				<input type="checkbox" disabled checked>
-				<span></span>
-			</label>
-		</div>
-	</section>
-	<section class="size-sm">
-		<div class="switch">
-			<label>
-				<span class="label">Switch 1 </span>
-				<input type="checkbox" checked>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 2</span>
-				<input type="checkbox">
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 3</span>
-				<input type="checkbox" disabled>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 4</span>
-				<input type="checkbox" disabled checked>
-				<span></span>
-			</label>
-		</div>
-	</section>
-
-	<h3>Blue theme</h3>
-	<section class="theme-blue">
-		<div class="switch">
-			<label>
-				<span class="label">Switch 1 </span>
-				<input type="checkbox" checked>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 2</span>
-				<input type="checkbox">
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 3</span>
-				<input type="checkbox" disabled>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 4</span>
-				<input type="checkbox" disabled checked>
-				<span></span>
-			</label>
-		</div>
-	</section>
-		<section class="theme-blue size-sm">
-		<div class="switch">
-			<label>
-				<span class="label">Switch 1 </span>
-				<input type="checkbox" checked>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 2</span>
-				<input type="checkbox">
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 3</span>
-				<input type="checkbox" disabled>
-				<span></span>
-			</label>
-		</div>
-		<div class="switch">
-			<label>
-				<span class="label">Switch 4</span>
-				<input type="checkbox" disabled checked>
-				<span></span>
-			</label>
-		</div>
-	</section>
 
 	<h2>Static Table</h2>
 	<div>
@@ -459,9 +176,9 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 			</tbody>
 		</table>
 
+		<br>
+		<br>
 
-		<br>
-		<br>
 		<table class="table has-checkbox table-striped size-sm">
 			<caption class="sr-only">
 				Required table caption.
@@ -523,13 +240,11 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 			</tr>
 			</tbody>
 		</table>
-
-
 	</div>
 	`,
 	styleUrls: ["./core-demo.component.scss"]
 })
-export class CoreDemo {
+export class CoreDemo implements AfterViewInit {
 
 	@ViewChild("interCheckbox") inCheckbox: ElementRef;
 	@ViewChild("interCheckbox2") inCheckbox2: ElementRef;

@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
-import { By }              			 from "@angular/platform-browser";
-import { DebugElement }    			 from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
 import { CheckboxComponent } from "./checkbox.component";
 
@@ -21,7 +21,7 @@ describe("CheckboxComponent", () => {
 
 		fixture = TestBed.createComponent(CheckboxComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("div.checkbox"));
+		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});

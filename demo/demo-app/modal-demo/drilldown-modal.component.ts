@@ -3,7 +3,7 @@ import { Modal } from "../../../src";
 
 @Modal()
 @Component({
-	selector: "drill-modal",
+	selector: "app-drill-modal",
 	template: `
 		<n-modal size="xl" (overlaySelected)="closeModal()" [ngSwitch]="drilledin">
 			<ng-container *ngSwitchCase="false">
@@ -16,11 +16,11 @@ import { Modal } from "../../../src";
 				<section class="modal-body">
 					<div>
 						<h1>Drill modal works.</h1>
-						<button class="btn" (click)="drill($event)">Drill down</button>
+						<button class="btn--primary" (click)="drill($event)">Drill down</button>
 					</div>
 				</section>
 				<n-modal-footer *ngIf="!drilledin">
-					<button class="btn cancel-button" (click)="closeModal()">Close</button>
+					<button class="btn--primary cancel-button" (click)="closeModal()">Close</button>
 				</n-modal-footer>
 			</ng-container>
 			<ng-container *ngSwitchCase="true">
@@ -32,7 +32,7 @@ import { Modal } from "../../../src";
 						Header text
 					</a>
 					<span>
-						<n-icon icon="chevron_right" size="sm" style="fill: white;"></n-icon>
+						<n-icon icon="chevron_right" size="sm" color="white"></n-icon>
 						Drilled down
 					</span>
 				</n-modal-header>
@@ -42,7 +42,7 @@ import { Modal } from "../../../src";
 					</div>
 				</section>
 				<n-modal-footer>
-					<button class="btn cancel-button btn-secondary" (click)="drill($event, false)">Back</button>
+					<button class="btn--secondary" (click)="drill($event, false)">Back</button>
 				</n-modal-footer>
 			</ng-container>
 		</n-modal>

@@ -1,124 +1,250 @@
-import { Component, OnInit } from "@angular/core";
-import { Column } from "./../../../src/table/table.module";
+import {
+	Component,
+	OnInit,
+	ViewChild,
+	ViewEncapsulation,
+	TemplateRef
+} from "@angular/core";
+import {
+	TableItem,
+	TableHeaderItem,
+	TableModel
+} from "./../../../src/table/table.module";
+
+import { TableDemoService } from "./table-demo.service";
+
+class FilterableHeaderItem extends TableHeaderItem {
+	// custom filter function
+	filter(item: TableItem): boolean {
+		if (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+		item.data.name && item.data.name.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0) {
+			return false;
+		}
+		return true;
+	}
+
+	set filterCount(n) {}
+	get filterCount() {
+		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
+	}
+
+	// used for custom sorting
+	compare(one: TableItem, two: TableItem) {
+		const stringOne = (one.data.name || one.data.surname || one.data).toLowerCase();
+		const stringTwo = (two.data.name || two.data.surname || two.data).toLowerCase();
+
+		if (stringOne > stringTwo) {
+			return 1;
+		} else if (stringOne < stringTwo) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+}
 
 @Component({
-	selector: "table-demo",
+	selector: "app-table-demo",
 	template: `
 	<h1>Table demo</h1>
 
-	<p>demo controls</p>
-	<button (click)="update()" class="btn">update rows</button>
-	<button (click)="deleteSelected()" class="btn" >delete selected</button>
-	<button (click)="cvis = !cvis" class="btn" >toggle col c</button>
-	<hr/>
-	<div class="table">
-		<n-table
-			[rows]="availableRows"
-			striped="true"
-			(selectAll)="selectAll($event)"
-			(selectRow)="select($event)">
-			<n-column
-				key="a"
-				title="A"
-				width="200"
-				(sort)="sortA($event)">
-				<ng-template #headerTemplate>A</ng-template>
-				<ng-template #cellTemplate let-data="data">col 1 {{data}}</ng-template>
-			</n-column>
-			<n-column
-				key="b"
-				title="B"
-				(sort)="sort($event)"
-				resizeable="false">
-				<ng-template #headerTemplate>B</ng-template>
-				<ng-template #cellTemplate let-data="data">column two {{data}}</ng-template>
-			</n-column>
-			<n-column
-				*ngIf="cvis"
-				key="c"
-				title="C"
-				width="200">
-				<ng-template #headerTemplate>C</ng-template>
-				<ng-template #cellTemplate let-data="data">{{data}}</ng-template>
-			</n-column>
-		</n-table>
-	</div>
+	<h2>Small table</h2>
+	<n-table class="table--sm" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+
+	<h2>Normal table</h2>
+	<n-table [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+
+
+	<h2>Large table</h2>
+	<n-table class="table--lg" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+
+	<h2>Custom table</h2>
+
+	<button class="btn--primary" (click)="customModel.addRow()">Add row</button>
+	<button class="btn--primary" (click)="customModel.addColumn()">Add column</button>
+	<button class="btn--primary" (click)="striped = !striped">Toggle striped</button><br>
+
+	<button class="btn--primary" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
+	<button class="btn--primary" *ngFor="let column of customModel.header" (click)="column.visible = !column.visible">
+		Toggle {{column.data}}
+	</button><br>
+
+	<button class="btn--primary" *ngFor="let column of customModel.header; let i = index"
+		(click)="customModel.deleteColumn(i)">
+		Delete {{column.data}}
+	</button><br>
+
+	<button class="btn--primary" (click)="customModel.header[0].style.width = (toNumber(customModel.header[0].style.width)-10) + 'px'">
+		Decrease column width
+	</button>
+	<button class="btn--primary" (click)="customModel.header[0].style.width = (toNumber(customModel.header[0].style.width)+10) + 'px'">
+		Increase column width
+	</button>
+
+	<n-table
+		[model]="customModel"
+		[striped]="striped"
+		(sort)="customSort($event)"
+		(scrollLoad)="scrollLoad($event)"
+		#table>
+	</n-table>
+	<p class="table-footer-simple">
+		{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
+	</p>
+
+	<h2>Full table</h2>
+
+	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength - model.pageLength">Remove page</button>
+	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength + model.pageLength">Add page</button>
+	<n-table [model]="model" (sort)="fullSort($event)"></n-table>
+	<p class="table-footer">
+		<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
+		<n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
+		<n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
+	</p>
+
+
+
+
+	<ng-template #filterableHeaderTemplate let-data="data">
+		<i><a [routerLink]="data.link">{{data.name}}</a></i>
+	</ng-template>
+
+	<ng-template #customTableItemTemplate let-data="data">
+		<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
+	</ng-template>
+
+	<ng-template #filter let-popover="popover" let-filter="data">
+		<n-label class="first-label">
+			Value
+			<input type="text" [(ngModel)]="filter1" class="input-field">
+		</n-label>
+	</ng-template>
+
+	<ng-template #filterFooter let-popover="popover" let-filter="data">
+		<button class="btn--primary" (click)="filter.data = filter1; popover.doClose()">Apply</button>
+		<button class="btn--secondary" (click)="popover.doClose()">Cancel</button>
+	</ng-template>
 	`,
-	styleUrls: ["./table-demo.component.css"]
+	styleUrls: ["./table-demo.component.scss"],
+	encapsulation: ViewEncapsulation.None
 })
 export class TableDemo implements OnInit {
-	private availableRows = [];
-	private updates = 0;
-	private cvis = false;
-	private selected = {};
+	public simpleModel = new TableModel();
+	public customModel = new TableModel();
+	public model = new TableModel();
+
+	@ViewChild("filterableHeaderTemplate")
+	private filterableHeaderTemplate: TemplateRef<any>;
+	@ViewChild("filter")
+	private filter: TemplateRef<any>;
+	@ViewChild("filterFooter")
+	private filterFooter: TemplateRef<any>;
+	@ViewChild("customTableItemTemplate")
+	private customTableItemTemplate: TemplateRef<any>;
+
+	constructor(private service: TableDemoService) {}
 
 	ngOnInit() {
-		this.rows();
+		// simple model
+		this.simpleModel.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
+		];
+		this.simpleModel.header = [
+			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+		];
+
+		// custom model
+		this.customModel.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
+		];
+		this.customModel.header = [
+			new TableHeaderItem({data: "Very long title indeed"}),
+			new FilterableHeaderItem({
+				data: {name: "Custom header", link: "/table"},
+				template: this.filterableHeaderTemplate,
+				filterTemplate: this.filter,
+				filterFooter: this.filterFooter,
+				style: {"width": "auto"}
+			})
+		];
+
+		// full model
+		this.model.header = [
+			new TableHeaderItem({data: "hwer"}),
+			new FilterableHeaderItem({
+				data: {name: "Custom header", link: "/table"},
+				template: this.filterableHeaderTemplate,
+				filterTemplate: this.filter,
+				filterFooter: this.filterFooter,
+				style: {"width": "auto"}
+			})
+		];
+
+		this.model.pageLength = 4;
+		this.model.totalDataLength = 20;
+		this.selectPage(1);
 	}
 
-	rows() {
-		let test = [];
-		for (let i = 0; i < 1000; i++) {
-			test.push({
-				a: i,
-				b: i + "B",
-				c: i + "C"
+	simpleSort(index: number) {
+		this.sort(this.simpleModel, index);
+	}
+	customSort(index: number) {
+		this.sort(this.customModel, index);
+	}
+	fullSort(index: number) {
+		this.sort(this.model, index);
+	}
+	sort(model, index: number) {
+		if (model.header[index].sorted) {
+			// if already sorted flip sorting direction
+			model.header[index].ascending = model.header[index].descending;
+		}
+		model.sort(index);
+	}
+
+	selectPage(page) {
+		this.service.getPage(page).then((data: Array<Array<any>>) => {
+			// set the data and update page
+			this.model.data = this.prepareData(data);
+			this.model.currentPage = page;
+		});
+	}
+
+	scrollLoad(model: TableModel) {
+		this.service.getPage(0).then((data: Array<Array<any>>) => {
+			this.prepareData(data).forEach(row => {
+				model.addRow(row);
 			});
-		}
-		this.availableRows = test;
+		});
 	}
 
-	update() {
-		let test = [];
-		this.updates++;
-		for (let i = 0; i < 100; i++) {
-			test.push({
-				a: i + `Aupdated${this.updates}`,
-				b: i + `Bupdated${this.updates}`,
-				c: 1 + `Cupdated${this.updates}`
+	toNumber(width: string): number {
+		return Number(width.substr(0, width.length - 2));
+	}
+
+	private prepareData(data: Array<Array<any>>) {
+		// create new data from the service data
+		let newData = [];
+		data.forEach(dataRow => {
+			let row = [];
+			dataRow.forEach(dataElement => {
+				row.push(new TableItem({
+					data: dataElement,
+					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
+					// your template can handle all the data types so you don't have to conditionally set it
+					// you can also set different templates for different columns based on index
+				}));
 			});
-		}
-		this.availableRows = test;
-	}
-
-	sortA(ev) {
-		if (ev.direction === Column.sort.descending) {
-			this.availableRows.sort((a, b) => a[ev.key] - b[ev.key]);
-		} else {
-			this.availableRows.sort((a, b) => b[ev.key] - a[ev.key]);
-		}
-	}
-
-	sort(ev) {
-		if (ev.direction === Column.sort.descending) {
-			this.availableRows.sort();
-		} else {
-			this.availableRows.sort().reverse();
-		}
-	}
-
-	select(ev) {
-		if (ev.selected) {
-			this.selected[ev.index] = ev.row;
-		} else {
-			delete this.selected[ev.index];
-		}
-	}
-
-	selectAll(ev) {
-		if (ev.selected) {
-			this.selected = {all: true};
-		} else {
-			this.selected = {};
-		}
-	}
-
-	deleteSelected() {
-		let keys = Object.keys(this.selected);
-		for (let i = 0; i < keys.length; i++) {
-			let idx = this.availableRows.indexOf(this.selected[keys[i]]);
-			this.availableRows.splice(idx, 1);
-		}
-		this.selected = {};
+			newData.push(row);
+		});
+		return newData;
 	}
 }

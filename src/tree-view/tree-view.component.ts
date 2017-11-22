@@ -1,6 +1,7 @@
 import {
 	Component,
 	Input,
+	OnChanges,
 	Output,
 	EventEmitter,
 	forwardRef,
@@ -26,7 +27,7 @@ import { treetools } from "./../dropdown/dropdowntools";
 		</n-tree-view-wrapper>
 	`,
 })
-export class TreeView {
+export class TreeView implements OnChanges {
 	@Input() items: Array<ListItem> = [];
 	@Input() template: string | TemplateRef<any> = "";
 	@Input() role: "tree" | "group" = "tree";

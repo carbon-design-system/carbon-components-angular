@@ -8,37 +8,35 @@ import {
 	AfterViewInit,
 	ViewChild,
 	ElementRef,
-	OnDestroy
+	OnDestroy,
+	OnChanges
 } from "@angular/core";
 
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
-import { ListView } from "./../../list-view/list-view.component";
+import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
 
 @Component({
 	selector: "n-dropdown-filter",
 	template: `
-		<div
-			*ngIf="type === 'multi'"
-			class="dropdown-selected-only">
-			<span class="checkbox" style="margin-bottom: 0px;">
-				<label>
-					<input
-						#selectedOnly
-						type="checkbox"
-						[attr.disabled]="disableSelectedOnly"
-						(click)="filterItems()">
-					<span class="label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
-				</label>
-			</span>
-		</div>
-		<div class="dropdown-filter-search size-md">
-			<div class="search-icon">
+		<div class="menu_filter-options">
+			<label
+				class="checkbox"
+				*ngIf="type === 'multi'">
+				<input
+					#selectedOnly
+					type="checkbox"
+					[attr.disabled]="disableSelectedOnly"
+					(click)="filterItems()">
+				<span class="checkbox_label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
+			</label>
+			<label class="search_group">
 				<svg
-					class="icon"
+					aria-hidden="true"
+					class="search_icon"
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 16 16">
 					<g>
@@ -54,49 +52,42 @@ import { DropdownList } from "./dropdown-list.component";
 							height="5.7"/>
 					</g>
 				</svg>
-			</div>
-			<input
-				#filter
-				(keyup)="filterItems()"
-				type="text"
-				class="input-field"
-				tabindex="0"
-				(focus)="filterFocus = true"
-				(blur)="filterFocus = filter.value?true:false"/>
-			<span
-				class="placeholder"
-				[ngClass]="{
-					visible: !filterFocus
-				}">
-				{{ 'DROPDOWN.FILTER.SEARCH' | translate }}
-			</span>
-			<button
-				class="search-cancel"
-				type="button"
-				aria-label="cancel"
-				[ngClass]="{
-					visible: filter.value.trim()
-				}"
-				(click)="clearFilter()">
-				<svg
-					class="icon"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 16 16">
-					<polygon
-						points="14.5,2.6 13.4,1.5
-						8,6.9 2.6,1.5
-						1.5,2.6 6.9,8
-						1.5,13.4
-						2.6,14.5
-						8,9.1
-						13.4,14.5
-						14.5,13.4
-						9.1,8"/>
-				</svg>
-			</button>
+				<input
+					#filter
+					(keyup)="filterItems()"
+					type="search"
+					tabindex="0"
+					(focus)="filterFocus = true"
+					(blur)="filterFocus = (filter.value?true:false)"/>
+				<button
+					class="close"
+					type="reset"
+					aria-label="Reset search"
+					[ngClass]="{
+						visible: filter.value.trim()
+					}"
+					(click)="clearFilter()">
+					<svg
+						class="close_icon"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 16 16">
+						<polygon
+							points="14.5,2.6 13.4,1.5 8,6.9 2.6,1.5
+							1.5,2.6 6.9,8 1.5,13.4 2.6,14.5
+							8,9.1 13.4,14.5 14.5,13.4 9.1,8"/>
+					</svg>
+				</button>
+			</label>
 		</div>
-		<ul #list class="list" role="listbox">
-			<li tabindex="{{item.disabled?-1:0}}"
+		<ul
+			#list
+			[ngClass]="{
+				'listbox--sm': size === 'sm',
+				'listbox': size === 'default',
+				'listbox--lg': size === 'lg'
+			}"
+			role="listbox">
+			<li tabindex="{{item.disabled ? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"
@@ -104,23 +95,25 @@ import { DropdownList } from "./dropdown-list.component";
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
-				}"
-				class="option">
-				<span class="checkbox"
-					*ngIf="type === 'multi'">
-					<label>
-						<input
-							tabindex="-1"
-							type="checkbox"
-							[checked]="item.selected"
-							(click)="doClick($event, item)">
-						<span class="label"></span>
-					</label>
-				</span>
+				}">
+				<label
+					[ngClass]="{
+						'checkbox--sm': size === 'sm',
+						'checkbox': size === 'default' || size === 'lg'
+					}"
+					*ngIf="type === 'multi'"
+					style="margin: 0;">
+					<input
+						tabindex="-1"
+						type="checkbox"
+						[checked]="item.selected"
+						(click)="doClick($event, item)">
+					<label class="checkbox_label" style="margin: 0;"></label>
+				</label>
 				<span *ngIf="!listTpl">{{item.content}}</span>
 				<ng-template
 					*ngIf="listTpl"
-					[ngOutletContext]="{item: item}"
+					[ngTemplateOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
@@ -130,9 +123,9 @@ import { DropdownList } from "./dropdown-list.component";
 				<span>{{ 'DROPDOWN.FILTER.NO_RESULTS' | translate }}</span>
 			</li>
 		</ul>`,
-		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownFilter)}]
-}) // conceptually this extends list-view, but we dont have to
-export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
+		providers: [{provide: AbstractDropdownView, useExisting: DropdownFilter}]
+}) // conceptually this extends list-group, but we dont have to
+export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy, OnChanges {
 	@ViewChild("selectedOnly") selectedOnly;
 	@ViewChild("list") list;
 	@ViewChild("filter") filter;

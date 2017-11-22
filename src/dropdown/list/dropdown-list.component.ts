@@ -2,6 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
+	OnChanges,
+	OnDestroy,
 	EventEmitter,
 	forwardRef,
 	TemplateRef,
@@ -13,14 +15,21 @@ import {
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
-import { ListView } from "./../../list-view/list-view.component";
+import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 
 @Component({
 	selector: "n-dropdown-list",
 	template: `
-		<ul #list class="list" role="listbox">
-			<li tabindex="{{item.disabled?-1:0}}"
+		<ul
+			#list
+			role="listbox"
+			[ngClass]="{
+				'listbox--sm': size === 'sm',
+				'listbox': size === 'default',
+				'listbox--lg': size === 'lg'
+			}">
+			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"
@@ -28,31 +37,33 @@ import { watchFocusJump } from "./../dropdowntools";
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
-				}"
-				class="option">
-				<span
-					class="checkbox"
+				}">
+				<label
+					style="margin: 0;"
+					[ngClass]="{
+						'checkbox--sm': size === 'sm',
+						'checkbox': size === 'default' || size === 'lg'
+					}"
 					*ngIf="type === 'multi'">
-					<label>
-						<input
-							tabindex="-1"
-							type="checkbox"
-							[checked]="item.selected"
-							(click)="doClick($event, item)">
-						<span class="label"></span>
-					</label>
-				</span>
+					<input
+						tabindex="-1"
+						type="checkbox"
+						[attr.disabled]="(item.disabled ? true : null)"
+						[checked]="item.selected"
+						(click)="doClick($event, item)">
+					<span class="checkbox_label"></span>
+				</label>
 				<span *ngIf="!listTpl">{{item.content}}</span>
 				<ng-template
 					*ngIf="listTpl"
-					[ngOutletContext]="{item: item}"
+					[ngTemplateOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
 		</ul>`,
-		providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownList)}]
-}) // conceptually this extends list-view, but we dont have to
-export class DropdownList implements AbstractDropdownView, AfterViewInit {
+		providers: [{provide: AbstractDropdownView, useExisting: DropdownList}]
+}) // conceptually this extends list-group, but we dont have to
+export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = null;
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();

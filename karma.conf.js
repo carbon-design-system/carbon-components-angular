@@ -1,8 +1,8 @@
 module.exports = function (config) {
   config.set({
-    plugins: ['karma-webpack', 'karma-jasmine', 'karma-phantomjs-launcher'],
+    plugins: ['karma-webpack', 'karma-jasmine', 'karma-chrome-launcher'],
     autoWatch: false,
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
     files: [{
       pattern: './karma-test-shim.js',
       watched: false
@@ -14,14 +14,10 @@ module.exports = function (config) {
     preprocessors: {
       './karma-test-shim.js': ['webpack']
     },
-		browserConsoleLogOptions: {
-				terminal: true,
-				level: ""
-		},
-		browserConsoleLogOptions: {
-				terminal: true,
-				level: ""
-		},
+	browserConsoleLogOptions: {
+		terminal: true,
+		level: "debug"
+	},
     reporters: ['dots'],
     port: 9876,
     logLevel: config.LOG_INFO,

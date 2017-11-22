@@ -19,7 +19,7 @@ import { Modal } from "../../../src";
 
 @Modal()
 @Component({
-	selector: "form-modal",
+	selector: "app-form-modal",
 	template: `
 		<n-modal size="sm" (overlaySelected)="closeModal()">
 			<n-modal-header (closeSelect)="closeModal()">Form</n-modal-header>
@@ -40,11 +40,11 @@ import { Modal } from "../../../src";
 						<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 					</n-dropdown>
 					<br><br>
-					<button class="btn" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
+					<button class="btn--primary" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<n-modal-footer>
-					<button class="btn btn-secondary cancel-button" (click)="closeModal()">Cancel</button>
-                    <button class="btn submit-button" type="submit">Submit</button>
+					<button class="btn--secondary cancel-button" (click)="closeModal()">Cancel</button>
+                    <button class="btn--primary submit-button" type="submit">Submit</button>
 				</n-modal-footer>
 			</form>
 		</n-modal>
@@ -53,10 +53,9 @@ import { Modal } from "../../../src";
 })
 export class FormModalComponent implements OnInit {
 	closeModal: Function;
-	private modalText: string;
-	private fields = [];
-	private form: FormGroup;
-	private submitted: any;
+	public modalText: string;
+	public fields = [];
+	public form: FormGroup;
 
 	demoItems1 = [
 		{
@@ -76,6 +75,8 @@ export class FormModalComponent implements OnInit {
 			selected: false
 		}
 	];
+
+	private submitted: any;
 
 	constructor(private fb: FormBuilder, private injector: Injector) {
 		this.modalText = this.injector.get("modalText");

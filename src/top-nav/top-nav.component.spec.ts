@@ -28,7 +28,7 @@ describe("Top Nav", () => {
 
 		fixture = TestBed.createComponent(TopNav);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("header.top-nav"));
+		de = fixture.debugElement.query(By.css("header"));
 		el = de.nativeElement;
 	});
 

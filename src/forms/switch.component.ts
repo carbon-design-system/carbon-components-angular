@@ -9,6 +9,7 @@ import {
 	Input,
 	OnInit,
 	Output,
+	Renderer2,
 	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
@@ -28,44 +29,49 @@ export class SwitchChange {
 @Component({
 	selector: "n-switch",
 	template: `
-		<div class="switch">
-			<label [for]="id">
-				<input type="checkbox" #inputCheckbox
-					[checked]="checked"
-					[disabled]="disabled"
-					[indeterminate]="indeterminate"
-					[name]="name"
-					[id]="id"
-					[required]="required"
-					[value]="value"
-					[attr.aria-label]="ariaLabel"
-					[attr.aria-labelledby]="ariaLabelledby"
-					[attr.aria-checked]="indeterminate ? 'mixed' : checked"
-					(change)="onChange($event)"
-					(click)="onClick($event)">
-					<span></span>
-				<span class="label"><ng-content></ng-content></span>
-			</label>
-		</div>
+		<label [for]="id">
+			<ng-content></ng-content>
+		</label>
+		<button
+			(click)="onClick($event)"
+			[id]="id"
+			role="switch"
+			[disabled]="disabled"
+			[attr.aria-checked]="checked">
+		</button>
 	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => SwitchComponent),
+			useExisting: SwitchComponent,
 			multi: true
 		}
-	],
-	host: {
-		"role": "checkbox"
-	}
+	]
 })
-export class SwitchComponent extends CheckboxComponent {
+
+export class SwitchComponent extends CheckboxComponent implements OnInit {
 	static switchCount = 0;
+
+	@Input() size: "default" | "sm" = "default";
 
 	id = "switch-" + SwitchComponent.switchCount;
 
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
+	}
+
+	ngOnInit() {
+		// Build variant classes
+		const labelClass = `toggle-label${this.size !== "default" ? `--${this.size}` : ""}`;
+		const buttonClass = `toggle${this.size !== "default" ? `--${this.size}` : ""}`;
+
+		// Get elements
+		const labelEl = this.elementRef.nativeElement.querySelector("label");
+		const buttonEl = this.elementRef.nativeElement.querySelector("button");
+
+		// Add classes to elements
+		this.renderer.addClass(labelEl, labelClass);
+		this.renderer.addClass(buttonEl, buttonClass);
 	}
 }

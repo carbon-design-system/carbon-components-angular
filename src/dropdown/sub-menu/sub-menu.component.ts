@@ -7,7 +7,9 @@ import {
 	TemplateRef,
 	ElementRef,
 	ViewChild,
-	AfterViewInit
+	AfterViewInit,
+	OnChanges,
+	HostBinding
 } from "@angular/core";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
@@ -26,12 +28,9 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			(select)="onClick($event)">
 		</n-sub-menu-wrapper>
 	`,
-	host: {
-		"class": "sub-menu"
-	},
-	providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => DropdownSubMenu)}]
+	providers: [{provide: AbstractDropdownView, useExisting: DropdownSubMenu}]
 })
-export class DropdownSubMenu implements AbstractDropdownView {
+export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterViewInit {
 	@Input() items: Array<ListItem> = [];
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() role: "tree" | "group" = "tree" ;
@@ -40,6 +39,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	@Input() type: "single" | "multi" = "single";
 
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	@HostBinding("attr.class") attrClass = "sub-menu";
 
 	public size: "sm" | "default" | "lg" = "default";
 	private listList: HTMLElement[];
@@ -57,7 +57,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
 			if (this._elementRef) {
 				setTimeout(() => {
-					this.listList = this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper");
+					this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 				}, 0);
 			}
 			this.setupFocusObservable();
@@ -65,7 +65,7 @@ export class DropdownSubMenu implements AbstractDropdownView {
 	}
 
 	ngAfterViewInit() {
-		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll(".sub-menu-item-wrapper")) as HTMLElement[];
+		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 		this.setupFocusObservable();
 	}
 

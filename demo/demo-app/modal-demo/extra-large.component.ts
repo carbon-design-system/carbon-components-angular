@@ -5,16 +5,16 @@ import { ErrorModalComponent } from "./error-modal.component";
 
 @Modal()
 @Component({
-	selector: "xxl-modal",
+	selector: "app-xxl-modal",
 	template: `
 	<n-modal size="xxl" (overlaySelected)="closeModal()">
 		<n-modal-header (closeSelect)="closeModal()">XXL</n-modal-header>
-		<section class="modal-body">
+		<section class="modal_body">
 			<p>This is an XXL modal.</p>
 		</section>
 		<n-modal-footer>
-			<button class="btn btn-secondary cancel-button" (click)="closeModal()">Cancel</button>
-			<button class="btn submit-button" (click)="openModal()">Submit and get error message</button>
+			<button class="btn--secondary cancel-button" (click)="closeModal()">Cancel</button>
+			<button class="btn--primary submit-button" (click)="openModal()">Submit and get error message</button>
 		</n-modal-footer>
 	</n-modal>
 	`,

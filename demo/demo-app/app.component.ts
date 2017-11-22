@@ -3,7 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
-import * as en from  "./../../src/i18n/en.json";
+import * as en from "./../../src/i18n/en.json";
 
 @Component({
 	selector: "app-root",
@@ -14,7 +14,7 @@ import * as en from  "./../../src/i18n/en.json";
 		</h1>
 		<a href="https://github.ibm.com/peretz/neutrino">Project</a>
 	</header>
-	<nav>
+	<nav class="n-list">
 		<input
 			type="search"
 			(keyup)="search($event)"
@@ -22,17 +22,18 @@ import * as en from  "./../../src/i18n/en.json";
 			style="width: 100%; margin-left: 0;"
 			placeholder="Filter"
 			aria-label="filter components">
-		<n-list-view [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+		<n-list-group [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
 			<ng-template #item let-item="item">
 				<a routerLink="{{item.link}}">{{item.content}}</a>
 			</ng-template>
-		</n-list-view>
+		</n-list-group>
 	</nav>
 	<main class="main">
+	<div class="main-banner-container"></div>
 		<router-outlet></router-outlet>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
-	<n-sprite sprite="core"></n-sprite>
+	<n-sprite sprite="core_set"></n-sprite>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
 	<n-sprite sprite="brands"></n-sprite>
@@ -42,18 +43,12 @@ import * as en from  "./../../src/i18n/en.json";
 	<n-sprite sprite="mobile_controls"></n-sprite>
 	<n-sprite sprite="playback_controls"></n-sprite>
 	<n-sprite sprite="window_controls"></n-sprite>
-	<n-sprite sprite="should_fail"></n-sprite>
 	`,
 	styleUrls: ["./app.component.scss"],
 	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-	private navItems = [
-		{
-			content: "CSS demo",
-			link: "/css",
-			selected: false
-		},
+	public navItems = [
 		{
 			content: "Forms demo",
 			link: "/forms",
@@ -80,8 +75,13 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "List view demo",
-			link: "/list-view",
+			content: "List group demo",
+			link: "/list-group",
+			selected: false
+		},
+		{
+			content: "Table demo",
+			link: "/table",
 			selected: false
 		},
 		{
@@ -118,9 +118,14 @@ export class AppComponent implements OnInit {
 			content: "Combo box demo",
 			link: "/combobox",
 			selected: false
+		},
+		{
+			content: "Chart demo",
+			link: "/chart",
+			selected: false
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
-	private filteredItems = this.navItems;
+	public filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {
 		this._translate.setDefaultLang("en");
@@ -162,8 +167,8 @@ export class AppComponent implements OnInit {
 		}
 		this.previousItem = item;
 		item.selected = true;
-		this._router.navigate([item.link]);  // do we need to remove this since we have routerLink already?
-											 // also, replace selected with routerLinkActive?
-											 // https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html
+		this._router.navigate([item.link]); // do we need to remove this since we have routerLink already?
+											// also, replace selected with routerLinkActive?
+											// https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html
 	}
 }

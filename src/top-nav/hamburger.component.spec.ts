@@ -20,7 +20,7 @@ describe("Top Nav", () => {
 
 		fixture = TestBed.createComponent(Hamburger);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("button.hamburger"));
+		de = fixture.debugElement.query(By.css("button.top-nav_toggler"));
 		el = de.nativeElement;
 	});
 

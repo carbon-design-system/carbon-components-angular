@@ -1,0 +1,283 @@
+/* stylelint-disable max-nesting-depth */
+
+@import "../../node_modules/@peretz/matter/scss/tools";
+
+.table-container {
+	display: flex;
+	margin-top: 20px;
+
+	font-size: 13px;
+	color: m_color("gray", 60);
+}
+
+table.table {
+	display: inline-grid;
+	width: 100%;
+	overflow-x: scroll;
+
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	table-layout: fixed;
+	white-space: nowrap;
+
+	label.checkbox {
+		@include m_checkbox-variation($size: sm);
+	}
+
+	.checkbox_label {
+		height: 18px;
+	}
+
+	tbody {
+		display: block;
+		width: 100%;
+		overflow-y: scroll;
+
+		tr:hover {
+			background-color: m_color("blue", "40-10");
+			box-shadow: inset 1px 0 0 0 m_color("blue", 50);
+		}
+
+		&.striped {
+			tr {
+				&:nth-child(even) {
+					background-color: m_color("gray", "10-25");
+				}
+
+				&:hover,
+				&.selected {
+					background-color: m_color("blue", "40-10");
+				}
+			}
+		}
+	}
+
+	thead {
+		display: table;
+		width: 100%;
+		height: 30px;  // this fixes thead height change when popover renders
+
+		th {
+			position: relative;
+
+			padding-right: 10px;
+			padding-left: 10px;
+
+			border-left: 1px solid m_color("white");
+			background-color: m_color("gray", "10-50");
+			background-clip: padding-box; // fix for firefox not rendering borders correctly
+
+			color: color("gray", 80);
+			text-align: left;
+
+			.resizer {
+				display: inline-block;
+				position: absolute;
+				top: 0;
+				right: -5px;
+
+				width: 15px;
+				height: 100%;
+
+				cursor: col-resize;
+			}
+
+			.header-item-wrapper {
+				display: flex;
+				align-items: center;
+			}
+
+			.icon--blue-sm {
+				fill: m_color("blue", 60);
+			}
+
+			.icon--sm {
+				fill: m_color("gray", 60);
+			}
+
+			.col-actions {
+				display: none;
+				position: relative;
+				width: 35px;
+
+				&.filter-enabled {
+					display: inline-block;
+
+					.icon--sm {
+						fill: m_color("blue", 60);
+					}
+				}
+
+				&:hover .icon--sm {
+					fill: m_color("blue", 60);
+				}
+			}
+
+			&:first-of-type {
+				border-left: none;
+			}
+
+			&:hover {
+				background-color: m_color("blue", "40-10");
+				box-shadow: inset 0 1px 0 0 m_color("blue", 50);
+
+				.col-actions {
+					display: inline-block;
+				}
+			}
+		}
+
+		tr {
+			&:hover {
+				background-color: none;
+			}
+		}
+	}
+
+	.cell-ellipsis {
+		@extend %m_text-truncate;
+
+		flex: 1;
+	}
+
+	.filter-count {
+		position: absolute;
+		top: -4px;
+		left: 18px;
+
+		width: 15px;
+		background-color: m_color("blue", 50);
+		border-radius: 50%;
+
+		color: m_color("white");
+		font-size: 11px;
+		line-height: 15px;
+		text-align: center;
+	}
+
+	tr {
+		display: table;
+		table-layout: fixed;
+
+		width: 100%;
+		height: 30px;
+
+		padding-top: 12.5px;
+		padding-bottom: 12.5px;
+
+		&.selected {
+			background-color: m_color("blue", "40-10");
+
+			> .check-column {
+				box-shadow: inset 3px 0 0 0 m_color("blue", 50);
+			}
+		}
+	}
+
+	td {
+		padding-right: 10px;
+		padding-left: 10px;
+
+		border-bottom: 1px solid $stroke-color;
+
+		overflow: hidden;
+	}
+}
+
+.check-column {
+	width: 35px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+
+	text-align: center;
+}
+
+.select-checkbox .checkbox {
+	width: 15px;
+	margin: 0 auto;
+}
+
+.scroll-table {
+	height: calc(100% - 80px);
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch; // ipad
+}
+
+.table-footer {
+	border-top: 1px solid m_color("gray", 50);
+
+	color: m_color("gray", 60);
+	line-height: 40px;
+	text-align: center;
+
+	.table-selection-info {
+		float: left;
+	}
+
+	n-table-pagination {
+		margin: auto;
+	}
+
+	n-table-goto-page {
+		float: right;
+	}
+}
+
+.table-footer-simple {
+	border-top: 1px solid m_color("gray", 50);
+
+	color: m_color("gray", 60);
+	line-height: 30px;
+}
+
+.table--lg {
+	thead {
+		height: 40px;  // this fixes thead height change when popover renders
+	}
+
+	thead th,
+	td {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+
+	tr {
+		height: 40px;
+	}
+
+	.check-column {
+		width: 40px;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	.select-checkbox .checkbox {
+		width: 20px;
+	}
+
+	label.checkbox {
+		@include m_checkbox-variation();
+	}
+
+	.checkbox_label {
+		height: auto;
+	}
+}
+
+.table--sm {
+	thead {
+		height: 25px;  // this fixes thead height change when popover renders
+	}
+
+	thead th,
+	td {
+		padding-right: 5px;
+		padding-left: 5px;
+	}
+
+	tr {
+		height: 25px;
+	}
+}

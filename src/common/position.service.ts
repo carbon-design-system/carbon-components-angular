@@ -1,300 +1,141 @@
 /**
- * Used (mostly) internally to position things to places.
+ * Utilites to manipulate the position of elements relative to other elements
  *
  * @export
- * @class Positioning
  */
-export class Positioning {
-	/**
-	 * Gets computed style of element's prop
-	 *
-	 * @param {HTMLElement} element
-	 * @param {string} prop
-	 * @returns {string}
-	 * @memberof Positioning
-	 */
-	public getStyle(element: HTMLElement, prop: string): string { return window.getComputedStyle(element)[prop]; }
 
-	/**
-	 * Checks if element is statically positioned
-	 *
-	 * @param {HTMLElement} element
-	 * @returns {boolean}
-	 * @memberof Positioning
-	 */
-	public isStaticPositioned(element: HTMLElement): boolean {
-		return (this.getStyle(element, "position") || "static") === "static";
-	}
+// possible positions ... this should probably be moved (along with some other types) to some central location
+export type Position =
+	"left" | "right" | "top" | "bottom" | "bottom-left" | "bottom-right"  | "left-bottom" | "right-bottom";
 
-	/**
-	 * Gets the `offsetParent` of an element.
-	 *
-	 * @param {HTMLElement} element
-	 * @returns {HTMLElement}
-	 * @memberof Positioning
-	 */
-	public offsetParent(element: HTMLElement): HTMLElement {
-		let offsetParentEl = <HTMLElement>element.offsetParent || document.documentElement;
+export interface AbsolutePosition {
+	top: number;
+	left: number;
+	position?: AbsolutePosition;
+}
 
-		while (offsetParentEl && offsetParentEl !== document.documentElement && this.isStaticPositioned(offsetParentEl)) {
-			offsetParentEl = <HTMLElement>offsetParentEl.offsetParent;
-		}
+export type Offset = { left: number, top: number };
 
-		return offsetParentEl || document.documentElement;
-	}
-
-	/**
-	 * Calculates and returns element's position
-	 *
-	 * @param {HTMLElement} element
-	 * @param {boolean} [round=true]
-	 * @returns {ClientRect}
-	 * @memberof Positioning
-	 */
-	position(element: HTMLElement, round = true): ClientRect {
-		let elPosition: ClientRect;
-		let parentOffset: ClientRect = {width: 0, height: 0, top: 0, bottom: 0, left: 0, right: 0};
-
-		if (this.getStyle(element, "position") === "fixed") {
-			elPosition = element.getBoundingClientRect();
-		} else {
-			const offsetParentEl = this.offsetParent(element);
-
-			elPosition = this.offset(element, false);
-
-			if (offsetParentEl !== document.documentElement) {
-				parentOffset = this.offset(offsetParentEl, false);
-			}
-
-			parentOffset.top += offsetParentEl.clientTop;
-			parentOffset.left += offsetParentEl.clientLeft;
-		}
-
-		elPosition.top -= parentOffset.top;
-		elPosition.bottom -= parentOffset.top;
-		elPosition.left -= parentOffset.left;
-		elPosition.right -= parentOffset.left;
-
-		if (round) {
-			elPosition.top = Math.round(elPosition.top);
-			elPosition.bottom = Math.round(elPosition.bottom);
-			elPosition.left = Math.round(elPosition.left);
-			elPosition.right = Math.round(elPosition.right);
-		}
-
-		return elPosition;
-	}
-
-	/**
-	 * Calculates and returns element's offset
-	 *
-	 * @param {HTMLElement} element
-	 * @param {boolean} [round=true]
-	 * @returns {ClientRect}
-	 * @memberof Positioning
-	 */
-	offset(element: HTMLElement, round = true): ClientRect {
-		let bodyOffsetLeft = 0;
-
-		const elBcr = element.getBoundingClientRect();
-		const body = window.document.querySelector("body");
-		const viewportOffset = {
-			top: window.pageYOffset - document.documentElement.clientTop,
-			left: window.pageXOffset - document.documentElement.clientLeft
-		};
-
-		if (this.getStyle(body, "position") === "relative") {
-			bodyOffsetLeft = body.getBoundingClientRect().left;
-		}
-
-		let elOffset = {
-			height: elBcr.height || element.offsetHeight,
-			width: elBcr.width || element.offsetWidth,
-			top: elBcr.top + viewportOffset.top,
-			bottom: elBcr.bottom + viewportOffset.top,
-			left: elBcr.left + viewportOffset.left - bodyOffsetLeft,
-			right: elBcr.right + viewportOffset.left
-		};
-
-		if (round) {
-			elOffset.height = Math.round(elOffset.height);
-			elOffset.width = Math.round(elOffset.width);
-			elOffset.top = Math.round(elOffset.top);
-			elOffset.bottom = Math.round(elOffset.bottom);
-			elOffset.left = Math.round(elOffset.left - bodyOffsetLeft);
-			elOffset.right = Math.round(elOffset.right);
-		}
-
-		return elOffset;
-	}
-
-	/**
-	 * Calculates and returns element's target position
-	 *
-	 * @param {HTMLElement} hostElement
-	 * @param {HTMLElement} targetElement
-	 * @param {string} placement
-	 * `"auto"` | `"top"` | `"bottom"` | `"left"` | `"right"` | `"center"` |
-	 * `"top-left"` | `"top-right"` | `"bottom-left"` | `"bottom-right"`
-	 * @param {boolean} [appendToBody]
-	 * Optional.
-	 *
-	 * Set to `true` if you're calculating a position of an element you're
-	 * appending to body.
-	 * @param {number} [gap]
-	 * *Optional.*
-	 *
-	 * Adds this amount of pixels to the position to create a gap.
-	 * @param {number} [offsetTop]
-	 * *Optional.*
-	 *
-	 * Manually set the top offset in pixels.
-	 * @param {boolean} [isPopover]
-	 * *Optional.*
-	 *
-	 * Set to `true` in case of popover.
-	 * @param {boolean} [isPopoverFilter]
-	 * *Optional.*
-	 *
-	 * Set to `true` in case of popover filter.
-	 * @returns {ClientRect}
-	 * @memberof Positioning
-	 */
-	positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string,
-		appendToBody?: boolean, gap?: number, offsetTop?: number, isPopover?: boolean, isPopoverFilter?: boolean):
-	ClientRect {
-		const hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
-		let shiftWidth: any = {
-			left: hostElPosition.left - targetElement.clientWidth,
-			center: hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2,
-			right: hostElPosition.left + hostElPosition.width
-		};
-		if (isPopover) {
-			// popover requires slightly different positioning diagonally
-			shiftWidth["left"] = hostElPosition.left + 10;
-			if (placement !== "right") {
-				shiftWidth["right"] = hostElPosition.left + hostElPosition.width - targetElement.clientWidth - 10;
-			}
-		}
-
-		const shiftHeight: any = {
-			top: hostElPosition.top,
-			center: hostElPosition.top + hostElPosition.height / 2 - targetElement.offsetHeight / 2,
-			bottom: hostElPosition.top + hostElPosition.height
-		};
-
-		const targetElBCR = targetElement.getBoundingClientRect();
-		const placementPrimary = placement.split("-")[0] || "top";
-		const placementSecondary = placement.split("-")[1] || "center";
-
-		let targetElPosition: ClientRect = {
-			height: targetElBCR.height || targetElement.offsetHeight,
-			width: targetElBCR.width || targetElement.offsetWidth,
-			top: 0,
-			bottom: targetElBCR.height || targetElement.offsetHeight,
-			left: 0,
-			right: targetElBCR.width || targetElement.offsetWidth
-		};
-
-		let placeToPosition: Function = function(position) {
-			switch (position) {
-				case "top":
-					targetElPosition.top = hostElPosition.top - targetElement.offsetHeight - gap;
-					targetElPosition.bottom += hostElPosition.top - targetElement.offsetHeight + gap;
-					targetElPosition.left = shiftWidth[placementSecondary];
-					targetElPosition.right += shiftWidth[placementSecondary];
-					break;
-				case "bottom":
-					targetElPosition.top = shiftHeight[position] + gap;
-					targetElPosition.bottom += shiftHeight[position] - gap;
-					targetElPosition.left = shiftWidth[placementSecondary];
-					targetElPosition.right += shiftWidth[placementSecondary];
-					break;
-				case "left":
-					if (offsetTop) {
-						targetElPosition.top = hostElPosition.top - offsetTop;
-					} else {
-						targetElPosition.top = shiftHeight[placementSecondary];
-						targetElPosition.bottom += shiftHeight[placementSecondary];
-					}
-
-					if (isPopoverFilter) {
-						// needs to be position so title is in line with element that requested it
-						targetElPosition.top = hostElPosition.top - hostElPosition.height / 2 - 3;  // it's magic
-					}
-
-					targetElPosition.left = hostElPosition.left - targetElement.offsetWidth - gap;
-					targetElPosition.right += hostElPosition.left - targetElement.offsetWidth + gap;
-
-					break;
-				case "right":
-					if (offsetTop) {
-						targetElPosition.top = hostElPosition.top - offsetTop;
-					} else {
-						targetElPosition.top = shiftHeight[placementSecondary];
-						targetElPosition.bottom += shiftHeight[placementSecondary];
-					}
-
-					if (isPopoverFilter) {
-						// needs to be positioned so title is in line with element that requested it
-						targetElPosition.top = hostElPosition.top - hostElPosition.height / 2 - 3;  // it's magic
-					}
-
-					targetElPosition.left = shiftWidth[position] + gap;
-					targetElPosition.right += shiftWidth[position] - gap;
-					break;
-				case "auto":
-					let place = "top";
-					if ( targetElPosition.height + gap < hostElPosition.top &&
-						( targetElPosition.width / 2 - hostElPosition.left - hostElPosition.width / 2 ) < 0 ) {
-						place = "top";
-					} else if ( targetElPosition.height + gap + hostElPosition.top + hostElPosition.height > window.innerHeight &&
-						( targetElPosition.width / 2 - hostElPosition.left - hostElPosition.width / 2 ) < 0 ) {
-						place = "bottom";
-					} else if (hostElPosition.left - (targetElPosition.width + gap) > 0) {
-						place = "left";
-					} else if (hostElPosition.left + hostElPosition.width + targetElPosition.width + gap < window.innerWidth) {
-						place = "right";
-					}
-
-					placeToPosition(place);
-					targetElement.querySelector(".popover").classList.add(place);
-					break;
-			}
-		};
-
-		placeToPosition(placementPrimary);
-
-		targetElPosition.top = Math.round(targetElPosition.top);
-		targetElPosition.bottom = Math.round(targetElPosition.bottom);
-		targetElPosition.left = Math.round(targetElPosition.left);
-		targetElPosition.right = Math.round(targetElPosition.right);
-
-		return targetElPosition;
+function calculatePosition(referenceOffset: Offset, reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
+	// calculate offsets for a given position
+	switch (position) {
+		case "left":
+			return {
+				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left - toPosition.offsetWidth)
+			};
+		case "right":
+			return {
+				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left + reference.offsetWidth)
+			};
+		case "top":
+			return {
+				top: Math.round(referenceOffset.top - toPosition.offsetHeight),
+				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
+			};
+		case "bottom":
+			return {
+				top: Math.round(referenceOffset.top + reference.offsetHeight),
+				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
+			};
+		case "left-bottom":
+			return {
+				// 22 == half of popover header height
+				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left - toPosition.offsetWidth)
+			};
+		case "right-bottom":
+			return {
+				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left + reference.offsetWidth)
+			};
+		case "bottom-left":
+			return {
+				top: referenceOffset.top + reference.offsetHeight,
+				left: referenceOffset.left + reference.offsetWidth - toPosition.offsetWidth
+			};
+		case "bottom-right":
+			return {
+				top: referenceOffset.top + reference.offsetHeight,
+				left: referenceOffset.left
+			};
 	}
 }
 
-const positionService = new Positioning();
-export function positionElements(
-		hostElement: HTMLElement,
-		targetElement: HTMLElement,
-		placement: string,
-		appendToBody?: boolean,
-		gap?: number,
-		offsetTop?: number,
-		isPopover?: boolean,
-		isPopoverFilter?: boolean): void {
-	const pos = positionService.positionElements(
-		hostElement,
-		targetElement,
-		placement,
-		appendToBody,
-		gap,
-		offsetTop,
-		isPopover,
-		isPopoverFilter
-	);
+export namespace position {
+	export function getRelativeOffset(target: HTMLElement): Offset {
+		// start with the inital element offsets
+		let offsets = {
+			left: target.offsetLeft,
+			top: target.offsetTop
+		};
+		// get each static (i.e. not absolute or relative) offsetParent and sum the left/right offsets
+		while (target.offsetParent && getComputedStyle(target.offsetParent).position === "static") {
+			offsets.left += target.offsetLeft;
+			offsets.top += target.offsetTop;
+			target = target.offsetParent as HTMLElement;
+		}
+		return offsets;
+	}
 
-	targetElement.style.top = `${pos.top}px`;
-	targetElement.style.left = `${pos.left}px`;
+	export function getAbsoluteOffset(target: HTMLElement): Offset {
+		return {
+			top: target.getBoundingClientRect().top,
+			left: target.getBoundingClientRect().left
+		};
+	}
+
+	// finds the position relative to the `reference` element
+	export function findRelative(reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
+		const referenceOffset = getRelativeOffset(reference);
+		return calculatePosition(referenceOffset, reference, toPosition, position);
+	}
+
+	export function findAbsolute(reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
+		const referenceOffset = getAbsoluteOffset(reference);
+		return calculatePosition(referenceOffset, reference, toPosition, position);
+	}
+
+	export function findPosition(reference: HTMLElement,
+		toPosition: HTMLElement,
+		position: Position,
+		offsetFunction = getRelativeOffset): AbsolutePosition {
+		const referenceOffset = offsetFunction(reference);
+		return calculatePosition(referenceOffset, reference, toPosition, position);
+	}
+
+	/** check if the placement is within the window. right now only handles top/left/bottom/right */
+	export function checkPlacement(reference: HTMLElement, toPosition: HTMLElement, position: Position): {newPlacement: Position} {
+		/**
+		* if (top > windowTop || containerTop) - position to the bottom
+		* if (top > windowBottom || containerBottom) - position to the top
+		* if (left > windowLeft || containerLeft) - position to the right
+		* if (left > windowRight || containerRight) - position to the left
+		*/
+		if (reference.offsetTop - toPosition.offsetHeight < 0) {
+			return { newPlacement: "bottom" };
+		} else if (reference.offsetHeight + reference.offsetTop + toPosition.offsetHeight > window.innerHeight) {
+			return { newPlacement: "top" };
+		} else if (reference.offsetLeft - toPosition.offsetWidth < 0) {
+			return { newPlacement: "right" };
+		} else if (reference.offsetLeft + reference.offsetWidth + toPosition.offsetWidth > window.innerWidth) {
+			return { newPlacement: "left" };
+		}
+		return { newPlacement: position };
+	}
+
+	export function addOffset(position: AbsolutePosition, top = 0, left = 0): AbsolutePosition {
+		return Object.assign({}, position, {
+			top: position.top + top,
+			left: position.left + left,
+		});
+	}
+
+	export function setElement(element: HTMLElement, position: AbsolutePosition): void {
+		element.style.top = `${position.top}px`;
+		element.style.left = `${position.left}px`;
+	}
 }
+
+export default position;

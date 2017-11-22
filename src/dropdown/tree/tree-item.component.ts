@@ -4,52 +4,22 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	TemplateRef
+	TemplateRef,
+	OnInit
 } from "@angular/core";
 import { DropdownTree } from "./tree.component";
-import {  } from "./../../constant/keys";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
 @Component({
 	selector: "n-tree-item",
 	template: `
-		<div
-			class="item-wrapper item-level-{{indent}}"
-			tabindex="{{listItem.disabled?-1:0}}"
-			[ngClass]="{
-				selected: listItem.selected,
-				disabled: listItem.disabled,
-				'has-items': !!listItem.items
-			}"
+		<span
 			(click)="doClick(listItem)"
 			(keydown)="onKeyDown($event, listItem)"
-			role="treeitem"
-			[attr.aria-level]="indent"
-			[attr.aria-hidden]="listItem.disabled"
-			[attr.aria-expanded]="(!!listItem.items) ? ((listItem.selected) ? true : false) : null"
-			[attr.aria-selected]="listItem.selected">
-			<div
-				class="item"
-				[style.margin-left.px]="calculateIndent()">
-				<svg
-					*ngIf="!!listItem.items"
-					class="arrow icon"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 16 16">
-					<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
-				</svg>
-				<span *ngIf="!listTpl">{{listItem.content}}</span>
-				<ng-template
-					*ngIf="isTpl"
-					[ngOutletContext]="{item: listItem}"
-					[ngTemplateOutlet]="listTpl">
-				</ng-template>
-				<span
-					*ngIf="selectedIcon && listItem.selected && !listItem.items"
-					class="checked" aria-hidden="true">
-				</span>
-			</div>
-		</div>
+			role="option"
+			tabindex="{{listItem.disabled ? -1 : 0}}">
+			{{listItem.content}}
+		</span>
 		<n-tree-wrapper
 			*ngIf="!!listItem.items"
 			[isOpen]="listItem.selected"
@@ -64,11 +34,12 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[label]="listItem"
 			[outerPadding]="outerPadding"
 			[iconWidth]="iconWidth"
+			[size]="size"
 			[innerPadding]="innerPadding">
 		</n-tree-wrapper>
 	`
 })
-export class TreeItem {
+export class TreeItem implements OnInit {
 	public parent;
 	public isTpl = false;
 
@@ -83,6 +54,7 @@ export class TreeItem {
 	@Input() outerPadding = 10; // padding from left edge
 	@Input() iconWidth = 16;
 	@Input() innerPadding = 10; // padding between icon and content
+	@Input() size: "sm" | "default" | "lg" = "default";
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 	constructor(public _elementRef: ElementRef) {}

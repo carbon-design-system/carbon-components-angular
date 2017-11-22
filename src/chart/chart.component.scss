@@ -1,0 +1,109 @@
+/* stylelint-disable color-no-hex, declaration-block-no-duplicate-properties, max-nesting-depth, property-no-vendor-prefix, value-no-vendor-prefix */
+
+@import "../../node_modules/@peretz/matter/scss/tools";
+
+$chart-legend-color: #5A5A5A;
+$chart-legend-hover-color: #323232;
+$chart-text-color: #AEAEAE;
+
+n-chart {
+	display: block;
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+
+	.n-chart-container {
+		width: 100%;
+		height: 100%;
+	}
+
+	svg {
+		overflow: visible;
+
+		text {
+			font-weight: 300;
+			font-size: 11px;
+			fill: $chart-text-color;
+		}
+	}
+
+	table {
+		width: 100%;
+		height: 100%;
+	}
+
+	.chart-row {
+		height: 99%;
+
+		.chart-content {
+			position: relative;
+			width: 80%;
+		}
+
+		.legend-content {
+			position: absolute;
+			top: 50px;
+
+			width: 20%;
+			height: 100%;
+		}
+	}
+
+	.legend-row {
+		height: 1%;
+
+		.legend {
+			max-height: 55px;
+			overflow-y: auto;
+
+			.legend-link {
+				color: $chart-legend-color;
+
+				&:hover {
+					color: $chart-legend-hover-color;
+				}
+			}
+
+			&.link-view {
+				float: none;
+				height: 36px;
+				overflow: hidden;
+			}
+		}
+	}
+}
+
+button.close--xs {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+
+	width: 18px;
+	height: 18px;
+
+	justify-content: center;
+	margin-right: -4px;
+	padding: 0;
+	border: 1px solid transparent;
+	background-color: transparent;
+	cursor: pointer;
+
+	&:focus,
+	&:hover {
+		border-color: m_color("gray", 50);
+	}
+
+	.close_icon {
+		width: 10px;
+		height: 10px;
+		fill: m_color("gray", 50);
+	}
+}

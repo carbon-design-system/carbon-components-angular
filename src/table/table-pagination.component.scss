@@ -1,0 +1,32 @@
+@import "../../node_modules/@peretz/matter/scss/tools";
+
+.table-pagination {
+	display: inline-block;
+
+	.page-number,
+	.main-arrow {
+		display: inline-block;
+
+		color: m_color("gray", 60);
+		line-height: 20px;
+		text-align: center;
+
+		fill: m_color("gray", 60);
+		cursor: pointer;
+	}
+
+	.page-number {
+		min-width: 25px;
+		margin-right: 5px;
+
+		&.selected {
+			background-color: m_color("blue", 50);
+			color: m_color("white");
+			cursor: auto;
+		}
+	}
+
+	.main-arrow {
+		width: 20px;
+	}
+}

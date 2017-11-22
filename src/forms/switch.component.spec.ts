@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
-import { By }              			 from "@angular/platform-browser";
-import { DebugElement }    			 from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
 import { SwitchComponent } from "./switch.component";
 
@@ -10,7 +10,7 @@ describe("SwitchComponent", () => {
 	let fixture: ComponentFixture<SwitchComponent>;
 	let de: DebugElement;
 	let el: HTMLElement;
-	let inputElement: HTMLElement;
+	let buttonElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -21,9 +21,9 @@ describe("SwitchComponent", () => {
 
 		fixture = TestBed.createComponent(SwitchComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("div.switch"));
+		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
-		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
+		buttonElement = fixture.debugElement.query(By.css("button")).nativeElement;
 	});
 
 	it("should work", () => {
@@ -31,11 +31,11 @@ describe("SwitchComponent", () => {
 	});
 
 	it("should change state", () => {
-		inputElement.click();
+		buttonElement.click();
 		fixture.detectChanges();
 		expect(component.checked).toBe(true, "setting to on");
 
-		inputElement.click();
+		buttonElement.click();
 		fixture.detectChanges();
 		expect(component.checked).toBe(false, "setting to off");
 	});

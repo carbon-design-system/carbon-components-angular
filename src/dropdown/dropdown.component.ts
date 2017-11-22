@@ -12,7 +12,8 @@ import {
 	AfterViewInit,
 	HostListener,
 	forwardRef,
-	OnDestroy
+	OnDestroy,
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -23,7 +24,7 @@ import "rxjs/add/operator/throttleTime";
 import { TranslateService } from "@ngx-translate/core";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { positionElements } from "../common/position.service";
+import { position } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 
@@ -45,57 +46,37 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			#dropdownHost
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			class="dropdown-value size-{{size}}"
 			(click)="toggleMenu()"
 			(blur)="onBlur()"
-			[disabled]="disabled"
-			[class.open]="!menuIsClosed">
-			<span *ngIf="valueSelected()">{{getDisplayValue() | async}}</span>
-			<span *ngIf="!valueSelected()" class="placeholder">{{getDisplayValue() | async}}</span>
-			<span class="dropdown-icon" [class.open]="!menuIsClosed">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16">
-					<path d="M14.6 4L8 10.6 1.4 4l-.8.8L8 12.3l7.4-7.5z"/>
-				</svg>
-			</span>
+			[disabled]="disabled">
+			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
+			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
+			<svg
+				[ngClass]="{
+					'icon--sm': size === 'sm',
+					'icon': size === 'default' || size === 'lg'
+				}"
+				width="16"
+				height="16"
+				viewBox="0 0 16 16">
+				<path d="M14.6 4L8 10.6 1.4 4l-.8.8L8 12.3l7.4-7.5z"/>
+			</svg>
 		</button>
 		<div
-			class="dropdown-menu size-{{size}}"
-			[class.popover]="appendToBody"
-			[class.open]="!menuIsClosed">
+			class="dropdown_menu">
 			<ng-content></ng-content>
 		</div>
 	`,
 	encapsulation: ViewEncapsulation.None,
-	host: {
-		"class": "dropdown-wrapper",
-		"role": "combobox"
-	},
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => Dropdown),
+			useExisting: Dropdown,
 			multi: true
 		}
 	]
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
-	menuIsClosed = true;
-	dropdown: HTMLElement;
-	dropdownWrapper: HTMLElement;
-	// .bind creates a new function, so we decalre the methods below
-	// but .bind them up here
-	noop = this._noop.bind(this);
-	outsideClick = this._outsideClick.bind(this);
-	outsideKey = this._outsideKey.bind(this);
-	keyboardNav = this._keyboardNav.bind(this);
-	resize;
-	scroll;
-	private onTouchedCallback: () => void = this._noop;
-
 	/**
 	 * Value to show when nothing is selected.
 	 *
@@ -138,10 +119,28 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownHost") rootButton;
 
+	@HostBinding("attr.role") role = "combobox";
+	@HostBinding("attr.class") class: string;
+
+	menuIsClosed = true;
+	dropdown: HTMLElement;
+	dropdownWrapper: HTMLElement;
+	// .bind creates a new function, so we decalre the methods below
+	// but .bind them up here
+	noop = this._noop.bind(this);
+	outsideClick = this._outsideClick.bind(this);
+	outsideKey = this._outsideKey.bind(this);
+	keyboardNav = this._keyboardNav.bind(this);
+	resize;
+	scroll;
+
+	private onTouchedCallback: () => void = this._noop;
+
 	constructor(private _elementRef: ElementRef, private _translate: TranslateService) {}
 
 	ngOnInit() {
 		this.view.type = this.type;
+		this.class = this.buildClass();
 	}
 
 	ngAfterContentInit() {
@@ -167,13 +166,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	ngAfterViewInit() {
-		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown-menu");
+		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown_menu");
 	}
 
 	ngOnDestroy() {
 		if (this.appendToBody) {
 			this._appendToDropdown();
 		}
+	}
+
+	buildClass() {
+		if (this.size === "sm") { return "dropdown--sm"; }
+		if (this.size === "default") { return "dropdown"; }
+		if (this.size === "lg") { return "dropdown--lg"; }
 	}
 
 	writeValue(value: any) {
@@ -304,16 +309,22 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	_appendToBody() {
 		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = "dropdown-wrapper append-body";
+		this.dropdownWrapper.className = "dropdown append-body";
 		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.appendChild(this.dropdown);
 		document.body.appendChild(this.dropdownWrapper);
-		positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+		position.setElement(
+			this.dropdownWrapper,
+			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
+		);
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
 		this.resize = Observable.fromEvent(window, "resize")
 			.throttleTime(100)
 			.subscribe(() => {
-				positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+				position.setElement(
+					this.dropdownWrapper,
+					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
+				);
 			});
 	}
 
@@ -361,7 +372,13 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				this.scroll = Observable.fromEvent(container, "scroll")
 				.subscribe(() => {
 					if (this.isVisibleInContainer(this._elementRef.nativeElement, container)) {
-						positionElements(this._elementRef.nativeElement, this.dropdownWrapper, "bottom", true, 0, 0);
+						position.setElement(
+							this.dropdownWrapper,
+							position.addOffset(
+								position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom"),
+								-container.scrollTop
+							)
+						);
 					} else {
 						this.closeMenu();
 					}
