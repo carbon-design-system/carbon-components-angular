@@ -92,12 +92,6 @@ export class TopNav implements AfterViewInit {
 	 */
 	@Input() fixed = false;
 
-	/**
-	 * The HTML DOM document object.
-	 * @type {HTMLElement}
-	 * @memberof TopNav
-	 */
-	@Inject(DOCUMENT) document;
 
 	/**
 	 * Creates an instance of TopNav.
@@ -105,7 +99,7 @@ export class TopNav implements AfterViewInit {
 	 * @param {ElementRef} elementRef
 	 * @memberof TopNav
 	 */
-	constructor(document: HTMLElement, private elementRef: ElementRef) {}
+	constructor(@Inject(DOCUMENT) public document: HTMLElement, private elementRef: ElementRef) {}
 
 	/**
 	 * Updates the properties of the icons and list items that populate the Nav component.
