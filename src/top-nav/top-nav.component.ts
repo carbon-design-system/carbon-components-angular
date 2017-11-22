@@ -37,7 +37,7 @@ import { DOCUMENT } from "@angular/platform-browser";
  *
  * See list-group component.
  *
- * Complete Example (TopNav with Hamburger):
+ * Complete Example (`TopNav` with `Hamburger`):
  *
  * * ```html
  * <n-top-nav [fixed]="false">
@@ -102,6 +102,20 @@ import { DOCUMENT } from "@angular/platform-browser";
  * 		</li>
  * 	</ul>
  * </n-top-nav>
+ * ```
+ *
+ * ```typescript
+ * toggleSearch(showSearchInput) {
+ * 	showSearchInput = !showSearchInput;
+ *
+ * 	if (showSearchInput) {
+ * 		setTimeout( () => {
+ * 			(document.querySelector(".top-nav-search-input") as HTMLElement).focus();
+ * 		}, 1);
+ * 	}
+ *
+ * 	return showSearchInput;
+ * }
  * ```
  *
  * @export

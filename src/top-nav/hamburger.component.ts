@@ -7,20 +7,6 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
  * <n-hamburger (onClick)="onClick($event)" hamburger></n-hamburger>
  * ```
  *
- * ```typescript
- * toggleSearch(showSearchInput) {
- * 	showSearchInput = !showSearchInput;
- *
- * 	if (showSearchInput) {
- * 		setTimeout( () => {
- * 			(document.querySelector(".top-nav-search-input") as HTMLElement).focus();
- * 		}, 1);
- * 	}
- *
- * 	return showSearchInput;
- * }
- * ```
- *
  * @export
  * @class Hamburger
  */
