@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
+
+
 /**
  * class: Hamburger (extends PopoverDirective)
  * selector: `n-hamburger`
