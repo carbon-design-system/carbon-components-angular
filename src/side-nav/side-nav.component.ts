@@ -1,5 +1,21 @@
 import { Component, Input } from "@angular/core";
 
+
+/**
+ * class: SideNav
+ * selector: `n-side-nav`
+ *
+ * SideNav contains a single projection for side-nav content. Below is an example for a tree-view component.
+ *
+ *
+ * ```html
+ * <n-side-nav [open]="sideNavOpen">
+ * 	<n-tree-view [items]="demoItems" [listTpl]="listTpl"> </n-tree-view>
+ * </n-side-nav>
+ * ```
+ * @export
+ * @class SideNav
+ */
 @Component({
 	selector: "n-side-nav",
 	template: `
@@ -17,5 +33,10 @@ import { Component, Input } from "@angular/core";
   `
 })
 export class SideNav {
+	/**
+	 * Set to `true` if the navigation menu is open.
+	 * @type {boolean}
+	 * @memberof SideNav
+	 */
 	@Input() open = true;
 }
