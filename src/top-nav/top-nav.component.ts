@@ -9,6 +9,41 @@ import {
 import { DOCUMENT } from "@angular/platform-browser";
 
 
+/**
+ * class: TopNav
+ *
+ * selector: `n-top-nav`
+ *
+ *
+ *
+ *
+ * ```html
+ * <n-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="true"></n-top-nav>
+ * ```
+ *
+ * Top-nav takes 3 optional projections for hamburger, links and menu:
+ *
+ * ```html
+ * <n-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="false">
+ * 	<n-hamburger hamburger></n-hamburger>
+ * 	<n-list-group links [items]="demoItems"></n-list-group>
+ * </n-top-nav>
+ * ```
+ *
+ * `items` expects an array of objects where the objects follow the format:
+ * ```javascript
+ * {
+ * 	content: "string",
+ * 	disabled: false //optional
+ * }
+ * ```
+ *
+ * See list-group component.
+ *
+ * @export
+ * @class TopNav
+ * @implements {AfterViewInit}
+ */
 @Component({
 	selector: "n-top-nav",
 	template: `
@@ -36,18 +71,46 @@ import { DOCUMENT } from "@angular/platform-browser";
 		</nav>
 	</header>`
 })
-
 export class TopNav implements AfterViewInit {
-	static topNavCount = 0;
-
+	/**
+	 * The Nav bar label/badge.
+	 * @type {string}
+	 * @memberof TopNav
+	 */
 	@Input() badge: string;
+	/**
+	 * Product name to be displayed in Nav bar.
+	 * @type {string}
+	 * @memberof TopNav
+	 */
 	@Input() brand: string;
+	/**
+	 * Set to `true` for a sticky (fixed absolute position)
+	 * Nav bar.
+	 * @type {boolean}
+	 * @memberof TopNav
+	 */
 	@Input() fixed = false;
 
-	public displayType = "";
+	/**
+	 * The HTML DOM document object.
+	 * @type {HTMLElement}
+	 * @memberof TopNav
+	 */
+	@Inject(DOCUMENT) document;
 
-	constructor(@Inject(DOCUMENT) public document, private elementRef: ElementRef) {}
+	/**
+	 * Creates an instance of TopNav.
+	 * @param {HTMLElement} document
+	 * @param {ElementRef} elementRef
+	 * @memberof TopNav
+	 */
+	constructor(document: HTMLElement, private elementRef: ElementRef) {}
 
+	/**
+	 * Updates the properties of the icons and list items that populate the Nav component.
+	 * @memberof TopNav
+	 */
 	ngAfterViewInit() {
 		// add aria-hidden to icon elements
 		let icons = this.elementRef.nativeElement.querySelectorAll("n-icon, .menu-icon, .icon");
