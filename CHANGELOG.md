@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...HEAD)
 
+**Fixed bugs:**
+
+- Popover doesn't position correctly in modals [\#695](https://github.ibm.com/peretz/neutrino/issues/695)
+
 **Closed issues:**
 
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
@@ -14,6 +18,8 @@
 
 **Merged pull requests:**
 
+- Fix for Angular 5 [\#698](https://github.ibm.com/peretz/neutrino/pull/698) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- fix position service [\#696](https://github.ibm.com/peretz/neutrino/pull/696) ([callums](https://github.ibm.com/callums))
 - Documentation for dialog [\#694](https://github.ibm.com/peretz/neutrino/pull/694) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Bump package versions, make angular v5 a peer dependency [\#693](https://github.ibm.com/peretz/neutrino/pull/693) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - CompoDoc Documentation for Tab component  [\#692](https://github.ibm.com/peretz/neutrino/pull/692) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
