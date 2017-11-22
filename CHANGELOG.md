@@ -15,6 +15,8 @@
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
 - Process for new contributions to Neutrino [\#598](https://github.ibm.com/peretz/neutrino/issues/598)
+- Document tabs [\#569](https://github.ibm.com/peretz/neutrino/issues/569)
+- Document popover/tooltip [\#567](https://github.ibm.com/peretz/neutrino/issues/567)
 
 **Merged pull requests:**
 
