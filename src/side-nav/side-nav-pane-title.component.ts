@@ -25,8 +25,17 @@ import { Component, Input, ViewChild } from "@angular/core";
   `
 })
 export class SideNavPaneTitle {
+	/**
+	 * The element in the view DOM that displays the parent catagory heading for
+	 * the items in the pane.
+	 * @memberof SideNavPaneTitle
+	 */
 	@ViewChild("item") item;
 
+	/**
+	 * Closes the pane of subitems to go up a level to the parent catagories.
+	 * @memberof SideNavPaneTitle
+	 */
 	hidePane() {
 		this.item.nativeElement.closest(".side-nav_subpanel").classList.remove("slide-in");
 
