@@ -173,6 +173,12 @@ export class SideNavItem implements AfterViewInit {
 		this.select.emit();
 	}
 
+	/**
+	 * Gets the native HTML element for the item's pane of
+	 * associated children subitems.
+	 * @returns {HTMLElement}
+	 * @memberof SideNavItem
+	 */
 	getPaneTemplateElement() {
 		return this.subItem.nativeElement;
 	}
