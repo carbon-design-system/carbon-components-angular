@@ -66,7 +66,7 @@ import {
 })
 export class SideNavItem implements AfterViewInit {
 	/**
-	 * To uniquely id 'SideNavItem' components contained in the `SideNavGroup` parent component.
+	 * To uniquely id `SideNavItem` components contained in the `SideNavGroup` parent component.
 	 * @static
 	 * @type {number}
 	 * @memberof SideNavItem
@@ -110,7 +110,7 @@ export class SideNavItem implements AfterViewInit {
 	@ViewChild("subItem") subItem;
 
 	/**
-	 * Creates an instance of SideNavItem.
+	 * Creates an instance of `SideNavItem`.
 	 * @param {ElementRef} _elementRef
 	 * @memberof SideNavItem
 	 */
@@ -135,7 +135,7 @@ export class SideNavItem implements AfterViewInit {
 
 	/**
 	 * Keyboard listening event to select the menu item with
-	 * the 'Enter' key.
+	 * the `Enter` key.
 	 * @param {KeyboardEvent} event
 	 * @memberof SideNavItem
 	 */

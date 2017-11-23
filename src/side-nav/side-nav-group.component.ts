@@ -2,8 +2,10 @@ import { AfterContentInit, Component, Input, ViewChild } from "@angular/core";
 
 
 /**
- * Each <n-side-nav-group> is either a Leaf node (cannot expand) or higher level Non-Leaf node (expands) holding
+ * Each `SideNavGroup` is either a Leaf (has no children subitems) or higher level Non-Leaf (expands) holding
  * associated subitems to create an organized hierarchy in the menu.
+ *
+ * selector: <n-side-nav-group>
  *
  * @export
  * @class SideNavGroup
@@ -66,7 +68,7 @@ export class SideNavGroup implements AfterContentInit {
 	@ViewChild("dd") dd;
 
 	/**
-	 * Creates an instance of SideNavGroup.
+	 * Creates an instance of `SideNavGroup`.
 	 * @memberof SideNavGroup
 	 */
 	constructor() {
