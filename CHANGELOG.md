@@ -20,6 +20,7 @@
 
 **Merged pull requests:**
 
+- Documentation for Top-Nav [\#699](https://github.ibm.com/peretz/neutrino/pull/699) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Fix for Angular 5 [\#698](https://github.ibm.com/peretz/neutrino/pull/698) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - fix position service [\#696](https://github.ibm.com/peretz/neutrino/pull/696) ([callums](https://github.ibm.com/callums))
 - Documentation for dialog [\#694](https://github.ibm.com/peretz/neutrino/pull/694) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
