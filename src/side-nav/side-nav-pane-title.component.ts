@@ -5,8 +5,7 @@ import { Component, Input, ViewChild } from "@angular/core";
  * class: SideNavPaneTitle
  * selector: `n-side-nav-pane-title`
  *
- * SideNavPaneTitle expects some title to be projected,
- * to be used as the title of the fly in sub view.
+ * SideNavPaneTitle expects some title to be projected, to be used as the title of the fly in sub view.
  *
  * @export
  * @class SideNavPaneTitle
@@ -26,8 +25,7 @@ import { Component, Input, ViewChild } from "@angular/core";
 })
 export class SideNavPaneTitle {
 	/**
-	 * The element in the view DOM that displays the parent catagory heading for
-	 * the items in the pane.
+	 * The element in the view DOM that displays the parent catagory heading for the items in the pane.
 	 * @memberof SideNavPaneTitle
 	 */
 	@ViewChild("item") item;

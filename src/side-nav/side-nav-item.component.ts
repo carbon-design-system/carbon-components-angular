@@ -119,8 +119,7 @@ export class SideNavItem implements AfterViewInit {
 	}
 
 	/**
-	 * Updates view to display the associated subitem panel if `SideNavItem` component
-	 * is selected.
+	 * Updates view to display the associated subitem panel if `SideNavItem` component is selected.
 	 * @memberof SideNavItem
 	 */
 	ngAfterViewInit() {
@@ -134,8 +133,7 @@ export class SideNavItem implements AfterViewInit {
 	}
 
 	/**
-	 * Keyboard listening event to select the menu item with
-	 * the `Enter` key.
+	 * Keyboard listening event to select the menu item with the `Enter` key.
 	 * @param {KeyboardEvent} event
 	 * @memberof SideNavItem
 	 */
@@ -158,8 +156,8 @@ export class SideNavItem implements AfterViewInit {
 	}
 
 	/**
-	 * The item is selected on click if there are no associated subitems. Otherwise
-	 * the click toggles view of item's associated subitems.
+	 * The item is selected on click if there are no associated subitems.
+	 * Otherwise the click toggles view of item's associated subitems.
 	 * @memberof SideNavItem
 	 */
 	onClick() {
@@ -174,8 +172,7 @@ export class SideNavItem implements AfterViewInit {
 	}
 
 	/**
-	 * Gets the native HTML element for the item's pane of
-	 * associated children subitems.
+	 * Gets the native HTML element for the item's pane of associated children subitems.
 	 * @returns {HTMLElement}
 	 * @memberof SideNavItem
 	 */
