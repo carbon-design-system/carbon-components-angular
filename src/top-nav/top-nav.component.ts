@@ -171,6 +171,7 @@ export class TopNav implements AfterViewInit {
 
 	/**
 	 * Creates an instance of `TopNav`.
+	 * @param {any} document
 	 * @param {ElementRef} elementRef
 	 * @memberof TopNav
 	 */
