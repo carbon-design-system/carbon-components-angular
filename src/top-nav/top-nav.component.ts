@@ -6,8 +6,6 @@ import {
 	ElementRef
 } from "@angular/core";
 
-import { DOCUMENT } from "@angular/platform-browser";
-
 
 /**
  * class: TopNav
@@ -171,11 +169,10 @@ export class TopNav implements AfterViewInit {
 
 	/**
 	 * Creates an instance of `TopNav`.
-	 * @param {any} document
 	 * @param {ElementRef} elementRef
 	 * @memberof TopNav
 	 */
-	constructor(@Inject(DOCUMENT) public document, private elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef) {}
 
 	/**
 	 * Updates the properties of the icons and list items that populate the nav component.
