@@ -41,7 +41,7 @@ export class OverlayComponent {
 	@ViewChild("overlay") overlay: ElementRef;
 
 	/**
-	 * Handles the user clicking on the `Overlay` component outside the `Modal` object.
+	 * Handles the user clicking on the `OverlayComponent` which resides outside the `Modal` object.
 	 * @param {any} event
 	 * @returns null
 	 * @memberof OverlayComponent
