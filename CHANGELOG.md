@@ -20,6 +20,7 @@
 
 **Merged pull requests:**
 
+- Remove @Inject type declaration [\#701](https://github.ibm.com/peretz/neutrino/pull/701) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for Side Nav [\#700](https://github.ibm.com/peretz/neutrino/pull/700) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for Top-Nav [\#699](https://github.ibm.com/peretz/neutrino/pull/699) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Fix for Angular 5 [\#698](https://github.ibm.com/peretz/neutrino/pull/698) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
