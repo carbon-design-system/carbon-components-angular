@@ -22,10 +22,12 @@
 
 **Merged pull requests:**
 
+- Documentation for Modals [\#702](https://github.ibm.com/peretz/neutrino/pull/702) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Remove @Inject type declaration [\#701](https://github.ibm.com/peretz/neutrino/pull/701) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for Side Nav [\#700](https://github.ibm.com/peretz/neutrino/pull/700) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for Top-Nav [\#699](https://github.ibm.com/peretz/neutrino/pull/699) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Fix for Angular 5 [\#698](https://github.ibm.com/peretz/neutrino/pull/698) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- updated banner to interpolate html so tags can be passed in [\#697](https://github.ibm.com/peretz/neutrino/pull/697) ([palopezd](https://github.ibm.com/palopezd))
 - fix position service [\#696](https://github.ibm.com/peretz/neutrino/pull/696) ([callums](https://github.ibm.com/callums))
 - Documentation for dialog [\#694](https://github.ibm.com/peretz/neutrino/pull/694) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Bump package versions, make angular v5 a peer dependency [\#693](https://github.ibm.com/peretz/neutrino/pull/693) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
