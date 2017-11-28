@@ -37,7 +37,6 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 
 	`
 })
-
 export class ModalHeaderComponent {
 	/**
 	 * Sets the style on the modal heading based on its category.
@@ -50,12 +49,6 @@ export class ModalHeaderComponent {
 	 * @memberof ModalHeaderComponent
 	 */
 	@Output() closeSelect = new EventEmitter();
-
-	/**
-	 * Creates an instance of `ModalHeaderComponent`.
-	 * @memberof ModalHeaderComponent
-	 */
-	constructor() {}
 
 	/**
 	 * Handles click for the close icon button within the `Modal`.

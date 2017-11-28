@@ -19,11 +19,4 @@ import { Component } from "@angular/core";
 		</footer>
 	`
 })
-
-export class ModalFooterComponent {
-	/**
-	 * Creates an instance of `ModalFooterComponent`.
-	 * @memberof ModalFooterComponent
-	 */
-	constructor() {}
-}
+export class ModalFooterComponent {}

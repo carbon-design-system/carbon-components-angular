@@ -12,6 +12,7 @@ class ModalContainer {
 		this.destroy();
 	}
 }
+
 /**
  * Applying the decorator metadata to the target class (`Modal`).
  * @export

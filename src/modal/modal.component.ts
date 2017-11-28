@@ -124,7 +124,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 	 * @param {ModalService} modalService
 	 * @memberof ModalComponent
 	 */
-	constructor(public modalService: ModalService) { }
+	constructor(public modalService: ModalService) {}
 
 	/**
 	 * Set document focus to be on the modal component when it is initialized.

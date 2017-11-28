@@ -17,7 +17,6 @@ import { ModalService } from "./modal.service";
 	selector: "n-modal-placeholder",
 	template: `<div #modalplaceholder></div>`
 })
-
 export class ModalPlaceholderComponent implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
