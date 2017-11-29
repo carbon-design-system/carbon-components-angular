@@ -1,5 +1,26 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
 
+
+/**
+ * class: ModalHeaderComponent
+ *
+ * selector: `n-modal-header`
+ *
+ * source: `src/modal/list/modal-header.component.ts`
+ *
+ * ***Inputs***
+ * ```html
+ * <n-modal-header [modalType]="default">Header text</n-modal-header>
+ * ```
+ *
+ * ***Outputs***
+ * ```html
+ * <n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ * ```
+ *
+ * @export
+ * @class ModalHeaderComponent
+ */
 @Component({
 	selector: "n-modal-header",
 	template: `
@@ -16,12 +37,23 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 
 	`
 })
-
 export class ModalHeaderComponent {
+	/**
+	 * Sets the style on the modal heading based on its category.
+	 * @type {"default" | "warning" | "error"}
+	 * @memberof ModalHeaderComponent
+	 */
 	@Input() modalType = "default";
+	/**
+	 * To emit the event of clicking on the close icon within the modal.
+	 * @memberof ModalHeaderComponent
+	 */
 	@Output() closeSelect = new EventEmitter();
-	constructor() {}
 
+	/**
+	 * Handles click for the close icon button within the `Modal`.
+	 * @memberof ModalHeaderComponent
+	 */
 	public onClose() {
 		this.closeSelect.emit();
 	}
