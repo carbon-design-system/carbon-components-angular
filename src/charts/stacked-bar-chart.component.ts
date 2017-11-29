@@ -1,13 +1,12 @@
-import { BaseAxisChart } from "./base-axis-chart.component";
 import {
 	Component,
 	Input,
-	OnInit,
 	AfterViewInit,
 	ViewChild,
 	ViewEncapsulation
 } from "@angular/core";
 
+import { BaseAxisChart } from "./base-axis-chart.component";
 import { StackedBarChart as SBC } from "@peretz/charts/bundle/bundle.js";
 
 @Component({
