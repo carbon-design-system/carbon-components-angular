@@ -12,4 +12,4 @@ export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./top-nav/top-nav.module";
 export * from "./tree-view/tree-view.module";
-export * from "./chart/chart.module";
+export * from "./charts/charts.module";
