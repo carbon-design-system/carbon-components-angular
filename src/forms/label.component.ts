@@ -65,10 +65,10 @@ export class LabelComponent implements AfterContentInit {
 
 	/**
 	 * Creates an instance of LabelComponent.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof LabelComponent
 	 */
-	constructor(private _elementRef: ElementRef) {
+	constructor(private elementRef: ElementRef) {
 		LabelComponent.labelCounter++;
 	}
 
@@ -77,6 +77,6 @@ export class LabelComponent implements AfterContentInit {
 	 * @memberof LabelComponent
 	 */
 	ngAfterContentInit() {
-		this._elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		this.elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
 	}
 }
