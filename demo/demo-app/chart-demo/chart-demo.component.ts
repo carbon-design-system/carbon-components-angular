@@ -3,7 +3,8 @@ import { Component, ViewChild } from "@angular/core";
 @Component({
 	selector: "app-chart-demo",
 	template: `
-	<h1>Chart</h1>
+	<h1>Chart demo</h1>
+
 	<h2>Bars</h2>
 	<button class="btn--primary" (click)="changeData()">Change data</button>
 	<n-bar-chart

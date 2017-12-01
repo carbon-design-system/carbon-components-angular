@@ -5,7 +5,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 	template: `
 		<h1>Combo box demo</h1>
 
-		<h2>Single-select combo box</h2>
+		<h2>Single-select</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -15,7 +15,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Multi-select combo box</h2>
+		<h2>Multi-select</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -27,7 +27,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Disabled combo box</h2>
+		<h2>Disabled</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				disabled="true"
@@ -36,7 +36,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Internal component demos</h2>
+		<h2>Internal components</h2>
+		<h3>Pill input</h3>
 		<div style="display:flex;">
 			<n-pill-input
 				[pills]="visibleItems1"
@@ -51,7 +52,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				Reset
 			</button>
 		</div>
-		<br>
+		<h3>Drop-down list</h3>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
@@ -59,7 +60,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				</div>
 			</div>
 		</div>
-		<br>
+		<h3>Drop-down multi list</h3>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
