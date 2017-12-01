@@ -1,5 +1,34 @@
 import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 
+
+/**
+ * class: LabelComponent
+ *
+ * selector: `n-label`
+ *
+ * source: `src/forms/label.component.ts`
+ *
+ * ```html
+ * <n-label labelState="success">
+ * 	<label label>Field with success</label>
+ * 	<input type="text" class="input-field">
+ * </n-label>
+ *
+ * <n-label labelState="warning">
+ * 	<label label>Field with warning</label>
+ * 	<input type="text" class="input-field">
+ * </n-label>
+ *
+ * <n-label labelState="error">
+ * 	<label label>Field with error</label>
+ * 	<input type="text" class="input-field">
+ * </n-label>
+ * ```
+ *
+ * @export
+ * @class LabelComponent
+ * @implements {AfterContentInit}
+ */
 @Component({
 	selector: "n-label",
 	// tslint:disable:max-line-length
@@ -14,15 +43,39 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 	// tslint:enable:max-line-length
 })
 export class LabelComponent implements AfterContentInit {
+	/**
+	 * Used to build the id of the input item associated with the `LabelComponent`.
+	 * @static
+	 * @memberof LabelComponent
+	 */
 	static labelCounter = 0;
+	/**
+	 * The id of the input item associated with the `LabelComponent`. This value is also used to associate the `LabelComponent` with
+	 * its input counterpart through the 'for' attribute.
+	 * @memberof LabelComponent
+	 */
 	labelInputID = "n-label-" + LabelComponent.labelCounter;
 
+	/**
+	 * State of the `LabelComponent` will determine the styles applied.
+	 * @type {("success" | "warning" | "error" | "")}
+	 * @memberof LabelComponent
+	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
 
+	/**
+	 * Creates an instance of LabelComponent.
+	 * @param {ElementRef} _elementRef
+	 * @memberof LabelComponent
+	 */
 	constructor(private _elementRef: ElementRef) {
 		LabelComponent.labelCounter++;
 	}
 
+	/**
+	 * Sets the id on the input item associated with the `LabelComponent`.
+	 * @memberof LabelComponent
+	 */
 	ngAfterContentInit() {
 		this._elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
 	}
