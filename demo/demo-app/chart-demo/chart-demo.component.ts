@@ -1,36 +1,36 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 
 @Component({
 	selector: "app-chart-demo",
 	template: `
-	<h1>Chart</h1>
+	<h1>Chart demo</h1>
+
 	<h2>Bars</h2>
-	<code>options.type='bars'</code>
-	<p>Bar chart in a resizable container.</p>
-	<code>options.containerResizable=true</code>
-	<div class="resizable">
-		<n-chart
-			[data]="chartConstant.data"
-			[options]="barOption">
-		</n-chart>
-	</div>
+	<button class="btn--primary" (click)="changeData()">Change data</button>
+	<n-bar-chart
+		class="n-chart"
+		style="height: 510px"
+		[data]="chartConstant.data"
+		[options]="barOption" #barChart>
+	</n-bar-chart>
 
 	<h2>Stacked Bars</h2>
-	<code>options.type='stackedBars'</code>
-	<n-chart
+	<n-stacked-bar-chart
+		class="n-chart"
+		style="height: 510px"
 		[data]="chartConstant.data"
 		[options]="stackedBarsOption">
-	</n-chart>
+	</n-stacked-bar-chart>
 
 	<h2>Lines</h2>
-	<code>options.type='lines'</code>
-	<n-chart
+	<n-line-chart
+		class="n-chart"
+		style="height: 510px"
 		[data]="chartConstant.data"
 		[options]="linesOption">
-	</n-chart>
+	</n-line-chart>
 
 	<h2>Double Axis</h2>
-	<code>options.type='doubleAxis'</code>
 	<p>Y value formatters can be added to options as functions for each metric.</p>
 	<code>
 		options.yFormatter: {{ '{' }} <br>
@@ -39,17 +39,20 @@ import { Component } from "@angular/core";
 		&nbsp;&nbsp;{{ '}' }} <br>
 		{{ '}' }}
 	</code>
-	<n-chart
+	<n-double-axis-line-chart
+		class="n-chart"
+		style="height: 510px"
 		[data]="chartConstant.doubleAxisData"
 		[options]="doubleAxisOption">
-	</n-chart>
+	</n-double-axis-line-chart>
 
 	<h2>Combo</h2>
-	<code>options.type='combo'</code>
-	<n-chart
+	<n-combo-chart
+		class="n-chart"
+		style="height: 510px"
 		[data]="chartConstant.longData"
 		[options]="comboOption">
-	</n-chart>
+	</n-combo-chart>
 	`,
 	styles: [`
 		:host {
@@ -81,6 +84,7 @@ import { Component } from "@angular/core";
 })
 
 export class ChartDemo {
+	@ViewChild("barChart") barChart;
 	colors = [
 		"#009BEF",
 		"#95D13C",
@@ -269,4 +273,11 @@ export class ChartDemo {
 	linesOption = Object.assign({}, this.chartConstant.options, {type: "lines"});
 	doubleAxisOption = Object.assign({}, this.chartConstant.optionsWithFormatter, {type: "doubleAxis"});
 	comboOption = Object.assign({}, this.chartConstant.doubleYAxisOptions, {type: "combo"});
+
+	changeData() {
+		this.chartConstant.data[0]["Qty"] += 60000;
+		this.chartConstant.data[0]["More"] += 60000;
+		this.chartConstant.data[0]["Sold"] += 60000;
+		this.barChart.redrawChart(this.chartConstant.data);
+	}
 }
