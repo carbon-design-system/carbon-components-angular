@@ -69,7 +69,7 @@ export class BannerDemo {
 
 	infoBanner = {
 		type: "info",
-		message: "sample message",
+		message: "sample message <b>this is important information!</b>",
 		target: ".main-banner-container"
 	};
 
@@ -117,7 +117,7 @@ export class BannerDemo {
 	callBannerToggle(type) {
 		this.bannerToClose = this.banner.showBanner({
 			type: type,
-			message: "sample message",
+			message: "sample message <b>fun for everyone</b>",
 			target: ".toggle-container"
 		});
 	}

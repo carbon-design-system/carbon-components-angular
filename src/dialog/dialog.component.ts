@@ -93,8 +93,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		"right": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
 		"top": pos => position.addOffset(pos, -this.dialogConfig.gap),
 		"bottom": pos => position.addOffset(pos, this.dialogConfig.gap),
-		"top-left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
-		"top-right": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
 		"left-bottom": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
 		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
 	};
@@ -138,9 +136,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	onDialogInit() {}
 
-	// reset/overridden based on what placement is set in the config
-	// protected addGap = (pos) => position.addOffset(pos, 0, 0);
-
 	/**
 	 * Uses the position service to position the `Dialog` in screen space
 	 * @memberof Dialog
@@ -148,10 +143,12 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	placeDialog(): void {
 		let parentEl = this.dialogConfig.parentRef.nativeElement;
 		let el = this.dialog.nativeElement;
-		let pos = this.addGap[this.placement](position.findRelative(parentEl, el, this.placement));
-		// let pos = this.addGap(position.findRelative(parentEl, el, this.placement));
+		let pos;
 		if (this.dialogConfig.appendToBody) {
+			pos = this.addGap[this.placement](position.findAbsolute(parentEl, el, this.placement));
 			pos = position.addOffset(pos, window.scrollY, window.scrollX);
+		} else {
+			pos = this.addGap[this.placement](position.findRelative(parentEl, el, this.placement));
 		}
 		position.setElement(el, pos);
 		if (this.dialogConfig.autoPosition) {

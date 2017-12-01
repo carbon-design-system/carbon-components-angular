@@ -83,18 +83,18 @@ export class PopoverDirective extends DialogDirective {
 
 	/**
 	 * Creates an instance of PopoverDirective.
-	 * @param {ElementRef} _elementRef
-	 * @param {ViewContainerRef} _viewContainerRef
-	 * @param {DialogService} _dialogService
+	 * @param {ElementRef} elementRef
+	 * @param {ViewContainerRef} viewContainerRef
+	 * @param {DialogService} dialogService
 	 * @memberof PopoverDirective
 	 */
 	constructor(
-		protected _elementRef: ElementRef,
-		protected _viewContainerRef: ViewContainerRef,
-		protected _dialogService: DialogService
+		protected elementRef: ElementRef,
+		protected viewContainerRef: ViewContainerRef,
+		protected dialogService: DialogService
 	) {
-		super(_elementRef, _viewContainerRef, _dialogService);
-		_dialogService.create(Popover);
+		super(elementRef, viewContainerRef, dialogService);
+		dialogService.create(Popover);
 	}
 
 	/**

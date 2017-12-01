@@ -56,9 +56,7 @@ import { BannerService } from "./banner.service";
 				3m0-2C7.3 1 1 7.3 1 15s6.3 14 14 14 14-6.3 14-14S22.7 1 15 1z"/>
 			</svg>
 		</span>
-		<p>
-			{{bannerObj.message}}
-		</p>
+		<p [innerHTML]="bannerObj.message"></p>
 		<button class="close--dark-sm" (click)="onClose()" aria-label="Close alert banner">
 			<svg
 				class="close_icon"

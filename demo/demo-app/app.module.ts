@@ -56,7 +56,7 @@ import {
 	BannerService,
 	NFormsModule,
 	ComboBoxModule,
-	ChartModule
+	ChartsModule
 } from "./../../src";
 
 
@@ -115,7 +115,7 @@ import {
 		BannerModule,
 		NFormsModule,
 		ComboBoxModule,
-		ChartModule,
+		ChartsModule,
 		RouterModule.forRoot([
 			{
 				path: "",

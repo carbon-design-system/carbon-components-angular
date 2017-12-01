@@ -9,18 +9,60 @@ import { Observable } from "rxjs/Rx";
 import { ReplaySubject } from "rxjs/ReplaySubject";
 import { Injectable } from "@angular/core";
 
+
+/**
+ * Modal service to be injected into the different catagories of modals.
+ *
+ * ```typescript
+ * export class ModalService {
+ * 	registerViewContainerRef(vcRef: ViewContainerRef): void {}
+ * 	create<T>(data: {component: any, inputs?: any}): void {}
+ * 	destroy(index: number = -1): void {}
+ * }
+ * ```
+ * @export
+ * @class ModalService
+ */
 @Injectable()
 export class ModalService {
+	/**
+	 * Maintain a `ViewContainerRef` to an instance of the component.
+	 * @type {ViewContainerRef}
+	 * @memberof ModalService
+	 */
 	public vcRef: ViewContainerRef;
+	/**
+	 * List of `Modal` components that are in existance.
+	 * @type {Array<ComponentRef<any>>}
+	 * @memberof ModalService
+	 */
 	public componentRefs = new Array<ComponentRef<any>>();
 
+	/**
+	 * Creates an instance of `ModalService`.
+	 * @param {ComponentFactoryResolver} resolver
+	 * @memberof ModalService
+	 */
 	constructor(public resolver: ComponentFactoryResolver) {}
 
+	/**
+	 * Used by `ModalPlaceholderComponent` to register view-container reference.
+	 * @param {ViewContainerRef} vcRef
+	 * @memberof ModalService
+	 */
 	registerViewContainerRef(vcRef: ViewContainerRef): void {
 		this.vcRef = vcRef;
 	}
 
 
+	/**
+	 * Creates and renders the modal component that is passed in.
+	 * `inputs` is an optional parameter of `data` that can be passed to the `Modal` component.
+	 * @template T
+	 * @param {{component: any, inputs?: any}} data
+	 * @returns {ComponentRef<any>}
+	 * @memberof ModalService
+	 */
 	create<T>(data: {component: any, inputs?: any}): ComponentRef<any> {
 		let defaults = {inputs: {}};
 		data = Object.assign({}, defaults, data);
@@ -47,6 +89,14 @@ export class ModalService {
 		return component;
 	}
 
+	/**
+	 * Destroys the modal on the supplied index.
+	 * When called without parameters it destroys the most recently created/top most modal.
+	 *
+	 * @param {any} [index=-1]
+	 * @returns
+	 * @memberof ModalService
+	 */
 	destroy(index = -1) {
 		// return if nothing to destroy because it's already destroyed
 		if (index >= this.componentRefs.length || this.componentRefs.length === 0) {

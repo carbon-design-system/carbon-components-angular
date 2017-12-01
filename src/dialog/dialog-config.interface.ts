@@ -28,12 +28,12 @@ export interface DialogConfig {
 	trigger: "click" | "hover" | "mouseenter";
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
-	 * @type {("top" | "top-left" | "top-right" | "bottom" |\
+	 * @type {("top" | "bottom" |\
 	 * "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom")}
 	 * @memberof DialogConfig
 	 */
 	placement:
-		"top" | "top-left" | "top-right" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom";
+		"top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom";
 	/**
 	 * Used to set the offset of the `Dialog` relative to the content it
 	 * is associated to.

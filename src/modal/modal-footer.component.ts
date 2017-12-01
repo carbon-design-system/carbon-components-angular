@@ -1,5 +1,16 @@
 import { Component } from "@angular/core";
 
+
+/**
+ * class: ModalFooterComponent
+ *
+ * selector: `n-modal-footer`
+ *
+ * source: `src/modal/modal-footer.component.ts`
+ *
+ * @export
+ * @class ModalFooterComponent
+ */
 @Component({
 	selector: "n-modal-footer",
 	template: `
@@ -8,7 +19,4 @@ import { Component } from "@angular/core";
 		</footer>
 	`
 })
-
-export class ModalFooterComponent {
-	constructor() {}
-}
+export class ModalFooterComponent {}
