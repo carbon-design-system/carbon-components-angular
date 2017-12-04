@@ -5,11 +5,13 @@ import { StackedBarChart } from "./stacked-bar-chart.component";
 import { LineChart } from "./line-chart.component";
 import { DoubleAxisLineChart } from "./double-axis-line-chart.component";
 import { ComboChart } from "./combo-chart.component";
-
-export { BarChart } from "./bar-chart.component";
+import { BaseChart } from "./base-chart.component";
+import { BaseAxisChart } from "./base-axis-chart.component";
 
 @NgModule({
 	declarations: [
+		BaseChart,
+		BaseAxisChart,
 		BarChart,
 		StackedBarChart,
 		LineChart,
@@ -17,6 +19,8 @@ export { BarChart } from "./bar-chart.component";
 		ComboChart
 	],
 	exports: [
+		BaseChart,
+		BaseAxisChart,
 		BarChart,
 		StackedBarChart,
 		LineChart,
