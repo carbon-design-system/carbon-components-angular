@@ -11,7 +11,6 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 
 /**
- *
  * class: ListGroup (implements View)
  * selector: `n-list-group`
  *
