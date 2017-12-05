@@ -10,6 +10,7 @@
 
 **Closed issues:**
 
+- Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
 - Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
@@ -24,6 +25,8 @@
 
 **Merged pull requests:**
 
+- Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Refactor charts to components [\#705](https://github.ibm.com/peretz/neutrino/pull/705) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Modals [\#702](https://github.ibm.com/peretz/neutrino/pull/702) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Remove @Inject type declaration [\#701](https://github.ibm.com/peretz/neutrino/pull/701) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for Side Nav [\#700](https://github.ibm.com/peretz/neutrino/pull/700) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
@@ -37,6 +40,7 @@
 - Fix something [\#691](https://github.ibm.com/peretz/neutrino/pull/691) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update version \(incl Angular v5\) [\#689](https://github.ibm.com/peretz/neutrino/pull/689) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix to inform users what to do if github\_changelog\_generator doesn't run [\#688](https://github.ibm.com/peretz/neutrino/pull/688) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- improve demo [\#687](https://github.ibm.com/peretz/neutrino/pull/687) ([clorenz](https://github.ibm.com/clorenz))
 - Add CHANGELOG generation step to build [\#686](https://github.ibm.com/peretz/neutrino/pull/686) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix link to the demo for icon [\#683](https://github.ibm.com/peretz/neutrino/pull/683) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Pull latest code and generate changelog prepush [\#681](https://github.ibm.com/peretz/neutrino/pull/681) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
