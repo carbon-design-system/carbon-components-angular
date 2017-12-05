@@ -10,6 +10,7 @@
 
 **Closed issues:**
 
+- Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
 - Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
@@ -24,6 +25,8 @@
 
 **Merged pull requests:**
 
+- Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Documentation for Forms [\#708](https://github.ibm.com/peretz/neutrino/pull/708) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Refactor charts to components [\#705](https://github.ibm.com/peretz/neutrino/pull/705) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Modals [\#702](https://github.ibm.com/peretz/neutrino/pull/702) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Remove @Inject type declaration [\#701](https://github.ibm.com/peretz/neutrino/pull/701) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
