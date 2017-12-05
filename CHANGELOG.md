@@ -25,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Forms [\#708](https://github.ibm.com/peretz/neutrino/pull/708) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Refactor charts to components [\#705](https://github.ibm.com/peretz/neutrino/pull/705) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
