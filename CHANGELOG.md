@@ -13,6 +13,7 @@
 - Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
 - Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
+- Refactor chart component [\#668](https://github.ibm.com/peretz/neutrino/issues/668)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
@@ -22,6 +23,8 @@
 - Document sidenav [\#568](https://github.ibm.com/peretz/neutrino/issues/568)
 - Document popover/tooltip [\#567](https://github.ibm.com/peretz/neutrino/issues/567)
 - Document modal [\#566](https://github.ibm.com/peretz/neutrino/issues/566)
+- Document list-group [\#565](https://github.ibm.com/peretz/neutrino/issues/565)
+- Document forms [\#564](https://github.ibm.com/peretz/neutrino/issues/564)
 
 **Merged pull requests:**
 
