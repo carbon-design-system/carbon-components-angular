@@ -13,6 +13,7 @@
 - Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
 - Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
+- Refactor chart component [\#668](https://github.ibm.com/peretz/neutrino/issues/668)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
@@ -22,9 +23,12 @@
 - Document sidenav [\#568](https://github.ibm.com/peretz/neutrino/issues/568)
 - Document popover/tooltip [\#567](https://github.ibm.com/peretz/neutrino/issues/567)
 - Document modal [\#566](https://github.ibm.com/peretz/neutrino/issues/566)
+- Document list-group [\#565](https://github.ibm.com/peretz/neutrino/issues/565)
+- Document forms [\#564](https://github.ibm.com/peretz/neutrino/issues/564)
 
 **Merged pull requests:**
 
+- Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Forms [\#708](https://github.ibm.com/peretz/neutrino/pull/708) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Refactor charts to components [\#705](https://github.ibm.com/peretz/neutrino/pull/705) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
