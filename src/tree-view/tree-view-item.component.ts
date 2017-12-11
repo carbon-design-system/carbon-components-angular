@@ -78,7 +78,7 @@ export class TreeViewItem implements OnInit {
 	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
 	/**
-	 *
+	 * The list item containing optional submenu items, states and properties.
 	 * @memberof TreeViewItem
 	 */
 	@Input() listItem;
