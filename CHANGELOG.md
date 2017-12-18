@@ -10,14 +10,15 @@
 
 **Closed issues:**
 
-- Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
 - Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
 - Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
+- Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
 - Refactor chart component [\#668](https://github.ibm.com/peretz/neutrino/issues/668)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
 - Process for new contributions to Neutrino [\#598](https://github.ibm.com/peretz/neutrino/issues/598)
+- Document tree-view [\#571](https://github.ibm.com/peretz/neutrino/issues/571)
 - Document topnav [\#570](https://github.ibm.com/peretz/neutrino/issues/570)
 - Document tabs [\#569](https://github.ibm.com/peretz/neutrino/issues/569)
 - Document sidenav [\#568](https://github.ibm.com/peretz/neutrino/issues/568)
@@ -28,6 +29,7 @@
 
 **Merged pull requests:**
 
+- Documentation for Tree-View [\#714](https://github.ibm.com/peretz/neutrino/pull/714) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Forms [\#708](https://github.ibm.com/peretz/neutrino/pull/708) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
