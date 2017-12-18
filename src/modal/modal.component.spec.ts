@@ -7,6 +7,17 @@ import { ModalComponent } from "./modal.component";
 import { OverlayComponent } from "./overlay.component";
 import { ModalService } from "./modal.service";
 
+// snippet to add transform to style so karma doesn't die with
+// 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
+Object.defineProperty(document.body.style, "transform", {
+	value: () => {
+		return {
+			enumerable: true,
+			configurable: true
+		};
+	},
+});
+
 describe("ModalComponent", () => {
 	let component: ModalComponent;
 	let fixture: ComponentFixture<ModalComponent>;
@@ -43,9 +54,7 @@ describe("ModalComponent", () => {
 
 		spyOn(modalService, "destroy");
 
-		let evt = document.createEvent("KeyboardEvent");
-		evt.initEvent("keydown", true, false);
-		(<any>evt).key = "Escape";
+		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "Escape"});
 		el.dispatchEvent(evt);
 		fixture.detectChanges();
 		fixture.whenStable().then(() => {

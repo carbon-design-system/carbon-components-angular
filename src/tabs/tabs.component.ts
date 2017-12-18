@@ -3,6 +3,37 @@ import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
 
+/**
+ *  Build out your application's tabs using this neutrino component.
+ *  This is the parent of the Tab and TabHeader components.
+ *
+ *
+ * class: Tabs
+ *
+ * selector: `n-tabs`
+ *
+ *
+ * Tabs expects a set of `n-tab` elements
+ *
+ * ```html
+ * <n-tabs>
+ * 	<n-tab heading='tab1'>
+ * 		tab 1 content
+ * 	</n-tab>
+ * 	<n-tab heading='tab1'>
+ * 		tab 2 content
+ * 	</n-tab>
+ * 	<!-- ... -->
+ * 	<n-tab heading='tab1'>
+ * 		tab n content
+ * 	</n-tab>
+ * </n-tabs>
+ * ```
+ *
+ * @export
+ * @class Tabs
+ * @implements {AfterContentInit}
+ */
 @Component({
 	selector: "n-tabs",
 	template: `
@@ -14,11 +45,30 @@ import { TabHeaders } from "./tab-headers.component";
 	 `
 })
 export class Tabs implements AfterContentInit {
+	/**
+	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
+	 * @type {QueryList<Tab>}
+	 * @memberof Tabs
+	 */
 	@ContentChildren(Tab) tabs: QueryList<Tab>;
-
+	/**
+	 * Takes either the string value 'top' or 'bottom' to place TabHeader
+	 * relative to the `TabPanel`s.
+	 * @type string
+	 * @memberof Tabs
+	 */
 	@Input() position: "top" | "bottom" = "top";
+	/**
+	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
+	 * @type boolean
+	 * @memberof Tabs
+	 */
 	@Input() cacheActive = false;
-
+	/**
+	 * After content is initialize update `Tab`s to cache (if turned on) and set the inital
+	 * selected Tab item.
+	 * @memberof Tabs
+	 */
 	ngAfterContentInit() {
 		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
 
@@ -28,6 +78,11 @@ export class Tabs implements AfterContentInit {
 		this.setFirstTab();
 	}
 
+	/**
+	 * Determines which `Tab` is initially selected.
+	 * @private
+	 * @memberof Tabs
+	 */
 	private setFirstTab(): void {
 		let firstTab = this.tabs.find(tab => tab.active);
 		if (!firstTab && this.tabs.first) {

@@ -56,7 +56,7 @@ import { watchFocusJump } from "./../dropdowntools";
 				<span *ngIf="!listTpl">{{item.content}}</span>
 				<ng-template
 					*ngIf="listTpl"
-					[ngOutletContext]="{item: item}"
+					[ngTemplateOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>

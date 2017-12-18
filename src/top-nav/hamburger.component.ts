@@ -1,5 +1,17 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
+
+/**
+ * class: Hamburger (extends PopoverDirective)
+ * selector: `n-hamburger`
+ *
+ * ```html
+ * <n-hamburger (onClick)="onClick($event)" hamburger></n-hamburger>
+ * ```
+ *
+ * @export
+ * @class Hamburger
+ */
 @Component({
 	selector: "n-hamburger",
 	template: `
@@ -18,9 +30,23 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
   `
 })
 export class Hamburger {
+	/**
+	 * Controls the active/selected state for the `Hamburger` menu.
+	 * @type {boolean}
+	 * @memberof Hamburger
+	 */
 	@Input() selected = false;
+	/**
+	 * `EventEmitter` to notify parent components of menu click events.
+	 * @type {EventEmitter<Object>}
+	 * @memberof Hamburger
+	 */
 	@Output() onClick: EventEmitter<Object> = new EventEmitter<Object>();
 
+	/**
+	 * Emit the Hamburger click event upwards.
+	 * @memberof Hamburger
+	 */
 	public clickFn() {
 		let hamburgerClick = {};
 			this.onClick.emit({

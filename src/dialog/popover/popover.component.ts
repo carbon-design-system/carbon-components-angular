@@ -12,6 +12,13 @@ import {
 import { Dialog } from "./../dialog.component";
 import position from "../../common/position.service";
 
+
+/**
+ * Extend the neutrino `Dialog` component to create a popover styled element for exposing content.
+ * @export
+ * @class Popover
+ * @extends {Dialog}
+ */
 @Component({
 	selector: "n-popover",
 	template: `
@@ -47,14 +54,14 @@ import position from "../../common/position.service";
 				<ng-template
 					*ngIf="hasContentTemplate"
 					[ngTemplateOutlet]="dialogConfig.content"
-					[ngOutletContext]="{popover: this}">
+					[ngTemplateOutletContext]="{popover: this}">
 				</ng-template>
 				<div *ngIf="!hasContentTemplate">{{dialogConfig.content}}</div>
 			</section>
 			<footer *ngIf="hasFooterTemplate" class="popover_footer">
 				<ng-template
 					[ngTemplateOutlet]="dialogConfig.footer"
-					[ngOutletContext]="{popover: this, data: dialogConfig.data}">
+					[ngTemplateOutletContext]="{popover: this, data: dialogConfig.data}">
 				</ng-template>
 			</footer>
 			<div class="arrow" aria-hidden="true"></div>
@@ -62,11 +69,29 @@ import position from "../../common/position.service";
 	`
 })
 export class Popover extends Dialog {
+	/**
+	 * Binds display property to the `Popover` style attribute.
+	 * @memberof Popover
+	 */
 	@HostBinding("attr.style") style = "display: inline-block;";
 
+	/**
+	 * Set to `true` if `Popover` has a template for the body content.
+	 * @type {boolean}
+	 * @memberof Popover
+	 */
 	public hasContentTemplate = false;
+	/**
+	 * Set to `true` if `Popover` has a template for a footer.
+	 * @type boolean
+	 * @memberof Popover
+	 */
 	public hasFooterTemplate = false;
 
+	/**
+	 * Checks whether the `Popover` has templates for content and footer.
+	 * @memberof Popover
+	 */
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;

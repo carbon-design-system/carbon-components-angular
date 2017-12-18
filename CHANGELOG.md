@@ -4,16 +4,48 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...HEAD)
 
+**Fixed bugs:**
+
+- Popover doesn't position correctly in modals [\#695](https://github.ibm.com/peretz/neutrino/issues/695)
+
 **Closed issues:**
 
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
+- Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
+- Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
+- Refactor chart component [\#668](https://github.ibm.com/peretz/neutrino/issues/668)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
 - Process for new contributions to Neutrino [\#598](https://github.ibm.com/peretz/neutrino/issues/598)
+- Document topnav [\#570](https://github.ibm.com/peretz/neutrino/issues/570)
+- Document tabs [\#569](https://github.ibm.com/peretz/neutrino/issues/569)
+- Document sidenav [\#568](https://github.ibm.com/peretz/neutrino/issues/568)
+- Document popover/tooltip [\#567](https://github.ibm.com/peretz/neutrino/issues/567)
+- Document modal [\#566](https://github.ibm.com/peretz/neutrino/issues/566)
+- Document list-group [\#565](https://github.ibm.com/peretz/neutrino/issues/565)
+- Document forms [\#564](https://github.ibm.com/peretz/neutrino/issues/564)
 
 **Merged pull requests:**
 
+- Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Documentation for Forms [\#708](https://github.ibm.com/peretz/neutrino/pull/708) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Refactor charts to components [\#705](https://github.ibm.com/peretz/neutrino/pull/705) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Documentation for Modals [\#702](https://github.ibm.com/peretz/neutrino/pull/702) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Remove @Inject type declaration [\#701](https://github.ibm.com/peretz/neutrino/pull/701) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Documentation for Side Nav [\#700](https://github.ibm.com/peretz/neutrino/pull/700) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Documentation for Top-Nav [\#699](https://github.ibm.com/peretz/neutrino/pull/699) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Fix for Angular 5 [\#698](https://github.ibm.com/peretz/neutrino/pull/698) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- updated banner to interpolate html so tags can be passed in [\#697](https://github.ibm.com/peretz/neutrino/pull/697) ([palopezd](https://github.ibm.com/palopezd))
+- fix position service [\#696](https://github.ibm.com/peretz/neutrino/pull/696) ([callums](https://github.ibm.com/callums))
+- Documentation for dialog [\#694](https://github.ibm.com/peretz/neutrino/pull/694) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Bump package versions, make angular v5 a peer dependency [\#693](https://github.ibm.com/peretz/neutrino/pull/693) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- CompoDoc Documentation for Tab component  [\#692](https://github.ibm.com/peretz/neutrino/pull/692) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Fix something [\#691](https://github.ibm.com/peretz/neutrino/pull/691) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update version \(incl Angular v5\) [\#689](https://github.ibm.com/peretz/neutrino/pull/689) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix to inform users what to do if github\_changelog\_generator doesn't run [\#688](https://github.ibm.com/peretz/neutrino/pull/688) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- improve demo [\#687](https://github.ibm.com/peretz/neutrino/pull/687) ([clorenz](https://github.ibm.com/clorenz))
 - Add CHANGELOG generation step to build [\#686](https://github.ibm.com/peretz/neutrino/pull/686) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix link to the demo for icon [\#683](https://github.ibm.com/peretz/neutrino/pull/683) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Pull latest code and generate changelog prepush [\#681](https://github.ibm.com/peretz/neutrino/pull/681) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
