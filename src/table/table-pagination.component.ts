@@ -149,7 +149,6 @@ import {
 		</ul>
 	</nav>
 	`,
-	styleUrls: ["./table-pagination.component.scss"],
 	encapsulation: ViewEncapsulation.None
 })
 export class TablePagination {
