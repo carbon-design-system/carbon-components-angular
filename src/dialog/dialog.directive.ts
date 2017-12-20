@@ -160,6 +160,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 		this.dialogService.isClosed.subscribe(value => {
 			if (value) {
 				this.onClose.emit();
+				this.elementRef.nativeElement.setAttribute("aria-expanded", "false");
 			}
 		});
 
@@ -170,7 +171,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 	/*
 	 * when the host dies, kill the popover
 	 * useful for use in a modal or similar
-	 * @memberof Dialogdirective
+	 * @memberof DialogDirective
 	 */
 	ngOnDestroy() {
 		this.close();
@@ -182,6 +183,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 	 */
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
+		this.elementRef.nativeElement.setAttribute("aria-expanded", "true");
 	}
 
 	/**
@@ -190,6 +192,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 	 */
 	toggle() {
 		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
+		this.elementRef.nativeElement.setAttribute("aria-expanded", this.dialogService.isOpen);
 	}
 
 	/**
@@ -198,6 +201,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 	 */
 	close() {
 		this.dialogService.close(this.viewContainerRef);
+		this.elementRef.nativeElement.setAttribute("aria-expanded", "false");
 	}
 
 	/**
