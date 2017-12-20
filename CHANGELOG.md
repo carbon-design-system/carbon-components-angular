@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...HEAD)
 
+**Implemented enhancements:**
+
+- Reactive form support for combobox [\#719](https://github.ibm.com/peretz/neutrino/issues/719)
+
 **Fixed bugs:**
 
 - Popover doesn't position correctly in modals [\#695](https://github.ibm.com/peretz/neutrino/issues/695)
@@ -18,6 +22,7 @@
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
 - Process for new contributions to Neutrino [\#598](https://github.ibm.com/peretz/neutrino/issues/598)
+- Dropdown filter field is not clickable on the placeholder [\#580](https://github.ibm.com/peretz/neutrino/issues/580)
 - Document tree-view [\#571](https://github.ibm.com/peretz/neutrino/issues/571)
 - Document topnav [\#570](https://github.ibm.com/peretz/neutrino/issues/570)
 - Document tabs [\#569](https://github.ibm.com/peretz/neutrino/issues/569)
