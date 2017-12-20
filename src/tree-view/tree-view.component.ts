@@ -12,6 +12,19 @@ import {
 import { ListItem } from "./../dropdown/list-item.interface";
 import { treetools } from "./../dropdown/dropdowntools";
 
+
+/**
+ * class: TreeView
+ *
+ * demo: [https://pages.github.ibm.com/peretz/neutrino/#/tree-view](https://pages.github.ibm.com/peretz/neutrino/#/tree-view)
+ *
+ * selector: `n-tree-view`
+ * source: `src/tree-view/tree-view.component.ts`
+ *
+ * @export
+ * @class TreeView
+ * @implements {OnChanges}
+ */
 @Component({
 	selector: "n-tree-view",
 	template: `
@@ -28,25 +41,84 @@ import { treetools } from "./../dropdown/dropdowntools";
 	`,
 })
 export class TreeView implements OnChanges {
+	/**
+	 * Collection of `ListItem`s that create the tree view.
+	 * @type {Array<ListItem>}
+	 * @memberof TreeView
+	 */
 	@Input() items: Array<ListItem> = [];
+	/**
+	 * Optional template for diplaying the `TreeView`.
+	 * @type {(string | TemplateRef<any>)}
+	 * @memberof TreeView
+	 */
 	@Input() template: string | TemplateRef<any> = "";
+	/**
+	 * The top level unordered list item has role "tree" and all unordered lists encompassed have the role "group".
+	 * @type {("tree" | "group")}
+	 * @memberof TreeView
+	 */
 	@Input() role: "tree" | "group" = "tree";
+	/**
+	 * The aria-label attribute for the `TreeView` unordered list.
+	 * @type {string}
+	 * @memberof TreeView
+	 */
 	@Input() label: string;
-	@Input() type: "single" | "multi" = "single";
 
+	/**
+	 * Event to emit selection of a list item within the `TreeView`.
+	 * @type {EventEmitter<Object>}
+	 * @memberof TreeView
+	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	/**
+	 * Event to emit the selected item within the `TreeView`.
+	 * @type {EventEmitter<Object>}
+	 * @memberof TreeView
+	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 
-	public outerPadding = 20; // padding from left edge
+	/**
+	 * The padding between the left edge to the content.
+	 * @type {number}
+	 * @memberof TreeView
+	 */
+	public outerPadding = 20;
+	/**
+	 * Width of the glyphicon indicative of a non-leaf heading's expansion/collapsing.
+	 * @type {number}
+	 * @memberof TreeView
+	 */
 	public iconWidth = 16;
-	public innerPadding = 5; // padding between icon and content
-	public selectedIcon = false;
+	/**
+	 * Left padding between icon and content (list item heading).
+	 * @type {number}
+	 * @memberof TreeView
+	 */
+	public innerPadding = 5;
 
+	/**
+	 * A complete list of all the items in the `TreeView` in the form of a flat list.
+	 * @private
+	 * @type {Array<ListItem>}
+	 * @memberof TreeView
+	 */
 	private flatList: Array<ListItem> = [];
 	private index = -1;
 
+	/**
+	 * Creates an instance of TreeView.
+	 * @param {ElementRef} _elementRef
+	 * @memberof TreeView
+	 */
 	constructor(private _elementRef: ElementRef) {}
 
+	/**
+	 * Update the index to the selected leaf list item when a change occurs within the `TreeView` component.
+	 * @param {any} changes
+	 * @memberof TreeView
+	 */
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.flatList = [];
@@ -55,6 +127,11 @@ export class TreeView implements OnChanges {
 		}
 	}
 
+	/**
+	 * Recursively transforms the nested tree structure into a flat list.
+	 * @param {any} items
+	 * @memberof TreeView
+	 */
 	flattenTree(items) {
 		for (let item of items) {
 			this.flatList.push(item);
@@ -64,6 +141,11 @@ export class TreeView implements OnChanges {
 		}
 	}
 
+	/**
+	 * Returns the selected leaf level item within the `TreeView`.
+	 * @returns {ListItem[]}
+	 * @memberof TreeView
+	 */
 	getSelected(): ListItem[] {
 		let selected = this.flatList.filter(item => item.selected && !item.items);
 		if (selected.length === 0) {
@@ -72,6 +154,11 @@ export class TreeView implements OnChanges {
 		return selected;
 	}
 
+	/**
+	 * Manages the keyboad naviagation through the `TreeView` list items.
+	 * @param {any} ev
+	 * @memberof TreeView
+	 */
 	@HostListener("keydown", ["$event"])
 	onKeyDown(ev) {
 		let visibleItems = Array.from(this._elementRef.nativeElement.querySelectorAll(".item-wrapper[tabindex='0']"));
@@ -83,6 +170,11 @@ export class TreeView implements OnChanges {
 		}
 	}
 
+	/**
+	 * Emits events to select the item that was clicked.
+	 * @param {any} item
+	 * @memberof TreeView
+	 */
 	onClick({item}) {
 		if (!item.disabled ) {
 			this.select.emit({item});
