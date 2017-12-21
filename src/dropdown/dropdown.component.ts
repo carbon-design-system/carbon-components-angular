@@ -300,6 +300,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	_appendToDropdown() {
 		if (document.body.contains(this.dropdownWrapper)) {
+			this.dropdown.style.display = "none";
 			this._elementRef.nativeElement.appendChild(this.dropdown);
 			document.body.removeChild(this.dropdownWrapper);
 			this.resize.unsubscribe();
@@ -308,24 +309,28 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	_appendToBody() {
+		const positionDropdown = () => {
+			position.setElement(
+				this.dropdownWrapper,
+				position.addOffset(
+					position.findAbsolute(this._elementRef.nativeElement, this.dropdownWrapper, "bottom"),
+					window.scrollY,
+					window.scrollX
+				)
+			);
+		};
+		this.dropdown.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = "dropdown append-body";
+		this.dropdownWrapper.className = "dropdown";
 		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+		this.dropdownWrapper.style.position = "absolute";
 		this.dropdownWrapper.appendChild(this.dropdown);
 		document.body.appendChild(this.dropdownWrapper);
-		position.setElement(
-			this.dropdownWrapper,
-			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
-		);
+		positionDropdown();
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
 		this.resize = Observable.fromEvent(window, "resize")
 			.throttleTime(100)
-			.subscribe(() => {
-				position.setElement(
-					this.dropdownWrapper,
-					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
-				);
-			});
+			.subscribe(() => positionDropdown());
 	}
 
 	openMenu() {
