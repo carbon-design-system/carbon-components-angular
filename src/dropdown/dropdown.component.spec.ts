@@ -10,6 +10,7 @@ import { ListItem } from "./list-item.interface";
 	template: `
 	<n-dropdown
 		placeholder="test"
+		class="custom-class"
 		(select)="onSelect($event)">
 		<n-dropdown-list [items]="items"></n-dropdown-list>
 	</n-dropdown>`
@@ -61,5 +62,11 @@ describe("Dropdown", () => {
 		fixture.detectChanges();
 		let buttonEl = fixture.debugElement.query(By.css("button"));
 		expect(buttonEl.nativeElement.textContent.trim()).toBe("one");
+	});
+
+	it("should keep custom classes on the host el", () => {
+		const el = fixture.debugElement.query(By.css("n-dropdown"));
+		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
+		expect(el.nativeElement.classList.contains("dropdown")).toBe(true);
 	});
 });
