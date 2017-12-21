@@ -36,6 +36,8 @@
 
 **Merged pull requests:**
 
+- Fix appendToBody dropdown positioning [\#723](https://github.ibm.com/peretz/neutrino/pull/723) ([callums](https://github.ibm.com/callums))
+- Document charts [\#722](https://github.ibm.com/peretz/neutrino/pull/722) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Lock dev packages [\#721](https://github.ibm.com/peretz/neutrino/pull/721) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Tree-View [\#714](https://github.ibm.com/peretz/neutrino/pull/714) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
