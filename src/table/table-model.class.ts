@@ -66,7 +66,7 @@ export class TableModel {
 	currentPage: number;
 
 	/**
-	 * Total number of pages in the table.
+	 * Length of page of the table.
 	 *
 	 * @type {number}
 	 * @memberof TableModel
@@ -74,7 +74,7 @@ export class TableModel {
 	pageLength: number;
 
 	/**
-	 * Total number of rows in the table.
+	 * Absolute total number of rows of the table.
 	 *
 	 * @private
 	 * @type {number}
@@ -382,7 +382,9 @@ export class TableModel {
 	}
 
 	/**
-	 * Checks the index of a row.
+	 * Gets the true index of a row based on it's relative position.
+	 * Like in Python, positive numbers start from the top and
+	 * negative numbers start from the bottom.
 	 *
 	 * @private
 	 * @param {number} index
@@ -394,7 +396,9 @@ export class TableModel {
 	}
 
 	/**
-	 * Check the index of a column.
+	 * Gets the true index of a column based on it's relative position.
+	 * Like in Python, positive numbers start from the top and
+	 * negative numbers start from the bottom.
 	 *
 	 * @private
 	 * @param {number} index

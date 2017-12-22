@@ -14,9 +14,6 @@ import {
 /**
  * TableGotoPage is a child component to the Table component.
  *
- * selector: `n-table-goto-page`
- * source: `src/table/table-goto-page.component.ts`
- *
  * ```html
  * <n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
  * ```

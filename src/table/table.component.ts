@@ -14,7 +14,6 @@ import {
 /**
  * Build your table with this component by extending things that differ from default.
  *
- * selector: `n-table`
  * demo: [https://pages.github.ibm.com/peretz/neutrino/#/table](https://pages.github.ibm.com/peretz/neutrino/#/table)
  *
  * ## Build your own table footer with neutrino components
@@ -264,13 +263,13 @@ export class Table {
 	/**
 	 * Emits if a single row is deselected.
 	 *
-	 * @param {Object} ({model: this.model, selectedRowIndex: index})
+	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
 	 * @memberof Table
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
 
 	/**
-	 * Emits when `distanceFromBottom <= this.scrollLoadDistance`.
+	 * Emits when table requires more data to be loaded.
 	 *
 	 * @param {TableModel} model
 	 * @memberof Table
@@ -293,14 +292,12 @@ export class Table {
 	 * @memberof Table
 	 */
 	onSelectAllCheckboxChange() {
-		this.applicationRef.tick();  // give app time to process the click if needed
+		this.applicationRef.tick(); // give app time to process the click if needed
 
 		if (this.selectAllCheckboxSomeSelected) {
 			this.selectAllCheckbox = false; // clear all boxes
 			this.deselectAll.emit(this.model);
-		}
-
-		if (this.selectAllCheckbox) {
+		} else if (this.selectAllCheckbox) {
 			this.selectAll.emit(this.model);
 		} else {
 			this.deselectAll.emit(this.model);
@@ -328,7 +325,7 @@ export class Table {
 		if (this.model.rowsSelected[index]) {
 			this.selectRow.emit({model: this.model, selectedRowIndex: index});
 		} else {
-			this.deselectRow.emit({model: this.model, selectedRowIndex: index});
+			this.deselectRow.emit({model: this.model, deselectedRowIndex: index});
 		}
 
 		for (let i = 1; i < this.model.rowsSelected.length; i++) {
@@ -348,7 +345,7 @@ export class Table {
 
 	/**
 	 * Triggered when the user scrolls on the `<tbody>` element.
-	 * Enmits the `scrollLoad` event.
+	 * Emits the `scrollLoad` event.
 	 *
 	 * @param {any} event
 	 * @memberof Table

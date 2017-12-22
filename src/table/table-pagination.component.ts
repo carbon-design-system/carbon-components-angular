@@ -13,9 +13,6 @@ import {
 /**
  * TablePagination is a child component to the Table component.
  *
- * selector: `n-table-pagination`
- * source: `src/table/table-pagination.component.ts`
- *
  * ```html
  * <n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
  * ```
@@ -188,7 +185,8 @@ export class TablePagination {
 	constructor(private applicationRef: ApplicationRef) {}
 
 	/**
-	 * The range of pages to display for the pagination controls.
+	 * Generates a list of numbers. (Python function)
+	 * Used to display the correct pagination controls.
 	 *
 	 * @param {number} count
 	 * @param {number} [offset=0]
