@@ -87,7 +87,7 @@ import {
 						<div class="table_cell-wrapper">
 							<span class="table_data-wrapper"
 								(click)="sort.emit(i)">
-								<span *ngIf="!column.template">{{column.data}}</span>
+								<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 								<ng-template
 									[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 								</ng-template>
@@ -159,7 +159,7 @@ import {
 						<td *ngIf="model.header[i].visible"
 							[ngStyle]="model.header[i].style">
 							<div class="table_cell-wrapper">
-								<span *ngIf="!item.template" class="table_data-wrapper">{{item.data}}</span>
+								<span *ngIf="!item.template" class="table_data-wrapper" [title]="item.data">{{item.data}}</span>
 								<ng-template
 									[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 								</ng-template>
