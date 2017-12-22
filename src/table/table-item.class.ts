@@ -3,7 +3,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 
-
 export class TableItem {
 	/**
 	 * Data for the table item.
@@ -50,6 +49,11 @@ export class TableItem {
 	 */
 	template: TemplateRef<any>;
 
+	/**
+	 * Creates an instance of TableItem.
+	 * @param {*} [rawData]
+	 * @memberof TableItem
+	 */
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty
 		const defaults = {
