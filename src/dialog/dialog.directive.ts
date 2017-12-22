@@ -157,6 +157,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 		}
 
 		// call onClose when the dialog is closed
+		// - Enforce accessibility by updating an aria attr for nativeElement.
 		this.dialogService.isClosed.subscribe(value => {
 			if (value) {
 				this.onClose.emit();
@@ -168,9 +169,9 @@ export class DialogDirective implements OnInit, OnDestroy {
 		this.onDialogInit();
 	}
 
-	/*
-	 * when the host dies, kill the popover
-	 * useful for use in a modal or similar
+	/**
+	 * When the host dies, kill the popover.
+	 * - Useful for use in a modal or similar.
 	 * @memberof DialogDirective
 	 */
 	ngOnDestroy() {
@@ -178,7 +179,8 @@ export class DialogDirective implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Helper method to call dialogService 'open'
+	 * Helper method to call dialogService 'open'.
+	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 * @memberof DialogDirective
 	 */
 	open() {
@@ -188,6 +190,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 
 	/**
 	 * Helper method to call dialogService 'toggle'.
+	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 * @memberof DialogDirective
 	 */
 	toggle() {
@@ -197,6 +200,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 
 	/**
 	 * Helper method to call dialogService 'close'.
+	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 * @memberof DialogDirective
 	 */
 	close() {

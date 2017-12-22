@@ -14,6 +14,9 @@ import {
 /**
  * Build your table with this component by extending things that differ from default.
  *
+ * selector: `n-table`
+ * demo: [https://pages.github.ibm.com/peretz/neutrino/#/table](https://pages.github.ibm.com/peretz/neutrino/#/table)
+ *
  * ## Build your own table footer with neutrino components
  *
  * ```html
@@ -149,7 +152,7 @@ import {
 						<n-checkbox
 							[size]="size === 'sm' ? size : 'default'"
 							[(ngModel)]="model.rowsSelected[i]"
-							(change)="onRowCheckboxChange()">
+							(change)="onRowCheckboxChange(i)">
 						</n-checkbox>
 					</td>
 					<ng-container *ngFor="let item of row; let i = index">
@@ -167,12 +170,12 @@ import {
 			</ng-container>
 		</tbody>
 	</table>
-	`,
-	encapsulation: ViewEncapsulation.None
+	`
 })
 export class Table {
 	/**
 	 * Size of the table rows.
+	 *
 	 * @type {("default" | "sm" | "lg")}
 	 * @memberof Table
 	 */
@@ -189,6 +192,7 @@ export class Table {
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
 	 *
+	 * @type {boolean}
 	 * @memberof Table
 	 */
 	@Input() enableRowSelect = true;
@@ -197,15 +201,31 @@ export class Table {
 	 * Distance (in px) from the bottom that view has to reach before
 	 * `scrollLoad` event is emitted.
 	 *
+	 * @type {number}
 	 * @memberof Table
 	 */
 	@Input() scrollLoadDistance = 0;
+
+	/**
+	 * Controls if all checkboxes are viewed as selected.
+	 *
+	 * @type {boolean}
+	 * @memberof Table
+	 */
 	selectAllCheckbox = false;
+
+	/**
+	 * Controls the indeterminate state of the header checkbox.
+	 *
+	 * @type {boolean}
+	 * @memberof Table
+	 */
 	selectAllCheckboxSomeSelected = false;
 
 	/**
 	 * Set to `true` to make table rows striped.
 	 *
+	 * @type {boolean}
 	 * @memberof Table
 	 */
 	@Input() striped = false;
@@ -217,25 +237,99 @@ export class Table {
 	 */
 	@Output() sort = new EventEmitter<number>();
 
+	/**
+	 * Emits if all rows are selected.
+	 *
+	 * @param {TableModel} model
+	 * @memberof Table
+	 */
 	@Output() selectAll = new EventEmitter<Object>();
-	@Output() selectRow = new EventEmitter<Object>();
-	@Output() scrollLoad = new EventEmitter<TableModel>();
-	@ViewChild("body") body;
 
+	/**
+	 * Emits if all rows are deselected.
+	 *
+	 * @param {TableModel} model
+	 * @memberof Table
+	 */
+	@Output() deselectAll = new EventEmitter<Object>();
+
+	/**
+	 * Emits if a single row is selected.
+	 *
+	 * @param {Object} ({model: this.model, selectedRowIndex: index})
+	 * @memberof Table
+	 */
+	@Output() selectRow = new EventEmitter<Object>();
+
+	/**
+	 * Emits if a single row is deselected.
+	 *
+	 * @param {Object} ({model: this.model, selectedRowIndex: index})
+	 * @memberof Table
+	 */
+	@Output() deselectRow = new EventEmitter<Object>();
+
+	/**
+	 * Emits when `distanceFromBottom <= this.scrollLoadDistance`.
+	 *
+	 * @param {TableModel} model
+	 * @memberof Table
+	 */
+	@Output() scrollLoad = new EventEmitter<TableModel>();
+
+	/**
+	 * Creates an instance of Table.
+	 *
+	 * @param {ApplicationRef} applicationRef
+	 * @memberof Table
+	 */
 	constructor(private applicationRef: ApplicationRef) {}
 
-	onSelectAllCheckboxChange(event) {
+	/**
+	 * Triggered whenever the header checkbox is clicked.
+	 * Updates all the checkboxes in the table view.
+	 * Emits the `selectAll` or `deselectAll` event.
+	 *
+	 * @memberof Table
+	 */
+	onSelectAllCheckboxChange() {
 		this.applicationRef.tick();  // give app time to process the click if needed
+
 		if (this.selectAllCheckboxSomeSelected) {
 			this.selectAllCheckbox = false; // clear all boxes
+			this.deselectAll.emit(this.model);
 		}
+
+		if (this.selectAllCheckbox) {
+			this.selectAll.emit(this.model);
+		} else {
+			this.deselectAll.emit(this.model);
+		}
+
 		this.selectAllCheckboxSomeSelected = false;
+
 		for (let i = 0; i < this.model.rowsSelected.length; i++) {
 			this.model.rowsSelected[i] = this.selectAllCheckbox;
 		}
 	}
-	onRowCheckboxChange() {
+
+	/**
+	 * Triggered when a single row is clicked.
+	 * Updates the header checkbox state.
+	 * Emits the `selectRow` or `deselectRow` event.
+	 *
+	 * @param {number} index
+	 * @returns
+	 * @memberof Table
+	 */
+	onRowCheckboxChange(index: number) {
 		let startValue = this.model.rowsSelected[0];
+
+		if (this.model.rowsSelected[index]) {
+			this.selectRow.emit({model: this.model, selectedRowIndex: index});
+		} else {
+			this.deselectRow.emit({model: this.model, selectedRowIndex: index});
+		}
 
 		for (let i = 1; i < this.model.rowsSelected.length; i++) {
 			let one = this.model.rowsSelected[i];
@@ -252,6 +346,13 @@ export class Table {
 		this.selectAllCheckbox = startValue;
 	}
 
+	/**
+	 * Triggered when the user scrolls on the `<tbody>` element.
+	 * Enmits the `scrollLoad` event.
+	 *
+	 * @param {any} event
+	 * @memberof Table
+	 */
 	onScroll(event) {
 		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
 
