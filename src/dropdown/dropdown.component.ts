@@ -78,26 +78,24 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
 	/**
-	 * Value to show when nothing is selected.
-	 *
+	 * Value displayed if no item is selected.
 	 * @memberof Dropdown
 	 */
 	@Input() placeholder = "";
+	/**
+	 * The selected value from the `Dropdown`.
+	 * @memberof Dropdown
+	 */
 	@Input() displayValue = "";
 	/**
-	 * Size of the dropdown.
-	 *
-	 * `"sm"` | `"default"` | `"lg"`
-	 *
+	 * Size to render the dropdown field.
 	 * @type {("sm" | "default" | "lg")}
 	 * @memberof Dropdown
 	 */
 	@Input() size: "sm" | "default" | "lg" = "default";
 	/**
-	 * Dropdown type.
-	 *
-	 * `"single"` | `"multi"`
-	 *
+	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
+	 * item selection.
 	 * @type {("single" | "multi")}
 	 * @memberof Dropdown
 	 */
@@ -105,7 +103,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	/**
 	 * Set to `true` to disable the dropdown.
-	 *
 	 * @memberof Dropdown
 	 */
 	@Input() disabled = false;

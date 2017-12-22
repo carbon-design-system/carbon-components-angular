@@ -10,6 +10,14 @@ import {
 import { DropdownTree } from "./tree.component";
 import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y.service";
 
+
+/**
+ * selector: `n-tree-item`
+ *
+ * @export
+ * @class TreeItem
+ * @implements {OnInit}
+ */
 @Component({
 	selector: "n-tree-item",
 	template: `
@@ -41,12 +49,33 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 })
 export class TreeItem implements OnInit {
 	public parent;
+	/**
+	 * Set to `true` if there is a custom template for the `TreeItem`.
+	 * @memberof TreeItem
+	 */
 	public isTpl = false;
 
+	/**
+	 * Set to `true` if this item is a non-leaf item and contains subitems.
+	 * @memberof TreeItem
+	 */
 	@Input() hasSubMenu = false;
 	@Input() parentRef = null;
+	/**
+	 * The list item containing optional sub items, states and properties.
+	 * @memberof TreeItem
+	 */
 	@Input() listItem;
+	/**
+	 * Optional template for the rendering of the `TreeItem`.
+	 * @type {(string | TemplateRef<any>)}
+	 * @memberof TreeItem
+	 */
 	@Input() listTpl: string | TemplateRef<any> = "";
+	/**
+	 * Reflects which level the item is at (how many items it is within) so that rendering with indentation can be calculated.
+	 * @memberof TreeItem
+	 */
 	@Input() indent = 0;
 	@Input() rootElem = null;
 	@Input() selectedIcon = true;

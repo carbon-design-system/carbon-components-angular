@@ -11,7 +11,7 @@ import "rxjs/add/operator/filter";
  *
  * @param {HTMLElement} target element to watch
  * @param {Array<HTMLElement>} elements elements to search
- * @returns Observable<HTMLElement>
+ * @returns {Observable<HTMLElement>}
  */
 export function watchFocusJump(target: HTMLElement, elements): Observable<HTMLElement> {
 	return Observable.fromEvent(target, "keydown")

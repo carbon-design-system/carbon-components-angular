@@ -13,6 +13,13 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { SubMenuItem } from "./sub-menu-item.component";
 
+
+/**
+ * selector: `n-sub-menu-wrapper`
+ *
+ * @export
+ * @class SubMenuWrapper
+ */
 @Component({
 	selector: "n-sub-menu-wrapper",
 	template: `
@@ -38,7 +45,6 @@ import { SubMenuItem } from "./sub-menu-item.component";
 					[listItem]="item"
 					[hasSubMenu]="!!item.items"
 					[parentRef]="parent"
-					[selectedIcon]="selectedIcon"
 					[rootElem]="rootElem"
 					(select)="bubbleSelect($event)">
 				</n-sub-menu-item>
@@ -47,20 +53,65 @@ import { SubMenuItem } from "./sub-menu-item.component";
 	`
 })
 export class SubMenuWrapper {
+	/**
+	 * The items to be displayed in the list within the `SubMenuWrapper`.
+	 * @type {Array<ListItem>}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() items: Array<ListItem> = [];
+	/**
+	 * Reflects which level the item is at (how many menus it is within).
+	 * @type {number}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() level = 1;
+	/**
+	 * Set to `true` if the submenu unordered list is hidden (collapsed with parent menu) in the view.
+	 * @type {boolean}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() isOpen = false;
 	@Input() parent: any = null;
+	/**
+	 * Optional custom template for displaying the `SubMenuWrapper`.
+	 * @type {(string | TemplateRef<any>)}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() rootElem: any = null;
+	/**
+	 * The role of the unordered list element.
+	 * @type {("tree" | "group")}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() role: "tree" | "group" = "tree" ;
+	/**
+	 * Aria label for the unordered list in the submenu.
+	 * @type {string}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() label: string;
-	@Input() selectedIcon = true;
+	/**
+	 * Defines whether or not the `DropdownSubMenu` supports selecting multiple items as opposed to single
+	 * item selection.
+	 * @type {("single" | "multi")}
+	 * @memberof SubMenuWrapper
+	 */
 	@Input() type: "single" | "multi" = "single";
 
+	/**
+	 * Emits event that handles the selection of a `SubMenuItem`.
+	 * @type {EventEmitter<Object>}
+	 * @memberof SubMenuWrapper
+	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
 
+	/**
+	 * Bubbling the select event up to parent classes.
+	 * @param {any} evt
+	 * @memberof SubMenuWrapper
+	 */
 	bubbleSelect(evt) {
 		this.select.emit(evt);
 	}
