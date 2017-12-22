@@ -118,13 +118,11 @@ export class Tab implements OnInit {
 	@Input() cacheActive = false;
 	/**
 	 * Value 'select' to be emitted after a new `Tab` is selected.
-	 *
 	 * @type {EventEmitter<void>}
 	 * @memberof Tab
 	 */
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 	/**
-	 *
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 * @type {EventEmitter<void>}
 	 * @memberof Tab

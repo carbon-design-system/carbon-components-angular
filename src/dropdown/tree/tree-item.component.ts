@@ -77,17 +77,57 @@ export class TreeItem implements OnInit {
 	 * @memberof TreeItem
 	 */
 	@Input() indent = 0;
+	/**
+	 * Holds the parent element to the `TreeItem` within the DOM.
+	 * @memberof TreeItem
+	 */
 	@Input() rootElem = null;
 	@Input() selectedIcon = true;
+	/**
+	 * Set to `true` if item has subitems (and is therefore not a leaf level item).
+	 * @type {boolean}
+	 * @memberof TreeItem
+	 */
 	@Input() isBase = false;
-	@Input() outerPadding = 10; // padding from left edge
+	/**
+	 * Accounts for padding from the left side to the content.
+	 * @memberof TreeItem
+	 */
+	@Input() outerPadding = 10;
+	/**
+	 * Sizing of the arrow glyphicon that represents the expansion/collapsing of a parent catagory.
+	 * @memberof TreeItem
+	 */
 	@Input() iconWidth = 16;
-	@Input() innerPadding = 10; // padding between icon and content
+	/**
+	 * The padding between icon and content.
+	 * @memberof TreeItem
+	 */
+	@Input() innerPadding = 10;
+	/**
+	 * Size to render the `TreeItem` within the view.
+	 * @type {("sm" | "default" | "lg")}
+	 * @memberof TreeItem
+	 */
 	@Input() size: "sm" | "default" | "lg" = "default";
+	/**
+	 * Value 'select' to be emitted after a new `TreeItem` is selected.
+	 * @type {EventEmitter<Object>}
+	 * @memberof TreeItem
+	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
+	/**
+	 * Creates an instance of `TreeItem`.
+	 * @param {ElementRef} _elementRef
+	 * @memberof TreeItem
+	 */
 	constructor(public _elementRef: ElementRef) {}
 
+	/**
+	 * Retrieves parent element references and custom template (if one exists).
+	 * @memberof TreeItem
+	 */
 	ngOnInit() {
 		this.parent = this._elementRef.nativeElement;
 
@@ -98,6 +138,11 @@ export class TreeItem implements OnInit {
 		this.isTpl = this.listTpl instanceof TemplateRef;
 	}
 
+	/**
+	 * Calculates the indentation for the `TreeItem` which overall creates a visual indication of the hierachies of the items in the view.
+	 * @returns the indentation for the `TreeItem`.
+	 * @memberof TreeItem
+	 */
 	calculateIndent() {
 		if (this.isBase) {
 			// same calc, we just drop the icon width from the last item
@@ -109,15 +154,30 @@ export class TreeItem implements OnInit {
 			+ ((this.iconWidth + this.innerPadding) * this.indent);
 	}
 
+	/**
+	 * Bubbling (or raising) the select event up to parent classes.
+	 * @param {any} evt
+	 * @memberof TreeItem
+	 */
 	bubbleSelect(evt) {
 		this.select.emit(evt);
 	}
 
+	/**
+	 * Selects the `TreeItem` by emitting the selected item to other classes.
+	 * @param {any} item
+	 * @memberof TreeItem
+	 */
 	doClick(item) {
 		this.select.emit({item});
 	}
 
-	// Keyboard accessibility
+	/**
+	 * Controls keyboard navigation and selection for the `TreeItem`.
+	 * @param {any} ev
+	 * @param {any} item
+	 * @memberof TreeItem
+	 */
 	onKeyDown(ev, item) {
 		if (ev.key === "ArrowUp") {
 			ev.preventDefault();

@@ -374,7 +374,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	/**
-	 * Transforms array input list of items to the correct state by updating the selected item.
+	 * Transforms array input list of items to the correct state by updating the selected item(s).
 	 * @param {Array<ListItem>} value
 	 * @memberof DropdownList
 	 */

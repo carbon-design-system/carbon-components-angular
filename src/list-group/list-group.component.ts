@@ -69,7 +69,7 @@ export class ListGroup {
 	@Input() listTpl: string | TemplateRef<any> = null;
 	/**
 	 * Set to `true` for the `ListGroup` to have checkmark selection.
-	 * @type {Boolean}
+	 * @type {boolean}
 	 * @memberof ListGroup
 	 */
 	@Input() checkMark: Boolean = true;
