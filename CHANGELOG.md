@@ -11,6 +11,7 @@
 **Fixed bugs:**
 
 - Popover doesn't position correctly in modals [\#695](https://github.ibm.com/peretz/neutrino/issues/695)
+- dropdown removes additional classes applied to the host el [\#690](https://github.ibm.com/peretz/neutrino/issues/690)
 - Dropdowns with appendToBody=true aren't working anymore  [\#676](https://github.ibm.com/peretz/neutrino/issues/676)
 
 **Closed issues:**
@@ -36,6 +37,9 @@
 
 **Merged pull requests:**
 
+- Misc easy dropdown fixes [\#725](https://github.ibm.com/peretz/neutrino/pull/725) ([callums](https://github.ibm.com/callums))
+- Fix appendToBody dropdown positioning [\#723](https://github.ibm.com/peretz/neutrino/pull/723) ([callums](https://github.ibm.com/callums))
+- Document charts [\#722](https://github.ibm.com/peretz/neutrino/pull/722) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Lock dev packages [\#721](https://github.ibm.com/peretz/neutrino/pull/721) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Documentation for Tree-View [\#714](https://github.ibm.com/peretz/neutrino/pull/714) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
