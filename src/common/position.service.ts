@@ -82,7 +82,7 @@ export namespace position {
 	export function getAbsoluteOffset(target: HTMLElement): Offset {
 		return {
 			top: target.getBoundingClientRect().top,
-			left: target.getBoundingClientRect().left
+			left: target.getBoundingClientRect().left - document.body.getBoundingClientRect().left
 		};
 	}
 

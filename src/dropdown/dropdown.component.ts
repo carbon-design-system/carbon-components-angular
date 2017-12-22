@@ -120,7 +120,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@ViewChild("dropdownHost") rootButton;
 
 	@HostBinding("attr.role") role = "combobox";
-	@HostBinding("attr.class") class: string;
 
 	menuIsClosed = true;
 	dropdown: HTMLElement;
@@ -136,16 +135,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	private onTouchedCallback: () => void = this._noop;
 
-	constructor(private _elementRef: ElementRef, private _translate: TranslateService) {}
+	constructor(private elementRef: ElementRef, private translate: TranslateService) {}
 
 	ngOnInit() {
 		this.view.type = this.type;
-		this.class = this.buildClass();
 	}
 
 	ngAfterContentInit() {
 		this.view.type = this.type;
 		this.view.size = this.size;
+		this.elementRef.nativeElement.classList.add(this.buildClass());
 		this.view.select.subscribe(evt => {
 			if (this.type === "single") {
 				this.closeMenu();
@@ -166,7 +165,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	ngAfterViewInit() {
-		this.dropdown = this._elementRef.nativeElement.querySelector(".dropdown_menu");
+		this.dropdown = this.elementRef.nativeElement.querySelector(".dropdown_menu");
 	}
 
 	ngOnDestroy() {
@@ -252,7 +251,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return this._translate.get("DROPDOWN.SELECTED", {number: selected.length});
+				return this.translate.get("DROPDOWN.SELECTED", {number: selected.length});
 			} else {
 				return Observable.of(selected[0].content);
 			}
@@ -269,7 +268,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	_noop() {}
 	_outsideClick(ev) {
-		if (!this._elementRef.nativeElement.contains(ev.target) &&
+		if (!this.elementRef.nativeElement.contains(ev.target) &&
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
 			!this.dropdown.contains(ev.target)) {
@@ -300,7 +299,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	_appendToDropdown() {
 		if (document.body.contains(this.dropdownWrapper)) {
-			this._elementRef.nativeElement.appendChild(this.dropdown);
+			this.dropdown.style.display = "none";
+			this.elementRef.nativeElement.appendChild(this.dropdown);
 			document.body.removeChild(this.dropdownWrapper);
 			this.resize.unsubscribe();
 			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
@@ -308,24 +308,28 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	_appendToBody() {
+		const positionDropdown = () => {
+			position.setElement(
+				this.dropdownWrapper,
+				position.addOffset(
+					position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
+					window.scrollY,
+					window.scrollX
+				)
+			);
+		};
+		this.dropdown.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = "dropdown append-body";
-		this.dropdownWrapper.style.width = this._elementRef.nativeElement.offsetWidth + "px";
+		this.dropdownWrapper.className = "dropdown";
+		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
+		this.dropdownWrapper.style.position = "absolute";
 		this.dropdownWrapper.appendChild(this.dropdown);
 		document.body.appendChild(this.dropdownWrapper);
-		position.setElement(
-			this.dropdownWrapper,
-			position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
-		);
+		positionDropdown();
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
 		this.resize = Observable.fromEvent(window, "resize")
 			.throttleTime(100)
-			.subscribe(() => {
-				position.setElement(
-					this.dropdownWrapper,
-					position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom")
-				);
-			});
+			.subscribe(() => positionDropdown());
 	}
 
 	openMenu() {
@@ -371,11 +375,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			if (container) {
 				this.scroll = Observable.fromEvent(container, "scroll")
 				.subscribe(() => {
-					if (this.isVisibleInContainer(this._elementRef.nativeElement, container)) {
+					if (this.isVisibleInContainer(this.elementRef.nativeElement, container)) {
 						position.setElement(
 							this.dropdownWrapper,
 							position.addOffset(
-								position.findRelative(this._elementRef.nativeElement, this.dropdownWrapper, "bottom"),
+								position.findRelative(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
 								-container.scrollTop
 							)
 						);

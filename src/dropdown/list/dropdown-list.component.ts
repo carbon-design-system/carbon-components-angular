@@ -18,6 +18,9 @@ import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/of";
+
 @Component({
 	selector: "n-dropdown-list",
 	template: `
