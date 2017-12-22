@@ -157,9 +157,11 @@ export class DialogDirective implements OnInit, OnDestroy {
 		}
 
 		// call onClose when the dialog is closed
+		// - Enforce accessibility by updating an aria attr for nativeElement.
 		this.dialogService.isClosed.subscribe(value => {
 			if (value) {
 				this.onClose.emit();
+				this.elementRef.nativeElement.setAttribute("aria-expanded", "false");
 			}
 		});
 
@@ -167,37 +169,43 @@ export class DialogDirective implements OnInit, OnDestroy {
 		this.onDialogInit();
 	}
 
-	/*
-	 * when the host dies, kill the popover
-	 * useful for use in a modal or similar
-	 * @memberof Dialogdirective
+	/**
+	 * When the host dies, kill the popover.
+	 * - Useful for use in a modal or similar.
+	 * @memberof DialogDirective
 	 */
 	ngOnDestroy() {
 		this.close();
 	}
 
 	/**
-	 * Helper method to call dialogService 'open'
+	 * Helper method to call dialogService 'open'.
+	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 * @memberof DialogDirective
 	 */
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
+		this.elementRef.nativeElement.setAttribute("aria-expanded", "true");
 	}
 
 	/**
 	 * Helper method to call dialogService 'toggle'.
+	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 * @memberof DialogDirective
 	 */
 	toggle() {
 		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
+		this.elementRef.nativeElement.setAttribute("aria-expanded", this.dialogService.isOpen);
 	}
 
 	/**
 	 * Helper method to call dialogService 'close'.
+	 * - Enforce accessibility by updating an aria attr for nativeElement.
 	 * @memberof DialogDirective
 	 */
 	close() {
 		this.dialogService.close(this.viewContainerRef);
+		this.elementRef.nativeElement.setAttribute("aria-expanded", "false");
 	}
 
 	/**
