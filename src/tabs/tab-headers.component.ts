@@ -218,7 +218,7 @@ export class TabHeaders implements AfterViewInit {
 	public scrollLeft = 0;
 
 	/**
-	 * Accounts for button width and tab padding for the left side
+	 * Accounts for button width and tab padding for the left side.
 	 * @private
 	 * @type {number}
 	 * @memberof TabHeaders
