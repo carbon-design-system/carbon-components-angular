@@ -52,16 +52,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			[disabled]="disabled">
 			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
 			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
-			<svg
-				[ngClass]="{
-					'icon--sm': size === 'sm',
-					'icon': size === 'default' || size === 'lg'
-				}"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16">
-				<path d="M14.6 4L8 10.6 1.4 4l-.8.8L8 12.3l7.4-7.5z"/>
-			</svg>
+			<n-static-icon icon="chevron_down" [size]="(size === 'sm'?'sm':'md')"></n-static-icon>
 		</button>
 		<div
 			class="dropdown_menu">
