@@ -12,6 +12,14 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 
+
+/**
+ * class: TreeWrapper
+ * selector: `n-tree-wrapper`
+ *
+ * @export
+ * @class TreeWrapper
+ */
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
@@ -54,22 +62,81 @@ import { ListItem } from "./../list-item.interface";
 	`
 })
 export class TreeWrapper {
+	/**
+	 * The items to be displayed in the list within the `TreeWrapper`.
+	 * @type {Array<ListItem>}
+	 * @memberof TreeWrapper
+	 */
 	@Input() items: Array<ListItem> = [];
+	/**
+	 * Set to `true` if the unordered list is hidden (collapsed with parent catagory) in the view.
+	 * @type {boolean}
+	 * @memberof TreeWrapper
+	 */
 	@Input() isOpen = false;
 	@Input() parent: any = null;
+	/**
+	 * Optional custom template for displaying the `TreeWrapper`.
+	 * @type {(string | TemplateRef<any>)}
+	 * @memberof TreeWrapper
+	 */
 	@Input() listTpl: string | TemplateRef<any> = "";
+	/**
+	 * Used to Calculate the indent spacing of the list item based on its hierarchical level in the list.
+	 * @type {number}
+	 * @memberof TreeWrapper
+	 */
 	@Input() indent = 0;
 	@Input() rootElem: any = null;
 	@Input() selectedIcon = true;
+	/**
+	 * The role of the unordered list element.
+	 * @type {("tree" | "group")}
+	 * @memberof TreeWrapper
+	 */
 	@Input() role: "tree" | "group" = "tree" ;
+	/**
+	 * The aria-label for the DOM unordered list element.
+	 * @type {string}
+	 * @memberof TreeWrapper
+	 */
 	@Input() label: string;
-	@Input() outerPadding = 20; // padding from left edge
+	/**
+	 * Left padding between the edge and the icon (for parent catagory).
+	 * @memberof TreeWrapper
+	 */
+	@Input() outerPadding = 20;
+	/**
+	 * Sizing of the arrow glyphicon that represents the expansion/collapsing of a parent catagory.
+	 * @memberof TreeWrapper
+	 */
 	@Input() iconWidth = 16;
-	@Input() innerPadding = 10; // padding between icon and content
+	/**
+	 * Padding between icon and content (list item heading).
+	 * @type {number}
+	 * @memberof TreeWrapper
+	 */
+	@Input() innerPadding = 10;
+	/**
+	 * Size to render the `TreeItem` within the view.
+	 * @type {("sm" | "default" | "lg")}
+	 * @memberof TreeWrapper
+	 */
 	@Input() size: "sm" | "default" | "lg" = "default";
 
+	/**
+	 * Emits selection events to other class.
+	 * @type {EventEmitter<Object>}
+	 * @memberof TreeWrapper
+	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
+	/**
+	 * Returns true if the item is a non leaf level item (has subitems) and false otherwise.
+	 * @param {any} items
+	 * @returns
+	 * @memberof TreeWrapper
+	 */
 	public isBase(items) {
 		if (items.find(item => item.items)) {
 			return false;
@@ -77,10 +144,20 @@ export class TreeWrapper {
 		return true;
 	}
 
+	/**
+	 * Bubbling the select event up to parent classes.
+	 * @param {any} evt
+	 * @memberof TreeWrapper
+	 */
 	public bubbleSelect(evt) {
 		this.select.emit(evt);
 	}
 
+	/**
+	 * Calculates the indentation for the `TreeItem` which overall creates a visual indication of the hierachies of the items in the view.
+	 * @returns the indentation for the `TreeItem`.
+	 * @memberof TreeWrapper
+	 */
 	calculateIndent() {
 		if (this.isBase(this.items)) {
 			// same calc, we just drop the icon width from the last item

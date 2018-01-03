@@ -4,7 +4,6 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-
 export class TableModel {
 	/**
 	 * Sets data of the table.
@@ -28,6 +27,7 @@ export class TableModel {
 			this.header = header;
 		}
 	}
+
 	/**
 	 * Gets the full data.
 	 *
@@ -41,7 +41,6 @@ export class TableModel {
 		return this._data;
 	}
 
-
 	/**
 	 * Contains information about selection state of rows in the table.
 	 *
@@ -50,10 +49,37 @@ export class TableModel {
 	 */
 	rowsSelected: Array<boolean>;
 
+	/**
+	 * Contains information about the header cells of the table.
+	 *
+	 * @type {Array<TableHeaderItem>}
+	 * @memberof TableModel
+	 */
 	header: Array<TableHeaderItem>;
 
+	/**
+	 * Tracks the current page of the table.
+	 *
+	 * @type {number}
+	 * @memberof TableModel
+	 */
 	currentPage: number;
+
+	/**
+	 * Length of page of the table.
+	 *
+	 * @type {number}
+	 * @memberof TableModel
+	 */
 	pageLength: number;
+
+	/**
+	 * Absolute total number of rows of the table.
+	 *
+	 * @private
+	 * @type {number}
+	 * @memberof TableModel
+	 */
 	private _totalDataLength: number;
 	set totalDataLength(length: number) {
 		this._totalDataLength = length;
@@ -63,7 +89,7 @@ export class TableModel {
 	}
 
 	/**
-	 * used in `data`
+	 * Used in `data`
 	 *
 	 * @private
 	 * @type {Array<Array<TableItem>>}
@@ -88,6 +114,7 @@ export class TableModel {
 		}
 		return retVal;
 	}
+
 	/**
 	 * Returns `index`th row of the table.
 	 *
@@ -343,9 +370,10 @@ export class TableModel {
 	}
 
 	/**
+	 * Checks if row is filtered out.
 	 *
 	 * @param {number} index
-	 * @returns true if any of the filters in header filters out the `index`th row
+	 * @returns {boolean} true if any of the filters in header filters out the `index`th row
 	 * @memberof TableModel
 	 */
 	isRowFiltered(index: number) {
@@ -353,14 +381,44 @@ export class TableModel {
 		return this.header.some((item, i) => item.filter(this.row(ind)[i]));
 	}
 
+	/**
+	 * Gets the true index of a row based on it's relative position.
+	 * Like in Python, positive numbers start from the top and
+	 * negative numbers start from the bottom.
+	 *
+	 * @private
+	 * @param {number} index
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
 	private realRowIndex(index: number): number {
 		return this.realIndex(index, this.data.length);
 	}
 
+	/**
+	 * Gets the true index of a column based on it's relative position.
+	 * Like in Python, positive numbers start from the top and
+	 * negative numbers start from the bottom.
+	 *
+	 * @private
+	 * @param {number} index
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
 	private realColumnIndex(index: number): number {
 		return this.realIndex(index, this.data[0].length);
 	}
 
+	/**
+	 * Generic function to calculate the real index of something.
+	 * Used by `realRowIndex()` and `realColumnIndex()`
+	 *
+	 * @private
+	 * @param {number} index
+	 * @param {number} length
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
 	private realIndex(index: number, length: number): number {
 		if (index == null) {
 			return length - 1;
