@@ -2,7 +2,14 @@
 
 ## [Unreleased](https://github.ibm.com/peretz/neutrino/tree/HEAD)
 
-[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...HEAD)
+
+**Merged pull requests:**
+
+- Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+
+## [v1.1.0](https://github.ibm.com/peretz/neutrino/tree/v1.1.0) (2017-12-22)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...v1.1.0)
 
 **Implemented enhancements:**
 
@@ -41,6 +48,7 @@
 
 **Merged pull requests:**
 
+- Update matter and charts versions [\#729](https://github.ibm.com/peretz/neutrino/pull/729) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Misc easy dropdown fixes [\#725](https://github.ibm.com/peretz/neutrino/pull/725) ([callums](https://github.ibm.com/callums))
 - Fix appendToBody dropdown positioning [\#723](https://github.ibm.com/peretz/neutrino/pull/723) ([callums](https://github.ibm.com/callums))
 - Document charts [\#722](https://github.ibm.com/peretz/neutrino/pull/722) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
