@@ -14,7 +14,7 @@ import {
 	template: `
 		<span><ng-content></ng-content></span>
 		<button class="pill_close" (click)="doRemove($event)" type="button">
-			<n-static-icon icon="x" size="sm" class="close_icon"></n-static-icon>
+			<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 		</button>`
 })
 export class Pill {

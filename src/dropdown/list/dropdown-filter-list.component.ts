@@ -54,24 +54,12 @@ import { DropdownList } from "./dropdown-list.component";
 				<span class="checkbox_label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
 			</label>
 			<label class="search_group">
-				<svg
-					aria-hidden="true"
+				<n-static-icon
 					class="search_icon"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 16 16">
-					<g>
-						<path
-							d="M6,0C2.7,0,0,2.7,0,6s2.7,6,6,6s6-2.7,6-6S9.3,0,6,0z
-							M6,11c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5
-							S8.8,11,6,11z"/>
-						<rect
-							x="12"
-							y="10.2"
-							transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 31.4698 13.0355)"
-							width="2"
-							height="5.7"/>
-					</g>
-				</svg>
+					aria-hidden="true"
+					icon="search"
+					size="sm">
+				</n-static-icon>
 				<input
 					#filter
 					(keyup)="filterItems()"
@@ -87,15 +75,7 @@ import { DropdownList } from "./dropdown-list.component";
 						visible: filter.value.trim()
 					}"
 					(click)="clearFilter()">
-					<svg
-						class="close_icon"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 16 16">
-						<polygon
-							points="14.5,2.6 13.4,1.5 8,6.9 2.6,1.5
-							1.5,2.6 6.9,8 1.5,13.4 2.6,14.5
-							8,9.1 13.4,14.5 14.5,13.4 9.1,8"/>
-					</svg>
+					<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 				</button>
 			</label>
 		</div>

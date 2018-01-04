@@ -38,7 +38,7 @@ import position from "../../common/position.service";
 					class="close--white-md"
 					(click)="doClose()"
 					aria-label="Close popover">
-					<n-static-icon icon="x" size="sm" class="close_icon"></n-static-icon>
+					<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 				</button>
 			</header>
 			<section

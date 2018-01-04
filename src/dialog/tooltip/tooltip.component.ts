@@ -51,7 +51,7 @@ import position from "../../common/position.service";
 				class="close--xs"
 				(click)="doClose()"
 				aria-label="Close Tooltip">
-				<n-static-icon icon="x" size="sm" class="close_icon"></n-static-icon>
+				<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 			</button>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>
