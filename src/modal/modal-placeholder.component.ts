@@ -9,6 +9,22 @@ import { ModalService } from "./modal.service";
  *
  * source: `src/modal/modal-placeholder.component.ts`
  *
+ * Using a modal in your application requires *this* component: `n-modal-placeholder` and can generally be used
+ * at the root of the application (ex. app.component.ts).
+ *
+ * ```html
+ * <n-modal size="xl" (overlaySelected)="closeModal()">
+ * 	<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ * 	<section class="modal-body">
+ * 		<h1>It Works!</h1>
+ * 		{{modalText}}
+ * 	</section>
+ * 	<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
+ * </n-modal>
+ * ...
+ * <n-modal-placeholder></n-modal-placeholder>
+ * ```
+ *
  * @export
  * @class ModalPlaceholderComponent
  * @implements {OnInit}

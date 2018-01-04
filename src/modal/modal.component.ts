@@ -29,6 +29,10 @@ import { cycleTabs } from "./../common/tab.service";
  *
  * source: `src/modal/modal.component.ts`
  *
+ * Using a modal in your application requires the component: `n-modal-placeholder` and
+ * can generally be used at the root of the application (ex. app.component.ts).
+ *
+ *
  * ```html
  * <n-modal size="xl" (overlaySelected)="closeModal()">
  * 	<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
@@ -38,6 +42,8 @@ import { cycleTabs } from "./../common/tab.service";
  * 	</section>
  * 	<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
  * </n-modal>
+ * ...
+ * <n-modal-placeholder></n-modal-placeholder>
  * ```
  *
  * @export
