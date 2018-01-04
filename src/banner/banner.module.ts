@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
+import { StaticIconModule } from "./../icon/static-icon.module";
+
 import { BannerService } from "./banner.service";
 import { Banner } from "./banner.component";
 
@@ -15,6 +17,6 @@ export { Banner } from "./banner.component";
 		Banner
 	],
 	entryComponents: [Banner],
-	imports: [CommonModule]
+	imports: [CommonModule, StaticIconModule]
 })
 export class BannerModule {}
