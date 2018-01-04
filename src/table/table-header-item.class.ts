@@ -4,7 +4,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 
-
 export class TableHeaderItem {
 	/**
 	 * Defines if column under this TableHeaderItem should be displayed.
@@ -12,6 +11,13 @@ export class TableHeaderItem {
 	 * @memberof TableHeaderItem
 	 */
 	visible = true;
+
+	/**
+	 * Disables sorting by default.
+	 *
+	 * @memberof TableHeaderItem
+	 */
+	sorted = false;
 
 	/**
 	 * Number of applied filters.
@@ -54,8 +60,6 @@ export class TableHeaderItem {
 	get descending() {
 		return !this._ascending;
 	}
-
-	sorted = false;
 
 	/**
 	 * Data for the header item.
@@ -184,6 +188,11 @@ export class TableHeaderItem {
 	 */
 	private _ascending = true;
 
+	/**
+	 * Creates an instance of TableHeaderItem.
+	 * @param {*} [rawData]
+	 * @memberof TableHeaderItem
+	 */
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty
 		const defaults = {
@@ -204,6 +213,7 @@ export class TableHeaderItem {
 		this.filterData = data.filterData;
 		this.style = data.style;
 	}
+
 	/**
 	 * Used for sorting rows of the table.
 	 *

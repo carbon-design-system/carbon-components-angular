@@ -142,7 +142,7 @@ export class TreeView implements OnChanges {
 	}
 
 	/**
-	 * Returns the selected leaf level item within the `TreeView`.
+	 * Returns the selected leaf level item(s) within the `TreeView`.
 	 * @returns {ListItem[]}
 	 * @memberof TreeView
 	 */
