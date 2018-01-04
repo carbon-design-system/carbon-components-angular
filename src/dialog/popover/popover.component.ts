@@ -38,14 +38,7 @@ import position from "../../common/position.service";
 					class="close--white-md"
 					(click)="doClose()"
 					aria-label="Close popover">
-					<svg
-						class="close_icon"
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16">
-						<path d="M14.5 2.6l-1.1-1.1L8 6.9 2.6 1.5 1.5 2.6 6.9 8l-5.4 5.4 1.1 1.1L8 9.1l5.4 5.4 1.1-1.1L9.1 8z"/>
-					</svg>
+					<n-static-icon icon="x" size="sm" class="close_icon"></n-static-icon>
 				</button>
 			</header>
 			<section
@@ -95,5 +88,8 @@ export class Popover extends Dialog {
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
+
+		this.addGap["top-left"] = pos => position.addOffset(pos);
+		this.addGap["top-right"] = pos => position.addOffset(pos);
 	}
 }
