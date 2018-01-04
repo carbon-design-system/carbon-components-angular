@@ -1,17 +1,51 @@
 /**
- * A generic structure that represents an item in a list
+ * A generic structure that represents an item in a list.
+ * A list item may contain additional lists with sub-items to represent a tree.
  *
- * may contain additional lists with sub-items to represent a tree
+ * interface: ListItem
+ *
+ * source: `src/dropdown/list-item.interface.ts`
+ *
+ * ```typescript
+ * export interface ListItem {
+ * 	content: string;
+ * 	selected: boolean;
+ * 	disabled?: boolean;
+ * 	items?: ListItem[];
+ * }
+ * ```
+ *
+ * `content` and `selected` are the only **required** properties you **must** provide.
+ * When using a custom item template (supported by all the Neutrino item views, not required by AbstractDropdownView)
+ * the entire ListItem will be passed to the template as `item`.
+ *
+ * @export
+ * @interface ListItem
  */
 export interface ListItem {
-	/** content to be displayed in the list */
+	/**
+	 * Content to be displayed in the list.
+	 * @type {string}
+	 * @memberof ListItem
+	 */
 	content: string;
-	/** flag for the selected state of the item */
+	/**
+	 * Flag for the selected state of the item.
+	 * @type {boolean}
+	 * @memberof ListItem
+	 */
 	selected: boolean;
-	/** if the item is disabled
-	 * (note: not all lists have to support disabled states, and not all lists behave the same with disabled items)
-	 * */
+	/**
+	 * If the item is in a disabled state.
+	 * (Note: not all lists have to support disabled states, and not all lists behave the same with disabled items)
+	 * @type {boolean}
+	 * @memberof ListItem
+	 */
 	disabled?: boolean;
-	/** optional nested items */
+	/**
+	 * Optional nested items.
+	 * @type {ListItem[]}
+	 * @memberof ListItem
+	 */
 	items?: ListItem[];
 }

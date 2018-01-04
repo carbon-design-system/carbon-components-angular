@@ -65,7 +65,7 @@ export class TreeViewWrapper {
 	 */
 	@Input() listTpl: string | TemplateRef<any> = "";
 	/**
-	 * Calculates the indent spacing of the list item based on its hierarchical level in the list.
+	 * Used to Calculate the indent spacing of the list item based on its hierarchical level in the list.
 	 * @type {number}
 	 * @memberof TreeViewWrapper
 	 */
@@ -84,7 +84,7 @@ export class TreeViewWrapper {
 	 */
 	@Input() label: string;
 	/**
-	 * Left padding between icon and content (list item heading).
+	 * Left padding between edge and the icon.
 	 * @memberof TreeViewWrapper
 	 */
 	@Input() outerPadding = 20;
@@ -94,10 +94,10 @@ export class TreeViewWrapper {
 	 */
 	@Input() iconWidth = 16;
 	/**
-	 * Left padding between icon and content (list item heading).
+	 * Padding between icon and content (list item heading).
 	 * @memberof TreeViewWrapper
 	 */
-	@Input() innerPadding = 5; // padding between icon and content
+	@Input() innerPadding = 5;
 
 	/**
 	 * Emits selection events within the children class.

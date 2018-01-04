@@ -157,7 +157,6 @@ export class TreeViewItem implements OnInit {
 	}
 
 	/**
-	 *
 	 * Calculates the indent spacing of the list item based on its hierarchical level in the list.
 	 * @returns {number} the left indent spacing of the list item
 	 * @memberof TreeViewItem
@@ -193,7 +192,7 @@ export class TreeViewItem implements OnInit {
 	}
 
 	/**
-	 * Manages the keyboad accessiblity for selection of a `TreeView` list item.
+	 * Manages the keyboard accessiblity for selection of a `TreeView` list item.
 	 * @param {any} ev
 	 * @param {any} item
 	 * @memberof TreeViewItem

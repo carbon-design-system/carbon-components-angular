@@ -33,7 +33,7 @@
     "core-js": "^2.5.3",
     "rxjs": "^5.5.5",
     "zone.js": "^0.8.18",
-    "@peretz/matter": "^1.0.0"
+    "@peretz/matter": "^1.1.0"
   },
   "devDependencies": {
     "@angular/animations": "5.1.1",
@@ -49,8 +49,8 @@
     "@angular/router": "5.1.1",
     "@compodoc/compodoc": "1.0.4",
     "@ngx-translate/core": "9.0.2",
-    "@peretz/charts": "0.0.2-alpha.03a64",
-    "@peretz/matter": "1.0.0-alpha.6841a",
+    "@peretz/charts": "0.1.0",
+    "@peretz/matter": "1.1.0",
     "@types/d3": "4.12.0",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.5.2",
@@ -99,6 +99,6 @@
     "zone.js": "0.8.18"
   },
   "optionalDependencies": {
-    "@peretz/charts": "^0.0.2-alpha"
+    "@peretz/charts": "^0.1.0"
   }
 }
