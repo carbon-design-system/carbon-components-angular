@@ -13,6 +13,10 @@ authenticate when asked.
 curl -uyour.email@ibm.com https://na.artifactory.swg-devops.com/artifactory/api/npm/wce-peretz-npm-local/auth/peretz >> ~/.npmrc
 ```
 
+##### Getting errors?
+
+If you recently changed you w3id password, you'll get an error like `npm ERR! 403 Forbidden: @peretz/neutrino@...` and you will have to update your `~/.npmrc` by retaking the "Artifactory" step. Remove references to `peretz` from it before, or delete the whole file if you can (i.e. if peretz libraries are only thing you use from artifactory).
+
 #### Whitewater (deprecated)
 
 You'll need access to the whitewater hosted npm installation. We recommend using option two from [this guide](https://github.ibm.com/Whitewater/npm-enterprise) and adding an "@peretz" scope.
