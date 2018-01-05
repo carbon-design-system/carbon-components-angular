@@ -2,9 +2,6 @@ import { Component, Input, ViewChild } from "@angular/core";
 
 
 /**
- * class: SideNavPaneTitle
- * selector: `n-side-nav-pane-title`
- *
  * SideNavPaneTitle expects some title to be projected, to be used as the title of the fly in sub view.
  *
  * @export

@@ -11,10 +11,6 @@ import {
 
 
 /**
- * class: SideNavItem
- * selector: `n-side-nav-item`
- *
- *
  * SideNavItem expects either a icon with the class `.side-nav-glyph` and
  * a title with the class `.side-nav-item` or a `.side-nav-glyph` and a SideNavPaneTitle contained
  * within a `.side-nav-pane-sub-template`.

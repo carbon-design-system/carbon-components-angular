@@ -23,12 +23,6 @@ import { cycleTabs } from "./../common/tab.service";
 /**
  * Component to create modals for presenting content.
  *
- * class: ModalComponent
- *
- * selector: `n-modal`
- *
- * source: `src/modal/modal.component.ts`
- *
  * Using a modal in your application requires the component: `n-modal-placeholder` and
  * can generally be used at the root of the application (ex. app.component.ts).
  *

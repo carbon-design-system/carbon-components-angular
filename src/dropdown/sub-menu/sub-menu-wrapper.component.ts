@@ -15,8 +15,6 @@ import { SubMenuItem } from "./sub-menu-item.component";
 
 
 /**
- * selector: `n-sub-menu-wrapper`
- *
  * @export
  * @class SubMenuWrapper
  */

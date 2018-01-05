@@ -18,17 +18,9 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 
 
 /**
- * class: DropdownSubMenu
- *
- * selector: `n-dropdown-sub-menu`
- *
- * source: `src/dropdown/sub-menu/sub-menu.component.ts`
- *
  * ```html
  * <n-dropdown-sub-menu [items]="treeItems"></n-dropdown-sub-menu>
  * ```
- *
- *
  * @export
  * @class DropdownSubMenu
  * @implements {AbstractDropdownView}

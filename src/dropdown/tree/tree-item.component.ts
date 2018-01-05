@@ -12,8 +12,6 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 
 
 /**
- * selector: `n-tree-item`
- *
  * @export
  * @class TreeItem
  * @implements {OnInit}
