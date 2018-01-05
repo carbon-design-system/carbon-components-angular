@@ -3,7 +3,8 @@ import { ModalService } from "./modal.service";
 
 
 /**
- * Using a modal in your application requires *this* component: `n-modal-placeholder` which would generally be placed near the end of your app component template (app.component.ts or app.component.html) as
+ * Using a modal in your application requires *this* component: `n-modal-placeholder` which would generally be placed near the end of your
+ * app component template (app.component.ts or app.component.html) as:
  * ...
  * <n-modal-placeholder></n-modal-placeholder>
  *
