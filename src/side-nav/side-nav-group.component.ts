@@ -5,8 +5,6 @@ import { AfterContentInit, Component, Input, ViewChild } from "@angular/core";
  * Each `SideNavGroup` is either a leaf (has no children subitems) or higher level non-leaf (expands) holding
  * associated subitems to create an organized hierarchy in the menu.
  *
- * selector: <n-side-nav-group>
- *
  * @export
  * @class SideNavGroup
  * @implements {AfterContentInit}

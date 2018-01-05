@@ -17,11 +17,6 @@ let nextId = 0;
 * It represend one Tab item and its content within a panel of other Tab items.
 *
 *
-* # Tab
-* class: Tab
-* selector: `n-tab`
-*
-*
 * Tab takes a string or TemplateRef for the header,
 * and any content for the body of the tab.
 * Disabled states should be handled by the application (ie. switch to the tab, but display some indication as to _why_ the tab is disabled)

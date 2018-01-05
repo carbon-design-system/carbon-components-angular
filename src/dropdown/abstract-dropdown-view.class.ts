@@ -3,30 +3,9 @@ import { ListItem } from "./list-item.interface";
 
 
 /**
- * class: AbstractDropdownView
- *
- * source: `src/dropdown/abstract-dropdown-view.class.ts`
- *
- * ```typescript
- * export class AbstractDropdownView {
- * 	@Input() items: Array<ListItem>;
- * 	@Output() select: EventEmitter<Object>;
- * 	public type: "single" | "multi" = "single";
- * 	public size: "sm" | "default" | "lg" = "default";
- * 	getNextItem(): ListItem { return; }
- * 	getNextElement(): HTMLElement { return; }
- * 	getPrevItem(): ListItem { return; }
- * 	getPrevElement(): HTMLElement { return; }
- * 	getSelected(): ListItem[] { return; }
- * 	getCurrentItem(): ListItem { return; }
- * 	getCurrentElement(): HTMLElement { return; }
- * 	propagateSelected(value: Array<ListItem>): void {}
- * }
- * ```
  * A component that intends to be used within Dropdown must provide an implementation that follows this base class.
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
- *
  *
  * @export
  * @class AbstractDropdownView

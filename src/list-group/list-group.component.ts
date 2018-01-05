@@ -11,9 +11,6 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 
 /**
- * class: ListGroup (implements View)
- * selector: `n-list-group`
- *
  * `listTpl` binds `item` to the template context
  *
  * `items` expects an array of objects where the objects follow the format:

@@ -13,8 +13,6 @@ import { ListItem } from "./../dropdown/list-item.interface";
 
 
 /**
- * class: TreeViewWrapper
- * selector: `n-tree-view-wrapper`
  * @export
  * @class TreeViewWrapper
  */

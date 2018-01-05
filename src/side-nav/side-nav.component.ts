@@ -2,9 +2,6 @@ import { Component, Input } from "@angular/core";
 
 
 /**
- * class: SideNav
- * selector: `n-side-nav`
- *
  * `SideNav` contains a single projection for side-nav content. Below is an example for a tree-view component.
  *
  *

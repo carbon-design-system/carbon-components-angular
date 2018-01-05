@@ -17,9 +17,6 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 
 /**
  * Creates a tree structured dropdown list when there are leaf and non-leaf inputs to choose from.
- *
- * source: `src/dropdown/tree/tree.component.ts`
- *
  * @export
  * @class DropdownTree
  * @implements {AbstractDropdownView}

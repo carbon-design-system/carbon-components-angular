@@ -28,8 +28,6 @@ export enum SwitchState {
 }
 
 /**
- * class: SwitchChange
- *
  * Used to emit changes performed on switch components.
  * @export
  * @class SwitchChange
@@ -50,16 +48,9 @@ export class SwitchChange {
 }
 
 /**
- * class: SwitchComponent (extends CheckboxComponent)
- *
- * selector: `n-switch`
- *
- * source: `src/forms/switch.component.ts`
- *
  * ```html
  * <n-switch [(ngModel)]="switchState">Switch</n-switch>
  * ```
- *
  * @export
  * @class SwitchComponent
  * @extends {CheckboxComponent}
