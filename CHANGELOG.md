@@ -15,6 +15,7 @@
 
 **Merged pull requests:**
 
+- Adjustments to Documentation [\#733](https://github.ibm.com/peretz/neutrino/pull/733) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 
 ## [v1.1.0](https://github.ibm.com/peretz/neutrino/tree/v1.1.0) (2017-12-22)
