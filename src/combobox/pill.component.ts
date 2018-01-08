@@ -6,8 +6,11 @@ import {
 	HostBinding
 } from "@angular/core";
 
+
 /**
  * Internal component that represents a single pill/selected item
+ * @export
+ * @class Pill
  */
 @Component({
 	selector: "n-pill",

@@ -8,10 +8,6 @@ import {
 
 
 /**
- * class: TopNav
- *
- * selector: `n-top-nav`
- *
  * ```html
  * <n-top-nav [brand]="topNavBrand" [badge]="topNavBadge" [sticky]="true"></n-top-nav>
  * ```

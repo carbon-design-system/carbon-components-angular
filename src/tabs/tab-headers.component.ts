@@ -14,8 +14,9 @@ import "rxjs/add/observable/fromEvent";
 
 import { Tab } from "./tab.component";
 
+
 /**
- * The `TabHeaders` neutrino component contains the Tab items and controls scroll functionality
+ * The `TabHeaders` neutrino component contains the `Tab` items and controls scroll functionality
  * if content has overflow.
  * @export
  * @class TabHeaders
@@ -218,7 +219,7 @@ export class TabHeaders implements AfterViewInit {
 	public scrollLeft = 0;
 
 	/**
-	 * Accounts for button width and tab padding for the left side
+	 * Accounts for button width and tab padding for the left side.
 	 * @private
 	 * @type {number}
 	 * @memberof TabHeaders

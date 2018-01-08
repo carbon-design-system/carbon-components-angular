@@ -2,7 +2,23 @@
 
 ## [Unreleased](https://github.ibm.com/peretz/neutrino/tree/HEAD)
 
-[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...HEAD)
+
+**Fixed bugs:**
+
+- Banner service should remove timeout reference on ngOnDestroy [\#682](https://github.ibm.com/peretz/neutrino/issues/682)
+
+**Closed issues:**
+
+- Migrate documentation [\#663](https://github.ibm.com/peretz/neutrino/issues/663)
+- Document dropdown [\#563](https://github.ibm.com/peretz/neutrino/issues/563)
+
+**Merged pull requests:**
+
+- Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+
+## [v1.1.0](https://github.ibm.com/peretz/neutrino/tree/v1.1.0) (2017-12-22)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.0...v1.1.0)
 
 **Implemented enhancements:**
 
@@ -11,19 +27,24 @@
 **Fixed bugs:**
 
 - Popover doesn't position correctly in modals [\#695](https://github.ibm.com/peretz/neutrino/issues/695)
+- dropdown removes additional classes applied to the host el [\#690](https://github.ibm.com/peretz/neutrino/issues/690)
 - Dropdowns with appendToBody=true aren't working anymore  [\#676](https://github.ibm.com/peretz/neutrino/issues/676)
 
 **Closed issues:**
 
 - Dropdown filter emits select event on selecting text in searchbox [\#716](https://github.ibm.com/peretz/neutrino/issues/716)
 - Dropdown: For long values \(list items\) dropdown gets distorted [\#711](https://github.ibm.com/peretz/neutrino/issues/711)
+- Document Charts [\#707](https://github.ibm.com/peretz/neutrino/issues/707)
+- Document Table [\#706](https://github.ibm.com/peretz/neutrino/issues/706)
 - Showcase issues [\#703](https://github.ibm.com/peretz/neutrino/issues/703)
 - Add CHANGELOG generation step to build [\#671](https://github.ibm.com/peretz/neutrino/issues/671)
+- Refactor table component [\#669](https://github.ibm.com/peretz/neutrino/issues/669)
 - Refactor chart component [\#668](https://github.ibm.com/peretz/neutrino/issues/668)
 - Deploy to JFrog Artifactory  \(since NPM Enterprise ends by Q1 2018\) [\#666](https://github.ibm.com/peretz/neutrino/issues/666)
 - Make Neutrino Seed PWA ready [\#665](https://github.ibm.com/peretz/neutrino/issues/665)
 - n-label is broken [\#603](https://github.ibm.com/peretz/neutrino/issues/603)
 - Process for new contributions to Neutrino [\#598](https://github.ibm.com/peretz/neutrino/issues/598)
+- Prototype table issues [\#595](https://github.ibm.com/peretz/neutrino/issues/595)
 - Dropdown filter field is not clickable on the placeholder [\#580](https://github.ibm.com/peretz/neutrino/issues/580)
 - Document tree-view [\#571](https://github.ibm.com/peretz/neutrino/issues/571)
 - Document topnav [\#570](https://github.ibm.com/peretz/neutrino/issues/570)
@@ -36,8 +57,12 @@
 
 **Merged pull requests:**
 
+- Update matter and charts versions [\#729](https://github.ibm.com/peretz/neutrino/pull/729) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Misc easy dropdown fixes [\#725](https://github.ibm.com/peretz/neutrino/pull/725) ([callums](https://github.ibm.com/callums))
 - Fix appendToBody dropdown positioning [\#723](https://github.ibm.com/peretz/neutrino/pull/723) ([callums](https://github.ibm.com/callums))
+- Document charts [\#722](https://github.ibm.com/peretz/neutrino/pull/722) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Lock dev packages [\#721](https://github.ibm.com/peretz/neutrino/pull/721) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Integrate matter into table [\#720](https://github.ibm.com/peretz/neutrino/pull/720) ([clorenz](https://github.ibm.com/clorenz))
 - Documentation for Tree-View [\#714](https://github.ibm.com/peretz/neutrino/pull/714) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation for List Group [\#712](https://github.ibm.com/peretz/neutrino/pull/712) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Add base charts to charts module [\#709](https://github.ibm.com/peretz/neutrino/pull/709) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

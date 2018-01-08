@@ -50,14 +50,14 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<h1>Table demo</h1>
 
 	<h2>Small table</h2>
-	<n-table class="table--sm" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+	<n-table size="sm" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
 
 	<h2>Normal table</h2>
 	<n-table [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
 
 
 	<h2>Large table</h2>
-	<n-table class="table--lg" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+	<n-table size="lg" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
 
 	<h2>Custom table</h2>
 
@@ -89,20 +89,22 @@ class FilterableHeaderItem extends TableHeaderItem {
 		(scrollLoad)="scrollLoad($event)"
 		#table>
 	</n-table>
-	<p class="table-footer-simple">
-		{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
-	</p>
+	<footer class="table-footer">
+		<span class="table-footer_row-count">
+			{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
+		</span>
+	</footer>
 
 	<h2>Full table</h2>
 
 	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength - model.pageLength">Remove page</button>
 	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength + model.pageLength">Add page</button>
 	<n-table [model]="model" (sort)="fullSort($event)"></n-table>
-	<p class="table-footer">
-		<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
+	<footer class="table-footer--pagination">
+		<span class="table-footer_row-count">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
 		<n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
 		<n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
-	</p>
+	</footer>
 
 
 

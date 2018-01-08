@@ -28,8 +28,6 @@ export enum CheckboxState {
 }
 
 /**
- * class: CheckboxChange
- *
  * Used to emit changes performed on checkbox components.
  * @export
  * @class CheckboxChange
@@ -50,12 +48,6 @@ export class CheckboxChange {
 }
 
 /**
- * class: CheckboxComponent
- *
- * selector: `n-checkbox`
- *
- * source: `src/forms/checkbox.component.ts`
- *
  * @export
  * @class CheckboxComponent
  * @implements {ControlValueAccessor}
@@ -267,7 +259,11 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	 * @return {string}
 	 */
 	public getVariantClass() {
-		return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "default" ? `-${this.size}` : ""}`;
+		if (this.inline || this.nested) {
+			return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "default" ? `-${this.size}` : ""}`;
+		} else {
+			return `checkbox${this.size !== "default" ? `--${this.size}` : ""}`;
+		}
 	}
 
 	/**

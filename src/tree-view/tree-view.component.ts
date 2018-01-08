@@ -14,12 +14,7 @@ import { treetools } from "./../dropdown/dropdowntools";
 
 
 /**
- * class: TreeView
- *
  * demo: [https://pages.github.ibm.com/peretz/neutrino/#/tree-view](https://pages.github.ibm.com/peretz/neutrino/#/tree-view)
- *
- * selector: `n-tree-view`
- * source: `src/tree-view/tree-view.component.ts`
  *
  * @export
  * @class TreeView
@@ -142,7 +137,7 @@ export class TreeView implements OnChanges {
 	}
 
 	/**
-	 * Returns the selected leaf level item within the `TreeView`.
+	 * Returns the selected leaf level item(s) within the `TreeView`.
 	 * @returns {ListItem[]}
 	 * @memberof TreeView
 	 */

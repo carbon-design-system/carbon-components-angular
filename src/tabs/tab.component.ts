@@ -13,21 +13,16 @@ import {
 let nextId = 0;
 
 /**
-* The Tab component is a child of the neutrino Tabs component.
-* It represend one Tab item and its content within a panel of other Tab items.
+* The `Tab` component is a child of the neutrino `Tabs` component.
+* It represents one `Tab` item and its content within a panel of other `Tab` items.
 *
 *
-* # Tab
-* class: Tab
-* selector: `n-tab`
-*
-*
-* Tab takes a string or TemplateRef for the header,
-* and any content for the body of the tab.
-* Disabled states should be handled by the application (ie. switch to the tab, but display some indication as to _why_ the tab is disabled)
+* `Tab` takes a string or `TemplateRef` for the header, and any content for the body of the tab.
+* Disabled states should be handled by the application (ie. switch to the tab, but display some
+* indication as to _why_ the tab is disabled).
 *
 * When the tab is selected the `select` output will be triggered.
-*  `select` will also be triggered for the active tab when the tabs are loaded or updated.
+* The `select` output will also be triggered for the active tab when the tabs are loaded or updated.
 *
 *
 * Tab with string header:
@@ -118,13 +113,11 @@ export class Tab implements OnInit {
 	@Input() cacheActive = false;
 	/**
 	 * Value 'select' to be emitted after a new `Tab` is selected.
-	 *
 	 * @type {EventEmitter<void>}
 	 * @memberof Tab
 	 */
 	@Output() select: EventEmitter<void> = new EventEmitter<void>();
 	/**
-	 *
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 * @type {EventEmitter<void>}
 	 * @memberof Tab

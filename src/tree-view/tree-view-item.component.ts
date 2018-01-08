@@ -13,12 +13,8 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 
 
 /**
- * class: TreeViewItem
- *
  * `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
  *
- * selector: `n-tree-view-item`
- * source: `src/tree-view/tree-view-item.component.ts`
  * @export
  * @class TreeViewItem
  * @implements {OnInit}
@@ -157,7 +153,6 @@ export class TreeViewItem implements OnInit {
 	}
 
 	/**
-	 *
 	 * Calculates the indent spacing of the list item based on its hierarchical level in the list.
 	 * @returns {number} the left indent spacing of the list item
 	 * @memberof TreeViewItem
@@ -193,7 +188,7 @@ export class TreeViewItem implements OnInit {
 	}
 
 	/**
-	 * Manages the keyboad accessiblity for selection of a `TreeView` list item.
+	 * Manages the keyboard accessiblity for selection of a `TreeView` list item.
 	 * @param {any} ev
 	 * @param {any} item
 	 * @memberof TreeViewItem

@@ -11,9 +11,6 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
 
 
 /**
- * class: ListGroup (implements View)
- * selector: `n-list-group`
- *
  * `listTpl` binds `item` to the template context
  *
  * `items` expects an array of objects where the objects follow the format:
@@ -69,7 +66,7 @@ export class ListGroup {
 	@Input() listTpl: string | TemplateRef<any> = null;
 	/**
 	 * Set to `true` for the `ListGroup` to have checkmark selection.
-	 * @type {Boolean}
+	 * @type {boolean}
 	 * @memberof ListGroup
 	 */
 	@Input() checkMark: Boolean = true;
