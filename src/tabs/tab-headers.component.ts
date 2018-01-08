@@ -16,7 +16,7 @@ import { Tab } from "./tab.component";
 
 
 /**
- * The `TabHeaders` neutrino component contains the Tab items and controls scroll functionality
+ * The `TabHeaders` neutrino component contains the `Tab` items and controls scroll functionality
  * if content has overflow.
  * @export
  * @class TabHeaders

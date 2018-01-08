@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from "@angular/core";
 
 
 /**
- * SideNavPaneTitle expects some title to be projected, to be used as the title of the fly in sub view.
+ * `SideNavPaneTitle` expects some title to be projected, to be used as the title of the fly in sub view.
  *
  * @export
  * @class SideNavPaneTitle
