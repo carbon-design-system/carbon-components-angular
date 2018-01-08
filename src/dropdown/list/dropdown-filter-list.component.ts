@@ -21,12 +21,6 @@ import { DropdownList } from "./dropdown-list.component";
 
 
 /**
- * class: DropdownFilter (extends DropdownList)
- *
- * selector: `n-dropdown-filter`
- *
- * source: `src/dropdown/list/dropdown-filter-list.component.ts`
- *
  * ```html
  * <n-dropdown-filter [items]="listItems"></n-dropdown-filter>
  * ```

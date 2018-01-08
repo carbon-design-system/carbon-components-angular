@@ -17,10 +17,15 @@ import {
 import { Pill } from "./pill.component";
 import { ListItem } from "./../dropdown/list-item.interface";
 
+
 /**
  * Internal component used to render pills and the combobox text input.
- *
  * There is a sizeable chunk of logic here handling focus and keyboard state around pills.
+ *
+ * @export
+ * @class PillInput
+ * @implements {OnChanges}
+ * @implements {AfterViewInit}
  */
 @Component({
 	selector: "n-pill-input",
@@ -130,10 +135,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 	constructor(private elementRef: ElementRef) {}
 
 	/**
-	 * updates the pills, and subscribes to their `remove` events
-	 *
-	 * updates the displayValue and checks if it should be displayed
-	 *
+	 * Updates the pills, and subscribes to their `remove` events.
+	 * Updates the displayValue and checks if it should be displayed.
 	 * @param changes
 	 */
 	ngOnChanges(changes) {
@@ -168,7 +171,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	}
 
 	/**
-	 * binds events on the view
+	 * Binds events on the view.
+	 * @returns null
+	 * @memberof PillInput
 	 */
 	ngAfterViewInit() {
 		if (this.inputWrapper) {
@@ -208,7 +213,6 @@ export class PillInput implements OnChanges, AfterViewInit {
 
 	/**
 	 * Helper method to check if an array is empty
-	 *
 	 * @param {Array<any>} array
 	 */
 	public empty(array: Array<any>) {

@@ -12,12 +12,6 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 
 
 /**
- * class: DropdownSubMenu
- *
- * selector: `n-dropdown-sub-menu`
- *
- * source: `src/dropdown/sub-menu/sub-menu.component.ts`
- *
  * Ex:
  * ```html
  * <n-dropdown-sub-menu [items]="treeItems"></n-dropdown-sub-menu>
