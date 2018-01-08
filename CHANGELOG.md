@@ -4,6 +4,15 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...HEAD)
 
+**Fixed bugs:**
+
+- Banner service should remove timeout reference on ngOnDestroy [\#682](https://github.ibm.com/peretz/neutrino/issues/682)
+
+**Closed issues:**
+
+- Migrate documentation [\#663](https://github.ibm.com/peretz/neutrino/issues/663)
+- Document dropdown [\#563](https://github.ibm.com/peretz/neutrino/issues/563)
+
 **Merged pull requests:**
 
 - Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
