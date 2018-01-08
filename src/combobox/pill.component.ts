@@ -8,7 +8,6 @@ import {
 
 
 /**
- *
  * Internal component that represents a single pill/selected item
  * @export
  * @class Pill

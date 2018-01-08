@@ -13,11 +13,11 @@ import {
 let nextId = 0;
 
 /**
-* The Tab component is a child of the neutrino Tabs component.
-* It represend one Tab item and its content within a panel of other Tab items.
+* The `Tab` component is a child of the neutrino `Tabs` component.
+* It represents one `Tab` item and its content within a panel of other `Tab` items.
 *
 *
-* Tab takes a string or TemplateRef for the header,
+* `Tab` takes a string or `TemplateRef` for the header,
 * and any content for the body of the tab.
 * Disabled states should be handled by the application (ie. switch to the tab, but display some indication as to _why_ the tab is disabled)
 *

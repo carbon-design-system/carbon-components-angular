@@ -3,7 +3,7 @@ import { ListItem } from "./list-item.interface";
 
 
 /**
- * A component that intends to be used within Dropdown must provide an implementation that follows this base class.
+ * A component that needs to extend `Dropdown` must provide an implementation that follows this base class.
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  *

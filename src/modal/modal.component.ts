@@ -23,9 +23,15 @@ import { cycleTabs } from "./../common/tab.service";
 /**
  * Component to create modals for presenting content.
  *
- * Using a modal in your application requires the component: `n-modal-placeholder` and
- * can generally be used at the root of the application (ex. app.component.ts).
+ * Using a modal in your application requires the component: `n-modal-placeholder` which would generally be
+ * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
+ * ```html
+ * ...
+ * <n-modal-placeholder></n-modal-placeholder>
+ * ```
+ *
+ * A more complete example for `Modal` is given as follows:
  *
  * ```html
  * <n-modal size="xl" (overlaySelected)="closeModal()">
