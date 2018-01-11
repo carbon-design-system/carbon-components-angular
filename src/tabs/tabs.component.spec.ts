@@ -4,6 +4,8 @@ import { Component } from "@angular/core";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { TestBed, ComponentFixture, inject } from "@angular/core/testing";
+import { StaticIconModule } from "./../icon/static-icon.module";
+
 
 import { createGenericTestComponent } from "../common/test";
 import { Tabs } from "./tabs.component";
@@ -19,7 +21,8 @@ describe("Tabs", () => {
 		TestBed.configureTestingModule({
 			declarations: [Tabs, Tab, TabHeaders, TestComponent],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}})
+				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
+				StaticIconModule
 			]
 		});
 	});

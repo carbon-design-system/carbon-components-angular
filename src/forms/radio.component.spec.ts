@@ -9,6 +9,8 @@ import {
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
+import { StaticIconModule } from "./../icon/static-icon.module";
+
 
 import { RadioComponent, RadioGroup } from "./radio.component";
 
@@ -16,7 +18,7 @@ describe("RadioGroup", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [RadioComponent, RadioGroup, TestComponent],
-			imports: [BrowserAnimationsModule, FormsModule],
+			imports: [BrowserAnimationsModule, FormsModule, StaticIconModule],
 			providers: []
 		});
 	});

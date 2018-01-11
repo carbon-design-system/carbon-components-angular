@@ -3,6 +3,9 @@ import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
+import { StaticIconModule } from "./../icon/static-icon.module";
+
+
 import { CheckboxComponent } from "./checkbox.component";
 
 describe("CheckboxComponent", () => {
@@ -15,7 +18,7 @@ describe("CheckboxComponent", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [CheckboxComponent],
-			imports: [BrowserAnimationsModule],
+			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
