@@ -14,9 +14,6 @@ import { ListItem } from "./../list-item.interface";
 
 
 /**
- * class: TreeWrapper
- * selector: `n-tree-wrapper`
- *
  * @export
  * @class TreeWrapper
  */
@@ -82,7 +79,7 @@ export class TreeWrapper {
 	 */
 	@Input() listTpl: string | TemplateRef<any> = "";
 	/**
-	 * Used to Calculate the indent spacing of the list item based on its hierarchical level in the list.
+	 * Used to calculate the indent spacing of the list item based on its hierarchical level in the list.
 	 * @type {number}
 	 * @memberof TreeWrapper
 	 */
@@ -154,7 +151,7 @@ export class TreeWrapper {
 	}
 
 	/**
-	 * Calculates the indentation for the `TreeItem` which overall creates a visual indication of the hierachies of the items in the view.
+	 * Calculates the indentation for the `TreeItem` which overall creates a visual indication of the hierarchies of the items in the view.
 	 * @returns the indentation for the `TreeItem`.
 	 * @memberof TreeWrapper
 	 */

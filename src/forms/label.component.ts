@@ -2,12 +2,6 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 
 
 /**
- * class: LabelComponent
- *
- * selector: `n-label`
- *
- * source: `src/forms/label.component.ts`
- *
  * ```html
  * <n-label labelState="success">
  * 	<label label>Field with success</label>

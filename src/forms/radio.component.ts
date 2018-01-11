@@ -22,8 +22,6 @@ import { CheckboxComponent, CheckboxState } from "./checkbox.component";
 
 
 /**
- * class: RadioChange
- *
  * Used to emit changes performed on a `RadioComponent`.
  * @export
  * @class RadioChange

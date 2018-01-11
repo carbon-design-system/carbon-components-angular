@@ -2,12 +2,6 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 
 
 /**
- * class: ModalHeaderComponent
- *
- * selector: `n-modal-header`
- *
- * source: `src/modal/list/modal-header.component.ts`
- *
  * ***Inputs***
  * ```html
  * <n-modal-header [modalType]="default">Header text</n-modal-header>

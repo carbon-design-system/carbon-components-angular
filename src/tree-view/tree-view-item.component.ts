@@ -13,12 +13,8 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 
 
 /**
- * class: TreeViewItem
- *
  * `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
  *
- * selector: `n-tree-view-item`
- * source: `src/tree-view/tree-view-item.component.ts`
  * @export
  * @class TreeViewItem
  * @implements {OnInit}

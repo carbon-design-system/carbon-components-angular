@@ -22,12 +22,6 @@ import "rxjs/add/observable/of";
 
 
 /**
- * class: DropdownList
- *
- * selector: `n-dropdown-list`
- *
- * source: `src/dropdown/list/list.component.ts`
- *
  * ```html
  * <n-dropdown-list [items]="listItems"></n-dropdown-list>
  * ```

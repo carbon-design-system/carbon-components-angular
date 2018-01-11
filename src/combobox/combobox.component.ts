@@ -20,6 +20,12 @@ import { ListItem } from "./../dropdown/list-item.interface";
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
+ *
+ * @export
+ * @class ComboBox
+ * @implements {OnChanges}
+ * @implements {AfterViewInit}
+ * @implements {AfterContentInit}
  */
 @Component({
 	selector: "n-combo-box",
@@ -90,31 +96,23 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Input() items: Array<ListItem> = [];
 	/**
 	 * Text to show when nothing is selected.
-	 *
 	 * @memberof ComboBox
 	 */
 	@Input() placeholder = "";
 	/**
-	 * Combo box type.
-	 *
-	 * `"single"` | `"multi"`
-	 *
+	 * Combo box type (supporting single or multi selection of items).
 	 * @type {("single" | "multi")}
 	 * @memberof ComboBox
 	 */
 	@Input() type: "single" | "multi" = "single";
 	/**
-	 * Combo box size.
-	 *
-	 * `"sm"` | `"default"` | `"lg"`
-	 *
+	 * Combo box render size.
 	 * @type {("sm" | "default" | "lg")}
 	 * @memberof ComboBox
 	 */
 	@Input() size: "sm" | "default" | "lg" = "default";
 	/**
 	 * Set to `true` to disable combobox.
-	 *
 	 * @memberof ComboBox
 	 */
 	@HostBinding("attr.aria-disabled") @Input() disabled = false;
@@ -188,7 +186,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 	/**
 	 * Lifecycle hook.
-	 *
 	 * Updates pills if necessary.
 	 *
 	 * @param {any} changes
@@ -203,7 +200,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 
 	/**
 	 * Sets initial state that depends on child components
-	 *
 	 * Subscribes to select events and handles focus/filtering/initial list updates
 	 */
 	ngAfterContentInit() {
@@ -246,8 +242,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Handles escape closing the dropdown, and arrow up/down focus to/from the dropdown list
-	 *
+	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
 	 * @param {KeyboardEvent} ev
 	 */
 	@HostListener("keydown", ["$event"])
@@ -264,24 +259,33 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * called by `n-pill-input` when the selected pills have changed
+	 * Called by `n-pill-input` when the selected pills have changed.
 	 */
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 	}
 
-	/** closes the dropdown and emits the close event */
+	/**
+	 * Closes the dropdown and emits the close event.
+	 * @memberof ComboBox
+	 */
 	public closeDropdown() {
 		this.open = false;
 		this.close.emit();
 	}
 
-	/** opens the dropdown */
+	/**
+	 * Opens the dropdown.
+	 * @memberof ComboBox
+	 */
 	public openDropdown() {
 		this.open = true;
 	}
 
-	/** toggles the dropdown */
+	/**
+	 * Toggles the dropdown.
+	 * @memberof ComboBox
+	 */
 	public toggleDropdown() {
 		if (this.open) {
 			this.closeDropdown();
@@ -291,8 +295,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	}
 
 	/**
-	 * Sets the list group filter, and manages single select item selection
-	 *
+	 * Sets the list group filter, and manages single select item selection.
 	 * @param {string} searchString
 	 */
 	public onSearch(searchString) {

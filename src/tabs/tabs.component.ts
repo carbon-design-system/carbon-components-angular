@@ -4,16 +4,10 @@ import { TabHeaders } from "./tab-headers.component";
 
 
 /**
- *  Build out your application's tabs using this neutrino component.
- *  This is the parent of the Tab and TabHeader components.
+ * Build out your application's tabs using this neutrino component.
+ * This is the parent of the `Tab` and `TabHeader` components.
  *
- *
- * class: Tabs
- *
- * selector: `n-tabs`
- *
- *
- * Tabs expects a set of `n-tab` elements
+ * `Tabs` expects a set of `n-tab` elements
  *
  * ```html
  * <n-tabs>

@@ -2,10 +2,6 @@
  * A generic structure that represents an item in a list.
  * A list item may contain additional lists with sub-items to represent a tree.
  *
- * interface: ListItem
- *
- * source: `src/dropdown/list-item.interface.ts`
- *
  * ```typescript
  * export interface ListItem {
  * 	content: string;

@@ -105,7 +105,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() appendToBody = false;
 	/**
-	 * Adds in scrolling functionality within the dropdown list. (Optional)
+	 * Query string for the element that contains the `Dropdown`.
+	 * Used to trigger closing the dropdown if it is outside of the `scrollableContainer`.
 	 * @type {string}
 	 * @memberof Dropdown
 	 */
@@ -118,7 +119,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	/**
-	 * Emits selection events to other class.
+	 * Emits selection events.
 	 * @type {EventEmitter<Object>}
 	 * @memberof Dropdown
 	 */
@@ -173,7 +174,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	/**
-	 * Maintians an Event Observable for tracking window resizes.
+	 * Maintains an Event Observable for tracking window resizes.
 	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
 	 * @memberof Dropdown
 	 */
