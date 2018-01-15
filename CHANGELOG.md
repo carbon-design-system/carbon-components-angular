@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...HEAD)
 
+**Implemented enhancements:**
+
+- Automate milestone creation for each repo [\#717](https://github.ibm.com/peretz/neutrino/issues/717)
+
 **Fixed bugs:**
 
 - Banner service should remove timeout reference on ngOnDestroy [\#682](https://github.ibm.com/peretz/neutrino/issues/682)
