@@ -13,6 +13,19 @@ authenticate when asked.
 curl -uyour.email@ibm.com https://na.artifactory.swg-devops.com/artifactory/api/npm/wce-peretz-npm-local/auth/peretz >> ~/.npmrc
 ```
 
+##### Can't use `curl`?
+
+In case if you don't wanna use curl command to setup the config in .npmrc file, here are the alternative steps. (Specially for Windows users):
+
+1) Login to this page with your w3id credentials
+https://na.artifactory.swg-devops.com/artifactory/webapp/#/home
+2) Go to home page
+3) on the *set me up* card, type 'peretz' into the search box
+4) click on wce-peretz-npm-local
+5) A dialog will appear, in that Add your credentials at the top right corner
+6) Inside the same dialog, there is a section _using basic authentication_ copy and paste the same info in your `.npmrc` file _(in Windows `%USERPROFILE%/.npmrc`)_
+7) save your changes and try npm update
+
 ##### Getting errors?
 
 If you recently changed you w3id password, you'll get an error like `npm ERR! 403 Forbidden: @peretz/neutrino@...` and you will have to update your `~/.npmrc` by retaking the "Artifactory" step. Remove references to `peretz` from it before, or delete the whole file if you can (i.e. if peretz libraries are only thing you use from artifactory).
