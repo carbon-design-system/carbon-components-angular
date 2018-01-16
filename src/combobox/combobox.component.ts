@@ -238,6 +238,19 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				this.view["filterBy"]("");
 			});
 			this.view["updateList"](this.items);
+			// update the rest of combobox with any pre-selected items
+			// setTimeout just defers the call to the next check cycle
+			setTimeout(() => {
+				const selected = this.view.getSelected();
+				if (selected) {
+					if (this.type === "multi") {
+						this.updatePills();
+					} else {
+						this.selectedValue = selected[0].content;
+						this.propagateChangeCallback(selected[0]);
+					}
+				}
+			});
 		}
 	}
 
