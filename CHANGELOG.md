@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...HEAD)
 
+**Implemented enhancements:**
+
+- Automate milestone creation for each repo [\#717](https://github.ibm.com/peretz/neutrino/issues/717)
+
 **Fixed bugs:**
 
 - Banner service should remove timeout reference on ngOnDestroy [\#682](https://github.ibm.com/peretz/neutrino/issues/682)
@@ -15,6 +19,8 @@
 
 **Merged pull requests:**
 
+- Stop deploying to whitewater [\#736](https://github.ibm.com/peretz/neutrino/pull/736) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Adjustments to Documentation [\#733](https://github.ibm.com/peretz/neutrino/pull/733) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 
 ## [v1.1.0](https://github.ibm.com/peretz/neutrino/tree/v1.1.0) (2017-12-22)
