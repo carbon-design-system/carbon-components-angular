@@ -4,7 +4,6 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-
 import { SwitchComponent } from "./switch.component";
 
 describe("SwitchComponent", () => {
