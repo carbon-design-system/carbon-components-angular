@@ -8,9 +8,7 @@ import { Popover } from "./popover.component";
 import { PopoverDirective } from "./popover.directive";
 import { createElement } from "../../common/test";
 import { By } from "@angular/platform-browser";
-
 import { StaticIconModule } from "./../../icon/static-icon.module";
-
 
 describe("Popover directive", () => {
 	beforeEach(() => {
