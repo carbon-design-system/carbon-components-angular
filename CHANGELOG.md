@@ -11,14 +11,19 @@
 **Fixed bugs:**
 
 - Banner service should remove timeout reference on ngOnDestroy [\#682](https://github.ibm.com/peretz/neutrino/issues/682)
+- Popover Menu : Clicking on menu left makes the menu right button go to the second line  [\#677](https://github.ibm.com/peretz/neutrino/issues/677)
 
 **Closed issues:**
 
+- Popover placement not in the correct place for bottom-left/bottom-right [\#749](https://github.ibm.com/peretz/neutrino/issues/749)
+- Table Component creates extra blank space at bottom in Chrome  [\#726](https://github.ibm.com/peretz/neutrino/issues/726)
 - Migrate documentation [\#663](https://github.ibm.com/peretz/neutrino/issues/663)
 - Document dropdown [\#563](https://github.ibm.com/peretz/neutrino/issues/563)
+- Finalize top nav UI designs [\#466](https://github.ibm.com/peretz/neutrino/issues/466)
 
 **Merged pull requests:**
 
+- Add a button type to prevent submiting forms accidentally [\#746](https://github.ibm.com/peretz/neutrino/pull/746) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Stop deploying to whitewater [\#736](https://github.ibm.com/peretz/neutrino/pull/736) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Adjustments to Documentation [\#733](https://github.ibm.com/peretz/neutrino/pull/733) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
