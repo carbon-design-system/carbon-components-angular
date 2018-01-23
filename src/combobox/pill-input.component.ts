@@ -148,7 +148,6 @@ export class PillInput implements OnChanges, AfterViewInit {
 				if (pills.length > 1) {
 					for (let pill of pills) {
 						if (pill.offsetTop > 30) {
-							console.log("changes", pill, pill.offsetTop);
 							this.numberMore++;
 						}
 					}
