@@ -8,9 +8,7 @@ import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { createElement } from "./../../common/test";
 import { By } from "@angular/platform-browser";
-
 import { StaticIconModule } from "./../../icon/static-icon.module";
-
 
 describe("Tooltip directive", () => {
 	beforeEach(() => {

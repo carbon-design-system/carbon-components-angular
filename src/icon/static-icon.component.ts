@@ -230,7 +230,6 @@ export class StaticIcon implements AfterViewInit {
 		const icon = this.iconMap[`${this.icon}_${this.sizeMap[this.size]}`];
 		if (icon) {
 			el.innerHTML = icon(this.buildMatterClass() + " " + this.classList);
-			// el.classList = this.buildMatterClass() + " " + this.classList;
 		} else {
 			console.error(`${this.icon} at size ${this.size}(${this.sizeMap[this.size]}) needs to be added to StaticIcon's iconMap`);
 		}

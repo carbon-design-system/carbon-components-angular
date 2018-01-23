@@ -66,6 +66,7 @@ export class SwitchChange {
 			(click)="onClick($event)"
 			[id]="id"
 			role="switch"
+			type="button"
 			[disabled]="disabled"
 			[attr.aria-checked]="checked">
 		</button>
