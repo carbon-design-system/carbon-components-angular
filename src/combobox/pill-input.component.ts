@@ -99,7 +99,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	/** should we show the placeholder value? */
 	public showPlaceholder = true;
 	/** sets the expanded state (hide/show all selected pills) */
-	@Input() expanded = false;
+	public expanded = false;
 	/** array of selected items */
 	@Input() pills: Array<ListItem> = [];
 	/** value to display when nothing is selected */
@@ -142,7 +142,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	ngOnChanges(changes) {
 		if (changes.pills) {
 			this.pills = changes.pills.currentValue;
-			setTimeout(() => {
+			if (this.pillInstances) {
 				this.numberMore = 0;
 				let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
 				if (pills.length > 1) {
@@ -160,7 +160,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 					});
 				});
 				this.doResize();
-			}, 0);
+			}
 		}
 		if (changes.displayValue) {
 			if (this.type === "single" && this.singleInput) {
@@ -179,14 +179,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 		if (this.inputWrapper) {
 			this.inputWrapper.nativeElement.scrollTop = 0;
 		}
-		if (this.type === "multi") {
-			let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
-			for (let pill of pills) {
-				if (pill.offsetTop > 30) {
-					this.numberMore++;
-				}
-			}
-		}
+
 		// TODO: move these to methods and late bind/eager unbind
 		if (this.disabled) { return; }
 		// collapse input on outside click

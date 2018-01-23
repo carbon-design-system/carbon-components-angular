@@ -16,6 +16,7 @@ import {
 import { PillInput } from "./pill-input.component";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -62,7 +63,14 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			</button>
 		</div>
 		<ng-content></ng-content>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: ComboBox,
+			multi: true
+		}
+	]
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
@@ -177,6 +185,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/** internal reference to the dropdown list */
 	private dropdown;
 
+	private noop = this._noop.bind(this);
+	private onTouchedCallback: () => void = this._noop;
+	private propagateChangeCallback: (_: any) => void = this._noop;
+
 	/**
 	 * Creates an instance of ComboBox.
 	 * @param {ElementRef} elementRef
@@ -205,24 +217,40 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngAfterContentInit() {
 		if (this.view) {
 			this.view.type = this.type;
-			this.view.select.subscribe((ev) => {
+			this.view.select.subscribe(event => {
 				if (this.type === "multi") {
 					this.updatePills();
+					this.propagateChangeCallback(this.view.getSelected());
 				} else {
-					if (ev.item.selected) {
-						this.selectedValue = ev.item.content;
+					if (event.item.selected) {
+						this.selectedValue = event.item.content;
+						this.propagateChangeCallback(event.item);
 					} else {
 						this.selectedValue = "";
+						this.propagateChangeCallback(null);
 					}
 					// not gaurding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
 					this.closeDropdown();
 				}
-				this.selected.emit(ev);
+				this.selected.emit(event);
 				this.view["filterBy"]("");
 			});
 			this.view["updateList"](this.items);
+			// update the rest of combobox with any pre-selected items
+			// setTimeout just defers the call to the next check cycle
+			setTimeout(() => {
+				const selected = this.view.getSelected();
+				if (selected) {
+					if (this.type === "multi") {
+						this.updatePills();
+					} else {
+						this.selectedValue = selected[0].content;
+						this.propagateChangeCallback(selected[0]);
+					}
+				}
+			});
 		}
 	}
 
@@ -258,11 +286,42 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		}
 	}
 
+	/*
+	 * no-op method for null event listeners, and other no op calls
+	 */
+	_noop() {}
+
+	/*
+	 * propagates the value provided from ngModel
+	 */
+	writeValue(value: any) {
+		if (value) {
+			if (this.type === "single") {
+				this.view.propagateSelected([value]);
+			} else {
+				this.view.propagateSelected(value);
+			}
+		}
+	}
+
+	onBlur() {
+		this.onTouchedCallback();
+	}
+
+	registerOnChange(fn: any) {
+		this.propagateChangeCallback = fn;
+	}
+
+	registerOnTouched(fn: any) {
+		this.onTouchedCallback = fn;
+	}
+
 	/**
 	 * Called by `n-pill-input` when the selected pills have changed.
 	 */
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
+		this.propagateChangeCallback(this.view.getSelected());
 	}
 
 	/**
@@ -310,7 +369,12 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			// of any given item
 			if (!this.view.items.some(item => item.content === searchString)) {
 				let selected = this.view.getSelected();
-				if (selected) { selected[0].selected = false; }
+				if (selected) {
+					selected[0].selected = false;
+					// notify that the selection has changed
+					this.view.select.emit({ item: selected[0] });
+					this.propagateChangeCallback(null);
+				}
 			} else {
 				// otherwise we remove the filter
 				this.view["filterBy"]("");
