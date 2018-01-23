@@ -36,6 +36,7 @@ import { TreeViewDemo } from "./tree-view-demo/tree-view-demo.component";
 import { XLModalComponent } from "./modal-demo/extra-large.component";
 import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
 import { ChartDemo } from "./chart-demo/chart-demo.component";
+import { ButtonMenuDemo } from "./button-menu-demo/button-menu-demo.component";
 
 import { AppDoc } from "./doc.component";
 
@@ -56,7 +57,8 @@ import {
 	BannerService,
 	NFormsModule,
 	ComboBoxModule,
-	ChartsModule
+	ChartsModule,
+	ButtonMenuModule
 } from "./../../src";
 
 
@@ -65,6 +67,7 @@ import {
 		AppComponent,
 		HomeComponent,
 		AppDoc,
+		ButtonMenuDemo,
 		TableDemo,
 		FormsDemo,
 		IconDemo,
@@ -99,6 +102,7 @@ import {
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		ButtonMenuModule,
 		FormsModule,
 		ReactiveFormsModule,
 		HttpModule,
@@ -168,6 +172,10 @@ import {
 			{
 				path: "modal",
 				component: ModalDemo
+			},
+			{
+				path: "button-menu",
+				component: ButtonMenuDemo
 			},
 			{
 				path: "banner",
