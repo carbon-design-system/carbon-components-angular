@@ -35,36 +35,8 @@ import { Tab } from "./tab.component";
 				class="tabs_scroll-btn--left"
 				[class.disabled]="disabledLeftArrow"
 				(click)="goLeft()">
-				<svg
-					class="icon--sm"
-					*ngIf="!disabledLeftArrow"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16">
-					<path d="M10 11.5L6.4 8 10 4.5l-1-1L4.6 8 9 12.5z"/>
-					<path d="M8 16c4.4 0 8-3.6 8-8s-3.6-8-8-8-8 3.6-8 8 3.6 8 8 8zM8
-					1.2c3.7 0 6.8 3.1 6.8 6.8 0 3.7-3.1 6.8-6.8 6.8S1.2 11.7 1.2 8c0-3.7 3.1-6.8 6.8-6.8z"/>
-				</svg>
-				<svg
-					class="icon--sm"
-					*ngIf="disabledLeftArrow"
-					width="16px"
-					height="16px"
-					viewBox="0 0 16 16">
-					<path d="M0.1,7h1c0.2-1.2,0.6-2.3,1.3-3.2L1.7,3.1C0.8,4.2,0.3,5.5,0.1,7z"/>
-					<path d="M0.1,9c0.2,1.5,0.8,2.8,1.6,3.9l0.7-0.7c-0.7-0.9-1.2-2-1.3-3.2H0.1z"/>
-					<path d="M7,1.1v-1C5.5,0.3,4.2,0.8,3.1,1.7l0.7,0.7C4.7,1.7,5.8,1.3,7,1.1z"/>
-					<path d="M9,1.1c1.2,0.2,2.3,0.6,3.2,1.3l0.7-0.7C11.8,0.8,10.5,0.3,9,0.1V1.1z"/>
-					<path d="M13.6,12.2l0.7,0.7c0.9-1.1,1.4-2.4,1.6-3.9h-1C14.7,10.2,14.3,11.3,13.6,12.2z"/>
-					<path d="M15.9,7c-0.2-1.5-0.8-2.8-1.6-3.9l-0.7,0.7c0.7,0.9,1.2,2,1.3,3.2H15.9z"/>
-					<path d="M9,14.9v1c1.5-0.2,2.8-0.8,3.9-1.6l-0.7-0.7C11.3,14.3,10.2,14.7,9,14.9z"/>
-					<path d="M3.1,14.3c1.1,0.9,2.4,1.4,3.9,1.6v-1c-1.2-0.2-2.3-0.6-3.2-1.3L3.1,14.3z"/>
-					<polygon points="5.5,7.1 4.6,8 5.5,8.9 6.4,8 6.4,8 6.4,8 "/>
-					<polygon points="7.3,7.1 8.2,6.2 7.2,5.3 6.4,6.2 "/>
-					<polygon points="10,4.5 9,3.5 8.1,4.4 9.1,5.4 "/>
-					<polygon points="10,11.5 9.1,10.6 8.1,11.6 9,12.5 "/>
-					<polygon points="7.3,8.9 6.4,9.8 7.2,10.7 8.2,9.8 "/>
-				</svg>
+				<n-static-icon *ngIf="!disabledLeftArrow" icon="chevron_left" size="sm"></n-static-icon>
+				<n-static-icon *ngIf="disabledLeftArrow" icon="chevron_left_disabled" size="sm"></n-static-icon>
 			</button>
 			<div [ngClass]="{'tablist-overflow': overflow}">
 			<ul
@@ -105,36 +77,8 @@ import { Tab } from "./tab.component";
 				class="tabs_scroll-btn--right"
 				[class.disabled]="disabledRightArrow"
 				(click)="goRight()">
-				<svg
-					class="icon--sm"
-					*ngIf="!disabledRightArrow"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16">
-					<path d="M6 4.5L9.6 8 6 11.5l1 1L11.4 8 7 3.5z"/>
-					<path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.8c-3.7 0-6.8-3.1-6.8-6.8 0-3.7
-					3.1-6.8 6.8-6.8s6.8 3.1 6.8 6.8c0 3.7-3.1 6.8-6.8 6.8z"/>
-				</svg>
-				<svg
-					class="icon--sm"
-					*ngIf="disabledRightArrow"
-					width="16px"
-					height="16px"
-					viewBox="0 0 16 16">
-					<path d="M15.9,9h-1c-0.2,1.2-0.6,2.3-1.3,3.2l0.7,0.7C15.2,11.8,15.7,10.5,15.9,9z"/>
-					<path d="M15.9,7c-0.2-1.5-0.8-2.8-1.6-3.9l-0.7,0.7c0.7,0.9,1.2,2,1.3,3.2H15.9z"/>
-					<path d="M9,14.9v1c1.5-0.2,2.8-0.8,3.9-1.6l-0.7-0.7C11.3,14.3,10.2,14.7,9,14.9z"/>
-					<path d="M7,14.9c-1.2-0.2-2.3-0.6-3.2-1.3l-0.7,0.7c1.1,0.9,2.4,1.4,3.9,1.6V14.9z"/>
-					<path d="M2.4,3.8L1.7,3.1C0.8,4.2,0.3,5.5,0.1,7h1C1.3,5.8,1.7,4.7,2.4,3.8z"/>
-					<path d="M0.1,9c0.2,1.5,0.8,2.8,1.6,3.9l0.7-0.7c-0.7-0.9-1.2-2-1.3-3.2H0.1z"/>
-					<path d="M7,1.1v-1C5.5,0.3,4.2,0.8,3.1,1.7l0.7,0.7C4.7,1.7,5.8,1.3,7,1.1z"/>
-					<path d="M12.9,1.7C11.8,0.8,10.5,0.3,9,0.1v1c1.2,0.2,2.3,0.6,3.2,1.3L12.9,1.7z"/>
-					<polygon points="10.5,8.9 11.4,8 10.5,7.1 9.6,8 9.6,8 9.6,8 "/>
-					<polygon points="8.7,8.9 7.8,9.8 8.8,10.7 9.6,9.8 "/>
-					<polygon points="6,11.5 7,12.5 7.9,11.6 6.9,10.6 "/>
-					<polygon points="6,4.5 6.9,5.4 7.9,4.4 7,3.5 "/>
-					<polygon points="8.7,7.1 9.6,6.2 8.8,5.3 7.8,6.2 "/>
-				</svg>
+				<n-static-icon *ngIf="!disabledRightArrow" icon="chevron_right" size="sm"></n-static-icon>
+				<n-static-icon *ngIf="disabledRightArrow" icon="chevron_right_disabled" size="sm"></n-static-icon>
 			</button>
 		</div>
 	 `

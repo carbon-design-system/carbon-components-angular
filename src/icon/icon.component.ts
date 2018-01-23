@@ -44,15 +44,15 @@ export class Icon {
 	 * @return {object}
 	 */
 	get classList() {
-		return this._elementRef.nativeElement.classList;
+		return this.elementRef.nativeElement.classList;
 	}
 
 	/**
 	 * Initialize the component
 	 *
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 */
-	constructor(private _elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef) {}
 
 	/**
 	 * Create a class name based on @Input() `color` and `size`.

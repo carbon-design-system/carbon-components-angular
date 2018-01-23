@@ -53,18 +53,12 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					height: open?null:'30px'
 				}"
 				(click)="toggleDropdown()">
-				<svg
-					class="icon--xs"
+				<n-static-icon
+					icon="chevron_down" [size]="(size === 'sm'?'sm':'md')"
 					[ngClass]="{
 						open: open
-					}"
-					width="16"
-					height="16"
-					viewbox="0 0 16 16">
-					<g>
-						<polygon points="14.6,4 8,10.6 1.4,4 0.6,4.8 8,12.3 15.4,4.8"/>
-					</g>
-				</svg>
+					}">
+				</n-static-icon>
 			</button>
 		</div>
 		<ng-content></ng-content>

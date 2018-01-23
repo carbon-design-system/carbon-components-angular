@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
+import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { LabelComponent } from "./label.component";
 
@@ -14,7 +15,7 @@ describe("LabelComponent", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [LabelComponent],
-			imports: [BrowserAnimationsModule],
+			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 

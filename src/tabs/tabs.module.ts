@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
+import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
@@ -25,7 +26,8 @@ export { TabHeaders } from "./tab-headers.component";
 	],
 	imports: [
 		CommonModule,
-		TranslateModule.forChild()
+		TranslateModule.forChild(),
+		StaticIconModule
 	]
 })
 export class TabsModule {}

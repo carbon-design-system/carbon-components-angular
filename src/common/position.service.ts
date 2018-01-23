@@ -6,7 +6,7 @@
 
 // possible positions ... this should probably be moved (along with some other types) to some central location
 export type Position =
-	"left" | "right" | "top" | "bottom" | "bottom-left" | "bottom-right"  | "left-bottom" | "right-bottom";
+	"left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right"  | "left-bottom" | "right-bottom";
 
 export interface AbsolutePosition {
 	top: number;
@@ -49,6 +49,17 @@ function calculatePosition(referenceOffset: Offset, reference: HTMLElement, toPo
 			return {
 				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
 				left: Math.round(referenceOffset.left + reference.offsetWidth)
+			};
+		// matter currently doesn't support these, so the popover is broken anyway
+		case "top-left":
+			return {
+				top: 0,
+				left: 0
+			};
+		case "top-right":
+			return  {
+				top: 0,
+				left: 0
 			};
 		case "bottom-left":
 			return {
