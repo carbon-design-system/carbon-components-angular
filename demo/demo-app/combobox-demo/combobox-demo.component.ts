@@ -27,6 +27,29 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
+		<h2>Ng-Model</h2>
+		<h3>Single select</h3>
+		<div style="width: 330px">
+			<n-combo-box
+				placeholder="Select or enter"
+				[items]="demoModelItems"
+				[(ngModel)]="comboModel1">
+				<n-dropdown-list></n-dropdown-list>
+			</n-combo-box>
+			<p>{{ comboModel1 | json }}</p>
+		</div>
+		<h3>Multi-select</h3>
+		<div style="width: 330px">
+			<n-combo-box
+				placeholder="Select or enter"
+				type="multi"
+				[items]="demoModelItems"
+				[(ngModel)]="comboModel2">
+				<n-dropdown-list></n-dropdown-list>
+			</n-combo-box>
+			<p>{{ comboModel2 | json }}</p>
+		</div>
+
 		<h2>Disabled</h2>
 		<div style="width: 330px;">
 			<n-combo-box
@@ -93,8 +116,10 @@ export class ComboboxDemo implements OnInit {
 	demoItems2 = Array.from(this.demoItems1, item => Object.assign({}, item));
 	demoItems3 = Array.from(this.demoItems1, item => Object.assign({}, item));
 	demoItems4 = Array.from(this.demoItems1, item => Object.assign({}, item));
+	demoModelItems = Array.from(this.demoItems1, item => Object.assign({}, item));
+	comboModel1 = null;
+	comboModel2 = null;
 	visibleItems1 = this.demoItems1.map(item => { item.selected = true; return item; });
-	public docs: any = "";
 
 	ngOnInit() {
 		this.demoItems1.forEach(item => item.selected = true);

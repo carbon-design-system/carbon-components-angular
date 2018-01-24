@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
+import { StaticIconModule } from "./../../icon/static-icon.module";
+
 import { DropdownSubMenu } from "./sub-menu.component";
 import { SubMenuWrapper } from "./sub-menu-wrapper.component";
 import { SubMenuItem } from "./sub-menu-item.component";
@@ -63,7 +65,8 @@ describe("Dropdown tree", () => {
 				SubMenuItem,
 				SubMenuWrapper,
 				TestComponent
-			]
+			],
+			imports: [StaticIconModule]
 		});
 	});
 

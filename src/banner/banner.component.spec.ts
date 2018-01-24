@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { TestBed, ComponentFixture, inject, tick, fakeAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
+import { StaticIconModule } from "./../icon/static-icon.module";
+
 import { Banner } from "./banner.component";
 import { BannerService } from "./banner.service";
 
@@ -10,7 +12,8 @@ describe("Banner", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Banner],
-			providers: [BannerService]
+			providers: [BannerService],
+			imports: [StaticIconModule]
 		});
 	});
 
