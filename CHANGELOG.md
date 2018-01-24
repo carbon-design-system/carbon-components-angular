@@ -16,7 +16,9 @@
 **Closed issues:**
 
 - Popover placement not in the correct place for bottom-left/bottom-right [\#749](https://github.ibm.com/peretz/neutrino/issues/749)
+- Combox textbox does not show selected value [\#735](https://github.ibm.com/peretz/neutrino/issues/735)
 - Table Component creates extra blank space at bottom in Chrome  [\#726](https://github.ibm.com/peretz/neutrino/issues/726)
+- Mirroring quark, we should probably add a StaticIcon component for our internal icon needs [\#713](https://github.ibm.com/peretz/neutrino/issues/713)
 - Migrate documentation [\#663](https://github.ibm.com/peretz/neutrino/issues/663)
 - Document dropdown [\#563](https://github.ibm.com/peretz/neutrino/issues/563)
 - Finalize top nav UI designs [\#466](https://github.ibm.com/peretz/neutrino/issues/466)
@@ -24,8 +26,10 @@
 **Merged pull requests:**
 
 - Add a button type to prevent submiting forms accidentally [\#746](https://github.ibm.com/peretz/neutrino/pull/746) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- add ngModel support to combobox [\#745](https://github.ibm.com/peretz/neutrino/pull/745) ([callums](https://github.ibm.com/callums))
 - Stop deploying to whitewater [\#736](https://github.ibm.com/peretz/neutrino/pull/736) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Adjustments to Documentation [\#733](https://github.ibm.com/peretz/neutrino/pull/733) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- add static icon component [\#732](https://github.ibm.com/peretz/neutrino/pull/732) ([callums](https://github.ibm.com/callums))
 - Documentation dropdown [\#728](https://github.ibm.com/peretz/neutrino/pull/728) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 
 ## [v1.1.0](https://github.ibm.com/peretz/neutrino/tree/v1.1.0) (2017-12-22)

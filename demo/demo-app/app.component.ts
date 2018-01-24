@@ -96,6 +96,11 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
+			content: "Button menu demo",
+			link: "/button-menu",
+			selected: false
+		},
+		{
 			content: "Top-nav demo",
 			link: "/top-nav",
 			selected: false
