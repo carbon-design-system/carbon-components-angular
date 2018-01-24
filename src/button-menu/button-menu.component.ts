@@ -27,7 +27,7 @@ import { position } from "../common/position.service";
 			'btn--primary': type === 'primary',
 			'btn--secondary': type === 'secondary'
 		}"
-		type="button" (click)="onClick.emit()">{{placeholder}}</button>
+		type="button" (click)="onClick.emit()">{{value}}</button>
 		<button
 		[ngClass]="{
 			'btn--primary-addon': type === 'primary',
@@ -72,13 +72,13 @@ import { position } from "../common/position.service";
 })
 export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	/**
-	 * Value to show when nothing is selected.
+	 * Value to show on the main button
 	 *
 	 * @memberof ButtonMenu
 	 */
-	@Input() placeholder = "";
+	@Input() value = "";
 	/**
-	 * Size of the dropdown.
+	 * Size of the button menu.
 	 *
 	 * `"sm"` | `"default"` | `"lg"`
 	 *
@@ -97,16 +97,13 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	@Input() type: "primary" | "secondary" = "primary";
 
 	/**
-	 * Set to `true` to disable the dropdown.
+	 * Set to `true` to disable the button menu.
 	 *
 	 * @memberof ButtonMenu
 	 */
 	@Input() disabled = false;
 	@Input() appendToBody = false;
 	@Input() scrollableContainer: string;
-	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
-	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
-	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 	/**
 	 * Emitted when main action button is clicked.
@@ -115,7 +112,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	 *
 	 * ```html
 	 * <n-button-menu
-	 *		placeholder="Save"
+	 *		value="Save"
 	 *		(onClick)="doSave()">
 	 *	</n-button-menu>
 	 * ```
@@ -150,9 +147,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.dropdown = this.elementRef.nativeElement.querySelector(".btn_menu") ||
-		this.elementRef.nativeElement.querySelector(".btn_menu--sm") ||
-		this.elementRef.nativeElement.querySelector(".btn_menu--lg");
+		this.dropdown = this.elementRef.nativeElement.querySelector(".btn_menu");
 	}
 
 	buildClass() {
@@ -284,7 +279,6 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	closeMenu() {
 		this.menuIsClosed = true;
-		this.onClose.emit();
 		this.close.emit();
 
 		// move the list back in the component on close

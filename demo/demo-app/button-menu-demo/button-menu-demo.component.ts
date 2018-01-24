@@ -9,7 +9,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h2>Primary</h2>
 		<div style="width: 600px; height: 60px">
 			<n-button-menu
-			placeholder="Save"
+			value="Save"
 			size="lg"
 			(onClick)="log('Button clicked')">
 				<n-button-menu-item (click)="log('Item 1 clicked')">
@@ -21,7 +21,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-button-menu>
 
 			<n-button-menu
-			placeholder="Save"
+			value="Save"
 			(onClick)="log('Button clicked')">
 				<n-button-menu-item (click)="log('Item 1 clicked')">
 					Edit
@@ -32,7 +32,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-button-menu>
 
 			<n-button-menu
-			placeholder="Save"
+			value="Save"
 			size="sm"
 			(onClick)="log('Button clicked')">
 				<n-button-menu-item (click)="log('Item 1 clicked')">
@@ -47,7 +47,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h2>Secondary</h2>
 		<div style="width: 600px">
 			<n-button-menu
-			placeholder="Save"
+			value="Save"
 			size="lg"
 			type="secondary"
 			(onClick)="log('Button clicked')">
@@ -60,7 +60,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-button-menu>
 
 			<n-button-menu
-			placeholder="Save"
+			value="Save"
 			type="secondary"
 			(onClick)="log('Button clicked')">
 				<n-button-menu-item (click)="log('Item 1 clicked')">
@@ -72,7 +72,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-button-menu>
 
 			<n-button-menu
-			placeholder="Save"
+			value="Save"
 			size="sm"
 			type="secondary"
 			(onClick)="log('Button clicked')">
