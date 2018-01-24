@@ -39,7 +39,6 @@ import { position } from "../common/position.service";
 		aria-haspopup="true"
 		[attr.aria-disabled]="disabled"
 		(click)="toggleMenu()"
-		(blur)="onBlur()"
 		[disabled]="disabled">
 			<svg
 				[ngClass]="{
@@ -61,14 +60,7 @@ import { position } from "../common/position.service";
 			<ng-content></ng-content>
 		</ul>
 	`,
-	encapsulation: ViewEncapsulation.None,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: ButtonMenu,
-			multi: true
-		}
-	]
+	encapsulation: ViewEncapsulation.None
 })
 export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	/**
@@ -155,20 +147,6 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		if (this.size === "default") { return "btn-group"; }
 		if (this.size === "lg") { return "btn-group--lg"; }
 	}
-
-	onBlur() {
-		this.onTouchedCallback();
-	}
-
-	registerOnChange(fn: any) {
-		this.propagateChange = fn;
-	}
-
-	registerOnTouched(fn: any) {
-		this.onTouchedCallback = fn;
-	}
-
-	propagateChange = (_: any) => {};
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(ev: KeyboardEvent) {
