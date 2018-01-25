@@ -21,36 +21,36 @@ import { cycleTabs } from "./../common/tab.service";
 
 
 /**
-* Component to create modals for presenting content.
-*
-* Using a modal in your application requires `n-modal-placeholder` which would generally be
-* placed near the end of your app component template (app.component.ts or app.component.html) as:
-*
-* ```html
-* ...
-* <n-modal-placeholder></n-modal-placeholder>
-* ```
-*
-* A more complete example for `Modal` is given as follows:
-*
-* ```html
-* <n-modal size="xl" (overlaySelected)="closeModal()">
-*  <n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
-*  <section class="modal-body">
-*      <h1>It Works!</h1>
-*      {{modalText}}
-*  </section>
-*  <n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
-* </n-modal>
-* ...
-* <n-modal-placeholder></n-modal-placeholder>
-* ```
-*
-* @export
-* @class ModalComponent
-* @implements {OnInit}
-* @implements {OnDestroy}
-*/
+ * Component to create modals for presenting content.
+ *
+ * Using a modal in your application requires `n-modal-placeholder` which would generally be
+ * placed near the end of your app component template (app.component.ts or app.component.html) as:
+ *
+ * ```html
+ * ...
+ * <n-modal-placeholder></n-modal-placeholder>
+ * ```
+ *
+ * A more complete example for `Modal` is given as follows:
+ *
+ * ```html
+ * <n-modal size="xl" (overlaySelected)="closeModal()">
+ * 	<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ * 	<section class="modal-body">
+ * 		<h1>It Works!</h1>
+ * 		{{modalText}}
+ * 	</section>
+ * 	<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
+ * </n-modal>
+ * ...
+ * <n-modal-placeholder></n-modal-placeholder>
+ * ```
+ *
+ * @export
+ * @class ModalComponent
+ * @implements {OnInit}
+ * @implements {OnDestroy}
+ */
 @Component({
 	selector: "n-modal",
 	template: `
@@ -91,11 +91,11 @@ import { cycleTabs } from "./../common/tab.service";
 export class ModalComponent implements OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
-	 * `md` is the default size
-	 * @type {"sm" | "md" | "lg" | "xl" | "xxl"}
+     * Default size is `md`
+     * @type {"sm" | "md" | "lg" | "xl" | "xxl"}
 	 * @memberof ModalComponent
 	 */
-	@Input() size = "md";
+	@Input() size = "xl";
 	/**
 	 * Classification of the modal.
 	 * @type {"default" | "warning" | "error"}
@@ -160,8 +160,8 @@ export class ModalComponent implements OnInit, OnDestroy {
 	handleKeyboardEvent(event: KeyboardEvent) {
 		switch (event.key) {
 			case "Escape": {
-				event.stopImmediatePropagation(); // prevents events being fired for multiple modals if more than 2 open
-				this.modalService.destroy(); // destroy top (latest) modal
+				event.stopImmediatePropagation();  // prevents events being fired for multiple modals if more than 2 open
+				this.modalService.destroy();  // destroy top (latest) modal
 				break;
 			}
 
