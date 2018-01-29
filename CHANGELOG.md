@@ -2,7 +2,14 @@
 
 ## [Unreleased](https://github.ibm.com/peretz/neutrino/tree/HEAD)
 
-[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...HEAD)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.1...HEAD)
+
+**Fixed bugs:**
+
+- backport combobox not showing default value to 1.0.0 \(angular 4\) [\#752](https://github.ibm.com/peretz/neutrino/issues/752)
+
+## [v1.0.1](https://github.ibm.com/peretz/neutrino/tree/v1.0.1) (2018-01-29)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...v1.0.1)
 
 **Implemented enhancements:**
 
@@ -15,8 +22,10 @@
 
 **Closed issues:**
 
+- Tab shows double line after selected [\#754](https://github.ibm.com/peretz/neutrino/issues/754)
 - Popover placement not in the correct place for bottom-left/bottom-right [\#749](https://github.ibm.com/peretz/neutrino/issues/749)
 - Combox textbox does not show selected value [\#735](https://github.ibm.com/peretz/neutrino/issues/735)
+- NEW: Button Menu component [\#727](https://github.ibm.com/peretz/neutrino/issues/727)
 - Table Component creates extra blank space at bottom in Chrome  [\#726](https://github.ibm.com/peretz/neutrino/issues/726)
 - Mirroring quark, we should probably add a StaticIcon component for our internal icon needs [\#713](https://github.ibm.com/peretz/neutrino/issues/713)
 - Migrate documentation [\#663](https://github.ibm.com/peretz/neutrino/issues/663)
@@ -25,6 +34,8 @@
 
 **Merged pull requests:**
 
+- backport ngModel and not showing pre-selected items to 1.0.x [\#756](https://github.ibm.com/peretz/neutrino/pull/756) ([callums](https://github.ibm.com/callums))
+- Add button menu [\#750](https://github.ibm.com/peretz/neutrino/pull/750) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add a button type to prevent submiting forms accidentally [\#746](https://github.ibm.com/peretz/neutrino/pull/746) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - add ngModel support to combobox [\#745](https://github.ibm.com/peretz/neutrino/pull/745) ([callums](https://github.ibm.com/callums))
 - Stop deploying to whitewater [\#736](https://github.ibm.com/peretz/neutrino/pull/736) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
