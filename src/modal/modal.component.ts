@@ -91,7 +91,6 @@ import { cycleTabs } from "./../common/tab.service";
 export class ModalComponent implements OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
-     * Default size is `md`
 	 * @type {"xl" | "xxl" | "lg" | "sm" | "default"}
 	 * @memberof ModalComponent
 	 */
