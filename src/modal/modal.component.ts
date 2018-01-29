@@ -57,7 +57,7 @@ import { cycleTabs } from "./../common/tab.service";
 		<n-overlay (overlaySelect)="overlaySelected.emit()">
 			<div [ngClass]="{
 					'modal--sm': size === 'sm',
-					'modal': size === 'md',
+					'modal': size === 'default',
 					'modal--lg': size === 'lg',
 					'modal--xl': size === 'xl',
 					'modal--xxl': size === 'xxl',
@@ -92,7 +92,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
      * Default size is `md`
-     * @type {"sm" | "md" | "lg" | "xl" | "xxl"}
+	 * @type {"xl" | "xxl" | "lg" | "sm" | "default"}
 	 * @memberof ModalComponent
 	 */
 	@Input() size = "xl";
