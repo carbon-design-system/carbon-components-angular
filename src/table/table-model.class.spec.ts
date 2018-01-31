@@ -18,6 +18,16 @@ describe("Table", () => {
 		expect(tableModel.rowsSelected.length).toEqual(2);
 	});
 
+	it("should set rowsContext when setting data", () => {
+		let tableModel  = new TableModel();
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"})],
+			[new TableItem({data: "C"}), new TableItem({data: "D"})]
+		];
+
+		expect(tableModel.rowsContext.length).toEqual(2);
+	});
+
 	it("should set header when setting data", () => {
 		let tableModel  = new TableModel();
 		tableModel.data = [
@@ -94,12 +104,14 @@ describe("Table", () => {
 			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]
 		];
 		tableModel.rowsSelected[1] = true;
+		tableModel.rowsContext[1] = "success";
 
 		tableModel.sort(1);
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
 		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.row(2)).toEqual([new TableItem({data: "G"}), new TableItem({data: "H"}), new TableItem({data: "I"})]);
 		expect(tableModel.rowsSelected).toEqual([false, false, true]);
+		expect(tableModel.rowsContext).toEqual([undefined, undefined, "success"]);
 	});
 
 	it("should sort data descending", () => {
@@ -110,6 +122,7 @@ describe("Table", () => {
 			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]
 		];
 		tableModel.rowsSelected[1] = true;
+		tableModel.rowsContext[1] = "success";
 		tableModel.header[1].descending = true;
 
 		tableModel.sort(1);
@@ -117,6 +130,7 @@ describe("Table", () => {
 		expect(tableModel.row(1)).toEqual([new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.row(2)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})]);
 		expect(tableModel.rowsSelected).toEqual([true, false, false]);
+		expect(tableModel.rowsContext).toEqual(["success", undefined, undefined]);
 	});
 
 	/* ****************************************************************
@@ -154,6 +168,7 @@ describe("Table", () => {
 		expect(tableModel.data[0].length).toEqual(1);
 		expect(tableModel.row(0)).toEqual([new TableItem()]);
 		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
 		expect(tableModel.header.length).toEqual(1);
 	});
 
@@ -165,6 +180,7 @@ describe("Table", () => {
 		expect(tableModel.data[0].length).toEqual(2);
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"})]);
 		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -186,6 +202,7 @@ describe("Table", () => {
 
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.rowsSelected.length).toEqual(3);
+		expect(tableModel.rowsContext.length).toEqual(3);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -200,6 +217,7 @@ describe("Table", () => {
 
 		expect(tableModel.row(1)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.rowsSelected.length).toEqual(3);
+		expect(tableModel.rowsContext.length).toEqual(3);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -214,6 +232,7 @@ describe("Table", () => {
 
 		expect(tableModel.row(-1)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.rowsSelected.length).toEqual(3);
+		expect(tableModel.rowsContext.length).toEqual(3);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -228,6 +247,7 @@ describe("Table", () => {
 
 		expect(tableModel.row(-1)).toEqual([new TableItem({data: "E"}), new TableItem()]);
 		expect(tableModel.rowsSelected.length).toEqual(3);
+		expect(tableModel.rowsContext.length).toEqual(3);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -244,6 +264,7 @@ describe("Table", () => {
 		expect(tableModel.row(1)).toEqual([new TableItem({data: "C"}), new TableItem({data: "D"}), new TableItem()]);
 		expect(tableModel.row(2)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"}), new TableItem({data: "G"})]);
 		expect(tableModel.rowsSelected.length).toEqual(3);
+		expect(tableModel.rowsContext.length).toEqual(3);
 		expect(tableModel.header.length).toEqual(3);
 	});
 
@@ -259,6 +280,7 @@ describe("Table", () => {
 		expect(tableModel.row(0)).toEqual([new TableItem({data: "C"}), new TableItem({data: "D"})]);
 		expect(tableModel.data.length).toEqual(1);
 		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -274,6 +296,7 @@ describe("Table", () => {
 		expect(tableModel.row(-1)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"})]);
 		expect(tableModel.data.length).toEqual(1);
 		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -291,6 +314,7 @@ describe("Table", () => {
 		expect(tableModel.row(1)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.data.length).toEqual(2);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(2);
 	});
 
@@ -331,6 +355,7 @@ describe("Table", () => {
 		expect(tableModel.data[0].length).toEqual(1);
 		expect(tableModel.column(0)).toEqual([new TableItem()]);
 		expect(tableModel.rowsSelected.length).toEqual(1);
+		expect(tableModel.rowsContext.length).toEqual(1);
 		expect(tableModel.header.length).toEqual(1);
 	});
 
@@ -342,6 +367,7 @@ describe("Table", () => {
 		expect(tableModel.data[0].length).toEqual(1);
 		expect(tableModel.column(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "B"})]);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(1);
 	});
 
@@ -363,6 +389,7 @@ describe("Table", () => {
 
 		expect(tableModel.column(0)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(3);
 	});
 
@@ -377,6 +404,7 @@ describe("Table", () => {
 
 		expect(tableModel.column(1)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(3);
 	});
 
@@ -391,6 +419,7 @@ describe("Table", () => {
 
 		expect(tableModel.column(-1)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"})]);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(3);
 	});
 
@@ -405,6 +434,7 @@ describe("Table", () => {
 
 		expect(tableModel.column(-1)).toEqual([new TableItem({data: "E"}), new TableItem()]);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(3);
 	});
 
@@ -421,6 +451,7 @@ describe("Table", () => {
 		expect(tableModel.column(1)).toEqual([new TableItem({data: "B"}), new TableItem({data: "D"}), new TableItem()]);
 		expect(tableModel.column(2)).toEqual([new TableItem({data: "E"}), new TableItem({data: "F"}), new TableItem({data: "G"})]);
 		expect(tableModel.rowsSelected.length).toEqual(3);
+		expect(tableModel.rowsContext.length).toEqual(3);
 		expect(tableModel.header.length).toEqual(3);
 	});
 
@@ -436,6 +467,7 @@ describe("Table", () => {
 		expect(tableModel.column(0)).toEqual([new TableItem({data: "B"}), new TableItem({data: "D"})]);
 		expect(tableModel.data.length).toEqual(2);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(1);
 	});
 
@@ -451,6 +483,7 @@ describe("Table", () => {
 		expect(tableModel.column(-1)).toEqual([new TableItem({data: "A"}), new TableItem({data: "C"})]);
 		expect(tableModel.data.length).toEqual(2);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(1);
 	});
 
@@ -467,6 +500,7 @@ describe("Table", () => {
 		expect(tableModel.column(1)).toEqual([new TableItem({data: "C"}), new TableItem({data: "F"})]);
 		expect(tableModel.data.length).toEqual(2);
 		expect(tableModel.rowsSelected.length).toEqual(2);
+		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(2);
 	});
 });
