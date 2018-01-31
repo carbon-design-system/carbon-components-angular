@@ -18,6 +18,9 @@ export class TableModel {
 		// init rowsSelected
 		this.rowsSelected = new Array<boolean>(this._data.length);
 
+		// init rowsContext
+		this.rowsContext = new Array<string>(this._data.length);
+
 		// only create a fresh header if necessary (header doesn't exist or differs in length)
 		if (this.header == null || this.header.length !== this._data[0].length) {
 			let header = new Array<TableHeaderItem>();
@@ -48,6 +51,19 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	rowsSelected: Array<boolean>;
+
+	/**
+	 * Contains information about the context of the row.
+	 *
+	 * It affects styling of the row to reflect the context.
+	 *
+	 * string can be one of `"success" | "warning" | "info" | "error" | ""` and it's
+	 * empty or undefined by default
+	 *
+	 * @type {Array<string>}
+	 * @memberof TableModel
+	 */
+	rowsContext: Array<string>;
 
 	/**
 	 * Contains information about the header cells of the table.
@@ -191,12 +207,18 @@ export class TableModel {
 
 			// update rowsSelected property for length
 			this.rowsSelected.push(false);
+
+			// update rowsContext property for length
+			this.rowsContext.push(undefined);
 		} else {
 			const ri = this.realRowIndex(index);
 			this.data.splice(ri, 0, realRow);
 
 			// update rowsSelected property for length
 			this.rowsSelected.splice(ri, 0, false);
+
+			// update rowsContext property for length
+			this.rowsContext.splice(ri, 0, undefined);
 		}
 	}
 
@@ -212,6 +234,7 @@ export class TableModel {
 		const rri = this.realRowIndex(index);
 		this.data.splice(rri, 1);
 		this.rowsSelected.splice(rri, 1);
+		this.rowsContext.splice(rri, 1);
 	}
 
 	/**
@@ -330,9 +353,9 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	sort(index: number) {
-		this.pushRowSelectionToModelData();
+		this.pushRowStateToModelData();
 		this.data.sort((a, b) => (this.header[index].descending ? -1 : 1) * this.header[index].compare(a[index], b[index]));
-		this.popRowSelectionFromModelData();
+		this.popRowStateFromModelData();
 		this.header[index].sorted = true;
 	}
 
@@ -347,11 +370,15 @@ export class TableModel {
 	 *
 	 * @memberof TableModel
 	 */
-	pushRowSelectionToModelData() {
+	pushRowStateToModelData() {
 		for (let i = 0; i < this.data.length; i++) {
 			const rowSelectedMark = new TableItem();
 			rowSelectedMark.data = this.rowsSelected[i];
 			this.data[i].push(rowSelectedMark);
+
+			const rowContext = new TableItem();
+			rowContext.data = this.rowsContext[i];
+			this.data[i].push(rowContext);
 		}
 	}
 
@@ -363,8 +390,9 @@ export class TableModel {
 	 *
 	 * @memberof TableModel
 	 */
-	popRowSelectionFromModelData() {
+	popRowStateFromModelData() {
 		for (let i = 0; i < this.data.length; i++) {
+			this.rowsContext[i] = this.data[i].pop().data;
 			this.rowsSelected[i] = !!this.data[i].pop().data;
 		}
 	}

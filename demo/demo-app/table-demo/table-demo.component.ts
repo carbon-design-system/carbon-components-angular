@@ -59,6 +59,9 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<h2>Large table</h2>
 	<n-table size="lg" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
 
+	<h2>Table with contextual rows</h2>
+	<n-table [model]="contextModel" (sort)="simpleSort($event)"></n-table>
+
 	<h2>Custom table</h2>
 
 	<button class="btn--primary" (click)="customModel.addRow()">Add row</button>
@@ -135,6 +138,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 export class TableDemo implements OnInit {
 	public simpleModel = new TableModel();
 	public customModel = new TableModel();
+	public contextModel = new TableModel();
 	public model = new TableModel();
 
 	@ViewChild("filterableHeaderTemplate")
@@ -177,6 +181,20 @@ export class TableDemo implements OnInit {
 				style: {"width": "auto"}
 			})
 		];
+
+		this.contextModel.data = [
+			[new TableItem({data: "Success row"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "Warning row"}), new TableItem({data: "zwer"})],
+			[new TableItem({data: "Information row"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "Error row"}), new TableItem({data: "twer"})]
+		];
+		this.contextModel.header = [
+			new TableHeaderItem({data: "Context"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+		];
+		this.contextModel.rowsContext[0] = "success";
+		this.contextModel.rowsContext[1] = "warning";
+		this.contextModel.rowsContext[2] = "info";
+		this.contextModel.rowsContext[3] = "error";
 
 		// full model
 		this.model.header = [
