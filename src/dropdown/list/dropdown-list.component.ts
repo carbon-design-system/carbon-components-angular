@@ -96,7 +96,12 @@ import "rxjs/add/observable/of";
 				</ng-template>
 			</li>
 		</ul>`,
-		providers: [{provide: AbstractDropdownView, useExisting: DropdownList}]
+		providers: [
+			{
+				provide: AbstractDropdownView,
+				useExisting: DropdownList
+			}
+		]
 }) // conceptually this extends list-group, but we dont have to
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
 	/**
@@ -157,7 +162,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @type {HTMLElement[]}
 	 * @memberof DropdownList
 	 */
-	protected listList: HTMLElement[];
+	protected listElementList: HTMLElement[];
 	/**
 	 * Observable bound to keydown events to control filtering.
 	 * @protected
@@ -167,10 +172,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 
 	/**
 	 * Creates an instance of `DropdownList`.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof DropdownList
 	 */
-	constructor(public _elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {}
 
 	/**
 	 * Updates list when changes occur within the items belonging to the `DropdownList`.
@@ -189,7 +194,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	ngAfterViewInit() {
-		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+		this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
 		this.setupFocusObservable();
 	}
@@ -213,7 +218,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		this.items = items.map(item => Object.assign({}, item));
 		this.displayItems = this.items;
 		setTimeout(() => {
-			this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+			this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		}, 0);
 		this.index = this.items.findIndex(item => item.selected);
 		this.setupFocusObservable();
@@ -281,7 +286,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		if (this.index < this.items.length - 1) {
 			this.index++;
 		}
-		let elem = this.listList[this.index];
+		let elem = this.listElementList[this.index];
 		let item = this.items[this.index];
 		if (item.disabled) {
 			return this.getNextElement();
@@ -322,7 +327,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		if (this.index > 0) {
 			this.index--;
 		}
-		let elem = this.listList[this.index];
+		let elem = this.listElementList[this.index];
 		let item = this.items[this.index];
 		if (item.disabled) {
 			return this.getPrevElement();
@@ -349,9 +354,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
-			return this.listList[0];
+			return this.listElementList[0];
 		}
-		return this.listList[this.index];
+		return this.listElementList[this.index];
 	}
 
 	/**

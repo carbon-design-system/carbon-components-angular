@@ -117,7 +117,12 @@ import { DropdownList } from "./dropdown-list.component";
 				<span>{{ 'DROPDOWN.FILTER.NO_RESULTS' | translate }}</span>
 			</li>
 		</ul>`,
-		providers: [{provide: AbstractDropdownView, useExisting: DropdownFilter}]
+		providers: [
+			{
+				provide: AbstractDropdownView,
+				useExisting: DropdownFilter
+			}
+		]
 }) // conceptually this extends list-group, but we dont have to
 export class DropdownFilter extends DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy, OnChanges {
 	@ViewChild("selectedOnly") selectedOnly;
@@ -173,11 +178,11 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 
 	/**
 	 * Creates an instance of DropdownFilter.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof DropdownFilter
 	 */
-	constructor(public _elementRef: ElementRef) {
-		super(_elementRef);
+	constructor(public elementRef: ElementRef) {
+		super(elementRef);
 	}
 
 	/**
@@ -200,7 +205,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			}
 			this.filterNative.value = "";
 			setTimeout(() => {
-				this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+				this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 			}, 0);
 			this.index = this.items.findIndex(item => item.selected);
 			this.setupFocusObservable();
@@ -213,13 +218,13 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	 * @memberof DropdownFilter
 	 */
 	ngAfterViewInit() {
-		this.listList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
+		this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.items.findIndex(item => item.selected);
 		this.setupFocusObservable();
 		// just makes dealing with the nativeElement slightly less verbose
 		this.filterNative = this.filter.nativeElement;
 		this.selectedOnlyNative = this.selectedOnly ? this.selectedOnly.nativeElement : null;
-		this._elementRef.nativeElement.addEventListener("keydown", this.overrideKeydown);
+		this.elementRef.nativeElement.addEventListener("keydown", this.overrideKeydown);
 	}
 
 	/**
@@ -227,7 +232,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	 * @memberof DropdownFilter
 	 */
 	ngOnDestroy() {
-		this._elementRef.nativeElement.removeEventListener("keydown", this.overrideKeydown);
+		this.elementRef.nativeElement.removeEventListener("keydown", this.overrideKeydown);
 		if (this.focusJump) {
 			this.focusJump.unsubscribe();
 		}
@@ -246,7 +251,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			ev.preventDefault();
 			this.filterNative.focus();
 		} else if (ev.key === "Enter" || (ev.key === "ArrowDown" && !this.list.nativeElement.contains(ev.target))) {
-			this.listList[0].focus();
+			this.listElementList[0].focus();
 		}
 	}
 
