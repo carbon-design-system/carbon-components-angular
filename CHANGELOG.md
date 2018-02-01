@@ -16,6 +16,7 @@
 
 **Merged pull requests:**
 
+- Fix normal table checkbox size and separate table models in demo [\#763](https://github.ibm.com/peretz/neutrino/pull/763) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix form modal demo [\#762](https://github.ibm.com/peretz/neutrino/pull/762) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add row highlighting based on context [\#760](https://github.ibm.com/peretz/neutrino/pull/760) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 
