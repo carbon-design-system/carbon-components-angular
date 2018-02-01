@@ -27,6 +27,7 @@ import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
+import { Subscription } from "rxjs/Subscription";
 
 
 /**
@@ -44,7 +45,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 	template: `
 		<button
 			type="button"
-			#dropdownHost
+			#dropdownButton
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			(click)="toggleMenu()"
@@ -55,6 +56,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 			<n-static-icon icon="chevron_down" [size]="(size === 'sm'?'sm':'md')"></n-static-icon>
 		</button>
 		<div
+			#dropdownMenu
 			class="dropdown_menu">
 			<ng-content></ng-content>
 		</div>
@@ -68,7 +70,7 @@ import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.serv
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
+export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	/**
 	 * Value displayed if no item is selected.
 	 * @memberof Dropdown
@@ -84,7 +86,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * @type {("sm" | "default" | "lg")}
 	 * @memberof Dropdown
 	 */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() size: "sm" | "default" | "md" | "lg" = "default";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -106,7 +108,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() appendToBody = false;
 	/**
 	 * Query string for the element that contains the `Dropdown`.
-	 * Used to trigger closing the dropdown if it is outside of the `scrollableContainer`.
+	 * Used to trigger closing the dropdown if it scrolls outside of the viewport of the `scrollableContainer`.
 	 * @type {string}
 	 * @memberof Dropdown
 	 */
@@ -147,7 +149,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
 	 * @memberof Dropdown
 	 */
-	@ViewChild("dropdownHost") rootButton;
+	@ViewChild("dropdownButton") dropdownButton;
+	/**
+	 * ViewChid of the dropdown view.
+	 */
+	@ViewChild("dropdownMenu") dropdownMenu;
 
 	/**
 	 * Binds "combobox" property to the `Popover` role attribute.
@@ -160,12 +166,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * @memberof Dropdown
 	 */
 	menuIsClosed = true;
+
 	/**
-	 * Maintains a reference to the dropdown list element from the view DOM.
-	 * @type {HTMLElement}
-	 * @memberof Dropdown
+	 * Used by the various appendToX methods to keep a reference to our wrapper div
 	 */
-	dropdown: HTMLElement;
 	dropdownWrapper: HTMLElement;
 	// .bind creates a new function, so we declare the methods below
 	// but .bind them up here
@@ -174,16 +178,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	/**
-	 * Maintains an Event Observable for tracking window resizes.
+	 * Maintains an Event Observable Subscription for tracking window resizes.
 	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
 	 * @memberof Dropdown
 	 */
-	resize;
+	resize: Subscription;
 	/**
-	 *  Maintians an Event Observable for tracking scrolling within the open `Dropdown` list.
+	 *  Maintians an Event Observable Subscription for tracking scrolling within the open `Dropdown` list.
 	 * @memberof Dropdown
 	 */
-	scroll;
+	scroll: Subscription;
 
 	private onTouchedCallback: () => void = this._noop;
 
@@ -212,31 +216,23 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.elementRef.nativeElement.classList.add(this.buildClass());
-		this.view.select.subscribe(evt => {
+		this.view.select.subscribe(event => {
 			if (this.type === "single") {
 				this.closeMenu();
-				this.rootButton.nativeElement.focus();
+				this.dropdownButton.nativeElement.focus();
 			}
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
 			} else {
-				if (evt.item.selected) {
-					this.propagateChange(evt.item);
+				if (event.item.selected) {
+					this.propagateChange(event.item);
 				} else {
 					this.propagateChange(null);
 				}
 			}
-			this.select.emit(evt);
-			this.selected.emit(evt);
+			this.select.emit(event);
+			this.selected.emit(event);
 		});
-	}
-
-	/**
-	 * Retrieves the HTML Element for the dropdown and stores it locally.
-	 * @memberof Dropdown
-	 */
-	ngAfterViewInit() {
-		this.dropdown = this.elementRef.nativeElement.querySelector(".dropdown_menu");
 	}
 
 	/**
@@ -257,6 +253,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	buildClass() {
 		if (this.size === "sm") { return "dropdown--sm"; }
 		if (this.size === "default") { return "dropdown"; }
+		if (this.size === "md") { return "dropdown"; }
 		if (this.size === "lg") { return "dropdown--lg"; }
 	}
 
@@ -301,42 +298,42 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * @memberof Dropdown
 	 */
 	@HostListener("keydown", ["$event"])
-	onKeyDown(ev: KeyboardEvent) {
-		if (ev.key === "Escape" && !this.menuIsClosed) {
-			ev.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
+	onKeyDown(event: KeyboardEvent) {
+		if (event.key === "Escape" && !this.menuIsClosed) {
+			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
-		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
-			ev.preventDefault();
+		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+			event.preventDefault();
 			this.closeMenu();
-			this.rootButton.nativeElement.focus();
-		} else if (ev.key === "ArrowDown" && ev.altKey) {
-			ev.preventDefault();
+			this.dropdownButton.nativeElement.focus();
+		} else if (event.key === "ArrowDown" && event.altKey) {
+			event.preventDefault();
 			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+		if (!this.menuIsClosed && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 
-		if (!this.menuIsClosed && ev.key === "Tab" && ev.shiftKey) {
+		if (!this.menuIsClosed && event.key === "Tab" && event.shiftKey) {
 			this.closeMenu();
 		}
 
 		if (this.type === "multi") { return; }
 
 		if (this.menuIsClosed) {
-			this.closedDropdownNavigation(ev);
+			this.closedDropdownNavigation(event);
 		}
 	}
 
-	closedDropdownNavigation(ev) {
-		if (ev.key === "ArrowDown") {
-			ev.preventDefault();
+	closedDropdownNavigation(event) {
+		if (event.key === "ArrowDown") {
+			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
-		} else if (ev.key === "ArrowUp") {
-			ev.preventDefault();
+		} else if (event.key === "ArrowUp") {
+			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
 			if (item) { item.selected = true; }
@@ -375,19 +372,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	_noop() {}
 	/**
 	 * Handles clicks outside of the `Dropdown`.
-	 * @param {any} ev
+	 * @param {any} event
 	 * @memberof Dropdown
 	 */
-	_outsideClick(ev) {
-		if (!this.elementRef.nativeElement.contains(ev.target) &&
+	_outsideClick(event) {
+		if (!this.elementRef.nativeElement.contains(event.target) &&
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
-			!this.dropdown.contains(ev.target)) {
+			!this.dropdownMenu.nativeElement.contains(event.target)) {
 			this.closeMenu();
 		}
 	}
-	_outsideKey(ev) {
-		if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+	_outsideKey(event) {
+		if (!this.menuIsClosed && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 	}
@@ -396,19 +393,19 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * @param {KeyboardEvent} ev
 	 * @memberof Dropdown
 	 */
-	_keyboardNav(ev: KeyboardEvent) {
-		if (ev.key === "Escape" && !this.menuIsClosed) {
-			ev.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+	_keyboardNav(event: KeyboardEvent) {
+		if (event.key === "Escape" && !this.menuIsClosed) {
+			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
-			ev.preventDefault();
+		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+			event.preventDefault();
 			this.closeMenu();
-			this.rootButton.nativeElement.focus();
-		} else if (!this.menuIsClosed && ev.key === "Tab") {
+			this.dropdownButton.nativeElement.focus();
+		} else if (!this.menuIsClosed && event.key === "Tab") {
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
-			this.rootButton.nativeElement.focus();
-			this.rootButton.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
+			this.dropdownButton.nativeElement.focus();
+			this.dropdownButton.nativeElement.dispatchEvent(new KeyboardEvent("keydown", {bubbles: true, cancelable: true, key: "Tab"}));
 			this.closeMenu();
 		}
 	}
@@ -419,8 +416,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	_appendToDropdown() {
 		if (document.body.contains(this.dropdownWrapper)) {
-			this.dropdown.style.display = "none";
-			this.elementRef.nativeElement.appendChild(this.dropdown);
+			this.dropdownMenu.nativeElement.style.display = "none";
+			this.elementRef.nativeElement.appendChild(this.dropdownMenu.nativeElement);
 			document.body.removeChild(this.dropdownWrapper);
 			this.resize.unsubscribe();
 			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
@@ -442,12 +439,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				)
 			);
 		};
-		this.dropdown.style.display = "block";
+		this.dropdownMenu.nativeElement.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
 		this.dropdownWrapper.className = "dropdown";
 		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.style.position = "absolute";
-		this.dropdownWrapper.appendChild(this.dropdown);
+		this.dropdownWrapper.appendChild(this.dropdownMenu.nativeElement);
 		document.body.appendChild(this.dropdownWrapper);
 		positionDropdown();
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
