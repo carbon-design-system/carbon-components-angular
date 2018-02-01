@@ -73,7 +73,7 @@ import {
 			<tr>
 				<th class="table_checkbox-col" *ngIf="enableRowSelect">
 					<n-checkbox
-						[size]="size === 'sm' ? size : 'default'"
+						[size]="size !== 'lg' ? 'sm' : 'default'"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
 						(change)="onSelectAllCheckboxChange()">
@@ -155,7 +155,7 @@ import {
 					}">
 					<td class="table_checkbox-col" *ngIf="enableRowSelect">
 						<n-checkbox
-							[size]="size === 'sm' ? size : 'default'"
+							[size]="size !== 'lg' ? 'sm' : 'default'"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
 						</n-checkbox>

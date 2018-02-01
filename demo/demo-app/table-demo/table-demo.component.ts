@@ -50,14 +50,14 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<h1>Table demo</h1>
 
 	<h2>Small table</h2>
-	<n-table size="sm" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+	<n-table size="sm" [model]="simpleModel1" (sort)="simpleSort1($event)"></n-table>
 
 	<h2>Normal table</h2>
-	<n-table [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
 
 
 	<h2>Large table</h2>
-	<n-table size="lg" [model]="simpleModel" (sort)="simpleSort($event)"></n-table>
+	<n-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></n-table>
 
 	<h2>Table with contextual rows</h2>
 	<n-table [model]="contextModel" (sort)="simpleSort($event)"></n-table>
@@ -136,7 +136,9 @@ class FilterableHeaderItem extends TableHeaderItem {
 	encapsulation: ViewEncapsulation.None
 })
 export class TableDemo implements OnInit {
-	public simpleModel = new TableModel();
+	public simpleModel1 = new TableModel();
+	public simpleModel2 = new TableModel();
+	public simpleModel3 = new TableModel();
 	public customModel = new TableModel();
 	public contextModel = new TableModel();
 	public model = new TableModel();
@@ -154,13 +156,35 @@ export class TableDemo implements OnInit {
 
 	ngOnInit() {
 		// simple model
-		this.simpleModel.data = [
+		this.simpleModel1.data = [
 			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
 			[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
 		];
-		this.simpleModel.header = [
+		this.simpleModel1.header = [
+			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+		];
+
+		// simple model
+		this.simpleModel2.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
+		];
+		this.simpleModel2.header = [
+			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+		];
+
+		// simple model
+		this.simpleModel3.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
+		];
+		this.simpleModel3.header = [
 			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
 		];
 
@@ -213,8 +237,14 @@ export class TableDemo implements OnInit {
 		this.selectPage(1);
 	}
 
-	simpleSort(index: number) {
-		this.sort(this.simpleModel, index);
+	simpleSort1(index: number) {
+		this.sort(this.simpleModel1, index);
+	}
+	simpleSort2(index: number) {
+		this.sort(this.simpleModel2, index);
+	}
+	simpleSort3(index: number) {
+		this.sort(this.simpleModel3, index);
 	}
 	customSort(index: number) {
 		this.sort(this.customModel, index);
