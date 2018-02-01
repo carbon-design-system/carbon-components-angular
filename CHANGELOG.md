@@ -2,11 +2,32 @@
 
 ## [Unreleased](https://github.ibm.com/peretz/neutrino/tree/HEAD)
 
-[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.1...HEAD)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.2...HEAD)
+
+**Fixed bugs:**
+
+- Need to add safe guard for topNav [\#684](https://github.ibm.com/peretz/neutrino/issues/684)
+
+**Closed issues:**
+
+- Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
+- Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
+
+**Merged pull requests:**
+
+- Add row highlighting based on context [\#760](https://github.ibm.com/peretz/neutrino/pull/760) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+
+## [v1.0.2](https://github.ibm.com/peretz/neutrino/tree/v1.0.2) (2018-01-30)
+[Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.1...v1.0.2)
 
 **Fixed bugs:**
 
 - backport combobox not showing default value to 1.0.0 \(angular 4\) [\#752](https://github.ibm.com/peretz/neutrino/issues/752)
+
+**Merged pull requests:**
+
+- V1.0.2 - fix comobbox not updating selected value in onChanges [\#758](https://github.ibm.com/peretz/neutrino/pull/758) ([callums](https://github.ibm.com/callums))
+- Add new fonts and update matter [\#753](https://github.ibm.com/peretz/neutrino/pull/753) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 
 ## [v1.0.1](https://github.ibm.com/peretz/neutrino/tree/v1.0.1) (2018-01-29)
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.1.0...v1.0.1)
