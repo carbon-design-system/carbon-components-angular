@@ -35,7 +35,7 @@ export class AbstractDropdownView {
 	 * @type {("sm" | "default" | "lg")}
 	 * @memberof AbstractDropdownView
 	 */
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "default" | "md" | "lg" = "default";
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 * @returns {ListItem}
