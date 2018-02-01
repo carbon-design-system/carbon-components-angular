@@ -34,15 +34,28 @@ import * as en from "./../../src/i18n/en.json";
 		<router-outlet></router-outlet>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
-	<n-sprite sprite="core_set"></n-sprite>
+	<n-sprite sprite="activities"></n-sprite>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
 	<n-sprite sprite="brands"></n-sprite>
+	<n-sprite sprite="browser_os_mobile"></n-sprite>
 	<n-sprite sprite="calculator"></n-sprite>
+	<n-sprite sprite="core_set"></n-sprite>
+	<n-sprite sprite="demographics"></n-sprite>
+	<n-sprite sprite="disabled"></n-sprite>
+	<n-sprite sprite="ecommerce"></n-sprite>
 	<n-sprite sprite="emoticons"></n-sprite>
 	<n-sprite sprite="formatting"></n-sprite>
+	<n-sprite sprite="gestures"></n-sprite>
+	<n-sprite sprite="ibm logo"></n-sprite>
 	<n-sprite sprite="mobile_controls"></n-sprite>
 	<n-sprite sprite="playback_controls"></n-sprite>
+	<n-sprite sprite="occasions_seasons"></n-sprite>
+	<n-sprite sprite="occupations"></n-sprite>
+	<n-sprite sprite="segments"></n-sprite>
+	<n-sprite sprite="store_users"></n-sprite>
+	<n-sprite sprite="tables"></n-sprite>
+	<n-sprite sprite="top_nav_bar"></n-sprite>
 	<n-sprite sprite="window_controls"></n-sprite>
 	`,
 	styleUrls: ["./app.component.scss"],

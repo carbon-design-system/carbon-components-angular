@@ -6,6 +6,7 @@
 
 **Fixed bugs:**
 
+- Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
 - Need to add safe guard for topNav [\#684](https://github.ibm.com/peretz/neutrino/issues/684)
 
 **Closed issues:**
@@ -15,6 +16,7 @@
 
 **Merged pull requests:**
 
+- Fix form modal demo [\#762](https://github.ibm.com/peretz/neutrino/pull/762) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add row highlighting based on context [\#760](https://github.ibm.com/peretz/neutrino/pull/760) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 
 ## [v1.0.2](https://github.ibm.com/peretz/neutrino/tree/v1.0.2) (2018-01-30)
