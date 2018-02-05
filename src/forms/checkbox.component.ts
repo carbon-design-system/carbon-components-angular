@@ -93,10 +93,11 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Size of the checkbox.
-	 * @type {("default" | "sm")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * @type {("sm" | "md" | "default")}
 	 * @memberof CheckboxComponent
 	 */
-	@Input() size: "default" | "sm" = "default";
+	@Input() size: "sm" | "md" | "default" = "md";
 	/**
 	 * Set to `true` for checkbox to be rendered with inline styles.
 	 * @type {boolean}
@@ -260,9 +261,9 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	 */
 	public getVariantClass() {
 		if (this.inline || this.nested) {
-			return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "default" ? `-${this.size}` : ""}`;
+			return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "md" ? `-${this.size}` : ""}`;
 		} else {
-			return `checkbox${this.size !== "default" ? `--${this.size}` : ""}`;
+			return `checkbox${this.size !== "md" ? `--${this.size}` : ""}`;
 		}
 	}
 

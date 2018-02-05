@@ -90,10 +90,11 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 
 	/**
 	 * Size of the switch component.
-	 * @type {("default" | "sm")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * @type {("sm" | "md" | "default")}
 	 * @memberof SwitchComponent
 	 */
-	@Input() size: "default" | "sm" = "default";
+	@Input() size: "sm" | "md" | "default" = "md";
 
 	/**
 	 * The unique id allocated to the `SwitchComponent`.
@@ -120,8 +121,8 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 	 */
 	ngOnInit() {
 		// Build variant classes
-		const labelClass = `toggle-label${this.size !== "default" ? `--${this.size}` : ""}`;
-		const buttonClass = `toggle${this.size !== "default" ? `--${this.size}` : ""}`;
+		const labelClass = `toggle-label${this.size !== "md" ? `--${this.size}` : ""}`;
+		const buttonClass = `toggle${this.size !== "md" ? `--${this.size}` : ""}`;
 
 		// Get elements
 		const labelEl = this.elementRef.nativeElement.querySelector("label");

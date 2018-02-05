@@ -66,14 +66,14 @@ import {
 	template: `
 	<table [ngClass]="{
 		'table--sm': size === 'sm',
-		'table': size === 'default',
+		'table': size === 'default' || size === 'md',
 		'table--lg': size === 'lg'
 	}">
 		<thead>
 			<tr>
 				<th class="table_checkbox-col" *ngIf="enableRowSelect">
 					<n-checkbox
-						[size]="size === 'sm' ? size : 'default'"
+						[size]="size === 'sm' ? size : 'md'"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
 						(change)="onSelectAllCheckboxChange()">
@@ -174,11 +174,12 @@ import {
 export class Table {
 	/**
 	 * Size of the table rows.
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
 	 *
-	 * @type {("default" | "sm" | "lg")}
+	 * @type {("sm" | "md" |"default" | "lg")}
 	 * @memberof Table
 	 */
-	@Input() size: "default" | "sm" | "lg" = "default";
+	@Input() size: "sm" | "md" |"default" | "lg" = "md";
 
 	/**
 	 * `TableModel` with data the table is to display.

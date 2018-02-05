@@ -87,10 +87,11 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 
 	/**
 	 * Specifies the render size of the inputs within the dropdown sub-menu items.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * @type {("sm" | "md" |"default" | "lg")}
 	 * @memberof DropdownSubMenu
 	 */
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" |"default" | "lg" = "md";
 	/**
 	 * An array holding the HTML list elements in the view.
 	 * @private

@@ -135,10 +135,11 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	@ViewChild("filter") filter;
 	/**
 	 * Defines the rendering size of the `DropdownFilterList` input component.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof DropdownFilter
 	 */
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * To maintain a local copy of the filter input element from the DOM.
 	 * @memberof DropdownFilter

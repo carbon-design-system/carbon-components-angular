@@ -32,10 +32,11 @@ export class AbstractDropdownView {
 	public type: "single" | "multi" = "single";
 	/**
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof AbstractDropdownView
 	 */
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 * @returns {ListItem}

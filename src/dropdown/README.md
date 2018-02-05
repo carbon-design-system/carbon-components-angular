@@ -28,7 +28,7 @@ export class AbstractDropdownView {
 	@Input() items: Array<ListItem>;
 	@Output() select: EventEmitter<Object>;
 	public type: "single" | "multi" = "single";
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" |"default" | "lg" = "md";
 	getNextItem(): ListItem { return; }
 	getNextElement(): HTMLElement { return; }
 	getPrevItem(): ListItem { return; }
@@ -51,14 +51,16 @@ source: `src/dropdown/dropdown.component.ts`
 
 **Inputs:**
 
-| @Input        | Type                      | Default value |
-| ------------- | ------------------------- | ------------- |
-| placeholder   | string                    | ""            |
-| displayValue  | string                    | ""            |
-| size          | "sm" \| "default" \| "lg" | "default"     |
-| type          | "single" \| "multi"       | "single"      |
-| disabled      | boolean                   | false         |
-| appendToBody  | boolean                   | false         |
+| @Input        | Type                             | Default value |
+| ------------- | -------------------------------- | ------------- |
+| placeholder   | string                           | ""            |
+| displayValue  | string                           | ""            |
+| size          | "sm" \| "md" \|"default" \| "lg" | "md"          |
+| type          | "single" \| "multi"              | "single"      |
+| disabled      | boolean                          | false         |
+| appendToBody  | boolean                          | false         |
+
+_(size `"default"` is being deprecated as of neutrino v1.2.0)_
 
 **Outputs:**
 
