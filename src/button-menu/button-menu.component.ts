@@ -1,5 +1,7 @@
+import { ButtonMenuItem } from "./button-menu-item.component";
 import {
 	Component,
+	ContentChildren,
 	Input,
 	Output,
 	EventEmitter,
@@ -9,7 +11,8 @@ import {
 	AfterContentInit,
 	AfterViewInit,
 	HostListener,
-	HostBinding
+	HostBinding,
+	QueryList
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -117,6 +120,8 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@ViewChild("dropdownHost") rootButton;
 
+	@ContentChildren(ButtonMenuItem) items: QueryList<ButtonMenuItem>;
+
 	@HostBinding("attr.role") role = "group";
 
 	menuIsClosed = true;
@@ -141,6 +146,10 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		this.dropdown = this.elementRef.nativeElement.querySelector(".btn_menu");
+
+		this.items.forEach(item => {
+			item.parent = this;
+		});
 	}
 
 	buildClass() {
