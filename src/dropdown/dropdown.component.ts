@@ -81,10 +81,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() displayValue = "";
 	/**
 	 * Size to render the dropdown field.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof Dropdown
 	 */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -257,6 +258,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	buildClass() {
 		if (this.size === "sm") { return "dropdown--sm"; }
 		if (this.size === "default") { return "dropdown"; }
+		if (this.size === "md") { return "dropdown"; }
 		if (this.size === "lg") { return "dropdown--lg"; }
 	}
 

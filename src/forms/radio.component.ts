@@ -112,10 +112,11 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Determines the render size of the `RadioComponent` inputs within the group.
-	 * @type {("default" | "sm")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" | "default")}
 	 * @memberof RadioGroup
 	 */
-	@Input() size: "default" | "sm" = "default";
+	@Input() size: "sm" | "md" | "default" = "md";
 
 	/**
 	 * Returns the `RadioComponent` that is selected within the `RadioGroup`.
@@ -341,7 +342,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	ngOnInit() {
 		// Build variant class
-		const className = `radio${this.size !== "default" ? `--${this.size}` : ""}`;
+		const className = `radio${this.size !== "md" ? `--${this.size}` : ""}`;
 
 		// Add class to host element
 		this.renderer.addClass(this.elementRef.nativeElement, className);

@@ -31,7 +31,7 @@ export class StaticIcon implements AfterViewInit {
 		"xs": 14,
 		"sm": 16,
 		"md": 20,
-		"default": 20, // remove in the next major version (when default is removed everywhere)
+		"default": 20, // (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 		"lg": 30
 	};
 

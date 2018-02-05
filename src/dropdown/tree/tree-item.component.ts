@@ -104,10 +104,11 @@ export class TreeItem implements OnInit {
 	@Input() innerPadding = 10;
 	/**
 	 * Size to render the `TreeItem` within the view.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" |"default" | "lg")}
 	 * @memberof TreeItem
 	 */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() size: "sm" | "md" |"default" | "lg" = "md";
 	/**
 	 * Value 'select' to be emitted after a new `TreeItem` is selected.
 	 * @type {EventEmitter<Object>}
