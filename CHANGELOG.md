@@ -19,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Close button menu after clicking item [\#768](https://github.ibm.com/peretz/neutrino/pull/768) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add size "md" and document plan to deprecate "default" [\#767](https://github.ibm.com/peretz/neutrino/pull/767) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add missing icon sprites [\#764](https://github.ibm.com/peretz/neutrino/pull/764) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix normal table checkbox size and separate table models in demo [\#763](https://github.ibm.com/peretz/neutrino/pull/763) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
