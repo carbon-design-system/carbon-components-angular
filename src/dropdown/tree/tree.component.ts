@@ -84,10 +84,11 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 
 	/**
 	 * Specifies the render size of the inputs within the `DropdownTree` items.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" |"default" | "lg")}
 	 * @memberof DropdownTree
 	 */
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" |"default" | "lg" = "md";
 	/**
 	 * Left padding between the edge and the icon (for parent catagory).
 	 * @memberof DropdownTree

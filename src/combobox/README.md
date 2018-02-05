@@ -28,7 +28,7 @@ export class AbstractDropdownView {
 	@Input() items: Array<ListItem>;
 	@Output() select: EventEmitter<Object>;
 	public type: "single" | "multi" = "single";
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" | "default" | "lg" = "md";
 	getNextItem(): ListItem { return; }
 	getNextElement(): HTMLElement { return; }
 	getPrevItem(): ListItem { return; }
@@ -39,6 +39,8 @@ export class AbstractDropdownView {
 	propagateSelected(value: Array<ListItem>): void {}
 }
 ```
+_(size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)_
+
 A component that intends to be used within Dropdown must provide an implementation that follows this base class. It also must provide the base class in the `@Component` meta-data, ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
 
 ## Components
