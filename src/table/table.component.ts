@@ -73,7 +73,7 @@ import {
 			<tr>
 				<th class="table_checkbox-col" *ngIf="enableRowSelect">
 					<n-checkbox
-						[size]="size === 'sm' ? size : 'md'"
+						[size]="size !== 'lg' ? 'sm' : 'md'"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
 						(change)="onSelectAllCheckboxChange()">
@@ -146,10 +146,16 @@ import {
 		<tbody [ngClass]="{'table_tbody--striped': striped}" (scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr *ngIf="!model.isRowFiltered(i)"
-					[ngClass]="{selected: model.rowsSelected[i]}">
+					[ngClass]="{
+						selected: model.rowsSelected[i],
+						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
+						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
+						'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
+						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
+					}">
 					<td class="table_checkbox-col" *ngIf="enableRowSelect">
 						<n-checkbox
-							[size]="size === 'sm' ? size : 'default'"
+							[size]="size !== 'lg' ? 'sm' : 'default'"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
 						</n-checkbox>

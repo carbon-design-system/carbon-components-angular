@@ -23,24 +23,27 @@ import { Modal } from "../../../src";
 	template: `
 		<n-modal size="sm" (overlaySelected)="closeModal()">
 			<n-modal-header (closeSelect)="closeModal()">Form</n-modal-header>
-			<form novalidate (ngSubmit)="submit()" [formGroup]="form">
-				<div class="modal-body">
+			<form novalidate (ngSubmit)="submit()" [formGroup]="form" style="display: contents">
+				<div class="modal-body modal_body">
 					<div class="form-instructions">{{modalText}}</div>
 					<n-label *ngFor="let field of fields" [labelState]="form.get(field).touched && !form.get(field).valid ? 'error' : ''"
 						[class.has-error]="form.get(field).touched && !form.get(field).valid">
-						<label *ngIf="!(form.get(field).touched && !form.get(field).valid)" class="label">{{field}}</label>
-						<label *ngIf="form.get(field).touched && !form.get(field).valid" class="label">Field with error</label>
-						<input type="text" class="input-field" formControlName="{{field}}"/>
+						<label>{{field}}</label>
+						<input
+							type="text"
+							class="input-field"
+							[class.valid--error]="form.get(field).touched && !form.get(field).valid"
+							formControlName="{{field}}"/>
 					</n-label>
 
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
-					<label class="label label-top">Drop-down list</label>
+					<label>Drop-down list</label>
 					<n-dropdown
 						placeholder="Select an option">
 						<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 					</n-dropdown>
 					<br><br>
-					<button class="btn--primary" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
+					<button class="btn--primary" type="button" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<n-modal-footer>
 					<button class="btn--secondary cancel-button" (click)="closeModal()">Cancel</button>
