@@ -10,7 +10,7 @@ import { ButtonMenu } from "./button-menu.component";
 })
 export class ButtonMenuItem {
 	@Input() parent: ButtonMenu;
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" | "default" | "lg" = "md";
 
 	closeMenu() {
 		if (this.parent) {

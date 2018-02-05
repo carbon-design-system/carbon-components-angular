@@ -57,7 +57,7 @@ import { cycleTabs } from "./../common/tab.service";
 		<n-overlay (overlaySelect)="overlaySelected.emit()">
 			<div [ngClass]="{
 					'modal--sm': size === 'sm',
-					'modal': size === 'default',
+					'modal': size === 'default' || size === 'md',
 					'modal--lg': size === 'lg',
 					'modal--xl': size === 'xl',
 					'modal--xxl': size === 'xxl',
@@ -91,7 +91,8 @@ import { cycleTabs } from "./../common/tab.service";
 export class ModalComponent implements OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
-	 * @type {"xl" | "xxl" | "lg" | "sm" | "default"}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {"sm" | "md" | "default" | "lg" | "xl" | "xxl"}
 	 * @memberof ModalComponent
 	 */
 	@Input() size = "xl";
