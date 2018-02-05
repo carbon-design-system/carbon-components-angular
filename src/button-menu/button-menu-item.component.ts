@@ -8,5 +8,5 @@ import { Component } from "@angular/core";
 		</li>`
 })
 export class ButtonMenuItem {
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" | "default" | "lg" = "md";
 }

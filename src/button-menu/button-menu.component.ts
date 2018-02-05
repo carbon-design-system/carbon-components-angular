@@ -72,12 +72,13 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	/**
 	 * Size of the button menu.
 	 *
-	 * `"sm"` | `"default"` | `"lg"`
+	 * `"sm"` | `"md"` | `"default"` | `"lg"`
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 *
-	 * @type {("sm" | "default" | "lg")}
+	 * @type {("sm" | "default" | "md" | "lg")}
 	 * @memberof ButtonMenu
 	 */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * Primary or secondary button colors.
 	 *
@@ -145,6 +146,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	buildClass() {
 		if (this.size === "sm") { return "btn-group--sm"; }
 		if (this.size === "default") { return "btn-group"; }
+		if (this.size === "md") { return "btn-group"; }
 		if (this.size === "lg") { return "btn-group--lg"; }
 	}
 

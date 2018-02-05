@@ -7,7 +7,9 @@
 **Fixed bugs:**
 
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
+- Github pages issues [\#704](https://github.ibm.com/peretz/neutrino/issues/704)
 - Need to add safe guard for topNav [\#684](https://github.ibm.com/peretz/neutrino/issues/684)
+- Tree view : left border is missing in checkbox  [\#679](https://github.ibm.com/peretz/neutrino/issues/679)
 
 **Closed issues:**
 
@@ -16,6 +18,8 @@
 
 **Merged pull requests:**
 
+- Add missing icon sprites [\#764](https://github.ibm.com/peretz/neutrino/pull/764) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix normal table checkbox size and separate table models in demo [\#763](https://github.ibm.com/peretz/neutrino/pull/763) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix form modal demo [\#762](https://github.ibm.com/peretz/neutrino/pull/762) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add row highlighting based on context [\#760](https://github.ibm.com/peretz/neutrino/pull/760) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 

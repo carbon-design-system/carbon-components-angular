@@ -115,10 +115,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof ComboBox
 	 */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * Set to `true` to disable combobox.
 	 * @memberof ComboBox
