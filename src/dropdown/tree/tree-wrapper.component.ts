@@ -116,7 +116,7 @@ export class TreeWrapper {
 	@Input() innerPadding = 10;
 	/**
 	 * Size to render the `TreeItem` within the view.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" |"default" | "lg")}
 	 * @memberof TreeWrapper
 	 */

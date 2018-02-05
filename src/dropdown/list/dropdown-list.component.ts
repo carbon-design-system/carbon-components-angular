@@ -132,7 +132,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Defines the rendering size of the `DropdownList` input component.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof DropdownList
 	 */

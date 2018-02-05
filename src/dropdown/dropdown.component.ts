@@ -81,7 +81,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@Input() displayValue = "";
 	/**
 	 * Size to render the dropdown field.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof Dropdown
 	 */

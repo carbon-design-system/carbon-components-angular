@@ -32,7 +32,7 @@ export class AbstractDropdownView {
 	public type: "single" | "multi" = "single";
 	/**
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof AbstractDropdownView
 	 */

@@ -39,6 +39,8 @@ export class AbstractDropdownView {
 	propagateSelected(value: Array<ListItem>): void {}
 }
 ```
+_(size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)_
+
 A component that intends to be used within Dropdown must provide an implementation that follows this base class. It also must provide the base class in the `@Component` meta-data, ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
 
 ## Components
@@ -60,7 +62,7 @@ source: `src/dropdown/dropdown.component.ts`
 | disabled      | boolean                          | false         |
 | appendToBody  | boolean                          | false         |
 
-_(size `"default"` is being deprecated as of neutrino v1.2.0)_
+_(size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)_
 
 **Outputs:**
 

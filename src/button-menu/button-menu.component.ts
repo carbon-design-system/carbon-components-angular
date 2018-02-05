@@ -73,7 +73,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	 * Size of the button menu.
 	 *
 	 * `"sm"` | `"md"` | `"default"` | `"lg"`
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 *
 	 * @type {("sm" | "default" | "md" | "lg")}
 	 * @memberof ButtonMenu

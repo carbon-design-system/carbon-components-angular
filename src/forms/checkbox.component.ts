@@ -93,7 +93,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Size of the checkbox.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default")}
 	 * @memberof CheckboxComponent
 	 */

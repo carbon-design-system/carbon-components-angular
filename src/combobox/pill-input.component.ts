@@ -109,7 +109,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	/** "single" or "multi" for single or multi select lists */
 	@Input() type: "single" | "multi" = "single";
 	/** "sm" | "md" | "default" | "lg"
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0)
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 */
 	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/** is the input disabled. true/false */
