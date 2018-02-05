@@ -1,12 +1,20 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { ButtonMenu } from "./button-menu.component";
 
 @Component({
 	selector: "n-button-menu-item",
 	template: `
-		<li role="menuitem" tabindex="0">
+		<li role="menuitem" tabindex="0" (click)="closeMenu()">
 			<ng-content></ng-content>
 		</li>`
 })
 export class ButtonMenuItem {
+	@Input() parent: ButtonMenu;
 	public size: "sm" | "default" | "lg" = "default";
+
+	closeMenu() {
+		if (this.parent) {
+			this.parent.closeMenu();
+		}
+	}
 }
