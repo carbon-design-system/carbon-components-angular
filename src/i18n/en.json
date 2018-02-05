@@ -1,4 +1,15 @@
 {
+	"BANNER": {
+		"CLOSE_BUTTON": "Close alert banner"
+	},
+	"DIALOG": {
+		"TOOLTIP": {
+			"CLOSE": "Close tooltip"
+		},
+		"POPOVER" : {
+			"CLOSE": "Close popover"
+		}
+	},
 	"DROPDOWN": {
 		"SELECTED": "{{ number }} selected",
 		"FILTER": {
@@ -8,12 +19,11 @@
 			"RESET_SEARCH": "Reset search"
 		}
 	},
-	"TOPNAV": {
-		"SKIP_TO_MAIN": "Skip to main content",
-		"HAMBURGER": {
-			"TOGGLE": "Toggle primary navigation menu",
-			"TITLE": "Primary navigation menu"
-		}
+	"MODAL" : {
+		"CLOSE": "Close modal"
+	},
+	"SIDENAV": {
+		"NAV_LABEL": "Side navigation"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
@@ -27,21 +37,11 @@
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
 	},
-	"BANNER": {
-		"CLOSE_BUTTON": "Close alert banner"
-	},
-	"DIALOG": {
-		"TOOLTIP": {
-			"CLOSE": "Close tooltip"
-		},
-		"POPOVER" : {
-			"CLOSE": "Close popover"
+	"TOPNAV": {
+		"SKIP_TO_MAIN": "Skip to main content",
+		"HAMBURGER": {
+			"TOGGLE": "Toggle primary navigation menu",
+			"TITLE": "Primary navigation menu"
 		}
-	},
-	"MODAL" : {
-		"CLOSE": "Close modal"
-	},
-	"SIDENAV": {
-		"NAV_LABEL": "Side navigation"
 	}
 }
