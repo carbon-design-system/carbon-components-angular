@@ -121,7 +121,7 @@ import {
 								aria-haspopup="true"
 								[nPopover]="column.filterTemplate"
 								[footer]="column.filterFooter"
-								title="Filter"
+								attr.title="{{'TABLE.FILTER' | translate}}"
 								placement="right-bottom"
 								popoverFilter="true"
 								[appendToBody]="true"

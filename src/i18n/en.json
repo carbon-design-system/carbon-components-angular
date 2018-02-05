@@ -4,14 +4,44 @@
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
 			"SEARCH": "Search",
-			"NO_RESULTS": "No search results"
+			"NO_RESULTS": "No search results",
+			"RESET_SEARCH": "Reset search"
 		}
 	},
 	"TOPNAV": {
-		"SKIP_TO_MAIN": "Skip to main content"
+		"SKIP_TO_MAIN": "Skip to main content",
+		"HAMBURGER": {
+			"TOGGLE": "Toggle primary navigation menu",
+			"TITLE": "Primary navigation menu"
+		}
+	},
+	"TABLE": {
+		"GO_TO_PAGE": "Go to page",
+		"PREVIOUS_PAGE": "Previous page",
+		"NEXT_PAGE": "Next page",
+		"PREVIOUS_3": "Scroll to previous 3 pages",
+		"NEXT_3": "Scroll to next 3 pages",
+		"FILTER": "Filter"
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
+	},
+	"BANNER": {
+		"CLOSE_BUTTON": "Close alert banner"
+	},
+	"DIALOG": {
+		"TOOLTIP": {
+			"CLOSE": "Close tooltip"
+		},
+		"POPOVER" : {
+			"CLOSE": "Close popover"
+		}
+	},
+	"MODAL" : {
+		"CLOSE": "Close modal"
+	},
+	"SIDENAV": {
+		"NAV_LABEL": "Side navigation"
 	}
 }

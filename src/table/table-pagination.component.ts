@@ -26,7 +26,9 @@ import {
 	<nav class="pagination">
 		<ul>
 			<li *ngIf="previousPage() != model.currentPage" class="pagination_chevron">
-				<a (click)="selectPage.emit(previousPage())" title="Previous page" aria-label="Previous page">
+				<a (click)="selectPage.emit(previousPage())"
+				attr.title="{{'TABLE.PREVIOUS_PAGE' | translate}}"
+				attr.aria-label="{{'TABLE.PREVIOUS_PAGE' | translate}}">
 					<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 16 16">
 						<path d="M12.3 14.7L5.7 8.1l6.6-6.5-.9-.9L4 8.1l7.4 7.5z"/>
 					</svg>
@@ -53,7 +55,7 @@ import {
 					</a>
 				</li>
 				<li class="pagination_more">
-					<a aria-label="Scroll to next 3 pages"
+					<a attr.aria-label="{{'TABLE.NEXT_3' | translate}}"
 						(click)="selectPage.emit(6)">
 						<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 16 16" class="more--dotdotdot">
 							<circle cx="2" cy="8" r="2"/><circle cx="14" cy="8" r="2"/><circle cx="8" cy="8" r="2"/>
@@ -82,7 +84,7 @@ import {
 					</a>
 				</li>
 				<li class="pagination_more">
-					<a aria-label="Scroll to previous 3 pages"
+					<a attr.aria-label="{{'TABLE.PREVIOUS_3' | translate}}"
 						(click)="selectPage.emit(lastPage()-5)">
 						<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 16 16" class="more--dotdotdot">
 							<circle cx="2" cy="8" r="2"/><circle cx="14" cy="8" r="2"/><circle cx="8" cy="8" r="2"/>
@@ -111,7 +113,7 @@ import {
 					</a>
 				</li>
 				<li class="pagination_more">
-					<a aria-label="Scroll to previous 3 pages"
+					<a attr.aria-label="{{'TABLE.PREVIOUS_3' | translate}}"
 						(click)="selectPage.emit(model.currentPage - 3)">
 						<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 16 16" class="more--dotdotdot">
 							<circle cx="2" cy="8" r="2"/><circle cx="14" cy="8" r="2"/><circle cx="8" cy="8" r="2"/>
@@ -129,7 +131,7 @@ import {
 					</a>
 				</li>
 				<li class="pagination_more">
-					<a aria-label="Scroll to next 3 pages"
+					<a attr.aria-label="{{'TABLE.NEXT_3' | translate}}"
 						(click)="selectPage.emit(model.currentPage + 3)">
 						<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 16 16" class="more--dotdotdot">
 							<circle cx="2" cy="8" r="2"/><circle cx="14" cy="8" r="2"/><circle cx="8" cy="8" r="2"/>
@@ -150,7 +152,9 @@ import {
 
 
 			<li *ngIf="nextPage() != model.currentPage" class="pagination_chevron">
-				<a (click)="selectPage.emit(nextPage())" title="Next page" aria-label="Next page">
+				<a (click)="selectPage.emit(nextPage())"
+				attr.title="{{'TABLE.NEXT_PAGE' | translate}}"
+				attr.aria-label="{{'TABLE.NEXT_PAGE' | translate}}">
 					<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 16 16">
 						<path d="M4 14.7l6.6-6.6L4 1.6l.8-.9 7.5 7.4-7.5 7.5z"/>
 					</svg>

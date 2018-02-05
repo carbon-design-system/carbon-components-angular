@@ -22,7 +22,7 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 			<h5 class="header_title">
 				<ng-content></ng-content>
 			</h5>
-			<button class="close--white-md" aria-label="Close Tooltip" (click)="onClose()">
+			<button class="close--white-md" attr.aria-label="{{'MODAL.CLOSE' | translate}}" (click)="onClose()">
 				<n-static-icon icon="x" classList="close_icon" size="sm"></n-static-icon>
 			</button>
 		</header>

@@ -118,7 +118,7 @@ import { Component, Input } from "@angular/core";
 		<nav
 			[attr.aria-expanded]="open"
 			role="navigation"
-			aria-label="side navigation">
+			attr.aria-label="{{'SIDENAV.NAV_LABEL' | translate}}">
 			<dl class="side-nav_accordion" role="presentation">
 				<ng-content></ng-content>
 			</dl>
