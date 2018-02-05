@@ -7,7 +7,6 @@ import {
 	ElementRef,
 	ViewChild,
 	ViewChildren,
-	ContentChildren,
 	QueryList,
 	forwardRef,
 	OnChanges,
