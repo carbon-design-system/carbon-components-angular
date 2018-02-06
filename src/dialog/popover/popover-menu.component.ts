@@ -38,7 +38,7 @@ import position from "../../common/position.service";
 					*ngIf="dialogConfig.trigger==='click' || dialogConfig.trigger==='mouseenter'"
 					class="close--white-md"
 					(click)="doClose()"
-					aria-label="Close popover">
+					attr.aria-label="{{'DIALOG.POPOVER.CLOSE' | translate}}">
 					<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 				</button>
 			</header>

@@ -50,7 +50,7 @@ import position from "../../common/position.service";
 				*ngIf="dialogConfig.trigger==='click'"
 				class="close--xs"
 				(click)="doClose()"
-				aria-label="Close Tooltip">
+				attr.aria-label="{{'DIALOG.TOOLTIP.CLOSE' | translate}}">
 				<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 			</button>
 			<div class="arrow" aria-hidden="true"></div>

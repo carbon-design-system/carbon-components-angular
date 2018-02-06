@@ -27,7 +27,7 @@ import {
 	<form class="table-footer_page-form">
 		<label class="sr-only" [for]="id">Page number</label>
 		<input class="input-number--sm" type="number" [id]="id" [name]="id" [(ngModel)]="pageNumber">
-		<button class="btn--secondary-sm" type="submit" (click)="selectPage.emit(pageNumber)">Go to page</button>
+		<button class="btn--secondary-sm" type="submit" (click)="selectPage.emit(pageNumber)">{{'TABLE.GO_TO_PAGE' | translate}}</button>
 	</form>
 	`
 })

@@ -64,7 +64,7 @@ import { DropdownList } from "./dropdown-list.component";
 				<button
 					class="close"
 					type="reset"
-					aria-label="Reset search"
+					attr.aria-label="{{ 'DROPDOWN.FILTER.RESET_SEARCH' | translate }}"
 					[ngClass]="{
 						visible: filter.value.trim()
 					}"
