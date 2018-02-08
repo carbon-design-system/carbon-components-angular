@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
 import { SideNav } from "./side-nav.component";
 import { SideNavGroup } from "./side-nav-group.component";
 import { SideNavItem } from "./side-nav-item.component";
@@ -27,6 +28,6 @@ export { SideNavSubpanel } from "./side-nav-subpanel.component";
 		SideNavPaneTitle,
 		SideNavSubpanel
 	],
-	imports: [CommonModule]
+	imports: [CommonModule, TranslateModule]
 })
 export class SideNavModule {}

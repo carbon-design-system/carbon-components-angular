@@ -1,6 +1,7 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
 import { StaticIcon, StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
@@ -39,6 +40,7 @@ export { ModalService } from "./modal.service";
 	],
 	imports: [
 		CommonModule,
+		TranslateModule,
 		StaticIconModule
 	]
 })

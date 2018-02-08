@@ -4,6 +4,7 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { Popover } from "./popover.component";
 import { PopoverDirective } from "./popover.directive";
 import { createElement } from "../../common/test";
@@ -14,7 +15,14 @@ describe("Popover directive", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [PopoverDirective, Popover, TestComponent],
-			imports: [StaticIconModule]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 

@@ -1,6 +1,7 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
@@ -63,6 +64,6 @@ export { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
 		PopoverMenu,
 		Tooltip
 	],
-	imports: [CommonModule, StaticIconModule]
+	imports: [CommonModule, TranslateModule, StaticIconModule]
 })
 export class DialogModule {}
