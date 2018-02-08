@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { DebugElement } from "@angular/core";
 
 import { TestBed, ComponentFixture } from "@angular/core/testing";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { SideNav } from "./side-nav.component";
 
@@ -13,7 +14,16 @@ describe("Side Nav", () => {
 	let el: HTMLElement;
 
 	beforeEach(() => {
-		TestBed.configureTestingModule({declarations: [SideNav]});
+		TestBed.configureTestingModule({
+			declarations: [SideNav],
+			imports: [
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
+		});
 		fixture = TestBed.createComponent(SideNav);
 		el = fixture.nativeElement.querySelector("aside.side-nav");
 		component = fixture.componentInstance;

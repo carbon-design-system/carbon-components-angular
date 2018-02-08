@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "./table.module";
 import { Table } from "./table.component";
@@ -33,7 +34,12 @@ describe("Table", () => {
 			imports: [
 				FormsModule,
 				NFormsModule,
-				DialogModule
+				DialogModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
 			],
 			declarations: [
 				Table,

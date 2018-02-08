@@ -11,22 +11,22 @@ import { Component, OnInit } from "@angular/core";
 	</ng-template>
 
 	<h2>On hover</h2>
-	<button class="btn--primary" nTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="error">Tooltip right</button>
-	<button class="btn--primary" nTooltip="I am a tooltip" placement="top" trigger="mouseenter" type="warning">Tooltip top</button>
+	<button class="btn--primary" nTooltip="I am a tooltip" placement="right" trigger="mouseenter" tooltip-type="error">Tooltip right</button>
+	<button class="btn--primary" nTooltip="I am a tooltip" placement="top" trigger="mouseenter" tooltip-type="warning">Tooltip top</button>
 	<button class="btn--primary" nTooltip="I am a tooltip" placement="bottom" trigger="mouseenter">Tooltip bottom</button>
 	<button class="btn--primary" nTooltip="I am a tooltip" placement="left" trigger="mouseenter">Tooltip left</button>
 	<br><br>
 
 	<h2>On click</h2>
-	<button class="btn--primary" nTooltip="I am a tooltip" placement="right" type="error">Tooltip right</button>
-	<button class="btn--primary" nTooltip="I am a tooltip" placement="top" type="warning">Tooltip top</button>
+	<button class="btn--primary" nTooltip="I am a tooltip" placement="right" tooltip-type="error">Tooltip right</button>
+	<button class="btn--primary" nTooltip="I am a tooltip" placement="top" tooltip-type="warning">Tooltip top</button>
 	<button class="btn--primary" nTooltip="I am a tooltip" placement="bottom">Tooltip bottom</button>
 	<button class="btn--primary" nTooltip="I am a tooltip" placement="left">Tooltip left</button>
 	<br><br>
 
 	<h2>Custom template</h2>
-	<button class="btn--primary" [nTooltip]="customTooltip" placement="right" type="error">Tooltip right</button>
-	<button class="btn--primary" [nTooltip]="customTooltip" placement="top" type="warning">Tooltip top</button>
+	<button class="btn--primary" [nTooltip]="customTooltip" placement="right" tooltip-type="error">Tooltip right</button>
+	<button class="btn--primary" [nTooltip]="customTooltip" placement="top" tooltip-type="warning">Tooltip top</button>
 	<button class="btn--primary" [nTooltip]="customTooltip" placement="bottom">Tooltip bottom</button>
 	<button class="btn--primary" [nTooltip]="customTooltip" placement="left">Tooltip left</button>
 	<br><br>

@@ -1,5 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
@@ -27,7 +28,13 @@ describe("ModalComponent", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [ModalComponent, OverlayComponent],
-			imports: [BrowserAnimationsModule],
+			imports: [
+				BrowserAnimationsModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})],
 			providers: [ModalService]
 		});
 
