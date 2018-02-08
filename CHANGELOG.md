@@ -19,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Swap out hard coded text for English translation \#741 [\#769](https://github.ibm.com/peretz/neutrino/pull/769) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Close button menu after clicking item [\#768](https://github.ibm.com/peretz/neutrino/pull/768) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add size "md" and document plan to deprecate "default" [\#767](https://github.ibm.com/peretz/neutrino/pull/767) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add missing icon sprites [\#764](https://github.ibm.com/peretz/neutrino/pull/764) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
