@@ -516,8 +516,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 						position.setElement(
 							this.dropdownWrapper,
 							position.addOffset(
-								position.findRelative(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
-								-container.scrollTop
+								position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom")
 							)
 						);
 					} else {
