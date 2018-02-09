@@ -88,7 +88,7 @@ export class TooltipDirective extends DialogDirective {
 		tooltipCounter++;
 		this.dialogConfig.compID = "tooltip-" + tooltipCounter;
 		this.dialogConfig.content = this.nTooltip;
-		this.dialogConfig.type = this.tooltipType || this.type;
+		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
 		this.elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
 	}
 }
