@@ -6,6 +6,7 @@
 
 **Fixed bugs:**
 
+- Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
 - Github pages issues [\#704](https://github.ibm.com/peretz/neutrino/issues/704)
@@ -14,11 +15,15 @@
 
 **Closed issues:**
 
+- Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
+- Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 
 **Merged pull requests:**
 
+- Add `tooltip-type` and deprecate \(but not remove\) `type` [\#775](https://github.ibm.com/peretz/neutrino/pull/775) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix issue with append to body dropdown inside a scrollable container [\#772](https://github.ibm.com/peretz/neutrino/pull/772) ([dangryan](https://github.ibm.com/dangryan))
 - Swap out hard coded text for English translation \#741 [\#769](https://github.ibm.com/peretz/neutrino/pull/769) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Close button menu after clicking item [\#768](https://github.ibm.com/peretz/neutrino/pull/768) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add size "md" and document plan to deprecate "default" [\#767](https://github.ibm.com/peretz/neutrino/pull/767) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
