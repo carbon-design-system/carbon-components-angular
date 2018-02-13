@@ -111,7 +111,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 * @type {HTMLElement[]}
 	 * @memberof DropdownTree
 	 */
-	private listList: HTMLElement[];
+	private listElementList: HTMLElement[];
 	/**
 	 * A complete list of all the items in the `DropdownTree` in the form of a flat list.
 	 * @private
@@ -129,10 +129,10 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 
 	/**
 	 * Creates an instance of DropdownTree.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof DropdownTree
 	 */
-	constructor(public _elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {}
 
 	/**
 	 * Updates list and local variables when changes occur within the items belonging to the `DropdownTree`.
@@ -145,9 +145,9 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 			this.flatList = [];
 			this.flattenTree(this.items);
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
-			if (this._elementRef) {
+			if (this.elementRef) {
 				setTimeout(() => {
-					this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
+					this.listElementList = Array.from(this.elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 				}, 0);
 			}
 			this.setupFocusObservable();
@@ -160,7 +160,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 * @memberof DropdownTree
 	 */
 	ngAfterViewInit() {
-		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
+		this.listElementList = Array.from(this.elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 		this.setupFocusObservable();
 		if (this.size === "lg") {
 			setTimeout(() => {
@@ -183,9 +183,9 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		if (this.focusJump) {
 			this.focusJump.unsubscribe();
 		}
-		this.focusJump = watchFocusJump(this._elementRef.nativeElement, this.listList)
+		this.focusJump = watchFocusJump(this.elementRef.nativeElement, this.listElementList)
 			.subscribe(el => {
-				let item = this.flatList[this.listList.indexOf(el)];
+				let item = this.flatList[this.listElementList.indexOf(el)];
 				treetools.find(this.items, item).path.forEach(i => {
 					if (i !== item) { i.selected = true; }
 				});
@@ -232,7 +232,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		} else {
 			return null;
 		}
-		let elem = this.listList[this.index];
+		let elem = this.listElementList[this.index];
 		let item = this.flatList[this.index];
 		if (item.disabled || item.items) {
 			if (item.items) { item.selected = true; }
@@ -265,7 +265,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		} else {
 			return null;
 		}
-		let elem = this.listList[this.index];
+		let elem = this.listElementList[this.index];
 		let item = this.flatList[this.index];
 		if (item.disabled || item.items) {
 			return this.getPrevElement();
@@ -292,9 +292,9 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 */
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
-			return this.listList[0];
+			return this.listElementList[0];
 		}
-		return this.listList[this.index];
+		return this.listElementList[this.index];
 	}
 
 	/**

@@ -38,7 +38,12 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			(select)="onClick($event)">
 		</n-sub-menu-wrapper>
 	`,
-	providers: [{provide: AbstractDropdownView, useExisting: DropdownSubMenu}]
+	providers: [
+		{
+			provide: AbstractDropdownView,
+			useExisting: DropdownSubMenu
+		}
+	]
 })
 export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterViewInit {
 	/**
@@ -98,7 +103,7 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 * @type {HTMLElement[]}
 	 * @memberof DropdownSubMenu
 	 */
-	private listList: HTMLElement[];
+	private listElementList: HTMLElement[];
 	/**
 	 * A complete list of all the items in the `TreeView` in the form of a flat list.
 	 * @private
@@ -116,10 +121,10 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 
 	/**
 	 * Creates an instance of `DropdownSubMenu`.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof DropdownSubMenu
 	 */
-	constructor(public _elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {}
 
 	/**
 	 * Updates list and local variables when changes occur within the items belonging to the `DropdownSubMenu`.
@@ -132,9 +137,9 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 			this.flatList = [];
 			this.flattenTree(this.items);
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
-			if (this._elementRef) {
+			if (this.elementRef) {
 				setTimeout(() => {
-					this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
+					this.listElementList = Array.from(this.elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 				}, 0);
 			}
 			this.setupFocusObservable();
@@ -147,7 +152,7 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 * @memberof DropdownSubMenu
 	 */
 	ngAfterViewInit() {
-		this.listList = Array.from(this._elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
+		this.listElementList = Array.from(this.elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 		this.setupFocusObservable();
 	}
 
@@ -160,9 +165,9 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 		if (this.focusJump) {
 			this.focusJump.unsubscribe();
 		}
-		this.focusJump = watchFocusJump(this._elementRef.nativeElement, this.listList)
+		this.focusJump = watchFocusJump(this.elementRef.nativeElement, this.listElementList)
 			.subscribe(el => {
-				let item = this.flatList[this.listList.indexOf(el)];
+				let item = this.flatList[this.listElementList.indexOf(el)];
 				treetools.find(this.items, item).path.forEach(i => {
 					if (i !== item) { i.selected = true; }
 				});
@@ -209,7 +214,7 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 		} else {
 			return null;
 		}
-		let elem = this.listList[this.index];
+		let elem = this.listElementList[this.index];
 		let item = this.flatList[this.index];
 		if (item.disabled || item.items) {
 			if (item.items) { item.selected = true; }
@@ -242,7 +247,7 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 		} else {
 			return null;
 		}
-		let elem = this.listList[this.index];
+		let elem = this.listElementList[this.index];
 		let item = this.flatList[this.index];
 		if (item.disabled || item.items) {
 			return this.getPrevElement();
@@ -282,9 +287,9 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 */
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
-			return this.listList[0];
+			return this.listElementList[0];
 		}
-		return this.listList[this.index];
+		return this.listElementList[this.index];
 	}
 
 	/**
