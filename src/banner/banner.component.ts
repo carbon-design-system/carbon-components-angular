@@ -26,7 +26,7 @@ import { BannerService } from "./banner.service";
 			<n-static-icon icon="success" *ngIf="bannerObj.type === 'success'"></n-static-icon>
 		</span>
 		<p [innerHTML]="bannerObj.message"></p>
-		<button class="close--dark-sm" (click)="onClose()" aria-label="Close alert banner">
+		<button class="close--dark-sm" (click)="onClose()" attr.aria-label="{{'BANNER.CLOSE_BUTTON' | translate}}">
 			<n-static-icon icon="x" size="sm" class="close_icon"></n-static-icon>
 		</button>
 	</div>

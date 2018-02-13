@@ -1,5 +1,7 @@
+import { ButtonMenuItem } from "./button-menu-item.component";
 import {
 	Component,
+	ContentChildren,
 	Input,
 	Output,
 	EventEmitter,
@@ -9,7 +11,8 @@ import {
 	AfterContentInit,
 	AfterViewInit,
 	HostListener,
-	HostBinding
+	HostBinding,
+	QueryList
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -72,12 +75,13 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	/**
 	 * Size of the button menu.
 	 *
-	 * `"sm"` | `"default"` | `"lg"`
+	 * `"sm"` | `"md"` | `"default"` | `"lg"`
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 *
-	 * @type {("sm" | "default" | "lg")}
+	 * @type {("sm" | "default" | "md" | "lg")}
 	 * @memberof ButtonMenu
 	 */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * Primary or secondary button colors.
 	 *
@@ -116,6 +120,8 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@ViewChild("dropdownHost") rootButton;
 
+	@ContentChildren(ButtonMenuItem) items: QueryList<ButtonMenuItem>;
+
 	@HostBinding("attr.role") role = "group";
 
 	menuIsClosed = true;
@@ -140,11 +146,16 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		this.dropdown = this.elementRef.nativeElement.querySelector(".btn_menu");
+
+		this.items.forEach(item => {
+			item.parent = this;
+		});
 	}
 
 	buildClass() {
 		if (this.size === "sm") { return "btn-group--sm"; }
 		if (this.size === "default") { return "btn-group"; }
+		if (this.size === "md") { return "btn-group"; }
 		if (this.size === "lg") { return "btn-group--lg"; }
 	}
 

@@ -64,7 +64,7 @@ import { DropdownList } from "./dropdown-list.component";
 				<button
 					class="close"
 					type="reset"
-					aria-label="Reset search"
+					attr.aria-label="{{ 'DROPDOWN.FILTER.RESET_SEARCH' | translate }}"
 					[ngClass]="{
 						visible: filter.value.trim()
 					}"
@@ -140,10 +140,11 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	@ViewChild("filter") filter;
 	/**
 	 * Defines the rendering size of the `DropdownFilterList` input component.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof DropdownFilter
 	 */
-	public size: "sm" | "default" | "lg" = "default";
+	public size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * To maintain a local copy of the filter input element from the DOM.
 	 * @memberof DropdownFilter

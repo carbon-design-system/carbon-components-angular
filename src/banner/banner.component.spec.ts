@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed, ComponentFixture, inject, tick, fakeAsync } from "@angular/core/testing";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { By } from "@angular/platform-browser";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
@@ -13,7 +14,14 @@ describe("Banner", () => {
 		TestBed.configureTestingModule({
 			declarations: [Banner],
 			providers: [BannerService],
-			imports: [StaticIconModule]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 

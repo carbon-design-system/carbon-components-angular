@@ -48,10 +48,21 @@ export class TooltipDirective extends DialogDirective {
 	@Input() nTooltip: string | TemplateRef<any>;
 	/**
 	 * Set tooltip type to reflect 'warning' or 'error' styles.
+	 *
+	 * @deprecated from the next major neutrino version in favor of
+	 * `tooltip-type` because of name collision with HTML. Please use
+	 * `tooltip-type` instead.
 	 * @type {("warning" | "error" | "")}
 	 * @memberof TooltipDirective
 	 */
 	@Input() type: "warning" | "error" | "" = "";
+	/**
+	 * Set tooltip type to reflect 'warning' or 'error' styles.
+	 * @type {("warning" | "error" | "")}
+	 * @memberof TooltipDirective
+	 */
+	// tslint:disable-next-line:no-input-rename
+	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
 	/**
 	 * Creates an instance of `TooltipDirective`.
@@ -77,7 +88,7 @@ export class TooltipDirective extends DialogDirective {
 		tooltipCounter++;
 		this.dialogConfig.compID = "tooltip-" + tooltipCounter;
 		this.dialogConfig.content = this.nTooltip;
-		this.dialogConfig.type = this.type;
+		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
 		this.elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
 	}
 }

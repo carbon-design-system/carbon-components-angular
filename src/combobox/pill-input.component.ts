@@ -7,7 +7,6 @@ import {
 	ElementRef,
 	ViewChild,
 	ViewChildren,
-	ContentChildren,
 	QueryList,
 	forwardRef,
 	OnChanges,
@@ -108,8 +107,10 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@Input() displayValue = "";
 	/** "single" or "multi" for single or multi select lists */
 	@Input() type: "single" | "multi" = "single";
-	/** "sm"|"default"|"lg" */
-	@Input() size: "sm" | "default" | "lg" = "default";
+	/** "sm" | "md" | "default" | "lg"
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 */
+	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/** is the input disabled. true/false */
 	@Input() disabled = false;
 	/** empty event to trigger an update of the selected items */

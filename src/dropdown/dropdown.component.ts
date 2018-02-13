@@ -83,10 +83,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	@Input() displayValue = "";
 	/**
 	 * Size to render the dropdown field.
-	 * @type {("sm" | "default" | "lg")}
+	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * @type {("sm" | "md" | "default" | "lg")}
 	 * @memberof Dropdown
 	 */
-	@Input() size: "sm" | "default" | "md" | "lg" = "default";
+	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -511,8 +512,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 						position.setElement(
 							this.dropdownWrapper,
 							position.addOffset(
-								position.findRelative(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
-								-container.scrollTop
+								position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom")
 							)
 						);
 					} else {
