@@ -21,6 +21,7 @@
 
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
+- \[Popover\] Id given to n-popover is not considered and id comes as undefined [\#780](https://github.ibm.com/peretz/neutrino/issues/780)
 - Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
@@ -29,6 +30,7 @@
 
 **Merged pull requests:**
 
+- Set popover id [\#785](https://github.ibm.com/peretz/neutrino/pull/785) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - move charts into peerDependancies, also high level dropdown naming refactor [\#781](https://github.ibm.com/peretz/neutrino/pull/781) ([callums](https://github.ibm.com/callums))
 - Fix tooltip type [\#776](https://github.ibm.com/peretz/neutrino/pull/776) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add `tooltip-type` and deprecate \(but not remove\) `type` [\#775](https://github.ibm.com/peretz/neutrino/pull/775) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
