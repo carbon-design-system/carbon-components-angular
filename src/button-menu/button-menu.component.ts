@@ -45,10 +45,8 @@ import { position } from "../common/position.service";
 		[disabled]="disabled">
 			<svg
 				[ngClass]="{
-					'icon--white-sm': size === 'sm' && type === 'primary',
-					'icon--white': (size === 'default' || size === 'lg') && type === 'primary',
-					'icon--blue-sm': size === 'sm' && type === 'secondary',
-					'icon--blue': (size === 'default' || size === 'lg') && type === 'secondary'
+					'icon--white-sm': type === 'primary',
+					'icon--blue-sm': type === 'secondary'
 				}"
 				width="16"
 				height="16"
