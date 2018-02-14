@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.ibm.com/peretz/neutrino/compare/v1.0.2...HEAD)
 
+**Implemented enhancements:**
+
+- add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
+
 **Fixed bugs:**
 
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
@@ -15,6 +19,9 @@
 
 **Closed issues:**
 
+- Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
+- Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
+- Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
@@ -22,6 +29,8 @@
 
 **Merged pull requests:**
 
+- move charts into peerDependancies, also high level dropdown naming refactor [\#781](https://github.ibm.com/peretz/neutrino/pull/781) ([callums](https://github.ibm.com/callums))
+- Fix tooltip type [\#776](https://github.ibm.com/peretz/neutrino/pull/776) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add `tooltip-type` and deprecate \(but not remove\) `type` [\#775](https://github.ibm.com/peretz/neutrino/pull/775) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix issue with append to body dropdown inside a scrollable container [\#772](https://github.ibm.com/peretz/neutrino/pull/772) ([dangryan](https://github.ibm.com/dangryan))
 - Swap out hard coded text for English translation \#741 [\#769](https://github.ibm.com/peretz/neutrino/pull/769) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
