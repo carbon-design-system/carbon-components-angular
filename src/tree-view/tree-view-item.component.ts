@@ -3,61 +3,42 @@ import {
 	Input,
 	Output,
 	OnInit,
+	OnChanges,
 	EventEmitter,
 	ElementRef,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	HostBinding,
+	Self,
+	SimpleChanges,
+	HostListener
 } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../common/a11y.service";
+import { NgClass } from "@angular/common";
 
 
 /**
- * `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
- *
- * @export
- * @class TreeViewItem
- * @implements {OnInit}
- */
+* `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
+*
+* @export
+* @class TreeViewItem
+* @implements {OnInit}
+*/
 @Component({
 	selector: "n-tree-view-item",
 	template: `
-	<span
-	class="tree-view_label"
-	[style.margin-left.px]="calculateIndent()"
-	tabindex="{{listItem.disabled?-1:0}}"
-	[ngClass]="{
-		opened: listItem.opened,
-		disabled: listItem.disabled,
-		'has-items': listItem.items
-	}"
-	(click)="doClick($event, listItem)"
-	(keydown)="onKeyDown($event, listItem)">
-		<ng-container *ngIf="!listTpl">{{listItem.content}}</ng-container>
-		<ng-template
-			*ngIf="isTpl"
-			[ngTemplateOutletContext]="{item: listItem}"
-			[ngTemplateOutlet]="listTpl">
-		</ng-template>
-	</span>
-	<n-tree-view-wrapper
-		*ngIf="listItem.items && listItem.opened"
-		[isOpen]="listItem.opened"
-		[items]="listItem.items"
-		[listTpl]="listTpl"
-		[parent]="parent"
-		[rootElem]="rootElem"
-		[indent]="indent+1"
-		[role]="'group'"
-		[outerPadding]="outerPadding"
-		[iconWidth]="iconWidth"
-		[innerPadding]="innerPadding"
-		[label]="listItem"
-		(select)="bubble($event)">
-	</n-tree-view-wrapper>
-	`
+	<ng-container *ngIf="!listTpl">{{listItem.content}}</ng-container>
+	<ng-template
+		*ngIf="isTpl"
+		[ngTemplateOutletContext]="{item: listItem}"
+		[ngTemplateOutlet]="listTpl">
+	</ng-template>
+	`,
+	providers: [ NgClass ]
 })
-export class TreeViewItem implements OnInit {
+export class TreeViewItem implements OnInit, OnChanges {
 	public parent;
 	/**
 	 * Set to `true` if there is a custom template for the `TreeViewItem`.
@@ -131,25 +112,45 @@ export class TreeViewItem implements OnInit {
 	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 
+	@HostBinding("attr.tabindex") tabIndex;
+	@HostBinding("class.has-items") hasItems: boolean;
+	@HostBinding("class.opened") isOpened: boolean;
+	@HostBinding("class.disabled") isDisabled: boolean;
+	@HostBinding("class.tree-view_label") treeView = "tree-view_label";
+	@HostBinding("style.margin-left.px") marginLeft;
+
 	/**
 	 * Creates an instance of TreeViewItem.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof TreeViewItem
 	 */
-	constructor(public _elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef, private sanitizer: DomSanitizer, @Self() private ngClass: NgClass) {}
 
 	/**
 	 * Stores references to the DOM elements and checks for a custom template.
 	 * @memberof TreeViewItem
 	 */
 	ngOnInit() {
-		this.parent = this._elementRef.nativeElement;
+		this.parent = this.elementRef.nativeElement;
+
+		this.hasItems = !!this.listItem.items;
+		this.isOpened = !!this.listItem.opened;
+		this.isDisabled = !!this.listItem.disabled;
 
 		if (!this.rootElem) {
-			this.rootElem = this._elementRef.nativeElement.parentNode;
+			this.rootElem = this.elementRef.nativeElement.parentNode;
 		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		this.tabIndex = this.listItem.disabled ? -1 : 0;
+		this.marginLeft = this.calculateIndent();
+
+		this.hasItems = !!this.listItem.items;
+		this.isOpened = !!this.listItem.opened;
+		this.isDisabled = !!this.listItem.disabled;
 	}
 
 	/**
@@ -169,31 +170,20 @@ export class TreeViewItem implements OnInit {
 	}
 
 	/**
-	 * Bubbling the select event up to parent classes.
-	 * @param {any} ev
-	 * @memberof TreeViewItem
-	 */
-	bubble(ev) {
-		this.select.emit(ev);
-	}
-
-	/**
 	 * Emits the event of a mouse click event on an item.
 	 * @param {any} ev
-	 * @param {any} item
 	 * @memberof TreeViewItem
 	 */
-	doClick(ev, item) {
-		this.select.emit({item});
+	@HostListener("click", ["$event"]) onClick = (ev) => {
+		this.select.emit(this.listItem);
 	}
 
 	/**
 	 * Manages the keyboard accessiblity for selection of a `TreeView` list item.
 	 * @param {any} ev
-	 * @param {any} item
 	 * @memberof TreeViewItem
 	 */
-	onKeyDown(ev, item) {
+	@HostListener("keydown", ["$event"]) onKeydown = (ev) => {
 		// checks for existance, and either calls cb with the object, or returns false
 		let exists = (obj: any, cb: Function) => {
 			if (obj === undefined || obj === null) {
@@ -206,7 +196,7 @@ export class TreeViewItem implements OnInit {
 			|| ev.key === "ArrowRight"
 			|| ev.key === "ArrowLeft") {
 			ev.preventDefault();
-			this.select.emit({item});
+			this.select.emit(this.listItem);
 		}
 	}
 }

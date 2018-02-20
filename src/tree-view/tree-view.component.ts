@@ -170,7 +170,7 @@ export class TreeView implements OnChanges {
 	 * @param {any} item
 	 * @memberof TreeView
 	 */
-	onClick({item}) {
+	onClick(item) {
 		if (!item.disabled ) {
 			this.select.emit({item});
 			this.selected.emit({item});

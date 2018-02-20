@@ -43,6 +43,22 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					[innerPadding]="innerPadding"
 					(select)="bubbleSelect($event)">
 				</n-tree-view-item>
+
+				<n-tree-view-wrapper
+					*ngIf="item.items && item.opened"
+					[isOpen]="item.opened"
+					[items]="item.items"
+					[listTpl]="listTpl"
+					[parent]="parent"
+					[rootElem]="rootElem"
+					[indent]="indent+1"
+					[role]="'group'"
+					[outerPadding]="outerPadding"
+					[iconWidth]="iconWidth"
+					[innerPadding]="innerPadding"
+					[label]="item"
+					(select)="bubbleSelect($event)">
+				</n-tree-view-wrapper>
 			</li>
 		</ul>
 	`
