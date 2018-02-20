@@ -46,8 +46,8 @@ import { Modal } from "../../../src";
 					<button class="btn--primary" type="button" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
 				<n-modal-footer>
-					<button class="btn--secondary cancel-button" (click)="closeModal()">Cancel</button>
                     <button class="btn--primary submit-button" type="submit">Submit</button>
+					<button class="btn--secondary cancel-button" type="button" (click)="closeModal()">Cancel</button>
 				</n-modal-footer>
 			</form>
 		</n-modal>
