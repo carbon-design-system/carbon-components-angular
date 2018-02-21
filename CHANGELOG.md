@@ -10,6 +10,7 @@
 
 **Fixed bugs:**
 
+- Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
@@ -23,6 +24,7 @@
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
 - \[Popover\] Id given to n-popover is not considered and id comes as undefined [\#780](https://github.ibm.com/peretz/neutrino/issues/780)
 - Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
+- button menu arrow styles incorrect for default size  [\#778](https://github.ibm.com/peretz/neutrino/issues/778)
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
@@ -30,6 +32,7 @@
 
 **Merged pull requests:**
 
+- Fix medium size button menu chevron [\#786](https://github.ibm.com/peretz/neutrino/pull/786) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Set popover id [\#785](https://github.ibm.com/peretz/neutrino/pull/785) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - move charts into peerDependancies, also high level dropdown naming refactor [\#781](https://github.ibm.com/peretz/neutrino/pull/781) ([callums](https://github.ibm.com/callums))
 - Fix tooltip type [\#776](https://github.ibm.com/peretz/neutrino/pull/776) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

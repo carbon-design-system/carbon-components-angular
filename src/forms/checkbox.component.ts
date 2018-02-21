@@ -241,12 +241,6 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
 
 	/**
-	 * Binds 'checkbox' value to the role attribute for `CheckboxComponent`.
-	 * @memberof CheckboxComponent
-	 */
-	@HostBinding("attr.role") role = "checkbox";
-
-	/**
 	 * Creates an instance of `CheckboxComponent`.
 	 * @param {ChangeDetectorRef} changeDetectorRef
 	 * @memberof CheckboxComponent
