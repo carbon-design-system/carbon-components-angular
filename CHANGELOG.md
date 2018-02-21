@@ -32,6 +32,7 @@
 
 **Merged pull requests:**
 
+- Change button order in demo [\#789](https://github.ibm.com/peretz/neutrino/pull/789) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix medium size button menu chevron [\#786](https://github.ibm.com/peretz/neutrino/pull/786) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Set popover id [\#785](https://github.ibm.com/peretz/neutrino/pull/785) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - move charts into peerDependancies, also high level dropdown naming refactor [\#781](https://github.ibm.com/peretz/neutrino/pull/781) ([callums](https://github.ibm.com/callums))
