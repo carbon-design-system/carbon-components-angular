@@ -10,6 +10,7 @@
 
 **Fixed bugs:**
 
+- Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
 - Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
@@ -25,6 +26,7 @@
 - \[Popover\] Id given to n-popover is not considered and id comes as undefined [\#780](https://github.ibm.com/peretz/neutrino/issues/780)
 - Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
 - button menu arrow styles incorrect for default size  [\#778](https://github.ibm.com/peretz/neutrino/issues/778)
+- close buttons alignment for banners component [\#777](https://github.ibm.com/peretz/neutrino/issues/777)
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
@@ -32,6 +34,7 @@
 
 **Merged pull requests:**
 
+- Remove role checkbox because there's input type [\#791](https://github.ibm.com/peretz/neutrino/pull/791) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Change button order in demo [\#789](https://github.ibm.com/peretz/neutrino/pull/789) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix medium size button menu chevron [\#786](https://github.ibm.com/peretz/neutrino/pull/786) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Set popover id [\#785](https://github.ibm.com/peretz/neutrino/pull/785) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
