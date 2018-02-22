@@ -3,11 +3,7 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	forwardRef,
 	TemplateRef,
-	ElementRef,
-	ViewChild,
-	AfterViewInit
 } from "@angular/core";
 import { ListItem } from "./../dropdown/list-item.interface";
 
