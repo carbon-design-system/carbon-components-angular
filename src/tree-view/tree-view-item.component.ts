@@ -13,19 +13,18 @@ import {
 	SimpleChanges,
 	HostListener
 } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../common/a11y.service";
 import { NgClass } from "@angular/common";
 
 
 /**
-* `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
-*
-* @export
-* @class TreeViewItem
-* @implements {OnInit}
-*/
+ * `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
+ *
+ * @export
+ * @class TreeViewItem
+ * @implements {OnInit}
+ */
 @Component({
 	selector: "n-tree-view-item",
 	template: `
@@ -116,7 +115,7 @@ export class TreeViewItem implements OnInit, OnChanges {
 	@HostBinding("class.has-items") hasItems: boolean;
 	@HostBinding("class.opened") isOpened: boolean;
 	@HostBinding("class.disabled") isDisabled: boolean;
-	@HostBinding("class.tree-view_label") treeView = "tree-view_label";
+	@HostBinding("class.tree-view_label") treeView = true;
 	@HostBinding("style.margin-left.px") marginLeft;
 
 	/**
@@ -124,7 +123,7 @@ export class TreeViewItem implements OnInit, OnChanges {
 	 * @param {ElementRef} elementRef
 	 * @memberof TreeViewItem
 	 */
-	constructor(public elementRef: ElementRef, private sanitizer: DomSanitizer, @Self() private ngClass: NgClass) {}
+	constructor(public elementRef: ElementRef, @Self() private ngClass: NgClass) {}
 
 	/**
 	 * Stores references to the DOM elements and checks for a custom template.
@@ -132,10 +131,6 @@ export class TreeViewItem implements OnInit, OnChanges {
 	 */
 	ngOnInit() {
 		this.parent = this.elementRef.nativeElement;
-
-		this.hasItems = !!this.listItem.items;
-		this.isOpened = !!this.listItem.opened;
-		this.isDisabled = !!this.listItem.disabled;
 
 		if (!this.rootElem) {
 			this.rootElem = this.elementRef.nativeElement.parentNode;

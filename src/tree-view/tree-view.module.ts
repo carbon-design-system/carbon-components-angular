@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule, NgClass } from "@angular/common";
+import { CommonModule } from "@angular/common";
 
 import { TreeView } from "./tree-view.component";
 import { TreeViewWrapper } from "./tree-view-wrapper.component";
@@ -20,7 +20,6 @@ export { TreeViewItem } from "./tree-view-item.component";
 		TreeViewWrapper,
 		TreeViewItem
 	],
-	imports: [CommonModule],
-	providers: [ NgClass ]
+	imports: [CommonModule]
 })
 export class TreeViewModule {}
