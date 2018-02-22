@@ -15,7 +15,6 @@ import {
 } from "@angular/core";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../common/a11y.service";
-import { NgClass } from "@angular/common";
 
 
 /**
@@ -34,8 +33,7 @@ import { NgClass } from "@angular/common";
 		[ngTemplateOutletContext]="{item: listItem}"
 		[ngTemplateOutlet]="listTpl">
 	</ng-template>
-	`,
-	providers: [ NgClass ]
+	`
 })
 export class TreeViewItem implements OnInit, OnChanges {
 	public parent;
@@ -123,7 +121,7 @@ export class TreeViewItem implements OnInit, OnChanges {
 	 * @param {ElementRef} elementRef
 	 * @memberof TreeViewItem
 	 */
-	constructor(public elementRef: ElementRef, @Self() private ngClass: NgClass) {}
+	constructor(public elementRef: ElementRef) {}
 
 	/**
 	 * Stores references to the DOM elements and checks for a custom template.
