@@ -7,9 +7,7 @@ import {
 	EventEmitter,
 	ElementRef,
 	TemplateRef,
-	ViewChild,
 	HostBinding,
-	Self,
 	SimpleChanges,
 	HostListener
 } from "@angular/core";
