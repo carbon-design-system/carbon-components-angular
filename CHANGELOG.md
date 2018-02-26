@@ -21,16 +21,12 @@
 
 **Closed issues:**
 
-<<<<<<< HEAD
-- Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
-=======
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
 - \[Popover\] Id given to n-popover is not considered and id comes as undefined [\#780](https://github.ibm.com/peretz/neutrino/issues/780)
 - Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
 - button menu arrow styles incorrect for default size  [\#778](https://github.ibm.com/peretz/neutrino/issues/778)
 - close buttons alignment for banners component [\#777](https://github.ibm.com/peretz/neutrino/issues/777)
->>>>>>> b3bb25e203e78c765c863284276d7b105e8d6281
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
