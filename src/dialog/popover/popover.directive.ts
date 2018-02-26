@@ -68,6 +68,8 @@ import { DialogService } from "./../dialog.service";
 	]
 })
 export class PopoverDirective extends DialogDirective {
+	static popoverCounter = 0;
+
 	/**
 	 * To contain the footer template for the `Popover`.
 	 * @type {TemplateRef<any>}
@@ -102,6 +104,8 @@ export class PopoverDirective extends DialogDirective {
 	 * @memberof PopoverDirective
 	 */
 	onDialogInit() {
+		PopoverDirective.popoverCounter++;
+		this.dialogConfig.compID = "popover-" + PopoverDirective.popoverCounter;
 		this.dialogConfig.content = this.nPopover;
 		this.dialogConfig.footer = this.footer;
 	}

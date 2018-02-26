@@ -12,8 +12,6 @@ import { Tooltip } from "./tooltip.component";
 import { DialogService } from "./../dialog.service";
 
 
-let tooltipCounter = 0;
-
 /**
  * Directive for extending `Dialog` to create tooltips.
  *
@@ -40,6 +38,8 @@ let tooltipCounter = 0;
 	]
 })
 export class TooltipDirective extends DialogDirective {
+	static tooltipCounter = 0;
+
 	/**
 	 * The string or template content to be exposed by the tooltip.
 	 * @type {(string | TemplateRef<any>)}
@@ -85,8 +85,8 @@ export class TooltipDirective extends DialogDirective {
 	 * @memberof TooltipDirective
 	 */
 	onDialogInit() {
-		tooltipCounter++;
-		this.dialogConfig.compID = "tooltip-" + tooltipCounter;
+		TooltipDirective.tooltipCounter++;
+		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.nTooltip;
 		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
 		this.elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
