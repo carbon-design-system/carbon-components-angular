@@ -4,9 +4,9 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 @Component({
 	selector: "app-dropdown-demo",
 	template: `
-		<h1>Drop-down list demo</h1>
+		<h2 class="p-demo-heading h1">Drop-down list</h2>
 
-		<h2>Default</h2>
+		<h3 class="p-demo-section h2">Default</h3>
 		<div style="width: 400px">
 			<n-dropdown
 				placeholder="Select an option"
@@ -25,7 +25,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 		</div>
 
-		<h3>Disabled</h3>
+		<h4 class="p-demo-variation h3">Disabled</h4>
 		<div style="width: 400px">
 			<n-dropdown
 				placeholder="Drop-down 7"
@@ -37,7 +37,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 		</div>
 
-		<h2>Multi-select</h2>
+		<h3 class="p-demo-section h2">Multi-select</h3>
 		<div style="width: 400px">
 			<n-dropdown
 				placeholder="Select an option"
@@ -60,14 +60,14 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 		</div>
 
-		<h2>Searchable</h2>
-		<h3>Single select</h3>
+		<h3 class="p-demo-section h2">Searchable</h3>
+		<h4 class="p-demo-variation h3">Single select</h4>
 		<div style="width: 400px">
 			<n-dropdown placeholder="Select an option">
 				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
 			</n-dropdown>
 		</div>
-		<h3>Multi-select</h3>
+		<h4 class="p-demo-variation h3">Multi-select</h4>
 		<div style="width: 400px">
 			<n-dropdown
 				placeholder="Select an option"
@@ -77,8 +77,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 		</div>
 
-		<h2>Hierarchy</h2>
-		<h3>Tree</h3>
+		<h3 class="p-demo-section h2">Hierarchy</h3>
+		<h4 class="p-demo-variation h3">Tree</h4>
 		<div style="width: 400px">
 			<n-dropdown placeholder="Select an option">
 				<n-dropdown-tree
@@ -87,7 +87,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				</n-dropdown-tree>
 			</n-dropdown>
 		</div>
-		<h3>Sub menu</h3>
+		<h4 class="p-demo-variation h3">Sub menu</h4>
 		<div style="width: 250px">
 			<n-dropdown
 				placeholder="Select an option"
@@ -97,7 +97,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 		</div>
 
-		<h2><code>appendToBody</code> enabled</h2>
+		<h3 class="p-demo-section h2"><code>appendToBody</code> enabled</h3>
 		<div class="dropdown-appendbody-container" style="height: 150px;
 		border: solid 1px red; overflow: scroll; width: 100%; position: relative;">
 			<div style="width: 300px;">
@@ -114,8 +114,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</div>
 		</div>
 
-		<h2>ngModel</h2>
-		<h3>Single select</h3>
+		<h3 class="p-demo-section h2">ngModel</h3>
+		<h4 class="p-demo-variation h3">Single select</h4>
 		<div style="width: 400px">
 			<n-dropdown
 				placeholder="Select an option"
@@ -125,7 +125,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<p>Selected: {{ dropdown1 | json }}</p>
 		</div>
 		<button (click)="reset2()" class="btn--primary">Reset</button>
-		<h3>Multi-select</h3>
+		<h4 class="p-demo-variation h3">Multi-select</h4>
 		<div style="width: 400px">
 			<n-dropdown
 				placeholder="Select an option"
@@ -137,8 +137,8 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<p>Selected: {{ dropdown2 | json }}</p>
 		</div>
 
-		<h2>Events</h2>
-		<h3>Multi-select selected</h3>
+		<h3 class="p-demo-section h2">Events</h3>
+		<h4 class="p-demo-variation h3">Multi-select selected</h4>
 		<n-dropdown
 			placeholder="Select an option"
 			(selected)="multidisplay1 = getMultiDisplay($event.item)"
@@ -147,7 +147,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				[items]="demoItems1">
 			</n-dropdown-list>
 		</n-dropdown>
-		<h3>Reactive form</h3>
+		<h4 class="p-demo-variation h3">Reactive form</h4>
 		<n-dropdown
 			placeholder="Select an option"
 			[formControl]="test">
@@ -180,7 +180,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<button type="submit" class="btn--primary">submit</button>
 		</form>
 
-		<h2>Custom template</h2>
+		<h3 class="p-demo-section h2">Custom template</h3>
 		<ng-template #listTpl let-item="item">
 			<n-icon
 				*ngIf="item.selected"
@@ -205,36 +205,36 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-dropdown>
 		</div>
 
-		<h2>Internal components</h2>
-		<h3>Drop-down list</h3>
+		<h3 class="p-demo-section h2">Internal components</h3>
+		<h4 class="p-demo-variation h3">Drop-down list</h4>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 			</div>
 		</div>
 		<br>
-		<h3>Drop-down filter</h3>
+		<h4 class="p-demo-variation h3">Drop-down filter</h4>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
 			</div>
 		</div>
 		<br>
-		<h3>Drop-down multi filter</h3>
+		<h4 class="p-demo-variation h3">Drop-down multi filter</h4>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-filter [items]="demoItems1" type="multi"></n-dropdown-filter>
 			</div>
 		</div>
 		<br>
-		<h3>Drop-down tree</h3>
+		<h4 class="p-demo-variation h3">Drop-down tree</h4>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-tree [items]="demoItems3"></n-dropdown-tree>
 			</div>
 		</div>
 		<br>
-		<h3>Drop-down sub menu</h3>
+		<h4 class="p-demo-variation h3">Drop-down sub menu</h4>
 		<div class="dropdown_wrapper" style="width: 250px;">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
 				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>

@@ -3,16 +3,16 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-tree-view-demo",
 	template: `
-	<h1>Tree view demo</h1>
+	<h2 class="p-demo-heading h1">Tree view</h2>
 
-	<h2>Default</h2>
+	<h3 class="p-demo-section h2">Default</h3>
 	<n-tree-view
 		[items]="demoItems"
 		(select)="onSelect($event)"
 		label="Default Tree View">
 	</n-tree-view>
 
-	<h2>Custom template</h2>
+	<h3 class="p-demo-section h2">Custom template</h3>
 	<n-tree-view
 		[items]="demoItems1"
 		(select)="expand($event)"
@@ -32,7 +32,7 @@ import { Component, OnInit } from "@angular/core";
 		</ng-template>
 	</n-tree-view>
 
-	<h2>Searchable</h2>
+	<h3 class="p-demo-section h2">Searchable</h3>
 	<div id="demo">
 		<label class="search_group--tree">
 			<svg class="search_icon" aria-hidden="true">

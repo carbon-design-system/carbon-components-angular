@@ -11,9 +11,9 @@ import { Banner } from "./../../../src";
 @Component({
 	selector: "app-banner-demo",
 	template: `
-	<h1>Banner demo</h1>
+	<h2 class="p-demo-heading h1">Alert banners</h2>
 
-	<h2>Static</h2>
+	<h3 class="p-demo-section h2">Static</h3>
 	<div class="banners-container">
 		<n-banner [bannerObj]="infoBanner" (close)="onClose($event)"></n-banner>
 		<n-banner [bannerObj]="errorBanner" (close)="onCloseError($event)"></n-banner>
@@ -21,25 +21,25 @@ import { Banner } from "./../../../src";
 		<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
 	</div>
 
-	<h2>Default</h2>
+	<h3 class="p-demo-section h2">Default</h3>
 	<button class="btn--primary" (click)="callBanner('info')">Banner Info</button>
 	<button class="btn--primary" (click)="callBanner('danger')">Banner Error</button>
 	<button class="btn--primary" (click)="callBanner('warning')">Banner Warning</button>
 	<button class="btn--primary" (click)="callBanner('success')">Banner Success</button>
 
-	<h3>Custom HTML</h3>
+	<h4 class="p-demo-variation h3">Custom HTML</h4>
 	<button class="btn--primary" (click)="callBannerCustom()">show custom banner</button>
 
-	<h2>Overlay</h2>
+	<h3 class="p-demo-section h2">Overlay</h3>
 	<button class="btn--primary" (click)="callBannerSmart('info')">Banner Info</button>
 	<button class="btn--primary" (click)="callBannerSmart('danger')">Banner Error</button>
 	<button class="btn--primary" (click)="callBannerSmart('warning')">Banner Warning</button>
 	<button class="btn--primary" (click)="callBannerSmart('success')">Banner Success</button>
 
-	<h3>Dynamic text</h3>
+	<h4 class="p-demo-variation h3">Dynamic text</h4>
 	<p><textarea [(ngModel)]="smartBannerText" rows="6" cols="60"></textarea></p>
 
-	<h2>Toggle event</h2>
+	<h3 class="p-demo-section h2">Toggle event</h3>
 	<div class="toggleContainer">
 		<button class="btn--primary" (click)="toggleBanner('info')">
 			<span *ngIf="!this.bannerToClose">
@@ -51,10 +51,10 @@ import { Banner } from "./../../../src";
 		</button>
 	</div>
 
-	<h2>Apply to a container</h2>
+	<h3 class="p-demo-section h2">Apply to a container</h3>
 	<button class="btn--primary" (click)="callBanner2()">show banner in the container below</button>
 
-	<h3>Fade away (2secs)</h3>
+	<h4 class="p-demo-variation h3">Fade away (2secs)</h4>
 	<button class="btn--primary" (click)="callBannerFadeAway()">show fade away banner</button>
 	<div id="banner-container">
 		<span></span>

@@ -4,9 +4,9 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 @Component({
 	selector: "app-button-menu-demo",
 	template: `
-		<h1>Button menu demo</h1>
+		<h2 class="p-demo-heading h1">Button menu</h2>
 
-		<h2>Primary</h2>
+		<h3 class="p-demo-section h2">Primary</h3>
 		<div style="width: 600px; height: 60px">
 			<n-button-menu
 			value="Save"
@@ -44,7 +44,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</n-button-menu>
 		</div>
 
-		<h2>Secondary</h2>
+		<h3 class="p-demo-section h2">Secondary</h3>
 		<div style="width: 600px">
 			<n-button-menu
 			value="Save"

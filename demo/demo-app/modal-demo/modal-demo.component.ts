@@ -9,16 +9,21 @@ import { ModalService } from "../../../src";
 @Component({
 	selector: "app-modal-demo",
 	template: `
-	<h1>Modal demo</h1>
+	<h2 class="p-demo-heading h1">Modal</h2>
 
+	<h3 class="p-demo-section h2">Default</h3>
 	<button class="btn--primary" (click)="openModal()">XL modal</button>
 	<button class="btn--primary" (click)="openModal('XXL')">XXL modal</button>
-	<button class="btn--primary" (click)="openModal('error')">Error modal</button>
+	<h4 class="p-demo-variation h3">Form</h4>
 	<button class="btn--primary" (click)="openModal('form')">Form modal</button>
+	<p style="margin-top: 40px">Form data: {{this.data | json}}</p>
+	<h3 class="p-demo-section h2">Nag</h3>
+	<button class="btn--primary" (click)="openModal('error')">Error modal</button>
+	<h3 class="p-demo-section h2">Custom</h3>
 	<button class="btn--primary" (click)="openModal('close')">Programmatic close</button>
 	<button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
 
-	<p>Form data: {{this.data | json}}</p>
+
 	`
 })
 export class ModalDemo {

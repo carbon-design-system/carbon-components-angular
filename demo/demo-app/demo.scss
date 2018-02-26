@@ -1,0 +1,72 @@
+// sass-lint:disable-all
+$font-path: "./../node_modules/@peretz/matter/fonts/";
+@import "~@peretz/matter/scss/matter.scss";
+
+body {
+	padding: 0;
+}
+
+/*
+ * Main demo container
+ * p-demo-section styles the second level headings for each component
+ * p-demo-variation styles the third level headings (child headings to p-demo-section)
+ */
+ .p-container {
+	 padding: 20px;
+
+  	.p-demo-container {
+		overflow: auto;
+		padding-left: 310px;
+
+		.p-demo-section {
+			margin-top: 2rem;
+		}
+
+		.p-demo-variation {
+			margin-top: 1.5rem;
+		}
+  	}
+}
+
+/*
+ * Header
+ */
+.p-demo-header {
+	background: m_color("blue", 0);
+  	margin-bottom: 20px;
+	padding: 20px 0;
+
+	h1, h2 {
+		color: m_color("white", 0);
+		background: transparent;
+	}
+
+	h1 {
+		margin-bottom: 10px;
+	}
+
+	a, button {
+		margin-left: 10px;
+	}
+}
+
+
+/* Side navigation */
+.p-demo-sidebar {
+	nav.p-demo-sidenav {
+		position: absolute;
+		padding: 0;
+		list-style: none;
+
+		label.search_group {
+			width: 290px;
+		}
+
+		ul[role="listbox"] li[role="option"] {
+			& > a {
+				border-bottom: none;
+				color: m_color("gray", 60);
+			}
+		}
+	}
+}

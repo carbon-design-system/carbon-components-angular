@@ -3,13 +3,13 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 @Component({
 	selector: "app-popover-demo",
 	template: `
-	<h1>Popover demo</h1>
+	<h2 class="p-demo-heading h1">Popover</h2>
 
 	<ng-template #customPopover>
 		Cool content <br> Another cool content <br><br><br><br><br>
 	</ng-template>
 
-	<h2>Basic popover</h2>
+	<h3 class="p-demo-section h2">Basic popover</h3>
 	<div>
 		Popover left
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="left" (onClose)="whenClosed()">
@@ -74,7 +74,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</div>
 
-	<h3>Event triggered</h3>
+	<h4 class="p-demo-variation h3">Event triggered popovers</h4>
 	Have a popover
 	<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" #popover="nPopover">
 		<n-icon icon="info" size="sm"></n-icon>
@@ -94,7 +94,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</div>
 	</ng-template>
 
-	<h2>Popover menu</h2>
+	<h3 class="p-demo-section h2">Popover menu</h3>
 	<span>
 		<button class="btn--icon-link popover-menu-button"
 			[nPopoverMenu]="list"
@@ -112,7 +112,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</span>
 
-	<h2>Popover filter</h2>
+	<h3 class="p-demo-section h2">Popover filter</h3>
 	<ng-template #filter>
 		<n-checkbox>High</n-checkbox>
 		<n-checkbox>Medium</n-checkbox>
@@ -143,7 +143,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</span>
 
-	<h2>Append to body</h2>
+	<h3 class="p-demo-section h2">Append to body</h3>
 	<div style="width: 400px; overflow: hidden; position: relative; border: solid 1px red; padding: 10px;">
 		Popover with appendToBody = true
 		<button class="btn--icon-link"
