@@ -112,7 +112,6 @@ export class TreeViewItem implements OnInit, OnChanges {
 	@HostBinding("class.opened") isOpened: boolean;
 	@HostBinding("class.disabled") isDisabled: boolean;
 	@HostBinding("class.tree-view_label") treeView = true;
-	@HostBinding("style.margin-left.px") marginLeft;
 
 	/**
 	 * Creates an instance of TreeViewItem.
@@ -137,7 +136,6 @@ export class TreeViewItem implements OnInit, OnChanges {
 
 	ngOnChanges(changes: SimpleChanges): void {
 		this.tabIndex = this.listItem.disabled ? -1 : 0;
-		this.marginLeft = this.calculateIndent();
 
 		this.hasItems = !!this.listItem.items;
 		this.isOpened = !!this.listItem.opened;
