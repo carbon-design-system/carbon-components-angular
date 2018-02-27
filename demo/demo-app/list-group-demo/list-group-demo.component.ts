@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-list-group-demo",
 	template: `
-	<h2 class="p-demo-heading h1">List group</h2>
+	<h1>List group</h1>
 
 	<ng-template #listTpl let-item="item">
 		<n-checkbox inline="true"
@@ -18,10 +18,10 @@ import { Component, OnInit } from "@angular/core";
 		</button>
 	</ng-template>
 
-	<h3 class="p-demo-section h2">Default list group</h3>
+	<h2>Default list group</h2>
 	<n-list-group [items]="demoItems" (selected)="onSelect($event)"></n-list-group>
 
-	<h4 class="p-demo-variation h3">Custom template (added Icon)</h4>
+	<h3>Custom template (added Icon)</h3>
 	<n-list-group [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="true"></n-list-group>
 	`
 })

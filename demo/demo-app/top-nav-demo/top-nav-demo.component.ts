@@ -6,9 +6,9 @@ import { Component, OnInit } from "@angular/core";
 	// disable warning for max-line-length in template because of the svgs
 	// tslint:disable:max-line-length
 	template: `
-	<h2 class="p-demo-heading h1">Top nav</h2>
+	<h1>Top nav</h1>
 
-	<h3 class="p-demo-section h2">Default</h3>
+	<h2>Default</h2>
 	<n-top-nav [fixed]="false">
 		<a class="top-nav_brand" href="#" title>
 			<h1>
@@ -17,7 +17,7 @@ import { Component, OnInit } from "@angular/core";
 		</a>
 	</n-top-nav>
 
-	<h3 class="p-demo-section h2">With hamburger and right nav</h3>
+	<h2>With hamburger and right nav</h2>
 	<n-top-nav [fixed]="false">
 		<n-hamburger hamburger></n-hamburger>
 		<a class="top-nav_brand" href="#" title>
@@ -75,7 +75,7 @@ import { Component, OnInit } from "@angular/core";
 		</ul>
 	</n-top-nav>
 
-	<h3 class="p-demo-section h2">Without hamburger menu and both navs</h3>
+	<h2>Without hamburger menu and both navs</h2>
 	<n-top-nav [fixed]="false">
 		<a class="top-nav_brand" href="#" title>
 			<h1>

@@ -155,7 +155,7 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Alert banners",
+			content: "Banners",
 			link: "/banner",
 			selected: false
 		},

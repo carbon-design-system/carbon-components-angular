@@ -3,9 +3,9 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 @Component({
 	selector: "app-forms-demo",
 	template: `
-	<h2 class="p-demo-heading h1">Forms</h2>
+	<h1>Forms</h1>
 
-	<h3 class="p-demo-section h2">Check box</h3>
+	<h2>Check box</h2>
 	<p class="checkbox-group-label">Check box group label</p>
 	<n-checkbox [(ngModel)]="firstCheckboxState">Check box ({{firstCheckboxState}})</n-checkbox>
 	<n-checkbox disabled="true">Check box disabled</n-checkbox>
@@ -23,7 +23,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		[(ngModel)]="thirdCheckboxState">Check box (State: {{thirdCheckboxState}})
 	</n-checkbox>
 
-	<h3 class="p-demo-section h2">Select all small inline checkboxes</h3>
+	<h2>Select all small inline checkboxes</h2>
 	<div class="select-clear-example">
 		<p class="checkbox-group-label">Schedule on these days</p>
 		<button *ngIf="!allSelected()" class="btn--link" (click)="selectAll(week)">Select all</button>
@@ -35,20 +35,20 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		</n-checkbox>
 	</div>
 
-	<h3 class="p-demo-section h2">Switch</h3>
+	<h2>Switch</h2>
 	<n-switch [(ngModel)]="firstSwitchState">Switch ({{firstSwitchState}})</n-switch>
 	<n-switch size="sm" disabled="true">Switch disabled</n-switch>
 
-	<h3 class="p-demo-section h2">Radio</h3>
+	<h2>Radio</h2>
 	<p>Radio selected: {{radio}}</p>
-	<h4 class="p-demo-variation h3">Default</h4>
+	<h3>Default</h3>
 	<n-radio-group [(ngModel)]="radio">
 		<n-radio *ngFor="let radio of manyRadios"
 			[value]="radio.num"
 			[disabled]="radio.disabled">Radio {{radio.num}}
 		</n-radio>
 	</n-radio-group>
-	<h4 class="p-demo-variation h3">Small</h4>
+	<h3>Small</h3>
 	<n-radio-group size="sm" [(ngModel)]="radio">
 		<n-radio *ngFor="let radio of manyRadios"
 			[value]="radio.num"
@@ -56,7 +56,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		</n-radio>
 	</n-radio-group>
 
-	<h3 class="p-demo-section h2">Labels and input fields</h3>
+	<h2>Labels and input fields</h2>
 
 	<n-label>
 		Input small
@@ -85,7 +85,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 		<textarea disabled></textarea>
 	</n-label>
 
-	<h4 class="p-demo-variation h3">Field validation</h4>
+	<h3>Field validation</h3>
 	<n-label class="ng-invalid ng-touched" labelState="success">
 		Field with success
 		<input type="text" class="input-text valid--success">

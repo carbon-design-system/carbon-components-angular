@@ -3,9 +3,9 @@ import { Component, ViewChild } from "@angular/core";
 @Component({
 	selector: "app-chart-demo",
 	template: `
-	<h2 class="p-demo-heading h1">Chart</h2>
+	<h1>Chart</h1>
 
-	<h3 class="p-demo-section h2">Bars</h3>
+	<h2>Bars</h2>
 	<button class="btn--primary" (click)="changeData()">Change data</button>
 	<n-bar-chart
 		class="n-chart"
@@ -14,7 +14,7 @@ import { Component, ViewChild } from "@angular/core";
 		[options]="barOption" #barChart>
 	</n-bar-chart>
 
-	<h3 class="p-demo-section h2">Stacked Bars</h3>
+	<h2>Stacked Bars</h2>
 	<n-stacked-bar-chart
 		class="n-chart"
 		style="height: 510px"
@@ -22,7 +22,7 @@ import { Component, ViewChild } from "@angular/core";
 		[options]="stackedBarsOption">
 	</n-stacked-bar-chart>
 
-	<h3 class="p-demo-section h2">Lines</h3>
+	<h2>Lines</h2>
 	<n-line-chart
 		class="n-chart"
 		style="height: 510px"
@@ -30,7 +30,7 @@ import { Component, ViewChild } from "@angular/core";
 		[options]="linesOption">
 	</n-line-chart>
 
-	<h3 class="p-demo-section h2">Double Axis</h3>
+	<h2>Double Axis</h2>
 	<p>Y value formatters can be added to options as functions for each metric.</p>
 	<code>
 		options.yFormatter: {{ '{' }} <br>
@@ -46,7 +46,7 @@ import { Component, ViewChild } from "@angular/core";
 		[options]="doubleAxisOption">
 	</n-double-axis-line-chart>
 
-	<h3 class="p-demo-section h2">Combo</h3>
+	<h2>Combo</h2>
 	<n-combo-chart
 		class="n-chart"
 		style="height: 510px"
