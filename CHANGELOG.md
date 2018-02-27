@@ -6,10 +6,12 @@
 
 **Implemented enhancements:**
 
+- Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
 
 **Fixed bugs:**
 
+- Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
 - Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
 - Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
@@ -19,6 +21,7 @@
 - Need to add safe guard for topNav [\#684](https://github.ibm.com/peretz/neutrino/issues/684)
 - Tree view : left border is missing in checkbox  [\#679](https://github.ibm.com/peretz/neutrino/issues/679)
 - Tree view: Clicking on the arrow doesn't make it expand [\#678](https://github.ibm.com/peretz/neutrino/issues/678)
+- fix modal in lazy loaded modules [\#794](https://github.ibm.com/peretz/neutrino/pull/794) ([callums](https://github.ibm.com/callums))
 
 **Closed issues:**
 
