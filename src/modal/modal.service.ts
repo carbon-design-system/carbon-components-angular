@@ -43,7 +43,6 @@ export class ModalService {
 	 * @memberof ModalService
 	 */
 	create<T>(data: {component: any, inputs?: any}): ComponentRef<any> {
-		console.log(this.resolver);
 		let defaults = {inputs: {}};
 		data = Object.assign({}, defaults, data);
 

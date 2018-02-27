@@ -27,7 +27,7 @@ export function MODAL_PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: ModalP
 	return parentService || new ModalPlaceholderService();
 }
 
-// placholder service *must* be a singleton to ensure the placeholder viewref is accsible globally
+// placholder service *must* be a singleton to ensure the placeholder viewref is accessible globally
 export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 	provide: ModalPlaceholderService,
 	deps: [[new Optional(), new SkipSelf(), ModalPlaceholderService]],
