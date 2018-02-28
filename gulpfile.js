@@ -125,8 +125,8 @@ function version() {
 	return tap(function(file) {
 		let packageJSON = JSON.parse(file.contents.toString("utf-8"));
 		if (process.env.TRAVIS) {
-			// beta release (every time master is merged into the beta branch (nominally weekly))
-			if (process.env.TRAVIS_BRANCH === "beta") {
+			// assume beta release on cron
+			if (process.env.TRAVIS_EVENT_TYPE === "cron") {
 				const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
 				packageJSON.version = `${packageJSON.version}-beta.${build}`;
 			// release to alpha unless it's building from a tag

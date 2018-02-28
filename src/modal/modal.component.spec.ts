@@ -7,6 +7,7 @@ import { DebugElement } from "@angular/core";
 import { ModalComponent } from "./modal.component";
 import { OverlayComponent } from "./overlay.component";
 import { ModalService } from "./modal.service";
+import { ModalPlaceholderService } from "./modal-placeholder.service";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
@@ -35,7 +36,7 @@ describe("ModalComponent", () => {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})],
-			providers: [ModalService]
+			providers: [ModalService, ModalPlaceholderService]
 		});
 
 		fixture = TestBed.createComponent(ModalComponent);
