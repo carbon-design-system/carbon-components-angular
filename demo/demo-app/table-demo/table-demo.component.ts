@@ -64,6 +64,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<n-table [model]="contextModel" (sort)="simpleSort($event)"></n-table>
 
 	<h2>Custom table</h2>
+	<h3>Add row to see loading indicator and end of content button</h3>
 
 	<button class="btn--primary" (click)="customModel.addRow()">Add row</button>
 	<button class="btn--primary" (click)="customModel.addColumn()">Add column</button>
@@ -143,6 +144,7 @@ export class TableDemo implements OnInit {
 	public customModel = new TableModel();
 	public contextModel = new TableModel();
 	public model = new TableModel();
+	numPages = 0;
 
 	@ViewChild("filterableHeaderTemplate")
 	private filterableHeaderTemplate: TemplateRef<any>;
@@ -269,11 +271,21 @@ export class TableDemo implements OnInit {
 		});
 	}
 
+
 	scrollLoad(model: TableModel) {
+		model.isLoading = true;
+		this.numPages++;
 		this.service.getPage(0).then((data: Array<Array<any>>) => {
+			if (this.numPages > 3) {
+				model.isLoading = false;
+				model.isEnd = true;
+				return;
+			}
 			this.prepareData(data).forEach(row => {
 				model.addRow(row);
 			});
+
+			model.isLoading = false;
 		});
 	}
 

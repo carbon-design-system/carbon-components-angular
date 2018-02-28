@@ -174,6 +174,40 @@ import {
 				</tr>
 			</ng-container>
 		</tbody>
+		<tfoot >
+			<tr *ngIf="this.model.isLoading">
+			<td class="table_loading_indicator">
+				<svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 32 30">
+				<circle cx="4" cy="16" r="4"  fill="#eee">
+					<animate id="one" attributeName="fill"
+					dur="1s"
+					values="#eee;#999;#eee"
+					begin="0;two.end"/>
+				</circle>
+				<circle cx="16" cy="16" r="4"  fill="#eee">
+					<animate  id="two" attributeName="fill"
+					begin="one.end-0.5s"
+					dur="1s"
+					values="#eee;#999;#eee"/>
+				</circle>
+				<circle  cx="28" cy="16" r="4"  fill="#eee">
+					<animate attributeName="fill"
+					begin="two.end-0.5s"
+					dur="1s"
+					values="#eee;#999;#eee"/>
+				</circle>
+				</svg>
+			</td>
+			</tr>
+			<tr *ngIf="this.model.isEnd">
+				<td class="table_end_indicator">
+					<h5>You've reached the end of your content</h5>
+					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
+						Scroll to top
+					</button>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 	`
 })
@@ -363,5 +397,17 @@ export class Table {
 		if (distanceFromBottom <= this.scrollLoadDistance) {
 			this.scrollLoad.emit(this.model);
 		}
+	}
+
+	/**
+	 * Triggered when the user scrolls on the `<tbody>` element.
+	 * Emits the `scrollLoad` event.
+	 *
+	 * @param {any} event
+	 * @memberof Table
+	 */
+	scrollToTop(event) {
+		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
+		this.model.isEnd = false;
 	}
 }
