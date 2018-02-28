@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 @Component({
 	selector: "app-popover-demo",
 	template: `
-	<h1>Popover demo</h1>
+	<h1>Popover</h1>
 
 	<ng-template #customPopover>
 		Cool content <br> Another cool content <br><br><br><br><br>
@@ -74,7 +74,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</div>
 
-	<h3>Event triggered</h3>
+	<h3>Event triggered popovers</h3>
 	Have a popover
 	<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" #popover="nPopover">
 		<n-icon icon="info" size="sm"></n-icon>

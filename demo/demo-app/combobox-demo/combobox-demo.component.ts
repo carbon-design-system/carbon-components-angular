@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "app-combobox-demo",
 	template: `
-		<h1>Combo box demo</h1>
+		<h1>Combo box</h1>
 
 		<h2>Single-select</h2>
 		<div style="width: 330px;">

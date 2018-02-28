@@ -8,30 +8,56 @@ import * as en from "./../../src/i18n/en.json";
 @Component({
 	selector: "app-root",
 	template: `
-	<header>
-		<h1 style="display: inline-block;">
-			<a routerLink="/">Neutrino</a>
-		</h1>
-		<a href="https://github.ibm.com/peretz/neutrino">Project</a>
-		<a href="https://pages.github.ibm.com/peretz/neutrino/documentation/">Documentation</a>
+	<header class="p-demo-header text--center">
+		<h1>Neutrino</h1>
+		<h2>A componentized <em>Angular</em> implementation of the Watson Customer Engagement design guide.</h2>
+		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino">
+			<n-icon icon="preview" color="white" size="sm"></n-icon>
+			Project
+		</a>
+		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino/wiki/Style-guide">
+			<n-icon icon="design" color="white" size="sm"></n-icon>
+			Code style guide
+		</a>
+		<a class="btn--icon-white" href="https://pages.github.ibm.com/peretz/neutrino/documentation/">
+			<n-icon icon="document" color="white" size="sm"></n-icon>
+			Documentation
+		</a>
 	</header>
-	<nav class="n-list">
-		<input
-			type="search"
-			(keyup)="search($event)"
-			class="input-field"
-			style="width: 100%; margin-left: 0;"
-			placeholder="Filter"
-			aria-label="filter components">
-		<n-list-group [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
-			<ng-template #item let-item="item">
-				<a routerLink="{{item.link}}">{{item.content}}</a>
-			</ng-template>
-		</n-list-group>
-	</nav>
-	<main class="main">
-	<div class="main-banner-container"></div>
+	<main class="p-container">
+	<aside class="p-demo-sidebar" role="complementary">
+		<nav class="p-demo-sidenav">
+			<label class="search_group">
+				<svg class="search_icon" aria-hidden="true">
+					<use href="#search_16"></use>
+				</svg>
+				<input
+					#demo_search
+					type="search"
+					(keyup)="search($event)"
+					class="input-field"
+					placeholder="Filter"
+					aria-label="filter components">
+				<button
+					class="close"
+					type="reset"
+					aria-label="Reset search"
+					(click)="demo_search.value = ''; search($event);">
+					<svg class="close_icon">
+						<use href="#x_16"></use>
+					</svg>
+				</button>
+			</label>
+			<n-list-group [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+				<ng-template #item let-item="item">
+					<a routerLink="{{item.link}}">{{item.content}}</a>
+				</ng-template>
+			</n-list-group>
+		</nav>
+	</aside>
+	<div class="p-demo-container">
 		<router-outlet></router-outlet>
+	</div>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
 	<n-sprite sprite="activities"></n-sprite>
@@ -58,88 +84,88 @@ import * as en from "./../../src/i18n/en.json";
 	<n-sprite sprite="top_nav_bar"></n-sprite>
 	<n-sprite sprite="window_controls"></n-sprite>
 	`,
-	styleUrls: ["./app.component.scss"],
+	styleUrls: ["./demo.scss"],
 	encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
 	public navItems = [
 		{
-			content: "Forms demo",
+			content: "Forms",
 			link: "/forms",
 			selected: false
 		},
 		{
-			content: "Iconography demo",
+			content: "Iconography",
 			link: "/icon",
 			selected: false
 		},
 		{
-			content: "Popover demo",
+			content: "Popover",
 			link: "/popover",
 			selected: false
 		},
 		{
-			content: "Tooltip demo",
+			content: "Tooltip",
 			link: "/tooltip",
 			selected: false
 		},
 		{
-			content: "Tabs demo",
+			content: "Tabs",
 			link: "/tabs",
 			selected: false
 		},
 		{
-			content: "List group demo",
+			content: "List group",
 			link: "/list-group",
 			selected: false
 		},
 		{
-			content: "Table demo",
+			content: "Table",
 			link: "/table",
 			selected: false
 		},
 		{
-			content: "Tree view demo",
+			content: "Tree view",
 			link: "/tree-view",
 			selected: false
 		},
 		{
-			content: "Drop-down demo",
+			content: "Drop-down",
 			link: "/dropdown",
 			selected: false
 		},
 		{
-			content: "Button menu demo",
+			content: "Button menu",
 			link: "/button-menu",
 			selected: false
 		},
 		{
-			content: "Top-nav demo",
+			content: "Top-nav",
 			link: "/top-nav",
 			selected: false
 		},
 		{
-			content: "Side-nav demo",
+			content: "Side-nav",
 			link: "/side-nav",
 			selected: false
 		},
 		{
-			content: "Modal demo",
+			content: "Modal",
 			link: "/modal",
 			selected: false
 		},
 		{
-			content: "Banner demo",
+			content: "Banners",
 			link: "/banner",
 			selected: false
 		},
 		{
-			content: "Combo box demo",
+			content: "Combo box",
 			link: "/combobox",
 			selected: false
 		},
 		{
-			content: "Chart demo",
+			content: "Chart",
 			link: "/chart",
 			selected: false
 		}

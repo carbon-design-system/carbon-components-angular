@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-tabs-demo",
 	template: `
-	<h1>Tabs demo</h1>
+	<h1>Tabs</h1>
 
 	<h2>Static tabs</h2>
 		<n-tabs>
@@ -45,7 +45,7 @@ import { Component, OnInit } from "@angular/core";
 			</n-tab>
 		</n-tabs>
 
-	<h2>Static tabs with tab2 active and the tabs are at the bottom</h2>
+	<h3>Static tabs with bottom placement</h3>
 	<n-tabs position='bottom'>
 		<n-tab heading='Tab1'>
 			Tab 1 content
@@ -70,7 +70,7 @@ import { Component, OnInit } from "@angular/core";
 		</n-tab>
 	</n-tabs>
 
-	<h2>Dynamic tabs with timeout</h2>
+	<h3>Dynamic tabs with timeout</h3>
 	<div>
 		<n-tabs>
 			<n-tab

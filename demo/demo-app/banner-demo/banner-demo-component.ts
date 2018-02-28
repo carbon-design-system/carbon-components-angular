@@ -11,7 +11,7 @@ import { Banner } from "./../../../src";
 @Component({
 	selector: "app-banner-demo",
 	template: `
-	<h1>Banner demo</h1>
+	<h1>Banners</h1>
 
 	<h2>Static</h2>
 	<div class="banners-container">
