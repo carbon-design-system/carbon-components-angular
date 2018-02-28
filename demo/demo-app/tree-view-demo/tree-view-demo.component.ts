@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-tree-view-demo",
 	template: `
-	<h1>Tree view demo</h1>
+	<h1>Tree view</h1>
 
 	<h2>Default</h2>
 	<n-tree-view

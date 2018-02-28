@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
 	// disable warning for max-line-length in template because of the svgs
 	// tslint:disable:max-line-length
 	template: `
-	<h1>Top nav demo</h1>
+	<h1>Top nav</h1>
 
 	<h2>Default</h2>
 	<n-top-nav [fixed]="false">

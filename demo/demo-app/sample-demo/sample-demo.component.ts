@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 
 @Component({
-	selector: "sample-demo",
+	selector: "app-sample-demo",
 	template: `
-		<h1>Sample demo</h1>
+		<h1>Sample</h1>
 
-		<h3>Default sample</h3>
+		<h2>Default sample</h2>
 		<div>
 			<n-sample></n-sample>
 		</div>

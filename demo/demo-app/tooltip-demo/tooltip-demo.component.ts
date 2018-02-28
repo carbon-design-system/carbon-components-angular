@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-tooltip-demo",
 	template: `
-	<h1>Tooltip demo</h1>
+	<h1>Tooltip</h1>
 
 	<ng-template #customTooltip>
 		<p class="large-tooltip-number">12,100</p>
@@ -31,7 +31,7 @@ import { Component, OnInit } from "@angular/core";
 	<button class="btn--primary" [nTooltip]="customTooltip" placement="left">Tooltip left</button>
 	<br><br>
 
-	<h2>For text truncation</h2>
+	<h2>Text truncation</h2>
 	<p class="ellipsis" nEllipsisTooltip>Text that fits</p>
 	<br>
 	<p

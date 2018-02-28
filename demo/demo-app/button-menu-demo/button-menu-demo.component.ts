@@ -4,7 +4,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 @Component({
 	selector: "app-button-menu-demo",
 	template: `
-		<h1>Button menu demo</h1>
+		<h1>Button menu</h1>
 
 		<h2>Primary</h2>
 		<div style="width: 600px; height: 60px">

@@ -4,7 +4,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 @Component({
 	selector: "app-dropdown-demo",
 	template: `
-		<h1>Drop-down list demo</h1>
+		<h1>Drop-down list</h1>
 
 		<h2>Default</h2>
 		<div style="width: 400px">

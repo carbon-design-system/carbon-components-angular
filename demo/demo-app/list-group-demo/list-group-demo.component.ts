@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-list-group-demo",
 	template: `
-	<h1>List group demo</h1>
+	<h1>List group</h1>
 
 	<ng-template #listTpl let-item="item">
 		<n-checkbox inline="true"
