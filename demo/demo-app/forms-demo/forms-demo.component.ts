@@ -3,7 +3,7 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 @Component({
 	selector: "app-forms-demo",
 	template: `
-	<h1>Forms demo</h1>
+	<h1>Forms</h1>
 
 	<h2>Check box</h2>
 	<p class="checkbox-group-label">Check box group label</p>

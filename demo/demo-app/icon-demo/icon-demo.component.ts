@@ -5,7 +5,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 @Component({
 	selector: "app-icon-demo",
 	template: `
-	<h1>Iconography demo</h1>
+	<h1>Iconography</h1>
 
 	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
 

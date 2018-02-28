@@ -47,16 +47,17 @@ class FilterableHeaderItem extends TableHeaderItem {
 @Component({
 	selector: "app-table-demo",
 	template: `
-	<h1>Table demo</h1>
+	<h1>Table</h1>
 
-	<h2>Small table</h2>
+	<h2>Size Variations</h2>
+	<h3>Small table</h3>
 	<n-table size="sm" [model]="simpleModel1" (sort)="simpleSort1($event)"></n-table>
 
-	<h2>Normal table</h2>
+	<h3>Normal table</h3>
 	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
 
 
-	<h2>Large table</h2>
+	<h3>Large table</h3>
 	<n-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></n-table>
 
 	<h2>Table with contextual rows</h2>
