@@ -39,6 +39,7 @@
 
 **Merged pull requests:**
 
+- Demo refactor [\#797](https://github.ibm.com/peretz/neutrino/pull/797) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - detect cron jobs and try to run beta releases [\#796](https://github.ibm.com/peretz/neutrino/pull/796) ([callums](https://github.ibm.com/callums))
 - Fix tree view style [\#795](https://github.ibm.com/peretz/neutrino/pull/795) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Demo refactor [\#793](https://github.ibm.com/peretz/neutrino/pull/793) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
