@@ -15,6 +15,7 @@
 - Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
 - Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
+- updated selected value ngOnChanges for combobox [\#759](https://github.ibm.com/peretz/neutrino/issues/759)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
 - Github pages issues [\#704](https://github.ibm.com/peretz/neutrino/issues/704)
@@ -38,6 +39,9 @@
 
 **Merged pull requests:**
 
+- detect cron jobs and try to run beta releases [\#796](https://github.ibm.com/peretz/neutrino/pull/796) ([callums](https://github.ibm.com/callums))
+- Fix tree view style [\#795](https://github.ibm.com/peretz/neutrino/pull/795) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Demo refactor [\#793](https://github.ibm.com/peretz/neutrino/pull/793) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Remove role checkbox because there's input type [\#791](https://github.ibm.com/peretz/neutrino/pull/791) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Make chevron clickable [\#790](https://github.ibm.com/peretz/neutrino/pull/790) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Change button order in demo [\#789](https://github.ibm.com/peretz/neutrino/pull/789) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

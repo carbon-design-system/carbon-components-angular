@@ -48,7 +48,7 @@ import * as en from "./../../src/i18n/en.json";
 					</svg>
 				</button>
 			</label>
-			<n-list-group [items]="filteredItems" [listTpl]="item" (select)="onSelect($event)">
+			<n-list-group [items]="filteredItems" [listTpl]="item" (selected)="onSelect($event)">
 				<ng-template #item let-item="item">
 					<a routerLink="{{item.link}}">{{item.content}}</a>
 				</ng-template>
