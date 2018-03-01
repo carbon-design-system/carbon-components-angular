@@ -176,34 +176,15 @@ import {
 		</tbody>
 		<tfoot >
 			<tr *ngIf="this.model.isLoading">
-			<td class="table_loading_indicator">
-				<svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 32 30">
-				<circle cx="4" cy="16" r="4"  fill="#eee">
-					<animate id="one" attributeName="fill"
-					dur="1s"
-					values="#eee;#999;#eee"
-					begin="0;two.end"/>
-				</circle>
-				<circle cx="16" cy="16" r="4"  fill="#eee">
-					<animate  id="two" attributeName="fill"
-					begin="one.end-0.5s"
-					dur="1s"
-					values="#eee;#999;#eee"/>
-				</circle>
-				<circle  cx="28" cy="16" r="4"  fill="#eee">
-					<animate attributeName="fill"
-					begin="two.end-0.5s"
-					dur="1s"
-					values="#eee;#999;#eee"/>
-				</circle>
-				</svg>
+			<td class="table_loading-indicator">
+			<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
 			</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">
-				<td class="table_end_indicator">
-					<h5>You've reached the end of your content</h5>
+				<td class="table_end-indicator">
+					<h5>{{'TABLE.END_OF_DATA'| translate}}</h5>
 					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						Scroll to top
+						{{ 'TABLE.SCROLL_TOP' | translate}}
 					</button>
 				</td>
 			</tr>
