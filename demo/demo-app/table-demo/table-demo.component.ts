@@ -271,7 +271,6 @@ export class TableDemo implements OnInit {
 		});
 	}
 
-
 	scrollLoad(model: TableModel) {
 		model.isLoading = true;
 		this.numPages++;
