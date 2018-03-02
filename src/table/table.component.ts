@@ -175,9 +175,9 @@ import {
 			</ng-container>
 		</tbody>
 		<tfoot >
-			<tr *ngIf="this.model.isLoading">
+		<tr *ngIf="this.model.isLoading">
 			<td class="table_loading-indicator">
-			<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
+				<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
 			</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">
@@ -377,6 +377,10 @@ export class Table {
 
 		if (distanceFromBottom <= this.scrollLoadDistance) {
 			this.scrollLoad.emit(this.model);
+		}
+
+		if (distanceFromBottom > this.scrollLoadDistance) {
+			this.model.isEnd = false;
 		}
 	}
 
