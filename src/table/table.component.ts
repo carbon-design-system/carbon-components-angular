@@ -174,11 +174,11 @@ import {
 				</tr>
 			</ng-container>
 		</tbody>
-		<tfoot >
-		<tr *ngIf="this.model.isLoading">
-			<td class="table_loading-indicator">
-				<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
-			</td>
+		<tfoot>
+			<tr *ngIf="this.model.isLoading">
+				<td class="table_loading-indicator">
+					<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
+				</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
