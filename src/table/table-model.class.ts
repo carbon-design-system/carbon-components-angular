@@ -90,6 +90,22 @@ export class TableModel {
 	pageLength: number;
 
 	/**
+	 * Set to true when there is no more data to load in the table
+	 *
+	 * @type {boolean}
+	 * @memberof TableModel
+	 */
+	isEnd = false;
+
+	/**
+	 * Set to true when lazy loading to show loading indicator
+	 *
+	 * @type {boolean}
+	 * @memberof TableModel
+	 */
+	isLoading = false;
+
+	/**
 	 * Absolute total number of rows of the table.
 	 *
 	 * @private
