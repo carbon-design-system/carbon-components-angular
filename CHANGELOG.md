@@ -7,6 +7,7 @@
 **Implemented enhancements:**
 
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
+- No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
 
 **Fixed bugs:**
@@ -39,6 +40,7 @@
 
 **Merged pull requests:**
 
+-  Add lazy loading and end of content indicators [\#798](https://github.ibm.com/peretz/neutrino/pull/798) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Demo refactor [\#797](https://github.ibm.com/peretz/neutrino/pull/797) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - detect cron jobs and try to run beta releases [\#796](https://github.ibm.com/peretz/neutrino/pull/796) ([callums](https://github.ibm.com/callums))
 - Fix tree view style [\#795](https://github.ibm.com/peretz/neutrino/pull/795) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
