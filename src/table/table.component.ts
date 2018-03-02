@@ -377,9 +377,7 @@ export class Table {
 
 		if (distanceFromBottom <= this.scrollLoadDistance) {
 			this.scrollLoad.emit(this.model);
-		}
-
-		if (distanceFromBottom > this.scrollLoadDistance) {
+		} else {
 			this.model.isEnd = false;
 		}
 	}
