@@ -5,7 +5,7 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-tran
 import { FormsModule } from "@angular/forms";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "./table.module";
 import { Table } from "./table.component";
-import { StaticIcon } from "./../icon/static-icon.component";
+import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { By } from "@angular/platform-browser";
 
@@ -37,7 +37,7 @@ describe("Table", () => {
 				FormsModule,
 				NFormsModule,
 				DialogModule,
-				StaticIcon,
+				StaticIconModule,
 				TranslateModule.forRoot({
 					loader: {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
