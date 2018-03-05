@@ -56,7 +56,6 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
-		<div>up</div>
 		<ul
 			#list
 			role="listbox"
@@ -96,8 +95,7 @@ import "rxjs/add/observable/of";
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
-		</ul>
-		<div>down</div>`,
+		</ul>`,
 		providers: [
 			{
 				provide: AbstractDropdownView,
@@ -172,6 +170,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	protected focusJump;
+
+	/**
+	 * holds on to the last touch position (used for scrolling)
+	 */
+	private lastTouch = 0;
 
 	/**
 	 * Creates an instance of `DropdownList`.
@@ -401,6 +404,59 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				}
 			}
 		}
+	}
+
+	wheelListener = event => {
+		const list = this.list.nativeElement;
+		list.scrollTop += event.deltaY;
+		// only prevent the parent/window from scrolling if we can scroll
+		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	}
+
+	touchStartListener = event => {
+		if (event.touches[0]) {
+			this.lastTouch = event.touches[0].clientY;
+		}
+	}
+
+	touchMoveListener = event => {
+		const list = this.list.nativeElement;
+		if (event.touches[0]) {
+			const touch = event.touches[0];
+			list.scrollTop += this.lastTouch - touch.clientY;
+			this.lastTouch = touch.clientY;
+		}
+	}
+
+	hoverUpListener = event => {
+		console.log("going up");
+	}
+
+	hoverDownListener = event => {
+		console.log("going down");
+	}
+
+	enableScroll() {
+		const list = this.list.nativeElement;
+		const boudningClientRect = list.getBoundingClientRect();
+		list.addEventListener("wheel", this.wheelListener);
+		list.addEventListener("touchstart", this.touchStartListener);
+		list.addEventListener("touchmove", this.touchMoveListener);
+		list.style.overflow = "hidden";
+		list.style.height =
+			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+	}
+
+	disableScroll() {
+		const list = this.list.nativeElement;
+		list.style.height = null;
+		list.style.overflow = null;
+		list.removeEventListener("wheel", this.wheelListener);
+		list.removeEventListener("touchstart", this.touchStartListener);
+		list.removeEventListener("touchmove", this.touchMoveListener);
 	}
 
 	/**

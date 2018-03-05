@@ -61,7 +61,9 @@ import { Subscription } from "rxjs/Subscription";
 			[ngClass]="{
 				'drop-up': dropUp
 			}">
+			<div *ngIf="canScroll">up</div>
 			<ng-content></ng-content>
+			<div *ngIf="canScroll">down</div>
 		</div>
 	`,
 	encapsulation: ViewEncapsulation.None,
@@ -175,6 +177,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * controls wether the `drop-up` class is applied
 	 */
 	dropUp = false;
+
+	/**
+	 * controls wether the scroll up/down arrows are shown
+	 */
+	canScroll = false;
 
 	/**
 	 * Used by the various appendToX methods to keep a reference to our wrapper div
@@ -478,26 +485,20 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 		// set the dropdown menu to drop up if it's near the bottom of the screen
 		// setTimeout lets us measure after it's visible in the DOM
-		this.dropdownMenu.nativeElement.style.height = null;
-		this.dropdownMenu.nativeElement.style.overflow = "hidden";
 		setTimeout(() => {
 			const menu = this.dropdownMenu.nativeElement;
 			const boudningClientRect = menu.getBoundingClientRect();
 
 			if (boudningClientRect.bottom > window.innerHeight) {
 				if (boudningClientRect.top - window.innerHeight < 200) {
-					menu.addEventListener("wheel", event => {
-						event.preventDefault();
-						event.stopPropagation();
-						menu.scrollTop += event.deltaY;
-					});
-					this.dropdownMenu.nativeElement.style.height =
-						`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 10}px`;
-
+					this.canScroll = true;
+					this.view["enableScroll"]();
 				} else {
+					this.canScroll = false;
 					this.dropUp = true;
 				}
 			} else {
+				this.canScroll = false;
 				this.dropUp = false;
 			}
 		}, 0);
@@ -519,6 +520,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.menuIsClosed = true;
 		this.onClose.emit();
 		this.close.emit();
+
+		this.view["disableScroll"]();
 
 		// move the list back in the component on close
 		if (this.appendToBody) {
