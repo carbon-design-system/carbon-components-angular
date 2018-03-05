@@ -450,7 +450,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		};
 		this.dropdownMenu.nativeElement.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = "dropdown";
+		this.dropdownWrapper.className = `dropdown ${this.elementRef.nativeElement.className}`;
 		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.style.position = "absolute";
 		this.dropdownWrapper.appendChild(this.dropdownMenu.nativeElement);
@@ -477,10 +477,26 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		}
 
 		// set the dropdown menu to drop up if it's near the bottom of the screen
-		// setTimeout lets us measure it after it's visible in the DOM
+		// setTimeout lets us measure after it's visible in the DOM
+		this.dropdownMenu.nativeElement.style.height = null;
+		this.dropdownMenu.nativeElement.style.overflow = "hidden";
 		setTimeout(() => {
-			if (this.dropdownMenu.nativeElement.getBoundingClientRect().bottom > window.innerHeight) {
-				this.dropUp = true;
+			const menu = this.dropdownMenu.nativeElement;
+			const boudningClientRect = menu.getBoundingClientRect();
+
+			if (boudningClientRect.bottom > window.innerHeight) {
+				if (boudningClientRect.top - window.innerHeight < 200) {
+					menu.addEventListener("wheel", event => {
+						event.preventDefault();
+						event.stopPropagation();
+						menu.scrollTop += event.deltaY;
+					});
+					this.dropdownMenu.nativeElement.style.height =
+						`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 10}px`;
+
+				} else {
+					this.dropUp = true;
+				}
 			} else {
 				this.dropUp = false;
 			}

@@ -56,6 +56,7 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
+		<div>up</div>
 		<ul
 			#list
 			role="listbox"
@@ -95,7 +96,8 @@ import "rxjs/add/observable/of";
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
-		</ul>`,
+		</ul>
+		<div>down</div>`,
 		providers: [
 			{
 				provide: AbstractDropdownView,
