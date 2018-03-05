@@ -61,7 +61,7 @@ import "rxjs/add/observable/of";
 			role="listbox"
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
-				'listbox': size === 'default',
+				'listbox': size === 'md',
 				'listbox--lg': size === 'lg'
 			}">
 			<li tabindex="{{item.disabled? -1 : 0}}"
@@ -77,7 +77,7 @@ import "rxjs/add/observable/of";
 					style="margin: 0;"
 					[ngClass]="{
 						'checkbox--sm': size === 'sm',
-						'checkbox': size === 'default' || size === 'lg'
+						'checkbox': size === 'md' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'">
 					<input
