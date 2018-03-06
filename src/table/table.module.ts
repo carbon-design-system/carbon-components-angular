@@ -13,6 +13,7 @@ import { TableGotoPage } from "./table-goto-page.component";
 import { TableItem } from "./table-item.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { IconModule } from "./../icon/icon.module";
+import { StaticIconModule } from "..";
 
 export { Table } from "./table.component";
 export { TableModel } from "./table-model.class";
@@ -36,7 +37,8 @@ export { TableHeaderItem } from "./table-header-item.class";
 		NFormsModule,
 		FormsModule,
 		IconModule,
-		DialogModule
+		DialogModule,
+		StaticIconModule
 	]
 })
 export class TableModule {}

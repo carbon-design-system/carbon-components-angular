@@ -185,6 +185,21 @@ import { getScrollbarWidth } from "../common/utils";
 				</tr>
 			</ng-container>
 		</tbody>
+		<tfoot >
+			<tr *ngIf="this.model.isLoading">
+			<td class="table_loading-indicator">
+			<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
+			</td>
+			</tr>
+			<tr *ngIf="this.model.isEnd">
+				<td class="table_end-indicator">
+					<h5>{{'TABLE.END_OF_DATA'| translate}}</h5>
+					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
+						{{ 'TABLE.SCROLL_TOP' | translate}}
+					</button>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 	`
 })
@@ -378,5 +393,17 @@ export class Table {
 
 	get scrollbarWidth() {
 		return getScrollbarWidth();
+	}
+
+	/**
+	 * Triggered when the user scrolls on the `<tbody>` element.
+	 * Emits the `scrollLoad` event.
+	 *
+	 * @param {any} event
+	 * @memberof Table
+	 */
+	scrollToTop(event) {
+		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
+		this.model.isEnd = false;
 	}
 }

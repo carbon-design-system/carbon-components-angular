@@ -214,7 +214,32 @@ export class StaticIcon implements AfterViewInit {
 					width="2"
 					height="5.7"/>
 			</g>
-		</svg>`
+		</svg>`,
+		"loading_rows_30": classList => `<svg
+			class="${classList}"
+			height="30"
+			width="30"
+			viewBox="0 0 32 30">
+            <circle cx="4" cy="16" r="4"  fill="#eee">
+            	<animate id="one" attributeName="fill"
+            	dur="1s"
+            	values="#eee;#999;#eee"
+            	begin="0;two.end"/>
+            </circle>
+            <circle cx="16" cy="16" r="4" fill="#eee">
+            	<animate  id="two" attributeName="fill"
+            	begin="one.end-0.5s"
+            	dur="1s"
+            	values="#eee;#999;#eee"/>
+            </circle>
+            <circle  cx="28" cy="16" r="4" fill="#eee">
+            	<animate attributeName="fill"
+            	begin="two.end-0.5s"
+           		dur="1s"
+            	values="#eee;#999;#eee"/>
+            </circle>
+		</svg>
+		`
 	};
 
 	/**
