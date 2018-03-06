@@ -185,11 +185,11 @@ import { getScrollbarWidth } from "../common/utils";
 				</tr>
 			</ng-container>
 		</tbody>
-		<tfoot >
+		<tfoot>
 			<tr *ngIf="this.model.isLoading">
-			<td class="table_loading-indicator">
-			<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
-			</td>
+				<td class="table_loading-indicator">
+					<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
+				</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
@@ -388,6 +388,8 @@ export class Table {
 
 		if (distanceFromBottom <= this.scrollLoadDistance) {
 			this.scrollLoad.emit(this.model);
+		} else {
+			this.model.isEnd = false;
 		}
 	}
 
