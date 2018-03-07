@@ -61,9 +61,7 @@ import { Subscription } from "rxjs/Subscription";
 			[ngClass]="{
 				'drop-up': dropUp
 			}">
-			<div *ngIf="canScroll">up</div>
 			<ng-content></ng-content>
-			<div *ngIf="canScroll">down</div>
 		</div>
 	`,
 	encapsulation: ViewEncapsulation.None,
@@ -177,11 +175,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * controls wether the `drop-up` class is applied
 	 */
 	dropUp = false;
-
-	/**
-	 * controls wether the scroll up/down arrows are shown
-	 */
-	canScroll = false;
 
 	/**
 	 * Used by the various appendToX methods to keep a reference to our wrapper div
@@ -491,14 +484,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 			if (boudningClientRect.bottom > window.innerHeight) {
 				if (boudningClientRect.top - window.innerHeight < 200) {
-					this.canScroll = true;
 					this.view["enableScroll"]();
 				} else {
-					this.canScroll = false;
 					this.dropUp = true;
 				}
 			} else {
-				this.canScroll = false;
 				this.dropUp = false;
 			}
 		}, 0);

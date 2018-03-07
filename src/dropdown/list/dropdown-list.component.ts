@@ -56,6 +56,13 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
+		<div
+			*ngIf="canScroll"
+			style="text-align: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			up
+		</div>
 		<ul
 			#list
 			role="listbox"
@@ -63,7 +70,10 @@ import "rxjs/add/observable/of";
 				'listbox--sm': size === 'sm',
 				'listbox': size === 'md',
 				'listbox--lg': size === 'lg'
-			}">
+			}"
+			(wheel)="onWheel($event)"
+			(touchstart)="onTouchStart($event)"
+			(touchmove)="onTouchMove($event)">
 			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -95,7 +105,14 @@ import "rxjs/add/observable/of";
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
-		</ul>`,
+		</ul>
+		<div
+			*ngIf="canScroll"
+			style="text-align: center;"
+			(mouseover)="onHoverDown(true)"
+			(mouseout)="onHoverDown(false)">
+			down
+		</div>`,
 		providers: [
 			{
 				provide: AbstractDropdownView,
@@ -151,6 +168,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	public displayItems: Array<ListItem> = [];
 	/**
+	 * controls wether the scroll up/down arrows are shown
+	 */
+	public canScroll = false;
+	/**
 	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
 	 * @type {number}
@@ -175,6 +196,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * holds on to the last touch position (used for scrolling)
 	 */
 	private lastTouch = 0;
+
+	/**
+	 * reference to the hover scrolling setInterval
+	 */
+	private hoverScrollInterval = null;
 
 	/**
 	 * Creates an instance of `DropdownList`.
@@ -406,7 +432,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 	}
 
-	wheelListener = event => {
+	onWheel(event) {
 		const list = this.list.nativeElement;
 		list.scrollTop += event.deltaY;
 		// only prevent the parent/window from scrolling if we can scroll
@@ -416,13 +442,15 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 	}
 
-	touchStartListener = event => {
+	onTouchStart(event) {
 		if (event.touches[0]) {
 			this.lastTouch = event.touches[0].clientY;
 		}
 	}
 
-	touchMoveListener = event => {
+	onTouchMove(event) {
+		event.preventDefault();
+		event.stopPropagation();
 		const list = this.list.nativeElement;
 		if (event.touches[0]) {
 			const touch = event.touches[0];
@@ -431,32 +459,42 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 	}
 
-	hoverUpListener = event => {
-		console.log("going up");
+	hoverScrollBy(hovering, amount) {
+		const list = this.list.nativeElement;
+		if (hovering) {
+			this.hoverScrollInterval = setInterval(() => {
+				list.scrollTop += amount;
+			}, 1);
+		} else {
+			clearInterval(this.hoverScrollInterval);
+		}
 	}
 
-	hoverDownListener = event => {
-		console.log("going down");
+	onHoverUp(hovering) {
+		// 3 is just a random number that felt good
+		// 1 and 2 are too slow, 4 works but it might be a tad fast
+		this.hoverScrollBy(hovering, -3);
+	}
+
+	onHoverDown(hovering) {
+		this.hoverScrollBy(hovering, 3);
 	}
 
 	enableScroll() {
+		this.canScroll = true;
 		const list = this.list.nativeElement;
 		const boudningClientRect = list.getBoundingClientRect();
-		list.addEventListener("wheel", this.wheelListener);
-		list.addEventListener("touchstart", this.touchStartListener);
-		list.addEventListener("touchmove", this.touchMoveListener);
 		list.style.overflow = "hidden";
 		list.style.height =
 			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
 	}
 
 	disableScroll() {
+		this.canScroll = false;
 		const list = this.list.nativeElement;
 		list.style.height = null;
 		list.style.overflow = null;
-		list.removeEventListener("wheel", this.wheelListener);
-		list.removeEventListener("touchstart", this.touchStartListener);
-		list.removeEventListener("touchmove", this.touchMoveListener);
+		clearInterval(this.hoverScrollInterval);
 	}
 
 	/**
