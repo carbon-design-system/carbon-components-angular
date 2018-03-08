@@ -480,10 +480,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		// setTimeout lets us measure after it's visible in the DOM
 		setTimeout(() => {
 			const menu = this.dropdownMenu.nativeElement;
-			const boudningClientRect = menu.getBoundingClientRect();
+			const boundingClientRect = menu.getBoundingClientRect();
 
-			if (boudningClientRect.bottom > window.innerHeight) {
-				if (window.innerHeight - boudningClientRect.top > 100) {
+			if (boundingClientRect.bottom > window.innerHeight) {
+				if (window.innerHeight - boundingClientRect.top > 100) {
 					// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 					if (this.view["enableScroll"]) {
 						this.view["enableScroll"]();
