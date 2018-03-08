@@ -53,7 +53,7 @@ import { Subscription } from "rxjs/Subscription";
 			[disabled]="disabled">
 			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
 			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
-			<n-static-icon icon="chevron_down" [size]="(size === 'sm'?'sm':'md')" classList="dropdown_chevron"></n-static-icon>
+			<n-static-icon icon="chevron_down" [size]="(size === 'sm' ? 'sm' : 'md')" classList="dropdown_chevron"></n-static-icon>
 		</button>
 		<div
 			#dropdownMenu
