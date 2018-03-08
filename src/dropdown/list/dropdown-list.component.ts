@@ -58,10 +58,11 @@ import "rxjs/add/observable/of";
 	template: `
 		<div
 			*ngIf="canScroll"
-			style="text-align: center;"
+			class="scroll-arrow--up"
+			style="display: flex; justify-content: center;"
 			(mouseover)="onHoverUp(true)"
 			(mouseout)="onHoverUp(false)">
-			up
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<ul
 			#list
@@ -108,10 +109,11 @@ import "rxjs/add/observable/of";
 		</ul>
 		<div
 			*ngIf="canScroll"
-			style="text-align: center;"
+			class="scroll-arrow--down"
+			style="display: flex; justify-content: center;"
 			(mouseover)="onHoverDown(true)"
 			(mouseout)="onHoverDown(false)">
-			down
+			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 		</div>`,
 		providers: [
 			{
