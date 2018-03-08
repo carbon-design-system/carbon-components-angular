@@ -77,7 +77,7 @@ import { DropdownList } from "./dropdown-list.component";
 			#list
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
-				'listbox': size === 'md',
+				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
 			}"
 			role="listbox">
@@ -93,7 +93,7 @@ import { DropdownList } from "./dropdown-list.component";
 				<label
 					[ngClass]="{
 						'checkbox--sm': size === 'sm',
-						'checkbox': size === 'md' || size === 'lg'
+						'checkbox': size === 'md' || size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'"
 					style="margin: 0;">

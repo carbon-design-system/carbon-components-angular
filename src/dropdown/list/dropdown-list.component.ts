@@ -68,7 +68,7 @@ import "rxjs/add/observable/of";
 			role="listbox"
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
-				'listbox': size === 'md',
+				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
 			}"
 			(wheel)="onWheel($event)"
@@ -87,7 +87,7 @@ import "rxjs/add/observable/of";
 					style="margin: 0;"
 					[ngClass]="{
 						'checkbox--sm': size === 'sm',
-						'checkbox': size === 'md' || size === 'lg'
+						'checkbox': size === 'md' || size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'">
 					<input

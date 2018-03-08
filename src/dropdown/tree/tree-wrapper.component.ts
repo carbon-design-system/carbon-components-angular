@@ -23,7 +23,7 @@ import { ListItem } from "./../list-item.interface";
 		<ul
 			[ngClass]="{
 				'menu_tree--sm': size === 'sm',
-				'menu_tree': size === 'md',
+				'menu_tree': size === 'md' || size === 'default',
 				'menu_tree--lg': size === 'lg'
 			}"
 			[attr.role]="role"

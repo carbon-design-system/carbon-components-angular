@@ -483,8 +483,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			const boudningClientRect = menu.getBoundingClientRect();
 
 			if (boudningClientRect.bottom > window.innerHeight) {
-				if (boudningClientRect.top - window.innerHeight < 200) {
-					this.view["enableScroll"]();
+				if (window.innerHeight - boudningClientRect.top > 100) {
+					// remove the conditional once this api is settled an part of abstract-dropdown-view.class
+					if (this.view["enableScroll"]) {
+						this.view["enableScroll"]();
+					}
 				} else {
 					this.dropUp = true;
 				}
@@ -511,7 +514,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.onClose.emit();
 		this.close.emit();
 
-		this.view["disableScroll"]();
+		// remove the conditional once this api is settled an part of abstract-dropdown-view.class
+		if (this.view["disableScroll"]) {
+			this.view["disableScroll"]();
+		}
 
 		// move the list back in the component on close
 		if (this.appendToBody) {
