@@ -73,6 +73,7 @@ import { DropdownList } from "./dropdown-list.component";
 				</button>
 			</label>
 		</div>
+		<!-- default is deprecated -->
 		<ul
 			#list
 			[ngClass]="{
@@ -90,6 +91,7 @@ import { DropdownList } from "./dropdown-list.component";
 					selected: item.selected,
 					disabled: item.disabled
 				}">
+				<!-- default is deprecated -->
 				<label
 					[ngClass]="{
 						'checkbox--sm': size === 'sm',

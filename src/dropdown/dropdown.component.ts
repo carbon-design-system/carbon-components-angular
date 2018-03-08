@@ -484,7 +484,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 			if (boudningClientRect.bottom > window.innerHeight) {
 				if (window.innerHeight - boudningClientRect.top > 100) {
-					// remove the conditional once this api is settled an part of abstract-dropdown-view.class
+					// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 					if (this.view["enableScroll"]) {
 						this.view["enableScroll"]();
 					}
@@ -514,7 +514,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.onClose.emit();
 		this.close.emit();
 
-		// remove the conditional once this api is settled an part of abstract-dropdown-view.class
+		// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 		if (this.view["disableScroll"]) {
 			this.view["disableScroll"]();
 		}

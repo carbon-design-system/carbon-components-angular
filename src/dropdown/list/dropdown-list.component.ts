@@ -64,6 +64,7 @@ import "rxjs/add/observable/of";
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
+		<!-- default is deprecated -->
 		<ul
 			#list
 			role="listbox"
@@ -84,6 +85,7 @@ import "rxjs/add/observable/of";
 					selected: item.selected,
 					disabled: item.disabled
 				}">
+				<!-- default is deprecated -->
 				<label
 					style="margin: 0;"
 					[ngClass]="{
@@ -487,6 +489,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		const list = this.list.nativeElement;
 		const boudningClientRect = list.getBoundingClientRect();
 		list.style.overflow = "hidden";
+		// 40 gives us some padding between the bottom of the list,
+		// the bottom of the window, and the scroll down button
 		list.style.height =
 			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
 	}

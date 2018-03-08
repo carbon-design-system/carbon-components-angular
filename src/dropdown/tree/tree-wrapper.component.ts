@@ -20,6 +20,7 @@ import { ListItem } from "./../list-item.interface";
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
+		<!-- default is deprecated -->
 		<ul
 			[ngClass]="{
 				'menu_tree--sm': size === 'sm',
