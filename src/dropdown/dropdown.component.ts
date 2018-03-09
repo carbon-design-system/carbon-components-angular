@@ -483,6 +483,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			const boundingClientRect = menu.getBoundingClientRect();
 
 			if (boundingClientRect.bottom > window.innerHeight) {
+				// min height of 100px (note: move to seperate const file later)
 				if (window.innerHeight - boundingClientRect.top > 100) {
 					// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 					if (this.view["enableScroll"]) {
