@@ -65,7 +65,8 @@ describe("Dropdown multi list", () => {
 			declarations: [
 				DropdownList,
 				TestMultiComponent
-			]
+			],
+			imports: [StaticIconModule]
 		});
 	});
 

@@ -53,11 +53,14 @@ import { Subscription } from "rxjs/Subscription";
 			[disabled]="disabled">
 			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
 			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
-			<n-static-icon icon="chevron_down" [size]="(size === 'sm'?'sm':'md')"></n-static-icon>
+			<n-static-icon icon="chevron_down" [size]="(size === 'sm' ? 'sm' : 'md')" classList="dropdown_chevron"></n-static-icon>
 		</button>
 		<div
 			#dropdownMenu
-			class="dropdown_menu">
+			class="dropdown_menu"
+			[ngClass]="{
+				'drop-up': dropUp
+			}">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -167,6 +170,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * @memberof Dropdown
 	 */
 	menuIsClosed = true;
+
+	/**
+	 * controls wether the `drop-up` class is applied
+	 */
+	dropUp = false;
 
 	/**
 	 * Used by the various appendToX methods to keep a reference to our wrapper div
@@ -442,7 +450,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		};
 		this.dropdownMenu.nativeElement.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = "dropdown";
+		this.dropdownWrapper.className = `dropdown ${this.elementRef.nativeElement.className}`;
 		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.style.position = "absolute";
 		this.dropdownWrapper.appendChild(this.dropdownMenu.nativeElement);
@@ -468,6 +476,27 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			this._appendToBody();
 		}
 
+		// set the dropdown menu to drop up if it's near the bottom of the screen
+		// setTimeout lets us measure after it's visible in the DOM
+		setTimeout(() => {
+			const menu = this.dropdownMenu.nativeElement;
+			const boundingClientRect = menu.getBoundingClientRect();
+
+			if (boundingClientRect.bottom > window.innerHeight) {
+				// min height of 100px (note: move to seperate const file later)
+				if (window.innerHeight - boundingClientRect.top > 100) {
+					// remove the conditional once this api is settled and part of abstract-dropdown-view.class
+					if (this.view["enableScroll"]) {
+						this.view["enableScroll"]();
+					}
+				} else {
+					this.dropUp = true;
+				}
+			} else {
+				this.dropUp = false;
+			}
+		}, 0);
+
 		// we bind noop to document.body.firstElementChild to allow safari to fire events
 		// from document. Then we unbind everything later to keep things light.
 		document.body.firstElementChild.addEventListener("click", this.noop, true);
@@ -485,6 +514,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.menuIsClosed = true;
 		this.onClose.emit();
 		this.close.emit();
+
+		// remove the conditional once this api is settled and part of abstract-dropdown-view.class
+		if (this.view["disableScroll"]) {
+			this.view["disableScroll"]();
+		}
 
 		// move the list back in the component on close
 		if (this.appendToBody) {

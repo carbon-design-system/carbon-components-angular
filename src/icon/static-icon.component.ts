@@ -239,6 +239,14 @@ export class StaticIcon implements AfterViewInit {
             	values="#eee;#999;#eee"/>
             </circle>
 		</svg>
+		`,
+		"carat_up_16": classList => `<svg
+			class="${classList}"
+			width="16"
+			height="16"
+			viewBox="0 0 16 16">
+			<polygon class="st0" points="15,12 1,12 8,5 "/>
+		</svg>
 		`
 	};
 
