@@ -368,17 +368,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
 			// of any given item
-			if (!this.view.items.some(item => item.content === searchString)) {
-				let selected = this.view.getSelected();
+			const matches = this.view.items.some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
+			if (!matches) {
+				const selected = this.view.getSelected();
 				if (selected) {
 					selected[0].selected = false;
 					// notify that the selection has changed
 					this.view.select.emit({ item: selected[0] });
 					this.propagateChangeCallback(null);
+				} else {
+					this.view["filterBy"]("");
 				}
-			} else {
-				// otherwise we remove the filter
-				this.view["filterBy"]("");
 			}
 		}
 	}

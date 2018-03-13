@@ -73,11 +73,12 @@ import { DropdownList } from "./dropdown-list.component";
 				</button>
 			</label>
 		</div>
+		<!-- default is deprecated -->
 		<ul
 			#list
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
-				'listbox': size === 'default',
+				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
 			}"
 			role="listbox">
@@ -90,10 +91,11 @@ import { DropdownList } from "./dropdown-list.component";
 					selected: item.selected,
 					disabled: item.disabled
 				}">
+				<!-- default is deprecated -->
 				<label
 					[ngClass]="{
 						'checkbox--sm': size === 'sm',
-						'checkbox': size === 'default' || size === 'lg'
+						'checkbox': size === 'md' || size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'"
 					style="margin: 0;">

@@ -253,7 +253,15 @@ export class StaticIcon implements AfterViewInit {
 					.2-.1.4-.2.6-.1.2-.4.4-.8.8-.4.3-.7.6-.9.8-.2.3-.4.5-.5.8v.2c-.1.2-.2.3-.2.6v.6h1.5V10c0-.4
 					0-.5.1-.6v-.1c.1-.2.1-.3.2-.5.1-.1.3-.3.8-.7.6-.5 1-.9 1.2-1.3.2-.4.3-.8.3-1.2
 					0-.8-.3-1.4-.9-1.9-.6-.6-1.4-.8-2.4-.8zM7.3 11.5h1.5V13H7.3z" />
-		</svg>`
+		</svg>`,
+		"carat_up_16": classList => `<svg
+			class="${classList}"
+			width="16"
+			height="16"
+			viewBox="0 0 16 16">
+			<polygon class="st0" points="15,12 1,12 8,5 "/>
+		</svg>
+		`
 	};
 
 	/**
