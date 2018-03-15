@@ -2,10 +2,6 @@
 $font-path: "./../node_modules/@peretz/matter/fonts/";
 @import "~@peretz/matter/scss/matter.scss";
 
-body {
-	padding: 0;
-}
-
 /*
  * Main demo container
  * p-demo-heading styles the title of the component demo
@@ -42,7 +38,6 @@ body {
 
 	h1, h2 {
 		color: m_color("white", 0);
-		background: transparent;
 	}
 
 	h1 {

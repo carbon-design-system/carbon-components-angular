@@ -110,7 +110,6 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 			position: relative;
 			width: 100%;
 			padding: 10px 0px;
-			background: rgba(255, 255, 255, 0.7);
 		}
 		.set {
 			display: grid;
