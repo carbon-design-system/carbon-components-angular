@@ -3,9 +3,9 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 @Component({
 	selector: "app-combobox-demo",
 	template: `
-		<h1>Combo box</h1>
+		<h1 class="p-demo-heading">Combo box</h1>
 
-		<h2>Single-select</h2>
+		<h2 class="p-demo-section">Single-select</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -15,7 +15,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Multi-select</h2>
+		<h2 class="p-demo-section">Multi-select</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -27,8 +27,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Ng-Model</h2>
-		<h3>Single select</h3>
+		<h2 class="p-demo-section">Ng-Model</h2>
+		<h3 class="p-demo-variation">Single select</h3>
 		<div style="width: 330px">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -38,7 +38,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 			<p>{{ comboModel1 | json }}</p>
 		</div>
-		<h3>Multi-select</h3>
+		<h3 class="p-demo-variation">Multi-select</h3>
 		<div style="width: 330px">
 			<n-combo-box
 				placeholder="Select or enter"
@@ -50,7 +50,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			<p>{{ comboModel2 | json }}</p>
 		</div>
 
-		<h2>Disabled</h2>
+		<h2 class="p-demo-section">Disabled</h2>
 		<div style="width: 330px;">
 			<n-combo-box
 				disabled="true"
@@ -59,8 +59,8 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 			</n-combo-box>
 		</div>
 
-		<h2>Internal components</h2>
-		<h3>Pill input</h3>
+		<h2 class="p-demo-section">Internal components</h2>
+		<h3 class="p-demo-variation">Pill input</h3>
 		<div style="display:flex;">
 			<n-pill-input
 				[pills]="visibleItems1"
@@ -75,7 +75,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				Reset
 			</button>
 		</div>
-		<h3>Drop-down list</h3>
+		<h3 class="p-demo-variation">Drop-down list</h3>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
@@ -83,7 +83,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 				</div>
 			</div>
 		</div>
-		<h3>Drop-down multi list</h3>
+		<h3 class="p-demo-variation">Drop-down multi list</h3>
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">

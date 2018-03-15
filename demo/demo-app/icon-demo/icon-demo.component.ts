@@ -5,7 +5,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 @Component({
 	selector: "app-icon-demo",
 	template: `
-	<h1>Iconography</h1>
+	<h1 class="p-demo-heading">Iconography</h1>
 
 	<svg class="icon" width="30" height="30"><use href="#alert_30"></use></svg>
 
@@ -110,7 +110,6 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 			position: relative;
 			width: 100%;
 			padding: 10px 0px;
-			background: rgba(255, 255, 255, 0.7);
 		}
 		.set {
 			display: grid;
