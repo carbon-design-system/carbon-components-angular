@@ -11,6 +11,8 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 
+import { getScrollbarWidth } from "../common/utils";
+
 /**
  * Build your table with this component by extending things that differ from default.
  *
@@ -141,9 +143,18 @@ import {
 						</div>
 					</th>
 				</ng-container>
+				<th [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+					<!--
+						Scrollbar pushes body to the left so this header column is added to push
+						the title bar the same amount and keep the header and body columns aligned.
+					-->
+				</th>
 			</tr>
 		</thead>
-		<tbody [ngClass]="{'table_tbody--striped': striped}" (scroll)="onScroll($event)">
+		<tbody
+		[ngClass]="{'table_tbody--striped': striped}"
+		[ngStyle]="{'overflow-y': 'scroll'}"
+		(scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr *ngIf="!model.isRowFiltered(i)"
 					[ngClass]="{
@@ -174,6 +185,21 @@ import {
 				</tr>
 			</ng-container>
 		</tbody>
+		<tfoot>
+			<tr *ngIf="this.model.isLoading">
+				<td class="table_loading-indicator">
+					<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
+				</td>
+			</tr>
+			<tr *ngIf="this.model.isEnd">
+				<td class="table_end-indicator">
+					<h5>{{'TABLE.END_OF_DATA'| translate}}</h5>
+					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
+						{{ 'TABLE.SCROLL_TOP' | translate}}
+					</button>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 	`
 })
@@ -362,6 +388,24 @@ export class Table {
 
 		if (distanceFromBottom <= this.scrollLoadDistance) {
 			this.scrollLoad.emit(this.model);
+		} else {
+			this.model.isEnd = false;
 		}
+	}
+
+	get scrollbarWidth() {
+		return getScrollbarWidth();
+	}
+
+	/**
+	 * Triggered when the user scrolls on the `<tbody>` element.
+	 * Emits the `scrollLoad` event.
+	 *
+	 * @param {any} event
+	 * @memberof Table
+	 */
+	scrollToTop(event) {
+		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
+		this.model.isEnd = false;
 	}
 }

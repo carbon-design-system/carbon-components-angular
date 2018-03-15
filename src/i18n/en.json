@@ -31,7 +31,9 @@
 		"NEXT_PAGE": "Next page",
 		"PREVIOUS_3": "Scroll to previous 3 pages",
 		"NEXT_3": "Scroll to next 3 pages",
-		"FILTER": "Filter"
+		"FILTER": "Filter",
+		"END_OF_DATA": "You've reached the end of your content",
+		"SCROLL_TOP": "Scroll to top"
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",

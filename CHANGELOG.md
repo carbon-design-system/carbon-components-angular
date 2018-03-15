@@ -7,6 +7,8 @@
 **Implemented enhancements:**
 
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
+- No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
+- Dropdown always opens downwards even if its placed at the end of page [\#718](https://github.ibm.com/peretz/neutrino/issues/718)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
 
 **Fixed bugs:**
@@ -15,6 +17,8 @@
 - Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
 - Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
+- Combo box shows all items if type in the exact string [\#766](https://github.ibm.com/peretz/neutrino/issues/766)
+- Dropdown and pop over should support custom class when append to body is true [\#765](https://github.ibm.com/peretz/neutrino/issues/765)
 - updated selected value ngOnChanges for combobox [\#759](https://github.ibm.com/peretz/neutrino/issues/759)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
@@ -27,18 +31,26 @@
 **Closed issues:**
 
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
+- Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
 - \[Popover\] Id given to n-popover is not considered and id comes as undefined [\#780](https://github.ibm.com/peretz/neutrino/issues/780)
 - Neutrino data table is not using custom scroll bar [\#779](https://github.ibm.com/peretz/neutrino/issues/779)
 - button menu arrow styles incorrect for default size  [\#778](https://github.ibm.com/peretz/neutrino/issues/778)
 - close buttons alignment for banners component [\#777](https://github.ibm.com/peretz/neutrino/issues/777)
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
+- nTable data columns are not aligned with header with scrollbar [\#770](https://github.ibm.com/peretz/neutrino/issues/770)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 
 **Merged pull requests:**
 
+- Allow overriding display style [\#802](https://github.ibm.com/peretz/neutrino/pull/802) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Compensate for scrollbar width if set to always visible [\#801](https://github.ibm.com/peretz/neutrino/pull/801) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Closing dropdown bugs/features [\#800](https://github.ibm.com/peretz/neutrino/pull/800) ([callums](https://github.ibm.com/callums))
+- Update table [\#799](https://github.ibm.com/peretz/neutrino/pull/799) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+-  Add lazy loading and end of content indicators [\#798](https://github.ibm.com/peretz/neutrino/pull/798) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Demo refactor [\#797](https://github.ibm.com/peretz/neutrino/pull/797) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - detect cron jobs and try to run beta releases [\#796](https://github.ibm.com/peretz/neutrino/pull/796) ([callums](https://github.ibm.com/callums))
 - Fix tree view style [\#795](https://github.ibm.com/peretz/neutrino/pull/795) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Demo refactor [\#793](https://github.ibm.com/peretz/neutrino/pull/793) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
