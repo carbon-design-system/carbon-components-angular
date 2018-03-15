@@ -7,6 +7,7 @@
 **Implemented enhancements:**
 
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
+- add scrolling to dropdown views [\#747](https://github.ibm.com/peretz/neutrino/issues/747)
 - No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
 - Dropdown always opens downwards even if its placed at the end of page [\#718](https://github.ibm.com/peretz/neutrino/issues/718)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
@@ -19,6 +20,7 @@
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
 - Combo box shows all items if type in the exact string [\#766](https://github.ibm.com/peretz/neutrino/issues/766)
 - Dropdown and pop over should support custom class when append to body is true [\#765](https://github.ibm.com/peretz/neutrino/issues/765)
+- Banner styles look off when using a banner in a container rather than the page [\#761](https://github.ibm.com/peretz/neutrino/issues/761)
 - updated selected value ngOnChanges for combobox [\#759](https://github.ibm.com/peretz/neutrino/issues/759)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
@@ -45,6 +47,8 @@
 
 **Merged pull requests:**
 
+- Demo heading styles refactor [\#811](https://github.ibm.com/peretz/neutrino/pull/811) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- BugFix: \#777 banner close-icon alignment issue. should also fix \#761 [\#810](https://github.ibm.com/peretz/neutrino/pull/810) ([kasomani](https://github.ibm.com/kasomani))
 - Allow overriding display style [\#802](https://github.ibm.com/peretz/neutrino/pull/802) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Compensate for scrollbar width if set to always visible [\#801](https://github.ibm.com/peretz/neutrino/pull/801) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Closing dropdown bugs/features [\#800](https://github.ibm.com/peretz/neutrino/pull/800) ([callums](https://github.ibm.com/callums))
