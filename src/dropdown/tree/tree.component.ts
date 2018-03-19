@@ -13,6 +13,7 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { TreeItem } from "./tree-item.component";
 import { watchFocusJump, treetools } from "./../dropdowntools";
+import { dropdownConfig } from "./../dropdown.const";
 
 
 /**
@@ -26,6 +27,14 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 @Component({
 	selector: "n-dropdown-tree",
 	template: `
+		<div
+			*ngIf="canScroll"
+			class="scroll-arrow--up"
+			style="display: flex; justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
+		</div>
 		<n-tree-wrapper
 			[items]="items"
 			[listTpl]="listTpl"
@@ -38,6 +47,14 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			[size]="size"
 			(select)="onClick($event)">
 		</n-tree-wrapper>
+		<div
+			*ngIf="canScroll"
+			class="scroll-arrow--down"
+			style="display: flex; justify-content: center;"
+			(mouseover)="onHoverDown(true)"
+			(mouseout)="onHoverDown(false)">
+			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
+		</div>
 	`,
 	providers: [{provide: AbstractDropdownView, useExisting: DropdownTree}]
 })
@@ -106,26 +123,41 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	public innerPadding = 10;
 
 	/**
+	 * controls wether the scroll up/down arrows are shown
+	 */
+	public canScroll = false;
+
+	/**
 	 * An array holding the HTML list elements in the view.
 	 * @private
 	 * @type {HTMLElement[]}
 	 * @memberof DropdownTree
 	 */
-	private listElementList: HTMLElement[];
+	protected listElementList: HTMLElement[];
 	/**
 	 * A complete list of all the items in the `DropdownTree` in the form of a flat list.
 	 * @private
 	 * @type {Array<ListItem>}
 	 * @memberof DropdownTree
 	 */
-	private flatList: Array<ListItem> = [];
+	protected flatList: Array<ListItem> = [];
 	/**
 	 * Maintains the index of the selected value within the `DropdownTree`.
 	 * @private
 	 * @memberof DropdownTree
 	 */
-	private index = -1;
-	private focusJump;
+	protected index = -1;
+	protected focusJump;
+
+	/**
+	 * holds on to the last touch position (used for scrolling)
+	 */
+	protected lastTouch = 0;
+
+	/**
+	 * reference to the hover scrolling setInterval
+	 */
+	protected hoverScrollInterval = null;
 
 	/**
 	 * Creates an instance of DropdownTree.
@@ -366,5 +398,75 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 				this.select.emit(this.getSelected());
 			}
 		}
+	}
+
+	// scrolling methods here
+	onWheel(event) {
+		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
+		if (event.deltaY < 0) {
+			list.scrollTop -= 10;
+		} else {
+			list.scrollTop += 10;
+		}
+		// only prevent the parent/window from scrolling if we can scroll
+		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	}
+
+	onTouchStart(event) {
+		if (event.touches[0]) {
+			this.lastTouch = event.touches[0].clientY;
+		}
+	}
+
+	onTouchMove(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
+		if (event.touches[0]) {
+			const touch = event.touches[0];
+			list.scrollTop += this.lastTouch - touch.clientY;
+			this.lastTouch = touch.clientY;
+		}
+	}
+
+	hoverScrollBy(hovering, amount) {
+		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
+		if (hovering) {
+			this.hoverScrollInterval = setInterval(() => {
+				list.scrollTop += amount;
+			}, 1);
+		} else {
+			clearInterval(this.hoverScrollInterval);
+		}
+	}
+
+	onHoverUp(hovering) {
+		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
+	}
+
+	onHoverDown(hovering) {
+		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
+	}
+
+	enableScroll() {
+		this.canScroll = true;
+		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
+		const boudningClientRect = list.getBoundingClientRect();
+		list.style.overflow = "hidden";
+		// 40 gives us some padding between the bottom of the list,
+		// the bottom of the window, and the scroll down button
+		list.style.height =
+			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+	}
+
+	disableScroll() {
+		this.canScroll = false;
+		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
+		list.style.height = null;
+		list.style.overflow = null;
+		clearInterval(this.hoverScrollInterval);
 	}
 }

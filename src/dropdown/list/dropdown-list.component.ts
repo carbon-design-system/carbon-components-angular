@@ -14,6 +14,7 @@ import {
 
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
+import { dropdownConfig } from "./../dropdown.const";
 import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
@@ -199,12 +200,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	/**
 	 * holds on to the last touch position (used for scrolling)
 	 */
-	private lastTouch = 0;
+	protected lastTouch = 0;
 
 	/**
 	 * reference to the hover scrolling setInterval
 	 */
-	private hoverScrollInterval = null;
+	protected hoverScrollInterval = null;
 
 	/**
 	 * Creates an instance of `DropdownList`.
@@ -436,9 +437,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 	}
 
+	// scrolling methods here
 	onWheel(event) {
 		const list = this.list.nativeElement;
-		list.scrollTop += event.deltaY;
+		if (event.deltaY < 0) {
+			list.scrollTop -= 10;
+		} else {
+			list.scrollTop += 10;
+		}
 		// only prevent the parent/window from scrolling if we can scroll
 		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
 			event.preventDefault();
@@ -475,13 +481,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	onHoverUp(hovering) {
-		// 3 is just a random number that felt good
-		// 1 and 2 are too slow, 4 works but it might be a tad fast
-		this.hoverScrollBy(hovering, -3);
+		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
 	}
 
 	onHoverDown(hovering) {
-		this.hoverScrollBy(hovering, 3);
+		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
 	}
 
 	enableScroll() {

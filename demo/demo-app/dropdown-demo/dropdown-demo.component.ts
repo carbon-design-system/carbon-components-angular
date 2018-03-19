@@ -259,6 +259,38 @@ export class DropdownDemo {
 		{
 			content: "Design",
 			selected: false
+		},
+		{
+			content: "An item",
+			selected: false
+		},
+		{
+			content: "Byte",
+			selected: false,
+		},
+		{
+			content: "Computer",
+			selected: false
+		},
+		{
+			content: "Design",
+			selected: false
+		},
+		{
+			content: "An item",
+			selected: false
+		},
+		{
+			content: "Byte",
+			selected: false,
+		},
+		{
+			content: "Computer",
+			selected: false
+		},
+		{
+			content: "Design",
+			selected: false
 		}
 	];
 
