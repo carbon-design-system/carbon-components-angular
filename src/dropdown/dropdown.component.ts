@@ -28,6 +28,7 @@ import { position } from "../common/position.service";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 import { Subscription } from "rxjs/Subscription";
+import { dropdownConfig } from "./dropdown.const";
 
 
 /**
@@ -484,7 +485,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 			if (boundingClientRect.bottom > window.innerHeight) {
 				// min height of 100px (note: move to seperate const file later)
-				if (window.innerHeight - boundingClientRect.top > 100) {
+				if (window.innerHeight - boundingClientRect.top > dropdownConfig.minHeight) {
 					// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 					if (this.view["enableScroll"]) {
 						this.view["enableScroll"]();

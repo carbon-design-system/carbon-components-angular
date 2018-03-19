@@ -45,7 +45,8 @@ import { dropdownConfig } from "./../dropdown.const";
 			[iconWidth]="iconWidth"
 			[innerPadding]="innerPadding"
 			[size]="size"
-			(select)="onClick($event)">
+			(select)="onClick($event)"
+			(wheel)="onWheel($event)">
 		</n-tree-wrapper>
 		<div
 			*ngIf="canScroll"
