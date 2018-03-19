@@ -5,7 +5,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 	selector: "app-side-nav-demo",
 	template: `
 	<div>
-		<h1>Side nav</h1>
+		<h1 class="p-demo-heading">Side nav</h1>
 		<div style="position: relative; height: 600px; margin-bottom: 50px; overflow: hidden;">
 			<ng-template #listTpl let-item="item">
 				<n-icon *ngIf="item.icon" icon="{{item.icon}}" size="md"></n-icon>

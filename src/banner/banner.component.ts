@@ -27,7 +27,7 @@ import { BannerService } from "./banner.service";
 		</span>
 		<p [innerHTML]="bannerObj.message"></p>
 		<button class="close--dark-sm" (click)="onClose()" attr.aria-label="{{'BANNER.CLOSE_BUTTON' | translate}}">
-			<n-static-icon icon="x" size="sm" class="close_icon"></n-static-icon>
+			<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
 		</button>
 	</div>
 	`
