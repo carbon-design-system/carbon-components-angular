@@ -5,6 +5,7 @@ import { DropdownTree } from "./tree.component";
 import { TreeWrapper } from "./tree-wrapper.component";
 import { TreeItem } from "./tree-item.component";
 import { ListItem } from "./../list-item.interface";
+import { StaticIconModule } from "./../../icon/static-icon.module";
 
 @Component({
 	template: `<n-dropdown-tree [items]="items" (select)="onSelect($event)"></n-dropdown-tree>`
@@ -63,7 +64,8 @@ describe("Dropdown tree", () => {
 				TreeItem,
 				TreeWrapper,
 				TestComponent
-			]
+			],
+			imports: [ StaticIconModule ]
 		});
 	});
 
@@ -102,7 +104,8 @@ describe("tree multi list", () => {
 				TreeItem,
 				TreeWrapper,
 				TestMultiComponent
-			]
+			],
+			imports: [ StaticIconModule ]
 		});
 	});
 
