@@ -29,8 +29,8 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 	template: `
 	<label [for]="labelInputID" [ngClass]= "labelState ? 'valid--'+labelState : null">
 		<n-static-icon *ngIf="labelState === 'success'" icon="success" size="sm"></n-static-icon>
-		<n-static-icon *ngIf="labelState === 'warning'" icon="success" size="sm"></n-static-icon>
-		<n-static-icon *ngIf="labelState === 'error'" icon="success" size="sm"></n-static-icon>
+		<n-static-icon *ngIf="labelState === 'warning'" icon="warning" size="sm"></n-static-icon>
+		<n-static-icon *ngIf="labelState === 'error'" icon="error" size="sm"></n-static-icon>
 		<ng-content></ng-content>
 	</label>
 	<ng-content select="input,textarea,div" ></ng-content>`
