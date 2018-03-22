@@ -32,6 +32,8 @@
 
 **Closed issues:**
 
+- form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
+- add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
@@ -47,6 +49,9 @@
 
 **Merged pull requests:**
 
+- Bugfix: fixes \#814, icons updated [\#815](https://github.ibm.com/peretz/neutrino/pull/815) ([kasomani](https://github.ibm.com/kasomani))
+- Remove body padding [\#812](https://github.ibm.com/peretz/neutrino/pull/812) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
+- Demo heading styles refactor [\#811](https://github.ibm.com/peretz/neutrino/pull/811) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - BugFix: \#777 banner close-icon alignment issue. should also fix \#761 [\#810](https://github.ibm.com/peretz/neutrino/pull/810) ([kasomani](https://github.ibm.com/kasomani))
 - Allow overriding display style [\#802](https://github.ibm.com/peretz/neutrino/pull/802) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Compensate for scrollbar width if set to always visible [\#801](https://github.ibm.com/peretz/neutrino/pull/801) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
