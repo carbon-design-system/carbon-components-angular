@@ -207,7 +207,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view["updateList"](changes.items.currentValue);
-			this.updatePills();
+			this.updateSelected();
 		}
 	}
 
@@ -242,15 +242,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {
-				const selected = this.view.getSelected();
-				if (selected) {
-					if (this.type === "multi") {
-						this.updatePills();
-					} else {
-						this.selectedValue = selected[0].content;
-						this.propagateChangeCallback(selected[0]);
-					}
-				}
+				this.updateSelected();
 			});
 		}
 	}
@@ -409,5 +401,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				selected: false
 			}
 		});
+	}
+
+	private updateSelected() {
+		const selected = this.view.getSelected();
+		if (selected) {
+			if (this.type === "multi") {
+				this.updatePills();
+			} else {
+				this.selectedValue = selected[0].content;
+				this.propagateChangeCallback(selected[0]);
+			}
+		}
 	}
 }
