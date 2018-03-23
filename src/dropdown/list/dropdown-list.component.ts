@@ -58,9 +58,9 @@ import "rxjs/add/observable/of";
 	selector: "n-dropdown-list",
 	template: `
 		<div
-			*ngIf="canScroll"
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
 			class="scroll-arrow--up"
-			style="display: flex; justify-content: center;"
+			style="justify-content: center;"
 			(mouseover)="onHoverUp(true)"
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
@@ -111,9 +111,9 @@ import "rxjs/add/observable/of";
 			</li>
 		</ul>
 		<div
-			*ngIf="canScroll"
+			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
 			class="scroll-arrow--down"
-			style="display: flex; justify-content: center;"
+			style="justify-content: center;"
 			(mouseover)="onHoverDown(true)"
 			(mouseout)="onHoverDown(false)">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
@@ -175,7 +175,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	/**
 	 * controls wether the scroll up/down arrows are shown
 	 */
-	public canScroll = false;
+	public canScrollUp = false;
+	public canScrollDown = false;
 	/**
 	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
@@ -438,6 +439,30 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	// scrolling methods here
+	checkScrollArrows() {
+		const list = this.list.nativeElement;
+		if (list.scrollTop === 0) {
+			if (this.canScrollUp) {
+				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
+			}
+			this.canScrollUp = false;
+		} else if (list.scrollTop === list.scrollTopMax) {
+			if (this.canScrollDown) {
+				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
+			}
+			this.canScrollDown = false;
+		} else {
+			if (!this.canScrollUp) {
+				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
+			}
+			if (!this.canScrollDown) {
+				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
+			}
+			this.canScrollUp = true;
+			this.canScrollDown = true;
+		}
+	}
+
 	onWheel(event) {
 		const list = this.list.nativeElement;
 		if (event.deltaY < 0) {
@@ -450,6 +475,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			event.preventDefault();
 			event.stopPropagation();
 		}
+		this.checkScrollArrows();
 	}
 
 	onTouchStart(event) {
@@ -466,6 +492,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			const touch = event.touches[0];
 			list.scrollTop += this.lastTouch - touch.clientY;
 			this.lastTouch = touch.clientY;
+			this.checkScrollArrows();
 		}
 	}
 
@@ -474,6 +501,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		if (hovering) {
 			this.hoverScrollInterval = setInterval(() => {
 				list.scrollTop += amount;
+				this.checkScrollArrows();
 			}, 1);
 		} else {
 			clearInterval(this.hoverScrollInterval);
@@ -489,7 +517,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	enableScroll() {
-		this.canScroll = true;
+		this.canScrollUp = true;
+		this.canScrollDown = true;
 		const list = this.list.nativeElement;
 		const boudningClientRect = list.getBoundingClientRect();
 		list.style.overflow = "hidden";
@@ -497,10 +526,18 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		// the bottom of the window, and the scroll down button
 		list.style.height =
 			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
+		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
+		// detection/browser measurment works)
+		this.checkScrollArrows();
+		setTimeout(() => {
+			this.checkScrollArrows();
+		});
 	}
 
 	disableScroll() {
-		this.canScroll = false;
+		this.canScrollUp = false;
+		this.canScrollDown = false;
 		const list = this.list.nativeElement;
 		list.style.height = null;
 		list.style.overflow = null;

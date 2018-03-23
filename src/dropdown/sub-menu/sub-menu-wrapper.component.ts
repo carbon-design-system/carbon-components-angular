@@ -34,9 +34,9 @@ import { dropdownConfig } from "./../dropdown.const";
 				'z-index': 1
 			}">
 			<div
-				*ngIf="canScroll"
+				[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
 				class="scroll-arrow--up"
-				style="display: flex; justify-content: center; background: white;"
+				style="justify-content: center; background: white;"
 				(mouseover)="onHoverUp(true)"
 				(mouseout)="onHoverUp(false)">
 				<n-static-icon icon="carat_up" size="sm"></n-static-icon>
@@ -73,9 +73,9 @@ import { dropdownConfig } from "./../dropdown.const";
 				</li>
 			</ul>
 			<div
-				*ngIf="canScroll"
+				[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
 				class="scroll-arrow--down"
-				style="display: flex; justify-content: center; background: white;"
+				style="justify-content: center; background: white;"
 				(mouseover)="onHoverDown(true)"
 				(mouseout)="onHoverDown(false)">
 				<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
@@ -144,7 +144,8 @@ export class SubMenuWrapper implements OnChanges {
 	/**
 	 * controls wether the scroll up/down arrows are shown
 	 */
-	public canScroll = false;
+	public canScrollUp = false;
+	public canScrollDown = false;
 
 	protected lastTouch;
 
@@ -155,7 +156,8 @@ export class SubMenuWrapper implements OnChanges {
 			if (changes.isOpen.currentValue) {
 				const boundingClientRect = this.list.nativeElement.getBoundingClientRect();
 				if (boundingClientRect.bottom > window.innerHeight) {
-					this.canScroll = true;
+					this.canScrollUp = true;
+					this.canScrollDown = true;
 					const list = this.list.nativeElement;
 					const boudningClientRect = list.getBoundingClientRect();
 					list.style.overflow = "hidden";
@@ -163,9 +165,17 @@ export class SubMenuWrapper implements OnChanges {
 					// the bottom of the window, and the scroll down button
 					list.style.height =
 						`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+					// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
+					// and the second to make sure the arrows are hidden if they should be (due to how angular chage
+					// detection/browser measurment works)
+					this.checkScrollArrows();
+					setTimeout(() => {
+						this.checkScrollArrows();
+					});
 				}
 			} else {
-				this.canScroll = false;
+				this.canScrollUp = false;
+				this.canScrollDown = false;
 				const list = this.list.nativeElement;
 				list.style.height = null;
 				list.style.overflow = null;
@@ -175,6 +185,30 @@ export class SubMenuWrapper implements OnChanges {
 	}
 
 	// scrolling methods here
+	checkScrollArrows() {
+		const list = this.list.nativeElement;
+		if (list.scrollTop === 0) {
+			if (this.canScrollUp) {
+				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
+			}
+			this.canScrollUp = false;
+		} else if (list.scrollTop === list.scrollTopMax) {
+			if (this.canScrollDown) {
+				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
+			}
+			this.canScrollDown = false;
+		} else {
+			if (!this.canScrollUp) {
+				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
+			}
+			if (!this.canScrollDown) {
+				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
+			}
+			this.canScrollUp = true;
+			this.canScrollDown = true;
+		}
+	}
+
 	onWheel(event) {
 		const list = this.list.nativeElement;
 		if (event.deltaY < 0) {
@@ -187,6 +221,7 @@ export class SubMenuWrapper implements OnChanges {
 			event.preventDefault();
 			event.stopPropagation();
 		}
+		this.checkScrollArrows();
 	}
 
 	onTouchStart(event) {
@@ -203,6 +238,7 @@ export class SubMenuWrapper implements OnChanges {
 			const touch = event.touches[0];
 			list.scrollTop += this.lastTouch - touch.clientY;
 			this.lastTouch = touch.clientY;
+			this.checkScrollArrows();
 		}
 	}
 
@@ -211,6 +247,7 @@ export class SubMenuWrapper implements OnChanges {
 		if (hovering) {
 			this.hoverScrollInterval = setInterval(() => {
 				list.scrollTop += amount;
+				this.checkScrollArrows();
 			}, 1);
 		} else {
 			clearInterval(this.hoverScrollInterval);
