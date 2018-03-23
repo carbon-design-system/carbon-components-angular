@@ -35,6 +35,7 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 			[listTpl]="listTpl"
 			[role]="role"
 			[label]="label"
+			[scrollEnabled]="scrollEnabled"
 			(select)="onClick($event)">
 		</n-sub-menu-wrapper>
 	`,
@@ -97,6 +98,9 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 * @memberof DropdownSubMenu
 	 */
 	public size: "sm" | "md" |"default" | "lg" = "md";
+
+	public scrollEnabled = false;
+
 	/**
 	 * An array holding the HTML list elements in the view.
 	 * @private
@@ -348,5 +352,11 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 				this.select.emit(this.getSelected());
 			}
 		}
+	}
+
+	enableScroll() {
+	}
+
+	disableScroll() {
 	}
 }

@@ -32,6 +32,7 @@
 
 **Closed issues:**
 
+- Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
 - add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
@@ -49,6 +50,7 @@
 
 **Merged pull requests:**
 
+- fixes \#816 [\#817](https://github.ibm.com/peretz/neutrino/pull/817) ([kasomani](https://github.ibm.com/kasomani))
 - Bugfix: fixes \#814, icons updated [\#815](https://github.ibm.com/peretz/neutrino/pull/815) ([kasomani](https://github.ibm.com/kasomani))
 - Remove body padding [\#812](https://github.ibm.com/peretz/neutrino/pull/812) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Demo heading styles refactor [\#811](https://github.ibm.com/peretz/neutrino/pull/811) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))

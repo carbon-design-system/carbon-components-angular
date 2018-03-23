@@ -18,6 +18,7 @@ import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
+import { dropdownConfig } from "../dropdown.const";
 
 
 /**
@@ -73,6 +74,14 @@ import { DropdownList } from "./dropdown-list.component";
 				</button>
 			</label>
 		</div>
+		<div
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
+			class="scroll-arrow--up"
+			style="justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
+		</div>
 		<!-- default is deprecated -->
 		<ul
 			#list
@@ -81,7 +90,10 @@ import { DropdownList } from "./dropdown-list.component";
 				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
 			}"
-			role="listbox">
+			role="listbox"
+			(wheel)="onWheel($event)"
+			(touchstart)="onTouchStart($event)"
+			(touchmove)="onTouchMove($event)">
 			<li tabindex="{{item.disabled ? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -118,7 +130,15 @@ import { DropdownList } from "./dropdown-list.component";
 				*ngIf="displayItems.length === 0">
 				<span>{{ 'DROPDOWN.FILTER.NO_RESULTS' | translate }}</span>
 			</li>
-		</ul>`,
+		</ul>
+		<div
+			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
+			class="scroll-arrow--down"
+			style="justify-content: center;"
+			(mouseover)="onHoverDown(true)"
+			(mouseout)="onHoverDown(false)">
+			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
+		</div>`,
 		providers: [
 			{
 				provide: AbstractDropdownView,
