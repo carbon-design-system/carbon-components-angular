@@ -504,7 +504,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
-		setTimeout(() => this.view.getCurrentElement().focus(), 0);
+		setTimeout(() => this.view.initFocus(), 0);
 	}
 
 	/**

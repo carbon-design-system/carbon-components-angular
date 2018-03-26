@@ -438,6 +438,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 	}
 
+	/**
+	 * Initalizes focus in the list, effectivly a wrapper for `getCurrentElement().focus()`
+	 */
+	initFocus() {
+		this.getCurrentElement().focus();
+	}
+
 	// scrolling methods here
 	checkScrollArrows() {
 		const list = this.list.nativeElement;
