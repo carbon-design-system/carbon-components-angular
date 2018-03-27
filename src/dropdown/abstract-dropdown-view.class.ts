@@ -85,4 +85,10 @@ export class AbstractDropdownView {
 	 * @memberof AbstractDropdownView
 	 */
 	propagateSelected(value: Array<ListItem>): void {}
+
+	/**
+	 * Initalizes focus in the list
+	 * In most cases this just calls `getCurrentElement().focus()`
+	 */
+	initFocus(): void {}
 }

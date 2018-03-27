@@ -18,6 +18,7 @@ import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
+import { dropdownConfig } from "../dropdown.const";
 
 
 /**
@@ -58,9 +59,7 @@ import { DropdownList } from "./dropdown-list.component";
 					#filter
 					(keyup)="filterItems()"
 					type="search"
-					tabindex="0"
-					(focus)="filterFocus = true"
-					(blur)="filterFocus = (filter.value?true:false)"/>
+					tabindex="0"/>
 				<button
 					class="close"
 					type="reset"
@@ -73,6 +72,14 @@ import { DropdownList } from "./dropdown-list.component";
 				</button>
 			</label>
 		</div>
+		<div
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
+			class="scroll-arrow--up"
+			style="justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
+		</div>
 		<!-- default is deprecated -->
 		<ul
 			#list
@@ -81,7 +88,10 @@ import { DropdownList } from "./dropdown-list.component";
 				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
 			}"
-			role="listbox">
+			role="listbox"
+			(wheel)="onWheel($event)"
+			(touchstart)="onTouchStart($event)"
+			(touchmove)="onTouchMove($event)">
 			<li tabindex="{{item.disabled ? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -118,7 +128,15 @@ import { DropdownList } from "./dropdown-list.component";
 				*ngIf="displayItems.length === 0">
 				<span>{{ 'DROPDOWN.FILTER.NO_RESULTS' | translate }}</span>
 			</li>
-		</ul>`,
+		</ul>
+		<div
+			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
+			class="scroll-arrow--down"
+			style="justify-content: center;"
+			(mouseover)="onHoverDown(true)"
+			(mouseout)="onHoverDown(false)">
+			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
+		</div>`,
 		providers: [
 			{
 				provide: AbstractDropdownView,
@@ -166,12 +184,6 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	 * @memberof DropdownFilter
 	 */
 	public displayItems: Array<ListItem> = [];
-	/**
-	 * Set to `true` for the filter input element to have focus within the DOM.
-	 * @type {boolean}
-	 * @memberof DropdownFilter
-	 */
-	public filterFocus = false;
 	/**
 	 * Maintains the method to override keyboard events to allow navigation and selection within the `DropdownFilterList`.
 	 * @protected
@@ -242,18 +254,26 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	}
 
 	/**
+	 * Focuses the filter input first, instead of just calling `getCurrentElement()`
+	 */
+	initFocus() {
+		this.filterNative.focus();
+	}
+
+	/**
 	 * Overrides keyboard events to allow navigation and selection within the `DropdownFilterList`.
-	 * @param {any} ev
+	 * @param {any} event
 	 * @memberof DropdownFilter
 	 */
-	_overrideKeydown(ev) {
-		if (ev.key === "Tab" && !this.list.nativeElement.contains(ev.target) && this.displayItems.length !== 0) {
-			ev.stopPropagation();
-		} else if (ev.key === "Tab" && ev.shiftKey && this.list.nativeElement.contains(ev.target)) {
-			ev.stopPropagation();
-			ev.preventDefault();
+	_overrideKeydown(event: KeyboardEvent) {
+		if (event.key === "Tab" && !this.list.nativeElement.contains(event.target) && this.displayItems.length !== 0) {
+			event.stopPropagation();
+		} else if (event.key === "Tab" && event.shiftKey && this.list.nativeElement.contains(event.target)) {
+			event.stopPropagation();
+			event.preventDefault();
 			this.filterNative.focus();
-		} else if (ev.key === "Enter" || (ev.key === "ArrowDown" && !this.list.nativeElement.contains(ev.target))) {
+		} else if (event.key === "Enter" || (event.key === "ArrowDown" && !this.list.nativeElement.contains(event.target))) {
+			event.preventDefault();
 			this.listElementList[0].focus();
 		}
 	}
@@ -293,9 +313,8 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	 * @memberof DropdownFilter
 	 */
 	clearFilter() {
-		this.filter.nativeElement.value = "";
+		this.filterNative.value = "";
 		this.displayItems = this.items;
-		this.filterFocus = false;
 		// wait a tick to let the view update
 		setTimeout(() => this.setupFocusObservable());
 	}

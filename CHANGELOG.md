@@ -28,10 +28,16 @@
 - Need to add safe guard for topNav [\#684](https://github.ibm.com/peretz/neutrino/issues/684)
 - Tree view : left border is missing in checkbox  [\#679](https://github.ibm.com/peretz/neutrino/issues/679)
 - Tree view: Clicking on the arrow doesn't make it expand [\#678](https://github.ibm.com/peretz/neutrino/issues/678)
+- Dropdown views don't handle async pipes/values correctly [\#519](https://github.ibm.com/peretz/neutrino/issues/519)
 - fix modal in lazy loaded modules [\#794](https://github.ibm.com/peretz/neutrino/pull/794) ([callums](https://github.ibm.com/callums))
 
 **Closed issues:**
 
+- Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
+- form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
+- add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
+- add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
+- add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
@@ -44,9 +50,14 @@
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
+- Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
 
 **Merged pull requests:**
 
+- fixes \#816 [\#817](https://github.ibm.com/peretz/neutrino/pull/817) ([kasomani](https://github.ibm.com/kasomani))
+- Bugfix: fixes \#814, icons updated [\#815](https://github.ibm.com/peretz/neutrino/pull/815) ([kasomani](https://github.ibm.com/kasomani))
+- Scrolling v1 [\#813](https://github.ibm.com/peretz/neutrino/pull/813) ([callums](https://github.ibm.com/callums))
+- Remove body padding [\#812](https://github.ibm.com/peretz/neutrino/pull/812) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - Demo heading styles refactor [\#811](https://github.ibm.com/peretz/neutrino/pull/811) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - BugFix: \#777 banner close-icon alignment issue. should also fix \#761 [\#810](https://github.ibm.com/peretz/neutrino/pull/810) ([kasomani](https://github.ibm.com/kasomani))
 - Allow overriding display style [\#802](https://github.ibm.com/peretz/neutrino/pull/802) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

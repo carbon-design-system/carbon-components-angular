@@ -259,6 +259,38 @@ export class DropdownDemo {
 		{
 			content: "Design",
 			selected: false
+		},
+		{
+			content: "An item",
+			selected: false
+		},
+		{
+			content: "Byte",
+			selected: false,
+		},
+		{
+			content: "Computer",
+			selected: false
+		},
+		{
+			content: "Design",
+			selected: false
+		},
+		{
+			content: "An item",
+			selected: false
+		},
+		{
+			content: "Byte",
+			selected: false,
+		},
+		{
+			content: "Computer",
+			selected: false
+		},
+		{
+			content: "Design",
+			selected: false
 		}
 	];
 
@@ -322,6 +354,42 @@ export class DropdownDemo {
 				{
 					content: "Sub item two 2",
 					selected: false,
+				},
+				{
+					content: "Sub item two 3",
+					selected: false,
+				},
+				{
+					content: "Sub item two 4",
+					selected: false,
+				},
+				{
+					content: "Sub item two 4",
+					selected: false,
+				},
+				{
+					content: "Sub item two 5",
+					selected: false,
+				},
+				{
+					content: "Sub item two 6",
+					selected: false,
+				},
+				{
+					content: "Sub item two 7",
+					selected: false,
+				},
+				{
+					content: "Sub item two 8",
+					selected: false,
+				},
+				{
+					content: "Sub item two 9",
+					selected: false,
+				},
+				{
+					content: "Sub item two 10",
+					selected: false,
 				}
 			]
 		},
@@ -332,6 +400,22 @@ export class DropdownDemo {
 		{
 			content: "Item four",
 			selected: false
+		},
+		{
+			content: "Item five",
+			selected: false,
+		},
+		{
+			content: "Item six",
+			selected: false,
+		},
+		{
+			content: "Item seven",
+			selected: false,
+		},
+		{
+			content: "Item eight",
+			selected: false,
 		}
 	];
 	demoItems5 = Array.from(this.demoItems1, this.clone);
