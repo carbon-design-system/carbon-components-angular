@@ -324,6 +324,13 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 		}
 	}
 
+	/**
+	 * Initalizes focus in the list, effectivly a wrapper for `getCurrentElement().focus()`
+	 */
+	initFocus() {
+		this.getCurrentElement().focus();
+	}
+
 	// this and a few other functions are super common between
 	// submenu and tree ... maybe we can dedupe?
 	/**
