@@ -12,16 +12,20 @@ import * as en from "./../../src/i18n/en.json";
 		<h1>Neutrino</h1>
 		<h2>A componentized <em>Angular</em> implementation of the Watson Customer Engagement design guide.</h2>
 		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino">
-			<n-icon icon="preview" color="white" size="sm"></n-icon>
+			<n-icon icon="build" color="white" size="sm"></n-icon>
 			Project
 		</a>
 		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino/wiki/Style-guide">
-			<n-icon icon="design" color="white" size="sm"></n-icon>
+			<n-icon icon="expression_edit" color="white" size="sm"></n-icon>
 			Code style guide
 		</a>
 		<a class="btn--icon-white" href="https://pages.github.ibm.com/peretz/neutrino/documentation/">
 			<n-icon icon="document" color="white" size="sm"></n-icon>
 			Documentation
+		</a>
+		<a class="btn--icon-white" href="http://billboard1.fyre.ibm.com/">
+		<n-icon icon="preview" color="white" size="sm"></n-icon>
+			Billboard
 		</a>
 	</header>
 	<main class="p-container">

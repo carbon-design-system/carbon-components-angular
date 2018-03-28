@@ -48,12 +48,14 @@
 - Tooltip component styles don't work with parameters 'type' ='button' [\#774](https://github.ibm.com/peretz/neutrino/issues/774)
 - nTable data columns are not aligned with header with scrollbar [\#770](https://github.ibm.com/peretz/neutrino/issues/770)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
+- change dropdown-filter-list.component to focus the search field first instead of the first list item [\#751](https://github.ibm.com/peretz/neutrino/issues/751)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
 
 **Merged pull requests:**
 
+- filter now focuses input first, added initFocus to abstract-dropdown-view [\#818](https://github.ibm.com/peretz/neutrino/pull/818) ([callums](https://github.ibm.com/callums))
 - fixes \#816 [\#817](https://github.ibm.com/peretz/neutrino/pull/817) ([kasomani](https://github.ibm.com/kasomani))
 - Bugfix: fixes \#814, icons updated [\#815](https://github.ibm.com/peretz/neutrino/pull/815) ([kasomani](https://github.ibm.com/kasomani))
 - Scrolling v1 [\#813](https://github.ibm.com/peretz/neutrino/pull/813) ([callums](https://github.ibm.com/callums))
