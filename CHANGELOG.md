@@ -52,9 +52,11 @@
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
+- Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
 
 **Merged pull requests:**
 
+- Update icons for Demo links [\#819](https://github.ibm.com/peretz/neutrino/pull/819) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - filter now focuses input first, added initFocus to abstract-dropdown-view [\#818](https://github.ibm.com/peretz/neutrino/pull/818) ([callums](https://github.ibm.com/callums))
 - fixes \#816 [\#817](https://github.ibm.com/peretz/neutrino/pull/817) ([kasomani](https://github.ibm.com/kasomani))
 - Bugfix: fixes \#814, icons updated [\#815](https://github.ibm.com/peretz/neutrino/pull/815) ([kasomani](https://github.ibm.com/kasomani))
