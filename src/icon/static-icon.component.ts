@@ -239,6 +239,28 @@ export class StaticIcon implements AfterViewInit {
             	values="#eee;#999;#eee"/>
             </circle>
 		</svg>
+		`,
+		"help_16": classList => `<svg
+			class="${classList}"
+			height="16"
+			viewBox="0 0 16 16">
+				<path
+					d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0
+					14.8c-3.7 0-6.8-3.1-6.8-6.8 0-3.7 3.1-6.8 6.8-6.8s6.8 3.1 6.8 6.8c0 3.7-3 6.8-6.8 6.8z" />
+				<path
+					d="M8 2.9c-.9 0-1.7.2-2.3.7-.6.5-.9
+					1.2-1.1 2.1v.2l1.6.1v-.1c.1-.6.3-1.1.6-1.4.4-.3.7-.4 1.2-.4s.9.2 1.3.5c.3.3.5.7.5 1.1 0
+					.2-.1.4-.2.6-.1.2-.4.4-.8.8-.4.3-.7.6-.9.8-.2.3-.4.5-.5.8v.2c-.1.2-.2.3-.2.6v.6h1.5V10c0-.4
+					0-.5.1-.6v-.1c.1-.2.1-.3.2-.5.1-.1.3-.3.8-.7.6-.5 1-.9 1.2-1.3.2-.4.3-.8.3-1.2
+					0-.8-.3-1.4-.9-1.9-.6-.6-1.4-.8-2.4-.8zM7.3 11.5h1.5V13H7.3z" />
+		</svg>`,
+		"carat_up_16": classList => `<svg
+			class="${classList}"
+			width="16"
+			height="16"
+			viewBox="0 0 16 16">
+			<polygon class="st0" points="15,12 1,12 8,5 "/>
+		</svg>
 		`
 	};
 
@@ -251,7 +273,7 @@ export class StaticIcon implements AfterViewInit {
 
 	public ngAfterViewInit() {
 		const el = this.elementRef.nativeElement;
-		el.style.display = "flex";
+		el.style.display = el.style.display || "flex";
 		const icon = this.iconMap[`${this.icon}_${this.sizeMap[this.size]}`];
 		if (icon) {
 			el.innerHTML = icon(this.buildMatterClass() + " " + this.classList);

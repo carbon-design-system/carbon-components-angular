@@ -47,24 +47,24 @@ class FilterableHeaderItem extends TableHeaderItem {
 @Component({
 	selector: "app-table-demo",
 	template: `
-	<h1>Table</h1>
+	<h1 class="p-demo-heading">Table</h1>
 
-	<h2>Size Variations</h2>
-	<h3>Small table</h3>
+	<h2 class="p-demo-section">Size Variations</h2>
+	<h3 class="p-demo-variation">Small table</h3>
 	<n-table size="sm" [model]="simpleModel1" (sort)="simpleSort1($event)"></n-table>
 
-	<h3>Normal table</h3>
+	<h3 class="p-demo-variation">Normal table</h3>
 	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
 
 
-	<h3>Large table</h3>
+	<h3 class="p-demo-variation">Large table</h3>
 	<n-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></n-table>
 
-	<h2>Table with contextual rows</h2>
+	<h2 class="p-demo-section">Table with contextual rows</h2>
 	<n-table [model]="contextModel" (sort)="simpleSort($event)"></n-table>
 
-	<h2>Custom table</h2>
-	<h3>Add row to see loading indicator and end of content button</h3>
+	<h2 class="p-demo-section">Custom table</h2>
+	<h3 class="p-demo-variation">Add row to see loading indicator and end of content button</h3>
 
 	<button class="btn--primary" (click)="customModel.addRow()">Add row</button>
 	<button class="btn--primary" (click)="customModel.addColumn()">Add column</button>
@@ -100,7 +100,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 		</span>
 	</footer>
 
-	<h2>Full table</h2>
+	<h2 class="p-demo-section">Full table</h2>
 
 	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength - model.pageLength">Remove page</button>
 	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength + model.pageLength">Add page</button>

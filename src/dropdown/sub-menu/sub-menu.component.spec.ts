@@ -56,7 +56,7 @@ class TestMultiComponent {
 // ????? without this karma blows up?????
 describe("wtf", () => {});
 
-describe("Dropdown tree", () => {
+describe("Dropdown submenu", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -96,7 +96,7 @@ describe("Dropdown tree", () => {
 	});
 });
 
-describe("tree multi list", () => {
+describe("submenu multi list", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -105,7 +105,8 @@ describe("tree multi list", () => {
 				SubMenuItem,
 				SubMenuWrapper,
 				TestMultiComponent
-			]
+			],
+			imports: [StaticIconModule]
 		});
 	});
 

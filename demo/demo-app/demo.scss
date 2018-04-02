@@ -2,26 +2,27 @@
 $font-path: "./../node_modules/@peretz/matter/fonts/";
 @import "~@peretz/matter/scss/matter.scss";
 
-body {
-	padding: 0;
-}
-
 /*
  * Main demo container
+ * p-demo-heading styles the title of the component demo
  * p-demo-section styles the second level headings for each component
  * p-demo-variation styles the third level headings (child headings to p-demo-section)
  */
  .p-container {
-	 padding: 20px;
+	 padding: 20px 10%;
 
   	.p-demo-container {
-		padding-left: 310px;
+		padding-left: 350px;
 
-		h2 {
+		.p-demo-heading {
+			margin-bottom: 1.2rem;
+		}
+
+		.p-demo-section {
 			margin-top: 2rem;
 		}
 
-		h3 {
+		.p-demo-variation {
 			margin-top: 1.5rem;
 		}
   	}
@@ -37,7 +38,6 @@ body {
 
 	h1, h2 {
 		color: m_color("white", 0);
-		background: transparent;
 	}
 
 	h1 {

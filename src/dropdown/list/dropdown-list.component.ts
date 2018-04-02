@@ -14,6 +14,7 @@ import {
 
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
+import { dropdownConfig } from "./../dropdown.const";
 import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
@@ -56,14 +57,26 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
+		<div
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
+			class="scroll-arrow--up"
+			style="justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
+		</div>
+		<!-- default is deprecated -->
 		<ul
 			#list
 			role="listbox"
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
-				'listbox': size === 'default',
+				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
-			}">
+			}"
+			(wheel)="onWheel($event)"
+			(touchstart)="onTouchStart($event)"
+			(touchmove)="onTouchMove($event)">
 			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -73,11 +86,12 @@ import "rxjs/add/observable/of";
 					selected: item.selected,
 					disabled: item.disabled
 				}">
+				<!-- default is deprecated -->
 				<label
 					style="margin: 0;"
 					[ngClass]="{
 						'checkbox--sm': size === 'sm',
-						'checkbox': size === 'default' || size === 'lg'
+						'checkbox': size === 'md' || size === 'default' || size === 'lg'
 					}"
 					*ngIf="type === 'multi'">
 					<input
@@ -95,7 +109,15 @@ import "rxjs/add/observable/of";
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
-		</ul>`,
+		</ul>
+		<div
+			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
+			class="scroll-arrow--down"
+			style="justify-content: center;"
+			(mouseover)="onHoverDown(true)"
+			(mouseout)="onHoverDown(false)">
+			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
+		</div>`,
 		providers: [
 			{
 				provide: AbstractDropdownView,
@@ -151,6 +173,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	public displayItems: Array<ListItem> = [];
 	/**
+	 * controls wether the scroll up/down arrows are shown
+	 */
+	public canScrollUp = false;
+	public canScrollDown = false;
+	/**
 	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
 	 * @type {number}
@@ -170,6 +197,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	protected focusJump;
+
+	/**
+	 * holds on to the last touch position (used for scrolling)
+	 */
+	protected lastTouch = 0;
+
+	/**
+	 * reference to the hover scrolling setInterval
+	 */
+	protected hoverScrollInterval = null;
 
 	/**
 	 * Creates an instance of `DropdownList`.
@@ -399,6 +436,119 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				}
 			}
 		}
+	}
+
+	/**
+	 * Initalizes focus in the list, effectivly a wrapper for `getCurrentElement().focus()`
+	 */
+	initFocus() {
+		this.getCurrentElement().focus();
+	}
+
+	// scrolling methods here
+	checkScrollArrows() {
+		const list = this.list.nativeElement;
+		if (list.scrollTop === 0) {
+			if (this.canScrollUp) {
+				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
+			}
+			this.canScrollUp = false;
+		} else if (list.scrollTop === list.scrollTopMax) {
+			if (this.canScrollDown) {
+				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
+			}
+			this.canScrollDown = false;
+		} else {
+			if (!this.canScrollUp) {
+				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
+			}
+			if (!this.canScrollDown) {
+				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
+			}
+			this.canScrollUp = true;
+			this.canScrollDown = true;
+		}
+	}
+
+	onWheel(event) {
+		const list = this.list.nativeElement;
+		if (event.deltaY < 0) {
+			list.scrollTop -= 10;
+		} else {
+			list.scrollTop += 10;
+		}
+		// only prevent the parent/window from scrolling if we can scroll
+		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+		this.checkScrollArrows();
+	}
+
+	onTouchStart(event) {
+		if (event.touches[0]) {
+			this.lastTouch = event.touches[0].clientY;
+		}
+	}
+
+	onTouchMove(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		const list = this.list.nativeElement;
+		if (event.touches[0]) {
+			const touch = event.touches[0];
+			list.scrollTop += this.lastTouch - touch.clientY;
+			this.lastTouch = touch.clientY;
+			this.checkScrollArrows();
+		}
+	}
+
+	hoverScrollBy(hovering, amount) {
+		const list = this.list.nativeElement;
+		if (hovering) {
+			this.hoverScrollInterval = setInterval(() => {
+				list.scrollTop += amount;
+				this.checkScrollArrows();
+			}, 1);
+		} else {
+			clearInterval(this.hoverScrollInterval);
+		}
+	}
+
+	onHoverUp(hovering) {
+		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
+	}
+
+	onHoverDown(hovering) {
+		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
+	}
+
+	enableScroll() {
+		this.canScrollUp = true;
+		this.canScrollDown = true;
+		const list = this.list.nativeElement;
+		const boudningClientRect = list.getBoundingClientRect();
+		list.style.overflow = "hidden";
+		// 40 gives us some padding between the bottom of the list,
+		// the bottom of the window, and the scroll down button
+		list.style.height =
+			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
+		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
+		// detection/browser measurment works)
+		this.checkScrollArrows();
+		setTimeout(() => {
+			this.checkScrollArrows();
+		});
+	}
+
+	disableScroll() {
+		this.canScrollUp = false;
+		this.canScrollDown = false;
+		const list = this.list.nativeElement;
+		list.style.height = null;
+		list.style.overflow = null;
+		clearInterval(this.hoverScrollInterval);
 	}
 
 	/**

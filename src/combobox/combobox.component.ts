@@ -207,7 +207,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	ngOnChanges(changes) {
 		if (changes.items) {
 			this.view["updateList"](changes.items.currentValue);
-			this.updatePills();
+			this.updateSelected();
 		}
 	}
 
@@ -242,15 +242,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {
-				const selected = this.view.getSelected();
-				if (selected) {
-					if (this.type === "multi") {
-						this.updatePills();
-					} else {
-						this.selectedValue = selected[0].content;
-						this.propagateChangeCallback(selected[0]);
-					}
-				}
+				this.updateSelected();
 			});
 		}
 	}
@@ -368,17 +360,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
 			// of any given item
-			if (!this.view.items.some(item => item.content === searchString)) {
-				let selected = this.view.getSelected();
+			const matches = this.view.items.some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
+			if (!matches) {
+				const selected = this.view.getSelected();
 				if (selected) {
 					selected[0].selected = false;
 					// notify that the selection has changed
 					this.view.select.emit({ item: selected[0] });
 					this.propagateChangeCallback(null);
+				} else {
+					this.view["filterBy"]("");
 				}
-			} else {
-				// otherwise we remove the filter
-				this.view["filterBy"]("");
 			}
 		}
 	}
@@ -409,5 +401,17 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				selected: false
 			}
 		});
+	}
+
+	private updateSelected() {
+		const selected = this.view.getSelected();
+		if (selected) {
+			if (this.type === "multi") {
+				this.updatePills();
+			} else {
+				this.selectedValue = selected[0].content;
+				this.propagateChangeCallback(selected[0]);
+			}
+		}
 	}
 }

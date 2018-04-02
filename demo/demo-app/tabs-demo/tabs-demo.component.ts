@@ -3,9 +3,9 @@ import { Component, OnInit } from "@angular/core";
 @Component({
 	selector: "app-tabs-demo",
 	template: `
-	<h1>Tabs</h1>
+	<h1 class="p-demo-heading">Tabs</h1>
 
-	<h2>Static tabs</h2>
+	<h2 class="p-demo-section">Static tabs</h2>
 		<n-tabs>
 			<n-tab heading='Tab1' (select)="onSelect('tab1')">
 				Tab 1 content
@@ -45,7 +45,7 @@ import { Component, OnInit } from "@angular/core";
 			</n-tab>
 		</n-tabs>
 
-	<h3>Static tabs with bottom placement</h3>
+	<h3 class="p-demo-variation">Static tabs with bottom placement</h3>
 	<n-tabs position='bottom'>
 		<n-tab heading='Tab1'>
 			Tab 1 content
@@ -58,7 +58,7 @@ import { Component, OnInit } from "@angular/core";
 		</n-tab>
 	</n-tabs>
 
-	<h2>Dynamic tabs</h2>
+	<h2 class="p-demo-section">Dynamic tabs</h2>
 	<n-tabs>
 		<n-tab
 			*ngFor="let tab of sampleTabs"
@@ -70,7 +70,7 @@ import { Component, OnInit } from "@angular/core";
 		</n-tab>
 	</n-tabs>
 
-	<h3>Dynamic tabs with timeout</h3>
+	<h3 class="p-demo-variation">Dynamic tabs with timeout</h3>
 	<div>
 		<n-tabs>
 			<n-tab
@@ -83,7 +83,7 @@ import { Component, OnInit } from "@angular/core";
 		</n-tabs>
 	</div>
 
-	<h2>Tabs with custom header template</h2>
+	<h2 class="p-demo-section">Tabs with custom header template</h2>
 	<ng-template #tabHeading>
 		<n-icon
 			icon="facebook"
@@ -105,7 +105,7 @@ import { Component, OnInit } from "@angular/core";
 	</n-tabs>
 
 
-	<h2>Scroll tabs</h2>
+	<h2 class="p-demo-section">Scroll tabs</h2>
 	<div style="max-width: 600px">
 		<n-tabs>
 			<n-tab heading='Tab1'>

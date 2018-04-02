@@ -40,6 +40,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			[listTpl]="listTpl"
 			[rootElem]="rootElem"
 			[role]="'group'"
+			[scrollEnabled]="scrollEnabled"
 			[parent]="parent">
 		</n-sub-menu-wrapper>
 	`
@@ -78,6 +79,8 @@ export class SubMenuItem implements OnInit {
 	 */
 	@Input() listTpl: string | TemplateRef<any> = "";
 	@Input() rootElem = null;
+
+	@Input() scrollEnabled = false;
 
 	/**
 	 * Emits event that handles the selection of a `SubMenuItem`.
