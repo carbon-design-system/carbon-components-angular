@@ -11,6 +11,8 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 
+import { getScrollbarWidth } from "../common/utils";
+
 /**
  * Build your table with this component by extending things that differ from default.
  *
@@ -141,9 +143,18 @@ import {
 						</div>
 					</th>
 				</ng-container>
+				<th [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+					<!--
+						Scrollbar pushes body to the left so this header column is added to push
+						the title bar the same amount and keep the header and body columns aligned.
+					-->
+				</th>
 			</tr>
 		</thead>
-		<tbody [ngClass]="{'table_tbody--striped': striped}" (scroll)="onScroll($event)">
+		<tbody
+		[ngClass]="{'table_tbody--striped': striped}"
+		[ngStyle]="{'overflow-y': 'scroll'}"
+		(scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr *ngIf="!model.isRowFiltered(i)"
 					[ngClass]="{
@@ -380,6 +391,10 @@ export class Table {
 		} else {
 			this.model.isEnd = false;
 		}
+	}
+
+	get scrollbarWidth() {
+		return getScrollbarWidth();
 	}
 
 	/**
