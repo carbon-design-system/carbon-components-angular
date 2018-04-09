@@ -33,11 +33,13 @@
 
 **Closed issues:**
 
+- Exiting modal update [\#827](https://github.ibm.com/peretz/neutrino/issues/827)
 - Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
 - add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
 - add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
 - add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
+- Tree View , do not support \*only\* Node Selection, use case nested folder selection [\#803](https://github.ibm.com/peretz/neutrino/issues/803)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
 - Feature Request: Need custom scroll bar on all of the components where scrolling is possible [\#782](https://github.ibm.com/peretz/neutrino/issues/782)
@@ -49,12 +51,17 @@
 - nTable data columns are not aligned with header with scrollbar [\#770](https://github.ibm.com/peretz/neutrino/issues/770)
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - change dropdown-filter-list.component to focus the search field first instead of the first list item [\#751](https://github.ibm.com/peretz/neutrino/issues/751)
+- Dropdown and Combobox 1.2 [\#748](https://github.ibm.com/peretz/neutrino/issues/748)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
+- Improve customized code style guide \(stretch\) [\#662](https://github.ibm.com/peretz/neutrino/issues/662)
+- Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
+- Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
 
 **Merged pull requests:**
 
+- Update icons for Demo links [\#819](https://github.ibm.com/peretz/neutrino/pull/819) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - filter now focuses input first, added initFocus to abstract-dropdown-view [\#818](https://github.ibm.com/peretz/neutrino/pull/818) ([callums](https://github.ibm.com/callums))
 - fixes \#816 [\#817](https://github.ibm.com/peretz/neutrino/pull/817) ([kasomani](https://github.ibm.com/kasomani))
 - Bugfix: fixes \#814, icons updated [\#815](https://github.ibm.com/peretz/neutrino/pull/815) ([kasomani](https://github.ibm.com/kasomani))
