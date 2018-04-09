@@ -121,7 +121,7 @@ export class DialogService {
 				this.close(viewContainer);
 			});
 
-			this.dialogRef.instance._elementRef.nativeElement.focus();
+			this.dialogRef.instance.elementRef.nativeElement.focus();
 		}
 		return this;
 	}
