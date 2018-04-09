@@ -61,6 +61,7 @@
 
 **Merged pull requests:**
 
+- Remove overlaySelected from demo [\#828](https://github.ibm.com/peretz/neutrino/pull/828) ([callums](https://github.ibm.com/callums))
 - Update icons for Demo links [\#819](https://github.ibm.com/peretz/neutrino/pull/819) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - filter now focuses input first, added initFocus to abstract-dropdown-view [\#818](https://github.ibm.com/peretz/neutrino/pull/818) ([callums](https://github.ibm.com/callums))
 - fixes \#816 [\#817](https://github.ibm.com/peretz/neutrino/pull/817) ([kasomani](https://github.ibm.com/kasomani))
