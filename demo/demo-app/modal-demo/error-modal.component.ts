@@ -5,7 +5,7 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-error-modal",
 	template: `
-		<n-modal size="sm" modalType="error" (overlaySelected)="closeModal()">
+		<n-modal size="sm" modalType="error">
 			<n-modal-header (closeSelect)="closeModal()">Error</n-modal-header>
 			<section class="modal-body">
 				<p>The connection was lost. Try to log in again.</p>

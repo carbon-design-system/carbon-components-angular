@@ -5,7 +5,7 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<n-modal size="xl" (overlaySelected)="closeModal()">
+		<n-modal size="xl">
 			<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
 			<section class="modal-body">
 				<h1>Sample modal works.</h1>
