@@ -21,7 +21,7 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-form-modal",
 	template: `
-		<n-modal size="sm" (overlaySelected)="closeModal()">
+		<n-modal size="sm">
 			<n-modal-header (closeSelect)="closeModal()">Form</n-modal-header>
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form" style="display: contents">
 				<div class="modal-body modal_body">

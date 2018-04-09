@@ -5,7 +5,7 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-drill-modal",
 	template: `
-		<n-modal size="xl" (overlaySelected)="closeModal()" [ngSwitch]="drilledin">
+		<n-modal size="xl" [ngSwitch]="drilledin">
 			<ng-container *ngSwitchCase="false">
 				<n-modal-header (closeSelect)="closeModal()">
 					<span
