@@ -63,6 +63,7 @@
 
 **Merged pull requests:**
 
+-  Fix sidenav treeview bug [\#830](https://github.ibm.com/peretz/neutrino/pull/830) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Fix popover appendToBody not positioning correctly and apply classes from config [\#829](https://github.ibm.com/peretz/neutrino/pull/829) ([callums](https://github.ibm.com/callums))
 - Remove overlaySelected from demo [\#828](https://github.ibm.com/peretz/neutrino/pull/828) ([callums](https://github.ibm.com/callums))
 - Update icons for Demo links [\#819](https://github.ibm.com/peretz/neutrino/pull/819) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
