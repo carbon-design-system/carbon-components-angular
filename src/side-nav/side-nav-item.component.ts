@@ -41,7 +41,7 @@ import {
 @Component({
 	selector: "n-side-nav-item",
 	template: `
-	<li aria-level="2" #item>
+	<li class="side-nav_menu_item" aria-level="2" #item>
 		<a
 		[attr.aria-controls]="subpanelId"
 		[attr.aria-expanded]="expanded"
