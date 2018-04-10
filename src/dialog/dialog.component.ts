@@ -99,10 +99,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * Creates an instance of `Dialog`.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof Dialog
 	 */
-	constructor(protected _elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	/**
 	 * Initilize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
@@ -126,7 +126,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @memberof Dialog
 	 */
 	ngAfterViewInit() {
-		this.dialog.nativeElement.focus();
+		const dialogElement = this.dialog.nativeElement;
+		dialogElement.focus();
+		dialogElement.classList = `${dialogElement.classList} ${this.dialogConfig.wrapperClass}`;
 		this.placeDialog();
 	}
 
@@ -147,6 +149,13 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		if (this.dialogConfig.appendToBody) {
 			pos = this.addGap[this.placement](position.findAbsolute(parentEl, el, this.placement));
 			pos = position.addOffset(pos, window.scrollY, window.scrollX);
+			// add extra setTimeout and position calculation for cases where the container is position
+			// relative or absolute since browsers return getBoundingClientRect _before_ the reflow is complete
+			setTimeout(() => {
+				let pos = this.addGap[this.placement](position.findAbsolute(parentEl, el, this.placement));
+				pos = position.addOffset(pos, window.scrollY, window.scrollX);
+				position.setElement(el, pos);
+			});
 		} else {
 			pos = this.addGap[this.placement](position.findRelative(parentEl, el, this.placement));
 		}
@@ -178,7 +187,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 				break;
 			}
 			case "Tab": {
-				cycleTabs(event, this._elementRef.nativeElement);
+				cycleTabs(event, this.elementRef.nativeElement);
 				break;
 			}
 		}
@@ -192,7 +201,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	@HostListener("document:click", ["$event"])
 	clickClose(event) {
-		if (!this._elementRef.nativeElement.contains(event.target)
+		if (!this.elementRef.nativeElement.contains(event.target)
 			&& !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
 			this.doClose();
 		}
