@@ -26,6 +26,7 @@
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
 - Github pages issues [\#704](https://github.ibm.com/peretz/neutrino/issues/704)
 - Need to add safe guard for topNav [\#684](https://github.ibm.com/peretz/neutrino/issues/684)
+- Side nav: Double border and clicking on arrow doesn't expand the children  [\#680](https://github.ibm.com/peretz/neutrino/issues/680)
 - Tree view : left border is missing in checkbox  [\#679](https://github.ibm.com/peretz/neutrino/issues/679)
 - Tree view: Clicking on the arrow doesn't make it expand [\#678](https://github.ibm.com/peretz/neutrino/issues/678)
 - Dropdown views don't handle async pipes/values correctly [\#519](https://github.ibm.com/peretz/neutrino/issues/519)
@@ -39,6 +40,7 @@
 - add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
 - add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
 - add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
+- pop over should support custom class when append to body is true [\#805](https://github.ibm.com/peretz/neutrino/issues/805)
 - Tree View , do not support \*only\* Node Selection, use case nested folder selection [\#803](https://github.ibm.com/peretz/neutrino/issues/803)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
@@ -61,6 +63,8 @@
 
 **Merged pull requests:**
 
+-  Fix sidenav treeview bug [\#830](https://github.ibm.com/peretz/neutrino/pull/830) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Fix popover appendToBody not positioning correctly and apply classes from config [\#829](https://github.ibm.com/peretz/neutrino/pull/829) ([callums](https://github.ibm.com/callums))
 - Remove overlaySelected from demo [\#828](https://github.ibm.com/peretz/neutrino/pull/828) ([callums](https://github.ibm.com/callums))
 - Update icons for Demo links [\#819](https://github.ibm.com/peretz/neutrino/pull/819) ([Natasha-Decoste](https://github.ibm.com/Natasha-Decoste))
 - filter now focuses input first, added initFocus to abstract-dropdown-view [\#818](https://github.ibm.com/peretz/neutrino/pull/818) ([callums](https://github.ibm.com/callums))

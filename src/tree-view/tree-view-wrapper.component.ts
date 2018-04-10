@@ -48,7 +48,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					[parent]="parent"
 					[rootElem]="rootElem"
 					[indent]="indent+1"
-					[role]="group"
+					role="group"
 					[outerPadding]="outerPadding"
 					[iconWidth]="iconWidth"
 					[innerPadding]="innerPadding"
