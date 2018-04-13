@@ -29,7 +29,11 @@ export class TableModel {
 			}
 			this.header = header;
 		}
+
+		this.dataChanged();
 	}
+
+	dataChanged: () => void;
 
 	/**
 	 * Gets the full data.
@@ -128,6 +132,10 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	private _data: Array<Array<TableItem>>;
+
+	constructor() {
+		this.dataChanged = () => {};
+	}
 
 	/**
 	 * Returns how many rows is currently selected
@@ -236,6 +244,8 @@ export class TableModel {
 			// update rowsContext property for length
 			this.rowsContext.splice(ri, 0, undefined);
 		}
+
+		this.dataChanged();
 	}
 
 	/**
@@ -251,6 +261,8 @@ export class TableModel {
 		this.data.splice(rri, 1);
 		this.rowsSelected.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
+
+		this.dataChanged();
 	}
 
 	/**
@@ -337,6 +349,8 @@ export class TableModel {
 				this.header.splice(ci, 0, new TableHeaderItem());
 			}
 		}
+
+		this.dataChanged();
 	}
 
 	/**
@@ -357,6 +371,8 @@ export class TableModel {
 		if (this.header.length > this.data[0].length) {
 			this.header.splice(rci, 1);
 		}
+
+		this.dataChanged();
 	}
 
 	/**

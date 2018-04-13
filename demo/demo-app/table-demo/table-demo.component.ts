@@ -87,6 +87,8 @@ class FilterableHeaderItem extends TableHeaderItem {
 		Increase column width
 	</button>
 
+	<button class="btn--primary" (click)="resetCustomModelData()">Reset model data</button>
+
 	<n-table
 		[model]="customModel"
 		[striped]="striped"
@@ -156,6 +158,15 @@ export class TableDemo implements OnInit {
 	private customTableItemTemplate: TemplateRef<any>;
 
 	constructor(private service: TableDemoService) {}
+
+	resetCustomModelData() {
+		this.customModel.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
+		];
+	}
 
 	ngOnInit() {
 		// simple model
