@@ -221,8 +221,12 @@ export class Table {
 	 */
 	@Input()
 	set model(m: TableModel) {
+		if (this._model) {
+			this._model.dataChange.unsubscribe();
+		}
+
 		this._model = m;
-		this._model.dataChanged = this.modelDataChanged;
+		this._model.dataChange.subscribe(() => this.onModelDataChanged());
 	}
 
 	get model(): TableModel {
@@ -328,11 +332,15 @@ export class Table {
 	constructor(private applicationRef: ApplicationRef) {}
 
 
-	modelDataChanged = () => {
-		if (this.model.selectedRowsCount() <= 0) {
+	onModelDataChanged() {
+		const selectedRowsCount = this.model.selectedRowsCount();
+
+		if (selectedRowsCount <= 0) {
 			// reset select all checkbox if nothing selected
 			this.selectAllCheckbox = false;
 			this.selectAllCheckboxSomeSelected = false;
+		} else if (selectedRowsCount < this.model.data.length) {
+			this.selectAllCheckboxSomeSelected = true;
 		}
 	}
 

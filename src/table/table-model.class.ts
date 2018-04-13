@@ -30,10 +30,10 @@ export class TableModel {
 			this.header = header;
 		}
 
-		this.dataChanged();
+		this.dataChange.emit();
 	}
 
-	dataChanged: () => void;
+	dataChange = new EventEmitter();
 
 	/**
 	 * Gets the full data.
@@ -132,10 +132,6 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	private _data: Array<Array<TableItem>>;
-
-	constructor() {
-		this.dataChanged = () => {};
-	}
 
 	/**
 	 * Returns how many rows is currently selected
@@ -245,7 +241,7 @@ export class TableModel {
 			this.rowsContext.splice(ri, 0, undefined);
 		}
 
-		this.dataChanged();
+		this.dataChange.emit();
 	}
 
 	/**
@@ -262,7 +258,7 @@ export class TableModel {
 		this.rowsSelected.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
 
-		this.dataChanged();
+		this.dataChange.emit();
 	}
 
 	/**
@@ -350,7 +346,7 @@ export class TableModel {
 			}
 		}
 
-		this.dataChanged();
+		this.dataChange.emit();
 	}
 
 	/**
@@ -372,7 +368,7 @@ export class TableModel {
 			this.header.splice(rci, 1);
 		}
 
-		this.dataChanged();
+		this.dataChange.emit();
 	}
 
 	/**
