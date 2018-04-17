@@ -34,7 +34,15 @@
 
 **Closed issues:**
 
+- condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
+- condition builder - removing one condition doesn't remove bracket [\#840](https://github.ibm.com/peretz/neutrino/issues/840)
+- table select all checkbox issue [\#837](https://github.ibm.com/peretz/neutrino/issues/837)
+- condition builder spec updates [\#835](https://github.ibm.com/peretz/neutrino/issues/835)
+- Cards spec [\#834](https://github.ibm.com/peretz/neutrino/issues/834)
+- Progress indication spec [\#833](https://github.ibm.com/peretz/neutrino/issues/833)
+- Calendar spec [\#832](https://github.ibm.com/peretz/neutrino/issues/832)
 - Exiting modal update [\#827](https://github.ibm.com/peretz/neutrino/issues/827)
+- nTable  : selectAllCheckbox  do not change state on data update [\#820](https://github.ibm.com/peretz/neutrino/issues/820)
 - Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
 - add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
@@ -60,9 +68,14 @@
 - Improve customized code style guide \(stretch\) [\#662](https://github.ibm.com/peretz/neutrino/issues/662)
 - Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
 - Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
+- Breadcrumbs [\#346](https://github.ibm.com/peretz/neutrino/issues/346)
+- Tech reqs for Breadcrumb API [\#206](https://github.ibm.com/peretz/neutrino/issues/206)
 
 **Merged pull requests:**
 
+- Improve model data change detection [\#842](https://github.ibm.com/peretz/neutrino/pull/842) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix selectAllCheckbox reset after model data update [\#838](https://github.ibm.com/peretz/neutrino/pull/838) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix treeview styles [\#831](https://github.ibm.com/peretz/neutrino/pull/831) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 -  Fix sidenav treeview bug [\#830](https://github.ibm.com/peretz/neutrino/pull/830) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Fix popover appendToBody not positioning correctly and apply classes from config [\#829](https://github.ibm.com/peretz/neutrino/pull/829) ([callums](https://github.ibm.com/callums))
 - Remove overlaySelected from demo [\#828](https://github.ibm.com/peretz/neutrino/pull/828) ([callums](https://github.ibm.com/callums))
