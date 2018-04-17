@@ -29,7 +29,11 @@ export class TableModel {
 			}
 			this.header = header;
 		}
+
+		this.dataChange.emit();
 	}
+
+	dataChange = new EventEmitter();
 
 	/**
 	 * Gets the full data.
@@ -236,6 +240,8 @@ export class TableModel {
 			// update rowsContext property for length
 			this.rowsContext.splice(ri, 0, undefined);
 		}
+
+		this.dataChange.emit();
 	}
 
 	/**
@@ -251,6 +257,8 @@ export class TableModel {
 		this.data.splice(rri, 1);
 		this.rowsSelected.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
+
+		this.dataChange.emit();
 	}
 
 	/**
@@ -337,6 +345,8 @@ export class TableModel {
 				this.header.splice(ci, 0, new TableHeaderItem());
 			}
 		}
+
+		this.dataChange.emit();
 	}
 
 	/**
@@ -357,6 +367,8 @@ export class TableModel {
 		if (this.header.length > this.data[0].length) {
 			this.header.splice(rci, 1);
 		}
+
+		this.dataChange.emit();
 	}
 
 	/**
