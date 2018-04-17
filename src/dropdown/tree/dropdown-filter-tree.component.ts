@@ -100,7 +100,9 @@ import { dropdownConfig } from "../dropdown.const";
 			(mouseover)="onHoverDown(true)"
 			(mouseout)="onHoverDown(false)">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
-		</div>`,
+		</div>
+		<em *ngIf="displayItems.length === 0" class="empty">No search results</em>
+		`,
 		providers: [
 			{
 				provide: AbstractDropdownView,

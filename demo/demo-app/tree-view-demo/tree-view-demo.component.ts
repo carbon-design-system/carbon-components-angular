@@ -31,33 +31,6 @@ import { Component, OnInit } from "@angular/core";
 			</n-checkbox>
 		</ng-template>
 	</n-tree-view>
-
-	<h2 class="p-demo-section">Searchable</h2>
-	<div id="demo">
-		<label class="search_group--tree">
-			<svg class="search_icon" aria-hidden="true">
-				<use href="https://peretz-icons.mybluemix.net/core_set.svg#search_20"></use>
-			</svg>
-			<input placeholder="Find workspace" aria-controls="ex1treeView" type="search"
-			(keyup)="search($event)" #filter>
-			<button class="close" type="reset" aria-label="Reset search"
-			[ngClass]="{
-				visible: filter.value.trim()
-			}"
-			(click)="filter.value = ''; search($event); filterFocus = false">
-				<svg class="close_icon">
-					<use href="https://peretz-icons.mybluemix.net/core_set.svg#x_16"></use>
-				</svg>
-			</button>
-		</label>
-		<n-tree-view
-			id="ex1treeView"
-			[items]="displayItems"
-			(select)="onSelect($event)"
-			[label]="'Default Tree View'">
-		</n-tree-view>
-		<em *ngIf="displayItems.length === 0" class="empty">No search results</em>
-	</div>
 	`,
 	styles: [
 		`
@@ -282,9 +255,5 @@ export class TreeViewDemo {
 		}
 		cb.checked = false;
 		return false;
-	}
-
-	search(ev) {
-		this.displayItems = this.filter(this.demoItems2, item => item.content.toLowerCase().includes(ev.target.value.toLowerCase()));
 	}
 }
