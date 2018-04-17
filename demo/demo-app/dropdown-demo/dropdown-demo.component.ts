@@ -234,6 +234,13 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			</div>
 		</div>
 		<br>
+		<h3 class="p-demo-variation">Drop-down tree filter</h3>
+		<div class="dropdown_wrapper">
+			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
+				<n-dropdown-filter-tree [items]="demoItems3"></n-dropdown-filter-tree>
+			</div>
+		</div>
+		<br>
 		<h3 class="p-demo-variation">Drop-down sub menu</h3>
 		<div class="dropdown_wrapper" style="width: 250px;">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">

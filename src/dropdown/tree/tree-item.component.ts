@@ -183,10 +183,10 @@ export class TreeItem implements OnInit {
 			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
 		} else if (ev.key === "ArrowDown") {
 			ev.preventDefault();
-			if (!item.items || !item.selected) {
-				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
-			} else if (item.items && item.selected) {
+			if (item.items && !!item.opened) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
+			} else if (!item.items || !item.selected) {
+				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
 			}
 		} else if (ev.key === "Enter"
 			|| ev.key === " "
