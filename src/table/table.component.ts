@@ -219,7 +219,19 @@ export class Table {
 	 * @type {TableModel}
 	 * @memberof Table
 	 */
-	@Input() model: TableModel;
+	@Input()
+	set model(m: TableModel) {
+		if (this._model) {
+			this._model.dataChange.unsubscribe();
+		}
+
+		this._model = m;
+		this._model.dataChange.subscribe(() => this.onModelDataChanged());
+	}
+
+	get model(): TableModel {
+		return this._model;
+	}
 
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
@@ -309,6 +321,8 @@ export class Table {
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
 
+	private _model: TableModel;
+
 	/**
 	 * Creates an instance of Table.
 	 *
@@ -316,6 +330,19 @@ export class Table {
 	 * @memberof Table
 	 */
 	constructor(private applicationRef: ApplicationRef) {}
+
+
+	onModelDataChanged() {
+		const selectedRowsCount = this.model.selectedRowsCount();
+
+		if (selectedRowsCount <= 0) {
+			// reset select all checkbox if nothing selected
+			this.selectAllCheckbox = false;
+			this.selectAllCheckboxSomeSelected = false;
+		} else if (selectedRowsCount < this.model.data.length) {
+			this.selectAllCheckboxSomeSelected = true;
+		}
+	}
 
 	/**
 	 * Triggered whenever the header checkbox is clicked.
