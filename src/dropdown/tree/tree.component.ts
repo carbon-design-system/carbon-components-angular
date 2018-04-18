@@ -388,10 +388,9 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 */
 	onClick({item}) {
 		if (!item.disabled) {
-			if (item.items) {
-				item.selected = !item.selected;
-			} else {
-				item.selected = !item.selected;
+			item.selected = !item.selected;
+
+			if (!item.items) {
 				this.index = this.flatList.indexOf(item);
 				if (this.type === "single") {
 					let {path} = treetools.find(this.items, item);
