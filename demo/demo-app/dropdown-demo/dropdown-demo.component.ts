@@ -342,7 +342,31 @@ export class DropdownDemo {
 		{
 			content: "Item four",
 			selected: false
-		}
+		},
+		{
+			content: "Item five",
+			selected: false,
+			items: [
+				{
+					content: "Sub item two 1",
+					selected: false
+				},
+				{
+					content: "Sub item two 2",
+					selected: false,
+					items: [
+						{
+							content: "Sub item two 1b",
+							selected: false
+						},
+						{
+							content: "Sub item two 2b",
+							selected: false,
+						}
+					]
+				},
+			]
+		},
 	];
 
 	demoItems4 = [

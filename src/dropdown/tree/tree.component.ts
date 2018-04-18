@@ -388,8 +388,8 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 */
 	onClick({item}) {
 		if (!item.disabled) {
-			if (!!item.items) {
-				item.opened = !item.opened;
+			if (item.items) {
+				item.selected = !item.selected;
 			} else {
 				item.selected = !item.selected;
 				this.index = this.flatList.indexOf(item);

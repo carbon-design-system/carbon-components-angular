@@ -222,7 +222,7 @@ export class DropdownFilterTree extends DropdownTree implements AbstractDropdown
 				if (filteredItems.length > 0) {
 					let filteredItem = Object.assign({}, item, {
 						items: filteredItems,
-						opened: true
+						selected: true
 					});
 					filteredList.push(filteredItem);
 				}
