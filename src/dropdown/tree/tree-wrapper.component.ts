@@ -144,11 +144,15 @@ export class TreeWrapper {
 	}
 
 	public isExpanded(item) {
-		return (item.items ? (item.selected ? true : false) : null);
+		if (item.items) {
+			return item.selected ? true : false;
+		} else {
+			return null;
+		}
 	}
 
 	public isSelected(item) {
-		return ((item.selected && !item.items) ? true : null);
+		return (item.selected && !item.items) ? true : null;
 	}
 
 	/**
