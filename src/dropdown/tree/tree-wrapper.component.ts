@@ -37,8 +37,8 @@ import { ListItem } from "./../list-item.interface";
 				[attr.aria-level]="indent + 1"
 				[attr.aria-posinset]="i"
 				[attr.aria-setsize]="3"
-				[attr.aria-expanded]="(item.items ? (item.selected ? true : false) : null)"
-				[attr.aria-selected]="((item.selected && !item.items) ? true : null)"
+				[attr.aria-expanded]="isExpanded(item)"
+				[attr.aria-selected]="isSelected(item)"
 				[style.text-indent.px]="calculateIndent()">
 				<n-tree-item
 					[listTpl]="listTpl"
@@ -141,6 +141,14 @@ export class TreeWrapper {
 			return false;
 		}
 		return true;
+	}
+
+	public isExpanded(item) {
+		return (item.items ? (item.selected ? true : false) : null);
+	}
+
+	public isSelected(item) {
+		return ((item.selected && !item.items) ? true : null);
 	}
 
 	/**
