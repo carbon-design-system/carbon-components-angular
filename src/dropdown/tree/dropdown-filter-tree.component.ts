@@ -177,16 +177,11 @@ export class DropdownFilterTree extends DropdownTree implements AbstractDropdown
 			this.index = this.flatList.findIndex(item => item.selected && !item.items);
 			// the rest of this depends on the view being instantiated ...
 			if (!this.filterNative) { return; }
-			// reset everything
-			if (this.type === "multi") {
-				this.selectedOnlyNative.checked = null;
-				this.disableSelectedOnly = true;
-			}
+
 			this.filterNative.value = "";
 			setTimeout(() => {
 				this.listElementList = Array.from(this.elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
 			}, 0);
-			this.index = this.items.findIndex(item => item.selected);
 			this.setupFocusObservable();
 		}
 	}
@@ -198,7 +193,7 @@ export class DropdownFilterTree extends DropdownTree implements AbstractDropdown
 	 */
 	ngAfterViewInit() {
 		this.listElementList = Array.from(this.elementRef.nativeElement.querySelectorAll("[role=option]")) as HTMLElement[];
-		this.index = this.items.findIndex(item => item.selected);
+		this.index = this.items.findIndex(item => item.selected  && !item.items);
 		this.setupFocusObservable();
 		// just makes dealing with the nativeElement slightly less verbose
 		this.filterNative = this.filter.nativeElement;
@@ -215,7 +210,7 @@ export class DropdownFilterTree extends DropdownTree implements AbstractDropdown
 		let filteredList = [];
 		for (let item of items) {
 			if (!item.items && cb(item)) {
-				filteredList.push(Object.assign({}, item));
+				filteredList.push(item);
 			}
 			if (item.items) {
 				let filteredItems = this.filterHelper(item.items, cb);
