@@ -145,6 +145,7 @@ export class TreeWrapper {
 		if (!item.items) {
 			return null;
 		}
+
 		return item.selected;
 	}
 
@@ -152,6 +153,7 @@ export class TreeWrapper {
 		if (!item.selected && item.items) {
 			return null;
 		}
+
 		return item.selected && !item.items;
 	}
 
