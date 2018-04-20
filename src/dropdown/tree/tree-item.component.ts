@@ -27,7 +27,7 @@ import { focusNextTree, focusNextElem, focusPrevElem } from "./../../common/a11y
 			{{listItem.content}}
 		</span>
 		<n-tree-wrapper
-			*ngIf="!!listItem.items"
+			*ngIf="listItem.items"
 			[isOpen]="listItem.selected"
 			[items]="listItem.items"
 			(select)="bubbleSelect($event)"
@@ -183,7 +183,7 @@ export class TreeItem implements OnInit {
 			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
 		} else if (ev.key === "ArrowDown") {
 			ev.preventDefault();
-			if (item.items && !!item.selected) {
+			if (item.items && item.selected) {
 				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			} else if (!item.items || !item.selected) {
 				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);

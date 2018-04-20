@@ -20,11 +20,10 @@ import { ListItem } from "./../list-item.interface";
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
-		<!-- default is deprecated -->
 		<ul
 			[ngClass]="{
 				'menu_tree--sm': size === 'sm',
-				'menu_tree': size === 'md' || size === 'default',
+				'menu_tree': size === 'md',
 				'menu_tree--lg': size === 'lg'
 			}"
 			[attr.role]="role"
@@ -117,11 +116,10 @@ export class TreeWrapper {
 	@Input() innerPadding = 10;
 	/**
 	 * Size to render the `TreeItem` within the view.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" |"default" | "lg")}
+	 * @type {("sm" | "md" | "lg")}
 	 * @memberof TreeWrapper
 	 */
-	@Input() size: "sm" | "md" |"default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	/**
 	 * Emits selection events to other class.
@@ -144,15 +142,17 @@ export class TreeWrapper {
 	}
 
 	public isExpanded(item) {
-		if (item.items) {
-			return item.selected ? true : false;
-		} else {
+		if (!item.items) {
 			return null;
 		}
+		return item.selected;
 	}
 
 	public isSelected(item) {
-		return (item.selected && !item.items) ? true : null;
+		if (!item.selected && item.items) {
+			return null;
+		}
+		return item.selected && !item.items;
 	}
 
 	/**
