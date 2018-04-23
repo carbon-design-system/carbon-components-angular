@@ -132,7 +132,7 @@ export class TreeWrapper {
 	/**
 	 * Returns true if the item is a non leaf level item (has subitems) and false otherwise.
 	 * @param {any} items
-	 * @returns
+	 * @returns {boolean}
 	 * @memberof TreeWrapper
 	 */
 	public isBase(items) {
@@ -143,8 +143,9 @@ export class TreeWrapper {
 	}
 
 	/**
-	 * Set expanded state if item is a tree.
+	 * Returns item.expanded if item has children, null otherwise
 	 * @param {any} item
+	 * @returns {boolean}
 	 * @memberof TreeWrapper
 	 */
 	public isExpanded(item) {
@@ -156,7 +157,7 @@ export class TreeWrapper {
 	}
 
 	/**
-	 * Set selected state if item is a leaf.
+	 * Returns item.selected if item is a leaf, null otherwise
 	 * @param {any} item
 	 * @memberof TreeWrapper
 	 */
@@ -164,7 +165,7 @@ export class TreeWrapper {
 		if (item.items) {
 			return null;
 		}
-		console.log(item.selected);
+
 		return item.selected;
 	}
 
