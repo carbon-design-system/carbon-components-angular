@@ -1,4 +1,3 @@
-import { TreeWrapper } from './tree-wrapper.component';
 import {
 	Component,
 	Input,
