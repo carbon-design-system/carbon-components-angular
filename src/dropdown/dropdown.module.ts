@@ -11,6 +11,7 @@ import { DropdownSubMenu } from "./sub-menu/sub-menu.component";
 import { SubMenuWrapper } from "./sub-menu/sub-menu-wrapper.component";
 import { SubMenuItem } from "./sub-menu/sub-menu-item.component";
 import { DropdownTree } from "./tree/tree.component";
+import { DropdownFilterTree } from "./tree/dropdown-filter-tree.component";
 import { TreeWrapper } from "./tree/tree-wrapper.component";
 import { TreeItem } from "./tree/tree-item.component";
 
@@ -35,6 +36,7 @@ export { ListItem } from "./list-item.interface";
 		SubMenuWrapper,
 		SubMenuItem,
 		DropdownTree,
+		DropdownFilterTree,
 		TreeWrapper,
 		TreeItem
 	],
@@ -42,6 +44,7 @@ export { ListItem } from "./list-item.interface";
 		Dropdown,
 		DropdownList,
 		DropdownFilter,
+		DropdownFilterTree,
 		DropdownSubMenu,
 		DropdownTree
 	],
