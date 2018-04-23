@@ -65,6 +65,17 @@ import "rxjs/add/observable/of";
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
+		<!-- TODO: add translation -->
+		<div
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()">
+			Clear selection
+		</div>
 		<!-- default is deprecated -->
 		<ul
 			#list
@@ -523,16 +534,26 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
 	}
 
+	updateScrollHeight() {
+		if (this.canScrollUp || this.canScrollDown) {
+			const container = this.elementRef.nativeElement;
+			const list = this.list.nativeElement;
+			const containerRect = container.getBoundingClientRect();
+			const listRect = list.getBoundingClientRect();
+			const heightDiff = listRect.top - containerRect.top;
+			// 40 gives us some padding between the bottom of the list,
+			// the bottom of the window, and the scroll down button
+			list.style.height =
+				`${(containerRect.height - (containerRect.bottom - window.innerHeight)) - heightDiff - 40}px`;
+		}
+	}
+
 	enableScroll() {
 		this.canScrollUp = true;
 		this.canScrollDown = true;
 		const list = this.list.nativeElement;
-		const boudningClientRect = list.getBoundingClientRect();
 		list.style.overflow = "hidden";
-		// 40 gives us some padding between the bottom of the list,
-		// the bottom of the window, and the scroll down button
-		list.style.height =
-			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+		this.updateScrollHeight();
 		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
 		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
 		// detection/browser measurment works)
@@ -549,6 +570,24 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		list.style.height = null;
 		list.style.overflow = null;
 		clearInterval(this.hoverScrollInterval);
+	}
+
+	clearSelection() {
+		if (this.type === "single") {
+			const selectedItem = this.items.find(item => item.selected);
+			selectedItem.selected = false;
+			this.select.emit({item: selectedItem});
+		} else {
+			for (const item of this.items) {
+				item.selected = false;
+			}
+			this.select.emit([]);
+		}
+		// wait a tick to let changes take effect on the DOM
+		setTimeout(() => {
+			// to prevent arrows from being hidden
+			this.updateScrollHeight();
+		});
 	}
 
 	/**
@@ -600,6 +639,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				this.select.emit(this.getSelected());
 			}
 			this.index = this.items.indexOf(item);
+			// wait a tick to let changes take effect on the DOM
+			setTimeout(() => {
+				// to prevent arrows from being hidden
+				this.updateScrollHeight();
+			});
 		}
 	}
 }
