@@ -35,6 +35,7 @@
 **Closed issues:**
 
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
+- Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
 - condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
 - condition builder - removing one condition doesn't remove bracket [\#840](https://github.ibm.com/peretz/neutrino/issues/840)
 - table select all checkbox issue [\#837](https://github.ibm.com/peretz/neutrino/issues/837)
