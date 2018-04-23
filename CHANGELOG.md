@@ -47,6 +47,7 @@
 - nTable  : selectAllCheckbox  do not change state on data update [\#820](https://github.ibm.com/peretz/neutrino/issues/820)
 - Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
+- Create dropdown filter tree [\#809](https://github.ibm.com/peretz/neutrino/issues/809)
 - add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
 - add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
 - add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
@@ -75,6 +76,7 @@
 
 **Merged pull requests:**
 
+- Add drop-down filter tree component [\#844](https://github.ibm.com/peretz/neutrino/pull/844) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Improve model data change detection [\#842](https://github.ibm.com/peretz/neutrino/pull/842) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix selectAllCheckbox reset after model data update [\#838](https://github.ibm.com/peretz/neutrino/pull/838) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix treeview styles [\#831](https://github.ibm.com/peretz/neutrino/pull/831) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
