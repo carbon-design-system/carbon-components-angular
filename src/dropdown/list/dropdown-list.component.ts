@@ -57,6 +57,7 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
+		<!-- scroll up arrow-->
 		<div
 			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
 			class="scroll-arrow--up"
@@ -65,7 +66,7 @@ import "rxjs/add/observable/of";
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
-		<!-- TODO: add translation -->
+		<!-- clear selection -->
 		<div
 			*ngIf="getSelected()"
 			[ngClass]="{
@@ -74,7 +75,7 @@ import "rxjs/add/observable/of";
 				'clear-selection--lg': size === 'lg'
 			}"
 			(click)="clearSelection()">
-			Clear selection
+			{{ 'DROPDOWN.CLEAR' | translate}}
 		</div>
 		<!-- default is deprecated -->
 		<ul
@@ -121,6 +122,7 @@ import "rxjs/add/observable/of";
 				</ng-template>
 			</li>
 		</ul>
+		<!-- scroll down arrow-->
 		<div
 			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
 			class="scroll-arrow--down"

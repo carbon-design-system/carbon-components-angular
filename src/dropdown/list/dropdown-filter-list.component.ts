@@ -80,6 +80,16 @@ import { dropdownConfig } from "../dropdown.const";
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
+		<div
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
 		<!-- default is deprecated -->
 		<ul
 			#list
@@ -349,5 +359,10 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);
+		// wait a tick to let changes take effect on the DOM
+		setTimeout(() => {
+			// to prevent arrows from being hidden
+			this.updateScrollHeight();
+		});
 	}
 }
