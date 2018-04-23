@@ -1,3 +1,4 @@
+import { TreeWrapper } from './tree-wrapper.component';
 import {
 	Component,
 	Input,
@@ -141,6 +142,11 @@ export class TreeWrapper {
 		return true;
 	}
 
+	/**
+	 * Set expanded state if item is a tree.
+	 * @param {any} item
+	 * @memberof TreeWrapper
+	 */
 	public isExpanded(item) {
 		if (!item.items) {
 			return null;
@@ -149,12 +155,17 @@ export class TreeWrapper {
 		return item.selected;
 	}
 
+	/**
+	 * Set selected state if item is a leaf.
+	 * @param {any} item
+	 * @memberof TreeWrapper
+	 */
 	public isSelected(item) {
-		if (!item.selected && item.items) {
+		if (item.items) {
 			return null;
 		}
-
-		return item.selected && !item.items;
+		console.log(item.selected);
+		return item.selected;
 	}
 
 	/**
