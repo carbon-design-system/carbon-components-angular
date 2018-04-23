@@ -331,11 +331,11 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 
 	/**
 	 * Emits the selected item or items after a mouse click event has occurred.
-	 * @param {any} ev
-	 * @param {any} item
+	 * @param ev
+	 * @param item
 	 * @memberof DropdownFilter
 	 */
-	doClick(ev, item) {
+	doClick(ev: any, item: ListItem) {
 		item.selected = !item.selected;
 		if (this.type === "single") {
 			// reset the selection

@@ -80,6 +80,17 @@ import { dropdownConfig } from "../dropdown.const";
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
+		<!-- clear selection -->
+		<div
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
 		<n-tree-wrapper
 			[items]="displayItems"
 			[listTpl]="listTpl"
