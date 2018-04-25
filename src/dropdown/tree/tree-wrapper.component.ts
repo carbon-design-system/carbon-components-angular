@@ -20,11 +20,10 @@ import { ListItem } from "./../list-item.interface";
 @Component({
 	selector: "n-tree-wrapper",
 	template: `
-		<!-- default is deprecated -->
 		<ul
 			[ngClass]="{
 				'menu_tree--sm': size === 'sm',
-				'menu_tree': size === 'md' || size === 'default',
+				'menu_tree': size === 'md',
 				'menu_tree--lg': size === 'lg'
 			}"
 			[attr.role]="role"
@@ -37,8 +36,8 @@ import { ListItem } from "./../list-item.interface";
 				[attr.aria-level]="indent + 1"
 				[attr.aria-posinset]="i"
 				[attr.aria-setsize]="3"
-				[attr.aria-expanded]="(!!item.items ? item.selected : null)"
-				[attr.aria-selected]="((item.selected && !item.items) ? true : null)"
+				[attr.aria-expanded]="isExpanded(item)"
+				[attr.aria-selected]="isSelected(item)"
 				[style.text-indent.px]="calculateIndent()">
 				<n-tree-item
 					[listTpl]="listTpl"
@@ -117,11 +116,10 @@ export class TreeWrapper {
 	@Input() innerPadding = 10;
 	/**
 	 * Size to render the `TreeItem` within the view.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" |"default" | "lg")}
+	 * @type {("sm" | "md" | "lg")}
 	 * @memberof TreeWrapper
 	 */
-	@Input() size: "sm" | "md" |"default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	/**
 	 * Emits selection events to other class.
@@ -133,7 +131,7 @@ export class TreeWrapper {
 	/**
 	 * Returns true if the item is a non leaf level item (has subitems) and false otherwise.
 	 * @param {any} items
-	 * @returns
+	 * @returns {boolean}
 	 * @memberof TreeWrapper
 	 */
 	public isBase(items) {
@@ -141,6 +139,33 @@ export class TreeWrapper {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Returns item.expanded if item has children, null otherwise
+	 * @param {any} item
+	 * @returns {boolean}
+	 * @memberof TreeWrapper
+	 */
+	public isExpanded(item) {
+		if (!item.items) {
+			return null;
+		}
+
+		return item.selected;
+	}
+
+	/**
+	 * Returns item.selected if item is a leaf, null otherwise
+	 * @param {any} item
+	 * @memberof TreeWrapper
+	 */
+	public isSelected(item) {
+		if (item.items) {
+			return null;
+		}
+
+		return item.selected;
 	}
 
 	/**

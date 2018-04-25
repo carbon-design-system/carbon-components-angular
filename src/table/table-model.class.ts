@@ -384,6 +384,7 @@ export class TableModel {
 		this.pushRowStateToModelData();
 		this.data.sort((a, b) => (this.header[index].descending ? -1 : 1) * this.header[index].compare(a[index], b[index]));
 		this.popRowStateFromModelData();
+		this.header.forEach(column => column.sorted = false);
 		this.header[index].sorted = true;
 	}
 
