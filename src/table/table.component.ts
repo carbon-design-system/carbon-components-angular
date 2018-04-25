@@ -166,7 +166,7 @@ import { getScrollbarWidth } from "../common/utils";
 					}">
 					<td class="table_checkbox-col" *ngIf="enableRowSelect">
 						<n-checkbox
-							[size]="size !== 'lg' ? 'sm' : 'default'"
+							[size]="size !== 'lg' ? 'sm' : 'md'"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
 						</n-checkbox>
