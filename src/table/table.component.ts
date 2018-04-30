@@ -223,9 +223,11 @@ export class Table {
 	set model(m: TableModel) {
 		if (this._model) {
 			this._model.dataChange.unsubscribe();
+			this._model.rowsSelectedChange.unsubscribe();
 		}
 
 		this._model = m;
+		this._model.rowsSelectedChange.subscribe(() => this.onModelDataChanged());
 		this._model.dataChange.subscribe(() => this.onModelDataChanged());
 	}
 
