@@ -166,7 +166,7 @@ import { getScrollbarWidth } from "../common/utils";
 					}">
 					<td class="table_checkbox-col" *ngIf="enableRowSelect">
 						<n-checkbox
-							[size]="size !== 'lg' ? 'sm' : 'default'"
+							[size]="size !== 'lg' ? 'sm' : 'md'"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
 						</n-checkbox>
@@ -223,10 +223,12 @@ export class Table {
 	set model(m: TableModel) {
 		if (this._model) {
 			this._model.dataChange.unsubscribe();
+			this._model.rowsSelectedChange.unsubscribe();
 		}
 
 		this._model = m;
-		this._model.dataChange.subscribe(() => this.onModelDataChanged());
+		this._model.rowsSelectedChange.subscribe(() => this.updateSelectAllCheckbox());
+		this._model.dataChange.subscribe(() => this.updateSelectAllCheckbox());
 	}
 
 	get model(): TableModel {
@@ -332,7 +334,7 @@ export class Table {
 	constructor(private applicationRef: ApplicationRef) {}
 
 
-	onModelDataChanged() {
+	updateSelectAllCheckbox() {
 		const selectedRowsCount = this.model.selectedRowsCount();
 
 		if (selectedRowsCount <= 0) {

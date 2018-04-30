@@ -89,6 +89,9 @@ class FilterableHeaderItem extends TableHeaderItem {
 
 	<button class="btn--primary" (click)="resetCustomModelData()">Reset model data</button>
 
+	<br>
+	<button class="btn--primary" (click)="programmaticSelect(customModel)">Select first row</button>
+
 	<n-table
 		[model]="customModel"
 		[striped]="striped"
@@ -301,6 +304,10 @@ export class TableDemo implements OnInit {
 
 	toNumber(width: string): number {
 		return Number(width.substr(0, width.length - 2));
+	}
+
+	programmaticSelect(model) {
+		model.selectRow(0, !model.rowsSelected[0]);
 	}
 
 	private prepareData(data: Array<Array<any>>) {
