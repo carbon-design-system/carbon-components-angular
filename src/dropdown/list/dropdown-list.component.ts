@@ -57,6 +57,20 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
+		<!-- clear selection -->
+		<div
+			#clearSelected
+			tabindex="0"
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()"
+			(keydown)="onClearSelectionKeyDown($event)">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
 		<!-- scroll up arrow-->
 		<div
 			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
@@ -65,17 +79,6 @@ import "rxjs/add/observable/of";
 			(mouseover)="onHoverUp(true)"
 			(mouseout)="onHoverUp(false)">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
-		</div>
-		<!-- clear selection -->
-		<div
-			*ngIf="getSelected()"
-			[ngClass]="{
-				'clear-selection--sm': size === 'sm',
-				'clear-selection': size === 'md' || size === 'default',
-				'clear-selection--lg': size === 'lg'
-			}"
-			(click)="clearSelection()">
-			{{ 'DROPDOWN.CLEAR' | translate}}
 		</div>
 		<!-- default is deprecated -->
 		<ul
@@ -163,6 +166,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	@ViewChild("list") list: ElementRef;
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -363,7 +370,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	hasPrevElement(): boolean {
-		if (this.index >= 0) {
+		if (this.index > 0) {
 			return true;
 		}
 		return false;
@@ -594,29 +601,36 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 
 	/**
 	 * Manages the keyboard accessiblity for navigation and selection within a `DropdownList`.
-	 * @param {any} ev
+	 * @param {any} event
 	 * @param {any} item
 	 * @memberof DropdownList
 	 */
-	doKeyDown(ev, item) {
-		if (ev.key && (ev.key === "Enter" || ev.key === " ")) {
-			ev.preventDefault();
-			this.doClick(ev, item);
-		} else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
-			ev.preventDefault();
-			// if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
-			// 	findNextElem(ev.target).focus();
-			// } else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
-			// 	findPrevElem(ev.target).focus();
-			// }
-			if (ev.key === "ArrowDown" && this.hasNextElement()) {
+	doKeyDown(event: KeyboardEvent, item: ListItem) {
+		if (event.key && (event.key === "Enter" || event.key === " ")) {
+			event.preventDefault();
+			this.doClick(event, item);
+		} else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+			event.preventDefault();
+			this.checkScrollArrows();
+			if (event.key === "ArrowDown" && this.hasNextElement()) {
 				this.getNextElement().focus();
-			} else if (ev.key === "ArrowUp" && this.hasPrevElement()) {
-				this.getPrevElement().focus();
+			} else if (event.key === "ArrowUp") {
+				if (this.hasPrevElement()) {
+					this.getPrevElement().focus();
+				} else if (this.getSelected()) {
+					this.clearSelected.nativeElement.focus();
+				}
 			}
-			if (ev.shiftKey) {
-				ev.target.click();
+			if (event.shiftKey) {
+				(event.target as HTMLElement).click();
 			}
+		}
+	}
+
+	onClearSelectionKeyDown(event: KeyboardEvent) {
+		if (event.key === "ArrowDown") {
+			event.preventDefault();
+			this.listElementList[0].focus();
 		}
 	}
 

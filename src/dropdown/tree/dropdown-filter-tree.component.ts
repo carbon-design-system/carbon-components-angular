@@ -72,16 +72,10 @@ import { dropdownConfig } from "../dropdown.const";
 				</button>
 			</label>
 		</div>
-		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
-			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
-		</div>
 		<!-- clear selection -->
 		<div
+			#clearSelected
+			tabindex="0"
 			*ngIf="getSelected()"
 			[ngClass]="{
 				'clear-selection--sm': size === 'sm',
@@ -90,6 +84,15 @@ import { dropdownConfig } from "../dropdown.const";
 			}"
 			(click)="clearSelection()">
 			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- scroll up -->
+		<div
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
+			class="scroll-arrow--up"
+			style="justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<n-tree-wrapper
 			[items]="displayItems"
@@ -136,6 +139,10 @@ export class DropdownFilterTree extends DropdownTree implements AbstractDropdown
 	 * @memberof DropdownFilterTree
 	 */
 	@ViewChild("filter") filter;
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines the rendering size of the `DropdownFilterList` input component.
 	 * @type {("sm" | "md" | "lg")}

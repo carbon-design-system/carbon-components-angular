@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ElementRef,
 	AfterViewInit,
-	OnChanges
+	OnChanges,
+	ViewChild
 } from "@angular/core";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
@@ -27,16 +28,10 @@ import { dropdownConfig } from "./../dropdown.const";
 @Component({
 	selector: "n-dropdown-tree",
 	template: `
-		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
-			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
-		</div>
 		<!-- clear selection -->
 		<div
+			#clearSelected
+			tabindex="0"
 			*ngIf="getSelected()"
 			[ngClass]="{
 				'clear-selection--sm': size === 'sm',
@@ -45,6 +40,15 @@ import { dropdownConfig } from "./../dropdown.const";
 			}"
 			(click)="clearSelection()">
 			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- scroll up -->
+		<div
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
+			class="scroll-arrow--up"
+			style="justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<n-tree-wrapper
 			[items]="items"
@@ -103,6 +107,10 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 * @memberof DropdownTree
 	 */
 	@Input() type: "single" | "multi" = "single";
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 
 	/**
 	 * Emits selection events to other class.
@@ -217,6 +225,17 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 				this.outerPadding = 14;
 			}, 0);
 		}
+		this.elementRef.nativeElement.addEventListener("keydown", event => {
+			if (this.getSelected()) {
+				if (document.activeElement === this.clearSelected.nativeElement && event.key === "ArrowDown") {
+					event.preventDefault();
+					this.listElementList[0].focus();
+				}
+				if (document.activeElement === this.listElementList[0] && event.key === "ArrowUp") {
+					this.clearSelected.nativeElement.focus();
+				}
+			}
+		});
 	}
 
 	/**

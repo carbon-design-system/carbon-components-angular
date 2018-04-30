@@ -118,20 +118,20 @@ export class TreeItem implements OnInit {
 
 	/**
 	 * Creates an instance of `TreeItem`.
-	 * @param {ElementRef} _elementRef
+	 * @param {ElementRef} elementRef
 	 * @memberof TreeItem
 	 */
-	constructor(public _elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef) {}
 
 	/**
 	 * Retrieves parent element references and custom template (if one exists).
 	 * @memberof TreeItem
 	 */
 	ngOnInit() {
-		this.parent = this._elementRef.nativeElement;
+		this.parent = this.elementRef.nativeElement;
 
 		if (!this.rootElem) {
-			this.rootElem = this._elementRef.nativeElement.parentNode;
+			this.rootElem = this.elementRef.nativeElement.parentNode;
 		}
 
 		this.isTpl = this.listTpl instanceof TemplateRef;
@@ -180,13 +180,13 @@ export class TreeItem implements OnInit {
 	onKeyDown(ev, item) {
 		if (ev.key === "ArrowUp") {
 			ev.preventDefault();
-			focusPrevElem(this._elementRef.nativeElement.parentNode, this.parentRef);
+			focusPrevElem(this.elementRef.nativeElement.parentNode, this.parentRef);
 		} else if (ev.key === "ArrowDown") {
 			ev.preventDefault();
 			if (item.items && item.selected) {
-				focusNextTree(this._elementRef.nativeElement.querySelector("ul li"), this.rootElem);
+				focusNextTree(this.elementRef.nativeElement.querySelector("ul li"), this.rootElem);
 			} else if (!item.items || !item.selected) {
-				focusNextElem(this._elementRef.nativeElement.parentNode, this.rootElem);
+				focusNextElem(this.elementRef.nativeElement.parentNode, this.rootElem);
 			}
 		} else if (ev.key === "Enter"
 			|| ev.key === " "

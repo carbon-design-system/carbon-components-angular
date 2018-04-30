@@ -72,15 +72,10 @@ import { dropdownConfig } from "../dropdown.const";
 				</button>
 			</label>
 		</div>
+		<!-- clear selection -->
 		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
-			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
-		</div>
-		<div
+			#clearSelected
+			tabindex="0"
 			*ngIf="getSelected()"
 			[ngClass]="{
 				'clear-selection--sm': size === 'sm',
@@ -89,6 +84,15 @@ import { dropdownConfig } from "../dropdown.const";
 			}"
 			(click)="clearSelection()">
 			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- scroll up -->
+		<div
+			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
+			class="scroll-arrow--up"
+			style="justify-content: center;"
+			(mouseover)="onHoverUp(true)"
+			(mouseout)="onHoverUp(false)">
+			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<!-- default is deprecated -->
 		<ul
@@ -168,6 +172,10 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	 * @memberof DropdownFilter
 	 */
 	@ViewChild("filter") filter;
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines the rendering size of the `DropdownFilterList` input component.
 	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)

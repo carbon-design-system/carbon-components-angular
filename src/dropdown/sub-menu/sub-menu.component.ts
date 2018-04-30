@@ -32,6 +32,8 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 	template: `
 		<!-- clear selection -->
 		<div
+			#clearSelected
+			tabindex="0"
 			*ngIf="getSelected()"
 			[ngClass]="{
 				'clear-selection--sm': size === 'sm',
@@ -99,6 +101,10 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 * @memberof DropdownSubMenu
 	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Binds 'sub-menu' value to the class attribute for `DropdownSubMenu`.
 	 * @memberof DropdownSubMenu
