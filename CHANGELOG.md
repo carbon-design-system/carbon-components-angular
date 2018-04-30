@@ -34,6 +34,7 @@
 
 **Closed issues:**
 
+- Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
 - 'live code' not working ... eg check http://billboard1.fyre.ibm.com/component-library/topnav [\#852](https://github.ibm.com/peretz/neutrino/issues/852)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
 - Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
