@@ -227,8 +227,8 @@ export class Table {
 		}
 
 		this._model = m;
-		this._model.rowsSelectedChange.subscribe(() => this.onModelDataChanged());
-		this._model.dataChange.subscribe(() => this.onModelDataChanged());
+		this._model.rowsSelectedChange.subscribe(() => this.updateSelectAllCheckbox());
+		this._model.dataChange.subscribe(() => this.updateSelectAllCheckbox());
 	}
 
 	get model(): TableModel {
@@ -334,7 +334,7 @@ export class Table {
 	constructor(private applicationRef: ApplicationRef) {}
 
 
-	onModelDataChanged() {
+	updateSelectAllCheckbox() {
 		const selectedRowsCount = this.model.selectedRowsCount();
 
 		if (selectedRowsCount <= 0) {
