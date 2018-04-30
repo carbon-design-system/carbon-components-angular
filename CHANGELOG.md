@@ -15,6 +15,7 @@
 **Fixed bugs:**
 
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
+- dropdown with multiselect style is broken and aria attributes aren't correct [\#788](https://github.ibm.com/peretz/neutrino/issues/788)
 - Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
 - Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
@@ -36,6 +37,7 @@
 
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
 - 'live code' not working ... eg check http://billboard1.fyre.ibm.com/component-library/topnav [\#852](https://github.ibm.com/peretz/neutrino/issues/852)
+- Select all table checkbox not updated after rowSelected programatically changed [\#851](https://github.ibm.com/peretz/neutrino/issues/851)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
 - Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
 - condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
@@ -78,6 +80,7 @@
 
 **Merged pull requests:**
 
+- Allow programmatic selection of rows [\#856](https://github.ibm.com/peretz/neutrino/pull/856) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Fix large table checkbox size [\#853](https://github.ibm.com/peretz/neutrino/pull/853) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Reset header sort arrow  [\#848](https://github.ibm.com/peretz/neutrino/pull/848) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add drop-down filter tree component [\#844](https://github.ibm.com/peretz/neutrino/pull/844) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
