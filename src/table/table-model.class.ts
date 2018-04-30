@@ -34,6 +34,7 @@ export class TableModel {
 	}
 
 	dataChange = new EventEmitter();
+	rowsSelectedChange = new EventEmitter();
 
 	/**
 	 * Gets the full data.
@@ -436,6 +437,17 @@ export class TableModel {
 	isRowFiltered(index: number) {
 		const ind = this.realRowIndex(index);
 		return this.header.some((item, i) => item.filter(this.row(ind)[i]));
+	}
+
+	/**
+	 * Select/deselect `index`th row based on value
+	 *
+	 * @param index
+	 * @param value
+	 */
+	selectRow(index, value = true) {
+		this.rowsSelected[index] = value;
+		this.rowsSelectedChange.emit(index);
 	}
 
 	/**

@@ -34,6 +34,8 @@
 
 **Closed issues:**
 
+- Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
+- 'live code' not working ... eg check http://billboard1.fyre.ibm.com/component-library/topnav [\#852](https://github.ibm.com/peretz/neutrino/issues/852)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
 - Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
 - condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
@@ -47,6 +49,7 @@
 - nTable  : selectAllCheckbox  do not change state on data update [\#820](https://github.ibm.com/peretz/neutrino/issues/820)
 - Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
+- Create dropdown filter tree [\#809](https://github.ibm.com/peretz/neutrino/issues/809)
 - add scrolling to dropdown filter list [\#808](https://github.ibm.com/peretz/neutrino/issues/808)
 - add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
 - add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
@@ -75,6 +78,9 @@
 
 **Merged pull requests:**
 
+- Fix large table checkbox size [\#853](https://github.ibm.com/peretz/neutrino/pull/853) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Reset header sort arrow  [\#848](https://github.ibm.com/peretz/neutrino/pull/848) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Add drop-down filter tree component [\#844](https://github.ibm.com/peretz/neutrino/pull/844) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Improve model data change detection [\#842](https://github.ibm.com/peretz/neutrino/pull/842) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix selectAllCheckbox reset after model data update [\#838](https://github.ibm.com/peretz/neutrino/pull/838) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix treeview styles [\#831](https://github.ibm.com/peretz/neutrino/pull/831) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
