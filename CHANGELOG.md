@@ -15,6 +15,7 @@
 **Fixed bugs:**
 
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
+- dropdown with multiselect style is broken and aria attributes aren't correct [\#788](https://github.ibm.com/peretz/neutrino/issues/788)
 - Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
 - Modals are not responsive [\#773](https://github.ibm.com/peretz/neutrino/issues/773)
 - Dropdown appendToBody is not position correctly if the dropdown is inside a container with scrolling [\#771](https://github.ibm.com/peretz/neutrino/issues/771)
