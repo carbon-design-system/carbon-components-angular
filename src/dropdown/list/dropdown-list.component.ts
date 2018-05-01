@@ -57,6 +57,21 @@ import "rxjs/add/observable/of";
 @Component({
 	selector: "n-dropdown-list",
 	template: `
+		<!-- clear selection -->
+		<div
+			#clearSelected
+			tabindex="0"
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()"
+			(keydown)="onClearSelectionKeyDown($event)">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- scroll up arrow-->
 		<div
 			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
 			class="scroll-arrow--up"
@@ -110,6 +125,7 @@ import "rxjs/add/observable/of";
 				</ng-template>
 			</li>
 		</ul>
+		<!-- scroll down arrow-->
 		<div
 			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
 			class="scroll-arrow--down"
@@ -150,6 +166,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	@ViewChild("list") list: ElementRef;
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -350,7 +370,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	hasPrevElement(): boolean {
-		if (this.index >= 0) {
+		if (this.index > 0) {
 			return true;
 		}
 		return false;
@@ -523,16 +543,26 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
 	}
 
+	updateScrollHeight() {
+		if (this.canScrollUp || this.canScrollDown) {
+			const container = this.elementRef.nativeElement;
+			const list = this.list.nativeElement;
+			const containerRect = container.getBoundingClientRect();
+			const listRect = list.getBoundingClientRect();
+			const heightDiff = listRect.top - containerRect.top;
+			// 40 gives us some padding between the bottom of the list,
+			// the bottom of the window, and the scroll down button
+			list.style.height =
+				`${(containerRect.height - (containerRect.bottom - window.innerHeight)) - heightDiff - 40}px`;
+		}
+	}
+
 	enableScroll() {
 		this.canScrollUp = true;
 		this.canScrollDown = true;
 		const list = this.list.nativeElement;
-		const boudningClientRect = list.getBoundingClientRect();
 		list.style.overflow = "hidden";
-		// 40 gives us some padding between the bottom of the list,
-		// the bottom of the window, and the scroll down button
-		list.style.height =
-			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+		this.updateScrollHeight();
 		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
 		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
 		// detection/browser measurment works)
@@ -551,41 +581,66 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		clearInterval(this.hoverScrollInterval);
 	}
 
+	clearSelection() {
+		if (this.type === "single") {
+			const selectedItem = this.items.find(item => item.selected);
+			selectedItem.selected = false;
+			this.select.emit({item: selectedItem});
+		} else {
+			for (const item of this.items) {
+				item.selected = false;
+			}
+			this.select.emit([]);
+		}
+		// wait a tick to let changes take effect on the DOM
+		setTimeout(() => {
+			// to prevent arrows from being hidden
+			this.updateScrollHeight();
+		});
+	}
+
 	/**
 	 * Manages the keyboard accessiblity for navigation and selection within a `DropdownList`.
-	 * @param {any} ev
+	 * @param {any} event
 	 * @param {any} item
 	 * @memberof DropdownList
 	 */
-	doKeyDown(ev, item) {
-		if (ev.key && (ev.key === "Enter" || ev.key === " ")) {
-			ev.preventDefault();
-			this.doClick(ev, item);
-		} else if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
-			ev.preventDefault();
-			// if (ev.key === "ArrowDown" && findNextElem(ev.target)) {
-			// 	findNextElem(ev.target).focus();
-			// } else if (ev.key === "ArrowUp" && findPrevElem(ev.target)) {
-			// 	findPrevElem(ev.target).focus();
-			// }
-			if (ev.key === "ArrowDown" && this.hasNextElement()) {
+	doKeyDown(event: KeyboardEvent, item: ListItem) {
+		if (event.key && (event.key === "Enter" || event.key === " ")) {
+			event.preventDefault();
+			this.doClick(event, item);
+		} else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+			event.preventDefault();
+			this.checkScrollArrows();
+			if (event.key === "ArrowDown" && this.hasNextElement()) {
 				this.getNextElement().focus();
-			} else if (ev.key === "ArrowUp" && this.hasPrevElement()) {
-				this.getPrevElement().focus();
+			} else if (event.key === "ArrowUp") {
+				if (this.hasPrevElement()) {
+					this.getPrevElement().focus();
+				} else if (this.getSelected()) {
+					this.clearSelected.nativeElement.focus();
+				}
 			}
-			if (ev.shiftKey) {
-				ev.target.click();
+			if (event.shiftKey) {
+				(event.target as HTMLElement).click();
 			}
+		}
+	}
+
+	onClearSelectionKeyDown(event: KeyboardEvent) {
+		if (event.key === "ArrowDown") {
+			event.preventDefault();
+			this.listElementList[0].focus();
 		}
 	}
 
 	/**
 	 * Emits the selected item or items after a mouse click event has occurred.
-	 * @param {any} ev
+	 * @param {any} event
 	 * @param {any} item
 	 * @memberof DropdownList
 	 */
-	doClick(ev, item) {
+	doClick(event, item) {
 		if (!item.disabled) {
 			item.selected = !item.selected;
 			if (this.type === "single") {
@@ -600,6 +655,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				this.select.emit(this.getSelected());
 			}
 			this.index = this.items.indexOf(item);
+			// wait a tick to let changes take effect on the DOM
+			setTimeout(() => {
+				// to prevent arrows from being hidden
+				this.updateScrollHeight();
+			});
 		}
 	}
 }

@@ -62,7 +62,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 				</n-static-icon>
 			</button>
 		</div>
-		<ng-content></ng-content>
+		<div class="dropdown_menu">
+			<ng-content></ng-content>
+		</div>
 	`,
 	providers: [
 		{
@@ -251,7 +253,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Binds event handlers against the rendered view
 	 */
 	ngAfterViewInit() {
-		this.dropdown = this.elementRef.nativeElement.querySelector("ul");
+		this.dropdown = this.elementRef.nativeElement.querySelector(".dropdown_menu");
 		document.addEventListener("click", ev => {
 			if (!this.elementRef.nativeElement.contains(ev.target)) {
 				this.pillInput.expanded = false;

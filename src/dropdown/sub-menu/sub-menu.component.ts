@@ -30,14 +30,30 @@ import { watchFocusJump, treetools } from "./../dropdowntools";
 @Component({
 	selector: "n-dropdown-sub-menu",
 	template: `
-		<n-sub-menu-wrapper
-			[items]="items"
-			[listTpl]="listTpl"
-			[role]="role"
-			[label]="label"
-			[scrollEnabled]="scrollEnabled"
-			(select)="onClick($event)">
-		</n-sub-menu-wrapper>
+		<!-- clear selection -->
+		<div
+			#clearSelected
+			tabindex="0"
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- figure out something better than wrapping this in another div -->
+		<div style="position: relative;">
+			<n-sub-menu-wrapper
+				[items]="items"
+				[listTpl]="listTpl"
+				[role]="role"
+				[label]="label"
+				[scrollEnabled]="scrollEnabled"
+				(select)="onClick($event)">
+			</n-sub-menu-wrapper>
+		</div>
 	`,
 	providers: [
 		{
@@ -85,6 +101,10 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 * @memberof DropdownSubMenu
 	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Binds 'sub-menu' value to the class attribute for `DropdownSubMenu`.
 	 * @memberof DropdownSubMenu
@@ -329,6 +349,19 @@ export class DropdownSubMenu implements AbstractDropdownView, OnChanges, AfterVi
 	 */
 	initFocus() {
 		this.getCurrentElement().focus();
+	}
+
+	clearSelection() {
+		if (this.type === "single") {
+			const selectedItem = this.flatList.find(item => item.selected && !item.items);
+			selectedItem.selected = false;
+			this.select.emit({ item: selectedItem });
+		} else {
+			for (const item of this.flatList) {
+				item.selected = false;
+			}
+			this.select.emit([]);
+		}
 	}
 
 	// this and a few other functions are super common between

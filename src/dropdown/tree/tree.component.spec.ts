@@ -6,6 +6,7 @@ import { TreeWrapper } from "./tree-wrapper.component";
 import { TreeItem } from "./tree-item.component";
 import { ListItem } from "./../list-item.interface";
 import { StaticIconModule } from "./../../icon/static-icon.module";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 @Component({
 	template: `<n-dropdown-tree [items]="items" (select)="onSelect($event)"></n-dropdown-tree>`
@@ -65,7 +66,14 @@ describe("Dropdown tree", () => {
 				TreeWrapper,
 				TestComponent
 			],
-			imports: [ StaticIconModule ]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 
@@ -105,7 +113,14 @@ describe("tree multi list", () => {
 				TreeWrapper,
 				TestMultiComponent
 			],
-			imports: [ StaticIconModule ]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 

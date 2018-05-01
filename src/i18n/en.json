@@ -12,6 +12,7 @@
 	},
 	"DROPDOWN": {
 		"SELECTED": "{{ number }} selected",
+		"CLEAR": "Clear selection",
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
 			"SEARCH": "Search",
