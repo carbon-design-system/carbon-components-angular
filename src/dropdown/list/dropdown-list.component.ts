@@ -548,12 +548,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			const container = this.elementRef.nativeElement;
 			const list = this.list.nativeElement;
 			const containerRect = container.getBoundingClientRect();
-			const listRect = list.getBoundingClientRect();
-			const heightDiff = listRect.top - containerRect.top;
+			const innerHeightDiff = list.getBoundingClientRect().top - containerRect.top;
+			const outerHeightDiff = containerRect.height - (containerRect.bottom - window.innerHeight);
 			// 40 gives us some padding between the bottom of the list,
 			// the bottom of the window, and the scroll down button
-			list.style.height =
-				`${(containerRect.height - (containerRect.bottom - window.innerHeight)) - heightDiff - 40}px`;
+			const height = outerHeightDiff - innerHeightDiff - 40;
+			list.style.height = `${height}px`;
 		}
 	}
 
