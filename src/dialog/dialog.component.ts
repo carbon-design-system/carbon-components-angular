@@ -145,20 +145,18 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			const computedStyle = getComputedStyle(element);
 			return (
 				computedStyle.overflow === "auto" ||
-				computedStyle.overflow.includes("scroll") ||
+				computedStyle.overflow === "scroll" ||
 				computedStyle["overflow-y"] === "auto" ||
-				computedStyle["overflow-y"].includes("scroll") ||
+				computedStyle["overflow-y"] === "scroll" ||
 				computedStyle["overflow-x"] === "auto" ||
-				computedStyle["overflow-x"].includes("scroll")
+				computedStyle["overflow-x"] === "scroll"
 			);
 		};
 
 		const isVisibleInContainer = (element, container) => {
 			const elementRect = element.getBoundingClientRect();
 			const containerRect = container.getBoundingClientRect();
-			return (
-				(elementRect.bottom <= containerRect.bottom) && (elementRect.top >= containerRect.top)
-			);
+			return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
 		};
 
 		// only do the work to find the scroll containers if we're appended to body
