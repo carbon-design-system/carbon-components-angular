@@ -14,6 +14,7 @@ import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
+import "rxjs/add/observable/merge";
 import position, { Position, AbsolutePosition } from "../common/position.service";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
@@ -83,6 +84,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	protected resizeSubscription: Subscription;
 	/**
+	 * Subscription to all the scrollable parents `scroll` event
+	 */
+	protected scrollSubscription: Subscription;
+	/**
 	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
 	 * @protected
@@ -130,6 +135,48 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		dialogElement.focus();
 		dialogElement.classList = `${dialogElement.classList} ${this.dialogConfig.wrapperClass}`;
 		this.placeDialog();
+		const parentEl: HTMLElement = this.dialogConfig.parentRef.nativeElement;
+		let node = parentEl;
+		let observables = [];
+
+		// if the element has an overflow set as part of
+		// its computed style it can scroll
+		const isScrollableElement = (element: HTMLElement) => {
+			const computedStyle = getComputedStyle(element);
+			return (
+				computedStyle.overflow === "auto" ||
+				computedStyle.overflow === "scroll" ||
+				computedStyle["overflow-y"] === "auto" ||
+				computedStyle["overflow-y"] === "scroll" ||
+				computedStyle["overflow-x"] === "auto" ||
+				computedStyle["overflow-x"] === "scroll"
+			);
+		};
+
+		const isVisibleInContainer = (element, container) => {
+			const elementRect = element.getBoundingClientRect();
+			const containerRect = container.getBoundingClientRect();
+			return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
+		};
+
+		// only do the work to find the scroll containers if we're appended to body
+		if (this.dialogConfig.appendToBody) {
+			// walk the parents and subscribe to all the scroll events we can
+			while (node.parentElement && node !== document.body) {
+				if (isScrollableElement(node)) {
+					observables.push(Observable.fromEvent(node, "scroll"));
+				}
+				node = node.parentElement;
+			}
+			// subscribe to the observable, and update the position and visibility
+			const scrollObservable = Observable.merge(...observables);
+			this.scrollSubscription = scrollObservable.subscribe((event: any) => {
+				this.placeDialog();
+				if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
+					this.doClose();
+				}
+			});
+		}
 	}
 
 	/**
@@ -221,5 +268,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.resizeSubscription.unsubscribe();
+		this.scrollSubscription.unsubscribe();
 	}
 }

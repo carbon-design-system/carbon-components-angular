@@ -66,8 +66,7 @@ export class Popover extends Dialog {
 	 * Binds display property to the `Popover` style attribute.
 	 * @memberof Popover
 	 */
-	@HostBinding("attr.style") style = "display: inline-block;";
-
+	@HostBinding("style.display") style = "inline-block";
 	/**
 	 * Set to `true` if `Popover` has a template for the body content.
 	 * @type {boolean}
