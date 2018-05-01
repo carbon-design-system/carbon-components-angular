@@ -636,11 +636,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 
 	/**
 	 * Emits the selected item or items after a mouse click event has occurred.
-	 * @param {any} ev
+	 * @param {any} event
 	 * @param {any} item
 	 * @memberof DropdownList
 	 */
-	doClick(ev, item) {
+	doClick(event, item) {
 		if (!item.disabled) {
 			item.selected = !item.selected;
 			if (this.type === "single") {
