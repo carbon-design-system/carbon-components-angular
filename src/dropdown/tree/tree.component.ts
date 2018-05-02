@@ -14,7 +14,6 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { TreeItem } from "./tree-item.component";
 import { watchFocusJump, treetools } from "./../dropdowntools";
-import { dropdownConfig } from "./../dropdown.const";
 import { ScrollableList } from "./../scrollable-list.directive";
 
 /**

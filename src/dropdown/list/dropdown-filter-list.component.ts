@@ -18,7 +18,6 @@ import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
-import { dropdownConfig } from "../dropdown.const";
 
 
 /**

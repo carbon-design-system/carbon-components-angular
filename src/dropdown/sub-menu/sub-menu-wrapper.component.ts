@@ -14,7 +14,6 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { SubMenuItem } from "./sub-menu-item.component";
-import { dropdownConfig } from "./../dropdown.const";
 
 /**
  * @export
