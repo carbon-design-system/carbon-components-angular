@@ -84,6 +84,8 @@
 
 **Merged pull requests:**
 
+-  Update banner icons [\#860](https://github.ibm.com/peretz/neutrino/pull/860) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Add scrollable list directive and refactor views to use it [\#859](https://github.ibm.com/peretz/neutrino/pull/859) ([callums](https://github.ibm.com/callums))
 - Prettify updateScrollHeight [\#858](https://github.ibm.com/peretz/neutrino/pull/858) ([callums](https://github.ibm.com/callums))
 - scroll dialogs with their containers when appended to body [\#857](https://github.ibm.com/peretz/neutrino/pull/857) ([callums](https://github.ibm.com/callums))
 - Allow programmatic selection of rows [\#856](https://github.ibm.com/peretz/neutrino/pull/856) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))

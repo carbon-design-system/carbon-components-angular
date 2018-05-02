@@ -6,6 +6,7 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-tran
 
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
+import { ScrollableList } from "./../scrollable-list.directive";
 
 @Component({
 	template: `<n-dropdown-list [items]="items" (select)="onSelect($event)"></n-dropdown-list>`
@@ -35,7 +36,8 @@ describe("Dropdown list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownList,
-				TestComponent
+				TestComponent,
+				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
@@ -72,7 +74,8 @@ describe("Dropdown multi list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownList,
-				TestMultiComponent
+				TestMultiComponent,
+				ScrollableList
 			],
 			imports: [
 				StaticIconModule,

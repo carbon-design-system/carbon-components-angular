@@ -14,12 +14,12 @@ import {
 
 import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
-import { dropdownConfig } from "./../dropdown.const";
 import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/of";
+import { ScrollableList } from "./../scrollable-list.directive";
 
 
 /**
@@ -73,25 +73,23 @@ import "rxjs/add/observable/of";
 		</div>
 		<!-- scroll up arrow-->
 		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
+			#upArrow
+			class="scroll-arrow--up">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<!-- default is deprecated -->
 		<ul
 			#list
+			nScrollableList
+			[scrollUpTarget]="upArrow"
+			[scrollDownTarget]="downArrow"
+			[scrollEnabled]="canScroll"
 			role="listbox"
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
 				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
-			}"
-			(wheel)="onWheel($event)"
-			(touchstart)="onTouchStart($event)"
-			(touchmove)="onTouchMove($event)">
+			}">
 			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -127,11 +125,8 @@ import "rxjs/add/observable/of";
 		</ul>
 		<!-- scroll down arrow-->
 		<div
-			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
-			class="scroll-arrow--down"
-			style="justify-content: center;"
-			(mouseover)="onHoverDown(true)"
-			(mouseout)="onHoverDown(false)">
+			#downArrow
+			class="scroll-arrow--down">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 		</div>`,
 		providers: [
@@ -195,8 +190,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	/**
 	 * controls wether the scroll up/down arrows are shown
 	 */
-	public canScrollUp = false;
-	public canScrollDown = false;
+	public canScroll = false;
+	@ViewChild(ScrollableList) scrollableList: ScrollableList;
 	/**
 	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
@@ -465,120 +460,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		this.getCurrentElement().focus();
 	}
 
-	// scrolling methods here
-	checkScrollArrows() {
-		const list = this.list.nativeElement;
-		if (list.scrollTop === 0) {
-			if (this.canScrollUp) {
-				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
-			}
-			this.canScrollUp = false;
-		} else if (list.scrollTop === list.scrollTopMax) {
-			if (this.canScrollDown) {
-				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
-			}
-			this.canScrollDown = false;
-		} else {
-			if (!this.canScrollUp) {
-				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
-			}
-			if (!this.canScrollDown) {
-				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
-			}
-			this.canScrollUp = true;
-			this.canScrollDown = true;
-		}
-	}
-
-	onWheel(event) {
-		const list = this.list.nativeElement;
-		if (event.deltaY < 0) {
-			list.scrollTop -= 10;
-		} else {
-			list.scrollTop += 10;
-		}
-		// only prevent the parent/window from scrolling if we can scroll
-		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-		this.checkScrollArrows();
-	}
-
-	onTouchStart(event) {
-		if (event.touches[0]) {
-			this.lastTouch = event.touches[0].clientY;
-		}
-	}
-
-	onTouchMove(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		const list = this.list.nativeElement;
-		if (event.touches[0]) {
-			const touch = event.touches[0];
-			list.scrollTop += this.lastTouch - touch.clientY;
-			this.lastTouch = touch.clientY;
-			this.checkScrollArrows();
-		}
-	}
-
-	hoverScrollBy(hovering, amount) {
-		const list = this.list.nativeElement;
-		if (hovering) {
-			this.hoverScrollInterval = setInterval(() => {
-				list.scrollTop += amount;
-				this.checkScrollArrows();
-			}, 1);
-		} else {
-			clearInterval(this.hoverScrollInterval);
-		}
-	}
-
-	onHoverUp(hovering) {
-		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
-	}
-
-	onHoverDown(hovering) {
-		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
-	}
-
-	updateScrollHeight() {
-		if (this.canScrollUp || this.canScrollDown) {
-			const container = this.elementRef.nativeElement;
-			const list = this.list.nativeElement;
-			const containerRect = container.getBoundingClientRect();
-			const innerHeightDiff = list.getBoundingClientRect().top - containerRect.top;
-			const outerHeightDiff = containerRect.height - (containerRect.bottom - window.innerHeight);
-			// 40 gives us some padding between the bottom of the list,
-			// the bottom of the window, and the scroll down button
-			const height = outerHeightDiff - innerHeightDiff - 40;
-			list.style.height = `${height}px`;
-		}
-	}
-
 	enableScroll() {
-		this.canScrollUp = true;
-		this.canScrollDown = true;
-		const list = this.list.nativeElement;
-		list.style.overflow = "hidden";
-		this.updateScrollHeight();
-		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
-		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
-		// detection/browser measurment works)
-		this.checkScrollArrows();
-		setTimeout(() => {
-			this.checkScrollArrows();
-		});
+		this.canScroll = true;
 	}
 
 	disableScroll() {
-		this.canScrollUp = false;
-		this.canScrollDown = false;
-		const list = this.list.nativeElement;
-		list.style.height = null;
-		list.style.overflow = null;
-		clearInterval(this.hoverScrollInterval);
+		this.canScroll = false;
 	}
 
 	clearSelection() {
@@ -594,8 +481,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
-			// to prevent arrows from being hidden
-			this.updateScrollHeight();
+			// manually update to prevent arrows from being hidden
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 
@@ -611,7 +498,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			this.doClick(event, item);
 		} else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
 			event.preventDefault();
-			this.checkScrollArrows();
+			// this.checkScrollArrows();
 			if (event.key === "ArrowDown" && this.hasNextElement()) {
 				this.getNextElement().focus();
 			} else if (event.key === "ArrowUp") {
@@ -657,8 +544,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			this.index = this.items.indexOf(item);
 			// wait a tick to let changes take effect on the DOM
 			setTimeout(() => {
-				// to prevent arrows from being hidden
-				this.updateScrollHeight();
+				// manually to prevent arrows from being hidden
+				this.scrollableList.updateScrollHeight();
 			});
 		}
 	}

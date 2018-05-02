@@ -7,6 +7,7 @@ import { TreeItem } from "./tree-item.component";
 import { ListItem } from "./../list-item.interface";
 import { StaticIconModule } from "./../../icon/static-icon.module";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
+import { ScrollableList } from "./../scrollable-list.directive";
 
 @Component({
 	template: `<n-dropdown-tree [items]="items" (select)="onSelect($event)"></n-dropdown-tree>`
@@ -64,7 +65,8 @@ describe("Dropdown tree", () => {
 				DropdownTree,
 				TreeItem,
 				TreeWrapper,
-				TestComponent
+				TestComponent,
+				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
@@ -111,7 +113,8 @@ describe("tree multi list", () => {
 				DropdownTree,
 				TreeItem,
 				TreeWrapper,
-				TestMultiComponent
+				TestMultiComponent,
+				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
