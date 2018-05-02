@@ -70,25 +70,25 @@ export class BannerDemo {
 	infoBanner = {
 		type: "info",
 		message: "sample message <b>this is important information!</b>",
-		target: ".main-banner-container"
+		target: "p-demo-container"
 	};
 
 	errorBanner = {
 		type: "danger",
 		message: "sample message",
-		target: ".main-banner-container"
+		target: ".main-banner-placeholder"
 	};
 
 	warningBanner = {
 		type: "warning",
 		message: "sample message",
-		target: ".main-banner-container"
+		target: ".main-banner-placeholder"
 	};
 
 	successBanner = {
 		type: "success",
 		message: "sample message",
-		target: ".main-banner-container"
+		target: ".main-banner-placeholder"
 	};
 
 	toggleBannerAlert = {
@@ -102,7 +102,7 @@ export class BannerDemo {
 		this.banner.showBanner({
 			type: "info",
 			message: "sample message",
-			target: ".main-banner-container"
+			target: ".main-banner-placeholder"
 		}, BannerCustom);
 	}
 
@@ -110,7 +110,7 @@ export class BannerDemo {
 		this.banner.showBanner({
 			type: type,
 			message: "sample message",
-			target: ".main-banner-container"
+			target: ".main-banner-placeholder"
 		});
 	}
 
