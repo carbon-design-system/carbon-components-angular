@@ -135,6 +135,17 @@ export class StaticIcon implements AfterViewInit {
 			<path d="M15,1C7.3,1,1,7.3,1,15s6.3,14,14,14s14-6.3,14-14S22.7,1,15,1z M15,27C8.4,27,3,21.6,3,15S8.4,3,15,3
 			s12,5.4,12,12S21.6,27,15,27z"/>
 		</svg>`,
+		"info_fill_20": classList => `<svg
+			class="${classList}"
+			width="20px"
+			height="20px"
+			viewBox="0 0 20 20">
+			<g>
+				<path d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M8.5,14.1l-3.6-3.6l1.1-1.1L8.5,12l5.6-5.6
+					l1.1,1.1L8.5,14.1z"/>
+			</g>
+			</svg>
+		</svg>`,
 		"warning_20": classList => `<svg
 			class="${classList}"
 			width="20"
@@ -157,6 +168,20 @@ export class StaticIcon implements AfterViewInit {
 				<circle cx="8" cy="12" r="1"></circle>
 			</g>
 		</svg>`,
+		"warning_fill_20": classList => `<svg
+			class="${classList}"
+			width="20px" height="20px" viewBox="0 0 20 20">
+			<g>
+				<path d="M10,19.4c-5.2,0-9.4-4.2-9.4-9.4c0-5.2,4.2-9.4,9.4-9.4c5.2,0,9.4,4.2,9.4,9.4C19.4,15.2,15.2,19.4,10,19.4z
+					 M10,13.4c-1.2,0-2.1,0.9-2.1,2.1c0,1.2,0.9,2.1,2.1,2.1c1.2,0,2.1-0.9,2.1-2.1C12.1,14.3,11.2,13.4,10,13.4z M7.9,7l0.9,6.1h2.5
+					l0.9-6l0-3.7H7.9V7z"/>
+				<path d="M10,1.2c4.9,0,8.8,3.9,8.8,8.8s-3.9,8.8-8.8,8.8S1.2,14.9,1.2,10S5.1,1.2,10,1.2 M8.2,13.5
+					c-0.6,0.5-0.9,1.2-0.9,2c0,1.5,1.2,2.7,2.7,2.7c1.5,0,2.7-1.2,2.7-2.7c0-0.8-0.4-1.5-0.9-2l0.1-0.8l0.8-5.5l0-0.1V7V4V2.8h-1.2H8.4
+					H7.2V4v3v0.1l0,0.1l0.8,5.5L8.2,13.5 M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0L10,0z M9.3,12.5L8.4,7V4h3.1v3
+					l-0.8,5.5H9.3L9.3,12.5z M10,17c-0.8,0-1.5-0.7-1.5-1.5c0-0.8,0.7-1.5,1.5-1.5c0.8,0,1.5,0.7,1.5,1.5C11.5,16.3,10.8,17,10,17
+					L10,17z"/>
+			</g>
+			</svg>`,
 		"danger_20": classList => `<svg
 			class="${classList}"
 			width="20"
@@ -167,6 +192,15 @@ export class StaticIcon implements AfterViewInit {
 			<path d="M29.9 27.5l-14-25.9c-.2-.4-.5-.6-.9-.6s-.7.2-.9.5L.1 27.4c-.3.8.2
 			1.6.9 1.6h28c.7 0 1.2-.8.9-1.5zM2.6 27L15 4.1 27.4 27H2.6z"/>
 		</svg>`,
+		"failure_fill_20": classList => `<svg
+			class="${classList}"
+			width="20px" height="20px" viewBox="0 0 20 20">
+			<g>
+				<path class="st0" d="M19.9,19L10.6,1.4c-0.3-0.5-1-0.5-1.2,0L0.1,19c-0.2,0.5,0.1,1,0.6,1h18.6C19.8,20,20.2,19.4,19.9,19z M10,18
+					c-0.8,0-1.5-0.7-1.5-1.5c0-0.8,0.7-1.5,1.5-1.5c0.8,0,1.5,0.7,1.5,1.5C11.5,17.3,10.8,18,10,18z M11.5,9l-0.8,5H9.3L8.4,9V6h3.1V9z
+					"/>
+			</g>
+			</svg>`,
 		"success_20": classList => `<svg
 			class="${classList}"
 			width="20"
@@ -185,6 +219,16 @@ export class StaticIcon implements AfterViewInit {
 				6.8S1.2 11.7 1.2 8 4.3 1.2 8 1.2M8
 				0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z"/>
 				<path d="M6.7 9.6L4.6 7.5l-.9.9 3 3 5.6-5.5-.9-.9z"/>
+		</svg>`,
+		"success_fill_20": classList => `<svg
+			class="${classList}"
+			width="20px"
+			height="20px"
+			viewBox="0 0 20 20">
+			<g>
+				<path class="st0" d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M8.5,14.1l-3.6-3.6l1.1-1.1L8.5,12l5.6-5.6
+					l1.1,1.1L8.5,14.1z"/>
+			</g>
 		</svg>`,
 		"error_16": classList => `<svg
 			class="${classList}"
