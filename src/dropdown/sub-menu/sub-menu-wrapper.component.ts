@@ -49,8 +49,7 @@ import { SubMenuItem } from "./sub-menu-item.component";
 				[attr.role]="role"
 				[attr.aria-hidden]="((role == 'group') ? !isOpen : null)"
 				[attr.aria-label]="label"
-				style="position: relative; left: 0;"
-				(wheel)="onWheel($event)">
+				style="position: relative; left: 0;">
 				<li
 					*ngFor="let item of items; index as i"
 					role="treeitem"
