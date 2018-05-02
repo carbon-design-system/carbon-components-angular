@@ -20,10 +20,10 @@ import { BannerService } from "./banner.service";
 	template: `
 	<div class="banner--{{bannerObj.type}}" *ngIf="bannerObj" role="alert" #banner>
 		<span class="icon" aria-hidden="true">
-			<n-static-icon icon="info" *ngIf="bannerObj.type === 'info'"></n-static-icon>
-			<n-static-icon icon="warning" *ngIf="bannerObj.type === 'warning'"></n-static-icon>
-			<n-static-icon icon="danger" *ngIf="bannerObj.type === 'danger'"></n-static-icon>
-			<n-static-icon icon="success" *ngIf="bannerObj.type === 'success'"></n-static-icon>
+			<n-static-icon icon="info_fill" *ngIf="bannerObj.type === 'info'"></n-static-icon>
+			<n-static-icon icon="warning_fill" *ngIf="bannerObj.type === 'warning'"></n-static-icon>
+			<n-static-icon icon="failure_fill" *ngIf="bannerObj.type === 'danger'"></n-static-icon>
+			<n-static-icon icon="success_fill" *ngIf="bannerObj.type === 'success'"></n-static-icon>
 		</span>
 		<p [innerHTML]="bannerObj.message"></p>
 		<button type="button" class="close--dark-sm" (click)="onClose()" attr.aria-label="{{'BANNER.CLOSE_BUTTON' | translate}}">
