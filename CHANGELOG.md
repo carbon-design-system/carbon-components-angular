@@ -84,6 +84,7 @@
 
 **Merged pull requests:**
 
+- Fix build [\#861](https://github.ibm.com/peretz/neutrino/pull/861) ([callums](https://github.ibm.com/callums))
 -  Update banner icons [\#860](https://github.ibm.com/peretz/neutrino/pull/860) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add scrollable list directive and refactor views to use it [\#859](https://github.ibm.com/peretz/neutrino/pull/859) ([callums](https://github.ibm.com/callums))
 - Prettify updateScrollHeight [\#858](https://github.ibm.com/peretz/neutrino/pull/858) ([callums](https://github.ibm.com/callums))
