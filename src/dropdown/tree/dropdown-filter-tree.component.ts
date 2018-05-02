@@ -18,7 +18,6 @@ import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownTree } from "./tree.component";
-import { dropdownConfig } from "../dropdown.const";
 
 
 /**
@@ -87,14 +86,15 @@ import { dropdownConfig } from "../dropdown.const";
 		</div>
 		<!-- scroll up -->
 		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
+			#upArrow
+			class="scroll-arrow--up">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<n-tree-wrapper
+			nScrollableList=".menu_tree"
+			[scrollUpTarget]="upArrow"
+			[scrollDownTarget]="downArrow"
+			[scrollEnabled]="canScroll"
 			[items]="displayItems"
 			[listTpl]="listTpl"
 			[selectedIcon]="selectedIcon"
@@ -108,11 +108,8 @@ import { dropdownConfig } from "../dropdown.const";
 			(wheel)="onWheel($event)">
 		</n-tree-wrapper>
 		<div
-			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
-			class="scroll-arrow--down"
-			style="justify-content: center;"
-			(mouseover)="onHoverDown(true)"
-			(mouseout)="onHoverDown(false)">
+			#downArrow
+			class="scroll-arrow--down">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 		</div>
 		<em *ngIf="displayItems.length === 0" class="empty">No search results</em>

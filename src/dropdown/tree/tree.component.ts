@@ -14,8 +14,7 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { TreeItem } from "./tree-item.component";
 import { watchFocusJump, treetools } from "./../dropdowntools";
-import { dropdownConfig } from "./../dropdown.const";
-
+import { ScrollableList } from "./../scrollable-list.directive";
 
 /**
  * Creates a tree structured dropdown list when there are leaf and non-leaf inputs to choose from.
@@ -43,14 +42,15 @@ import { dropdownConfig } from "./../dropdown.const";
 		</div>
 		<!-- scroll up -->
 		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
+			#upArrow
+			class="scroll-arrow--up">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<n-tree-wrapper
+			nScrollableList=".menu_tree"
+			[scrollUpTarget]="upArrow"
+			[scrollDownTarget]="downArrow"
+			[scrollEnabled]="canScroll"
 			[items]="items"
 			[listTpl]="listTpl"
 			[selectedIcon]="selectedIcon"
@@ -60,15 +60,11 @@ import { dropdownConfig } from "./../dropdown.const";
 			[iconWidth]="iconWidth"
 			[innerPadding]="innerPadding"
 			[size]="size"
-			(select)="onClick($event)"
-			(wheel)="onWheel($event)">
+			(select)="onClick($event)">
 		</n-tree-wrapper>
 		<div
-			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
-			class="scroll-arrow--down"
-			style="justify-content: center;"
-			(mouseover)="onHoverDown(true)"
-			(mouseout)="onHoverDown(false)">
+			#downArrow
+			class="scroll-arrow--down">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 		</div>
 	`,
@@ -141,13 +137,11 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 * @memberof DropdownTree
 	 */
 	public innerPadding = 10;
-
 	/**
 	 * controls wether the scroll up/down arrows are shown
 	 */
-	public canScrollUp = false;
-	public canScrollDown = false;
-
+	public canScroll = false;
+	@ViewChild(ScrollableList) scrollableList: ScrollableList;
 	/**
 	 * An array holding the HTML list elements in the view.
 	 * @private
@@ -423,7 +417,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
 			// to prevent arrows from being hidden
-			this.updateScrollHeight();
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 
@@ -460,124 +454,15 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
 			// to prevent arrows from being hidden
-			this.updateScrollHeight();
+			this.scrollableList.updateScrollHeight();
 		});
-	}
-
-	// scrolling methods here
-	checkScrollArrows() {
-		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-		if (list.scrollTop === 0) {
-			if (this.canScrollUp) {
-				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
-			}
-			this.canScrollUp = false;
-		} else if (list.scrollTop === list.scrollTopMax) {
-			if (this.canScrollDown) {
-				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
-			}
-			this.canScrollDown = false;
-		} else {
-			if (!this.canScrollUp) {
-				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
-			}
-			if (!this.canScrollDown) {
-				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
-			}
-			this.canScrollUp = true;
-			this.canScrollDown = true;
-		}
-	}
-
-	onWheel(event) {
-		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-		if (event.deltaY < 0) {
-			list.scrollTop -= 10;
-		} else {
-			list.scrollTop += 10;
-		}
-		// only prevent the parent/window from scrolling if we can scroll
-		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-		this.checkScrollArrows();
-	}
-
-	onTouchStart(event) {
-		if (event.touches[0]) {
-			this.lastTouch = event.touches[0].clientY;
-		}
-	}
-
-	onTouchMove(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-		if (event.touches[0]) {
-			const touch = event.touches[0];
-			list.scrollTop += this.lastTouch - touch.clientY;
-			this.lastTouch = touch.clientY;
-			this.checkScrollArrows();
-		}
-	}
-
-	hoverScrollBy(hovering, amount) {
-		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-		if (hovering) {
-			this.hoverScrollInterval = setInterval(() => {
-				list.scrollTop += amount;
-				this.checkScrollArrows();
-			}, 1);
-		} else {
-			clearInterval(this.hoverScrollInterval);
-		}
-	}
-
-	onHoverUp(hovering) {
-		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
-	}
-
-	onHoverDown(hovering) {
-		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
-	}
-
-	updateScrollHeight() {
-		if (this.canScrollUp || this.canScrollDown) {
-			const container = this.elementRef.nativeElement;
-			const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-			const containerRect = container.getBoundingClientRect();
-			const innerHeightDiff = list.getBoundingClientRect().top - containerRect.top;
-			const outerHeightDiff = containerRect.height - (containerRect.bottom - window.innerHeight);
-			// 40 gives us some padding between the bottom of the list,
-			// the bottom of the window, and the scroll down button
-			const height = outerHeightDiff - innerHeightDiff - 40;
-			list.style.height = `${height}px`;
-		}
 	}
 
 	enableScroll() {
-		this.canScrollUp = true;
-		this.canScrollDown = true;
-		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-		const boudningClientRect = list.getBoundingClientRect();
-		list.style.overflow = "hidden";
-		this.updateScrollHeight();
-		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
-		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
-		// detection/browser measurment works)
-		this.checkScrollArrows();
-		setTimeout(() => {
-			this.checkScrollArrows();
-		});
+		this.canScroll = true;
 	}
 
 	disableScroll() {
-		this.canScrollUp = false;
-		this.canScrollDown = false;
-		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
-		list.style.height = null;
-		list.style.overflow = null;
-		clearInterval(this.hoverScrollInterval);
+		this.canScroll = false;
 	}
 }

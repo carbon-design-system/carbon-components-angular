@@ -18,7 +18,6 @@ import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { DropdownList } from "./dropdown-list.component";
-import { dropdownConfig } from "../dropdown.const";
 
 
 /**
@@ -87,25 +86,23 @@ import { dropdownConfig } from "../dropdown.const";
 		</div>
 		<!-- scroll up -->
 		<div
-			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-			class="scroll-arrow--up"
-			style="justify-content: center;"
-			(mouseover)="onHoverUp(true)"
-			(mouseout)="onHoverUp(false)">
+			#upArrow
+			class="scroll-arrow--up">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<!-- default is deprecated -->
 		<ul
 			#list
+			nScrollableList
+			[scrollUpTarget]="upArrow"
+			[scrollDownTarget]="downArrow"
+			[scrollEnabled]="canScroll"
 			[ngClass]="{
 				'listbox--sm': size === 'sm',
 				'listbox': size === 'md' || size === 'default',
 				'listbox--lg': size === 'lg'
 			}"
-			role="listbox"
-			(wheel)="onWheel($event)"
-			(touchstart)="onTouchStart($event)"
-			(touchmove)="onTouchMove($event)">
+			role="listbox">
 			<li tabindex="{{item.disabled ? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -144,11 +141,8 @@ import { dropdownConfig } from "../dropdown.const";
 			</li>
 		</ul>
 		<div
-			[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
-			class="scroll-arrow--down"
-			style="justify-content: center;"
-			(mouseover)="onHoverDown(true)"
-			(mouseout)="onHoverDown(false)">
+			#downArrow
+			class="scroll-arrow--down">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 		</div>`,
 		providers: [
@@ -370,7 +364,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
 			// to prevent arrows from being hidden
-			this.updateScrollHeight();
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 }
