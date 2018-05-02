@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
@@ -36,7 +37,14 @@ describe("Dropdown list", () => {
 				DropdownList,
 				TestComponent
 			],
-			imports: [StaticIconModule]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 
@@ -66,7 +74,14 @@ describe("Dropdown multi list", () => {
 				DropdownList,
 				TestMultiComponent
 			],
-			imports: [StaticIconModule]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 

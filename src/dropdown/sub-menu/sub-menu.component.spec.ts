@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
+import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { DropdownSubMenu } from "./sub-menu.component";
 import { SubMenuWrapper } from "./sub-menu-wrapper.component";
@@ -66,7 +67,14 @@ describe("Dropdown submenu", () => {
 				SubMenuWrapper,
 				TestComponent
 			],
-			imports: [StaticIconModule]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 
@@ -106,7 +114,14 @@ describe("submenu multi list", () => {
 				SubMenuWrapper,
 				TestMultiComponent
 			],
-			imports: [StaticIconModule]
+			imports: [
+				StaticIconModule,
+				TranslateModule.forRoot({
+					loader: {
+						provide: TranslateLoader, useClass: TranslateFakeLoader
+					}
+				})
+			]
 		});
 	});
 

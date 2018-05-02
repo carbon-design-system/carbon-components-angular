@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ElementRef,
 	AfterViewInit,
-	OnChanges
+	OnChanges,
+	ViewChild
 } from "@angular/core";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
@@ -27,6 +28,20 @@ import { dropdownConfig } from "./../dropdown.const";
 @Component({
 	selector: "n-dropdown-tree",
 	template: `
+		<!-- clear selection -->
+		<div
+			#clearSelected
+			tabindex="0"
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- scroll up -->
 		<div
 			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
 			class="scroll-arrow--up"
@@ -92,6 +107,10 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 * @memberof DropdownTree
 	 */
 	@Input() type: "single" | "multi" = "single";
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 
 	/**
 	 * Emits selection events to other class.
@@ -206,6 +225,17 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 				this.outerPadding = 14;
 			}, 0);
 		}
+		this.elementRef.nativeElement.addEventListener("keydown", event => {
+			if (this.getSelected()) {
+				if (document.activeElement === this.clearSelected.nativeElement && event.key === "ArrowDown") {
+					event.preventDefault();
+					this.listElementList[0].focus();
+				}
+				if (document.activeElement === this.listElementList[0] && event.key === "ArrowUp") {
+					this.clearSelected.nativeElement.focus();
+				}
+			}
+		});
 	}
 
 	/**
@@ -379,6 +409,24 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		this.getCurrentElement().focus();
 	}
 
+	clearSelection() {
+		if (this.type === "single") {
+			const selectedItem = this.flatList.find(item => item.selected && !item.items);
+			selectedItem.selected = false;
+			this.select.emit({ item: selectedItem });
+		} else {
+			for (const item of this.flatList) {
+				item.selected = false;
+			}
+			this.select.emit([]);
+		}
+		// wait a tick to let changes take effect on the DOM
+		setTimeout(() => {
+			// to prevent arrows from being hidden
+			this.updateScrollHeight();
+		});
+	}
+
 	// this and a few other functions are super common between
 	// submenu and tree ... maybe we can dedupe?
 	/**
@@ -389,7 +437,6 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	onClick({item}) {
 		if (!item.disabled) {
 			item.selected = !item.selected;
-
 			if (!item.items) {
 				this.index = this.flatList.indexOf(item);
 				if (this.type === "single") {
@@ -410,6 +457,11 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 				}
 			}
 		}
+		// wait a tick to let changes take effect on the DOM
+		setTimeout(() => {
+			// to prevent arrows from being hidden
+			this.updateScrollHeight();
+		});
 	}
 
 	// scrolling methods here
@@ -490,16 +542,27 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
 	}
 
+	updateScrollHeight() {
+		if (this.canScrollUp || this.canScrollDown) {
+			const container = this.elementRef.nativeElement;
+			const list = this.elementRef.nativeElement.querySelector(".menu_tree");
+			const containerRect = container.getBoundingClientRect();
+			const innerHeightDiff = list.getBoundingClientRect().top - containerRect.top;
+			const outerHeightDiff = containerRect.height - (containerRect.bottom - window.innerHeight);
+			// 40 gives us some padding between the bottom of the list,
+			// the bottom of the window, and the scroll down button
+			const height = outerHeightDiff - innerHeightDiff - 40;
+			list.style.height = `${height}px`;
+		}
+	}
+
 	enableScroll() {
 		this.canScrollUp = true;
 		this.canScrollDown = true;
 		const list = this.elementRef.nativeElement.querySelector(".menu_tree");
 		const boudningClientRect = list.getBoundingClientRect();
 		list.style.overflow = "hidden";
-		// 40 gives us some padding between the bottom of the list,
-		// the bottom of the window, and the scroll down button
-		list.style.height =
-			`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
+		this.updateScrollHeight();
 		// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
 		// and the second to make sure the arrows are hidden if they should be (due to how angular chage
 		// detection/browser measurment works)

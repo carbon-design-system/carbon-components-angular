@@ -72,6 +72,20 @@ import { dropdownConfig } from "../dropdown.const";
 				</button>
 			</label>
 		</div>
+		<!-- clear selection -->
+		<div
+			#clearSelected
+			tabindex="0"
+			*ngIf="getSelected()"
+			[ngClass]="{
+				'clear-selection--sm': size === 'sm',
+				'clear-selection': size === 'md' || size === 'default',
+				'clear-selection--lg': size === 'lg'
+			}"
+			(click)="clearSelection()">
+			{{ 'DROPDOWN.CLEAR' | translate}}
+		</div>
+		<!-- scroll up -->
 		<div
 			[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
 			class="scroll-arrow--up"
@@ -158,6 +172,10 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 	 * @memberof DropdownFilter
 	 */
 	@ViewChild("filter") filter;
+	/**
+	 * Keeps a reference to the "clear selection" element
+	 */
+	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines the rendering size of the `DropdownFilterList` input component.
 	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
@@ -321,11 +339,11 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 
 	/**
 	 * Emits the selected item or items after a mouse click event has occurred.
-	 * @param {any} ev
-	 * @param {any} item
+	 * @param event
+	 * @param item
 	 * @memberof DropdownFilter
 	 */
-	doClick(ev, item) {
+	doClick(event: any, item: ListItem) {
 		item.selected = !item.selected;
 		if (this.type === "single") {
 			// reset the selection
@@ -349,5 +367,10 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 			this.select.emit(this.getSelected());
 		}
 		this.index = this.items.indexOf(item);
+		// wait a tick to let changes take effect on the DOM
+		setTimeout(() => {
+			// to prevent arrows from being hidden
+			this.updateScrollHeight();
+		});
 	}
 }
