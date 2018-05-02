@@ -9,13 +9,16 @@ import {
 	SimpleChanges,
 	AfterViewInit
 } from "@angular/core";
-import { dropdownConfig } from "./dropdown.const";
 
 @Directive({
 	selector: "[nScrollableList]",
 	exportAs: "scrollable-list",
 })
 export class ScrollableList implements OnChanges, AfterViewInit {
+	/**
+	 * Optional target list to scroll
+	 */
+	@Input() nScrollableList: string = null;
 	/**
 	 * Enables or disables scrolling for the whole directive
 	 */
@@ -29,9 +32,10 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	 */
 	@Input() scrollDownTarget: HTMLElement;
 	/**
-	 * Optional target list to scroll
+	 * How many lines to scroll by each time `wheel` fires
+	 * Defaults to 10 - based on testing this isn't too fast or slow on any platform
 	 */
-	@Input() nScrollableList: string = null;
+	@Input() scrollBy = 10;
 
 	// keeps track of the setInterval for hover scrolling
 	private hoverScrollInterval;
@@ -92,24 +96,26 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	}
 
 	protected checkScrollArrows() {
+		const scrollUpHeight = this.scrollUpTarget.offsetHeight;
+		const scrollDownHeight = this.scrollDownTarget.offsetHeight;
 		if (this.list.scrollTop === 0) {
 			if (this.canScrollUp) {
-				this.list.style.height = `${parseInt(this.list.style.height, 10) + 16}px`;
+				this.list.style.height = `${parseInt(this.list.style.height, 10) + scrollUpHeight}px`;
 			}
 			this.scrollUpTarget.style.display = "none";
 			this.canScrollUp = false;
 		} else if (this.list.scrollTop === this.list.scrollTopMax) {
 			if (this.canScrollDown) {
-				this.list.style.height = `${parseInt(this.list.style.height, 10) + 16}px`;
+				this.list.style.height = `${parseInt(this.list.style.height, 10) + scrollDownHeight}px`;
 			}
 			this.scrollDownTarget.style.display = "none";
 			this.canScrollDown = false;
 		} else {
 			if (!this.canScrollUp) {
-				this.list.style.height = `${parseInt(this.list.style.height, 10) - 16}px`;
+				this.list.style.height = `${parseInt(this.list.style.height, 10) - scrollUpHeight}px`;
 			}
 			if (!this.canScrollDown) {
-				this.list.style.height = `${parseInt(this.list.style.height, 10) - 16}px`;
+				this.list.style.height = `${parseInt(this.list.style.height, 10) - scrollDownHeight}px`;
 			}
 			this.scrollUpTarget.style.display = "flex";
 			this.scrollDownTarget.style.display = "flex";
@@ -121,9 +127,9 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	@HostListener("wheel", ["$event"])
 	protected onWheel(event) {
 		if (event.deltaY < 0) {
-			this.list.scrollTop -= 10;
+			this.list.scrollTop -= this.scrollBy;
 		} else {
-			this.list.scrollTop += 10;
+			this.list.scrollTop += this.scrollBy;
 		}
 		// only prevent the parent/window from scrolling if we can scroll
 		if (!(this.list.scrollTop === this.list.scrollTopMax || this.list.scrollTop === 0)) {
@@ -164,11 +170,14 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	}
 
 	protected onHoverUp(hovering) {
-		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
+		// how many px/lines to scroll by on hover
+		// 3 is just a random number that felt good
+		// 1 and 2 are too slow, 4 works but it might be a tad fast
+		this.hoverScrollBy(hovering, -3);
 	}
 
 	protected onHoverDown(hovering) {
-		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
+		this.hoverScrollBy(hovering, 3);
 	}
 
 	@HostListener("keydown", ["$event"])
