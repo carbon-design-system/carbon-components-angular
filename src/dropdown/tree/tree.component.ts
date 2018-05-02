@@ -44,8 +44,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 		<!-- scroll up -->
 		<div
 			#upArrow
-			class="scroll-arrow--up"
-			style="justify-content: center; display: flex;">
+			class="scroll-arrow--up">
 			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 		</div>
 		<n-tree-wrapper
@@ -66,8 +65,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 		</n-tree-wrapper>
 		<div
 			#downArrow
-			class="scroll-arrow--down"
-			style="justify-content: center; display: flex;">
+			class="scroll-arrow--down">
 			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 		</div>
 	`,
