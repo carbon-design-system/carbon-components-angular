@@ -15,6 +15,7 @@ import { DropdownFilterTree } from "./tree/dropdown-filter-tree.component";
 import { TreeWrapper } from "./tree/tree-wrapper.component";
 import { TreeItem } from "./tree/tree-item.component";
 
+import { ScrollableList } from "./scrollable-list.directive";
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { ListItem } from "./list-item.interface";
 
@@ -24,6 +25,7 @@ export { DropdownFilter } from "./list/dropdown-filter-list.component";
 export { DropdownTree } from "./tree/tree.component";
 export { DropdownSubMenu } from "./sub-menu/sub-menu.component";
 
+export { ScrollableList } from "./scrollable-list.directive";
 export { AbstractDropdownView } from "./abstract-dropdown-view.class";
 export { ListItem } from "./list-item.interface";
 
@@ -38,7 +40,8 @@ export { ListItem } from "./list-item.interface";
 		DropdownTree,
 		DropdownFilterTree,
 		TreeWrapper,
-		TreeItem
+		TreeItem,
+		ScrollableList
 	],
 	exports: [
 		Dropdown,
@@ -46,7 +49,8 @@ export { ListItem } from "./list-item.interface";
 		DropdownFilter,
 		DropdownFilterTree,
 		DropdownSubMenu,
-		DropdownTree
+		DropdownTree,
+		ScrollableList
 	],
 	imports: [
 		CommonModule,

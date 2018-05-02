@@ -6,6 +6,7 @@ import { StaticIconModule } from "./../../icon/static-icon.module";
 
 import { DropdownFilter } from "./dropdown-filter-list.component";
 import { ListItem } from "./../list-item.interface";
+import { ScrollableList } from "./../scrollable-list.directive";
 
 @Component({
 	template: `<n-dropdown-filter [items]="items" (select)="onSelect($event)"></n-dropdown-filter>`
@@ -35,7 +36,8 @@ describe("Dropdown search list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownFilter,
-				TestComponent
+				TestComponent,
+				ScrollableList
 			],
 			imports: [
 				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
@@ -68,7 +70,8 @@ describe("Dropdown search multi list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownFilter,
-				TestMultiComponent
+				TestMultiComponent,
+				ScrollableList
 			],
 			imports: [
 				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),

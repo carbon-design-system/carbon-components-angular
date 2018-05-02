@@ -8,6 +8,7 @@ import { DropdownSubMenu } from "./sub-menu.component";
 import { SubMenuWrapper } from "./sub-menu-wrapper.component";
 import { SubMenuItem } from "./sub-menu-item.component";
 import { ListItem } from "./../list-item.interface";
+import { ScrollableList } from "./../scrollable-list.directive";
 
 @Component({
 	template: `<n-dropdown-sub-menu [items]="items" (select)="onSelect($event)"></n-dropdown-sub-menu>`
@@ -65,7 +66,8 @@ describe("Dropdown submenu", () => {
 				DropdownSubMenu,
 				SubMenuItem,
 				SubMenuWrapper,
-				TestComponent
+				TestComponent,
+				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
@@ -112,7 +114,8 @@ describe("submenu multi list", () => {
 				DropdownSubMenu,
 				SubMenuItem,
 				SubMenuWrapper,
-				TestMultiComponent
+				TestMultiComponent,
+				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
