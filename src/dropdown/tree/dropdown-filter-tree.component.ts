@@ -104,8 +104,7 @@ import { DropdownTree } from "./tree.component";
 			[iconWidth]="iconWidth"
 			[innerPadding]="innerPadding"
 			[size]="size"
-			(select)="onClick($event)"
-			(wheel)="onWheel($event)">
+			(select)="onClick($event)">
 		</n-tree-wrapper>
 		<div
 			#downArrow
