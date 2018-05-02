@@ -367,7 +367,7 @@ export class DropdownFilter extends DropdownList implements AbstractDropdownView
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
 			// to prevent arrows from being hidden
-			// this.updateScrollHeight();
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 }

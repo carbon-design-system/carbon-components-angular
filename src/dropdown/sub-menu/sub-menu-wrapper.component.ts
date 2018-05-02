@@ -16,7 +16,6 @@ import { ListItem } from "./../list-item.interface";
 import { SubMenuItem } from "./sub-menu-item.component";
 import { dropdownConfig } from "./../dropdown.const";
 
-
 /**
  * @export
  * @class SubMenuWrapper
@@ -131,7 +130,6 @@ export class SubMenuWrapper implements OnChanges {
 	@Input() type: "single" | "multi" = "single";
 
 	@Input() scrollEnabled = false;
-
 	/**
 	 * Emits event that handles the selection of a `SubMenuItem`.
 	 * @type {EventEmitter<Object>}

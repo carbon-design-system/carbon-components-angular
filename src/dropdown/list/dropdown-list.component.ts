@@ -20,6 +20,7 @@ import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/of";
+import { ScrollableList } from "./../scrollable-list.directive";
 
 
 /**
@@ -193,6 +194,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * controls wether the scroll up/down arrows are shown
 	 */
 	public canScroll = false;
+	@ViewChild(ScrollableList) scrollableList: ScrollableList;
 	/**
 	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
@@ -482,8 +484,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
-			// to prevent arrows from being hidden
-			// this.updateScrollHeight();
+			// manually update to prevent arrows from being hidden
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 
@@ -545,8 +547,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			this.index = this.items.indexOf(item);
 			// wait a tick to let changes take effect on the DOM
 			setTimeout(() => {
-				// to prevent arrows from being hidden
-				// this.updateScrollHeight();
+				// manually to prevent arrows from being hidden
+				this.scrollableList.updateScrollHeight();
 			});
 		}
 	}

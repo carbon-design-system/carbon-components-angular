@@ -15,7 +15,7 @@ import { ListItem } from "./../list-item.interface";
 import { TreeItem } from "./tree-item.component";
 import { watchFocusJump, treetools } from "./../dropdowntools";
 import { dropdownConfig } from "./../dropdown.const";
-
+import { ScrollableList } from "./../scrollable-list.directive";
 
 /**
  * Creates a tree structured dropdown list when there are leaf and non-leaf inputs to choose from.
@@ -140,12 +140,11 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 	 * @memberof DropdownTree
 	 */
 	public innerPadding = 10;
-
 	/**
 	 * controls wether the scroll up/down arrows are shown
 	 */
 	public canScroll = false;
-
+	@ViewChild(ScrollableList) scrollableList: ScrollableList;
 	/**
 	 * An array holding the HTML list elements in the view.
 	 * @private
@@ -421,7 +420,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
 			// to prevent arrows from being hidden
-			// this.updateScrollHeight();
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 
@@ -458,7 +457,7 @@ export class DropdownTree implements AbstractDropdownView, OnChanges, AfterViewI
 		// wait a tick to let changes take effect on the DOM
 		setTimeout(() => {
 			// to prevent arrows from being hidden
-			// this.updateScrollHeight();
+			this.scrollableList.updateScrollHeight();
 		});
 	}
 

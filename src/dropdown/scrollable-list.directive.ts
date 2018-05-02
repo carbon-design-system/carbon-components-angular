@@ -78,7 +78,20 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 		this.scrollDownTarget.addEventListener("mouseout", () => this.onHoverDown(false));
 	}
 
-	checkScrollArrows() {
+	public updateScrollHeight() {
+		if (this.scrollEnabled) {
+			const container = this.elementRef.nativeElement.parentElement;
+			const containerRect = container.getBoundingClientRect();
+			const innerHeightDiff = this.list.getBoundingClientRect().top - containerRect.top;
+			const outerHeightDiff = containerRect.height - (containerRect.bottom - window.innerHeight);
+			// 40 gives us some padding between the bottom of the list,
+			// the bottom of the window, and the scroll down button
+			const height = outerHeightDiff - innerHeightDiff - 40;
+			this.list.style.height = `${height}px`;
+		}
+	}
+
+	protected checkScrollArrows() {
 		if (this.list.scrollTop === 0) {
 			if (this.canScrollUp) {
 				this.list.style.height = `${parseInt(this.list.style.height, 10) + 16}px`;
@@ -106,7 +119,7 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	}
 
 	@HostListener("wheel", ["$event"])
-	onWheel(event) {
+	protected onWheel(event) {
 		if (event.deltaY < 0) {
 			this.list.scrollTop -= 10;
 		} else {
@@ -121,14 +134,14 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	}
 
 	@HostListener("touchstart", ["$event"])
-	onTouchStart(event) {
+	protected onTouchStart(event) {
 		if (event.touches[0]) {
 			this.lastTouch = event.touches[0].clientY;
 		}
 	}
 
 	@HostListener("touchmove", ["$event"])
-	onTouchMove(event) {
+	protected onTouchMove(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		if (event.touches[0]) {
@@ -139,7 +152,7 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 		}
 	}
 
-	hoverScrollBy(hovering, amount) {
+	protected hoverScrollBy(hovering, amount) {
 		if (hovering) {
 			this.hoverScrollInterval = setInterval(() => {
 				this.list.scrollTop += amount;
@@ -150,29 +163,16 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 		}
 	}
 
-	onHoverUp(hovering) {
+	protected onHoverUp(hovering) {
 		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
 	}
 
-	onHoverDown(hovering) {
+	protected onHoverDown(hovering) {
 		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
 	}
 
-	updateScrollHeight() {
-		if (this.scrollEnabled) {
-			const container = this.elementRef.nativeElement.parentElement;
-			const containerRect = container.getBoundingClientRect();
-			const innerHeightDiff = this.list.getBoundingClientRect().top - containerRect.top;
-			const outerHeightDiff = containerRect.height - (containerRect.bottom - window.innerHeight);
-			// 40 gives us some padding between the bottom of the list,
-			// the bottom of the window, and the scroll down button
-			const height = outerHeightDiff - innerHeightDiff - 40;
-			this.list.style.height = `${height}px`;
-		}
-	}
-
 	@HostListener("keydown", ["$event"])
-	onKeyDown(event) {
+	protected onKeyDown(event) {
 		if (event.key === "ArrowDown" || event.key === "ArrowUp") {
 			this.checkScrollArrows();
 		}
