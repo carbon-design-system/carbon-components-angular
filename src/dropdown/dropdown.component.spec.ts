@@ -7,6 +7,7 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
+import { ScrollableList } from "./scrollable-list.directive";
 
 @Component({
 	template: `
@@ -32,7 +33,8 @@ describe("Dropdown", () => {
 			declarations: [
 				Dropdown,
 				DropdownList,
-				TestComponent
+				TestComponent,
+				ScrollableList
 			],
 			imports: [
 				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),

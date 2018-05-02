@@ -14,8 +14,6 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { SubMenuItem } from "./sub-menu-item.component";
-import { dropdownConfig } from "./../dropdown.const";
-
 
 /**
  * @export
@@ -34,15 +32,16 @@ import { dropdownConfig } from "./../dropdown.const";
 				'z-index': 1
 			}">
 			<div
-				[ngStyle]="{display: canScrollUp ? 'flex' : 'none'}"
-				class="scroll-arrow--up"
-				style="justify-content: center; background: white;"
-				(mouseover)="onHoverUp(true)"
-				(mouseout)="onHoverUp(false)">
+				#upArrow
+				class="scroll-arrow--up">
 				<n-static-icon icon="carat_up" size="sm"></n-static-icon>
 			</div>
 			<ul
 				#list
+				nScrollableList
+				[scrollUpTarget]="upArrow"
+				[scrollDownTarget]="downArrow"
+				[scrollEnabled]="canScroll"
 				[ngClass]="{
 					'menu_flyout': level === 1,
 					'dropdown_menu': level > 1
@@ -73,11 +72,8 @@ import { dropdownConfig } from "./../dropdown.const";
 				</li>
 			</ul>
 			<div
-				[ngStyle]="{display: canScrollDown ? 'flex' : 'none'}"
-				class="scroll-arrow--down"
-				style="justify-content: center; background: white;"
-				(mouseover)="onHoverDown(true)"
-				(mouseout)="onHoverDown(false)">
+				#downArrow
+				class="scroll-arrow--down">
 				<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
 			</div>
 		</div>
@@ -131,7 +127,6 @@ export class SubMenuWrapper implements OnChanges {
 	@Input() type: "single" | "multi" = "single";
 
 	@Input() scrollEnabled = false;
-
 	/**
 	 * Emits event that handles the selection of a `SubMenuItem`.
 	 * @type {EventEmitter<Object>}
@@ -144,122 +139,19 @@ export class SubMenuWrapper implements OnChanges {
 	/**
 	 * controls wether the scroll up/down arrows are shown
 	 */
-	public canScrollUp = false;
-	public canScrollDown = false;
-
-	protected lastTouch;
-
-	protected hoverScrollInterval;
+	public canScroll = false;
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.isOpen) {
 			if (changes.isOpen.currentValue) {
 				const boundingClientRect = this.list.nativeElement.getBoundingClientRect();
 				if (boundingClientRect.bottom > window.innerHeight) {
-					this.canScrollUp = true;
-					this.canScrollDown = true;
-					const list = this.list.nativeElement;
-					const boudningClientRect = list.getBoundingClientRect();
-					list.style.overflow = "hidden";
-					// 40 gives us some padding between the bottom of the list,
-					// the bottom of the window, and the scroll down button
-					list.style.height =
-						`${(boudningClientRect.height - (boudningClientRect.bottom - window.innerHeight)) - 40}px`;
-					// we run the check twice, the first time to try and avoid flashing the arrows in/out of existence
-					// and the second to make sure the arrows are hidden if they should be (due to how angular chage
-					// detection/browser measurment works)
-					this.checkScrollArrows();
-					setTimeout(() => {
-						this.checkScrollArrows();
-					});
+					this.canScroll = true;
 				}
 			} else {
-				this.canScrollUp = false;
-				this.canScrollDown = false;
-				const list = this.list.nativeElement;
-				list.style.height = null;
-				list.style.overflow = null;
-				clearInterval(this.hoverScrollInterval);
+				this.canScroll = false;
 			}
 		}
-	}
-
-	// scrolling methods here
-	checkScrollArrows() {
-		const list = this.list.nativeElement;
-		if (list.scrollTop === 0) {
-			if (this.canScrollUp) {
-				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
-			}
-			this.canScrollUp = false;
-		} else if (list.scrollTop === list.scrollTopMax) {
-			if (this.canScrollDown) {
-				list.style.height = `${parseInt(list.style.height, 10) + 16}px`;
-			}
-			this.canScrollDown = false;
-		} else {
-			if (!this.canScrollUp) {
-				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
-			}
-			if (!this.canScrollDown) {
-				list.style.height = `${parseInt(list.style.height, 10) - 16}px`;
-			}
-			this.canScrollUp = true;
-			this.canScrollDown = true;
-		}
-	}
-
-	onWheel(event) {
-		const list = this.list.nativeElement;
-		if (event.deltaY < 0) {
-			list.scrollTop -= 10;
-		} else {
-			list.scrollTop += 10;
-		}
-		// only prevent the parent/window from scrolling if we can scroll
-		if (!(list.scrollTop === list.scrollTopMax || list.scrollTop === 0)) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-		this.checkScrollArrows();
-	}
-
-	onTouchStart(event) {
-		if (event.touches[0]) {
-			this.lastTouch = event.touches[0].clientY;
-		}
-	}
-
-	onTouchMove(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		const list = this.list.nativeElement;
-		if (event.touches[0]) {
-			const touch = event.touches[0];
-			list.scrollTop += this.lastTouch - touch.clientY;
-			this.lastTouch = touch.clientY;
-			this.checkScrollArrows();
-		}
-	}
-
-	hoverScrollBy(hovering, amount) {
-		const list = this.list.nativeElement;
-		if (hovering) {
-			this.hoverScrollInterval = setInterval(() => {
-				list.scrollTop += amount;
-				this.checkScrollArrows();
-			}, 1);
-		} else {
-			clearInterval(this.hoverScrollInterval);
-		}
-	}
-
-	onHoverUp(hovering) {
-		this.hoverScrollBy(hovering, -dropdownConfig.hoverScrollSpeed);
-	}
-
-	onHoverDown(hovering) {
-		this.hoverScrollBy(hovering, dropdownConfig.hoverScrollSpeed);
 	}
 
 	/**

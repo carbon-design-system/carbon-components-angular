@@ -87,6 +87,14 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				</n-dropdown-tree>
 			</n-dropdown>
 		</div>
+		<h4>Searchable</h4>
+		<div style="width: 400px">
+			<n-dropdown placeholder="Select an option">
+				<n-dropdown-filter-tree
+					[items]="demoItems3">
+				</n-dropdown-filter-tree>
+			</n-dropdown>
+		</div>
 		<h3 class="p-demo-variation">Sub menu</h3>
 		<div style="width: 250px">
 			<n-dropdown

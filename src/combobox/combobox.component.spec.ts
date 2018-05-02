@@ -9,6 +9,7 @@ import { ComboBox } from "./combobox.component";
 import { Pill } from "./pill.component";
 import { PillInput } from "./pill-input.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
+import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 
 @Component({
 	template: `
@@ -36,7 +37,8 @@ describe("Combo box", () => {
 				PillInput,
 				Pill,
 				DropdownList,
-				TestComponent
+				TestComponent,
+				ScrollableList
 			],
 			imports: [
 				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
