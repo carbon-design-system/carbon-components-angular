@@ -86,7 +86,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Subscription to all the scrollable parents `scroll` event
 	 */
-	protected scrollSubscription: Subscription;
+	// add a new subscription temprarily so that contexts (such as tests)
+	// that don't run ngAfterViewInit have something to unsubscribe in ngOnDestroy
+	protected scrollSubscription: Subscription = new Subscription();
 	/**
 	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
