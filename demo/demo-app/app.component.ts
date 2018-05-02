@@ -60,6 +60,7 @@ import * as en from "./../../src/i18n/en.json";
 		</nav>
 	</aside>
 	<div class="p-demo-container">
+	<div class="main-banner-placeholder"></div>
 		<router-outlet></router-outlet>
 	</div>
 	</main>
