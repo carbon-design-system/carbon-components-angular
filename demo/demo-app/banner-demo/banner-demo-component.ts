@@ -70,7 +70,7 @@ export class BannerDemo {
 	infoBanner = {
 		type: "info",
 		message: "sample message <b>this is important information!</b>",
-		target: "p-demo-container"
+		target: ".main-banner-placeholder"
 	};
 
 	errorBanner = {
