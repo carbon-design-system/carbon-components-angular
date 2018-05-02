@@ -13,13 +13,13 @@ import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
 const createTestComponent = (html: string) =>
-		createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
+		createGenericTestComponent(html, TabsTestComponent) as ComponentFixture<TabsTestComponent>;
 
 
 describe("Tabs", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tabs, Tab, TabHeaders, TestComponent],
+			declarations: [Tabs, Tab, TabHeaders, TabsTestComponent],
 			imports: [
 				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
 				StaticIconModule
@@ -39,7 +39,7 @@ describe("Tabs", () => {
 			</n-tabs>
 		`);
 
-		expect(fixture.componentInstance instanceof TestComponent).toBe(true);
+		expect(fixture.componentInstance instanceof TabsTestComponent).toBe(true);
 	});
 
 	it("should have 2 tabs", () => {
@@ -129,6 +129,6 @@ describe("Tabs", () => {
 
 
 @Component({selector: "test-cmp", template: ""})
-class TestComponent {
+class TabsTestComponent {
 	changeCallback = (event: any) => {};
 }

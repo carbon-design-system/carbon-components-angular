@@ -13,7 +13,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 @Component({
 	template: `<n-dropdown-sub-menu [items]="items" (select)="onSelect($event)"></n-dropdown-sub-menu>`
 })
-class TestComponent {
+class SubMenuTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -66,7 +66,7 @@ describe("Dropdown submenu", () => {
 				DropdownSubMenu,
 				SubMenuItem,
 				SubMenuWrapper,
-				TestComponent,
+				SubMenuTestComponent,
 				ScrollableList
 			],
 			imports: [
@@ -81,13 +81,14 @@ describe("Dropdown submenu", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(SubMenuTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(DropdownSubMenu);
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof DropdownSubMenu).toBe(true);
 	});
 
@@ -137,6 +138,7 @@ describe("submenu multi list", () => {
 	it("should work", () => {
 		fixture = TestBed.createComponent(DropdownSubMenu);
 		fixture.type = "multi";
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof DropdownSubMenu).toBe(true);
 	});
 

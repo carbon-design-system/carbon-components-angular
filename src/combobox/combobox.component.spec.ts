@@ -20,7 +20,7 @@ import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 		<n-dropdown-list></n-dropdown-list>
 	</n-combo-box>`
 })
-class TestComponent {
+class ComboboxTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -37,7 +37,7 @@ describe("Combo box", () => {
 				PillInput,
 				Pill,
 				DropdownList,
-				TestComponent,
+				ComboboxTestComponent,
 				ScrollableList
 			],
 			imports: [
@@ -48,13 +48,14 @@ describe("Combo box", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(ComboboxTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(ComboBox);
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof ComboBox).toBe(true);
 	});
 

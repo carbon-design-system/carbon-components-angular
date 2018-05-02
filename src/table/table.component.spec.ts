@@ -14,7 +14,7 @@ import { NFormsModule } from "./../forms/forms.module";
 @Component({
 	template: `<n-table [model]="tableModel"></n-table>`
 })
-class TestComponent implements OnInit {
+class TableTestComponent implements OnInit {
 	tableModel = new TableModel();
 
 	ngOnInit() {
@@ -46,11 +46,11 @@ describe("Table", () => {
 			],
 			declarations: [
 				Table,
-				TestComponent
+				TableTestComponent
 			]
 		});
 
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(TableTestComponent);
 		tableInstance = fixture.debugElement.query(By.css("n-table"));
 		fixture.detectChanges();
 	});

@@ -8,7 +8,7 @@ import { SampleInterface } from "./../sample.interface";
 @Component({
 	template: `<n-sample-sub></n-sample-sub>`
 })
-class TestComponent {}
+class SampleSubTestComponent {}
 
 describe("Sample Subcomponent", () => {
 	let fixture, wrapper;
@@ -16,13 +16,13 @@ describe("Sample Subcomponent", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				SampleSub,
-				TestComponent
+				SampleSubTestComponent
 			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(SampleSubTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
