@@ -14,6 +14,7 @@
 
 **Fixed bugs:**
 
+- popupMenu wrongly position to grid row/column. [\#821](https://github.ibm.com/peretz/neutrino/issues/821)
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
 - dropdown with multiselect style is broken and aria attributes aren't correct [\#788](https://github.ibm.com/peretz/neutrino/issues/788)
 - Checkboxes shouldn't have role="checkboxes"  [\#787](https://github.ibm.com/peretz/neutrino/issues/787)
@@ -42,7 +43,9 @@
 - Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
 - condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
 - condition builder - removing one condition doesn't remove bracket [\#840](https://github.ibm.com/peretz/neutrino/issues/840)
+- condition builder - adds in wrong connector after bracket [\#839](https://github.ibm.com/peretz/neutrino/issues/839)
 - table select all checkbox issue [\#837](https://github.ibm.com/peretz/neutrino/issues/837)
+- Clearing a drop down - update [\#836](https://github.ibm.com/peretz/neutrino/issues/836)
 - condition builder spec updates [\#835](https://github.ibm.com/peretz/neutrino/issues/835)
 - Cards spec [\#834](https://github.ibm.com/peretz/neutrino/issues/834)
 - Progress indication spec [\#833](https://github.ibm.com/peretz/neutrino/issues/833)
@@ -69,6 +72,7 @@
 - Table Component, highlight complete row with custom style [\#757](https://github.ibm.com/peretz/neutrino/issues/757)
 - change dropdown-filter-list.component to focus the search field first instead of the first list item [\#751](https://github.ibm.com/peretz/neutrino/issues/751)
 - Dropdown and Combobox 1.2 [\#748](https://github.ibm.com/peretz/neutrino/issues/748)
+- More better unit tests [\#743](https://github.ibm.com/peretz/neutrino/issues/743)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
@@ -80,8 +84,11 @@
 
 **Merged pull requests:**
 
+- Prettify updateScrollHeight [\#858](https://github.ibm.com/peretz/neutrino/pull/858) ([callums](https://github.ibm.com/callums))
+- scroll dialogs with their containers when appended to body [\#857](https://github.ibm.com/peretz/neutrino/pull/857) ([callums](https://github.ibm.com/callums))
 - Allow programmatic selection of rows [\#856](https://github.ibm.com/peretz/neutrino/pull/856) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Fix large table checkbox size [\#853](https://github.ibm.com/peretz/neutrino/pull/853) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update to new dropdown clearing design [\#849](https://github.ibm.com/peretz/neutrino/pull/849) ([callums](https://github.ibm.com/callums))
 - Reset header sort arrow  [\#848](https://github.ibm.com/peretz/neutrino/pull/848) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add drop-down filter tree component [\#844](https://github.ibm.com/peretz/neutrino/pull/844) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Improve model data change detection [\#842](https://github.ibm.com/peretz/neutrino/pull/842) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
