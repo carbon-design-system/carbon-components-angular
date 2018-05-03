@@ -19,6 +19,7 @@ import { SampleInterface } from "./sample.interface";
 	selector: "n-sample",
 	template: `
 		<p>Hello, Neutrino!</p>
+		<span>{{ foo.required }}</span>
 	`
 })
 export class Sample implements OnInit, AfterViewInit, OnDestroy {

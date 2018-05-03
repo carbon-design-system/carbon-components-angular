@@ -16,14 +16,14 @@ import { RadioComponent, RadioGroup } from "./radio.component";
 describe("RadioGroup", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadioComponent, RadioGroup, TestComponent],
+			declarations: [RadioComponent, RadioGroup, RadioTestComponent],
 			imports: [BrowserAnimationsModule, FormsModule, StaticIconModule],
 			providers: []
 		});
 	});
 
 	it("should work", () => {
-		const fixture = TestBed.createComponent(TestComponent);
+		const fixture = TestBed.createComponent(RadioTestComponent);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(RadioGroup));
@@ -31,7 +31,7 @@ describe("RadioGroup", () => {
 	});
 
 	it("should select one", () => {
-		const fixture = TestBed.createComponent(TestComponent);
+		const fixture = TestBed.createComponent(RadioTestComponent);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(RadioGroup));
@@ -53,7 +53,7 @@ describe("RadioGroup", () => {
 	</n-radio-group>`,
 	entryComponents: [RadioComponent]
 })
-class TestComponent {
+class RadioTestComponent {
 	manyRadios = ["one", "two", "three", "four", "five", "six"];
 	radio: string;
 }

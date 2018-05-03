@@ -67,7 +67,7 @@ export class PopoverMenu extends Dialog {
 	 * Binds display property to the `PopoverMenu` style attribute.
 	 * @memberof PopoverMenu
 	 */
-	@HostBinding("attr.style") style = "display: inline-block;";
+	@HostBinding("style.display") style = "inline-block";
 
 	/**
 	 * Set to `true` if `PopoverMenu` has a template for the body content.

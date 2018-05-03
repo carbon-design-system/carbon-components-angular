@@ -62,7 +62,7 @@ export class Tooltip extends Dialog {
 	 * Binds display property to `Tooltop` style attribute.
 	 * @memberof Tooltip
 	 */
-	@HostBinding("attr.style") style = "display: inline-block";
+	@HostBinding("style.display") style = "inline-block";
 	/**
 	 * Value is set to `true` if the `Tooltip` is to display a `TemplateRef` instead of a string.
 	 * @type {boolean}

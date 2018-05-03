@@ -18,7 +18,7 @@ import { ScrollableList } from "./scrollable-list.directive";
 		<n-dropdown-list [items]="items"></n-dropdown-list>
 	</n-dropdown>`
 })
-class TestComponent {
+class DropdownTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -33,7 +33,7 @@ describe("Dropdown", () => {
 			declarations: [
 				Dropdown,
 				DropdownList,
-				TestComponent,
+				DropdownTestComponent,
 				ScrollableList
 			],
 			imports: [
@@ -44,7 +44,7 @@ describe("Dropdown", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(DropdownTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

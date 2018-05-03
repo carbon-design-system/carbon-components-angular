@@ -12,7 +12,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 @Component({
 	template: `<n-dropdown-tree [items]="items" (select)="onSelect($event)"></n-dropdown-tree>`
 })
-class TestComponent {
+class TreeTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -65,7 +65,7 @@ describe("Dropdown tree", () => {
 				DropdownTree,
 				TreeItem,
 				TreeWrapper,
-				TestComponent,
+				TreeTestComponent,
 				ScrollableList
 			],
 			imports: [
@@ -80,13 +80,14 @@ describe("Dropdown tree", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(TreeTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(DropdownTree);
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof DropdownTree).toBe(true);
 	});
 
@@ -136,6 +137,7 @@ describe("tree multi list", () => {
 	it("should work", () => {
 		fixture = TestBed.createComponent(DropdownTree);
 		fixture.type = "multi";
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof DropdownTree).toBe(true);
 	});
 

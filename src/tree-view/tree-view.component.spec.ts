@@ -12,7 +12,7 @@ import { TreeView, TreeViewItem, TreeViewWrapper } from "./tree-view.module";
 		[label]="'label'">
 	</n-tree-view>`
 })
-class TestComponent {
+class TreeViewTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected = {};
 	onSelect(ev) {
@@ -28,7 +28,7 @@ describe("Treeview", () => {
 				TreeView,
 				TreeViewWrapper,
 				TreeViewItem,
-				TestComponent
+				TreeViewTestComponent
 			],
 			imports: [
 				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}})
@@ -37,7 +37,7 @@ describe("Treeview", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(TreeViewTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

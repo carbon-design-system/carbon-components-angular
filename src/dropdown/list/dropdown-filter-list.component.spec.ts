@@ -11,7 +11,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 @Component({
 	template: `<n-dropdown-filter [items]="items" (select)="onSelect($event)"></n-dropdown-filter>`
 })
-class TestComponent {
+class DropdownFilterListTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -36,7 +36,7 @@ describe("Dropdown search list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownFilter,
-				TestComponent,
+				DropdownFilterListTestComponent,
 				ScrollableList
 			],
 			imports: [
@@ -47,13 +47,14 @@ describe("Dropdown search list", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestComponent);
+		fixture = TestBed.createComponent(DropdownFilterListTestComponent);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(DropdownFilter);
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof DropdownFilter).toBe(true);
 	});
 
@@ -89,6 +90,7 @@ describe("Dropdown search multi list", () => {
 	it("should work", () => {
 		fixture = TestBed.createComponent(DropdownFilter);
 		fixture.type = "multi";
+		fixture.detectChanges();
 		expect(fixture.componentInstance instanceof DropdownFilter).toBe(true);
 	});
 
