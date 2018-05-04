@@ -5,7 +5,7 @@ var path = require('path');
 
 module.exports = [{
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.ts$/,
 				loaders: ["angular2-template-loader", "awesome-typescript-loader"]
