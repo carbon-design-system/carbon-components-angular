@@ -305,6 +305,21 @@ export class StaticIcon implements AfterViewInit {
 			viewBox="0 0 16 16">
 			<polygon class="st0" points="15,12 1,12 8,5 "/>
 		</svg>
+		`,
+		"grip_vertical_16": classList => `<svg
+			class="${classList}"
+			width="16"
+			height="16"
+			viewBox="0 0 16 16">
+			<circle cx="6.5" cy="14.5" r="1.5"/>
+			<circle cx="6.5" cy="10.5" r="1.5"/>
+			<circle cx="6.5" cy="6.5" r="1.5"/>
+			<circle cx="10.5" cy="14.5" r="1.5"/>
+			<circle cx="10.5" cy="10.5" r="1.5"/>
+			<circle cx="10.5" cy="6.5" r="1.5"/>
+			<circle cx="6.5" cy="2.5" r="1.5"/>
+			<circle cx="10.5" cy="2.5" r="1.5"/>
+		</svg>
 		`
 	};
 
