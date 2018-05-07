@@ -36,7 +36,9 @@
 
 **Closed issues:**
 
+- Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
+- Condition builder - ANY/ALL drop down beside values [\#854](https://github.ibm.com/peretz/neutrino/issues/854)
 - 'live code' not working ... eg check http://billboard1.fyre.ibm.com/component-library/topnav [\#852](https://github.ibm.com/peretz/neutrino/issues/852)
 - Select all table checkbox not updated after rowSelected programatically changed [\#851](https://github.ibm.com/peretz/neutrino/issues/851)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
@@ -84,6 +86,15 @@
 
 **Merged pull requests:**
 
+- Update build dependencies [\#872](https://github.ibm.com/peretz/neutrino/pull/872) ([callums](https://github.ibm.com/callums))
+- Seems like set -e was messing us up [\#871](https://github.ibm.com/peretz/neutrino/pull/871) ([callums](https://github.ibm.com/callums))
+- Add explicit exit [\#870](https://github.ibm.com/peretz/neutrino/pull/870) ([callums](https://github.ibm.com/callums))
+- Fix for "failing" deploy [\#869](https://github.ibm.com/peretz/neutrino/pull/869) ([callums](https://github.ibm.com/callums))
+- More deploy script fixes [\#868](https://github.ibm.com/peretz/neutrino/pull/868) ([callums](https://github.ibm.com/callums))
+- Fix build updates [\#867](https://github.ibm.com/peretz/neutrino/pull/867) ([callums](https://github.ibm.com/callums))
+- Update build to deploy versioned pages [\#865](https://github.ibm.com/peretz/neutrino/pull/865) ([callums](https://github.ibm.com/callums))
+- Some preperation for better unit tests [\#863](https://github.ibm.com/peretz/neutrino/pull/863) ([callums](https://github.ibm.com/callums))
+- Fix banner demo [\#862](https://github.ibm.com/peretz/neutrino/pull/862) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Fix build [\#861](https://github.ibm.com/peretz/neutrino/pull/861) ([callums](https://github.ibm.com/callums))
 -  Update banner icons [\#860](https://github.ibm.com/peretz/neutrino/pull/860) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add scrollable list directive and refactor views to use it [\#859](https://github.ibm.com/peretz/neutrino/pull/859) ([callums](https://github.ibm.com/callums))
