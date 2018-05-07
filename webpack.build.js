@@ -20,6 +20,7 @@ function rxjsExternal(context, request, cb) {
 }
 
 module.exports = [{
+	mode: "production",
 	devtool: "source-map",
 	entry: {
 		neutrino: "./src/index.ts",
@@ -55,10 +56,10 @@ module.exports = [{
 		}
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["angular2-template-loader", "awesome-typescript-loader", "tslint-loader"]
+				loaders: ["awesome-typescript-loader", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,

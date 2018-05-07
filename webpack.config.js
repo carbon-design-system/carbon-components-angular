@@ -6,6 +6,7 @@ var path = require("path");
 var StyleLintPlugin = require("stylelint-webpack-plugin");
 
 module.exports = [{
+	mode: "development",
 	devtool: "source-map",
 	entry: {
 		demo: "./demo/main.ts",
@@ -15,10 +16,10 @@ module.exports = [{
 		filename: "neutrino.umd.js"
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["angular2-template-loader", "awesome-typescript-loader?configFileName=tsconfig-demo.json", "tslint-loader"]
+				loaders: ["awesome-typescript-loader?configFileName=tsconfig-demo.json", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,
