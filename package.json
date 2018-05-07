@@ -95,6 +95,7 @@
     "webpack-dev-server": "3.1.4",
     "webpack-node-externals": "1.6.0",
     "whatwg-fetch": "2.0.3",
-    "zone.js": "0.8.21"
+	"zone.js": "0.8.21",
+	"angular2-template-loader": "^0.6.2"
   }
 }
