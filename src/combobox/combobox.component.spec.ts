@@ -6,8 +6,8 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combobox.component";
-import { Pill } from "./pill.component";
-import { PillInput } from "./pill-input.component";
+import { Pill } from "../pill/pill.component";
+import { PillInput } from "../pill/pill-input.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
 import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 
