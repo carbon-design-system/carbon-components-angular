@@ -68,7 +68,6 @@ import {
 		class="condition-builder-pill-input"
 		[id]="id + '-value'"
 		[pills]="state.value"
-		[disabled]="disabled"
 		(updatePills)="updatePills()"
 		(submit)="onPillSubmit($event)"
 		(focus)="inputIsFocused = true"
