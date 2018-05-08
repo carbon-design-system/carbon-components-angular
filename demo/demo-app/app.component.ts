@@ -68,6 +68,7 @@ const en = require("./../../src/i18n/en.json");
 	<n-modal-placeholder></n-modal-placeholder>
 	<n-sprite sprite="activities"></n-sprite>
 	<n-sprite sprite="alerts_status"></n-sprite>
+	<n-sprite sprite="animations"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
 	<n-sprite sprite="brands"></n-sprite>
 	<n-sprite sprite="browser_os_mobile"></n-sprite>
@@ -173,6 +174,11 @@ export class AppComponent implements OnInit {
 		{
 			content: "Chart",
 			link: "/chart",
+			selected: false
+		},
+		{
+			content: "Condition builder",
+			link: "/condition-builder",
 			selected: false
 		}
 	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
