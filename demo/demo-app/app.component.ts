@@ -3,7 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { HcModeChecker } from "./../../src";
 import "rxjs/add/operator/filter";
-import * as en from "./../../src/i18n/en.json";
+
+const en = require("./../../src/i18n/en.json");
 
 @Component({
 	selector: "app-root",

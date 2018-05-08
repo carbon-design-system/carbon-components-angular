@@ -19,7 +19,7 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["angular2-template-loader", "awesome-typescript-loader?configFileName=tsconfig-demo.json", "tslint-loader"]
+				loaders: ["angular2-template-loader", "ts-loader?configFile=tsconfig-demo.json", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,
@@ -44,7 +44,7 @@ module.exports = [{
 		]
 	},
 	resolve: {
-		extensions: [".ts", ".js", ".json"]
+		extensions: [".ts", ".js"]
 	},
 	plugins: [
 		new StyleLintPlugin({

@@ -9,14 +9,14 @@ function angularExt(lib) {
 }
 
 function rxjsExternal(context, request, cb) {
-    if (/^rxjs\/add\/observable\//.test(request)) {
-      return cb(null, {root: ['Rx', 'Observable'], commonjs: request, commonjs2: request, amd: request});
-    } else if (/^rxjs\/add\/operator\//.test(request)) {
-      return cb(null, {root: ['Rx', 'Observable', 'prototype'], commonjs: request, commonjs2: request, amd: request});
-    } else if (/^rxjs\//.test(request)) {
-      return cb(null, {root: ['Rx'], commonjs: request, commonjs2: request, amd: request});
-    }
-    cb();
+	if (/^rxjs\/add\/observable\//.test(request)) {
+	  return cb(null, {root: ['Rx', 'Observable'], commonjs: request, commonjs2: request, amd: request});
+	} else if (/^rxjs\/add\/operator\//.test(request)) {
+	  return cb(null, {root: ['Rx', 'Observable', 'prototype'], commonjs: request, commonjs2: request, amd: request});
+	} else if (/^rxjs\//.test(request)) {
+	  return cb(null, {root: ['Rx'], commonjs: request, commonjs2: request, amd: request});
+	}
+	cb();
 }
 
 module.exports = [{
@@ -59,7 +59,7 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["awesome-typescript-loader", "tslint-loader"]
+				loaders: ["ts-loader", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,

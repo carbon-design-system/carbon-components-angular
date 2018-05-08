@@ -178,6 +178,6 @@ describe("Tooltip directive", () => {
 		const directiveEl = fixture.debugElement.query(By.directive(TooltipDirective));
 		const directiveInstance = directiveEl.injector.get(TooltipDirective);
 
-		expect(directiveInstance.nTooltip instanceof TemplateRef).toBe(true);
+		expect(directiveInstance["nTooltip"] instanceof TemplateRef).toBe(true);
 	});
 });

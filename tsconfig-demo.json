@@ -1,24 +1,25 @@
 {
-  "compilerOptions": {
-    "baseUrl": "",
-    "declaration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": ["es2015", "dom"],
-    "sourceMap": true,
-    "mapRoot": "./",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "rootDir": "./",
-    "target": "es5",
-    "inlineSources": true,
-    "typeRoots": [
-      "../node_modules/@types"
-    ]
-  },
-  "files": [
-	"./demo/main.ts",
-	"./src/index.ts"
-  ]
+	"compilerOptions": {
+		"baseUrl": "",
+		"declaration": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": ["es2015", "dom"],
+		"sourceMap": true,
+		"mapRoot": "./",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"outDir": "./dist",
+		"rootDir": "./",
+		"target": "es5",
+		"inlineSources": true,
+		"typeRoots": [
+			"./node_modules/@types",
+			"./demo/typings.d.ts"
+		]
+	},
+	"files": [
+		"./demo/main.ts",
+		"./src/index.ts"
+	]
 }
