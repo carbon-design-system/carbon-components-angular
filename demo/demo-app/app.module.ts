@@ -37,28 +37,32 @@ import { XLModalComponent } from "./modal-demo/extra-large.component";
 import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
 import { ChartDemo } from "./chart-demo/chart-demo.component";
 import { ButtonMenuDemo } from "./button-menu-demo/button-menu-demo.component";
+import { ConditionBuilderDemo } from "./condition-builder-demo/condition-builder-demo.component";
+import { ConditionBuilderDemoService } from "./condition-builder-demo/condition-builder-demo.service";
 
 import { AppDoc } from "./doc.component";
 
 // component imports
 import {
-	TableModule,
-	TabsModule,
-	IconModule,
-	IconService,
-	DialogModule,
-	ListGroupModule,
-	TreeViewModule,
-	DropdownModule,
-	TopNavModule,
-	SideNavModule,
-	ModalModule,
 	BannerModule,
 	BannerService,
-	NFormsModule,
-	ComboBoxModule,
+	ButtonMenuModule,
 	ChartsModule,
-	ButtonMenuModule
+	ComboBoxModule,
+	ConditionBuilderModule,
+	DialogModule,
+	DropdownModule,
+	IconModule,
+	IconService,
+	ListGroupModule,
+	ModalModule,
+	NFormsModule,
+	SideNavModule,
+	TableModule,
+	TabsModule,
+	TopNavModule,
+	TreeViewModule,
+	PillInputModule
 } from "./../../src";
 
 
@@ -89,7 +93,8 @@ import {
 		BannerDemo,
 		BannerCustom,
 		ComboboxDemo,
-		ChartDemo
+		ChartDemo,
+		ConditionBuilderDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -100,26 +105,28 @@ import {
 		BannerCustom
 	],
 	imports: [
-		BrowserModule,
+		BannerModule,
 		BrowserAnimationsModule,
+		BrowserModule,
 		ButtonMenuModule,
+		ChartsModule,
+		ComboBoxModule,
+		ConditionBuilderModule,
+		DialogModule,
+		DropdownModule,
 		FormsModule,
-		ReactiveFormsModule,
 		HttpModule,
+		IconModule,
+		ListGroupModule,
+		ModalModule,
+		NFormsModule,
+		PillInputModule,
+		ReactiveFormsModule,
+		SideNavModule,
 		TableModule,
 		TabsModule,
-		IconModule,
-		DialogModule,
-		ListGroupModule,
-		TreeViewModule,
-		DropdownModule,
 		TopNavModule,
-		SideNavModule,
-		ModalModule,
-		BannerModule,
-		NFormsModule,
-		ComboBoxModule,
-		ChartsModule,
+		TreeViewModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -188,6 +195,10 @@ import {
 			{
 				path: "chart",
 				component: ChartDemo
+			},
+			{
+				path: "condition-builder",
+				component: ConditionBuilderDemo
 			}
 		], {
 			useHash: true
@@ -197,6 +208,7 @@ import {
 	providers: [
 		IconService,
 		BannerService,
+		ConditionBuilderDemoService,
 		TableDemoService
 	],
 	bootstrap: [AppComponent]

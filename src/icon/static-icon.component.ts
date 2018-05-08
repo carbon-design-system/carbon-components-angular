@@ -36,6 +36,15 @@ export class StaticIcon implements AfterViewInit {
 	};
 
 	protected iconMap = {
+		"addnew_circle_16": classList => `<svg
+			class="${classList}"
+			width = "16"
+			height = "16"
+			viewBox = "0 0 16 16">
+			<path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.8c-3.7 0-6.8-3.1-6.8-6.8 0-3.7
+			3.1-6.8 6.8-6.8s6.8 3.1 6.8 6.8c0 3.7-3.1 6.8-6.8 6.8z"/>
+			<path d="M9 4H7v3H4v2h3v3h2V9h3V7H9z"/>
+		</svg>`,
 		"chevron_down_16": classList => `<svg
 			class="${classList}"
 			width = "16"
@@ -58,6 +67,46 @@ export class StaticIcon implements AfterViewInit {
 			height="30px"
 			viewBox="0 0 30 30">
 			<polygon class="st0" points="27.3,7 15,19.3 2.7,7 1.3,8.4 15,22.1 28.7,8.4 "/>
+		</svg>`,
+		"chevron_up_circle_16": classList => `<svg
+			class="${classList}"
+			xmlns="http://www.w3.org/2000/svg"
+			height="16" viewBox="0 0 16 16">
+			<path d="M4.5 10L8 6.4l3.5 3.6 1-1L8 4.6 3.5 9z"></path>
+			<path d="M0 8c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8-8 3.6-8 8zm14.8 0c0 3.7-3.1 6.8-6.8 6.8-3.7
+			0-6.8-3.1-6.8-6.8S4.3 1.2 8 1.2c3.7 0 6.8 3.1 6.8 6.8z"></path>
+		</svg>`,
+		"chevron_up_circle_disabled_16": classList => `<svg
+			class="${classList}"
+			xmlns="http://www.w3.org/2000/svg"
+			height="16"
+			viewBox="0 0 16 16">
+			<path d="M9 .1v1c1.2.2 2.3.6 3.2 1.3l.7-.7C11.8.8 10.5.3 9 .1zM7 .1C5.5.3 4.2.8 3.1 1.7l.7.7c.9-.7 2-1.2 3.2-1.3v-1zM14.9
+			7h1c-.2-1.5-.8-2.8-1.6-3.9l-.7.7c.7.9 1.1 2 1.3 3.2zM14.9 9c-.2 1.2-.6 2.3-1.3 3.2l.7.7c.9-1.1 1.4-2.4
+			1.6-3.9h-1zM3.8 13.6l-.7.7c1.1.9 2.4 1.4 3.9 1.6v-1c-1.2-.2-2.3-.6-3.2-1.3zM9 15.9c1.5-.2 2.8-.8
+			3.9-1.6l-.7-.7c-.9.7-2 1.2-3.2 1.3v1zM1.1 9h-1c.2 1.5.8 2.8 1.6 3.9l.7-.7c-.7-.9-1.1-2-1.3-3.2zM1.7
+			3.1C.8 4.2.3 5.5.1 7h1c.2-1.2.6-2.3 1.3-3.2l-.7-.7zM8.9 5.5L8 4.6l-.9.9.9.9zM8.9 7.3l.9.9.9-1-.9-.8zM11.5
+			10l1-1-.9-.9-1 1zM4.5 10l.9-.9-1-1-.9.9zM7.1 7.3l-.9-.9-.9.8.9 1z"/>
+		</svg>`,
+		"chevron_down_circle_16": classList => `<svg
+			class="${classList}"
+			xmlns="http://www.w3.org/2000/svg"
+			height="16" viewBox="0 0 16 16">
+			<path d="M11.5 6L8 9.6 4.5 6l-1 1L8 11.4 12.5 7z"/>
+			<path d="M16 8c0-4.4-3.6-8-8-8S0 3.6 0 8s3.6 8 8 8 8-3.6 8-8zM1.2 8c0-3.7 3.1-6.8 6.8-6.8 3.7 0
+			6.8 3.1 6.8 6.8s-3.1 6.8-6.8 6.8c-3.7 0-6.8-3.1-6.8-6.8z"/>
+		</svg>`,
+		"chevron_down_circle_disabled_16": classList => `<svg
+			class="${classList}"
+			xmlns="http://www.w3.org/2000/svg"
+			height="16"
+			viewBox="0 0 16 16">
+			<path d="M7 15.9v-1c-1.2-.2-2.3-.6-3.2-1.3l-.7.7c1.1.9 2.4 1.4 3.9 1.6zM9 15.9c1.5-.2 2.8-.8 3.9-1.6l-.7-.7c-.9.7-2
+			1.2-3.2 1.3v1zM1.1 9h-1c.2 1.5.8 2.8 1.6 3.9l.7-.7c-.7-.9-1.1-2-1.3-3.2zM1.1 7c.2-1.2.6-2.3 1.3-3.2l-.7-.7C.8 4.2.3
+			5.5.1 7h1zM12.2 2.4l.7-.7C11.8.8 10.5.3 9 .1v1c1.2.2 2.3.6 3.2 1.3zM7 .1C5.5.3 4.2.8 3.1 1.7l.7.7c.9-.7 2-1.2
+			3.2-1.3v-1zM14.9 7h1c-.2-1.5-.8-2.8-1.6-3.9l-.7.7c.7.9 1.1 2 1.3 3.2zM14.3 12.9c.9-1.1 1.4-2.4 1.6-3.9h-1c-.2 1.2-.6
+			2.3-1.3 3.2l.7.7zM7.1 10.5l.9.9.9-.9-.9-.9zM7.1 8.7l-.9-.9-.9 1 .9.8zM4.5 6l-1 1 .9.9 1-1zM11.5 6l-.9.9 1 1
+			.9-.9zM8.9 8.7l.9.9.9-.8-.9-1z"/>
 		</svg>`,
 		"chevron_left_16": classList => `<svg
 			class="${classList}"
@@ -304,6 +353,21 @@ export class StaticIcon implements AfterViewInit {
 			height="16"
 			viewBox="0 0 16 16">
 			<polygon class="st0" points="15,12 1,12 8,5 "/>
+		</svg>
+		`,
+		"grip_vertical_16": classList => `<svg
+			class="${classList}"
+			width="16"
+			height="16"
+			viewBox="0 0 16 16">
+			<circle cx="6.5" cy="14.5" r="1.5"/>
+			<circle cx="6.5" cy="10.5" r="1.5"/>
+			<circle cx="6.5" cy="6.5" r="1.5"/>
+			<circle cx="10.5" cy="14.5" r="1.5"/>
+			<circle cx="10.5" cy="10.5" r="1.5"/>
+			<circle cx="10.5" cy="6.5" r="1.5"/>
+			<circle cx="6.5" cy="2.5" r="1.5"/>
+			<circle cx="10.5" cy="2.5" r="1.5"/>
 		</svg>
 		`
 	};
