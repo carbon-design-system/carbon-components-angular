@@ -59,7 +59,7 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["awesome-typescript-loader", "tslint-loader"]
+				loaders: ["ts-loader", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,
