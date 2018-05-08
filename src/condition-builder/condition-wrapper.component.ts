@@ -43,26 +43,20 @@ import { ConditionBuilderService } from "./condition-builder.service";
 					(click)="onBracketControlTopUp()"
 					class="btn--icon-link"
 					type="button">
-						<svg class="icon--sm">
-							<use href="#chevron_up_circle_16"></use>
-						</svg>
+						<n-static-icon icon="chevron_up_circle" size="sm"></n-static-icon>
 					</button>
 					<button
 					*ngIf="isFirstInList"
 					class="btn--icon-link"
 					type="button"
 					disabled="">
-						<svg class="icon--sm">
-							<use href="#chevron_up_circle_disabled_16"></use>
-						</svg>
+						<n-static-icon icon="chevron_up_circle_disabled" size="sm"></n-static-icon>
 					</button>
 					<button
 					(click)="onBracketControlTopDown()"
 					class="btn--icon-link"
 					type="button">
-						<svg class="icon--sm">
-							<use href="#chevron_down_circle_16"></use>
-						</svg>
+						<n-static-icon icon="chevron_down_circle" size="sm"></n-static-icon>
 					</button>
 				</div>
 			<div class="condition_bracket_controls_bottom">
@@ -70,27 +64,21 @@ import { ConditionBuilderService } from "./condition-builder.service";
 				(click)="onBracketControlBottomUp()"
 				class="btn--icon-link"
 				type="button">
-					<svg class="icon--sm">
-						<use href="#chevron_up_circle_16"></use>
-					</svg>
+					<n-static-icon icon="chevron_up_circle" size="sm"></n-static-icon>
 				</button>
 				<button
 				*ngIf="!isLastInList"
 				(click)="onBracketControlBottomDown()"
 				class="btn--icon-link"
 				type="button">
-					<svg class="icon--sm">
-						<use href="#chevron_down_circle_16"></use>
-					</svg>
+					<n-static-icon icon="chevron_down_circle" size="sm"></n-static-icon>
 				</button>
 				<button
 				*ngIf="isLastInList"
 				class="btn--icon-link"
 				type="button"
 				disabled="">
-					<svg class="icon--sm">
-						<use href="#chevron_down_circle_disabled_16"></use>
-					</svg>
+					<n-static-icon icon="chevron_up_circle_disabled" size="sm"></n-static-icon>
 				</button>
 			</div>
 		</div>

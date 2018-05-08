@@ -194,11 +194,6 @@ export class ConditionBuilder implements OnInit {
 
 		this.conditionWrappers.splice(ci, 1);
 
-		// clean operator if last one
-		// if (this.conditionWrappers.length <= 1) {
-		// 	this.operator = "";
-		// }
-
 		if (emitStateChange) {
 			this.stateChange.emit(this.state);
 		}
