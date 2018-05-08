@@ -147,14 +147,12 @@ import { ConditionBuilderService } from "./condition-builder.service";
 						{{operator === "or" ? "OR" : "AND"}}
 					</button>
 					<button class="btn--icon-link" type="button">
-						<n-static-icon icon="help" size="sm" style="display: inherit"></n-static-icon>
+						<n-static-icon icon="help" size="sm" style="display: inline"></n-static-icon>
 					</button>
 				</div>
 			</ng-container>
 			<button class="btn_remove_bracket" (click)="onRemoveBracket()">
-				<svg class="icon--sm">
-					<use href="#x_close_window_16"></use>
-				</svg>
+				<n-static-icon icon="x" size="sm" style="display: inline"></n-static-icon>
 				Remove bracket
 			</button>
 		</div>
@@ -162,9 +160,7 @@ import { ConditionBuilderService } from "./condition-builder.service";
 		(click)="onAddAfterBracket()"
 		class="btn--icon-link-blue"
 		type="button">
-			<svg class="icon--sm">
-				<use href="#addnew_circle_16"></use>
-			</svg>
+			<n-static-icon icon="addnew_circle" size="sm" style="display: inline"></n-static-icon>
 			<span>{{outsideOperator === "" ? (operator === "or" ? "AND" : "OR") : (outsideOperator === "or" ? "OR" : "AND")}}</span>
 		</button>
 	</div>

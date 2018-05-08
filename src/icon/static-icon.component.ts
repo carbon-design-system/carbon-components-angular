@@ -36,6 +36,15 @@ export class StaticIcon implements AfterViewInit {
 	};
 
 	protected iconMap = {
+		"addnew_circle_16": classList => `<svg
+			class="${classList}"
+			width = "16"
+			height = "16"
+			viewBox = "0 0 16 16">
+			<path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.8c-3.7 0-6.8-3.1-6.8-6.8 0-3.7
+			3.1-6.8 6.8-6.8s6.8 3.1 6.8 6.8c0 3.7-3.1 6.8-6.8 6.8z"/>
+			<path d="M9 4H7v3H4v2h3v3h2V9h3V7H9z"/>
+		</svg>`,
 		"chevron_down_16": classList => `<svg
 			class="${classList}"
 			width = "16"
