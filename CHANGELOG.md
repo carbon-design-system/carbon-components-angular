@@ -86,6 +86,9 @@
 
 **Merged pull requests:**
 
+- Fix build [\#876](https://github.ibm.com/peretz/neutrino/pull/876) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix build [\#874](https://github.ibm.com/peretz/neutrino/pull/874) ([callums](https://github.ibm.com/callums))
+- Add condition builder and pill input and refactor combobox accordingly [\#873](https://github.ibm.com/peretz/neutrino/pull/873) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update build dependencies [\#872](https://github.ibm.com/peretz/neutrino/pull/872) ([callums](https://github.ibm.com/callums))
 - Seems like set -e was messing us up [\#871](https://github.ibm.com/peretz/neutrino/pull/871) ([callums](https://github.ibm.com/callums))
 - Add explicit exit [\#870](https://github.ibm.com/peretz/neutrino/pull/870) ([callums](https://github.ibm.com/callums))
