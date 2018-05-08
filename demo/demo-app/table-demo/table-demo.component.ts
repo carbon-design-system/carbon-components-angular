@@ -56,6 +56,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<h3 class="p-demo-variation">Normal table</h3>
 	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
 
+	<h3 class="p-demo-variation">Normal table with single select and no actions on headers</h3>
 	<n-table [model]="simpleModel7" [showSelectionColumn]="false" [enableSingleSelect]="true"></n-table>
 
 	<h3 class="p-demo-variation">Large table</h3>
