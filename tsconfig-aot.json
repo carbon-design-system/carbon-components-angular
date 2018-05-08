@@ -1,27 +1,27 @@
 {
-  "compilerOptions": {
-    "baseUrl": "",
-    "declaration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": ["es2015", "dom"],
-    "sourceMap": true,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "rootDir": "./dist/src",
-    "target": "es5",
-    "inlineSources": true,
-    "typeRoots": [
-	  "./node_modules/@types",
-	  "./demo/typings.d.ts"
-    ]
-  },
-  "files": [
-    "./dist/src/index.ts"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "genDir": "./dist/waste"
-  }
+	"compilerOptions": {
+		"baseUrl": "",
+		"declaration": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": ["es2015", "dom"],
+		"sourceMap": true,
+		"module": "es2015",
+		"moduleResolution": "node",
+		"outDir": "./dist",
+		"rootDir": "./dist/src",
+		"target": "es5",
+		"inlineSources": true,
+		"typeRoots": [
+			"./node_modules/@types",
+			"./demo/typings.d.ts"
+		]
+	},
+	"files": [
+		"./dist/src/index.ts"
+	],
+	"angularCompilerOptions": {
+		"strictMetadataEmit": true,
+		"genDir": "./dist/waste"
+	}
 }
