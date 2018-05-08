@@ -18,7 +18,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 
 
 /**
- * Internal component used to render pills and the combobox text input.
+ * Internal component used to render pills and the pill text input.
  * There is a sizeable chunk of logic here handling focus and keyboard state around pills.
  *
  * @export
@@ -33,7 +33,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			#inputWrapper
 			*ngIf="type === 'multi'"
 			role="textbox"
-			class="combobox_input"
+			class="pill_input_wrapper"
 			[ngClass]="{
 				'expand-overflow': expanded,
 				focus: focus,
@@ -54,7 +54,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						{{ pill.content }}
 					</n-pill>
 					<div
-						#comboInput
+						#pillInput
 						*ngIf="!last"
 						class="input"
 						contenteditable
@@ -62,7 +62,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						(keyup)="onKeyup($event)"></div>
 				</ng-container>
 				<div
-					#comboInput
+					#pillInput
 					class="input"
 					contenteditable
 					(keydown)="onKeydown($event)"
@@ -126,7 +126,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	/** ViewChild for the single input input box */
 	@ViewChild("singleInput") singleInput;
 	/** List of inputs */
-	@ViewChildren("comboInput") comboInputs: QueryList<any>;
+	@ViewChildren("pillInput") pillInputs: QueryList<any>;
 	/** list of instantiated pills */
 	@ViewChildren(Pill) pillInstances: QueryList<Pill>;
 	// needed since matter doesn't/can't account for the host element
@@ -143,25 +143,28 @@ export class PillInput implements OnChanges, AfterViewInit {
 	ngOnChanges(changes) {
 		if (changes.pills) {
 			this.pills = changes.pills.currentValue;
-			if (this.pillInstances) {
-				this.numberMore = 0;
-				let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
-				if (pills.length > 1) {
-					for (let pill of pills) {
-						if (pill.offsetTop > 30) {
-							this.numberMore++;
+
+			setTimeout(() => {
+				if (this.pillInstances) {
+					this.numberMore = 0;
+					let pills = this.elementRef.nativeElement.querySelectorAll(".pill");
+					if (pills.length > 1) {
+						for (let pill of pills) {
+							if (pill.offsetTop > 30) {
+								this.numberMore++;
+							}
 						}
 					}
-				}
-				this.pillInstances.forEach(item => {
-					item.remove.subscribe(_ => {
-						this.updatePills.emit();
-						this.doResize();
-						if (this.numberMore === 0) { this.expanded = false; }
+					this.pillInstances.forEach(item => {
+						item.remove.subscribe(() => {
+							this.updatePills.emit();
+							this.doResize();
+							if (this.numberMore === 0) { this.expanded = false; }
+						});
 					});
-				});
-				this.doResize();
-			}
+					this.doResize();
+				}
+			});
 		}
 		if (changes.displayValue) {
 			if (this.type === "single" && this.singleInput) {
@@ -240,23 +243,23 @@ export class PillInput implements OnChanges, AfterViewInit {
 			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight; /*+ 10;*/
 			this.expanded = true;
 		}
-		if (this.comboInputs.find(input => input.nativeElement === ev.target)) {
+		if (this.pillInputs.find(input => input.nativeElement === ev.target)) {
 			if (ev.target.textContent === "") {
 				ev.target.textContent = "";
 			}
 			this.clearInputText(ev.target);
 			this.setSelection(ev.target);
 		} else if (this.getInputText()) {
-			this.comboInputs.forEach(input => {
+			this.pillInputs.forEach(input => {
 				if (input.nativeElement.textContent.trim() !== "") {
 					this.setSelection(input.nativeElement);
 				}
 			});
 		} else {
-			if (this.comboInputs.last.nativeElement.textContent === "") {
-				this.comboInputs.last.nativeElement.textContent = "";
+			if (this.pillInputs.last.nativeElement.textContent === "") {
+				this.pillInputs.last.nativeElement.textContent = "";
 			}
-			this.setSelection(this.comboInputs.last.nativeElement);
+			this.setSelection(this.pillInputs.last.nativeElement);
 		}
 		this.inputWrapper.nativeElement.scrollTop = 0;
 	}
@@ -288,8 +291,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 * @param toSkip input element to skip clearing
 	 */
 	public clearInputText(toSkip = null) {
-		if (this.comboInputs) {
-			this.comboInputs.forEach(input => {
+		if (this.pillInputs) {
+			this.pillInputs.forEach(input => {
 				if (!toSkip || input.nativeElement !== toSkip) {
 					input.nativeElement.textContent = "";
 				}
@@ -298,7 +301,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	}
 
 	/**
-	 * returns the text from an event, the textContent of the first filled comboInput, or an empty string
+	 * returns the text from an event, the textContent of the first filled pillInput, or an empty string
 	 *
 	 * @param ev optional event to pull text from
 	 */
@@ -307,8 +310,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 			if (ev) {
 				return ev.target.textContent.trim();
 			}
-			if (this.comboInputs) {
-				let text = this.comboInputs.find(input => input.nativeElement.textContent.trim() !== "");
+			if (this.pillInputs) {
+				let text = this.pillInputs.find(input => input.nativeElement.textContent.trim() !== "");
 				return text ? text.nativeElement.textContent.trim() : "";
 			}
 		}
@@ -329,19 +332,19 @@ export class PillInput implements OnChanges, AfterViewInit {
 		} else if (ev.key === "Backspace" && ev.target["textContent"] === "" && !this.empty(this.pills)) {
 			// stop the window from navigating backwards
 			ev.preventDefault();
-			let inputIndex = this.comboInputs.toArray().findIndex(input => input.nativeElement === ev.target);
+			let inputIndex = this.pillInputs.toArray().findIndex(input => input.nativeElement === ev.target);
 			if (inputIndex > -1) {
 				this.pills[inputIndex].selected = false;
 				// - 1 because the last one doesn't get removed, so the focus doesn't leave
-				if (inputIndex < this.comboInputs.length - 1) {
-					this.comboInputs.toArray()[inputIndex + 1].nativeElement.focus();
+				if (inputIndex < this.pillInputs.length - 1) {
+					this.pillInputs.toArray()[inputIndex + 1].nativeElement.focus();
 				}
 			}
 			this.updatePills.emit();
 		} else if (ev.key === "Enter") {
 			ev.preventDefault();
 			if (this.getInputText()) {
-				let inputIndex = this.comboInputs.toArray().findIndex(input => input.nativeElement.textContent.trim() !== "");
+				let inputIndex = this.pillInputs.toArray().findIndex(input => input.nativeElement.textContent.trim() !== "");
 				this.submit.emit({
 					after: this.pills[inputIndex],
 					value: this.getInputText()
@@ -349,12 +352,12 @@ export class PillInput implements OnChanges, AfterViewInit {
 				this.clearInputText();
 			}
 		} else if (ev.key === "ArrowLeft") {
-			let index = this.comboInputs.toArray().findIndex(input => input.nativeElement === ev.target);
-			let prevInput = this.comboInputs.toArray()[index - 1];
+			let index = this.pillInputs.toArray().findIndex(input => input.nativeElement === ev.target);
+			let prevInput = this.pillInputs.toArray()[index - 1];
 			if (prevInput) { prevInput.nativeElement.focus(); }
 		} else if (ev.key === "ArrowRight") {
-			let index = this.comboInputs.toArray().findIndex(input => input.nativeElement === ev.target);
-			let nextInput = this.comboInputs.toArray()[index + 1];
+			let index = this.pillInputs.toArray().findIndex(input => input.nativeElement === ev.target);
+			let nextInput = this.pillInputs.toArray()[index + 1];
 			if (nextInput) { nextInput.nativeElement.focus(); }
 		}
 	}
