@@ -13,7 +13,7 @@ import { Condition } from "./condition.component";
 import { ConditionWrapper } from "./condition-wrapper.component";
 import { ConditionBuilderService } from "./condition-builder.service";
 import { ConditionBuilderPillInput } from "./condition-builder-pill-input.component";
-import { PillModule } from "./../pill/pill.module";
+import { PillInputModule } from "./../pill-input/pill-input.module";
 import { DialogModule } from "./../dialog/dialog.module";
 
 export { ConditionBuilderService } from "./condition-builder.service";
@@ -40,7 +40,7 @@ export { Condition } from "./condition.component";
 		FormsModule,
 		IconModule,
 		DropdownModule,
-		PillModule,
+		PillInputModule,
 		TreeViewModule,
 		DialogModule,
 		StaticIconModule

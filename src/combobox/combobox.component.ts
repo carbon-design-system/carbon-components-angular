@@ -13,7 +13,7 @@ import {
 	AfterContentInit,
 	HostBinding
 } from "@angular/core";
-import { PillInput } from "../pill/pill-input.component";
+import { PillInput } from "../pill-input/pill-input.component";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";

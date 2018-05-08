@@ -21,4 +21,4 @@ export { Pill } from "./pill.component";
 	],
 	imports: [CommonModule, StaticIconModule]
 })
-export class PillModule {}
+export class PillInputModule {}

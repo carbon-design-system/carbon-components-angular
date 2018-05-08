@@ -62,7 +62,7 @@ import {
 	TabsModule,
 	TopNavModule,
 	TreeViewModule,
-	PillModule
+	PillInputModule
 } from "./../../src";
 
 
@@ -120,7 +120,7 @@ import {
 		ListGroupModule,
 		ModalModule,
 		NFormsModule,
-		PillModule,
+		PillInputModule,
 		ReactiveFormsModule,
 		SideNavModule,
 		TableModule,

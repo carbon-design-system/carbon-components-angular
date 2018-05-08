@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
-import { PillModule } from "./../pill/pill.module";
+import { PillInputModule } from "./../pill-input/pill-input.module";
 
 import { ComboBox } from "./combobox.component";
 
@@ -18,7 +18,7 @@ export { ComboBox } from "./combobox.component";
 	],
 	imports: [
 		CommonModule,
-		PillModule,
+		PillInputModule,
 		StaticIconModule
 	]
 })

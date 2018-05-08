@@ -15,4 +15,4 @@ export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./top-nav/top-nav.module";
 export * from "./tree-view/tree-view.module";
-export * from "./pill/pill.module";
+export * from "./pill-input/pill-input.module";

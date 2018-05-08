@@ -13,7 +13,7 @@ import {
 	AfterViewInit,
 	HostBinding
 } from "@angular/core";
-import { Pill } from "../pill/pill.component";
+import { Pill } from "../pill-input/pill.component";
 import { ListItem } from "./../dropdown/list-item.interface";
 
 
