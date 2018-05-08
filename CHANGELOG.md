@@ -38,6 +38,7 @@
 
 - Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
+- Condition builder - ANY/ALL drop down beside values [\#854](https://github.ibm.com/peretz/neutrino/issues/854)
 - 'live code' not working ... eg check http://billboard1.fyre.ibm.com/component-library/topnav [\#852](https://github.ibm.com/peretz/neutrino/issues/852)
 - Select all table checkbox not updated after rowSelected programatically changed [\#851](https://github.ibm.com/peretz/neutrino/issues/851)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
@@ -85,6 +86,10 @@
 
 **Merged pull requests:**
 
+- Fix build [\#876](https://github.ibm.com/peretz/neutrino/pull/876) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix build [\#874](https://github.ibm.com/peretz/neutrino/pull/874) ([callums](https://github.ibm.com/callums))
+- Add condition builder and pill input and refactor combobox accordingly [\#873](https://github.ibm.com/peretz/neutrino/pull/873) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update build dependencies [\#872](https://github.ibm.com/peretz/neutrino/pull/872) ([callums](https://github.ibm.com/callums))
 - Seems like set -e was messing us up [\#871](https://github.ibm.com/peretz/neutrino/pull/871) ([callums](https://github.ibm.com/callums))
 - Add explicit exit [\#870](https://github.ibm.com/peretz/neutrino/pull/870) ([callums](https://github.ibm.com/callums))
 - Fix for "failing" deploy [\#869](https://github.ibm.com/peretz/neutrino/pull/869) ([callums](https://github.ibm.com/callums))
