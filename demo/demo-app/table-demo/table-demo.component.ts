@@ -57,7 +57,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
 
 	<h3 class="p-demo-variation">Normal table with single select and no actions on headers</h3>
-	<n-table [model]="simpleModel7" [showSelectionColumn]="false" [enableSingleSelect]="true"></n-table>
+	<n-table [model]="simpleModel4" [showSelectionColumn]="false" [enableSingleSelect]="true"></n-table>
 
 	<h3 class="p-demo-variation">Large table</h3>
 	<n-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></n-table>
@@ -147,8 +147,8 @@ class FilterableHeaderItem extends TableHeaderItem {
 export class TableDemo implements OnInit {
 	public simpleModel1 = new TableModel();
 	public simpleModel2 = new TableModel();
-	public simpleModel7 = new TableModel();
 	public simpleModel3 = new TableModel();
+	public simpleModel4 = new TableModel();
 	public customModel = new TableModel();
 	public contextModel = new TableModel();
 	public model = new TableModel();
@@ -198,13 +198,13 @@ export class TableDemo implements OnInit {
 		];
 
 		// simple model
-		this.simpleModel7.data = [
+		this.simpleModel4.data = [
 			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
 			[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
 			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
 		];
-		this.simpleModel7.header = [
+		this.simpleModel4.header = [
 			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
 		];
 

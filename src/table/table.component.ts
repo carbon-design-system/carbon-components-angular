@@ -260,7 +260,7 @@ export class Table {
 	@Input() showSelectionColumn = true;
 
 	/**
-	 * Controls whether to single select or not.
+	 * Controls whether to enable multiple or single row selection.
 	 *
 	 * @type {boolean}
 	 * @memberof Table
@@ -358,7 +358,6 @@ export class Table {
 	constructor(private applicationRef: ApplicationRef) {}
 
 	onRowSelect(index: number) {
-
 		if (!this.showSelectionColumn && this.enableSingleSelect) {
 			this.model.rowsSelected.forEach((element, indsex) => {
 				this.model.selectRow(indsex, false);
