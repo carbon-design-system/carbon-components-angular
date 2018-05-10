@@ -359,11 +359,10 @@ export class Table {
 
 	onRowSelect(index: number) {
 		if (!this.showSelectionColumn && this.enableSingleSelect) {
-			this.model.rowsSelected.forEach((element, indsex) => {
-				this.model.selectRow(indsex, false);
+			this.model.rowsSelected.forEach((element, index) => {
+				this.model.selectRow(index, false);
 			});
-
-			!this.model.rowsSelected[index] ? this.model.selectRow(index) : this.model.selectRow(index, false);
+			this.model.selectRow(index, !this.model.rowsSelected[index]);
 		}
 	}
 
