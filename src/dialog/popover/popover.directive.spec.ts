@@ -171,7 +171,7 @@ describe("Popover directive", () => {
 		const directiveEl = fixture.debugElement.query(By.directive(PopoverDirective));
 		const directiveInstance = directiveEl.injector.get(PopoverDirective);
 
-		expect(directiveInstance.nPopover instanceof TemplateRef).toBe(true);
+		expect(directiveInstance["nPopover"] instanceof TemplateRef).toBe(true);
 	});
 });
 
