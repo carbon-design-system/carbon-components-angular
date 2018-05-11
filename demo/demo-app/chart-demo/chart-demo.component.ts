@@ -1,9 +1,19 @@
 import { Component, ViewChild } from "@angular/core";
 
+import { DonutCenter } from "@peretz/charts/bundle/bundle.js";
+
 @Component({
 	selector: "app-chart-demo",
 	template: `
 	<h1 class="p-demo-heading">Chart</h1>
+
+	<h2 class="p-demo-section">Donut</h2>
+	<n-donut-chart
+		class="n-chart"
+		style="height: 510px"
+		[data]="chartConstant.pieData"
+		[options]="donutOption" #donutChart>
+	</n-donut-chart>
 
 	<h2 class="p-demo-section">Pie</h2>
 	<n-pie-chart
@@ -153,6 +163,15 @@ export class ChartDemo {
 			legendClickable: true,
 			containerResizable: true,
 			colors: this.colors
+		},
+		donutOptions: {
+			legendClickable: true,
+			containerResizable: true,
+			colors: this.colors,
+			center: new DonutCenter({
+				number: 25423,
+				label: "Browsers"
+			})
 		},
 		data: [
 			{
@@ -329,6 +348,7 @@ export class ChartDemo {
 	doubleAxisOption = Object.assign({}, this.chartConstant.optionsWithFormatter, {type: "doubleAxis"});
 	comboOption = Object.assign({}, this.chartConstant.doubleYAxisOptions, {type: "combo"});
 	pieOption = Object.assign({}, this.chartConstant.pieOptions, {type: "pie"});
+	donutOption = Object.assign({}, this.chartConstant.donutOptions, {type: "donut"});
 
 	changeData() {
 		this.chartConstant.data[0]["Qty"] += 60000;
