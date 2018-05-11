@@ -238,6 +238,8 @@ export class Table {
 	}
 
 	/**
+	 * Controls whether to show the selection checkboxes column or not.
+	 *
 	 * @deprecated in the next major neutrino version in favour of
 	 * `showSelectionColumn` because of new attribute `enableSingleSelect`
 	 *  please use `showSelectionColumn` instead
