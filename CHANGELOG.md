@@ -90,6 +90,7 @@
 
 **Merged pull requests:**
 
+- Fix documentation to allow build to complete [\#882](https://github.ibm.com/peretz/neutrino/pull/882) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Update table header, add single select [\#878](https://github.ibm.com/peretz/neutrino/pull/878) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Replace awesome-typescript-loader with ts-loader [\#877](https://github.ibm.com/peretz/neutrino/pull/877) ([callums](https://github.ibm.com/callums))
 - Fix build [\#876](https://github.ibm.com/peretz/neutrino/pull/876) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
