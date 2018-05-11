@@ -43,6 +43,7 @@
 - Select all table checkbox not updated after rowSelected programatically changed [\#851](https://github.ibm.com/peretz/neutrino/issues/851)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
 - Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
+- Pull out pills and pill-input into a top-level component [\#843](https://github.ibm.com/peretz/neutrino/issues/843)
 - condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
 - condition builder - removing one condition doesn't remove bracket [\#840](https://github.ibm.com/peretz/neutrino/issues/840)
 - condition builder - adds in wrong connector after bracket [\#839](https://github.ibm.com/peretz/neutrino/issues/839)
@@ -53,6 +54,7 @@
 - Progress indication spec [\#833](https://github.ibm.com/peretz/neutrino/issues/833)
 - Calendar spec [\#832](https://github.ibm.com/peretz/neutrino/issues/832)
 - Exiting modal update [\#827](https://github.ibm.com/peretz/neutrino/issues/827)
+- Create Condition Builder [\#822](https://github.ibm.com/peretz/neutrino/issues/822)
 - nTable  : selectAllCheckbox  do not change state on data update [\#820](https://github.ibm.com/peretz/neutrino/issues/820)
 - Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
@@ -86,6 +88,7 @@
 
 **Merged pull requests:**
 
+- Replace awesome-typescript-loader with ts-loader [\#877](https://github.ibm.com/peretz/neutrino/pull/877) ([callums](https://github.ibm.com/callums))
 - Fix build [\#876](https://github.ibm.com/peretz/neutrino/pull/876) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix build [\#874](https://github.ibm.com/peretz/neutrino/pull/874) ([callums](https://github.ibm.com/callums))
 - Add condition builder and pill input and refactor combobox accordingly [\#873](https://github.ibm.com/peretz/neutrino/pull/873) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

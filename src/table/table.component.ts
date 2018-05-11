@@ -73,7 +73,7 @@ import { getScrollbarWidth } from "../common/utils";
 	}">
 		<thead>
 			<tr>
-				<th class="table_checkbox-col" *ngIf="enableRowSelect">
+				<th class="table_checkbox-col" *ngIf="showSelectionColumn">
 					<n-checkbox
 						[size]="size !== 'lg' ? 'sm' : 'md'"
 						[(ngModel)]="selectAllCheckbox"
@@ -82,7 +82,7 @@ import { getScrollbarWidth } from "../common/utils";
 					</n-checkbox>
 				</th>
 				<ng-container *ngFor="let column of model.header; let i = index">
-					<th
+					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
 						*ngIf="column.visible"
 						[ngStyle]="column.style">
 						<div class="table_cell-wrapper">
@@ -157,14 +157,16 @@ import { getScrollbarWidth } from "../common/utils";
 		(scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr *ngIf="!model.isRowFiltered(i)"
+					(click)="onRowSelect(i)"
 					[ngClass]="{
 						selected: model.rowsSelected[i],
+						'tbody_row--selectable': enableSingleSelect,
 						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
 						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
 						'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
 						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
 					}">
-					<td class="table_checkbox-col" *ngIf="enableRowSelect">
+					<td class="table_checkbox-col" *ngIf="showSelectionColumn">
 						<n-checkbox
 							[size]="size !== 'lg' ? 'sm' : 'md'"
 							[(ngModel)]="model.rowsSelected[i]"
@@ -236,12 +238,34 @@ export class Table {
 	}
 
 	/**
+	 * @deprecated in the next major neutrino version in favour of
+	 * `showSelectionColumn` because of new attribute `enableSingleSelect`
+	 *  please use `showSelectionColumn` instead
+	 */
+	@Input()
+	set enableRowSelect(value: boolean) {
+		this.showSelectionColumn = value;
+	}
+
+	get enableRowSelect () {
+		return this.showSelectionColumn;
+	}
+
+	/**
 	 * Controls whether to show the selection checkboxes column or not.
 	 *
 	 * @type {boolean}
 	 * @memberof Table
 	 */
-	@Input() enableRowSelect = true;
+	@Input() showSelectionColumn = true;
+
+	/**
+	 * Controls whether to enable multiple or single row selection.
+	 *
+	 * @type {boolean}
+	 * @memberof Table
+	 */
+	@Input() enableSingleSelect = false;
 
 	/**
 	 * Distance (in px) from the bottom that view has to reach before
@@ -333,6 +357,14 @@ export class Table {
 	 */
 	constructor(private applicationRef: ApplicationRef) {}
 
+	onRowSelect(index: number) {
+		if (!this.showSelectionColumn && this.enableSingleSelect) {
+			this.model.rowsSelected.forEach((element, index) => {
+				this.model.selectRow(index, false);
+			});
+			this.model.selectRow(index, !this.model.rowsSelected[index]);
+		}
+	}
 
 	updateSelectAllCheckbox() {
 		const selectedRowsCount = this.model.selectedRowsCount();
