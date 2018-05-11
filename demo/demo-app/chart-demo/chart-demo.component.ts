@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 
-import { DonutCenter } from "@peretz/charts/bundle/bundle.js";
+import { DonutCenter } from "../../../src/charts/charts.module";
 
 @Component({
 	selector: "app-chart-demo",
