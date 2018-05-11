@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { PieChart } from "./pie-chart.component";
 import { BarChart } from "./bar-chart.component";
 import { StackedBarChart } from "./stacked-bar-chart.component";
 import { LineChart } from "./line-chart.component";
@@ -12,6 +13,7 @@ import { BaseAxisChart } from "./base-axis-chart.component";
 	declarations: [
 		BaseChart,
 		BaseAxisChart,
+		PieChart,
 		BarChart,
 		StackedBarChart,
 		LineChart,
@@ -21,6 +23,7 @@ import { BaseAxisChart } from "./base-axis-chart.component";
 	exports: [
 		BaseChart,
 		BaseAxisChart,
+		PieChart,
 		BarChart,
 		StackedBarChart,
 		LineChart,

@@ -5,6 +5,14 @@ import { Component, ViewChild } from "@angular/core";
 	template: `
 	<h1 class="p-demo-heading">Chart</h1>
 
+	<h2 class="p-demo-section">Pie</h2>
+	<n-pie-chart
+		class="n-chart"
+		style="height: 510px"
+		[data]="chartConstant.pieData"
+		[options]="pieOption" #pieChart>
+	</n-pie-chart>
+
 	<h2 class="p-demo-section">Bars</h2>
 	<button class="btn--primary" (click)="changeData()">Change data</button>
 	<n-bar-chart
@@ -141,6 +149,11 @@ export class ChartDemo {
 			containerResizable: true,
 			colors: this.colors
 		},
+		pieOptions: {
+			legendClickable: true,
+			containerResizable: true,
+			colors: this.colors
+		},
 		data: [
 			{
 				"Part number": "2V2N-9KYPM version 1",
@@ -265,6 +278,48 @@ export class ChartDemo {
 				"This is an extra long long long legend": 12345,
 				"Number of sold products": 190000
 			}
+		],
+		pieData: [
+			{
+				label: "2V2N-9KYPM version 1",
+				value: 100000
+			},
+			{
+				label: "L22I-P66EP-L22I-P66EP-L22I-P66EP",
+				value: 200000
+			},
+			{
+				label: "JQAI-2M4L1",
+				value: 600000
+			},
+			{
+				label: "J9DZ-F37AP",
+				value: 100000
+			},
+			{
+				label: "YEL48-Q6XK-YEL48",
+				value: 400000
+			},
+			{
+				label: "P66EP-L22I-L22I",
+				value: 450000
+			},
+			{
+				label: "Q6XK-YEL48",
+				value: 300000
+			},
+			{
+				label: "XKB5-L6EP",
+				value: 70000
+			},
+			{
+				label: "YEL48-Q6XK",
+				value: 20000
+			},
+			{
+				label: "L22I-P66EP-L22I",
+				value: 120000
+			}
 		]
 	};
 
@@ -273,6 +328,7 @@ export class ChartDemo {
 	linesOption = Object.assign({}, this.chartConstant.options, {type: "lines"});
 	doubleAxisOption = Object.assign({}, this.chartConstant.optionsWithFormatter, {type: "doubleAxis"});
 	comboOption = Object.assign({}, this.chartConstant.doubleYAxisOptions, {type: "combo"});
+	pieOption = Object.assign({}, this.chartConstant.pieOptions, {type: "pie"});
 
 	changeData() {
 		this.chartConstant.data[0]["Qty"] += 60000;
