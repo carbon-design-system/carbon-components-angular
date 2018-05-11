@@ -63,6 +63,7 @@
 - add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
 - add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
 - pop over should support custom class when append to body is true [\#805](https://github.ibm.com/peretz/neutrino/issues/805)
+- Remove hover on table [\#804](https://github.ibm.com/peretz/neutrino/issues/804)
 - Tree View , do not support \*only\* Node Selection, use case nested folder selection [\#803](https://github.ibm.com/peretz/neutrino/issues/803)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
@@ -81,6 +82,7 @@
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
 - Improve customized code style guide \(stretch\) [\#662](https://github.ibm.com/peretz/neutrino/issues/662)
+- Create a Calendar component [\#661](https://github.ibm.com/peretz/neutrino/issues/661)
 - Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
 - Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
 - Breadcrumbs [\#346](https://github.ibm.com/peretz/neutrino/issues/346)
@@ -88,6 +90,7 @@
 
 **Merged pull requests:**
 
+- Update table header, add single select [\#878](https://github.ibm.com/peretz/neutrino/pull/878) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Replace awesome-typescript-loader with ts-loader [\#877](https://github.ibm.com/peretz/neutrino/pull/877) ([callums](https://github.ibm.com/callums))
 - Fix build [\#876](https://github.ibm.com/peretz/neutrino/pull/876) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix build [\#874](https://github.ibm.com/peretz/neutrino/pull/874) ([callums](https://github.ibm.com/callums))
