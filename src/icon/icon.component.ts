@@ -4,9 +4,11 @@ import {
 	HostBinding,
 	Input,
 	OnChanges,
-	OnInit
+	OnInit,
+	AfterViewInit
 } from "@angular/core";
 import { IconService } from "./icon.service";
+import { Subscription } from "rxjs";
 
 /**
  * `n-icon` pulls the icon from the loaded sprite, and renders it at the specified size.
@@ -18,12 +20,12 @@ import { IconService } from "./icon.service";
 @Component({
 	selector: "n-icon",
 	template: `
-		<svg [attr.class]="buildMatterClass()+' '+classList">
+		<!--<svg [attr.class]="buildMatterClass()+' '+classList">
 			<use [attr.xlink:href]="'#'+icon+'_'+sizeMap[size]"></use>
-		</svg>`,
+		</svg>-->`,
 	providers: [IconService]
 })
-export class Icon {
+export class Icon implements AfterViewInit {
 	/** follows the naming convention found in the icon listing on the demo page */
 	@Input() icon: string;
 	/** accepts color strings */
@@ -32,7 +34,7 @@ export class Icon {
 	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
 
 	/** map size strings to numeric values */
-	sizeMap = {
+	protected sizeMap = {
 		"xs": 14,
 		"sm": 16,
 		"md": 20,
@@ -47,12 +49,27 @@ export class Icon {
 		return this.elementRef.nativeElement.classList;
 	}
 
+	private spriteLoadingSubscription: Subscription = null;
+
 	/**
 	 * Initialize the component
 	 *
 	 * @param {ElementRef} elementRef
 	 */
-	constructor(private elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef, private iconService: IconService) {}
+
+	ngAfterViewInit() {
+		const root: HTMLElement = this.elementRef.nativeElement;
+		const iconPromise = this.iconService.getIcon(this.icon, this.sizeMap[this.size]);
+		iconPromise.then(icon => {
+			root.innerHTML = "";
+			icon.classList.add(this.buildMatterClass());
+			if (this.classList.toString() !== "") {
+				icon.classList.add(this.classList.toString());
+			}
+			root.appendChild(icon);
+		});
+	}
 
 	/**
 	 * Create a class name based on @Input() `color` and `size`.

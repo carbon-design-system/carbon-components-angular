@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
@@ -8,6 +8,9 @@ import "rxjs/add/operator/toPromise";
  */
 @Injectable()
 export class IconService {
+
+	static runningRequests = 0;
+	static spriteLoaded = new EventEmitter();
 	/**
 	 * map to use for sprite requests
 	 *
@@ -53,13 +56,38 @@ export class IconService {
 	 * @param {string} name name of the sprite to request
 	 */
 	doSpriteRequest(name: string) {
+		IconService.runningRequests++;
 		return this.http.get(`${IconService.baseURL}${name}.svg`)
 			.toPromise()
+			.then(res => {
+				IconService.runningRequests--;
+				IconService.spriteLoaded.emit();
+				return res;
+			})
 			.then(res => res.text(),
 				err => {
 					console.error(`failed to load sprite ${name}, check that the server is available and baseURL is correct`);
 					return "";
 				});
+	}
+
+	getIcon(name: string, size: number): Promise<HTMLElement> {
+		const resolver = resolve => {
+			const icon = document.querySelector(`symbol#${name}_${size}`);
+			if (icon) {
+				const clone = icon.firstElementChild.cloneNode(true);
+				return resolve(clone as HTMLElement);
+			}
+			return false;
+		};
+		const loadedIcon = new Promise<HTMLElement>((resolve, reject) => {
+			if (!resolver(resolve)) {
+				IconService.spriteLoaded.subscribe(() => {
+					resolver(resolve);
+				});
+			}
+		});
+		return loadedIcon;
 	}
 
 	/**
