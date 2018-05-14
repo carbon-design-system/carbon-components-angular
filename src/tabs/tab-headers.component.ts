@@ -94,78 +94,73 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @type {QueryList<Tab>}
 	 * @memberof TabHeaders
 	 */
+	// disable the next line because we need to rename the input
+	// tslint:disable-next-line
 	@Input("tabs") tabInput: QueryList<Tab>;
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 * @memberof TabHeaders
 	 */
 	@ViewChild("tabList") headerContainer;
-
+	/**
+	 * ContentChild of all the n-tabs
+	 */
 	@ContentChildren(Tab) tabQuery: QueryList<Tab>;
-
+	/**
+	 * set to tabQuery if tabInput is empty
+	 */
 	public tabs: QueryList<Tab>;
-
 	/**
 	 * Indicates whether or not the headings overflow.
-	 * @type {boolean}
 	 * @memberof TabHeaders
 	 */
 	public overflow = false;
 	/**
 	 * The index of the first visible tab.
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	public firstVisibleTab = 0;
 	/**
 	 * The distance that the list will scroll when an overflow button onClick has fired.
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	public scrollLength = 0; // replace with local var containing this.tabHeading.nativeElement.offsetWidth
 	/**
 	 * The DOM element containing the `Tab` headings displayed.
-	 * @type {Array<any>}
 	 * @memberof TabHeaders
 	 */
 	public allTabHeaders;
 	/**
 	 * Sets the right overflow arrow to disabled if value is 'true'.
 	 * Initially set to false.
-	 * @type {boolean}
 	 * @memberof TabHeaders
 	 */
 	public disabledRightArrow = false;
 	/**
 	 * Sets the left overflow arrow to disabled if value is 'true'.
 	 * Initially set to true.
-	 * @type {boolean}
 	 * @memberof TabHeaders
 	 */
 	public disabledLeftArrow = true;
 	/**
 	 * Controls the manual focusing done by tabbing through headings.
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	public currentSelectedTab: number;
 	/**
 	 * Represents whether user is currently touch-scrolling the headings.
-	 * @type {boolean}
 	 * @memberof TabHeaders
 	 */
 	public touchMove: boolean;
 	/**
 	 * Maintains the previous X position used to caculate how much to scroll
 	 * the headings.
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	public prevClientX: number;
 
 	/**
 	 * Variable that explicitly sets the amount in which the list of headings is scrolled.
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	public scrollLeft = 0;
@@ -180,14 +175,12 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	/**
 	 * Accounts for button width and tab padding for the left side.
 	 * @private
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	private leftPadding = 15; // button width less tab left padding
 	/**
 	 * Accounts for both overflow button widths.
 	 * @private
-	 * @type {number}
 	 * @memberof TabHeaders
 	 */
 	private rightPadding = 70; // both button widths less some padding
@@ -232,7 +225,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	/**
 	 * Handles any touch-scrolling where user scrolled past the bound
 	 * and updates the overflow buttons for touch-scrolling on event 'touchend'.
-	 * @param {any} event
+	 * @param event
 	 * @memberof TabHeaders
 	 */
 	@HostListener("touchend", ["$event"])
@@ -254,7 +247,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Scrolls the list of `Tab` headings on event 'touchmove'.
-	 * @param {any} event
+	 * @param event
 	 * @memberof TabHeaders
 	 */
 	@HostListener("touchmove", ["$event"])
@@ -354,10 +347,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Controls scrolling the headers right using the right overflow arrow.
-	 * @returns null
 	 * @memberof TabHeaders
 	 */
-	public goRight() {
+	public goRight(): null {
 		if (this.disabledRightArrow) {
 			return;
 		}
@@ -380,13 +372,12 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Selects `Tab` 'tab' and moves it into view on the view DOM if it is not already.
-	 * @param {HTMLElement} ref
-	 * @param {Tab} tab
-	 * @param {number} tabIndex
-	 * @returns null
+	 * @param ref
+	 * @param tab
+	 * @param tabIndex
 	 * @memberof TabHeaders
 	 */
-	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number) {
+	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number): null {
 		if (tab.disabled) {
 			return;
 		}
@@ -400,11 +391,10 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Ensures 'tab' is in view in the view DOM.
-	 * @param {HTMLElement} tab
-	 * @returns null
+	 * @param tab
 	 * @memberof TabHeaders
 	 */
-	public moveTabIntoView(tab: HTMLElement) {
+	public moveTabIntoView(tab: HTMLElement): void {
 		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
@@ -423,7 +413,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @returns index of the first visible tab
 	 * @memberof TabHeaders
 	 */
-	public findFirstVisibleTab() {
+	public findFirstVisibleTab(): number {
 		for (let i = 0; i < this.allTabHeaders.length; i++) {
 			// find the first tab that isn't behind the left edge
 			if (this.allTabHeaders[i].offsetParent.offsetLeft + this.scrollLeft > 0) {
