@@ -5,7 +5,9 @@ import {
 	HostListener,
 	ViewChild,
 	ViewChildren,
-	AfterViewInit
+	AfterViewInit,
+	ContentChildren,
+	AfterContentInit
 } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
@@ -39,35 +41,35 @@ import { Tab } from "./tab.component";
 				<n-static-icon *ngIf="disabledLeftArrow" icon="chevron_left_disabled" size="sm"></n-static-icon>
 			</button>
 			<div [ngClass]="{'tablist-overflow': overflow}">
-			<ul
-				#tabList
-				role="tablist"
-				[ngStyle]="{'left.px':scrollLeft}"
-				[class.touch-transition]="touchMove">
-				<li *ngFor="let tab of tabs; let i = index;"
-					class="tabs_item">
-					<a
-						#tabref
-						href="javascript:void(0)"
-						draggable="false"
-						role="tab"
-						(click)="selectTab(tabref, tab, i)"
-						(focus)="onTabFocus(tabref, i)"
-						[attr.aria-selected]="tab.active"
-						[attr.tabindex]="tab.active?0:-1"
-						[attr.aria-controls]="tab.id"
-						id="{{tab.id}}-header"
-						[ngClass]="{'active-tab': tab.active, 'disabled-tab': tab.disabled}">
-						<span *ngIf="!tab.headingIsTemplate">
-							{{tab.heading}}
-						</span>
-						<ng-template
-							*ngIf="tab.headingIsTemplate"
-							[ngTemplateOutlet]="tab.heading">
-						</ng-template>
-					</a>
-				</li>
-			</ul>
+				<ul
+					#tabList
+					role="tablist"
+					[ngStyle]="{'left.px':scrollLeft}"
+					[class.touch-transition]="touchMove">
+					<li *ngFor="let tab of tabs; let i = index;"
+						class="tabs_item">
+						<a
+							#tabref
+							href="javascript:void(0)"
+							draggable="false"
+							role="tab"
+							(click)="selectTab(tabref, tab, i)"
+							(focus)="onTabFocus(tabref, i)"
+							[attr.aria-selected]="tab.active"
+							[attr.tabindex]="tab.active?0:-1"
+							[attr.aria-controls]="tab.id"
+							id="{{tab.id}}-header"
+							[ngClass]="{'active-tab': tab.active, 'disabled-tab': tab.disabled}">
+							<span *ngIf="!tab.headingIsTemplate">
+								{{tab.heading}}
+							</span>
+							<ng-template
+								*ngIf="tab.headingIsTemplate"
+								[ngTemplateOutlet]="tab.heading">
+							</ng-template>
+						</a>
+					</li>
+				</ul>
 			</div>
 			<button
 				*ngIf="this.overflow"
@@ -80,22 +82,28 @@ import { Tab } from "./tab.component";
 				<n-static-icon *ngIf="!disabledRightArrow" icon="chevron_right" size="sm"></n-static-icon>
 				<n-static-icon *ngIf="disabledRightArrow" icon="chevron_right_disabled" size="sm"></n-static-icon>
 			</button>
+			<ng-content select=".tabs_add"></ng-content>
 		</div>
+		<ng-content></ng-content>
 	 `
 })
 
-export class TabHeaders implements AfterViewInit {
+export class TabHeaders implements AfterViewInit, AfterContentInit {
 	/**
 	 * List of `Tab` components.
 	 * @type {QueryList<Tab>}
 	 * @memberof TabHeaders
 	 */
-	@Input() tabs: QueryList<Tab>;
+	@Input("tabs") tabInput: QueryList<Tab>;
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 * @memberof TabHeaders
 	 */
 	@ViewChild("tabList") headerContainer;
+
+	@ContentChildren(Tab) tabQuery: QueryList<Tab>;
+
+	public tabs: QueryList<Tab>;
 
 	/**
 	 * Indicates whether or not the headings overflow.
@@ -163,6 +171,13 @@ export class TabHeaders implements AfterViewInit {
 	public scrollLeft = 0;
 
 	/**
+	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
+	 * Duplicate from `n-tabs` to support standalone headers
+	 * @memberof Tabs
+	 */
+	@Input() cacheActive = false;
+
+	/**
 	 * Accounts for button width and tab padding for the left side.
 	 * @private
 	 * @type {number}
@@ -205,7 +220,7 @@ export class TabHeaders implements AfterViewInit {
 	/**
 	 * Stores the X coordinate of the 'touchstart'
 	 * event in order to calculate touch-scrolling.
-	 * @param {any} event
+	 * @param event
 	 * @memberof TabHeaders
 	 */
 	@HostListener("touchstart", ["$event"])
@@ -251,12 +266,26 @@ export class TabHeaders implements AfterViewInit {
 		}
 	}
 
+	ngAfterContentInit() {
+		if (!this.tabInput) {
+			this.tabs = this.tabQuery;
+		} else {
+			this.tabs = this.tabInput;
+		}
+
+		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
+		this.tabs.changes.subscribe(changes => {
+			this.setFirstTab();
+		});
+		this.setFirstTab();
+	}
+
 	/**
 	 * Performs check to see if there is overflow and needs scrolling.
 	 * @memberof TabHeaders
 	 */
 	ngAfterViewInit() {
-		// this needs to be rethough, and it's not an issue in prod mode
+		// this needs to be rethought, and it's not an issue in prod mode
 		//  we just need this so that dev mode doesn't throw an error and
 		//  break our tests
 		setTimeout(() => {
@@ -419,6 +448,22 @@ export class TabHeaders implements AfterViewInit {
 			this.disabledRightArrow = true;
 		} else {
 			this.disabledRightArrow = false;
+		}
+	}
+
+	/**
+	 * Determines which `Tab` is initially selected.
+	 * @private
+	 * @memberof Tabs
+	 */
+	private setFirstTab(): void {
+		let firstTab = this.tabs.find(tab => tab.active);
+		if (!firstTab && this.tabs.first) {
+			firstTab = this.tabs.first;
+			firstTab.active = true;
+		}
+		if (firstTab) {
+			firstTab.doSelect();
 		}
 	}
 }

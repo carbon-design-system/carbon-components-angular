@@ -45,6 +45,22 @@ import { Component, OnInit } from "@angular/core";
 			</n-tab>
 		</n-tabs>
 
+		<h4>Tabs with an add button</h4>
+		<n-tabs>
+			<n-tab-headers>
+				<n-tab heading='Tab1' (select)="onSelect('tab1')">
+					Tab 1 content
+				</n-tab>
+				<n-tab heading='Tab2' (select)="onSelect('tab2')">
+					Tab 2 content
+				</n-tab>
+				<n-tab heading='Tab3'>
+					Tab 3 content
+				</n-tab>
+				<button class="tabs_add"></button>
+			</n-tab-headers>
+		</n-tabs>
+
 	<h3 class="p-demo-variation">Static tabs with bottom placement</h3>
 	<n-tabs position='bottom'>
 		<n-tab heading='Tab1'>

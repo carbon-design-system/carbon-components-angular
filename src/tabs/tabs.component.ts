@@ -1,4 +1,4 @@
-import { Component, Input, ContentChildren, QueryList, AfterContentInit } from "@angular/core";
+import { Component, Input, ContentChildren, QueryList, AfterContentInit, ContentChild, Query } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
@@ -31,20 +31,20 @@ import { TabHeaders } from "./tab-headers.component";
 @Component({
 	selector: "n-tabs",
 	template: `
-			<n-tab-headers *ngIf="position === 'top'" [tabs]="tabs"></n-tab-headers>
-			<div>
-				<ng-content></ng-content>
-			</div>
-			<n-tab-headers *ngIf="position === 'bottom'" [tabs]="tabs"></n-tab-headers>
+			<n-tab-headers
+				*ngIf="hasTabHeaders && position === 'top'"
+				[tabs]="tabs"
+				[cacheActive]="cacheActive">
+			</n-tab-headers>
+			<ng-content></ng-content>
+			<n-tab-headers
+				*ngIf="hasTabHeaders && position === 'bottom'"
+				[tabs]="tabs"
+				[cacheActive]="cacheActive">
+			</n-tab-headers>
 	 `
 })
 export class Tabs implements AfterContentInit {
-	/**
-	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
-	 * @type {QueryList<Tab>}
-	 * @memberof Tabs
-	 */
-	@ContentChildren(Tab) tabs: QueryList<Tab>;
 	/**
 	 * Takes either the string value 'top' or 'bottom' to place TabHeader
 	 * relative to the `TabPanel`s.
@@ -54,37 +54,43 @@ export class Tabs implements AfterContentInit {
 	@Input() position: "top" | "bottom" = "top";
 	/**
 	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
-	 * @type boolean
 	 * @memberof Tabs
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * After content is initialize update `Tab`s to cache (if turned on) and set the inital
+	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
+	 * @type {QueryList<Tab>}
+	 * @memberof Tabs
+	 */
+	@ContentChildren(Tab, { descendants: false }) tabs: QueryList<Tab>;
+	/**
+	 * Content child of the projected header component
+	 */
+	@ContentChild(TabHeaders) tabHeaders;
+
+	public hasTabHeaders = true;
+
+	/**
+	 * After content is initialized update `Tab`s to cache (if turned on) and set the inital
 	 * selected Tab item.
 	 * @memberof Tabs
 	 */
 	ngAfterContentInit() {
-		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
+		if (this.tabHeaders) {
+			this.tabHeaders.cacheActive = this.cacheActive;
+		}
+		if (this.tabs.length > 0) {
+			this.hasTabHeaders = true;
+		} else {
+			this.hasTabHeaders = false;
+		}
 
 		this.tabs.changes.subscribe(changes => {
-			this.setFirstTab();
+			if (this.tabs.length > 0) {
+				this.hasTabHeaders = true;
+			} else {
+				this.hasTabHeaders = false;
+			}
 		});
-		this.setFirstTab();
-	}
-
-	/**
-	 * Determines which `Tab` is initially selected.
-	 * @private
-	 * @memberof Tabs
-	 */
-	private setFirstTab(): void {
-		let firstTab = this.tabs.find(tab => tab.active);
-		if (!firstTab && this.tabs.first) {
-			firstTab = this.tabs.first;
-			firstTab.active = true;
-		}
-		if (firstTab) {
-			firstTab.doSelect();
-		}
 	}
 }
