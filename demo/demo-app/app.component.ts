@@ -17,7 +17,7 @@ const en = require("./../../src/i18n/en.json");
 			Project
 		</a>
 		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino/wiki/Style-guide">
-			<n-icon icon="expression_edit" color="white" size="sm"></n-icon>
+			<n-icon icon="form_opt_in" color="white" size="sm"></n-icon>
 			Code style guide
 		</a>
 		<a class="btn--icon-white" href="https://pages.github.ibm.com/peretz/neutrino/documentation/">
