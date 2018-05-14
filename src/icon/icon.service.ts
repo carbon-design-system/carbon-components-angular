@@ -12,7 +12,7 @@ export class IconService {
 	static spriteLoaded = new EventEmitter();
 	/**
 	 * Internal variable to track running requests.
-	 * Used to call spriteLoaded when new sprites are avliable
+	 * Used to call spriteLoaded when new sprites are available
 	 */
 	private static runningRequests = 0;
 	/**
