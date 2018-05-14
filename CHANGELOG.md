@@ -11,6 +11,7 @@
 - No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
 - Dropdown always opens downwards even if its placed at the end of page [\#718](https://github.ibm.com/peretz/neutrino/issues/718)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
+- Add Pie & Donut chart components [\#884](https://github.ibm.com/peretz/neutrino/pull/884) ([iliadm](https://github.ibm.com/iliadm))
 
 **Fixed bugs:**
 
@@ -90,6 +91,8 @@
 
 **Merged pull requests:**
 
+- Update code style guide icon [\#886](https://github.ibm.com/peretz/neutrino/pull/886) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update readme and add some contact information [\#885](https://github.ibm.com/peretz/neutrino/pull/885) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix documentation to allow build to complete [\#882](https://github.ibm.com/peretz/neutrino/pull/882) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Update table header, add single select [\#878](https://github.ibm.com/peretz/neutrino/pull/878) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Replace awesome-typescript-loader with ts-loader [\#877](https://github.ibm.com/peretz/neutrino/pull/877) ([callums](https://github.ibm.com/callums))

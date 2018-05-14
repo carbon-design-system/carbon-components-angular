@@ -74,29 +74,31 @@ const en = require("./../../src/i18n/en.json");
 	</div>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
-	<n-sprite sprite="activities"></n-sprite>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="animations"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
 	<n-sprite sprite="brands"></n-sprite>
-	<n-sprite sprite="browser_os_mobile"></n-sprite>
 	<n-sprite sprite="calculator"></n-sprite>
 	<n-sprite sprite="core_set"></n-sprite>
-	<n-sprite sprite="demographics"></n-sprite>
+	<n-sprite sprite="cursors"></n-sprite>
 	<n-sprite sprite="disabled"></n-sprite>
 	<n-sprite sprite="ecommerce"></n-sprite>
 	<n-sprite sprite="emoticons"></n-sprite>
 	<n-sprite sprite="formatting"></n-sprite>
 	<n-sprite sprite="gestures"></n-sprite>
-	<n-sprite sprite="ibm logo"></n-sprite>
+	<n-sprite sprite="ibm_logo"></n-sprite>
+	<n-sprite sprite="market_segments_activities"></n-sprite>
+	<n-sprite sprite="market_segments_browser_os_mobile"></n-sprite>
+	<n-sprite sprite="market_segments_demographics"></n-sprite>
+	<n-sprite sprite="market_segments_occasions_seasons"></n-sprite>
+	<n-sprite sprite="market_segments_occupations"></n-sprite>
+	<n-sprite sprite="market_segments_segments"></n-sprite>
+	<n-sprite sprite="market_segments_store_users"></n-sprite>
 	<n-sprite sprite="mobile_controls"></n-sprite>
 	<n-sprite sprite="playback_controls"></n-sprite>
-	<n-sprite sprite="occasions_seasons"></n-sprite>
-	<n-sprite sprite="occupations"></n-sprite>
-	<n-sprite sprite="segments"></n-sprite>
-	<n-sprite sprite="store_users"></n-sprite>
 	<n-sprite sprite="tables"></n-sprite>
 	<n-sprite sprite="top_nav_bar"></n-sprite>
+	<n-sprite sprite="watson_shell"></n-sprite>
 	<n-sprite sprite="window_controls"></n-sprite>
 	`,
 	styleUrls: ["./demo.scss"],
