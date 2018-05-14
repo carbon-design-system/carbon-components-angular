@@ -67,7 +67,9 @@ export class Tabs implements AfterContentInit {
 	 * Content child of the projected header component
 	 */
 	@ContentChild(TabHeaders) tabHeaders;
-
+	/**
+	 * true if the n-tab's are passed directly to the component as children
+	 */
 	public hasTabHeaders = true;
 
 	/**
