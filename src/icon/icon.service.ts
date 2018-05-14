@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
+import { IconSize } from "./icon.types";
 
 /**
  * Service that provides static methods for globally configuring icon requests,
@@ -8,9 +9,12 @@ import "rxjs/add/operator/toPromise";
  */
 @Injectable()
 export class IconService {
-
-	static runningRequests = 0;
 	static spriteLoaded = new EventEmitter();
+	/**
+	 * Internal variable to track running requests.
+	 * Used to call spriteLoaded when new sprites are avliable
+	 */
+	private static runningRequests = 0;
 	/**
 	 * map to use for sprite requests
 	 *
@@ -71,7 +75,15 @@ export class IconService {
 				});
 	}
 
-	getIcon(name: string, size: number): Promise<HTMLElement> {
+	/**
+	 * Returns a promise that will resolve to a clone of the requested icon
+	 *
+	 * @param name name of the icon
+	 * @param size size of the icon as an IconSize
+	 */
+	getIcon(name: string, size: IconSize): Promise<HTMLElement> {
+		// resolver either calls the provided Promise resolution function with the loaded icon
+		// or returns false to indicate the sprite with the required icon has yet to load
 		const resolver = resolve => {
 			const icon = document.querySelector(`symbol#${name}_${size}`);
 			if (icon) {
@@ -80,6 +92,7 @@ export class IconService {
 			}
 			return false;
 		};
+
 		const loadedIcon = new Promise<HTMLElement>((resolve, reject) => {
 			if (!resolver(resolve)) {
 				IconService.spriteLoaded.subscribe(() => {

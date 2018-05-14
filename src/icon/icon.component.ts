@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { IconService } from "./icon.service";
 import { Subscription } from "rxjs";
+import { SizeMap } from "./icon.types";
 
 /**
  * `n-icon` pulls the icon from the loaded sprite, and renders it at the specified size.
@@ -19,10 +20,7 @@ import { Subscription } from "rxjs";
  */
 @Component({
 	selector: "n-icon",
-	template: `
-		<!--<svg [attr.class]="buildMatterClass()+' '+classList">
-			<use [attr.xlink:href]="'#'+icon+'_'+sizeMap[size]"></use>
-		</svg>-->`,
+	template: "",
 	providers: [IconService]
 })
 export class Icon implements AfterViewInit {
@@ -34,7 +32,7 @@ export class Icon implements AfterViewInit {
 	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
 
 	/** map size strings to numeric values */
-	protected sizeMap = {
+	protected sizeMap: SizeMap = {
 		"xs": 14,
 		"sm": 16,
 		"md": 20,
@@ -43,9 +41,8 @@ export class Icon implements AfterViewInit {
 
 	/**
 	 * Pass down `classList` from host element.
-	 * @return {object}
 	 */
-	get classList() {
+	get classList(): object {
 		return this.elementRef.nativeElement.classList;
 	}
 
@@ -73,9 +70,8 @@ export class Icon implements AfterViewInit {
 
 	/**
 	 * Create a class name based on @Input() `color` and `size`.
-	 * @return {string}
 	 */
-	public buildMatterClass() {
+	public buildMatterClass(): string {
 		if (this.color === "dark" && this.size !== "md") {
 			return `icon--${this.size}`;
 		} else {
