@@ -25,8 +25,16 @@ const en = require("./../../src/i18n/en.json");
 			Documentation
 		</a>
 		<a class="btn--icon-white" href="http://billboard1.fyre.ibm.com/">
-		<n-icon icon="preview" color="white" size="sm"></n-icon>
+			<n-icon icon="preview" color="white" size="sm"></n-icon>
 			Billboard
+		</a>
+		<a class="btn--icon-white" href="https://peretz.slack.com/messages/C6DS43Y5N">
+			<n-icon icon="collaborate" color="white" size="sm"></n-icon>
+			Send feedback
+		</a>
+		<a class="btn--icon-white" href="https://peretz.slack.com/messages/C6DS43Y5N">
+			<n-icon icon="query" color="white" size="sm"></n-icon>
+			Ask a question
 		</a>
 	</header>
 	<main class="p-container">
