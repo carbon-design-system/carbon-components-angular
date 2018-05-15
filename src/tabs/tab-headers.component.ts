@@ -269,6 +269,10 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
 		this.tabs.changes.subscribe(changes => {
 			this.setFirstTab();
+			// if the tabs have updated, there's a good chance the scroll will need to update
+			setTimeout(() => { this.scrollCheck(); });
+			// also update the tab headers list
+			this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 		});
 		this.setFirstTab();
 	}
@@ -447,13 +451,15 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @memberof Tabs
 	 */
 	private setFirstTab(): void {
-		let firstTab = this.tabs.find(tab => tab.active);
-		if (!firstTab && this.tabs.first) {
-			firstTab = this.tabs.first;
-			firstTab.active = true;
-		}
-		if (firstTab) {
-			firstTab.doSelect();
-		}
+		setTimeout(() => {
+			let firstTab = this.tabs.find(tab => tab.active);
+			if (!firstTab && this.tabs.first) {
+				firstTab = this.tabs.first;
+				firstTab.active = true;
+			}
+			if (firstTab) {
+				firstTab.doSelect();
+			}
+		});
 	}
 }

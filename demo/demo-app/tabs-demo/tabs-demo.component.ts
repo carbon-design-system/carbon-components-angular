@@ -48,16 +48,10 @@ import { Component, OnInit } from "@angular/core";
 		<h4>Tabs with an add button</h4>
 		<n-tabs>
 			<n-tab-headers>
-				<n-tab heading='Tab1' (select)="onSelect('tab1')">
-					Tab 1 content
+				<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
+					{{ tab.content }}
 				</n-tab>
-				<n-tab heading='Tab2' (select)="onSelect('tab2')">
-					Tab 2 content
-				</n-tab>
-				<n-tab heading='Tab3'>
-					Tab 3 content
-				</n-tab>
-				<button class="tabs_add"></button>
+				<button class="tabs_add" (click)="addTab()"></button>
 			</n-tab-headers>
 		</n-tabs>
 
@@ -174,6 +168,12 @@ export class TabsDemo implements OnInit {
 	];
 	public sampleTabs2 = [];
 
+	public addableTabs = [
+		{ heading: "Tab 1", content: "Tab 1 content" },
+		{ heading: "Tab 2", content: "Tab 2 content" },
+		{ heading: "Tab 3", content: "Tab 3 content" }
+	];
+
 	ngOnInit() {
 		setTimeout(() => {
 			this.sampleTabs2 = [
@@ -190,5 +190,12 @@ export class TabsDemo implements OnInit {
 
 	onSelect(name: String) {
 		console.log(`selected: ${name}`);
+	}
+
+	addTab() {
+		this.addableTabs.push({
+			heading: `Tab ${this.addableTabs.length + 1}`,
+			content: `Tab ${this.addableTabs.length + 1} content`
+		});
 	}
 }
