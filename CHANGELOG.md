@@ -91,6 +91,7 @@
 
 **Merged pull requests:**
 
+- Small icon refactor [\#887](https://github.ibm.com/peretz/neutrino/pull/887) ([callums](https://github.ibm.com/callums))
 - Update code style guide icon [\#886](https://github.ibm.com/peretz/neutrino/pull/886) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update readme and add some contact information [\#885](https://github.ibm.com/peretz/neutrino/pull/885) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix documentation to allow build to complete [\#882](https://github.ibm.com/peretz/neutrino/pull/882) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
