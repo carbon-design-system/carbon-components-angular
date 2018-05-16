@@ -1,11 +1,11 @@
 import { Component, Input, ViewChild, HostListener } from "@angular/core";
-import { 
+import {
 	getFocusElementList,
-	focusFirstFocusableElement, 
-	focusLastFocusableElement, 
-	isFocusInFirstItem, 
-	isFocusInLastItem, 
-	isElementFocused 
+	focusFirstFocusableElement,
+	focusLastFocusableElement,
+	isFocusInFirstItem,
+	isFocusInLastItem,
+	isElementFocused
 } from "./../common/tab.service";
 
 

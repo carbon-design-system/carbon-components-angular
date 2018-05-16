@@ -1,18 +1,18 @@
-import { 
-	AfterContentInit, 
-	Component, 
-	Input, 
-	ViewChild, 
-	HostListener, 
+import {
+	AfterContentInit,
+	Component,
+	Input,
+	ViewChild,
+	HostListener,
 } from "@angular/core";
 
-import { 
+import {
 	getFocusElementList,
-	focusFirstFocusableElement, 
-	focusLastFocusableElement, 
-	isFocusInFirstItem, 
-	isFocusInLastItem, 
-	isElementFocused 
+	focusFirstFocusableElement,
+	focusLastFocusableElement,
+	isFocusInFirstItem,
+	isFocusInLastItem,
+	isElementFocused
 } from "./../common/tab.service";
 
 /**
@@ -78,7 +78,7 @@ export class SideNavGroup implements AfterContentInit {
 	 * @memberof SideNavGroup
 	 */
 	@ViewChild("dd") dd;
-	/** 
+	/**
 	 * A complete list of all the items in the `SideNavGroup` in the form of an array.
 	 * @public
 	 * @type {array}
@@ -86,7 +86,7 @@ export class SideNavGroup implements AfterContentInit {
 	 */
 	private items = [];
 	private index = -1;
-	/** 
+	/**
 	 * A complete list of all the headers in the `SideNavGroup` in the form of an array.
 	 * @public
 	 * @type {array}
@@ -121,17 +121,16 @@ export class SideNavGroup implements AfterContentInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		
+
 		if (event.key === "ArrowDown") {
 			event.preventDefault();
 
 			this.items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 
-			if (!isFocusInLastItem(event, this.items)){
+			if (!isFocusInLastItem(event, this.items))  {
 				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index+1].focus();
-			}
-			else{
+				this.items[this.index + 1].focus();
+			} else {
 				this.items[0].focus();
 				this.index = 0;
 			}
@@ -140,26 +139,22 @@ export class SideNavGroup implements AfterContentInit {
 		if (event.shiftKey && event.key === "PageDown") {
 			event.preventDefault();
 
-			if ((event.target as HTMLElement).tagName === "A"){
+			if ((event.target as HTMLElement).tagName === "A") {
 				let rootIndex = this.headers.findIndex(item => item === this.dt.nativeElement.firstElementChild);
-				if(this.headers[rootIndex+1] === undefined || this.headers[rootIndex+1] === null){
+				if (this.headers[rootIndex + 1] === undefined || this.headers[rootIndex + 1] === null) {
 					this.headers[0].focus();
+				} else {
+					this.headers[rootIndex + 1].focus();
 				}
-				else{
-					this.headers[rootIndex+1].focus();
-					this.index+1;
-				}
-			}
-			else{
-				if (!isFocusInLastItem(event, this.headers)){
+			} else {
+				if (!isFocusInLastItem(event, this.headers)) {
 					this.index = this.headers.findIndex(item => item === event.target);
-					this.headers[this.index+1].focus();
-				}
-				else{
+					this.headers[this.index + 1].focus();
+				} else {
 					this.headers[0].focus();
 					this.index = 0;
 				}
-			}	
+			}
 		}
 
 		if (event.key === "ArrowUp") {
@@ -168,9 +163,8 @@ export class SideNavGroup implements AfterContentInit {
 
 			if (!isFocusInFirstItem(event, this.items)) {
 				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index-1].focus();
-			}
-			else{
+				this.items[this.index - 1].focus();
+			} else {
 				this.items[this.items.length - 1].focus();
 				this.index = this.items.length - 1;
 			}
@@ -179,15 +173,13 @@ export class SideNavGroup implements AfterContentInit {
 		if (event.shiftKey && event.key === "PageUp") {
 			event.preventDefault();
 
-			if ((event.target as HTMLElement).tagName === "A"){
+			if ((event.target as HTMLElement).tagName === "A") {
 				(this.dt.nativeElement.firstElementChild).focus();
-			}
-			else{
+			} else {
 				if (!isFocusInFirstItem(event, this.headers)) {
 					this.index = this.headers.findIndex(item => item === event.target);
-					this.headers[this.index-1].focus();
-				}
-				else{
+					this.headers[this.index - 1].focus();
+				} else {
 					this.headers[this.headers.length - 1].focus();
 					this.index = this.headers.length - 1;
 				}

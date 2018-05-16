@@ -1,11 +1,11 @@
 import { Component, Input, ViewChild, AfterViewInit, ElementRef, HostListener } from "@angular/core";
-import { 
+import {
 	getFocusElementList,
-	focusFirstFocusableElement, 
-	focusLastFocusableElement, 
-	isFocusInFirstItem, 
-	isFocusInLastItem, 
-	isElementFocused 
+	focusFirstFocusableElement,
+	focusLastFocusableElement,
+	isFocusInFirstItem,
+	isFocusInLastItem,
+	isElementFocused
 } from "./../common/tab.service";
 
 
@@ -30,16 +30,16 @@ import {
 })
 export class SideNavSubpanel implements AfterViewInit {
 	/**
-	 * The region containing the list subitems for the `SideNavSubpanel`.
-	 * @memberof SideNavSubpanel
-	 */
-	@ViewChild("item") item;
-	/**
 	 * To uniquely id 'SideNavSubpanel' components contained in the `SideNavGroup` parent component.
 	 * @static
 	 * @memberof SideNavSubpanel
 	 */
 	static sideNavSubpanelCount = 0;
+	/**
+	 * The region containing the list subitems for the `SideNavSubpanel`.
+	 * @memberof SideNavSubpanel
+	 */
+	@ViewChild("item") item;
 	/**
 	 * Unique generated id for `SideNavSubpanel` catagory heading button.
 	 * @memberof SideNavSubpanel
@@ -82,29 +82,26 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		
+
 		if (event.key === "ArrowDown") {
 			event.preventDefault();
 			event.stopPropagation();
 
 			this.items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 
-			if (!isFocusInLastItem(event, this.items)){
+			if (!isFocusInLastItem(event, this.items)) {
 				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index+1].focus();
-			}
-			else{
+				this.items[this.index + 1].focus();
+			} else {
 				this.items[0].focus();
 				this.index = 0;
 			}
-			
 		}
 
 		if (event.shiftKey && event.key === "PageDown") {
 			event.preventDefault();
 			event.stopPropagation();
 		}
-		
 		if (event.key === "ArrowUp") {
 			event.preventDefault();
 			event.stopImmediatePropagation();
@@ -113,9 +110,8 @@ export class SideNavSubpanel implements AfterViewInit {
 
 			if (!isFocusInFirstItem(event, this.items)) {
 				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index-1].focus();
-			}
-			else{
+				this.items[this.index - 1].focus();
+			} else {
 				this.items[this.items.length - 1].focus();
 				this.index = this.items.length - 1;
 			}
@@ -137,5 +133,5 @@ export class SideNavSubpanel implements AfterViewInit {
 
 			focusLastFocusableElement(this.items);
 		}
-	}	
+	}
 }

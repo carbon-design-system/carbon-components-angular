@@ -9,13 +9,13 @@ import {
 	HostListener
 } from "@angular/core";
 
-import { 
+import {
 	getFocusElementList,
-	focusFirstFocusableElement, 
-	focusLastFocusableElement, 
-	isFocusInFirstItem, 
-	isFocusInLastItem, 
-	isElementFocused 
+	focusFirstFocusableElement,
+	focusLastFocusableElement,
+	isFocusInFirstItem,
+	isFocusInLastItem,
+	isElementFocused
 } from "./../common/tab.service";
 
 /**
@@ -149,16 +149,16 @@ export class SideNavItem implements AfterViewInit {
 			this.onClick();
 			let pane = this.getPaneTemplateElement();
 
-			if(event.target === pane.querySelector(".subpanel_heading") as HTMLElement){
+			if (event.target === pane.querySelector(".subpanel_heading") as HTMLElement) {
 				this.expanded = false;
 			}
-		}		
-		if (event.key === "ArrowLeft"){
+		}
+		if (event.key === "ArrowLeft") {
 			event.preventDefault();
 
 			let pane = this.getPaneTemplateElement();
 
-			if(event.target === pane.querySelector(".subpanel_heading") as HTMLElement){
+			if (event.target === pane.querySelector(".subpanel_heading") as HTMLElement) {
 				this.expanded = false;
 			}
 		}
@@ -184,8 +184,9 @@ export class SideNavItem implements AfterViewInit {
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
 		} else {
-			if (!this.expanded)
+			if (!this.expanded) {
 				this.showPane();
+			}
 		}
 		this.select.emit();
 	}
