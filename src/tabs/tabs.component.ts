@@ -1,4 +1,12 @@
-import { Component, Input, ContentChildren, QueryList, AfterContentInit, ContentChild, Query } from "@angular/core";
+import {
+	Component,
+	Input,
+	ContentChildren,
+	QueryList,
+	AfterContentInit,
+	ContentChild,
+	Query
+} from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
@@ -32,13 +40,13 @@ import { TabHeaders } from "./tab-headers.component";
 	selector: "n-tabs",
 	template: `
 			<n-tab-headers
-				*ngIf="hasTabHeaders && position === 'top'"
+				*ngIf="hasTabHeaders() && position === 'top'"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
 			</n-tab-headers>
 			<ng-content></ng-content>
 			<n-tab-headers
-				*ngIf="hasTabHeaders && position === 'bottom'"
+				*ngIf="hasTabHeaders() && position === 'bottom'"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
 			</n-tab-headers>
@@ -70,7 +78,7 @@ export class Tabs implements AfterContentInit {
 	/**
 	 * true if the n-tab's are passed directly to the component as children
 	 */
-	public hasTabHeaders = true;
+	// public hasTabHeaders = true;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the inital
@@ -81,18 +89,9 @@ export class Tabs implements AfterContentInit {
 		if (this.tabHeaders) {
 			this.tabHeaders.cacheActive = this.cacheActive;
 		}
-		if (this.tabs.length > 0) {
-			this.hasTabHeaders = true;
-		} else {
-			this.hasTabHeaders = false;
-		}
+	}
 
-		this.tabs.changes.subscribe(changes => {
-			if (this.tabs.length > 0) {
-				this.hasTabHeaders = true;
-			} else {
-				this.hasTabHeaders = false;
-			}
-		});
+	hasTabHeaders() {
+		return this.tabs.length > 0;
 	}
 }

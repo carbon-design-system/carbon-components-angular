@@ -355,7 +355,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	public goRight(): null {
 		if (this.disabledRightArrow) {
-			return;
+			return null;
 		}
 
 		if (this.disabledLeftArrow) {
@@ -383,7 +383,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number): null {
 		if (tab.disabled) {
-			return;
+			return null;
 		}
 
 		this.currentSelectedTab = tabIndex;
@@ -398,8 +398,8 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @param tab
 	 * @memberof TabHeaders
 	 */
-	public moveTabIntoView(tab: HTMLElement): void {
-		if (!this.overflow) { return; }
+	public moveTabIntoView(tab: HTMLElement): null {
+		if (!this.overflow) { return null; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		let tabLi = tab.offsetParent as HTMLElement;
@@ -450,7 +450,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @private
 	 * @memberof Tabs
 	 */
-	private setFirstTab(): void {
+	private setFirstTab() {
 		setTimeout(() => {
 			let firstTab = this.tabs.find(tab => tab.active);
 			if (!firstTab && this.tabs.first) {
