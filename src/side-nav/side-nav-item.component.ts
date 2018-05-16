@@ -9,6 +9,14 @@ import {
 	HostListener
 } from "@angular/core";
 
+import { 
+	getFocusElementList,
+	focusFirstFocusableElement, 
+	focusLastFocusableElement, 
+	isFocusInFirstItem, 
+	isFocusInLastItem, 
+	isElementFocused 
+} from "./../common/tab.service";
 
 /**
  * `SideNavItem` expects either a icon with the class `.side-nav-glyph` and
@@ -129,15 +137,29 @@ export class SideNavItem implements AfterViewInit {
 	}
 
 	/**
-	 * Keyboard listening event to select the menu item with the `Enter` key.
+	 * Keyboard listening event to open and close the menu.
 	 * @param {KeyboardEvent} event
 	 * @memberof SideNavItem
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		switch (event.key) {
-			case "Enter": {
-				this.onClick();
+		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
+			event.preventDefault();
+
+			this.onClick();
+			let pane = this.getPaneTemplateElement();
+
+			if(event.target === pane.querySelector(".subpanel_heading") as HTMLElement){
+				this.expanded = false;
+			}
+		}		
+		if (event.key === "ArrowLeft"){
+			event.preventDefault();
+
+			let pane = this.getPaneTemplateElement();
+
+			if(event.target === pane.querySelector(".subpanel_heading") as HTMLElement){
+				this.expanded = false;
 			}
 		}
 	}
@@ -162,7 +184,8 @@ export class SideNavItem implements AfterViewInit {
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
 		} else {
-			this.showPane();
+			if (!this.expanded)
+				this.showPane();
 		}
 		this.select.emit();
 	}

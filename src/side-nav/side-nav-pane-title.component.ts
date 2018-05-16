@@ -1,4 +1,12 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild, HostListener } from "@angular/core";
+import { 
+	getFocusElementList,
+	focusFirstFocusableElement, 
+	focusLastFocusableElement, 
+	isFocusInFirstItem, 
+	isFocusInLastItem, 
+	isElementFocused 
+} from "./../common/tab.service";
 
 
 /**
@@ -26,6 +34,19 @@ export class SideNavPaneTitle {
 	 * @memberof SideNavPaneTitle
 	 */
 	@ViewChild("item") item;
+
+	/**
+	 * Keyboard listening event to close the menu.
+	 * @param {KeyboardEvent} event
+	 * @memberof SideNavPaneTitle
+	 */
+	@HostListener("keydown", ["$event"])
+	handleKeyboardEvent(event: KeyboardEvent) {
+		if (event.key === "Enter" || event.keyCode === 32 || event.key === "ArrowLeft") {
+			event.preventDefault();
+			this.hidePane();
+		}
+	}
 
 	/**
 	 * Closes the pane of subitems to go up a level to the parent catagories.

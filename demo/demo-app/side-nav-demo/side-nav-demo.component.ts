@@ -22,9 +22,9 @@ import { Component, ViewEncapsulation } from "@angular/core";
 						hamburger>
 					</n-hamburger>
 			</n-top-nav>
-
+		
 			<n-side-nav [open]="sideNavOpen">
-				<n-side-nav-group routerLink="/table" tabindex="-1">
+			<n-side-nav-group routerLink="/table" tabindex="-1">
 					<div class="accordion_icon">
 						<n-icon
 							icon="lightbulb"
