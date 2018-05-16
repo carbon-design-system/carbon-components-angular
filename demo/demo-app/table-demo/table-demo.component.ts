@@ -56,6 +56,8 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<h3 class="p-demo-variation">Normal table</h3>
 	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
 
+	<h3 class="p-demo-variation">Normal table with single select and no actions on headers</h3>
+	<n-table [model]="simpleModel4" [showSelectionColumn]="false" [enableSingleSelect]="true"></n-table>
 
 	<h3 class="p-demo-variation">Large table</h3>
 	<n-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></n-table>
@@ -70,7 +72,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<button class="btn--primary" (click)="customModel.addColumn()">Add column</button>
 	<button class="btn--primary" (click)="striped = !striped">Toggle striped</button><br>
 
-	<button class="btn--primary" (click)="table.enableRowSelect = !table.enableRowSelect">Toggle select</button>
+	<button class="btn--primary" (click)="table.showSelectionColumn = !table.showSelectionColumn">Toggle select</button>
 	<button class="btn--primary" *ngFor="let column of customModel.header" (click)="column.visible = !column.visible">
 		Toggle {{column.data}}
 	</button><br>
@@ -146,6 +148,7 @@ export class TableDemo implements OnInit {
 	public simpleModel1 = new TableModel();
 	public simpleModel2 = new TableModel();
 	public simpleModel3 = new TableModel();
+	public simpleModel4 = new TableModel();
 	public customModel = new TableModel();
 	public contextModel = new TableModel();
 	public model = new TableModel();
@@ -191,6 +194,17 @@ export class TableDemo implements OnInit {
 			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
 		];
 		this.simpleModel2.header = [
+			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+		];
+
+		// simple model
+		this.simpleModel4.data = [
+			[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
+			[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
+			[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
+		];
+		this.simpleModel4.header = [
 			new TableHeaderItem({data: "hsdf"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
 		];
 
@@ -252,6 +266,10 @@ export class TableDemo implements OnInit {
 		this.model.pageLength = 4;
 		this.model.totalDataLength = 20;
 		this.selectPage(1);
+	}
+
+	simpleSort(index: number) {
+		this.sort(this.contextModel, index);
 	}
 
 	simpleSort1(index: number) {

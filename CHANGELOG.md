@@ -11,6 +11,7 @@
 - No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
 - Dropdown always opens downwards even if its placed at the end of page [\#718](https://github.ibm.com/peretz/neutrino/issues/718)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
+- Add Pie & Donut chart components [\#884](https://github.ibm.com/peretz/neutrino/pull/884) ([iliadm](https://github.ibm.com/iliadm))
 
 **Fixed bugs:**
 
@@ -43,6 +44,7 @@
 - Select all table checkbox not updated after rowSelected programatically changed [\#851](https://github.ibm.com/peretz/neutrino/issues/851)
 - Searchable tree view breaks after nesting down past 5 levels [\#846](https://github.ibm.com/peretz/neutrino/issues/846)
 - Condition builder - hint text space under text field [\#845](https://github.ibm.com/peretz/neutrino/issues/845)
+- Pull out pills and pill-input into a top-level component [\#843](https://github.ibm.com/peretz/neutrino/issues/843)
 - condition builder - move up and down actions in menu are duplicating conditions [\#841](https://github.ibm.com/peretz/neutrino/issues/841)
 - condition builder - removing one condition doesn't remove bracket [\#840](https://github.ibm.com/peretz/neutrino/issues/840)
 - condition builder - adds in wrong connector after bracket [\#839](https://github.ibm.com/peretz/neutrino/issues/839)
@@ -53,6 +55,7 @@
 - Progress indication spec [\#833](https://github.ibm.com/peretz/neutrino/issues/833)
 - Calendar spec [\#832](https://github.ibm.com/peretz/neutrino/issues/832)
 - Exiting modal update [\#827](https://github.ibm.com/peretz/neutrino/issues/827)
+- Create Condition Builder [\#822](https://github.ibm.com/peretz/neutrino/issues/822)
 - nTable  : selectAllCheckbox  do not change state on data update [\#820](https://github.ibm.com/peretz/neutrino/issues/820)
 - Banner close button submits reactive form [\#816](https://github.ibm.com/peretz/neutrino/issues/816)
 - form field validation icons not correct [\#814](https://github.ibm.com/peretz/neutrino/issues/814)
@@ -61,6 +64,7 @@
 - add scrolling to dropdown submenu [\#807](https://github.ibm.com/peretz/neutrino/issues/807)
 - add scrolling to dropdown tree [\#806](https://github.ibm.com/peretz/neutrino/issues/806)
 - pop over should support custom class when append to body is true [\#805](https://github.ibm.com/peretz/neutrino/issues/805)
+- Remove hover on table [\#804](https://github.ibm.com/peretz/neutrino/issues/804)
 - Tree View , do not support \*only\* Node Selection, use case nested folder selection [\#803](https://github.ibm.com/peretz/neutrino/issues/803)
 - Drop down option is display as empty when same option is selected twice [\#784](https://github.ibm.com/peretz/neutrino/issues/784)
 - Three expandable dots icon "..." not displayed as expected in Firefox [\#783](https://github.ibm.com/peretz/neutrino/issues/783)
@@ -79,6 +83,7 @@
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
 - Improve customized code style guide \(stretch\) [\#662](https://github.ibm.com/peretz/neutrino/issues/662)
+- Create a Calendar component [\#661](https://github.ibm.com/peretz/neutrino/issues/661)
 - Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
 - Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
 - Breadcrumbs [\#346](https://github.ibm.com/peretz/neutrino/issues/346)
@@ -86,6 +91,11 @@
 
 **Merged pull requests:**
 
+- Update code style guide icon [\#886](https://github.ibm.com/peretz/neutrino/pull/886) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update readme and add some contact information [\#885](https://github.ibm.com/peretz/neutrino/pull/885) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix documentation to allow build to complete [\#882](https://github.ibm.com/peretz/neutrino/pull/882) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Update table header, add single select [\#878](https://github.ibm.com/peretz/neutrino/pull/878) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
+- Replace awesome-typescript-loader with ts-loader [\#877](https://github.ibm.com/peretz/neutrino/pull/877) ([callums](https://github.ibm.com/callums))
 - Fix build [\#876](https://github.ibm.com/peretz/neutrino/pull/876) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix build [\#874](https://github.ibm.com/peretz/neutrino/pull/874) ([callums](https://github.ibm.com/callums))
 - Add condition builder and pill input and refactor combobox accordingly [\#873](https://github.ibm.com/peretz/neutrino/pull/873) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

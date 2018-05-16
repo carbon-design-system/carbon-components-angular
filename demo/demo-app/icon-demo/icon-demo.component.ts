@@ -38,7 +38,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 		<n-icon class="test-custom-class" icon="alert" color="white" size="lg"></n-icon>
 	</div>
 
-	<div style="display: flex;">
+	<!--<div style="display: flex;">
 		<label class="search_group" style="width: calc(70% - 20px); margin-right: 20px;">
 			<svg class="search_icon" aria-hidden="true">
 				<use href="#search_16"></use>
@@ -98,7 +98,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 				</span>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	`,
 	styles: [`
 		.hide {
@@ -201,35 +201,35 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 	`],
 	encapsulation: ViewEncapsulation.None
 })
-export class IconDemo implements AfterViewInit {
+export class IconDemo /* implements AfterViewInit */ {
 	iconMeta;
 	sets = [];
 	selected = [];
 	waitingForLoad = true;
 
-	async ngAfterViewInit() {
-		this.iconMeta = await fetch("https://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
-		// gather and nest the available icons sizes into set.icons[].sizes[]
-		this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
-		this.iconMeta.sort((a, b) => {
-			if (b.sprite.includes("core")) { return 1; }
-			return a.sprite.localeCompare(b.sprite);
-		});
-		let newSets = [];
-		for (let set of this.iconMeta) {
-			newSets.push({
-				content: this.formatName(set.sprite),
-				sprite: set.sprite,
-				selected: false
-			});
-			set.visible = true;
-			set.icons.forEach(icon => {
-				icon.visible = true;
-			});
-		}
-		this.sets = newSets;
-		this.waitingForLoad = false;
-	}
+	// async ngAfterViewInit() {
+	// 	this.iconMeta = await fetch("https://peretz-icons.mybluemix.net/meta.json").then(res => res.json());
+	// 	// gather and nest the available icons sizes into set.icons[].sizes[]
+	// 	this.iconMeta.forEach(set => set.icons = set.icons.filter(icon => icon.size === 30));
+	// 	this.iconMeta.sort((a, b) => {
+	// 		if (b.sprite.includes("core")) { return 1; }
+	// 		return a.sprite.localeCompare(b.sprite);
+	// 	});
+	// 	let newSets = [];
+	// 	for (let set of this.iconMeta) {
+	// 		newSets.push({
+	// 			content: this.formatName(set.sprite),
+	// 			sprite: set.sprite,
+	// 			selected: false
+	// 		});
+	// 		set.visible = true;
+	// 		set.icons.forEach(icon => {
+	// 			icon.visible = true;
+	// 		});
+	// 	}
+	// 	this.sets = newSets;
+	// 	this.waitingForLoad = false;
+	// }
 
 	formatName(name) {
 		return name.slice(0, 1).toUpperCase() + name.slice(1).replace("_", " ");
