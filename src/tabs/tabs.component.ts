@@ -75,10 +75,6 @@ export class Tabs implements AfterContentInit {
 	 * Content child of the projected header component
 	 */
 	@ContentChild(TabHeaders) tabHeaders;
-	/**
-	 * true if the n-tab's are passed directly to the component as children
-	 */
-	// public hasTabHeaders = true;
 
 	/**
 	 * After content is initialized update `Tab`s to cache (if turned on) and set the inital
@@ -91,6 +87,9 @@ export class Tabs implements AfterContentInit {
 		}
 	}
 
+	/**
+	 * true if the n-tab's are passed directly to the component as children
+	 */
 	hasTabHeaders() {
 		return this.tabs.length > 0;
 	}
