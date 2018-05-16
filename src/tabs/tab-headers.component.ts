@@ -353,9 +353,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * Controls scrolling the headers right using the right overflow arrow.
 	 * @memberof TabHeaders
 	 */
-	public goRight(): null {
+	public goRight() {
 		if (this.disabledRightArrow) {
-			return null;
+			return;
 		}
 
 		if (this.disabledLeftArrow) {
@@ -381,9 +381,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @param tabIndex
 	 * @memberof TabHeaders
 	 */
-	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number): null {
+	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number) {
 		if (tab.disabled) {
-			return null;
+			return;
 		}
 
 		this.currentSelectedTab = tabIndex;
@@ -398,8 +398,8 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @param tab
 	 * @memberof TabHeaders
 	 */
-	public moveTabIntoView(tab: HTMLElement): null {
-		if (!this.overflow) { return null; }
+	public moveTabIntoView(tab: HTMLElement) {
+		if (!this.overflow) { return; }
 		// if the target is behind the right edge move it into view
 		let headerContainer = this.headerContainer.nativeElement.parentElement;
 		let tabLi = tab.offsetParent as HTMLElement;
