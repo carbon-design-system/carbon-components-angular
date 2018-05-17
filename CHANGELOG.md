@@ -91,6 +91,7 @@
 
 **Merged pull requests:**
 
+- Allow tab headers to be passed in seperatly, support tabs\_add [\#888](https://github.ibm.com/peretz/neutrino/pull/888) ([callums](https://github.ibm.com/callums))
 - Small icon refactor [\#887](https://github.ibm.com/peretz/neutrino/pull/887) ([callums](https://github.ibm.com/callums))
 - Update code style guide icon [\#886](https://github.ibm.com/peretz/neutrino/pull/886) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update readme and add some contact information [\#885](https://github.ibm.com/peretz/neutrino/pull/885) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
