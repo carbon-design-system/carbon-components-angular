@@ -51,14 +51,6 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	subsectionId = "side-nav-subpanel-section-" + SideNavSubpanel.sideNavSubpanelCount;
 
-	/**
-	 * Maintains the index for the selected item within the `DropdownList`.
-	 * @protected
-	 * @type {number}
-	 * @memberof SideNavSubpanel
-	 */
-	protected index = -1;
-
 	constructor(private _elementRef: ElementRef) {
 		SideNavSubpanel.sideNavSubpanelCount++;
 	}
@@ -81,19 +73,19 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
+		let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
+		let index = -1;
 
 		if (event.key === "ArrowDown") {
 			event.preventDefault();
 			event.stopPropagation();
 
-			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
-
 			if (!isFocusInLastItem(event, items)) {
-				this.index = items.findIndex(item => item === event.target);
-				items[this.index + 1].focus();
+				index = items.findIndex(item => item === event.target);
+				items[index + 1].focus();
 			} else {
 				items[0].focus();
-				this.index = 0;
+				index = 0;
 			}
 		}
 
@@ -105,14 +97,12 @@ export class SideNavSubpanel implements AfterViewInit {
 			event.preventDefault();
 			event.stopPropagation();
 
-			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
-
 			if (!isFocusInFirstItem(event, items)) {
-				this.index = items.findIndex(item => item === event.target);
-				items[this.index - 1].focus();
+				index = items.findIndex(item => item === event.target);
+				items[index - 1].focus();
 			} else {
 				items[items.length - 1].focus();
-				this.index = items.length - 1;
+				index = items.length - 1;
 			}
 		}
 
@@ -125,14 +115,12 @@ export class SideNavSubpanel implements AfterViewInit {
 			event.preventDefault();
 			event.stopPropagation();
 
-			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 			focusFirstFocusableElement(items);
 		}
 		if (event.key === "End") {
 			event.preventDefault();
 			event.stopPropagation();
 
-			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 			focusLastFocusableElement(items);
 		}
 	}

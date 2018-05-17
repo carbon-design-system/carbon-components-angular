@@ -85,14 +85,7 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 	 * @type {array}
 	 * @memberof SideNavGroup
 	 */
-	public headers = [];
-	/**
-	 * Maintains the index for the selected item within the `SideNavGroup`.
-	 * @public
-	 * @type {number}
-	 * @memberof SideNavGroup
-	 */
-	protected index = -1;
+	private headers = [];
 
 	/**
 	 * Creates an instance of `SideNavGroup`.
@@ -123,18 +116,19 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
+		let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
+		let index = -1;
 
 		if (event.key === "ArrowDown") {
 			event.preventDefault();
 
-			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 
 			if (!isFocusInLastItem(event, items))  {
-				this.index = items.findIndex(item => item === event.target);
-				items[this.index + 1].focus();
+				index = items.findIndex(item => item === event.target);
+				items[index + 1].focus();
 			} else {
 				items[0].focus();
-				this.index = 0;
+				index = 0;
 			}
 		}
 
@@ -150,11 +144,11 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 				}
 			} else {
 				if (!isFocusInLastItem(event, this.headers)) {
-					this.index = this.headers.findIndex(item => item === event.target);
-					this.headers[this.index + 1].focus();
+					index = this.headers.findIndex(item => item === event.target);
+					this.headers[index + 1].focus();
 				} else {
 					this.headers[0].focus();
-					this.index = 0;
+					index = 0;
 				}
 			}
 		}
@@ -162,14 +156,12 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 		if (event.key === "ArrowUp") {
 			event.preventDefault();
 
-			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
-
 			if (!isFocusInFirstItem(event, items)) {
-				this.index = items.findIndex(item => item === event.target);
-				items[this.index - 1].focus();
+				index = items.findIndex(item => item === event.target);
+				items[index - 1].focus();
 			} else {
 				items[items.length - 1].focus();
-				this.index = items.length - 1;
+				index = items.length - 1;
 			}
 		}
 
@@ -180,11 +172,11 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 				this.dt.nativeElement.firstElementChild.focus();
 			} else {
 				if (!isFocusInFirstItem(event, this.headers)) {
-					this.index = this.headers.findIndex(item => item === event.target);
-					this.headers[this.index - 1].focus();
+					index = this.headers.findIndex(item => item === event.target);
+					this.headers[index - 1].focus();
 				} else {
 					this.headers[this.headers.length - 1].focus();
-					this.index = this.headers.length - 1;
+					index = this.headers.length - 1;
 				}
 			}
 		}
@@ -192,13 +184,11 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 		if (event.key === "Home") {
 			event.preventDefault();
 
-			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 			focusFirstFocusableElement(items);
 		}
 		if (event.key === "End") {
 			event.preventDefault();
 
-			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 			focusLastFocusableElement(items);
 		}
 	}
