@@ -52,13 +52,12 @@ export class SideNavSubpanel implements AfterViewInit {
 	subsectionId = "side-nav-subpanel-section-" + SideNavSubpanel.sideNavSubpanelCount;
 
 	/**
-	 * A complete list of all the items in the `SideNavSubpanel` in the form of an array.
+	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
-	 * @type {array}
+	 * @type {number}
 	 * @memberof SideNavSubpanel
 	 */
-	private items = [];
-	private index = -1;
+	protected index = -1;
 
 	constructor(private _elementRef: ElementRef) {
 		SideNavSubpanel.sideNavSubpanelCount++;
@@ -87,51 +86,54 @@ export class SideNavSubpanel implements AfterViewInit {
 			event.preventDefault();
 			event.stopPropagation();
 
-			this.items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
+			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 
-			if (!isFocusInLastItem(event, this.items)) {
-				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index + 1].focus();
+			if (!isFocusInLastItem(event, items)) {
+				this.index = items.findIndex(item => item === event.target);
+				items[this.index + 1].focus();
 			} else {
-				this.items[0].focus();
+				items[0].focus();
 				this.index = 0;
 			}
 		}
 
-		if (event.shiftKey && event.key === "PageDown") {
+		if (event.ctrlKey && event.key === "PageDown") {
 			event.preventDefault();
 			event.stopPropagation();
 		}
 		if (event.key === "ArrowUp") {
 			event.preventDefault();
-			event.stopImmediatePropagation();
+			event.stopPropagation();
 
-			this.items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
+			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 
-			if (!isFocusInFirstItem(event, this.items)) {
-				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index - 1].focus();
+			if (!isFocusInFirstItem(event, items)) {
+				this.index = items.findIndex(item => item === event.target);
+				items[this.index - 1].focus();
 			} else {
-				this.items[this.items.length - 1].focus();
-				this.index = this.items.length - 1;
+				items[items.length - 1].focus();
+				this.index = items.length - 1;
 			}
 		}
 
-		if (event.shiftKey && event.key === "PageUp") {
+		if (event.ctrlKey && event.key === "PageUp") {
 			event.preventDefault();
-			event.stopImmediatePropagation();
+			event.stopPropagation();
 		}
 
-		if (event.key === "HOME") {
+		if (event.key === "Home") {
 			event.preventDefault();
-			event.stopImmediatePropagation();
+			event.stopPropagation();
 
-			focusFirstFocusableElement(this.items);
+			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
+			focusFirstFocusableElement(items);
 		}
-		if (event.key === "END") {
-			event.stopImmediatePropagation();
+		if (event.key === "End") {
+			event.preventDefault();
+			event.stopPropagation();
 
-			focusLastFocusableElement(this.items);
+			let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
+			focusLastFocusableElement(items);
 		}
 	}
 }

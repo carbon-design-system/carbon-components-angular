@@ -143,19 +143,13 @@ export class SideNavItem implements AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
+
+		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight" || event.key === "ArrowLeft") {
 			event.preventDefault();
 
-			this.onClick();
-			let pane = this.getPaneTemplateElement();
-
-			if (event.target === pane.querySelector(".subpanel_heading") as HTMLElement) {
-				this.expanded = false;
+			if (event.key !== "ArrowLeft") {
+				this.onClick();
 			}
-		}
-		if (event.key === "ArrowLeft") {
-			event.preventDefault();
-
 			let pane = this.getPaneTemplateElement();
 
 			if (event.target === pane.querySelector(".subpanel_heading") as HTMLElement) {

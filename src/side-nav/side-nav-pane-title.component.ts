@@ -1,13 +1,4 @@
 import { Component, Input, ViewChild, HostListener } from "@angular/core";
-import {
-	getFocusElementList,
-	focusFirstFocusableElement,
-	focusLastFocusableElement,
-	isFocusInFirstItem,
-	isFocusInLastItem,
-	isElementFocused
-} from "./../common/tab.service";
-
 
 /**
  * `SideNavPaneTitle` expects some title to be projected, to be used as the title of the fly in sub view.

@@ -1,5 +1,6 @@
 import {
 	AfterContentInit,
+	AfterViewInit,
 	Component,
 	Input,
 	ViewChild,
@@ -43,7 +44,7 @@ import {
 	</dd>
   `
 })
-export class SideNavGroup implements AfterContentInit {
+export class SideNavGroup implements AfterContentInit, AfterViewInit {
 	/**
 	 * Counter for unique generation of `SideNavGroup` ids.
 	 * @static
@@ -79,20 +80,19 @@ export class SideNavGroup implements AfterContentInit {
 	 */
 	@ViewChild("dd") dd;
 	/**
-	 * A complete list of all the items in the `SideNavGroup` in the form of an array.
-	 * @public
-	 * @type {array}
-	 * @memberof SideNavGroup
-	 */
-	private items = [];
-	private index = -1;
-	/**
 	 * A complete list of all the headers in the `SideNavGroup` in the form of an array.
 	 * @public
 	 * @type {array}
 	 * @memberof SideNavGroup
 	 */
-	private headers = [];
+	public headers = [];
+	/**
+	 * Maintains the index for the selected item within the `SideNavGroup`.
+	 * @public
+	 * @type {number}
+	 * @memberof SideNavGroup
+	 */
+	protected index = -1;
 
 	/**
 	 * Creates an instance of `SideNavGroup`.
@@ -107,11 +107,13 @@ export class SideNavGroup implements AfterContentInit {
 	 * @memberof SideNavGroup
 	 */
 	ngAfterContentInit() {
-		this.headers = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
-
 		if (this.hasSubmenu() && this.expanded === undefined) {
 			this.expanded = false;
 		}
+	}
+
+	ngAfterViewInit() {
+		this.headers = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 	}
 
 	/**
@@ -125,18 +127,18 @@ export class SideNavGroup implements AfterContentInit {
 		if (event.key === "ArrowDown") {
 			event.preventDefault();
 
-			this.items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
+			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 
-			if (!isFocusInLastItem(event, this.items))  {
-				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index + 1].focus();
+			if (!isFocusInLastItem(event, items))  {
+				this.index = items.findIndex(item => item === event.target);
+				items[this.index + 1].focus();
 			} else {
-				this.items[0].focus();
+				items[0].focus();
 				this.index = 0;
 			}
 		}
 
-		if (event.shiftKey && event.key === "PageDown") {
+		if (event.ctrlKey && event.key === "PageDown") {
 			event.preventDefault();
 
 			if ((event.target as HTMLElement).tagName === "A") {
@@ -159,22 +161,23 @@ export class SideNavGroup implements AfterContentInit {
 
 		if (event.key === "ArrowUp") {
 			event.preventDefault();
-			this.items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
 
-			if (!isFocusInFirstItem(event, this.items)) {
-				this.index = this.items.findIndex(item => item === event.target);
-				this.items[this.index - 1].focus();
+			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
+
+			if (!isFocusInFirstItem(event, items)) {
+				this.index = items.findIndex(item => item === event.target);
+				items[this.index - 1].focus();
 			} else {
-				this.items[this.items.length - 1].focus();
-				this.index = this.items.length - 1;
+				items[items.length - 1].focus();
+				this.index = items.length - 1;
 			}
 		}
 
-		if (event.shiftKey && event.key === "PageUp") {
+		if (event.ctrlKey && event.key === "PageUp") {
 			event.preventDefault();
 
 			if ((event.target as HTMLElement).tagName === "A") {
-				(this.dt.nativeElement.firstElementChild).focus();
+				this.dt.nativeElement.firstElementChild.focus();
 			} else {
 				if (!isFocusInFirstItem(event, this.headers)) {
 					this.index = this.headers.findIndex(item => item === event.target);
@@ -186,13 +189,17 @@ export class SideNavGroup implements AfterContentInit {
 			}
 		}
 
-		if (event.key === "HOME") {
+		if (event.key === "Home") {
 			event.preventDefault();
-			focusFirstFocusableElement(this.items);
+
+			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
+			focusFirstFocusableElement(items);
 		}
-		if (event.key === "END") {
+		if (event.key === "End") {
 			event.preventDefault();
-			focusLastFocusableElement(this.items);
+
+			let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
+			focusLastFocusableElement(items);
 		}
 	}
 
