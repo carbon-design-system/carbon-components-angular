@@ -1,4 +1,9 @@
-import { Component, Input, ViewChild, HostListener } from "@angular/core";
+import {
+	Component,
+	Input,
+	ViewChild,
+	HostListener
+} from "@angular/core";
 
 /**
  * `SideNavPaneTitle` expects some title to be projected, to be used as the title of the fly in sub view.
@@ -33,7 +38,7 @@ export class SideNavPaneTitle {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		if (event.key === "Enter" || event.keyCode === 32 || event.key === "ArrowLeft") {
+		if (event.key === "Enter" || event.key === " " || event.key === "ArrowLeft") {
 			event.preventDefault();
 			this.hidePane();
 		}

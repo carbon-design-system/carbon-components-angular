@@ -1,4 +1,12 @@
-import { Component, Input, ViewChild, AfterViewInit, ElementRef, HostListener } from "@angular/core";
+import {
+	Component,
+	Input,
+	ViewChild,
+	AfterViewInit,
+	ElementRef,
+	HostListener
+} from "@angular/core";
+
 import {
 	getFocusElementList,
 	focusFirstFocusableElement,
@@ -76,52 +84,50 @@ export class SideNavSubpanel implements AfterViewInit {
 		let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 		let index = -1;
 
-		if (event.key === "ArrowDown") {
-			event.preventDefault();
-			event.stopPropagation();
+		switch (event.key) {
+			case "ArrowDown":
+				event.preventDefault();
+				event.stopPropagation();
 
-			if (!isFocusInLastItem(event, items)) {
-				index = items.findIndex(item => item === event.target);
-				items[index + 1].focus();
-			} else {
-				items[0].focus();
-				index = 0;
-			}
-		}
+				if (!isFocusInLastItem(event, items)) {
+					index = items.findIndex(item => item === event.target);
+					items[index + 1].focus();
+				} else {
+					items[0].focus();
+				}
+				break;
 
-		if (event.ctrlKey && event.key === "PageDown") {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-		if (event.key === "ArrowUp") {
-			event.preventDefault();
-			event.stopPropagation();
+			case "ArrowUp":
+				event.preventDefault();
+				event.stopPropagation();
 
-			if (!isFocusInFirstItem(event, items)) {
-				index = items.findIndex(item => item === event.target);
-				items[index - 1].focus();
-			} else {
-				items[items.length - 1].focus();
-				index = items.length - 1;
-			}
-		}
+				if (!isFocusInFirstItem(event, items)) {
+					index = items.findIndex(item => item === event.target);
+					items[index - 1].focus();
+				} else {
+					items[items.length - 1].focus();
+				}
+				break;
 
-		if (event.ctrlKey && event.key === "PageUp") {
-			event.preventDefault();
-			event.stopPropagation();
-		}
+			// Stops the same event in 'SideNavGroup' from executing.
+			case "PageDown":
+			case "PageUp":
+				if (event.shiftKey) {
+					event.stopPropagation();
+				}
+				break;
 
-		if (event.key === "Home") {
-			event.preventDefault();
-			event.stopPropagation();
+			case "Home":
+				event.preventDefault();
+				event.stopPropagation();
+				focusFirstFocusableElement(items);
+				break;
 
-			focusFirstFocusableElement(items);
-		}
-		if (event.key === "End") {
-			event.preventDefault();
-			event.stopPropagation();
-
-			focusLastFocusableElement(items);
+			case "End":
+				event.preventDefault();
+				event.stopPropagation();
+				focusLastFocusableElement(items);
+				break;
 		}
 	}
 }

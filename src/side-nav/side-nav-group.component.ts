@@ -1,10 +1,12 @@
+import { NavigationEnd } from "@angular/router";
 import {
 	AfterContentInit,
-	AfterViewInit,
 	Component,
 	Input,
 	ViewChild,
+	QueryList,
 	HostListener,
+	ViewChildren
 } from "@angular/core";
 
 import {
@@ -15,6 +17,9 @@ import {
 	isFocusInLastItem,
 	isElementFocused
 } from "./../common/tab.service";
+
+import { SideNavItem } from "./side-nav-item.component";
+
 
 /**
  * Each `SideNavGroup` is either a leaf (has no children subitems) or higher level non-leaf (expands) holding
@@ -44,7 +49,9 @@ import {
 	</dd>
   `
 })
-export class SideNavGroup implements AfterContentInit, AfterViewInit {
+
+
+export class SideNavGroup implements AfterContentInit {
 	/**
 	 * Counter for unique generation of `SideNavGroup` ids.
 	 * @static
@@ -79,13 +86,14 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 	 * @memberof SideNavGroup
 	 */
 	@ViewChild("dd") dd;
+
 	/**
-	 * A complete list of all the headers in the `SideNavGroup` in the form of an array.
-	 * @public
-	 * @type {array}
+	 * Maintains the index for the selected item within the `SideNavGroup`.
+	 * @private
+	 * @type {number}
 	 * @memberof SideNavGroup
 	 */
-	private headers = [];
+	private index = -1;
 
 	/**
 	 * Creates an instance of `SideNavGroup`.
@@ -105,10 +113,6 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 		}
 	}
 
-	ngAfterViewInit() {
-		this.headers = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
-	}
-
 	/**
 	 * Adds keyboard functionality for navigation.
 	 * @param {KeyboardEvent} event
@@ -116,80 +120,72 @@ export class SideNavGroup implements AfterContentInit, AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
+		let headerList = document.getElementsByTagName("N-SIDE-NAV-GROUP");
+		console.log(this.dt.nativeElement.querySelector(".side-nav_accordion"));
 		let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
-		let index = -1;
 
-		if (event.key === "ArrowDown") {
-			event.preventDefault();
+		switch (event.key) {
+			case "ArrowDown":
+				event.preventDefault();
 
-
-			if (!isFocusInLastItem(event, items))  {
-				index = items.findIndex(item => item === event.target);
-				items[index + 1].focus();
-			} else {
-				items[0].focus();
-				index = 0;
-			}
-		}
-
-		if (event.ctrlKey && event.key === "PageDown") {
-			event.preventDefault();
-
-			if ((event.target as HTMLElement).tagName === "A") {
-				let rootIndex = this.headers.findIndex(item => item === this.dt.nativeElement.firstElementChild);
-				if (this.headers[rootIndex + 1] === undefined || this.headers[rootIndex + 1] === null) {
-					this.headers[0].focus();
+				if (!isFocusInLastItem(event, items))  {
+					this.index = items.findIndex(item => item === event.target);
+					items[this.index + 1].focus();
 				} else {
-					this.headers[rootIndex + 1].focus();
+					items[0].focus();
 				}
-			} else {
-				if (!isFocusInLastItem(event, this.headers)) {
-					index = this.headers.findIndex(item => item === event.target);
-					this.headers[index + 1].focus();
+				break;
+
+			case "PageDown":
+				if (event.shiftKey) {
+					event.preventDefault();
+
+					let nextHeader = this.dt.nativeElement.parentNode.nextElementSibling;
+
+					if (nextHeader === undefined || nextHeader === null) {
+						items[0].focus();
+					} else {
+						nextHeader.firstElementChild.firstElementChild.focus();
+					}
+				}
+				break;
+
+			case "ArrowUp":
+				event.preventDefault();
+
+				if (!isFocusInFirstItem(event, items)) {
+					this.index = items.findIndex(item => item === event.target);
+					items[this.index - 1].focus();
 				} else {
-					this.headers[0].focus();
-					index = 0;
+					items[items.length - 1].focus();
 				}
-			}
-		}
+				break;
 
-		if (event.key === "ArrowUp") {
-			event.preventDefault();
+			case "PageUp":
+				if (event.shiftKey) {
+					event.preventDefault();
 
-			if (!isFocusInFirstItem(event, items)) {
-				index = items.findIndex(item => item === event.target);
-				items[index - 1].focus();
-			} else {
-				items[items.length - 1].focus();
-				index = items.length - 1;
-			}
-		}
+					let prevHeader = this.dt.nativeElement.parentNode.previousElementSibling;
 
-		if (event.ctrlKey && event.key === "PageUp") {
-			event.preventDefault();
-
-			if ((event.target as HTMLElement).tagName === "A") {
-				this.dt.nativeElement.firstElementChild.focus();
-			} else {
-				if (!isFocusInFirstItem(event, this.headers)) {
-					index = this.headers.findIndex(item => item === event.target);
-					this.headers[index - 1].focus();
-				} else {
-					this.headers[this.headers.length - 1].focus();
-					index = this.headers.length - 1;
+					if (prevHeader === undefined || prevHeader === null) {
+						(headerList[headerList.length - 1].firstElementChild.firstElementChild as HTMLElement).focus();
+					} else if ((event.target as HTMLElement).tagName === "A") {
+						this.dt.nativeElement.firstElementChild.focus();
+					} else {
+						prevHeader.firstElementChild.firstElementChild.focus();
+					}
 				}
-			}
-		}
+				break;
 
-		if (event.key === "Home") {
-			event.preventDefault();
+			case "Home":
+				event.preventDefault();
+				(headerList[0].firstElementChild.firstElementChild as HTMLElement).focus();
+				break;
 
-			focusFirstFocusableElement(items);
-		}
-		if (event.key === "End") {
-			event.preventDefault();
-
-			focusLastFocusableElement(items);
+			case "End":
+				event.preventDefault();
+				(headerList[headerList.length - 1].firstElementChild.firstElementChild as HTMLElement).focus();
+				break;
 		}
 	}
 

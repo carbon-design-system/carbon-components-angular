@@ -55,7 +55,7 @@ import {
 		[attr.aria-expanded]="expanded"
 		[ngClass]="{active: this.selected}"
 		tabindex="0"
-		(click)="onClick()">
+		(click)="activatePanel()">
 			<ng-content select=".side-nav-item"></ng-content>
 		</a>
 		<div [id]="subpanelId" class="side-nav_subpanel" #subItem>
@@ -148,11 +148,10 @@ export class SideNavItem implements AfterViewInit {
 			event.preventDefault();
 
 			if (event.key !== "ArrowLeft") {
-				this.onClick();
+				this.activatePanel();
 			}
-			let pane = this.getPaneTemplateElement();
 
-			if (event.target === pane.querySelector(".subpanel_heading") as HTMLElement) {
+			if (event.target === this.getPaneTemplateElement().querySelector(".subpanel_heading") as HTMLElement) {
 				this.expanded = false;
 			}
 		}
@@ -172,15 +171,13 @@ export class SideNavItem implements AfterViewInit {
 	 * Otherwise the click toggles view of item's associated subitems.
 	 * @memberof SideNavItem
 	 */
-	onClick() {
+	activatePanel() {
 		// only elements that don't have pane-like children can be selected
 		// those that do, show that child on click
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
-		} else {
-			if (!this.expanded) {
+		} else if (!this.expanded) {
 				this.showPane();
-			}
 		}
 		this.select.emit();
 	}
