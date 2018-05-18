@@ -88,7 +88,7 @@ export class SideNavGroup implements AfterContentInit {
 	@ViewChild("dd") dd;
 
 	/**
-	 * Maintains the index for the selected item within the `SideNavGroup`.
+	 * Maintains the index for the items within the `SideNavGroup`.
 	 * @private
 	 * @type {number}
 	 * @memberof SideNavGroup

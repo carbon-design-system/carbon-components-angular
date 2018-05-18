@@ -59,6 +59,14 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	subsectionId = "side-nav-subpanel-section-" + SideNavSubpanel.sideNavSubpanelCount;
 
+	/**
+	 * Maintains the index for the items within the `SideNavSubpanel`.
+	 * @private
+	 * @type {number}
+	 * @memberof SideNavSubpanel
+	 */
+	private index = -1;
+
 	constructor(private _elementRef: ElementRef) {
 		SideNavSubpanel.sideNavSubpanelCount++;
 	}
@@ -82,7 +90,6 @@ export class SideNavSubpanel implements AfterViewInit {
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
 		let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
-		let index = -1;
 
 		switch (event.key) {
 			case "ArrowDown":
@@ -90,8 +97,8 @@ export class SideNavSubpanel implements AfterViewInit {
 				event.stopPropagation();
 
 				if (!isFocusInLastItem(event, items)) {
-					index = items.findIndex(item => item === event.target);
-					items[index + 1].focus();
+					this.index = items.findIndex(item => item === event.target);
+					items[this.index + 1].focus();
 				} else {
 					items[0].focus();
 				}
@@ -102,8 +109,8 @@ export class SideNavSubpanel implements AfterViewInit {
 				event.stopPropagation();
 
 				if (!isFocusInFirstItem(event, items)) {
-					index = items.findIndex(item => item === event.target);
-					items[index - 1].focus();
+					this.index = items.findIndex(item => item === event.target);
+					items[this.index - 1].focus();
 				} else {
 					items[items.length - 1].focus();
 				}
