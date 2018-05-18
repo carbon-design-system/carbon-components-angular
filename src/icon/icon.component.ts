@@ -62,7 +62,9 @@ export class Icon implements AfterViewInit {
 			root.innerHTML = "";
 			icon.classList.add(this.buildMatterClass());
 			if (this.classList.toString() !== "") {
-				icon.classList.add(this.classList.toString());
+				for (const className of this.classList.toString().split(" ")) {
+					icon.classList.add(className);
+				}
 			}
 			root.appendChild(icon);
 		});
