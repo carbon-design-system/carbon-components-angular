@@ -42,7 +42,7 @@ export class Icon implements AfterViewInit {
 	/**
 	 * Pass down `classList` from host element.
 	 */
-	get classList(): object {
+	get classList(): any {
 		return this.elementRef.nativeElement.classList;
 	}
 
@@ -62,7 +62,7 @@ export class Icon implements AfterViewInit {
 			root.innerHTML = "";
 			icon.classList.add(this.buildMatterClass());
 			if (this.classList.toString() !== "") {
-				for (const className of this.classList.toString().split(" ")) {
+				for (const className of this.classList) {
 					icon.classList.add(className);
 				}
 			}
