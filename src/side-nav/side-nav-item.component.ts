@@ -177,7 +177,7 @@ export class SideNavItem implements AfterViewInit {
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
 		} else if (!this.expanded) {
-				this.showPane();
+			this.showPane();
 		}
 		this.select.emit();
 	}

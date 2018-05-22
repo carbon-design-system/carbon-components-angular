@@ -3,6 +3,7 @@ import {
 	AfterContentInit,
 	Component,
 	Input,
+	ElementRef,
 	ViewChild,
 	QueryList,
 	HostListener,
@@ -88,18 +89,10 @@ export class SideNavGroup implements AfterContentInit {
 	@ViewChild("dd") dd;
 
 	/**
-	 * Maintains the index for the items within the `SideNavGroup`.
-	 * @private
-	 * @type {number}
-	 * @memberof SideNavGroup
-	 */
-	private index = -1;
-
-	/**
 	 * Creates an instance of `SideNavGroup`.
 	 * @memberof SideNavGroup
 	 */
-	constructor() {
+	constructor(public elementRef: ElementRef) {
 		SideNavGroup.sideNavGroupCount++;
 	}
 
@@ -121,28 +114,27 @@ export class SideNavGroup implements AfterContentInit {
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
 		let headerList = document.getElementsByTagName("N-SIDE-NAV-GROUP");
-		console.log(this.dt.nativeElement.querySelector(".side-nav_accordion"));
-		let items = getFocusElementList(this.dt.nativeElement.parentNode.parentNode);
+		let items = getFocusElementList(this.elementRef.nativeElement.parentNode);
 
 		switch (event.key) {
 			case "ArrowDown":
 				event.preventDefault();
 
 				if (!isFocusInLastItem(event, items))  {
-					this.index = items.findIndex(item => item === event.target);
-					items[this.index + 1].focus();
+					let index = items.findIndex(item => item === event.target);
+					items[index + 1].focus();
 				} else {
 					items[0].focus();
 				}
 				break;
 
 			case "PageDown":
-				if (event.shiftKey) {
+				if (event.ctrlKey) {
 					event.preventDefault();
 
 					let nextHeader = this.dt.nativeElement.parentNode.nextElementSibling;
 
-					if (nextHeader === undefined || nextHeader === null) {
+					if (!nextHeader) {
 						items[0].focus();
 					} else {
 						nextHeader.firstElementChild.firstElementChild.focus();
@@ -154,20 +146,20 @@ export class SideNavGroup implements AfterContentInit {
 				event.preventDefault();
 
 				if (!isFocusInFirstItem(event, items)) {
-					this.index = items.findIndex(item => item === event.target);
-					items[this.index - 1].focus();
+					let index = items.findIndex(item => item === event.target);
+					items[index - 1].focus();
 				} else {
 					items[items.length - 1].focus();
 				}
 				break;
 
 			case "PageUp":
-				if (event.shiftKey) {
+				if (event.ctrlKey) {
 					event.preventDefault();
 
 					let prevHeader = this.dt.nativeElement.parentNode.previousElementSibling;
 
-					if (prevHeader === undefined || prevHeader === null) {
+					if (!prevHeader) {
 						(headerList[headerList.length - 1].firstElementChild.firstElementChild as HTMLElement).focus();
 					} else if ((event.target as HTMLElement).tagName === "A") {
 						this.dt.nativeElement.firstElementChild.focus();

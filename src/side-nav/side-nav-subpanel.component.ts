@@ -119,7 +119,7 @@ export class SideNavSubpanel implements AfterViewInit {
 			// Stops the same event in 'SideNavGroup' from executing.
 			case "PageDown":
 			case "PageUp":
-				if (event.shiftKey) {
+				if (event.ctrlKey) {
 					event.stopPropagation();
 				}
 				break;
