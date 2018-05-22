@@ -35,7 +35,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 		<n-icon icon="alert" color="white" size="xs"></n-icon>
 		<n-icon icon="alert" color="white" size="sm"></n-icon>
 		<n-icon icon="alert" color="white" size="md"></n-icon>
-		<n-icon class="test-custom-class" icon="alert" color="white" size="lg"></n-icon>
+		<n-icon class="test-custom-class foo" icon="alert" color="white" size="lg"></n-icon>
 	</div>
 
 	<!--<div style="display: flex;">
