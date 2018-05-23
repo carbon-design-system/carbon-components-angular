@@ -5,22 +5,10 @@ import {
 	Input,
 	ElementRef,
 	ViewChild,
-	QueryList,
 	HostListener,
-	ViewChildren
 } from "@angular/core";
 
-import {
-	getFocusElementList,
-	focusFirstFocusableElement,
-	focusLastFocusableElement,
-	isFocusInFirstItem,
-	isFocusInLastItem,
-	isElementFocused
-} from "./../common/tab.service";
-
-import { SideNavItem } from "./side-nav-item.component";
-
+import { getFocusElementList, isFocusInFirstItem, isFocusInLastItem } from "./../common/tab.service";
 
 /**
  * Each `SideNavGroup` is either a leaf (has no children subitems) or higher level non-leaf (expands) holding
@@ -113,15 +101,15 @@ export class SideNavGroup implements AfterContentInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		let headerList = document.getElementsByTagName("N-SIDE-NAV-GROUP");
-		let items = getFocusElementList(this.elementRef.nativeElement.parentNode);
+		const headerList = this.elementRef.nativeElement.parentNode.querySelectorAll("n-side-nav-group");
+		const items = getFocusElementList(this.elementRef.nativeElement.parentNode);
 
 		switch (event.key) {
 			case "ArrowDown":
 				event.preventDefault();
 
 				if (!isFocusInLastItem(event, items))  {
-					let index = items.findIndex(item => item === event.target);
+					const index = items.findIndex(item => item === event.target);
 					items[index + 1].focus();
 				} else {
 					items[0].focus();
@@ -130,12 +118,10 @@ export class SideNavGroup implements AfterContentInit {
 
 			case "PageDown":
 				if (event.ctrlKey) {
-					event.preventDefault();
-
-					let nextHeader = this.dt.nativeElement.parentNode.nextElementSibling;
+					const nextHeader = this.dt.nativeElement.parentNode.nextElementSibling;
 
 					if (!nextHeader) {
-						items[0].focus();
+						headerList[0].focus();
 					} else {
 						nextHeader.firstElementChild.firstElementChild.focus();
 					}
@@ -146,7 +132,7 @@ export class SideNavGroup implements AfterContentInit {
 				event.preventDefault();
 
 				if (!isFocusInFirstItem(event, items)) {
-					let index = items.findIndex(item => item === event.target);
+					const index = items.findIndex(item => item === event.target);
 					items[index - 1].focus();
 				} else {
 					items[items.length - 1].focus();
@@ -155,9 +141,7 @@ export class SideNavGroup implements AfterContentInit {
 
 			case "PageUp":
 				if (event.ctrlKey) {
-					event.preventDefault();
-
-					let prevHeader = this.dt.nativeElement.parentNode.previousElementSibling;
+					const prevHeader = this.dt.nativeElement.parentNode.previousElementSibling;
 
 					if (!prevHeader) {
 						(headerList[headerList.length - 1].firstElementChild.firstElementChild as HTMLElement).focus();

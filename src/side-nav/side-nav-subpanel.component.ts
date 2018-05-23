@@ -12,8 +12,7 @@ import {
 	focusFirstFocusableElement,
 	focusLastFocusableElement,
 	isFocusInFirstItem,
-	isFocusInLastItem,
-	isElementFocused
+	isFocusInLastItem
 } from "./../common/tab.service";
 
 
@@ -59,14 +58,6 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	subsectionId = "side-nav-subpanel-section-" + SideNavSubpanel.sideNavSubpanelCount;
 
-	/**
-	 * Maintains the index for the items within the `SideNavSubpanel`.
-	 * @private
-	 * @type {number}
-	 * @memberof SideNavSubpanel
-	 */
-	private index = -1;
-
 	constructor(private _elementRef: ElementRef) {
 		SideNavSubpanel.sideNavSubpanelCount++;
 	}
@@ -97,8 +88,8 @@ export class SideNavSubpanel implements AfterViewInit {
 				event.stopPropagation();
 
 				if (!isFocusInLastItem(event, items)) {
-					this.index = items.findIndex(item => item === event.target);
-					items[this.index + 1].focus();
+					const index = items.findIndex(item => item === event.target);
+					items[index + 1].focus();
 				} else {
 					items[0].focus();
 				}
@@ -109,14 +100,14 @@ export class SideNavSubpanel implements AfterViewInit {
 				event.stopPropagation();
 
 				if (!isFocusInFirstItem(event, items)) {
-					this.index = items.findIndex(item => item === event.target);
-					items[this.index - 1].focus();
+					const index = items.findIndex(item => item === event.target);
+					items[index - 1].focus();
 				} else {
 					items[items.length - 1].focus();
 				}
 				break;
 
-			// Stops the same event in 'SideNavGroup' from executing.
+			// Stops the same events in 'SideNavGroup' from executing.
 			case "PageDown":
 			case "PageUp":
 				if (event.ctrlKey) {
