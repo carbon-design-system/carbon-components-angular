@@ -80,7 +80,7 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		let items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
+		const items = getFocusElementList(this.item.nativeElement.parentNode.parentNode);
 
 		switch (event.key) {
 			case "ArrowDown":
