@@ -80,7 +80,7 @@ export class SideNavGroup implements AfterContentInit {
 	 * Creates an instance of `SideNavGroup`.
 	 * @memberof SideNavGroup
 	 */
-	constructor(public elementRef: ElementRef) {
+	constructor(public _elementRef: ElementRef) {
 		SideNavGroup.sideNavGroupCount++;
 	}
 
@@ -101,8 +101,8 @@ export class SideNavGroup implements AfterContentInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		const headerList = this.elementRef.nativeElement.parentNode.querySelectorAll("n-side-nav-group");
-		const items = getFocusElementList(this.elementRef.nativeElement.parentNode);
+		const headerList = this._elementRef.nativeElement.parentNode.querySelectorAll("n-side-nav-group");
+		const items = getFocusElementList(this._elementRef.nativeElement.parentNode);
 
 		switch (event.key) {
 			case "ArrowDown":
