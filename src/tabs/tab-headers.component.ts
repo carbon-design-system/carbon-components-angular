@@ -83,8 +83,9 @@ import { Tab } from "./tab.component";
 				<n-static-icon *ngIf="disabledRightArrow" icon="chevron_right_disabled" size="sm"></n-static-icon>
 			</button>
 			<ng-content select=".tabs_add"></ng-content>
+			<ng-content></ng-content>
 		</div>
-		<ng-content></ng-content>
+		<ng-content select="n-tab"></ng-content>
 	 `
 })
 

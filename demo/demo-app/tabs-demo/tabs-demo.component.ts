@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
 	<h1 class="p-demo-heading">Tabs</h1>
 
 	<h2 class="p-demo-section">Static tabs</h2>
+
 	<n-tabs>
 		<n-tab heading='Tab1' (select)="onSelect('tab1')">
 			Tab 1 content
@@ -46,6 +47,15 @@ import { Component, OnInit } from "@angular/core";
 	</n-tabs>
 
 	<h4>Tabs with an add button</h4>
+	<n-tabs>
+		<n-tab-headers>
+			<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
+				{{ tab.content }}
+			</n-tab>
+			<button class="tabs_add" (click)="addTab()"></button>
+			<button class="btn--primary" style="order: 4; margin-left: auto;">button</button>
+		</n-tab-headers>
+	</n-tabs>
 	<n-tabs>
 		<n-tab-headers>
 			<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
