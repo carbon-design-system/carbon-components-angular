@@ -5,7 +5,7 @@ import {
 	Input,
 	ElementRef,
 	ViewChild,
-	HostListener,
+	HostListener
 } from "@angular/core";
 
 import { getFocusElementList, isFocusInFirstItem, isFocusInLastItem } from "./../common/tab.service";
