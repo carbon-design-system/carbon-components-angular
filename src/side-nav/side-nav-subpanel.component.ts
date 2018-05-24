@@ -1,7 +1,6 @@
 import {
 	Component,
 	Input,
-	ViewChild,
 	AfterViewInit,
 	ElementRef,
 	HostListener
@@ -42,11 +41,6 @@ export class SideNavSubpanel implements AfterViewInit {
 	 * @memberof SideNavSubpanel
 	 */
 	static sideNavSubpanelCount = 0;
-	/**
-	 * The region containing the list subitems for the `SideNavSubpanel`.
-	 * @memberof SideNavSubpanel
-	 */
-	@ViewChild("item") item;
 	/**
 	 * Unique generated id for `SideNavSubpanel` catagory heading button.
 	 * @memberof SideNavSubpanel
