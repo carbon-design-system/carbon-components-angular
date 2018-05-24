@@ -9,6 +9,14 @@ import {
 	HostListener
 } from "@angular/core";
 
+import {
+	getFocusElementList,
+	focusFirstFocusableElement,
+	focusLastFocusableElement,
+	isFocusInFirstItem,
+	isFocusInLastItem,
+	isElementFocused
+} from "./../common/tab.service";
 
 /**
  * `SideNavItem` expects either a icon with the class `.side-nav-glyph` and
@@ -47,7 +55,7 @@ import {
 		[attr.aria-expanded]="expanded"
 		[ngClass]="{active: this.selected}"
 		tabindex="0"
-		(click)="onClick()">
+		(click)="activatePanel()">
 			<ng-content select=".side-nav-item"></ng-content>
 		</a>
 		<div [id]="subpanelId" class="side-nav_subpanel" #subItem>
@@ -129,15 +137,22 @@ export class SideNavItem implements AfterViewInit {
 	}
 
 	/**
-	 * Keyboard listening event to select the menu item with the `Enter` key.
+	 * Keyboard listening event to open and close the menu.
 	 * @param {KeyboardEvent} event
 	 * @memberof SideNavItem
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		switch (event.key) {
-			case "Enter": {
-				this.onClick();
+
+		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight" || event.key === "ArrowLeft") {
+			event.preventDefault();
+
+			if (event.key !== "ArrowLeft") {
+				this.activatePanel();
+			}
+
+			if (event.target === this.getPaneTemplateElement().querySelector(".subpanel_heading") as HTMLElement) {
+				this.expanded = false;
 			}
 		}
 	}
@@ -156,12 +171,12 @@ export class SideNavItem implements AfterViewInit {
 	 * Otherwise the click toggles view of item's associated subitems.
 	 * @memberof SideNavItem
 	 */
-	onClick() {
+	activatePanel() {
 		// only elements that don't have pane-like children can be selected
 		// those that do, show that child on click
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
-		} else {
+		} else if (!this.expanded) {
 			this.showPane();
 		}
 		this.select.emit();

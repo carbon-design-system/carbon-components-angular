@@ -1,5 +1,14 @@
-import { AfterContentInit, Component, Input, ViewChild } from "@angular/core";
+import { NavigationEnd } from "@angular/router";
+import {
+	AfterContentInit,
+	Component,
+	Input,
+	ElementRef,
+	ViewChild,
+	HostListener
+} from "@angular/core";
 
+import { getFocusElementList, isFocusInFirstItem, isFocusInLastItem } from "./../common/tab.service";
 
 /**
  * Each `SideNavGroup` is either a leaf (has no children subitems) or higher level non-leaf (expands) holding
@@ -29,6 +38,8 @@ import { AfterContentInit, Component, Input, ViewChild } from "@angular/core";
 	</dd>
   `
 })
+
+
 export class SideNavGroup implements AfterContentInit {
 	/**
 	 * Counter for unique generation of `SideNavGroup` ids.
@@ -69,7 +80,7 @@ export class SideNavGroup implements AfterContentInit {
 	 * Creates an instance of `SideNavGroup`.
 	 * @memberof SideNavGroup
 	 */
-	constructor() {
+	constructor(private elementRef: ElementRef) {
 		SideNavGroup.sideNavGroupCount++;
 	}
 
@@ -80,6 +91,77 @@ export class SideNavGroup implements AfterContentInit {
 	ngAfterContentInit() {
 		if (this.hasSubmenu() && this.expanded === undefined) {
 			this.expanded = false;
+		}
+	}
+
+	/**
+	 * Adds keyboard functionality for navigation.
+	 * @param {KeyboardEvent} event
+	 * @memberof SideNavGroup
+	 */
+	@HostListener("keydown", ["$event"])
+	handleKeyboardEvent(event: KeyboardEvent) {
+		const headerList = this.elementRef.nativeElement.parentNode.querySelectorAll("n-side-nav-group");
+		const items = getFocusElementList(this.elementRef.nativeElement.parentNode);
+
+		switch (event.key) {
+			case "ArrowDown":
+				event.preventDefault();
+
+				if (!isFocusInLastItem(event, items))  {
+					const index = items.findIndex(item => item === event.target);
+					items[index + 1].focus();
+				} else {
+					items[0].focus();
+				}
+				break;
+
+			case "PageDown":
+				if (event.ctrlKey) {
+					const nextHeader = this.dt.nativeElement.parentNode.nextElementSibling;
+
+					if (!nextHeader) {
+						headerList[0].focus();
+					} else {
+						nextHeader.firstElementChild.firstElementChild.focus();
+					}
+				}
+				break;
+
+			case "ArrowUp":
+				event.preventDefault();
+
+				if (!isFocusInFirstItem(event, items)) {
+					const index = items.findIndex(item => item === event.target);
+					items[index - 1].focus();
+				} else {
+					items[items.length - 1].focus();
+				}
+				break;
+
+			case "PageUp":
+				if (event.ctrlKey) {
+					const prevHeader = this.dt.nativeElement.parentNode.previousElementSibling;
+
+					if (!prevHeader) {
+						(headerList[headerList.length - 1].firstElementChild.firstElementChild as HTMLElement).focus();
+					} else if ((event.target as HTMLElement).tagName === "A") {
+						this.dt.nativeElement.firstElementChild.focus();
+					} else {
+						prevHeader.firstElementChild.firstElementChild.focus();
+					}
+				}
+				break;
+
+			case "Home":
+				event.preventDefault();
+				(headerList[0].firstElementChild.firstElementChild as HTMLElement).focus();
+				break;
+
+			case "End":
+				event.preventDefault();
+				(headerList[headerList.length - 1].firstElementChild.firstElementChild as HTMLElement).focus();
+				break;
 		}
 	}
 

@@ -91,6 +91,7 @@
 
 **Merged pull requests:**
 
+- Fix to actually allow for arbitrary content at the end of tab headers [\#894](https://github.ibm.com/peretz/neutrino/pull/894) ([callums](https://github.ibm.com/callums))
 - Fix class passing for icons [\#892](https://github.ibm.com/peretz/neutrino/pull/892) ([callums](https://github.ibm.com/callums))
 - Allow tab headers to be passed in seperatly, support tabs\_add [\#888](https://github.ibm.com/peretz/neutrino/pull/888) ([callums](https://github.ibm.com/callums))
 - Small icon refactor [\#887](https://github.ibm.com/peretz/neutrino/pull/887) ([callums](https://github.ibm.com/callums))
