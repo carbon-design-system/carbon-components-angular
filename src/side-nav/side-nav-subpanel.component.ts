@@ -58,7 +58,7 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	subsectionId = "side-nav-subpanel-section-" + SideNavSubpanel.sideNavSubpanelCount;
 
-	constructor(private _elementRef: ElementRef) {
+	constructor(private elementRef: ElementRef) {
 		SideNavSubpanel.sideNavSubpanelCount++;
 	}
 
@@ -68,7 +68,7 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	ngAfterViewInit() {
 		// set the ids and aria labels on the button passed in via ng-content
-		let button = this._elementRef.nativeElement.querySelector(".subpanel_heading");
+		let button = this.elementRef.nativeElement.querySelector(".subpanel_heading");
 		button.setAttribute("id", this.buttonId);
 		button.setAttribute("aria-owns", this.subsectionId);
 	}
@@ -80,7 +80,7 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		const items = getFocusElementList(this._elementRef.nativeElement.parentNode);
+		const items = getFocusElementList(this.elementRef.nativeElement.parentNode);
 
 		switch (event.key) {
 			case "ArrowDown":
