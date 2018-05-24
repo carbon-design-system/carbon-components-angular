@@ -92,7 +92,9 @@ export class PopoverMenu extends Dialog {
 		this.hasFooterTemplate = this.dialogConfig.footer instanceof TemplateRef;
 
 		// gap will always be the same: + on the y
-		this.addGap["bottom-left"] = pos => position.addOffset(pos, this.dialogConfig.gap);
-		this.addGap["bottom-right"] = pos => position.addOffset(pos, this.dialogConfig.gap);
+		// move the popover left by -3px to align better with the specs
+		this.addGap["bottom-left"] = pos => position.addOffset(pos, this.dialogConfig.gap, -3);
+		// move popover left by 10px to align with the icon
+		this.addGap["bottom-right"] = pos => position.addOffset(pos, this.dialogConfig.gap, 10);
 	}
 }
