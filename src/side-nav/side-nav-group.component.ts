@@ -58,12 +58,19 @@ export class SideNavGroup implements AfterContentInit {
 	 */
 	sectionId = "side-nav-section-" + SideNavGroup.sideNavGroupCount;
 
-	/**
-	 * Value `true` if the group is expanded within the `SideNav`.
-	 * @type {boolean}
-	 * @memberof SideNavGroup
-	 */
-	@Input() expanded: boolean;
+	@Input() set expanded(expanded: boolean) {
+		this._expanded = expanded;
+
+		if (this._expanded) {
+			this.dd.nativeElement.classList.add("grow-down");
+		} else {
+			this.dd.nativeElement.classList.remove("grow-down");
+		}
+	}
+
+	get expanded() {
+		return this._expanded;
+	}
 
 	/**
 	 * The top level heading for the `SideNavGroup` in view DOM.
@@ -75,6 +82,13 @@ export class SideNavGroup implements AfterContentInit {
 	 * @memberof SideNavGroup
 	 */
 	@ViewChild("dd") dd;
+
+	/**
+	 * Value `true` if the group is expanded within the `SideNav`.
+	 * @type {boolean}
+	 * @memberof SideNavGroup
+	 */
+	private _expanded: boolean;
 
 	/**
 	 * Creates an instance of `SideNavGroup`.
@@ -172,12 +186,6 @@ export class SideNavGroup implements AfterContentInit {
 	onClick() {
 		if (this.expanded !== undefined) {
 			this.expanded = !this.expanded;
-		}
-
-		if (this.dd.nativeElement.classList.contains("grow-down")) {
-			this.dd.nativeElement.classList.remove("grow-down");
-		} else {
-			this.dd.nativeElement.classList.add("grow-down");
 		}
 	}
 
