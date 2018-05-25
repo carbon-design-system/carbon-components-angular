@@ -26,7 +26,7 @@ import { getFocusElementList, isFocusInFirstItem, isFocusInLastItem } from "./..
 		[id]="accordionId"
 		(click)="onClick()"
 		[attr.aria-controls]="sectionId"
-		[attr.aria-expanded]="this.expanded">
+		[attr.aria-expanded]="expanded">
 			<ng-content select=".accordion_icon"></ng-content>
 			<ng-content select=".accordion_title"></ng-content>
 		</button>
@@ -59,9 +59,9 @@ export class SideNavGroup implements AfterContentInit {
 	sectionId = "side-nav-section-" + SideNavGroup.sideNavGroupCount;
 
 	@Input() set expanded(expanded: boolean) {
-		this.state = expanded;
+		this._expanded = expanded;
 
-		if (this.state) {
+		if (this._expanded) {
 			this.dd.nativeElement.classList.add("grow-down");
 		} else {
 			this.dd.nativeElement.classList.remove("grow-down");
@@ -69,7 +69,7 @@ export class SideNavGroup implements AfterContentInit {
 	}
 
 	get expanded() {
-		return this.state;
+		return this._expanded;
 	}
 
 	/**
@@ -88,7 +88,7 @@ export class SideNavGroup implements AfterContentInit {
 	 * @type {boolean}
 	 * @memberof SideNavGroup
 	 */
-	private state: boolean;
+	private _expanded: boolean;
 
 	/**
 	 * Creates an instance of `SideNavGroup`.
@@ -184,10 +184,8 @@ export class SideNavGroup implements AfterContentInit {
 	 * @memberof SideNavGroup
 	 */
 	onClick() {
-		if (this.dd.nativeElement.classList.contains("grow-down")) {
-			this.expanded = false;
-		} else {
-			this.expanded = true;
+		if (this.expanded !== undefined) {
+			this.expanded = !this.expanded;
 		}
 	}
 
