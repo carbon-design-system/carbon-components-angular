@@ -92,8 +92,14 @@
 
 **Merged pull requests:**
 
+- Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
+- Use node instead of grep+awk magic [\#899](https://github.ibm.com/peretz/neutrino/pull/899) ([callums](https://github.ibm.com/callums))
+- Add logging since the call failed [\#898](https://github.ibm.com/peretz/neutrino/pull/898) ([callums](https://github.ibm.com/callums))
+- Improve version parsing [\#897](https://github.ibm.com/peretz/neutrino/pull/897) ([callums](https://github.ibm.com/callums))
+- Update deploy script to announce versions in slack [\#896](https://github.ibm.com/peretz/neutrino/pull/896) ([callums](https://github.ibm.com/callums))
 - Fix to actually allow for arbitrary content at the end of tab headers [\#894](https://github.ibm.com/peretz/neutrino/pull/894) ([callums](https://github.ibm.com/callums))
 - Fix class passing for icons [\#892](https://github.ibm.com/peretz/neutrino/pull/892) ([callums](https://github.ibm.com/callums))
+- Add optional keyboard interactions for Sidenav \(Accordion\) [\#890](https://github.ibm.com/peretz/neutrino/pull/890) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Allow tab headers to be passed in seperatly, support tabs\_add [\#888](https://github.ibm.com/peretz/neutrino/pull/888) ([callums](https://github.ibm.com/callums))
 - Small icon refactor [\#887](https://github.ibm.com/peretz/neutrino/pull/887) ([callums](https://github.ibm.com/callums))
 - Update code style guide icon [\#886](https://github.ibm.com/peretz/neutrino/pull/886) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
