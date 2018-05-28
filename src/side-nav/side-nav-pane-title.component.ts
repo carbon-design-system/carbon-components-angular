@@ -1,5 +1,9 @@
-import { Component, Input, ViewChild } from "@angular/core";
-
+import {
+	Component,
+	Input,
+	ViewChild,
+	HostListener
+} from "@angular/core";
 
 /**
  * `SideNavPaneTitle` expects some title to be projected, to be used as the title of the fly in sub view.
@@ -26,6 +30,19 @@ export class SideNavPaneTitle {
 	 * @memberof SideNavPaneTitle
 	 */
 	@ViewChild("item") item;
+
+	/**
+	 * Keyboard listening event to close the menu.
+	 * @param {KeyboardEvent} event
+	 * @memberof SideNavPaneTitle
+	 */
+	@HostListener("keydown", ["$event"])
+	handleKeyboardEvent(event: KeyboardEvent) {
+		if (event.key === "Enter" || event.key === " " || event.key === "ArrowLeft") {
+			event.preventDefault();
+			this.hidePane();
+		}
+	}
 
 	/**
 	 * Closes the pane of subitems to go up a level to the parent catagories.

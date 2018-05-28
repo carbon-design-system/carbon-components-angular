@@ -11,6 +11,8 @@
 - No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
 - Dropdown always opens downwards even if its placed at the end of page [\#718](https://github.ibm.com/peretz/neutrino/issues/718)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
+- Adjust menu popover position slightly [\#895](https://github.ibm.com/peretz/neutrino/pull/895) ([callums](https://github.ibm.com/callums))
+- Add Pie & Donut chart components [\#884](https://github.ibm.com/peretz/neutrino/pull/884) ([iliadm](https://github.ibm.com/iliadm))
 
 **Fixed bugs:**
 
@@ -90,6 +92,18 @@
 
 **Merged pull requests:**
 
+- Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
+- Use node instead of grep+awk magic [\#899](https://github.ibm.com/peretz/neutrino/pull/899) ([callums](https://github.ibm.com/callums))
+- Add logging since the call failed [\#898](https://github.ibm.com/peretz/neutrino/pull/898) ([callums](https://github.ibm.com/callums))
+- Improve version parsing [\#897](https://github.ibm.com/peretz/neutrino/pull/897) ([callums](https://github.ibm.com/callums))
+- Update deploy script to announce versions in slack [\#896](https://github.ibm.com/peretz/neutrino/pull/896) ([callums](https://github.ibm.com/callums))
+- Fix to actually allow for arbitrary content at the end of tab headers [\#894](https://github.ibm.com/peretz/neutrino/pull/894) ([callums](https://github.ibm.com/callums))
+- Fix class passing for icons [\#892](https://github.ibm.com/peretz/neutrino/pull/892) ([callums](https://github.ibm.com/callums))
+- Add optional keyboard interactions for Sidenav \(Accordion\) [\#890](https://github.ibm.com/peretz/neutrino/pull/890) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
+- Allow tab headers to be passed in seperatly, support tabs\_add [\#888](https://github.ibm.com/peretz/neutrino/pull/888) ([callums](https://github.ibm.com/callums))
+- Small icon refactor [\#887](https://github.ibm.com/peretz/neutrino/pull/887) ([callums](https://github.ibm.com/callums))
+- Update code style guide icon [\#886](https://github.ibm.com/peretz/neutrino/pull/886) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update readme and add some contact information [\#885](https://github.ibm.com/peretz/neutrino/pull/885) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix documentation to allow build to complete [\#882](https://github.ibm.com/peretz/neutrino/pull/882) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Update table header, add single select [\#878](https://github.ibm.com/peretz/neutrino/pull/878) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Replace awesome-typescript-loader with ts-loader [\#877](https://github.ibm.com/peretz/neutrino/pull/877) ([callums](https://github.ibm.com/callums))

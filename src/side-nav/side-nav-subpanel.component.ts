@@ -1,4 +1,18 @@
-import { Component, Input, ViewChild, AfterViewInit, ElementRef } from "@angular/core";
+import {
+	Component,
+	Input,
+	AfterViewInit,
+	ElementRef,
+	HostListener
+} from "@angular/core";
+
+import {
+	getFocusElementList,
+	focusFirstFocusableElement,
+	focusLastFocusableElement,
+	isFocusInFirstItem,
+	isFocusInLastItem
+} from "./../common/tab.service";
 
 
 /**
@@ -14,7 +28,8 @@ import { Component, Input, ViewChild, AfterViewInit, ElementRef } from "@angular
 	<section
 	class="subpanel_content"
 	[id]="subsectionId"
-	[attr.aria-labelledby]="buttonId">
+	[attr.aria-labelledby]="buttonId"
+	#item>
 		<ng-content></ng-content>
 	</section>
 	`
@@ -37,7 +52,7 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	subsectionId = "side-nav-subpanel-section-" + SideNavSubpanel.sideNavSubpanelCount;
 
-	constructor(private _elementRef: ElementRef) {
+	constructor(private elementRef: ElementRef) {
 		SideNavSubpanel.sideNavSubpanelCount++;
 	}
 
@@ -47,8 +62,64 @@ export class SideNavSubpanel implements AfterViewInit {
 	 */
 	ngAfterViewInit() {
 		// set the ids and aria labels on the button passed in via ng-content
-		let button = this._elementRef.nativeElement.querySelector(".subpanel_heading");
+		let button = this.elementRef.nativeElement.querySelector(".subpanel_heading");
 		button.setAttribute("id", this.buttonId);
 		button.setAttribute("aria-owns", this.subsectionId);
+	}
+
+	/**
+	 * Adds keyboard functionality for navigation.
+	 * @param {KeyboardEvent} event
+	 * @memberof SideNavSubpanel
+	 */
+	@HostListener("keydown", ["$event"])
+	handleKeyboardEvent(event: KeyboardEvent) {
+		const items = getFocusElementList(this.elementRef.nativeElement.parentNode);
+
+		switch (event.key) {
+			case "ArrowDown":
+				event.preventDefault();
+				event.stopPropagation();
+
+				if (!isFocusInLastItem(event, items)) {
+					const index = items.findIndex(item => item === event.target);
+					items[index + 1].focus();
+				} else {
+					items[0].focus();
+				}
+				break;
+
+			case "ArrowUp":
+				event.preventDefault();
+				event.stopPropagation();
+
+				if (!isFocusInFirstItem(event, items)) {
+					const index = items.findIndex(item => item === event.target);
+					items[index - 1].focus();
+				} else {
+					items[items.length - 1].focus();
+				}
+				break;
+
+			// Stops the same events in 'SideNavGroup' from executing.
+			case "PageDown":
+			case "PageUp":
+				if (event.ctrlKey) {
+					event.stopPropagation();
+				}
+				break;
+
+			case "Home":
+				event.preventDefault();
+				event.stopPropagation();
+				focusFirstFocusableElement(items);
+				break;
+
+			case "End":
+				event.preventDefault();
+				event.stopPropagation();
+				focusLastFocusableElement(items);
+				break;
+		}
 	}
 }

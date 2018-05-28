@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
+import { IconSize } from "./icon.types";
 
 /**
  * Service that provides static methods for globally configuring icon requests,
@@ -8,6 +9,12 @@ import "rxjs/add/operator/toPromise";
  */
 @Injectable()
 export class IconService {
+	static spriteLoaded = new EventEmitter();
+	/**
+	 * Internal variable to track running requests.
+	 * Used to call spriteLoaded when new sprites are available
+	 */
+	private static runningRequests = 0;
 	/**
 	 * map to use for sprite requests
 	 *
@@ -53,13 +60,47 @@ export class IconService {
 	 * @param {string} name name of the sprite to request
 	 */
 	doSpriteRequest(name: string) {
+		IconService.runningRequests++;
 		return this.http.get(`${IconService.baseURL}${name}.svg`)
 			.toPromise()
+			.then(res => {
+				IconService.runningRequests--;
+				IconService.spriteLoaded.emit();
+				return res;
+			})
 			.then(res => res.text(),
 				err => {
 					console.error(`failed to load sprite ${name}, check that the server is available and baseURL is correct`);
 					return "";
 				});
+	}
+
+	/**
+	 * Returns a promise that will resolve to a clone of the requested icon
+	 *
+	 * @param name name of the icon
+	 * @param size size of the icon as an IconSize
+	 */
+	getIcon(name: string, size: IconSize): Promise<HTMLElement> {
+		// resolver either calls the provided Promise resolution function with the loaded icon
+		// or returns false to indicate the sprite with the required icon has yet to load
+		const resolver = resolve => {
+			const icon = document.querySelector(`symbol#${name}_${size}`);
+			if (icon) {
+				const clone = icon.firstElementChild.cloneNode(true);
+				return resolve(clone as HTMLElement);
+			}
+			return false;
+		};
+
+		const loadedIcon = new Promise<HTMLElement>((resolve, reject) => {
+			if (!resolver(resolve)) {
+				IconService.spriteLoaded.subscribe(() => {
+					resolver(resolve);
+				});
+			}
+		});
+		return loadedIcon;
 	}
 
 	/**

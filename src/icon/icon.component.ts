@@ -4,9 +4,12 @@ import {
 	HostBinding,
 	Input,
 	OnChanges,
-	OnInit
+	OnInit,
+	AfterViewInit
 } from "@angular/core";
 import { IconService } from "./icon.service";
+import { Subscription } from "rxjs";
+import { SizeMap } from "./icon.types";
 
 /**
  * `n-icon` pulls the icon from the loaded sprite, and renders it at the specified size.
@@ -17,13 +20,10 @@ import { IconService } from "./icon.service";
  */
 @Component({
 	selector: "n-icon",
-	template: `
-		<svg [attr.class]="buildMatterClass()+' '+classList">
-			<use [attr.xlink:href]="'#'+icon+'_'+sizeMap[size]"></use>
-		</svg>`,
+	template: "",
 	providers: [IconService]
 })
-export class Icon {
+export class Icon implements AfterViewInit {
 	/** follows the naming convention found in the icon listing on the demo page */
 	@Input() icon: string;
 	/** accepts color strings */
@@ -32,7 +32,7 @@ export class Icon {
 	@Input() size: "xs" | "sm" | "md" | "lg" = "md";
 
 	/** map size strings to numeric values */
-	sizeMap = {
+	protected sizeMap: SizeMap = {
 		"xs": 14,
 		"sm": 16,
 		"md": 20,
@@ -41,24 +41,39 @@ export class Icon {
 
 	/**
 	 * Pass down `classList` from host element.
-	 * @return {object}
 	 */
-	get classList() {
+	get classList(): any {
 		return this.elementRef.nativeElement.classList;
 	}
+
+	private spriteLoadingSubscription: Subscription = null;
 
 	/**
 	 * Initialize the component
 	 *
 	 * @param {ElementRef} elementRef
 	 */
-	constructor(private elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef, private iconService: IconService) {}
+
+	ngAfterViewInit() {
+		const root: HTMLElement = this.elementRef.nativeElement;
+		const iconPromise = this.iconService.getIcon(this.icon, this.sizeMap[this.size]);
+		iconPromise.then(icon => {
+			root.innerHTML = "";
+			icon.classList.add(this.buildMatterClass());
+			if (this.classList.toString() !== "") {
+				for (const className of this.classList) {
+					icon.classList.add(className);
+				}
+			}
+			root.appendChild(icon);
+		});
+	}
 
 	/**
 	 * Create a class name based on @Input() `color` and `size`.
-	 * @return {string}
 	 */
-	public buildMatterClass() {
+	public buildMatterClass(): string {
 		if (this.color === "dark" && this.size !== "md") {
 			return `icon--${this.size}`;
 		} else {

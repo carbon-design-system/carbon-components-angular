@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 
 @Component({
 	selector: "app-popover-demo",
@@ -85,12 +85,20 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 
 	<ng-template #list>
 		<div>
-			<ul class="list-group">
-				<li tabindex="0"><div><span>Settings</span></div></li>
-				<li tabindex="0"><div><span>Save</span></div></li>
-				<li tabindex="0"><div><span>Preferences</span></div></li>
-				<li tabindex="0"><div><span>Delete</span></div></li>
-			</ul>
+			<section class="list-group">
+				<a class="menu_link" tabindex="0" href="#">
+					<span class="menu_text">Settings</span>
+				</a>
+				<a class="menu_link" tabindex="0" href="#">
+					<span class="menu_text">Save</span>
+				</a>
+				<a class="menu_link" tabindex="0" href="#">
+					<span class="menu_text">Preferences</span>
+				</a>
+				<a class="menu_link" tabindex="0" href="#">
+					<span class="menu_text">Delete</span>
+				</a>
+			</section>
 		</div>
 	</ng-template>
 
@@ -100,7 +108,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			[nPopoverMenu]="list"
 			placement="bottom-left"
 			title="Actions">
-			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>Menu left
+			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
+			Menu left
 		</button>
 	</span>
 	<span>
@@ -108,7 +117,17 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 			[nPopoverMenu]="list"
 			placement="bottom-right"
 			title="Actions">
-			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>Menu right
+			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
+			Menu right
+		</button>
+	</span>
+	<span>
+		<button class="btn--icon-link popover-menu-button"
+			[nPopoverMenu]="list"
+			placement="bottom-left"
+			title="Actions"
+			wrapperClass="align-to-icon">
+			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
 		</button>
 	</span>
 
@@ -155,7 +174,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 		</button>
 	</div>
 	`,
-	styleUrls: ["./popover-demo.component.scss"]
+	styleUrls: ["./popover-demo.component.scss"],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class PopoverDemo {

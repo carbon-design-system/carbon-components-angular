@@ -6,44 +6,64 @@ import { Component, OnInit } from "@angular/core";
 	<h1 class="p-demo-heading">Tabs</h1>
 
 	<h2 class="p-demo-section">Static tabs</h2>
-		<n-tabs>
-			<n-tab heading='Tab1' (select)="onSelect('tab1')">
-				Tab 1 content
+
+	<n-tabs>
+		<n-tab heading='Tab1' (select)="onSelect('tab1')">
+			Tab 1 content
+		</n-tab>
+		<n-tab heading='Tab2' (select)="onSelect('tab2')">
+			Tab 2 content
+		</n-tab>
+		<n-tab heading='Tab3'>
+			Tab 3 content
+		</n-tab>
+		<n-tab heading='Tab4'>
+			Tab 4 content
+		</n-tab>
+		<n-tab heading='Tab5'>
+			Tab 5 content
+		</n-tab>
+		<n-tab heading='Tab6'>
+			Tab 6 content
+		</n-tab>
+		<n-tab heading='Tab7'>
+			Tab 7 content
+		</n-tab>
+		<n-tab heading='Tab8'>
+			Tab 8 content
+		</n-tab>
+		<n-tab heading='Tab9'>
+			Tab 9 content
+		</n-tab>
+		<n-tab heading='Tab10'>
+			Tab 10 content
+		</n-tab>
+		<n-tab heading='Tab11'>
+			Tab 11 content
+		</n-tab>
+		<n-tab heading='Tab12'>
+			Tab 12 content
+		</n-tab>
+	</n-tabs>
+
+	<h4>Tabs with an add button</h4>
+	<n-tabs>
+		<n-tab-headers>
+			<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
+				{{ tab.content }}
 			</n-tab>
-			<n-tab heading='Tab2' (select)="onSelect('tab2')">
-				Tab 2 content
+			<button class="tabs_add" (click)="addTab()"></button>
+			<button class="btn--primary" style="order: 4; margin-left: auto;">button</button>
+		</n-tab-headers>
+	</n-tabs>
+	<n-tabs>
+		<n-tab-headers>
+			<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
+				{{ tab.content }}
 			</n-tab>
-			<n-tab heading='Tab3'>
-				Tab 3 content
-			</n-tab>
-			<n-tab heading='Tab4'>
-				Tab 4 content
-			</n-tab>
-			<n-tab heading='Tab5'>
-				Tab 5 content
-			</n-tab>
-			<n-tab heading='Tab6'>
-				Tab 6 content
-			</n-tab>
-			<n-tab heading='Tab7'>
-				Tab 7 content
-			</n-tab>
-			<n-tab heading='Tab8'>
-				Tab 8 content
-			</n-tab>
-			<n-tab heading='Tab9'>
-				Tab 9 content
-			</n-tab>
-			<n-tab heading='Tab10'>
-				Tab 10 content
-			</n-tab>
-			<n-tab heading='Tab11'>
-				Tab 11 content
-			</n-tab>
-			<n-tab heading='Tab12'>
-				Tab 12 content
-			</n-tab>
-		</n-tabs>
+			<button class="tabs_add" (click)="addTab()"></button>
+		</n-tab-headers>
+	</n-tabs>
 
 	<h3 class="p-demo-variation">Static tabs with bottom placement</h3>
 	<n-tabs position='bottom'>
@@ -158,6 +178,12 @@ export class TabsDemo implements OnInit {
 	];
 	public sampleTabs2 = [];
 
+	public addableTabs = [
+		{ heading: "Tab 1", content: "Tab 1 content" },
+		{ heading: "Tab 2", content: "Tab 2 content" },
+		{ heading: "Tab 3", content: "Tab 3 content" }
+	];
+
 	ngOnInit() {
 		setTimeout(() => {
 			this.sampleTabs2 = [
@@ -174,5 +200,12 @@ export class TabsDemo implements OnInit {
 
 	onSelect(name: String) {
 		console.log(`selected: ${name}`);
+	}
+
+	addTab() {
+		this.addableTabs.push({
+			heading: `Tab ${this.addableTabs.length + 1}`,
+			content: `Tab ${this.addableTabs.length + 1} content`
+		});
 	}
 }
