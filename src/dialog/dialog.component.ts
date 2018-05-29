@@ -175,8 +175,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 				const scrollObservable = Observable.merge(...observables);
 				this.scrollSubscription = scrollObservable.subscribe((event: any) => {
 					this.placeDialog();
-					// console.log(isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target),
-					// 	this.dialogConfig.parentRef.nativeElement, event.target);
 					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
 						this.doClose();
 					}
