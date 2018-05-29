@@ -13,7 +13,10 @@
     "lint": "tslint -e spec.ts src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
 	"test": "karma start",
 	"test:watch": "karma start --auto-watch --no-single-run",
-    "prepush": "bash scripts/prepush.sh"
+	"utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
+	"utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
+	"prepush": "bash scripts/prepush.sh"
+
   },
   "repository": {
     "type": "git",
