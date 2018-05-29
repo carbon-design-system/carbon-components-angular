@@ -161,24 +161,32 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
 		};
 
-		// only do the work to find the scroll containers if we're appended to body
-		if (this.dialogConfig.appendToBody) {
-			// walk the parents and subscribe to all the scroll events we can
-			while (node.parentElement && node !== document.body) {
-				if (isScrollableElement(node)) {
-					observables.push(Observable.fromEvent(node, "scroll"));
+		const test = () => {
+			// only do the work to find the scroll containers if we're appended to body
+			if (this.dialogConfig.appendToBody) {
+				// walk the parents and subscribe to all the scroll events we can
+				while (node.parentElement && node !== document.body) {
+					if (isScrollableElement(node)) {
+						observables.push(Observable.fromEvent(node, "scroll"));
+					}
+					node = node.parentElement;
 				}
-				node = node.parentElement;
+				// subscribe to the observable, and update the position and visibility
+				const scrollObservable = Observable.merge(...observables);
+				this.scrollSubscription = scrollObservable.subscribe((event: any) => {
+					this.placeDialog();
+					// console.log(isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target),
+					// 	this.dialogConfig.parentRef.nativeElement, event.target);
+					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
+						this.doClose();
+					}
+				});
 			}
-			// subscribe to the observable, and update the position and visibility
-			const scrollObservable = Observable.merge(...observables);
-			this.scrollSubscription = scrollObservable.subscribe((event: any) => {
-				this.placeDialog();
-				if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
-					this.doClose();
-				}
-			});
-		}
+		};
+
+		setTimeout(() => {
+			test();
+		});
 	}
 
 	/**

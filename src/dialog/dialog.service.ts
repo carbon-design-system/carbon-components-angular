@@ -12,6 +12,8 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
 import { DialogConfig } from "./dialog-config.interface";
+import { DialogPlaceholderService } from "./dialog-placeholder.service";
+import { Popover } from "..";
 
 
 /**
@@ -63,13 +65,14 @@ export class DialogService {
 
 	/**
 	 * Creates an instance of `DialogService`.
-	 * @param {ComponentFactoryResolver} _componentFactoryResolver
-	 * @param {Injector} _injector
+	 * @param {ComponentFactoryResolver} componentFactoryResolver
+	 * @param {Injector} injector
 	 * @memberof DialogService
 	 */
 	constructor(
-		protected _componentFactoryResolver: ComponentFactoryResolver,
-		protected _injector: Injector
+		protected componentFactoryResolver: ComponentFactoryResolver,
+		protected injector: Injector,
+		protected dialogPlaceholderService: DialogPlaceholderService
 	) {}
 
 	/**
@@ -78,7 +81,7 @@ export class DialogService {
 	 * @memberof DialogService
 	 */
 	create(component) {
-		this.componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
+		this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 	}
 
 	/**
@@ -105,20 +108,30 @@ export class DialogService {
 	 */
 	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig) {
 		if (!this.dialogRef) {
-			this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this._injector);
-			let focusedElement = document.activeElement;
-			dialogConfig["previouslyFocusedElement"] = focusedElement;
-			this.dialogRef.instance.dialogConfig = dialogConfig;
-			this.onClose = this.dialogRef.instance.close;
-			this.isOpen = true;
-			if (dialogConfig.appendToBody) {
+			// holder for either the provided view, or the view from DialogPlaceholderService
+			let view = viewContainer;
+			if (dialogConfig.appendToBody && this.dialogPlaceholderService.viewContainerRef) {
+				view = this.dialogPlaceholderService.viewContainerRef;
+			} else if (dialogConfig.appendToBody && !this.dialogPlaceholderService.viewContainerRef) {
+				// fallback to the old insertion method if the viewref doesn't exist
+				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
 				setTimeout(() => {
 					window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
 				});
 			}
 
+			// add our component to the view
+			this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
+
+			// initialize some extra options
+			let focusedElement = document.activeElement;
+			dialogConfig["previouslyFocusedElement"] = focusedElement;
+			this.dialogRef.instance.dialogConfig = dialogConfig;
+			this.onClose = this.dialogRef.instance.close;
+			this.isOpen = true;
+
 			this.dialogSubscription = this.onClose.subscribe(() => {
-				this.close(viewContainer);
+				this.close(view);
 			});
 
 			this.dialogRef.instance.elementRef.nativeElement.focus();
