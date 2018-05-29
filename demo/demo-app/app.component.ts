@@ -191,7 +191,14 @@ export class AppComponent implements OnInit {
 			link: "/condition-builder",
 			selected: false
 		}
-	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
+	].sort((a, b) => {
+		if (a.content > b.content) {
+			return 1;
+		} else if (a.content < b.content) {
+			return -1;
+		}
+		return 0;
+	});
 	public filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {
