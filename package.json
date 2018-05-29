@@ -11,7 +11,8 @@
     "docs:server": "compodoc -s",
     "docs:run": "compodoc src -p tsconfig.json -s",
     "lint": "tslint -e spec.ts src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
-    "test": "karma start",
+	"test": "karma start",
+	"test:watch": "karma start --auto-watch --no-single-run",
     "prepush": "bash scripts/prepush.sh"
   },
   "repository": {
