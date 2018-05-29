@@ -185,9 +185,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		};
 
 		// settimeout to let the DOM settle before attempting to place the dialog
-		setTimeout(() => {
-			placeDialogInContainer();
-		});
+		setTimeout(placeDialogInContainer);
 	}
 
 	/**
