@@ -161,7 +161,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			return elementRect.bottom <= containerRect.bottom && elementRect.top >= containerRect.top;
 		};
 
-		const test = () => {
+		const placeDialogInContainer = () => {
 			// only do the work to find the scroll containers if we're appended to body
 			if (this.dialogConfig.appendToBody) {
 				// walk the parents and subscribe to all the scroll events we can
@@ -184,8 +184,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			}
 		};
 
+		// settimeout to let the DOM settle before attempting to place the dialog
 		setTimeout(() => {
-			test();
+			placeDialogInContainer();
 		});
 	}
 
