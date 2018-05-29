@@ -10,6 +10,14 @@ import { PopoverDirective } from "./popover.directive";
 import { createElement } from "../../common/test";
 import { By } from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
+import { DialogPlaceholderService } from "./../dialog-placeholder.service";
+
+@Component({
+	selector: "test-cmp",
+	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
+	entryComponents: [Popover]
+})
+class PopoverTestComponent { }
 
 describe("Popover directive", () => {
 	beforeEach(() => {
@@ -22,7 +30,8 @@ describe("Popover directive", () => {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})
-			]
+			],
+			providers: [ DialogPlaceholderService ]
 		});
 	});
 
@@ -174,10 +183,3 @@ describe("Popover directive", () => {
 		expect(directiveInstance["nPopover"] instanceof TemplateRef).toBe(true);
 	});
 });
-
-@Component({
-	selector: "test-cmp",
-	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
-	entryComponents: [Popover]
-})
-class PopoverTestComponent {}

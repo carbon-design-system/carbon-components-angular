@@ -10,6 +10,7 @@ import { TooltipDirective } from "./tooltip.directive";
 import { createElement } from "./../../common/test";
 import { By } from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
+import { DialogPlaceholderService } from "./../dialog-placeholder.service";
 
 @Component({
 	selector: "test-cmp",
@@ -29,7 +30,8 @@ describe("Tooltip directive", () => {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})
-			]
+			],
+			providers: [ DialogPlaceholderService ]
 		});
 	});
 

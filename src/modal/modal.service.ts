@@ -48,13 +48,13 @@ export class ModalService {
 
 		const inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}));
 		const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
-		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.placeholder.vcRef.parentInjector);
+		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.placeholder.viewContainerRef.parentInjector);
 		const factory = this.resolver.resolveComponentFactory(data.component);
 		let focusedElement = document.activeElement;
 		let component = factory.create(injector);
 		component["previouslyFocusedElement"] = focusedElement;  // used to return focus to previously focused element
 		this.placeholder.componentRefs.push(component);
-		this.placeholder.vcRef.insert(component.hostView);
+		this.placeholder.viewContainerRef.insert(component.hostView);
 
 		component.instance["destroy"] = () => {
 			// find the component in the list and call distroy on it
