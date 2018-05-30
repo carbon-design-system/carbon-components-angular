@@ -11,11 +11,13 @@
 - No visual indication for Lazy Loading and End of Records for Table [\#731](https://github.ibm.com/peretz/neutrino/issues/731)
 - Dropdown always opens downwards even if its placed at the end of page [\#718](https://github.ibm.com/peretz/neutrino/issues/718)
 - add ngModel support to combobox [\#618](https://github.ibm.com/peretz/neutrino/issues/618)
+- Add optional keyboard interactions for Sidenav \(Accordion\)  [\#427](https://github.ibm.com/peretz/neutrino/issues/427)
 - Adjust menu popover position slightly [\#895](https://github.ibm.com/peretz/neutrino/pull/895) ([callums](https://github.ibm.com/callums))
 - Add Pie & Donut chart components [\#884](https://github.ibm.com/peretz/neutrino/pull/884) ([iliadm](https://github.ibm.com/iliadm))
 
 **Fixed bugs:**
 
+- side-nav-group doesn't respond properly to a default value for "expanded" input [\#891](https://github.ibm.com/peretz/neutrino/issues/891)
 - popupMenu wrongly position to grid row/column. [\#821](https://github.ibm.com/peretz/neutrino/issues/821)
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
 - dropdown with multiselect style is broken and aria attributes aren't correct [\#788](https://github.ibm.com/peretz/neutrino/issues/788)
@@ -92,6 +94,7 @@
 
 **Merged pull requests:**
 
+- Add response to default value for "expanded" input [\#901](https://github.ibm.com/peretz/neutrino/pull/901) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
 - Use node instead of grep+awk magic [\#899](https://github.ibm.com/peretz/neutrino/pull/899) ([callums](https://github.ibm.com/callums))
 - Add logging since the call failed [\#898](https://github.ibm.com/peretz/neutrino/pull/898) ([callums](https://github.ibm.com/callums))

@@ -9,6 +9,19 @@ import { StaticIconModule } from "./../../icon/static-icon.module";
 import { NFormsModule } from "./../../forms/forms.module";
 import { FormsModule } from "@angular/forms";
 import { IconModule } from "./../../icon/icon.module";
+import { DialogPlaceholderService } from "./../dialog-placeholder.service";
+
+@Component({
+	selector: "test-cmp",
+	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
+	entryComponents: [Popover]
+})
+class PopoverTestComponent {
+	filter1: any;
+	userData = {
+		data: {}
+	};
+}
 
 describe("Popover directive", () => {
 	beforeEach(() => {
@@ -24,7 +37,8 @@ describe("Popover directive", () => {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})
-			]
+			],
+			providers: [ DialogPlaceholderService ]
 		});
 	});
 
@@ -226,15 +240,3 @@ describe("Popover directive", () => {
 		expect(fixture.componentInstance.userData.data).toEqual("test");
 	}));
 });
-
-@Component({
-	selector: "test-cmp",
-	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
-	entryComponents: [Popover]
-})
-class PopoverTestComponent {
-	filter1: any;
-	userData = {
-		data: {}
-	};
-}
