@@ -202,7 +202,6 @@ describe("Popover directive", () => {
 				</ng-template>
 
 				<ng-template #filterFooter let-popover="popover" let-filter="data">
-					<p>{{ filter1 }}</p>
 					<button class="btn--primary" (click)="filter.data = filter1; popover.doClose()">Apply</button>
 				</ng-template>
 
