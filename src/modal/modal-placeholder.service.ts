@@ -18,7 +18,7 @@ export class ModalPlaceholderService {
 	 * @type {ViewContainerRef}
 	 * @memberof ModalService
 	 */
-	public viewContainerRef: ViewContainerRef;
+	public viewContainerRef: ViewContainerRef = null;
 	/**
 	 * List of `Modal` components that are in existance.
 	 * @type {Array<ComponentRef<any>>}
