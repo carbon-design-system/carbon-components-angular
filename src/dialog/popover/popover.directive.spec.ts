@@ -1,15 +1,16 @@
 import { Component, ElementRef, TemplateRef } from "@angular/core";
 import { TestBed, fakeAsync, tick } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+import { By } from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
+
+import { createElement } from "../../common/test";
+import { NFormsModule } from "./../../forms/forms.module";
+import { IconModule } from "./../../icon/icon.module";
+import { StaticIconModule } from "./../../icon/static-icon.module";
+import { DialogPlaceholderService } from "./../dialog-placeholder.service";
 import { Popover } from "./popover.component";
 import { PopoverDirective } from "./popover.directive";
-import { createElement } from "../../common/test";
-import { By } from "@angular/platform-browser";
-import { StaticIconModule } from "./../../icon/static-icon.module";
-import { NFormsModule } from "./../../forms/forms.module";
-import { FormsModule } from "@angular/forms";
-import { IconModule } from "./../../icon/icon.module";
-import { DialogPlaceholderService } from "./../dialog-placeholder.service";
 
 @Component({
 	selector: "test-cmp",
