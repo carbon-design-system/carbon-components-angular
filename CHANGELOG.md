@@ -40,6 +40,7 @@
 
 **Closed issues:**
 
+- In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
 - Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
 - Condition builder - ANY/ALL drop down beside values [\#854](https://github.ibm.com/peretz/neutrino/issues/854)
@@ -95,6 +96,7 @@
 
 **Merged pull requests:**
 
+- Add user resize column support in table [\#907](https://github.ibm.com/peretz/neutrino/pull/907) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix popover opening twice in some cases [\#905](https://github.ibm.com/peretz/neutrino/pull/905) ([callums](https://github.ibm.com/callums))
 -  Add tests for data input in popover directive [\#904](https://github.ibm.com/peretz/neutrino/pull/904) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Add dialog-placeholder to make appendToBody work better [\#902](https://github.ibm.com/peretz/neutrino/pull/902) ([callums](https://github.ibm.com/callums))
