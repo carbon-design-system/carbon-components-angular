@@ -19,7 +19,7 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["angular2-template-loader", "ts-loader?configFile=tsconfig-demo.json", "tslint-loader"]
+				loaders: ["angular2-template-loader", "ts-loader?configFile=tsconfig-demo.json", "@peretz/icon-loader", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,
