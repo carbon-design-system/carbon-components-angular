@@ -1,4 +1,3 @@
-import { TableModel, TableItem } from "./table.module";
 import {
 	Component,
 	AfterContentChecked,
@@ -10,7 +9,10 @@ import {
 	EventEmitter,
 	ViewEncapsulation
 } from "@angular/core";
+import { Subscription } from "rxjs";
+import { Observable } from "rxjs/Rx";
 
+import { TableModel, TableItem } from "./table.module";
 import { getScrollbarWidth } from "../common/utils";
 
 /**
@@ -85,6 +87,17 @@ import { getScrollbarWidth } from "../common/utils";
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
 						*ngIf="column.visible"
 						[ngStyle]="column.style">
+						<div
+						*ngIf="columnsResizable"
+						style="cursor: ew-resize;
+							height: 100%;
+							width: 11px;
+							position: absolute;
+							right: -6px;
+							z-index: 1;
+							top: 0;"
+						(mousedown)="columnResizeStart($event, column)">
+						</div>
 						<div class="table_cell-wrapper">
 							<span class="table_data-wrapper"
 								(click)="sort.emit(i)">
@@ -279,6 +292,13 @@ export class Table {
 	@Input() scrollLoadDistance = 0;
 
 	/**
+	 * Set to `true` to enable users to resize columns.
+	 *
+	 * @memberof Table
+	 */
+	@Input() columnsResizable = false;
+
+	/**
 	 * Controls if all checkboxes are viewed as selected.
 	 *
 	 * @type {boolean}
@@ -351,6 +371,11 @@ export class Table {
 
 	private _model: TableModel;
 
+	private columnResizeWidth: number;
+	private columnResizeMouseX: number;
+	private mouseMoveSubscription: Subscription;
+	private mouseUpSubscription: Subscription;
+
 	/**
 	 * Creates an instance of Table.
 	 *
@@ -358,6 +383,30 @@ export class Table {
 	 * @memberof Table
 	 */
 	constructor(private applicationRef: ApplicationRef) {}
+
+	columnResizeStart(event, column) {
+		this.columnResizeWidth = parseInt(column.style.width, 10);
+		this.columnResizeMouseX = event.clientX;
+		event.preventDefault();
+
+
+		this.mouseMoveSubscription = Observable.fromEvent(document.body, "mousemove").subscribe(event => {
+			this.columnResizeProgress(event, column);
+		});
+		this.mouseUpSubscription = Observable.fromEvent(document.body, "mouseup").subscribe(event => {
+			this.columnResizeEnd(event, column);
+		});
+	}
+
+	columnResizeProgress(event, column) {
+		const move = event.clientX - this.columnResizeMouseX;
+		column.style.width = `${this.columnResizeWidth + move}px`;
+	}
+
+	columnResizeEnd(event, column) {
+		this.mouseMoveSubscription.unsubscribe();
+		this.mouseUpSubscription.unsubscribe();
+	}
 
 	onRowSelect(index: number) {
 		if (!this.showSelectionColumn && this.enableSingleSelect) {
