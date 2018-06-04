@@ -1,12 +1,7 @@
 import {
-	ComponentFactoryResolver,
 	ComponentRef,
-	ReflectiveInjector,
 	ViewContainerRef
 } from "@angular/core";
-import { ModalComponent } from "./modal.component";
-import { Observable } from "rxjs/Rx";
-import { ReplaySubject } from "rxjs/ReplaySubject";
 import { Injectable } from "@angular/core";
 
 /**
@@ -23,7 +18,7 @@ export class ModalPlaceholderService {
 	 * @type {ViewContainerRef}
 	 * @memberof ModalService
 	 */
-	public vcRef: ViewContainerRef;
+	public viewContainerRef: ViewContainerRef = null;
 	/**
 	 * List of `Modal` components that are in existance.
 	 * @type {Array<ComponentRef<any>>}
@@ -39,6 +34,6 @@ export class ModalPlaceholderService {
 	 * @memberof ModalService
 	 */
 	registerViewContainerRef(vcRef: ViewContainerRef): void {
-		this.vcRef = vcRef;
+		this.viewContainerRef = vcRef;
 	}
 }

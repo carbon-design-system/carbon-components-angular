@@ -74,6 +74,7 @@ const en = require("./../../src/i18n/en.json");
 	</div>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
+	<n-dialog-placeholder></n-dialog-placeholder>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="animations"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
@@ -191,7 +192,14 @@ export class AppComponent implements OnInit {
 			link: "/condition-builder",
 			selected: false
 		}
-	].sort((a, b) => a.content.charCodeAt(0) - b.content.charCodeAt(0));
+	].sort((a, b) => {
+		if (a.content > b.content) {
+			return 1;
+		} else if (a.content < b.content) {
+			return -1;
+		}
+		return 0;
+	});
 	public filteredItems = this.navItems;
 	private previousItem = null;
 	constructor (private _router: Router, private _translate: TranslateService) {

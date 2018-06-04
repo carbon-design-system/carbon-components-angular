@@ -1,28 +1,45 @@
-import {
-	Component,
-	ElementRef,
-	TemplateRef
-} from "@angular/core";
-import { TestBed } from "@angular/core/testing";
+import { Component, ElementRef, TemplateRef } from "@angular/core";
+import { TestBed, fakeAsync, tick } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+import { By } from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
+
+import { createElement } from "../../common/test";
+import { NFormsModule } from "./../../forms/forms.module";
+import { IconModule } from "./../../icon/icon.module";
+import { StaticIconModule } from "./../../icon/static-icon.module";
+import { DialogPlaceholderService } from "./../dialog-placeholder.service";
 import { Popover } from "./popover.component";
 import { PopoverDirective } from "./popover.directive";
-import { createElement } from "../../common/test";
-import { By } from "@angular/platform-browser";
-import { StaticIconModule } from "./../../icon/static-icon.module";
+
+@Component({
+	selector: "test-cmp",
+	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
+	entryComponents: [Popover]
+})
+class PopoverTestComponent {
+	filter1: any;
+	userData = {
+		data: {}
+	};
+}
 
 describe("Popover directive", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [PopoverDirective, Popover, PopoverTestComponent],
 			imports: [
+				FormsModule,
+				NFormsModule,
+				IconModule,
 				StaticIconModule,
 				TranslateModule.forRoot({
 					loader: {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})
-			]
+			],
+			providers: [ DialogPlaceholderService ]
 		});
 	});
 
@@ -173,11 +190,53 @@ describe("Popover directive", () => {
 
 		expect(directiveInstance["nPopover"] instanceof TemplateRef).toBe(true);
 	});
-});
 
-@Component({
-	selector: "test-cmp",
-	template: "<button nPopover='Hello There' placement='bottom'>Me</button>",
-	entryComponents: [Popover]
-})
-class PopoverTestComponent {}
+	it("popover should pass data to consumer", fakeAsync(() => {
+		TestBed.overrideComponent(PopoverTestComponent, {
+			set: {
+				template: `
+				<ng-template #filter let-popover="popover" let-filter="data">
+					<n-label class="first-label">
+						Value
+						<input type="text" [(ngModel)]="filter1" class="input-field">
+					</n-label>
+				</ng-template>
+
+				<ng-template #filterFooter let-popover="popover" let-filter="data">
+					<button class="btn--primary" (click)="filter.data = filter1; popover.doClose()">Apply</button>
+				</ng-template>
+
+				<button class="btn--icon-link"
+					[nPopover]="filter"
+					title="Popover filter"
+					placement="left"
+					[data]="userData"
+					[footer]="filterFooter">
+					<n-icon icon="filter" size="sm"></n-icon>
+				</button>
+				`
+			}
+		});
+
+		const fixture = TestBed.createComponent(PopoverTestComponent);
+		fixture.detectChanges();
+
+		let button = fixture.nativeElement.querySelector("button");
+		button.click();
+
+		tick();
+		fixture.detectChanges();
+
+		let element = fixture.debugElement.query(By.css("input")).nativeElement;
+		let submitButton = fixture.debugElement.query(By.css(".btn--primary")).nativeElement;
+		element.value = "test";
+		element.dispatchEvent(new Event("input"));
+		submitButton.click();
+
+		tick();
+		fixture.detectChanges();
+
+		expect(fixture.componentInstance instanceof PopoverTestComponent).toBe(true);
+		expect(fixture.componentInstance.userData.data).toEqual("test");
+	}));
+});

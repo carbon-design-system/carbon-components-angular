@@ -94,6 +94,8 @@
 
 **Merged pull requests:**
 
+- Fix popover opening twice in some cases [\#905](https://github.ibm.com/peretz/neutrino/pull/905) ([callums](https://github.ibm.com/callums))
+- Add dialog-placeholder to make appendToBody work better [\#902](https://github.ibm.com/peretz/neutrino/pull/902) ([callums](https://github.ibm.com/callums))
 - Add response to default value for "expanded" input [\#901](https://github.ibm.com/peretz/neutrino/pull/901) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
 - Use node instead of grep+awk magic [\#899](https://github.ibm.com/peretz/neutrino/pull/899) ([callums](https://github.ibm.com/callums))
