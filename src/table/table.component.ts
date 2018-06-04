@@ -89,13 +89,7 @@ import { getScrollbarWidth } from "../common/utils";
 						[ngStyle]="column.style">
 						<div
 						*ngIf="columnsResizable"
-						style="cursor: ew-resize;
-							height: 100%;
-							width: 11px;
-							position: absolute;
-							right: -6px;
-							z-index: 1;
-							top: 0;"
+						class="column-resize-handle"
 						(mousedown)="columnResizeStart($event, column)">
 						</div>
 						<div class="table_cell-wrapper">
@@ -388,7 +382,6 @@ export class Table {
 		this.columnResizeWidth = parseInt(column.style.width, 10);
 		this.columnResizeMouseX = event.clientX;
 		event.preventDefault();
-
 
 		this.mouseMoveSubscription = Observable.fromEvent(document.body, "mousemove").subscribe(event => {
 			this.columnResizeProgress(event, column);
