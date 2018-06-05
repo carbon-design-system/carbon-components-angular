@@ -54,11 +54,11 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 	</div>
 
 	<peretz-icon set="core_set" icon="alert" color="blue" size="sm"></peretz-icon>
-	<peretz-icon class="icon--blue" set="core_set" icon="alert" color="blue" size="md"></peretz-icon>
+	<peretz-icon set="core_set" icon="alert" color="blue" size="md"></peretz-icon>
 	<peretz-icon set="core_set" icon="alert" color="blue" size="lg"></peretz-icon>
 
 	<peretz-icon set="core_set" icon="alert" color="light" size="sm"></peretz-icon>
-	<peretz-icon class="icon--light" set="core_set" icon="alert" color="light" size="md"></peretz-icon>
+	<peretz-icon set="core_set" icon="alert" color="light" size="md"></peretz-icon>
 	<peretz-icon set="core_set" icon="alert" color="light" size="lg"></peretz-icon>
 
 	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
