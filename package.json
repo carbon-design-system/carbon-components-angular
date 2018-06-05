@@ -52,7 +52,7 @@
     "@ngx-translate/core": "9.0.2",
     "@peretz/charts": "0.1.0-alpha.5bb57",
     "@peretz/matter": "1.1.0-alpha.fe049",
-    "@peretz/icon-loader": "0.0.1",
+    "@peretz/icon-loader": "0.0.3",
     "@types/d3": "4.12.0",
     "@types/jasmine": "2.8.6",
     "@types/node": "8.5.2",

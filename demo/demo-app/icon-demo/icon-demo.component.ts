@@ -47,24 +47,24 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 	<peretz-icon set="core_set" icon="alert" size="lg"></peretz-icon>
 
 	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
-		<peretz-icon set="core_set" icon="alert" color="blue" size="md"></peretz-icon>
-		<peretz-icon set="core_set" icon="alert" color="light" size="md"></peretz-icon>
-		<peretz-icon set="core_set" icon="alert" color="dark" size="md"></peretz-icon>
-		<peretz-icon set="core_set" icon="alert" color="white" size="md"></peretz-icon>
+		<peretz-icon class="icon" set="core_set" icon="alert" color="blue" size="md"></peretz-icon>
+		<peretz-icon class="icon" set="core_set" icon="alert" color="light" size="md"></peretz-icon>
+		<peretz-icon class="icon" set="core_set" icon="alert" color="dark" size="md"></peretz-icon>
+		<peretz-icon class="icon" set="core_set" icon="alert" color="white" size="md"></peretz-icon>
 	</div>
 
 	<peretz-icon set="core_set" icon="alert" color="blue" size="sm"></peretz-icon>
-	<peretz-icon set="core_set" icon="alert" color="blue" size="md"></peretz-icon>
+	<peretz-icon class="icon--blue" set="core_set" icon="alert" color="blue" size="md"></peretz-icon>
 	<peretz-icon set="core_set" icon="alert" color="blue" size="lg"></peretz-icon>
 
 	<peretz-icon set="core_set" icon="alert" color="light" size="sm"></peretz-icon>
-	<peretz-icon set="core_set" icon="alert" color="light" size="md"></peretz-icon>
+	<peretz-icon class="icon--light" set="core_set" icon="alert" color="light" size="md"></peretz-icon>
 	<peretz-icon set="core_set" icon="alert" color="light" size="lg"></peretz-icon>
 
 	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
-		<peretz-icon set="core_set" icon="alert" color="white" size="sm"></peretz-icon>
-		<peretz-icon set="core_set" icon="alert" color="white" size="md"></peretz-icon>
-		<peretz-icon set="core_set" class="test-custom-class foo" icon="alert" color="white" size="lg"></peretz-icon>
+		<peretz-icon class="icon--sm" set="core_set" icon="alert" color="white" size="sm"></peretz-icon>
+		<peretz-icon class="icon" set="core_set" icon="alert" color="white" size="md"></peretz-icon>
+		<peretz-icon class="test-custom-class foo icon--lg" set="core_set" icon="alert" color="white" size="lg"></peretz-icon>
 	</div>
 
 	<!--<div style="display: flex;">
