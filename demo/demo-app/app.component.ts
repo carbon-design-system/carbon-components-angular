@@ -74,7 +74,7 @@ const en = require("./../../src/i18n/en.json");
 	</div>
 	</main>
 	<n-modal-placeholder></n-modal-placeholder>
-	<!--<n-dialog-placeholder></n-dialog-placeholder>-->
+	<n-dialog-placeholder></n-dialog-placeholder>
 	<n-sprite sprite="alerts_status"></n-sprite>
 	<n-sprite sprite="animations"></n-sprite>
 	<n-sprite sprite="arrows_chevrons"></n-sprite>
