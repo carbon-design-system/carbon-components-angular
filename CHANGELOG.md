@@ -87,6 +87,7 @@
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
 - Improve customized code style guide \(stretch\) [\#662](https://github.ibm.com/peretz/neutrino/issues/662)
 - Create a Calendar component [\#661](https://github.ibm.com/peretz/neutrino/issues/661)
+- Add tests for data input in popover directive [\#632](https://github.ibm.com/peretz/neutrino/issues/632)
 - Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
 - Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
 - Breadcrumbs [\#346](https://github.ibm.com/peretz/neutrino/issues/346)
@@ -95,6 +96,7 @@
 **Merged pull requests:**
 
 - Fix popover opening twice in some cases [\#905](https://github.ibm.com/peretz/neutrino/pull/905) ([callums](https://github.ibm.com/callums))
+-  Add tests for data input in popover directive [\#904](https://github.ibm.com/peretz/neutrino/pull/904) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Add dialog-placeholder to make appendToBody work better [\#902](https://github.ibm.com/peretz/neutrino/pull/902) ([callums](https://github.ibm.com/callums))
 - Add response to default value for "expanded" input [\#901](https://github.ibm.com/peretz/neutrino/pull/901) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
