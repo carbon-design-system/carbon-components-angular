@@ -8,7 +8,7 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["ts-loader"]
+				loaders: ["ts-loader", "@peretz/icon-loader"]
 			},
 			{
 				test: /\.html$/,
