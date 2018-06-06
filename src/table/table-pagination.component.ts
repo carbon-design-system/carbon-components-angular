@@ -269,7 +269,8 @@ export class TablePagination {
 	 * @memberof TablePagination
 	 */
 	isComplexRightPagination(): boolean {
-		return !this.isSimplePagination() && this.model.currentPage >= this.lastPage() - 4;
+		// if the page number is less than 6, it has to be in the left.
+		return !this.isSimplePagination() && this.model.currentPage >= this.lastPage() - 4 && this.model.currentPage >= 6;
 	}
 
 	/**

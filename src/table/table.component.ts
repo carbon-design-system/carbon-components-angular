@@ -1,4 +1,3 @@
-import { TableModel, TableItem } from "./table.module";
 import {
 	Component,
 	AfterContentChecked,
@@ -10,7 +9,10 @@ import {
 	EventEmitter,
 	ViewEncapsulation
 } from "@angular/core";
+import { Subscription } from "rxjs";
+import { Observable } from "rxjs/Rx";
 
+import { TableModel, TableItem } from "./table.module";
 import { getScrollbarWidth } from "../common/utils";
 
 /**
@@ -84,7 +86,15 @@ import { getScrollbarWidth } from "../common/utils";
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
 						*ngIf="column.visible"
-						[ngStyle]="column.style">
+						[ngStyle]="column.style"
+						[draggable]="columnsDraggable"
+						(dragstart)="columnDragStart($event, i)"
+						(dragend)="columnDragEnd($event, i)">
+						<div
+						*ngIf="columnsResizable"
+						class="column-resize-handle"
+						(mousedown)="columnResizeStart($event, column)">
+						</div>
 						<div class="table_cell-wrapper">
 							<span class="table_data-wrapper"
 								(click)="sort.emit(i)">
@@ -140,6 +150,31 @@ import { getScrollbarWidth } from "../common/utils";
 									{{column.filterCount}}
 								</span>
 							</button>
+						</div>
+						<div
+						*ngIf="columnsDraggable && isColumnDragging"
+						class="drop-area">
+							<div
+							*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'left'"
+							class="drop-indicator-left"></div>
+							<div
+							class="drop-area-left"
+							(dragenter)="columnDragEnter($event, 'left', i)"
+							(dragleave)="columnDragLeave($event, 'left', i)"
+							(dragover)="columnDragover($event, 'left', i)"
+							(drop)="columnDrop($event, 'left', i)">
+							</div>
+
+							<div
+							class="drop-area-right"
+							(dragenter)="columnDragEnter($event, 'right', i)"
+							(dragleave)="columnDragLeave($event, 'right', i)"
+							(dragover)="columnDragover($event, 'right', i)"
+							(drop)="columnDrop($event, 'right', i)">
+							</div>
+							<div
+							*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'right'"
+							class="drop-indicator-right"></div>
 						</div>
 					</th>
 				</ng-container>
@@ -279,6 +314,25 @@ export class Table {
 	@Input() scrollLoadDistance = 0;
 
 	/**
+	 * Set to `true` to enable users to resize columns.
+	 *
+	 * Works for columns with width set in pixels.
+	 *
+	 * @memberof Table
+	 */
+	@Input() columnsResizable = false;
+
+	/**
+	 * Set to `true` to enable users to drag and drop columns.
+	 *
+	 * Changing the column order in table changes table model. Be aware of it when you add additional data
+	 * to the model.
+	 *
+	 * @memberof Table
+	 */
+	@Input() columnsDraggable = false;
+
+	/**
 	 * Controls if all checkboxes are viewed as selected.
 	 *
 	 * @type {boolean}
@@ -351,6 +405,15 @@ export class Table {
 
 	private _model: TableModel;
 
+	private columnResizeWidth: number;
+	private columnResizeMouseX: number;
+	private mouseMoveSubscription: Subscription;
+	private mouseUpSubscription: Subscription;
+
+	private isColumnDragging = false;
+	private columnDraggedHoverIndex = -1;
+	private columnDraggedPosition = "";
+
 	/**
 	 * Creates an instance of Table.
 	 *
@@ -358,6 +421,29 @@ export class Table {
 	 * @memberof Table
 	 */
 	constructor(private applicationRef: ApplicationRef) {}
+
+	columnResizeStart(event, column) {
+		this.columnResizeWidth = parseInt(column.style.width, 10);
+		this.columnResizeMouseX = event.clientX;
+		event.preventDefault();
+
+		this.mouseMoveSubscription = Observable.fromEvent(document.body, "mousemove").subscribe(event => {
+			this.columnResizeProgress(event, column);
+		});
+		this.mouseUpSubscription = Observable.fromEvent(document.body, "mouseup").subscribe(event => {
+			this.columnResizeEnd(event, column);
+		});
+	}
+
+	columnResizeProgress(event, column) {
+		const move = event.clientX - this.columnResizeMouseX;
+		column.style.width = `${this.columnResizeWidth + move}px`;
+	}
+
+	columnResizeEnd(event, column) {
+		this.mouseMoveSubscription.unsubscribe();
+		this.mouseUpSubscription.unsubscribe();
+	}
 
 	onRowSelect(index: number) {
 		if (!this.showSelectionColumn && this.enableSingleSelect) {
@@ -454,6 +540,45 @@ export class Table {
 		} else {
 			this.model.isEnd = false;
 		}
+	}
+
+	columnDragStart(event, columnIndex) {
+		this.isColumnDragging = true;
+		this.columnDraggedHoverIndex = columnIndex;
+		event.dataTransfer.setData("columnIndex", JSON.stringify(columnIndex));
+	}
+
+	columnDragEnd(event, columnIndex) {
+		this.isColumnDragging = false;
+		this.columnDraggedHoverIndex = -1;
+	}
+
+	columnDragEnter(event, position, columnIndex) {
+		this.columnDraggedPosition = position;
+		this.columnDraggedHoverIndex = columnIndex;
+	}
+
+	columnDragLeave(event, position, columnIndex) {
+		this.columnDraggedPosition = "";
+	}
+
+	columnDragover(event, position, columnIndex) {
+		this.columnDraggedHoverIndex = columnIndex;
+		this.columnDraggedPosition = position;
+
+		// needed to tell browser to allow dropping
+		event.preventDefault();
+	}
+
+	columnDrop(event, position, columnIndex) {
+		this.isColumnDragging = false;
+		this.columnDraggedHoverIndex = -1;
+		this.columnDraggedPosition = "";
+
+		this.model.moveColumn(
+			parseInt(event.dataTransfer.getData("columnIndex"), 10),
+			columnIndex + (position === "right" ? 1 : 0)
+		);
 	}
 
 	get scrollbarWidth() {

@@ -1,5 +1,5 @@
 import { TestBed } from "@angular/core/testing";
-import { TableModel, TableItem } from "./table.module";
+import { TableModel, TableItem, TableHeaderItem } from "./table.module";
 
 describe("Table", () => {
 	beforeEach(() => {
@@ -502,5 +502,89 @@ describe("Table", () => {
 		expect(tableModel.rowsSelected.length).toEqual(2);
 		expect(tableModel.rowsContext.length).toEqual(2);
 		expect(tableModel.header.length).toEqual(2);
+	});
+
+	it("should move column to beginning", () => {
+		let tableModel  = new TableModel();
+		tableModel.header = [
+			new TableHeaderItem({data: "h1"}), new TableHeaderItem({data: "h2"}), new TableHeaderItem({data: "h3"})
+		];
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})],
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
+
+		tableModel.moveColumn(1, 0);
+
+		expect(tableModel.column(0)).toEqual([new TableItem({data: "B"}), new TableItem({data: "E"})]);
+		expect(tableModel.column(1)).toEqual([new TableItem({data: "A"}), new TableItem({data: "D"})]);
+		expect(tableModel.column(2)).toEqual([new TableItem({data: "C"}), new TableItem({data: "F"})]);
+		expect(tableModel.header[0].data).toEqual("h2");
+		expect(tableModel.header[1].data).toEqual("h1");
+		expect(tableModel.header[2].data).toEqual("h3");
+		expect(tableModel.header.length).toEqual(3);
+	});
+
+	it("should move column to end", () => {
+		let tableModel  = new TableModel();
+		tableModel.header = [
+			new TableHeaderItem({data: "h1"}), new TableHeaderItem({data: "h2"}), new TableHeaderItem({data: "h3"})
+		];
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})],
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
+
+		tableModel.moveColumn(1, 3);
+
+		expect(tableModel.column(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "D"})]);
+		expect(tableModel.column(1)).toEqual([new TableItem({data: "C"}), new TableItem({data: "F"})]);
+		expect(tableModel.column(2)).toEqual([new TableItem({data: "B"}), new TableItem({data: "E"})]);
+		expect(tableModel.header[0].data).toEqual("h1");
+		expect(tableModel.header[1].data).toEqual("h3");
+		expect(tableModel.header[2].data).toEqual("h2");
+		expect(tableModel.header.length).toEqual(3);
+	});
+
+	it("should move column to left", () => {
+		let tableModel  = new TableModel();
+		tableModel.header = [
+			new TableHeaderItem({data: "h1"}), new TableHeaderItem({data: "h2"}), new TableHeaderItem({data: "h3"})
+		];
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})],
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
+
+		tableModel.moveColumn(2, 1);
+
+		expect(tableModel.column(0)).toEqual([new TableItem({data: "A"}), new TableItem({data: "D"})]);
+		expect(tableModel.column(1)).toEqual([new TableItem({data: "C"}), new TableItem({data: "F"})]);
+		expect(tableModel.column(2)).toEqual([new TableItem({data: "B"}), new TableItem({data: "E"})]);
+		expect(tableModel.header[0].data).toEqual("h1");
+		expect(tableModel.header[1].data).toEqual("h3");
+		expect(tableModel.header[2].data).toEqual("h2");
+		expect(tableModel.header.length).toEqual(3);
+	});
+
+	it("should move column to right", () => {
+		let tableModel  = new TableModel();
+		tableModel.header = [
+			new TableHeaderItem({data: "h1"}), new TableHeaderItem({data: "h2"}), new TableHeaderItem({data: "h3"})
+		];
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})],
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
+
+		tableModel.moveColumn(0, 2);
+
+		expect(tableModel.column(0)).toEqual([new TableItem({data: "B"}), new TableItem({data: "E"})]);
+		expect(tableModel.column(1)).toEqual([new TableItem({data: "A"}), new TableItem({data: "D"})]);
+		expect(tableModel.column(2)).toEqual([new TableItem({data: "C"}), new TableItem({data: "F"})]);
+		expect(tableModel.header[0].data).toEqual("h2");
+		expect(tableModel.header[1].data).toEqual("h1");
+		expect(tableModel.header[2].data).toEqual("h3");
+		expect(tableModel.header.length).toEqual(3);
 	});
 });

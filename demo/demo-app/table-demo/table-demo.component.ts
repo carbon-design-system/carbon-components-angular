@@ -90,13 +90,19 @@ class FilterableHeaderItem extends TableHeaderItem {
 	</button>
 
 	<button class="btn--primary" (click)="resetCustomModelData()">Reset model data</button>
-
 	<br>
+
 	<button class="btn--primary" (click)="programmaticSelect(customModel)">Select first row</button>
+	<br>
+
+	<n-checkbox [(ngModel)]="columnsResizable">Make columns resizable</n-checkbox>
+	<n-checkbox [(ngModel)]="columnsDraggable">Enable column drag and drop</n-checkbox>
 
 	<n-table
 		[model]="customModel"
 		[striped]="striped"
+		[columnsResizable]="columnsResizable"
+		[columnsDraggable]="columnsDraggable"
 		(sort)="customSort($event)"
 		(scrollLoad)="scrollLoad($event)"
 		#table>
@@ -153,6 +159,8 @@ export class TableDemo implements OnInit {
 	public contextModel = new TableModel();
 	public model = new TableModel();
 	numPages = 0;
+	columnsResizable = false;
+	columnsDraggable = false;
 
 	@ViewChild("filterableHeaderTemplate")
 	private filterableHeaderTemplate: TemplateRef<any>;
