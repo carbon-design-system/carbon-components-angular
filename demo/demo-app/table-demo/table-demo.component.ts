@@ -96,11 +96,13 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<br>
 
 	<n-checkbox [(ngModel)]="columnsResizable">Make columns resizable</n-checkbox>
+	<n-checkbox [(ngModel)]="columnsDraggable">Enable column drag and drop</n-checkbox>
 
 	<n-table
 		[model]="customModel"
 		[striped]="striped"
 		[columnsResizable]="columnsResizable"
+		[columnsDraggable]="columnsDraggable"
 		(sort)="customSort($event)"
 		(scrollLoad)="scrollLoad($event)"
 		#table>
@@ -158,6 +160,7 @@ export class TableDemo implements OnInit {
 	public model = new TableModel();
 	numPages = 0;
 	columnsResizable = false;
+	columnsDraggable = false;
 
 	@ViewChild("filterableHeaderTemplate")
 	private filterableHeaderTemplate: TemplateRef<any>;
