@@ -1,5 +1,5 @@
 .DS_Store
-*.log
+*.log*
 *.swp
 bower_components
 node_modules

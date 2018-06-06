@@ -318,7 +318,7 @@ export class TableModel {
 		}
 
 		let rc = this.data.length;  // row count
-		const ci = this.realColumnIndex(index);
+		let ci = this.realColumnIndex(index);
 
 		// append missing rows
 		for (let i = 0; column != null && i < column.length - rc; i++) {
@@ -336,6 +336,10 @@ export class TableModel {
 				this.header.push(new TableHeaderItem());
 			}
 		} else {
+			if (index >= this.data[0].length) {
+				// if trying to append
+				ci++;
+			}
 			// insert
 			for (let i = 0; i < rc; i++) {
 				let row = this.data[i];
@@ -370,6 +374,15 @@ export class TableModel {
 		}
 
 		this.dataChange.emit();
+	}
+
+	moveColumn(indexFrom: number, indexTo: number) {
+		const headerFrom = this.header[indexFrom];
+
+		this.addColumn(this.column(indexFrom), indexTo);
+		this.deleteColumn(indexFrom + (indexTo < indexFrom ? 1 : 0));
+
+		this.header[indexTo + (indexTo > indexFrom ? -1 : 0)] = headerFrom;
 	}
 
 	/**
