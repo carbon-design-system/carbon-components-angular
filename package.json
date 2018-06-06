@@ -16,7 +16,6 @@
 	"utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
 	"utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
 	"prepush": "bash scripts/prepush.sh"
-
   },
   "repository": {
 	"type": "git",
