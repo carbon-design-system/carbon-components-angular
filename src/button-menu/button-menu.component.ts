@@ -21,6 +21,7 @@ import "rxjs/add/observable/fromEvent";
 import "rxjs/add/operator/throttleTime";
 
 import { position } from "../common/position.service";
+import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 
 @Component({
 	selector: "n-button-menu",
@@ -159,6 +160,29 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@HostListener("keydown", ["$event"])
 	onKeyDown(ev: KeyboardEvent) {
+		const listItems = [].slice.call(this.elementRef.nativeElement.querySelectorAll("li"));
+
+		if (ev.key === "ArrowDown" && !this.menuIsClosed) {
+			ev.preventDefault();
+			if (!isFocusInLastItem(event, listItems))  {
+				const index = listItems.findIndex(item => item === ev.target);
+				listItems[index + 1].focus();
+
+			} else {
+				listItems[0].focus();
+			}
+		}
+
+		if (ev.key === "ArrowUp" && !this.menuIsClosed) {
+			ev.preventDefault();
+			if (!isFocusInFirstItem(event, listItems))  {
+				const index = listItems.findIndex(item => item === ev.target);
+				listItems[index - 1].focus();
+			} else {
+				listItems[listItems.length - 1].focus();
+			}
+		}
+
 		if (ev.key === "Escape" && !this.menuIsClosed) {
 			ev.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
@@ -171,12 +195,14 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
-			this.closeMenu();
-		}
-
 		if (!this.menuIsClosed && ev.key === "Tab" && ev.shiftKey) {
-			this.closeMenu();
+			if (isFocusInFirstItem(event, listItems))  {
+				this.closeMenu();
+			}
+		} else if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+			if (isFocusInLastItem(event, listItems))  {
+				this.closeMenu();
+			}
 		}
 	}
 
@@ -190,7 +216,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		}
 	}
 	_outsideKey(ev) {
-		if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+		if (this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
 			this.closeMenu();
 		}
 	}
