@@ -10,7 +10,7 @@ import {
 	HostBinding
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
-import position from "../../common/position.service";
+import position from "../../utils/position";
 
 
 /**

@@ -15,7 +15,7 @@ import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/observable/merge";
-import position, { Position, AbsolutePosition } from "../common/position.service";
+import position, { Position, AbsolutePosition } from "../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
