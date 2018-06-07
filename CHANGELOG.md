@@ -107,6 +107,7 @@
 - Add user resize column support in table [\#907](https://github.ibm.com/peretz/neutrino/pull/907) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix popover opening twice in some cases [\#905](https://github.ibm.com/peretz/neutrino/pull/905) ([callums](https://github.ibm.com/callums))
 -  Add tests for data input in popover directive [\#904](https://github.ibm.com/peretz/neutrino/pull/904) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
+- Move everything that can be shared into a seperate utils repo [\#903](https://github.ibm.com/peretz/neutrino/pull/903) ([callums](https://github.ibm.com/callums))
 - Add dialog-placeholder to make appendToBody work better [\#902](https://github.ibm.com/peretz/neutrino/pull/902) ([callums](https://github.ibm.com/callums))
 - Add response to default value for "expanded" input [\#901](https://github.ibm.com/peretz/neutrino/pull/901) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
