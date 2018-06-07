@@ -20,7 +20,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/operator/throttleTime";
 
-import { position } from "../common/position.service";
+import { position } from "../utils/position";
 
 @Component({
 	selector: "n-button-menu",
