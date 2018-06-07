@@ -1,11 +1,11 @@
 import { Component, asNativeElements, DebugElement } from "@angular/core";
-import { By	} from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 
 import { TestBed, ComponentFixture } from "@angular/core/testing";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { SideNav, SideNavGroup, SideNavItem, SideNavPaneTitle, SideNavSubpanel } from "./side-nav.module";
-import { TreeView, TreeViewItem, TreeViewWrapper } from "./../tree-View/tree-view.module";
+import { TreeView, TreeViewItem, TreeViewWrapper } from "./../tree-view/tree-view.module";
 import { getFocusElementList } from "./../common/tab.service";
 
 @Component({
@@ -71,7 +71,7 @@ describe("Side Nav", () => {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})
-			],
+			]
 		});
 	});
 
