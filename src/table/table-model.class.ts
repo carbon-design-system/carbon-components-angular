@@ -132,7 +132,7 @@ export class TableModel {
 	 * @type {Array<Array<TableItem>>}
 	 * @memberof TableModel
 	 */
-	private _data: Array<Array<TableItem>>;
+	private _data: Array<Array<TableItem>> = [[]];
 
 	/**
 	 * Returns how many rows is currently selected
@@ -183,7 +183,7 @@ export class TableModel {
 	 */
 	addRow(row?: Array<TableItem>, index?: number) {
 		// if table empty create table with row
-		if (this.data == null || this.data.length === 0) {
+		if (!this.data || this.data.length === 0 || this.data[0].length === 0) {
 			let newData = new Array<Array<TableItem>>();
 			newData.push(row ? row : [new TableItem()]);  // row or one empty one column row
 			this.data = newData;
@@ -302,7 +302,7 @@ export class TableModel {
 	 */
 	addColumn(column?: Array<TableItem>, index?: number) {
 		// if table empty create table with row
-		if (this.data == null || this.data.length === 0) {
+		if (!this.data || this.data.length === 0 || this.data[0].length === 0) {
 			let newData = new Array<Array<TableItem>>();
 			if (column == null) {
 				newData.push([new TableItem()]);
