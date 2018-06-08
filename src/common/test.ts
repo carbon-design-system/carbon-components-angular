@@ -1,3 +1,4 @@
+// TODO: remove this file since it doesn't seem to be used
 import { TestBed, ComponentFixture } from "@angular/core/testing";
 
 export function createGenericTestComponent<T>(html: string, type: {new (...args: any[]): T}): ComponentFixture<T> {

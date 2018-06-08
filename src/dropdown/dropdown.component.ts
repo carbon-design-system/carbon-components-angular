@@ -24,7 +24,7 @@ import "rxjs/add/operator/throttleTime";
 import { TranslateService } from "@ngx-translate/core";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { position } from "../common/position.service";
+import { position } from "../utils/position";
 import { ListItem } from "./list-item.interface";
 import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
 import { Subscription } from "rxjs/Subscription";

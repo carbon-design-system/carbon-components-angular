@@ -14,7 +14,7 @@ import {
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
 import { Observable } from "rxjs/Observable";
-import position from "../../common/position.service";
+import position from "../../utils/position";
 
 
 /**
