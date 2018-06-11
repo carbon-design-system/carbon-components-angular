@@ -17,6 +17,7 @@
 
 **Fixed bugs:**
 
+- Pagination bug [\#906](https://github.ibm.com/peretz/neutrino/issues/906)
 - side-nav-group doesn't respond properly to a default value for "expanded" input [\#891](https://github.ibm.com/peretz/neutrino/issues/891)
 - popupMenu wrongly position to grid row/column. [\#821](https://github.ibm.com/peretz/neutrino/issues/821)
 - Support for lazy loaded modules + AOT  [\#792](https://github.ibm.com/peretz/neutrino/issues/792)
@@ -40,6 +41,8 @@
 
 **Closed issues:**
 
+- The constructor for TableModel leaves model.data undefined, which causes issues when loading n-table-pagination [\#917](https://github.ibm.com/peretz/neutrino/issues/917)
+- Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
 - In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
 - Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
@@ -90,15 +93,25 @@
 - Create a Calendar component [\#661](https://github.ibm.com/peretz/neutrino/issues/661)
 - Add tests for data input in popover directive [\#632](https://github.ibm.com/peretz/neutrino/issues/632)
 - Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
+- Table feature request \(drag & drop columns; adjustable column widths\) [\#596](https://github.ibm.com/peretz/neutrino/issues/596)
 - Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
 - Breadcrumbs [\#346](https://github.ibm.com/peretz/neutrino/issues/346)
 - Tech reqs for Breadcrumb API [\#206](https://github.ibm.com/peretz/neutrino/issues/206)
 
 **Merged pull requests:**
 
+- Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update snippet indentation [\#916](https://github.ibm.com/peretz/neutrino/pull/916) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Add additional table documentation [\#915](https://github.ibm.com/peretz/neutrino/pull/915) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- One port is enough [\#912](https://github.ibm.com/peretz/neutrino/pull/912) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Trigger app testing [\#911](https://github.ibm.com/peretz/neutrino/pull/911) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Add drag & drop table column support [\#910](https://github.ibm.com/peretz/neutrino/pull/910) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Add @peretz/icon-loader [\#909](https://github.ibm.com/peretz/neutrino/pull/909) ([callums](https://github.ibm.com/callums))
+- Fix pagination bug  [\#908](https://github.ibm.com/peretz/neutrino/pull/908) ([Maged-Hennawy](https://github.ibm.com/Maged-Hennawy))
 - Add user resize column support in table [\#907](https://github.ibm.com/peretz/neutrino/pull/907) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix popover opening twice in some cases [\#905](https://github.ibm.com/peretz/neutrino/pull/905) ([callums](https://github.ibm.com/callums))
 -  Add tests for data input in popover directive [\#904](https://github.ibm.com/peretz/neutrino/pull/904) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
+- Move everything that can be shared into a seperate utils repo [\#903](https://github.ibm.com/peretz/neutrino/pull/903) ([callums](https://github.ibm.com/callums))
 - Add dialog-placeholder to make appendToBody work better [\#902](https://github.ibm.com/peretz/neutrino/pull/902) ([callums](https://github.ibm.com/callums))
 - Add response to default value for "expanded" input [\#901](https://github.ibm.com/peretz/neutrino/pull/901) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Fix build [\#900](https://github.ibm.com/peretz/neutrino/pull/900) ([callums](https://github.ibm.com/callums))
