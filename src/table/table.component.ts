@@ -20,6 +20,93 @@ import { getScrollbarWidth } from "../common/utils";
  *
  * demo: [https://pages.github.ibm.com/peretz/neutrino/#/table](https://pages.github.ibm.com/peretz/neutrino/#/table)
  *
+ * Instead of the usual write-your-own-html approach you had with `<table>`,
+ * neutrino table uses model-view-controller approach.
+ *
+ * Here, you create a view (with built-in controller) and provide it a model.
+ * Changes you make to the model are reflected in the view. Provide same model you use
+ * in the table to the `<n-table-pagination>` and `<n-table-goto-page>` components.
+ * They provide a different view over the same data.
+ *
+ * ## Basic usage
+ *
+ * ```html
+ * <n-table [model]="simpleModel"></n-table>
+ * ```
+ *
+ * ```typescript
+ * public simpleModel = new TableModel();
+ *
+ * this.simpleModel.data = [
+ * 	[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
+ * 	[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
+ * ];
+ * ```
+ *
+ * ## Customization
+ *
+ * If you have custom data in your table, you need a way to display it. You can do that
+ * by providing a template to `TableItem`.
+ *
+ * ```html
+ * <ng-template #customTableItemTemplate let-data="data">
+ * 	<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
+ * </ng-template>
+ * ```
+ *
+ * ```typescript
+ * customTableItemTemplate: TemplateRef<any>;
+ *
+ * this.customModel.data = [
+ * 	[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
+ * 	[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
+ * ];
+ * ```
+ *
+ * ### Sorting and filtering
+ *
+ * In case you need custom sorting and/or filtering you should subclass `TableHeaderItem`
+ * and override needed functions.
+ *
+ * ```typescript
+ * class FilterableHeaderItem extends TableHeaderItem {
+ * 	// custom filter function
+ * 	filter(item: TableItem): boolean {
+ * 		if (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+ * 		item.data.name && item.data.name.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+ * 		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0) {
+ * 			return false;
+ * 		}
+ * 		return true;
+ * 	}
+ *
+ * 	set filterCount(n) {}
+ * 	get filterCount() {
+ * 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
+ * 	}
+ *
+ * 	// used for custom sorting
+ * 	compare(one: TableItem, two: TableItem) {
+ * 		const stringOne = (one.data.name || one.data.surname || one.data).toLowerCase();
+ * 		const stringTwo = (two.data.name || two.data.surname || two.data).toLowerCase();
+ *
+ * 		if (stringOne > stringTwo) {
+ * 			return 1;
+ * 		} else if (stringOne < stringTwo) {
+ * 			return -1;
+ * 		} else {
+ * 			return 0;
+ * 		}
+ * 	}
+ * }
+ * ```
+ *
+ * See `TableHeaderItem` class for more information.
+ *
  * ## Build your own table footer with neutrino components
  *
  * ```html
@@ -86,7 +173,10 @@ import { getScrollbarWidth } from "../common/utils";
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
 						*ngIf="column.visible"
-						[ngStyle]="column.style">
+						[ngStyle]="column.style"
+						[draggable]="columnsDraggable"
+						(dragstart)="columnDragStart($event, i)"
+						(dragend)="columnDragEnd($event, i)">
 						<div
 						*ngIf="columnsResizable"
 						class="column-resize-handle"
@@ -147,6 +237,31 @@ import { getScrollbarWidth } from "../common/utils";
 									{{column.filterCount}}
 								</span>
 							</button>
+						</div>
+						<div
+						*ngIf="columnsDraggable && isColumnDragging"
+						class="drop-area">
+							<div
+							*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'left'"
+							class="drop-indicator-left"></div>
+							<div
+							class="drop-area-left"
+							(dragenter)="columnDragEnter($event, 'left', i)"
+							(dragleave)="columnDragLeave($event, 'left', i)"
+							(dragover)="columnDragover($event, 'left', i)"
+							(drop)="columnDrop($event, 'left', i)">
+							</div>
+
+							<div
+							class="drop-area-right"
+							(dragenter)="columnDragEnter($event, 'right', i)"
+							(dragleave)="columnDragLeave($event, 'right', i)"
+							(dragover)="columnDragover($event, 'right', i)"
+							(drop)="columnDrop($event, 'right', i)">
+							</div>
+							<div
+							*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'right'"
+							class="drop-indicator-right"></div>
 						</div>
 					</th>
 				</ng-container>
@@ -288,9 +403,21 @@ export class Table {
 	/**
 	 * Set to `true` to enable users to resize columns.
 	 *
+	 * Works for columns with width set in pixels.
+	 *
 	 * @memberof Table
 	 */
 	@Input() columnsResizable = false;
+
+	/**
+	 * Set to `true` to enable users to drag and drop columns.
+	 *
+	 * Changing the column order in table changes table model. Be aware of it when you add additional data
+	 * to the model.
+	 *
+	 * @memberof Table
+	 */
+	@Input() columnsDraggable = false;
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
@@ -369,6 +496,10 @@ export class Table {
 	private columnResizeMouseX: number;
 	private mouseMoveSubscription: Subscription;
 	private mouseUpSubscription: Subscription;
+
+	private isColumnDragging = false;
+	private columnDraggedHoverIndex = -1;
+	private columnDraggedPosition = "";
 
 	/**
 	 * Creates an instance of Table.
@@ -496,6 +627,45 @@ export class Table {
 		} else {
 			this.model.isEnd = false;
 		}
+	}
+
+	columnDragStart(event, columnIndex) {
+		this.isColumnDragging = true;
+		this.columnDraggedHoverIndex = columnIndex;
+		event.dataTransfer.setData("columnIndex", JSON.stringify(columnIndex));
+	}
+
+	columnDragEnd(event, columnIndex) {
+		this.isColumnDragging = false;
+		this.columnDraggedHoverIndex = -1;
+	}
+
+	columnDragEnter(event, position, columnIndex) {
+		this.columnDraggedPosition = position;
+		this.columnDraggedHoverIndex = columnIndex;
+	}
+
+	columnDragLeave(event, position, columnIndex) {
+		this.columnDraggedPosition = "";
+	}
+
+	columnDragover(event, position, columnIndex) {
+		this.columnDraggedHoverIndex = columnIndex;
+		this.columnDraggedPosition = position;
+
+		// needed to tell browser to allow dropping
+		event.preventDefault();
+	}
+
+	columnDrop(event, position, columnIndex) {
+		this.isColumnDragging = false;
+		this.columnDraggedHoverIndex = -1;
+		this.columnDraggedPosition = "";
+
+		this.model.moveColumn(
+			parseInt(event.dataTransfer.getData("columnIndex"), 10),
+			columnIndex + (position === "right" ? 1 : 0)
+		);
 	}
 
 	get scrollbarWidth() {

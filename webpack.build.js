@@ -59,7 +59,7 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["ts-loader", "tslint-loader"]
+				loaders: ["ts-loader", "@peretz/icon-loader", "tslint-loader"]
 			},
 			{
 				test: /\.html$/,
