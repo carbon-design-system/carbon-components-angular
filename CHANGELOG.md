@@ -41,6 +41,7 @@
 
 **Closed issues:**
 
+- The constructor for TableModel leaves model.data undefined, which causes issues when loading n-table-pagination [\#917](https://github.ibm.com/peretz/neutrino/issues/917)
 - Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
 - In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
 - Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
@@ -99,6 +100,9 @@
 
 **Merged pull requests:**
 
+- Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update snippet indentation [\#916](https://github.ibm.com/peretz/neutrino/pull/916) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Add additional table documentation [\#915](https://github.ibm.com/peretz/neutrino/pull/915) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - One port is enough [\#912](https://github.ibm.com/peretz/neutrino/pull/912) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Trigger app testing [\#911](https://github.ibm.com/peretz/neutrino/pull/911) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add drag & drop table column support [\#910](https://github.ibm.com/peretz/neutrino/pull/910) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
