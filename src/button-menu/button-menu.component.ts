@@ -20,7 +20,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/operator/throttleTime";
 
-import { position } from "../common/position.service";
+import { position } from "../utils/position";
 import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 
 @Component({
@@ -31,7 +31,12 @@ import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./..
 			'btn--primary': type === 'primary',
 			'btn--secondary': type === 'secondary'
 		}"
-		type="button" (click)="onClick.emit()">{{value}}</button>
+		[disabled]="disabled"
+		type="button"
+		#menubutton
+		(click)="onClick.emit()">
+			{{value}}
+		</button>
 		<button
 		[ngClass]="{
 			'btn--primary-addon': type === 'primary',
@@ -56,7 +61,6 @@ import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./..
 			</svg>
 		</button>
 		<ul
-		#list
 		role="menu"
 		class="btn_menu">
 			<ng-content></ng-content>
@@ -111,7 +115,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	 *		(onClick)="doSave()">
 	 *	</n-button-menu>
 	 * ```
-	 *
+  	 *
 	 * @type {EventEmitter<any>}
 	 * @memberof ButtonMenu
 	 */
@@ -158,48 +162,71 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		if (this.size === "lg") { return "btn-group--lg"; }
 	}
 
+	buildAppendToBodyClass() {
+		if (this.size === "sm") { return "dropdown--sm"; }
+		if (this.size === "default") { return "dropdown"; }
+		if (this.size === "md") { return "dropdown"; }
+		if (this.size === "lg") { return "dropdown--lg"; }
+	}
+
 	@HostListener("keydown", ["$event"])
-	onKeyDown(ev: KeyboardEvent) {
-		const listItems = [].slice.call(this.elementRef.nativeElement.querySelectorAll("li"));
+	onKeyDown(event: KeyboardEvent) {
+		const listItems = Array.prototype.slice.call(this.elementRef.nativeElement.querySelectorAll("li"));
 
-		if (ev.key === "ArrowDown" && !this.menuIsClosed) {
-			ev.preventDefault();
+		// Allows opening of the menu
+		if (event.key === "ArrowDown" && event.altKey || event.key === "Enter" || event.key === " ") {
+			event.preventDefault();
+			if (event.key === "Enter" && !this.menuIsClosed) {
+				this.closeMenu();
+				this.rootButton.nativeElement.focus();
+			}
+			if (event.target === this.rootButton.nativeElement) {
+				this.openMenu();
+				setTimeout(() => listItems[0].focus());
+			}
+		}
+
+		// Everything else only happens on an open menu
+		if (this.menuIsClosed) {
+			return;
+		}
+
+		if (event.key === "ArrowDown") {
 			if (!isFocusInLastItem(event, listItems))  {
-				const index = listItems.findIndex(item => item === ev.target);
+				const index = listItems.findIndex(item => item === event.target);
+				console.log(index);
 				listItems[index + 1].focus();
-
 			} else {
 				listItems[0].focus();
 			}
 		}
 
-		if (ev.key === "ArrowUp" && !this.menuIsClosed) {
-			ev.preventDefault();
-			if (!isFocusInFirstItem(event, listItems))  {
-				const index = listItems.findIndex(item => item === ev.target);
-				listItems[index - 1].focus();
-			} else {
-				listItems[listItems.length - 1].focus();
+		if (event.key === "ArrowUp") {
+			if (event.target !== this.rootButton.nativeElement) {
+				if (!isFocusInFirstItem(event, listItems))  {
+					const index = listItems.findIndex(item => item === event.target);
+					listItems[index - 1].focus();
+				} else {
+					listItems[listItems.length - 1].focus();
+				}
 			}
 		}
 
-		if (ev.key === "Escape" && !this.menuIsClosed) {
-			ev.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
+		if (event.key === "Escape") {
+			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
-		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
-			ev.preventDefault();
+
+		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+			event.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (ev.key === "ArrowDown" && ev.altKey) {
-			ev.preventDefault();
-			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && ev.key === "Tab" && ev.shiftKey) {
-			if (isFocusInFirstItem(event, listItems))  {
+		if (event.key === "Tab" && event.shiftKey) {
+			if (isFocusInFirstItem(event, listItems) || event.target === this.rootButton.nativeElement)  {
 				this.closeMenu();
 			}
-		} else if (!this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+		} else if (event.key === "Tab" && this.dropdown.contains(event.target as Node)) {
 			if (isFocusInLastItem(event, listItems))  {
 				this.closeMenu();
 			}
@@ -207,28 +234,28 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	}
 
 	_noop() {}
-	_outsideClick(ev) {
-		if (!this.elementRef.nativeElement.contains(ev.target) &&
+	_outsideClick(event) {
+		if (!this.elementRef.nativeElement.contains(event.target) &&
 			// if we're appendToBody the list isn't within the _elementRef,
 			// so we've got to check if our target is possibly in there too.
-			!this.dropdown.contains(ev.target)) {
+			!this.dropdown.contains(event.target)) {
 			this.closeMenu();
 		}
 	}
-	_outsideKey(ev) {
-		if (this.menuIsClosed && ev.key === "Tab" && this.dropdown.contains(ev.target as Node)) {
+	_outsideKey(event) {
+		if (this.menuIsClosed && event.key === "Tab" && this.dropdown.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 	}
-	_keyboardNav(ev: KeyboardEvent) {
-		if (ev.key === "Escape" && !this.menuIsClosed) {
-			ev.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
+	_keyboardNav(event: KeyboardEvent) {
+		if (event.key === "Escape" && !this.menuIsClosed) {
+			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (ev.key === "Escape" || (ev.key === "ArrowUp" && ev.altKey)) {
-			ev.preventDefault();
+		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+			event.preventDefault();
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
-		} else if (!this.menuIsClosed && ev.key === "Tab") {
+		} else if (!this.menuIsClosed && event.key === "Tab") {
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.rootButton.nativeElement.focus();
@@ -261,6 +288,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		this.dropdown.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
 		this.dropdownWrapper.className = "dropdown";
+		this.dropdownWrapper.classList.add(this.buildAppendToBodyClass());
 		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.style.position = "absolute";
 		this.dropdownWrapper.appendChild(this.dropdown);
