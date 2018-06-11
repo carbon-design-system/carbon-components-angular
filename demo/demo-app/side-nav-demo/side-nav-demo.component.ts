@@ -33,7 +33,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 					</div>
 					<span class="accordion_title">Understand</span>
 				</n-side-nav-group>
-				<n-side-nav-group [expanded]="true">
+				<n-side-nav-group expanded="true">
 					<div class="accordion_icon">
 						<n-icon
 							icon="gears"
@@ -41,7 +41,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 						</n-icon>
 					</div>
 					<span class="accordion_title">More</span>
-					<n-side-nav-item >
+					<n-side-nav-item>
 						<span class="side-nav-item">Some long content here</span>
 					</n-side-nav-item>
 					<n-side-nav-item>
