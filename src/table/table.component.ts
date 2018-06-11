@@ -20,6 +20,93 @@ import { getScrollbarWidth } from "../common/utils";
  *
  * demo: [https://pages.github.ibm.com/peretz/neutrino/#/table](https://pages.github.ibm.com/peretz/neutrino/#/table)
  *
+ * Instead of the usual write-your-own-html approach you had with `<table>`,
+ * neutrino table uses model-view-controller approach.
+ *
+ * Here, you create a view (with built-in controller) and provide it a model.
+ * Changes you make to the model are reflected in the view. Provide same model you use
+ * in the table to the `<n-table-pagination>` and `<n-table-goto-page>` components.
+ * They provide a different view over the same data.
+ *
+ * ## Basic usage
+ *
+ * ```html
+ * <n-table [model]="simpleModel"></n-table>
+ * ```
+ *
+ * ```typescript
+ * public simpleModel = new TableModel();
+ *
+ * this.simpleModel.data = [
+ * 	[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
+ * 	[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "twer"})]
+ * ];
+ * ```
+ *
+ * ## Customization
+ *
+ * If you have custom data in your table, you need a way to display it. You can do that
+ * by providing a template to `TableItem`.
+ *
+ * ```html
+ * <ng-template #customTableItemTemplate let-data="data">
+ * 	<a [routerLink]="data.link">{{data.name}} {{data.surname}}</a>
+ * </ng-template>
+ * ```
+ *
+ * ```typescript
+ * customTableItemTemplate: TemplateRef<any>;
+ *
+ * this.customModel.data = [
+ * 	[new TableItem({data: "asdf"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "swer"})],
+ * 	[new TableItem({data: "bsdf"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
+ * 	[new TableItem({data: "csdf"}), new TableItem({data: "twer"})],
+ * ];
+ * ```
+ *
+ * ### Sorting and filtering
+ *
+ * In case you need custom sorting and/or filtering you should subclass `TableHeaderItem`
+ * and override needed functions.
+ *
+ * ```typescript
+ * class FilterableHeaderItem extends TableHeaderItem {
+ * 	// custom filter function
+ * 	filter(item: TableItem): boolean {
+ * 		if (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+ * 		item.data.name && item.data.name.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+ * 		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0) {
+ * 			return false;
+ * 		}
+ * 		return true;
+ * 	}
+ *
+ * 	set filterCount(n) {}
+ * 	get filterCount() {
+ * 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
+ * 	}
+ *
+ * 	// used for custom sorting
+ * 	compare(one: TableItem, two: TableItem) {
+ * 		const stringOne = (one.data.name || one.data.surname || one.data).toLowerCase();
+ * 		const stringTwo = (two.data.name || two.data.surname || two.data).toLowerCase();
+ *
+ * 		if (stringOne > stringTwo) {
+ * 			return 1;
+ * 		} else if (stringOne < stringTwo) {
+ * 			return -1;
+ * 		} else {
+ * 			return 0;
+ * 		}
+ * 	}
+ * }
+ * ```
+ *
+ * See `TableHeaderItem` class for more information.
+ *
  * ## Build your own table footer with neutrino components
  *
  * ```html
