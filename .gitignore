@@ -10,3 +10,4 @@ demo/bundle
 doc/
 documentation/
 dist/
+a11y/results*
