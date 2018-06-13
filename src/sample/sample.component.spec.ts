@@ -44,7 +44,7 @@ describe("Sample", () => {
 		expect(element.querySelector("span").textContent).toEqual("test");
 	});
 
-	it("should recive an event", () => {
+	it("should receive an event", () => {
 		instance.bar.subscribe(value => expect(value).toBe(true));
 		instance.doBar(true);
 	});
