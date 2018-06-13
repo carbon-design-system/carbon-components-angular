@@ -17,7 +17,7 @@ class SampleTestComponent {
 }
 
 describe("Sample", () => {
-	let fixture, wrapper;
+	let fixture, wrapper, instance, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -30,6 +30,8 @@ describe("Sample", () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(SampleTestComponent);
 		wrapper = fixture.componentInstance;
+		instance = fixture.debugElement.query(By.css("n-sample")).componentInstance;
+		element = fixture.debugElement.query(By.css("n-sample")).nativeElement;
 		fixture.detectChanges();
 	});
 
@@ -39,7 +41,18 @@ describe("Sample", () => {
 	});
 
 	it("should set the test value", () => {
-		const comp = fixture.debugElement.query(By.css("n-sample"));
-		expect(comp.nativeElement.querySelector("span").textContent).toEqual("test");
+		expect(element.querySelector("span").textContent).toEqual("test");
+	});
+
+	it("should recive an event", () => {
+		instance.bar.subscribe(value => expect(value).toBe(true));
+		instance.doBar(true);
+	});
+
+	it("should set foo", () => {
+		expect(element.querySelector("span").textContent).toEqual("test");
+		instance.setFoo({required: "new"});
+		fixture.detectChanges();
+		expect(element.querySelector("span").textContent).toEqual("new");
 	});
 });
