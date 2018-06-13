@@ -58,7 +58,7 @@ export class StaticIcon implements AfterViewInit {
 			height="20px"
 			viewBox="0 0 20 20">
 			<g>
-				<polygon class="st0" points="18.6,4.2 10,12.7 1.4,4.2 0.6,5 10,14.4 19.4,5"/>
+				<polygon points="18.6,4.2 10,12.7 1.4,4.2 0.6,5 10,14.4 19.4,5"/>
 			</g>
 		</svg>`,
 		"chevron_down_30": classList => `<svg
@@ -66,7 +66,7 @@ export class StaticIcon implements AfterViewInit {
 			width="30px"
 			height="30px"
 			viewBox="0 0 30 30">
-			<polygon class="st0" points="27.3,7 15,19.3 2.7,7 1.3,8.4 15,22.1 28.7,8.4 "/>
+			<polygon points="27.3,7 15,19.3 2.7,7 1.3,8.4 15,22.1 28.7,8.4 "/>
 		</svg>`,
 		"chevron_up_circle_16": classList => `<svg
 			class="${classList}"
@@ -245,7 +245,7 @@ export class StaticIcon implements AfterViewInit {
 			class="${classList}"
 			width="20px" height="20px" viewBox="0 0 20 20">
 			<g>
-				<path class="st0" d="M19.9,19L10.6,1.4c-0.3-0.5-1-0.5-1.2,0L0.1,19c-0.2,0.5,0.1,1,0.6,1h18.6C19.8,20,20.2,19.4,19.9,19z M10,18
+				<path d="M19.9,19L10.6,1.4c-0.3-0.5-1-0.5-1.2,0L0.1,19c-0.2,0.5,0.1,1,0.6,1h18.6C19.8,20,20.2,19.4,19.9,19z M10,18
 					c-0.8,0-1.5-0.7-1.5-1.5c0-0.8,0.7-1.5,1.5-1.5c0.8,0,1.5,0.7,1.5,1.5C11.5,17.3,10.8,18,10,18z M11.5,9l-0.8,5H9.3L8.4,9V6h3.1V9z
 					"/>
 			</g>
@@ -275,7 +275,7 @@ export class StaticIcon implements AfterViewInit {
 			height="20px"
 			viewBox="0 0 20 20">
 			<g>
-				<path class="st0" d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M8.5,14.1l-3.6-3.6l1.1-1.1L8.5,12l5.6-5.6
+				<path  d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M8.5,14.1l-3.6-3.6l1.1-1.1L8.5,12l5.6-5.6
 					l1.1,1.1L8.5,14.1z"/>
 			</g>
 		</svg>`,
@@ -352,7 +352,7 @@ export class StaticIcon implements AfterViewInit {
 			width="16"
 			height="16"
 			viewBox="0 0 16 16">
-			<polygon class="st0" points="15,12 1,12 8,5 "/>
+			<polygon points="15,12 1,12 8,5 "/>
 		</svg>
 		`,
 		"grip_vertical_16": classList => `<svg
