@@ -128,6 +128,11 @@ export class DateTimeModel {
 		return false;
 	}
 
+	isDateInRange(day: Date) {
+		const time = day.getTime();
+		return this.startDate.getTime() < time && time > this.endDate.getTime();
+	}
+
 	compare(other: DateTimeModel): number {
 		// TODO
 		return 0;
