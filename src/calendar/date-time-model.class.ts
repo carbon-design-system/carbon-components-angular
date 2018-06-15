@@ -59,12 +59,12 @@ export class DateTimeModel {
 		this.endDate = endDate;
 	}
 
-	selectDay(day: Date = new Date(Date.now())) {
+	selectDay(day: Date = new Date()) {
 		this.startDate = new Date(day.getFullYear(), day.getMonth(), day.getDate());
 		this.endDate = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23, 59, 59);
 	}
 
-	selectWeek(day: Date = new Date(Date.now())) {
+	selectWeek(day: Date = new Date()) {
 		this.startDate = this.weekStartDate(day);
 		this.endDate = this.weekStartDate(day);
 		this.endDate.setDate(this.endDate.getDate() + 6);
@@ -74,21 +74,21 @@ export class DateTimeModel {
 	}
 
 	selectToday() {
-		this.selectDay(new Date(Date.now()));
+		this.selectDay(new Date());
 	}
 
 	selectYesterday() {
-		const yesterday = new Date(Date.now());
+		const yesterday = new Date();
 		yesterday.setDate(yesterday.getDate() - 1);
 		this.selectDay(yesterday);
 	}
 
-	selectWeekToDate(targetDate = new Date(Date.now())) {
+	selectWeekToDate(targetDate = new Date()) {
 		this.startDate = this.weekStartDate(targetDate);
 		this.endDate = targetDate;
 	}
 
-	selectMonthsToDate(targetDate = new Date(Date.now()), monthCount = 1) {
+	selectMonthsToDate(targetDate = new Date(), monthCount = 1) {
 		this.startDate = new Date(targetDate.getFullYear(), targetDate.getMonth() - monthCount + 1, 1);
 		this.endDate = targetDate;
 	}
@@ -99,12 +99,43 @@ export class DateTimeModel {
 	}
 
 	selectLastMonth() {
-		const now = new Date(Date.now());
+		const now = new Date();
 		this.selectMonth(new Date(now.getFullYear(), now.getMonth() - 1, 1));
 	}
 
-	weekStartDate(day: Date = new Date(Date.now())): Date {
+	weekStartDate(day: Date = new Date()): Date {
 		return new Date(day.getFullYear(), day.getMonth(), day.getDate() - day.getDay() + this.weekStart);
+	}
+
+	daysOfMonth(day: Date = new Date()): Array<Array<number>> {
+		const weeks = [];
+
+		const firstOfTheMonth = new Date(day.getFullYear(), day.getMonth(), 1);
+		const lastOfTheMonth = new Date(day.getFullYear(), day.getMonth() + 1, 0);
+		let dayIndex = 1;
+
+		for (let w = 1; w < 7; w++) {
+			const week = [];
+			for (let d = 0; d < 7; d++) {
+				if (w === 1) {
+					// first week is special, we have to determine when to start
+					if (d >= firstOfTheMonth.getDay()) {
+						week.push(dayIndex++);
+					} else {
+						week.push(null);
+					}
+				} else if (dayIndex <= lastOfTheMonth.getDate()) {
+					// every other day of the month
+					week.push(dayIndex++);
+				} else {
+					// except for when month ends
+					week.push(null);
+				}
+			}
+			weeks.push(week);
+		}
+
+		return weeks;
 	}
 
 	isDateDisabled(day: Date) {
