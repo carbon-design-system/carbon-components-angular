@@ -93,14 +93,58 @@ export class DateTimeModel {
 		this.endDate = targetDate;
 	}
 
-	selectMonth(day: Date) {
+	selectMonth(day = new Date()) {
 		this.startDate = new Date(day.getFullYear(), day.getMonth(), 1);
-		this.endDate = new Date(day.getFullYear(), day.getMonth() + 1, 0);  // 0 selects last day of previous month
+		this.endDate = new Date(day.getFullYear(), day.getMonth() + 1, 0, 23, 59, 59);  // 0 selects last day of previous month
 	}
 
 	selectLastMonth() {
 		const now = new Date();
 		this.selectMonth(new Date(now.getFullYear(), now.getMonth() - 1, 1));
+	}
+
+	selectQuarterToDate(date = new Date()) {
+		const year = date.getFullYear();
+		const time = date.getTime();
+		const quarters = [new Date(year, 0, 1), new Date(year, 3, 1), new Date(year, 6, 1), new Date(year, 9, 1)];
+		const quarterTimes = quarters.map(q => q.getTime());
+
+		if (quarterTimes[0] < time && time < quarterTimes[1]) {
+			// Q1
+			this.startDate = quarters[0];
+		} else if (quarterTimes[1] < time && time < quarterTimes[2]) {
+			// Q2
+			this.startDate = quarters[1];
+		} else if (quarterTimes[2] < time && time < quarterTimes[3]) {
+			// Q3
+			this.startDate = quarters[2];
+		} else {
+			// Q4
+			this.startDate = quarters[3];
+		}
+
+		this.endDate = date;
+	}
+
+	selectQuarter(quarter: number, year = new Date().getFullYear()) {
+		const quarters = [
+			new Date(year, 0, 1),
+			new Date(year, 3, 1),
+			new Date(year, 6, 1),
+			new Date(year, 9, 1),
+			new Date(year + 1, 0, 1)
+		];
+
+		this.startDate = quarters[quarter];
+		this.endDate = quarters[quarter + 1];
+		this.endDate.setDate(0);
+		this.endDate.setHours(23);
+		this.endDate.setMinutes(59);
+		this.endDate.setSeconds(59);
+	}
+
+	selectLastQuarter(date = new Date()) {
+		this.selectQuarter(date.getMonth() / 3, date.getFullYear());
 	}
 
 	weekStartDate(day: Date = new Date()): Date {
@@ -119,7 +163,7 @@ export class DateTimeModel {
 			for (let d = 0; d < 7; d++) {
 				if (w === 1) {
 					// first week is special, we have to determine when to start
-					if (d >= firstOfTheMonth.getDay()) {
+					if (d >= firstOfTheMonth.getDay() + this.weekStart) {
 						week.push(dayIndex++);
 					} else {
 						week.push(null);
@@ -139,7 +183,9 @@ export class DateTimeModel {
 	}
 
 	isDateDisabled(day: Date) {
-		this.disabledDates.forEach(dd => {
+		for (let i = 0; i < this.disabledDates.length; i++) {
+			const dd = this.disabledDates[i];
+
 			if (Array.isArray(dd)) {
 				if (dd.length !== 2) {
 					console.warn(dd, "should have length of 2, range start and range end. They can be set to `null` for open range.");
@@ -155,13 +201,13 @@ export class DateTimeModel {
 				day.getDate() === dd.getDate()) {
 					return true;
 			}
-		});
+		}
 		return false;
 	}
 
 	isDateInRange(day: Date) {
 		const time = day.getTime();
-		return this.startDate.getTime() < time && time > this.endDate.getTime();
+		return this.startDate && this.endDate && this.startDate.getTime() < time && time < this.endDate.getTime();
 	}
 
 	compare(other: DateTimeModel): number {
