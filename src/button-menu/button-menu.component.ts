@@ -349,6 +349,8 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 							this.dropdownWrapper,
 							position.addOffset(
 								position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
+								window.scrollY,
+								window.scrollX
 							)
 						);
 					} else {

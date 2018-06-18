@@ -84,6 +84,24 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 				</n-button-menu-item>
 			</n-button-menu>
 		</div>
+
+		<h2 class="p-demo-section">Append to body</h2>
+		<div class="appendToBody" style="overflow-y: scroll; height: 63px; position: relative; border: solid 1px red; padding: 10px;">
+			<n-button-menu
+			value="Save"
+			appendToBody="true"
+			scrollableContainer=".appendToBody"
+			size="lg"
+			(onClick)="log('Button clicked')">
+				<n-button-menu-item (click)="log('Item 1 clicked')">
+					Edit
+				</n-button-menu-item>
+				<n-button-menu-item (click)="log('Item 2 clicked')">
+					Delete
+				</n-button-menu-item>
+			</n-button-menu>
+			<br><br><br><br><br><br><br>
+		</div>
 	`,
 })
 export class ButtonMenuDemo {
