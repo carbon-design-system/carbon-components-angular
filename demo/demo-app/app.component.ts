@@ -69,7 +69,7 @@ const en = require("./../../src/i18n/en.json");
 		</nav>
 	</aside>
 	<div class="p-demo-container">
-	<div class="main-banner-placeholder"></div>
+		<div class="main-banner-placeholder"></div>
 		<router-outlet></router-outlet>
 	</div>
 	</main>
