@@ -41,6 +41,7 @@
 
 **Closed issues:**
 
+- Tooltip contents aren't wrapping properly when inside a table header [\#921](https://github.ibm.com/peretz/neutrino/issues/921)
 - The constructor for TableModel leaves model.data undefined, which causes issues when loading n-table-pagination [\#917](https://github.ibm.com/peretz/neutrino/issues/917)
 - Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
 - In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
@@ -100,6 +101,8 @@
 
 **Merged pull requests:**
 
+- Remove styles from static icon svgs [\#924](https://github.ibm.com/peretz/neutrino/pull/924) ([callums](https://github.ibm.com/callums))
+- Add a11y testing [\#919](https://github.ibm.com/peretz/neutrino/pull/919) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update snippet indentation [\#916](https://github.ibm.com/peretz/neutrino/pull/916) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add additional table documentation [\#915](https://github.ibm.com/peretz/neutrino/pull/915) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
