@@ -132,6 +132,7 @@ export class SideNavItem implements AfterViewInit {
 		}
 		if (this.selected && this.getPaneTemplateElement()) {
 			this.showPane();
+			this.selected = false;
 		}
 	}
 
