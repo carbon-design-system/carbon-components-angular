@@ -87,6 +87,7 @@
 - change dropdown-filter-list.component to focus the search field first instead of the first list item [\#751](https://github.ibm.com/peretz/neutrino/issues/751)
 - Dropdown and Combobox 1.2 [\#748](https://github.ibm.com/peretz/neutrino/issues/748)
 - More better unit tests [\#743](https://github.ibm.com/peretz/neutrino/issues/743)
+- Improve `src/sample` test example [\#742](https://github.ibm.com/peretz/neutrino/issues/742)
 - Swap out hard coded text for English translation [\#741](https://github.ibm.com/peretz/neutrino/issues/741)
 - Check Box not displaying on IE11 [\#737](https://github.ibm.com/peretz/neutrino/issues/737)
 - Dropdown naming refactoring [\#734](https://github.ibm.com/peretz/neutrino/issues/734)
@@ -101,6 +102,8 @@
 
 **Merged pull requests:**
 
+- Export chart components so they can actually be extended [\#926](https://github.ibm.com/peretz/neutrino/pull/926) ([callums](https://github.ibm.com/callums))
+- Improve sample test [\#925](https://github.ibm.com/peretz/neutrino/pull/925) ([callums](https://github.ibm.com/callums))
 - Remove styles from static icon svgs [\#924](https://github.ibm.com/peretz/neutrino/pull/924) ([callums](https://github.ibm.com/callums))
 - Add a11y testing [\#919](https://github.ibm.com/peretz/neutrino/pull/919) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
