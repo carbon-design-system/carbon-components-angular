@@ -11,7 +11,6 @@ import {
 	AfterContentInit,
 	AfterViewInit,
 	HostListener,
-	HostBinding,
 	QueryList
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -61,8 +60,7 @@ import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./..
 			</svg>
 		</button>
 		<ul
-		role="menu"
-		class="btn_menu">
+		role="menu">
 			<ng-content></ng-content>
 		</ul>
 	`,
@@ -115,7 +113,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	 *		(onClick)="doSave()">
 	 *	</n-button-menu>
 	 * ```
-  	 *
+	 *
 	 * @type {EventEmitter<any>}
 	 * @memberof ButtonMenu
 	 */
@@ -123,9 +121,9 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@ViewChild("dropdownHost") rootButton;
 
-	@ContentChildren(ButtonMenuItem) items: QueryList<ButtonMenuItem>;
+	@ViewChild("menubutton") mainButton;
 
-	@HostBinding("attr.role") role = "group";
+	@ContentChildren(ButtonMenuItem) items: QueryList<ButtonMenuItem>;
 
 	menuIsClosed = true;
 	dropdown: HTMLElement;
@@ -145,44 +143,45 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	ngAfterContentInit() {
 		this.elementRef.nativeElement.classList.add(this.buildClass());
+		this.elementRef.nativeElement.querySelector("[role='menu']").classList.add(this.buildClass("btn_menu"));
 	}
 
 	ngAfterViewInit() {
-		this.dropdown = this.elementRef.nativeElement.querySelector(".btn_menu");
+		this.dropdown = this.elementRef.nativeElement.querySelector("[role='menu']");
 
 		this.items.forEach(item => {
 			item.parent = this;
 		});
 	}
 
-	buildClass() {
-		if (this.size === "sm") { return "btn-group--sm"; }
-		if (this.size === "default") { return "btn-group"; }
-		if (this.size === "md") { return "btn-group"; }
-		if (this.size === "lg") { return "btn-group--lg"; }
+	buildClass(baseClass = "btn-group") {
+		if (this.size === "sm") { return `${baseClass}--sm`; }
+		if (this.size === "default") { return baseClass; }
+		if (this.size === "md") { return baseClass; }
+		if (this.size === "lg") { return `${baseClass}--lg`; }
 	}
 
-	buildAppendToBodyClass() {
-		if (this.size === "sm") { return "dropdown--sm"; }
-		if (this.size === "default") { return "dropdown"; }
-		if (this.size === "md") { return "dropdown"; }
-		if (this.size === "lg") { return "dropdown--lg"; }
-	}
-
-	@HostListener("keydown", ["$event"])
-	onKeyDown(event: KeyboardEvent) {
-		const listItems = Array.prototype.slice.call(this.elementRef.nativeElement.querySelectorAll("li"));
+	@HostListener("window:keydown", ["$event"])
+	keyboardInput(event: KeyboardEvent) {
+		let listItems;
+		if (this.appendToBody && !this.menuIsClosed) {
+			listItems = Array.prototype.slice.call(this.dropdownWrapper.querySelectorAll("[role='menuitem']"));
+		} else {
+			listItems = Array.prototype.slice.call(this.elementRef.nativeElement.querySelectorAll("[role='menuitem']"));
+		}
 
 		// Allows opening of the menu
 		if (event.key === "ArrowDown" && event.altKey || event.key === "Enter" || event.key === " ") {
 			event.preventDefault();
+			if (event.key === "Enter" && event.target === this.mainButton.nativeElement) {
+				this.onClick.emit();
+			}
 			if (event.key === "Enter" && !this.menuIsClosed) {
 				this.closeMenu();
 				this.rootButton.nativeElement.focus();
 			}
 			if (event.target === this.rootButton.nativeElement) {
 				this.openMenu();
-				setTimeout(() => listItems[0].focus());
 			}
 		}
 
@@ -192,9 +191,9 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		}
 
 		if (event.key === "ArrowDown") {
+			event.preventDefault();
 			if (!isFocusInLastItem(event, listItems))  {
 				const index = listItems.findIndex(item => item === event.target);
-				console.log(index);
 				listItems[index + 1].focus();
 			} else {
 				listItems[0].focus();
@@ -202,6 +201,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		}
 
 		if (event.key === "ArrowUp") {
+			event.preventDefault();
 			if (event.target !== this.rootButton.nativeElement) {
 				if (!isFocusInFirstItem(event, listItems))  {
 					const index = listItems.findIndex(item => item === event.target);
@@ -212,24 +212,17 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 			}
 		}
 
-		if (event.key === "Escape") {
-			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
-		}
-
 		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
 			event.preventDefault();
+			if (event.key === "Escape") {
+				event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
+			}
 			this.closeMenu();
 			this.rootButton.nativeElement.focus();
 		}
 
-		if (event.key === "Tab" && event.shiftKey) {
-			if (isFocusInFirstItem(event, listItems) || event.target === this.rootButton.nativeElement)  {
-				this.closeMenu();
-			}
-		} else if (event.key === "Tab" && this.dropdown.contains(event.target as Node)) {
-			if (isFocusInLastItem(event, listItems))  {
-				this.closeMenu();
-			}
+		if (event.key === "Tab" && event.shiftKey || event.key === "Tab" && this.dropdown.contains(event.target as Node)) {
+			this.closeMenu();
 		}
 	}
 
@@ -243,7 +236,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		}
 	}
 	_outsideKey(event) {
-		if (this.menuIsClosed && event.key === "Tab" && this.dropdown.contains(event.target as Node)) {
+		if (!this.menuIsClosed && event.key === "Tab" && this.dropdown.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 	}
@@ -288,7 +281,6 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		this.dropdown.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
 		this.dropdownWrapper.className = "dropdown";
-		this.dropdownWrapper.classList.add(this.buildAppendToBodyClass());
 		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
 		this.dropdownWrapper.style.position = "absolute";
 		this.dropdownWrapper.appendChild(this.dropdown);
@@ -316,6 +308,17 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
+		let firstItem;
+		if (this.appendToBody) {
+			firstItem = Array.prototype.slice.call(this.dropdownWrapper.querySelectorAll("[role='menuitem']"))[0];
+		} else {
+			firstItem = Array.prototype.slice.call(this.elementRef.nativeElement.querySelectorAll("[role='menuitem']"))[0];
+		}
+		setTimeout(() => {
+			// console.log("focus ", firstItem);
+			firstItem.focus();
+		});
+
 	}
 
 	closeMenu() {
@@ -345,8 +348,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 						position.setElement(
 							this.dropdownWrapper,
 							position.addOffset(
-								position.findRelative(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
-								-container.scrollTop
+								position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
 							)
 						);
 					} else {
