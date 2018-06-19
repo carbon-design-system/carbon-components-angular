@@ -9,7 +9,7 @@
 	"demo:server": "gulp demo && webpack-dev-server --config webpack.config.js --watch",
 	"demo:server:travis": "npm run demo:server &",
 	"docs:build": "compodoc src -p tsconfig.json",
-	"docs:server": "compodoc -s",
+	"docs:server": "compodoc src -p tsconfig.json -s -w",
 	"docs:run": "compodoc src -p tsconfig.json -s",
 	"lint": "tslint -e spec.ts src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
 	"test": "karma start",
