@@ -146,18 +146,7 @@ export class SideNavItem implements AfterViewInit {
 
 		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
 			event.preventDefault();
-
 			this.activatePanel();
-
-			if (event.target === this.getPaneTemplateElement().querySelector(".subpanel_heading") as HTMLElement) {
-				this.item.nativeElement.querySelector("div").classList.remove("slide-in");
-
-				// hide after the animation
-				setTimeout( () => {
-					this.item.nativeElement.closest(".side-nav_subpanel-wrapper").setAttribute("style", "display: none;");
-					this.item.nativeElement.closest("li").querySelector("a").focus();
-				}, 360);
-			}
 		}
 	}
 
