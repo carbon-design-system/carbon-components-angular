@@ -203,8 +203,72 @@ describe("DateTimeModel", () => {
 
 	it("should have one disabled date", () => {
 		let dateTimeModel  = new DateTimeModel();
-		dateTimeModel.disabledDates = [new Date(2018, 5, 20, 10, 10)];
+		dateTimeModel.disabledDates = [new Date(2018, 5, 20)];
 
 		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 20))).toBeTruthy();
+	});
+
+	it("should have one disabled range", () => {
+		let dateTimeModel  = new DateTimeModel();
+		dateTimeModel.disabledDates = [[new Date(2018, 5, 20), DateTimeModel.dayEnd(new Date(2018, 5, 23))]];
+
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 19))).toBeFalsy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 20))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 21))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 22))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 23))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 24))).toBeFalsy();
+	});
+
+	it("should have open disabled range (infinity)", () => {
+		let dateTimeModel  = new DateTimeModel();
+		dateTimeModel.disabledDates = [[new Date(2018, 5, 20), null]];
+
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 19))).toBeFalsy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 20))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 21))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2019, 6, 22))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2020, 7, 23))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2021, 8, 24))).toBeTruthy();
+	});
+
+	it("should have one disabled range (big bang)", () => {
+		let dateTimeModel  = new DateTimeModel();
+		dateTimeModel.disabledDates = [[null, DateTimeModel.dayEnd(new Date(2018, 5, 23))]];
+
+		expect(dateTimeModel.isDateDisabled(new Date(0))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2014, 5, 19))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2015, 5, 20))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2016, 5, 21))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2017, 5, 22))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 23))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 24))).toBeFalsy();
+	});
+
+	it("should have open disabled range (both)", () => {
+		let dateTimeModel  = new DateTimeModel();
+		dateTimeModel.disabledDates = [[null, null]];
+
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 19))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 20))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2018, 5, 21))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2019, 6, 22))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2020, 7, 23))).toBeTruthy();
+		expect(dateTimeModel.isDateDisabled(new Date(2021, 8, 24))).toBeTruthy();
+	});
+
+	it("should have a working range", () => {
+		let dateTimeModel  = new DateTimeModel();
+
+		expect(dateTimeModel.isDateInRange(new Date(2018, 5, 19))).toBeFalsy();
+
+		dateTimeModel.startDate = new Date(2018, 5, 18);
+		dateTimeModel.endDate = new Date(2018, 5, 20);
+
+		expect(dateTimeModel.isDateInRange(new Date(2018, 5, 17))).toBeFalsy();
+		expect(dateTimeModel.isDateInRange(new Date(2018, 5, 18))).toBeTruthy();
+		expect(dateTimeModel.isDateInRange(new Date(2018, 5, 19))).toBeTruthy();
+		expect(dateTimeModel.isDateInRange(new Date(2018, 5, 20))).toBeTruthy();
+		expect(dateTimeModel.isDateInRange(new Date(2018, 5, 21))).toBeFalsy();
 	});
 });
