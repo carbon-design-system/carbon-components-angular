@@ -1,4 +1,12 @@
 export class DateTimeModel {
+	static dayStart(day: Date) {
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate());
+	}
+
+	static dayEnd(day: Date) {
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23, 59, 59);
+	}
+
 	startDate: Date;
 	endDate: Date;
 
@@ -190,9 +198,10 @@ export class DateTimeModel {
 				if (dd.length !== 2) {
 					console.warn(dd, "should have length of 2, range start and range end. They can be set to `null` for open range.");
 				} else if (
-					!dd[0] && day.getTime() < dd[1].getTime() ||
-					!dd[1] && day.getTime() > dd[0].getTime() ||
-					!dd[0] && !dd[1]) {
+					!dd[0] && dd[1] && day.getTime() <= dd[1].getTime() ||
+					dd[0] && !dd[1] && day.getTime() >= dd[0].getTime() ||
+					!dd[0] && !dd[1] ||
+					dd[0] && dd[1] && day.getTime() <= dd[1].getTime() && day.getTime() >= dd[0].getTime()) {
 						return true;
 				}
 			} else if (
@@ -207,11 +216,6 @@ export class DateTimeModel {
 
 	isDateInRange(day: Date) {
 		const time = day.getTime();
-		return this.startDate && this.endDate && this.startDate.getTime() < time && time < this.endDate.getTime();
-	}
-
-	compare(other: DateTimeModel): number {
-		// TODO
-		return 0;
+		return this.startDate && this.endDate && this.startDate.getTime() <= time && time <= this.endDate.getTime();
 	}
 }
