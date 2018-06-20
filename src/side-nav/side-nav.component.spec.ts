@@ -12,9 +12,9 @@ import { getFocusElementList } from "./../common/tab.service";
 	selector: "test-cmp",
 	template: `
 	<n-side-nav [open]="true">
-		<n-side-nav-group [expanded] = "groupExpand" tabindex="-1">
+		<n-side-nav-group [expanded]="groupExpand" tabindex="-1">
 			<span class="accordion_title">Title 1</span>
-			<n-side-nav-item [selected] = "panelExpand">
+			<n-side-nav-item [selected]="panelExpand">
 				<span class="side-nav-item">Subtitle 1</span>
 				<n-side-nav-subpanel>
 					<n-side-nav-pane-title>Subtitle 1</n-side-nav-pane-title>
@@ -122,14 +122,13 @@ describe("Side Nav", () => {
 		items = getFocusElementList(fixture.nativeElement);
 		spyOn(items[2], "focus");
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown"});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown"});
 		items[0].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
-		let secondFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		secondFocus.dispatchEvent(evt);
-
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
+		const secondFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		secondFocus.dispatchEvent(event);
 		expect(items[2].focus).toHaveBeenCalled();
 
 	});
@@ -139,11 +138,11 @@ describe("Side Nav", () => {
 		items = getFocusElementList(fixture.nativeElement);
 		spyOn(items[0], "focus");
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown"});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown"});
 		items[3].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
 
 		expect(items[0].focus).toHaveBeenCalled();
 	});
@@ -153,13 +152,13 @@ describe("Side Nav", () => {
 		items = getFocusElementList(fixture.nativeElement);
 		spyOn(items[1], "focus");
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp"});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp"});
 		items[3].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
-		let secondFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		secondFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
+		const secondFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		secondFocus.dispatchEvent(event);
 
 		expect(items[1].focus).toHaveBeenCalled();
 	});
@@ -169,11 +168,11 @@ describe("Side Nav", () => {
 		items = getFocusElementList(fixture.nativeElement);
 		spyOn(items[3], "focus");
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp"});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp"});
 		items[0].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
 
 		expect(items[3].focus).toHaveBeenCalled();
 	});
@@ -184,11 +183,11 @@ describe("Side Nav", () => {
 		spyOn(items[2], "focus");
 		fixture.detectChanges();
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "PageDown", ctrlKey: true});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "PageDown", ctrlKey: true});
 		items[0].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
 
 		expect(items[2].focus).toHaveBeenCalled();
 	});
@@ -199,11 +198,11 @@ describe("Side Nav", () => {
 		spyOn(items[2], "focus");
 		fixture.detectChanges();
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "PageUp", ctrlKey: true});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "PageUp", ctrlKey: true});
 		items[3].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
 
 		expect(items[2].focus).toHaveBeenCalled();
 	});
@@ -213,11 +212,11 @@ describe("Side Nav", () => {
 		items = getFocusElementList(fixture.nativeElement);
 		spyOn(items[0], "focus");
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "Home"});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "Home"});
 		items[2].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
 
 		expect(items[0].focus).toHaveBeenCalled();
 	});
@@ -227,11 +226,11 @@ describe("Side Nav", () => {
 		items = getFocusElementList(fixture.nativeElement);
 		spyOn(items[3], "focus");
 
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "End"});
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "End"});
 		items[2].focus();
 
-		let initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
-		initFocus.dispatchEvent(evt);
+		const initFocus = fixture.debugElement.query(By.css(":focus")).nativeElement;
+		initFocus.dispatchEvent(event);
 
 		expect(items[3].focus).toHaveBeenCalled();
 	});
@@ -249,34 +248,34 @@ describe("Side Nav", () => {
 	it("should expand and collapse subpanel on enter", () => {
 		fixture = TestBed.createComponent(SideNavTestComponent);
 		items = getFocusElementList(fixture.nativeElement);
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: "Enter"});
-		items[1].dispatchEvent(evt);
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: "Enter"});
+		items[1].dispatchEvent(event);
 		expect(fixture.nativeElement.querySelector("div").classList).toContain("slide-in");
 
-		fixture.nativeElement.querySelector(".subpanel_heading").dispatchEvent(evt);
+		fixture.nativeElement.querySelector(".subpanel_heading").dispatchEvent(event);
 		expect(fixture.nativeElement.querySelector("div").classList).not.toContain("slide-in");
 	});
 
 	it("should expand and collapse subpanel on Space", () => {
 		fixture = TestBed.createComponent(SideNavTestComponent);
 		items = getFocusElementList(fixture.nativeElement);
-		let evt = new KeyboardEvent("keydown", {bubbles: true, key: " "});
-		items[1].dispatchEvent(evt);
+		const event = new KeyboardEvent("keydown", {bubbles: true, key: " "});
+		items[1].dispatchEvent(event);
 		expect(fixture.nativeElement.querySelector("div").classList).toContain("slide-in");
 
-		fixture.nativeElement.querySelector(".subpanel_heading").dispatchEvent(evt);
+		fixture.nativeElement.querySelector(".subpanel_heading").dispatchEvent(event);
 		expect(fixture.nativeElement.querySelector("div").classList).not.toContain("slide-in");
 	});
 
 	it("should expand subpanel on ArrowRight and collapse on ArrowLeft", () => {
 		fixture = TestBed.createComponent(SideNavTestComponent);
 		items = getFocusElementList(fixture.nativeElement);
-		let evtOpen = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowRight"});
-		items[1].dispatchEvent(evtOpen);
+		const eventOpen = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowRight"});
+		items[1].dispatchEvent(eventOpen);
 		expect(fixture.nativeElement.querySelector("div").classList).toContain("slide-in");
 
-		let evtClose = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowLeft"});
-		fixture.nativeElement.querySelector(".subpanel_heading").dispatchEvent(evtClose);
+		const eventClose = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowLeft"});
+		fixture.nativeElement.querySelector(".subpanel_heading").dispatchEvent(eventClose);
 		expect(fixture.nativeElement.querySelector("div").classList).not.toContain("slide-in");
 	});
 
@@ -285,9 +284,9 @@ describe("Side Nav", () => {
 			set: {
 				template: `
 				<n-side-nav [open]="true">
-					<n-side-nav-group [expanded] = "true" tabindex="-1">
+					<n-side-nav-group [expanded]="true" tabindex="-1">
 						<span class="accordion_title">Title 1</span>
-						<n-side-nav-item [selected] = "true">
+						<n-side-nav-item [selected]="true">
 							<span class="side-nav-item" >Subtitle 1</span>
 							<n-side-nav-subpanel>
 								<n-side-nav-pane-title>Subtitle 1</n-side-nav-pane-title>
@@ -309,7 +308,7 @@ describe("Side Nav", () => {
 			set: {
 				template: `
 				<n-side-nav [open]="true">
-					<n-side-nav-group [expanded] = "true" tabindex="-1">
+					<n-side-nav-group [expanded]="true" tabindex="-1">
 						<span class="accordion_title">Title 1</span>
 						<n-side-nav-item (select)="doSomething()">
 							<span class="side-nav-item">Subtitle 1</span>

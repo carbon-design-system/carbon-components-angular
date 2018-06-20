@@ -169,7 +169,11 @@ export class SideNavItem implements AfterViewInit {
 		// those that do, show that child on click
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
-		} else {
+		}
+		if (this.expanded) {
+			this.expanded = false;
+		}
+		if (!this.expanded) {
 			this.showPane();
 		}
 		this.select.emit();
@@ -189,6 +193,7 @@ export class SideNavItem implements AfterViewInit {
 	 * @memberof SideNavItem
 	 */
 	showPane() {
+		setTimeout(() => this.expanded = true);
 		let pane = this.getPaneTemplateElement();
 		if (pane) {
 			pane.firstElementChild.setAttribute("style", "display: block;");

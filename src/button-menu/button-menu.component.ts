@@ -11,6 +11,7 @@ import {
 	AfterContentInit,
 	AfterViewInit,
 	HostListener,
+	HostBinding,
 	QueryList
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -59,8 +60,7 @@ import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./..
 				<path d="M14.6 4L8 10.6 1.4 4l-.8.8L8 12.3l7.4-7.5z"/>
 			</svg>
 		</button>
-		<ul
-		role="menu">
+		<ul role="menu">
 			<ng-content></ng-content>
 		</ul>
 	`,
@@ -125,6 +125,8 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@ContentChildren(ButtonMenuItem) items: QueryList<ButtonMenuItem>;
 
+	@HostBinding("attr.role") role = "group";
+
 	menuIsClosed = true;
 	dropdown: HTMLElement;
 	dropdownWrapper: HTMLElement;
@@ -163,12 +165,13 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@HostListener("window:keydown", ["$event"])
 	keyboardInput(event: KeyboardEvent) {
-		let listItems;
+		let listItems, menu;
 		if (this.appendToBody && !this.menuIsClosed) {
-			listItems = Array.prototype.slice.call(this.dropdownWrapper.querySelectorAll("[role='menuitem']"));
+			menu = this.dropdownWrapper;
 		} else {
-			listItems = Array.prototype.slice.call(this.elementRef.nativeElement.querySelectorAll("[role='menuitem']"));
+			menu = this.elementRef.nativeElement;
 		}
+		listItems = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"));
 
 		// Allows opening of the menu
 		if (event.key === "ArrowDown" && event.altKey || event.key === "Enter" || event.key === " ") {
@@ -308,17 +311,14 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
-		let firstItem;
+		let firstItem, menu;
 		if (this.appendToBody) {
-			firstItem = Array.prototype.slice.call(this.dropdownWrapper.querySelectorAll("[role='menuitem']"))[0];
+			menu = this.dropdownWrapper;
 		} else {
-			firstItem = Array.prototype.slice.call(this.elementRef.nativeElement.querySelectorAll("[role='menuitem']"))[0];
+			menu = this.elementRef.nativeElement;
 		}
-		setTimeout(() => {
-			// console.log("focus ", firstItem);
-			firstItem.focus();
-		});
-
+		firstItem = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"))[0];
+		setTimeout(() => firstItem.focus());
 	}
 
 	closeMenu() {
