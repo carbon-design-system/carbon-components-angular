@@ -7,7 +7,20 @@ export class DateTimeModel {
 		return new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23, 59, 59);
 	}
 
+	/**
+	 * Start date of the range.
+	 *
+	 * @type {Date}
+	 * @memberof DateTimeModel
+	 */
 	startDate: Date;
+
+	/**
+	 * End date of the range.
+	 *
+	 * @type {Date}
+	 * @memberof DateTimeModel
+	 */
 	endDate: Date;
 
 	/**
@@ -44,7 +57,7 @@ export class DateTimeModel {
 	disabledDates = [];
 
 	/**
-	 * An array of short week names, starting from `weekStart`
+	 * An array of short week names, starting from `weekStart`.
 	 *
 	 * @readonly
 	 * @memberof DateTimeModel
@@ -67,11 +80,27 @@ export class DateTimeModel {
 		this.endDate = endDate;
 	}
 
+	/**
+	 * Selects the full day that `day` is part of.
+	 *
+	 * Adjusts `startDate` and `endDate`
+	 *
+	 * @param {Date} [day=new Date()]
+	 * @memberof DateTimeModel
+	 */
 	selectDay(day: Date = new Date()) {
 		this.startDate = new Date(day.getFullYear(), day.getMonth(), day.getDate());
 		this.endDate = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23, 59, 59);
 	}
 
+	/**
+	 * Selects the week that `day` is part of.
+	 *
+	 * Adjusts `startDate` and `endDate`
+	 *
+	 * @param {Date} [day=new Date()]
+	 * @memberof DateTimeModel
+	 */
 	selectWeek(day: Date = new Date()) {
 		this.startDate = this.weekStartDate(day);
 		this.endDate = this.weekStartDate(day);
@@ -81,39 +110,86 @@ export class DateTimeModel {
 		this.endDate.setSeconds(59);
 	}
 
+	/**
+	 * Convenience function that selects today.
+	 *
+	 * Adjusts `startDate` and `endDate`
+	 *
+	 * @memberof DateTimeModel
+	 */
 	selectToday() {
 		this.selectDay(new Date());
 	}
 
+	/**
+	 * Selects yesterday.
+	 *
+	 * Adjusts `startDate` and `endDate`
+	 *
+	 * @memberof DateTimeModel
+	 */
 	selectYesterday() {
 		const yesterday = new Date();
 		yesterday.setDate(yesterday.getDate() - 1);
 		this.selectDay(yesterday);
 	}
 
+	/**
+	 * Selects a week that `targetDate` belongs to from the beginning
+	 * (as set with `weekStart`) until the `targetDate`, included.
+	 *
+	 * @param {*} [targetDate=new Date()]
+	 * @memberof DateTimeModel
+	 */
 	selectWeekToDate(targetDate = new Date()) {
 		this.startDate = this.weekStartDate(targetDate);
 		this.endDate = targetDate;
 	}
 
+	/**
+	 * Selects a `monthCount` of months ending with the one that `targetDate` belongs to
+	 * from the beginning of the first until the `targetDate`, included.
+	 *
+	 * @param {*} [targetDate=new Date()]
+	 * @param {number} [monthCount=1]
+	 * @memberof DateTimeModel
+	 */
 	selectMonthsToDate(targetDate = new Date(), monthCount = 1) {
 		this.startDate = new Date(targetDate.getFullYear(), targetDate.getMonth() - monthCount + 1, 1);
 		this.endDate = targetDate;
 	}
 
+	/**
+	 * Selects month that `day` belongs to.
+	 *
+	 * @param {*} [day=new Date()]
+	 * @memberof DateTimeModel
+	 */
 	selectMonth(day = new Date()) {
 		this.startDate = new Date(day.getFullYear(), day.getMonth(), 1);
 		this.endDate = new Date(day.getFullYear(), day.getMonth() + 1, 0, 23, 59, 59);  // 0 selects last day of previous month
 	}
 
+	/**
+	 * Selects previous month.
+	 *
+	 * @memberof DateTimeModel
+	 */
 	selectLastMonth() {
 		const now = new Date();
 		this.selectMonth(new Date(now.getFullYear(), now.getMonth() - 1, 1));
 	}
 
-	selectQuarterToDate(date = new Date()) {
-		const year = date.getFullYear();
-		const time = date.getTime();
+	/**
+	 * Selects a quarter that `targetDate` belongs to from the first day of the
+	 * quarter to `targetDate`.
+	 *
+	 * @param {*} [targetDate=new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarterToDate(targetDate = new Date()) {
+		const year = targetDate.getFullYear();
+		const time = targetDate.getTime();
 		const quarters = [new Date(year, 0, 1), new Date(year, 3, 1), new Date(year, 6, 1), new Date(year, 9, 1)];
 		const quarterTimes = quarters.map(q => q.getTime());
 
@@ -131,9 +207,18 @@ export class DateTimeModel {
 			this.startDate = quarters[3];
 		}
 
-		this.endDate = date;
+		this.endDate = targetDate;
 	}
 
+	/**
+	 * Select a `quarter` of the `year`.
+	 *
+	 * `quarter` ranges from `0` to `3`, Q1 being `0`
+	 *
+	 * @param {number} quarter
+	 * @param {*} [year=new Date().getFullYear()]
+	 * @memberof DateTimeModel
+	 */
 	selectQuarter(quarter: number, year = new Date().getFullYear()) {
 		const quarters = [
 			new Date(year, 0, 1),
@@ -155,10 +240,38 @@ export class DateTimeModel {
 		this.selectQuarter(date.getMonth() / 3, date.getFullYear());
 	}
 
+	/**
+	 * Returns a week start date for a week that `day` is in.
+	 *
+	 * @param {Date} [day=new Date()]
+	 * @returns {Date}
+	 * @memberof DateTimeModel
+	 */
 	weekStartDate(day: Date = new Date()): Date {
 		return new Date(day.getFullYear(), day.getMonth(), day.getDate() - day.getDay() + this.weekStart);
 	}
 
+	/**
+	 * Returns a 2D array representing days of month the way they would be displayed
+	 * in the calendar. With `null` representing empty days.
+	 *
+	 * Month of June, 2018, with week starting on Sunday, will return
+	 *
+	 * ```typescript
+	 * [
+	 * 	[ null, null, null, null, null, 1, 2 ],
+	 * 	[ 3, 4, 5, 6, 7, 8, 9 ],
+	 * 	[ 10, 11, 12, 13, 14, 15, 16 ],
+	 * 	[ 17, 18, 19, 20, 21, 22, 23 ],
+	 * 	[ 24, 25, 26, 27, 28, 29, 30 ],
+	 * 	[ null, null, null, null, null, null, null ]
+	 * ]
+	 * ```
+	 *
+	 * @param {Date} [day=new Date()]
+	 * @returns {Array<Array<number>>}
+	 * @memberof DateTimeModel
+	 */
 	daysOfMonth(day: Date = new Date()): Array<Array<number>> {
 		const weeks = [];
 
@@ -190,6 +303,13 @@ export class DateTimeModel {
 		return weeks;
 	}
 
+	/**
+	 * Tells you if `day` is disabled in `disabledDates` property.
+	 *
+	 * @param {Date} day
+	 * @returns
+	 * @memberof DateTimeModel
+	 */
 	isDateDisabled(day: Date) {
 		for (let i = 0; i < this.disabledDates.length; i++) {
 			const dd = this.disabledDates[i];
@@ -214,6 +334,13 @@ export class DateTimeModel {
 		return false;
 	}
 
+	/**
+	 * Tells you if `day` is inside of selected range.
+	 *
+	 * @param {Date} day
+	 * @returns
+	 * @memberof DateTimeModel
+	 */
 	isDateInRange(day: Date) {
 		const time = day.getTime();
 		return this.startDate && this.endDate && this.startDate.getTime() <= time && time <= this.endDate.getTime();
