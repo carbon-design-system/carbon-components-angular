@@ -169,11 +169,7 @@ export class SideNavItem implements AfterViewInit {
 		// those that do, show that child on click
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
-		}
-		if (this.expanded) {
-			this.expanded = false;
-		}
-		if (!this.expanded) {
+		} else {
 			this.showPane();
 		}
 		this.select.emit();
