@@ -165,13 +165,11 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 
 	@HostListener("window:keydown", ["$event"])
 	keyboardInput(event: KeyboardEvent) {
-		let listItems, menu;
+		let menu = this.elementRef.nativeElement;
 		if (this.appendToBody && !this.menuIsClosed) {
 			menu = this.dropdownWrapper;
-		} else {
-			menu = this.elementRef.nativeElement;
 		}
-		listItems = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"));
+		const listItems = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"));
 
 		// Allows opening of the menu
 		if (event.key === "ArrowDown" && event.altKey || event.key === "Enter" || event.key === " ") {
@@ -311,13 +309,12 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
-		let firstItem, menu;
+
+		let menu = this.elementRef.nativeElement;
 		if (this.appendToBody) {
 			menu = this.dropdownWrapper;
-		} else {
-			menu = this.elementRef.nativeElement;
 		}
-		firstItem = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"))[0];
+		const firstItem = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"))[0];
 		setTimeout(() => firstItem.focus());
 	}
 
