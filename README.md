@@ -15,7 +15,6 @@ To quickly start developing new apps or demos, use
 </a>
 
 Follow instructions in [Neutrino Seed repo](https://github.ibm.com/peretz/neutrino-seed) and use the rest of this readme if you need more detailed information.
-
 <a href="https://pages.github.ibm.com/peretz/neutrino/documentation">
 ```
     ___                                      _        _   _
