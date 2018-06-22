@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { Calendar } from "./calendar.component";
 
 export { Calendar } from "./calendar.component";
+export { DateTimeModel } from "./date-time-model.class";
 
 @NgModule({
 	declarations: [
