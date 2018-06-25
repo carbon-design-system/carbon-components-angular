@@ -16,9 +16,9 @@ import { TableDemoService } from "./table-demo.service";
 class FilterableHeaderItem extends TableHeaderItem {
 	// custom filter function
 	filter(item: TableItem): boolean {
-		if (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
+		if (item && (typeof item.data === "string" && item.data.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
 		item.data.name && item.data.name.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0 ||
-		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0) {
+		item.data.surname && item.data.surname.toLowerCase().indexOf(this.filterData.data.toLowerCase()) >= 0)) {
 			return false;
 		}
 		return true;
