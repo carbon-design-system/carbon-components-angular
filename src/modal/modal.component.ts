@@ -53,6 +53,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
  * export class SampleModalComponent {
+ * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
  * 	modalText: string;
  * 	constructor(private injector: Injector) {
  * 		this.modalText = this.injector.get("modalText");
