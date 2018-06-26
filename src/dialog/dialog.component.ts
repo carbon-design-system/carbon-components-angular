@@ -203,13 +203,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		if (this.dialogConfig.appendToBody) {
 			pos = this.addGap[this.placement](position.findAbsolute(parentEl, el, this.placement));
 			pos = position.addOffset(pos, window.scrollY, window.scrollX);
-			// add extra setTimeout and position calculation for cases where the container is position
-			// relative or absolute since browsers return getBoundingClientRect _before_ the reflow is complete
-			setTimeout(() => {
-				let pos = this.addGap[this.placement](position.findAbsolute(parentEl, el, this.placement));
-				pos = position.addOffset(pos, window.scrollY, window.scrollX);
-				position.setElement(el, pos);
-			});
 		} else {
 			pos = this.addGap[this.placement](position.findRelative(parentEl, el, this.placement));
 		}

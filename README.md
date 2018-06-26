@@ -111,8 +111,7 @@ To keep our build dependancies local we use npm scripts to run our webpack, gulp
 - `npm run demo:build` to build the demo
 - `npm run build` to generate the dist
 - `docs:build` to build documentation
-- `docs:server` to run the documentation server
-- `docs:run` to build the documentation and run the server
+- `docs:server` to build and run the documentation server
 - `npm run lint` to run tslint
 - `npm test` to run tests
 

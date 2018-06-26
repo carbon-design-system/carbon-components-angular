@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
-import { HcModeChecker } from "./../../src";
+import { HcModeChecker, IconService } from "./../../src";
 import "rxjs/add/operator/filter";
 
 const en = require("./../../src/i18n/en.json");
@@ -202,20 +202,22 @@ export class AppComponent implements OnInit {
 	});
 	public filteredItems = this.navItems;
 	private previousItem = null;
-	constructor (private _router: Router, private _translate: TranslateService) {
-		this._translate.setDefaultLang("en");
-		this._translate.use("en");
-		this._translate.setTranslation("en", en);
+	constructor (private router: Router, private translate: TranslateService, private iconService: IconService) {
+		this.translate.setDefaultLang("en");
+		this.translate.use("en");
+		this.translate.setTranslation("en", en);
+
+		IconService.setBaseURL("http://s3-api.us-geo.objectstorage.softlayer.net/icons/");
 	}
 
 	ngOnInit() {
-		this._router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
+		this.router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
 			if (x["url"] === "/" && this.previousItem) {
 				this.previousItem.selected = false;
 			}
 		});
 
-		this._router.events.filter(x => x instanceof NavigationStart).subscribe(x => {
+		this.router.events.filter(x => x instanceof NavigationStart).subscribe(x => {
 			if (this.previousItem) {
 				this.previousItem.selected = false;
 			}
@@ -242,7 +244,7 @@ export class AppComponent implements OnInit {
 		}
 		this.previousItem = item;
 		item.selected = true;
-		this._router.navigate([item.link]); // do we need to remove this since we have routerLink already?
+		this.router.navigate([item.link]); // do we need to remove this since we have routerLink already?
 											// also, replace selected with routerLinkActive?
 											// https://angular.io/docs/ts/latest/api/router/index/RouterLinkActive-directive.html
 	}
