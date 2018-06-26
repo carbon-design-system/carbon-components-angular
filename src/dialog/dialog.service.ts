@@ -153,7 +153,6 @@ export class DialogService {
 
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
-			console.log(this.dialogRef);
 			if (this.dialogRef.instance.dialogConfig.appendToBody && this.dialogPlaceholderService.viewContainerRef) {
 				const vcRef = this.dialogPlaceholderService.viewContainerRef;
 				vcRef.remove(vcRef.indexOf(this.dialogRef.hostView));
