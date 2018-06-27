@@ -626,6 +626,8 @@ export class Condition implements OnInit {
 	}
 
 	updatePills() {
+		this.state.value = this.state.value.filter(item => item.selected);
+		this.valueChange.emit();
 		// console.log(this.state.value);
 	}
 
