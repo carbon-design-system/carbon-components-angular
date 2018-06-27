@@ -9,6 +9,9 @@ import { ListItem } from "./../dropdown/list-item.interface";
 
 
 /**
+ * Internal helper component for TreeView
+ *
+ * Renders a lsit of TreeViewItems
  * @export
  * @class TreeViewWrapper
  */
