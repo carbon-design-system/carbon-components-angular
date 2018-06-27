@@ -107,6 +107,7 @@
 
 **Merged pull requests:**
 
+- Fix file loading/fix build [\#935](https://github.ibm.com/peretz/neutrino/pull/935) ([callums](https://github.ibm.com/callums))
 - Fix popover title not showing [\#934](https://github.ibm.com/peretz/neutrino/pull/934) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add `DateTimeModel` [\#928](https://github.ibm.com/peretz/neutrino/pull/928) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update modal docs and fix popover bugs [\#927](https://github.ibm.com/peretz/neutrino/pull/927) ([callums](https://github.ibm.com/callums))
