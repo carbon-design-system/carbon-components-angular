@@ -18,38 +18,37 @@ export type Offset = { left: number, top: number };
 
 function calculatePosition(referenceOffset: Offset, reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition {
 	// calculate offsets for a given position
-	const referenceRect = reference.getBoundingClientRect();
 	switch (position) {
 		case "left":
 			return {
-				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
+				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
 				left: Math.round(referenceOffset.left - toPosition.offsetWidth)
 			};
 		case "right":
 			return {
-				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(referenceRect.height / 2),
-				left: Math.round(referenceOffset.left + referenceRect.width)
+				top: referenceOffset.top - Math.round(toPosition.offsetHeight / 2) + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left + reference.offsetWidth)
 			};
 		case "top":
 			return {
 				top: Math.round(referenceOffset.top - toPosition.offsetHeight),
-				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
 			};
 		case "bottom":
 			return {
-				top: Math.round(referenceOffset.top + referenceRect.height),
-				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+				top: Math.round(referenceOffset.top + reference.offsetHeight),
+				left: referenceOffset.left - Math.round(toPosition.offsetWidth / 2) + Math.round(reference.offsetWidth / 2),
 			};
 		case "left-bottom":
 			return {
 				// 22 == half of popover header height
-				top: referenceOffset.top - 22 + Math.round(referenceRect.height / 2),
+				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
 				left: Math.round(referenceOffset.left - toPosition.offsetWidth)
 			};
 		case "right-bottom":
 			return {
-				top: referenceOffset.top - 22 + Math.round(referenceRect.height / 2),
-				left: Math.round(referenceOffset.left + referenceRect.width)
+				top: referenceOffset.top - 22 + Math.round(reference.offsetHeight / 2),
+				left: Math.round(referenceOffset.left + reference.offsetWidth)
 			};
 		// matter currently doesn't support these, so the popover is broken anyway
 		case "top-left":
@@ -64,12 +63,12 @@ function calculatePosition(referenceOffset: Offset, reference: HTMLElement, toPo
 			};
 		case "bottom-left":
 			return {
-				top: referenceOffset.top + referenceRect.height,
-				left: referenceOffset.left + referenceRect.width - toPosition.offsetWidth
+				top: referenceOffset.top + reference.offsetHeight,
+				left: referenceOffset.left + reference.offsetWidth - toPosition.offsetWidth
 			};
 		case "bottom-right":
 			return {
-				top: referenceOffset.top + referenceRect.height,
+				top: referenceOffset.top + reference.offsetHeight,
 				left: referenceOffset.left
 			};
 	}
