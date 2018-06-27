@@ -16,6 +16,8 @@ import { focusNextTree, focusNextElem, focusPrevElem, findNextElem } from "../co
 
 
 /**
+ * Internal helper component for TreeView
+ *
  * `TreeViewItem` leverages the `list-item.interface` within `./../dropdown` to define the items listed in a the `TreeView` data structure.
  *
  * @export
