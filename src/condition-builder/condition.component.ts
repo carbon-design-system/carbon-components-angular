@@ -64,14 +64,16 @@ import {
 				</n-dropdown-list>
 			</n-dropdown>
 		</div>
-		<n-condition-builder-pill-input
+		<n-pill-input
 		class="condition-builder-pill-input"
+		pillDirection="column"
+		type="multi"
 		[id]="id + '-value'"
 		[pills]="state.value"
 		(updatePills)="updatePills()"
 		(submit)="onPillSubmit($event)"
 		(focus)="inputIsFocused = true"
-		(blur)="inputIsFocused = false"></n-condition-builder-pill-input>
+		(blur)="inputIsFocused = false"></n-pill-input>
 		<p>Each value must be on a separate line.</p>
 		<p *ngIf="inputIsFocused">Example:<br />Value1<br />Value2</p>
 	</div>
