@@ -36,7 +36,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			class="pill_input_wrapper"
 			[ngClass]="{
 				'expand-overflow': expanded,
-				focus: _focus,
+				focus: focusActive,
 				disabled: disabled
 			}"
 			style="overflow: hidden;"
@@ -94,7 +94,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 })
 export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
-	public _focus = false;
+	public focusActive = false;
 	/** height of the expanded input */
 	public expandedHeight = 0;
 	/** number of pills hidden by overflow */
@@ -241,9 +241,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 * @param {boolean} state
 	 */
 	public setFocus(state: boolean) {
-		this._focus = state;
+		this.focusActive = state;
 
-		if (this._focus) {
+		if (this.focusActive) {
 			this.focus.emit();
 		} else {
 			this.blur.emit();
@@ -393,9 +393,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 */
 	private checkPlaceholderVisibility(): void {
 		if (this.type === "single") {
-			setTimeout(() => this.showPlaceholder = !this.displayValue && !this._focus && !this.getInputText());
+			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focusActive && !this.getInputText());
 		} else {
-			setTimeout(() => this.showPlaceholder = this.empty(this.pills) && !this._focus && !this.getInputText());
+			setTimeout(() => this.showPlaceholder = this.empty(this.pills) && !this.focusActive && !this.getInputText());
 		}
 	}
 
