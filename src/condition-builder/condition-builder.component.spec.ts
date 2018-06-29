@@ -12,7 +12,6 @@ import { PillInputModule } from "./../pill-input/pill-input.module";
 
 import { ConditionBuilderService } from "./condition-builder.service";
 import { ConditionWrapper } from "./condition-wrapper.component";
-import { ConditionBuilderPillInput } from "./condition-builder-pill-input.component";
 import { ConditionBuilder, Condition } from "./condition-builder.module";
 
 @Component({
@@ -108,7 +107,6 @@ describe("Condition builder", () => {
 				ConditionBuilder,
 				ConditionWrapper,
 				Condition,
-				ConditionBuilderPillInput,
 				ConditionBuilderTestComponent
 			],
 			providers: [
