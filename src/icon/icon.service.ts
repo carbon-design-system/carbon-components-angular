@@ -65,7 +65,6 @@ export class IconService {
 			.toPromise()
 			.then(res => {
 				IconService.runningRequests--;
-				IconService.spriteLoaded.emit();
 				return res;
 			})
 			.then(res => res.text(),
