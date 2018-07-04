@@ -30,7 +30,7 @@ export interface DialogConfig {
 	 * @type {Placement}
 	 * @memberof DialogConfig
 	 */
-	placement: any;
+	placement: string;
 	/**
 	 * Used to set the offset of the `Dialog` relative to the content it
 	 * is associated to.

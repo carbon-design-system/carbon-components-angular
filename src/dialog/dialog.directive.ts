@@ -56,7 +56,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Placement of the dialog, usually relative to the element the directive is on.
 	 * @memberof DialogDirective
 	 */
-	@Input() placement: any = "left";
+	@Input() placement = "left";
 	/**
 	 * Class to add to the dialog container
 	 * @type {string}

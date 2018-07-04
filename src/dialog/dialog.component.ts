@@ -15,7 +15,7 @@ import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/observable/merge";
-import position from "../utils/position";
+import position, { AbsolutePosition } from "../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
@@ -74,7 +74,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @type {Placement}
 	 * @memberof Dialog
 	 */
-	public placement: any;
+	public placement: string;
 
 	/**
 	 * `Subscription` used to update placement in the event of a window resize.
