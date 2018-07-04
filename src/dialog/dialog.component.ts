@@ -9,14 +9,13 @@ import {
 	AfterViewInit,
 	OnDestroy,
 	HostListener,
-	ApplicationRef
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/observable/merge";
-import position, { Position, AbsolutePosition } from "../utils/position";
+import position from "../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
@@ -72,7 +71,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * The placement of the `Dialog` is recieved from the `Position` service.
-	 * @type {Position}
+	 * @type {Placement}
 	 * @memberof Dialog
 	 */
 	public placement: any;
@@ -199,13 +198,13 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	placeDialog(): void {
 		// helper to find the position based on the current/given environment
-		const findPosition = (reference, toPosition, placement) => {
+		const findPosition = (reference, target, placement) => {
 			let pos;
 			if (this.dialogConfig.appendToBody) {
-				pos = this.addGap[placement](position.findAbsolute(reference, toPosition, placement));
+				pos = this.addGap[placement](position.findAbsolute(reference, target, placement));
 				pos = position.addOffset(pos, window.scrollY, window.scrollX);
 			} else {
-				pos = this.addGap[placement](position.findRelative(reference, toPosition, placement));
+				pos = this.addGap[placement](position.findRelative(reference, target, placement));
 			}
 			return pos;
 		};

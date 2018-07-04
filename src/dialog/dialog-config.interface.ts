@@ -1,5 +1,4 @@
 import { ElementRef, TemplateRef } from "@angular/core";
-import { Position } from "./../utils/position";
 
 /**
  * Data structure for definig properties of a `Dialog` component.
@@ -28,8 +27,7 @@ export interface DialogConfig {
 	trigger: "click" | "hover" | "mouseenter";
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
-	 * @type {("top" | "bottom" |\
-	 * "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom")}
+	 * @type {Placement}
 	 * @memberof DialogConfig
 	 */
 	placement: any;

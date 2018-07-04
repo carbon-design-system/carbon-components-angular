@@ -16,7 +16,6 @@ import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
-import { Position } from "./../utils/position";
 
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
