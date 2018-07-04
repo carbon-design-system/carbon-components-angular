@@ -1,5 +1,5 @@
 import { ElementRef, TemplateRef } from "@angular/core";
-
+import { Position } from "./../utils/position";
 
 /**
  * Data structure for definig properties of a `Dialog` component.
@@ -32,8 +32,7 @@ export interface DialogConfig {
 	 * "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom")}
 	 * @memberof DialogConfig
 	 */
-	placement:
-		"top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom";
+	placement: any;
 	/**
 	 * Used to set the offset of the `Dialog` relative to the content it
 	 * is associated to.
@@ -57,7 +56,7 @@ export interface DialogConfig {
 	/**
 	 * Set to `true` will attempt to place
 	 * `Dialog` for maximum visibility.
-	 * @type {boolean}
+	 * @type {boolean | string}
 	 * @memberof DialogConfig
 	 */
 	autoPosition: boolean;

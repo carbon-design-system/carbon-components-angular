@@ -8,7 +8,8 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener
+	HostListener,
+	ApplicationRef
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
@@ -74,7 +75,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @type {Position}
 	 * @memberof Dialog
 	 */
-	public placement: Position;
+	public placement: any;
 
 	/**
 	 * `Subscription` used to update placement in the event of a window resize.
@@ -116,7 +117,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @memberof Dialog
 	 */
 	ngOnInit() {
-		this.placement = this.dialogConfig.placement;
+		this.placement = this.dialogConfig.placement.split(",")[0];
 		this.data = this.dialogConfig.data;
 
 		this.resizeSubscription = Dialog.resizeObservable.subscribe(() => {
@@ -134,9 +135,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngAfterViewInit() {
 		const dialogElement = this.dialog.nativeElement;
-		dialogElement.focus();
 		dialogElement.classList = `${dialogElement.classList} ${this.dialogConfig.wrapperClass}`;
 		this.placeDialog();
+		dialogElement.focus();
 		const parentEl: HTMLElement = this.dialogConfig.parentRef.nativeElement;
 		let node = parentEl;
 		let observables = [];
@@ -197,27 +198,37 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @memberof Dialog
 	 */
 	placeDialog(): void {
+		// helper to find the position based on the current/given environment
+		const findPosition = (reference, toPosition, placement) => {
+			let pos;
+			if (this.dialogConfig.appendToBody) {
+				pos = this.addGap[placement](position.findAbsolute(reference, toPosition, placement));
+				pos = position.addOffset(pos, window.scrollY, window.scrollX);
+			} else {
+				pos = this.addGap[placement](position.findRelative(reference, toPosition, placement));
+			}
+			return pos;
+		};
+
 		let parentEl = this.dialogConfig.parentRef.nativeElement;
 		let el = this.dialog.nativeElement;
 		let pos;
-		if (this.dialogConfig.appendToBody) {
-			pos = this.addGap[this.placement](position.findAbsolute(parentEl, el, this.placement));
-			pos = position.addOffset(pos, window.scrollY, window.scrollX);
-		} else {
-			pos = this.addGap[this.placement](position.findRelative(parentEl, el, this.placement));
-		}
-		position.setElement(el, pos);
-		if (this.dialogConfig.autoPosition) {
-			// find new position
-			let { newPlacement } = position.checkPlacement(parentEl, el, this.placement);
-			if (newPlacement !== this.placement) {
-				// timeout to wait a tick before finalizing position
-				setTimeout(() => {
-					this.placement = newPlacement;
-					this.placeDialog();
-				});
+		let dialogPlacement = this.placement;
+
+		// split always retuns an array, so we can just use the auto position logic
+		// for single positions too
+		const placements = this.dialogConfig.placement.split(",");
+		for (const placement of placements) {
+			pos = findPosition(parentEl, el, placement);
+			if (position.checkPlacement(el, pos)) {
+				dialogPlacement = placement;
+				break;
 			}
 		}
+
+		// update the element
+		position.setElement(el, pos);
+		setTimeout(() => { this.placement = dialogPlacement; });
 	}
 
 	/**

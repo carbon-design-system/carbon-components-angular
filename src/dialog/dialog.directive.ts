@@ -1,26 +1,22 @@
 import {
-	Component,
 	Directive,
 	Input,
 	Output,
 	EventEmitter,
 	OnInit,
 	OnDestroy,
-	Injector,
-	ComponentRef,
 	ElementRef,
 	TemplateRef,
 	ViewContainerRef,
-	ComponentFactory,
-	ComponentFactoryResolver,
-	HostListener
+	HostListener,
+	OnChanges
 } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/throttleTime";
 import "rxjs/add/observable/fromEvent";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
-
+import { Position } from "./../utils/position";
 
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
@@ -38,7 +34,7 @@ import { DialogConfig } from "./dialog-config.interface";
 		DialogService
 	]
 })
-export class DialogDirective implements OnInit, OnDestroy {
+export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Title for the dialog
 	 * @type {string}
@@ -59,10 +55,9 @@ export class DialogDirective implements OnInit, OnDestroy {
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
 	 * Placement of the dialog, usually relative to the element the directive is on.
-	 * @type {("top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right")}
 	 * @memberof DialogDirective
 	 */
-	@Input() placement: "top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" = "left";
+	@Input() placement: any = "left";
 	/**
 	 * Class to add to the dialog container
 	 * @type {string}
@@ -86,7 +81,7 @@ export class DialogDirective implements OnInit, OnDestroy {
 	 * @type {boolean}
 	 * @memberof DialogDirective
 	 */
-	@Input() autoPosition = false;
+	@Input() autoPosition: string;
 	/**
 	 * Optional data for templates
 	 * @memberof DialogDirective
@@ -123,15 +118,8 @@ export class DialogDirective implements OnInit, OnDestroy {
 		evt.preventDefault();
 		this.toggle();
 	}
-	/**
-	 * Sets the config object and binds events for hovering or clicking before
-	 * running code from child class.
-	 * @memberof DialogDirective
-	 */
-	ngOnInit() {
-		// fix for safari highjacking clicks
-		document.body.firstElementChild.addEventListener("click", () => null, true);
 
+	ngOnChanges() {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
 			title: this.title,
@@ -145,6 +133,16 @@ export class DialogDirective implements OnInit, OnDestroy {
 			wrapperClass: this.wrapperClass,
 			data: this.data
 		};
+	}
+
+	/**
+	 * Sets the config object and binds events for hovering or clicking before
+	 * running code from child class.
+	 * @memberof DialogDirective
+	 */
+	ngOnInit() {
+		// fix for safari highjacking clicks
+		document.body.firstElementChild.addEventListener("click", () => null, true);
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
