@@ -78,10 +78,11 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Input() appendToBody = false;
 	/**
 	 * Determines if the Dialog will attempt to place itself for maximum visibility.
+	 * TODO: remove - this doesn't actually do anything
 	 * @type {boolean}
 	 * @memberof DialogDirective
 	 */
-	@Input() autoPosition: string;
+	@Input() autoPosition: boolean;
 	/**
 	 * Optional data for templates
 	 * @memberof DialogDirective
