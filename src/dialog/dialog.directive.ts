@@ -80,6 +80,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * TODO: remove - this doesn't actually do anything
 	 * @type {boolean}
 	 * @memberof DialogDirective
+	 * @deprecated
 	 */
 	@Input() autoPosition: boolean;
 	/**
