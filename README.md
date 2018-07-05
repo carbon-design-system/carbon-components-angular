@@ -3,6 +3,28 @@ A componentized _Angular_ implementation of the Watson Customer Engagement desig
 
 ### Getting started
 
+To quickly start developing new apps or demos, use
+<a href="https://github.ibm.com/peretz/neutrino-seed">
+```
+     __           _        _               __               _
+  /\ \ \___ _   _| |_ _ __(_)_ __   ___   / _\ ___  ___  __| |
+ /  \/ / _ \ | | | __| '__| | '_ \ / _ \  \ \ / _ \/ _ \/ _` |
+/ /\  /  __/ |_| | |_| |  | | | | | (_) | _\ \  __/  __/ (_| |
+\_\ \/ \___|\__,_|\__|_|  |_|_| |_|\___/  \__/\___|\___|\__,_|
+```
+</a>
+
+Follow instructions in [Neutrino Seed repo](https://github.ibm.com/peretz/neutrino-seed) and use the rest of this readme if you need more detailed information.
+<a href="https://pages.github.ibm.com/peretz/neutrino/documentation">
+```
+    ___                                      _        _   _
+   /   \___   ___ _   _ _ __ ___   ___ _ __ | |_ __ _| |_(_) ___  _ __
+  / /\ / _ \ / __| | | | '_ ` _ \ / _ \ '_ \| __/ _` | __| |/ _ \| '_ \
+ / /_// (_) | (__| |_| | | | | | |  __/ | | | || (_| | |_| | (_) | | | |
+/___,' \___/ \___|\__,_|_| |_| |_|\___|_| |_|\__\__,_|\__|_|\___/|_| |_|
+```
+</a>
+
 #### Artifactory
 
 Run the following to add the needed information
@@ -89,8 +111,7 @@ To keep our build dependancies local we use npm scripts to run our webpack, gulp
 - `npm run demo:build` to build the demo
 - `npm run build` to generate the dist
 - `docs:build` to build documentation
-- `docs:server` to run the documentation server
-- `docs:run` to build the documentation and run the server
+- `docs:server` to build and run the documentation server
 - `npm run lint` to run tslint
 - `npm test` to run tests
 

@@ -42,6 +42,11 @@ export class Sprite implements AfterViewInit {
 	ngAfterViewInit() {
 		this.icons.getSprite(this.sprite).then(rawSVG => {
 			this._elementRef.nativeElement.innerHTML = rawSVG;
+			// insure the DOM has settled before we tell everyone they can request icons
+			// TODO: move all the sprites into in memory data structures
+			setTimeout(() => {
+				IconService.spriteLoaded.emit();
+			});
 		});
 	}
 }

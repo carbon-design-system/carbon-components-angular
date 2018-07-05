@@ -27,23 +27,54 @@ import { cycleTabs } from "./../common/tab.service";
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
- * ...
  * <n-modal-placeholder></n-modal-placeholder>
  * ```
  *
  * A more complete example for `Modal` is given as follows:
  *
- * ```html
- * <n-modal size="xl" (overlaySelected)="closeModal()">
- * 	<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
- * 	<section class="modal-body">
- * 		<h1>It Works!</h1>
- * 		{{modalText}}
- * 	</section>
- * 	<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
- * </n-modal>
- * ...
- * <n-modal-placeholder></n-modal-placeholder>
+ * Example modal definition:
+ *
+ * ```typescript
+ * \@Modal()
+ * \@Component({
+ * 	selector: "app-sample-modal",
+ * 	template: `
+ *		<n-modal size="xl">
+ * 			<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ * 			<section class="modal-body">
+ * 			<h1>Sample modal works.</h1>
+ * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="false">
+ * 				<n-icon icon="info" size="sm"></n-icon>
+ * 			</button>
+ * 			{{modalText}}
+ * 			</section>
+ * 			<n-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
+ * 		</n-modal>`,
+ * 	styleUrls: ["./sample-modal.component.scss"]
+ * })
+ * export class SampleModalComponent {
+ * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
+ * 	modalText: string;
+ * 	constructor(private injector: Injector) {
+ * 		this.modalText = this.injector.get("modalText");
+ * 	}
+ * }
+ * ```
+ *
+ * Example of opening the modal:
+ *
+ * ```typescript
+ * \@Component({
+ *  selector: "app-modal-demo",
+ *  template: `
+ *   <button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
+ *   <n-modal-placeholder></n-modal-placeholder>`
+ * })
+ * export class ModalDemo {
+ * 	openModal() {
+ * 		this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello universe."}});
+ * 	}
+ * }
  * ```
  *
  * @export

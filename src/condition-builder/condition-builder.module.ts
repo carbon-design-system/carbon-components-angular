@@ -12,7 +12,6 @@ import { ConditionBuilder } from "./condition-builder.component";
 import { Condition } from "./condition.component";
 import { ConditionWrapper } from "./condition-wrapper.component";
 import { ConditionBuilderService } from "./condition-builder.service";
-import { ConditionBuilderPillInput } from "./condition-builder-pill-input.component";
 import { PillInputModule } from "./../pill-input/pill-input.module";
 import { DialogModule } from "./../dialog/dialog.module";
 
@@ -24,14 +23,12 @@ export { Condition } from "./condition.component";
 	declarations: [
 		ConditionBuilder,
 		ConditionWrapper,
-		Condition,
-		ConditionBuilderPillInput
+		Condition
 	],
 	exports: [
 		ConditionBuilder,
 		ConditionWrapper,
-		Condition,
-		ConditionBuilderPillInput
+		Condition
 	],
 	imports: [
 		CommonModule,

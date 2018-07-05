@@ -36,9 +36,10 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			class="pill_input_wrapper"
 			[ngClass]="{
 				'expand-overflow': expanded,
-				focus: focus,
+				focus: focusActive,
 				disabled: disabled
 			}"
+			style="overflow: hidden;"
 			(click)="focusInput($event)">
 			<span
 				*ngIf="showPlaceholder"
@@ -47,8 +48,11 @@ import { ListItem } from "./../dropdown/list-item.interface";
 			</span>
 			<div
 				#pillWrapper
-				class="input_pills">
-				<ng-container *ngFor="let pill of pills; let last = last">
+				[ngClass]="{
+					'input_pills--column': pillDirection === 'column',
+					'input_pills': pillDirection === 'row'
+				}">
+				<div style="display: flex" *ngFor="let pill of pills; let last = last">
 					<n-pill
 						[item]="pill">
 						{{ pill.content }}
@@ -60,7 +64,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 						contenteditable
 						(keydown)="onKeydown($event)"
 						(keyup)="onKeyup($event)"></div>
-				</ng-container>
+				</div>
 				<div
 					#pillInput
 					class="input"
@@ -90,7 +94,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
 })
 export class PillInput implements OnChanges, AfterViewInit {
 	/** are we focused? needed because we have a lot of inputs that could steal focus and we need to set visual focus on the wrapper */
-	public focus = false;
+	public focusActive = false;
 	/** height of the expanded input */
 	public expandedHeight = 0;
 	/** number of pills hidden by overflow */
@@ -113,12 +117,18 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@Input() size: "sm" | "md" | "default" | "lg" = "md";
 	/** is the input disabled. true/false */
 	@Input() disabled = false;
+	/** the direction of the pills */
+	@Input() pillDirection: "row" | "column" = "row";
 	/** empty event to trigger an update of the selected items */
 	@Output() updatePills = new EventEmitter();
 	/** emitted when the user types into an input */
 	@Output() search = new EventEmitter();
 	/** emitted when the user presses enter and a value is present */
 	@Output() submit = new EventEmitter();
+	/** emitted when the component is focused */
+	@Output() focus = new EventEmitter();
+	/** emitted when the component looses focus */
+	@Output() blur = new EventEmitter();
 	/** ViewChild of the pill wrapper */
 	@ViewChild("pillWrapper") pillWrapper;
 	/** ViewChild for the overall wrapper */
@@ -143,6 +153,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	ngOnChanges(changes) {
 		if (changes.pills) {
 			this.pills = changes.pills.currentValue;
+			if (this.pillDirection === "column") {
+				this.numberMore = this.pills.length - 1;
+			}
 
 			setTimeout(() => {
 				if (this.pillInstances) {
@@ -228,7 +241,13 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 * @param {boolean} state
 	 */
 	public setFocus(state: boolean) {
-		this.focus = state;
+		this.focusActive = state;
+
+		if (this.focusActive) {
+			this.focus.emit();
+		} else {
+			this.blur.emit();
+		}
 	}
 
 	/**
@@ -239,8 +258,8 @@ export class PillInput implements OnChanges, AfterViewInit {
 	public focusInput(ev) {
 		if (this.disabled) { return; }
 		this.setFocus(true);
-		if (this.numberMore > 0) {
-			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight; /*+ 10;*/
+		if (this.numberMore > 0 || this.pillDirection === "column") {
+			this.expandedHeight = this.pillWrapper.nativeElement.offsetHeight;
 			this.expanded = true;
 		}
 		if (this.pillInputs.find(input => input.nativeElement === ev.target)) {
@@ -374,9 +393,9 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 */
 	private checkPlaceholderVisibility(): void {
 		if (this.type === "single") {
-			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focus && !this.getInputText());
+			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focusActive && !this.getInputText());
 		} else {
-			setTimeout(() => this.showPlaceholder = this.empty(this.pills) && !this.focus && !this.getInputText());
+			setTimeout(() => this.showPlaceholder = this.empty(this.pills) && !this.focusActive && !this.getInputText());
 		}
 	}
 

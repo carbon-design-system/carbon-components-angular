@@ -155,9 +155,14 @@ function replaceTemplates() {
 		urls = JSON.parse(urls);
 		let strStyles = "";
 		for (let url of urls) {
-			strStyles += sass.renderSync({
-				file: path.resolve(file.path, "..", url)
-			}).css;
+			const filePath = path.resolve(file.path, "..", url);
+			if (fs.existsSync(filePath)) {
+				strStyles += sass.renderSync({
+					file: filePath
+				}).css;
+			} else {
+				console.warn(`file not found ${filePath} in ${file.path} this may be an error.`);
+			}
 		}
 		return strStyles;
 	}
