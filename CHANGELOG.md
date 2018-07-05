@@ -114,6 +114,7 @@
 
 **Merged pull requests:**
 
+- Autoposition filter popup in table [\#942](https://github.ibm.com/peretz/neutrino/pull/942) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Enable dialog auto positioning [\#941](https://github.ibm.com/peretz/neutrino/pull/941) ([callums](https://github.ibm.com/callums))
 - Fix sprite loading triggering too early [\#940](https://github.ibm.com/peretz/neutrino/pull/940) ([callums](https://github.ibm.com/callums))
 - Close \#932 [\#939](https://github.ibm.com/peretz/neutrino/pull/939) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
