@@ -45,7 +45,7 @@ describe("Button Menu", () => {
 		expect(fixture.componentInstance instanceof ButtonMenuTestComponent).toBe(true);
 	});
 
-	it("should display 'Test' on the main button", () => {
+	it("should display user text on the main button", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
