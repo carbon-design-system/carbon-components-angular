@@ -314,8 +314,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		if (this.appendToBody) {
 			menu = this.dropdownWrapper;
 		}
-		const firstItem = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"))[0];
-		setTimeout(() => firstItem.focus());
+		setTimeout(() => menu.querySelector("[role='menuitem']").focus());
 	}
 
 	closeMenu() {
