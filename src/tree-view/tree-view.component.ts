@@ -14,7 +14,307 @@ import { treetools } from "./../dropdown/dropdowntools";
 
 
 /**
- * demo: [https://pages.github.ibm.com/peretz/neutrino/#/tree-view](https://pages.github.ibm.com/peretz/neutrino/#/tree-view)
+ * TreeView expects an array of ListItems where root nodes are ListItems with the `items` property set to an array of ListItems
+ *
+ * TreeView (like ListGroup) doesn't provide any interaction behaviour - meaning you must implement a handler for the `(select)` Output
+ * and toggle the `selected` and `opened` states.
+ *
+ * A minimal example:
+ * ```typescript
+ * \@Component({
+ * 	selector: "app-tree-view-demo",
+ * 	template: `
+ * 	<n-tree-view
+ * 		[items]="demoItems"
+ * 		(select)="onSelect($event)"
+ * 		label="Default Tree View">
+ * 	</n-tree-view>
+ * 	`
+ * })
+ * export class TreeViewDemo {
+ * 	demoItems = [
+ * 		{
+ * 			content: "Item one",
+ * 			selected: false
+ * 		},
+ * 		{
+ * 			content: "Item two",
+ * 			selected: false,
+ * 			opened: false,
+ * 			items: [
+ * 				{
+ * 					content: "Sub item two 1",
+ * 					selected: false
+ * 				},
+ * 				{
+ * 					content: "Sub item two 2",
+ * 					selected: false,
+ * 					opened: false,
+ * 					items: [
+ * 						{
+ * 							content: "Sub item two 1b",
+ * 							selected: false
+ * 						},
+ * 						{
+ * 							content: "Sub item two 2b",
+ * 							selected: false
+ * 						}
+ * 					]
+ * 				},
+ * 			]
+ * 		},
+ * 		{
+ * 			content: "Item three",
+ * 			selected: false,
+ * 		},
+ * 		{
+ * 			content: "Item four which is a seriously long item so we can demo text overflow",
+ * 			selected: false
+ * 		},
+ * 		{
+ * 			content: "Item six",
+ * 			selected: false,
+ * 			opened: false,
+ * 			items: [
+ * 				{
+ * 					content: "Sub item six 1",
+ * 					selected: false
+ * 				},
+ * 				{
+ * 					content: "Sub item six 2",
+ * 					selected: false,
+ * 					opened: false,
+ * 					items: [
+ * 						{
+ * 							content: "Sub item six 1b",
+ * 							selected: false
+ * 						},
+ * 						{
+ * 							content: "Sub item six 2b",
+ * 							selected: false,
+ * 						}
+ * 					]
+ * 				},
+ * 			]
+ * 		}
+ * 	];
+ *
+ * 	onSelect(ev) {
+ * 		if (ev.item.items) {
+ * 			ev.item.opened = !ev.item.opened;
+ * 		} else {
+ * 			ev.item.selected = !ev.item.selected;
+ * 		}
+ * 	}
+ * }
+ * ```
+ *
+ *
+ * An example of using a template:
+ * ```typescript
+ * \@Component({
+ * 	selector: "app-tree-view-demo",
+ * 	template: `
+ * 	<n-tree-view
+ * 		[items]="demoItems"
+ * 		(select)="expand($event)"
+ * 		[template]="treeTpl"
+ * 		label="Tree view with custom template">
+ * 		<ng-template #treeTpl let-item="item">
+ * 			<n-checkbox
+ * 				#cb
+ * 				inline="true"
+ * 				[checked]="isChecked(item, cb)"
+ * 				[indeterminate]="isIndeterminate(item, cb)"
+ * 				(change)="onCheck({item: item}, $event)"
+ * 				[disabled]="item.disabled"
+ * 				type="checkbox">
+ * 				{{item.content}}
+ * 			</n-checkbox>
+ * 		</ng-template>
+ * 	</n-tree-view>
+ * 	`
+ * 	]
+ * })
+ * export class TreeViewDemo {
+ * 	demoItems = [
+ * 		{
+ * 			content: "Item one",
+ * 			selected: false
+ * 		},
+ * 		{
+ * 			content: "Item two",
+ * 			selected: false,
+ * 			opened: false,
+ * 			items: [
+ * 				{
+ * 					content: "Sub item two 1",
+ * 					selected: false
+ * 				},
+ * 				{
+ * 					content: "Sub item two 2",
+ * 					selected: false,
+ * 					opened: false,
+ * 					items: [
+ * 						{
+ * 							content: "Sub item two 1b",
+ * 							selected: false
+ * 						},
+ * 						{
+ * 							content: "Sub item two 2b",
+ * 							selected: false
+ * 						}
+ * 					]
+ * 				},
+ * 			]
+ * 		},
+ * 		{
+ * 			content: "Item three",
+ * 			selected: false,
+ * 		},
+ * 		{
+ * 			content: "Item four which is a seriously long item so we can demo text overflow",
+ * 			selected: false
+ * 		},
+ * 		{
+ * 			content: "Item six",
+ * 			selected: false,
+ * 			opened: false,
+ * 			items: [
+ * 				{
+ * 					content: "Sub item six 1",
+ * 					selected: false
+ * 				},
+ * 				{
+ * 					content: "Sub item six 2",
+ * 					selected: false,
+ * 					opened: false,
+ * 					items: [
+ * 						{
+ * 							content: "Sub item six 1b",
+ * 							selected: false
+ * 						},
+ * 						{
+ * 							content: "Sub item six 2b",
+ * 							selected: false,
+ * 						}
+ * 					]
+ * 				},
+ * 			]
+ * 		}
+ * 	];
+ *
+ * 	onSelect(ev) {
+ * 		if (ev.item.items) {
+ * 			ev.item.opened = !ev.item.opened;
+ * 		} else {
+ * 			ev.item.selected = !ev.item.selected;
+ * 		}
+ * 	}
+ *
+ * 	expand(ev) {
+ * 		if (ev.item.items) {
+ * 			ev.item.opened = !ev.item.opened;
+ * 		}
+ * 	}
+ *
+ * 	onCheck(ev, event) {
+ * 		let setSelect = (items, state) => {
+ * 			items.forEach(item => {
+ * 				item.selected = state;
+ * 				if (item.items) {
+ * 					setSelect(item.items, state);
+ * 				}
+ * 			});
+ * 		};
+ * 		let findParents = (items, toFind) => {
+ * 			for (let item of items) {
+ * 				if (item.items && item.items.includes(toFind)) {
+ * 					return [item];
+ * 				} else if (item.items) {
+ * 					let tmpItem = findParents(item.items, toFind);
+ * 					if (tmpItem) {
+ * 						return [item, ...tmpItem];
+ * 					}
+ * 				}
+ * 			}
+ * 		};
+ * 		let anyF = (items, cb) => {
+ * 			for (let item of items) {
+ * 				if (cb(item)) {
+ * 					return true;
+ * 				}
+ * 				if (item.items) {
+ * 					return anyF(item.items, cb);
+ * 				}
+ * 			}
+ * 			return false;
+ * 		};
+ * 		if (ev.item.items) {
+ * 			if (anyF(ev.item.items, item => item.selected)) {
+ * 				setSelect(ev.item.items, false);
+ * 				ev.item.selected = false;
+ * 			} else {
+ * 				setSelect(ev.item.items, true);
+ * 				ev.item.selected = true;
+ * 			}
+ * 		} else {
+ * 			ev.item.selected = !ev.item.selected;
+ * 		}
+ * 		// this doesn't matter if only the parents are selectable
+ * 		// in that case use check/blank icons for children
+ * 		// and checkboxes for the parents. Of course, if you have
+ * 		// highly nested trees, a version of this may be useful
+ * 		let parents = findParents(this.demoItems1, ev.item);
+ * 		if (parents && parents.length > 0) {
+ * 			parents.forEach(parent => {
+ * 				// ignores the event item
+ * 				if (parent.items.every(i => i.selected)) {
+ * 					parent.selected = true;
+ * 				} else {
+ * 					parent.selected = false;
+ * 				}
+ * 			});
+ * 		}
+ * 		setTimeout(() => {}, 0);
+ * 	}
+ *
+ * 	isIndeterminate(item, box) {
+ * 		let anyF = (items, cb) => {
+ * 			for (let i of items) {
+ * 				if (cb(i)) {
+ * 					return true;
+ * 				}
+ * 				if (i.items) {
+ * 					return anyF(i.items, cb);
+ * 				}
+ * 			}
+ * 			return false;
+ * 		};
+ * 		if (item.items) {
+ * 			let selected = item.items.filter(i => i.selected);
+ * 			if (anyF(item.items, i => i.selected) && !item.items.every(i => i.selected)) {
+ * 				box.indeterminate = true;
+ * 				return true;
+ * 			}
+ * 		}
+ * 		box.indeterminate = false;
+ * 		return false;
+ * 	}
+ *
+ * 	isChecked(item, cb) {
+ * 		if (item.items && item.items.every(i => i.selected)) {
+ * 			cb.checked = true;
+ * 			return true;
+ * 		} else if (!item.items && item.selected) {
+ * 			cb.checked = true;
+ * 			return true;
+ * 		}
+ * 		cb.checked = false;
+ * 		return false;
+ * 	}
+ * }
+ * ```
  *
  * @export
  * @class TreeView
