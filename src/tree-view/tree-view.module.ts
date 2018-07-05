@@ -9,6 +9,9 @@ export { TreeView } from "./tree-view.component";
 export { TreeViewWrapper } from "./tree-view-wrapper.component";
 export { TreeViewItem } from "./tree-view-item.component";
 
+/**
+ * See TreeView for usage information
+ */
 @NgModule({
 	declarations: [
 		TreeView,

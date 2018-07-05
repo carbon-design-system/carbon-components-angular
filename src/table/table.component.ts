@@ -220,9 +220,8 @@ import { getScrollbarWidth } from "../common/utils";
 								aria-haspopup="true"
 								[nPopover]="column.filterTemplate"
 								[footer]="column.filterFooter"
-								attr.title="{{'TABLE.FILTER' | translate}}"
-								placement="right-bottom"
-								popoverFilter="true"
+								title="{{'TABLE.FILTER' | translate}}"
+								placement="right-bottom,left-bottom"
 								[appendToBody]="true"
 								[data]="column.filterData">
 								<svg

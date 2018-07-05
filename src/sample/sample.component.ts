@@ -51,12 +51,12 @@ export class Sample implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	/** this is an instance method that can be used in templates */
-	public doBar() {
-		//
+	public doBar(value) {
+		this.bar.emit(value);
 	}
 
 	/** this is an instance method that can be inherited and used by subclasses */
-	protected setFoo() {
-		//
+	protected setFoo(value: SampleInterface) {
+		this.foo = value;
 	}
 }
