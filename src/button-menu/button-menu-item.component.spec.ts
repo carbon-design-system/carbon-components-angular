@@ -42,7 +42,7 @@ describe("Button Menu", () => {
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
-		expect(fixture.componentInstance instanceof ButtonMenuTestComponent).toEqual(true);
+		expect(fixture.componentInstance instanceof ButtonMenuTestComponent).toBe(true);
 	});
 
 	it("should display 'Test' on the main button", () => {
@@ -199,7 +199,7 @@ describe("Button Menu", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.querySelector("n-button-menu").getAttribute("disabled")).toEqual("true");
+		expect(fixture.nativeElement.querySelector("n-button-menu").getAttribute("disabled")).toBeTruthy();
 	});
 
 	it("should open and close the menu on Click", () => {
@@ -208,7 +208,7 @@ describe("Button Menu", () => {
 		rootButton.click();
 		fixture.detectChanges();
 
-		expect(rootButton.getAttribute("aria-expanded")).toEqual("true");
+		expect(rootButton.getAttribute("aria-expanded")).toBeTruthy();
 	});
 
 	it("should open and close the menu on Enter", () => {
@@ -218,7 +218,7 @@ describe("Button Menu", () => {
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		rootButton.dispatchEvent(event);
 		fixture.detectChanges();
-		expect(rootButton.getAttribute("aria-expanded")).toEqual("true");
+		expect(rootButton.getAttribute("aria-expanded")).toBeTruthy();
 
 		const listItems = Array.prototype.slice.call(fixture.nativeElement.querySelectorAll("[role='menuitem']"));
 		listItems[0].dispatchEvent(event);
@@ -233,7 +233,7 @@ describe("Button Menu", () => {
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		rootButton.dispatchEvent(event);
 		fixture.detectChanges();
-		expect(rootButton.getAttribute("aria-expanded")).toEqual("true");
+		expect(rootButton.getAttribute("aria-expanded")).toBeTruthy();
 	});
 
 	it("should open and the menu on Alt+ArrowDown and close on Alt+ArrowUp", () => {
@@ -243,7 +243,7 @@ describe("Button Menu", () => {
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		rootButton.dispatchEvent(event);
 		fixture.detectChanges();
-		expect(rootButton.getAttribute("aria-expanded")).toEqual("true");
+		expect(rootButton.getAttribute("aria-expanded")).toBeTruthy();
 
 		const event2 = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp", altKey: true});
 		const listItems = Array.prototype.slice.call(fixture.nativeElement.querySelectorAll("[role='menuitem']"));
