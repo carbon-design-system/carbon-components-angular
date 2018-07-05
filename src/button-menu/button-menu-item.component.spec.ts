@@ -1,5 +1,5 @@
 import { Component, asNativeElements, DebugElement } from "@angular/core";
-import { By	} from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 
 import { TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
