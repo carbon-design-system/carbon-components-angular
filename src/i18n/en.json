@@ -2,6 +2,31 @@
 	"BANNER": {
 		"CLOSE_BUTTON": "Close alert banner"
 	},
+	"CALENDAR": {
+		"MONTHS":{
+			"JANUARY": "January",
+			"FEBRUARY": "February",
+			"MARCH": "March",
+			"APRIL": "April",
+			"MAY": "May",
+			"JUNE": "June",
+			"JULY": "July",
+			"AUGUST": "August",
+			"SEPTEMBER": "September",
+			"OCTOBER": "October",
+			"NOVEMBER": "November",
+			"DECEMBER": "December"
+		},
+		"SHORTWEEKDAYS":{
+			"SUNDAY": "Sun",
+			"MONDAY": "Mon",
+			"TUESDAY": "Tue",
+			"WEDNESDAY": "Wed",
+			"THURSDAY": "Thu",
+			"FRIDAY": "Fri",
+			"SATURDAY": "Sat"
+		}
+	},
 	"DIALOG": {
 		"TOOLTIP": {
 			"CLOSE": "Close tooltip"
