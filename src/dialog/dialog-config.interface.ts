@@ -1,6 +1,5 @@
 import { ElementRef, TemplateRef } from "@angular/core";
 
-
 /**
  * Data structure for definig properties of a `Dialog` component.
  * @export
@@ -28,12 +27,10 @@ export interface DialogConfig {
 	trigger: "click" | "hover" | "mouseenter";
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
-	 * @type {("top" | "bottom" |\
-	 * "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom")}
+	 * @type {Placement}
 	 * @memberof DialogConfig
 	 */
-	placement:
-		"top" | "bottom" | "bottom-left" | "bottom-right" | "left" | "right" | "left-bottom" | "right-bottom";
+	placement: string;
 	/**
 	 * Used to set the offset of the `Dialog` relative to the content it
 	 * is associated to.
@@ -57,8 +54,10 @@ export interface DialogConfig {
 	/**
 	 * Set to `true` will attempt to place
 	 * `Dialog` for maximum visibility.
-	 * @type {boolean}
+	 * TODO: remove - this doesn't actually do anything
+	 * @type {boolean | string}
 	 * @memberof DialogConfig
+	 * @deprecated
 	 */
 	autoPosition: boolean;
 	/**
