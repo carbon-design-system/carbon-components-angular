@@ -42,7 +42,7 @@ describe("Button Menu", () => {
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
-		expect(fixture.componentInstance instanceof ButtonMenuTestComponent).toBe(true);
+		expect(fixture.componentInstance instanceof ButtonMenuTestComponent).toEqual(true);
 	});
 
 	it("should display 'Test' on the main button", () => {
@@ -72,7 +72,7 @@ describe("Button Menu", () => {
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toContain("btn-group--lg");
+		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group--lg");
 	});
 
 	it("should create a small button", () => {
@@ -87,7 +87,7 @@ describe("Button Menu", () => {
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toContain("btn-group--sm");
+		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group--sm");
 	});
 
 	it("should create a medium button", () => {
@@ -102,13 +102,13 @@ describe("Button Menu", () => {
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toContain("btn-group");
+		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group");
 	});
 
 	it("should create a medium button on deafult", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toContain("btn-group");
+		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group");
 	});
 
 	it("should create a primary button", () => {
@@ -123,7 +123,7 @@ describe("Button Menu", () => {
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("button").className).toContain("btn--primary");
+		expect(fixture.nativeElement.querySelector("button").className).toEqual("btn--primary");
 	});
 
 	it("should create a primary addon button", () => {
@@ -139,20 +139,20 @@ describe("Button Menu", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
 
-		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toContain("btn--primary-addon");
+		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toEqual("btn--primary-addon");
 	});
 
 	it("should create a primary button by default", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("button").className).toContain("btn--primary");
+		expect(fixture.nativeElement.querySelector("button").className).toEqual("btn--primary");
 	});
 
 	it("should create a primary addon button by default", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
 
-		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toContain("btn--primary-addon");
+		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toEqual("btn--primary-addon");
 	});
 
 	it("should create a secondary button", () => {
@@ -167,7 +167,7 @@ describe("Button Menu", () => {
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("button").className).toContain("btn--secondary");
+		expect(fixture.nativeElement.querySelector("button").className).toEqual("btn--secondary");
 	});
 
 	it("should create a secondary addon button", () => {
@@ -183,7 +183,7 @@ describe("Button Menu", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
 
-		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toContain("btn--secondary-addon");
+		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toEqual("btn--secondary-addon");
 	});
 
 	it("should create a disabled button", () => {
@@ -377,7 +377,7 @@ describe("Button Menu", () => {
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		rootButton.click();
 
-		expect(document.body.querySelector(".btn_menu").parentElement.className).toContain("dropdown");
+		expect(document.body.querySelector(".btn_menu").parentElement.className).toEqual("dropdown");
 	});
 
 	it("should close the menu that is appendToBody when out of view", () => {
