@@ -33,7 +33,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 					</div>
 					<span class="accordion_title">Understand</span>
 				</n-side-nav-group>
-				<n-side-nav-group expanded = "true">
+				<n-side-nav-group expanded="true">
 					<div class="accordion_icon">
 						<n-icon
 							icon="gears"

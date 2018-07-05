@@ -132,7 +132,7 @@ export class SideNavItem implements AfterViewInit {
 		}
 		if (this.selected && this.getPaneTemplateElement()) {
 			this.showPane();
-			this.selected = false;
+			setTimeout(() => this.selected = false);
 		}
 	}
 
@@ -144,16 +144,9 @@ export class SideNavItem implements AfterViewInit {
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
 
-		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight" || event.key === "ArrowLeft") {
+		if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
 			event.preventDefault();
-
-			if (event.key !== "ArrowLeft") {
-				this.activatePanel();
-			}
-
-			if (event.target === this.getPaneTemplateElement().querySelector(".subpanel_heading") as HTMLElement) {
-				this.expanded = false;
-			}
+			this.activatePanel();
 		}
 	}
 
@@ -176,7 +169,7 @@ export class SideNavItem implements AfterViewInit {
 		// those that do, show that child on click
 		if (!this.hasSubmenu()) {
 			this.selected = !this.selected;
-		} else if (!this.expanded) {
+		} else {
 			this.showPane();
 		}
 		this.select.emit();
@@ -196,7 +189,7 @@ export class SideNavItem implements AfterViewInit {
 	 * @memberof SideNavItem
 	 */
 	showPane() {
-		this.expanded = true;
+		setTimeout(() => this.expanded = true);
 		let pane = this.getPaneTemplateElement();
 		if (pane) {
 			pane.firstElementChild.setAttribute("style", "display: block;");
