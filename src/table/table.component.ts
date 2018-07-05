@@ -221,8 +221,7 @@ import { getScrollbarWidth } from "../common/utils";
 								[nPopover]="column.filterTemplate"
 								[footer]="column.filterFooter"
 								title="{{'TABLE.FILTER' | translate}}"
-								placement="right-bottom"
-								popoverFilter="true"
+								placement="right-bottom,left-bottom"
 								[appendToBody]="true"
 								[data]="column.filterData">
 								<svg
