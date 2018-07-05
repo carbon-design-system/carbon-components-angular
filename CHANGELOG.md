@@ -132,6 +132,7 @@
 - Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update snippet indentation [\#916](https://github.ibm.com/peretz/neutrino/pull/916) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add additional table documentation [\#915](https://github.ibm.com/peretz/neutrino/pull/915) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+-  Add unit tests to SideNav and fix button-menu appendToBody [\#914](https://github.ibm.com/peretz/neutrino/pull/914) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - One port is enough [\#912](https://github.ibm.com/peretz/neutrino/pull/912) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Trigger app testing [\#911](https://github.ibm.com/peretz/neutrino/pull/911) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add drag & drop table column support [\#910](https://github.ibm.com/peretz/neutrino/pull/910) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
