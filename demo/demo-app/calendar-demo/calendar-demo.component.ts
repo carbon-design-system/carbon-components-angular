@@ -59,6 +59,9 @@ export class CalendarDemo implements OnInit {
 
 	constructor() {
 		this.model.disabledDates = [new Date(2018, 6, 3)];
+		this.model2.disabledDates = [[new Date(2018, 0, 0), new Date(2018, 3, 3)]];
+		this.model3.disabledDates = [[new Date(2018, 0, 0), new Date(2018, 5, 3)]];
+		this.model4.disabledDates = [[new Date(2014, 1, 1), new Date(2016, 5, 3)]];
 	}
 
 	ngOnInit() {

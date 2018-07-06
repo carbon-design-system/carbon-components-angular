@@ -21,7 +21,8 @@ import { DateTimeModel } from "./../date-time-model.class";
 					'today': isCurrentMonth(i * 4 + j),
 					'selected': isSelected(model.startDate) && i * 4 + j == model.startDate.getMonth()
 						|| isSelected(model.endDate) && i * 4 + j == model.endDate.getMonth(),
-					'range': inRange(i * 4 + j)
+					'range': inRange(i * 4 + j),
+					'disabled': isDisabled(i * 4 + j)
 				}">
 					<div>
 						<p>
@@ -61,6 +62,10 @@ export class CalendarMonths implements OnInit {
 		);
 	}
 
+	isDisabled(month) {
+		return this.model.isDateDisabled(new Date(this.currentlyViewed.getFullYear(), month, 1));
+	}
+
 	inRange(month) {
 		return this.model.isDateInRange(new Date(this.currentlyViewed.getFullYear(), month, 1));
 	}
@@ -75,7 +80,7 @@ export class CalendarMonths implements OnInit {
 	selectMonth(month) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(this.currentlyViewed.getFullYear(), month, 0);
+			this.model.endDate = new Date(this.currentlyViewed.getFullYear(), month, 1);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;

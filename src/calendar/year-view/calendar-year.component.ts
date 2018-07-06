@@ -22,7 +22,8 @@ import { DateTimeModel } from "./../date-time-model.class";
 					'today': isCurrentYear(i *2 + j),
 					'selected': isSelected(model.startDate) && currentlyViewed.getFullYear() - (i * 2 + j) === model.startDate.getFullYear()
 						|| isSelected(model.endDate) && currentlyViewed.getFullYear() - (i * 2 + j) === model.endDate.getFullYear(),
-					'range': inRange(i * 2 + j)
+					'range': inRange(i * 2 + j),
+					'disabled': isDisabled(i * 2 + j)
 				}">
 					<div>
 						<p>
@@ -57,6 +58,11 @@ export class CalendarYear implements OnInit {
 		const currentYear = this.currentlyViewed.getFullYear() - year;
 
 		return currentYear === now.getFullYear();
+	}
+
+	isDisabled(year) {
+		const disabledYear = this.currentlyViewed.getFullYear() - year;
+		return this.model.isDateDisabled(new Date(disabledYear, 1, 1));
 	}
 
 	inRange(year) {

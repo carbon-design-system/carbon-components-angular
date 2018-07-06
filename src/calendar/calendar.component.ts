@@ -21,6 +21,7 @@ export class Calendar {
 
 	@Input() view;
 	@Input() model: DateTimeModel;
+	@Input() monthCount = 1;
 
 	// onKeyDown(evt, idx) {
 	// 	console.log(evt, idx);
