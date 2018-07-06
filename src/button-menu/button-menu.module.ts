@@ -6,6 +6,9 @@ import { TranslateModule } from "@ngx-translate/core";
 import { ButtonMenu } from "./button-menu.component";
 import { ButtonMenuItem } from "./button-menu-item.component";
 
+export { ButtonMenu } from "./button-menu.component";
+export { ButtonMenuItem } from "./button-menu-item.component";
+
 @NgModule({
 	declarations: [
 		ButtonMenu,
