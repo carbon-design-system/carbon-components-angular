@@ -12,12 +12,11 @@ import { DateTimeModel } from "./../../../src/calendar/date-time-model.class";
 
 	<br><br>
 	<div style="width:280px;">
-		<n-calendar-month-view [model]="model"></n-calendar-month-view>
+		<n-calendar-month-view [model]="model" [monthCount]="1"></n-calendar-month-view>
 	<div>
 
-	<br><br>
 	<div style="width:564px;">
-		<n-calendar-two-month-view [model]="model"></n-calendar-two-month-view>
+		<n-calendar-month-view [model]="model" [monthCount]="2"></n-calendar-month-view>
 	<div>
 
 	<br><br>
@@ -55,7 +54,12 @@ export class CalendarDemo implements OnInit {
 
 	todayPlus5 = new Date(this.date.getFullYear(), this.date.getMonth() + 4, this.date.getDate() + 5);
 
+
 	todayMinusYear = new Date(this.date.getFullYear() - 1, this.date.getMonth(), this.date.getDate());
+
+	constructor() {
+		this.model.disabledDates = [new Date(2018, 6, 3)];
+	}
 
 	ngOnInit() {
 		this.model.startDate = this.date;

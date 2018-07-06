@@ -19,6 +19,7 @@ import { DateTimeModel } from "./../date-time-model.class";
 				*ngFor="let j of [1,0]"
 				(click)="selectYear(i * 2 + j)"
 				[ngClass]="{
+					'today': isCurrentYear(i *2 + j),
 					'selected': isSelected(model.startDate) && currentlyViewed.getFullYear() - (i * 2 + j) === model.startDate.getFullYear()
 						|| isSelected(model.endDate) && currentlyViewed.getFullYear() - (i * 2 + j) === model.endDate.getFullYear(),
 					'range': inRange(i * 2 + j)
@@ -49,6 +50,13 @@ export class CalendarYear implements OnInit {
 		if (!this.currentlyViewed || isNaN(this.currentlyViewed.getTime())) {
 			this.currentlyViewed = new Date();
 		}
+	}
+
+	isCurrentYear(year) {
+		const now = new Date();
+		const currentYear = this.currentlyViewed.getFullYear() - year;
+
+		return currentYear === now.getFullYear();
 	}
 
 	inRange(year) {

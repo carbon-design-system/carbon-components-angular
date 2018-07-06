@@ -2,6 +2,7 @@ import {
 	Component, Input
 } from "@angular/core";
 import { DateTimeModel } from "./date-time-model.class";
+import { range } from "../common/utils";
 
 @Component({
 	selector: "n-calendar-header",
@@ -32,8 +33,8 @@ import { DateTimeModel } from "./date-time-model.class";
 							<n-static-icon icon="chevron_left" size="xs"></n-static-icon>
 						</a>
 					</li>
-					<li class="month_view-month">{{getMonth() | translate}}</li>
-					<li *ngIf="header == 'twoMonths'" class="month_view-month">{{getMonth(1) | translate}}</li>
+					<li class="month_view-month"
+					*ngFor="let month of range(monthCount)">{{getMonth(month) | translate}}</li>
 					<li class="pagination_chevron">
 						<a (click)="nextMonth()" title="Next page" aria-label="Next page">
 							<n-static-icon icon="chevron_right" size="xs"></n-static-icon>
@@ -46,6 +47,13 @@ import { DateTimeModel } from "./date-time-model.class";
 export class CalendarHeader {
 	@Input() currentlyViewed; // : DateTimeModel;
 	@Input() header;
+	@Input() monthCount = 1;
+
+	range(stop: number, start = 0, step = 1) {
+		if (stop) {
+			return range(stop);
+		}
+	}
 
 	nextYear() {
 		this.currentlyViewed.setYear(this.currentlyViewed.getFullYear() + 1);

@@ -18,6 +18,7 @@ import { DateTimeModel } from "./../date-time-model.class";
 				*ngFor="let j of [0,1,2,3]"
 				(click)="selectMonth(i * 4 + j)"
 				[ngClass]="{
+					'today': isCurrentMonth(i * 4 + j),
 					'selected': isSelected(model.startDate) && i * 4 + j == model.startDate.getMonth()
 						|| isSelected(model.endDate) && i * 4 + j == model.endDate.getMonth(),
 					'range': inRange(i * 4 + j)
@@ -49,6 +50,15 @@ export class CalendarMonths implements OnInit {
 		if (!this.currentlyViewed || isNaN(this.currentlyViewed.getTime())) {
 			this.currentlyViewed = new Date();
 		}
+	}
+
+	isCurrentMonth(month) {
+		const now = new Date();
+
+		return (
+			this.currentlyViewed.getFullYear() === now.getFullYear() &&
+			month === now.getMonth()
+		);
 	}
 
 	inRange(month) {
