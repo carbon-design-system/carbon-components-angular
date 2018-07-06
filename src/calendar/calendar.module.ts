@@ -12,6 +12,7 @@ import { CalendarYear } from "./year-view/calendar-year.component";
 import { CalendarHeader } from "./calendar-header.component";
 
 import { DateTimeModel } from "./date-time-model.class";
+export { DateTimeModel } from "./date-time-model.class";
 
 @NgModule({
 	declarations: [
