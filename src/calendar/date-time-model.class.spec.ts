@@ -11,7 +11,15 @@ describe("DateTimeModel", () => {
 	it("should start week on Sunday", () => {
 		let dateTimeModel  = new DateTimeModel();
 
-		expect(dateTimeModel.daysOfWeek).toEqual(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
+		expect(dateTimeModel.daysOfWeek).toEqual([
+			"CALENDAR.SHORTWEEKDAYS.SUNDAY",
+			"CALENDAR.SHORTWEEKDAYS.MONDAY",
+			"CALENDAR.SHORTWEEKDAYS.TUESDAY",
+			"CALENDAR.SHORTWEEKDAYS.WEDNESDAY",
+			"CALENDAR.SHORTWEEKDAYS.THURSDAY",
+			"CALENDAR.SHORTWEEKDAYS.FRIDAY",
+			"CALENDAR.SHORTWEEKDAYS.SATURDAY"
+		]);
 	});
 
 	it("should start week on Monday", () => {
@@ -19,7 +27,15 @@ describe("DateTimeModel", () => {
 
 		dateTimeModel.weekStart = 1;
 
-		expect(dateTimeModel.daysOfWeek).toEqual(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
+		expect(dateTimeModel.daysOfWeek).toEqual([
+			"CALENDAR.SHORTWEEKDAYS.MONDAY",
+			"CALENDAR.SHORTWEEKDAYS.TUESDAY",
+			"CALENDAR.SHORTWEEKDAYS.WEDNESDAY",
+			"CALENDAR.SHORTWEEKDAYS.THURSDAY",
+			"CALENDAR.SHORTWEEKDAYS.FRIDAY",
+			"CALENDAR.SHORTWEEKDAYS.SATURDAY",
+			"CALENDAR.SHORTWEEKDAYS.SUNDAY"
+		]);
 	});
 
 	it("should select a day", () => {
