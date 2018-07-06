@@ -34,6 +34,7 @@
 - Dropdown and pop over should support custom class when append to body is true [\#765](https://github.ibm.com/peretz/neutrino/issues/765)
 - Banner styles look off when using a banner in a container rather than the page [\#761](https://github.ibm.com/peretz/neutrino/issues/761)
 - updated selected value ngOnChanges for combobox [\#759](https://github.ibm.com/peretz/neutrino/issues/759)
+- Input fields that are marked required show up with red border by default [\#755](https://github.ibm.com/peretz/neutrino/issues/755)
 - size values should be consistent across all components [\#730](https://github.ibm.com/peretz/neutrino/issues/730)
 - Modal Dialog: Footer gets hidden on lower resolution [\#710](https://github.ibm.com/peretz/neutrino/issues/710)
 - Github pages issues [\#704](https://github.ibm.com/peretz/neutrino/issues/704)
@@ -47,17 +48,27 @@
 **Closed issues:**
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - The constructor for TableModel leaves model.data undefined, which causes issues when loading n-table-pagination [\#917](https://github.ibm.com/peretz/neutrino/issues/917)
 - Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
 - In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
 =======
+=======
+- Kinks in columns on listing page grid [\#932](https://github.ibm.com/peretz/neutrino/issues/932)
+>>>>>>> 4dffb2586f7f7571e3023a25389f15837da78fc7
 - Table width doesn't scale properly in Firefox Quantum [\#931](https://github.ibm.com/peretz/neutrino/issues/931)
 - Tooltip contents aren't wrapping properly when inside a table header [\#921](https://github.ibm.com/peretz/neutrino/issues/921)
+- Tooltips are shifted/off-center when inside table cells [\#920](https://github.ibm.com/peretz/neutrino/issues/920)
 - The constructor for TableModel leaves model.data undefined, which causes issues when loading n-table-pagination [\#917](https://github.ibm.com/peretz/neutrino/issues/917)
 - Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
 - In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
 - Create DateTimeModel to be used in calendar related components [\#880](https://github.ibm.com/peretz/neutrino/issues/880)
+<<<<<<< HEAD
 >>>>>>> ebf0df2004e3a9bdba24c8969aafb569c9dd407b
+=======
+- Refactor pill-input and condition-builder-pill-input to share a base component [\#879](https://github.ibm.com/peretz/neutrino/issues/879)
+- Proposal: New Neutrino release cycle [\#866](https://github.ibm.com/peretz/neutrino/issues/866)
+>>>>>>> 4dffb2586f7f7571e3023a25389f15837da78fc7
 - Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
 - Condition builder - ANY/ALL drop down beside values [\#854](https://github.ibm.com/peretz/neutrino/issues/854)
@@ -111,13 +122,24 @@
 - Improve demo's look & feel \(stretch\) [\#604](https://github.ibm.com/peretz/neutrino/issues/604)
 - Table feature request \(drag & drop columns; adjustable column widths\) [\#596](https://github.ibm.com/peretz/neutrino/issues/596)
 - Progress circle [\#548](https://github.ibm.com/peretz/neutrino/issues/548)
+- Fix tab scrolling in Safari [\#540](https://github.ibm.com/peretz/neutrino/issues/540)
+- Modal event binding research [\#439](https://github.ibm.com/peretz/neutrino/issues/439)
 - Breadcrumbs [\#346](https://github.ibm.com/peretz/neutrino/issues/346)
 - Tech reqs for Breadcrumb API [\#206](https://github.ibm.com/peretz/neutrino/issues/206)
 
 **Merged pull requests:**
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+- Enable dialog auto positioning [\#941](https://github.ibm.com/peretz/neutrino/pull/941) ([callums](https://github.ibm.com/callums))
+- Fix sprite loading triggering too early [\#940](https://github.ibm.com/peretz/neutrino/pull/940) ([callums](https://github.ibm.com/callums))
+- Close \#932 [\#939](https://github.ibm.com/peretz/neutrino/pull/939) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Teach pill input how to do column pills [\#938](https://github.ibm.com/peretz/neutrino/pull/938) ([callums](https://github.ibm.com/callums))
+- Update matter to fix links "jumping" on hover in some cases [\#937](https://github.ibm.com/peretz/neutrino/pull/937) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Update TreeView docs, Fix dialog positioning with SVGs [\#936](https://github.ibm.com/peretz/neutrino/pull/936) ([callums](https://github.ibm.com/callums))
+>>>>>>> 4dffb2586f7f7571e3023a25389f15837da78fc7
 - Fix file loading/fix build [\#935](https://github.ibm.com/peretz/neutrino/pull/935) ([callums](https://github.ibm.com/callums))
 - Fix popover title not showing [\#934](https://github.ibm.com/peretz/neutrino/pull/934) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add `DateTimeModel` [\#928](https://github.ibm.com/peretz/neutrino/pull/928) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))

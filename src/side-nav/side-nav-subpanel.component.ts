@@ -77,6 +77,13 @@ export class SideNavSubpanel implements AfterViewInit {
 		const items = getFocusElementList(this.elementRef.nativeElement.parentNode);
 
 		switch (event.key) {
+			// Stops the same events inside side-nav from executing.
+			case "Enter":
+			case " ":
+			case "ArrowRight":
+				event.stopPropagation();
+				break;
+
 			case "ArrowDown":
 				event.preventDefault();
 				event.stopPropagation();

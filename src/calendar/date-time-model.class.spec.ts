@@ -151,6 +151,23 @@ describe("DateTimeModel", () => {
 		expect(dateTimeModel.endDate).toEqual(new Date(2018, 5, 30, 23, 59, 59));
 	});
 
+	it("should select last quarter", () => {
+		let dateTimeModel  = new DateTimeModel();
+		dateTimeModel.selectQuarter(3, 2018);  // last quarter 2018
+
+		expect(dateTimeModel.startDate).toEqual(new Date(2018, 9, 1));
+		expect(dateTimeModel.endDate).toEqual(new Date(2018, 11, 31, 23, 59, 59));
+	});
+
+	it("should select quarter range", () => {
+		let dateTimeModel  = new DateTimeModel();
+		dateTimeModel.selectQuarterStart(3, 2018);  // last quarter 2018
+		dateTimeModel.selectQuarterEnd(1, 2019);  // second quarter 2019
+
+		expect(dateTimeModel.startDate).toEqual(new Date(2018, 9, 1));
+		expect(dateTimeModel.endDate).toEqual(new Date(2019, 5, 30, 23, 59, 59));
+	});
+
 	it("should return correct week start date (starts Sunday)", () => {
 		let dateTimeModel  = new DateTimeModel();
 

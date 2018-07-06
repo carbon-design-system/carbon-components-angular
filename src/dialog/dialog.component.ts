@@ -211,19 +211,20 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		let parentEl = this.dialogConfig.parentRef.nativeElement;
 		let el = this.dialog.nativeElement;
-		let pos;
 		let dialogPlacement = this.placement;
 
 		// split always retuns an array, so we can just use the auto position logic
 		// for single positions too
 		const placements = this.dialogConfig.placement.split(",");
 		for (const placement of placements) {
-			pos = findPosition(parentEl, el, placement);
+			const pos = findPosition(parentEl, el, placement);
 			if (position.checkPlacement(el, pos)) {
 				dialogPlacement = placement;
 				break;
 			}
 		}
+		// calculate the final position
+		const pos = findPosition(parentEl, el, dialogPlacement);
 
 		// update the element
 		position.setElement(el, pos);

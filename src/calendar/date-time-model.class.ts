@@ -232,20 +232,34 @@ export class DateTimeModel {
 	 * @memberof DateTimeModel
 	 */
 	selectQuarter(quarter: number, year = new Date().getFullYear()) {
-		const quarters = [
-			new Date(year, 0, 1),
-			new Date(year, 3, 1),
-			new Date(year, 6, 1),
-			new Date(year, 9, 1),
-			new Date(year + 1, 0, 1)
-		];
+		this.selectQuarterStart(quarter, year);
+		this.selectQuarterEnd(quarter, year);
+	}
 
-		this.startDate = quarters[quarter];
-		this.endDate = quarters[quarter + 1];
-		this.endDate.setDate(0);
-		this.endDate.setHours(23);
-		this.endDate.setMinutes(59);
-		this.endDate.setSeconds(59);
+	/**
+	 * Sets a `startDate` to start of `quarter` of the `year`.
+	 *
+	 * `quarter` ranges from `0` to `3`, Q1 being `0`
+	 *
+	 * @param {number} quarter
+	 * @param {*} [year=new Date().getFullYear()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarterStart(quarter: number, year = new Date().getFullYear()) {
+		this.startDate = new Date(year, quarter * 3, 1);
+	}
+
+	/**
+	 * Sets an `endDate` to end of `quarter` of the `year`.
+	 *
+	 * `quarter` ranges from `0` to `3`, Q1 being `0`
+	 *
+	 * @param {number} quarter
+	 * @param {*} [year=new Date().getFullYear()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarterEnd(quarter: number, year = new Date().getFullYear()) {
+		this.endDate = new Date(year, (quarter + 1) * 3, 0, 23, 59, 59);
 	}
 
 	selectLastQuarter(date = new Date()) {
