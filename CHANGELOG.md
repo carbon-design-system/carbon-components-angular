@@ -17,11 +17,8 @@
 
 **Fixed bugs:**
 
-<<<<<<< HEAD
-=======
 - The close button on popoverMenus doesn't always work [\#930](https://github.ibm.com/peretz/neutrino/issues/930)
 - Buttons inside popoverMenu aren't rendering properly in Firefox  [\#929](https://github.ibm.com/peretz/neutrino/issues/929)
->>>>>>> ebf0df2004e3a9bdba24c8969aafb569c9dd407b
 - Pagination bug [\#906](https://github.ibm.com/peretz/neutrino/issues/906)
 - side-nav-group doesn't respond properly to a default value for "expanded" input [\#891](https://github.ibm.com/peretz/neutrino/issues/891)
 - popupMenu wrongly position to grid row/column. [\#821](https://github.ibm.com/peretz/neutrino/issues/821)
@@ -47,15 +44,7 @@
 
 **Closed issues:**
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-- The constructor for TableModel leaves model.data undefined, which causes issues when loading n-table-pagination [\#917](https://github.ibm.com/peretz/neutrino/issues/917)
-- Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
-- In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
-=======
-=======
 - Kinks in columns on listing page grid [\#932](https://github.ibm.com/peretz/neutrino/issues/932)
->>>>>>> 4dffb2586f7f7571e3023a25389f15837da78fc7
 - Table width doesn't scale properly in Firefox Quantum [\#931](https://github.ibm.com/peretz/neutrino/issues/931)
 - Tooltip contents aren't wrapping properly when inside a table header [\#921](https://github.ibm.com/peretz/neutrino/issues/921)
 - Tooltips are shifted/off-center when inside table cells [\#920](https://github.ibm.com/peretz/neutrino/issues/920)
@@ -63,12 +52,8 @@
 - Tabs have highlighted border on 1024x768 zoomed out [\#893](https://github.ibm.com/peretz/neutrino/issues/893)
 - In nTable model.addRow dose not update model.totalDataLength [\#889](https://github.ibm.com/peretz/neutrino/issues/889)
 - Create DateTimeModel to be used in calendar related components [\#880](https://github.ibm.com/peretz/neutrino/issues/880)
-<<<<<<< HEAD
->>>>>>> ebf0df2004e3a9bdba24c8969aafb569c9dd407b
-=======
 - Refactor pill-input and condition-builder-pill-input to share a base component [\#879](https://github.ibm.com/peretz/neutrino/issues/879)
 - Proposal: New Neutrino release cycle [\#866](https://github.ibm.com/peretz/neutrino/issues/866)
->>>>>>> 4dffb2586f7f7571e3023a25389f15837da78fc7
 - Condition builder - Hint text incorrect colour [\#864](https://github.ibm.com/peretz/neutrino/issues/864)
 - Investigate Griddish [\#855](https://github.ibm.com/peretz/neutrino/issues/855)
 - Condition builder - ANY/ALL drop down beside values [\#854](https://github.ibm.com/peretz/neutrino/issues/854)
@@ -129,17 +114,15 @@
 
 **Merged pull requests:**
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
+- Improve quarter selection [\#945](https://github.ibm.com/peretz/neutrino/pull/945) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix dialogs placing incorrectly [\#944](https://github.ibm.com/peretz/neutrino/pull/944) ([callums](https://github.ibm.com/callums))
+- Autoposition filter popup in table [\#942](https://github.ibm.com/peretz/neutrino/pull/942) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Enable dialog auto positioning [\#941](https://github.ibm.com/peretz/neutrino/pull/941) ([callums](https://github.ibm.com/callums))
 - Fix sprite loading triggering too early [\#940](https://github.ibm.com/peretz/neutrino/pull/940) ([callums](https://github.ibm.com/callums))
 - Close \#932 [\#939](https://github.ibm.com/peretz/neutrino/pull/939) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Teach pill input how to do column pills [\#938](https://github.ibm.com/peretz/neutrino/pull/938) ([callums](https://github.ibm.com/callums))
 - Update matter to fix links "jumping" on hover in some cases [\#937](https://github.ibm.com/peretz/neutrino/pull/937) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update TreeView docs, Fix dialog positioning with SVGs [\#936](https://github.ibm.com/peretz/neutrino/pull/936) ([callums](https://github.ibm.com/callums))
->>>>>>> 4dffb2586f7f7571e3023a25389f15837da78fc7
 - Fix file loading/fix build [\#935](https://github.ibm.com/peretz/neutrino/pull/935) ([callums](https://github.ibm.com/callums))
 - Fix popover title not showing [\#934](https://github.ibm.com/peretz/neutrino/pull/934) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add `DateTimeModel` [\#928](https://github.ibm.com/peretz/neutrino/pull/928) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
@@ -148,10 +131,10 @@
 - Improve sample test [\#925](https://github.ibm.com/peretz/neutrino/pull/925) ([callums](https://github.ibm.com/callums))
 - Remove styles from static icon svgs [\#924](https://github.ibm.com/peretz/neutrino/pull/924) ([callums](https://github.ibm.com/callums))
 - Add a11y testing [\#919](https://github.ibm.com/peretz/neutrino/pull/919) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
->>>>>>> ebf0df2004e3a9bdba24c8969aafb569c9dd407b
 - Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update snippet indentation [\#916](https://github.ibm.com/peretz/neutrino/pull/916) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add additional table documentation [\#915](https://github.ibm.com/peretz/neutrino/pull/915) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+-  Add unit tests to SideNav and fix button-menu appendToBody [\#914](https://github.ibm.com/peretz/neutrino/pull/914) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - One port is enough [\#912](https://github.ibm.com/peretz/neutrino/pull/912) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Trigger app testing [\#911](https://github.ibm.com/peretz/neutrino/pull/911) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add drag & drop table column support [\#910](https://github.ibm.com/peretz/neutrino/pull/910) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
