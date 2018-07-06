@@ -11,6 +11,8 @@ import { CalendarQuarter } from "./quarter-view/calendar-quarter.component";
 import { CalendarYear } from "./year-view/calendar-year.component";
 import { CalendarHeader } from "./calendar-header.component";
 
+import { DateTimeModel } from "./date-time-model.class";
+
 @NgModule({
 	declarations: [
 		Calendar,
@@ -19,7 +21,8 @@ import { CalendarHeader } from "./calendar-header.component";
 		CalendarTwoMonths,
 		CalendarQuarter,
 		CalendarYear,
-		CalendarHeader
+		CalendarHeader,
+		DateTimeModel
 	],
 	exports: [
 		Calendar,
@@ -28,7 +31,8 @@ import { CalendarHeader } from "./calendar-header.component";
 		CalendarTwoMonths,
 		CalendarQuarter,
 		CalendarYear,
-		CalendarHeader
+		CalendarHeader,
+		DateTimeModel
 	],
 	imports: [
 		CommonModule,
