@@ -5,7 +5,6 @@ import { TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testin
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { ButtonMenu, ButtonMenuItem } from "./button-menu.module";
-import { html } from "d3";
 
 @Component({
 	selector: "test-cmp",
@@ -57,7 +56,7 @@ describe("Button Menu", () => {
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector(".btn--primary").textContent).toContain("Test");
+		expect(fixture.nativeElement.querySelector(".btn--primary").textContent.trim()).toEqual("Test");
 	});
 
 	it("should create a large button", () => {
