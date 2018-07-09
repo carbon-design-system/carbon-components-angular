@@ -14,8 +14,7 @@ import { DateTimeModel } from "./date-time-model.class";
 			<n-calendar-quarter-view [model]="model" *ngIf="view == 'quarter'"></n-calendar-quarter-view>
 			<n-calendar-year-view [model]="model" *ngIf="view == 'year'"></n-calendar-year-view>
 		</div>
-	`,
-	styleUrls: ["./calendar.component.scss"],
+	`
 })
 export class Calendar {
 
