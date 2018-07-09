@@ -1,13 +1,6 @@
-import { TestBed } from "@angular/core/testing";
 import { DateTimeModel } from "./calendar.module";
 
 describe("DateTimeModel", () => {
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			declarations: []
-		});
-	});
-
 	it("should start week on Sunday", () => {
 		let dateTimeModel  = new DateTimeModel();
 

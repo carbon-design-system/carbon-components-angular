@@ -212,8 +212,8 @@ import { getScrollbarWidth } from "../common/utils";
 									<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
 								</svg>
 							</span>
-							<button class="thead_filter-btn btn--icon-link"
-								[ngClass]="{'filter-enabled': column.filterCount > 0}"
+							<button class="thead_filter-btn btn--icon-unstyled"
+								[ngClass]="{'active': column.filterCount > 0}"
 								*ngIf="column.filterTemplate"
 								type="button"
 								aria-expanded="false"
