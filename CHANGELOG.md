@@ -114,6 +114,10 @@
 
 **Merged pull requests:**
 
+- Add a `range` function to be used in angular templates [\#946](https://github.ibm.com/peretz/neutrino/pull/946) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Improve quarter selection [\#945](https://github.ibm.com/peretz/neutrino/pull/945) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix dialogs placing incorrectly [\#944](https://github.ibm.com/peretz/neutrino/pull/944) ([callums](https://github.ibm.com/callums))
+- Autoposition filter popup in table [\#942](https://github.ibm.com/peretz/neutrino/pull/942) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Enable dialog auto positioning [\#941](https://github.ibm.com/peretz/neutrino/pull/941) ([callums](https://github.ibm.com/callums))
 - Fix sprite loading triggering too early [\#940](https://github.ibm.com/peretz/neutrino/pull/940) ([callums](https://github.ibm.com/callums))
 - Close \#932 [\#939](https://github.ibm.com/peretz/neutrino/pull/939) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
@@ -131,6 +135,7 @@
 - Initialize table model data so devs don't have to [\#918](https://github.ibm.com/peretz/neutrino/pull/918) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Update snippet indentation [\#916](https://github.ibm.com/peretz/neutrino/pull/916) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add additional table documentation [\#915](https://github.ibm.com/peretz/neutrino/pull/915) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+-  Add unit tests to SideNav and fix button-menu appendToBody [\#914](https://github.ibm.com/peretz/neutrino/pull/914) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - One port is enough [\#912](https://github.ibm.com/peretz/neutrino/pull/912) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Trigger app testing [\#911](https://github.ibm.com/peretz/neutrino/pull/911) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add drag & drop table column support [\#910](https://github.ibm.com/peretz/neutrino/pull/910) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
