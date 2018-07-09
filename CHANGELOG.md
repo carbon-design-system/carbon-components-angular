@@ -114,6 +114,7 @@
 
 **Merged pull requests:**
 
+- Bring back pretty filter count bubble [\#948](https://github.ibm.com/peretz/neutrino/pull/948) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add a `range` function to be used in angular templates [\#946](https://github.ibm.com/peretz/neutrino/pull/946) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Improve quarter selection [\#945](https://github.ibm.com/peretz/neutrino/pull/945) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix dialogs placing incorrectly [\#944](https://github.ibm.com/peretz/neutrino/pull/944) ([callums](https://github.ibm.com/callums))
