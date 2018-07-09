@@ -10,7 +10,7 @@ import { range } from "../../common/utils";
 	selector: "n-calendar-month-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentlyViewed]="currentlyViewed" [monthCount]="monthCount"></n-calendar-header>
+		<n-calendar-header [currentView]="currentView" [monthCount]="monthCount"></n-calendar-header>
 		<div class="calendar_month-container"
 		*ngFor="let month of range(monthCount)">
 			<table class="calendar_grid calendar_month">
@@ -48,14 +48,14 @@ export class CalendarMonth implements OnInit {
 	@Input() model: DateTimeModel;
 	@Input() monthCount = 1;
 
-	currentlyViewed: Date = new Date();
+	currentView: Date = new Date();
 	selected: boolean;
 	rangeSelectionInProgress = false;
 
 	ngOnInit() {
-		this.currentlyViewed = new Date(this.model.startDate);
-		if (!this.currentlyViewed || isNaN(this.currentlyViewed.getTime())) {
-			this.currentlyViewed = new Date();
+		this.currentView = new Date(this.model.startDate);
+		if (!this.currentView || isNaN(this.currentView.getTime())) {
+			this.currentView = new Date();
 		}
 	}
 
@@ -69,39 +69,39 @@ export class CalendarMonth implements OnInit {
 		const now = new Date();
 
 		return (
-			this.currentlyViewed.getFullYear() === now.getFullYear() &&
-			this.currentlyViewed.getMonth() + position === now.getMonth() &&
+			this.currentView.getFullYear() === now.getFullYear() &&
+			this.currentView.getMonth() + position === now.getMonth() &&
 			day === now.getDate()
 		);
 	}
 
 	isDisabled(day: number, position = 0) {
-		return this.model.isDateDisabled(new Date(this.currentlyViewed.getFullYear(), this.currentlyViewed.getMonth() + position, day));
+		return this.model.isDateDisabled(new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day));
 	}
 
 	daysOfMonth(position = 0) {
-		return this.model.daysOfMonth(new Date(this.currentlyViewed.getFullYear(), this.currentlyViewed.getMonth() + position, 1));
+		return this.model.daysOfMonth(new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, 1));
 	}
 
 	inRange(day: number, position = 0) {
 		if (!day) {
 			return false;
 		}
-		return this.model.isDateInRange(new Date(this.currentlyViewed.getFullYear(), this.currentlyViewed.getMonth() + position, day));
+		return this.model.isDateInRange(new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day));
 	}
 
 	isSelected(date: Date, position = 0) {
 		if (!date) {
 			return false;
 		}
-		return this.currentlyViewed.getMonth() + position === date.getMonth() &&
-		this.currentlyViewed.getFullYear() === date.getFullYear();
+		return this.currentView.getMonth() + position === date.getMonth() &&
+		this.currentView.getFullYear() === date.getFullYear();
 	}
 
 	selectDay(day: number, position = 0) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(this.currentlyViewed.getFullYear(), this.currentlyViewed.getMonth() + position, day);
+			this.model.endDate = new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;
@@ -109,7 +109,7 @@ export class CalendarMonth implements OnInit {
 			}
 		} else {
 			this.rangeSelectionInProgress = true;
-			this.model.selectDay(new Date(this.currentlyViewed.getFullYear(), this.currentlyViewed.getMonth() + position, day));
+			this.model.selectDay(new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day));
 		}
 	}
 

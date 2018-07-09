@@ -4,18 +4,19 @@ import {
 	OnInit,
 } from "@angular/core";
 import { DateTimeModel } from "./../date-time-model.class";
+import { range } from "../../common/utils";
 
 @Component({
 	selector: "n-calendar-months-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentlyViewed]="currentlyViewed" [header]="header"></n-calendar-header>
+		<n-calendar-header [currentView]="currentView" [header]="header"></n-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--months"
-			*ngFor="let i of [0,1,2]">
+			*ngFor="let i of range(3)">
 				<td
-				*ngFor="let j of [0,1,2,3]"
+				*ngFor="let j of range(4)"
 				(click)="selectMonth(i * 4 + j)"
 				[ngClass]="{
 					'today': isCurrentMonth(i * 4 + j),
@@ -39,48 +40,52 @@ export class CalendarMonths implements OnInit {
 
 	@Input() model: DateTimeModel;
 
-	currentlyViewed: Date = new Date();
+	currentView: Date = new Date();
 	selected: boolean;
 	rangeSelectionInProgress = false;
 	header = "yearOnly";
 	months = DateTimeModel.monthsTranslateKeys;
 
 	ngOnInit() {
-		this.currentlyViewed = new Date(this.model.startDate);
+		this.currentView = new Date(this.model.startDate);
 
-		if (!this.currentlyViewed || isNaN(this.currentlyViewed.getTime())) {
-			this.currentlyViewed = new Date();
+		if (!this.currentView || isNaN(this.currentView.getTime())) {
+			this.currentView = new Date();
 		}
+	}
+
+	range(stop: number, start = 0, step = 1) {
+		return range(stop, start, step);
 	}
 
 	isCurrentMonth(month) {
 		const now = new Date();
 
 		return (
-			this.currentlyViewed.getFullYear() === now.getFullYear() &&
+			this.currentView.getFullYear() === now.getFullYear() &&
 			month === now.getMonth()
 		);
 	}
 
 	isDisabled(month) {
-		return this.model.isDateDisabled(new Date(this.currentlyViewed.getFullYear(), month, 1));
+		return this.model.isDateDisabled(new Date(this.currentView.getFullYear(), month, 1));
 	}
 
 	inRange(month) {
-		return this.model.isDateInRange(new Date(this.currentlyViewed.getFullYear(), month, 1));
+		return this.model.isDateInRange(new Date(this.currentView.getFullYear(), month, 1));
 	}
 
 	isSelected(date: Date) {
 		if (!date) {
 			return false;
 		}
-		return this.currentlyViewed.getFullYear() === date.getFullYear();
+		return this.currentView.getFullYear() === date.getFullYear();
 	}
 
 	selectMonth(month) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(this.currentlyViewed.getFullYear(), month, 1);
+			this.model.endDate = new Date(this.currentView.getFullYear(), month, 1);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;
@@ -88,7 +93,7 @@ export class CalendarMonths implements OnInit {
 			}
 		} else {
 			this.rangeSelectionInProgress = true;
-			this.model.selectMonth(new Date(this.currentlyViewed.getFullYear(), month, 1));
+			this.model.selectMonth(new Date(this.currentView.getFullYear(), month, 1));
 		}
 	}
 }

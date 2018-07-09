@@ -45,42 +45,40 @@ import { range } from "../common/utils";
 	`
 })
 export class CalendarHeader {
-	@Input() currentlyViewed; // : DateTimeModel;
+	@Input() currentView: Date;
 	@Input() header;
 	@Input() monthCount = 1;
 
 	range(stop: number, start = 0, step = 1) {
-		if (stop) {
-			return range(stop);
-		}
+		return range(stop, start, step);
 	}
 
 	nextYear() {
-		this.currentlyViewed.setYear(this.currentlyViewed.getFullYear() + 1);
+		this.currentView.setFullYear(this.currentView.getFullYear() + 1);
 	}
 
 	nextMonth() {
-		this.currentlyViewed.setMonth(this.currentlyViewed.getMonth() + 1);
+		this.currentView.setMonth(this.currentView.getMonth() + 1);
 	}
 
 	previousYear() {
-		this.currentlyViewed.setYear(this.currentlyViewed.getFullYear() - 1);
+		this.currentView.setFullYear(this.currentView.getFullYear() - 1);
 	}
 
 	previousMonth() {
-		this.currentlyViewed.setMonth(this.currentlyViewed.getMonth() - 1);
+		this.currentView.setMonth(this.currentView.getMonth() - 1);
 	}
 
 	getYear() {
-		return this.currentlyViewed ? this.currentlyViewed.getFullYear() : new Date().getFullYear();
+		return this.currentView ? this.currentView.getFullYear() : new Date().getFullYear();
 	}
 
 	getMonth(position = 0) {
-		if (!this.currentlyViewed) {
-			this.currentlyViewed = new Date();
+		if (!this.currentView) {
+			this.currentView = new Date();
 		}
 
-		const date = new Date(this.currentlyViewed);
+		const date = new Date(this.currentView);
 		date.setMonth(date.getMonth() + position);
 		return DateTimeModel.monthsTranslateKeys[date.getMonth()];
 	}

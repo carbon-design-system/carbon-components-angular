@@ -4,18 +4,19 @@ import {
 	OnInit,
 } from "@angular/core";
 import { DateTimeModel } from "./../date-time-model.class";
+import { range } from "../../common/utils";
 
 @Component({
 	selector: "n-calendar-quarter-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentlyViewed]="currentlyViewed" [header]="header"></n-calendar-header>
+		<n-calendar-header [currentView]="currentView" [header]="header"></n-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--quarters"
-			*ngFor="let i of [0,1]">
+			*ngFor="let i of range(2)">
 				<td
-				*ngFor="let j of [0,1]"
+				*ngFor="let j of range(2)"
 				(click)="selectQuarter(i * 2 + j)"
 				[ngClass]="{
 					'today': isCurrentQuarter(i * 2 + j),
@@ -41,7 +42,7 @@ export class CalendarQuarter implements OnInit {
 
 	@Input() model: DateTimeModel;
 
-	currentlyViewed: Date = new Date();
+	currentView: Date = new Date();
 	selected: boolean;
 	rangeSelectionInProgress = false;
 	header = "yearOnly";
@@ -68,42 +69,46 @@ export class CalendarQuarter implements OnInit {
 	];
 
 	ngOnInit() {
-		this.currentlyViewed = new Date(this.model.startDate);
+		this.currentView = new Date(this.model.startDate);
 
-		if (!this.currentlyViewed || isNaN(this.currentlyViewed.getTime())) {
-			this.currentlyViewed = new Date();
+		if (!this.currentView || isNaN(this.currentView.getTime())) {
+			this.currentView = new Date();
 		}
+	}
+
+	range(stop: number, start = 0, step = 1) {
+		return range(stop, start, step);
 	}
 
 	isCurrentQuarter(quarter) {
 		const now = new Date();
 
 		return (
-			this.currentlyViewed.getFullYear() === now.getFullYear() &&
+			this.currentView.getFullYear() === now.getFullYear() &&
 			quarter === Math.floor(now.getMonth() / 3)
 		);
 	}
 
 	isDisabled(quarter) {
-		return this.model.isDateDisabled(new Date(this.currentlyViewed.getFullYear(), quarter * 4, 1));
+		return this.model.isDateDisabled(new Date(this.currentView.getFullYear(), quarter * 4, 1));
 	}
 
 	inRange(quarter) {
-		return this.model.isDateInRange(new Date(this.currentlyViewed.getFullYear(), quarter * 4, 1));
+		return this.model.isDateInRange(new Date(this.currentView.getFullYear(), quarter * 4, 1));
 	}
 
 	isSelected(quarter) {
 		return (
-			this.currentlyViewed.getFullYear() === this.model.startDate.getFullYear() && quarter === Math.floor(this.model.startDate.getMonth() / 3)
+			this.currentView.getFullYear() === this.model.startDate.getFullYear() && quarter === Math.floor(this.model.startDate.getMonth() / 3)
 			||
-			this.currentlyViewed.getFullYear() === this.model.endDate.getFullYear() && quarter === Math.floor(this.model.endDate.getMonth() / 3)
+			this.currentView.getFullYear() === this.model.endDate.getFullYear() && quarter === Math.floor(this.model.endDate.getMonth() / 3)
 		);
 	}
 
 	selectQuarter(quarter) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.selectQuarterEnd(quarter, this.currentlyViewed.getFullYear());
+			this.model.selectQuarterEnd(quarter, this.currentView.getFullYear());
 			console.log(this.model.endDate);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
@@ -113,7 +118,7 @@ export class CalendarQuarter implements OnInit {
 		} else {
 			this.rangeSelectionInProgress = true;
 			this.model.endDate = null;
-			this.model.selectQuarter(quarter, this.currentlyViewed.getFullYear());
+			this.model.selectQuarter(quarter, this.currentView.getFullYear());
 			console.log(this.model.startDate);
 		}
 	}
