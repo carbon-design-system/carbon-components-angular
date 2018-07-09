@@ -36,7 +36,7 @@ import { DateTimeModel } from "./../../../src/calendar/date-time-model.class";
 
 	<br><br>
 	<div style="width:1046px;">
-		<n-calendar [view]="'month'" [model]="model4"></n-calendar>
+		<n-calendar [view]="month" [model]="model4"></n-calendar>
 	</div>
 	`
 })
