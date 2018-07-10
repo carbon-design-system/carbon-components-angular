@@ -8,6 +8,13 @@ describe("Table", () => {
 		});
 	});
 
+	it("empty model should have length 0", () => {
+		let tableModel  = new TableModel();
+		tableModel.data = [[]];
+
+		expect(tableModel.totalDataLength).toEqual(0);
+	});
+
 	it("should set rowsSelected when setting data", () => {
 		let tableModel  = new TableModel();
 		tableModel.data = [
