@@ -1,3 +1,4 @@
+import { TranslateService } from "@ngx-translate/core";
 import {
 	Component,
 	Input,
@@ -10,7 +11,7 @@ import { range } from "../../common/utils";
 	selector: "n-calendar-quarter-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentView]="currentView" [header]="header"></n-calendar-header>
+		<n-calendar-header [currentView]="currentView" header="yearOnly"></n-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--quarters"
@@ -26,10 +27,10 @@ import { range } from "../../common/utils";
 				}">
 					<div>
 						<p class="top">
-							{{quarters[i * 2 + j].name}}
+							{{quarters[i * 2 + j].name | translate}}
 						</p>
 						<p class="bottom">
-							{{quarters[i * 2 + j].months}}
+							{{quarters[i * 2 + j].months | translate}}
 						</p>
 					</div>
 				</td>
@@ -39,34 +40,18 @@ import { range } from "../../common/utils";
 	`
 })
 export class CalendarQuarter implements OnInit {
-
 	@Input() model: DateTimeModel;
 
 	currentView: Date = new Date();
-	selected: boolean;
 	rangeSelectionInProgress = false;
-	header = "yearOnly";
 
-	quarters =
-	[
-		{
-			name: "Q1",
-			months: "January-March"
-		}
-		,
-		{
-			name: "Q2",
-			months: "April-June"
-		},
-		{
-			name: "Q3",
-			months: "July-September"
-		},
-		{
-			name: "Q4",
-			months: "October-December"
-		}
-	];
+	quarters: Array<any>;
+
+	constructor(private translate: TranslateService) {
+		this.translate.get("CALENDAR.QUARTERS").toPromise().then((res: Array<any>) => {
+			this.quarters = res;
+		});
+	}
 
 	ngOnInit() {
 		this.currentView = new Date(this.model.startDate);
@@ -100,8 +85,7 @@ export class CalendarQuarter implements OnInit {
 	isSelected(quarter) {
 		return (
 			this.currentView.getFullYear() === this.model.startDate.getFullYear() && quarter === Math.floor(this.model.startDate.getMonth() / 3)
-			||
-			this.currentView.getFullYear() === this.model.endDate.getFullYear() && quarter === Math.floor(this.model.endDate.getMonth() / 3)
+			|| this.currentView.getFullYear() === this.model.endDate.getFullYear() && quarter === Math.floor(this.model.endDate.getMonth() / 3)
 		);
 	}
 
@@ -109,7 +93,6 @@ export class CalendarQuarter implements OnInit {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
 			this.model.selectQuarterEnd(quarter, this.currentView.getFullYear());
-			console.log(this.model.endDate);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;
@@ -117,9 +100,7 @@ export class CalendarQuarter implements OnInit {
 			}
 		} else {
 			this.rangeSelectionInProgress = true;
-			this.model.endDate = null;
 			this.model.selectQuarter(quarter, this.currentView.getFullYear());
-			console.log(this.model.startDate);
 		}
 	}
 }

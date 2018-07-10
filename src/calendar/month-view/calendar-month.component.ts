@@ -15,7 +15,7 @@ import { range } from "../../common/utils";
 		*ngFor="let month of range(monthCount)">
 			<table class="calendar_grid calendar_month">
 				<tr class="grid_row_header--month">
-						<th *ngFor="let day of model.daysOfWeek"><div>{{day | translate}}</div></th>
+					<th *ngFor="let day of model.daysOfWeek"><div>{{day | translate}}</div></th>
 				</tr>
 				<tr
 				class="grid_row--month"
@@ -49,7 +49,6 @@ export class CalendarMonth implements OnInit {
 	@Input() monthCount = 1;
 
 	currentView: Date = new Date();
-	selected: boolean;
 	rangeSelectionInProgress = false;
 
 	ngOnInit() {
@@ -60,9 +59,7 @@ export class CalendarMonth implements OnInit {
 	}
 
 	range(stop: number, start = 0, step = 1) {
-		if (stop) {
-			return range(stop);
-		}
+		return range(stop, start, step);
 	}
 
 	isCurrentDay(day, position) {
@@ -95,13 +92,13 @@ export class CalendarMonth implements OnInit {
 			return false;
 		}
 		return this.currentView.getMonth() + position === date.getMonth() &&
-		this.currentView.getFullYear() === date.getFullYear();
+			this.currentView.getFullYear() === date.getFullYear();
 	}
 
 	selectDay(day: number, position = 0) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day);
+			this.model.endDate = new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day, 23, 59, 59);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;
@@ -111,9 +108,5 @@ export class CalendarMonth implements OnInit {
 			this.rangeSelectionInProgress = true;
 			this.model.selectDay(new Date(this.currentView.getFullYear(), this.currentView.getMonth() + position, day));
 		}
-	}
-
-	daysInMonth(month, year) { // Use 1 for January, 2 for February, etc.
-		return new Date(year, month + 1, 0).getDate();
 	}
 }

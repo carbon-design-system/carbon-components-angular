@@ -25,7 +25,27 @@
 			"THURSDAY": "Thu",
 			"FRIDAY": "Fri",
 			"SATURDAY": "Sat"
-		}
+		},
+		"QUARTERS":
+		[
+			{
+				"name": "Q1",
+				"months": "January-March"
+			}
+			,
+			{
+				"name": "Q2",
+				"months": "April-June"
+			},
+			{
+				"name": "Q3",
+				"months": "July-September"
+			},
+			{
+				"name": "Q4",
+				"months": "October-December"
+			}
+		]
 	},
 	"DIALOG": {
 		"TOOLTIP": {

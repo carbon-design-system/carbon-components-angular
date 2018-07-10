@@ -7,45 +7,37 @@ import { DateTimeModel } from "./../../../src/calendar/date-time-model.class";
 	template: `
 	<h1>Calendar</h1>
 
-	<br><br>
-	Selected Date: {{selectedDate}}
-
-	<br><br>
-	<div style="width:280px;">
-		<n-calendar-month-view [model]="model" [monthCount]="1"></n-calendar-month-view>
+	<div style="width: 280px;">
+		<n-calendar-month-view [model]="monthViewModel"></n-calendar-month-view>
 	<div>
 
-	<div style="width:564px;">
-		<n-calendar-month-view [model]="model" [monthCount]="2"></n-calendar-month-view>
+	<div style="width: 564px;">
+		<n-calendar-month-view [model]="monthViewModel" [monthCount]="2"></n-calendar-month-view>
 	<div>
 
-	<br><br>
-	<div style="width:1046px;">
-		<n-calendar-months-view [model]="model2"></n-calendar-months-view>
+	<div style="width: 1046px;">
+		<n-calendar-months-view [model]="monthsViewModel"></n-calendar-months-view>
 	</div>
 
-	<br><br>
-	<div style="width:1046px;">
-		<n-calendar-quarter-view [model]="model3"></n-calendar-quarter-view>
+	<div style="width: 1046px;">
+		<n-calendar-quarter-view [model]="quarterViewModel"></n-calendar-quarter-view>
 	</div>
 
-	<br><br>
-	<div style="width:1046px;">
-		<n-calendar-year-view [model]="model4"></n-calendar-year-view>
+	<div style="width: 1046px;">
+		<n-calendar-year-view [model]="yearViewModel"></n-calendar-year-view>
 	</div>
 
-	<br><br>
-	<div style="width:1046px;">
-		<n-calendar [view]="month" [model]="model4"></n-calendar>
+	<div style="width: 1046px;">
+		<n-calendar [view]="month" [model]="yearViewModel"></n-calendar>
 	</div>
 	`
 })
 
 export class CalendarDemo implements OnInit {
-	model = new DateTimeModel();
-	model2 = new DateTimeModel();
-	model3 = new DateTimeModel();
-	model4 = new DateTimeModel();
+	monthViewModel = new DateTimeModel();
+	monthsViewModel = new DateTimeModel();
+	quarterViewModel = new DateTimeModel();
+	yearViewModel = new DateTimeModel();
 	date = new Date();
 
 	selectedDate;
@@ -54,43 +46,30 @@ export class CalendarDemo implements OnInit {
 
 	todayPlus5 = new Date(this.date.getFullYear(), this.date.getMonth() + 4, this.date.getDate() + 5);
 
+	disabledDay = new Date(2018, 6, 3);
+	disabledRangeStart = new Date(2016, 0, 0);
+	disabledRangeEnd = new Date(2017, 5, 3);
 
-	todayMinusYear = new Date(this.date.getFullYear() - 1, this.date.getMonth(), this.date.getDate());
+	todayMinusYear = new Date(this.date.getFullYear() + 1, this.date.getMonth(), this.date.getDate());
 
 	constructor() {
-		this.model.disabledDates = [new Date(2018, 6, 3)];
-		this.model2.disabledDates = [[new Date(2018, 0, 0), new Date(2018, 3, 3)]];
-		this.model3.disabledDates = [[new Date(2018, 0, 0), new Date(2018, 5, 3)]];
-		this.model4.disabledDates = [[new Date(2014, 1, 1), new Date(2016, 5, 3)]];
+		this.monthViewModel.disabledDates = [this.disabledDay];
+		this.monthsViewModel.disabledDates = [[this.disabledRangeStart, this.disabledRangeEnd]];
+		this.quarterViewModel.disabledDates = [[this.disabledRangeStart, this.disabledRangeEnd]];
+		this.yearViewModel.disabledDates = [[this.disabledRangeStart, this.disabledRangeEnd]];
 	}
 
 	ngOnInit() {
-		this.model.startDate = this.date;
-		this.model.endDate = this.todayPlus5;
+		this.monthViewModel.startDate = this.date;
+		this.monthViewModel.endDate = this.todayPlus5;
 
-		this.model2.startDate = this.date;
-		this.model2.endDate = this.todayPlus5;
+		this.monthsViewModel.startDate = this.date;
+		this.monthsViewModel.endDate = this.todayPlus5;
 
-		this.model3.startDate = this.date;
-		this.model3.endDate = this.todayPlus5;
+		this.quarterViewModel.startDate = this.date;
+		this.quarterViewModel.endDate = this.todayPlus5;
 
-		this.model4.startDate = this.date;
-		this.model4.endDate = this.todayMinusYear;
-	}
-
-	changeDate() {
-		if (this.counter < 11) {
-			this.counter++;
-		} else {
-			this.counter = 0;
-		}
-
-		let newDate = new Date(2017, this.counter, 9);
-
-		this.date = newDate;
-	}
-
-	onSelect(date) {
-		this.selectedDate = date;
+		this.yearViewModel.startDate = this.date;
+		this.yearViewModel.endDate = this.todayMinusYear;
 	}
 }

@@ -14,7 +14,7 @@ import { range } from "../common/utils";
 							<n-static-icon icon="chevron_left" size="xs"></n-static-icon>
 						</a>
 					</li>
-					<li *ngIf="header == 'yearOnlyRange'">{{getYear()-5}} - {{getYear()}}</li>
+					<li *ngIf="header === 'yearOnlyRange'">{{getYear() - 5}} - {{getYear()}}</li>
 					<li *ngIf="header !== 'yearOnlyRange'">{{getYear()}}</li>
 					<li class="pagination_chevron">
 						<a (click)="nextYear()" title="Next page" aria-label="Next page">
@@ -24,17 +24,21 @@ import { range } from "../common/utils";
 				</ul>
 			</nav>
 
-			<nav *ngIf="header !== 'yearOnly' && header !== 'yearOnlyRange'"
-				class="pagination month"
-				aria-label="month-pagination">
+			<nav
+			*ngIf="header !== 'yearOnly' && header !== 'yearOnlyRange'"
+			class="pagination month"
+			aria-label="month-pagination">
 				<ul>
 					<li class="pagination_chevron">
 						<a (click)="previousMonth()" title="Previous page" aria-label="Previous page">
 							<n-static-icon icon="chevron_left" size="xs"></n-static-icon>
 						</a>
 					</li>
-					<li class="month_view-month"
-					*ngFor="let month of range(monthCount)">{{getMonth(month) | translate}}</li>
+					<li
+					class="month_view-month"
+					*ngFor="let month of range(monthCount)">
+						{{getMonth(month) | translate}}
+					</li>
 					<li class="pagination_chevron">
 						<a (click)="nextMonth()" title="Next page" aria-label="Next page">
 							<n-static-icon icon="chevron_right" size="xs"></n-static-icon>
@@ -78,8 +82,6 @@ export class CalendarHeader {
 			this.currentView = new Date();
 		}
 
-		const date = new Date(this.currentView);
-		date.setMonth(date.getMonth() + position);
-		return DateTimeModel.monthsTranslateKeys[date.getMonth()];
+		return DateTimeModel.monthsTranslateKeys[this.currentView.getMonth() + position];
 	}
 }

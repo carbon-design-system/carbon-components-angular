@@ -20,8 +20,7 @@ import { range } from "../../common/utils";
 				(click)="selectMonth(i * 4 + j)"
 				[ngClass]="{
 					'today': isCurrentMonth(i * 4 + j),
-					'selected': isSelected(model.startDate) && i * 4 + j == model.startDate.getMonth()
-						|| isSelected(model.endDate) && i * 4 + j == model.endDate.getMonth(),
+					'selected': isSelected(i * 4 + j),
 					'range': inRange(i * 4 + j),
 					'disabled': isDisabled(i * 4 + j)
 				}">
@@ -41,7 +40,6 @@ export class CalendarMonths implements OnInit {
 	@Input() model: DateTimeModel;
 
 	currentView: Date = new Date();
-	selected: boolean;
 	rangeSelectionInProgress = false;
 	header = "yearOnly";
 	months = DateTimeModel.monthsTranslateKeys;
@@ -75,17 +73,16 @@ export class CalendarMonths implements OnInit {
 		return this.model.isDateInRange(new Date(this.currentView.getFullYear(), month, 1));
 	}
 
-	isSelected(date: Date) {
-		if (!date) {
-			return false;
-		}
-		return this.currentView.getFullYear() === date.getFullYear();
+	isSelected(date: number) {
+		return this.currentView.getFullYear() === this.model.startDate.getFullYear() && date === this.model.startDate.getMonth()
+			|| this.currentView.getFullYear() === this.model.endDate.getFullYear() && date === this.model.endDate.getMonth();
 	}
 
 	selectMonth(month) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(this.currentView.getFullYear(), month, 1);
+			this.model.endDate = new Date(this.currentView.getFullYear(), month + 1, 0, 23, 59, 59);
+			console.log(this.model.endDate);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;

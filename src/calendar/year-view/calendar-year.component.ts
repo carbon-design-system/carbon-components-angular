@@ -3,25 +3,24 @@ import {
 	Input,
 	OnInit,
 } from "@angular/core";
-import { DatePipe } from "@angular/common";
 import { DateTimeModel } from "./../date-time-model.class";
+import { range } from "../../common/utils";
 
 @Component({
 	selector: "n-calendar-year-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentView]="currentView" [header]="header"></n-calendar-header>
+		<n-calendar-header [currentView]="currentView" header="yearOnlyRange"></n-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--months"
-			*ngFor="let i of [2,1,0]">
+			*ngFor="let i of range(-1, 2, -1)">
 				<td
-				*ngFor="let j of [1,0]"
+				*ngFor="let j of range(-1, 1, -1)"
 				(click)="selectYear(i * 2 + j)"
 				[ngClass]="{
-					'today': isCurrentYear(i *2 + j),
-					'selected': isSelected(model.startDate) && currentView.getFullYear() - (i * 2 + j) === model.startDate.getFullYear()
-						|| isSelected(model.endDate) && currentView.getFullYear() - (i * 2 + j) === model.endDate.getFullYear(),
+					'today': isCurrentYear(i * 2 + j),
+					'selected': isSelected(i * 2 + j),
 					'range': inRange(i * 2 + j),
 					'disabled': isDisabled(i * 2 + j)
 				}">
@@ -38,19 +37,21 @@ import { DateTimeModel } from "./../date-time-model.class";
 })
 
 export class CalendarYear implements OnInit {
-
 	@Input() model: DateTimeModel;
 
 	currentView: Date = new Date();
 	selected: boolean;
 	rangeSelectionInProgress = false;
-	header = "yearOnlyRange";
 
 	ngOnInit() {
 		this.currentView = new Date(this.model.startDate);
 		if (!this.currentView || isNaN(this.currentView.getTime())) {
 			this.currentView = new Date();
 		}
+	}
+
+	range(stop: number, start = 0, step = 1) {
+		return range(stop, start, step);
 	}
 
 	isCurrentYear(year) {
@@ -70,12 +71,20 @@ export class CalendarYear implements OnInit {
 		return this.model.isDateInRange(new Date(inRangeYear, 1, 1));
 	}
 
-	isSelected(date: Date) {
-		if (!date) {
-			return false;
-		}
+	isSelected(date: number) {
 		for (let i = 0; i < 6; i ++) {
-			if (this.currentView.getFullYear() - i === date.getFullYear()) {
+			const currentYearInView = this.currentView.getFullYear() - i;
+			const currentYearProvided = this.currentView.getFullYear() - date;
+
+			const isCurrentYearStart =
+				currentYearInView === this.model.startDate.getFullYear() &&
+				currentYearProvided === this.model.startDate.getFullYear();
+
+			const isCurrentYearEnd =
+				currentYearInView === this.model.endDate.getFullYear() &&
+				currentYearProvided === this.model.endDate.getFullYear();
+
+			if (isCurrentYearStart || isCurrentYearEnd) {
 				return true;
 			}
 		}
@@ -87,7 +96,7 @@ export class CalendarYear implements OnInit {
 
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(selectedYear, 1, 1);
+			this.model.endDate = new Date(selectedYear, 11, 31);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;
