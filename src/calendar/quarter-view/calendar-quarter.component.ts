@@ -40,13 +40,44 @@ import { range } from "../../common/utils";
 	`
 })
 export class CalendarQuarter implements OnInit {
+
+	/**
+	 * `DateTimeModel` to be used in this view.
+	 *
+	 * @type {DateTimeModel}
+	 * @memberof CalendarMonths
+	 */
 	@Input() model: DateTimeModel;
 
+	/**
+	 * `Date` being used in this view.
+	 *
+	 * @type {Date}
+	 * @memberof CalendarMonths
+	 */
 	currentView: Date = new Date();
+
+	/**
+	 * State to determine whether you are selecting `startDate` or `endDate`
+	 *
+	 * @memberof CalendarMonths
+	 */
 	rangeSelectionInProgress = false;
 
+	/**
+	 * Initialization of quarter object for translation
+	 *
+	 * @type {Array<any>}
+	 * @memberof CalendarQuarter
+	 */
 	quarters: Array<any>;
 
+	/**
+	 * Creates an instance of CalendarQuarter.
+	 * Translates quarters.
+	 * @param {TranslateService} translate
+	 * @memberof CalendarQuarter
+	 */
 	constructor(private translate: TranslateService) {
 		this.translate.get("CALENDAR.QUARTERS").toPromise().then((res: Array<any>) => {
 			this.quarters = res;
@@ -61,11 +92,28 @@ export class CalendarQuarter implements OnInit {
 		}
 	}
 
+	/**
+	 * Wrapper for `range` function in utils because it cannot
+	 * be directly used in template
+	 *
+	 * @param {number} stop
+	 * @param {number} [start=0]
+	 * @param {number} [step=1]
+	 * @returns Array<any>
+	 * @memberof CalendarMonths
+	 */
 	range(stop: number, start = 0, step = 1) {
 		return range(stop, start, step);
 	}
 
-	isCurrentQuarter(quarter) {
+	/**
+	 * Returns value indicating whether `quarter` is current quarter
+	 *
+	 * @param {number} quarter of year
+	 * @returns boolean
+	 * @memberof CalendarQuarter
+	 */
+	isCurrentQuarter(quarter: number) {
 		const now = new Date();
 
 		return (
@@ -74,22 +122,49 @@ export class CalendarQuarter implements OnInit {
 		);
 	}
 
-	isDisabled(quarter) {
+	/**
+	 * Returns value indicating whether `quarter` is disabled
+	 *
+	 * @param {number} quarter of year
+	 * @returns boolean
+	 * @memberof CalendarQuarter
+	 */
+	isDisabled(quarter: number) {
 		return this.model.isDateDisabled(new Date(this.currentView.getFullYear(), quarter * 4, 1));
 	}
 
-	inRange(quarter) {
+	/**
+	 * Returns value indicating whether `quarter` is part of a range selection
+	 *
+	 * @param {number} quarter of year
+	 * @returns boolean
+	 * @memberof CalendarQuarter
+	 */
+	inRange(quarter: number) {
 		return this.model.isDateInRange(new Date(this.currentView.getFullYear(), quarter * 4, 1));
 	}
 
-	isSelected(quarter) {
+	/**
+	 * Returns value indicating whether `quarter` is selected
+	 *
+	 * @param {number} quarter
+	 * @returns
+	 * @memberof CalendarQuarter
+	 */
+	isSelected(quarter: number) {
 		return (
 			this.currentView.getFullYear() === this.model.startDate.getFullYear() && quarter === Math.floor(this.model.startDate.getMonth() / 3)
 			|| this.currentView.getFullYear() === this.model.endDate.getFullYear() && quarter === Math.floor(this.model.endDate.getMonth() / 3)
 		);
 	}
 
-	selectQuarter(quarter) {
+	/**
+	 * Sets model's `startDate` and `endDate`
+	 *
+	 * @param {number} quarter
+	 * @memberof CalendarQuarter
+	 */
+	selectQuarter(quarter: number) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
 			this.model.selectQuarterEnd(quarter, this.currentView.getFullYear());

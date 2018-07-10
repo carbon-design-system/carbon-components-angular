@@ -37,10 +37,28 @@ import { range } from "../../common/utils";
 })
 
 export class CalendarYear implements OnInit {
+
+	/**
+	 * `DateTimeModel` to be used in this view.
+	 *
+	 * @type {DateTimeModel}
+	 * @memberof CalendarMonths
+	 */
 	@Input() model: DateTimeModel;
 
+	/**
+	 * `Date` being used in this view.
+	 *
+	 * @type {Date}
+	 * @memberof CalendarMonths
+	 */
 	currentView: Date = new Date();
-	selected: boolean;
+
+	/**
+	 * State to determine whether you are selecting `startDate` or `endDate`
+	 *
+	 * @memberof CalendarMonths
+	 */
 	rangeSelectionInProgress = false;
 
 	ngOnInit() {
@@ -50,31 +68,69 @@ export class CalendarYear implements OnInit {
 		}
 	}
 
+	/**
+	 * Wrapper for `range` function in utils because it cannot
+	 * be directly used in template
+	 *
+	 * @param {number} stop
+	 * @param {number} [start=0]
+	 * @param {number} [step=1]
+	 * @returns Array<any>
+	 * @memberof CalendarMonths
+	 */
 	range(stop: number, start = 0, step = 1) {
 		return range(stop, start, step);
 	}
 
-	isCurrentYear(year) {
+	/**
+	 * Returns value indicating whether `year` is current year
+	 *
+	 * @param {number} year in view
+	 * @returns boolean
+	 * @memberof CalendarYear
+	 */
+	isCurrentYear(year: number) {
 		const now = new Date();
 		const currentYear = this.currentView.getFullYear() - year;
 
 		return currentYear === now.getFullYear();
 	}
 
-	isDisabled(year) {
+	/**
+	 * Returns value indicating whether `year` is disabled
+	 *
+	 * @param {number} year in view
+	 * @returns boolean
+	 * @memberof CalendarYear
+	 */
+	isDisabled(year: number) {
 		const disabledYear = this.currentView.getFullYear() - year;
 		return this.model.isDateDisabled(new Date(disabledYear, 1, 1));
 	}
 
-	inRange(year) {
+	/**
+	 * Returns value indicating whether `year` is part of a range selection
+	 *
+	 * @param {number} year in view
+	 * @returns boolean
+	 * @memberof CalendarYear
+	 */
+	inRange(year: number) {
 		const inRangeYear = this.currentView.getFullYear() - year;
 		return this.model.isDateInRange(new Date(inRangeYear, 1, 1));
 	}
 
-	isSelected(date: number) {
+	/**
+	 * Returns value indicating whether `year` is selected
+	 *
+	 * @param {number} year in view
+	 * @returns boolean
+	 * @memberof CalendarYear
+	 */
+	isSelected(year: number) {
 		for (let i = 0; i < 6; i ++) {
 			const currentYearInView = this.currentView.getFullYear() - i;
-			const currentYearProvided = this.currentView.getFullYear() - date;
+			const currentYearProvided = this.currentView.getFullYear() - year;
 
 			const isCurrentYearStart =
 				currentYearInView === this.model.startDate.getFullYear() &&
@@ -91,11 +147,18 @@ export class CalendarYear implements OnInit {
 		return false;
 	}
 
-	selectYear(year) {
+	/**
+	 * Sets model's `startDate` and `endDate`
+	 *
+	 * @param {number} year in view
+	 * @memberof CalendarYear
+	 */
+	selectYear(year: number) {
 		const selectedYear = this.currentView.getFullYear() - year;
 
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
+			this.model.selectYearEnd(new Date(selectedYear));
 			this.model.endDate = new Date(selectedYear, 11, 31);
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
@@ -104,7 +167,7 @@ export class CalendarYear implements OnInit {
 			}
 		} else {
 			this.rangeSelectionInProgress = true;
-			this.model.selectMonth(new Date(selectedYear, 1, 1));
+			this.model.selectYear(new Date(selectedYear, 1, 1));
 		}
 	}
 }

@@ -10,7 +10,7 @@ import { range } from "../../common/utils";
 	selector: "n-calendar-months-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentView]="currentView" [header]="header"></n-calendar-header>
+		<n-calendar-header [currentView]="currentView" header="yearOnly"></n-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--months"
@@ -37,11 +37,34 @@ import { range } from "../../common/utils";
 })
 export class CalendarMonths implements OnInit {
 
+	/**
+	 * `DateTimeModel` to be used in this view.
+	 *
+	 * @type {DateTimeModel}
+	 * @memberof CalendarMonths
+	 */
 	@Input() model: DateTimeModel;
 
+	/**
+	 * `Date` being used in this view.
+	 *
+	 * @type {Date}
+	 * @memberof CalendarMonths
+	 */
 	currentView: Date = new Date();
+
+	/**
+	 * State to determine whether you are selecting `startDate` or `endDate`
+	 *
+	 * @memberof CalendarMonths
+	 */
 	rangeSelectionInProgress = false;
-	header = "yearOnly";
+
+	/**
+	 * Reference to month translation keys in `DateTimeModel`
+	 *
+	 * @memberof CalendarMonths
+	 */
 	months = DateTimeModel.monthsTranslateKeys;
 
 	ngOnInit() {
@@ -52,11 +75,28 @@ export class CalendarMonths implements OnInit {
 		}
 	}
 
+	/**
+	 * Wrapper for `range` function in utils because it cannot
+	 * be directly used in template
+	 *
+	 * @param {number} stop
+	 * @param {number} [start=0]
+	 * @param {number} [step=1]
+	 * @returns Array<any>
+	 * @memberof CalendarMonths
+	 */
 	range(stop: number, start = 0, step = 1) {
 		return range(stop, start, step);
 	}
 
-	isCurrentMonth(month) {
+	/**
+	 * Returns value indicating whether `month` is current month
+	 *
+	 * @param {number} month in year
+	 * @returns boolean
+	 * @memberof CalendarMonths
+	 */
+	isCurrentMonth(month: number) {
 		const now = new Date();
 
 		return (
@@ -65,24 +105,49 @@ export class CalendarMonths implements OnInit {
 		);
 	}
 
-	isDisabled(month) {
+	/**
+	 * Returns value indicating whether `month` is disabled
+	 *
+	 * @param {number} month in year
+	 * @returns boolean
+	 * @memberof CalendarMonths
+	 */
+	isDisabled(month: number) {
 		return this.model.isDateDisabled(new Date(this.currentView.getFullYear(), month, 1));
 	}
 
-	inRange(month) {
+	/**
+	 * Returns value indicating whether `month` is part of a range selection
+	 *
+	 * @param {number} month in year
+	 * @returns boolean
+	 * @memberof CalendarMonths
+	 */
+	inRange(month: number) {
 		return this.model.isDateInRange(new Date(this.currentView.getFullYear(), month, 1));
 	}
 
-	isSelected(date: number) {
-		return this.currentView.getFullYear() === this.model.startDate.getFullYear() && date === this.model.startDate.getMonth()
-			|| this.currentView.getFullYear() === this.model.endDate.getFullYear() && date === this.model.endDate.getMonth();
+	/**
+	 * Returns value indicating whether `month` is selected
+	 *
+	 * @param {number} month in year
+	 * @memberof CalendarMonths
+	 */
+	isSelected(month: number) {
+		return this.currentView.getFullYear() === this.model.startDate.getFullYear() && month === this.model.startDate.getMonth()
+			|| this.currentView.getFullYear() === this.model.endDate.getFullYear() && month === this.model.endDate.getMonth();
 	}
 
-	selectMonth(month) {
+	/**
+	 * Sets model's `startDate` and `endDate`
+	 *
+	 * @param {number} month in year
+	 * @memberof CalendarMonths
+	 */
+	selectMonth(month: number) {
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = new Date(this.currentView.getFullYear(), month + 1, 0, 23, 59, 59);
-			console.log(this.model.endDate);
+			this.model.selectMonthEnd(new Date(this.currentView.getFullYear(), month));
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
 				this.model.startDate = this.model.endDate;
