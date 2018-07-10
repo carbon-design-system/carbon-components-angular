@@ -118,11 +118,39 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	private _totalDataLength: number;
+
+	/**
+	 * Manually set data length in case the data in the table doesn't
+	 * correctly reflect all the data that table is to disply.
+	 *
+	 * Example: if you have multiple pages of data that table will display
+	 * but you're loading one at a time.
+	 *
+	 * Set to `null` to reset to default behaviour.
+	 *
+	 * @memberof TableModel
+	 */
 	set totalDataLength(length: number) {
 		this._totalDataLength = length;
 	}
+
+	/**
+	 * Total length of data that table has access to, or the amount manually set
+	 *
+	 * @memberof TableModel
+	 */
 	get totalDataLength() {
-		return (this._totalDataLength && this._totalDataLength >= 0) ? this._totalDataLength : this.data.length;
+		// if manually set data length
+		if (this._totalDataLength && this._totalDataLength >= 0) {
+			return this._totalDataLength;
+		}
+
+		// if empty dataset
+		if (this.data && this.data.length === 1 && this.data[0].length === 0) {
+			return 0;
+		}
+
+		return this.data.length;
 	}
 
 	/**
