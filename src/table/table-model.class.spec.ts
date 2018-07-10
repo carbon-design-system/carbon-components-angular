@@ -1,13 +1,6 @@
-import { TestBed } from "@angular/core/testing";
 import { TableModel, TableItem, TableHeaderItem } from "./table.module";
 
 describe("Table", () => {
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			declarations: []
-		});
-	});
-
 	it("empty model should have length 0", () => {
 		let tableModel  = new TableModel();
 		tableModel.data = [[]];
