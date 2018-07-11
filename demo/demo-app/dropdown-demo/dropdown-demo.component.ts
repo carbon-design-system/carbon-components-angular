@@ -11,6 +11,7 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 			<n-dropdown
 				placeholder="Select an option"
 				size="sm">
+				<n-icon icon="build" color="blue" size="sm"></n-icon>
 				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
 			</n-dropdown>
 			<br>
