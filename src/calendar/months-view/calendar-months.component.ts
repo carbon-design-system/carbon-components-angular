@@ -145,6 +145,10 @@ export class CalendarMonths implements OnInit {
 	 * @memberof CalendarMonths
 	 */
 	selectMonth(month: number) {
+		if (this.isDisabled(month)) {
+			return;
+		}
+
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
 			this.model.selectMonthEnd(new Date(this.currentView.getFullYear(), month));

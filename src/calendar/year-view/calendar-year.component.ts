@@ -156,6 +156,10 @@ export class CalendarYear implements OnInit {
 	selectYear(year: number) {
 		const selectedYear = this.currentView.getFullYear() - year;
 
+		if (this.isDisabled(year)) {
+			return;
+		}
+
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
 			this.model.selectYearEnd(new Date(selectedYear));

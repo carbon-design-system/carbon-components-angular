@@ -165,6 +165,9 @@ export class CalendarQuarter implements OnInit {
 	 * @memberof CalendarQuarter
 	 */
 	selectQuarter(quarter: number) {
+		if (this.isDisabled(quarter)) {
+			return;
+		}
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
 			this.model.selectQuarterEnd(quarter, this.currentView.getFullYear());

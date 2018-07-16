@@ -82,6 +82,8 @@ export class CalendarHeader {
 			this.currentView = new Date();
 		}
 
-		return DateTimeModel.monthsTranslateKeys[this.currentView.getMonth() + position];
+		const currentMonthInView = (this.currentView.getMonth() + position) % 12;
+
+		return DateTimeModel.monthsTranslateKeys[currentMonthInView];
 	}
 }
