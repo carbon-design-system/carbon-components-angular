@@ -11,14 +11,14 @@ import { range } from "../common/utils";
 				<ul>
 					<li class="pagination_chevron">
 						<a (click)="previousYear()" title="Previous page" aria-label="Previous page">
-							<n-static-icon icon="chevron_left" size="xs"></n-static-icon>
+							<peretz-icon set="arrows_chevrons" icon="chevron_left" size="xs"></peretz-icon>
 						</a>
 					</li>
 					<li *ngIf="header === 'yearOnlyRange'">{{getYear() - 5}} - {{getYear()}}</li>
 					<li *ngIf="header !== 'yearOnlyRange'">{{getYear()}}</li>
 					<li class="pagination_chevron">
 						<a (click)="nextYear()" title="Next page" aria-label="Next page">
-							<n-static-icon icon="chevron_right" size="xs"></n-static-icon>
+							<peretz-icon set="arrows_chevrons" icon="chevron_right" size="xs"></peretz-icon>
 						</a>
 					</li>
 				</ul>
@@ -31,7 +31,7 @@ import { range } from "../common/utils";
 				<ul>
 					<li class="pagination_chevron">
 						<a (click)="previousMonth()" title="Previous page" aria-label="Previous page">
-							<n-static-icon icon="chevron_left" size="xs"></n-static-icon>
+							<peretz-icon set="arrows_chevrons" icon="chevron_left" size="xs"></peretz-icon>
 						</a>
 					</li>
 					<li
@@ -41,7 +41,7 @@ import { range } from "../common/utils";
 					</li>
 					<li class="pagination_chevron">
 						<a (click)="nextMonth()" title="Next page" aria-label="Next page">
-							<n-static-icon icon="chevron_right" size="xs"></n-static-icon>
+							<peretz-icon set="arrows_chevrons" icon="chevron_right" size="xs"></peretz-icon>
 						</a>
 					</li>
 				</ul>
@@ -49,7 +49,7 @@ import { range } from "../common/utils";
 	`
 })
 export class CalendarHeader {
-	@Input() currentView: Date;
+	@Input() currentView = new Date();
 	@Input() header;
 	@Input() monthCount = 1;
 
@@ -74,14 +74,10 @@ export class CalendarHeader {
 	}
 
 	getYear() {
-		return this.currentView ? this.currentView.getFullYear() : new Date().getFullYear();
+		return this.currentView.getFullYear();
 	}
 
 	getMonth(position = 0) {
-		if (!this.currentView) {
-			this.currentView = new Date();
-		}
-
 		const currentMonthInView = (this.currentView.getMonth() + position) % 12;
 
 		return DateTimeModel.monthsTranslateKeys[currentMonthInView];

@@ -44,7 +44,6 @@ import { range } from "../../common/utils";
 	`
 })
 export class CalendarMonth implements OnInit {
-
 	/**
 	 * `DateTimeModel` to be used in this view.
 	 *
@@ -75,18 +74,8 @@ export class CalendarMonth implements OnInit {
 	 */
 	rangeSelectionInProgress = false;
 
-	/**
-	 * `number` of year in the current month view.
-	 *
-	 * @type {number}
-	 * @memberof CalendarMonth
-	 */
-	currentYearInView: number;
-
-
 	ngOnInit() {
 		this.currentView = new Date(this.model.startDate);
-		this.currentYearInView = this.currentView.getFullYear();
 
 		if (!this.currentView || isNaN(this.currentView.getTime())) {
 			this.currentView = new Date();
@@ -177,13 +166,14 @@ export class CalendarMonth implements OnInit {
 		}
 
 		const currentMonthInView = (this.currentView.getMonth() + position) % 12;
+		let currentYearInView = this.currentView.getFullYear();
 
 		if (this.currentView.getMonth() + position === 12) {
-			this.currentYearInView += 1;
+			currentYearInView += 1;
 		}
 
 		return currentMonthInView === date.getMonth() &&
-			this.currentYearInView === date.getFullYear();
+			currentYearInView === date.getFullYear();
 	}
 
 	/**
@@ -199,14 +189,15 @@ export class CalendarMonth implements OnInit {
 		}
 
 		const currentMonthInView = (this.currentView.getMonth() + position) % 12;
+		let currentYearInView = this.currentView.getFullYear();
 
 		if (this.currentView.getMonth() + position === 12) {
-			this.currentYearInView += 1;
+			currentYearInView += 1;
 		}
 
 		if (this.rangeSelectionInProgress) {
 			this.rangeSelectionInProgress = false;
-			this.model.endDate = DateTimeModel.dayEnd(new Date(this.currentYearInView, currentMonthInView, day));
+			this.model.endDate = DateTimeModel.dayEnd(new Date(currentYearInView, currentMonthInView, day));
 
 			if (this.model.startDate.getTime() > this.model.endDate.getTime()) {
 				const tmp = this.model.startDate;
@@ -215,7 +206,7 @@ export class CalendarMonth implements OnInit {
 			}
 		} else {
 			this.rangeSelectionInProgress = true;
-			this.model.selectDay(new Date(this.currentYearInView, currentMonthInView, day));
+			this.model.selectDay(new Date(currentYearInView, currentMonthInView, day));
 		}
 	}
 }

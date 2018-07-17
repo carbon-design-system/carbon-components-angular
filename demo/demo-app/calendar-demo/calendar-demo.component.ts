@@ -50,7 +50,7 @@ export class CalendarDemo implements OnInit {
 	disabledRangeStart = new Date(2016, 0, 0);
 	disabledRangeEnd = new Date(2017, 5, 3);
 
-	todayMinusYear = new Date(this.date.getFullYear() + 1, this.date.getMonth(), this.date.getDate());
+	todayPlusYear = new Date(this.date.getFullYear() + 1, this.date.getMonth(), this.date.getDate());
 
 	constructor() {
 		this.monthViewModel.disabledDates = [this.disabledDay];
@@ -70,6 +70,6 @@ export class CalendarDemo implements OnInit {
 		this.quarterViewModel.endDate = this.todayPlus5;
 
 		this.yearViewModel.startDate = this.date;
-		this.yearViewModel.endDate = this.todayMinusYear;
+		this.yearViewModel.endDate = this.todayPlusYear;
 	}
 }

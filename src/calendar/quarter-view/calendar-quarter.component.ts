@@ -40,7 +40,6 @@ import { range } from "../../common/utils";
 	`
 })
 export class CalendarQuarter implements OnInit {
-
 	/**
 	 * `DateTimeModel` to be used in this view.
 	 *
