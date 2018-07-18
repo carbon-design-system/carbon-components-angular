@@ -114,9 +114,14 @@
 
 **Merged pull requests:**
 
+- Update keys for real now [\#955](https://github.ibm.com/peretz/neutrino/pull/955) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Use new artifactory token [\#953](https://github.ibm.com/peretz/neutrino/pull/953) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Return expected `totalDataLength` when data is essentially empty [\#949](https://github.ibm.com/peretz/neutrino/pull/949) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Bring back pretty filter count bubble [\#948](https://github.ibm.com/peretz/neutrino/pull/948) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Add a `range` function to be used in angular templates [\#946](https://github.ibm.com/peretz/neutrino/pull/946) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Improve quarter selection [\#945](https://github.ibm.com/peretz/neutrino/pull/945) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Fix dialogs placing incorrectly [\#944](https://github.ibm.com/peretz/neutrino/pull/944) ([callums](https://github.ibm.com/callums))
+-  Add unit tests to ButtonMenu [\#943](https://github.ibm.com/peretz/neutrino/pull/943) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Autoposition filter popup in table [\#942](https://github.ibm.com/peretz/neutrino/pull/942) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Enable dialog auto positioning [\#941](https://github.ibm.com/peretz/neutrino/pull/941) ([callums](https://github.ibm.com/callums))
 - Fix sprite loading triggering too early [\#940](https://github.ibm.com/peretz/neutrino/pull/940) ([callums](https://github.ibm.com/callums))
