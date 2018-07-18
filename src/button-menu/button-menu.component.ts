@@ -172,15 +172,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		const listItems = Array.prototype.slice.call(menu.querySelectorAll("[role='menuitem']"));
 
 		// Allows opening of the menu
-		if (event.key === "ArrowDown" && event.altKey || event.key === "Enter" || event.key === " ") {
-			event.preventDefault();
-			if (event.key === "Enter" && event.target === this.mainButton.nativeElement) {
-				this.onClick.emit();
-			}
-			if (event.key === "Enter" && !this.menuIsClosed) {
-				this.closeMenu();
-				this.rootButton.nativeElement.focus();
-			}
+		if (event.key === "ArrowDown" && event.altKey || event.key === " ") {
 			if (event.target === this.rootButton.nativeElement) {
 				this.openMenu();
 			}
@@ -189,6 +181,11 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		// Everything else only happens on an open menu
 		if (this.menuIsClosed) {
 			return;
+		}
+
+		if (event.key === "Enter") {
+			setTimeout(() => this.closeMenu());
+			this.rootButton.nativeElement.focus();
 		}
 
 		if (event.key === "ArrowDown") {
