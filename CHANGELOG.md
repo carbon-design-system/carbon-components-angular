@@ -115,6 +115,7 @@
 **Merged pull requests:**
 
 - Update keys for real now [\#955](https://github.ibm.com/peretz/neutrino/pull/955) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
+- Fix ButtonMenu keyboard interactions [\#954](https://github.ibm.com/peretz/neutrino/pull/954) ([ouda-yousef](https://github.ibm.com/ouda-yousef))
 - Use new artifactory token [\#953](https://github.ibm.com/peretz/neutrino/pull/953) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Return expected `totalDataLength` when data is essentially empty [\#949](https://github.ibm.com/peretz/neutrino/pull/949) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
 - Bring back pretty filter count bubble [\#948](https://github.ibm.com/peretz/neutrino/pull/948) ([Zvonimir-Fras](https://github.ibm.com/Zvonimir-Fras))
