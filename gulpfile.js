@@ -8,13 +8,13 @@
 // =================================
 const gulp = require("gulp");
 const sass = require("node-sass");
-const concat = require("gulp-concat");
 const tap = require("gulp-tap");
 const path = require("path");
 const fs = require("fs");
 const es = require("event-stream");
 const runSequence = require("run-sequence");
-
+const iconLoader = require("@peretz/icon-loader");
+const through = require("through2");
 //
 // Variables
 // =================================
@@ -49,6 +49,7 @@ const licenseTemplate = `/*!
 gulp.task("build:angular", _ =>
 	gulp.src(dirs.TS)
 		.pipe(replaceTemplates())
+		.pipe(replaceIcons())
 		.pipe(gulp.dest(`${dirs.DIST}/src`))
 );
 
@@ -99,7 +100,7 @@ gulp.task("demo:font", _ =>
 //
 // Running tasks
 // =================================
-gulp.task("build", ["build:angular", "build:i18n"]);
+gulp.task("build", () => runSequence("build:angular", "build:i18n"));
 
 gulp.task("build:meta", _ =>
 	runSequence("build:package", ["build:license", "build:readme", "build:changelog"])
@@ -137,6 +138,29 @@ function version() {
 		}
 		// otherwise we'll do a standard release with whatever version is in the package.json
 		file.contents = new Buffer(JSON.stringify(packageJSON));
+	});
+}
+
+// custom gulp plugin
+// TODO: add to icon-loader
+function replaceIcons() {
+	return through.obj(function (file, enc, cb) {
+		if (file.isNull()) {
+			return cb(null, file);
+		}
+		let asyncTrue = false;
+		iconLoader.prototype.async = function () {
+			asyncTrue = true;
+		};
+		iconLoader.prototype.callback = function (error, result) {
+			file.contents = new Buffer(result);
+			cb(null, file);
+		};
+		new iconLoader(file.contents.toString());
+		// no async means no processing, means return the file!
+		if (!asyncTrue) {
+			cb(null, file);
+		}
 	});
 }
 
