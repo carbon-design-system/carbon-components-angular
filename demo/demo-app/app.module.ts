@@ -1,4 +1,3 @@
-import { APP_BASE_HREF } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -39,6 +38,7 @@ import { ChartDemo } from "./chart-demo/chart-demo.component";
 import { ButtonMenuDemo } from "./button-menu-demo/button-menu-demo.component";
 import { ConditionBuilderDemo } from "./condition-builder-demo/condition-builder-demo.component";
 import { ConditionBuilderDemoService } from "./condition-builder-demo/condition-builder-demo.service";
+import { CalendarDemo } from "./calendar-demo/calendar-demo.component";
 
 import { AppDoc } from "./doc.component";
 
@@ -62,7 +62,8 @@ import {
 	TabsModule,
 	TopNavModule,
 	TreeViewModule,
-	PillInputModule
+	PillInputModule,
+	CalendarModule
 } from "./../../src";
 
 
@@ -94,7 +95,8 @@ import {
 		BannerCustom,
 		ComboboxDemo,
 		ChartDemo,
-		ConditionBuilderDemo
+		ConditionBuilderDemo,
+		CalendarDemo
 	],
 	entryComponents: [
 		SampleModalComponent,
@@ -127,6 +129,7 @@ import {
 		TabsModule,
 		TopNavModule,
 		TreeViewModule,
+		CalendarModule,
 		RouterModule.forRoot([
 			{
 				path: "",
@@ -187,6 +190,10 @@ import {
 			{
 				path: "banner",
 				component: BannerDemo
+			},
+			{
+				path: "calendar",
+				component: CalendarDemo
 			},
 			{
 				path: "combobox",

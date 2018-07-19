@@ -37,8 +37,8 @@ import { Tab } from "./tab.component";
 				class="tabs_scroll-btn--left"
 				[class.disabled]="disabledLeftArrow"
 				(click)="goLeft()">
-				<n-static-icon *ngIf="!disabledLeftArrow" icon="chevron_left" size="sm"></n-static-icon>
-				<n-static-icon *ngIf="disabledLeftArrow" icon="chevron_left_disabled" size="sm"></n-static-icon>
+				<n-static-icon *ngIf="!disabledLeftArrow" icon="chevron_left_circle" size="sm"></n-static-icon>
+				<n-static-icon *ngIf="disabledLeftArrow" icon="chevron_left_circle_disabled" size="sm"></n-static-icon>
 			</button>
 			<div [ngClass]="{'tablist-overflow': overflow}">
 				<ul
@@ -79,8 +79,8 @@ import { Tab } from "./tab.component";
 				class="tabs_scroll-btn--right"
 				[class.disabled]="disabledRightArrow"
 				(click)="goRight()">
-				<n-static-icon *ngIf="!disabledRightArrow" icon="chevron_right" size="sm"></n-static-icon>
-				<n-static-icon *ngIf="disabledRightArrow" icon="chevron_right_disabled" size="sm"></n-static-icon>
+				<n-static-icon *ngIf="!disabledRightArrow" icon="chevron_right_circle" size="sm"></n-static-icon>
+				<n-static-icon *ngIf="disabledRightArrow" icon="chevron_right_circle_disabled" size="sm"></n-static-icon>
 			</button>
 			<ng-content select=".tabs_add"></ng-content>
 			<ng-content></ng-content>

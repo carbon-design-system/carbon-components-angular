@@ -1,4 +1,30 @@
 export class DateTimeModel {
+
+	static monthsTranslateKeys = [
+		"CALENDAR.MONTHS.JANUARY",
+		"CALENDAR.MONTHS.FEBRUARY",
+		"CALENDAR.MONTHS.MARCH",
+		"CALENDAR.MONTHS.APRIL",
+		"CALENDAR.MONTHS.MAY",
+		"CALENDAR.MONTHS.JUNE",
+		"CALENDAR.MONTHS.JULY",
+		"CALENDAR.MONTHS.AUGUST",
+		"CALENDAR.MONTHS.SEPTEMBER",
+		"CALENDAR.MONTHS.OCTOBER",
+		"CALENDAR.MONTHS.NOVEMBER",
+		"CALENDAR.MONTHS.DECEMBER"
+	];
+
+	static shortWeekdaysTranslateKeys = [
+		"CALENDAR.SHORTWEEKDAYS.SUNDAY",
+		"CALENDAR.SHORTWEEKDAYS.MONDAY",
+		"CALENDAR.SHORTWEEKDAYS.TUESDAY",
+		"CALENDAR.SHORTWEEKDAYS.WEDNESDAY",
+		"CALENDAR.SHORTWEEKDAYS.THURSDAY",
+		"CALENDAR.SHORTWEEKDAYS.FRIDAY",
+		"CALENDAR.SHORTWEEKDAYS.SATURDAY"
+	];
+
 	static dayStart(day: Date) {
 		return new Date(day.getFullYear(), day.getMonth(), day.getDate());
 	}
@@ -64,15 +90,15 @@ export class DateTimeModel {
 	 */
 	get daysOfWeek() {
 		const sunday = new Date(2018, 5, 10);
-		const retVal = [];
+		const result = [];
 
 		for (let i = this.weekStart; i < this.weekStart + 7; i++) {
 			const day = new Date(sunday);
 			day.setDate(day.getDate() + i);
-			retVal.push(day.toLocaleString(navigator.language, {weekday: "short"}));
+			result.push(DateTimeModel.shortWeekdaysTranslateKeys[day.getDay()]);
 		}
 
-		return retVal;
+		return result;
 	}
 
 	constructor(startDate?: Date, endDate?: Date) {
@@ -89,8 +115,8 @@ export class DateTimeModel {
 	 * @memberof DateTimeModel
 	 */
 	selectDay(day: Date = new Date()) {
-		this.startDate = new Date(day.getFullYear(), day.getMonth(), day.getDate());
-		this.endDate = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23, 59, 59);
+		this.startDate = DateTimeModel.dayStart(day);
+		this.endDate = DateTimeModel.dayEnd(day);
 	}
 
 	/**
@@ -167,6 +193,16 @@ export class DateTimeModel {
 	 */
 	selectMonth(day = new Date()) {
 		this.startDate = new Date(day.getFullYear(), day.getMonth(), 1);
+		this.selectMonthEnd(day);
+	}
+
+	/**
+	 * Selects end of month that `day` belongs to.
+	 *
+	 * @param {*} [day=new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectMonthEnd(day = new Date()) {
 		this.endDate = new Date(day.getFullYear(), day.getMonth() + 1, 0, 23, 59, 59);  // 0 selects last day of previous month
 	}
 
@@ -252,6 +288,36 @@ export class DateTimeModel {
 
 	selectLastQuarter(date = new Date()) {
 		this.selectQuarter(date.getMonth() / 3, date.getFullYear());
+	}
+
+	/**
+	 * Selects year that `day` belongs to.
+	 *
+	 * @param {*} [day=new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectYear(day = new Date()) {
+		this.selectYearStart(day);
+		this.selectYearEnd(day);
+	}
+
+	/**
+	 * Selects end of year that `day` belongs to.
+	 *
+	 * @param {*} [day=new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectYearEnd(day = new Date()) {
+		this.endDate = new Date(day.getFullYear(), 11, 31, 23, 59, 59);  // 31st of December of given year
+	}
+
+	/**
+	 * Selects start of year that `day` belongs to.
+	 *
+	 * @memberof DateTimeModel
+	 */
+	selectYearStart(day = new Date()) {
+		this.startDate = new Date(day.getFullYear(), 0, 1);  // 1st of January
 	}
 
 	/**

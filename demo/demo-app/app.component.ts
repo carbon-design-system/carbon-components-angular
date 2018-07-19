@@ -178,6 +178,11 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
+			content: "Calendar",
+			link: "/calendar",
+			selected: false
+		},
+		{
 			content: "Combo box",
 			link: "/combobox",
 			selected: false
