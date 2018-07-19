@@ -24,7 +24,7 @@ import position from "../../utils/position";
 	selector: "n-popover-menu",
 	template: `
 		<div
-			class="popover--menu-{{dialogConfig.placement}}"
+			class="popover--menu-{{placement}}"
 			role="dialog"
 			[id]="dialogConfig.compID"
 			tabindex="0"
