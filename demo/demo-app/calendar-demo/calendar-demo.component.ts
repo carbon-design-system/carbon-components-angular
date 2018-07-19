@@ -46,17 +46,19 @@ export class CalendarDemo implements OnInit {
 
 	todayPlus5 = new Date(this.date.getFullYear(), this.date.getMonth() + 4, this.date.getDate() + 5);
 
-	disabledDay = new Date(2018, 6, 3);
-	disabledRangeStart = new Date(2016, 0, 0);
-	disabledRangeEnd = new Date(2017, 5, 3);
+
 
 	todayPlusYear = new Date(this.date.getFullYear() + 1, this.date.getMonth(), this.date.getDate());
 
 	constructor() {
-		this.monthViewModel.disabledDates = [this.disabledDay];
-		this.monthsViewModel.disabledDates = [[this.disabledRangeStart, this.disabledRangeEnd]];
-		this.quarterViewModel.disabledDates = [[this.disabledRangeStart, this.disabledRangeEnd]];
-		this.yearViewModel.disabledDates = [[this.disabledRangeStart, this.disabledRangeEnd]];
+		const disabledDay = new Date(2018, 6, 3);
+		const disabledRangeStart = new Date(2016, 0, 0);
+		const disabledRangeEnd = new Date(2017, 5, 3);
+
+		this.monthViewModel.disabledDates = [disabledDay];
+		this.monthsViewModel.disabledDates = [[disabledRangeStart, disabledRangeEnd]];
+		this.quarterViewModel.disabledDates = [[disabledRangeStart, disabledRangeEnd]];
+		this.yearViewModel.disabledDates = [[disabledRangeStart, disabledRangeEnd]];
 	}
 
 	ngOnInit() {
