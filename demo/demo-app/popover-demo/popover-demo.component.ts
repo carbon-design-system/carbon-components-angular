@@ -103,7 +103,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 	<span>
 		<button class="btn--icon-link popover-menu-button"
 			[nPopoverMenu]="list"
-			placement="bottom-right"
+			placement="bottom-right,bottom-left"
 			title="Actions">
 			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
 			Menu right
