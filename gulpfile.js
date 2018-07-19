@@ -8,13 +8,13 @@
 // =================================
 const gulp = require("gulp");
 const sass = require("node-sass");
-const concat = require("gulp-concat");
 const tap = require("gulp-tap");
 const path = require("path");
 const fs = require("fs");
 const es = require("event-stream");
 const runSequence = require("run-sequence");
-
+const iconLoader = require("@peretz/icon-loader");
+const through = require("through2");
 //
 // Variables
 // =================================
@@ -100,7 +100,7 @@ gulp.task("demo:font", _ =>
 //
 // Running tasks
 // =================================
-gulp.task("build", ["build:angular", "build:i18n"]);
+gulp.task("build", () => runSequence("build:angular", "build:i18n"));
 
 gulp.task("build:meta", _ =>
 	runSequence("build:package", ["build:license", "build:readme", "build:changelog"])
@@ -148,12 +148,19 @@ function replaceIcons() {
 		if (file.isNull()) {
 			return cb(null, file);
 		}
-		iconLoader.prototype.async = function () { };
+		let asyncTrue = false;
+		iconLoader.prototype.async = function () {
+			asyncTrue = true;
+		};
 		iconLoader.prototype.callback = function (error, result) {
 			file.contents = new Buffer(result);
 			cb(null, file);
 		};
 		new iconLoader(file.contents.toString());
+		// no async means no processing, means return the file!
+		if (!asyncTrue) {
+			cb(null, file);
+		}
 	});
 }
 
