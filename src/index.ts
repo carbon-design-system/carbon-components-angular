@@ -1,5 +1,6 @@
 export * from "./banner/banner.module";
 export * from "./button-menu/button-menu.module";
+export * from "./calendar/calendar.module";
 export * from "./charts/charts.module";
 export * from "./combobox/combobox.module";
 export * from "./common/common.module";

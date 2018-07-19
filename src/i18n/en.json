@@ -2,6 +2,51 @@
 	"BANNER": {
 		"CLOSE_BUTTON": "Close alert banner"
 	},
+	"CALENDAR": {
+		"MONTHS":{
+			"JANUARY": "January",
+			"FEBRUARY": "February",
+			"MARCH": "March",
+			"APRIL": "April",
+			"MAY": "May",
+			"JUNE": "June",
+			"JULY": "July",
+			"AUGUST": "August",
+			"SEPTEMBER": "September",
+			"OCTOBER": "October",
+			"NOVEMBER": "November",
+			"DECEMBER": "December"
+		},
+		"SHORTWEEKDAYS":{
+			"SUNDAY": "Sun",
+			"MONDAY": "Mon",
+			"TUESDAY": "Tue",
+			"WEDNESDAY": "Wed",
+			"THURSDAY": "Thu",
+			"FRIDAY": "Fri",
+			"SATURDAY": "Sat"
+		},
+		"QUARTERS":
+		[
+			{
+				"name": "Q1",
+				"months": "January-March"
+			}
+			,
+			{
+				"name": "Q2",
+				"months": "April-June"
+			},
+			{
+				"name": "Q3",
+				"months": "July-September"
+			},
+			{
+				"name": "Q4",
+				"months": "October-December"
+			}
+		]
+	},
 	"DIALOG": {
 		"TOOLTIP": {
 			"CLOSE": "Close tooltip"
