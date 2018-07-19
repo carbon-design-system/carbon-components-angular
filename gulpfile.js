@@ -49,6 +49,7 @@ const licenseTemplate = `/*!
 gulp.task("build:angular", _ =>
 	gulp.src(dirs.TS)
 		.pipe(replaceTemplates())
+		.pipe(replaceIcons())
 		.pipe(gulp.dest(`${dirs.DIST}/src`))
 );
 
@@ -137,6 +138,22 @@ function version() {
 		}
 		// otherwise we'll do a standard release with whatever version is in the package.json
 		file.contents = new Buffer(JSON.stringify(packageJSON));
+	});
+}
+
+// custom gulp plugin
+// TODO: add to icon-loader
+function replaceIcons() {
+	return through.obj(function (file, enc, cb) {
+		if (file.isNull()) {
+			return cb(null, file);
+		}
+		iconLoader.prototype.async = function () { };
+		iconLoader.prototype.callback = function (error, result) {
+			file.contents = new Buffer(result);
+			cb(null, file);
+		};
+		new iconLoader(file.contents.toString());
 	});
 }
 
