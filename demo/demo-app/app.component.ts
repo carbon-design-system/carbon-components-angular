@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { IconService } from "./../../src";
-import "rxjs/add/operator/filter";
+import { filter } from "rxjs/operators";
 
 const en = require("./../../src/i18n/en.json");
 
@@ -185,13 +185,13 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.router.events.filter(x => x instanceof NavigationEnd).subscribe(x => {
+		this.router.events.pipe(filter(x => x instanceof NavigationEnd)).subscribe(x => {
 			if (x["url"] === "/" && this.previousItem) {
 				this.previousItem.selected = false;
 			}
 		});
 
-		this.router.events.filter(x => x instanceof NavigationStart).subscribe(x => {
+		this.router.events.pipe(filter(x => x instanceof NavigationStart)).subscribe(x => {
 			if (this.previousItem) {
 				this.previousItem.selected = false;
 			}

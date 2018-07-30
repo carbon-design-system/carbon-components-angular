@@ -1,6 +1,5 @@
 import {
 	Component,
-	OnInit,
 	Input,
 	Output,
 	EventEmitter,
@@ -8,7 +7,6 @@ import {
 	ViewChild,
 	ViewChildren,
 	QueryList,
-	forwardRef,
 	OnChanges,
 	AfterViewInit,
 	HostBinding

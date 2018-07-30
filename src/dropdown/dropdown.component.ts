@@ -17,7 +17,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { Observable, fromEvent, Subscription } from "rxjs";
+import { Observable, fromEvent, of, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 
 import { TranslateService } from "@ngx-translate/core";
@@ -356,12 +356,12 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			if (this.type === "multi") {
 				return this.translate.get("DROPDOWN.SELECTED", {number: selected.length});
 			} else {
-				return Observable.of(selected[0].content);
+				return of(selected[0].content);
 			}
 		} else if (selected) {
-			return Observable.of(this.displayValue);
+			return of(this.displayValue);
 		}
-		return Observable.of(this.placeholder);
+		return of(this.placeholder);
 	}
 
 	/**
@@ -453,8 +453,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		document.body.appendChild(this.dropdownWrapper);
 		positionDropdown();
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
-		this.resize = Observable.fromEvent(window, "resize")
-			.throttleTime(100)
+		this.resize = fromEvent(window, "resize")
+			.pipe(throttleTime(100))
 			.subscribe(() => positionDropdown());
 	}
 
@@ -536,7 +536,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			const container = document.querySelector(this.scrollableContainer);
 
 			if (container) {
-				this.scroll = Observable.fromEvent(container, "scroll")
+				this.scroll = fromEvent(container, "scroll")
 				.subscribe(() => {
 					if (this.isVisibleInContainer(this.elementRef.nativeElement, container)) {
 						position.setElement(

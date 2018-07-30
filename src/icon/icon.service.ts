@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { Http } from "@angular/http";
-import { toPromise } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { tap, catchError } from "rxjs/operators";
 import { IconSize } from "./icon.types";
 
 /**
@@ -20,7 +21,7 @@ export class IconService {
 	 *
 	 * we just cache the whole promise since we can always `.then` out the result
 	 * */
-	private static spriteCache: Map<string, Promise<string>> = new Map<string, Promise<string>>();
+	private static spriteCache: Map<string, Observable<string>> = new Map<string, Observable<string>>();
 	/** how aggressively to cache sprites. defaults to simple */
 	private static cacheLevel: "none" | "simple" = "simple";
 	/** URL to request sprites from */
@@ -52,26 +53,24 @@ export class IconService {
 	}
 
 	/** get an instance of the Http service */
-	constructor(private http: Http) {}
+	constructor(private http: HttpClient) {}
 
 	/**
 	 * Responsible for fetching sprites from the `baseURL`
 	 *
 	 * @param {string} name name of the sprite to request
 	 */
-	doSpriteRequest(name: string) {
+	doSpriteRequest(name: string): Observable<string> {
 		IconService.runningRequests++;
-		return this.http.get(`${IconService.baseURL}${name}.svg`)
-			.toPromise()
-			.then(res => {
-				IconService.runningRequests--;
-				return res;
-			})
-			.then(res => res.text(),
-				err => {
-					console.error(`failed to load sprite ${name}, check that the server is available and baseURL is correct`);
-					return "";
-				});
+		return this.http.get(`${IconService.baseURL}${name}.svg`, { responseType: "text" })
+			.pipe(
+				tap(() => IconService.runningRequests--),
+				catchError(() => {
+					const error = `failed to load sprite ${name}, check that the server is available and baseURL is correct`;
+					console.error(error);
+					return throwError(error);
+				})
+			);
 	}
 
 	/**
@@ -107,7 +106,7 @@ export class IconService {
 	 *
 	 * @param {string} name name of the sprite to request
 	 */
-	getSprite(name: string) {
+	getSprite(name: string): Observable<string> {
 		if (IconService.cacheLevel === "none") {
 			return this.doSpriteRequest(name);
 		} else {

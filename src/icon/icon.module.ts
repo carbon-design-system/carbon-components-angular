@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 
 import { StaticIconModule } from "./static-icon.module";
 export { StaticIconModule } from "./static-icon.module";
@@ -22,6 +22,6 @@ export { Sprite } from "./sprite.component";
 		Icon,
 		Sprite
 	],
-	imports: [HttpModule, CommonModule, StaticIconModule]
+	imports: [HttpClientModule, CommonModule, StaticIconModule]
 })
 export class IconModule {}

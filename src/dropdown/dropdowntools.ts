@@ -8,17 +8,18 @@ import { debounceTime, map, filter } from "rxjs/operators";
  *
  * @param {HTMLElement} target element to watch
  * @param {Array<HTMLElement>} elements elements to search
- * @returns {Observable<HTMLElement>}
  */
 export function watchFocusJump(target: HTMLElement, elements): Observable<HTMLElement> {
-	return Observable.fromEvent(target, "keydown")
-		.debounceTime(150)
-		.map((ev: KeyboardEvent) => {
-			let el = elements.find((itemEl) =>
-				itemEl.textContent.trim().toLowerCase().startsWith(ev.key));
-			if (el) { return el; }
-		})
-		.filter(el => !!el);
+	return fromEvent(target, "keydown")
+		.pipe(
+			debounceTime(150),
+			map((ev: KeyboardEvent) => {
+				let el = elements.find((itemEl) =>
+					itemEl.textContent.trim().toLowerCase().startsWith(ev.key));
+				if (el) { return el; }
+			}),
+			filter(el => !!el)
+		);
 }
 
 /** bundle of functions to aid in manipulating tree structures */

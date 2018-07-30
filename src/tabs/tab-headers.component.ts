@@ -4,13 +4,12 @@ import {
 	Input,
 	HostListener,
 	ViewChild,
-	ViewChildren,
 	AfterViewInit,
 	ContentChildren,
 	AfterContentInit
 } from "@angular/core";
 
-import { Observable, fromEvent } from "rxjs";
+import { fromEvent } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 
 import { Tab } from "./tab.component";
@@ -290,8 +289,8 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 		});
 
 		// check for window resize
-		Observable.fromEvent(window, "resize")
-			.throttleTime(100)
+		fromEvent(window, "resize")
+			.pipe(throttleTime(100))
 			.subscribe(() => this.scrollCheck());
 		this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 	}

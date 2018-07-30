@@ -13,10 +13,10 @@ import {
 import {
 	Observable,
 	Subscription,
-	throttleTime,
-	fromEvent
+	fromEvent,
+	merge
 } from "rxjs";
-import { merge } from "rxjs/operators";
+import { throttleTime } from "rxjs/operators";
 import position, { AbsolutePosition } from "../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
@@ -44,7 +44,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @type {Observable<any>}
 	 * @memberof Dialog
 	 */
-	protected static resizeObservable: Observable<any> = Observable.fromEvent(window, "resize").throttleTime(100);
+	protected static resizeObservable: Observable<any> = fromEvent(window, "resize").pipe(throttleTime(100));
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
 	 * @type {EventEmitter<any>}
@@ -169,12 +169,12 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 				// walk the parents and subscribe to all the scroll events we can
 				while (node.parentElement && node !== document.body) {
 					if (isScrollableElement(node)) {
-						observables.push(Observable.fromEvent(node, "scroll"));
+						observables.push(fromEvent(node, "scroll"));
 					}
 					node = node.parentElement;
 				}
 				// subscribe to the observable, and update the position and visibility
-				const scrollObservable = Observable.merge(...observables);
+				const scrollObservable = merge(...observables);
 				this.scrollSubscription = scrollObservable.subscribe((event: any) => {
 					this.placeDialog();
 					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {

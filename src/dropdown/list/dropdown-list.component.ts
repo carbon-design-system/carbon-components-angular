@@ -15,7 +15,6 @@ import {
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";
-import { of } from "rxjs";
 import { ScrollableList } from "./../scrollable-list.directive";
 
 

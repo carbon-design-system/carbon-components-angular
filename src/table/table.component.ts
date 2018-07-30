@@ -9,7 +9,7 @@ import {
 	EventEmitter,
 	ViewEncapsulation
 } from "@angular/core";
-import { Subscription, Observable } from "rxjs";
+import { Subscription, fromEvent } from "rxjs";
 
 import { TableModel } from "./table.module";
 import { getScrollbarWidth } from "../common/utils";
@@ -512,10 +512,10 @@ export class Table {
 		this.columnResizeMouseX = event.clientX;
 		event.preventDefault();
 
-		this.mouseMoveSubscription = Observable.fromEvent(document.body, "mousemove").subscribe(event => {
+		this.mouseMoveSubscription = fromEvent(document.body, "mousemove").subscribe(event => {
 			this.columnResizeProgress(event, column);
 		});
-		this.mouseUpSubscription = Observable.fromEvent(document.body, "mouseup").subscribe(event => {
+		this.mouseUpSubscription = fromEvent(document.body, "mouseup").subscribe(event => {
 			this.columnResizeEnd(event, column);
 		});
 	}

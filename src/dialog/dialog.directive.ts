@@ -11,8 +11,7 @@ import {
 	HostListener,
 	OnChanges
 } from "@angular/core";
-import { Observable, fromEvent } from "rxjs";
-import { throttleTime } from "rxjs/operators";
+import { fromEvent } from "rxjs";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
 
@@ -26,7 +25,7 @@ import { DialogConfig } from "./dialog-config.interface";
  * the service relies on.
  */
 @Directive({
-	selector: "[nDialog]",
+	selector: "[ibmDialog]",
 	exportAs: "nDialog",
 	providers: [
 		DialogService
@@ -146,12 +145,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
-			Observable.fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
-			Observable.fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.close());
-			Observable.fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
-			Observable.fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
+			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
+			fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.close());
+			fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
+			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
-			Observable.fromEvent(this.elementRef.nativeElement, "click").subscribe(() => this.toggle());
+			fromEvent(this.elementRef.nativeElement, "click").subscribe(() => this.toggle());
 		}
 
 		// call onClose when the dialog is closed

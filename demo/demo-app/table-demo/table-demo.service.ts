@@ -1,10 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
-import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class TableDemoService {
-	constructor(private http: Http) {}
 
 	getPage(page: number) {
 		const url = `table-demo-data-page-${page}.json`;

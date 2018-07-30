@@ -78,7 +78,7 @@ export class CalendarQuarter implements OnInit {
 	 * @memberof CalendarQuarter
 	 */
 	constructor(private translate: TranslateService) {
-		this.translate.get("CALENDAR.QUARTERS").toPromise().then((res: Array<any>) => {
+		this.translate.get("CALENDAR.QUARTERS").subscribe((res: Array<any>) => {
 			this.quarters = res;
 		});
 	}

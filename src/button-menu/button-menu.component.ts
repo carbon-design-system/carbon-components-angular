@@ -15,8 +15,8 @@ import {
 	QueryList
 } from "@angular/core";
 
-import { Observable, fromEvent, throttleTime } from "rxjs";
-
+import { fromEvent } from "rxjs";
+import { throttleTime } from "rxjs/operators";
 import { position } from "../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 
@@ -282,8 +282,8 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 		document.body.appendChild(this.dropdownWrapper);
 		positionDropdown();
 		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
-		this.resize = Observable.fromEvent(window, "resize")
-			.throttleTime(100)
+		this.resize = fromEvent(window, "resize")
+			.pipe(throttleTime(100))
 			.subscribe(() => positionDropdown());
 	}
 
@@ -332,7 +332,7 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 			const container = document.querySelector(this.scrollableContainer);
 
 			if (container) {
-				this.scroll = Observable.fromEvent(container, "scroll")
+				this.scroll = fromEvent(container, "scroll")
 				.subscribe(() => {
 					if (this.isVisibleInContainer(this.elementRef.nativeElement, container)) {
 						position.setElement(

@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { ModalComponent } from "./modal.component";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
-import { Observable, ReplaySubject } from "rxjs";
+import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 
 
