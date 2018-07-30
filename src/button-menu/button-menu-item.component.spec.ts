@@ -9,10 +9,10 @@ import { ButtonMenu, ButtonMenuItem } from "./button-menu.module";
 @Component({
 	selector: "test-cmp",
 	template: `
-	<n-button-menu>
-		<n-button-menu-item>Edit</n-button-menu-item>
-		<n-button-menu-item>Delete</n-button-menu-item>
-	</n-button-menu>
+	<ibm-button-menu>
+		<ibm-button-menu-item>Edit</ibm-button-menu-item>
+		<ibm-button-menu-item>Delete</ibm-button-menu-item>
+	</ibm-button-menu>
 	`,
 	entryComponents: [ButtonMenu, ButtonMenuItem]
 })
@@ -48,9 +48,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu value='Test'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu value='Test'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -63,60 +63,60 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu size='lg'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu size='lg'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group--lg");
+		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group--lg");
 	});
 
 	it("should create a small button", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu size='sm'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu size='sm'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group--sm");
+		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group--sm");
 	});
 
 	it("should create a medium button", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu size='md'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu size='md'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group");
+		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group");
 	});
 
 	it("should create a medium button on deafult", () => {
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
-		expect(fixture.nativeElement.querySelector("n-button-menu").className).toEqual("btn-group");
+		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group");
 	});
 
 	it("should create a primary button", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu type='primary'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu type='primary'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -129,9 +129,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu type='primary'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu type='primary'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -158,9 +158,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu type='secondary'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu type='secondary'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -173,9 +173,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu type='secondary'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu type='secondary'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -189,16 +189,16 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu disabled="true">
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu disabled="true">
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
 		fixture = TestBed.createComponent(ButtonMenuTestComponent);
 		fixture.detectChanges();
 
-		expect(fixture.nativeElement.querySelector("n-button-menu").getAttribute("disabled")).toBeTruthy();
+		expect(fixture.nativeElement.querySelector("ibm-button-menu").getAttribute("disabled")).toBeTruthy();
 	});
 
 	it("should open and close the menu on Click", () => {
@@ -364,9 +364,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu appendToBody='true'>
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu appendToBody='true'>
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -385,11 +385,11 @@ describe("Button Menu", () => {
 				template: `
 				<div class="appendToBody"
 				style="overflow-y: scroll; height: 63px; position: relative;">
-					<n-button-menu
+					<ibm-button-menu
 					appendToBody="true"
 					scrollableContainer=".appendToBody">
-						<n-button-menu-item>item1</n-button-menu-item>
-					</n-button-menu>
+						<ibm-button-menu-item>item1</ibm-button-menu-item>
+					</ibm-button-menu>
 					<br><br><br><br>
 				</div>
 				`
@@ -410,9 +410,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu (onClick)="doSomething()">
-					<n-button-menu-item>item1</n-button-menu-item>
-				</n-button-menu>
+				<ibm-button-menu (onClick)="doSomething()">
+					<ibm-button-menu-item>item1</ibm-button-menu-item>
+				</ibm-button-menu>
 				`
 			}
 		});
@@ -429,9 +429,9 @@ describe("Button Menu", () => {
 		TestBed.overrideComponent(ButtonMenuTestComponent, {
 			set: {
 				template: `
-				<n-button-menu (close)="doSomething()">
-						<n-button-menu-item>item1</n-button-menu-item>
-					</n-button-menu>
+				<ibm-button-menu (close)="doSomething()">
+						<ibm-button-menu-item>item1</ibm-button-menu-item>
+					</ibm-button-menu>
 				`
 			}
 		});

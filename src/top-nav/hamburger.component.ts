@@ -3,14 +3,14 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 /**
  * ```html
- * <n-hamburger (onClick)="onClick($event)" hamburger></n-hamburger>
+ * <ibm-hamburger (onClick)="onClick($event)" hamburger></ibm-hamburger>
  * ```
  *
  * @export
  * @class Hamburger
  */
 @Component({
-	selector: "n-hamburger",
+	selector: "ibm-hamburger",
 	template: `
 	<button class="top-nav_toggler"
 			[ngClass]="{'active': selected}"

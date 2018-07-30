@@ -12,19 +12,16 @@ import {
 	ElementRef
 } from "@angular/core";
 
-import { findNextElem, findPrevElem } from "./../../common/a11y.service";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
-import { ListGroup } from "./../../list-group/list-group.component";
 import { watchFocusJump } from "./../dropdowntools";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/of";
+import { of } from "rxjs";
 import { ScrollableList } from "./../scrollable-list.directive";
 
 
 /**
  * ```html
- * <n-dropdown-list [items]="listItems"></n-dropdown-list>
+ * <ibm-dropdown-list [items]="listItems"></ibm-dropdown-list>
  * ```
  * ```typescript
  * listItems = [
@@ -55,7 +52,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
  * @implements {OnDestroy}
  */
 @Component({
-	selector: "n-dropdown-list",
+	selector: "ibm-dropdown-list",
 	template: `
 		<!-- clear selection -->
 		<div
@@ -75,7 +72,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 		<div
 			#upArrow
 			class="scroll-arrow--up">
-			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
+			<ibm-static-icon icon="carat_up" size="sm"></ibm-static-icon>
 		</div>
 		<!-- default is deprecated -->
 		<ul
@@ -127,7 +124,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 		<div
 			#downArrow
 			class="scroll-arrow--down">
-			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
+			<ibm-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></ibm-static-icon>
 		</div>`,
 		providers: [
 			{

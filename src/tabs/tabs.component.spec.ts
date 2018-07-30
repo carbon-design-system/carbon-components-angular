@@ -29,14 +29,14 @@ describe("Tabs", () => {
 
 	it("should work", () => {
 		const fixture = createTestComponent(`
-			<n-tabs tabsPosition="bottom">
-				<n-tab heading="tab1">
+			<ibm-tabs tabsPosition="bottom">
+				<ibm-tab heading="tab1">
 					tab 1 content
-				</n-tab>
-				<n-tab heading="tab2" active="true">
+				</ibm-tab>
+				<ibm-tab heading="tab2" active="true">
 					tab 2 content
-				</n-tab>
-			</n-tabs>
+				</ibm-tab>
+			</ibm-tabs>
 		`);
 
 		expect(fixture.componentInstance instanceof TabsTestComponent).toBe(true);
@@ -44,14 +44,14 @@ describe("Tabs", () => {
 
 	it("should have 2 tabs", () => {
 		const fixture = createTestComponent(`
-			<n-tabs tabsPosition="bottom">
-				<n-tab heading="tab1">
+			<ibm-tabs tabsPosition="bottom">
+				<ibm-tab heading="tab1">
 					tab 1 content
-				</n-tab>
-				<n-tab heading="tab2" active="true">
+				</ibm-tab>
+				<ibm-tab heading="tab2" active="true">
 					tab 2 content
-				</n-tab>
-			</n-tabs>
+				</ibm-tab>
+			</ibm-tabs>
 		`);
 
 		fixture.detectChanges();
@@ -60,14 +60,14 @@ describe("Tabs", () => {
 
 	it("first tab should be disabled", () => {
 		const fixture = createTestComponent(`
-			<n-tabs tabsPosition="bottom">
-				<n-tab heading="tab1" disabled="true">
+			<ibm-tabs tabsPosition="bottom">
+				<ibm-tab heading="tab1" disabled="true">
 					tab 1 content
-				</n-tab>
-				<n-tab heading="tab2" active="true">
+				</ibm-tab>
+				<ibm-tab heading="tab2" active="true">
 					tab 2 content
-				</n-tab>
-			</n-tabs>
+				</ibm-tab>
+			</ibm-tabs>
 		`);
 
 		fixture.detectChanges();
@@ -81,44 +81,44 @@ describe("Tabs", () => {
 	// it("should have scroll", () => {
 	// 	const fixture = createTestComponent(`
 	// 	<div style="max-width: 600px">
-	// 	<n-tabs>
-	// 		<n-tab heading='Tab1'>
+	// 	<ibm-tabs>
+	// 		<ibm-tab heading='Tab1'>
 	// 			Tab 1 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab2 with a long header'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab2 with a long header'>
 	// 			Tab 2 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab3'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab3'>
 	// 			Tab 3 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab4'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab4'>
 	// 			Tab 4content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab5 with a long header'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab5 with a long header'>
 	// 			Tab 5 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab6 with a long header'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab6 with a long header'>
 	// 			Tab 6 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab7'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab7'>
 	// 			Tab 7 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab8'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab8'>
 	// 			Tab 8 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab9 with a long header'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab9 with a long header'>
 	// 			Tab 9 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab10'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab10'>
 	// 			Tab 10 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab11'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab11'>
 	// 			Tab 11 content
-	// 		</n-tab>
-	// 		<n-tab heading='Tab12'>
+	// 		</ibm-tab>
+	// 		<ibm-tab heading='Tab12'>
 	// 			tab 12 content
-	// 		</n-tab>
-	// 	</n-tabs>
+	// 		</ibm-tab>
+	// 	</ibm-tabs>
 	// </div>
 	// 	`);
 	// 	fixture.detectChanges();

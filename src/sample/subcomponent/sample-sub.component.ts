@@ -14,7 +14,7 @@ import { SampleInterface } from "./../sample.interface";
  * this is a sample sub-component
  */
 @Component({
-	selector: "n-sample-sub",
+	selector: "ibm-sample-sub",
 	template: `
 		<span>Hello from a subcomponent</span>
 	`,

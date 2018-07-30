@@ -6,7 +6,7 @@ import { SampleSub } from "./sample-sub.component";
 import { SampleInterface } from "./../sample.interface";
 
 @Component({
-	template: `<n-sample-sub></n-sample-sub>`
+	template: `<ibm-sample-sub></ibm-sample-sub>`
 })
 class SampleSubTestComponent {}
 

@@ -7,7 +7,7 @@ import { SampleInterface } from "./sample.interface";
 
 @Component({
 	template: `
-		<n-sample [foo]="testData"></n-sample>
+		<ibm-sample [foo]="testData"></ibm-sample>
 	`
 })
 class SampleTestComponent {
@@ -30,8 +30,8 @@ describe("Sample", () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(SampleTestComponent);
 		wrapper = fixture.componentInstance;
-		instance = fixture.debugElement.query(By.css("n-sample")).componentInstance;
-		element = fixture.debugElement.query(By.css("n-sample")).nativeElement;
+		instance = fixture.debugElement.query(By.css("ibm-sample")).componentInstance;
+		element = fixture.debugElement.query(By.css("ibm-sample")).nativeElement;
 		fixture.detectChanges();
 	});
 

@@ -7,12 +7,12 @@ import { Component } from "@angular/core";
 
 		<h2 class="p-demo-section">Default sample</h2>
 		<div>
-			<n-sample></n-sample>
+			<ibm-sample></ibm-sample>
 		</div>
 
 		<h3 class="p-demo-variation">Sample sub component</h3>
 		<div>
-			<n-sample-sub></n-sample-sub>
+			<ibm-sample-sub></ibm-sample-sub>
 		</div>
 	`,
 })

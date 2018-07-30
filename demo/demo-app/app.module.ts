@@ -25,31 +25,23 @@ import { ListGroupDemo } from "./list-group-demo/list-group-demo.component";
 import { ModalDemo } from "./modal-demo/modal-demo.component";
 import { PopoverDemo } from "./popover-demo/popover-demo.component";
 import { SampleModalComponent } from "./modal-demo/sample-modal.component";
-import { SideNavDemo } from "./side-nav-demo/side-nav-demo.component";
 import { TableDemo } from "./table-demo/table-demo.component";
 import { TableDemoService } from "./table-demo/table-demo.service";
 import { TabsDemo } from "./tabs-demo/tabs-demo.component";
 import { TooltipDemo } from "./tooltip-demo/tooltip-demo.component";
 import { TopNavDemo } from "./top-nav-demo/top-nav-demo.component";
-import { TreeViewDemo } from "./tree-view-demo/tree-view-demo.component";
 import { XLModalComponent } from "./modal-demo/extra-large.component";
 import { ComboboxDemo } from "./combobox-demo/combobox-demo.component";
-import { ChartDemo } from "./chart-demo/chart-demo.component";
 import { ButtonMenuDemo } from "./button-menu-demo/button-menu-demo.component";
-import { ConditionBuilderDemo } from "./condition-builder-demo/condition-builder-demo.component";
-import { ConditionBuilderDemoService } from "./condition-builder-demo/condition-builder-demo.service";
 import { CalendarDemo } from "./calendar-demo/calendar-demo.component";
 
-import { AppDoc } from "./doc.component";
 
 // component imports
 import {
 	BannerModule,
 	BannerService,
 	ButtonMenuModule,
-	ChartsModule,
 	ComboBoxModule,
-	ConditionBuilderModule,
 	DialogModule,
 	DropdownModule,
 	IconModule,
@@ -57,11 +49,9 @@ import {
 	ListGroupModule,
 	ModalModule,
 	NFormsModule,
-	SideNavModule,
 	TableModule,
 	TabsModule,
 	TopNavModule,
-	TreeViewModule,
 	PillInputModule,
 	CalendarModule
 } from "./../../src";
@@ -71,7 +61,6 @@ import {
 	declarations: [
 		AppComponent,
 		HomeComponent,
-		AppDoc,
 		ButtonMenuDemo,
 		TableDemo,
 		FormsDemo,
@@ -81,9 +70,7 @@ import {
 		ListGroupDemo,
 		DropdownDemo,
 		TopNavDemo,
-		TreeViewDemo,
 		DropdownDemo,
-		SideNavDemo,
 		ModalDemo,
 		SampleModalComponent,
 		ErrorModalComponent,
@@ -94,8 +81,6 @@ import {
 		BannerDemo,
 		BannerCustom,
 		ComboboxDemo,
-		ChartDemo,
-		ConditionBuilderDemo,
 		CalendarDemo
 	],
 	entryComponents: [
@@ -111,9 +96,7 @@ import {
 		BrowserAnimationsModule,
 		BrowserModule,
 		ButtonMenuModule,
-		ChartsModule,
 		ComboBoxModule,
-		ConditionBuilderModule,
 		DialogModule,
 		DropdownModule,
 		FormsModule,
@@ -124,11 +107,9 @@ import {
 		NFormsModule,
 		PillInputModule,
 		ReactiveFormsModule,
-		SideNavModule,
 		TableModule,
 		TabsModule,
 		TopNavModule,
-		TreeViewModule,
 		CalendarModule,
 		RouterModule.forRoot([
 			{
@@ -164,20 +145,12 @@ import {
 				component: ListGroupDemo
 			},
 			{
-				path: "tree-view",
-				component: TreeViewDemo
-			},
-			{
 				path: "dropdown",
 				component: DropdownDemo
 			},
 			{
 				path: "top-nav",
 				component: TopNavDemo
-			},
-			{
-				path: "side-nav",
-				component: SideNavDemo
 			},
 			{
 				path: "modal",
@@ -198,14 +171,6 @@ import {
 			{
 				path: "combobox",
 				component: ComboboxDemo
-			},
-			{
-				path: "chart",
-				component: ChartDemo
-			},
-			{
-				path: "condition-builder",
-				component: ConditionBuilderDemo
 			}
 		], {
 			useHash: true
@@ -215,7 +180,6 @@ import {
 	providers: [
 		IconService,
 		BannerService,
-		ConditionBuilderDemoService,
 		TableDemoService
 	],
 	bootstrap: [AppComponent]

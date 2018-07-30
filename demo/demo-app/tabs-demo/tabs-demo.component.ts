@@ -7,164 +7,164 @@ import { Component, OnInit } from "@angular/core";
 
 	<h2 class="p-demo-section">Static tabs</h2>
 
-	<n-tabs>
-		<n-tab heading='Tab1' (select)="onSelect('tab1')">
+	<ibm-tabs>
+		<ibm-tab heading='Tab1' (select)="onSelect('tab1')">
 			Tab 1 content
-		</n-tab>
-		<n-tab heading='Tab2' (select)="onSelect('tab2')">
+		</ibm-tab>
+		<ibm-tab heading='Tab2' (select)="onSelect('tab2')">
 			Tab 2 content
-		</n-tab>
-		<n-tab heading='Tab3'>
+		</ibm-tab>
+		<ibm-tab heading='Tab3'>
 			Tab 3 content
-		</n-tab>
-		<n-tab heading='Tab4'>
+		</ibm-tab>
+		<ibm-tab heading='Tab4'>
 			Tab 4 content
-		</n-tab>
-		<n-tab heading='Tab5'>
+		</ibm-tab>
+		<ibm-tab heading='Tab5'>
 			Tab 5 content
-		</n-tab>
-		<n-tab heading='Tab6'>
+		</ibm-tab>
+		<ibm-tab heading='Tab6'>
 			Tab 6 content
-		</n-tab>
-		<n-tab heading='Tab7'>
+		</ibm-tab>
+		<ibm-tab heading='Tab7'>
 			Tab 7 content
-		</n-tab>
-		<n-tab heading='Tab8'>
+		</ibm-tab>
+		<ibm-tab heading='Tab8'>
 			Tab 8 content
-		</n-tab>
-		<n-tab heading='Tab9'>
+		</ibm-tab>
+		<ibm-tab heading='Tab9'>
 			Tab 9 content
-		</n-tab>
-		<n-tab heading='Tab10'>
+		</ibm-tab>
+		<ibm-tab heading='Tab10'>
 			Tab 10 content
-		</n-tab>
-		<n-tab heading='Tab11'>
+		</ibm-tab>
+		<ibm-tab heading='Tab11'>
 			Tab 11 content
-		</n-tab>
-		<n-tab heading='Tab12'>
+		</ibm-tab>
+		<ibm-tab heading='Tab12'>
 			Tab 12 content
-		</n-tab>
-	</n-tabs>
+		</ibm-tab>
+	</ibm-tabs>
 
 	<h4>Tabs with an add button</h4>
-	<n-tabs>
-		<n-tab-headers>
-			<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
+	<ibm-tabs>
+		<ibm-tab-headers>
+			<ibm-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
 				{{ tab.content }}
-			</n-tab>
+			</ibm-tab>
 			<button class="tabs_add" (click)="addTab()"></button>
 			<button class="btn--primary" style="order: 4; margin-left: auto;">button</button>
-		</n-tab-headers>
-	</n-tabs>
-	<n-tabs>
-		<n-tab-headers>
-			<n-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
+		</ibm-tab-headers>
+	</ibm-tabs>
+	<ibm-tabs>
+		<ibm-tab-headers>
+			<ibm-tab *ngFor="let tab of addableTabs" [heading]="tab.heading">
 				{{ tab.content }}
-			</n-tab>
+			</ibm-tab>
 			<button class="tabs_add" (click)="addTab()"></button>
-		</n-tab-headers>
-	</n-tabs>
+		</ibm-tab-headers>
+	</ibm-tabs>
 
 	<h3 class="p-demo-variation">Static tabs with bottom placement</h3>
-	<n-tabs position='bottom'>
-		<n-tab heading='Tab1'>
+	<ibm-tabs position='bottom'>
+		<ibm-tab heading='Tab1'>
 			Tab 1 content
-		</n-tab>
-		<n-tab heading='Tab2' active='true' (select)="onSelect('bottom tab 2')">
+		</ibm-tab>
+		<ibm-tab heading='Tab2' active='true' (select)="onSelect('bottom tab 2')">
 			Tab 2 content
-		</n-tab>
-		<n-tab heading='Tab3'>
+		</ibm-tab>
+		<ibm-tab heading='Tab3'>
 			Tab 3 content
-		</n-tab>
-	</n-tabs>
+		</ibm-tab>
+	</ibm-tabs>
 
 	<h2 class="p-demo-section">Dynamic tabs</h2>
-	<n-tabs>
-		<n-tab
+	<ibm-tabs>
+		<ibm-tab
 			*ngFor="let tab of sampleTabs"
 			[heading]="tab.heading"
 			[active]="tab.active"
 			[disabled]="tab.disabled"
 			(select)="onSelect(tab.heading)">
 			{{tab.content}}
-		</n-tab>
-	</n-tabs>
+		</ibm-tab>
+	</ibm-tabs>
 
 	<h3 class="p-demo-variation">Dynamic tabs with timeout</h3>
 	<div>
-		<n-tabs>
-			<n-tab
+		<ibm-tabs>
+			<ibm-tab
 				*ngFor="let tab of sampleTabs2"
 				[heading]="tab.heading"
 				[active]="tab.active"
 				(select)="onSelect(tab.heading)">
 				{{tab.content}}
-			</n-tab>
-		</n-tabs>
+			</ibm-tab>
+		</ibm-tabs>
 	</div>
 
 	<h2 class="p-demo-section">Tabs with custom header template</h2>
 	<ng-template #tabHeading>
-		<n-icon
+		<ibm-icon
 			icon="facebook"
 			size="sm"
 			style="margin-right: 7px; position: relative; top: 3px; display: inline !important;">
-		</n-icon>
+		</ibm-icon>
 		Hello,&nbsp;<span (click)="test($event)">click me</span>
 	</ng-template>
-	<n-tabs>
-		<n-tab [heading]="tabHeading">
-			Tab 1 content <n-icon icon="alert" size="lg" style="height: 30px; line-height: 30px;"></n-icon>
-		</n-tab>
-		<n-tab heading='Tab2'>
+	<ibm-tabs>
+		<ibm-tab [heading]="tabHeading">
+			Tab 1 content <ibm-icon icon="alert" size="lg" style="height: 30px; line-height: 30px;"></ibm-icon>
+		</ibm-tab>
+		<ibm-tab heading='Tab2'>
 			Tab 2 content
-		</n-tab>
-		<n-tab   heading='Tab3'>
+		</ibm-tab>
+		<ibm-tab   heading='Tab3'>
 			Tab 3 content
-		</n-tab>
-	</n-tabs>
+		</ibm-tab>
+	</ibm-tabs>
 
 
 	<h2 class="p-demo-section">Scroll tabs</h2>
 	<div style="max-width: 600px">
-		<n-tabs>
-			<n-tab heading='Tab1'>
+		<ibm-tabs>
+			<ibm-tab heading='Tab1'>
 				Tab 1 content
-			</n-tab>
-			<n-tab heading='Tab2 with a long header'>
+			</ibm-tab>
+			<ibm-tab heading='Tab2 with a long header'>
 				Tab 2 content
-			</n-tab>
-			<n-tab heading='Tab3'>
+			</ibm-tab>
+			<ibm-tab heading='Tab3'>
 				Tab 3 content
-			</n-tab>
-			<n-tab heading='Tab4'>
+			</ibm-tab>
+			<ibm-tab heading='Tab4'>
 				Tab 4content
-			</n-tab>
-			<n-tab heading='Tab5 with a long header'>
+			</ibm-tab>
+			<ibm-tab heading='Tab5 with a long header'>
 				Tab 5 content
-			</n-tab>
-			<n-tab heading='Tab6 with a long header'>
+			</ibm-tab>
+			<ibm-tab heading='Tab6 with a long header'>
 				Tab 6 content
-			</n-tab>
-			<n-tab heading='Tab7'>
+			</ibm-tab>
+			<ibm-tab heading='Tab7'>
 				Tab 7 content
-			</n-tab>
-			<n-tab heading='Tab8'>
+			</ibm-tab>
+			<ibm-tab heading='Tab8'>
 				Tab 8 content
-			</n-tab>
-			<n-tab heading='Tab9 with a long header'>
+			</ibm-tab>
+			<ibm-tab heading='Tab9 with a long header'>
 				Tab 9 content
-			</n-tab>
-			<n-tab heading='Tab10'>
+			</ibm-tab>
+			<ibm-tab heading='Tab10'>
 				Tab 10 content
-			</n-tab>
-			<n-tab heading='Tab11'>
+			</ibm-tab>
+			<ibm-tab heading='Tab11'>
 				Tab 11 content
-			</n-tab>
-			<n-tab heading='Tab12'>
+			</ibm-tab>
+			<ibm-tab heading='Tab12'>
 				tab 12 content
-			</n-tab>
-		</n-tabs>
+			</ibm-tab>
+		</ibm-tabs>
 	</div>
 
 	<br><br>

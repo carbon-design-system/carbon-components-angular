@@ -51,11 +51,11 @@ export class RadioChange {
  *
  * Ex:
  * ```html
- * <n-radio-group [(ngModel)]="radio">
- * 	<n-radio *ngFor="let one of manyRadios" [value]="one">
+ * <ibm-radio-group [(ngModel)]="radio">
+ * 	<ibm-radio *ngFor="let one of manyRadios" [value]="one">
  *		Radio {{one}}
- * 	</n-radio>
- * </n-radio-group>
+ * 	</ibm-radio>
+ * </ibm-radio-group>
  *
  * Radio selected: {{radio}}
  * ```
@@ -74,7 +74,7 @@ export class RadioChange {
  * @implements {ControlValueAccessor}
  */
 @Component({
-	selector: "n-radio-group",
+	selector: "ibm-radio-group",
 	template: `
 		<ng-content></ng-content>
 	`,
@@ -399,7 +399,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
  * source: `src/forms/radio.component.ts`
  *
  * ```html
- * <n-radio [(ngModel)]="radioState">Radio</n-radio>
+ * <ibm-radio [(ngModel)]="radioState">Radio</ibm-radio>
  * ```
  *
  * Also see: [`RadioGroup`](#n-radio-group)
@@ -410,7 +410,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
  * @implements {OnInit}
  */
 @Component({
-	selector: "n-radio",
+	selector: "ibm-radio",
 	template: `
 		<label [for]="id">
 			<input type="radio" #inputCheckbox

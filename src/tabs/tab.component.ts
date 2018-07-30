@@ -28,33 +28,33 @@ let nextId = 0;
 * Tab with string header:
 *
 * ```html
-* <n-tab heading='tab1'>
+* <ibm-tab heading='tab1'>
 * 	tab 1 content
-* </n-tab>
+* </ibm-tab>
 * ```
 *
 * Tab with custom header:
 *
 * ```html
 * <ng-template #tabHeading>
-* 	<n-icon
+* 	<ibm-icon
 * 		icon="facebook"
 * 		size="sm"
 * 		style="margin-right: 7px;">
-* 	</n-icon>
+* 	</ibm-icon>
 * 	Hello Tab 1
 * </ng-template>
-* <n-tabs>
-* 	<n-tab [heading]="tabHeading">
-* 		Tab 1 content <n-icon icon="alert" size="lg"></n-icon>
-* 	</n-tab>
-* 	<n-tab heading='Tab2'>
+* <ibm-tabs>
+* 	<ibm-tab [heading]="tabHeading">
+* 		Tab 1 content <ibm-icon icon="alert" size="lg"></ibm-icon>
+* 	</ibm-tab>
+* 	<ibm-tab heading='Tab2'>
 * 		Tab 2 content
-* 	</n-tab>
-* 	<n-tab heading='Tab3'>
+* 	</ibm-tab>
+* 	<ibm-tab heading='Tab3'>
 * 		Tab 3 content
-* 	</n-tab>
-* </n-tabs>
+* 	</ibm-tab>
+* </ibm-tabs>
 * ```
 *
 *
@@ -63,7 +63,7 @@ let nextId = 0;
 * @implements {OnInit}
 */
 @Component({
-	selector: "n-tab",
+	selector: "ibm-tab",
 	template: `
 		<div
 			role="tabpanel"

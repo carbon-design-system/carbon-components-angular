@@ -6,13 +6,13 @@ import {
 import { DateTimeModel } from "./date-time-model.class";
 
 @Component({
-	selector: "n-calendar",
+	selector: "ibm-calendar",
 	template: `
 		<div class="calendar-view">
-			<n-calendar-month-view [model]="model" [monthCount]="monthCount" *ngIf="view == 'month'"></n-calendar-month-view>
-			<n-calendar-months-view [model]="model" *ngIf="view == 'months'"></n-calendar-months-view>
-			<n-calendar-quarter-view [model]="model" *ngIf="view == 'quarter'"></n-calendar-quarter-view>
-			<n-calendar-year-view [model]="model" *ngIf="view == 'year'"></n-calendar-year-view>
+			<ibm-calendar-month-view [model]="model" [monthCount]="monthCount" *ngIf="view == 'month'"></ibm-calendar-month-view>
+			<ibm-calendar-months-view [model]="model" *ngIf="view == 'months'"></ibm-calendar-months-view>
+			<ibm-calendar-quarter-view [model]="model" *ngIf="view == 'quarter'"></ibm-calendar-quarter-view>
+			<ibm-calendar-year-view [model]="model" *ngIf="view == 'year'"></ibm-calendar-year-view>
 		</div>
 	`
 })

@@ -16,7 +16,7 @@ import { SampleInterface } from "./sample.interface";
  * This is a sample component to demonstrate how components should be written, and can be used as a template for new components
  */
 @Component({
-	selector: "n-sample",
+	selector: "ibm-sample",
 	template: `
 		<p>Hello, Neutrino!</p>
 		<span>{{ foo.required }}</span>

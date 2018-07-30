@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
-import { HcModeChecker, IconService } from "./../../src";
+import { IconService } from "./../../src";
 import "rxjs/add/operator/filter";
 
 const en = require("./../../src/i18n/en.json");
@@ -10,31 +10,19 @@ const en = require("./../../src/i18n/en.json");
 	selector: "app-root",
 	template: `
 	<header class="p-demo-header text--center">
-		<h1>Neutrino</h1>
-		<h2>A componentized <em>Angular</em> implementation of the Watson Customer Engagement design guide.</h2>
-		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino">
-			<n-icon icon="build" color="white" size="sm"></n-icon>
+		<h1>Carbon Components Angular</h1>
+		<h2>An <em>Angular</em> implementation of the Carbon Design System</h2>
+		<a class="btn--icon-white" href="https://github.com/ibm/carbon-components-angular">
+			<ibm-icon icon="build" color="white" size="sm"></ibm-icon>
 			Project
 		</a>
 		<a class="btn--icon-white" href="https://github.ibm.com/peretz/neutrino/wiki/Style-guide">
-			<n-icon icon="form_opt_in" color="white" size="sm"></n-icon>
+			<ibm-icon icon="form_opt_in" color="white" size="sm"></ibm-icon>
 			Code style guide
 		</a>
-		<a class="btn--icon-white" href="https://pages.github.ibm.com/peretz/neutrino/documentation/">
-			<n-icon icon="document" color="white" size="sm"></n-icon>
+		<a class="btn--icon-white" href="https://pages.github.com/carbon/carbon-components-angular/documentation/">
+			<ibm-icon icon="document" color="white" size="sm"></ibm-icon>
 			Documentation
-		</a>
-		<a class="btn--icon-white" href="http://billboard1.fyre.ibm.com/">
-			<n-icon icon="preview" color="white" size="sm"></n-icon>
-			Billboard
-		</a>
-		<a class="btn--icon-white" href="https://peretz.slack.com/messages/C6DS43Y5N">
-			<n-icon icon="collaborate" color="white" size="sm"></n-icon>
-			Send feedback
-		</a>
-		<a class="btn--icon-white" href="https://peretz.slack.com/messages/C6DS43Y5N">
-			<n-icon icon="query" color="white" size="sm"></n-icon>
-			Ask a question
 		</a>
 	</header>
 	<main class="p-container">
@@ -61,11 +49,11 @@ const en = require("./../../src/i18n/en.json");
 					</svg>
 				</button>
 			</label>
-			<n-list-group [items]="filteredItems" [listTpl]="item" (selected)="onSelect($event)">
+			<ibm-list-group [items]="filteredItems" [listTpl]="item" (selected)="onSelect($event)">
 				<ng-template #item let-item="item">
 					<a routerLink="{{item.link}}">{{item.content}}</a>
 				</ng-template>
-			</n-list-group>
+			</ibm-list-group>
 		</nav>
 	</aside>
 	<div class="p-demo-container">
@@ -73,34 +61,35 @@ const en = require("./../../src/i18n/en.json");
 		<router-outlet></router-outlet>
 	</div>
 	</main>
-	<n-modal-placeholder></n-modal-placeholder>
-	<n-dialog-placeholder></n-dialog-placeholder>
-	<n-sprite sprite="alerts_status"></n-sprite>
-	<n-sprite sprite="animations"></n-sprite>
-	<n-sprite sprite="arrows_chevrons"></n-sprite>
-	<n-sprite sprite="brands"></n-sprite>
-	<n-sprite sprite="calculator"></n-sprite>
-	<n-sprite sprite="core_set"></n-sprite>
-	<n-sprite sprite="cursors"></n-sprite>
-	<n-sprite sprite="disabled"></n-sprite>
-	<n-sprite sprite="ecommerce"></n-sprite>
-	<n-sprite sprite="emoticons"></n-sprite>
-	<n-sprite sprite="formatting"></n-sprite>
-	<n-sprite sprite="gestures"></n-sprite>
-	<n-sprite sprite="ibm_logo"></n-sprite>
-	<n-sprite sprite="market_segments_activities"></n-sprite>
-	<n-sprite sprite="market_segments_browser_os_mobile"></n-sprite>
-	<n-sprite sprite="market_segments_demographics"></n-sprite>
-	<n-sprite sprite="market_segments_occasions_seasons"></n-sprite>
-	<n-sprite sprite="market_segments_occupations"></n-sprite>
-	<n-sprite sprite="market_segments_segments"></n-sprite>
-	<n-sprite sprite="market_segments_store_users"></n-sprite>
-	<n-sprite sprite="mobile_controls"></n-sprite>
-	<n-sprite sprite="playback_controls"></n-sprite>
-	<n-sprite sprite="tables"></n-sprite>
-	<n-sprite sprite="top_nav_bar"></n-sprite>
-	<n-sprite sprite="watson_shell"></n-sprite>
-	<n-sprite sprite="window_controls"></n-sprite>
+	<ibm-modal-placeholder></ibm-modal-placeholder>
+	<ibm-dialog-placeholder></ibm-dialog-placeholder>
+	<!-- <ibm-placeholder></ibm-placeholder> -->
+	<ibm-sprite sprite="alerts_status"></ibm-sprite>
+	<ibm-sprite sprite="animations"></ibm-sprite>
+	<ibm-sprite sprite="arrows_chevrons"></ibm-sprite>
+	<ibm-sprite sprite="brands"></ibm-sprite>
+	<ibm-sprite sprite="calculator"></ibm-sprite>
+	<ibm-sprite sprite="core_set"></ibm-sprite>
+	<ibm-sprite sprite="cursors"></ibm-sprite>
+	<ibm-sprite sprite="disabled"></ibm-sprite>
+	<ibm-sprite sprite="ecommerce"></ibm-sprite>
+	<ibm-sprite sprite="emoticons"></ibm-sprite>
+	<ibm-sprite sprite="formatting"></ibm-sprite>
+	<ibm-sprite sprite="gestures"></ibm-sprite>
+	<ibm-sprite sprite="ibm_logo"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_activities"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_browser_os_mobile"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_demographics"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_occasions_seasons"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_occupations"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_segments"></ibm-sprite>
+	<ibm-sprite sprite="market_segments_store_users"></ibm-sprite>
+	<ibm-sprite sprite="mobile_controls"></ibm-sprite>
+	<ibm-sprite sprite="playback_controls"></ibm-sprite>
+	<ibm-sprite sprite="tables"></ibm-sprite>
+	<ibm-sprite sprite="top_nav_bar"></ibm-sprite>
+	<ibm-sprite sprite="watson_shell"></ibm-sprite>
+	<ibm-sprite sprite="window_controls"></ibm-sprite>
 	`,
 	styleUrls: ["./demo.scss"],
 	encapsulation: ViewEncapsulation.None
@@ -143,11 +132,6 @@ export class AppComponent implements OnInit {
 			selected: false
 		},
 		{
-			content: "Tree view",
-			link: "/tree-view",
-			selected: false
-		},
-		{
 			content: "Drop-down",
 			link: "/dropdown",
 			selected: false
@@ -160,11 +144,6 @@ export class AppComponent implements OnInit {
 		{
 			content: "Top-nav",
 			link: "/top-nav",
-			selected: false
-		},
-		{
-			content: "Side-nav",
-			link: "/side-nav",
 			selected: false
 		},
 		{
@@ -186,16 +165,6 @@ export class AppComponent implements OnInit {
 			content: "Combo box",
 			link: "/combobox",
 			selected: false
-		},
-		{
-			content: "Chart",
-			link: "/chart",
-			selected: false
-		},
-		{
-			content: "Condition builder",
-			link: "/condition-builder",
-			selected: false
 		}
 	].sort((a, b) => {
 		if (a.content > b.content) {
@@ -207,7 +176,7 @@ export class AppComponent implements OnInit {
 	});
 	public filteredItems = this.navItems;
 	private previousItem = null;
-	constructor (private router: Router, private translate: TranslateService, private iconService: IconService) {
+	constructor (private router: Router, private translate: TranslateService) {
 		this.translate.setDefaultLang("en");
 		this.translate.use("en");
 		this.translate.setTranslation("en", en);
@@ -232,8 +201,6 @@ export class AppComponent implements OnInit {
 			}
 			this.previousItem = item;
 		});
-
-		HcModeChecker();
 	}
 
 	search(ev) {

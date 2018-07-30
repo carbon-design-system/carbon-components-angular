@@ -51,19 +51,19 @@ class FilterableHeaderItem extends TableHeaderItem {
 
 	<h2 class="p-demo-section">Size Variations</h2>
 	<h3 class="p-demo-variation">Small table</h3>
-	<n-table size="sm" [model]="simpleModel1" (sort)="simpleSort1($event)"></n-table>
+	<ibm-table size="sm" [model]="simpleModel1" (sort)="simpleSort1($event)"></ibm-table>
 
 	<h3 class="p-demo-variation">Normal table</h3>
-	<n-table [model]="simpleModel2" (sort)="simpleSort2($event)"></n-table>
+	<ibm-table [model]="simpleModel2" (sort)="simpleSort2($event)"></ibm-table>
 
 	<h3 class="p-demo-variation">Normal table with single select and no actions on headers</h3>
-	<n-table [model]="simpleModel4" [showSelectionColumn]="false" [enableSingleSelect]="true"></n-table>
+	<ibm-table [model]="simpleModel4" [showSelectionColumn]="false" [enableSingleSelect]="true"></ibm-table>
 
 	<h3 class="p-demo-variation">Large table</h3>
-	<n-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></n-table>
+	<ibm-table size="lg" [model]="simpleModel3" (sort)="simpleSort3($event)"></ibm-table>
 
 	<h2 class="p-demo-section">Table with contextual rows</h2>
-	<n-table [model]="contextModel" (sort)="simpleSort($event)"></n-table>
+	<ibm-table [model]="contextModel" (sort)="simpleSort($event)"></ibm-table>
 
 	<h2 class="p-demo-section">Custom table</h2>
 	<h3 class="p-demo-variation">Add row to see loading indicator and end of content button</h3>
@@ -95,10 +95,10 @@ class FilterableHeaderItem extends TableHeaderItem {
 	<button class="btn--primary" (click)="programmaticSelect(customModel)">Select first row</button>
 	<br>
 
-	<n-checkbox [(ngModel)]="columnsResizable">Make columns resizable</n-checkbox>
-	<n-checkbox [(ngModel)]="columnsDraggable">Enable column drag and drop</n-checkbox>
+	<ibm-checkbox [(ngModel)]="columnsResizable">Make columns resizable</ibm-checkbox>
+	<ibm-checkbox [(ngModel)]="columnsDraggable">Enable column drag and drop</ibm-checkbox>
 
-	<n-table
+	<ibm-table
 		[model]="customModel"
 		[striped]="striped"
 		[columnsResizable]="columnsResizable"
@@ -106,7 +106,7 @@ class FilterableHeaderItem extends TableHeaderItem {
 		(sort)="customSort($event)"
 		(scrollLoad)="scrollLoad($event)"
 		#table>
-	</n-table>
+	</ibm-table>
 	<footer class="table-footer">
 		<span class="table-footer_row-count">
 			{{customModel.selectedRowsCount()}} of {{customModel.totalDataLength}} rows selected
@@ -117,11 +117,11 @@ class FilterableHeaderItem extends TableHeaderItem {
 
 	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength - model.pageLength">Remove page</button>
 	<button class="btn--primary" (click)="model.totalDataLength = model.totalDataLength + model.pageLength">Add page</button>
-	<n-table [model]="model" (sort)="fullSort($event)"></n-table>
+	<ibm-table [model]="model" (sort)="fullSort($event)"></ibm-table>
 	<footer class="table-footer--pagination">
 		<span class="table-footer_row-count">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
-		<n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
-		<n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
+		<ibm-table-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-table-pagination>
+		<ibm-table-goto-page (selectPage)="selectPage($event)"></ibm-table-goto-page>
 	</footer>
 
 
@@ -136,10 +136,10 @@ class FilterableHeaderItem extends TableHeaderItem {
 	</ng-template>
 
 	<ng-template #filter let-popover="popover" let-filter="data">
-		<n-label class="first-label">
+		<ibm-label class="first-label">
 			Value
 			<input type="text" [(ngModel)]="filter1" class="input-field">
-		</n-label>
+		</ibm-label>
 	</ng-template>
 
 	<ng-template #filterFooter let-popover="popover" let-filter="data">

@@ -5,17 +5,17 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<n-modal size="xl">
-			<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+		<ibm-modal size="xl">
+			<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
 			<section class="modal-body">
 				<h1>Sample modal works.</h1>
 				<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="false">
-					<n-icon icon="info" size="sm"></n-icon>
+					<ibm-icon icon="info" size="sm"></ibm-icon>
 				</button>
 				{{modalText}}
 			</section>
-			<n-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
-		</n-modal>
+			<ibm-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></ibm-modal-footer>
+		</ibm-modal>
 	`,
 	styleUrls: ["./sample-modal.component.scss"]
 })

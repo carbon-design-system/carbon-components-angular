@@ -20,7 +20,7 @@ import position from "../../utils/position";
  * @extends {Dialog}
  */
 @Component({
-	selector: "n-popover",
+	selector: "ibm-popover",
 	template: `
 		<div
 			class="popover--{{placement}}"
@@ -38,7 +38,7 @@ import position from "../../utils/position";
 					class="close--white-md"
 					(click)="doClose()"
 					attr.aria-label="{{'DIALOG.POPOVER.CLOSE' | translate}}">
-					<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
+					<ibm-static-icon icon="x" size="sm" classList="close_icon"></ibm-static-icon>
 				</button>
 			</header>
 			<section

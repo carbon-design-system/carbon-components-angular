@@ -13,9 +13,6 @@ import {
 	HostBinding
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
-import { Observable } from "rxjs/Observable";
-import position from "../../utils/position";
-
 
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
@@ -24,7 +21,7 @@ import position from "../../utils/position";
  * @extends {Dialog}
  */
 @Component({
-	selector: "n-tooltip",
+	selector: "ibm-tooltip",
 	template: `
 		<div
 			[class]="getClass()"
@@ -51,7 +48,7 @@ import position from "../../utils/position";
 				class="close--xs"
 				(click)="doClose()"
 				attr.aria-label="{{'DIALOG.TOOLTIP.CLOSE' | translate}}">
-				<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
+				<ibm-static-icon icon="x" size="sm" classList="close_icon"></ibm-static-icon>
 			</button>
 			<div class="arrow" aria-hidden="true"></div>
 		</div>

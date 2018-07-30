@@ -28,7 +28,7 @@ import { DialogService } from "./../dialog.service";
  * ```html
  * <ng-template #list>
  * 	<div>
- * 		<n-list-group [items]="demoItems" (select)="onSelect($event)"></n-list-group>
+ * 		<ibm-list-group [items]="demoItems" (select)="onSelect($event)"></ibm-list-group>
  * 	</div>
  * </ng-template>
  * <button class="popover-menu-button"
@@ -37,7 +37,7 @@ import { DialogService } from "./../dialog.service";
  * 	wrapperClass="popover-content-fullwidth"
  * 	popoverMenu="true"
  * 	[gap]="13">
- * 	<n-glyphicon icon="dotdotdot_vert" size="16"></n-glyphicon>Menu
+ * 	<ibm-glyphicon icon="dotdotdot_vert" size="16"></ibm-glyphicon>Menu
  * </button>
  * ```
  *
@@ -47,10 +47,10 @@ import { DialogService } from "./../dialog.service";
  * <h3>Popover Filter</h3>
  * <ng-template #filter>
  * 	<div class="filter-options">
- * 		<n-checkbox>High</n-checkbox>
- * 		<n-checkbox>Medium</n-checkbox>
- * 		<n-checkbox>Low</n-checkbox>
- * 		<n-checkbox>Danger</n-checkbox>
+ * 		<ibm-checkbox>High</ibm-checkbox>
+ * 		<ibm-checkbox>Medium</ibm-checkbox>
+ * 		<ibm-checkbox>Low</ibm-checkbox>
+ * 		<ibm-checkbox>Danger</ibm-checkbox>
  * 	</div>
  * 	<div class="filter-options-buttons">
  * 		<button class="btn">Apply</button>

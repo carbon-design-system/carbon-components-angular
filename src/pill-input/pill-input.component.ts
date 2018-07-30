@@ -27,7 +27,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
  * @implements {AfterViewInit}
  */
 @Component({
-	selector: "n-pill-input",
+	selector: "ibm-pill-input",
 	template: `
 		<div
 			#inputWrapper
@@ -53,10 +53,10 @@ import { ListItem } from "./../dropdown/list-item.interface";
 					'input_pills': pillDirection === 'row'
 				}">
 				<div style="display: flex" *ngFor="let pill of pills; let last = last">
-					<n-pill
+					<ibm-pill
 						[item]="pill">
 						{{ pill.content }}
-					</n-pill>
+					</ibm-pill>
 					<div
 						#pillInput
 						*ngIf="!last"

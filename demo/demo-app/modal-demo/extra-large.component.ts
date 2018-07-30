@@ -7,16 +7,16 @@ import { ErrorModalComponent } from "./error-modal.component";
 @Component({
 	selector: "app-xxl-modal",
 	template: `
-	<n-modal size="xxl">
-		<n-modal-header (closeSelect)="closeModal()">XXL</n-modal-header>
+	<ibm-modal size="xxl">
+		<ibm-modal-header (closeSelect)="closeModal()">XXL</ibm-modal-header>
 		<section class="modal_body">
 			<p>This is an XXL modal.</p>
 		</section>
-		<n-modal-footer>
+		<ibm-modal-footer>
 			<button class="btn--secondary cancel-button" (click)="closeModal()">Cancel</button>
 			<button class="btn--primary submit-button" (click)="openModal()">Submit and get error message</button>
-		</n-modal-footer>
-	</n-modal>
+		</ibm-modal-footer>
+	</ibm-modal>
 	`,
 	styleUrls: ["./form-modal.component.scss"]
 })

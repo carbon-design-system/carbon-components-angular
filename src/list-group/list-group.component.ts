@@ -7,7 +7,7 @@ import {
 	TemplateRef
 } from "@angular/core";
 
-import { findNextElem, findPrevElem } from "../common/a11y.service";
+import { findNextElem, findPrevElem } from "../utils/a11y";
 
 
 /**
@@ -26,7 +26,7 @@ import { findNextElem, findPrevElem } from "../common/a11y.service";
  * @class ListGroup
  */
 @Component({
-	selector: "n-list-group",
+	selector: "ibm-list-group",
 	template: `
 		<ul
 		#listGroup

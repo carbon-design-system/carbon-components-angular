@@ -14,17 +14,14 @@ import {
 	HostBinding,
 	QueryList
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/operator/throttleTime";
+import { Observable, fromEvent, throttleTime } from "rxjs";
 
 import { position } from "../utils/position";
-import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
+import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 
 @Component({
-	selector: "n-button-menu",
+	selector: "ibm-button-menu",
 	template: `
 		<button
 		[ngClass]="{
@@ -108,10 +105,10 @@ export class ButtonMenu implements AfterContentInit, AfterViewInit {
 	 * Different from `click`, which is angular event.
 	 *
 	 * ```html
-	 * <n-button-menu
+	 * <ibm-button-menu
 	 *		value="Save"
 	 *		(onClick)="doSave()">
-	 *	</n-button-menu>
+	 *	</ibm-button-menu>
 	 * ```
 	 *
 	 * @type {EventEmitter<any>}

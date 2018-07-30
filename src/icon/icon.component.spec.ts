@@ -9,8 +9,8 @@ import { IconService } from "./icon.service";
 
 @Component({
 	template: `
-		<n-icon></n-icon>
-		<n-sprite></n-sprite>
+		<ibm-icon></ibm-icon>
+		<ibm-sprite></ibm-sprite>
 	`
 })
 class IconTestComponent {}

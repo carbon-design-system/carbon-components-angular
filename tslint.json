@@ -118,8 +118,8 @@
 		],
 
 		// [ENABLED, "attribute" | "element", "selectorPrefix" | ["listOfPrefixes"], "camelCase" | "kebab-case"]
-		"directive-selector": [true, "attribute", ["n", "app", "test"], "camelCase"],
-		"component-selector": [true, "element", ["n", "app", "test"], "kebab-case"],
+		"directive-selector": [true, "attribute", ["ibm", "app", "test"], "camelCase"],
+		"component-selector": [true, "element", ["ibm", "app", "test"], "kebab-case"],
 
 		"use-input-property-decorator": true,
 		"use-output-property-decorator": true,

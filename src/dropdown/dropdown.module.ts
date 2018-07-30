@@ -7,23 +7,12 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { DropdownFilter } from "./list/dropdown-filter-list.component";
-import { DropdownSubMenu } from "./sub-menu/sub-menu.component";
-import { SubMenuWrapper } from "./sub-menu/sub-menu-wrapper.component";
-import { SubMenuItem } from "./sub-menu/sub-menu-item.component";
-import { DropdownTree } from "./tree/tree.component";
-import { DropdownFilterTree } from "./tree/dropdown-filter-tree.component";
-import { TreeWrapper } from "./tree/tree-wrapper.component";
-import { TreeItem } from "./tree/tree-item.component";
 
 import { ScrollableList } from "./scrollable-list.directive";
-import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { ListItem } from "./list-item.interface";
 
 export { Dropdown } from "./dropdown.component";
 export { DropdownList } from "./list/dropdown-list.component";
 export { DropdownFilter } from "./list/dropdown-filter-list.component";
-export { DropdownTree } from "./tree/tree.component";
-export { DropdownSubMenu } from "./sub-menu/sub-menu.component";
 
 export { ScrollableList } from "./scrollable-list.directive";
 export { AbstractDropdownView } from "./abstract-dropdown-view.class";
@@ -34,22 +23,12 @@ export { ListItem } from "./list-item.interface";
 		Dropdown,
 		DropdownList,
 		DropdownFilter,
-		DropdownSubMenu,
-		SubMenuWrapper,
-		SubMenuItem,
-		DropdownTree,
-		DropdownFilterTree,
-		TreeWrapper,
-		TreeItem,
 		ScrollableList
 	],
 	exports: [
 		Dropdown,
 		DropdownList,
 		DropdownFilter,
-		DropdownFilterTree,
-		DropdownSubMenu,
-		DropdownTree,
 		ScrollableList
 	],
 	imports: [

@@ -11,9 +11,8 @@ import {
 	HostListener,
 	OnChanges
 } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/throttleTime";
-import "rxjs/add/observable/fromEvent";
+import { Observable, fromEvent } from "rxjs";
+import { throttleTime } from "rxjs/operators";
 import { DialogService } from "./dialog.service";
 import { DialogConfig } from "./dialog-config.interface";
 

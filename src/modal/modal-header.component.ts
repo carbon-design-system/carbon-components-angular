@@ -4,26 +4,26 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 /**
  * ***Inputs***
  * ```html
- * <n-modal-header [modalType]="default">Header text</n-modal-header>
+ * <ibm-modal-header [modalType]="default">Header text</ibm-modal-header>
  * ```
  *
  * ***Outputs***
  * ```html
- * <n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ * <ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * ```
  *
  * @export
  * @class ModalHeaderComponent
  */
 @Component({
-	selector: "n-modal-header",
+	selector: "ibm-modal-header",
 	template: `
 		<header class="{{modalType}} modal_header" role="banner">
 			<h5 class="header_title">
 				<ng-content></ng-content>
 			</h5>
 			<button class="close--white-md" attr.aria-label="{{'MODAL.CLOSE' | translate}}" (click)="onClose()">
-				<n-static-icon icon="x" classList="close_icon" size="sm"></n-static-icon>
+				<ibm-static-icon icon="x" classList="close_icon" size="sm"></ibm-static-icon>
 			</button>
 		</header>
 

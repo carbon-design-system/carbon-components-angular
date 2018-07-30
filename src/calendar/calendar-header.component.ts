@@ -3,7 +3,7 @@ import { DateTimeModel } from "./date-time-model.class";
 import { range } from "../common/utils";
 
 @Component({
-	selector: "n-calendar-header",
+	selector: "ibm-calendar-header",
 	template: `
 			<nav class="pagination" aria-label="year-pagination">
 				<ul>

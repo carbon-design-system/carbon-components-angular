@@ -5,13 +5,13 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-error-modal",
 	template: `
-		<n-modal size="sm" modalType="error">
-			<n-modal-header (closeSelect)="closeModal()">Error</n-modal-header>
+		<ibm-modal size="sm" modalType="error">
+			<ibm-modal-header (closeSelect)="closeModal()">Error</ibm-modal-header>
 			<section class="modal-body">
 				<p>The connection was lost. Try to log in again.</p>
 			</section>
-			<n-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
-		</n-modal>
+			<ibm-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></ibm-modal-footer>
+		</ibm-modal>
 	`,
 	styleUrls: ["./error-modal.component.scss"]
 })

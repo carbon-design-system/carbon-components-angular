@@ -10,11 +10,13 @@ import {
 	OnDestroy,
 	HostListener,
 } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/throttleTime";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/observable/merge";
+import {
+	Observable,
+	Subscription,
+	throttleTime,
+	fromEvent
+} from "rxjs";
+import { merge } from "rxjs/operators";
 import position, { AbsolutePosition } from "../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
@@ -31,7 +33,7 @@ import { DialogConfig } from "./dialog-config.interface";
  * @implements {OnDestroy}
  */
 @Component({
-	selector: "n-dialog",
+	selector: "ibm-dialog",
 	template: ""
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {

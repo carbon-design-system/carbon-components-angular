@@ -7,10 +7,10 @@ import { DateTimeModel } from "./../date-time-model.class";
 import { range } from "../../common/utils";
 
 @Component({
-	selector: "n-calendar-year-view",
+	selector: "ibm-calendar-year-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentView]="currentView" header="yearOnlyRange"></n-calendar-header>
+		<ibm-calendar-header [currentView]="currentView" header="yearOnlyRange"></ibm-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--months"

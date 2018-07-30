@@ -16,7 +16,7 @@ import {
  * @class OverlayComponent
  */
 @Component({
-	selector: "n-overlay",
+	selector: "ibm-overlay",
 	template: `
 		<section
 			class="modal-backdrop"

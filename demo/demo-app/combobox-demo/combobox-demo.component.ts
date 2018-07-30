@@ -7,67 +7,67 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 		<h2 class="p-demo-section">Single-select</h2>
 		<div style="width: 330px;">
-			<n-combo-box
+			<ibm-combo-box
 				placeholder="Select or enter"
 				[items]="demoItems2"
 				(selected)="onSelect($event)">
-				<n-dropdown-list></n-dropdown-list>
-			</n-combo-box>
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
 		</div>
 
 		<h2 class="p-demo-section">Multi-select</h2>
 		<div style="width: 330px;">
-			<n-combo-box
+			<ibm-combo-box
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoItems3"
 				(selected)="onSelect($event)"
 				(submit)="onSubmit($event)">
-				<n-dropdown-list></n-dropdown-list>
-			</n-combo-box>
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
 		</div>
 
 		<h2 class="p-demo-section">Ng-Model</h2>
 		<h3 class="p-demo-variation">Single select</h3>
 		<div style="width: 330px">
-			<n-combo-box
+			<ibm-combo-box
 				placeholder="Select or enter"
 				[items]="demoModelItems"
 				[(ngModel)]="comboModel1">
-				<n-dropdown-list></n-dropdown-list>
-			</n-combo-box>
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
 			<p>{{ comboModel1 | json }}</p>
 		</div>
 		<h3 class="p-demo-variation">Multi-select</h3>
 		<div style="width: 330px">
-			<n-combo-box
+			<ibm-combo-box
 				placeholder="Select or enter"
 				type="multi"
 				[items]="demoModelItems"
 				[(ngModel)]="comboModel2">
-				<n-dropdown-list></n-dropdown-list>
-			</n-combo-box>
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
 			<p>{{ comboModel2 | json }}</p>
 		</div>
 
 		<h2 class="p-demo-section">Disabled</h2>
 		<div style="width: 330px;">
-			<n-combo-box
+			<ibm-combo-box
 				disabled="true"
 				placeholder="Select or enter">
-				<n-dropdown-list></n-dropdown-list>
-			</n-combo-box>
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
 		</div>
 
 		<h2 class="p-demo-section">Internal components</h2>
 		<h3 class="p-demo-variation">Pill input</h3>
 		<div style="display:flex;">
-			<n-pill-input
+			<ibm-pill-input
 				[pills]="visibleItems1"
 				(updatePills)="filterPills()"
 				(submit)="demoSubmit($event)"
 				type="multi">
-			</n-pill-input>
+			</ibm-pill-input>
 			<button
 				class="btn--primary"
 				(click)="resetPills()"
@@ -79,7 +79,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
-					<n-dropdown-list [items]="demoItems4"></n-dropdown-list>
+					<ibm-dropdown-list [items]="demoItems4"></ibm-dropdown-list>
 				</div>
 			</div>
 		</div>
@@ -87,7 +87,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 		<div style="position: relative; z-index: 1;">
 			<div class="dropdown-wrapper">
 				<div class="dropdown-menu open" style="position: relative;">
-					<n-dropdown-list [items]="demoItems4" type="multi"></n-dropdown-list>
+					<ibm-dropdown-list [items]="demoItems4" type="multi"></ibm-dropdown-list>
 				</div>
 			</div>
 		</div>

@@ -15,14 +15,14 @@ import {
  * TableGotoPage is a child component to the Table component.
  *
  * ```html
- * <n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
+ * <ibm-table-goto-page (selectPage)="selectPage($event)"></ibm-table-goto-page>
  * ```
  *
  * @export
  * @class TableGotoPage
  */
 @Component({
-	selector: "n-table-goto-page",
+	selector: "ibm-table-goto-page",
 	template: `
 	<form class="table-footer_page-form">
 		<label class="sr-only" [for]="id">Page number</label>

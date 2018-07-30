@@ -19,7 +19,7 @@ import { SizeMap } from "./icon.types";
  * ```
  */
 @Component({
-	selector: "n-icon",
+	selector: "ibm-icon",
 	template: "",
 	providers: [IconService]
 })

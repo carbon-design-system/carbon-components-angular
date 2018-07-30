@@ -1,8 +1,5 @@
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/filter";
+import { Observable, fromEvent } from "rxjs";
+import { debounceTime, map, filter } from "rxjs/operators";
 
 /**
  * returns an observable bound to keydown events that

@@ -16,18 +16,18 @@ import { BannerService } from "./banner.service";
  * @class Banner
  */
 @Component({
-	selector: "n-banner",
+	selector: "ibm-banner",
 	template: `
 	<div class="banner--{{bannerObj.type}}" *ngIf="bannerObj" role="alert" #banner>
 		<span class="icon" aria-hidden="true">
-			<n-static-icon icon="info_fill" *ngIf="bannerObj.type === 'info'"></n-static-icon>
-			<n-static-icon icon="warning_fill" *ngIf="bannerObj.type === 'warning'"></n-static-icon>
-			<n-static-icon icon="failure_fill" *ngIf="bannerObj.type === 'danger'"></n-static-icon>
-			<n-static-icon icon="success_fill" *ngIf="bannerObj.type === 'success'"></n-static-icon>
+			<ibm-static-icon icon="info_fill" *ngIf="bannerObj.type === 'info'"></ibm-static-icon>
+			<ibm-static-icon icon="warning_fill" *ngIf="bannerObj.type === 'warning'"></ibm-static-icon>
+			<ibm-static-icon icon="failure_fill" *ngIf="bannerObj.type === 'danger'"></ibm-static-icon>
+			<ibm-static-icon icon="success_fill" *ngIf="bannerObj.type === 'success'"></ibm-static-icon>
 		</span>
 		<p [innerHTML]="bannerObj.message"></p>
 		<button type="button" class="close--dark-sm" (click)="onClose()" attr.aria-label="{{'BANNER.CLOSE_BUTTON' | translate}}">
-			<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
+			<ibm-static-icon icon="x" size="sm" classList="close_icon"></ibm-static-icon>
 		</button>
 	</div>
 	`

@@ -9,17 +9,17 @@ import { Component, OnInit } from "@angular/core";
 	<h1 class="p-demo-heading">Top nav</h1>
 
 	<h2 class="p-demo-section">Default</h2>
-	<n-top-nav [fixed]="false">
+	<ibm-top-nav [fixed]="false">
 		<a class="top-nav_brand" href="#" title>
 			<h1>
 				IBM <strong>{{topNavBrand}}</strong>
 			</h1>
 		</a>
-	</n-top-nav>
+	</ibm-top-nav>
 
 	<h2 class="p-demo-section">With hamburger and right nav</h2>
-	<n-top-nav [fixed]="false">
-		<n-hamburger hamburger></n-hamburger>
+	<ibm-top-nav [fixed]="false">
+		<ibm-hamburger hamburger></ibm-hamburger>
 		<a class="top-nav_brand" href="#" title>
 			<h1>
 				IBM <strong>{{topNavBrand}}</strong>
@@ -31,7 +31,7 @@ import { Component, OnInit } from "@angular/core";
 				<a class="menu_link"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
-					<n-icon icon="search" color="white" size="sm"></n-icon>
+					<ibm-icon icon="search" color="white" size="sm"></ibm-icon>
 				</a>
 			</li>
 			<li class="menu_item">
@@ -40,7 +40,7 @@ import { Component, OnInit } from "@angular/core";
 					[ngClass]="{'active': showNotifications2}"
 					[attr.aria-expanded]="!!showNotifications2"
 					tabindex="0">
-					<n-icon icon="alert" color="white" size="sm"></n-icon>
+					<ibm-icon icon="alert" color="white" size="sm"></ibm-icon>
 				</a>
 				<div [ngStyle]="{'display': showNotifications2?'block':'none'}" class="top-nav_dropdown">
 					There will be a drop down here of sorts.
@@ -52,7 +52,7 @@ import { Component, OnInit } from "@angular/core";
 					(click)="showUser2 = !showUser2"
 					[ngClass]="{'active': showUser2}"
 					tabindex="0">
-					<n-icon icon="profile" color="white" size="sm"></n-icon>
+					<ibm-icon icon="profile" color="white" size="sm"></ibm-icon>
 					<span *ngIf="!showSearchInput2" class="link_icon-text">Sam Uncley</span>
 				</a>
 				<div [ngStyle]="{'display': showUser2?'block':'none'}" class="top-nav_dropdown">
@@ -65,7 +65,7 @@ import { Component, OnInit } from "@angular/core";
 					[ngClass]="{'active': showHelp2}"
 					[attr.aria-expanded]="!!showHelp2"
 					tabindex="0">
-					<n-icon icon="help" color="white" size="sm"></n-icon>
+					<ibm-icon icon="help" color="white" size="sm"></ibm-icon>
 					<span *ngIf="!showSearchInput2" class="link_icon-text">Help</span>
 				</a>
 				<div [ngStyle]="{'display': showHelp2?'block':'none'}" class="top-nav_dropdown">
@@ -73,10 +73,10 @@ import { Component, OnInit } from "@angular/core";
 				</div>
 			</li>
 		</ul>
-	</n-top-nav>
+	</ibm-top-nav>
 
 	<h2 class="p-demo-section">Without hamburger menu and both navs</h2>
-	<n-top-nav [fixed]="false">
+	<ibm-top-nav [fixed]="false">
 		<a class="top-nav_brand" href="#" title>
 			<h1>
 				IBM <strong>{{topNavBrand}}</strong>
@@ -102,7 +102,7 @@ import { Component, OnInit } from "@angular/core";
 				<a class="menu_link"
 					(click)="showSearchInput2 = toggleSearch(showSearchInput2)"
 					tabindex="0">
-					<n-icon icon="search" color="white" size="sm"></n-icon>
+					<ibm-icon icon="search" color="white" size="sm"></ibm-icon>
 				</a>
 			</li>
 			<li class="menu_item">
@@ -111,7 +111,7 @@ import { Component, OnInit } from "@angular/core";
 					[ngClass]="{'active': showNotifications2}"
 					[attr.aria-expanded]="!!showNotifications2"
 					tabindex="0">
-					<n-icon icon="alert" color="white" size="sm"></n-icon>
+					<ibm-icon icon="alert" color="white" size="sm"></ibm-icon>
 				</a>
 				<div [ngStyle]="{'display': showNotifications2?'block':'none'}" class="top-nav_dropdown">
 					There will be a drop down here of sorts.
@@ -123,7 +123,7 @@ import { Component, OnInit } from "@angular/core";
 					(click)="showUser2 = !showUser2"
 					[ngClass]="{'active': showUser2}"
 					tabindex="0">
-					<n-icon icon="profile" color="white" size="sm"></n-icon>
+					<ibm-icon icon="profile" color="white" size="sm"></ibm-icon>
 					<span *ngIf="!showSearchInput2" class="link_icon-text">Sam Uncley</span>
 				</a>
 				<div [ngStyle]="{'display': showUser2?'block':'none'}" class="top-nav_dropdown">
@@ -136,7 +136,7 @@ import { Component, OnInit } from "@angular/core";
 					[ngClass]="{'active': showHelp2}"
 					[attr.aria-expanded]="!!showHelp2"
 					tabindex="0">
-					<n-icon icon="help" color="white" size="sm"></n-icon>
+					<ibm-icon icon="help" color="white" size="sm"></ibm-icon>
 					<span *ngIf="!showSearchInput2" class="link_icon-text">Help</span>
 				</a>
 				<div [ngStyle]="{'display': showHelp2?'block':'none'}" class="top-nav_dropdown">
@@ -144,7 +144,7 @@ import { Component, OnInit } from "@angular/core";
 				</div>
 			</li>
 		</ul>
-	</n-top-nav>
+	</ibm-top-nav>
 	`
 	// re-enable max-line-length warnings
 	// tslint:enable:max-line-length

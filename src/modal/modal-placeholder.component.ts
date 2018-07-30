@@ -9,22 +9,22 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
  *
  * ```html
  * ...
- * <n-modal-placeholder></n-modal-placeholder>
+ * <ibm-modal-placeholder></ibm-modal-placeholder>
  * ```
  *
  * A more complete example for `Modal` is given as follows:
  *
  * ```html
- * <n-modal size="xl" (overlaySelected)="closeModal()">
- * 	<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ * <ibm-modal size="xl" (overlaySelected)="closeModal()">
+ * 	<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * 	<section class="modal-body">
  * 		<h1>It Works!</h1>
  * 		{{modalText}}
  * 	</section>
- * 	<n-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></n-modal-footer>
- * </n-modal>
+ * 	<ibm-modal-footer><button class="btn cancel-button" (click)="closeModal()">Cancel</button></ibm-modal-footer>
+ * </ibm-modal>
  * ...
- * <n-modal-placeholder></n-modal-placeholder>
+ * <ibm-modal-placeholder></ibm-modal-placeholder>
  * ```
  *
  * @export
@@ -32,7 +32,7 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
  * @implements {OnInit}
  */
 @Component({
-	selector: "n-modal-placeholder",
+	selector: "ibm-modal-placeholder",
 	template: `<div #modalplaceholder></div>`
 })
 export class ModalPlaceholderComponent implements OnInit {

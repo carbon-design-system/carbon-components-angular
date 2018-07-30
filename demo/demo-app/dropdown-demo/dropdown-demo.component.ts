@@ -8,115 +8,87 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h2 class="p-demo-section">Default</h2>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				size="sm">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+			</ibm-dropdown>
 			<br>
-			<n-dropdown placeholder="Select an option">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-			</n-dropdown>
+			<ibm-dropdown placeholder="Select an option">
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+			</ibm-dropdown>
 			<br>
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				size="lg">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+			</ibm-dropdown>
 		</div>
 
 		<h3 class="p-demo-variation">Disabled</h3>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Drop-down 7"
 				[disabled]="true"
 				(selected)="onSelect($event)">
-				<n-dropdown-list
+				<ibm-dropdown-list
 					[items]="demoItems1">
-				</n-dropdown-list>
-			</n-dropdown>
+				</ibm-dropdown-list>
+			</ibm-dropdown>
 		</div>
 
 		<h2 class="p-demo-section">Multi-select</h2>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				size="sm"
 				type="multi">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+			</ibm-dropdown>
 			<br>
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				type="multi">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+			</ibm-dropdown>
 			<br>
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				size="lg"
 				type="multi">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+			</ibm-dropdown>
 		</div>
 
 		<h2 class="p-demo-section">Searchable</h2>
 		<h3 class="p-demo-variation">Single select</h3>
 		<div style="width: 400px">
-			<n-dropdown placeholder="Select an option">
-				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
-			</n-dropdown>
+			<ibm-dropdown placeholder="Select an option">
+				<ibm-dropdown-filter [items]="demoItems1"></ibm-dropdown-filter>
+			</ibm-dropdown>
 		</div>
 		<h3 class="p-demo-variation">Multi-select</h3>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				type="multi"
 				(selected)="onSelect($event)">
-				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
-			</n-dropdown>
-		</div>
-
-		<h2 class="p-demo-section">Hierarchy</h2>
-		<h3 class="p-demo-variation">Tree</h3>
-		<div style="width: 400px">
-			<n-dropdown placeholder="Select an option">
-				<n-dropdown-tree
-					[items]="demoItems3"
-					[label]="'Drop-down with Tree view'">
-				</n-dropdown-tree>
-			</n-dropdown>
-		</div>
-		<h4>Searchable</h4>
-		<div style="width: 400px">
-			<n-dropdown placeholder="Select an option">
-				<n-dropdown-filter-tree
-					[items]="demoItems3">
-				</n-dropdown-filter-tree>
-			</n-dropdown>
-		</div>
-		<h3 class="p-demo-variation">Sub menu</h3>
-		<div style="width: 250px">
-			<n-dropdown
-				placeholder="Select an option"
-				[displayValue]="subdisplay2"
-				(selected)="subdisplay2 = getDisplay($event.item)">
-				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
-			</n-dropdown>
+				<ibm-dropdown-filter [items]="demoItems1"></ibm-dropdown-filter>
+			</ibm-dropdown>
 		</div>
 
 		<h2 class="p-demo-section"><code>appendToBody</code> enabled</h2>
 		<div class="dropdown-appendbody-container" style="height: 150px;
 		border: solid 1px red; overflow: scroll; width: 100%; position: relative;">
 			<div style="width: 300px;">
-				<n-dropdown
+				<ibm-dropdown
 					scrollableContainer=".dropdown-appendbody-container"
 					[appendToBody]="true"
 					placeholder="Select an option"
 					type="multi"
 					[(ngModel)]="dropdown3">
-					<n-dropdown-list [items]="demoItems5"></n-dropdown-list>
-				</n-dropdown>
+					<ibm-dropdown-list [items]="demoItems5"></ibm-dropdown-list>
+				</ibm-dropdown>
 				<p>Selected: {{ dropdown3 | json }}</p>
 				<button class="btn--primary" (click)="reset(dropdown3)">Reset selected</button>
 			</div>
@@ -125,61 +97,61 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 		<h2 class="p-demo-section">ngModel</h2>
 		<h3 class="p-demo-variation">Single select</h3>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				[(ngModel)]="dropdown1">
-				<n-dropdown-list [items]="demoItems5"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems5"></ibm-dropdown-list>
+			</ibm-dropdown>
 			<p>Selected: {{ dropdown1 | json }}</p>
 		</div>
 		<button (click)="reset2()" class="btn--primary">Reset</button>
 		<h3 class="p-demo-variation">Multi-select</h3>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				[(ngModel)]="dropdown2"
 				(onClose)="onClose()"
 				type="multi">
-				<n-dropdown-list [items]="demoItems2"></n-dropdown-list>
-			</n-dropdown>
+				<ibm-dropdown-list [items]="demoItems2"></ibm-dropdown-list>
+			</ibm-dropdown>
 			<p>Selected: {{ dropdown2 | json }}</p>
 		</div>
 
 		<h2 class="p-demo-section">Events</h2>
 		<h3 class="p-demo-variation">Multi-select selected</h3>
-		<n-dropdown
+		<ibm-dropdown
 			placeholder="Select an option"
 			(selected)="multidisplay1 = getMultiDisplay($event.item)"
 			type="multi">
-			<n-dropdown-list
+			<ibm-dropdown-list
 				[items]="demoItems1">
-			</n-dropdown-list>
-		</n-dropdown>
+			</ibm-dropdown-list>
+		</ibm-dropdown>
 		<h3 class="p-demo-variation">Reactive form</h3>
-		<n-dropdown
+		<ibm-dropdown
 			placeholder="Select an option"
 			[formControl]="test">
-			<n-dropdown-list [items]="testData"></n-dropdown-list>
-		</n-dropdown>
+			<ibm-dropdown-list [items]="testData"></ibm-dropdown-list>
+		</ibm-dropdown>
 		<p>Value: {{ test.value | json }}</p>
 		<p>Status: {{ test.status | json }}</p>
-		<n-dropdown
+		<ibm-dropdown
 			placeholder="Select an option"
 			[formControl]="test2"
 			type="multi">
-			<n-dropdown-list [items]="testData2"></n-dropdown-list>
-		</n-dropdown>
+			<ibm-dropdown-list [items]="testData2"></ibm-dropdown-list>
+		</ibm-dropdown>
 		<p>Value: {{ test2.value | json }}</p>
 		<form [formGroup]="testForm" novalidate (ngSubmit)="testSubmit(testForm)">
 			<div formArrayName="tests">
 				<div *ngFor="let testDrop of testForm.controls.tests.controls; let i = index">
 					<div [formGroupName]="i">
-						<n-dropdown
+						<ibm-dropdown
 							formControlName="drop"
 							type="multi"
 							placeholder="Select an option">
-							<n-dropdown-list [items]="formitems"></n-dropdown-list>
-						</n-dropdown>
+							<ibm-dropdown-list [items]="formitems"></ibm-dropdown-list>
+						</ibm-dropdown>
 						<p>Value: {{ testDrop.value | json }}</p>
 					</div>
 				</div>
@@ -190,69 +162,48 @@ import { FormControl, Validators, FormBuilder, FormGroup, FormArray } from "@ang
 
 		<h2 class="p-demo-section">Custom template</h2>
 		<ng-template #listTpl let-item="item">
-			<n-icon
+			<ibm-icon
 				*ngIf="item.selected"
 				icon="Checkbox Selected"
 				size="md">
-			</n-icon>
-			<n-icon
+			</ibm-icon>
+			<ibm-icon
 				*ngIf="!item.selected"
 				icon="Checkbox Empty"
 				size="md">
-			</n-icon>
+			</ibm-icon>
 			{{ item.content }}
 		</ng-template>
 		<div style="width: 400px">
-			<n-dropdown
+			<ibm-dropdown
 				placeholder="Select an option"
 				type="multi">
-				<n-dropdown-list
+				<ibm-dropdown-list
 					[items]="demoItems1"
 					[listTpl]="listTpl">
-				</n-dropdown-list>
-			</n-dropdown>
+				</ibm-dropdown-list>
+			</ibm-dropdown>
 		</div>
 
 		<h2 class="p-demo-section">Internal components</h2>
 		<h3 class="p-demo-variation">Drop-down list</h3>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
-				<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
+				<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
 			</div>
 		</div>
 		<br>
 		<h3 class="p-demo-variation">Drop-down filter</h3>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
-				<n-dropdown-filter [items]="demoItems1"></n-dropdown-filter>
+				<ibm-dropdown-filter [items]="demoItems1"></ibm-dropdown-filter>
 			</div>
 		</div>
 		<br>
 		<h3 class="p-demo-variation">Drop-down multi filter</h3>
 		<div class="dropdown_wrapper">
 			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
-				<n-dropdown-filter [items]="demoItems1" type="multi"></n-dropdown-filter>
-			</div>
-		</div>
-		<br>
-		<h3 class="p-demo-variation">Drop-down tree</h3>
-		<div class="dropdown_wrapper">
-			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
-				<n-dropdown-tree [items]="demoItems3"></n-dropdown-tree>
-			</div>
-		</div>
-		<br>
-		<h3 class="p-demo-variation">Drop-down tree filter</h3>
-		<div class="dropdown_wrapper">
-			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
-				<n-dropdown-filter-tree [items]="demoItems3"></n-dropdown-filter-tree>
-			</div>
-		</div>
-		<br>
-		<h3 class="p-demo-variation">Drop-down sub menu</h3>
-		<div class="dropdown_wrapper" style="width: 250px;">
-			<div class="dropdown_menu" style="position: relative; display: block;" role="listbox">
-				<n-dropdown-sub-menu [items]="demoItems4"></n-dropdown-sub-menu>
+				<ibm-dropdown-filter [items]="demoItems1" type="multi"></ibm-dropdown-filter>
 			</div>
 		</div>
 	`,

@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
  * @class ModalFooterComponent
  */
 @Component({
-	selector: "n-modal-footer",
+	selector: "ibm-modal-footer",
 	template: `
 		<footer role="contentinfo" class="modal_footer--border">
 			<ng-content></ng-content>

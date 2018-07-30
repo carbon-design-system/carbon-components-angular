@@ -12,7 +12,7 @@ import { IconService } from "./icon.service";
  * Page specific sprites may be loaded on that page, but do note that may result in unintened network requets.
  */
 @Component({
-	selector: "n-sprite",
+	selector: "ibm-sprite",
 	template: ``,
 	styles: [`
 		:host {

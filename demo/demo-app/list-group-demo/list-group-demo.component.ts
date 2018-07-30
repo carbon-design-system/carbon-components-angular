@@ -6,23 +6,23 @@ import { Component, OnInit } from "@angular/core";
 	<h1 class="p-demo-heading">List group</h1>
 
 	<ng-template #listTpl let-item="item">
-		<n-checkbox inline="true"
+		<ibm-checkbox inline="true"
 		[(ngModel)]="item.selected"
 		[disabled]="item.disabled"
-		aria-hidden="true"></n-checkbox>
+		aria-hidden="true"></ibm-checkbox>
 		<span>
 			{{item.content}}
 		</span>
 		<button class="btn--icon-link" type="button" aria-expanded="false" aria-haspopup="true">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</ng-template>
 
 	<h2 class="p-demo-section">Default list group</h2>
-	<n-list-group [items]="demoItems" (selected)="onSelect($event)"></n-list-group>
+	<ibm-list-group [items]="demoItems" (selected)="onSelect($event)"></ibm-list-group>
 
 	<h3 class="p-demo-variation">Custom template (added Icon)</h3>
-	<n-list-group [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="true"></n-list-group>
+	<ibm-list-group [items]="demoItems1" (selected)="onSelect($event)" [listTpl]="listTpl" [checkMark]="true"></ibm-list-group>
 	`
 })
 

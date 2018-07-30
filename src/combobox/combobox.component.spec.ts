@@ -13,12 +13,12 @@ import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 
 @Component({
 	template: `
-	<n-combo-box
+	<ibm-combo-box
 		placeholder="placeholder"
 		[items]="items"
 		(select)="onSelect($event)">
-		<n-dropdown-list></n-dropdown-list>
-	</n-combo-box>`
+		<ibm-dropdown-list></ibm-dropdown-list>
+	</ibm-combo-box>`
 })
 class ComboboxTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];

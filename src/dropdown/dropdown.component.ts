@@ -15,19 +15,15 @@ import {
 	OnDestroy,
 	HostBinding
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/operator/throttleTime";
+import { Observable, fromEvent, Subscription } from "rxjs";
+import { throttleTime } from "rxjs/operators";
 
 import { TranslateService } from "@ngx-translate/core";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../utils/position";
-import { ListItem } from "./list-item.interface";
-import { findNextElem, findPrevElem, focusNextElem } from "./../common/a11y.service";
-import { Subscription } from "rxjs/Subscription";
 
 
 /**
@@ -41,7 +37,7 @@ import { Subscription } from "rxjs/Subscription";
  * @implements {OnDestroy}
  */
 @Component({
-	selector: "n-dropdown",
+	selector: "ibm-dropdown",
 	template: `
 		<button
 			type="button"
@@ -53,7 +49,7 @@ import { Subscription } from "rxjs/Subscription";
 			[disabled]="disabled">
 			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
 			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
-			<n-static-icon icon="chevron_down" [size]="(size === 'sm' ? 'sm' : 'md')" classList="dropdown_chevron"></n-static-icon>
+			<ibm-static-icon icon="chevron_down" [size]="(size === 'sm' ? 'sm' : 'md')" classList="dropdown_chevron"></ibm-static-icon>
 		</button>
 		<div
 			#dropdownMenu

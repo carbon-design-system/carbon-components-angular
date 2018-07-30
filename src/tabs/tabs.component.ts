@@ -18,18 +18,18 @@ import { TabHeaders } from "./tab-headers.component";
  * `Tabs` expects a set of `n-tab` elements
  *
  * ```html
- * <n-tabs>
- * 	<n-tab heading='tab1'>
+ * <ibm-tabs>
+ * 	<ibm-tab heading='tab1'>
  * 		tab 1 content
- * 	</n-tab>
- * 	<n-tab heading='tab1'>
+ * 	</ibm-tab>
+ * 	<ibm-tab heading='tab1'>
  * 		tab 2 content
- * 	</n-tab>
+ * 	</ibm-tab>
  * 	<!-- ... -->
- * 	<n-tab heading='tab1'>
+ * 	<ibm-tab heading='tab1'>
  * 		tab n content
- * 	</n-tab>
- * </n-tabs>
+ * 	</ibm-tab>
+ * </ibm-tabs>
  * ```
  *
  * @export
@@ -37,19 +37,19 @@ import { TabHeaders } from "./tab-headers.component";
  * @implements {AfterContentInit}
  */
 @Component({
-	selector: "n-tabs",
+	selector: "ibm-tabs",
 	template: `
-			<n-tab-headers
+			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
-			</n-tab-headers>
+			</ibm-tab-headers>
 			<ng-content></ng-content>
-			<n-tab-headers
+			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
-			</n-tab-headers>
+			</ibm-tab-headers>
 	 `
 })
 export class Tabs implements AfterContentInit {

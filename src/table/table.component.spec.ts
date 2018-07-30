@@ -12,7 +12,7 @@ import { By } from "@angular/platform-browser";
 import { NFormsModule } from "./../forms/forms.module";
 
 @Component({
-	template: `<n-table [model]="tableModel"></n-table>`
+	template: `<ibm-table [model]="tableModel"></ibm-table>`
 })
 class TableTestComponent implements OnInit {
 	tableModel = new TableModel();
@@ -51,7 +51,7 @@ describe("Table", () => {
 		});
 
 		fixture = TestBed.createComponent(TableTestComponent);
-		tableInstance = fixture.debugElement.query(By.css("n-table"));
+		tableInstance = fixture.debugElement.query(By.css("ibm-table"));
 		fixture.detectChanges();
 	});
 

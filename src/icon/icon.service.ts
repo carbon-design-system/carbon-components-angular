@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Http } from "@angular/http";
-import "rxjs/add/operator/toPromise";
+import { toPromise } from "rxjs/operators";
 import { IconSize } from "./icon.types";
 
 /**

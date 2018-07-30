@@ -11,33 +11,33 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 
 	<h2>n-icon tests</h2>
 
-	<n-icon icon="alert" size="xs"></n-icon>
-	<n-icon icon="alert" size="sm"></n-icon>
-	<n-icon icon="alert" size="md"></n-icon>
-	<n-icon icon="alert" size="lg"></n-icon>
+	<ibm-icon icon="alert" size="xs"></ibm-icon>
+	<ibm-icon icon="alert" size="sm"></ibm-icon>
+	<ibm-icon icon="alert" size="md"></ibm-icon>
+	<ibm-icon icon="alert" size="lg"></ibm-icon>
 
 	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
-		<n-icon icon="alert" color="blue"></n-icon>
-		<n-icon icon="alert" color="light"></n-icon>
-		<n-icon icon="alert" color="dark"></n-icon>
-		<n-icon icon="alert" color="white"></n-icon>
+		<ibm-icon icon="alert" color="blue"></ibm-icon>
+		<ibm-icon icon="alert" color="light"></ibm-icon>
+		<ibm-icon icon="alert" color="dark"></ibm-icon>
+		<ibm-icon icon="alert" color="white"></ibm-icon>
 	</div>
 
-	<n-icon icon="alert" color="blue" size="xs"></n-icon>
-	<n-icon icon="alert" color="blue" size="sm"></n-icon>
-	<n-icon icon="alert" color="blue" size="md"></n-icon>
-	<n-icon icon="alert" color="blue" size="lg"></n-icon>
+	<ibm-icon icon="alert" color="blue" size="xs"></ibm-icon>
+	<ibm-icon icon="alert" color="blue" size="sm"></ibm-icon>
+	<ibm-icon icon="alert" color="blue" size="md"></ibm-icon>
+	<ibm-icon icon="alert" color="blue" size="lg"></ibm-icon>
 
-	<n-icon icon="alert" color="light" size="xs"></n-icon>
-	<n-icon icon="alert" color="light" size="sm"></n-icon>
-	<n-icon icon="alert" color="light" size="md"></n-icon>
-	<n-icon icon="alert" color="light" size="lg"></n-icon>
+	<ibm-icon icon="alert" color="light" size="xs"></ibm-icon>
+	<ibm-icon icon="alert" color="light" size="sm"></ibm-icon>
+	<ibm-icon icon="alert" color="light" size="md"></ibm-icon>
+	<ibm-icon icon="alert" color="light" size="lg"></ibm-icon>
 
 	<div style="display: inline-block; background-color: aquamarine; padding: 2px">
-		<n-icon icon="alert" color="white" size="xs"></n-icon>
-		<n-icon icon="alert" color="white" size="sm"></n-icon>
-		<n-icon icon="alert" color="white" size="md"></n-icon>
-		<n-icon class="test-custom-class foo" icon="alert" color="white" size="lg"></n-icon>
+		<ibm-icon icon="alert" color="white" size="xs"></ibm-icon>
+		<ibm-icon icon="alert" color="white" size="sm"></ibm-icon>
+		<ibm-icon icon="alert" color="white" size="md"></ibm-icon>
+		<ibm-icon class="test-custom-class foo" icon="alert" color="white" size="lg"></ibm-icon>
 	</div>
 
 	<h2>peretz-icon tests</h2>
@@ -94,15 +94,15 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 			  	</svg>
 			</button>
 		</label>
-		<n-dropdown
+		<ibm-dropdown
 			placeholder="Select a set"
 			style="width: 30%; margin-bottom: 0;"
 			type="multi"
 			(select)="onSelect()"
 			[(ngModel)]="selected"
 			[disabled]="waitingForLoad">
-			<n-dropdown-list [items]="sets"></n-dropdown-list>
-		</n-dropdown>
+			<ibm-dropdown-list [items]="sets"></ibm-dropdown-list>
+		</ibm-dropdown>
 	</div>
 	<div
 		class="loading"
@@ -123,7 +123,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from "@angular/co
 					class="set-icon"
 					[ngClass]="{hide: !icon.visible}">
 					<h3>{{ icon.name }}</h3>
-					<n-icon [icon]="icon.name" size="lg"></n-icon>
+					<ibm-icon [icon]="icon.name" size="lg"></ibm-icon>
 				</span>
 			</div>
 		</div>

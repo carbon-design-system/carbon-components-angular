@@ -15,7 +15,7 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
  *
  * ```html
  * ...
- * <n-dialog-placeholder></n-dialog-placeholder>
+ * <ibm-dialog-placeholder></ibm-dialog-placeholder>
  * ```
  *
  * A more complete example for `Popover` is given as follows:
@@ -23,7 +23,7 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
  * ```html
  * <button [nPopover]="Hello" appendToBody="true"></button>
  * ...
- * <n-dialog-placeholder></n-dialog-placeholder>
+ * <ibm-dialog-placeholder></ibm-dialog-placeholder>
  * ```
  *
  * @export
@@ -31,7 +31,7 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
  * @implements {OnInit}
  */
 @Component({
-	selector: "n-dialog-placeholder",
+	selector: "ibm-dialog-placeholder",
 	template: `<div #dialogPlaceholder></div>`
 })
 export class DialogPlaceholderComponent implements OnInit {

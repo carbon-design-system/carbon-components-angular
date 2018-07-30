@@ -13,7 +13,7 @@ import {
  * ```
  */
 @Component({
-	selector: "n-static-icon",
+	selector: "ibm-static-icon",
 	template: ""
 })
 export class StaticIcon implements AfterViewInit {

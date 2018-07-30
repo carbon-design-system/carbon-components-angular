@@ -46,11 +46,11 @@ describe("RadioGroup", () => {
 @Component({
 	selector: "test-cmp",
 	template: `
-	<n-radio-group [(ngModel)]="radio">
-		<n-radio *ngFor="let one of manyRadios" [value]="one"
+	<ibm-radio-group [(ngModel)]="radio">
+		<ibm-radio *ngFor="let one of manyRadios" [value]="one"
 			class="indent">Radio {{one}}
-		</n-radio>
-	</n-radio-group>`,
+		</ibm-radio>
+	</ibm-radio-group>`,
 	entryComponents: [RadioComponent]
 })
 class RadioTestComponent {

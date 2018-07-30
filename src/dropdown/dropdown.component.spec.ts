@@ -11,12 +11,12 @@ import { ScrollableList } from "./scrollable-list.directive";
 
 @Component({
 	template: `
-	<n-dropdown
+	<ibm-dropdown
 		placeholder="test"
 		class="custom-class"
 		(select)="onSelect($event)">
-		<n-dropdown-list [items]="items"></n-dropdown-list>
-	</n-dropdown>`
+		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+	</ibm-dropdown>`
 })
 class DropdownTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -70,7 +70,7 @@ describe("Dropdown", () => {
 	});
 
 	it("should keep custom classes on the host el", () => {
-		const el = fixture.debugElement.query(By.css("n-dropdown"));
+		const el = fixture.debugElement.query(By.css("ibm-dropdown"));
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
 		expect(el.nativeElement.classList.contains("dropdown")).toBe(true);
 	});

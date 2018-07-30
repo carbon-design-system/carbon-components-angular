@@ -8,10 +8,10 @@ import { DateTimeModel } from "./../date-time-model.class";
 import { range } from "../../common/utils";
 
 @Component({
-	selector: "n-calendar-quarter-view",
+	selector: "ibm-calendar-quarter-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentView]="currentView" header="yearOnly"></n-calendar-header>
+		<ibm-calendar-header [currentView]="currentView" header="yearOnly"></ibm-calendar-header>
 		<table class="calendar_grid">
 			<tr
 			class="grid_row--quarters"

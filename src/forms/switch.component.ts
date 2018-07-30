@@ -49,7 +49,7 @@ export class SwitchChange {
 
 /**
  * ```html
- * <n-switch [(ngModel)]="switchState">Switch</n-switch>
+ * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
  * ```
  * @export
  * @class SwitchComponent
@@ -57,7 +57,7 @@ export class SwitchChange {
  * @implements {OnInit}
  */
 @Component({
-	selector: "n-switch",
+	selector: "ibm-switch",
 	template: `
 		<label [for]="id">
 			<ng-content></ng-content>

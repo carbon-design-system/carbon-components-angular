@@ -9,7 +9,7 @@ import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
 
 @Component({
-	template: `<n-dropdown-list [items]="items" (select)="onSelect($event)"></n-dropdown-list>`
+	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
 })
 class DropdownListTestComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
@@ -20,7 +20,7 @@ class DropdownListTestComponent {
 }
 
 @Component({
-	template: `<n-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></n-dropdown-list>`
+	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></ibm-dropdown-list>`
 })
 class TestMultiComponent {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];

@@ -29,12 +29,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  * @implements {AfterContentInit}
  */
 @Component({
-	selector: "n-combo-box",
+	selector: "ibm-combo-box",
 	template: `
 		<div
 			role="combobox"
 			[attr.aria-expanded]="open">
-			<n-pill-input
+			<ibm-pill-input
 				[pills]="pills"
 				[placeholder]="placeholder"
 				[displayValue]="selectedValue"
@@ -43,7 +43,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 				(updatePills)="updatePills()"
 				(search)="onSearch($event)"
 				(submit)="onSubmit($event)">
-			</n-pill-input>
+			</ibm-pill-input>
 			<button
 				#dropdownButton
 				role="button"
@@ -54,12 +54,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					height: open?null:'30px'
 				}"
 				(click)="toggleDropdown()">
-				<n-static-icon
+				<ibm-static-icon
 					icon="chevron_down" [size]="(size === 'sm' ? 'sm' : 'md')"
 					[ngClass]="{
 						open: open
 					}">
-				</n-static-icon>
+				</ibm-static-icon>
 			</button>
 		</div>
 		<div class="dropdown_menu">

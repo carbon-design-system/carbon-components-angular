@@ -21,12 +21,12 @@ import { Modal } from "../../../src";
 @Component({
 	selector: "app-form-modal",
 	template: `
-		<n-modal size="sm">
-			<n-modal-header (closeSelect)="closeModal()">Form</n-modal-header>
+		<ibm-modal size="sm">
+			<ibm-modal-header (closeSelect)="closeModal()">Form</ibm-modal-header>
 			<form novalidate (ngSubmit)="submit()" [formGroup]="form" style="display: contents">
 				<div class="modal-body modal_body">
 					<div class="form-instructions">{{modalText}}</div>
-					<n-label *ngFor="let field of fields" [labelState]="form.get(field).touched && !form.get(field).valid ? 'error' : ''"
+					<ibm-label *ngFor="let field of fields" [labelState]="form.get(field).touched && !form.get(field).valid ? 'error' : ''"
 						[class.has-error]="form.get(field).touched && !form.get(field).valid">
 						<label>{{field}}</label>
 						<input
@@ -34,23 +34,23 @@ import { Modal } from "../../../src";
 							class="input-field"
 							[class.valid--error]="form.get(field).touched && !form.get(field).valid"
 							formControlName="{{field}}"/>
-					</n-label>
+					</ibm-label>
 
 					<!-- Following is for testing escape behavior (when those are open, escape should close them and not modal) -->
 					<label>Drop-down list</label>
-					<n-dropdown
+					<ibm-dropdown
 						placeholder="Select an option">
-						<n-dropdown-list [items]="demoItems1"></n-dropdown-list>
-					</n-dropdown>
+						<ibm-dropdown-list [items]="demoItems1"></ibm-dropdown-list>
+					</ibm-dropdown>
 					<br><br>
 					<button class="btn--primary" type="button" nPopover="Hello there" placement="bottom" title="Popover">Popover bottom</button>
 				</div>
-				<n-modal-footer>
+				<ibm-modal-footer>
                     <button class="btn--primary submit-button" type="submit">Submit</button>
 					<button class="btn--secondary cancel-button" type="button" (click)="closeModal()">Cancel</button>
-				</n-modal-footer>
+				</ibm-modal-footer>
 			</form>
-		</n-modal>
+		</ibm-modal>
 	`,
 	styleUrls: ["./form-modal.component.scss"]
 })

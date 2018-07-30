@@ -3,20 +3,20 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 
 /**
  * ```html
- * <n-label labelState="success">
+ * <ibm-label labelState="success">
  * 	<label label>Field with success</label>
  * 	<input type="text" class="input-field">
- * </n-label>
+ * </ibm-label>
  *
- * <n-label labelState="warning">
+ * <ibm-label labelState="warning">
  * 	<label label>Field with warning</label>
  * 	<input type="text" class="input-field">
- * </n-label>
+ * </ibm-label>
  *
- * <n-label labelState="error">
+ * <ibm-label labelState="error">
  * 	<label label>Field with error</label>
  * 	<input type="text" class="input-field">
- * </n-label>
+ * </ibm-label>
  * ```
  *
  * @export
@@ -24,13 +24,13 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
  * @implements {AfterContentInit}
  */
 @Component({
-	selector: "n-label",
+	selector: "ibm-label",
 	// tslint:disable:max-line-length
 	template: `
 	<label [for]="labelInputID" [ngClass]= "labelState ? 'valid--'+labelState : null">
-		<n-static-icon *ngIf="labelState === 'success'" icon="success" size="sm"></n-static-icon>
-		<n-static-icon *ngIf="labelState === 'warning'" icon="warning" size="sm"></n-static-icon>
-		<n-static-icon *ngIf="labelState === 'error'" icon="error" size="sm"></n-static-icon>
+		<ibm-static-icon *ngIf="labelState === 'success'" icon="success" size="sm"></ibm-static-icon>
+		<ibm-static-icon *ngIf="labelState === 'warning'" icon="warning" size="sm"></ibm-static-icon>
+		<ibm-static-icon *ngIf="labelState === 'error'" icon="error" size="sm"></ibm-static-icon>
 		<ng-content></ng-content>
 	</label>
 	<ng-content select="input,textarea,div" ></ng-content>`
@@ -48,7 +48,7 @@ export class LabelComponent implements AfterContentInit {
 	 * its input counterpart through the 'for' attribute.
 	 * @memberof LabelComponent
 	 */
-	labelInputID = "n-label-" + LabelComponent.labelCounter;
+	labelInputID = "ibm-label-" + LabelComponent.labelCounter;
 
 	/**
 	 * State of the `LabelComponent` will determine the styles applied.

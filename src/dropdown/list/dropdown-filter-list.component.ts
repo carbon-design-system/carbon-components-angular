@@ -12,7 +12,7 @@ import {
 	OnChanges
 } from "@angular/core";
 
-import { findNextElem, findPrevElem } from "./../../common/a11y.service";
+import { findNextElem, findPrevElem } from "./../../utils/a11y";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { ListGroup } from "./../../list-group/list-group.component";
@@ -22,7 +22,7 @@ import { DropdownList } from "./dropdown-list.component";
 
 /**
  * ```html
- * <n-dropdown-filter [items]="listItems"></n-dropdown-filter>
+ * <ibm-dropdown-filter [items]="listItems"></ibm-dropdown-filter>
  * ```
  *
  * @export
@@ -34,7 +34,7 @@ import { DropdownList } from "./dropdown-list.component";
  * @implements {OnChanges}
  */
 @Component({
-	selector: "n-dropdown-filter",
+	selector: "ibm-dropdown-filter",
 	template: `
 		<div class="menu_filter-options">
 			<label
@@ -48,12 +48,12 @@ import { DropdownList } from "./dropdown-list.component";
 				<span class="checkbox_label">{{ 'DROPDOWN.FILTER.SELECTED_ONLY' | translate }}</span>
 			</label>
 			<label class="search_group">
-				<n-static-icon
+				<ibm-static-icon
 					class="search_icon"
 					aria-hidden="true"
 					icon="search"
 					size="sm">
-				</n-static-icon>
+				</ibm-static-icon>
 				<input
 					#filter
 					(keyup)="filterItems()"
@@ -67,7 +67,7 @@ import { DropdownList } from "./dropdown-list.component";
 						visible: filter.value.trim()
 					}"
 					(click)="clearFilter()">
-					<n-static-icon icon="x" size="sm" classList="close_icon"></n-static-icon>
+					<ibm-static-icon icon="x" size="sm" classList="close_icon"></ibm-static-icon>
 				</button>
 			</label>
 		</div>
@@ -88,7 +88,7 @@ import { DropdownList } from "./dropdown-list.component";
 		<div
 			#upArrow
 			class="scroll-arrow--up">
-			<n-static-icon icon="carat_up" size="sm"></n-static-icon>
+			<ibm-static-icon icon="carat_up" size="sm"></ibm-static-icon>
 		</div>
 		<!-- default is deprecated -->
 		<ul
@@ -143,7 +143,7 @@ import { DropdownList } from "./dropdown-list.component";
 		<div
 			#downArrow
 			class="scroll-arrow--down">
-			<n-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></n-static-icon>
+			<ibm-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></ibm-static-icon>
 		</div>`,
 		providers: [
 			{

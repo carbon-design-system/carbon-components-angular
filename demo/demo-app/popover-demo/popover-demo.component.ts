@@ -13,43 +13,43 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 	<div>
 		Popover left
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="left" (onClose)="whenClosed()">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover top
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover right
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover right-bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right-bottom">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover left-bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="left-bottom">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="bottom">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover auto position
 		<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" [autoPosition]="true">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
@@ -58,14 +58,14 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			{{data | json}}
 		</ng-template>
 		<button class="btn--icon-link" [nPopover]="dataPopoverTemplate" title="Popover title" placement="right" [data]="{foo: 'bar'}">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 
 	<h3 class="p-demo-variation">Event triggered popovers</h3>
 	Have a popover
 	<button class="btn--icon-link" [nPopover]="customPopover" title="Popover title" placement="right" #popover="nPopover">
-		<n-icon icon="info" size="sm"></n-icon>
+		<ibm-icon icon="info" size="sm"></ibm-icon>
 	</button>
 	<br>
 	<button class="btn--primary" (click)="popover.close()">Close above popover</button>
@@ -96,7 +96,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			[nPopoverMenu]="list"
 			placement="bottom-left"
 			title="Actions">
-			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
+			<ibm-icon icon="dotdotdot_vert" size="sm"></ibm-icon>
 			Menu left
 		</button>
 	</span>
@@ -105,7 +105,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			[nPopoverMenu]="list"
 			placement="bottom-right,bottom-left"
 			title="Actions">
-			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
+			<ibm-icon icon="dotdotdot_vert" size="sm"></ibm-icon>
 			Menu right
 		</button>
 	</span>
@@ -115,16 +115,16 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			placement="bottom-left"
 			title="Actions"
 			wrapperClass="align-to-icon">
-			<n-icon icon="dotdotdot_vert" size="sm"></n-icon>
+			<ibm-icon icon="dotdotdot_vert" size="sm"></ibm-icon>
 		</button>
 	</span>
 
 	<h2 class="p-demo-section">Popover filter</h2>
 	<ng-template #filter>
-		<n-checkbox>High</n-checkbox>
-		<n-checkbox>Medium</n-checkbox>
-		<n-checkbox>Low</n-checkbox>
-		<n-checkbox>Danger</n-checkbox>
+		<ibm-checkbox>High</ibm-checkbox>
+		<ibm-checkbox>Medium</ibm-checkbox>
+		<ibm-checkbox>Low</ibm-checkbox>
+		<ibm-checkbox>Danger</ibm-checkbox>
 	</ng-template>
 	<ng-template #filterFooter let-popover="popover">
 		<button class="btn--primary">Apply</button>
@@ -137,7 +137,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			title="Popover filter"
 			placement="left-bottom"
 			[footer]="filterFooter">
-			<n-icon icon="filter" size="sm"></n-icon>
+			<ibm-icon icon="filter" size="sm"></ibm-icon>
 		</button>
 	<span>
 		Filter right
@@ -146,7 +146,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			title="Popover filter"
 			placement="right-bottom"
 			[footer]="filterFooter">
-			<n-icon icon="filter" size="sm"></n-icon>
+			<ibm-icon icon="filter" size="sm"></ibm-icon>
 		</button>
 	</span>
 
@@ -158,7 +158,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 			placement="right"
 			title="Select item"
 			[appendToBody]="true">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 
@@ -166,31 +166,31 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 	<div>
 		Popover bottom
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="bottom,top">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover right
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right,left">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover left
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="left,right">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover top
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="top,bottom">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	<div>
 		Popover right (with top, bottom, left, right possible positions)
 		<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right,top,bottom,left">
-			<n-icon icon="info" size="sm"></n-icon>
+			<ibm-icon icon="info" size="sm"></ibm-icon>
 		</button>
 	</div>
 	`,

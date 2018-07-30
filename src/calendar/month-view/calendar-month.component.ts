@@ -7,10 +7,10 @@ import { DateTimeModel } from "./../date-time-model.class";
 import { range } from "../../common/utils";
 
 @Component({
-	selector: "n-calendar-month-view",
+	selector: "ibm-calendar-month-view",
 	template: `
 	<div class="calendar-view">
-		<n-calendar-header [currentView]="currentView" [monthCount]="monthCount"></n-calendar-header>
+		<ibm-calendar-header [currentView]="currentView" [monthCount]="monthCount"></ibm-calendar-header>
 		<div class="calendar_month-container"
 		*ngFor="let month of range(monthCount)">
 			<table class="calendar_grid calendar_month">

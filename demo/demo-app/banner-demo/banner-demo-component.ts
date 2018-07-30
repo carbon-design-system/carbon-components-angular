@@ -15,10 +15,10 @@ import { Banner } from "./../../../src";
 
 	<h2 class="p-demo-section">Static</h2>
 	<div class="banners-container">
-		<n-banner [bannerObj]="infoBanner" (close)="onClose($event)"></n-banner>
-		<n-banner [bannerObj]="errorBanner" (close)="onCloseError($event)"></n-banner>
-		<n-banner [bannerObj]="warningBanner" (close)="onCloseWarning($event)"></n-banner>
-		<n-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></n-banner>
+		<ibm-banner [bannerObj]="infoBanner" (close)="onClose($event)"></ibm-banner>
+		<ibm-banner [bannerObj]="errorBanner" (close)="onCloseError($event)"></ibm-banner>
+		<ibm-banner [bannerObj]="warningBanner" (close)="onCloseWarning($event)"></ibm-banner>
+		<ibm-banner [bannerObj]="successBanner" (close)="onCloseSuccess($event)"></ibm-banner>
 	</div>
 
 	<h2 class="p-demo-section">Default</h2>

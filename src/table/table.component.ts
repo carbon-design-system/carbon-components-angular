@@ -9,10 +9,9 @@ import {
 	EventEmitter,
 	ViewEncapsulation
 } from "@angular/core";
-import { Subscription } from "rxjs";
-import { Observable } from "rxjs/Rx";
+import { Subscription, Observable } from "rxjs";
 
-import { TableModel, TableItem } from "./table.module";
+import { TableModel } from "./table.module";
 import { getScrollbarWidth } from "../common/utils";
 
 /**
@@ -25,13 +24,13 @@ import { getScrollbarWidth } from "../common/utils";
  *
  * Here, you create a view (with built-in controller) and provide it a model.
  * Changes you make to the model are reflected in the view. Provide same model you use
- * in the table to the `<n-table-pagination>` and `<n-table-goto-page>` components.
+ * in the table to the `<ibm-table-pagination>` and `<ibm-table-goto-page>` components.
  * They provide a different view over the same data.
  *
  * ## Basic usage
  *
  * ```html
- * <n-table [model]="simpleModel"></n-table>
+ * <ibm-table [model]="simpleModel"></ibm-table>
  * ```
  *
  * ```typescript
@@ -112,8 +111,8 @@ import { getScrollbarWidth } from "../common/utils";
  * ```html
  * <p class="table-footer">
  * 	<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
- * 	<n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
- * 	<n-table-goto-page (selectPage)="selectPage($event)"></n-table-goto-page>
+ * 	<ibm-table-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-table-pagination>
+ * 	<ibm-table-goto-page (selectPage)="selectPage($event)"></ibm-table-goto-page>
  * </p>
  * ```
  *
@@ -153,7 +152,7 @@ import { getScrollbarWidth } from "../common/utils";
  * @implements {AfterContentChecked}
  */
 @Component({
-	selector: "n-table",
+	selector: "ibm-table",
 	template: `
 	<table [ngClass]="{
 		'table--sm': size === 'sm',
@@ -163,12 +162,12 @@ import { getScrollbarWidth } from "../common/utils";
 		<thead>
 			<tr>
 				<th class="table_checkbox-col" *ngIf="showSelectionColumn">
-					<n-checkbox
+					<ibm-checkbox
 						[size]="size !== 'lg' ? 'sm' : 'md'"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
 						(change)="onSelectAllCheckboxChange()">
-					</n-checkbox>
+					</ibm-checkbox>
 				</th>
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
@@ -288,11 +287,11 @@ import { getScrollbarWidth } from "../common/utils";
 						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
 					}">
 					<td class="table_checkbox-col" *ngIf="showSelectionColumn">
-						<n-checkbox
+						<ibm-checkbox
 							[size]="size !== 'lg' ? 'sm' : 'md'"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
-						</n-checkbox>
+						</ibm-checkbox>
 					</td>
 					<ng-container *ngFor="let item of row; let i = index">
 						<td *ngIf="model.header[i].visible"
@@ -311,7 +310,7 @@ import { getScrollbarWidth } from "../common/utils";
 		<tfoot>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
-					<n-static-icon icon="loading_rows" size="lg"></n-static-icon>
+					<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
 				</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">

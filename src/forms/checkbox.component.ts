@@ -54,7 +54,7 @@ export class CheckboxChange {
  * @implements {AfterViewInit}
  */
 @Component({
-	selector: "n-checkbox",
+	selector: "ibm-checkbox",
 	template: `
 		<label [class]="getVariantClass()" [for]="id">
 			<input type="checkbox" #inputCheckbox

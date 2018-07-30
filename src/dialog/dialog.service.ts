@@ -10,7 +10,7 @@ import {
 	ViewContainerRef,
 	Host
 } from "@angular/core";
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
 import { DialogPlaceholderService } from "./dialog-placeholder.service";
 import { Popover } from "..";

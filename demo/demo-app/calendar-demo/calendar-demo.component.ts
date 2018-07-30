@@ -8,27 +8,27 @@ import { DateTimeModel } from "./../../../src/calendar/date-time-model.class";
 	<h1>Calendar</h1>
 
 	<div style="width: 280px;">
-		<n-calendar-month-view [model]="monthViewModel"></n-calendar-month-view>
+		<ibm-calendar-month-view [model]="monthViewModel"></ibm-calendar-month-view>
 	<div>
 
 	<div style="width: 564px;">
-		<n-calendar-month-view [model]="monthViewModel" [monthCount]="2"></n-calendar-month-view>
+		<ibm-calendar-month-view [model]="monthViewModel" [monthCount]="2"></ibm-calendar-month-view>
 	<div>
 
 	<div style="width: 1046px;">
-		<n-calendar-months-view [model]="monthsViewModel"></n-calendar-months-view>
+		<ibm-calendar-months-view [model]="monthsViewModel"></ibm-calendar-months-view>
 	</div>
 
 	<div style="width: 1046px;">
-		<n-calendar-quarter-view [model]="quarterViewModel"></n-calendar-quarter-view>
+		<ibm-calendar-quarter-view [model]="quarterViewModel"></ibm-calendar-quarter-view>
 	</div>
 
 	<div style="width: 1046px;">
-		<n-calendar-year-view [model]="yearViewModel"></n-calendar-year-view>
+		<ibm-calendar-year-view [model]="yearViewModel"></ibm-calendar-year-view>
 	</div>
 
 	<div style="width: 1046px;">
-		<n-calendar [view]="month" [model]="yearViewModel"></n-calendar>
+		<ibm-calendar [view]="month" [model]="yearViewModel"></ibm-calendar>
 	</div>
 	`
 })

@@ -27,7 +27,7 @@ import { cycleTabs } from "./../common/tab.service";
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
- * <n-modal-placeholder></n-modal-placeholder>
+ * <ibm-modal-placeholder></ibm-modal-placeholder>
  * ```
  *
  * A more complete example for `Modal` is given as follows:
@@ -39,17 +39,17 @@ import { cycleTabs } from "./../common/tab.service";
  * \@Component({
  * 	selector: "app-sample-modal",
  * 	template: `
- *		<n-modal size="xl">
- * 			<n-modal-header (closeSelect)="closeModal()">Header text</n-modal-header>
+ *		<ibm-modal size="xl">
+ * 			<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * 			<section class="modal-body">
  * 			<h1>Sample modal works.</h1>
  * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="false">
- * 				<n-icon icon="info" size="sm"></n-icon>
+ * 				<ibm-icon icon="info" size="sm"></ibm-icon>
  * 			</button>
  * 			{{modalText}}
  * 			</section>
- * 			<n-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></n-modal-footer>
- * 		</n-modal>`,
+ * 			<ibm-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></ibm-modal-footer>
+ * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
  * export class SampleModalComponent {
@@ -68,7 +68,7 @@ import { cycleTabs } from "./../common/tab.service";
  *  selector: "app-modal-demo",
  *  template: `
  *   <button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
- *   <n-modal-placeholder></n-modal-placeholder>`
+ *   <ibm-modal-placeholder></ibm-modal-placeholder>`
  * })
  * export class ModalDemo {
  * 	openModal() {
@@ -83,9 +83,9 @@ import { cycleTabs } from "./../common/tab.service";
  * @implements {OnDestroy}
  */
 @Component({
-	selector: "n-modal",
+	selector: "ibm-modal",
 	template: `
-		<n-overlay (overlaySelect)="overlaySelected.emit()">
+		<ibm-overlay (overlaySelect)="overlaySelected.emit()">
 			<div [ngClass]="{
 					'modal--sm': size === 'sm',
 					'modal': size === 'default' || size === 'md',
@@ -103,7 +103,7 @@ import { cycleTabs } from "./../common/tab.service";
 				#modal>
 				<ng-content></ng-content>
 			</div>
-		</n-overlay>
+		</ibm-overlay>
 	`,
 	animations: [
 		trigger("modalState", [

@@ -196,10 +196,10 @@ describe("Popover directive", () => {
 			set: {
 				template: `
 				<ng-template #filter let-popover="popover" let-filter="data">
-					<n-label class="first-label">
+					<ibm-label class="first-label">
 						Value
 						<input type="text" [(ngModel)]="filter1" class="input-field">
-					</n-label>
+					</ibm-label>
 				</ng-template>
 
 				<ng-template #filterFooter let-popover="popover" let-filter="data">
@@ -212,7 +212,7 @@ describe("Popover directive", () => {
 					placement="left"
 					[data]="userData"
 					[footer]="filterFooter">
-					<n-icon icon="filter" size="sm"></n-icon>
+					<ibm-icon icon="filter" size="sm"></ibm-icon>
 				</button>
 				`
 			}

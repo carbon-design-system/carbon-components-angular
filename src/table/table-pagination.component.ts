@@ -14,14 +14,14 @@ import {
  * TablePagination is a child component to the Table component.
  *
  * ```html
- * <n-table-pagination [model]="model" (selectPage)="selectPage($event)"></n-table-pagination>
+ * <ibm-table-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-table-pagination>
  * ```
  *
  * @export
  * @class TablePagination
  */
 @Component({
-	selector: "n-table-pagination",
+	selector: "ibm-table-pagination",
 	template: `
 	<nav class="pagination">
 		<ul>
