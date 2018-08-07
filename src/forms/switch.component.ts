@@ -59,17 +59,18 @@ export class SwitchChange {
 @Component({
 	selector: "ibm-switch",
 	template: `
-		<label [for]="id">
-			<ng-content></ng-content>
-		</label>
-		<button
-			(click)="onClick($event)"
+		<input
+			class="bx--toggle"
 			[id]="id"
-			role="switch"
-			type="button"
+			type="checkbox"
+			(click)="onClick($event)"
 			[disabled]="disabled"
 			[attr.aria-checked]="checked">
-		</button>
+		<label class="bx--toggle__label" [for]="id">
+			<span class="bx--toggle__text--left">Off</span>
+			<span class="bx--toggle__appearance"></span>
+			<span class="bx--toggle__text--right">On</span>
+		</label>
 	`,
 	providers: [
 		{
@@ -77,7 +78,8 @@ export class SwitchChange {
 			useExisting: SwitchComponent,
 			multi: true
 		}
-	]
+	],
+	styleUrls: ["./../../node_modules/carbon-components/scss/components/toggle/_toggle.scss"]
 })
 export class SwitchComponent extends CheckboxComponent implements OnInit {
 	/**
@@ -120,6 +122,7 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 	 * @memberof SwitchComponent
 	 */
 	ngOnInit() {
+		/* TODO: remove and extend in neutrino
 		// Build variant classes
 		const labelClass = `toggle-label${this.size !== "md" ? `--${this.size}` : ""}`;
 		const buttonClass = `toggle${this.size !== "md" ? `--${this.size}` : ""}`;
@@ -131,5 +134,6 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 		// Add classes to elements
 		this.renderer.addClass(labelEl, labelClass);
 		this.renderer.addClass(buttonEl, buttonClass);
+		*/
 	}
 }

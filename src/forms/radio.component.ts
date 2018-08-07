@@ -76,7 +76,9 @@ export class RadioChange {
 @Component({
 	selector: "ibm-radio-group",
 	template: `
-		<ng-content></ng-content>
+		<div class="bx--radio-button-group">
+			<ng-content></ng-content>
+		</div>
 	`,
 	providers: [
 		{
@@ -84,7 +86,8 @@ export class RadioChange {
 			useExisting: RadioGroup,
 			multi: true
 		}
-	]
+	],
+	styleUrls: ["./../../node_modules/carbon-components/scss/components/radio-button/_radio-button.scss"]
 })
 export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
 	/**
@@ -412,19 +415,25 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 @Component({
 	selector: "ibm-radio",
 	template: `
-		<label [for]="id">
-			<input type="radio" #inputCheckbox
-				[checked]="checked"
-				[disabled]="disabled"
-				[name]="name"
-				[id]="id"
-				[required]="required"
-				[value]="value"
-				[attr.aria-label]="ariaLabel"
-				[attr.aria-labelledby]="ariaLabelledby"
-				(change)="onChange($event)"
-				(click)="onClick($event)">
-			<span class="radio_label"><ng-content></ng-content></span>
+		<input
+			class="bx--radio-button"
+			type="radio"
+			#inputCheckbox
+			[checked]="checked"
+			[disabled]="disabled"
+			[name]="name"
+			[id]="id"
+			[required]="required"
+			[value]="value"
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby"
+			(change)="onChange($event)"
+			(click)="onClick($event)">
+		<label
+			class="bx--radio-button__label"
+			[for]="id">
+			<span class="bx--radio-button__appearance"></span>
+			<ng-content></ng-content>
 		</label>
 	`,
 	providers: [
@@ -433,7 +442,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 			useExisting: RadioComponent,
 			multi: true
 		}
-	]
+	],
+	styleUrls: ["./../../node_modules/carbon-components/scss/components/radio-button/_radio-button.scss"]
 })
 export class RadioComponent extends CheckboxComponent implements OnInit {
 	/**

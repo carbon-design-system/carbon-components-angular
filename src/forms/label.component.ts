@@ -25,16 +25,13 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
  */
 @Component({
 	selector: "ibm-label",
-	// tslint:disable:max-line-length
 	template: `
-	<label [for]="labelInputID" [ngClass]= "labelState ? 'valid--'+labelState : null">
-		<ibm-static-icon *ngIf="labelState === 'success'" icon="success" size="sm"></ibm-static-icon>
-		<ibm-static-icon *ngIf="labelState === 'warning'" icon="warning" size="sm"></ibm-static-icon>
-		<ibm-static-icon *ngIf="labelState === 'error'" icon="error" size="sm"></ibm-static-icon>
-		<ng-content></ng-content>
-	</label>
-	<ng-content select="input,textarea,div" ></ng-content>`
-	// tslint:enable:max-line-length
+	<div class="bx--form-item">
+		<label [for]="labelInputID" class="bx--label"><ng-content></ng-content></label>
+		<ng-content select="input,textarea,div"></ng-content>
+	</div>
+	`,
+	styleUrls: ["./../../node_modules/carbon-components/scss/components/form/_form.scss"]
 })
 export class LabelComponent implements AfterContentInit {
 	/**
