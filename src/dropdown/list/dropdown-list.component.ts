@@ -53,84 +53,43 @@ import { ScrollableList } from "./../scrollable-list.directive";
 @Component({
 	selector: "ibm-dropdown-list",
 	template: `
-		<!-- clear selection -->
-		<div
-			#clearSelected
-			tabindex="0"
-			*ngIf="getSelected()"
-			[ngClass]="{
-				'clear-selection--sm': size === 'sm',
-				'clear-selection': size === 'md' || size === 'default',
-				'clear-selection--lg': size === 'lg'
-			}"
-			(click)="clearSelection()"
-			(keydown)="onClearSelectionKeyDown($event)">
-			{{ 'DROPDOWN.CLEAR' | translate}}
-		</div>
-		<!-- scroll up arrow-->
-		<div
-			#upArrow
-			class="scroll-arrow--up">
-			<ibm-static-icon icon="carat_up" size="sm"></ibm-static-icon>
-		</div>
-		<!-- default is deprecated -->
-		<ul
-			#list
-			nScrollableList
-			[scrollUpTarget]="upArrow"
-			[scrollDownTarget]="downArrow"
-			[scrollEnabled]="canScroll"
-			role="listbox"
-			[ngClass]="{
-				'listbox--sm': size === 'sm',
-				'listbox': size === 'md' || size === 'default',
-				'listbox--lg': size === 'lg'
-			}">
+		<ul #list class="bx--list-box__menu">
 			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
 				(click)="doClick($event, item)"
 				(keydown)="doKeyDown($event, item)"
+				class="bx--list-box__menu-item"
 				[ngClass]="{
 					selected: item.selected,
 					disabled: item.disabled
 				}">
-				<!-- default is deprecated -->
-				<label
-					style="margin: 0;"
-					[ngClass]="{
-						'checkbox--sm': size === 'sm',
-						'checkbox': size === 'md' || size === 'default' || size === 'lg'
-					}"
-					*ngIf="type === 'multi'">
+				<div
+					*ngIf="!listTpl && type === 'multi'"
+					class="bx--form-item bx--checkbox-wrapper">
 					<input
-						tabindex="-1"
+						class="bx--checkbox"
 						type="checkbox"
-						[attr.disabled]="(item.disabled ? true : null)"
 						[checked]="item.selected"
+						[disabled]="item.disabled"
 						(click)="doClick($event, item)">
-					<span class="checkbox_label"></span>
-				</label>
-				<span *ngIf="!listTpl">{{item.content}}</span>
+					<label class="bx--checkbox-label">{{item.content}}</label>
+				</div>
+				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
 					[ngTemplateOutletContext]="{item: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
-		</ul>
-		<!-- scroll down arrow-->
-		<div
-			#downArrow
-			class="scroll-arrow--down">
-			<ibm-static-icon icon="carat_up" size="sm" style="transform: rotateX(180deg);"></ibm-static-icon>
-		</div>`,
-		providers: [
-			{
-				provide: AbstractDropdownView,
-				useExisting: DropdownList
-			}
-		]
+		</ul>`,
+	providers: [
+		{
+			provide: AbstractDropdownView,
+			useExisting: DropdownList
+		}
+	],
+	styleUrls: ["./dropdown-list.scss"]
 }) // conceptually this extends list-group, but we dont have to
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
 	/**
@@ -184,11 +143,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	public displayItems: Array<ListItem> = [];
 	/**
-	 * controls wether the scroll up/down arrows are shown
-	 */
-	public canScroll = false;
-	@ViewChild(ScrollableList) scrollableList: ScrollableList;
-	/**
 	 * Maintains the index for the selected item within the `DropdownList`.
 	 * @protected
 	 * @type {number}
@@ -208,16 +162,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * @memberof DropdownList
 	 */
 	protected focusJump;
-
-	/**
-	 * holds on to the last touch position (used for scrolling)
-	 */
-	protected lastTouch = 0;
-
-	/**
-	 * reference to the hover scrolling setInterval
-	 */
-	protected hoverScrollInterval = null;
 
 	/**
 	 * Creates an instance of `DropdownList`.
@@ -456,32 +400,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		this.getCurrentElement().focus();
 	}
 
-	enableScroll() {
-		this.canScroll = true;
-	}
-
-	disableScroll() {
-		this.canScroll = false;
-	}
-
-	clearSelection() {
-		if (this.type === "single") {
-			const selectedItem = this.items.find(item => item.selected);
-			selectedItem.selected = false;
-			this.select.emit({item: selectedItem});
-		} else {
-			for (const item of this.items) {
-				item.selected = false;
-			}
-			this.select.emit([]);
-		}
-		// wait a tick to let changes take effect on the DOM
-		setTimeout(() => {
-			// manually update to prevent arrows from being hidden
-			this.scrollableList.updateScrollHeight();
-		});
-	}
-
 	/**
 	 * Manages the keyboard accessiblity for navigation and selection within a `DropdownList`.
 	 * @param {any} event
@@ -510,13 +428,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}
 	}
 
-	onClearSelectionKeyDown(event: KeyboardEvent) {
-		if (event.key === "ArrowDown") {
-			event.preventDefault();
-			this.listElementList[0].focus();
-		}
-	}
-
 	/**
 	 * Emits the selected item or items after a mouse click event has occurred.
 	 * @param {any} event
@@ -538,11 +449,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				this.select.emit(this.getSelected());
 			}
 			this.index = this.items.indexOf(item);
-			// wait a tick to let changes take effect on the DOM
-			setTimeout(() => {
-				// manually to prevent arrows from being hidden
-				this.scrollableList.updateScrollHeight();
-			});
 		}
 	}
 }

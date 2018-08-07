@@ -39,35 +39,43 @@ import { position } from "../utils/position";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
+	<div class="bx--list-box">
 		<button
 			type="button"
 			#dropdownButton
+			class="bx--list-box__field"
+			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			(click)="toggleMenu()"
 			(blur)="onBlur()"
 			[disabled]="disabled">
-			<span *ngIf="valueSelected()" class="dropdown_value">{{getDisplayValue() | async}}</span>
-			<span *ngIf="!valueSelected()" class="dropdown_placeholder">{{getDisplayValue() | async}}</span>
-			<ibm-static-icon icon="chevron_down" [size]="(size === 'sm' ? 'sm' : 'md')" classList="dropdown_chevron"></ibm-static-icon>
+			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
+			<div class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" aria-label="Open menu">
+					<title>Open menu</title>
+					<path d="M0 0l5 4.998L10 0z"></path>
+				</svg>
+			</div>
 		</button>
 		<div
 			#dropdownMenu
-			class="dropdown_menu"
+			*ngIf="!menuIsClosed"
 			[ngClass]="{
 				'drop-up': dropUp
 			}">
 			<ng-content></ng-content>
 		</div>
+	</div>
 	`,
-	encapsulation: ViewEncapsulation.None,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Dropdown,
 			multi: true
 		}
-	]
+	],
+	styleUrls: [ "./dropdown.scss" ]
 })
 export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	/**
@@ -154,12 +162,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * ViewChid of the dropdown view.
 	 */
 	@ViewChild("dropdownMenu") dropdownMenu;
-
-	/**
-	 * Binds "combobox" property to the `Popover` role attribute.
-	 * @memberof Dropdown
-	 */
-	@HostBinding("attr.role") role = "combobox";
 
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
@@ -499,7 +501,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
-		setTimeout(() => this.view.initFocus(), 0);
+		// setTimeout(() => this.view.initFocus(), 0);
 	}
 
 	/**
