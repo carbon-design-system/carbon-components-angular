@@ -22,8 +22,7 @@ import { Modal, ModalService } from "../";
 				<button class="bx--btn bx--btn--primary" (click)="closeModal()">Close</button>
 			</ibm-modal-footer>
 		</ibm-modal>
-	`,
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/modal/_modal.scss"]
+	`
 })
 class SampleModalComponent {
 	modalText: string;
@@ -37,8 +36,7 @@ class SampleModalComponent {
 	selector: "app-modal-story",
 	template: `
 		<button class="bx--btn bx--btn--primary" (click)="openModal()">Open Modal</button>
-	`,
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/button/_button.scss"]
+	`
 })
 class ModalStory {
 
@@ -77,4 +75,5 @@ storiesOf("Modal", module)
 	<app-modal-story></app-modal-story>
 	<ibm-modal-placeholder></ibm-modal-placeholder>
 	`
-	}));
+	}
+));

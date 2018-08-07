@@ -24,8 +24,7 @@ import {
 			#overlay>
 			<ng-content></ng-content>
 		</section>
-	`,
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/modal/_modal.scss"]
+	`
 })
 export class OverlayComponent {
 	/**

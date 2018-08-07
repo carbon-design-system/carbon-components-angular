@@ -41,8 +41,7 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 			</button>
 		</header>
 
-	`,
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/modal/_modal.scss"]
+	`
 })
 export class ModalHeaderComponent {
 	/**

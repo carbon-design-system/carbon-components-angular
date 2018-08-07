@@ -43,8 +43,7 @@ storiesOf("Forms", module).addDecorator(
 			Some Title
 			<input type="text" class="bx--text-input" placeholder="Optional placeholder text">
 		</ibm-label>
-	`,
-		styleUrls: ["./../../node_modules/carbon-components/scss/components/text-input/_text-input.scss"]
+	`
 	}))
 	.add("Switch", () => ({
 		template: `<ibm-switch></ibm-switch>`

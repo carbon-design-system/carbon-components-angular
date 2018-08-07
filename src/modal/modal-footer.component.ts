@@ -11,7 +11,6 @@ import { Component } from "@angular/core";
 		<footer role="contentinfo" class="bx--modal-footer">
 			<ng-content></ng-content>
 		</footer>
-	`,
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/modal/_modal.scss"]
+	`
 })
 export class ModalFooterComponent {}

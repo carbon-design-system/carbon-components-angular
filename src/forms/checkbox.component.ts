@@ -83,8 +83,7 @@ export class CheckboxChange {
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	styleUrls: [ "./../../node_modules/carbon-components/scss/components/checkbox/_checkbox.scss" ]
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	/**

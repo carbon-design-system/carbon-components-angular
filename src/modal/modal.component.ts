@@ -108,8 +108,7 @@ import { cycleTabs } from "./../common/tab.service";
 				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
 			])
 		])
-	],
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/modal/_modal.scss"]
+	]
 })
 export class ModalComponent implements OnInit, OnDestroy {
 	/**

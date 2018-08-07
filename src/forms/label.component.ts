@@ -30,8 +30,7 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 		<label [for]="labelInputID" class="bx--label"><ng-content></ng-content></label>
 		<ng-content select="input,textarea,div"></ng-content>
 	</div>
-	`,
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/form/_form.scss"]
+	`
 })
 export class LabelComponent implements AfterContentInit {
 	/**

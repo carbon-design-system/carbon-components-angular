@@ -78,8 +78,7 @@ export class SwitchChange {
 			useExisting: SwitchComponent,
 			multi: true
 		}
-	],
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/toggle/_toggle.scss"]
+	]
 })
 export class SwitchComponent extends CheckboxComponent implements OnInit {
 	/**

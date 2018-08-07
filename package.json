@@ -101,7 +101,7 @@
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
     "semantic-release": "^15.9.3",
-    "style-loader": "0.21.0",
+    "style-loader": "^0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",
     "svgxuse": "1.2.6",

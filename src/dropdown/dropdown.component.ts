@@ -74,8 +74,7 @@ import { position } from "../utils/position";
 			useExisting: Dropdown,
 			multi: true
 		}
-	],
-	styleUrls: [ "./dropdown.scss" ]
+	]
 })
 export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	/**

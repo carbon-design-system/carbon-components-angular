@@ -86,8 +86,7 @@ export class RadioChange {
 			useExisting: RadioGroup,
 			multi: true
 		}
-	],
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/radio-button/_radio-button.scss"]
+	]
 })
 export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
 	/**

@@ -1,15 +1,11 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { Welcome } from "@storybook/angular/demo";
+import { storiesOf } from "@storybook/angular";
 
-storiesOf("Welcome", module).add("to Storybook", () => ({
-	component: Welcome,
+// import "carbon-components/scss/globals/scss/styles.scss";
+
+storiesOf("Welcome", module).add("to Carbon Angular", () => ({
+	template: `
+		<h1>Carbon Components Angular</h1>
+		<h2>An Angular implementation of the Carbon Design System</h2>
+	`,
 	props: {},
 }));
-
-// storiesOf("Another Button", module).add("button with link to another story", () => ({
-// 	component: Button,
-// 	props: {
-// 		text: "Go to Welcome Story",
-// 		onClick: linkTo("Welcome"),
-// 	},
-// }));

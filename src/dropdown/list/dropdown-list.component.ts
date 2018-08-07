@@ -88,8 +88,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 			provide: AbstractDropdownView,
 			useExisting: DropdownList
 		}
-	],
-	styleUrls: ["./dropdown-list.scss"]
+	]
 }) // conceptually this extends list-group, but we dont have to
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
 	/**
