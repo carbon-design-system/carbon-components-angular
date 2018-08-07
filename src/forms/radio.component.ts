@@ -441,8 +441,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 			useExisting: RadioComponent,
 			multi: true
 		}
-	],
-	styleUrls: ["./../../node_modules/carbon-components/scss/components/radio-button/_radio-button.scss"]
+	]
 })
 export class RadioComponent extends CheckboxComponent implements OnInit {
 	/**

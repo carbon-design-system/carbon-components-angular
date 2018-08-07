@@ -1,10 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { withKnobs, text } from "@storybook/addon-knobs/angular";
 
 import { TranslateModule } from "@ngx-translate/core";
 
 import { ModalModule } from "../";
-import { Component, Injector } from "@angular/core";
+import { Component, Injector, Input } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Modal, ModalService } from "../";
 
@@ -40,13 +40,15 @@ class SampleModalComponent {
 })
 class ModalStory {
 
+	@Input() modalText = "Hello, World";
+
 	constructor(private modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.create({
 			component: SampleModalComponent,
 			inputs: {
-				modalText: "Hello, World!"
+				modalText: this.modalText
 			}
 		});
 	}
@@ -72,8 +74,11 @@ storiesOf("Modal", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-	<app-modal-story></app-modal-story>
-	<ibm-modal-placeholder></ibm-modal-placeholder>
-	`
+		<app-modal-story [modalText]="modalText"></app-modal-story>
+		<ibm-modal-placeholder></ibm-modal-placeholder>
+		`,
+		props: {
+			modalText: text("modalText", "Hello, World!")
+		}
 	}
 ));

@@ -121,13 +121,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() scrollableContainer: string;
 	/**
-	 * Emits selection events to other class.
-	 * (Deprecated)
-	 * @type {EventEmitter<Object>}
-	 * @memberof Dropdown
-	 */
-	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
-	/**
 	 * Emits selection events.
 	 * @type {EventEmitter<Object>}
 	 * @memberof Dropdown
@@ -236,7 +229,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 					this.propagateChange(null);
 				}
 			}
-			this.select.emit(event);
 			this.selected.emit(event);
 		});
 	}
