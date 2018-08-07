@@ -21,7 +21,8 @@ const runSequence = require("run-sequence");
 const dirs = {
 	TS: [
 		"src/**/*.ts",
-		"!src/**/*.spec.ts"
+		"!src/**/*.spec.ts",
+		"!src/**/*.stories.ts"
 	],
 	i18n: "src/i18n/**/*.json",
 	FONTS: "node_modules/@peretz/matter/fonts/**/*",

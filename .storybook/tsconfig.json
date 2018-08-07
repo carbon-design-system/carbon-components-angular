@@ -4,21 +4,27 @@
 		"declaration": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"lib": ["es2015", "dom"],
+		"lib": [
+			"es2015",
+			"dom"
+		],
 		"sourceMap": true,
-		"mapRoot": "./",
+		"mapRoot": "./../",
 		"module": "es2015",
 		"moduleResolution": "node",
-		"outDir": "./dist",
-		"rootDirs": ["src", "stories"],
+		"outDir": "./../dist",
+		"rootDirs": [
+			"./../src",
+			"./../stories"
+		],
 		"target": "es5",
 		"inlineSources": true,
 		"typeRoots": [
-			"./node_modules/@types",
-			"./demo/typings.d.ts"
+			"./../node_modules/@types",
+			"./../demo/typings.d.ts"
 		]
 	},
 	"files": [
-		"./src/index.ts"
+		"./../src/index.ts"
 	]
 }
