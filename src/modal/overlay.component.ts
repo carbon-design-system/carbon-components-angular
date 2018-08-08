@@ -19,9 +19,8 @@ import {
 	selector: "ibm-overlay",
 	template: `
 		<section
-			class="modal-backdrop"
+			class="bx--modal bx--modal-tall is-visible"
 			(click)="overlayClick($event)"
-			style="display:block;"
 			#overlay>
 			<ng-content></ng-content>
 		</section>

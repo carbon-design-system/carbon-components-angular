@@ -14,7 +14,7 @@ import { ScrollableList } from "./scrollable-list.directive";
 	<ibm-dropdown
 		placeholder="test"
 		class="custom-class"
-		(select)="onSelect($event)">
+		(selected)="onSelect($event)">
 		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 	</ibm-dropdown>`
 })

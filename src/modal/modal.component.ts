@@ -86,15 +86,8 @@ import { cycleTabs } from "./../common/tab.service";
 	selector: "ibm-modal",
 	template: `
 		<ibm-overlay (overlaySelect)="overlaySelected.emit()">
-			<div [ngClass]="{
-					'modal--sm': size === 'sm',
-					'modal': size === 'default' || size === 'md',
-					'modal--lg': size === 'lg',
-					'modal--xl': size === 'xl',
-					'modal--xxl': size === 'xxl',
-					'modal--warning': modalType === 'warning',
-					'modal--error': modalType === 'error'
-				}"
+			<div
+				class="bx--modal-container"
 				[@modalState]="modalState"
 				role="main"
 				aria-modal="true"
@@ -107,13 +100,11 @@ import { cycleTabs } from "./../common/tab.service";
 	`,
 	animations: [
 		trigger("modalState", [
-			// state("in", style({opacity: 1, transform: "translate(0, 0)"})),
 			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
 			transition(":enter", [
 				animate("200ms ease-in"),
 			]),
 			transition(":leave", [
-				// style({opacity: 1, transform: "translate(0, 0"}),
 				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
 			])
 		])
@@ -126,7 +117,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 	 * @type {"sm" | "md" | "default" | "lg" | "xl" | "xxl"}
 	 * @memberof ModalComponent
 	 */
-	@Input() size = "xl";
+	@Input() size = "default";
 	/**
 	 * Classification of the modal.
 	 * @type {"default" | "warning" | "error"}
