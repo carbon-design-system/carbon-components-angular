@@ -1,0 +1,20 @@
+dist: trusty
+language: node_js
+node_js:
+  - '8'
+addons:
+  chrome: stable
+before_install:
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+script: npm test && npm run lint && npm run demo:build
+sudo: false
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash ./scripts/deploy.sh
+  on:
+    all_branches: true
+    repo: ibm/carbon-components-angular
