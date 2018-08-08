@@ -25,7 +25,7 @@
     "type": "git",
     "url": "git@github.ibm.com:peretz/next.git"
   },
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "Apache-2",
   "author": "IBM",
   "peerDependencies": {
     "@angular/animations": "^6.1.0",
