@@ -13,8 +13,7 @@ const path = require("path");
 const fs = require("fs");
 const es = require("event-stream");
 const runSequence = require("run-sequence");
-// const iconLoader = require("@peretz/icon-loader");
-// const through = require("through2");
+
 //
 // Variables
 // =================================
@@ -25,8 +24,6 @@ const dirs = {
 		"!src/**/*.stories.ts"
 	],
 	i18n: "src/i18n/**/*.json",
-	FONTS: "node_modules/@peretz/matter/fonts/**/*",
-	DEMO: "demo",
 	DIST: "dist"
 };
 
@@ -57,7 +54,6 @@ const licenseTemplate = `/*!
 gulp.task("build:angular", _ =>
 	gulp.src(dirs.TS)
 		.pipe(replaceTemplates())
-		// .pipe(replaceIcons())
 		.pipe(gulp.dest(`${dirs.DIST}/src`))
 );
 
@@ -83,7 +79,6 @@ gulp.task("build:license", _ =>
 
 gulp.task("build:package", _ =>
 	gulp.src("package.json")
-		.pipe(version())
 		.pipe(gulp.dest(dirs.DIST))
 );
 
@@ -98,14 +93,6 @@ gulp.task("build:changelog", _ =>
 );
 
 //
-// Demo tasks
-// =================================
-gulp.task("demo:font", _ =>
-	gulp.src(dirs.FONTS)
-		.pipe(gulp.dest(`${dirs.DEMO}/fonts`))
-);
-
-//
 // Running tasks
 // =================================
 gulp.task("build", () => runSequence("build:angular", "build:i18n"));
@@ -113,8 +100,6 @@ gulp.task("build", () => runSequence("build:angular", "build:i18n"));
 gulp.task("build:meta", _ =>
 	runSequence("build:package", ["build:license", "build:readme", "build:changelog"])
 );
-
-gulp.task("demo", ["demo:font"]);
 
 //
 // Functions
@@ -129,48 +114,6 @@ function licenseHeaders() {
 	file.contents = Buffer.concat([new Buffer(updatedTemplate), file.contents]);
   });
 }
-
-function version() {
-	return tap(function(file) {
-		let packageJSON = JSON.parse(file.contents.toString("utf-8"));
-		if (process.env.TRAVIS) {
-			// assume beta release on cron
-			if (process.env.TRAVIS_EVENT_TYPE === "cron") {
-				const build = process.env.TRAVIS_BUILD_NUMBER; // we'll use the build number so we dont have to think about versions
-				packageJSON.version = `${packageJSON.version}-beta.${build}`;
-			// release to alpha unless it's building from a tag
-			} else if (!process.env.TRAVIS_TAG) {
-				const commit = process.env.TRAVIS_COMMIT; // we'll just slice up the commit a bit
-				packageJSON.version = `${packageJSON.version}-alpha.${commit.slice(0, 5)}`;
-			}
-		}
-		// otherwise we'll do a standard release with whatever version is in the package.json
-		file.contents = new Buffer(JSON.stringify(packageJSON));
-	});
-}
-
-// custom gulp plugin
-// TODO: add to icon-loader
-// function replaceIcons() {
-// 	return through.obj(function (file, enc, cb) {
-// 		if (file.isNull()) {
-// 			return cb(null, file);
-// 		}
-// 		let asyncTrue = false;
-// 		iconLoader.prototype.async = function () {
-// 			asyncTrue = true;
-// 		};
-// 		iconLoader.prototype.callback = function (error, result) {
-// 			file.contents = new Buffer(result);
-// 			cb(null, file);
-// 		};
-// 		new iconLoader(file.contents.toString());
-// 		// no async means no processing, means return the file!
-// 		if (!asyncTrue) {
-// 			cb(null, file);
-// 		}
-// 	});
-// }
 
 function replaceTemplates() {
 	// regex borrwed from https://github.com/TheLarkInn/angular2-template-loader/blob/1403302e985bf689ee49e9dd8bb953225f32737b/index.js#L5-L7
