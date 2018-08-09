@@ -14,12 +14,15 @@
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "prepush": "bash scripts/prepush.sh",
-    "build-storybook": "build-storybook",
-    "semantic-release": "semantic-release -d"
+    "build-storybook": "build-storybook -c .storybook -o dist/docs/storybook",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "pkgRoot": "dist"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ibm/carbon-components-angular.git"
+    "url": "git@github.ibm.com:peretz/carbon-components-angular.git"
   },
   "license": "Apache-2",
   "author": "IBM",
@@ -54,12 +57,12 @@
     "@angular/router": "6.1.0",
     "@compodoc/compodoc": "1.0.4",
     "@ngx-translate/core": "10.0.2",
-    "@storybook/addon-actions": "^3.4.8",
-    "@storybook/addon-knobs": "^3.4.8",
-    "@storybook/addon-links": "^3.4.8",
-    "@storybook/addon-notes": "^3.4.8",
-    "@storybook/addons": "^3.4.8",
-    "@storybook/angular": "^3.4.8",
+    "@storybook/addon-actions": "3.4.8",
+    "@storybook/addon-knobs": "3.4.8",
+    "@storybook/addon-links": "3.4.8",
+    "@storybook/addon-notes": "3.4.8",
+    "@storybook/addons": "3.4.8",
+    "@storybook/angular": "3.4.8",
     "@types/jasmine": "2.8.6",
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
@@ -102,7 +105,7 @@
     "stylelint-webpack-plugin": "0.10.4",
     "svgxuse": "1.2.6",
     "ts-helpers": "1.1.2",
-    "ts-loader": "4.3.0",
+    "ts-loader": "3.5.0",
     "tslint": "5.10.0",
     "tslint-loader": "3.6.0",
     "typescript": "2.9.2",
@@ -113,6 +116,5 @@
     "webpack-node-externals": "1.6.0",
     "whatwg-fetch": "2.0.3",
     "zone.js": "0.8.26"
-  },
-  "dependencies": {}
+  }
 }

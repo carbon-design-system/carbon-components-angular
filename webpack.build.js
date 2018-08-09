@@ -20,7 +20,6 @@ function rxjsExternal(context, request, cb) {
 }
 
 module.exports = [{
-	mode: "production",
 	devtool: "source-map",
 	entry: {
 		neutrino: "./src/index.ts",
