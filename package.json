@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "get": "getstorybook",
     "storybook": "start-storybook -p 6006",
-    "ng": "ng new -h",
-    "demo:build": "gulp demo && webpack --config webpack.config.js",
-    "demo:server": "gulp demo && webpack-dev-server --config webpack.config.js --watch",
-    "demo:server:travis": "npm run demo:server &",
     "docs:build": "compodoc src -p tsconfig.json",
     "docs:server": "compodoc src -p tsconfig.json -s -w",
     "lint": "tslint -e spec.ts src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
@@ -19,11 +14,12 @@
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "prepush": "bash scripts/prepush.sh",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "semantic-release": "semantic-release -d"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.ibm.com:peretz/next.git"
+    "url": "git@github.com:ibm/carbon-components-angular.git"
   },
   "license": "Apache-2",
   "author": "IBM",
@@ -100,7 +96,7 @@
     "run-sequence": "2.2.0",
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
-    "semantic-release": "^15.9.3",
+    "semantic-release": "^15.9.6",
     "style-loader": "^0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",
