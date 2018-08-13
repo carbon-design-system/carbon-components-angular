@@ -169,7 +169,7 @@ describe("Tooltip directive", () => {
 			set: {
 				template: `
 				<ng-template #customPopover>custom template</ng-template>
-				<button [nTooltip]='customPopover'>Pop over right</button>
+				<button [ibmTooltip]='customPopover'>Pop over right</button>
 				`
 			}
 		});

@@ -31,7 +31,7 @@ import { DialogService } from "./../dialog.service";
  * @extends {DialogDirective}
  */
 @Directive({
-	selector: "[nTooltip]",
+	selector: "[ibmTooltip]",
 	exportAs: "nTooltip",
 	providers: [
 		DialogService

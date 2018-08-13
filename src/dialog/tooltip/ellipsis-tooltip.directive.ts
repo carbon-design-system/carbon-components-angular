@@ -28,7 +28,7 @@ import { Tooltip } from "./tooltip.component";
  * @extends {TooltipDirective}
  */
 @Directive({
-	selector: "[nEllipsisTooltip]",
+	selector: "[ibmEllipsisTooltip]",
 	providers: [
 		DialogService
 	]

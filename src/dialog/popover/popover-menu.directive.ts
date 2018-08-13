@@ -32,7 +32,7 @@ import { DialogService } from "./../dialog.service";
  * 	</div>
  * </ng-template>
  * <button class="popover-menu-button"
- * 	[nPopover]="list"
+ * 	[ibmPopover]="list"
  * 	placement="bottom-right"
  * 	wrapperClass="popover-content-fullwidth"
  * 	popoverMenu="true"
@@ -58,7 +58,7 @@ import { DialogService } from "./../dialog.service";
  * 	</div>
  * </ng-template>
  * <button class="btn"
- * 	[nPopover]="filter"
+ * 	[ibmPopover]="filter"
  * 	placement="right"
  * 	wrapperClass="popover-content-filter"
  * 	popoverFilter="true">
@@ -72,7 +72,7 @@ import { DialogService } from "./../dialog.service";
  * @extends {DialogDirective}
  */
 @Directive({
-	selector: "[nPopoverMenu]",
+	selector: "[ibmPopoverMenu]",
 	exportAs: "nPopoverMenu",
 	providers: [
 		DialogService
