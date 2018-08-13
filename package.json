@@ -16,29 +16,29 @@
     "prepush": "bash scripts/prepush.sh",
     "build-storybook": "build-storybook -c .storybook -o dist/docs/storybook",
 	"semantic-release": "semantic-release",
-	"commitmsg": "validate-commit-msg"
+	"commitmsg": "commitlint -E GIT_PARAMS"
   },
   "release": {
     "pkgRoot": "dist"
   },
-  "config": {
-	"validate-commit-msg": {
-		"types": [
-			"feat",
-			"fix",
-			"docs",
-			"style",
-			"refactor",
-			"perf",
-			"test",
-			"chore",
-			"revert"
-		],
-		"warnOnFail": false,
-		"maxSubjectLength": 100,
-		"subjectPattern": ".+",
-		"subjectPatternErrorMsg": "Subject does not match subject pattern!"
+  "commitlint": {
+	"types": [
+		"feat",
+		"fix",
+		"docs",
+		"style",
+		"refactor",
+		"perf",
+		"test",
+		"chore",
+		"revert"
+	],
+	"warnOnFail": false,
+	"maxSubjectLength": 100,
+	"subjectPattern": ".+",
+	"subjectPatternErrorMsg": "Subject does not match subject pattern!"
 	},
+  "config": {
 	"commitizen": {
 		"path": "./node_modules/cz-conventional-changelog-components"
 	}
@@ -78,8 +78,8 @@
     "@angular/platform-browser-dynamic": "6.1.0",
     "@angular/platform-server": "6.1.0",
     "@angular/router": "6.1.0",
-    "@commitlint/cli": "^7.0.0",
-    "@commitlint/config-conventional": "^7.0.1",
+    "@commitlint/cli": "7.0.0",
+    "@commitlint/config-conventional": "7.0.1",
     "@compodoc/compodoc": "1.0.4",
     "@ngx-translate/core": "10.0.2",
     "@storybook/addon-actions": "3.4.8",
@@ -94,7 +94,7 @@
     "babel-core": "6.26.3",
     "carbon-components": "9.1.13",
     "codelyzer": "4.0.2",
-    "commitizen": "^2.10.1",
+    "commitizen": "2.10.1",
     "core-js": "2.5.5",
     "css-loader": "0.28.11",
     "d3": "4.12.0",
