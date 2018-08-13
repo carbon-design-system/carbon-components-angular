@@ -16,14 +16,10 @@ $ npm start
 
 Your project should use a module bundler - we recommend [webpack](https://webpack.js.org/).
 
-#### Install
-
-Then you'll be able to `npm install @peretz/neutrino` and `npm install @peretz/matter` and start importing components and styles.
-
 ### Contributing
 
 #### Quickstart
-- fork peretz/neutrino and clone it locally
+- fork ibm/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run demo:server` to start the demo server
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests, and documentation README.md under `src`
@@ -47,7 +43,6 @@ Then you'll be able to `npm install @peretz/neutrino` and `npm install @peretz/m
   	- "issue #123" just refences the issue. Only use this if you definitly need the issue to remain open.
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
-- DO NOT @mention @peretz/Development - we have a bot in ibm-front-end#peretz that will let us know
 - [link to code review checklist goes here](#)
 
 #### Issues submission guidelines
