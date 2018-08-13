@@ -16,5 +16,5 @@ deploy:
   provider: script
   script: bash ./scripts/deploy.sh
   on:
-    all_branches: true
+    branch: master
     repo: ibm/carbon-components-angular

@@ -15,10 +15,34 @@
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "prepush": "bash scripts/prepush.sh",
     "build-storybook": "build-storybook -c .storybook -o dist/docs/storybook",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "commitmsg": "commitlint -E GIT_PARAMS",
+    "commit": "git-cz"
   },
   "release": {
     "pkgRoot": "dist"
+  },
+  "commitlint": {
+    "types": [
+      "feat",
+      "fix",
+      "docs",
+      "style",
+      "refactor",
+      "perf",
+      "test",
+      "chore",
+      "revert"
+    ],
+    "warnOnFail": false,
+    "maxSubjectLength": 100,
+    "subjectPattern": ".+",
+    "subjectPatternErrorMsg": "Subject does not match subject pattern!"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog-components"
+    }
   },
   "repository": {
     "type": "git",
@@ -55,6 +79,8 @@
     "@angular/platform-browser-dynamic": "6.1.0",
     "@angular/platform-server": "6.1.0",
     "@angular/router": "6.1.0",
+    "@commitlint/cli": "7.0.0",
+    "@commitlint/config-conventional": "7.0.1",
     "@compodoc/compodoc": "1.0.4",
     "@ngx-translate/core": "10.0.2",
     "@storybook/addon-actions": "3.4.8",
@@ -69,8 +95,10 @@
     "babel-core": "6.26.3",
     "carbon-components": "9.1.13",
     "codelyzer": "4.0.2",
+    "commitizen": "2.10.1",
     "core-js": "2.5.5",
     "css-loader": "0.28.11",
+    "cz-conventional-changelog-components": "1.0.0",
     "d3": "4.12.0",
     "event-stream": "3.3.4",
     "extract-text-webpack-plugin": "3.0.2",
@@ -99,8 +127,8 @@
     "run-sequence": "2.2.0",
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
-    "semantic-release": "^15.9.6",
-    "style-loader": "^0.21.0",
+    "semantic-release": "15.9.6",
+    "style-loader": "0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",
     "svgxuse": "1.2.6",
