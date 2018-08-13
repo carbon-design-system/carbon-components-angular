@@ -61,7 +61,7 @@ import { DialogService } from "./../dialog.service";
  * @extends {DialogDirective}
  */
 @Directive({
-	selector: "[nPopover]",
+	selector: "[ibmPopover]",
 	exportAs: "nPopover",
 	providers: [
 		DialogService

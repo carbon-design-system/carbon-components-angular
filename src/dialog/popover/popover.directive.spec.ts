@@ -177,7 +177,7 @@ describe("Popover directive", () => {
 			set: {
 				template: `
 				<ng-template #customPopover>custom template</ng-template>
-				<button [nPopover]='customPopover'>Pop over right</button>
+				<button [ibmPopover]='customPopover'>Pop over right</button>
 				`
 			}
 		});
@@ -207,7 +207,7 @@ describe("Popover directive", () => {
 				</ng-template>
 
 				<button class="btn--icon-link"
-					[nPopover]="filter"
+					[ibmPopover]="filter"
 					title="Popover filter"
 					placement="left"
 					[data]="userData"

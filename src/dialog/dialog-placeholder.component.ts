@@ -21,7 +21,7 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
  * A more complete example for `Popover` is given as follows:
  *
  * ```html
- * <button [nPopover]="Hello" appendToBody="true"></button>
+ * <button [ibmPopover]="Hello" appendToBody="true"></button>
  * ...
  * <ibm-dialog-placeholder></ibm-dialog-placeholder>
  * ```

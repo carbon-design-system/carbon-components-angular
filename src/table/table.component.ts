@@ -217,7 +217,7 @@ import { getScrollbarWidth } from "../common/utils";
 								type="button"
 								aria-expanded="false"
 								aria-haspopup="true"
-								[nPopover]="column.filterTemplate"
+								[ibmPopover]="column.filterTemplate"
 								[footer]="column.filterFooter"
 								title="{{'TABLE.FILTER' | translate}}"
 								placement="right-bottom,left-bottom"
