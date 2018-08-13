@@ -22,9 +22,8 @@ Your project should use a module bundler - we recommend [webpack](https://webpac
 - fork ibm/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run demo:server` to start the demo server
 - **if you are adding a component**:
-  - add a folder with your component code, styles, tests, and documentation README.md under `src`
+  - add a folder with your component code, styles, tests and story under `src`
   - export your module from `index.ts`
-  - add a demo to `./demo/demo_app` (see README.md in that directory for more info)
 - **if you are contributing a fix**:
   - add your fix, update the documentation as needed
   - consider adding or modifying a test case to cover the fix

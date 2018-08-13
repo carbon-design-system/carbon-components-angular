@@ -4,6 +4,8 @@ set -e
 
 GITHUB_UPSTREAM=git@github.com:ibm/carbon-components-angular.git
 
+npm run lint
+
 # Refresh code
 # git pull upstream master
 
