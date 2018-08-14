@@ -20,7 +20,7 @@ Your project should use a module bundler - we recommend [webpack](https://webpac
 
 #### Quickstart
 - fork ibm/carbon-components-angular and clone it locally
-- run `npm install` to grab all the dependencies, then `npm run demo:server` to start the demo server
+- run `npm install` to grab all the dependencies, then `npm run storybook` to start storybook
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests and story under `src`
   - export your module from `index.ts`
