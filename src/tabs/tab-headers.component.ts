@@ -158,10 +158,8 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 		}
 
 		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
-		this.tabs.changes.subscribe(changes => {
+		this.tabs.changes.subscribe(() => {
 			this.setFirstTab();
-			// if the tabs have updated, there's a good chance the overflow will need to as well
-			setTimeout(() => {});
 			// also update the tab headers list
 			this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 		});
@@ -173,10 +171,6 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @memberof TabHeaders
 	 */
 	ngAfterViewInit() {
-		// check for window resize
-		fromEvent(window, "resize")
-			.pipe(throttleTime(100))
-			.subscribe(() => {});
 		this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 	}
 
