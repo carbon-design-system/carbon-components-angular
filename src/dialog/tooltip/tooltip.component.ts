@@ -24,55 +24,39 @@ import { Dialog } from "./../dialog.component";
 	selector: "ibm-tooltip",
 	template: `
 		<div
-			[class]="getClass()"
-			role="tooltip"
+			#dialog
 			[id]="dialogConfig.compID"
+			role="tooltip"
 			tabindex="0"
-			#dialog>
-			<div
-				*ngIf="contentTemplate"
-				role="tooltip">
-				<ng-template
+			class="bx--tooltip bx--tooltip--shown">
+			<span class="bx--tooltip__caret" aria-hidden="true"></span>
+			<ng-template
+					*ngIf="hasContentTemplate"
 					[ngTemplateOutlet]="dialogConfig.content"
-					[ngTemplateOutletContext]="{popover: this, filter: dialogConfig.filter}">
-				</ng-template>
-			</div>
+					[ngTemplateOutletContext]="{tooltip: this}">
+			</ng-template>
 			<p
-				*ngIf="!contentTemplate"
-				class="tooltip_text"
-				role="tooltip">
+				*ngIf="!hasContentTemplate">
 				{{dialogConfig.content}}
 			</p>
-			<button
-				*ngIf="dialogConfig.trigger==='click'"
-				class="close--xs"
-				(click)="doClose()"
-				attr.aria-label="{{'DIALOG.TOOLTIP.CLOSE' | translate}}">
-				<ibm-static-icon icon="x" size="sm" classList="close_icon"></ibm-static-icon>
-			</button>
-			<div class="arrow" aria-hidden="true"></div>
 		</div>
 		`
 })
 export class Tooltip extends Dialog {
-	/**
-	 * Binds display property to `Tooltop` style attribute.
-	 * @memberof Tooltip
-	 */
 	@HostBinding("style.display") style = "inline-block";
 	/**
 	 * Value is set to `true` if the `Tooltip` is to display a `TemplateRef` instead of a string.
 	 * @type {boolean}
 	 * @memberof Tooltip
 	 */
-	public contentTemplate: boolean;
+	public hasContentTemplate = false;
 
 	/**
 	 * Check whether there is a template for the `Tooltip` content.
 	 * @memberof Tooltip
 	 */
 	onDialogInit() {
-		this.contentTemplate = this.dialogConfig.content instanceof TemplateRef;
+		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 	}
 
 	/**

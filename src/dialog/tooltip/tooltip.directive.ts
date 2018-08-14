@@ -32,7 +32,7 @@ import { DialogService } from "./../dialog.service";
  */
 @Directive({
 	selector: "[ibmTooltip]",
-	exportAs: "nTooltip",
+	exportAs: "ibmTooltip",
 	providers: [
 		DialogService
 	]
@@ -45,7 +45,7 @@ export class TooltipDirective extends DialogDirective {
 	 * @type {(string | TemplateRef<any>)}
 	 * @memberof TooltipDirective
 	 */
-	@Input() nTooltip: string | TemplateRef<any>;
+	@Input() ibmTooltip: string | TemplateRef<any>;
 	/**
 	 * Set tooltip type to reflect 'warning' or 'error' styles.
 	 *
@@ -87,7 +87,7 @@ export class TooltipDirective extends DialogDirective {
 	onDialogInit() {
 		TooltipDirective.tooltipCounter++;
 		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
-		this.dialogConfig.content = this.nTooltip;
+		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
 		this.elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
 	}
