@@ -26,7 +26,7 @@ import { DialogConfig } from "./dialog-config.interface";
  */
 @Directive({
 	selector: "[ibmDialog]",
-	exportAs: "nDialog",
+	exportAs: "ibmDialog",
 	providers: [
 		DialogService
 	]
@@ -43,7 +43,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @type {(string | TemplateRef<any>)}
 	 * @memberof DialogDirective
 	 */
-	@Input() nDialog: string | TemplateRef<any>;
+	@Input() ibmDialog: string | TemplateRef<any>;
 	/**
 	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap)
 	 * @type {("click" | "hover" | "mouseenter")}
@@ -66,7 +66,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @type {number}
 	 * @memberof DialogDirective
 	 */
-	@Input() gap = 10;
+	@Input() gap = 0;
 	/**
 	 * Value `true` sets Dialog be appened to the body (to break out of containers)
 	 * @type {boolean}
@@ -122,7 +122,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
 			title: this.title,
-			content: this.nDialog,
+			content: this.ibmDialog,
 			placement: this.placement,
 			parentRef: this.elementRef,
 			gap: this.gap,
@@ -140,7 +140,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @memberof DialogDirective
 	 */
 	ngOnInit() {
-		// fix for safari highjacking clicks
+		// fix for safari hijacking clicks
 		document.body.firstElementChild.addEventListener("click", () => null, true);
 
 		// bind events for hovering or clicking the host

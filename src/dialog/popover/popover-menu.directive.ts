@@ -73,7 +73,7 @@ import { DialogService } from "./../dialog.service";
  */
 @Directive({
 	selector: "[ibmPopoverMenu]",
-	exportAs: "nPopoverMenu",
+	exportAs: "ibmPopoverMenu",
 	providers: [
 		DialogService
 	]
@@ -90,7 +90,7 @@ export class PopoverMenuDirective extends DialogDirective {
 	 * @type {(string | TemplateRef<any>)}
 	 * @memberof PopoverMenuDirective
 	 */
-	@Input() nPopoverMenu: string | TemplateRef<any>;
+	@Input() ibmPopoverMenu: string | TemplateRef<any>;
 
 	/**
 	 * Creates an instance of PopoverMenuDirective.
@@ -113,6 +113,6 @@ export class PopoverMenuDirective extends DialogDirective {
 	 * @memberof PopoverMenuDirective
 	 */
 	onDialogInit() {
-		this.dialogConfig.content = this.nPopoverMenu;
+		this.dialogConfig.content = this.ibmPopoverMenu;
 	}
 }

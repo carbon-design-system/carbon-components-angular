@@ -62,7 +62,7 @@ import { DialogService } from "./../dialog.service";
  */
 @Directive({
 	selector: "[ibmPopover]",
-	exportAs: "nPopover",
+	exportAs: "ibmPopover",
 	providers: [
 		DialogService
 	]
@@ -81,7 +81,7 @@ export class PopoverDirective extends DialogDirective {
 	 * @type {(string | TemplateRef<any>)}
 	 * @memberof PopoverDirective
 	 */
-	@Input() nPopover: string | TemplateRef<any>;
+	@Input() ibmPopover: string | TemplateRef<any>;
 
 	/**
 	 * Creates an instance of PopoverDirective.
@@ -106,7 +106,7 @@ export class PopoverDirective extends DialogDirective {
 	onDialogInit() {
 		PopoverDirective.popoverCounter++;
 		this.dialogConfig.compID = "popover-" + PopoverDirective.popoverCounter;
-		this.dialogConfig.content = this.nPopover;
+		this.dialogConfig.content = this.ibmPopover;
 		this.dialogConfig.footer = this.footer;
 	}
 }
