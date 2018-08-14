@@ -10,6 +10,5 @@ export * from "./list-group/list-group.module";
 export * from "./modal/modal.module";
 export * from "./table/table.module";
 export * from "./tabs/tabs.module";
-export * from "./top-nav/top-nav.module";
 export * from "./pill-input/pill-input.module";
 export * from "./utils/position";
