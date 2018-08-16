@@ -54,7 +54,7 @@ describe("Icon", () => {
 		fixture.detectChanges();
 	});
 
-	it("should work", () => {
+	xit("should work", () => {
 		fixture = TestBed.createComponent(Icon);
 		expect(fixture.componentInstance instanceof Icon).toBe(true);
 	});

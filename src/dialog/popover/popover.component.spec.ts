@@ -1,7 +1,6 @@
 // import { ElementRef } from "@angular/core";
 // import { TestBed } from "@angular/core/testing";
 // import { Popover } from "./popover.component";
-// import {createElement} from "../../common/test";
 
 // describe("Popover component", () => {
 // 	beforeEach(() => {
