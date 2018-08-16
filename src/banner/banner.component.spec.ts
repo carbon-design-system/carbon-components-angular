@@ -1,7 +1,5 @@
-import { Component } from "@angular/core";
-import { TestBed, ComponentFixture, inject, tick, fakeAsync } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
-import { By } from "@angular/platform-browser";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
@@ -38,8 +36,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector("[role='alert']");
-		expect(banner.classList.contains("banner--info")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector(".bx--inline-notification");
+		expect(banner.classList.contains("bx--inline-notification--info")).toBeTruthy();
 	});
 
 	it("should render danger banner", () => {
@@ -50,8 +48,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector("[role='alert']");
-		expect(banner.classList.contains("banner--danger")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector(".bx--inline-notification");
+		expect(banner.classList.contains("bx--inline-notification--danger")).toBeTruthy();
 	});
 
 	it("should render info warning", () => {
@@ -62,8 +60,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector("[role='alert']");
-		expect(banner.classList.contains("banner--warning")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector(".bx--inline-notification");
+		expect(banner.classList.contains("bx--inline-notification--warning")).toBeTruthy();
 	});
 
 	it("should render info success", () => {
@@ -74,8 +72,8 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let banner = fixture.nativeElement.querySelector("[role='alert']");
-		expect(banner.classList.contains("banner--success")).toBeTruthy();
+		let banner = fixture.nativeElement.querySelector(".bx--inline-notification");
+		expect(banner.classList.contains("bx--inline-notification--success")).toBeTruthy();
 	});
 
 	it("should display correct message", () => {
@@ -86,7 +84,7 @@ describe("Banner", () => {
 		};
 		fixture.detectChanges();
 
-		let p = fixture.nativeElement.querySelector("[role='alert'] p");
+		let p = fixture.nativeElement.querySelector(".bx--inline-notification__subtitle");
 
 		expect(p.innerHTML.trim()).toEqual("sample message");
 	});
@@ -101,7 +99,7 @@ describe("Banner", () => {
 
 		spyOn(fixture.componentInstance.close, "emit");
 
-		let button = fixture.nativeElement.querySelector(".close--dark-sm");
+		let button = fixture.nativeElement.querySelector(".bx--inline-notification__close-button");
 
 		button.click();
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();

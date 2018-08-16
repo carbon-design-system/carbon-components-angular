@@ -24,7 +24,7 @@ describe("SwitchComponent", () => {
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
-		buttonElement = fixture.debugElement.query(By.css("button")).nativeElement;
+		buttonElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});
 
 	it("should work", () => {

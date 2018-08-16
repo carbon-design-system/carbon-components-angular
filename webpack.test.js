@@ -1,7 +1,4 @@
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-var ExtractText = require("extract-text-webpack-plugin");
-var nodeExternals = require('webpack-node-externals');
-var path = require('path');
 
 module.exports = [{
 	module: {
@@ -33,7 +30,7 @@ module.exports = [{
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './demo/index.html'
+			template: '<html><body></body></html>'
 		})
 	],
 }];
