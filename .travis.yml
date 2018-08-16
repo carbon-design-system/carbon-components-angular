@@ -21,4 +21,3 @@ deploy:
   script: bash ./scripts/deploy.sh
   on:
     branch: master
-    repo: ibm/carbon-components-angular
