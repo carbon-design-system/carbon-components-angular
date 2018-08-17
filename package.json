@@ -1,5 +1,5 @@
 {
-  "name": "@carbon/carbon-components-angular",
+  "name": "carbon-components-angular",
   "version": "0.1.0",
   "description": "Next generation components",
   "main": "index.js",
