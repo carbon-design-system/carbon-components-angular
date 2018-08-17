@@ -12,8 +12,8 @@ npm run semantic-release
 # deploy to gh pages
 if [[ $TRAVIS_BRANCH == "master" ]]; then
 	mkdir pages
-	cp -R dist/docs/documentation pages/
-	cp -R dist/docs/storybook/* pages
+	cp -R dist/docs/documentation/ pages/documentation
+	cp -R dist/docs/storybook/ pages
 
 	git config user.name "Carbon Deploy"
 

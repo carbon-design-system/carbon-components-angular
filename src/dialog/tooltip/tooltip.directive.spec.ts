@@ -42,7 +42,7 @@ describe("Tooltip directive", () => {
 		expect(directiveEl).not.toBeNull();
 	});
 
-	xit("should create the tooltip component and tooltip should appear at the top", () => {
+	it("should create the tooltip component and tooltip should appear at the top", () => {
 		TestBed.overrideComponent(TooltipTestComponent, {
 			set: {
 				template: "<button ibmTooltip='Hello There' placement='top'>Me</button>"
@@ -57,7 +57,7 @@ describe("Tooltip directive", () => {
 		fixture.detectChanges();
 
 		expect(fixture.componentInstance instanceof TooltipTestComponent).toBe(true);
-		expect(document.querySelector(".tooltip--top")).not.toBe(null);
+		expect(document.querySelector(".bx--tooltip")).not.toBe(null);
 	});
 
 	xit("should create the tooltip component and tooltip should appear at the bottom", () => {
