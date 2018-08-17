@@ -7,6 +7,9 @@ if [[ ${TRAVIS_TEST_RESULT=0} == 1 ]]; then
   exit 1;
 fi
 
+# run the build
+npm run build
+#deploy with semantic-release
 npm run semantic-release
 
 # deploy to gh pages
