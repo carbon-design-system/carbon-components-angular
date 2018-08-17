@@ -20,15 +20,15 @@ import { BannerService } from "./banner.service";
 	template: `
 	<div
 		#banner
-		class="bx--inline-notification bx--inline-notification--{{bannerObj.type}}"
+		class="bx--inline-notification bx--inline-notification--{{bannerObj['type']}}"
 		role="alert">
 		<div class="bx--inline-notification__details">
 			<svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 				<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z" fill-rule="evenodd"/>
 			</svg>
 			<div class="bx--inline-notification__text-wrapper">
-				<p [innerHTML]="bannerObj.title" class="bx--inline-notification__title"></p>
-				<p [innerHTML]="bannerObj.message" class="bx--inline-notification__subtitle"></p>
+				<p [innerHTML]="bannerObj['title']" class="bx--inline-notification__title"></p>
+				<p [innerHTML]="bannerObj['message']" class="bx--inline-notification__subtitle"></p>
 			</div>
 		</div>
 		<button
