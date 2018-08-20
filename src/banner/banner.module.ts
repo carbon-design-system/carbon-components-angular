@@ -4,20 +4,23 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-import { BannerService } from "./banner.service";
 import { Banner } from "./banner.component";
+import { Toast } from "./toast.component";
 
 export { BannerService } from "./banner.service";
 export { Banner } from "./banner.component";
+export { Toast } from "./toast.component";
 
 @NgModule({
 	declarations: [
-		Banner
+		Banner,
+		Toast
 	],
 	exports: [
-		Banner
+		Banner,
+		Toast
 	],
-	entryComponents: [Banner],
+	entryComponents: [Banner, Toast],
 	imports: [CommonModule, TranslateModule, StaticIconModule]
 })
 export class BannerModule {}
