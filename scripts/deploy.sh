@@ -18,7 +18,8 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 	cp -R dist/docs/documentation/ pages/documentation
 	cp -R dist/docs/storybook/ pages
 
-	git config user.name "Carbon Deploy"
+	git config user.name "carbon-bot"
+	git config user.email "carbon@us.ibm.com"
 
 	cd pages
 	git init
