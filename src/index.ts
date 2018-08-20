@@ -12,3 +12,4 @@ export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./pill-input/pill-input.module";
 export * from "./utils/position";
+export * from "./content-switcher/content-switcher.module";
