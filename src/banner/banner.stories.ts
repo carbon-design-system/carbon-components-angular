@@ -60,25 +60,11 @@ storiesOf("Banner", module)
 	}))
 	.add("Toast", () => ({
 		template: `
-			<h4>Coming soon</h4>
-			<em>Teaser ...</em>
-			<div class="bx--toast-notification bx--toast-notification--info" role="alert">
-				<div class="bx--toast-notification__details">
-					<h3 class="bx--toast-notification__title">Notification title</h3>
-					<p class="bx--toast-notification__subtitle">Subtitle text goes here.</p>
-					<p class="bx--toast-notification__caption">Time stamp [00:00:00]</p>
-				</div>
-				<button class="bx--toast-notification__close-button" type="button">
-					<svg
-						class="bx--toast-notification-icon"
-						aria-label="close"
-						width="10"
-						height="10"
-						viewBox="0 0 10 10"
-						xmlns="http://www.w3.org/2000/svg">
-						<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"/>
-					</svg>
-				</button>
-			</div>
+			<ibm-toast [bannerObj]="{
+				type: 'error',
+				title: 'Sample banner',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption'
+			}"></ibm-toast>
 		`
 	}));
