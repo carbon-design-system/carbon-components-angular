@@ -16,5 +16,5 @@ npm run semantic-release
 if [[ $TRAVIS_BRANCH == "master" ]]; then
 	mkdir pages
 	cp -R dist/docs/documentation/ pages/documentation
-	cp -R dist/docs/storybook/ pages
+	cp -R dist/docs/storybook/* pages
 fi
