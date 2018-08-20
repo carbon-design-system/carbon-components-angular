@@ -1,5 +1,6 @@
 import { EventEmitter, ComponentRef } from "@angular/core";
 import { BannerService } from "./banner.service";
+import { NotificationContent } from "./banner-content.interface";
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
@@ -9,16 +10,14 @@ import { BannerService } from "./banner.service";
 export declare class Banner {
     private bannerService;
     /**
-     * Can have `type` and `message` members.
+     * Can have `type`, `title`, and `message` members.
      *
      * `type` can be one of `"info"`, `"warning"`, `"danger"`, `"success"`
      *
      * `message` is message for banner to display
      *
-     * @type {Object}
-     * @memberof Banner
      */
-    bannerObj: Object;
+    bannerObj: NotificationContent;
     /**
      * Emits on close.
      *

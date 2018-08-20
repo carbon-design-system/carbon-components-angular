@@ -1,5 +1,6 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EventEmitter, Injector, OnDestroy } from "@angular/core";
 import { Banner } from "./banner.component";
+import { BannerContent, NotificationContent, ToastContent } from "./banner-content.interface";
 /**
  * Provides a way to use the banner component.
  *
@@ -68,7 +69,7 @@ export declare class BannerService implements OnDestroy {
      * @param {any} [bannerComp=null] If provided, used to resolve component factory
      * @memberof BannerService
      */
-    showBanner(bannerObj: any, bannerComp?: any): Banner;
+    showBanner(bannerObj: BannerContent | NotificationContent | ToastContent, bannerComp?: any): Banner;
     /**
      * Programatically closes banner based on `bannerRef`.
      *

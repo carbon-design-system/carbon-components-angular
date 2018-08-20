@@ -22,77 +22,101 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_BannerModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="134,-70 134,-333 362,-333 362,-70 134,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="98,-70 98,-333 398,-333 398,-70 98,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_BannerModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="282,-143 282,-195 354,-195 354,-143 282,-143"/>
+<polygon fill="none" stroke="#000000" points="246,-143 246,-195 390,-195 390,-143 246,-143"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_BannerModule_Banner_providers</title>
-<polygon fill="none" stroke="#000000" points="202,-78 202,-130 354,-130 354,-78 202,-78"/>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster_BannerModule_imports</title>
-<polygon fill="none" stroke="#000000" points="142,-143 142,-195 274,-195 274,-143 142,-143"/>
+<polygon fill="none" stroke="#000000" points="238,-78 238,-130 390,-130 390,-78 238,-78"/>
 </g>
 <g id="clust5" class="cluster">
+<title>cluster_BannerModule_imports</title>
+<polygon fill="none" stroke="#000000" points="106,-143 106,-195 238,-195 238,-143 106,-143"/>
+</g>
+<g id="clust6" class="cluster">
 <title>cluster_BannerModule_exports</title>
-<polygon fill="none" stroke="#000000" points="218,-273 218,-325 294,-325 294,-273 218,-273"/>
+<polygon fill="none" stroke="#000000" points="206,-273 206,-325 354,-325 354,-273 206,-273"/>
 </g>
 <!-- Banner -->
 <g id="node1" class="node">
 <title>Banner</title>
-<polygon fill="#ffffb3" stroke="#000000" points="346.428,-187 289.572,-187 289.572,-151 346.428,-151 346.428,-187"/>
-<text text-anchor="middle" x="318" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">Banner</text>
+<polygon fill="#ffffb3" stroke="#000000" points="382.428,-187 325.572,-187 325.572,-151 382.428,-151 382.428,-187"/>
+<text text-anchor="middle" x="354" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">Banner</text>
 </g>
 <!-- BannerModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>BannerModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="305.9762,-252 302.9762,-256 281.9762,-256 278.9762,-252 206.0238,-252 206.0238,-216 305.9762,-216 305.9762,-252"/>
-<text text-anchor="middle" x="256" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">BannerModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="330.9762,-252 327.9762,-256 306.9762,-256 303.9762,-252 231.0238,-252 231.0238,-216 330.9762,-216 330.9762,-252"/>
+<text text-anchor="middle" x="281" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">BannerModule</text>
 </g>
 <!-- Banner&#45;&gt;BannerModule -->
 <g id="edge1" class="edge">
 <title>Banner&#45;&gt;BannerModule</title>
-<path fill="none" stroke="#000000" d="M297.8875,-187.1061C297.8875,-187.1061 297.8875,-205.991 297.8875,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="294.3875,-205.9909 297.8875,-215.991 301.3875,-205.991 294.3875,-205.9909"/>
+<path fill="none" stroke="#000000" d="M338.4756,-187.1061C338.4756,-206.3391 338.4756,-234 338.4756,-234 338.4756,-234 337.7709,-234 337.7709,-234"/>
+<polygon fill="#000000" stroke="#000000" points="341.4281,-230.5002 331.428,-234 341.428,-237.5002 341.4281,-230.5002"/>
+</g>
+<!-- Toast -->
+<g id="node2" class="node">
+<title>Toast</title>
+<polygon fill="#ffffb3" stroke="#000000" points="308,-187 254,-187 254,-151 308,-151 308,-187"/>
+<text text-anchor="middle" x="281" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">Toast</text>
+</g>
+<!-- Toast&#45;&gt;BannerModule -->
+<g id="edge3" class="edge">
+<title>Toast&#45;&gt;BannerModule</title>
+<path fill="none" stroke="#000000" d="M281,-187.1061C281,-187.1061 281,-205.991 281,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="277.5001,-205.9909 281,-215.991 284.5001,-205.991 277.5001,-205.9909"/>
 </g>
 <!-- Banner  -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>Banner </title>
-<polygon fill="#fb8072" stroke="#000000" points="285.9264,-317 226.0736,-317 226.0736,-281 285.9264,-281 285.9264,-317"/>
-<text text-anchor="middle" x="256" y="-294.8" font-family="Times,serif" font-size="14.00" fill="#000000">Banner </text>
+<polygon fill="#fb8072" stroke="#000000" points="345.9264,-317 286.0736,-317 286.0736,-281 345.9264,-281 345.9264,-317"/>
+<text text-anchor="middle" x="316" y="-294.8" font-family="Times,serif" font-size="14.00" fill="#000000">Banner </text>
 </g>
 <!-- BannerModule&#45;&gt;Banner  -->
-<g id="edge4" class="edge">
+<g id="edge5" class="edge">
 <title>BannerModule&#45;&gt;Banner </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M256,-252.1061C256,-252.1061 256,-270.991 256,-270.991"/>
-<polygon fill="#000000" stroke="#000000" points="252.5001,-270.9909 256,-280.991 259.5001,-270.991 252.5001,-270.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M308.5125,-252.1061C308.5125,-252.1061 308.5125,-270.991 308.5125,-270.991"/>
+<polygon fill="#000000" stroke="#000000" points="305.0125,-270.9909 308.5125,-280.991 312.0125,-270.991 305.0125,-270.9909"/>
+</g>
+<!-- Toast  -->
+<g id="node7" class="node">
+<title>Toast </title>
+<polygon fill="#fb8072" stroke="#000000" points="268,-317 214,-317 214,-281 268,-281 268,-317"/>
+<text text-anchor="middle" x="241" y="-294.8" font-family="Times,serif" font-size="14.00" fill="#000000">Toast </text>
+</g>
+<!-- BannerModule&#45;&gt;Toast  -->
+<g id="edge6" class="edge">
+<title>BannerModule&#45;&gt;Toast </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M249.506,-252.1061C249.506,-252.1061 249.506,-270.991 249.506,-270.991"/>
+<polygon fill="#000000" stroke="#000000" points="246.006,-270.9909 249.506,-280.991 253.006,-270.991 246.006,-270.9909"/>
 </g>
 <!-- BannerService -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>BannerService</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="278" cy="-104" rx="67.7548" ry="18"/>
-<text text-anchor="middle" x="278" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">BannerService</text>
+<ellipse fill="#fdb462" stroke="#000000" cx="314" cy="-104" rx="67.7548" ry="18"/>
+<text text-anchor="middle" x="314" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">BannerService</text>
 </g>
 <!-- BannerService&#45;&gt;Banner -->
 <g id="edge2" class="edge">
 <title>BannerService&#45;&gt;Banner</title>
-<path fill="none" stroke="#000000" d="M317.832,-118.7495C317.832,-118.7495 317.832,-140.5882 317.832,-140.5882"/>
-<polygon fill="#000000" stroke="#000000" points="314.3321,-140.5881 317.832,-150.5882 321.3321,-140.5882 314.3321,-140.5881"/>
+<path fill="none" stroke="#000000" d="M353.832,-118.7495C353.832,-118.7495 353.832,-140.5882 353.832,-140.5882"/>
+<polygon fill="#000000" stroke="#000000" points="350.3321,-140.5881 353.832,-150.5882 357.3321,-140.5882 350.3321,-140.5881"/>
 </g>
 <!-- StaticIconModule -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>StaticIconModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="266.309,-187 263.309,-191 242.309,-191 239.309,-187 149.691,-187 149.691,-151 266.309,-151 266.309,-187"/>
-<text text-anchor="middle" x="208" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">StaticIconModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="230.309,-187 227.309,-191 206.309,-191 203.309,-187 113.691,-187 113.691,-151 230.309,-151 230.309,-187"/>
+<text text-anchor="middle" x="172" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">StaticIconModule</text>
 </g>
 <!-- StaticIconModule&#45;&gt;BannerModule -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>StaticIconModule&#45;&gt;BannerModule</title>
-<path fill="none" stroke="#000000" d="M236.0831,-187.1061C236.0831,-187.1061 236.0831,-205.991 236.0831,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="232.5832,-205.9909 236.0831,-215.991 239.5832,-205.991 232.5832,-205.9909"/>
+<path fill="none" stroke="#000000" d="M230.4048,-169C235.382,-169 238.5673,-169 238.5673,-169 238.5673,-169 238.5673,-205.8939 238.5673,-205.8939"/>
+<polygon fill="#000000" stroke="#000000" points="235.0674,-205.8938 238.5673,-215.8939 242.0674,-205.8939 235.0674,-205.8938"/>
 </g>
 </g>
 </svg>
