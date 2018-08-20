@@ -17,14 +17,4 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 	mkdir pages
 	cp -R dist/docs/documentation/ pages/documentation
 	cp -R dist/docs/storybook/ pages
-
-	git config user.name "carbon-bot"
-	git config user.email "carbon@us.ibm.com"
-
-	cd pages
-	git init
-	git add .
-	git commit -m "Deploy to GitHub Pages"
-	git push --force "git@github.com:IBM/carbon-components-angular.git" master:gh-pages > /dev/null 2>&1
-	exit 0;
 fi
