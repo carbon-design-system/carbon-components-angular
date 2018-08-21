@@ -38,6 +38,6 @@ export class AccordionItem {
 
 	public toggleExpanded() {
 		this.expanded = !this.expanded;
-		this.selected.emit(this.id);
+		this.selected.emit({id: this.id, expanded: this.expanded});
 	}
 }
