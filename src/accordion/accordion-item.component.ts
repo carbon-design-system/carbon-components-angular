@@ -1,4 +1,10 @@
-import { Component, Input, HostBinding, Host, Output, EventEmitter } from "@angular/core";
+import {
+	Component,
+	Input,
+	HostBinding,
+	Output,
+	EventEmitter
+} from "@angular/core";
 
 @Component({
 	selector: "ibm-accordion-item",
