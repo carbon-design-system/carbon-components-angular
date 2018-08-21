@@ -1,5 +1,4 @@
-import { OnChanges, ElementRef, EventEmitter, AfterViewInit, AfterContentInit } from "@angular/core";
-import { PillInput } from "../pill-input/pill-input.component";
+import { OnChanges, ElementRef, EventEmitter, AfterViewInit, AfterContentInit, OnInit } from "@angular/core";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
 /**
@@ -12,7 +11,7 @@ import { ListItem } from "./../dropdown/list-item.interface";
  * @implements {AfterViewInit}
  * @implements {AfterContentInit}
  */
-export declare class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
+export declare class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentInit {
     private elementRef;
     /**
      * List of items to fill the content with.
@@ -110,19 +109,15 @@ export declare class ComboBox implements OnChanges, AfterViewInit, AfterContentI
     close: EventEmitter<any>;
     /** ContentChild reference to the instantiated dropdown list */
     view: AbstractDropdownView;
-    /** ContentChild reference to the instantiated dropdown button */
-    dropdownButton: any;
-    /** ViewChild of the pill input component */
-    pillInput: PillInput;
+    dropdownMenu: any;
     class: string;
+    role: string;
     display: string;
     open: boolean;
     /** Selected items for multi-select combo-boxes. */
     pills: any[];
     /** used to update the displayValue of `n-pill-input` */
     selectedValue: string;
-    /** internal reference to the dropdown list */
-    private dropdown;
     private noop;
     private onTouchedCallback;
     private propagateChangeCallback;
@@ -140,6 +135,7 @@ export declare class ComboBox implements OnChanges, AfterViewInit, AfterContentI
      * @memberof ComboBox
      */
     ngOnChanges(changes: any): void;
+    ngOnInit(): void;
     /**
      * Sets initial state that depends on child components
      * Subscribes to select events and handles focus/filtering/initial list updates
@@ -163,6 +159,7 @@ export declare class ComboBox implements OnChanges, AfterViewInit, AfterContentI
      * Called by `n-pill-input` when the selected pills have changed.
      */
     updatePills(): void;
+    clearSelected(): void;
     /**
      * Closes the dropdown and emits the close event.
      * @memberof ComboBox
