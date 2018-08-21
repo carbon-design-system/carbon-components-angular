@@ -28,7 +28,7 @@ class ComboboxTestComponent {
 	}
 }
 
-describe("Combo box", () => {
+xdescribe("Combo box", () => {
 	let fixture, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
