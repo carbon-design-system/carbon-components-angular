@@ -56,10 +56,6 @@ _Finally_ we can run `npm start` and start building out our application!
 
 > *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` is our recommended setup.
 
-#### Bundler
-
-Your project should use a module bundler - we recommend [webpack](https://webpack.js.org/).
-
 ### Contributing
 
 #### Quickstart
