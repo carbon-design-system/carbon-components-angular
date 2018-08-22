@@ -14,3 +14,4 @@ export * from "./pill-input/pill-input.module";
 export * from "./utils/position";
 export * from "./content-switcher/content-switcher.module";
 export * from "./accordion/accordion.module";
+export * from "./button/button.module";
