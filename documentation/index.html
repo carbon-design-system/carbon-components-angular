@@ -954,17 +954,36 @@
 <h1 id="carbon-components-angular">Carbon Components Angular</h1>
 <p>An <em>Angular</em> implementation of the Carbon Design System</p>
 <h3 id="getting-started">Getting started</h3>
-<pre class="line-numbers"><code class="language-none">$ npx &#64;angular/cli new my-project
+<p>Assuming we&#39;re starting with a new @angular/cli project:</p>
+<pre class="line-numbers"><code class="language-shell">$ npx &#64;angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i carbon-components-angular carbon-components
-$ # include carbon css
-$ # import components
-$ npm start</code></pre><h4 id="bundler">Bundler</h4>
-<p>Your project should use a module bundler - we recommend <a href="https://webpack.js.org/">webpack</a>.</p>
+$ npm i --save-dev carbon-components-angular carbon-components &#64;ngx-translate/core</code></pre><p>Then we need to include carbon-components in <code>src/styles.scss</code>:</p>
+<pre class="line-numbers"><code class="language-scss">&#64;import &quot;~carbon-components/scss/globals/scss/styles.scss&quot;;</code></pre><p>And set up our translations in <code>src/app/app.module.ts</code>:</p>
+<pre class="line-numbers"><code class="language-ts">import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
+import { NgModule } from &#39;&#64;angular/core&#39;;
+import { TranslateModule } from &#39;&#64;ngx-translate/core&#39;;
+
+import { AppComponent } from &#39;./app.component&#39;;
+
+&#64;NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    TranslateModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }</code></pre><p><em>Finally</em> we can run <code>npm start</code> and start building out our application!</p>
+<blockquote>
+<p><em>Note:</em> This isn&#39;t the only way to bootstrap a <code>carbon-components-angular</code> application, but the combination of <code>@angular/cli</code> and the <code>carbon-components</code> scss is our recommended setup.</p>
+</blockquote>
 <h3 id="contributing">Contributing</h3>
 <h4 id="quickstart">Quickstart</h4>
 <ul>
-<li>fork ibm/carbon-components-angular and clone it locally</li>
+<li>fork IBM/carbon-components-angular and clone it locally</li>
 <li>run <code>npm install</code> to grab all the dependencies, then <code>npm run storybook</code> to start storybook</li>
 <li><strong>if you are adding a component</strong>:<ul>
 <li>add a folder with your component code, styles, tests and story under <code>src</code></li>
@@ -978,7 +997,6 @@ $ npm start</code></pre><h4 id="bundler">Bundler</h4>
 </li>
 <li>follow the <a href="https://angular.io/styleguide">Angular style guide</a></li>
 <li>be sure to run <code>npm test</code> and <code>npm run lint</code> to make sure the tests and linter pass</li>
-<li>DO NOT change the version number.</li>
 <li>submit a PR</li>
 </ul>
 <h4 id="pull-request-guidelines">Pull request guidelines</h4>
@@ -1028,8 +1046,8 @@ $ npm start</code></pre><h4 id="bundler">Bundler</h4>
 </ul>
 <h3 id="resources">Resources</h3>
 <ul>
-<li><a href="#">Style guide (WIP)</a></li>
-<li><a href="#">General component API guidelines (WIP)</a></li>
+<li><a href="https://github.com/IBM/carbon-components-angular/wiki/Style-guide">Style guide (WIP)</a></li>
+<li><a href="https://github.com/IBM/carbon-components-angular/wiki/Component-API-guidelines">General component API guidelines (WIP)</a></li>
 <li><a href="https://angular.io/styleguide">Angular style guide</a></li>
 <li><a href="https://angular.io/docs/ts/latest/cookbook/i18n.html">I18N tooling</a></li>
 <li>(Angular 2+ doesn&#39;t have anything like ngAria, instead here&#39;s <a href="http://a11yproject.com/">The A11Y Project</a>, <a href="https://www.w3.org/TR/wai-aria/">WAI-ARIA specs</a>, and <a href="https://www.w3.org/TR/2016/WD-wai-aria-practices-1.1-20160317/">WAI-ARIA Authoring Practices</a>)</li>
