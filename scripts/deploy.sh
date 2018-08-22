@@ -17,4 +17,5 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 	mkdir pages
 	cp -R dist/docs/documentation/ pages/documentation
 	cp -R dist/docs/storybook/* pages
+	echo "angular.carbondesignsystem.com" > pages/CNAME
 fi
