@@ -3,14 +3,58 @@ An _Angular_ implementation of the Carbon Design System
 
 ### Getting started
 
-```
+Assuming we're starting with a new @angular/cli project:
+
+```shell
 $ npx @angular/cli new my-project
 $ cd my-project
-$ npm i carbon-components-angular carbon-components
-$ # include carbon css
-$ # import components
-$ npm start
+$ npm i --save-dev carbon-components-angular carbon-components
 ```
+
+Then we need to rename `src/styles.css` to `src/styles.scss` and include carbon-components:
+
+```scss
+@import "~carbon-components/scss/globals/scss/styles.scss";
+```
+
+And make sure the `angular.json` is configured to pick up our new file:
+
+```javascript
+// ...
+"projects": {
+	"demo-project": {
+		"root": "",
+		"sourceRoot": "src",
+		"projectType": "application",
+		"prefix": "app",
+		"schematics": {},
+		"architect": {
+			"build": {
+				"builder": "@angular-devkit/build-angular:browser",
+				"options": {
+					"outputPath": "dist/demo-project",
+					"index": "src/index.html",
+					"main": "src/main.ts",
+					"polyfills": "src/polyfills.ts",
+					"tsConfig": "src/tsconfig.app.json",
+					"assets": [
+						"src/favicon.ico",
+						"src/assets"
+					],
+					"styles": [
+						"src/styles.scss" // <-- this line specifically
+					],
+				}
+			}
+		}
+	}
+}
+// ...
+```
+
+_Finally_ we can run `npm start` and start building out our application!
+
+> *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` is our recommended setup.
 
 #### Bundler
 
