@@ -59,7 +59,7 @@ _Finally_ we can run `npm start` and start building out our application!
 ### Contributing
 
 #### Quickstart
-- fork ibm/carbon-components-angular and clone it locally
+- fork IBM/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run storybook` to start storybook
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests and story under `src`
@@ -69,7 +69,6 @@ _Finally_ we can run `npm start` and start building out our application!
   - consider adding or modifying a test case to cover the fix
 - follow the [Angular style guide](https://angular.io/styleguide)
 - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
-- DO NOT change the version number.
 - submit a PR
 
 #### Pull request guidelines
