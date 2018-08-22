@@ -17,6 +17,29 @@ Then we need to include carbon-components in `src/styles.scss`:
 @import "~carbon-components/scss/globals/scss/styles.scss";
 ```
 
+And set up our translations in `src/app/app.module.ts`:
+
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+	BrowserModule,
+	TranslateModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
 _Finally_ we can run `npm start` and start building out our application!
 
 > *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` is our recommended setup.
