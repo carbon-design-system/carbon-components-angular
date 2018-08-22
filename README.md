@@ -3,23 +3,51 @@ An _Angular_ implementation of the Carbon Design System
 
 ### Getting started
 
-```
-$ npx @angular/cli new my-project
+Assuming we're starting with a new @angular/cli project:
+
+```shell
+$ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i carbon-components-angular carbon-components
-$ # include carbon css
-$ # import components
-$ npm start
+$ npm i --save-dev carbon-components-angular carbon-components @ngx-translate/core
 ```
 
-#### Bundler
+Then we need to include carbon-components in `src/styles.scss`:
 
-Your project should use a module bundler - we recommend [webpack](https://webpack.js.org/).
+```scss
+@import "~carbon-components/scss/globals/scss/styles.scss";
+```
+
+And set up our translations in `src/app/app.module.ts`:
+
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+	BrowserModule,
+	TranslateModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+_Finally_ we can run `npm start` and start building out our application!
+
+> *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` scss is our recommended setup.
 
 ### Contributing
 
 #### Quickstart
-- fork ibm/carbon-components-angular and clone it locally
+- fork IBM/carbon-components-angular and clone it locally
 - run `npm install` to grab all the dependencies, then `npm run storybook` to start storybook
 - **if you are adding a component**:
   - add a folder with your component code, styles, tests and story under `src`
@@ -29,7 +57,6 @@ Your project should use a module bundler - we recommend [webpack](https://webpac
   - consider adding or modifying a test case to cover the fix
 - follow the [Angular style guide](https://angular.io/styleguide)
 - be sure to run `npm test` and `npm run lint` to make sure the tests and linter pass
-- DO NOT change the version number.
 - submit a PR
 
 #### Pull request guidelines
@@ -69,8 +96,8 @@ To keep our build dependancies local we use npm scripts to run our webpack, gulp
 - `npm test` to run tests
 
 ### Resources
- - [Style guide (WIP)](#)
- - [General component API guidelines (WIP)](#)
+ - [Style guide (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Style-guide)
+ - [General component API guidelines (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Component-API-guidelines)
  - [Angular style guide](https://angular.io/styleguide)
  - [I18N tooling](https://angular.io/docs/ts/latest/cookbook/i18n.html)
  - (Angular 2+ doesn't have anything like ngAria, instead here's [The A11Y Project](http://a11yproject.com/), [WAI-ARIA specs](https://www.w3.org/TR/wai-aria/), and [WAI-ARIA Authoring Practices](https://www.w3.org/TR/2016/WD-wai-aria-practices-1.1-20160317/))
