@@ -3,16 +3,17 @@ import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { DropdownModule } from "../";
+
+// needed to init ngx translate and load the translations
+import { BootstrapModule } from "../../.storybook/bootstrap.module";
 
 storiesOf("Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
 				DropdownModule,
-				TranslateModule.forRoot()
+				BootstrapModule
 			],
 		})
 	)
