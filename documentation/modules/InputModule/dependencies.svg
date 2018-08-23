@@ -22,45 +22,69 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_InputModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="174,-70 174,-268 322,-268 322,-70 174,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="127.5,-70 127.5,-268 368.5,-268 368.5,-70 127.5,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_InputModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="183,-78 183,-130 313,-130 313,-78 183,-78"/>
+<polygon fill="none" stroke="#000000" points="135.5,-78 135.5,-130 354.5,-130 354.5,-78 135.5,-78"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust6" class="cluster">
 <title>cluster_InputModule_exports</title>
-<polygon fill="none" stroke="#000000" points="182,-208 182,-260 314,-260 314,-208 182,-208"/>
+<polygon fill="none" stroke="#000000" points="135.5,-208 135.5,-260 360.5,-260 360.5,-208 135.5,-208"/>
 </g>
 <!-- LabelComponent -->
 <g id="node1" class="node">
 <title>LabelComponent</title>
-<polygon fill="#ffffb3" stroke="#000000" points="304.705,-122 191.295,-122 191.295,-86 304.705,-86 304.705,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">LabelComponent</text>
+<polygon fill="#ffffb3" stroke="#000000" points="346.205,-122 232.795,-122 232.795,-86 346.205,-86 346.205,-122"/>
+<text text-anchor="middle" x="289.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">LabelComponent</text>
 </g>
 <!-- InputModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>InputModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="292.6011,-187 289.6011,-191 268.6011,-191 265.6011,-187 203.3989,-187 203.3989,-151 292.6011,-151 292.6011,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">InputModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="279.1011,-187 276.1011,-191 255.1011,-191 252.1011,-187 189.8989,-187 189.8989,-151 279.1011,-151 279.1011,-187"/>
+<text text-anchor="middle" x="234.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">InputModule</text>
 </g>
 <!-- LabelComponent&#45;&gt;InputModule -->
 <g id="edge1" class="edge">
 <title>LabelComponent&#45;&gt;InputModule</title>
-<path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M255.9741,-122.1061C255.9741,-122.1061 255.9741,-140.991 255.9741,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="252.4741,-140.9909 255.9741,-150.991 259.4741,-140.991 252.4741,-140.9909"/>
+</g>
+<!-- TextInput -->
+<g id="node2" class="node">
+<title>TextInput</title>
+<polygon fill="#ffffb3" stroke="#000000" points="215.2093,-122 143.7907,-122 143.7907,-86 215.2093,-86 215.2093,-122"/>
+<text text-anchor="middle" x="179.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">TextInput</text>
+</g>
+<!-- TextInput&#45;&gt;InputModule -->
+<g id="edge2" class="edge">
+<title>TextInput&#45;&gt;InputModule</title>
+<path fill="none" stroke="#000000" d="M202.527,-122.1061C202.527,-122.1061 202.527,-140.991 202.527,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="199.0271,-140.9909 202.527,-150.991 206.0271,-140.991 199.0271,-140.9909"/>
 </g>
 <!-- LabelComponent  -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>LabelComponent </title>
-<polygon fill="#fb8072" stroke="#000000" points="306.2052,-252 189.7948,-252 189.7948,-216 306.2052,-216 306.2052,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">LabelComponent </text>
+<polygon fill="#fb8072" stroke="#000000" points="352.7052,-252 236.2948,-252 236.2948,-216 352.7052,-216 352.7052,-252"/>
+<text text-anchor="middle" x="294.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">LabelComponent </text>
 </g>
 <!-- InputModule&#45;&gt;LabelComponent  -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>InputModule&#45;&gt;LabelComponent </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.5991,-187.1061C257.5991,-187.1061 257.5991,-205.991 257.5991,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="254.0991,-205.9909 257.5991,-215.991 261.0991,-205.991 254.0991,-205.9909"/>
+</g>
+<!-- TextInput  -->
+<g id="node5" class="node">
+<title>TextInput </title>
+<polygon fill="#fb8072" stroke="#000000" points="217.7096,-252 143.2904,-252 143.2904,-216 217.7096,-216 217.7096,-252"/>
+<text text-anchor="middle" x="180.5" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">TextInput </text>
+</g>
+<!-- InputModule&#45;&gt;TextInput  -->
+<g id="edge4" class="edge">
+<title>InputModule&#45;&gt;TextInput </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M203.902,-187.1061C203.902,-187.1061 203.902,-205.991 203.902,-205.991"/>
+<polygon fill="#000000" stroke="#000000" points="200.4021,-205.9909 203.902,-215.991 207.4021,-205.991 200.4021,-205.9909"/>
 </g>
 </g>
 </svg>
