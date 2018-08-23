@@ -1,6 +1,6 @@
 import { AfterContentInit, ChangeDetectorRef, ElementRef, EventEmitter, OnInit, QueryList, Renderer2 } from "@angular/core";
 import { ControlValueAccessor } from "@angular/forms";
-import { CheckboxComponent } from "./checkbox.component";
+import { CheckboxComponent } from "../checkbox/checkbox.component";
 /**
  * Used to emit changes performed on a `RadioComponent`.
  * @export

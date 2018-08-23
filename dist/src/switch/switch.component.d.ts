@@ -1,4 +1,4 @@
-import { CheckboxComponent } from "./checkbox.component";
+import { CheckboxComponent } from "../checkbox/checkbox.component";
 import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from "@angular/core";
 /**
  * Defines the set of states for a switch component.
