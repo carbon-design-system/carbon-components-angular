@@ -4,21 +4,23 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { LabelComponent } from "../input/label.component";
-
-// exports
-export { LabelComponent } from "../input/label.component";
+import { LabelComponent } from "./label.component";
+import { TextInput } from "./input.directive";
 
 @NgModule({
 	declarations: [
-		LabelComponent
+		LabelComponent,
+		TextInput
 	],
 	exports: [
-		LabelComponent
+		LabelComponent,
+		TextInput
 	],
 	imports: [
 		CommonModule,
 		FormsModule,
 	]
 })
-export class InputModule { }
+class InputModule { }
+
+export { TextInput, LabelComponent, InputModule };

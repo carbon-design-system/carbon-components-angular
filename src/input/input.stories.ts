@@ -17,4 +17,9 @@ storiesOf("Input", module).addDecorator(
 			<input type="text" class="bx--text-input" placeholder="Optional placeholder text">
 		</ibm-label>
 	`
+	}))
+	.add("Input", () => ({
+		template: `
+			<input ibmText/>
+		`
 	}));
