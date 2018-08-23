@@ -2,39 +2,37 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
-import { CheckboxComponent } from "./checkbox.component";
-import { SwitchComponent } from "./switch.component";
-import { RadioComponent, RadioGroup } from "./radio.component";
-import { LabelComponent } from "./label.component";
+import { CheckboxModule } from "../checkbox/checkbox.module";
+import { SwitchModule } from "../switch/switch.module";
+import { RadioModule } from "../radio/radio.module";
+import { InputModule } from "../input/input.module";
+import { ButtonModule } from "../button/button.module";
 
 // exports
-export { CheckboxComponent } from "./checkbox.component";
-export { SwitchComponent } from "./switch.component";
-export { RadioComponent, RadioGroup } from "./radio.component";
-export { LabelComponent } from "./label.component";
+export { CheckboxModule } from "../checkbox/checkbox.module";
+export { SwitchModule } from "../switch/switch.module";
+export { RadioModule } from "../radio/radio.module";
+export { InputModule } from "../input/input.module";
+export { ButtonModule } from "../button/button.module";
 
 @NgModule({
-	declarations: [
-		CheckboxComponent,
-		SwitchComponent,
-		RadioComponent,
-		RadioGroup,
-		LabelComponent
-	],
 	exports: [
-		CheckboxComponent,
-		SwitchComponent,
-		RadioComponent,
-		RadioGroup,
-		LabelComponent
+		CheckboxModule,
+		SwitchModule,
+		RadioModule,
+		InputModule,
+		ButtonModule
 	],
 	imports: [
 		CommonModule,
 		FormsModule,
-		StaticIconModule
+		CheckboxModule,
+		SwitchModule,
+		RadioModule,
+		InputModule,
+		ButtonModule
 	]
 })
 export class NFormsModule { }

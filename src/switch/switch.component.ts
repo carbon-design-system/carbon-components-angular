@@ -1,4 +1,4 @@
-import { CheckboxComponent } from "./checkbox.component";
+import { CheckboxComponent } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
