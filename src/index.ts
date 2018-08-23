@@ -15,3 +15,8 @@ export * from "./utils/position";
 export * from "./content-switcher/content-switcher.module";
 export * from "./accordion/accordion.module";
 export * from "./button/button.module";
+export * from "./checkbox/checkbox.module";
+export * from "./switch/switch.module";
+export * from "./radio/radio.module";
+export * from "./input/input.module";
+export * from "./select/select.module";

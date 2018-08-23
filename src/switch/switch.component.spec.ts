@@ -2,42 +2,42 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
-import { StaticIconModule } from "./../icon/static-icon.module";
+import { StaticIconModule } from "../icon/static-icon.module";
 
-import { CheckboxComponent } from "./checkbox.component";
+import { SwitchComponent } from "./switch.component";
 
-describe("CheckboxComponent", () => {
-	let component: CheckboxComponent;
-	let fixture: ComponentFixture<CheckboxComponent>;
+describe("SwitchComponent", () => {
+	let component: SwitchComponent;
+	let fixture: ComponentFixture<SwitchComponent>;
 	let de: DebugElement;
 	let el: HTMLElement;
-	let inputElement: HTMLElement;
+	let buttonElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [CheckboxComponent],
+			declarations: [SwitchComponent],
 			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(CheckboxComponent);
+		fixture = TestBed.createComponent(SwitchComponent);
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
-		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
+		buttonElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});
 
 	it("should work", () => {
-		expect(component instanceof CheckboxComponent).toBe(true);
+		expect(component instanceof SwitchComponent).toBe(true);
 	});
 
 	it("should change state", () => {
-		inputElement.click();
+		buttonElement.click();
 		fixture.detectChanges();
-		expect(component.checked).toBe(true, "setting to checked");
+		expect(component.checked).toBe(true, "setting to on");
 
-		inputElement.click();
+		buttonElement.click();
 		fixture.detectChanges();
-		expect(component.checked).toBe(false, "setting to unchecked");
+		expect(component.checked).toBe(false, "setting to off");
 	});
 });

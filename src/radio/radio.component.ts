@@ -18,7 +18,7 @@ import {
 	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { CheckboxComponent, CheckboxState } from "./checkbox.component";
+import { CheckboxComponent, CheckboxState } from "../checkbox/checkbox.component";
 
 
 /**
