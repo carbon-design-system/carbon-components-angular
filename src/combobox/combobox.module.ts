@@ -5,21 +5,24 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { PillInputModule } from "./../pill-input/pill-input.module";
 
 import { ComboBox } from "./combobox.component";
+import { DropdownModule } from "../dropdown/dropdown.module";
 
 export { ComboBox } from "./combobox.component";
 
 
 @NgModule({
 	declarations: [
-		ComboBox
+		ComboBox,
 	],
 	exports: [
-		ComboBox
+		ComboBox,
+		DropdownModule
 	],
 	imports: [
 		CommonModule,
 		PillInputModule,
-		StaticIconModule
+		StaticIconModule,
+		DropdownModule
 	]
 })
 export class ComboBoxModule {}

@@ -1,5 +1,5 @@
 {
-  "name": "@carbon/carbon-components-angular",
+  "name": "carbon-components-angular",
   "version": "0.1.0",
   "description": "Next generation components",
   "main": "index.js",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ibm/carbon-components-angular.git"
+    "url": "git@github.com:IBM/carbon-components-angular.git"
   },
   "license": "Apache-2",
   "author": "IBM",
