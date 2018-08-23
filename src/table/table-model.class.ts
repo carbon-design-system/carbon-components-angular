@@ -181,11 +181,11 @@ export class TableModel {
 	selectedRowsCount(): number {
 		let retVal = 0;
 		if (this.rowsSelected) {
-			this.rowsSelected.forEach((rowSelected => {
+			this.rowsSelected.forEach(rowSelected => {
 				if (rowSelected) {
 					retVal++;
 				}
-			}));
+			});
 		}
 		return retVal;
 	}
@@ -199,11 +199,11 @@ export class TableModel {
 	expandedRowsCount(): number {
 		let retVal = 0;
 		if (this.rowsExpanded) {
-			this.rowsExpanded.forEach((rowExpanded => {
+			this.rowsExpanded.forEach(rowExpanded => {
 				if (rowExpanded) {
 					retVal++;
 				}
-			}));
+			});
 		}
 		return retVal;
 	}
@@ -330,7 +330,7 @@ export class TableModel {
 	}
 
 	isRowExpandable(index: number) {
-		return this.data[index].some( d => d.expandedData );
+		return this.data[index].some(d => d.expandedData);
 	}
 
 	/**
