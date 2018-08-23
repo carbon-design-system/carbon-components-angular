@@ -2,42 +2,42 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
-import { StaticIconModule } from "./../icon/static-icon.module";
+import { StaticIconModule } from "../icon/static-icon.module";
 
-import { SwitchComponent } from "./switch.component";
+import { CheckboxComponent } from "./checkbox.component";
 
-describe("SwitchComponent", () => {
-	let component: SwitchComponent;
-	let fixture: ComponentFixture<SwitchComponent>;
+describe("CheckboxComponent", () => {
+	let component: CheckboxComponent;
+	let fixture: ComponentFixture<CheckboxComponent>;
 	let de: DebugElement;
 	let el: HTMLElement;
-	let buttonElement: HTMLElement;
+	let inputElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [SwitchComponent],
+			declarations: [CheckboxComponent],
 			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(SwitchComponent);
+		fixture = TestBed.createComponent(CheckboxComponent);
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
-		buttonElement = fixture.debugElement.query(By.css("input")).nativeElement;
+		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});
 
 	it("should work", () => {
-		expect(component instanceof SwitchComponent).toBe(true);
+		expect(component instanceof CheckboxComponent).toBe(true);
 	});
 
 	it("should change state", () => {
-		buttonElement.click();
+		inputElement.click();
 		fixture.detectChanges();
-		expect(component.checked).toBe(true, "setting to on");
+		expect(component.checked).toBe(true, "setting to checked");
 
-		buttonElement.click();
+		inputElement.click();
 		fixture.detectChanges();
-		expect(component.checked).toBe(false, "setting to off");
+		expect(component.checked).toBe(false, "setting to unchecked");
 	});
 });
