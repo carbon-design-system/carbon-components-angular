@@ -17,6 +17,7 @@ export class TableModel {
 
 		// init rowsSelected
 		this.rowsSelected = new Array<boolean>(this._data.length);
+		this.rowsExpanded = new Array<boolean>(this._data.length);
 
 		// init rowsContext
 		this.rowsContext = new Array<string>(this._data.length);
@@ -35,6 +36,7 @@ export class TableModel {
 
 	dataChange = new EventEmitter();
 	rowsSelectedChange = new EventEmitter();
+	rowsExpandedChange = new EventEmitter();
 
 	/**
 	 * Gets the full data.
@@ -56,6 +58,14 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	rowsSelected: Array<boolean>;
+
+	/**
+	 * Contains information about expanded state of rows in the table.
+	 *
+	 * @type {Array<boolean>}
+	 * @memberof TableModel
+	 */
+	rowsExpanded: Array<boolean>;
 
 	/**
 	 * Contains information about the context of the row.
@@ -181,6 +191,24 @@ export class TableModel {
 	}
 
 	/**
+	 * Returns how many rows is currently expanded
+	 *
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
+	expandedRowsCount(): number {
+		let retVal = 0;
+		if (this.rowsExpanded) {
+			this.rowsExpanded.forEach((rowExpanded => {
+				if (rowExpanded) {
+					retVal++;
+				}
+			}));
+		}
+		return retVal;
+	}
+
+	/**
 	 * Returns `index`th row of the table.
 	 *
 	 * Negative index starts from the end. -1 being the last element.
@@ -257,6 +285,9 @@ export class TableModel {
 			// update rowsSelected property for length
 			this.rowsSelected.push(false);
 
+			// update rowsExpanded property for length
+			this.rowsExpanded.push(false);
+
 			// update rowsContext property for length
 			this.rowsContext.push(undefined);
 		} else {
@@ -265,6 +296,9 @@ export class TableModel {
 
 			// update rowsSelected property for length
 			this.rowsSelected.splice(ri, 0, false);
+
+			// update rowsExpanded property for length
+			this.rowsExpanded.splice(ri, 0, false);
 
 			// update rowsContext property for length
 			this.rowsContext.splice(ri, 0, undefined);
@@ -285,9 +319,18 @@ export class TableModel {
 		const rri = this.realRowIndex(index);
 		this.data.splice(rri, 1);
 		this.rowsSelected.splice(rri, 1);
+		this.rowsExpanded.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
 
 		this.dataChange.emit();
+	}
+
+	hasExpandableRows() {
+		return this.data.some(data => data.some(d => d.expandedData)); // checking for some in 2D array
+	}
+
+	isRowExpandable(index: number) {
+		return this.data[index].some( d => d.expandedData );
 	}
 
 	/**
@@ -431,7 +474,7 @@ export class TableModel {
 	}
 
 	/**
-	 * Appends `rowsSelected` info to model data.
+	 * Appends `rowsSelected` and `rowsExpanded` info to model data.
 	 *
 	 * When sorting rows, do this first so information about row selection
 	 * gets sorted with the other row info.
@@ -446,6 +489,10 @@ export class TableModel {
 			const rowSelectedMark = new TableItem();
 			rowSelectedMark.data = this.rowsSelected[i];
 			this.data[i].push(rowSelectedMark);
+
+			const rowExpandedMark = new TableItem();
+			rowExpandedMark.data = this.rowsExpanded[i];
+			this.data[i].push(rowExpandedMark);
 
 			const rowContext = new TableItem();
 			rowContext.data = this.rowsContext[i];
@@ -464,6 +511,7 @@ export class TableModel {
 	popRowStateFromModelData() {
 		for (let i = 0; i < this.data.length; i++) {
 			this.rowsContext[i] = this.data[i].pop().data;
+			this.rowsExpanded[i] = !!this.data[i].pop().data;
 			this.rowsSelected[i] = !!this.data[i].pop().data;
 		}
 	}
@@ -489,6 +537,17 @@ export class TableModel {
 	selectRow(index, value = true) {
 		this.rowsSelected[index] = value;
 		this.rowsSelectedChange.emit(index);
+	}
+
+	/**
+	 * Expands/Collapses `index`th row based on value
+	 *
+	 * @param index
+	 * @param value
+	 */
+	expandRow(index, value = true) {
+		this.rowsExpanded[index] = value;
+		this.rowsExpandedChange.emit(index);
 	}
 
 	/**
