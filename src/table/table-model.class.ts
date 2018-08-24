@@ -179,15 +179,15 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	selectedRowsCount(): number {
-		let retVal = 0;
+		let count = 0;
 		if (this.rowsSelected) {
 			this.rowsSelected.forEach(rowSelected => {
 				if (rowSelected) {
-					retVal++;
+					count++;
 				}
 			});
 		}
-		return retVal;
+		return count;
 	}
 
 	/**
@@ -197,15 +197,15 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	expandedRowsCount(): number {
-		let retVal = 0;
+		let count = 0;
 		if (this.rowsExpanded) {
 			this.rowsExpanded.forEach(rowExpanded => {
 				if (rowExpanded) {
-					retVal++;
+					count++;
 				}
 			});
 		}
-		return retVal;
+		return count;
 	}
 
 	/**
@@ -343,16 +343,16 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	column(index: number): Array<TableItem> {
-		let retVal = new Array<TableItem>();
+		let column = new Array<TableItem>();
 		const ri = this.realColumnIndex(index);
 		const rc = this.data.length;
 
 		for (let i = 0; i < rc; i++) {
 			const row = this.data[i];
-			retVal.push(row[ri]);
+			column.push(row[ri]);
 		}
 
-		return retVal;
+		return column;
 	}
 
 	/**
