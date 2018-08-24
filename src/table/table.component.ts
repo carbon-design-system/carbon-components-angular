@@ -1,13 +1,9 @@
 import {
 	Component,
-	AfterContentChecked,
 	ApplicationRef,
 	Input,
 	Output,
-	ViewChild,
-	ContentChildren,
-	EventEmitter,
-	ViewEncapsulation
+	EventEmitter
 } from "@angular/core";
 import { Subscription, fromEvent } from "rxjs";
 
@@ -154,14 +150,17 @@ import { getScrollbarWidth } from "../common/utils";
 @Component({
 	selector: "ibm-table",
 	template: `
-	<table [ngClass]="{
-		'table--sm': size === 'sm',
-		'table': size === 'default' || size === 'md',
-		'table--lg': size === 'lg'
+	<table
+	class="bx--data-table-v2"
+	[ngClass]="{
+		'bx--data-table-v2--compact': size === 'sm',
+		'bx--data-table-v2--tall': size === 'lg',
+		'bx--data-table-v2--zebra': striped
 	}">
 		<thead>
 			<tr>
-				<th class="table_checkbox-col" *ngIf="showSelectionColumn">
+				<th *ngIf="model.hasExpandableRows()"></th>
+				<th *ngIf="showSelectionColumn">
 					<ibm-checkbox
 						[size]="size !== 'lg' ? 'sm' : 'md'"
 						[(ngModel)]="selectAllCheckbox"
@@ -171,71 +170,60 @@ import { getScrollbarWidth } from "../common/utils";
 				</th>
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
-						*ngIf="column.visible"
-						[ngStyle]="column.style"
-						[draggable]="columnsDraggable"
-						(dragstart)="columnDragStart($event, i)"
-						(dragend)="columnDragEnd($event, i)">
+					*ngIf="column.visible"
+					[ngStyle]="column.style"
+					[draggable]="columnsDraggable"
+					(dragstart)="columnDragStart($event, i)"
+					(dragend)="columnDragEnd($event, i)">
 						<div
 						*ngIf="columnsResizable"
 						class="column-resize-handle"
 						(mousedown)="columnResizeStart($event, column)">
 						</div>
-						<div class="table_cell-wrapper">
-							<span class="table_data-wrapper"
-								(click)="sort.emit(i)">
-								<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
-								<ng-template
-									[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
-								</ng-template>
+						<button
+							class="bx--table-sort-v2"
+							[ngClass]="{
+								'bx--table-sort-v2--active': column.sorted,
+								'bx--table-sort-v2--ascending': column.descending
+							}"
+							(click)="sort.emit(i)">
+							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
+							<ng-template
+								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
+							</ng-template>
+							<svg
+							class="bx--table-sort-v2__icon"
+							width="10" height="5" viewBox="0 0 10 5"
+							aria-label="Sort rows by this header in descending order"
+							alt="Sort rows by this header in descending order">
+								<title>Sort rows by this header in descending order</title>
+								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
+							</svg>
+						</button>
+						<button
+							[ngClass]="{'active': column.filterCount > 0}"
+							*ngIf="column.filterTemplate"
+							type="button"
+							aria-expanded="false"
+							aria-haspopup="true"
+							[ibmTooltip]="column.filterTemplate"
+							trigger="click"
+							title="{{'TABLE.FILTER' | translate}}"
+							placement="bottom,top"
+							[appendToBody]="true"
+							[data]="column.filterData">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon--sm"
+								width="16"
+								height="16"
+								viewBox="0 0 16 16">
+								<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
+							</svg>
+							<span *ngIf="column.filterCount > 0">
+								{{column.filterCount}}
 							</span>
-							<span class="thead_sort" (click)="sort.emit(i)">
-								<!-- arrow up -->
-								<svg
-									*ngIf="column.descending && column.sorted"
-									xmlns="http://www.w3.org/2000/svg"
-									class="icon--sm"
-									width="16"
-									height="16"
-									viewBox="0 0 16 16">
-									<path d="M13.5 5.5L8 0 2.5 5.5l1 1 3.8-3.8V16h1.4V2.7l3.8 3.8z"/>
-								</svg>
-								<!-- arrow down -->
-								<svg
-									*ngIf="column.ascending && column.sorted"
-									xmlns="http://www.w3.org/2000/svg"
-									class="icon--sm"
-									width="16"
-									height="16"
-									viewBox="0 0 16 16">
-									<path d="M13.5 10.5L8 16l-5.5-5.5 1-1 3.8 3.8V0h1.4v13.3l3.8-3.8z"/>
-								</svg>
-							</span>
-							<button class="thead_filter-btn btn--icon-unstyled"
-								[ngClass]="{'active': column.filterCount > 0}"
-								*ngIf="column.filterTemplate"
-								type="button"
-								aria-expanded="false"
-								aria-haspopup="true"
-								[ibmPopover]="column.filterTemplate"
-								[footer]="column.filterFooter"
-								title="{{'TABLE.FILTER' | translate}}"
-								placement="right-bottom,left-bottom"
-								[appendToBody]="true"
-								[data]="column.filterData">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									class="icon--sm"
-									width="16"
-									height="16"
-									viewBox="0 0 16 16">
-									<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
-								</svg>
-								<span *ngIf="column.filterCount > 0">
-									{{column.filterCount}}
-								</span>
-							</button>
-						</div>
+						</button>
 						<div
 						*ngIf="columnsDraggable && isColumnDragging"
 						class="drop-area">
@@ -272,23 +260,38 @@ import { getScrollbarWidth } from "../common/utils";
 			</tr>
 		</thead>
 		<tbody
-		[ngClass]="{'table_tbody--striped': striped}"
 		[ngStyle]="{'overflow-y': 'scroll'}"
 		(scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr *ngIf="!model.isRowFiltered(i)"
 					(click)="onRowSelect(i)"
+					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
 					[ngClass]="{
 						selected: model.rowsSelected[i],
+						'bx--parent-row-v2': model.isRowExpandable(i),
+						'bx--expandable-row-v2': model.rowsExpanded[i],
 						'tbody_row--selectable': enableSingleSelect,
 						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
 						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
 						'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
 						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
 					}">
-					<td class="table_checkbox-col" *ngIf="showSelectionColumn">
+					<td
+					*ngIf="model.hasExpandableRows()"
+					class="bx--table-expand-v2"
+					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)">
+						<button
+						*ngIf="model.isRowExpandable(i)"
+						(click)="model.expandRow(i, !model.rowsExpanded[i])"
+						class="bx--table-expand-v2__button">
+							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
+								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
+							</svg>
+						</button>
+					</td>
+					<td *ngIf="showSelectionColumn">
 						<ibm-checkbox
-							[size]="size !== 'lg' ? 'sm' : 'md'"
+							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
 						</ibm-checkbox>
@@ -296,14 +299,24 @@ import { getScrollbarWidth } from "../common/utils";
 					<ng-container *ngFor="let item of row; let i = index">
 						<td *ngIf="model.header[i].visible"
 							[ngStyle]="model.header[i].style">
-							<div class="table_cell-wrapper">
-								<span *ngIf="!item.template" class="table_data-wrapper" [title]="item.data">{{item.data}}</span>
-								<ng-template
-									[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
-								</ng-template>
-							</div>
+							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
+							<ng-template
+								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
+							</ng-template>
 						</td>
 					</ng-container>
+				</tr>
+				<tr
+				*ngIf="model.rowsExpanded[i]"
+				class="bx--expandable-row-v2"
+				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
+					<td [attr.colspan]="model.data.length + 2">
+						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
+						<ng-template
+							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
+							[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">
+						</ng-template>
+					</td>
 				</tr>
 			</ng-container>
 		</tbody>
@@ -328,12 +341,11 @@ import { getScrollbarWidth } from "../common/utils";
 export class Table {
 	/**
 	 * Size of the table rows.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 *
-	 * @type {("sm" | "md" |"default" | "lg")}
+	 * @type {("sm" | "md" | "lg")}
 	 * @memberof Table
 	 */
-	@Input() size: "sm" | "md" |"default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 
 	/**
 	 * `TableModel` with data the table is to display.
@@ -434,12 +446,12 @@ export class Table {
 	selectAllCheckboxSomeSelected = false;
 
 	/**
-	 * Set to `true` to make table rows striped.
+	 * Set to `false` to remove table rows (zebra) stripes.
 	 *
 	 * @type {boolean}
 	 * @memberof Table
 	 */
-	@Input() striped = false;
+	@Input() striped = true;
 
 	/**
 	 * Emits an index of the column that wants to be sorted.
@@ -670,6 +682,21 @@ export class Table {
 		return getScrollbarWidth();
 	}
 
+	firstExpandedDataInRow(row) {
+		const found = row.find(d => d.expandedData);
+		if (found) {
+			return found.expandedData;
+		}
+		return found;
+	}
+
+	firstExpandedTemplateInRow(row) {
+		const found = row.find(d => d.expandedTemplate);
+		if (found) {
+			return found.expandedTemplate;
+		}
+		return found;
+	}
 	/**
 	 * Triggered when the user scrolls on the `<tbody>` element.
 	 * Emits the `scrollLoad` event.

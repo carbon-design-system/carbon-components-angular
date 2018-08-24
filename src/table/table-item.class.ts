@@ -1,5 +1,4 @@
 import {
-	EventEmitter,
 	TemplateRef
 } from "@angular/core";
 
@@ -11,6 +10,16 @@ export class TableItem {
 	 * @memberof TableItem
 	 */
 	data: any;
+
+	/**
+	 * Data for the expanded part of the row.
+	 *
+	 * You only need to set it for the first item in the row.
+	 *
+	 * @type {*}
+	 * @memberof TableItem
+	 */
+	expandedData: any;
 
 	/**
 	 * Used to display data in a desired way.
@@ -50,6 +59,16 @@ export class TableItem {
 	template: TemplateRef<any>;
 
 	/**
+	 * Template for rendering `expandedData`
+	 *
+	 * You only need to set it for the first item in the row.
+	 *
+	 * @type {TemplateRef<any>}
+	 * @memberof TableItem
+	 */
+	expandedTemplate: TemplateRef<any>;
+
+	/**
 	 * Creates an instance of TableItem.
 	 * @param {*} [rawData]
 	 * @memberof TableItem
@@ -62,6 +81,8 @@ export class TableItem {
 		// fill our object with provided props, and fallback to defaults
 		const data = Object.assign({}, defaults, rawData);
 		this.data = data.data;
+		this.expandedData = data.expandedData;
 		this.template = data.template;
+		this.expandedTemplate = data.expandedTemplate;
 	}
 }

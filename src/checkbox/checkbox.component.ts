@@ -5,9 +5,7 @@ import {
 	Component,
 	ElementRef,
 	EventEmitter,
-	forwardRef,
 	Input,
-	OnInit,
 	Output,
 	ViewChild,
 	HostBinding
@@ -56,25 +54,23 @@ export class CheckboxChange {
 @Component({
 	selector: "ibm-checkbox",
 	template: `
-		<div class="bx--form-item bx--checkbox-wrapper">
-			<input
-				#inputCheckbox
-				class="bx--checkbox"
-				type="checkbox"
-				[id]="id"
-				[value]="value"
-				[name]="name"
-				[required]="required"
-				[checked]="checked"
-				[disabled]="disabled"
-				[indeterminate]="indeterminate"
-				[attr.aria-label]="ariaLabel"
-				[attr.aria-labelledby]="ariaLabelledby"
-				[attr.aria-checked]="indeterminate ? 'mixed' : checked"
-				(change)="onChange($event)"
-				(click)="onClick($event)">
-			<label [for]="id" class="bx--checkbox-label"><ng-content></ng-content></label>
-		</div>
+		<input
+			#inputCheckbox
+			class="bx--checkbox"
+			type="checkbox"
+			[id]="id"
+			[value]="value"
+			[name]="name"
+			[required]="required"
+			[checked]="checked"
+			[disabled]="disabled"
+			[indeterminate]="indeterminate"
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby"
+			[attr.aria-checked]="indeterminate ? 'mixed' : checked"
+			(change)="onChange($event)"
+			(click)="onClick($event)">
+		<label [for]="id" class="bx--checkbox-label"><ng-content></ng-content></label>
 	`,
 	providers: [
 		{
@@ -93,6 +89,8 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	 * @memberof CheckboxComponent
 	 */
 	static checkboxCount = 0;
+
+	@HostBinding("attr.class") class = "bx--checkbox-wrapper";
 
 	/**
 	 * Size of the checkbox.
