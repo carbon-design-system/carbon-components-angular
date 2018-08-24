@@ -217,6 +217,12 @@
                                     <a href="../components/DropdownList.html" >DropdownList</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DynamicTableStory.html" >DynamicTableStory</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ExpansionTableStory.html" >ExpansionTableStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Icon.html" >Icon</a>
                                 </li>
                                 <li class="link">
@@ -372,6 +378,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/CheckboxChange.html" >CheckboxChange</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/CustomHeaderItem.html" >CustomHeaderItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DateTimeModel.html" >DateTimeModel</a>
@@ -717,6 +726,12 @@
                                            <a href="../components/DropdownList.html" >DropdownList</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DynamicTableStory.html" >DynamicTableStory</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ExpansionTableStory.html" >ExpansionTableStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Icon.html" >Icon</a>
                                        </li>
                                        <li class="link">
@@ -872,6 +887,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/CheckboxChange.html" >CheckboxChange</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/CustomHeaderItem.html" >CustomHeaderItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DateTimeModel.html" >DateTimeModel</a>
@@ -1094,6 +1112,12 @@
                                          <a href="#rowsContext">rowsContext</a>
                                     </li>
                                     <li>
+                                         <a href="#rowsExpanded">rowsExpanded</a>
+                                    </li>
+                                    <li>
+                                         <a href="#rowsExpandedChange">rowsExpandedChange</a>
+                                    </li>
+                                    <li>
                                          <a href="#rowsSelected">rowsSelected</a>
                                     </li>
                                     <li>
@@ -1124,6 +1148,18 @@
                                     </li>
                                     <li>
                                          <a href="#deleteRow">deleteRow</a>
+                                    </li>
+                                    <li>
+                                         <a href="#expandedRowsCount">expandedRowsCount</a>
+                                    </li>
+                                    <li>
+                                         <a href="#expandRow">expandRow</a>
+                                    </li>
+                                    <li>
+                                         <a href="#hasExpandableRows">hasExpandableRows</a>
+                                    </li>
+                                    <li>
+                                         <a href="#isRowExpandable">isRowExpandable</a>
                                     </li>
                                     <li>
                                          <a href="#isRowFiltered">isRowFiltered</a>
@@ -1205,7 +1241,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="331" class="link-to-prism">src/table/table-model.class.ts:331</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="374" class="link-to-prism">src/table/table-model.class.ts:374</a></div>
                                         </td>
                                     </tr>
             
@@ -1284,7 +1320,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/table/table-model.class.ts:212</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/table/table-model.class.ts:240</a></div>
                                         </td>
                                     </tr>
             
@@ -1363,7 +1399,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/table/table-model.class.ts:302</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/table/table-model.class.ts:345</a></div>
                                         </td>
                                     </tr>
             
@@ -1427,7 +1463,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">src/table/table-model.class.ts:393</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="436" class="link-to-prism">src/table/table-model.class.ts:436</a></div>
                                         </td>
                                     </tr>
             
@@ -1491,7 +1527,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/table/table-model.class.ts:284</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="318" class="link-to-prism">src/table/table-model.class.ts:318</a></div>
                                         </td>
                                     </tr>
             
@@ -1542,6 +1578,208 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="expandedRowsCount"></a>
+                                    <span class="name"><b> expandedRowsCount</b><a href="#expandedRowsCount"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>expandedRowsCount()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/table/table-model.class.ts:199</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Returns how many rows is currently expanded</p>
+            </div>
+            
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="expandRow"></a>
+                                    <span class="name"><b> expandRow</b><a href="#expandRow"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>expandRow(index: , value: )</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="548" class="link-to-prism">src/table/table-model.class.ts:548</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Expands/Collapses <code>index</code>th row based on value</p>
+            </div>
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Type</td>
+                                                            <td>Optional</td>
+                                                            <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                              <td>index</td>
+                                                              <td>
+                                                              </td>
+                                                              <td>
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>value</td>
+                                                              <td>
+                                                              </td>
+                                                              <td>
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="hasExpandableRows"></a>
+                                    <span class="name"><b> hasExpandableRows</b><a href="#hasExpandableRows"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>hasExpandableRows()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="328" class="link-to-prism">src/table/table-model.class.ts:328</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="isRowExpandable"></a>
+                                    <span class="name"><b> isRowExpandable</b><a href="#isRowExpandable"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>isRowExpandable(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/table/table-model.class.ts:332</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            
+                                        <div class="io-description">
+                                                <b>Parameters :</b>
+                                                <table class="params">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>Name</td>
+                                                            <td>Type</td>
+                                                            <td>Optional</td>
+                                                            <td>Description</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                              <td>index</td>
+                                                              <td>
+                                                                      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                              </td>
+                                                              <td>
+                                                              </td>
+                                                              <td></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                        </div>
+                                            <div class="io-description">
+                                                
+                                            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="isRowFiltered"></a>
                                     <span class="name"><b> isRowFiltered</b><a href="#isRowFiltered"><span class="fa fa-link"></span></a></span>
                                 </td>
@@ -1555,7 +1793,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="478" class="link-to-prism">src/table/table-model.class.ts:478</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="526" class="link-to-prism">src/table/table-model.class.ts:526</a></div>
                                         </td>
                                     </tr>
             
@@ -1619,7 +1857,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="407" class="link-to-prism">src/table/table-model.class.ts:407</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="450" class="link-to-prism">src/table/table-model.class.ts:450</a></div>
                                         </td>
                                     </tr>
             
@@ -1689,7 +1927,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="464" class="link-to-prism">src/table/table-model.class.ts:464</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="511" class="link-to-prism">src/table/table-model.class.ts:511</a></div>
                                         </td>
                                     </tr>
             
@@ -1725,13 +1963,13 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="444" class="link-to-prism">src/table/table-model.class.ts:444</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="487" class="link-to-prism">src/table/table-model.class.ts:487</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
-                                        <div class="io-description"><p>Appends <code>rowsSelected</code> info to model data.</p>
+                                        <div class="io-description"><p>Appends <code>rowsSelected</code> and <code>rowsExpanded</code> info to model data.</p>
             <p>When sorting rows, do this first so information about row selection
             gets sorted with the other row info.</p>
             <p>Call <code>popRowSelectionFromModelData()</code> after sorting to make everything
@@ -1764,7 +2002,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/table/table-model.class.ts:518</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="577" class="link-to-prism">src/table/table-model.class.ts:577</a></div>
                                         </td>
                                     </tr>
             
@@ -1830,7 +2068,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="532" class="link-to-prism">src/table/table-model.class.ts:532</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="591" class="link-to-prism">src/table/table-model.class.ts:591</a></div>
                                         </td>
                                     </tr>
             
@@ -1904,7 +2142,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="504" class="link-to-prism">src/table/table-model.class.ts:504</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="563" class="link-to-prism">src/table/table-model.class.ts:563</a></div>
                                         </td>
                                     </tr>
             
@@ -1969,7 +2207,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/table/table-model.class.ts:192</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/table/table-model.class.ts:220</a></div>
                                         </td>
                                     </tr>
             
@@ -2033,7 +2271,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/table/table-model.class.ts:171</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/table/table-model.class.ts:181</a></div>
                                         </td>
                                     </tr>
             
@@ -2072,7 +2310,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="489" class="link-to-prism">src/table/table-model.class.ts:489</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="537" class="link-to-prism">src/table/table-model.class.ts:537</a></div>
                                         </td>
                                     </tr>
             
@@ -2142,7 +2380,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/table/table-model.class.ts:425</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="468" class="link-to-prism">src/table/table-model.class.ts:468</a></div>
                                         </td>
                                     </tr>
             
@@ -2221,7 +2459,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/table/table-model.class.ts:163</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/table/table-model.class.ts:173</a></div>
                                         </td>
                                     </tr>
             
@@ -2256,7 +2494,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/table/table-model.class.ts:120</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/table/table-model.class.ts:130</a></div>
                                         </td>
                                     </tr>
             
@@ -2291,7 +2529,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/table/table-model.class.ts:87</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/table/table-model.class.ts:97</a></div>
                                         </td>
                                     </tr>
             
@@ -2320,7 +2558,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/table/table-model.class.ts:36</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/table/table-model.class.ts:37</a></div>
                                         </td>
                                     </tr>
             
@@ -2349,7 +2587,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/table/table-model.class.ts:79</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/table/table-model.class.ts:89</a></div>
                                         </td>
                                     </tr>
             
@@ -2383,7 +2621,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/table/table-model.class.ts:103</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/table-model.class.ts:113</a></div>
                                         </td>
                                     </tr>
             
@@ -2417,7 +2655,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/table/table-model.class.ts:111</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/table/table-model.class.ts:121</a></div>
                                         </td>
                                     </tr>
             
@@ -2452,7 +2690,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/table/table-model.class.ts:95</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/table/table-model.class.ts:105</a></div>
                                         </td>
                                     </tr>
             
@@ -2487,7 +2725,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/table/table-model.class.ts:71</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/table/table-model.class.ts:81</a></div>
                                         </td>
                                     </tr>
             
@@ -2500,6 +2738,64 @@
             </div>
                                 </td>
                             </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="rowsExpanded"></a>
+                                    <span class="name"><b> rowsExpanded</b><a href="#rowsExpanded"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>rowsExpanded:     <code>Array&lt;boolean&gt;</code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code>Array&lt;boolean&gt;</code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/table/table-model.class.ts:68</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Contains information about expanded state of rows in the table.</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="rowsExpandedChange"></a>
+                                    <span class="name"><b> rowsExpandedChange</b><a href="#rowsExpandedChange"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>rowsExpandedChange:     <code></code>
+            </code>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/table/table-model.class.ts:39</a></div>
+                                        </td>
+                                    </tr>
+            
             
                         </tbody>
                     </table>
@@ -2525,7 +2821,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/table/table-model.class.ts:58</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/table/table-model.class.ts:60</a></div>
                                         </td>
                                     </tr>
             
@@ -2554,7 +2850,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/table/table-model.class.ts:37</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/table/table-model.class.ts:38</a></div>
                                         </td>
                                     </tr>
             
@@ -2583,7 +2879,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/table/table-model.class.ts:48</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/table/table-model.class.ts:50</a></div>
                                             </td>
                                         </tr>
             
@@ -2652,7 +2948,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/table-model.class.ts:142</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/table/table-model.class.ts:152</a></div>
                                             </td>
                                         </tr>
             
@@ -2663,7 +2959,7 @@
                             </tr>
                                         <tr>
                                             <td class="col-md-4">
-                                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/table/table-model.class.ts:133</a></div>
+                                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/table/table-model.class.ts:143</a></div>
                                             </td>
                                         </tr>
                                 <tr>
@@ -2733,6 +3029,7 @@ export class TableModel {
 
 		// init rowsSelected
 		this.rowsSelected &#x3D; new Array&lt;boolean&gt;(this._data.length);
+		this.rowsExpanded &#x3D; new Array&lt;boolean&gt;(this._data.length);
 
 		// init rowsContext
 		this.rowsContext &#x3D; new Array&lt;string&gt;(this._data.length);
@@ -2751,6 +3048,7 @@ export class TableModel {
 
 	dataChange &#x3D; new EventEmitter();
 	rowsSelectedChange &#x3D; new EventEmitter();
+	rowsExpandedChange &#x3D; new EventEmitter();
 
 	/**
 	 * Gets the full data.
@@ -2772,6 +3070,14 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	rowsSelected: Array&lt;boolean&gt;;
+
+	/**
+	 * Contains information about expanded state of rows in the table.
+	 *
+	 * @type {Array&lt;boolean&gt;}
+	 * @memberof TableModel
+	 */
+	rowsExpanded: Array&lt;boolean&gt;;
 
 	/**
 	 * Contains information about the context of the row.
@@ -2885,15 +3191,33 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	selectedRowsCount(): number {
-		let retVal &#x3D; 0;
+		let count &#x3D; 0;
 		if (this.rowsSelected) {
-			this.rowsSelected.forEach((rowSelected &#x3D;&gt; {
+			this.rowsSelected.forEach(rowSelected &#x3D;&gt; {
 				if (rowSelected) {
-					retVal++;
+					count++;
 				}
-			}));
+			});
 		}
-		return retVal;
+		return count;
+	}
+
+	/**
+	 * Returns how many rows is currently expanded
+	 *
+	 * @returns {number}
+	 * @memberof TableModel
+	 */
+	expandedRowsCount(): number {
+		let count &#x3D; 0;
+		if (this.rowsExpanded) {
+			this.rowsExpanded.forEach(rowExpanded &#x3D;&gt; {
+				if (rowExpanded) {
+					count++;
+				}
+			});
+		}
+		return count;
 	}
 
 	/**
@@ -2973,6 +3297,9 @@ export class TableModel {
 			// update rowsSelected property for length
 			this.rowsSelected.push(false);
 
+			// update rowsExpanded property for length
+			this.rowsExpanded.push(false);
+
 			// update rowsContext property for length
 			this.rowsContext.push(undefined);
 		} else {
@@ -2981,6 +3308,9 @@ export class TableModel {
 
 			// update rowsSelected property for length
 			this.rowsSelected.splice(ri, 0, false);
+
+			// update rowsExpanded property for length
+			this.rowsExpanded.splice(ri, 0, false);
 
 			// update rowsContext property for length
 			this.rowsContext.splice(ri, 0, undefined);
@@ -3001,9 +3331,18 @@ export class TableModel {
 		const rri &#x3D; this.realRowIndex(index);
 		this.data.splice(rri, 1);
 		this.rowsSelected.splice(rri, 1);
+		this.rowsExpanded.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
 
 		this.dataChange.emit();
+	}
+
+	hasExpandableRows() {
+		return this.data.some(data &#x3D;&gt; data.some(d &#x3D;&gt; d.expandedData)); // checking for some in 2D array
+	}
+
+	isRowExpandable(index: number) {
+		return this.data[index].some(d &#x3D;&gt; d.expandedData);
 	}
 
 	/**
@@ -3016,16 +3355,16 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	column(index: number): Array&lt;TableItem&gt; {
-		let retVal &#x3D; new Array&lt;TableItem&gt;();
+		let column &#x3D; new Array&lt;TableItem&gt;();
 		const ri &#x3D; this.realColumnIndex(index);
 		const rc &#x3D; this.data.length;
 
 		for (let i &#x3D; 0; i &lt; rc; i++) {
 			const row &#x3D; this.data[i];
-			retVal.push(row[ri]);
+			column.push(row[ri]);
 		}
 
-		return retVal;
+		return column;
 	}
 
 	/**
@@ -3147,7 +3486,7 @@ export class TableModel {
 	}
 
 	/**
-	 * Appends &#x60;rowsSelected&#x60; info to model data.
+	 * Appends &#x60;rowsSelected&#x60; and &#x60;rowsExpanded&#x60; info to model data.
 	 *
 	 * When sorting rows, do this first so information about row selection
 	 * gets sorted with the other row info.
@@ -3162,6 +3501,10 @@ export class TableModel {
 			const rowSelectedMark &#x3D; new TableItem();
 			rowSelectedMark.data &#x3D; this.rowsSelected[i];
 			this.data[i].push(rowSelectedMark);
+
+			const rowExpandedMark &#x3D; new TableItem();
+			rowExpandedMark.data &#x3D; this.rowsExpanded[i];
+			this.data[i].push(rowExpandedMark);
 
 			const rowContext &#x3D; new TableItem();
 			rowContext.data &#x3D; this.rowsContext[i];
@@ -3180,6 +3523,7 @@ export class TableModel {
 	popRowStateFromModelData() {
 		for (let i &#x3D; 0; i &lt; this.data.length; i++) {
 			this.rowsContext[i] &#x3D; this.data[i].pop().data;
+			this.rowsExpanded[i] &#x3D; !!this.data[i].pop().data;
 			this.rowsSelected[i] &#x3D; !!this.data[i].pop().data;
 		}
 	}
@@ -3205,6 +3549,17 @@ export class TableModel {
 	selectRow(index, value &#x3D; true) {
 		this.rowsSelected[index] &#x3D; value;
 		this.rowsSelectedChange.emit(index);
+	}
+
+	/**
+	 * Expands/Collapses &#x60;index&#x60;th row based on value
+	 *
+	 * @param index
+	 * @param value
+	 */
+	expandRow(index, value &#x3D; true) {
+		this.rowsExpanded[index] &#x3D; value;
+		this.rowsExpandedChange.emit(index);
 	}
 
 	/**

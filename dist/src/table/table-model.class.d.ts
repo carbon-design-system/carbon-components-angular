@@ -21,6 +21,7 @@ export declare class TableModel {
     data: Array<Array<TableItem>>;
     dataChange: EventEmitter<{}>;
     rowsSelectedChange: EventEmitter<{}>;
+    rowsExpandedChange: EventEmitter<{}>;
     /**
      * Contains information about selection state of rows in the table.
      *
@@ -28,6 +29,13 @@ export declare class TableModel {
      * @memberof TableModel
      */
     rowsSelected: Array<boolean>;
+    /**
+     * Contains information about expanded state of rows in the table.
+     *
+     * @type {Array<boolean>}
+     * @memberof TableModel
+     */
+    rowsExpanded: Array<boolean>;
     /**
      * Contains information about the context of the row.
      *
@@ -116,6 +124,13 @@ export declare class TableModel {
      */
     selectedRowsCount(): number;
     /**
+     * Returns how many rows is currently expanded
+     *
+     * @returns {number}
+     * @memberof TableModel
+     */
+    expandedRowsCount(): number;
+    /**
      * Returns `index`th row of the table.
      *
      * Negative index starts from the end. -1 being the last element.
@@ -151,6 +166,8 @@ export declare class TableModel {
      * @memberof TableModel
      */
     deleteRow(index: number): void;
+    hasExpandableRows(): boolean;
+    isRowExpandable(index: number): boolean;
     /**
      * Returns `index`th column of the table.
      *
@@ -199,7 +216,7 @@ export declare class TableModel {
      */
     sort(index: number): void;
     /**
-     * Appends `rowsSelected` info to model data.
+     * Appends `rowsSelected` and `rowsExpanded` info to model data.
      *
      * When sorting rows, do this first so information about row selection
      * gets sorted with the other row info.
@@ -234,6 +251,13 @@ export declare class TableModel {
      * @param value
      */
     selectRow(index: any, value?: boolean): void;
+    /**
+     * Expands/Collapses `index`th row based on value
+     *
+     * @param index
+     * @param value
+     */
+    expandRow(index: any, value?: boolean): void;
     /**
      * Gets the true index of a row based on it's relative position.
      * Like in Python, positive numbers start from the top and

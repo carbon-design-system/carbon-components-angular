@@ -141,12 +141,11 @@ export declare class Table {
     private applicationRef;
     /**
      * Size of the table rows.
-     * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
      *
-     * @type {("sm" | "md" |"default" | "lg")}
+     * @type {("sm" | "md" | "lg")}
      * @memberof Table
      */
-    size: "sm" | "md" | "default" | "lg";
+    size: "sm" | "md" | "lg";
     /**
      * `TableModel` with data the table is to display.
      *
@@ -216,7 +215,7 @@ export declare class Table {
      */
     selectAllCheckboxSomeSelected: boolean;
     /**
-     * Set to `true` to make table rows striped.
+     * Set to `false` to remove table rows (zebra) stripes.
      *
      * @type {boolean}
      * @memberof Table
@@ -316,6 +315,8 @@ export declare class Table {
     columnDragover(event: any, position: any, columnIndex: any): void;
     columnDrop(event: any, position: any, columnIndex: any): void;
     readonly scrollbarWidth: number;
+    firstExpandedDataInRow(row: any): any;
+    firstExpandedTemplateInRow(row: any): any;
     /**
      * Triggered when the user scrolls on the `<tbody>` element.
      * Emits the `scrollLoad` event.

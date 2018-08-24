@@ -45,6 +45,7 @@ export declare class CheckboxComponent implements ControlValueAccessor, AfterVie
      * @memberof CheckboxComponent
      */
     static checkboxCount: number;
+    class: string;
     /**
      * Size of the checkbox.
      * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)

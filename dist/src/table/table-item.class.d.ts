@@ -8,6 +8,15 @@ export declare class TableItem {
      */
     data: any;
     /**
+     * Data for the expanded part of the row.
+     *
+     * You only need to set it for the first item in the row.
+     *
+     * @type {*}
+     * @memberof TableItem
+     */
+    expandedData: any;
+    /**
      * Used to display data in a desired way.
      *
      * If not provided, displays data as a simple string.
@@ -43,6 +52,15 @@ export declare class TableItem {
      * @memberof TableItem
      */
     template: TemplateRef<any>;
+    /**
+     * Template for rendering `expandedData`
+     *
+     * You only need to set it for the first item in the row.
+     *
+     * @type {TemplateRef<any>}
+     * @memberof TableItem
+     */
+    expandedTemplate: TemplateRef<any>;
     /**
      * Creates an instance of TableItem.
      * @param {*} [rawData]

@@ -217,6 +217,12 @@
                                     <a href="../components/DropdownList.html" >DropdownList</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/DynamicTableStory.html" >DynamicTableStory</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/ExpansionTableStory.html" >ExpansionTableStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Icon.html" >Icon</a>
                                 </li>
                                 <li class="link">
@@ -372,6 +378,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/CheckboxChange.html"  data-type="entity-link" class="active" >CheckboxChange</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/CustomHeaderItem.html" >CustomHeaderItem</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/DateTimeModel.html" >DateTimeModel</a>
@@ -717,6 +726,12 @@
                                            <a href="../components/DropdownList.html" >DropdownList</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/DynamicTableStory.html" >DynamicTableStory</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/ExpansionTableStory.html" >ExpansionTableStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Icon.html" >Icon</a>
                                        </li>
                                        <li class="link">
@@ -872,6 +887,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/CheckboxChange.html"  data-type="entity-link" class="active" >CheckboxChange</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/CustomHeaderItem.html" >CustomHeaderItem</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/DateTimeModel.html" >DateTimeModel</a>
@@ -1121,7 +1139,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/checkbox/checkbox.component.ts:47</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/checkbox/checkbox.component.ts:45</a></div>
                                         </td>
                                     </tr>
             
@@ -1156,7 +1174,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/checkbox/checkbox.component.ts:41</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/checkbox/checkbox.component.ts:39</a></div>
                                         </td>
                                     </tr>
             
@@ -1182,9 +1200,7 @@
 	Component,
 	ElementRef,
 	EventEmitter,
-	forwardRef,
 	Input,
-	OnInit,
 	Output,
 	ViewChild,
 	HostBinding
@@ -1233,25 +1249,23 @@ export class CheckboxChange {
 @Component({
 	selector: &quot;ibm-checkbox&quot;,
 	template: &#x60;
-		&lt;div class&#x3D;&quot;bx--form-item bx--checkbox-wrapper&quot;&gt;
-			&lt;input
-				#inputCheckbox
-				class&#x3D;&quot;bx--checkbox&quot;
-				type&#x3D;&quot;checkbox&quot;
-				[id]&#x3D;&quot;id&quot;
-				[value]&#x3D;&quot;value&quot;
-				[name]&#x3D;&quot;name&quot;
-				[required]&#x3D;&quot;required&quot;
-				[checked]&#x3D;&quot;checked&quot;
-				[disabled]&#x3D;&quot;disabled&quot;
-				[indeterminate]&#x3D;&quot;indeterminate&quot;
-				[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
-				[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
-				[attr.aria-checked]&#x3D;&quot;indeterminate ? &#x27;mixed&#x27; : checked&quot;
-				(change)&#x3D;&quot;onChange($event)&quot;
-				(click)&#x3D;&quot;onClick($event)&quot;&gt;
-			&lt;label [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--checkbox-label&quot;&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/label&gt;
-		&lt;/div&gt;
+		&lt;input
+			#inputCheckbox
+			class&#x3D;&quot;bx--checkbox&quot;
+			type&#x3D;&quot;checkbox&quot;
+			[id]&#x3D;&quot;id&quot;
+			[value]&#x3D;&quot;value&quot;
+			[name]&#x3D;&quot;name&quot;
+			[required]&#x3D;&quot;required&quot;
+			[checked]&#x3D;&quot;checked&quot;
+			[disabled]&#x3D;&quot;disabled&quot;
+			[indeterminate]&#x3D;&quot;indeterminate&quot;
+			[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
+			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
+			[attr.aria-checked]&#x3D;&quot;indeterminate ? &#x27;mixed&#x27; : checked&quot;
+			(change)&#x3D;&quot;onChange($event)&quot;
+			(click)&#x3D;&quot;onClick($event)&quot;&gt;
+		&lt;label [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--checkbox-label&quot;&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/label&gt;
 	&#x60;,
 	providers: [
 		{
@@ -1270,6 +1284,8 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	 * @memberof CheckboxComponent
 	 */
 	static checkboxCount &#x3D; 0;
+
+	@HostBinding(&quot;attr.class&quot;) class &#x3D; &quot;bx--checkbox-wrapper&quot;;
 
 	/**
 	 * Size of the checkbox.
