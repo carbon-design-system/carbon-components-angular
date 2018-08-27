@@ -1,6 +1,7 @@
 import { Directive, HostBinding } from "@angular/core";
+
 /**
- * A convinence directive for applying styling to a input element.
+ * A Component for applying styling to a input element.
  *
  * Example:
  *
