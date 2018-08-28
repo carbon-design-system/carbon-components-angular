@@ -1198,7 +1198,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/table/table.stories.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/table/table.stories.ts:50</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1218,7 +1218,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/table/table.stories.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/table/table.stories.ts:52</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1238,7 +1238,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/table/table.stories.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/table/table.stories.ts:51</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1258,7 +1258,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/table/table.stories.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/table/table.stories.ts:53</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1290,7 +1290,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/table/table.stories.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/table/table.stories.ts:94</a></div>
                                 </td>
                             </tr>
     
@@ -1322,7 +1322,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/table/table.stories.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/table/table.stories.ts:89</a></div>
                                 </td>
                             </tr>
     
@@ -1354,7 +1354,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/table/table.stories.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/table/table.stories.ts:77</a></div>
                                 </td>
                             </tr>
     
@@ -1415,7 +1415,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/table/table.stories.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/table/table.stories.ts:60</a></div>
                                 </td>
                             </tr>
     
@@ -1447,7 +1447,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/table/table.stories.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/table/table.stories.ts:81</a></div>
                                 </td>
                             </tr>
     
@@ -1533,7 +1533,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/table/table.stories.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/table/table.stories.ts:56</a></div>
                                 </td>
                             </tr>
     
@@ -1567,7 +1567,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/table/table.stories.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/table/table.stories.ts:58</a></div>
                                 </td>
                             </tr>
     
@@ -1603,6 +1603,8 @@ import {
 	TableHeaderItem,
 	NFormsModule
 } from &quot;../&quot;;
+
+import { clone } from &quot;../utils/utils&quot;;
 
 @Component({
 	selector: &quot;app-custom-table&quot;,
@@ -1667,7 +1669,7 @@ class DynamicTableStory implements OnInit {
 	}
 
 	addRow() {
-		const lastRowCopy &#x3D; JSON.parse(JSON.stringify(this.model.row(this.model.data.length - 1)));
+		const lastRowCopy &#x3D; clone(this.model.row(this.model.data.length - 1));
 		this.model.addRow(lastRowCopy);
 	}
 
@@ -1714,11 +1716,14 @@ class ExpansionTableStory implements OnInit {
 				new TableItem({data: &quot;Name 1&quot;, expandedData: &quot;No template&quot;}),
 				new TableItem({data: {name: &quot;Lessy&quot;, link: &quot;#&quot;}, template: this.customTableItemTemplate})
 			],
-			[new TableItem({
-				data: &quot;Name 3&quot;,
-				expandedData: {name: &quot;In&quot;, surname: &quot;Template&quot;},
-				expandedTemplate: this.customTableItemTemplate
-			}), new TableItem({data: &quot;swer&quot;})],
+			[
+				new TableItem({
+					data: &quot;Name 3&quot;,
+					expandedData: {name: &quot;In&quot;, surname: &quot;Template&quot;},
+					expandedTemplate: this.customTableItemTemplate
+				}),
+				new TableItem({data: &quot;swer&quot;})
+			],
 			[new TableItem({data: &quot;Name 2&quot;}), new TableItem({data: {name: &quot;Alice&quot;, surname: &quot;Bob&quot;}, template: this.customTableItemTemplate})],
 			[new TableItem({data: &quot;Name 4&quot;}), new TableItem({data: &quot;twer&quot;})],
 		];

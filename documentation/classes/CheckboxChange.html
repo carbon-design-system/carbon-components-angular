@@ -1265,7 +1265,9 @@ export class CheckboxChange {
 			[attr.aria-checked]&#x3D;&quot;indeterminate ? &#x27;mixed&#x27; : checked&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
 			(click)&#x3D;&quot;onClick($event)&quot;&gt;
-		&lt;label [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--checkbox-label&quot;&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/label&gt;
+		&lt;label [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--checkbox-label&quot;&gt;
+			&lt;ng-content&gt;&lt;/ng-content&gt;
+		&lt;/label&gt;
 	&#x60;,
 	providers: [
 		{

@@ -1123,7 +1123,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/table/table.stories.ts:169</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/table/table.stories.ts:174</a></div>
                                         </td>
                                     </tr>
             
@@ -1208,6 +1208,8 @@ import {
 	NFormsModule
 } from &quot;../&quot;;
 
+import { clone } from &quot;../utils/utils&quot;;
+
 @Component({
 	selector: &quot;app-custom-table&quot;,
 	template: &#x60;
@@ -1271,7 +1273,7 @@ class DynamicTableStory implements OnInit {
 	}
 
 	addRow() {
-		const lastRowCopy &#x3D; JSON.parse(JSON.stringify(this.model.row(this.model.data.length - 1)));
+		const lastRowCopy &#x3D; clone(this.model.row(this.model.data.length - 1));
 		this.model.addRow(lastRowCopy);
 	}
 
@@ -1318,11 +1320,14 @@ class ExpansionTableStory implements OnInit {
 				new TableItem({data: &quot;Name 1&quot;, expandedData: &quot;No template&quot;}),
 				new TableItem({data: {name: &quot;Lessy&quot;, link: &quot;#&quot;}, template: this.customTableItemTemplate})
 			],
-			[new TableItem({
-				data: &quot;Name 3&quot;,
-				expandedData: {name: &quot;In&quot;, surname: &quot;Template&quot;},
-				expandedTemplate: this.customTableItemTemplate
-			}), new TableItem({data: &quot;swer&quot;})],
+			[
+				new TableItem({
+					data: &quot;Name 3&quot;,
+					expandedData: {name: &quot;In&quot;, surname: &quot;Template&quot;},
+					expandedTemplate: this.customTableItemTemplate
+				}),
+				new TableItem({data: &quot;swer&quot;})
+			],
 			[new TableItem({data: &quot;Name 2&quot;}), new TableItem({data: {name: &quot;Alice&quot;, surname: &quot;Bob&quot;}, template: this.customTableItemTemplate})],
 			[new TableItem({data: &quot;Name 4&quot;}), new TableItem({data: &quot;twer&quot;})],
 		];
