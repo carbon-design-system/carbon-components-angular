@@ -22,6 +22,8 @@ import {
 	NFormsModule
 } from "../";
 
+import { clone } from "../utils/utils";
+
 @Component({
 	selector: "app-custom-table",
 	template: `
@@ -85,7 +87,7 @@ class DynamicTableStory implements OnInit {
 	}
 
 	addRow() {
-		const lastRowCopy = JSON.parse(JSON.stringify(this.model.row(this.model.data.length - 1)));
+		const lastRowCopy = clone(this.model.row(this.model.data.length - 1));
 		this.model.addRow(lastRowCopy);
 	}
 
@@ -132,11 +134,14 @@ class ExpansionTableStory implements OnInit {
 				new TableItem({data: "Name 1", expandedData: "No template"}),
 				new TableItem({data: {name: "Lessy", link: "#"}, template: this.customTableItemTemplate})
 			],
-			[new TableItem({
-				data: "Name 3",
-				expandedData: {name: "In", surname: "Template"},
-				expandedTemplate: this.customTableItemTemplate
-			}), new TableItem({data: "swer"})],
+			[
+				new TableItem({
+					data: "Name 3",
+					expandedData: {name: "In", surname: "Template"},
+					expandedTemplate: this.customTableItemTemplate
+				}),
+				new TableItem({data: "swer"})
+			],
 			[new TableItem({data: "Name 2"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
 			[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})],
 		];
