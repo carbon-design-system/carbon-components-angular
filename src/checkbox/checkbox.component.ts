@@ -70,7 +70,9 @@ export class CheckboxChange {
 			[attr.aria-checked]="indeterminate ? 'mixed' : checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
-		<label [for]="id" class="bx--checkbox-label"><ng-content></ng-content></label>
+		<label [for]="id" class="bx--checkbox-label">
+			<ng-content></ng-content>
+		</label>
 	`,
 	providers: [
 		{
