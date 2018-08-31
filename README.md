@@ -11,13 +11,16 @@ $ cd my-project
 $ npm i --save-dev carbon-components-angular carbon-components @ngx-translate/core
 ```
 
-Then we need to include carbon-components in `src/styles.scss`:
+Then we need to include carbon-components in `src/styles.scss` and set our fonts path:
 
 ```scss
+$font-path: '/assets/fonts/';
 @import "~carbon-components/scss/globals/scss/styles.scss";
 ```
 
-And set up our translations in `src/app/app.module.ts`:
+And copy the fonts files from `node_modules/carbon-components/src/globals/fonts` into our app's `assets/fonts` folder.
+
+Then set up our translations in `src/app/app.module.ts`:
 
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
