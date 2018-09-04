@@ -1,4 +1,4 @@
-# Carbon Components Angular
+# Carbon Components Angular [![npm](https://img.shields.io/npm/v/carbon-components-angular.svg)](https://www.npmjs.com/package/carbon-components-angular) [![Travis](https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master)](https://travis-ci.com/IBM/carbon-components-angular)
 An _Angular_ implementation of the Carbon Design System
 
 ### Getting started
