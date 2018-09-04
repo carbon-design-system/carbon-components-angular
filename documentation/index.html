@@ -1042,7 +1042,10 @@
 <pre class="line-numbers"><code class="language-shell">$ npx &#64;angular/cli new my-project --style=scss
 $ cd my-project
 $ npm i --save-dev carbon-components-angular carbon-components &#64;ngx-translate/core</code></pre><p>Then we need to include carbon-components in <code>src/styles.scss</code>:</p>
-<pre class="line-numbers"><code class="language-scss">&#64;import &quot;~carbon-components/scss/globals/scss/styles.scss&quot;;</code></pre><p>And set up our translations in <code>src/app/app.module.ts</code>:</p>
+<pre class="line-numbers"><code class="language-scss">&#64;import &quot;~carbon-components/scss/globals/scss/styles.scss&quot;;</code></pre><blockquote>
+<p><em>Note:</em> For offline usage we&#39;ll need to set <code>$font-path: &#39;~carbon-components/src/globals/fonts&#39;;</code> at the very top of our <code>src/styles.scss</code>. This will copy the fonts to our <code>dist</code> folder upon successful build. If you like the fonts to be a part of your <code>assets</code> folder and not polute the <code>dist</code> folder then copy the fonts from <code>node_modules/carbon-components/src/globals/fonts</code> into our app&#39;s <code>src/assets/fonts</code> folder and add <code>$font-path: &#39;/assets/fonts/&#39;;</code> at the very top of our <code>src/styles.scss</code>.</p>
+</blockquote>
+<p>Then set up our translations in <code>src/app/app.module.ts</code>:</p>
 <pre class="line-numbers"><code class="language-ts">import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
 import { NgModule } from &#39;&#64;angular/core&#39;;
 import { TranslateModule } from &#39;&#64;ngx-translate/core&#39;;
