@@ -48,7 +48,7 @@
     "type": "git",
     "url": "git@github.com:IBM/carbon-components-angular.git"
   },
-  "license": "Apache-2",
+  "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
     "@angular/animations": "^6.1.0",
