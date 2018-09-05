@@ -99,7 +99,7 @@ To keep our build dependancies local we use npm scripts to run our webpack, gulp
  - [Style guide (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Style-guide)
  - [General component API guidelines (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Component-API-guidelines)
  - [Angular style guide](https://angular.io/styleguide)
- - [I18N tooling](https://angular.io/docs/ts/latest/cookbook/i18n.html)
+ - [I18N tooling](https://angular.io/guide/i18n)
  - (Angular 2+ doesn't have anything like ngAria, instead here's [The A11Y Project](http://a11yproject.com/), [WAI-ARIA specs](https://www.w3.org/TR/wai-aria/), and [WAI-ARIA Authoring Practices](https://www.w3.org/TR/2016/WD-wai-aria-practices-1.1-20160317/))
  - [TypeScript docs](https://www.typescriptlang.org/docs/tutorial.html)
 
