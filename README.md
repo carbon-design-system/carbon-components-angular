@@ -17,7 +17,9 @@ Then we need to include carbon-components in `src/styles.scss`:
 @import "~carbon-components/scss/globals/scss/styles.scss";
 ```
 
-And set up our translations in `src/app/app.module.ts`:
+> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not polute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
+
+Then set up our translations in `src/app/app.module.ts`:
 
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
