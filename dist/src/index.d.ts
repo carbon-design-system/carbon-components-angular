@@ -20,3 +20,4 @@ export * from "./switch/switch.module";
 export * from "./radio/radio.module";
 export * from "./input/input.module";
 export * from "./select/select.module";
+export * from "./tiles/tiles.module";
