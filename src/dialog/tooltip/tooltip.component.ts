@@ -1,15 +1,6 @@
 import {
 	Component,
-	Input,
-	Output,
-	EventEmitter,
-	OnInit,
-	AfterViewInit,
-	Injector,
-	ElementRef,
 	TemplateRef,
-	HostListener,
-	ViewChild,
 	HostBinding
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
