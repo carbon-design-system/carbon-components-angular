@@ -1,20 +1,15 @@
 import {
 	EventEmitter,
 	Injector,
-	Component,
 	ComponentRef,
 	ComponentFactory,
 	ComponentFactoryResolver,
 	Injectable,
-	ApplicationRef,
 	ViewContainerRef,
-	Host
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
 import { DialogPlaceholderService } from "./dialog-placeholder.service";
-import { Popover } from "..";
-
 
 /**
  * `Dialog` object to be injected into other components.

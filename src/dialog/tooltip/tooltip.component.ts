@@ -49,16 +49,4 @@ export class Tooltip extends Dialog {
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 	}
-
-	/**
-	 * Set the class of the `Tooltip`.
-	 * @returns null
-	 * @memberof Tooltip
-	 */
-	public getClass() {
-		if (this.dialogConfig.type) {
-			return `tooltip--${this.dialogConfig.type}-${this.placement}`;
-		}
-		return `tooltip--${this.placement}`;
-	}
 }
