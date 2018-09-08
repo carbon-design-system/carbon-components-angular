@@ -2,8 +2,7 @@ import {
 	HostBinding,
 	Component,
 	Input,
-	ElementRef,
-	AfterViewInit
+	ElementRef
 } from "@angular/core";
 
 /**
@@ -27,13 +26,13 @@ import {
 				'bx--overflow-menu-options__option--danger': type === 'danger',
 				'bx--overflow-menu-options__option--disabled': disabled
 			}"
-			[tabindex]="(disabled?-1:null)"
-			[title]="(titleEnabled?getContent():'')">
+			[tabindex]="(disabled ? -1 : null)"
+			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
 		</button>
 	`
 })
-export class OverflowMenuOption implements AfterViewInit {
+export class OverflowMenuOption {
 	@HostBinding("class") optionClass = "bx--overflow-menu-options__option";
 	@HostBinding("attr.role") role = "list-item";
 
@@ -46,21 +45,25 @@ export class OverflowMenuOption implements AfterViewInit {
 	 */
 	@Input() disabled = false;
 
-	public titleEnabled = false;
-
 	constructor(private elementRef: ElementRef) {}
 
-	ngAfterViewInit() {
+	/**
+	 * Returns true if the content string is longer than the width of the containing button
+	 *
+	 * note: getter ties into the view check cycle so we always get an accurate value
+	 */
+	get titleEnabled() {
 		const button = this.elementRef.nativeElement.querySelector("button");
 		if (button.scrollWidth > button.offsetWidth) {
-			this.titleEnabled = true;
+			return true;
 		}
+		return false;
 	}
 
 	/**
 	 * Returns the text content projected into the component
 	 */
-	getContent(): string {
+	get content(): string {
 		return this.elementRef.nativeElement.querySelector("button").textContent;
 	}
 }
