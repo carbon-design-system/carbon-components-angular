@@ -3,7 +3,7 @@ import {
 	Component,
 	Input,
 	ElementRef,
-	AfterViewInit,
+	AfterViewInit
 } from "@angular/core";
 
 /**

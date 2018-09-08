@@ -15,8 +15,7 @@ storiesOf("Overflow Menu", module)
 	)
 	.add("Basic", () => ({
 		template: `
-			<ibm-overflow-menu [options]="overflowContent"></ibm-overflow-menu>
-			<ng-template #overflowContent>
+			<ibm-overflow-menu>
 				<ibm-overflow-menu-option>
 					An example option that is really long to show what should be done to handle long text
 				</ibm-overflow-menu-option>
@@ -27,7 +26,7 @@ storiesOf("Overflow Menu", module)
 				<ibm-overflow-menu-option>Option 4</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
-			</ng-template>
+			</ibm-overflow-menu>
 			<ibm-dialog-placeholder></ibm-dialog-placeholder>
 		`
 	}));

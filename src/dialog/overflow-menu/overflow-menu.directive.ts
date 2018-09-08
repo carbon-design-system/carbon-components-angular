@@ -2,16 +2,11 @@ import {
 	Directive,
 	ElementRef,
 	ViewContainerRef,
-	ContentChildren,
-	QueryList,
-	AfterViewInit,
-	ViewChildren,
 	Input,
 	TemplateRef
 } from "@angular/core";
 import { DialogDirective } from "./../dialog.directive";
 import { DialogService } from "./../dialog.service";
-import { OverflowMenuOption } from "./overflow-menu-option.component";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
 
 

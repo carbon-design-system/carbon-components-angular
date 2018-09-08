@@ -7,9 +7,6 @@ import { Dialog } from "./../dialog.component";
 
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
- * @export
- * @class Tooltip
- * @extends {Dialog}
  */
 @Component({
 	selector: "ibm-tooltip",
@@ -37,14 +34,11 @@ export class Tooltip extends Dialog {
 	@HostBinding("style.display") style = "inline-block";
 	/**
 	 * Value is set to `true` if the `Tooltip` is to display a `TemplateRef` instead of a string.
-	 * @type {boolean}
-	 * @memberof Tooltip
 	 */
 	public hasContentTemplate = false;
 
 	/**
 	 * Check whether there is a template for the `Tooltip` content.
-	 * @memberof Tooltip
 	 */
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;

@@ -1,7 +1,4 @@
-import {
-	Component,
-	HostBinding
-} from "@angular/core";
+import { Component } from "@angular/core";
 import { Dialog } from "../dialog.component";
 
 /**

@@ -1,9 +1,4 @@
-import {
-	Component,
-	HostBinding,
-	Input,
-	TemplateRef
-} from "@angular/core";
+import { Component } from "@angular/core";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -32,11 +27,9 @@ import {
 				</g>
 			</svg>
 		</div>
+		<ng-template #options>
+			<ng-content></ng-content>
+		</ng-template>
 	`
 })
-export class OverflowMenu {
-	/**
-	 * TemplateRef of `OverflowMenuOption`s (or compliant HTML) to render in the `OverflowMenuPane`s
-	 */
-	@Input() options: TemplateRef<any>;
-}
+export class OverflowMenu {}
