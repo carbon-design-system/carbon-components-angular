@@ -11,14 +11,14 @@ import { Dialog } from "./dialog.component";
 import { DialogDirective } from "./dialog.directive";
 import { DialogPlaceholderComponent } from "./dialog-placeholder.component";
 
-import { Popover } from "./popover/popover.component";
-import { PopoverDirective } from "./popover/popover.directive";
-import { PopoverMenu } from "./popover/popover-menu.component";
-import { PopoverMenuDirective } from "./popover/popover-menu.directive";
-
 import { Tooltip } from "./tooltip/tooltip.component";
 import { TooltipDirective } from "./tooltip/tooltip.directive";
 import { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
+
+import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
+import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
+import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
+import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 
 // exports
 export { DialogService } from "./dialog.service";
@@ -27,14 +27,14 @@ export { Dialog } from "./dialog.component";
 export { DialogDirective } from "./dialog.directive";
 export { DialogPlaceholderComponent } from "./dialog-placeholder.component";
 
-export { Popover } from "./popover/popover.component";
-export { PopoverDirective } from "./popover/popover.directive";
-export { PopoverMenu } from "./popover/popover-menu.component";
-export { PopoverMenuDirective } from "./popover/popover-menu.directive";
-
 export { Tooltip } from "./tooltip/tooltip.component";
 export { TooltipDirective } from "./tooltip/tooltip.directive";
 export { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
+
+export { OverflowMenu } from "./overflow-menu/overflow-menu.component";
+export { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
+export { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
+export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 
 // either provides a new instance of DialogPlaceholderService, or returns the parent
 export function DIALOG_PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: DialogPlaceholderService) {
@@ -51,26 +51,26 @@ export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
 @NgModule({
 	declarations: [
 		Dialog,
-		Popover,
-		PopoverMenu,
 		Tooltip,
+		OverflowMenu,
+		OverflowMenuPane,
 		DialogDirective,
-		PopoverDirective,
-		PopoverMenuDirective,
 		TooltipDirective,
 		EllipsisTooltipDirective,
+		OverflowMenuDirective,
+		OverflowMenuOption,
 		DialogPlaceholderComponent
 	],
 	exports: [
 		Dialog,
-		Popover,
-		PopoverMenu,
 		Tooltip,
+		OverflowMenu,
+		OverflowMenuPane,
 		DialogDirective,
-		PopoverDirective,
-		PopoverMenuDirective,
 		TooltipDirective,
 		EllipsisTooltipDirective,
+		OverflowMenuDirective,
+		OverflowMenuOption,
 		DialogPlaceholderComponent
 	],
 	providers: [
@@ -79,9 +79,8 @@ export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
 	],
 	entryComponents: [
 		Dialog,
-		Popover,
-		PopoverMenu,
-		Tooltip
+		Tooltip,
+		OverflowMenuPane
 	],
 	imports: [CommonModule, TranslateModule, StaticIconModule]
 })

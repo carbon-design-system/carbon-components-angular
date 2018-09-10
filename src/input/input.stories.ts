@@ -14,12 +14,12 @@ storiesOf("Input", module).addDecorator(
 		template: `
 		<ibm-label>
 			Some Title
-			<input type="text" class="bx--text-input" placeholder="Optional placeholder text">
+			<input ibmText placeholder="Optional placeholder text">
 		</ibm-label>
 	`
 	}))
 	.add("Input", () => ({
 		template: `
-			<input ibmText/>
+			<input ibmText placeholder="Optional placeholder text"/>
 		`
 	}));
