@@ -8,5 +8,5 @@ storiesOf("Welcome", module).add("to Carbon Angular", () => ({
 		<h2>An Angular implementation of the Carbon Design System</h2>
 		<a href="https://angular.carbondesignsystem.com/documentation">Documentation</a>
 	`,
-	props: {},
+	props: {}
 }));

@@ -10,7 +10,7 @@ storiesOf("Overflow Menu", module)
 			imports: [
 				DialogModule,
 				TranslateModule.forRoot()
-			],
+			]
 		})
 	)
 	.add("Basic", () => ({
