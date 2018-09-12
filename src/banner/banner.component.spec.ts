@@ -3,8 +3,7 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-tran
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-import { Banner } from "./banner.component";
-import { BannerService } from "./banner.service";
+import { Banner, BannerService } from "./banner.module";
 
 
 describe("Banner", () => {
