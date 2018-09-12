@@ -9,8 +9,8 @@ import {
 	OnDestroy
 } from "@angular/core";
 
-import { Banner } from "./banner.component";
 import { BannerContent, NotificationContent, ToastContent } from "./banner-content.interface";
+import { Banner, Toast } from "./banner.module";
 
 /**
  * Provides a way to use the banner component.
@@ -30,15 +30,6 @@ export class BannerService implements OnDestroy {
 	 */
 	public bannerRefs = new Array<ComponentRef<any>>();
 	public onClose: EventEmitter<any> = new EventEmitter();
-
-	/**
-	 * Used to create banners.
-	 *
-	 * @private
-	 * @type {ComponentFactory<any>}
-	 * @memberof BannerService
-	 */
-	private componentFactory: ComponentFactory<any>;
 
 	/**
 	 * Constructs BannerService.
@@ -85,14 +76,15 @@ export class BannerService implements OnDestroy {
 	 * @param {any} [bannerComp=null] If provided, used to resolve component factory
 	 * @memberof BannerService
 	 */
-	showBanner(bannerObj: BannerContent | NotificationContent | ToastContent, bannerComp = null): Banner {
+	showBanner(bannerObj: BannerContent | NotificationContent | ToastContent, bannerComp = null) {
+		let componentFactory;
 		if (!bannerComp) {
-			this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(Banner);
+			componentFactory = this.componentFactoryResolver.resolveComponentFactory(Banner);
 		} else {
-			this.componentFactory = this.componentFactoryResolver.resolveComponentFactory(bannerComp);
+			componentFactory = this.componentFactoryResolver.resolveComponentFactory(bannerComp);
 		}
 
-		let bannerRef = this.componentFactory.create(this.injector);
+		let bannerRef = componentFactory.create(this.injector);
 		bannerRef.instance.bannerObj = bannerObj;
 		this.bannerRefs.push(bannerRef);
 
@@ -106,7 +98,7 @@ export class BannerService implements OnDestroy {
 
 			// get or create a container for alert list
 			let bannerClassName = "banner-overlay";
-			let bannerList = body.querySelector("." + bannerClassName);
+			let bannerList = body.querySelector(`.${bannerClassName}`);
 			if (!bannerList) {
 				bannerList = document.createElement("div");
 				bannerList.className = bannerClassName;
@@ -140,6 +132,10 @@ export class BannerService implements OnDestroy {
 
 		bannerRef.instance.componentRef = bannerRef;
 		return bannerRef.instance;
+	}
+
+	showToast(bannerObj: BannerContent | NotificationContent | ToastContent, bannerComp = Toast) {
+		return this.showBanner(bannerObj, bannerComp);
 	}
 
 	/**

@@ -7,8 +7,7 @@ import { Component } from "@angular/core";
 
 import { TranslateModule } from "@ngx-translate/core";
 
-import { BannerModule, BannerService } from "../";
-
+import { BannerModule, BannerService } from "./banner.module";
 
 @Component({
 	selector: "app-banner-story",
@@ -32,11 +31,35 @@ class BannnerStory {
 	}
 }
 
+@Component({
+	selector: "app-toast-story",
+	template: `
+		<button class="bx--btn bx--btn--primary" (click)="showToast()">Show info toast</button>
+		<div class="banner-container"></div>
+	`,
+	providers: [BannerService]
+})
+class ToastStory {
+
+	constructor(private bannerService: BannerService) { }
+
+	showToast() {
+		this.bannerService.showToast({
+			type: "info",
+			title: "Sample toast",
+			subtitle: "Sample subtitle message",
+			caption: "Sample caption",
+			target: ".banner-container"
+		});
+	}
+}
+
 storiesOf("Banner", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
-				BannnerStory
+				BannnerStory,
+				ToastStory
 			],
 			imports: [
 				BannerModule,
@@ -62,9 +85,14 @@ storiesOf("Banner", module)
 		template: `
 			<ibm-toast [bannerObj]="{
 				type: 'error',
-				title: 'Sample banner',
+				title: 'Sample toast',
 				subtitle: 'Sample subtitle message',
 				caption: 'Sample caption'
 			}"></ibm-toast>
+		`
+	}))
+	.add("Dynamic toast", () => ({
+		template: `
+			<app-toast-story></app-toast-story>
 		`
 	}));
