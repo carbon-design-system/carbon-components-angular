@@ -32,6 +32,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "info",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -44,6 +45,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "danger",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -56,6 +58,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "warning",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -68,6 +71,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "success",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -80,6 +84,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "success",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -93,6 +98,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "success",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -109,6 +115,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "info",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
