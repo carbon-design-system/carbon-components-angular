@@ -73,19 +73,14 @@ export class BannerService implements OnDestroy {
 	 * }
 	 * ```
 	 *
-	 * @param {any} [bannerComp=null] If provided, used to resolve component factory
+	 * @param {any} [bannerComp=Banner] If provided, used to resolve component factory
 	 * @memberof BannerService
 	 */
-	showBanner(bannerObj: BannerContent | NotificationContent | ToastContent, bannerComp = null) {
-		let componentFactory;
-		if (!bannerComp) {
-			componentFactory = this.componentFactoryResolver.resolveComponentFactory(Banner);
-		} else {
-			componentFactory = this.componentFactoryResolver.resolveComponentFactory(bannerComp);
-		}
+	showBanner(bannerObj: BannerContent | NotificationContent | ToastContent, bannerComp = Banner) {
+		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(bannerComp);
 
 		let bannerRef = componentFactory.create(this.injector);
-		bannerRef.instance.bannerObj = bannerObj;
+		bannerRef.instance.bannerObj = bannerObj as any; // typescript isn't being very smart here, so we type to any
 		this.bannerRefs.push(bannerRef);
 
 		this.onClose = bannerRef.instance.close;

@@ -18,7 +18,6 @@ import { BannerModule, BannerService } from "./banner.module";
 	providers: [BannerService]
 })
 class BannnerStory {
-
 	constructor(private bannerService: BannerService) { }
 
 	showBanner() {
@@ -40,7 +39,6 @@ class BannnerStory {
 	providers: [BannerService]
 })
 class ToastStory {
-
 	constructor(private bannerService: BannerService) { }
 
 	showToast() {
