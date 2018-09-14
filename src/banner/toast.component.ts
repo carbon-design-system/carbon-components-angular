@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
 
-import { Banner } from "./banner.component";
 import { BannerService } from "./banner.service";
 import { ToastContent } from "./banner-content.interface";
+import { Banner } from "./banner.component";
 
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -22,7 +22,10 @@ import { ToastContent } from "./banner-content.interface";
 			<p class="bx--toast-notification__subtitle" [innerHTML]="bannerObj.subtitle"></p>
 			<p class="bx--toast-notification__caption" [innerHTML]="bannerObj.caption"></p>
 		</div>
-		<button class="bx--toast-notification__close-button" type="button">
+		<button
+			class="bx--toast-notification__close-button"
+			type="button"
+			(click)="onClose()">
 			<svg
 				class="bx--toast-notification-icon"
 				aria-label="close"
