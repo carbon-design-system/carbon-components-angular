@@ -34,5 +34,4 @@ import { Component } from "@angular/core";
 		</ng-template>
 	`
 })
-export class OverflowMenu {
-}
+export class OverflowMenu {}
