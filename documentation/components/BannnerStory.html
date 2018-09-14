@@ -328,6 +328,9 @@
                                     <a href="../components/Toast.html" >Toast</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/ToastStory.html" >ToastStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Tooltip.html" >Tooltip</a>
                                 </li>
                         </ul>
@@ -858,6 +861,9 @@
                                            <a href="../components/Toast.html" >Toast</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/ToastStory.html" >ToastStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Tooltip.html" >Tooltip</a>
                                        </li>
                                </ul>
@@ -1182,7 +1188,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/banner/banner.stories.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/banner/banner.stories.ts:20</a></div>
                                 </td>
                             </tr>
     
@@ -1244,7 +1250,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/banner/banner.stories.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/banner/banner.stories.ts:23</a></div>
                                 </td>
                             </tr>
     
@@ -1275,8 +1281,7 @@ import { Component } from &quot;@angular/core&quot;;
 
 import { TranslateModule } from &quot;@ngx-translate/core&quot;;
 
-import { BannerModule, BannerService } from &quot;../&quot;;
-
+import { BannerModule, BannerService } from &quot;./banner.module&quot;;
 
 @Component({
 	selector: &quot;app-banner-story&quot;,
@@ -1287,7 +1292,6 @@ import { BannerModule, BannerService } from &quot;../&quot;;
 	providers: [BannerService]
 })
 class BannnerStory {
-
 	constructor(private bannerService: BannerService) { }
 
 	showBanner() {
@@ -1300,11 +1304,34 @@ class BannnerStory {
 	}
 }
 
+@Component({
+	selector: &quot;app-toast-story&quot;,
+	template: &#x60;
+		&lt;button class&#x3D;&quot;bx--btn bx--btn--primary&quot; (click)&#x3D;&quot;showToast()&quot;&gt;Show info toast&lt;/button&gt;
+		&lt;div class&#x3D;&quot;banner-container&quot;&gt;&lt;/div&gt;
+	&#x60;,
+	providers: [BannerService]
+})
+class ToastStory {
+	constructor(private bannerService: BannerService) { }
+
+	showToast() {
+		this.bannerService.showToast({
+			type: &quot;info&quot;,
+			title: &quot;Sample toast&quot;,
+			subtitle: &quot;Sample subtitle message&quot;,
+			caption: &quot;Sample caption&quot;,
+			target: &quot;.banner-container&quot;
+		});
+	}
+}
+
 storiesOf(&quot;Banner&quot;, module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
-				BannnerStory
+				BannnerStory,
+				ToastStory
 			],
 			imports: [
 				BannerModule,
@@ -1330,10 +1357,15 @@ storiesOf(&quot;Banner&quot;, module)
 		template: &#x60;
 			&lt;ibm-toast [bannerObj]&#x3D;&quot;{
 				type: &#x27;error&#x27;,
-				title: &#x27;Sample banner&#x27;,
+				title: &#x27;Sample toast&#x27;,
 				subtitle: &#x27;Sample subtitle message&#x27;,
 				caption: &#x27;Sample caption&#x27;
 			}&quot;&gt;&lt;/ibm-toast&gt;
+		&#x60;
+	}))
+	.add(&quot;Dynamic toast&quot;, () &#x3D;&gt; ({
+		template: &#x60;
+			&lt;app-toast-story&gt;&lt;/app-toast-story&gt;
 		&#x60;
 	}));
 </code></pre>
@@ -1364,7 +1396,7 @@ storiesOf(&quot;Banner&quot;, module)
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltipDirective', 'selector': '[ibmEllipsisTooltip]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'PopoverDirective', 'selector': '[ibmPopover]'},{'name': 'PopoverMenuDirective', 'selector': '[ibmPopoverMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'BannnerStory'};
 </script>

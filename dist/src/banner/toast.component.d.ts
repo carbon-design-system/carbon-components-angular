@@ -1,5 +1,5 @@
-import { Banner } from "./banner.component";
 import { ToastContent } from "./banner-content.interface";
+import { Banner } from "./banner.component";
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
  *

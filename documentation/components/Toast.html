@@ -328,6 +328,9 @@
                                     <a href="../components/Toast.html"  data-type="entity-link" class="active" >Toast</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/ToastStory.html" >ToastStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Tooltip.html" >Tooltip</a>
                                 </li>
                         </ul>
@@ -858,6 +861,9 @@
                                            <a href="../components/Toast.html"  data-type="entity-link" class="active" >Toast</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/ToastStory.html" >ToastStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Tooltip.html" >Tooltip</a>
                                        </li>
                                </ul>
@@ -1212,7 +1218,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/banner/toast.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/banner/toast.component.ts:52</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1230,9 +1236,9 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { Component, Input } from &quot;@angular/core&quot;;
 
-import { Banner } from &quot;./banner.component&quot;;
 import { BannerService } from &quot;./banner.service&quot;;
 import { ToastContent } from &quot;./banner-content.interface&quot;;
+import { Banner } from &quot;./banner.component&quot;;
 
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -1252,7 +1258,10 @@ import { ToastContent } from &quot;./banner-content.interface&quot;;
 			&lt;p class&#x3D;&quot;bx--toast-notification__subtitle&quot; [innerHTML]&#x3D;&quot;bannerObj.subtitle&quot;&gt;&lt;/p&gt;
 			&lt;p class&#x3D;&quot;bx--toast-notification__caption&quot; [innerHTML]&#x3D;&quot;bannerObj.caption&quot;&gt;&lt;/p&gt;
 		&lt;/div&gt;
-		&lt;button class&#x3D;&quot;bx--toast-notification__close-button&quot; type&#x3D;&quot;button&quot;&gt;
+		&lt;button
+			class&#x3D;&quot;bx--toast-notification__close-button&quot;
+			type&#x3D;&quot;button&quot;
+			(click)&#x3D;&quot;onClose()&quot;&gt;
 			&lt;svg
 				class&#x3D;&quot;bx--toast-notification-icon&quot;
 				aria-label&#x3D;&quot;close&quot;
@@ -1306,7 +1315,7 @@ export class Toast extends Banner {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltipDirective', 'selector': '[ibmEllipsisTooltip]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'PopoverDirective', 'selector': '[ibmPopover]'},{'name': 'PopoverMenuDirective', 'selector': '[ibmPopoverMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Toast'};
 </script>

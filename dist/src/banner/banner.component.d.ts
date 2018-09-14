@@ -8,7 +8,7 @@ import { NotificationContent } from "./banner-content.interface";
  * @class Banner
  */
 export declare class Banner {
-    private bannerService;
+    protected bannerService: BannerService;
     /**
      * Can have `type`, `title`, and `message` members.
      *
