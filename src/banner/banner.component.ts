@@ -73,7 +73,7 @@ export class Banner {
 
 	@ViewChild("banner") banner;
 
-	constructor(private bannerService: BannerService) {}
+	constructor(protected bannerService: BannerService) {}
 
 	/**
 	 * Emits close event.
