@@ -3673,7 +3673,7 @@ import { getScrollbarWidth } from &quot;../common/utils&quot;;
 					(click)&#x3D;&quot;onRowSelect(i)&quot;
 					[attr.data-parent-row]&#x3D;&quot;(model.isRowExpandable(i) ? &#x27;true&#x27; : null)&quot;
 					[ngClass]&#x3D;&quot;{
-						selected: model.rowsSelected[i],
+						&#x27;bx--data-table-v2--selected&#x27;: model.rowsSelected[i],
 						&#x27;bx--parent-row-v2&#x27;: model.isRowExpandable(i),
 						&#x27;bx--expandable-row-v2&#x27;: model.rowsExpanded[i],
 						&#x27;tbody_row--selectable&#x27;: enableSingleSelect,
