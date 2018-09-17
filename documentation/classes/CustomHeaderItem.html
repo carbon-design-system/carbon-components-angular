@@ -262,6 +262,9 @@
                                     <a href="../components/OverflowMenuPane.html" >OverflowMenuPane</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/OverflowTableStory.html" >OverflowTableStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/OverlayComponent.html" >OverlayComponent</a>
                                 </li>
                                 <li class="link">
@@ -795,6 +798,9 @@
                                            <a href="../components/OverflowMenuPane.html" >OverflowMenuPane</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/OverflowTableStory.html" >OverflowTableStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/OverlayComponent.html" >OverlayComponent</a>
                                        </li>
                                        <li class="link">
@@ -1171,7 +1177,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/table/table.stories.ts:174</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/table/table.stories.ts:225</a></div>
                                         </td>
                                     </tr>
             
@@ -1253,7 +1259,8 @@ import {
 	TableModel,
 	TableItem,
 	TableHeaderItem,
-	NFormsModule
+	NFormsModule,
+	DialogModule
 } from &quot;../&quot;;
 
 import { clone } from &quot;../utils/utils&quot;;
@@ -1403,6 +1410,56 @@ class ExpansionTableStory implements OnInit {
 }
 
 
+@Component({
+	selector: &quot;app-overflow-table&quot;,
+	template: &#x60;
+		&lt;ng-template #overflowMenuItemTemplate let-data&#x3D;&quot;data&quot;&gt;
+			&lt;ibm-overflow-menu&gt;
+				&lt;ibm-overflow-menu-option&gt;
+					First Option
+				&lt;/ibm-overflow-menu-option&gt;
+				&lt;ibm-overflow-menu-option&gt;
+					Second Option
+				&lt;/ibm-overflow-menu-option&gt;
+				&lt;ibm-overflow-menu-option&gt;
+					Third Option
+				&lt;/ibm-overflow-menu-option&gt;
+			&lt;/ibm-overflow-menu&gt;
+		&lt;/ng-template&gt;
+
+		&lt;ibm-table
+			[model]&#x3D;&quot;model&quot;
+			[size]&#x3D;&quot;size&quot;
+			[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+			[striped]&#x3D;&quot;striped&quot;&gt;
+		&lt;/ibm-table&gt;
+	&#x60;
+})
+class OverflowTableStory implements OnInit {
+	@Input() model &#x3D; new TableModel();
+	@Input() size &#x3D; &quot;md&quot;;
+	@Input() showSelectionColumn &#x3D; true;
+	@Input() striped &#x3D; true;
+
+	@ViewChild(&quot;overflowMenuItemTemplate&quot;)
+	private overflowMenuItemTemplate: TemplateRef&lt;any&gt;;
+
+	ngOnInit() {
+		this.model.data &#x3D; [
+			[new TableItem({data: &quot;Name 1&quot;}), new TableItem({data: {id: &quot;1&quot;}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: &quot;Name 2&quot;}), new TableItem({data: {id: &quot;2&quot;}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: &quot;Name 3&quot;}), new TableItem({data: {id: &quot;3&quot;}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: &quot;Name 4&quot;}), new TableItem({data: {id: &quot;4&quot;}, template: this.overflowMenuItemTemplate})],
+		];
+		this.model.header &#x3D; [
+			new TableHeaderItem({data: &quot;Name&quot;}),
+			new TableHeaderItem({data: &quot;Actions&quot;}),
+		];
+	}
+}
+
+
+
 class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
 	compare(one: TableItem, two: TableItem) {
@@ -1449,11 +1506,13 @@ storiesOf(&quot;Table&quot;, module).addDecorator(
 			imports: [
 				NFormsModule,
 				TableModule,
+				DialogModule,
 				TranslateModule.forRoot()
 			],
 			declarations: [
 				DynamicTableStory,
-				ExpansionTableStory
+				ExpansionTableStory,
+				OverflowTableStory
 			]
 		})
 	)
@@ -1497,6 +1556,20 @@ storiesOf(&quot;Table&quot;, module).addDecorator(
 				[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
 				[striped]&#x3D;&quot;striped&quot;&gt;
 			&lt;/app-custom-table&gt;
+		&#x60;,
+		props: {
+			size: selectV2(&quot;size&quot;, {Small: &quot;sm&quot;, Normal: &quot;md&quot;, Large: &quot;lg&quot;}, &quot;md&quot;, &quot;table-size-selection&quot;),
+			showSelectionColumn: boolean(&quot;showSelectionColumn&quot;, true),
+			striped: boolean(&quot;striped&quot;, true)
+		}
+	}))
+	.add(&quot;with overflow menu&quot;, () &#x3D;&gt; ({
+		template: &#x60;
+			&lt;app-overflow-table
+				[size]&#x3D;&quot;size&quot;
+				[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+				[striped]&#x3D;&quot;striped&quot;&gt;
+			&lt;/app-overflow-table&gt;
 		&#x60;,
 		props: {
 			size: selectV2(&quot;size&quot;, {Small: &quot;sm&quot;, Normal: &quot;md&quot;, Large: &quot;lg&quot;}, &quot;md&quot;, &quot;table-size-selection&quot;),
