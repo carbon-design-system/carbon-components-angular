@@ -30,7 +30,7 @@ module.exports = [{
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: '<html><body></body></html>'
+			templateContent: '<html><body></body></html>'
 		})
 	],
 }];

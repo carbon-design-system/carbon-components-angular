@@ -19,7 +19,8 @@ import {
 	TableModel,
 	TableItem,
 	TableHeaderItem,
-	NFormsModule
+	NFormsModule,
+	DialogModule
 } from "../";
 
 import { clone } from "../utils/utils";
@@ -169,6 +170,56 @@ class ExpansionTableStory implements OnInit {
 }
 
 
+@Component({
+	selector: "app-overflow-table",
+	template: `
+		<ng-template #overflowMenuItemTemplate let-data="data">
+			<ibm-overflow-menu>
+				<ibm-overflow-menu-option>
+					First Option
+				</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option>
+					Second Option
+				</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option>
+					Third Option
+				</ibm-overflow-menu-option>
+			</ibm-overflow-menu>
+		</ng-template>
+
+		<ibm-table
+			[model]="model"
+			[size]="size"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped">
+		</ibm-table>
+	`
+})
+class OverflowTableStory implements OnInit {
+	@Input() model = new TableModel();
+	@Input() size = "md";
+	@Input() showSelectionColumn = true;
+	@Input() striped = true;
+
+	@ViewChild("overflowMenuItemTemplate")
+	private overflowMenuItemTemplate: TemplateRef<any>;
+
+	ngOnInit() {
+		this.model.data = [
+			[new TableItem({data: "Name 1"}), new TableItem({data: {id: "1"}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: "Name 2"}), new TableItem({data: {id: "2"}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: "Name 3"}), new TableItem({data: {id: "3"}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: "Name 4"}), new TableItem({data: {id: "4"}, template: this.overflowMenuItemTemplate})],
+		];
+		this.model.header = [
+			new TableHeaderItem({data: "Name"}),
+			new TableHeaderItem({data: "Actions"}),
+		];
+	}
+}
+
+
+
 class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
 	compare(one: TableItem, two: TableItem) {
@@ -215,11 +266,13 @@ storiesOf("Table", module).addDecorator(
 			imports: [
 				NFormsModule,
 				TableModule,
+				DialogModule,
 				TranslateModule.forRoot()
 			],
 			declarations: [
 				DynamicTableStory,
-				ExpansionTableStory
+				ExpansionTableStory,
+				OverflowTableStory
 			]
 		})
 	)
@@ -263,6 +316,20 @@ storiesOf("Table", module).addDecorator(
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped">
 			</app-custom-table>
+		`,
+		props: {
+			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			showSelectionColumn: boolean("showSelectionColumn", true),
+			striped: boolean("striped", true)
+		}
+	}))
+	.add("with overflow menu", () => ({
+		template: `
+			<app-overflow-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped">
+			</app-overflow-table>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
