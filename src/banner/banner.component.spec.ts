@@ -3,8 +3,7 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-tran
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-import { Banner } from "./banner.component";
-import { BannerService } from "./banner.service";
+import { Banner, BannerService } from "./banner.module";
 
 
 describe("Banner", () => {
@@ -32,6 +31,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "info",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -44,6 +44,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "danger",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -56,6 +57,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "warning",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -68,6 +70,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "success",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -80,6 +83,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "success",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -93,6 +97,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "success",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
@@ -109,6 +114,7 @@ describe("Banner", () => {
 		const fixture = TestBed.createComponent(Banner);
 		fixture.componentInstance.bannerObj = {
 			type: "info",
+			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();

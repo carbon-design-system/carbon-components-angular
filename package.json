@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s .storybook/public -p 6006",
     "docs:build": "compodoc src -p tsconfig.json",
     "docs:server": "compodoc src -p tsconfig.json -s -w",
     "lint": "tslint src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
@@ -14,7 +14,7 @@
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "prepush": "bash scripts/prepush.sh",
-    "build-storybook": "build-storybook -c .storybook -o dist/docs/storybook",
+    "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
     "commitmsg": "commitlint -E GIT_PARAMS",
     "commit": "git-cz"

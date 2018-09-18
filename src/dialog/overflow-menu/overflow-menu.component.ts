@@ -17,6 +17,8 @@ import { Component } from "@angular/core";
 	template: `
 		<div
 			[ibmOverflowMenu]="options"
+			[appendToBody]="true"
+			placement="bottom"
 			class="bx--overflow-menu"
 			style="display: block;">
 			<svg class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
