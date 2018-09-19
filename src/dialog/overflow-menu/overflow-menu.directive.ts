@@ -55,7 +55,6 @@ export class OverflowMenuDirective extends DialogDirective {
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-
 		switch (event.key) {
 			case "Enter":
 			case " ": {

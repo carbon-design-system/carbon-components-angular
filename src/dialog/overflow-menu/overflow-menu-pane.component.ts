@@ -79,6 +79,7 @@ export class OverflowMenuPane extends Dialog {
 				listItems[listItems.length - 1].focus();
 				break;
 			}
+
 			case "Enter":
 			case " ": {
 				this.doClose();
