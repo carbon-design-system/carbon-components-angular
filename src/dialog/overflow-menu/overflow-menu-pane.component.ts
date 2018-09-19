@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, HostListener } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
+import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -12,8 +13,7 @@ import { position } from "../../utils/position";
 	template: `
 		<ul
 			#dialog
-			class="bx--overflow-menu-options bx--overflow-menu-options--open"
-			tabindex="-1">
+			class="bx--overflow-menu-options bx--overflow-menu-options--open">
 			<ng-template
 				[ngTemplateOutlet]="dialogConfig.content"
 				[ngTemplateOutletContext]="{overflowMenu: this}">
@@ -22,6 +22,8 @@ import { position } from "../../utils/position";
 	`
 })
 export class OverflowMenuPane extends Dialog {
+	@ViewChild("dialog") dialog;
+
 	onDialogInit() {
 		/**
 		 *  -20 shifts the menu up to compensate for the
@@ -32,5 +34,61 @@ export class OverflowMenuPane extends Dialog {
 		 * so we need to add some compensation)
 		 */
 		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
+
+		setTimeout(() => {
+			this.listItems()[0].focus();
+		});
+	}
+
+	@HostListener("keydown", ["$event"])
+	hostkeys(event: KeyboardEvent) {
+		this.escapeClose(event);
+		const listItems = this.listItems();
+
+		switch (event.key) {
+			case "ArrowDown": {
+				event.preventDefault();
+				if (!isFocusInLastItem(event, listItems))  {
+					const index = listItems.findIndex(item => item === event.target);
+					listItems[index + 1].focus();
+				} else {
+					listItems[0].focus();
+				}
+				break;
+			}
+
+			case "ArrowUp": {
+				event.preventDefault();
+				if (!isFocusInFirstItem(event, listItems))  {
+					const index = listItems.findIndex(item => item === event.target);
+					listItems[index - 1].focus();
+				} else {
+					listItems[listItems.length - 1].focus();
+				}
+				break;
+			}
+
+			case "Home": {
+				event.preventDefault();
+				listItems[0].focus();
+				break;
+			}
+
+			case"End": {
+				event.preventDefault();
+				listItems[listItems.length - 1].focus();
+				break;
+			}
+			case "Enter":
+			case " ": {
+				this.doClose();
+			}
+		}
+	}
+
+	private listItems() {
+		const buttonClass = ".bx--overflow-menu-options__btn";
+		const disabledClass = ".bx--overflow-menu-options__option--disabled";
+		return Array.prototype.slice.call(this.dialog.nativeElement.querySelectorAll(`${buttonClass}:not(${disabledClass})`));
 	}
 }
