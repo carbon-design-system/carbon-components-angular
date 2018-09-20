@@ -1923,7 +1923,7 @@ explictly defined.</p>
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener,
+	HostListener
 } from &quot;@angular/core&quot;;
 import {
 	Observable,
@@ -1932,7 +1932,7 @@ import {
 	merge
 } from &quot;rxjs&quot;;
 import { throttleTime } from &quot;rxjs/operators&quot;;
-import position, { AbsolutePosition } from &quot;../utils/position&quot;;
+import position from &quot;../utils/position&quot;;
 import { cycleTabs } from &quot;./../common/tab.service&quot;;
 import { DialogConfig } from &quot;./dialog-config.interface&quot;;
 
@@ -2018,7 +2018,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		&quot;top&quot;: pos &#x3D;&gt; position.addOffset(pos, -this.dialogConfig.gap),
 		&quot;bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, this.dialogConfig.gap),
 		&quot;left-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, -this.dialogConfig.gap),
-		&quot;right-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, this.dialogConfig.gap),
+		&quot;right-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, this.dialogConfig.gap)
 	};
 
 	/**

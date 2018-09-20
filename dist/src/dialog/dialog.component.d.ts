@@ -1,6 +1,5 @@
 import { EventEmitter, ElementRef, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
-import { AbsolutePosition } from "../utils/position";
 import { DialogConfig } from "./dialog-config.interface";
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -70,12 +69,12 @@ export declare class Dialog implements OnInit, AfterViewInit, OnDestroy {
      * @memberof Dialog
      */
     protected addGap: {
-        "left": (pos: any) => AbsolutePosition;
-        "right": (pos: any) => AbsolutePosition;
-        "top": (pos: any) => AbsolutePosition;
-        "bottom": (pos: any) => AbsolutePosition;
-        "left-bottom": (pos: any) => AbsolutePosition;
-        "right-bottom": (pos: any) => AbsolutePosition;
+        "left": (pos: any) => import("../utils/position").AbsolutePosition;
+        "right": (pos: any) => import("../utils/position").AbsolutePosition;
+        "top": (pos: any) => import("../utils/position").AbsolutePosition;
+        "bottom": (pos: any) => import("../utils/position").AbsolutePosition;
+        "left-bottom": (pos: any) => import("../utils/position").AbsolutePosition;
+        "right-bottom": (pos: any) => import("../utils/position").AbsolutePosition;
     };
     /**
      * Creates an instance of `Dialog`.

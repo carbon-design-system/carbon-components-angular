@@ -1258,9 +1258,6 @@ import { CommonModule } from &quot;@angular/common&quot;;
 import { Sample } from &quot;./sample.component&quot;;
 import { SampleSub } from &quot;./subcomponent/sample-sub.component&quot;;
 
-import { SampleBase } from &quot;./sample-base.class&quot;;
-import { SampleInterface } from &quot;./sample.interface&quot;;
-
 export { Sample } from &quot;./sample.component&quot;;
 export { SampleSub } from &quot;./subcomponent/sample-sub.component&quot;;
 
@@ -1270,14 +1267,14 @@ export { SampleInterface } from &quot;./sample.interface&quot;;
 @NgModule({
 	declarations: [
 		Sample,
-		SampleSub,
+		SampleSub
 	],
 	exports: [
 		Sample,
-		SampleSub,
+		SampleSub
 	],
 	imports: [
-		CommonModule,
+		CommonModule
 	]
 })
 export class SampleModule {}
