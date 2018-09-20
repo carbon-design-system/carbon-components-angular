@@ -46,7 +46,7 @@ export class OverflowMenuPane extends Dialog {
 		const listItems = this.listItems();
 
 		switch (event.key) {
-			case "ArrowDown": {
+			case "ArrowDown":
 				event.preventDefault();
 				if (!isFocusInLastItem(event, listItems))  {
 					const index = listItems.findIndex(item => item === event.target);
@@ -55,9 +55,9 @@ export class OverflowMenuPane extends Dialog {
 					listItems[0].focus();
 				}
 				break;
-			}
 
-			case "ArrowUp": {
+			case "Up": // IE specific value
+			case "ArrowUp":
 				event.preventDefault();
 				if (!isFocusInFirstItem(event, listItems))  {
 					const index = listItems.findIndex(item => item === event.target);
@@ -66,24 +66,21 @@ export class OverflowMenuPane extends Dialog {
 					listItems[listItems.length - 1].focus();
 				}
 				break;
-			}
 
-			case "Home": {
+			case "Home":
 				event.preventDefault();
 				listItems[0].focus();
 				break;
-			}
 
-			case"End": {
+			case"End":
 				event.preventDefault();
 				listItems[listItems.length - 1].focus();
 				break;
-			}
 
 			case "Enter":
-			case " ": {
+			case " ":
 				this.doClose();
-			}
+				break;
 		}
 	}
 

@@ -57,10 +57,9 @@ export class OverflowMenuDirective extends DialogDirective {
 	hostkeys(event: KeyboardEvent) {
 		switch (event.key) {
 			case "Enter":
-			case " ": {
+			case " ":
 				this.toggle();
 				break;
-			}
 		}
 	}
 }

@@ -20,8 +20,9 @@ import { Component } from "@angular/core";
 			[appendToBody]="true"
 			placement="bottom"
 			class="bx--overflow-menu"
-			style="display: block;">
-			<svg class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15" tabindex="0">
+			style="display: block;"
+			tabindex="0">
+			<svg class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
 					<circle cx="1.5" cy="1.5" r="1.5" />
 					<circle cx="1.5" cy="7.5" r="1.5" />
