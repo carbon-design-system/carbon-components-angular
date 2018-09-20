@@ -9,7 +9,7 @@ describe("PillComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [Pill],
-			imports: [StaticIconModule],
+			imports: [StaticIconModule]
 		}).compileComponents();
 	}));
 
@@ -19,39 +19,25 @@ describe("PillComponent", () => {
 		fixture.detectChanges();
 	});
 
-	function setup(showCloseIcon: boolean) {
-		fixture = TestBed.createComponent(Pill);
-		component = fixture.componentInstance;
-		component.showCloseIcon = showCloseIcon;
-		fixture.detectChanges();
-		return { fixture, component };
-	}
-
 	it("should create a pill with a close icon", () => {
-		setup(true);
-		expect(component.attrClass).toBe("pill bx--tag bx--tag--ibm");
+		expect(component.attrClass).toBe("pill");
 		expect(component).toBeTruthy();
 		const el = fixture.nativeElement;
-		expect(el.className).toBe("pill bx--tag bx--tag--ibm");
-		expect(el.children.length).toBe(2);
-		expect(el.children[1].className).toBe("pill_close");
-	});
-
-	it("should create a pill without a close icon", () => {
-		setup(false);
-		expect(component).toBeTruthy();
-		const el = fixture.nativeElement;
+		expect(el.className).toBe("pill");
 		expect(el.children.length).toBe(1);
+		const pillDiv = el.children[0];
+		expect(pillDiv.className).toBe("bx--list-box__selection bx--list-box__selection--multi");
+		expect(pillDiv.children.length).toBe(1);
+		expect(pillDiv.children[0].className).toBe("close_icon bx--list-box__selection--multi");
 	});
 
 	it("should emit a remove event when doRemove is called", () => {
-		setup(true);
 		const mockEvent = {
-			stopPropagation() {},
+			stopPropagation() {}
 		};
 		component.item = {
 			content: "Pill",
-			selected: true,
+			selected: true
 		};
 		spyOn(component.remove, "emit");
 		spyOn(mockEvent, "stopPropagation");

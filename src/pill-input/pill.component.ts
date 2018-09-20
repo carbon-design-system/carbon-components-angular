@@ -2,7 +2,6 @@ import {
 	Component,
 	EventEmitter,
 	Output,
-	OnInit,
 	Input,
 	HostBinding
 } from "@angular/core";
@@ -14,29 +13,31 @@ import {
  * @class Pill
  */
 @Component({
-	selector: "ibm-pill, ibm-tag",
+	selector: "ibm-pill",
 	template: `
-		<span><ng-content></ng-content></span>
-		<button *ngIf="showCloseIcon" class="pill_close" (click)="doRemove($event)" type="button">
-			<ibm-static-icon icon="x" size="sm" classList="close_icon"></ibm-static-icon>
-		</button>`
+		<div class="bx--list-box__selection bx--list-box__selection--multi">
+			<ng-content></ng-content>
+			<div (click)="doRemove($event)"
+				role="button"
+				class="close_icon bx--list-box__selection--multi"
+				tabindex="0"
+				title="Clear all selected items">
+				<svg
+					width="10"
+					height="10"
+					viewBox="0 0 10 10">
+					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
+				</svg>
+			</div>
+	  	</div>`
 })
-export class Pill implements OnInit {
+export class Pill {
 	/** ListItem to render */
 	@Input() item;
-	/** type of the tag determines the styling */
-	@Input()
-	type: "beta" | "community" | "custom" | "dedicated" | "experimental" | "ibm" | "local" | "private" | "third-party" = "ibm";
-	/** show or hide close icon */
-	@Input()
-	showCloseIcon = true;
 	/** emits an empty event when the close button is clicked */
 	@Output() remove = new EventEmitter();
-	@HostBinding("attr.class") attrClass;
-
-	ngOnInit() {
-		this.attrClass = `pill bx--tag bx--tag--${this.type}`;
-	}
+	@HostBinding("attr.class") attrClass = "pill";
+	@HostBinding("style.display") style = "inline-flex";
 
 	/** close button handler */
 	public doRemove(ev) {
