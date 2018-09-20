@@ -35,9 +35,7 @@ export class OverflowMenuPane extends Dialog {
 		 */
 		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
 
-		setTimeout(() => {
-			this.listItems()[0].focus();
-		});
+		setTimeout(() => this.listItems()[0].focus());
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -72,7 +70,7 @@ export class OverflowMenuPane extends Dialog {
 				listItems[0].focus();
 				break;
 
-			case"End":
+			case "End":
 				event.preventDefault();
 				listItems[listItems.length - 1].focus();
 				break;
