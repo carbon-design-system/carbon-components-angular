@@ -33,12 +33,12 @@ function calculatePosition(referenceOffset: Offset, reference: HTMLElement, targ
 		case "top":
 			return {
 				top: Math.round(referenceOffset.top - target.offsetHeight),
-				left: referenceOffset.left - Math.round(target.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+				left: referenceOffset.left - Math.round(target.offsetWidth / 2) + Math.round(referenceRect.width / 2)
 			};
 		case "bottom":
 			return {
 				top: Math.round(referenceOffset.top + referenceRect.height),
-				left: referenceOffset.left - Math.round(target.offsetWidth / 2) + Math.round(referenceRect.width / 2),
+				left: referenceOffset.left - Math.round(target.offsetWidth / 2) + Math.round(referenceRect.width / 2)
 			};
 		case "left-bottom":
 			return {
@@ -138,7 +138,7 @@ export namespace position {
 	export function addOffset(position: AbsolutePosition, top = 0, left = 0): AbsolutePosition {
 		return Object.assign({}, position, {
 			top: position.top + top,
-			left: position.left + left,
+			left: position.left + left
 		});
 	}
 

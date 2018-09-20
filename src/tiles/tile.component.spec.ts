@@ -14,7 +14,7 @@ describe("Tile", () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tile],
+			declarations: [Tile]
 		}).compileComponents();
 	}));
 

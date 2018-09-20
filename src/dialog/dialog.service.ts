@@ -5,7 +5,7 @@ import {
 	ComponentFactory,
 	ComponentFactoryResolver,
 	Injectable,
-	ViewContainerRef,
+	ViewContainerRef
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";

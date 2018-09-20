@@ -3,7 +3,6 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	forwardRef,
 	TemplateRef
 } from "@angular/core";
 
@@ -49,7 +48,7 @@ import { findNextElem, findPrevElem } from "../utils/a11y";
 				</ng-template>
 				</li>
 		</ul>
-		`,
+		`
 })
 export class ListGroup {
 	/**

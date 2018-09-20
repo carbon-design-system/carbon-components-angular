@@ -12,7 +12,7 @@ export { ComboBox } from "./combobox.component";
 
 @NgModule({
 	declarations: [
-		ComboBox,
+		ComboBox
 	],
 	exports: [
 		ComboBox,

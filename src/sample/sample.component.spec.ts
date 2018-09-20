@@ -23,7 +23,7 @@ describe("Sample", () => {
 			declarations: [
 				Sample,
 				SampleTestComponent
-			],
+			]
 		});
 	});
 
