@@ -41,7 +41,7 @@ import { ModalService } from "./modal.service";
  * 	openModal() {
  * 		this.modalService.show({
  *			modalType: "default" | "danger",
- *			headerText: "optional header text",
+ *			headerLabel: "optional header text",
  *			title: "Modal title",
  *			text: "Modal text",
  *			buttons: [{
@@ -63,7 +63,7 @@ import { ModalService } from "./modal.service";
 	template: `
 		<ibm-modal [modalType]="modalType">
 			<ibm-modal-header (closeSelect)="closeModal()">
-				<p class="bx--modal-header__label bx--type-delta">{{headerText}}</p>
+				<p class="bx--modal-header__label bx--type-delta">{{headerLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{title}}</p>
 			</ibm-modal-header>
 			<div class="bx--modal-content">
@@ -79,7 +79,7 @@ import { ModalService } from "./modal.service";
 export class AlertModalComponent implements AfterViewInit {
 
 	modalType = "default";
-	headerText: string;
+	headerLabel: string;
 	title: string;
 	text: string;
 	buttons = [];
@@ -91,10 +91,10 @@ export class AlertModalComponent implements AfterViewInit {
 	 */
 	constructor(
 		private injector: Injector,
-		private elRef: ElementRef,
+		private elementRef: ElementRef,
 	) {
 		this.modalType = this.injector.get("modalType");
-		this.headerText = this.injector.get("headerText");
+		this.headerLabel = this.injector.get("headerLabel");
 		this.title = this.injector.get("title");
 		this.text = this.injector.get("text");
 
@@ -116,7 +116,7 @@ export class AlertModalComponent implements AfterViewInit {
 			const primaryButtonIndex = this.buttons.findIndex(
 				button => button.type.indexOf("primary") !== -1) || 0;
 			const primaryButton = this.buttons[primaryButtonIndex];
-			const buttonNode = this.elRef.nativeElement.querySelector(`#${primaryButton.id}`);
+			const buttonNode = this.elementRef.nativeElement.querySelector(`#${primaryButton.id}`);
 			if (buttonNode) {
 				buttonNode.focus();
 			}

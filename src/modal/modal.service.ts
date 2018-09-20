@@ -82,12 +82,12 @@ export class ModalService {
 	 * @returns {ComponentRef<any>}
 	 * @memberof ModalService
 	 */
-	show(data: {modalType?: string, headerText?: string, title: string, text: string, buttons?: null}) {
+	show(data: {modalType?: string, headerLabel?: string, title: string, text: string, buttons?: null}) {
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {
 				modalType: data.modalType,
-				headerText: data.headerText,
+				headerLabel: data.headerLabel,
 				title: data.title,
 				text: data.text,
 				buttons: data.buttons || [],

@@ -13,7 +13,7 @@ import { Modal, ModalService } from "../";
 	selector: "app-sample-modal",
 	template: `
 		<ibm-modal>
-			<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
+			<ibm-modal-header (closeSelect)="closeModal()">header label</ibm-modal-header>
 			<section class="bx--modal-content">
 				<h1>Sample modal works.</h1>
 				<p class="bx--modal-content__text">{{modalText}}</p>
@@ -65,7 +65,7 @@ class ModalStory {
 class AlertModalStory {
 
 	@Input() modalType: string;
-	@Input() headerText: string;
+	@Input() headerLabel: string;
 	@Input() title: string;
 	@Input() text: string;
 	@Input() buttons: any;
@@ -75,7 +75,7 @@ class AlertModalStory {
 	openModal() {
 		this.modalService.show({
 			modalType: this.modalType,
-			headerText: this.headerText,
+			headerLabel: this.headerLabel,
 			title: this.title,
 			text: this.text,
 			buttons: this.buttons
@@ -128,13 +128,13 @@ storiesOf("Modal", module)
 	.addDecorator(withKnobs)
 	.add("Transactional", () => ({
 		template: `
-		<app-alert-modal-story [modalType]="modalType" [headerText]="headerText" [title]="title" [text]="text"
+		<app-alert-modal-story [modalType]="modalType" [headerLabel]="headerLabel" [title]="title" [text]="text"
 			[buttons]="buttons"></app-alert-modal-story>
 		<ibm-modal-placeholder></ibm-modal-placeholder>
 		`,
 		props: {
 			modalType: select("modalType", ["default", "danger"], "default"),
-			headerText: text("headerText", "optional header text"),
+			headerLabel: text("headerLabel", "optional header label"),
 			title: text("title", "Delete service from application"),
 			text: text("text", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
 			buttons: [{
@@ -165,13 +165,13 @@ storiesOf("Modal", module)
 	.addDecorator(withKnobs)
 	.add("Passive", () => ({
 		template: `
-		<app-alert-modal-story [modalType]="modalType" [headerText]="headerText" [title]="title" [text]="text"
+		<app-alert-modal-story [modalType]="modalType" [headerLabel]="headerLabel" [title]="title" [text]="text"
 			></app-alert-modal-story>
 		<ibm-modal-placeholder></ibm-modal-placeholder>
 		`,
 		props: {
 			modalType: select("modalType", ["default", "danger"], "default"),
-			headerText: text("headerText", "optional header text"),
+			headerLabel: text("headerLabel", "optional header label"),
 			title: text("title", "Passive modal title"),
 			text: text("text", "Passive modal notifications should only appear if there is an action " +
 								"the user needs to address immediately. Passive modal notifications are persistent on screen"),
