@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, text } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { TranslateModule } from "@ngx-translate/core";
 
@@ -54,6 +54,35 @@ class ModalStory {
 	}
 }
 
+
+@Modal()
+@Component({
+	selector: "app-alert-modal-story",
+	template: `
+		<button class="bx--btn bx--btn--primary" (click)="openModal()">Open Modal</button>
+	`
+})
+class AlertModalStory {
+
+	@Input() modalType: string;
+	@Input() headerText: string;
+	@Input() title: string;
+	@Input() text: string;
+	@Input() buttons: any;
+
+	constructor(private modalService: ModalService) { }
+
+	openModal() {
+		this.modalService.show({
+			modalType: this.modalType,
+			headerText: this.headerText,
+			title: this.title,
+			text: this.text,
+			buttons: this.buttons
+		});
+	}
+}
+
 storiesOf("Modal", module)
 	.addDecorator(
 		moduleMetadata({
@@ -80,5 +109,72 @@ storiesOf("Modal", module)
 		props: {
 			modalText: text("modalText", "Hello, World!")
 		}
-	}
-));
+	}))
+	.addDecorator(
+		moduleMetadata({
+			declarations: [
+				AlertModalStory,
+			],
+			imports: [
+				ModalModule,
+				BrowserAnimationsModule,
+				TranslateModule.forRoot()
+			],
+			entryComponents: [
+				SampleModalComponent
+			]
+		})
+	)
+	.addDecorator(withKnobs)
+	.add("Transactional", () => ({
+		template: `
+		<app-alert-modal-story [modalType]="modalType" [headerText]="headerText" [title]="title" [text]="text"
+			[buttons]="buttons"></app-alert-modal-story>
+		<ibm-modal-placeholder></ibm-modal-placeholder>
+		`,
+		props: {
+			modalType: select("modalType", ["default", "danger"], "default"),
+			headerText: text("headerText", "optional header text"),
+			title: text("title", "Delete service from application"),
+			text: text("text", `Are you sure you want to remove the Speech to Text service from the node-test app?`),
+			buttons: [{
+				text: "Cancel",
+				type: "secondary"
+			}, {
+				text: "Delete",
+				type: "primary",
+				click: () => alert("Delete button clicked")
+			}],
+		}
+	}))
+	.addDecorator(
+		moduleMetadata({
+			declarations: [
+				AlertModalStory,
+			],
+			imports: [
+				ModalModule,
+				BrowserAnimationsModule,
+				TranslateModule.forRoot()
+			],
+			entryComponents: [
+				SampleModalComponent
+			]
+		})
+	)
+	.addDecorator(withKnobs)
+	.add("Passive", () => ({
+		template: `
+		<app-alert-modal-story [modalType]="modalType" [headerText]="headerText" [title]="title" [text]="text"
+			></app-alert-modal-story>
+		<ibm-modal-placeholder></ibm-modal-placeholder>
+		`,
+		props: {
+			modalType: select("modalType", ["default", "danger"], "default"),
+			headerText: text("headerText", "optional header text"),
+			title: text("title", "Passive modal title"),
+			text: text("text", "Passive modal notifications should only appear if there is an action " +
+								"the user needs to address immediately. Passive modal notifications are persistent on screen"),
+		}
+	}))
+;
