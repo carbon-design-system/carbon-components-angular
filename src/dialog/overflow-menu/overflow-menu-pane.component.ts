@@ -44,6 +44,7 @@ export class OverflowMenuPane extends Dialog {
 		const listItems = this.listItems();
 
 		switch (event.key) {
+			case "Down": // IE specific value
 			case "ArrowDown":
 				event.preventDefault();
 				if (!isFocusInLastItem(event, listItems))  {
