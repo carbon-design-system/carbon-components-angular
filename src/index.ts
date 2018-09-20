@@ -37,3 +37,4 @@ export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./tiles/tiles.module";
 export * from "./ui-shell/ui-shell.module";
+export * from "./grid/grid.module";
