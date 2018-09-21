@@ -113,7 +113,7 @@ storiesOf("Modal", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
-				AlertModalStory,
+				AlertModalStory
 			],
 			imports: [
 				ModalModule,
@@ -144,13 +144,13 @@ storiesOf("Modal", module)
 				text: "Delete",
 				type: "primary",
 				click: () => alert("Delete button clicked")
-			}],
+			}]
 		}
 	}))
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
-				AlertModalStory,
+				AlertModalStory
 			],
 			imports: [
 				ModalModule,
@@ -174,7 +174,7 @@ storiesOf("Modal", module)
 			headerLabel: text("headerLabel", "optional header label"),
 			title: text("title", "Passive modal title"),
 			text: text("text", "Passive modal notifications should only appear if there is an action " +
-								"the user needs to address immediately. Passive modal notifications are persistent on screen"),
+								"the user needs to address immediately. Passive modal notifications are persistent on screen")
 		}
 	}))
 ;

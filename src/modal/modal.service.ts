@@ -90,7 +90,7 @@ export class ModalService {
 				headerLabel: data.headerLabel,
 				title: data.title,
 				text: data.text,
-				buttons: data.buttons || [],
+				buttons: data.buttons || []
 			}
 		});
 	}

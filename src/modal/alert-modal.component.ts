@@ -70,11 +70,16 @@ import { ModalService } from "./modal.service";
 				<p>{{text}}</p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
-				<button ibmButton="{{button.type}}" *ngFor="let button of buttons; let i = index"
-					(click)="buttonClicked(i)" id="{{button.id}}">{{button.text}}</button>
+				<button
+					*ngFor="let button of buttons; let i = index"
+					ibmButton="{{button.type}}"
+					(click)="buttonClicked(i)"
+					[id]="button.id">
+					{{button.text}}
+				</button>
 			</ibm-modal-footer>
 		</ibm-modal>
-	`,
+	`
 })
 export class AlertModalComponent implements AfterViewInit {
 
@@ -91,7 +96,7 @@ export class AlertModalComponent implements AfterViewInit {
 	 */
 	constructor(
 		private injector: Injector,
-		private elementRef: ElementRef,
+		private elementRef: ElementRef
 	) {
 		this.modalType = this.injector.get("modalType");
 		this.headerLabel = this.injector.get("headerLabel");
