@@ -18,7 +18,7 @@ import { TextInput } from "./input.directive";
 	],
 	imports: [
 		CommonModule,
-		FormsModule,
+		FormsModule
 	]
 })
 class InputModule { }

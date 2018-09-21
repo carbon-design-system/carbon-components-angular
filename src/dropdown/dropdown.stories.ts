@@ -14,7 +14,7 @@ storiesOf("Dropdown", module)
 			imports: [
 				DropdownModule,
 				BootstrapModule
-			],
+			]
 		})
 	)
 	.addDecorator(withKnobs)
