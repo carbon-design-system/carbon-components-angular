@@ -37,17 +37,16 @@ import { ModalService } from "./modal.service";
  *   <ibm-modal-placeholder></ibm-modal-placeholder>`
  * })
  * export class ModalDemo {
- *
  * 	openModal() {
  * 		this.modalService.show({
- *			modalType: "default" | "danger",
+ *			modalType: "default",
  *			headerLabel: "optional header text",
  *			title: "Modal title",
  *			text: "Modal text",
  *			buttons: [{
  *				text: "Button text",
- *				type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" = "primary",
- *				click: clickFunction,
+ *				type: "primary",
+ *				click: clickFunction
  *			}]
  *		});
  * 	}
@@ -82,7 +81,6 @@ import { ModalService } from "./modal.service";
 	`
 })
 export class AlertModalComponent implements AfterViewInit {
-
 	modalType = "default";
 	headerLabel: string;
 	title: string;
@@ -138,6 +136,7 @@ export class AlertModalComponent implements AfterViewInit {
 	}
 
 	closeModal() {
+		// let call the @Modal.destroy() explicitly or otherwise the modal won't close
 		this["destroy"]();
 	}
 }

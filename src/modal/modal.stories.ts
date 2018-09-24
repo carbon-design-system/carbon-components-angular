@@ -128,8 +128,13 @@ storiesOf("Modal", module)
 	.addDecorator(withKnobs)
 	.add("Transactional", () => ({
 		template: `
-		<app-alert-modal-story [modalType]="modalType" [headerLabel]="headerLabel" [title]="title" [text]="text"
-			[buttons]="buttons"></app-alert-modal-story>
+		<app-alert-modal-story
+			[modalType]="modalType"
+			[headerLabel]="headerLabel"
+			[title]="title"
+			[text]="text"
+			[buttons]="buttons">
+		</app-alert-modal-story>
 		<ibm-modal-placeholder></ibm-modal-placeholder>
 		`,
 		props: {
@@ -165,8 +170,12 @@ storiesOf("Modal", module)
 	.addDecorator(withKnobs)
 	.add("Passive", () => ({
 		template: `
-		<app-alert-modal-story [modalType]="modalType" [headerLabel]="headerLabel" [title]="title" [text]="text"
-			></app-alert-modal-story>
+		<app-alert-modal-story
+			[modalType]="modalType"
+			[headerLabel]="headerLabel"
+			[title]="title"
+			[text]="text">
+		</app-alert-modal-story>
 		<ibm-modal-placeholder></ibm-modal-placeholder>
 		`,
 		props: {
@@ -174,7 +183,7 @@ storiesOf("Modal", module)
 			headerLabel: text("headerLabel", "optional header label"),
 			title: text("title", "Passive modal title"),
 			text: text("text", "Passive modal notifications should only appear if there is an action " +
-								"the user needs to address immediately. Passive modal notifications are persistent on screen")
+				"the user needs to address immediately. Passive modal notifications are persistent on screen")
 		}
 	}))
 ;
