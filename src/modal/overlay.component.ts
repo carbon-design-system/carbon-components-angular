@@ -34,7 +34,7 @@ export class OverlayComponent {
 	 * @type {"default" | "danger"}
 	 * @memberof ModalComponent
 	 */
-	@Input() modalType = "default";
+	@Input() modalType: "default" | "danger" = "default";
 	/**
 	 * To emit the event where the user selects the overlay behind the `Modal`.
 	 * @memberof OverlayComponent
