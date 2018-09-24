@@ -102,7 +102,7 @@ import { cycleTabs } from "./../common/tab.service";
 		trigger("modalState", [
 			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
 			transition(":enter", [
-				animate("200ms ease-in"),
+				animate("200ms ease-in")
 			]),
 			transition(":leave", [
 				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
