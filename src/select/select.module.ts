@@ -21,7 +21,7 @@ import { OptGroup } from "./optgroup.directive";
 	],
 	imports: [
 		CommonModule,
-		FormsModule,
+		FormsModule
 	]
 })
 class SelectModule { }

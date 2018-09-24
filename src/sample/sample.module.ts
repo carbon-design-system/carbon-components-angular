@@ -4,9 +4,6 @@ import { CommonModule } from "@angular/common";
 import { Sample } from "./sample.component";
 import { SampleSub } from "./subcomponent/sample-sub.component";
 
-import { SampleBase } from "./sample-base.class";
-import { SampleInterface } from "./sample.interface";
-
 export { Sample } from "./sample.component";
 export { SampleSub } from "./subcomponent/sample-sub.component";
 
@@ -16,14 +13,14 @@ export { SampleInterface } from "./sample.interface";
 @NgModule({
 	declarations: [
 		Sample,
-		SampleSub,
+		SampleSub
 	],
 	exports: [
 		Sample,
-		SampleSub,
+		SampleSub
 	],
 	imports: [
-		CommonModule,
+		CommonModule
 	]
 })
 export class SampleModule {}

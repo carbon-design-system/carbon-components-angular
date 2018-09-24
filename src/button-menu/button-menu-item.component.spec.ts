@@ -35,7 +35,7 @@ describe("Button Menu", () => {
 						provide: TranslateLoader, useClass: TranslateFakeLoader
 					}
 				})
-			],
+			]
 		});
 	});
 
