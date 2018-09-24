@@ -16,10 +16,13 @@ import { Component } from "@angular/core";
 	selector: "ibm-overflow-menu",
 	template: `
 		<div
+			#menu
 			[ibmOverflowMenu]="options"
 			[appendToBody]="true"
-			placement="bottom"
+			aria-label="Overflow"
 			class="bx--overflow-menu"
+			role="button"
+			placement="bottom"
 			style="display: block;"
 			tabindex="0">
 			<svg class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">

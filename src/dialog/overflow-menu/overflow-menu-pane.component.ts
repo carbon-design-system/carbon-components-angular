@@ -12,6 +12,8 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.servic
 	selector: "ibm-overflow-menu-pane",
 	template: `
 		<ul
+			role="menu"
+			aria-label="Overflow"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open">
 			<ng-template
