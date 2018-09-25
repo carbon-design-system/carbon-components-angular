@@ -19,7 +19,7 @@ import { Component } from "@angular/core";
 			#menu
 			[ibmOverflowMenu]="options"
 			[appendToBody]="true"
-			aria-label="Overflow"
+			attr.aria-label="{{'Overflow' | translate}}"
 			class="bx--overflow-menu"
 			role="button"
 			placement="bottom"
