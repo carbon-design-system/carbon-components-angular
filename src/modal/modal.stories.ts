@@ -63,7 +63,6 @@ class ModalStory {
 	`
 })
 class AlertModalStory {
-
 	@Input() modalType: string;
 	@Input() headerLabel: string;
 	@Input() title: string;

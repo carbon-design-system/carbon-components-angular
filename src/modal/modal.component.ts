@@ -48,7 +48,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 			</button>
  * 			{{modalText}}
  * 			</section>
- * 			<ibm-modal-footer><button class="bx--btn bx--btn--primary" (click)="closeModal()">Close</button></ibm-modal-footer>
+ * 			<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
  * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
@@ -67,7 +67,7 @@ import { cycleTabs } from "./../common/tab.service";
  * \@Component({
  *  selector: "app-modal-demo",
  *  template: `
- *   <button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
+ *   <button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
  *   <ibm-modal-placeholder></ibm-modal-placeholder>`
  * })
  * export class ModalDemo {
