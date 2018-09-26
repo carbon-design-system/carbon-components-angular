@@ -13,7 +13,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.servic
 	template: `
 		<ul
 			role="menu"
-			attr.aria-label="{{'OVERFLOWMENU.OVERFLOW' | translate}}"
+			attr.aria-label="{{'OVERFLOW_MENU.OVERFLOW' | translate}}"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open">
 			<ng-template

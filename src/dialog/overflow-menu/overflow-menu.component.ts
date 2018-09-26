@@ -16,10 +16,9 @@ import { Component } from "@angular/core";
 	selector: "ibm-overflow-menu",
 	template: `
 		<div
-			#menu
 			[ibmOverflowMenu]="options"
 			[appendToBody]="true"
-			attr.aria-label="{{'OVERFLOWMENU.OVERFLOW' | translate}}"
+			attr.aria-label="{{'OVERFLOW_MENU.OVERFLOW' | translate}}"
 			class="bx--overflow-menu"
 			role="button"
 			placement="bottom"
