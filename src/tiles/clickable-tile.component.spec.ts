@@ -1,6 +1,6 @@
 /// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
-import { DebugElement, Component } from "@angular/core";
+import { Component } from "@angular/core";
 import {
 	async,
 	ComponentFixture,
@@ -13,7 +13,7 @@ import { ClickableTile } from "./clickable-tile.component";
 describe("ClickableTile", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ClickableTile, ClickableTileTestComponent],
+			declarations: [ClickableTile, ClickableTileTestComponent]
 		}).compileComponents();
 	}));
 

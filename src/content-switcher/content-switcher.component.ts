@@ -22,7 +22,7 @@ import { ContentSwitcherOption } from "./content-switcher-option.directive";
 			role="tablist">
 			<ng-content></ng-content>
 		</div>
-	`,
+	`
 })
 export class ContentSwitcher implements AfterViewInit {
 	@Input() label = "content switcher";

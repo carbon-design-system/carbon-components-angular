@@ -8,7 +8,7 @@ import {
 	OnInit,
 	AfterViewInit,
 	OnDestroy,
-	HostListener,
+	HostListener
 } from "@angular/core";
 import {
 	Observable,
@@ -17,7 +17,7 @@ import {
 	merge
 } from "rxjs";
 import { throttleTime } from "rxjs/operators";
-import position, { AbsolutePosition } from "../utils/position";
+import position from "../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
@@ -103,7 +103,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		"top": pos => position.addOffset(pos, -this.dialogConfig.gap),
 		"bottom": pos => position.addOffset(pos, this.dialogConfig.gap),
 		"left-bottom": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
-		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap),
+		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap)
 	};
 
 	/**
@@ -241,6 +241,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
 		switch (event.key) {
+			case "Esc": // IE specific value
 			case "Escape": {
 				event.stopImmediatePropagation();
 				this.doClose();

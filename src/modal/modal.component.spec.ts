@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
@@ -17,7 +17,7 @@ Object.defineProperty(document.body.style, "transform", {
 			enumerable: true,
 			configurable: true
 		};
-	},
+	}
 });
 
 describe("ModalComponent", () => {
