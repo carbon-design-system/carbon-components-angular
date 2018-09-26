@@ -63,7 +63,7 @@ class DynamicTableStory implements OnInit {
 			[new TableItem({data: "Name 1"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
 			[new TableItem({data: "Name 3"}), new TableItem({data: "swer"})],
 			[new TableItem({data: "Name 2"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
-			[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})],
+			[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})]
 		];
 		this.model.header = [
 			new TableHeaderItem({data: "Very long title indeed"}),
@@ -144,7 +144,7 @@ class ExpansionTableStory implements OnInit {
 				new TableItem({data: "swer"})
 			],
 			[new TableItem({data: "Name 2"}), new TableItem({data: {name: "Alice", surname: "Bob"}, template: this.customTableItemTemplate})],
-			[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})],
+			[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})]
 		];
 		this.model.header = [
 			new TableHeaderItem({data: "Very long title indeed"}),
@@ -209,11 +209,11 @@ class OverflowTableStory implements OnInit {
 			[new TableItem({data: "Name 1"}), new TableItem({data: {id: "1"}, template: this.overflowMenuItemTemplate})],
 			[new TableItem({data: "Name 2"}), new TableItem({data: {id: "2"}, template: this.overflowMenuItemTemplate})],
 			[new TableItem({data: "Name 3"}), new TableItem({data: {id: "3"}, template: this.overflowMenuItemTemplate})],
-			[new TableItem({data: "Name 4"}), new TableItem({data: {id: "4"}, template: this.overflowMenuItemTemplate})],
+			[new TableItem({data: "Name 4"}), new TableItem({data: {id: "4"}, template: this.overflowMenuItemTemplate})]
 		];
 		this.model.header = [
 			new TableHeaderItem({data: "Name"}),
-			new TableHeaderItem({data: "Actions"}),
+			new TableHeaderItem({data: "Actions"})
 		];
 	}
 }

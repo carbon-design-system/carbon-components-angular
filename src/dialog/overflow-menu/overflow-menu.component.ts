@@ -18,9 +18,12 @@ import { Component } from "@angular/core";
 		<div
 			[ibmOverflowMenu]="options"
 			[appendToBody]="true"
-			placement="bottom"
+			attr.aria-label="{{'OVERFLOW_MENU.OVERFLOW' | translate}}"
 			class="bx--overflow-menu"
-			style="display: block;">
+			role="button"
+			placement="bottom"
+			style="display: block;"
+			tabindex="0">
 			<svg class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
 					<circle cx="1.5" cy="1.5" r="1.5" />

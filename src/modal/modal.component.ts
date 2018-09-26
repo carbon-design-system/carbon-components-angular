@@ -1,11 +1,12 @@
 import { ModalService } from "./modal.service";
 import {
+	AfterViewInit,
 	Component,
 	EventEmitter,
 	HostListener,
 	Input,
-	OnInit,
 	OnDestroy,
+	OnInit,
 	Output,
 	ElementRef,
 	ViewChild
@@ -102,7 +103,7 @@ import { cycleTabs } from "./../common/tab.service";
 		trigger("modalState", [
 			state("void", style({transform: "translate(0, 5%)", opacity: 0})),
 			transition(":enter", [
-				animate("200ms ease-in"),
+				animate("200ms ease-in")
 			]),
 			transition(":leave", [
 				animate(200, style({transform: "translate(0, 5%)", opacity: 0}))
@@ -110,7 +111,7 @@ import { cycleTabs } from "./../common/tab.service";
 		])
 	]
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
@@ -149,6 +150,12 @@ export class ModalComponent implements OnInit, OnDestroy {
 	modalState = "out";
 
 	/**
+	 * An element should have 'data-modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
+	 * @memberof ModalComponent
+	 */
+	selectorPrimaryFocus = "[modal-primary-focus]";
+
+	/**
 	 * Creates an instance of `ModalComponent`.
 	 * @param {ModalService} modalService
 	 * @memberof ModalComponent
@@ -156,11 +163,23 @@ export class ModalComponent implements OnInit, OnDestroy {
 	constructor(public modalService: ModalService) {}
 
 	/**
-	 * Set document focus to be on the modal component when it is initialized.
+	 * Set modalState on the modal component when it is initialized.
 	 * @memberof ModalComponent
 	 */
 	ngOnInit() {
 		this.modalState = "in";
+	}
+
+	/**
+	 * Set document focus to be on the modal component after it is initialized.
+	 * @memberof ModalComponent
+	 */
+	ngAfterViewInit() {
+		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
+		if (primaryFocusElement && primaryFocusElement.focus) {
+			primaryFocusElement.focus();
+			return;
+		}
 		this.modal.nativeElement.focus();
 	}
 

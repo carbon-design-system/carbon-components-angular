@@ -19,7 +19,7 @@ import { Modal, ModalService } from "../";
 				<p class="bx--modal-content__text">{{modalText}}</p>
 			</section>
 			<ibm-modal-footer>
-				<button class="bx--btn bx--btn--primary" (click)="closeModal()">Close</button>
+				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`

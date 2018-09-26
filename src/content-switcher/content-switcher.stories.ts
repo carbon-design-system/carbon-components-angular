@@ -1,7 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs } from "@storybook/addon-knobs/angular";
 
 import { ContentSwitcherModule } from "../";
 
@@ -10,7 +9,7 @@ storiesOf("Content Switcher", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				ContentSwitcherModule,
+				ContentSwitcherModule
 			]
 		})
 	)
