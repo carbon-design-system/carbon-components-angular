@@ -11,10 +11,10 @@ export { CheckboxComponent } from "./checkbox.component";
 
 @NgModule({
 	declarations: [
-		CheckboxComponent,
+		CheckboxComponent
 	],
 	exports: [
-		CheckboxComponent,
+		CheckboxComponent
 	],
 	imports: [
 		CommonModule,
