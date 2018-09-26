@@ -1,5 +1,5 @@
 import { ModalService } from "./modal.service";
-import { EventEmitter, OnInit, OnDestroy, ElementRef } from "@angular/core";
+import { AfterViewInit, EventEmitter, OnDestroy, OnInit, ElementRef } from "@angular/core";
 /**
  * Component to create modals for presenting content.
  *
@@ -62,7 +62,7 @@ import { EventEmitter, OnInit, OnDestroy, ElementRef } from "@angular/core";
  * @implements {OnInit}
  * @implements {OnDestroy}
  */
-export declare class ModalComponent implements OnInit, OnDestroy {
+export declare class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
     modalService: ModalService;
     /**
      * Size of the modal to display.
@@ -100,16 +100,26 @@ export declare class ModalComponent implements OnInit, OnDestroy {
      */
     modalState: string;
     /**
+     * An element should have 'data-modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
+     * @memberof ModalComponent
+     */
+    selectorPrimaryFocus: string;
+    /**
      * Creates an instance of `ModalComponent`.
      * @param {ModalService} modalService
      * @memberof ModalComponent
      */
     constructor(modalService: ModalService);
     /**
-     * Set document focus to be on the modal component when it is initialized.
+     * Set modalState on the modal component when it is initialized.
      * @memberof ModalComponent
      */
     ngOnInit(): void;
+    /**
+     * Set document focus to be on the modal component after it is initialized.
+     * @memberof ModalComponent
+     */
+    ngAfterViewInit(): void;
     /**
      * Emit the close event when the modal component is destroyed.
      * @memberof ModalComponent
