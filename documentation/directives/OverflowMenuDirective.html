@@ -1188,6 +1188,20 @@
                                 </ul>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>HostListeners</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                        <a href="#keydown">keydown</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -1203,7 +1217,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:37</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:38</a></div>
                                         </td>
                                     </tr>
             
@@ -1277,7 +1291,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:37</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:38</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1286,6 +1300,36 @@
 
 
 
+            <section>
+                <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="keydown"></a>
+                                    <span class="name"><b> keydown</b><a href="#keydown"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Arguments : </i><code>'$event' </code>
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>keydown(event: KeyboardEvent)</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:57</a></div>
+                                        </td>
+                                    </tr>
+            
+                        </tbody>
+                    </table>
+            </section>
 
             <section>
                 
@@ -1309,7 +1353,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:51</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:52</a></div>
                                         </td>
                                     </tr>
             
@@ -1337,7 +1381,8 @@
 	ElementRef,
 	ViewContainerRef,
 	Input,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from &quot;@angular/core&quot;;
 import { DialogDirective } from &quot;./../dialog.directive&quot;;
 import { DialogService } from &quot;./../dialog.service&quot;;
@@ -1384,6 +1429,16 @@ export class OverflowMenuDirective extends DialogDirective {
 
 	onDialogInit() {
 		this.dialogConfig.content &#x3D; this.ibmOverflowMenu;
+	}
+
+	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
+	hostkeys(event: KeyboardEvent) {
+		switch (event.key) {
+			case &quot;Enter&quot;:
+			case &quot; &quot;:
+				this.toggle();
+				break;
+		}
 	}
 }
 </code></pre>

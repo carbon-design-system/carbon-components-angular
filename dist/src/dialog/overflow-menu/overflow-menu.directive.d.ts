@@ -27,4 +27,5 @@ export declare class OverflowMenuDirective extends DialogDirective {
      */
     constructor(elementRef: ElementRef, viewContainerRef: ViewContainerRef, dialogService: DialogService);
     onDialogInit(): void;
+    hostkeys(event: KeyboardEvent): void;
 }

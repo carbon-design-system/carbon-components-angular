@@ -1414,7 +1414,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/dialog/dialog.component.ts:263</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/dialog/dialog.component.ts:264</a></div>
                                 </td>
                             </tr>
     
@@ -1473,7 +1473,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/dialog/dialog.component.ts:274</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/dialog/dialog.component.ts:275</a></div>
                                 </td>
                             </tr>
     
@@ -1542,7 +1542,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/dialog/dialog.component.ts:282</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/dialog/dialog.component.ts:283</a></div>
                                 </td>
                             </tr>
     
@@ -2156,6 +2156,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
 	escapeClose(event: KeyboardEvent) {
 		switch (event.key) {
+			case &quot;Esc&quot;: // IE specific value
 			case &quot;Escape&quot;: {
 				event.stopImmediatePropagation();
 				this.doClose();

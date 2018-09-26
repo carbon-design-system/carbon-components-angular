@@ -5,5 +5,8 @@ import { Dialog } from "../dialog.component";
  * Not used directly. See overflow-menu.component and overflow-menu.directive for more
  */
 export declare class OverflowMenuPane extends Dialog {
+    dialog: any;
     onDialogInit(): void;
+    hostkeys(event: KeyboardEvent): void;
+    private listItems;
 }

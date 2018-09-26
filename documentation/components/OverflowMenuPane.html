@@ -1173,6 +1173,20 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                 <a href="#dialog">dialog</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <h6><b>Methods</b></h6>
                     </td>
                 </tr>
@@ -1180,7 +1194,24 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <span class="modifier">Private</span> <a href="#listItems">listItems</a>
+                            </li>
+                            <li>
                                  <a href="#onDialogInit">onDialogInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#keydown">keydown</a>
                             </li>
                         </ul>
                     </td>
@@ -1193,12 +1224,75 @@
 
 
 
+    <section>
+        <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="keydown"></a>
+                            <span class="name"><b> keydown</b><a href="#keydown"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Arguments : </i><code>'$event' </code>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>keydown(event: KeyboardEvent)</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:44</a></div>
+                                </td>
+                            </tr>
+    
+                </tbody>
+            </table>
+    </section>
 
     <section>
         
             <h3 id="methods">
                 Methods
             </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="listItems"></a>
+                            <span class="name"><b><span class="modifier">Private</span> listItems</b><a href="#listItems"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <span class="modifier-icon fa fa-lock"></span>
+                            <code>listItems()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:83</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1216,7 +1310,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:29</a></div>
                                 </td>
                             </tr>
     
@@ -1233,14 +1327,49 @@
             </table>
     </section>
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="dialog"></a>
+                            <span class="name"><b> dialog</b><a href="#dialog"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>dialog:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ViewChild</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:27</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+    </section>
 
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component, ViewChild, HostListener } from &quot;@angular/core&quot;;
 import { Dialog } from &quot;../dialog.component&quot;;
 import { position } from &quot;../../utils/position&quot;;
+import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../../common/tab.service&quot;;
 
 /**
  * Extend the &#x60;Dialog&#x60; component to create an overflow menu.
@@ -1251,9 +1380,10 @@ import { position } from &quot;../../utils/position&quot;;
 	selector: &quot;ibm-overflow-menu-pane&quot;,
 	template: &#x60;
 		&lt;ul
+			role&#x3D;&quot;menu&quot;
+			attr.aria-label&#x3D;&quot;{{&#x27;OVERFLOW_MENU.OVERFLOW&#x27; | translate}}&quot;
 			#dialog
-			class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;
-			tabindex&#x3D;&quot;-1&quot;&gt;
+			class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;&gt;
 			&lt;ng-template
 				[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
 				[ngTemplateOutletContext]&#x3D;&quot;{overflowMenu: this}&quot;&gt;
@@ -1262,6 +1392,8 @@ import { position } from &quot;../../utils/position&quot;;
 	&#x60;
 })
 export class OverflowMenuPane extends Dialog {
+	@ViewChild(&quot;dialog&quot;) dialog;
+
 	onDialogInit() {
 		/**
 		 *  -20 shifts the menu up to compensate for the
@@ -1272,6 +1404,54 @@ export class OverflowMenuPane extends Dialog {
 		 * so we need to add some compensation)
 		 */
 		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; position.addOffset(pos, -20, 60);
+
+		setTimeout(() &#x3D;&gt; this.listItems()[0].focus());
+	}
+
+	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
+	hostkeys(event: KeyboardEvent) {
+		this.escapeClose(event);
+		const listItems &#x3D; this.listItems();
+
+		switch (event.key) {
+			case &quot;Down&quot;: // IE specific value
+			case &quot;ArrowDown&quot;:
+				event.preventDefault();
+				if (!isFocusInLastItem(event, listItems))  {
+					const index &#x3D; listItems.findIndex(item &#x3D;&gt; item &#x3D;&#x3D;&#x3D; event.target);
+					listItems[index + 1].focus();
+				} else {
+					listItems[0].focus();
+				}
+				break;
+
+			case &quot;Up&quot;: // IE specific value
+			case &quot;ArrowUp&quot;:
+				event.preventDefault();
+				if (!isFocusInFirstItem(event, listItems))  {
+					const index &#x3D; listItems.findIndex(item &#x3D;&gt; item &#x3D;&#x3D;&#x3D; event.target);
+					listItems[index - 1].focus();
+				} else {
+					listItems[listItems.length - 1].focus();
+				}
+				break;
+
+			case &quot;Home&quot;:
+				event.preventDefault();
+				listItems[0].focus();
+				break;
+
+			case &quot;End&quot;:
+				event.preventDefault();
+				listItems[listItems.length - 1].focus();
+				break;
+		}
+	}
+
+	private listItems() {
+		const buttonClass &#x3D; &quot;.bx--overflow-menu-options__btn&quot;;
+		const disabledClass &#x3D; &quot;.bx--overflow-menu-options__option--disabled&quot;;
+		return Array.from&lt;any&gt;(this.dialog.nativeElement.querySelectorAll(&#x60;${buttonClass}:not(${disabledClass})&#x60;));
 	}
 }
 </code></pre>
