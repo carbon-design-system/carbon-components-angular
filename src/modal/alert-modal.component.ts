@@ -69,18 +69,20 @@ import { ModalService } from "./modal.service";
 				<p>{{text}}</p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
-				<button
-					*ngFor="let button of buttons; let i = index"
-					ibmButton="{{button.type}}"
-					(click)="buttonClicked(i)"
-					[id]="button.id">
-					{{button.text}}
-				</button>
+				<ng-container *ngFor="let button of buttons; let i = index">
+					<button
+						ibmButton="{{button.type}}"
+						(click)="buttonClicked(i)"
+						[id]="button.id"
+						[attr.modal-primary-focus]="button.type.indexOf('primary') !== -1 ? '' : null">
+						{{button.text}}
+					</button>
+				</ng-container>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`
 })
-export class AlertModalComponent implements AfterViewInit {
+export class AlertModalComponent {
 	modalType = "default";
 	headerLabel: string;
 	title: string;
@@ -109,19 +111,6 @@ export class AlertModalComponent implements AfterViewInit {
 			}
 			if (!button.type) {
 				button.type = "secondary";
-			}
-		}
-	}
-
-	ngAfterViewInit(): void {
-		// focus the primary button if there's one
-		if (this.buttons && this.buttons.length > 0) {
-			const primaryButtonIndex = this.buttons.findIndex(
-				button => button.type.indexOf("primary") !== -1) || 0;
-			const primaryButton = this.buttons[primaryButtonIndex];
-			const buttonNode = this.elementRef.nativeElement.querySelector(`#${primaryButton.id}`);
-			if (buttonNode) {
-				buttonNode.focus();
 			}
 		}
 	}
