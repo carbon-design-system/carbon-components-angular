@@ -1,9 +1,7 @@
 import {
 	Component,
 	Injector,
-	OnInit,
-	ElementRef,
-	AfterViewInit
+	ElementRef
 } from "@angular/core";
 import {
 	trigger,
@@ -13,7 +11,6 @@ import {
 	animate
 } from "@angular/animations";
 import Modal from "./modal.decorator";
-import { ModalService } from "./modal.service";
 
 /**
  * Component to create standard modals for presenting content or asking for user's input.
@@ -40,8 +37,8 @@ import { ModalService } from "./modal.service";
  * 	openModal() {
  * 		this.modalService.show({
  *			modalType: "default",
- *			headerLabel: "optional header text",
- *			title: "Modal title",
+ *			modalLabel: "optional header text",
+ *			modalTitle: "Modal modalTitle",
  *			text: "Modal text",
  *			buttons: [{
  *				text: "Button text",
@@ -62,11 +59,11 @@ import { ModalService } from "./modal.service";
 	template: `
 		<ibm-modal [modalType]="modalType">
 			<ibm-modal-header (closeSelect)="closeModal()">
-				<p class="bx--modal-header__label bx--type-delta">{{headerLabel}}</p>
-      			<p class="bx--modal-header__heading bx--type-beta">{{title}}</p>
+				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
+      			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
 			<div class="bx--modal-content">
-				<p>{{text}}</p>
+				<p>{{modalContent}}</p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">
@@ -84,9 +81,9 @@ import { ModalService } from "./modal.service";
 })
 export class AlertModalComponent {
 	modalType = "default";
-	headerLabel: string;
-	title: string;
-	text: string;
+	modalLabel: string;
+	modalTitle: string;
+	modalContent: string;
 	buttons = [];
 
 	/**
@@ -99,9 +96,9 @@ export class AlertModalComponent {
 		private elementRef: ElementRef
 	) {
 		this.modalType = this.injector.get("modalType");
-		this.headerLabel = this.injector.get("headerLabel");
-		this.title = this.injector.get("title");
-		this.text = this.injector.get("text");
+		this.modalLabel = this.injector.get("modalLabel");
+		this.modalTitle = this.injector.get("modalTitle");
+		this.modalContent = this.injector.get("modalContent");
 
 		this.buttons = this.injector.get("buttons") || [];
 		for (let i = 0; i < this.buttons.length; i++) {
