@@ -23,9 +23,7 @@ import {
 		<button
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
-			[ngClass]="{
-				'bx--overflow-menu-options__option--disabled': disabled
-			}"
+			[disabled]="disabled"
 			[tabindex]="(disabled ? -1 : null)"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>

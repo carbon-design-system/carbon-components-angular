@@ -83,6 +83,6 @@ export class OverflowMenuPane extends Dialog {
 	private listItems() {
 		const buttonClass = ".bx--overflow-menu-options__btn";
 		const disabledClass = ".bx--overflow-menu-options__option--disabled";
-		return Array.from<any>(this.dialog.nativeElement.querySelectorAll(`${buttonClass}:not(${disabledClass})`));
+		return Array.from<any>(this.dialog.nativeElement.querySelectorAll(`${buttonClass}:not([disabled])`));
 	}
 }
