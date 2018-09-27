@@ -15,6 +15,8 @@ export declare class OverflowMenuOption {
     private elementRef;
     optionClass: string;
     role: string;
+    readonly isDanger: Boolean;
+    readonly isDisabled: Boolean;
     /**
      * toggles between `normal` and `danger` states
      */
