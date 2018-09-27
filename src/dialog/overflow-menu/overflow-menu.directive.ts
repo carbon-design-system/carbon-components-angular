@@ -51,6 +51,25 @@ export class OverflowMenuDirective extends DialogDirective {
 
 	onDialogInit() {
 		this.dialogConfig.content = this.ibmOverflowMenu;
+		this.dialogService.isClosed.subscribe(() => this.updateOpacity());
+	}
+
+	open() {
+		super.open();
+		this.updateOpacity();
+	}
+
+	toggle() {
+		super.toggle();
+		this.updateOpacity();
+	}
+
+	updateOpacity() {
+		if (this.elementRef.nativeElement.getAttribute("aria-expanded") === "true") {
+			this.elementRef.nativeElement.style.opacity = 1;
+		} else {
+			this.elementRef.nativeElement.style.opacity = null;
+		}
 	}
 
 	@HostListener("keydown", ["$event"])
