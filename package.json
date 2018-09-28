@@ -63,7 +63,7 @@
     "core-js": "^2.5.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "carbon-components": "^9.1.13"
+    "carbon-components": "^9.20.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.7.1",
@@ -93,7 +93,7 @@
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
     "babel-core": "6.26.3",
-    "carbon-components": "9.1.13",
+    "carbon-components": "9.20.0",
     "codelyzer": "4.0.2",
     "commitizen": "2.10.1",
     "core-js": "2.5.5",
