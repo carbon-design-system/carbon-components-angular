@@ -22,10 +22,8 @@ import {
 	template: `
 		<button
 			class="bx--overflow-menu-options__btn"
-			[ngClass]="{
-				'bx--overflow-menu-options__option--danger': type === 'danger',
-				'bx--overflow-menu-options__option--disabled': disabled
-			}"
+			role="menuitem"
+			[disabled]="disabled"
 			[tabindex]="(disabled ? -1 : null)"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
@@ -34,8 +32,17 @@ import {
 })
 export class OverflowMenuOption {
 	@HostBinding("class") optionClass = "bx--overflow-menu-options__option";
-	@HostBinding("attr.role") role = "list-item";
+	@HostBinding("attr.role") role = "presentation";
 
+	@HostBinding("class.bx--overflow-menu-options__option--danger")
+	public get isDanger(): Boolean {
+		return this.type === "danger";
+	}
+
+	@HostBinding("class.bx--overflow-menu-options__option--disabled")
+	public get isDisabled(): Boolean {
+		return this.disabled;
+	}
 	/**
 	 * toggles between `normal` and `danger` states
 	 */
