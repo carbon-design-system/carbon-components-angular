@@ -169,6 +169,12 @@
                                     <a href="../components/AccordionItem.html" >AccordionItem</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/AlertModalComponent.html" >AlertModalComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AlertModalStory.html" >AlertModalStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Banner.html" >Banner</a>
                                 </li>
                                 <li class="link">
@@ -705,6 +711,12 @@
                                            <a href="../components/AccordionItem.html" >AccordionItem</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/AlertModalComponent.html" >AlertModalComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AlertModalStory.html" >AlertModalStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Banner.html" >Banner</a>
                                        </li>
                                        <li class="link">
@@ -1124,7 +1136,7 @@
     </p>
     <p class="comment">
         <p>Component to create modals for presenting content.</p>
-<p>Using a modal in your application requires <code>n-modal-placeholder</code> which would generally be
+<p>Using a modal in your application requires <code>ibm-modal-placeholder</code> which would generally be
 placed near the end of your app component template (app.component.ts or app.component.html) as:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;</code></pre><p>A more complete example for <code>Modal</code> is given as follows:</p>
 <p>Example modal definition:</p>
@@ -1141,7 +1153,7 @@ placed near the end of your app component template (app.component.ts or app.comp
              &lt;/button&gt;
              {{modalText}}
              &lt;/section&gt;
-             &lt;ibm-modal-footer&gt;&lt;button class=&quot;btn--primary cancel-button&quot; (click)=&quot;closeModal()&quot;&gt;Close&lt;/button&gt;&lt;/ibm-modal-footer&gt;
+             &lt;ibm-modal-footer&gt;&lt;button ibmButton=&quot;primary&quot; (click)=&quot;closeModal()&quot;&gt;Close&lt;/button&gt;&lt;/ibm-modal-footer&gt;
          &lt;/ibm-modal&gt;`,
      styleUrls: [&quot;./sample-modal.component.scss&quot;]
 })
@@ -1155,7 +1167,7 @@ export class SampleModalComponent {
 <pre class="line-numbers"><code class="language-typescript">\&#64;Component({
   selector: &quot;app-modal-demo&quot;,
   template: `
-   &lt;button class=&quot;btn--primary&quot; (click)=&quot;openModal(&#39;drill&#39;)&quot;&gt;Drill-down modal&lt;/button&gt;
+   &lt;button ibmButton=&quot;primary&quot; (click)=&quot;openModal(&#39;drill&#39;)&quot;&gt;Drill-down modal&lt;/button&gt;
    &lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;`
 })
 export class ModalDemo {
@@ -1769,7 +1781,7 @@ import { cycleTabs } from &quot;./../common/tab.service&quot;;
 /**
  * Component to create modals for presenting content.
  *
- * Using a modal in your application requires &#x60;n-modal-placeholder&#x60; which would generally be
+ * Using a modal in your application requires &#x60;ibm-modal-placeholder&#x60; which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * &#x60;&#x60;&#x60;html
@@ -1794,7 +1806,7 @@ import { cycleTabs } from &quot;./../common/tab.service&quot;;
  * 			&lt;/button&gt;
  * 			{{modalText}}
  * 			&lt;/section&gt;
- * 			&lt;ibm-modal-footer&gt;&lt;button class&#x3D;&quot;btn--primary cancel-button&quot; (click)&#x3D;&quot;closeModal()&quot;&gt;Close&lt;/button&gt;&lt;/ibm-modal-footer&gt;
+ * 			&lt;ibm-modal-footer&gt;&lt;button ibmButton&#x3D;&quot;primary&quot; (click)&#x3D;&quot;closeModal()&quot;&gt;Close&lt;/button&gt;&lt;/ibm-modal-footer&gt;
  * 		&lt;/ibm-modal&gt;&#x60;,
  * 	styleUrls: [&quot;./sample-modal.component.scss&quot;]
  * })
@@ -1813,7 +1825,7 @@ import { cycleTabs } from &quot;./../common/tab.service&quot;;
  * \@Component({
  *  selector: &quot;app-modal-demo&quot;,
  *  template: &#x60;
- *   &lt;button class&#x3D;&quot;btn--primary&quot; (click)&#x3D;&quot;openModal(&#x27;drill&#x27;)&quot;&gt;Drill-down modal&lt;/button&gt;
+ *   &lt;button ibmButton&#x3D;&quot;primary&quot; (click)&#x3D;&quot;openModal(&#x27;drill&#x27;)&quot;&gt;Drill-down modal&lt;/button&gt;
  *   &lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;&#x60;
  * })
  * export class ModalDemo {
@@ -1831,7 +1843,7 @@ import { cycleTabs } from &quot;./../common/tab.service&quot;;
 @Component({
 	selector: &quot;ibm-modal&quot;,
 	template: &#x60;
-		&lt;ibm-overlay (overlaySelect)&#x3D;&quot;overlaySelected.emit()&quot;&gt;
+		&lt;ibm-overlay [modalType]&#x3D;&quot;modalType&quot; (overlaySelect)&#x3D;&quot;overlaySelected.emit()&quot;&gt;
 			&lt;div
 				class&#x3D;&quot;bx--modal-container&quot;
 				[@modalState]&#x3D;&quot;modalState&quot;
@@ -1866,7 +1878,7 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	@Input() size &#x3D; &quot;default&quot;;
 	/**
 	 * Classification of the modal.
-	 * @type {&quot;default&quot; | &quot;warning&quot; | &quot;error&quot;}
+	 * @type {&quot;default&quot; | &quot;danger&quot;}
 	 * @memberof ModalComponent
 	 */
 	@Input() modalType &#x3D; &quot;default&quot;;
@@ -1986,7 +1998,7 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverflowTableStory', 'selector': 'app-overflow-table'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModalComponent', 'selector': 'ibm-alert-modal'},{'name': 'AlertModalStory', 'selector': 'app-alert-modal-story'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverflowTableStory', 'selector': 'app-overflow-table'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltipDirective', 'selector': '[ibmEllipsisTooltip]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'PopoverDirective', 'selector': '[ibmPopover]'},{'name': 'PopoverMenuDirective', 'selector': '[ibmPopoverMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ModalComponent'};
 </script>

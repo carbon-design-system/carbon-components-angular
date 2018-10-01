@@ -3,7 +3,7 @@ import { AfterViewInit, EventEmitter, OnDestroy, OnInit, ElementRef } from "@ang
 /**
  * Component to create modals for presenting content.
  *
- * Using a modal in your application requires `n-modal-placeholder` which would generally be
+ * Using a modal in your application requires `ibm-modal-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
@@ -28,7 +28,7 @@ import { AfterViewInit, EventEmitter, OnDestroy, OnInit, ElementRef } from "@ang
  * 			</button>
  * 			{{modalText}}
  * 			</section>
- * 			<ibm-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></ibm-modal-footer>
+ * 			<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
  * 		</ibm-modal>`,
  * 	styles: [require('./sample-modal.component.scss')]
  * })
@@ -47,7 +47,7 @@ import { AfterViewInit, EventEmitter, OnDestroy, OnInit, ElementRef } from "@ang
  * \@Component({
  *  selector: "app-modal-demo",
  *  template: `
- *   <button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
+ *   <button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
  *   <ibm-modal-placeholder></ibm-modal-placeholder>`
  * })
  * export class ModalDemo {
@@ -73,7 +73,7 @@ export declare class ModalComponent implements AfterViewInit, OnInit, OnDestroy 
     size: string;
     /**
      * Classification of the modal.
-     * @type {"default" | "warning" | "error"}
+     * @type {"default" | "danger"}
      * @memberof ModalComponent
      */
     modalType: string;

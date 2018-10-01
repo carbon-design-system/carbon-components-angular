@@ -9,6 +9,12 @@ import { EventEmitter, ElementRef } from "@angular/core";
  */
 export declare class OverlayComponent {
     /**
+     * Classification of the modal.
+     * @type {"default" | "danger"}
+     * @memberof ModalComponent
+     */
+    modalType: "default" | "danger";
+    /**
      * To emit the event where the user selects the overlay behind the `Modal`.
      * @memberof OverlayComponent
      */

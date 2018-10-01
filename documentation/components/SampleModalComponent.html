@@ -169,6 +169,12 @@
                                     <a href="../components/AccordionItem.html" >AccordionItem</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/AlertModalComponent.html" >AlertModalComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/AlertModalStory.html" >AlertModalStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Banner.html" >Banner</a>
                                 </li>
                                 <li class="link">
@@ -703,6 +709,12 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/AccordionItem.html" >AccordionItem</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AlertModalComponent.html" >AlertModalComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/AlertModalStory.html" >AlertModalStory</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/Banner.html" >Banner</a>
@@ -1268,7 +1280,7 @@
 
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import { storiesOf, moduleMetadata } from &quot;@storybook/angular&quot;;
-import { withKnobs, text } from &quot;@storybook/addon-knobs/angular&quot;;
+import { withKnobs, text, select } from &quot;@storybook/addon-knobs/angular&quot;;
 
 import { TranslateModule } from &quot;@ngx-translate/core&quot;;
 
@@ -1282,7 +1294,7 @@ import { Modal, ModalService } from &quot;../&quot;;
 	selector: &quot;app-sample-modal&quot;,
 	template: &#x60;
 		&lt;ibm-modal&gt;
-			&lt;ibm-modal-header (closeSelect)&#x3D;&quot;closeModal()&quot;&gt;Header text&lt;/ibm-modal-header&gt;
+			&lt;ibm-modal-header (closeSelect)&#x3D;&quot;closeModal()&quot;&gt;header label&lt;/ibm-modal-header&gt;
 			&lt;section class&#x3D;&quot;bx--modal-content&quot;&gt;
 				&lt;h1&gt;Sample modal works.&lt;/h1&gt;
 				&lt;p class&#x3D;&quot;bx--modal-content__text&quot;&gt;{{modalText}}&lt;/p&gt;
@@ -1323,6 +1335,34 @@ class ModalStory {
 	}
 }
 
+
+@Modal()
+@Component({
+	selector: &quot;app-alert-modal-story&quot;,
+	template: &#x60;
+		&lt;button class&#x3D;&quot;bx--btn bx--btn--primary&quot; (click)&#x3D;&quot;openModal()&quot;&gt;Open Modal&lt;/button&gt;
+	&#x60;
+})
+class AlertModalStory {
+	@Input() modalType: string;
+	@Input() modalLabel: string;
+	@Input() modalTitle: string;
+	@Input() modalContent: string;
+	@Input() buttons: any;
+
+	constructor(private modalService: ModalService) { }
+
+	openModal() {
+		this.modalService.show({
+			modalType: this.modalType,
+			modalLabel: this.modalLabel,
+			modalTitle: this.modalTitle,
+			modalContent: this.modalContent,
+			buttons: this.buttons
+		});
+	}
+}
+
 storiesOf(&quot;Modal&quot;, module)
 	.addDecorator(
 		moduleMetadata({
@@ -1349,8 +1389,84 @@ storiesOf(&quot;Modal&quot;, module)
 		props: {
 			modalText: text(&quot;modalText&quot;, &quot;Hello, World!&quot;)
 		}
-	}
-));
+	}))
+	.addDecorator(
+		moduleMetadata({
+			declarations: [
+				AlertModalStory
+			],
+			imports: [
+				ModalModule,
+				BrowserAnimationsModule,
+				TranslateModule.forRoot()
+			],
+			entryComponents: [
+				SampleModalComponent
+			]
+		})
+	)
+	.addDecorator(withKnobs)
+	.add(&quot;Transactional&quot;, () &#x3D;&gt; ({
+		template: &#x60;
+		&lt;app-alert-modal-story
+			[modalType]&#x3D;&quot;modalType&quot;
+			[modalLabel]&#x3D;&quot;modalLabel&quot;
+			[modalTitle]&#x3D;&quot;modalTitle&quot;
+			[modalContent]&#x3D;&quot;modalContent&quot;
+			[buttons]&#x3D;&quot;buttons&quot;&gt;
+		&lt;/app-alert-modal-story&gt;
+		&lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;
+		&#x60;,
+		props: {
+			modalType: select(&quot;modalType&quot;, [&quot;default&quot;, &quot;danger&quot;], &quot;default&quot;),
+			modalLabel: text(&quot;modalLabel&quot;, &quot;optional label&quot;),
+			modalTitle: text(&quot;modalTitle&quot;, &quot;Delete service from application&quot;),
+			modalContent: text(&quot;modalContent&quot;, &#x60;Are you sure you want to remove the Speech to Text service from the node-test app?&#x60;),
+			buttons: [{
+				text: &quot;Cancel&quot;,
+				type: &quot;secondary&quot;
+			}, {
+				text: &quot;Delete&quot;,
+				type: &quot;primary&quot;,
+				click: () &#x3D;&gt; alert(&quot;Delete button clicked&quot;)
+			}]
+		}
+	}))
+	.addDecorator(
+		moduleMetadata({
+			declarations: [
+				AlertModalStory
+			],
+			imports: [
+				ModalModule,
+				BrowserAnimationsModule,
+				TranslateModule.forRoot()
+			],
+			entryComponents: [
+				SampleModalComponent
+			]
+		})
+	)
+	.addDecorator(withKnobs)
+	.add(&quot;Passive&quot;, () &#x3D;&gt; ({
+		template: &#x60;
+		&lt;app-alert-modal-story
+			[modalType]&#x3D;&quot;modalType&quot;
+			[modalLabel]&#x3D;&quot;modalLabel&quot;
+			[modalTitle]&#x3D;&quot;modalTitle&quot;
+			[modalContent]&#x3D;&quot;modalContent&quot;&gt;
+		&lt;/app-alert-modal-story&gt;
+		&lt;ibm-modal-placeholder&gt;&lt;/ibm-modal-placeholder&gt;
+		&#x60;,
+		props: {
+			modalType: select(&quot;modalType&quot;, [&quot;default&quot;, &quot;danger&quot;], &quot;default&quot;),
+			modalLabel: text(&quot;modalLabel&quot;, &quot;optional label&quot;),
+			modalTitle: text(&quot;modalTitle&quot;, &quot;Passive modal title&quot;),
+			modalContent: text(&quot;modalContent&quot;, &quot;Passive modal notifications should only appear if there is an action &quot; +
+				&quot;the user needs to address immediately. Passive modal notifications are persistent on screen&quot;)
+		}
+	}))
+;
 </code></pre>
     </div>
 
@@ -1379,7 +1495,7 @@ storiesOf(&quot;Modal&quot;, module)
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverflowTableStory', 'selector': 'app-overflow-table'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModalComponent', 'selector': 'ibm-alert-modal'},{'name': 'AlertModalStory', 'selector': 'app-alert-modal-story'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverflowTableStory', 'selector': 'app-overflow-table'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltipDirective', 'selector': '[ibmEllipsisTooltip]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'PopoverDirective', 'selector': '[ibmPopover]'},{'name': 'PopoverMenuDirective', 'selector': '[ibmPopoverMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'SampleModalComponent'};
 </script>

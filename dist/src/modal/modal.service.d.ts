@@ -36,6 +36,27 @@ export declare class ModalService {
         inputs?: any;
     }): ComponentRef<any>;
     /**
+     * Creates and renders a new alert modal component.
+     * @param data You can pass in `title`, `text` and `buttons` to be used in the modal.
+     * `buttons` is an array of objects
+     * ```
+     * {
+     * 		text: "Button text",
+     * 		type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" = "primary",
+     * 		click: clickFunction,
+     * }
+     * ```
+     * @returns {ComponentRef<any>}
+     * @memberof ModalService
+     */
+    show(data: {
+        modalType?: string;
+        modalLabel?: string;
+        modalTitle: string;
+        modalContent: string;
+        buttons?: null;
+    }): ComponentRef<any>;
+    /**
      * Destroys the modal on the supplied index.
      * When called without parameters it destroys the most recently created/top most modal.
      *
