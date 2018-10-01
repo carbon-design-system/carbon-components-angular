@@ -13,7 +13,7 @@ import { Modal, ModalService } from "../";
 	selector: "app-sample-modal",
 	template: `
 		<ibm-modal>
-			<ibm-modal-header (closeSelect)="closeModal()">header label</ibm-modal-header>
+			<ibm-modal-header (closeSelect)="closeModal()">Header label</ibm-modal-header>
 			<section class="bx--modal-content">
 				<h1>Sample modal works.</h1>
 				<p class="bx--modal-content__text">{{modalText}}</p>
