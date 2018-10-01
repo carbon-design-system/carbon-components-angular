@@ -2,7 +2,8 @@ import {
 	ComponentFactoryResolver,
 	ComponentRef,
 	ReflectiveInjector,
-	ViewContainerRef
+	ViewContainerRef,
+	Injector
 } from "@angular/core";
 import { ModalComponent } from "./modal.component";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
@@ -47,8 +48,9 @@ export class ModalService {
 		data = Object.assign({}, defaults, data);
 
 		const inputProviders = Object.keys(data.inputs).map(inputName => ({provide: inputName, useValue: data.inputs[inputName]}));
-		const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
-		const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.placeholder.viewContainerRef.parentInjector);
+		// const resolvedInputs = ReflectiveInjector.resolve(inputProviders);
+		// const injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.placeholder.viewContainerRef.parentInjector);
+		const injector = Injector.create(inputProviders);
 		const factory = this.resolver.resolveComponentFactory(data.component);
 		let focusedElement = document.activeElement;
 		let component = factory.create(injector);
