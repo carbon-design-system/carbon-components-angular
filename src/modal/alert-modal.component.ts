@@ -1,7 +1,8 @@
 import {
 	Component,
 	Injector,
-	ElementRef
+	ElementRef,
+	Inject
 } from "@angular/core";
 import {
 	trigger,
@@ -71,7 +72,7 @@ import Modal from "./modal.decorator";
 						ibmButton="{{button.type}}"
 						(click)="buttonClicked(i)"
 						[id]="button.id"
-						[attr.modal-primary-focus]="button.type.indexOf('primary') !== -1 ? '' : null">
+						[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
 						{{button.text}}
 					</button>
 				</ng-container>
@@ -80,27 +81,18 @@ import Modal from "./modal.decorator";
 	`
 })
 export class AlertModalComponent {
-	modalType = "default";
-	modalLabel: string;
-	modalTitle: string;
-	modalContent: string;
-	buttons = [];
-
 	/**
 	 * Creates an instance of `AlertModalComponent`.
 	 * @param {ModalService} modalService
 	 * @memberof AlertModalComponent
 	 */
 	constructor(
-		private injector: Injector,
-		private elementRef: ElementRef
+		@Inject("modalType") public modalType = "default",
+		@Inject("modalLabel") public modalLabel: string,
+		@Inject("modalTitle") public modalTitle: string,
+		@Inject("modalContent") public modalContent: string,
+		@Inject("buttons") public buttons = []
 	) {
-		this.modalType = this.injector.get("modalType");
-		this.modalLabel = this.injector.get("modalLabel");
-		this.modalTitle = this.injector.get("modalTitle");
-		this.modalContent = this.injector.get("modalContent");
-
-		this.buttons = this.injector.get("buttons") || [];
 		for (let i = 0; i < this.buttons.length; i++) {
 			const button = this.buttons[i];
 			if (!button.id) {

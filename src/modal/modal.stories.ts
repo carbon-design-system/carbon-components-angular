@@ -4,7 +4,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 import { TranslateModule } from "@ngx-translate/core";
 
 import { ModalModule } from "../";
-import { Component, Injector, Input } from "@angular/core";
+import { Component, Input, Inject } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Modal, ModalService } from "../";
 
@@ -25,10 +25,7 @@ import { Modal, ModalService } from "../";
 	`
 })
 class SampleModalComponent {
-	modalText: string;
-	constructor(private injector: Injector) {
-		this.modalText = this.injector.get("modalText");
-	}
+	constructor(@Inject("modalText") public modalText) {}
 }
 
 @Modal()
