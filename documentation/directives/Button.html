@@ -1208,7 +1208,7 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
-                                        <a href="#class">class</a>
+                                        <a href="#class.bx--btn">class.bx--btn</a>
                                     </li>
                                     <li>
                                         <a href="#class.bx--btn--danger">class.bx--btn--danger</a>
@@ -1301,19 +1301,19 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <a name="class"></a>
-                                    <span class="name"><b> class</b><a href="#class"><span class="fa fa-link"></span></a></span>
+                                    <a name="class.bx--btn"></a>
+                                    <span class="name"><b> class.bx--btn</b><a href="#class.bx--btn"><span class="fa fa-link"></span></a></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <code>class:     <code></code>
+                                    <code>class.bx--btn:     <code></code>
             </code>
                                 </td>
                             </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <i>Default value : </i><code>bx--btn</code>
+                                        <i>Default value : </i><code>true</code>
                                     </td>
                                 </tr>
                                     <tr>
@@ -1601,7 +1601,7 @@ export class Button implements OnInit {
 	 */
 	@Input() size: &quot;normal&quot; | &quot;sm&quot; &#x3D; &quot;normal&quot;;
 	// a whole lot of HostBindings ... this way we don&#x27;t have to touch the elementRef directly
-	@HostBinding(&quot;class&quot;) btnClass &#x3D; &quot;bx--btn&quot;;
+	@HostBinding(&quot;class.bx--btn&quot;) baseClass &#x3D; true;
 	@HostBinding(&quot;class.bx--btn--primary&quot;) primary &#x3D; true;
 	@HostBinding(&quot;class.bx--btn--secondary&quot;) secondary &#x3D; false;
 	@HostBinding(&quot;class.bx--btn--tertiary&quot;) tertiary &#x3D; false;

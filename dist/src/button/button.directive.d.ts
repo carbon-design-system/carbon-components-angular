@@ -20,7 +20,7 @@ export declare class Button implements OnInit {
      * Specify the size of the button
      */
     size: "normal" | "sm";
-    btnClass: string;
+    baseClass: boolean;
     primary: boolean;
     secondary: boolean;
     tertiary: boolean;
