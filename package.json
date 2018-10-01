@@ -8,11 +8,18 @@
     "storybook": "start-storybook -s .storybook/public -p 6006",
     "docs:build": "compodoc src -p tsconfig.json",
     "docs:server": "compodoc src -p tsconfig.json -s -w",
-    "lint": "tslint src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
+    "lint": "npm run lint:script && npm run lint:styles",
+    "lint:script": "tslint src/**/*.ts",
+    "lint:script:staged": "tslint",
+    "lint:styles": "stylelint src/**/*.scss --config .stylelintrc.yml",
+    "lint:styles:staged": "stylelint --config .stylelintrc.yml",
+    "format": "prettier --write ./**/*.{js,scss,yml}",
+    "format:staged": "prettier --write",
     "test": "karma start",
     "test:watch": "karma start --auto-watch --no-single-run",
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
+    "precommit": "lint-staged",
     "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
     "commit": "git-cz"
@@ -47,6 +54,28 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog-components"
     }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint:script:staged",
+      "npm run format:staged",
+      "git add"
+    ],
+    "*.scss": [
+      "npm run lint:styles:staged",
+      "npm run format:staged",
+      "git add"
+    ],
+    "*.{js,css,md,yml}": [
+      "npm run format:staged",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 140,
+    "singleQuote": false,
+    "useTabs": true,
+    "trailingComma": "none"
   },
   "repository": {
     "type": "git",
@@ -122,8 +151,10 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "3.0.0",
+    "lint-staged": "7.3.0",
     "node-sass": "4.9.3",
     "postcss-loader": "2.1.4",
+    "prettier": "1.15.1",
     "raw-loader": "0.5.1",
     "run-sequence": "2.2.0",
     "rxjs": "6.2.2",
@@ -131,6 +162,8 @@
     "semantic-release": "15.10.6",
     "style-loader": "0.21.0",
     "stylelint": "8.4.0",
+    "stylelint-config-prettier": "4.0.0",
+    "stylelint-prettier": "1.0.3",
     "stylelint-webpack-plugin": "0.10.4",
     "svgxuse": "1.2.6",
     "ts-helpers": "1.1.2",
