@@ -8,6 +8,7 @@ import { ModalComponent } from "./modal.component";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
 import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
+import { AlertModalComponent } from "./alert-modal.component";
 
 
 /**
@@ -65,6 +66,33 @@ export class ModalService {
 			}
 		};
 		return component;
+	}
+
+	/**
+	 * Creates and renders a new alert modal component.
+	 * @param data You can pass in `title`, `text` and `buttons` to be used in the modal.
+	 * `buttons` is an array of objects
+	 * ```
+	 * {
+	 * 		text: "Button text",
+	 * 		type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" = "primary",
+	 * 		click: clickFunction,
+	 * }
+	 * ```
+	 * @returns {ComponentRef<any>}
+	 * @memberof ModalService
+	 */
+	show(data: {modalType?: string, modalLabel?: string, modalTitle: string, modalContent: string, buttons?: null}) {
+		return this.create({
+			component: AlertModalComponent,
+			inputs: {
+				modalType: data.modalType,
+				modalLabel: data.modalLabel,
+				modalTitle: data.modalTitle,
+				modalContent: data.modalContent,
+				buttons: data.buttons || []
+			}
+		});
 	}
 
 	/**

@@ -13,7 +13,7 @@ storiesOf("Tooltip", module)
 			imports: [
 				DialogModule,
 				TranslateModule.forRoot()
-			],
+			]
 		})
 	)
 	.addDecorator(withKnobs)
