@@ -1215,19 +1215,19 @@ export class ModalDemo {
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#buttons">buttons</a>
+                                <span class="modifier">Public</span> <a href="#buttons">buttons</a>
                             </li>
                             <li>
-                                 <a href="#modalContent">modalContent</a>
+                                <span class="modifier">Public</span> <a href="#modalContent">modalContent</a>
                             </li>
                             <li>
-                                 <a href="#modalLabel">modalLabel</a>
+                                <span class="modifier">Public</span> <a href="#modalLabel">modalLabel</a>
                             </li>
                             <li>
-                                 <a href="#modalTitle">modalTitle</a>
+                                <span class="modifier">Public</span> <a href="#modalTitle">modalTitle</a>
                             </li>
                             <li>
-                                 <a href="#modalType">modalType</a>
+                                <span class="modifier">Public</span> <a href="#modalType">modalType</a>
                             </li>
                         </ul>
                     </td>
@@ -1259,12 +1259,12 @@ export class ModalDemo {
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(injector: <a href="https://angular.io/docs/ts/latest/api/api/core/Injector" target="_blank">Injector</a>, elementRef: <a href="https://angular.io/docs/ts/latest/api/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                            <code>constructor(modalType: , modalLabel: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, modalTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, modalContent: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, buttons: )</code>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modal/alert-modal.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/modal/alert-modal.component.ts:83</a></div>
                                 </td>
                             </tr>
     
@@ -1285,18 +1285,43 @@ export class ModalDemo {
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>injector</td>
+                                                      <td>modalType</td>
                                                       <td>
-                                                                <code><a href="https://angular.io/docs/ts/latest/api/api/core/Injector" target="_blank" >Injector</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
                                                       <td></td>
                                                     </tr>
                                                     <tr>
-                                                      <td>elementRef</td>
+                                                      <td>modalLabel</td>
                                                       <td>
-                                                                <code><a href="https://angular.io/docs/ts/latest/api/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>modalTitle</td>
+                                                      <td>
+                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>modalContent</td>
+                                                      <td>
+                                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>buttons</td>
+                                                      <td>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1337,7 +1362,7 @@ export class ModalDemo {
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/modal/alert-modal.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/modal/alert-modal.component.ts:107</a></div>
                                 </td>
                             </tr>
     
@@ -1397,7 +1422,7 @@ export class ModalDemo {
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/modal/alert-modal.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/modal/alert-modal.component.ts:116</a></div>
                                 </td>
                             </tr>
     
@@ -1424,18 +1449,23 @@ export class ModalDemo {
                     <tr>
                         <td class="col-md-4">
                             <a name="buttons"></a>
-                            <span class="name"><b> buttons</b><a href="#buttons"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> buttons</b><a href="#buttons"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>buttons:     <code></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>buttons:     <code></code>
     </code>
                         </td>
                     </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>Inject</code>
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modal/alert-modal.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modal/alert-modal.component.ts:94</a></div>
                                 </td>
                             </tr>
     
@@ -1447,12 +1477,12 @@ export class ModalDemo {
                     <tr>
                         <td class="col-md-4">
                             <a name="modalContent"></a>
-                            <span class="name"><b> modalContent</b><a href="#modalContent"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> modalContent</b><a href="#modalContent"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>modalContent:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>modalContent:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -1462,9 +1492,14 @@ export class ModalDemo {
     
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>Inject</code>
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/modal/alert-modal.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modal/alert-modal.component.ts:93</a></div>
                                 </td>
                             </tr>
     
@@ -1476,12 +1511,12 @@ export class ModalDemo {
                     <tr>
                         <td class="col-md-4">
                             <a name="modalLabel"></a>
-                            <span class="name"><b> modalLabel</b><a href="#modalLabel"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> modalLabel</b><a href="#modalLabel"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>modalLabel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>modalLabel:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -1491,9 +1526,14 @@ export class ModalDemo {
     
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>Inject</code>
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modal/alert-modal.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/modal/alert-modal.component.ts:91</a></div>
                                 </td>
                             </tr>
     
@@ -1505,12 +1545,12 @@ export class ModalDemo {
                     <tr>
                         <td class="col-md-4">
                             <a name="modalTitle"></a>
-                            <span class="name"><b> modalTitle</b><a href="#modalTitle"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> modalTitle</b><a href="#modalTitle"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>modalTitle:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>modalTitle:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
     </code>
                         </td>
                     </tr>
@@ -1520,9 +1560,14 @@ export class ModalDemo {
     
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>Inject</code>
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/modal/alert-modal.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/modal/alert-modal.component.ts:92</a></div>
                                 </td>
                             </tr>
     
@@ -1534,12 +1579,12 @@ export class ModalDemo {
                     <tr>
                         <td class="col-md-4">
                             <a name="modalType"></a>
-                            <span class="name"><b> modalType</b><a href="#modalType"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> modalType</b><a href="#modalType"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>modalType:     <code></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>modalType:     <code></code>
     </code>
                         </td>
                     </tr>
@@ -1548,9 +1593,14 @@ export class ModalDemo {
                                 <i>Default value : </i><code>default</code>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>Inject</code>
+                            </td>
+                        </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/modal/alert-modal.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/modal/alert-modal.component.ts:90</a></div>
                                 </td>
                             </tr>
     
@@ -1566,7 +1616,8 @@ export class ModalDemo {
         <pre class="line-numbers"><code class="language-typescript">import {
 	Component,
 	Injector,
-	ElementRef
+	ElementRef,
+	Inject
 } from &quot;@angular/core&quot;;
 import {
 	trigger,
@@ -1636,7 +1687,7 @@ import Modal from &quot;./modal.decorator&quot;;
 						ibmButton&#x3D;&quot;{{button.type}}&quot;
 						(click)&#x3D;&quot;buttonClicked(i)&quot;
 						[id]&#x3D;&quot;button.id&quot;
-						[attr.modal-primary-focus]&#x3D;&quot;button.type.indexOf(&#x27;primary&#x27;) !&#x3D;&#x3D; -1 ? &#x27;&#x27; : null&quot;&gt;
+						[attr.modal-primary-focus]&#x3D;&quot;(button.type.indexOf(&#x27;primary&#x27;) !&#x3D;&#x3D; -1 ? &#x27;&#x27; : null)&quot;&gt;
 						{{button.text}}
 					&lt;/button&gt;
 				&lt;/ng-container&gt;
@@ -1645,27 +1696,18 @@ import Modal from &quot;./modal.decorator&quot;;
 	&#x60;
 })
 export class AlertModalComponent {
-	modalType &#x3D; &quot;default&quot;;
-	modalLabel: string;
-	modalTitle: string;
-	modalContent: string;
-	buttons &#x3D; [];
-
 	/**
 	 * Creates an instance of &#x60;AlertModalComponent&#x60;.
 	 * @param {ModalService} modalService
 	 * @memberof AlertModalComponent
 	 */
 	constructor(
-		private injector: Injector,
-		private elementRef: ElementRef
+		@Inject(&quot;modalType&quot;) public modalType &#x3D; &quot;default&quot;,
+		@Inject(&quot;modalLabel&quot;) public modalLabel: string,
+		@Inject(&quot;modalTitle&quot;) public modalTitle: string,
+		@Inject(&quot;modalContent&quot;) public modalContent: string,
+		@Inject(&quot;buttons&quot;) public buttons &#x3D; []
 	) {
-		this.modalType &#x3D; this.injector.get(&quot;modalType&quot;);
-		this.modalLabel &#x3D; this.injector.get(&quot;modalLabel&quot;);
-		this.modalTitle &#x3D; this.injector.get(&quot;modalTitle&quot;);
-		this.modalContent &#x3D; this.injector.get(&quot;modalContent&quot;);
-
-		this.buttons &#x3D; this.injector.get(&quot;buttons&quot;) || [];
 		for (let i &#x3D; 0; i &lt; this.buttons.length; i++) {
 			const button &#x3D; this.buttons[i];
 			if (!button.id) {

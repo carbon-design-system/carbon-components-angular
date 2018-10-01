@@ -1178,7 +1178,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                 <a href="#modalText">modalText</a>
+                                <span class="modifier">Public</span> <a href="#modalText">modalText</a>
                             </li>
                         </ul>
                     </td>
@@ -1193,12 +1193,12 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(injector: <a href="https://angular.io/docs/ts/latest/api/api/core/Injector" target="_blank">Injector</a>)</code>
+                            <code>constructor(modalText: )</code>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modal/modal.stories.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modal/modal.stories.ts:27</a></div>
                                 </td>
                             </tr>
     
@@ -1217,9 +1217,8 @@
                                             </thead>
                                             <tbody>
                                                     <tr>
-                                                      <td>injector</td>
+                                                      <td>modalText</td>
                                                       <td>
-                                                                <code><a href="https://angular.io/docs/ts/latest/api/api/core/Injector" target="_blank" >Injector</a></code>
                                                       </td>
                                                       <td>
                                                       </td>
@@ -1249,19 +1248,18 @@
                     <tr>
                         <td class="col-md-4">
                             <a name="modalText"></a>
-                            <span class="name"><b> modalText</b><a href="#modalText"><span class="fa fa-link"></span></a></span>
+                            <span class="name"><b><span class="modifier">Public</span> modalText</b><a href="#modalText"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>modalText:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>modalText:     <code></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-    
+                                <i>Decorators : </i><code>Inject</code>
                             </td>
                         </tr>
                             <tr>
@@ -1285,7 +1283,7 @@ import { withKnobs, text, select } from &quot;@storybook/addon-knobs/angular&quo
 import { TranslateModule } from &quot;@ngx-translate/core&quot;;
 
 import { ModalModule } from &quot;../&quot;;
-import { Component, Injector, Input } from &quot;@angular/core&quot;;
+import { Component, Input, Inject } from &quot;@angular/core&quot;;
 import { BrowserAnimationsModule } from &quot;@angular/platform-browser/animations&quot;;
 import { Modal, ModalService } from &quot;../&quot;;
 
@@ -1306,10 +1304,7 @@ import { Modal, ModalService } from &quot;../&quot;;
 	&#x60;
 })
 class SampleModalComponent {
-	modalText: string;
-	constructor(private injector: Injector) {
-		this.modalText &#x3D; this.injector.get(&quot;modalText&quot;);
-	}
+	constructor(@Inject(&quot;modalText&quot;) public modalText) {}
 }
 
 @Modal()

@@ -1,4 +1,3 @@
-import { Injector, ElementRef } from "@angular/core";
 /**
  * Component to create standard modals for presenting content or asking for user's input.
  * It can show as a passive modal showing only text or show as a transactional modal with
@@ -41,8 +40,6 @@ import { Injector, ElementRef } from "@angular/core";
  * @class AlertModalComponent
  */
 export declare class AlertModalComponent {
-    private injector;
-    private elementRef;
     modalType: string;
     modalLabel: string;
     modalTitle: string;
@@ -53,7 +50,7 @@ export declare class AlertModalComponent {
      * @param {ModalService} modalService
      * @memberof AlertModalComponent
      */
-    constructor(injector: Injector, elementRef: ElementRef);
+    constructor(modalType: string, modalLabel: string, modalTitle: string, modalContent: string, buttons?: any[]);
     buttonClicked(buttonIndex: any): void;
     closeModal(): void;
 }

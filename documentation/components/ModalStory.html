@@ -1198,7 +1198,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/modal/modal.stories.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modal/modal.stories.ts:40</a></div>
                                 </td>
                             </tr>
     
@@ -1260,7 +1260,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/modal/modal.stories.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/modal/modal.stories.ts:44</a></div>
                                 </td>
                             </tr>
     
@@ -1288,7 +1288,7 @@ import { withKnobs, text, select } from &quot;@storybook/addon-knobs/angular&quo
 import { TranslateModule } from &quot;@ngx-translate/core&quot;;
 
 import { ModalModule } from &quot;../&quot;;
-import { Component, Injector, Input } from &quot;@angular/core&quot;;
+import { Component, Input, Inject } from &quot;@angular/core&quot;;
 import { BrowserAnimationsModule } from &quot;@angular/platform-browser/animations&quot;;
 import { Modal, ModalService } from &quot;../&quot;;
 
@@ -1309,10 +1309,7 @@ import { Modal, ModalService } from &quot;../&quot;;
 	&#x60;
 })
 class SampleModalComponent {
-	modalText: string;
-	constructor(private injector: Injector) {
-		this.modalText &#x3D; this.injector.get(&quot;modalText&quot;);
-	}
+	constructor(@Inject(&quot;modalText&quot;) public modalText) {}
 }
 
 @Modal()

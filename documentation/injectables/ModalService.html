@@ -1206,7 +1206,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modal/modal.service.ts:29</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modal/modal.service.ts:30</a></div>
                                         </td>
                                     </tr>
             
@@ -1275,7 +1275,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modal/modal.service.ts:45</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/modal/modal.service.ts:46</a></div>
                                         </td>
                                     </tr>
             
@@ -1483,7 +1483,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modal/modal.service.ts:35</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modal/modal.service.ts:36</a></div>
                                         </td>
                                     </tr>
             
@@ -1512,7 +1512,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modal/modal.service.ts:35</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modal/modal.service.ts:36</a></div>
                                         </td>
                                     </tr>
             
@@ -1529,7 +1529,8 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 	ComponentFactoryResolver,
 	ComponentRef,
 	ReflectiveInjector,
-	ViewContainerRef
+	ViewContainerRef,
+	Injector
 } from &quot;@angular/core&quot;;
 import { ModalComponent } from &quot;./modal.component&quot;;
 import { ModalPlaceholderService } from &quot;./modal-placeholder.service&quot;;
@@ -1574,8 +1575,7 @@ export class ModalService {
 		data &#x3D; Object.assign({}, defaults, data);
 
 		const inputProviders &#x3D; Object.keys(data.inputs).map(inputName &#x3D;&gt; ({provide: inputName, useValue: data.inputs[inputName]}));
-		const resolvedInputs &#x3D; ReflectiveInjector.resolve(inputProviders);
-		const injector &#x3D; ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.placeholder.viewContainerRef.parentInjector);
+		const injector &#x3D; Injector.create(inputProviders);
 		const factory &#x3D; this.resolver.resolveComponentFactory(data.component);
 		let focusedElement &#x3D; document.activeElement;
 		let component &#x3D; factory.create(injector);
