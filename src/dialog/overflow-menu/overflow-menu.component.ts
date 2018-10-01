@@ -39,7 +39,7 @@ import { Component, ElementRef } from "@angular/core";
 	`,
 	styles: [`
 		.bx--overflow-menu--open {
-				opacity: 1
+			opacity: 1
 		}
 	`]
 })
