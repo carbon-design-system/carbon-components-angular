@@ -3,7 +3,8 @@ import {
 	Output,
 	EventEmitter,
 	ViewChild,
-	ElementRef
+	ElementRef,
+	Input
 } from "@angular/core";
 
 
@@ -20,6 +21,7 @@ import {
 	template: `
 		<section
 			class="bx--modal bx--modal-tall is-visible"
+			[ngClass]="{'bx--modal--danger': modalType === 'danger'}"
 			(click)="overlayClick($event)"
 			#overlay>
 			<ng-content></ng-content>
@@ -27,6 +29,12 @@ import {
 	`
 })
 export class OverlayComponent {
+	/**
+	 * Classification of the modal.
+	 * @type {"default" | "danger"}
+	 * @memberof ModalComponent
+	 */
+	@Input() modalType: "default" | "danger" = "default";
 	/**
 	 * To emit the event where the user selects the overlay behind the `Modal`.
 	 * @memberof OverlayComponent
