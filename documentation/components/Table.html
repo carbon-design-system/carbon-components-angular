@@ -3602,7 +3602,7 @@ import { getScrollbarWidth } from &quot;../common/utils&quot;;
 							class&#x3D;&quot;bx--table-sort-v2&quot;
 							[ngClass]&#x3D;&quot;{
 								&#x27;bx--table-sort-v2--active&#x27;: column.sorted,
-								&#x27;bx--table-sort-v2--ascending&#x27;: column.descending
+								&#x27;bx--table-sort-v2--ascending&#x27;: column.ascending
 							}&quot;
 							(click)&#x3D;&quot;sort.emit(i)&quot;&gt;
 							&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;{{column.data}}&lt;/span&gt;
