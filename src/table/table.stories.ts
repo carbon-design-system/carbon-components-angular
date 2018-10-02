@@ -272,10 +272,10 @@ class PaginationTableStory implements OnInit {
 		this.model.totalDataLength = value;
 	}
 
-	@ViewChild("filterableHeaderTemplate")
-	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("filter")
 	filter: TemplateRef<any>;
+	@ViewChild("filterableHeaderTemplate")
+	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("paginationTableItemTemplate")
 	private paginationTableItemTemplate: TemplateRef<any>;
 
