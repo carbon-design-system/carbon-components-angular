@@ -171,7 +171,7 @@ import { getScrollbarWidth } from "../common/utils";
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
 					*ngIf="column.visible"
-					class="column.className"
+					[class]="column.className"
 					[ngStyle]="column.style"
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
@@ -308,6 +308,7 @@ import { getScrollbarWidth } from "../common/utils";
 					</td>
 					<ng-container *ngFor="let item of row; let i = index">
 						<td *ngIf="model.header[i].visible"
+							[class]="model.header[i].className"
 							[ngStyle]="model.header[i].style">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template

@@ -57,7 +57,8 @@ class TableStory implements OnInit, OnChanges {
 			new TableHeaderItem({
 				data: "hwer",
 				style: {"width": "auto"},
-				sortable: this.sortable
+				sortable: this.sortable,
+				className: "my-class"
 			})
 		];
 	}
