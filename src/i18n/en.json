@@ -51,7 +51,7 @@
 		"TOOLTIP": {
 			"CLOSE": "Close tooltip"
 		},
-		"POPOVER" : {
+		"POPOVER": {
 			"CLOSE": "Close popover"
 		}
 	},
@@ -68,7 +68,7 @@
 	"MODAL": {
 		"CLOSE": "Close modal"
 	},
-	"OVERFLOW_MENU" : {
+	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},
 	"PAGINATION": {
