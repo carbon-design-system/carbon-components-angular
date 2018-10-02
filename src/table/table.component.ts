@@ -184,7 +184,7 @@ import { getScrollbarWidth } from "../common/utils";
 							class="bx--table-sort-v2"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
-								'bx--table-sort-v2--ascending': column.descending
+								'bx--table-sort-v2--ascending': column.ascending
 							}"
 							(click)="sort.emit(i)">
 							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
