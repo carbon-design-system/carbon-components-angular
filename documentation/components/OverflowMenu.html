@@ -1169,6 +1169,14 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+		.bx--overflow-menu--open {
+			opacity: 1
+		}
+	</code></td>
+            </tr>
 
 
 
@@ -1178,6 +1186,52 @@
 </section>
 
 
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>constructor(elementRef: <a href="https://angular.io/docs/ts/latest/api/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:46</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div>
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>elementRef</td>
+                                                      <td>
+                                                                <code><a href="https://angular.io/docs/ts/latest/api/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 
 
@@ -1185,11 +1239,38 @@
 
 
 
+    <section>
+        <h3 id="accessors">
+            Accessors
+        </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="open"></a>
+                            <span class="name"><b>open</b><a href="#open"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>open()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:49</a></div>
+                                    </td>
+                                </tr>
+    
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component, ElementRef } from &quot;@angular/core&quot;;
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -1209,6 +1290,7 @@
 		&lt;div
 			[ibmOverflowMenu]&#x3D;&quot;options&quot;
 			[appendToBody]&#x3D;&quot;true&quot;
+			[ngClass]&#x3D;&quot;{&#x27;bx--overflow-menu--open&#x27;: open &#x3D;&#x3D;&#x3D; true}&quot;
 			attr.aria-label&#x3D;&quot;{{&#x27;OVERFLOW_MENU.OVERFLOW&#x27; | translate}}&quot;
 			class&#x3D;&quot;bx--overflow-menu&quot;
 			role&#x3D;&quot;button&quot;
@@ -1226,9 +1308,23 @@
 		&lt;ng-template #options&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/ng-template&gt;
-	&#x60;
+	&#x60;,
+	styles: [&#x60;
+		.bx--overflow-menu--open {
+			opacity: 1
+		}
+	&#x60;]
 })
-export class OverflowMenu {}
+export class OverflowMenu {
+	constructor(private elementRef: ElementRef) {}
+
+	get open() {
+		if (this.elementRef.nativeElement.children[0].getAttribute(&quot;aria-expanded&quot;) &#x3D;&#x3D;&#x3D; &quot;true&quot;) {
+			return true;
+		}
+		return false;
+	}
+}
 </code></pre>
     </div>
 

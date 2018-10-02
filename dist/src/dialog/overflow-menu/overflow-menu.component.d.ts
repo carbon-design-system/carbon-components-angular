@@ -1,3 +1,4 @@
+import { ElementRef } from "@angular/core";
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
  *
@@ -11,4 +12,7 @@
  * ```
  */
 export declare class OverflowMenu {
+    private elementRef;
+    constructor(elementRef: ElementRef);
+    readonly open: boolean;
 }
