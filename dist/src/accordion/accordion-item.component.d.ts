@@ -1,11 +1,11 @@
 import { EventEmitter } from "@angular/core";
 export declare class AccordionItem {
-    static accodionItemCount: number;
+    static accordionItemCount: number;
     title: string;
-    expanded: boolean;
     id: string;
     selected: EventEmitter<{}>;
-    itemClass: string;
+    itemClass: boolean;
+    expanded: boolean;
     itemType: string;
     constructor();
     toggleExpanded(): void;

@@ -1178,7 +1178,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <span class="modifier">Static</span> <a href="#accodionItemCount">accodionItemCount</a>
+                                <span class="modifier">Static</span> <a href="#accordionItemCount">accordionItemCount</a>
                             </li>
                         </ul>
                     </td>
@@ -1240,7 +1240,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#class">class</a>
+                                <a href="#class.bx--accordion__item">class.bx--accordion__item</a>
                             </li>
                             <li>
                                 <a href="#style.display">style.display</a>
@@ -1288,7 +1288,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/accordion/accordion-item.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/accordion/accordion-item.component.ts:38</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1305,7 +1305,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/accordion/accordion-item.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/accordion/accordion-item.component.ts:34</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1345,7 +1345,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/accordion/accordion-item.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/accordion/accordion-item.component.ts:35</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1357,24 +1357,24 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="class"></a>
-                            <span class="name"><b> class</b><a href="#class"><span class="fa fa-link"></span></a></span>
+                            <a name="class.bx--accordion__item"></a>
+                            <span class="name"><b> class.bx--accordion__item</b><a href="#class.bx--accordion__item"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>class:     <code></code>
+                            <code>class.bx--accordion__item:     <code></code>
     </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Default value : </i><code>bx--accordion__item</code>
+                                <i>Default value : </i><code>true</code>
                             </td>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/accordion/accordion-item.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/accordion/accordion-item.component.ts:37</a></div>
                                 </td>
                             </tr>
     
@@ -1461,13 +1461,13 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="accodionItemCount"></a>
-                            <span class="name"><b><span class="modifier">Static</span> accodionItemCount</b><a href="#accodionItemCount"><span class="fa fa-link"></span></a></span>
+                            <a name="accordionItemCount"></a>
+                            <span class="name"><b><span class="modifier">Static</span> accordionItemCount</b><a href="#accordionItemCount"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>accodionItemCount:     <code></code>
+                            <span class="modifier-icon fa fa-reset"></span><code>accordionItemCount:     <code></code>
     </code>
                         </td>
                     </tr>
@@ -1522,17 +1522,17 @@
 	&#x60;
 })
 export class AccordionItem {
-	static accodionItemCount &#x3D; 0;
-	@Input() title &#x3D; &#x60;Title ${AccordionItem.accodionItemCount}&#x60;;
-	@HostBinding(&quot;class.bx--accordion__item--active&quot;) @Input() expanded &#x3D; false;
-	@Input() id &#x3D; &#x60;accordion-item-${AccordionItem.accodionItemCount}&#x60;;
+	static accordionItemCount &#x3D; 0;
+	@Input() title &#x3D; &#x60;Title ${AccordionItem.accordionItemCount}&#x60;;
+	@Input() id &#x3D; &#x60;accordion-item-${AccordionItem.accordionItemCount}&#x60;;
 	@Output() selected &#x3D; new EventEmitter();
 
-	@HostBinding(&quot;class&quot;) itemClass &#x3D; &quot;bx--accordion__item&quot;;
+	@HostBinding(&quot;class.bx--accordion__item&quot;) itemClass &#x3D; true;
+	@HostBinding(&quot;class.bx--accordion__item--active&quot;) @Input() expanded &#x3D; false;
 	@HostBinding(&quot;style.display&quot;) @HostBinding(&quot;attr.role&quot;) itemType &#x3D; &quot;list-item&quot;;
 
 	constructor() {
-		AccordionItem.accodionItemCount++;
+		AccordionItem.accordionItemCount++;
 	}
 
 	public toggleExpanded() {
