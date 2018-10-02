@@ -19,9 +19,9 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 	selector: "ibm-modal-header",
 	template: `
 		<header class="{{modalType}} bx--modal-header" role="banner">
-			<h5 class="bx--modal-header__heading">
+			<div class="bx--modal-header">
 				<ng-content></ng-content>
-			</h5>
+			</div>
 			<button
 				class="bx--modal-close"
 				attr.aria-label="{{'MODAL.CLOSE' | translate}}"
@@ -35,7 +35,7 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 					width="10"
 					aria-label="close the modal"
 					alt="close the modal">
-					<title>close the modal</title>
+					<title>{{'MODAL.CLOSE' | translate}}</title>
 					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
 				</svg>
 			</button>

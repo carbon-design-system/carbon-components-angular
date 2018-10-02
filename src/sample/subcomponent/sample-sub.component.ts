@@ -18,6 +18,7 @@ import { SampleInterface } from "./../sample.interface";
 	template: `
 		<span>Hello from a subcomponent</span>
 	`,
+		// tslint:disable-next-line:no-forward-ref
 		providers: [{provide: SampleBase, useExisting: forwardRef(() => SampleSub)}]
 })
 export class SampleSub implements SampleBase, OnChanges {
