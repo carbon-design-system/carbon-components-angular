@@ -17,7 +17,8 @@ import {
 	merge
 } from "rxjs";
 import { throttleTime } from "rxjs/operators";
-import position from "../utils/position";
+// the AbsolutePosition is required to import the declaration correctly
+import position, { AbsolutePosition } from "./../utils/position";
 import { cycleTabs } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
