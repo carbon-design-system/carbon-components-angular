@@ -29,17 +29,17 @@ import {
 	`
 })
 export class AccordionItem {
-	static accodionItemCount = 0;
-	@Input() title = `Title ${AccordionItem.accodionItemCount}`;
-	@HostBinding("class.bx--accordion__item--active") @Input() expanded = false;
-	@Input() id = `accordion-item-${AccordionItem.accodionItemCount}`;
+	static accordionItemCount = 0;
+	@Input() title = `Title ${AccordionItem.accordionItemCount}`;
+	@Input() id = `accordion-item-${AccordionItem.accordionItemCount}`;
 	@Output() selected = new EventEmitter();
 
-	@HostBinding("class") itemClass = "bx--accordion__item";
+	@HostBinding("class.bx--accordion__item") itemClass = true;
+	@HostBinding("class.bx--accordion__item--active") @Input() expanded = false;
 	@HostBinding("style.display") @HostBinding("attr.role") itemType = "list-item";
 
 	constructor() {
-		AccordionItem.accodionItemCount++;
+		AccordionItem.accordionItemCount++;
 	}
 
 	public toggleExpanded() {
