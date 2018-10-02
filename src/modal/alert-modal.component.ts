@@ -1,9 +1,8 @@
 import {
 	Component,
 	Injector,
-	OnInit,
 	ElementRef,
-	AfterViewInit
+	Inject
 } from "@angular/core";
 import {
 	trigger,
@@ -13,7 +12,6 @@ import {
 	animate
 } from "@angular/animations";
 import Modal from "./modal.decorator";
-import { ModalService } from "./modal.service";
 
 /**
  * Component to create standard modals for presenting content or asking for user's input.
@@ -40,8 +38,8 @@ import { ModalService } from "./modal.service";
  * 	openModal() {
  * 		this.modalService.show({
  *			modalType: "default",
- *			headerLabel: "optional header text",
- *			title: "Modal title",
+ *			modalLabel: "optional header text",
+ *			modalTitle: "Modal modalTitle",
  *			text: "Modal text",
  *			buttons: [{
  *				text: "Button text",
@@ -62,46 +60,39 @@ import { ModalService } from "./modal.service";
 	template: `
 		<ibm-modal [modalType]="modalType">
 			<ibm-modal-header (closeSelect)="closeModal()">
-				<p class="bx--modal-header__label bx--type-delta">{{headerLabel}}</p>
-      			<p class="bx--modal-header__heading bx--type-beta">{{title}}</p>
+				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
+      			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
 			<div class="bx--modal-content">
-				<p>{{text}}</p>
+				<p>{{modalContent}}</p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
-				<button
-					*ngFor="let button of buttons; let i = index"
-					ibmButton="{{button.type}}"
-					(click)="buttonClicked(i)"
-					[id]="button.id">
-					{{button.text}}
-				</button>
+				<ng-container *ngFor="let button of buttons; let i = index">
+					<button
+						ibmButton="{{button.type}}"
+						(click)="buttonClicked(i)"
+						[id]="button.id"
+						[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
+						{{button.text}}
+					</button>
+				</ng-container>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`
 })
-export class AlertModalComponent implements AfterViewInit {
-	modalType = "default";
-	headerLabel: string;
-	title: string;
-	text: string;
-	buttons = [];
-
+export class AlertModalComponent {
 	/**
 	 * Creates an instance of `AlertModalComponent`.
 	 * @param {ModalService} modalService
 	 * @memberof AlertModalComponent
 	 */
 	constructor(
-		private injector: Injector,
-		private elementRef: ElementRef
+		@Inject("modalType") public modalType = "default",
+		@Inject("modalLabel") public modalLabel: string,
+		@Inject("modalTitle") public modalTitle: string,
+		@Inject("modalContent") public modalContent: string,
+		@Inject("buttons") public buttons = []
 	) {
-		this.modalType = this.injector.get("modalType");
-		this.headerLabel = this.injector.get("headerLabel");
-		this.title = this.injector.get("title");
-		this.text = this.injector.get("text");
-
-		this.buttons = this.injector.get("buttons") || [];
 		for (let i = 0; i < this.buttons.length; i++) {
 			const button = this.buttons[i];
 			if (!button.id) {
@@ -109,19 +100,6 @@ export class AlertModalComponent implements AfterViewInit {
 			}
 			if (!button.type) {
 				button.type = "secondary";
-			}
-		}
-	}
-
-	ngAfterViewInit(): void {
-		// focus the primary button if there's one
-		if (this.buttons && this.buttons.length > 0) {
-			const primaryButtonIndex = this.buttons.findIndex(
-				button => button.type.indexOf("primary") !== -1) || 0;
-			const primaryButton = this.buttons[primaryButtonIndex];
-			const buttonNode = this.elementRef.nativeElement.querySelector(`#${primaryButton.id}`);
-			if (buttonNode) {
-				buttonNode.focus();
 			}
 		}
 	}

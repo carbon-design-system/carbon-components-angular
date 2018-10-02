@@ -241,6 +241,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
 		switch (event.key) {
+			case "Esc": // IE specific value
 			case "Escape": {
 				event.stopImmediatePropagation();
 				this.doClose();

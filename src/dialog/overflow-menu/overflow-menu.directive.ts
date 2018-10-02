@@ -3,7 +3,8 @@ import {
 	ElementRef,
 	ViewContainerRef,
 	Input,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from "@angular/core";
 import { DialogDirective } from "./../dialog.directive";
 import { DialogService } from "./../dialog.service";
@@ -50,5 +51,15 @@ export class OverflowMenuDirective extends DialogDirective {
 
 	onDialogInit() {
 		this.dialogConfig.content = this.ibmOverflowMenu;
+	}
+
+	@HostListener("keydown", ["$event"])
+	hostkeys(event: KeyboardEvent) {
+		switch (event.key) {
+			case "Enter":
+			case " ":
+				this.toggle();
+				break;
+		}
 	}
 }

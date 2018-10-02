@@ -68,6 +68,9 @@
 	"MODAL" : {
 		"CLOSE": "Close modal"
 	},
+	"OVERFLOW_MENU" : {
+		"OVERFLOW": "Overflow"
+	},
 	"SIDENAV": {
 		"NAV_LABEL": "Side navigation"
 	},
