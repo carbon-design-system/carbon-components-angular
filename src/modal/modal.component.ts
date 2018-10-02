@@ -24,7 +24,7 @@ import { cycleTabs } from "./../common/tab.service";
 /**
  * Component to create modals for presenting content.
  *
- * Using a modal in your application requires `n-modal-placeholder` which would generally be
+ * Using a modal in your application requires `ibm-modal-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html
@@ -49,7 +49,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 			</button>
  * 			{{modalText}}
  * 			</section>
- * 			<ibm-modal-footer><button class="btn--primary cancel-button" (click)="closeModal()">Close</button></ibm-modal-footer>
+ * 			<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
  * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
@@ -68,7 +68,7 @@ import { cycleTabs } from "./../common/tab.service";
  * \@Component({
  *  selector: "app-modal-demo",
  *  template: `
- *   <button class="btn--primary" (click)="openModal('drill')">Drill-down modal</button>
+ *   <button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
  *   <ibm-modal-placeholder></ibm-modal-placeholder>`
  * })
  * export class ModalDemo {
@@ -86,7 +86,7 @@ import { cycleTabs } from "./../common/tab.service";
 @Component({
 	selector: "ibm-modal",
 	template: `
-		<ibm-overlay (overlaySelect)="overlaySelected.emit()">
+		<ibm-overlay [modalType]="modalType" (overlaySelect)="overlaySelected.emit()">
 			<div
 				class="bx--modal-container"
 				[@modalState]="modalState"
@@ -121,7 +121,7 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	@Input() size = "default";
 	/**
 	 * Classification of the modal.
-	 * @type {"default" | "warning" | "error"}
+	 * @type {"default" | "danger"}
 	 * @memberof ModalComponent
 	 */
 	@Input() modalType = "default";
