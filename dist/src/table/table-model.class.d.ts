@@ -1,7 +1,8 @@
+import { EventEmitter } from "@angular/core";
+import { PaginationModel } from "./../pagination/pagination-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
-import { EventEmitter } from "@angular/core";
-export declare class TableModel {
+export declare class TableModel implements PaginationModel {
     /**
      * Sets data of the table.
      *

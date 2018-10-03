@@ -122,6 +122,9 @@
                                     <a href="../modules/NFormsModule.html" >NFormsModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/PaginationModule.html" >PaginationModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/PillInputModule.html" >PillInputModule</a>
                                 </li>
                                 <li class="link">
@@ -274,6 +277,15 @@
                                     <a href="../components/OverlayComponent.html" >OverlayComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/Pagination.html" >Pagination</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaginationStory.html" >PaginationStory</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/PaginationTableStory.html" >PaginationTableStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Pill.html" >Pill</a>
                                 </li>
                                 <li class="link">
@@ -320,12 +332,6 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/Table.html" >Table</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/TableGotoPage.html"  data-type="entity-link" class="active" >TableGotoPage</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/TablePagination.html" >TablePagination</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/Tabs.html" >Tabs</a>
@@ -420,6 +426,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../classes/ModalContainer.html" >ModalContainer</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/PaginationModel.html"  data-type="entity-link" class="active" >PaginationModel</a>
                                 </li>
                                 <li class="link">
                                     <a href="../classes/RadioChange.html" >RadioChange</a>
@@ -664,6 +673,9 @@
                                            <a href="../modules/NFormsModule.html" >NFormsModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/PaginationModule.html" >PaginationModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/PillInputModule.html" >PillInputModule</a>
                                        </li>
                                        <li class="link">
@@ -816,6 +828,15 @@
                                            <a href="../components/OverlayComponent.html" >OverlayComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/Pagination.html" >Pagination</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaginationStory.html" >PaginationStory</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/PaginationTableStory.html" >PaginationTableStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Pill.html" >Pill</a>
                                        </li>
                                        <li class="link">
@@ -862,12 +883,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/Table.html" >Table</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/TableGotoPage.html"  data-type="entity-link" class="active" >TableGotoPage</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/TablePagination.html" >TablePagination</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/Tabs.html" >Tabs</a>
@@ -962,6 +977,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../classes/ModalContainer.html" >ModalContainer</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/PaginationModel.html"  data-type="entity-link" class="active" >PaginationModel</a>
                                        </li>
                                        <li class="link">
                                            <a href="../classes/RadioChange.html" >RadioChange</a>
@@ -1098,15 +1116,20 @@
                    
                    </nav>
                </div>
-               <div class="content component">
+               <div class="content class">
                    <div class="content-data">
 
 
 
 
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li>TableGotoPage</li>
+  <li>Classes</li>
+  <li>PaginationModel</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -1114,400 +1137,201 @@
         <a href="#info" id="info-tab" role="tab" data-toggle="tab" data-link="info">Info</a>
     </li>
 
-    <li>
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
 
     <li>
-        <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/table/table-goto-page.component.ts</code>
-</p>
-
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>TableGotoPage is a child component to the Table component.</p>
-<pre class="line-numbers"><code class="language-html">&lt;ibm-table-goto-page (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/ibm-table-goto-page&gt;</code></pre>
-    </p>
-
-
-
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
-
-<section>
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
-        <tbody>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/pagination/pagination-model.class.ts</code>
+        </p>
 
 
 
 
 
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ibm-table-goto-page</code></td>
-            </tr>
-
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section>
-        <h3 id="index">Index</h3>
-        <table class="table table-sm table-bordered index-table">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <span class="modifier">Static</span> <a href="#tableGotoPageCount">tableGotoPageCount</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Inputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#id">id</a>
-                            </li>
-                            <li>
-                                <a href="#pageNumber">pageNumber</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#selectPage">selectPage</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h3 id="constructor">Constructor</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>constructor(changeDetectorRef: <a href="https://angular.io/docs/ts/latest/api/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/table/table-goto-page.component.ts:62</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Creates an instance of <code>TableGotoPage</code>.</p>
-    </div>
-                                <div>
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>changeDetectorRef</td>
-                                                      <td>
-                                                                <code><a href="https://angular.io/docs/ts/latest/api/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td></td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        <h3 id="inputs">Inputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="id"></a>
-                            <code>id</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>The unique id for the TableGotoPage component input.</p>
-</div>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/table/table-goto-page.component.ts:55</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="pageNumber"></a>
-                            <code>pageNumber</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Variable used to track the input field value.</p>
-</div>
-                              <p>
-                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                              </p>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/table/table-goto-page.component.ts:48</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
-
-    <section>
-        <h3 id="outputs">Outputs</h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-2">
-                            <a name="selectPage"></a>
-                            <code>selectPage</code>
-                        </td>
-                        <td class="col-md-10">
-                            <div><p>Emits the new page number of the table.</p>
-</div>
-                            <em><code>$event</code> type:</em>    <code><a href="https://angular.io/docs/ts/latest/api/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/table/table-goto-page.component.ts:62</a></div>
-                                </td>
-                            </tr>
-                </tbody>
-            </table>
-    </section>
-
-
-
-
-    <section>
-        
-            <h3 id="inputs">
-                Properties
-            </h3>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="tableGotoPageCount"></a>
-                            <span class="name"><b><span class="modifier">Static</span> tableGotoPageCount</b><a href="#tableGotoPageCount"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <span class="modifier-icon fa fa-reset"></span><code>tableGotoPageCount:     <code></code>
-    </code>
-                        </td>
-                    </tr>
+            <section>
+                <h3 id="index">Index</h3>
+                <table class="table table-sm table-bordered index-table">
+                    <tbody>
                         <tr>
                             <td class="col-md-4">
-                                <i>Default value : </i><code>0</code>
+                                <h6><b>Properties</b></h6>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                         <a href="#currentPage">currentPage</a>
+                                    </li>
+                                    <li>
+                                         <a href="#pageLength">pageLength</a>
+                                    </li>
+                                    <li>
+                                         <a href="#totalDataLength">totalDataLength</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+
+
+            <section>
+                
+                    <h3 id="inputs">
+                        Properties
+                    </h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/table/table-goto-page.component.ts:41</a></div>
+                                    <a name="currentPage"></a>
+                                    <span class="name"><b> currentPage</b><a href="#currentPage"><span class="fa fa-link"></span></a></span>
                                 </td>
                             </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>Variable used for creating unique ids for the input in TableGotoPage components.</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-    </section>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>currentPage:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/pagination/pagination-model.class.ts:8</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Tracks the current page.</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="pageLength"></a>
+                                    <span class="name"><b> pageLength</b><a href="#pageLength"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>pageLength:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/pagination/pagination-model.class.ts:16</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Length of page.</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="totalDataLength"></a>
+                                    <span class="name"><b> totalDataLength</b><a href="#totalDataLength"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>totalDataLength:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/pagination/pagination-model.class.ts:25</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Absolute total number of items needed to paginate.</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+            </section>
 
-</div>
+    </div>
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { TableModel } from &quot;./table.module&quot;;
-import {
-	Component,
-	ApplicationRef,
-	Input,
-	Output,
-	ViewChild,
-	ContentChildren,
-	EventEmitter,
-	ViewEncapsulation,
-	ChangeDetectorRef
-} from &quot;@angular/core&quot;;
-
-/**
- * TableGotoPage is a child component to the Table component.
- *
- * &#x60;&#x60;&#x60;html
- * &lt;ibm-table-goto-page (selectPage)&#x3D;&quot;selectPage($event)&quot;&gt;&lt;/ibm-table-goto-page&gt;
- * &#x60;&#x60;&#x60;
- *
- * @export
- * @class TableGotoPage
- */
-@Component({
-	selector: &quot;ibm-table-goto-page&quot;,
-	template: &#x60;
-	&lt;form class&#x3D;&quot;table-footer_page-form&quot;&gt;
-		&lt;label class&#x3D;&quot;sr-only&quot; [for]&#x3D;&quot;id&quot;&gt;Page number&lt;/label&gt;
-		&lt;input class&#x3D;&quot;input-number--sm&quot; type&#x3D;&quot;number&quot; [id]&#x3D;&quot;id&quot; [name]&#x3D;&quot;id&quot; [(ngModel)]&#x3D;&quot;pageNumber&quot;&gt;
-		&lt;button class&#x3D;&quot;btn--secondary-sm&quot; type&#x3D;&quot;submit&quot; (click)&#x3D;&quot;selectPage.emit(pageNumber)&quot;&gt;{{&#x27;TABLE.GO_TO_PAGE&#x27; | translate}}&lt;/button&gt;
-	&lt;/form&gt;
-	&#x60;
-})
-export class TableGotoPage {
+        <pre class="line-numbers"><code class="language-typescript">export class PaginationModel {
 	/**
-	 * Variable used for creating unique ids for the input in TableGotoPage components.
+	 * Tracks the current page.
+	 *
 	 * @type {number}
-	 * @static
-	 * @memberof TableGotoPage
+	 * @memberof PaginationModel
 	 */
-	static tableGotoPageCount &#x3D; 0;
+	currentPage: number;
 
 	/**
-	 * Variable used to track the input field value.
+	 * Length of page.
+	 *
 	 * @type {number}
-	 * @memberof TableGotoPage
+	 * @memberof PaginationModel
 	 */
-	@Input() pageNumber: number;
+	pageLength: number;
 
 	/**
-	 * The unique id for the TableGotoPage component input.
-	 * @type {string}
-	 * @memberof TableGotoPage
+	 * Absolute total number of items needed to paginate.
+	 *
+	 * @private
+	 * @type {number}
+	 * @memberof PaginationModel
 	 */
-	@Input() id &#x3D; &#x60;tableGoToPage-${TableGotoPage.tableGotoPageCount}&#x60;;
-
-	/**
-	 * Emits the new page number of the table.
-	 * @param {number} pageNumber
-	 * @memberof TableGotoPage
-	 */
-	@Output() selectPage &#x3D; new EventEmitter&lt;number&gt;();
-
-	/**
-	 * Creates an instance of &#x60;TableGotoPage&#x60;.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof TableGotoPage
-	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
-		TableGotoPage.tableGotoPageCount++;
-	}
+	totalDataLength: number;
 }
 </code></pre>
     </div>
-
-
-    <div class="tab-pane fade" id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModalComponent', 'selector': 'ibm-alert-modal'},{'name': 'AlertModalStory', 'selector': 'app-alert-modal-story'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'BannnerStory', 'selector': 'app-banner-story'},{'name': 'ButtonMenu', 'selector': 'ibm-button-menu'},{'name': 'ButtonMenuItem', 'selector': 'ibm-button-menu-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'CheckboxComponent', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholderComponent', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'DynamicTableStory', 'selector': 'app-custom-table'},{'name': 'ExpansionTableStory', 'selector': 'app-expansion-table'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'LabelComponent', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'ModalComponent', 'selector': 'ibm-modal'},{'name': 'ModalFooterComponent', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeaderComponent', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholderComponent', 'selector': 'ibm-modal-placeholder'},{'name': 'ModalStory', 'selector': 'app-modal-story'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'OverflowTableStory', 'selector': 'app-overflow-table'},{'name': 'OverlayComponent', 'selector': 'ibm-overlay'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Popover', 'selector': 'ibm-popover'},{'name': 'PopoverMenu', 'selector': 'ibm-popover-menu'},{'name': 'RadioComponent', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleModalComponent', 'selector': 'app-sample-modal'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'SwitchComponent', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableGotoPage', 'selector': 'ibm-table-goto-page'},{'name': 'TablePagination', 'selector': 'ibm-table-pagination'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'ToastStory', 'selector': 'app-toast-story'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltipDirective', 'selector': '[ibmEllipsisTooltip]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'PopoverDirective', 'selector': '[ibmPopover]'},{'name': 'PopoverMenuDirective', 'selector': '[ibmPopoverMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
-    var ACTUAL_COMPONENT = {'name': 'TableGotoPage'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
-
 
 
 
