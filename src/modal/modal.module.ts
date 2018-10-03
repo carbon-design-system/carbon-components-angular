@@ -17,6 +17,8 @@ import { ModalComponent } from "./modal.component";
 import { ModalFooterComponent } from "./modal-footer.component";
 import { OverlayComponent } from "./overlay.component";
 import { ModalHeaderComponent } from "./modal-header.component";
+import { AlertModalComponent } from "./alert-modal.component";
+import { ButtonModule } from "../forms/forms.module";
 
 // exports
 export { default as Modal } from "./modal.decorator";
@@ -36,6 +38,7 @@ export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 
 @NgModule({
 	declarations: [
+		AlertModalComponent,
 		ModalPlaceholderComponent,
 		ModalComponent,
 		ModalHeaderComponent,
@@ -43,12 +46,14 @@ export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 		OverlayComponent
 	],
 	exports: [
+		AlertModalComponent,
 		ModalPlaceholderComponent,
 		ModalComponent,
 		ModalHeaderComponent,
 		ModalFooterComponent
 	],
 	entryComponents: [
+		AlertModalComponent,
 		ModalComponent,
 		ModalFooterComponent,
 		ModalHeaderComponent
@@ -61,6 +66,7 @@ export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 	],
 	imports: [
 		CommonModule,
+		ButtonModule,
 		TranslateModule,
 		StaticIconModule
 	]
