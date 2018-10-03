@@ -17,3 +17,13 @@ import { Directive, HostBinding } from "@angular/core";
 export class TextInput {
 	@HostBinding("class") inputClass = "bx--text-input";
 }
+
+
+@Directive({
+	selector: "[ibmTextArea]"
+})
+export class TextAreaInput {
+	@HostBinding("class.bx--text-area") baseClass = true;
+	@HostBinding("class.bx--text-area--v2") secondaryClass = true;
+}
+

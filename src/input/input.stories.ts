@@ -22,4 +22,8 @@ storiesOf("Input", module).addDecorator(
 		template: `
 			<input ibmText placeholder="Optional placeholder text"/>
 		`
+	})).add("TextArea", () => ({
+		template: `
+		<textarea ibmTextArea placeholder="Optional placeholder text"></textarea>
+		`
 	}));
