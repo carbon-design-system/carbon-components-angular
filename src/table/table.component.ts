@@ -183,7 +183,7 @@ import { getScrollbarWidth } from "../common/utils";
 						</div>
 						<button
 							class="bx--table-sort-v2"
-							*ngIf="column.sortable"
+							*ngIf="this.sort.observers.length > 0 && column.sortable"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
 								'bx--table-sort-v2--ascending': column.descending
@@ -204,7 +204,7 @@ import { getScrollbarWidth } from "../common/utils";
 						</button>
 						<span
 							class="bx--table-header-label"
-							*ngIf="!column.sortable">
+							*ngIf="this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
 							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 							<ng-template
 								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">

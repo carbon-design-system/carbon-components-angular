@@ -49,20 +49,18 @@ class TableStory implements OnInit, OnChanges {
 	@Input() simpleSort;
 
 	ngOnInit() {
+
 		this.model.header = [
 			new TableHeaderItem({
-				data: "Name",
-				sortable: this.sortable
+				data: "Name"
 			}),
 			new TableHeaderItem({
 				data: "hwer",
 				style: {"width": "auto"},
-				sortable: this.sortable,
 				className: "my-class"
 			})
 		];
 	}
-
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes.sortable) {
 			for (let column of this.model.header) {

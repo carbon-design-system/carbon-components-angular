@@ -25,7 +25,7 @@ export class TableHeaderItem {
 	 *
 	 * @memberof TableHeaderItem
 	 */
-	sortable = false;
+	sortable = true;
 
 	/**
 	 * Number of applied filters.
@@ -37,7 +37,7 @@ export class TableHeaderItem {
 	filterCount = 0;
 
 	/**
-	 * Attach a class to the column, applied to the header column cell only.
+	 * Attach a class to the column, both the header and column cells.
 	 *
 	 * @memberof TableHeaderItem
 	 */
