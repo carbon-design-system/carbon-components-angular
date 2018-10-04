@@ -7,11 +7,6 @@ import { DialogModule } from "./../dialog/dialog.module";
 import { NFormsModule } from "./../forms/forms.module";
 
 import { Table } from "./table.component";
-import { TableModel } from "./table-model.class";
-import { TablePagination } from "./table-pagination.component";
-import { TableGotoPage } from "./table-goto-page.component";
-import { TableItem } from "./table-item.class";
-import { TableHeaderItem } from "./table-header-item.class";
 import { IconModule } from "./../icon/icon.module";
 import { StaticIconModule } from "..";
 
@@ -22,14 +17,10 @@ export { TableHeaderItem } from "./table-header-item.class";
 
 @NgModule({
 	declarations: [
-		Table,
-		TableGotoPage,
-		TablePagination
+		Table
 	],
 	exports: [
-		Table,
-		TableGotoPage,
-		TablePagination
+		Table
 	],
 	imports: [
 		CommonModule,
