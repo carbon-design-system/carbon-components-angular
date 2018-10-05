@@ -3,6 +3,8 @@ import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 
+const EN = require("./../../i18n/en.json");
+
 /**
  * Extend the `Dialog` component to create an overflow menu.
  *
@@ -13,7 +15,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.servic
 	template: `
 		<ul
 			role="menu"
-			attr.aria-label="{{'OVERFLOW_MENU.OVERFLOW' | translate}}"
+			[attr.aria-label]="dialogConfig.menuLabel"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open">
 			<ng-template
@@ -36,6 +38,10 @@ export class OverflowMenuPane extends Dialog {
 		 * so we need to add some compensation)
 		 */
 		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
+
+		if (!this.dialogConfig.menuLabel) {
+			this.dialogConfig.menuLabel = EN.OVERFLOW_MENU.OVERFLOW;
+		}
 
 		setTimeout(() => this.listItems()[0].focus());
 	}

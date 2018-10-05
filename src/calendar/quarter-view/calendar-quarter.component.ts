@@ -26,10 +26,10 @@ import { range } from "../../common/utils";
 				}">
 					<div>
 						<p class="top">
-							{{quarters[i * 2 + j].name | translate}}
+							{{quarters[i * 2 + j].name}}
 						</p>
 						<p class="bottom">
-							{{quarters[i * 2 + j].months | translate}}
+							{{quarters[i * 2 + j].months}}
 						</p>
 					</div>
 				</td>

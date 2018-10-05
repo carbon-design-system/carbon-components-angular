@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input } from "@angular/core";
 
-const EN = require("./../i18n/en.json");
+const EN = require("./../../i18n/en.json");
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -47,7 +47,7 @@ const EN = require("./../i18n/en.json");
 })
 export class OverflowMenu {
 
-	@Input() buttonLable = EN.OVERFLOW_MENU.OVERFLOW;
+	@Input() buttonLabel = EN.OVERFLOW_MENU.OVERFLOW;
 
 	constructor(private elementRef: ElementRef) {}
 

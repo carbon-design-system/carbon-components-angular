@@ -41,7 +41,7 @@ const EN = require("./../i18n/en.json");
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
-				[aria-label]="bannerObj.closeLabel"
+				[attr.aria-label]="bannerObj.closeLabel"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
