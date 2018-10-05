@@ -86,7 +86,7 @@ storiesOf("Modal", module)
 			],
 			imports: [
 				ModalModule,
-				BrowserAnimationsModule,
+				BrowserAnimationsModule
 			],
 			entryComponents: [
 				SampleModalComponent

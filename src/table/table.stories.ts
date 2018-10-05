@@ -397,7 +397,7 @@ storiesOf("Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
-				PaginationModule,
+				PaginationModule
 			],
 			declarations: [
 				DynamicTableStory,
