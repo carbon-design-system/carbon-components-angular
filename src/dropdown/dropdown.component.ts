@@ -350,7 +350,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return of(`${selected.length} ${selectedLabel}`);
+				return of(`${selected.length} ${this.selectedLabel}`);
 			} else {
 				return of(selected[0].content);
 			}

@@ -58,12 +58,6 @@ class DynamicTableStory implements OnInit {
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
 
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
-
 	ngOnInit() {
 		this.model.data = [
 			[new TableItem({data: "Name 1"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
@@ -134,12 +128,6 @@ class ExpansionTableStory implements OnInit {
 	private customHeaderTemplate: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [
@@ -216,12 +204,6 @@ class OverflowTableStory implements OnInit {
 	@ViewChild("overflowMenuItemTemplate")
 	private overflowMenuItemTemplate: TemplateRef<any>;
 
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
-
 	ngOnInit() {
 		this.model.data = [
 			[new TableItem({data: "Name 1"}), new TableItem({data: {id: "1"}, template: this.overflowMenuItemTemplate})],
@@ -274,12 +256,6 @@ class PaginationTableStory implements OnInit {
 	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("paginationTableItemTemplate")
 	private paginationTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [[]];

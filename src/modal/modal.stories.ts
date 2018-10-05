@@ -110,8 +110,7 @@ storiesOf("Modal", module)
 			],
 			imports: [
 				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
+				BrowserAnimationsModule
 			],
 			entryComponents: [
 				SampleModalComponent
@@ -152,8 +151,7 @@ storiesOf("Modal", module)
 			],
 			imports: [
 				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
+				BrowserAnimationsModule
 			],
 			entryComponents: [
 				SampleModalComponent
