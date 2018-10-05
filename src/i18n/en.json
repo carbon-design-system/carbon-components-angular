@@ -48,9 +48,6 @@
 		]
 	},
 	"DIALOG": {
-		"TOOLTIP": {
-			"CLOSE": "Close tooltip"
-		},
 		"POPOVER" : {
 			"CLOSE": "Close popover"
 		}

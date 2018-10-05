@@ -4,11 +4,14 @@ import {
 	Output,
 	EventEmitter,
 	ComponentRef,
-	ViewChild
+	ViewChild,
+	OnInit
 } from "@angular/core";
 
 import { BannerService } from "./banner.service";
 import { NotificationContent } from "./banner-content.interface";
+
+const EN = require("./../i18n/en.json");
 
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -38,7 +41,7 @@ import { NotificationContent } from "./banner-content.interface";
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
-				aria-label="close"
+				[aria-label]="bannerObj.closeLabel"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
@@ -50,7 +53,7 @@ import { NotificationContent } from "./banner-content.interface";
 	`,
 	providers: [BannerService]
 })
-export class Banner {
+export class Banner implements OnInit {
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -74,6 +77,12 @@ export class Banner {
 	@ViewChild("banner") banner;
 
 	constructor(protected bannerService: BannerService) {}
+
+	ngOnInit() {
+		if (!this.bannerObj.closeLabel) {
+			this.bannerObj.closeLabel = EN.BANNER.CLOSE_BUTTON;
+		}
+	}
 
 	/**
 	 * Emits close event.

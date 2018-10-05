@@ -25,6 +25,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../utils/position";
 
+const EN = require("./../i18n/en.json");
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -52,8 +53,8 @@ import { position } from "../utils/position";
 			[disabled]="disabled">
 			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
 			<div class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" aria-label="Open menu">
-					<title>Open menu</title>
+				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" [aria-label]="menuButtonLabel">
+					<title>{{menuButtonLabel}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
 			</div>
@@ -120,6 +121,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * @memberof Dropdown
 	 */
 	@Input() scrollableContainer: string;
+
+	@Input() menuButtonLabel = EN.DROPDOWN.OPEN;
+
+	@Input() selectedLabel = EN.DROPDOWN.SELECTED;
 	/**
 	 * Emits selection events.
 	 * @type {EventEmitter<Object>}
@@ -347,7 +352,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return this.translate.get("DROPDOWN.SELECTED", {number: selected.length});
+				return of(`${selected.length} ${selectedLabel}`);
 			} else {
 				return of(selected[0].content);
 			}

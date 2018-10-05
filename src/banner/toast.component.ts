@@ -1,8 +1,10 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { BannerService } from "./banner.service";
 import { ToastContent } from "./banner-content.interface";
 import { Banner } from "./banner.component";
+
+const EN = require("./../i18n/en.json");
 
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -28,7 +30,7 @@ import { Banner } from "./banner.component";
 			(click)="onClose()">
 			<svg
 				class="bx--toast-notification-icon"
-				aria-label="close"
+				[aria-label]="bannerObj.closeLabel"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
@@ -40,7 +42,7 @@ import { Banner } from "./banner.component";
 	`,
 	providers: [ BannerService ]
 })
-export class Toast extends Banner {
+export class Toast extends Banner implements OnInit {
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -50,4 +52,10 @@ export class Toast extends Banner {
 	 *
 	 */
 	@Input() bannerObj: ToastContent;
+
+	ngOnInit() {
+		if (!this.bannerObj.closeLabel) {
+			this.bannerObj.closeLabel = EN.BANNER.CLOSE_BUTTON;
+		}
+	}
 }
