@@ -64,7 +64,7 @@ class TableStory implements OnInit, OnChanges {
 			})
 		];
 	}
-  
+
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes.sortable) {
 			for (let column of this.model.header) {
