@@ -53,7 +53,8 @@
 		}
 	},
 	"DROPDOWN": {
-		"SELECTED": "{{ number }} selected",
+		"OPEN": "Open menu",
+		"SELECTED": "selected",
 		"CLEAR": "Clear selection",
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
@@ -70,6 +71,13 @@
 	},
 	"SIDENAV": {
 		"NAV_LABEL": "Side navigation"
+	},
+	"PAGINATION": {
+		"ITEMS_PER_PAGE": "Items per page:",
+		"OPEN_LIST_OF_OPTIONS": "Open list of options",
+		"ITEMS_INDICES": "{{startItemIndex}}-{{endItemIndex}} of {{totalDataLength}} items",
+		"BACKWARD": "Backward",
+		"FORWARD": "Forward"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
