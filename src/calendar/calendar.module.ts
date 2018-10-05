@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 
 import { Calendar } from "./calendar.component";
 import { IconModule, StaticIconModule } from "./../icon/icon.module";
@@ -32,8 +31,7 @@ export { DateTimeModel } from "./date-time-model.class";
 	imports: [
 		CommonModule,
 		IconModule,
-		StaticIconModule,
-		TranslateModule.forChild()
+		StaticIconModule
 	]
 })
 export class CalendarModule {}

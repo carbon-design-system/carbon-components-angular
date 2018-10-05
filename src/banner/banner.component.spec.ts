@@ -1,5 +1,4 @@
 import { TestBed } from "@angular/core/testing";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
@@ -12,12 +11,7 @@ describe("Banner", () => {
 			declarations: [Banner],
 			providers: [BannerService],
 			imports: [
-				StaticIconModule,
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader, useClass: TranslateFakeLoader
-					}
-				})
+				StaticIconModule
 			]
 		});
 	});

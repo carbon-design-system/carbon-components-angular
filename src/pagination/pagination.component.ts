@@ -8,6 +8,8 @@ import {
 
 import { range } from "../common/utils";
 
+const EN = require("./../i18n/en.json");
+
 /**
  * Use pagination when you have multiple pages of data to handle.
  *
@@ -36,13 +38,13 @@ import { range } from "../common/utils";
 	template: `
 	<div class="bx--pagination">
 		<div class="bx--pagination__left">
-			<span class="bx--pagination__text">{{'PAGINATION.ITEMS_PER_PAGE' | translate}}</span>
+			<span class="bx--pagination__text">{{translations.ITEMS_PER_PAGE}}</span>
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline">
 					<label
 						[for]="itemsPerPageSelectId"
 						class="bx--label bx--visually-hidden">
-						{{'PAGINATION.ITEMS_PER_PAGE' | translate}}
+						{{translations.ITEMS_PER_PAGE}}
 					</label>
 					<select
 						[id]="itemsPerPageSelectId"
@@ -62,20 +64,16 @@ import { range } from "../common/utils";
 						role="img"
 						viewBox="0 0 10 5"
 						width="10"
-						attr.aria-label="{{'PAGINATION.OPEN_LIST_OF_OPTIONS' | translate}}"
-						attr.alt="{{'PAGINATION.OPEN_LIST_OF_OPTIONS' | translate}}">
-						<title>{{'PAGINATION.OPEN_LIST_OF_OPTIONS' | translate}}</title>
+						[attr.aria-label]="translations.OPEN_LIST_OF_OPTIONS"
+						[attr.alt]="translations.OPEN_LIST_OF_OPTIONS">
+						<title>{{translations.OPEN_LIST_OF_OPTIONS}}</title>
 						<path d="M0 0l5 4.998L10 0z"></path>
 					</svg>
 				</div>
 			</div>
 			<span class="bx--pagination__text">
 				<span>|&nbsp;</span>
-				{{ 'PAGINATION.ITEMS_INDICES' | translate: {
-					startItemIndex: startItemIndex,
-					endItemIndex: endItemIndex,
-					totalDataLength: model.totalDataLength
-				} }}
+				{{startItemIndex}}-{{endItemIndex}} of {{model.totalDataLength}} items
 			</span>
 		</div>
 		<div class="bx--pagination__right bx--pagination--inline">
@@ -91,15 +89,15 @@ import { range } from "../common/utils";
 					role="img"
 					viewBox="0 0 7 12"
 					width="7"
-					attr.aria-label="{{'PAGINATION.BACKWARD' | translate}}"
-					attr.alt="{{'PAGINATION.BACKWARD' | translate}}">
-					<title>{{'PAGINATION.BACKWARD' | translate}}</title>
+					[attr.aria-label]="translations.BACKWARD"
+					[attr.alt]="translations.BACKWARD">
+					<title>{{translations.BACKWARD}}</title>
 					<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
 				</svg>
 			</button>
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline">
-				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{'PAGINATION.ITEMS_PER_PAGE' | translate}}</label>
+				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{translations.ITEMS_PER_PAGE}}</label>
 				<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">
 					<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
 				</select>
@@ -110,9 +108,9 @@ import { range } from "../common/utils";
 					role="img"
 					viewBox="0 0 10 5"
 					width="10"
-					attr.aria-label="{{'PAGINATION.OPEN_LIST_OF_OPTIONS' | translate}}"
-					attr.alt="{{'PAGINATION.OPEN_LIST_OF_OPTIONS' | translate}}">
-					<title>{{'PAGINATION.OPEN_LIST_OF_OPTIONS' | translate}}</title>
+					[attr.aria-label]="translations.OPEN_LIST_OF_OPTIONS"
+					[attr.alt]="translations.OPEN_LIST_OF_OPTIONS">
+					<title>{{translations.OPEN_LIST_OF_OPTIONS}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
 			</div>
@@ -128,9 +126,9 @@ import { range } from "../common/utils";
 				role="img"
 				viewBox="0 0 7 12"
 				width="7"
-				attr.aria-label="{{'PAGINATION.FORWARD' | translate}}"
-				attr.alt="{{'PAGINATION.FORWARD' | translate}}">
-				<title>{{'PAGINATION.FORWARD' | translate}}</title>
+				[attr.aria-label]="translations.FORWARD"
+				[attr.alt]="translations.FORWARD">
+				<title>{{translations.FORWARD}}</title>
 				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
 			</svg>
 		</button>
@@ -148,6 +146,8 @@ export class Pagination {
 	 * @memberof Pagination
 	 */
 	@Input() model: PaginationModel;
+
+	@Input() translations = EN.PAGINATION;
 
 	/**
 	 * Emits the new page number.

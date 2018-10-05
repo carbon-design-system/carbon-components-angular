@@ -1,4 +1,3 @@
-import { TranslateService } from "@ngx-translate/core";
 import {
 	Component,
 	Input,
@@ -77,10 +76,10 @@ export class CalendarQuarter implements OnInit {
 	 * @param {TranslateService} translate
 	 * @memberof CalendarQuarter
 	 */
-	constructor(private translate: TranslateService) {
-		this.translate.get("CALENDAR.QUARTERS").subscribe((res: Array<any>) => {
-			this.quarters = res;
-		});
+	constructor() {
+		// this.translate.get("CALENDAR.QUARTERS").subscribe((res: Array<any>) => {
+		// 	this.quarters = res;
+		// });
 	}
 
 	ngOnInit() {

@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
@@ -22,7 +21,7 @@ export { Toast } from "./toast.component";
 		Toast
 	],
 	entryComponents: [Banner, Toast],
-	imports: [CommonModule, TranslateModule, StaticIconModule],
+	imports: [CommonModule, StaticIconModule],
 	providers: [BannerService]
 })
 export class BannerModule {}

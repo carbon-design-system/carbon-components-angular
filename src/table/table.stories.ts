@@ -14,8 +14,6 @@ import {
 	number
 } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
-
 import {
 	TableModule,
 	TableModel,
@@ -26,8 +24,6 @@ import {
 } from "../";
 
 import { clone } from "../utils/utils";
-
-const en = require("./../../src/i18n/en.json");
 
 @Component({
 	selector: "app-custom-table",
@@ -402,7 +398,6 @@ storiesOf("Table", module).addDecorator(
 				TableModule,
 				DialogModule,
 				PaginationModule,
-				TranslateModule.forRoot()
 			],
 			declarations: [
 				DynamicTableStory,

@@ -9,8 +9,6 @@ import {
 	number
 } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
-
 import { NFormsModule } from "..";
 import { PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";
@@ -37,11 +35,6 @@ class PaginationStory implements OnInit {
 		this.model.totalDataLength = value;
 	}
 
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.setTranslation("en", en);
-	}
-
 	ngOnInit() {
 		this.model.pageLength = 10;
 		this.model.currentPage = 1;
@@ -58,8 +51,7 @@ storiesOf("Pagination", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,
-				PaginationModule,
-				TranslateModule.forRoot()
+				PaginationModule
 			],
 			declarations: [
 				PaginationStory

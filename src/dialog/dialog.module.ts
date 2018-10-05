@@ -1,7 +1,6 @@
 // modules
 import { NgModule, Optional, SkipSelf } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
@@ -82,6 +81,6 @@ export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
 		Tooltip,
 		OverflowMenuPane
 	],
-	imports: [CommonModule, TranslateModule, StaticIconModule]
+	imports: [CommonModule, StaticIconModule]
 })
 export class DialogModule {}

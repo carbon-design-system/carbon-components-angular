@@ -75,7 +75,6 @@
 	"PAGINATION": {
 		"ITEMS_PER_PAGE": "Items per page:",
 		"OPEN_LIST_OF_OPTIONS": "Open list of options",
-		"ITEMS_INDICES": "{{startItemIndex}}-{{endItemIndex}} of {{totalDataLength}} items",
 		"BACKWARD": "Backward",
 		"FORWARD": "Forward"
 	},

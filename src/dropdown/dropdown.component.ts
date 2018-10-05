@@ -20,8 +20,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Observable, fromEvent, of, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 
-import { TranslateService } from "@ngx-translate/core";
-
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../utils/position";
 
@@ -201,7 +199,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * @param {TranslateService} translate
 	 * @memberof Dropdown
 	 */
-	constructor(private elementRef: ElementRef, private translate: TranslateService) {}
+	constructor(private elementRef: ElementRef) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.

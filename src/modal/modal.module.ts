@@ -6,7 +6,6 @@ import {
 	SkipSelf
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 import { StaticIcon, StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
@@ -67,7 +66,6 @@ export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 	imports: [
 		CommonModule,
 		ButtonModule,
-		TranslateModule,
 		StaticIconModule
 	]
 })

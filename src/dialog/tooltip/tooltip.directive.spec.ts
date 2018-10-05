@@ -4,7 +4,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
@@ -23,12 +22,7 @@ describe("Tooltip directive", () => {
 		TestBed.configureTestingModule({
 			declarations: [TooltipDirective, Tooltip, TooltipTestComponent],
 			imports: [
-				StaticIconModule,
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader, useClass: TranslateFakeLoader
-					}
-				})
+				StaticIconModule
 			],
 			providers: [ DialogPlaceholderService ]
 		});
