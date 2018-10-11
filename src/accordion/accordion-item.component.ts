@@ -36,7 +36,9 @@ export class AccordionItem {
 
 	@HostBinding("class.bx--accordion__item") itemClass = true;
 	@HostBinding("class.bx--accordion__item--active") @Input() expanded = false;
-	@HostBinding("style.display") @HostBinding("attr.role") itemType = "list-item";
+	@HostBinding("style.display") itemType = "list-item";
+	@HostBinding("attr.role") roleType = "heading";
+	@HostBinding("attr.aria-level") @Input() ariaLevel = 3;
 
 	constructor() {
 		AccordionItem.accordionItemCount++;
