@@ -17,4 +17,3 @@ import { Directive, HostBinding } from "@angular/core";
 export class TextInput {
 	@HostBinding("class") inputClass = "bx--text-input";
 }
-
