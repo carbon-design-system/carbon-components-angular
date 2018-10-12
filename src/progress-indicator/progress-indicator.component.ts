@@ -3,7 +3,6 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "ibm-progress-indicator",
 	template: `
-
 	<ul data-progress data-progress-current class="bx--progress">
 		<li
 		class="bx--progress-step bx--progress-step--{{step.state}}"
@@ -28,7 +27,5 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class ProgressIndicator {
-
 	@Input() steps = [];
-
 }
