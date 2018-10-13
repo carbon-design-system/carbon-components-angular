@@ -1,5 +1,6 @@
 import { ComponentFactoryResolver, ComponentRef } from "@angular/core";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
+import { AlertModalData } from "./alert-modal.interface";
 /**
  * Modal service handles instantiating and destroying modal instances.
  * Uses ModalPlaceholderService to track open instances, and for it's placeholder view reference.
@@ -37,7 +38,11 @@ export declare class ModalService {
     }): ComponentRef<any>;
     /**
      * Creates and renders a new alert modal component.
-     * @param data You can pass in `title`, `text` and `buttons` to be used in the modal.
+     * @param data You can pass in:
+     * `modalType` - "default" | "danger" = "default",
+     * `modalLabel` - a label shown over the title,
+     * `modalTitle` - modal's title,
+     * `modalContent` - modal's content, could include HTML tags.
      * `buttons` is an array of objects
      * ```
      * {
@@ -49,13 +54,7 @@ export declare class ModalService {
      * @returns {ComponentRef<any>}
      * @memberof ModalService
      */
-    show(data: {
-        modalType?: string;
-        modalLabel?: string;
-        modalTitle: string;
-        modalContent: string;
-        buttons?: null;
-    }): ComponentRef<any>;
+    show(data: AlertModalData): ComponentRef<any>;
     /**
      * Destroys the modal on the supplied index.
      * When called without parameters it destroys the most recently created/top most modal.
