@@ -45,9 +45,9 @@ export interface ModalButton {
 	/**
 	 * Button type
 	 */
-	type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" = "primary";
+	type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary";
 	/**
 	 * Callback for the button `click` event
 	 */
-	click: function;
+	click: Function;
 }
