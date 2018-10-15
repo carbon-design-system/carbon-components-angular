@@ -10,7 +10,6 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
 import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AlertModalComponent } from "./alert-modal.component";
-import { AlertModalData } from "./alert-modal.interface";
 
 
 /**
@@ -87,14 +86,14 @@ export class ModalService {
 	 * @returns {ComponentRef<any>}
 	 * @memberof ModalService
 	 */
-	show(data: AlertModalData) {
+	show(data: {modalType?: string, modalLabel?: string, modalTitle?: string, modalContent?: string, buttons?: []}) {
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {
-				modalType: data.type || data.modalType,
-				modalLabel: data.label || data.modalLabel,
-				modalTitle: data.title || data.modalTitle,
-				modalContent: data.content || data.modalContent,
+				modalType: data.modalType,
+				modalLabel: data.modalLabel,
+				modalTitle: data.modalTitle,
+				modalContent: data.modalContent,
 				buttons: data.buttons || []
 			}
 		});
