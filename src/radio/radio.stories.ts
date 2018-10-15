@@ -13,10 +13,10 @@ storiesOf("Radio", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 		<ibm-radio-group (change)="onChange($event)">
-			<ibm-radio [disabled]="disableOne">one</ibm-radio>
-			<ibm-radio>two</ibm-radio>
-			<ibm-radio>three</ibm-radio>
-			<ibm-radio>four</ibm-radio>
+			<ibm-radio value="one" [disabled]="disableOne">one</ibm-radio>
+			<ibm-radio value="two">two</ibm-radio>
+			<ibm-radio value="three">three</ibm-radio>
+			<ibm-radio value="four">four</ibm-radio>
 		</ibm-radio-group>
 		`,
 		props: {
