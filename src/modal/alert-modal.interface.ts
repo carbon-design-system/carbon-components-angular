@@ -37,6 +37,15 @@ export interface AlertModalData {
 	buttons?: Array<ModalButton>;
 }
 
+export enum ModalButtonType {
+	primary = "primary",
+	secondary = "secondary",
+	tertiary = "tertiary",
+	ghost = "ghost",
+	danger = "danger",
+	danger_primary = "danger--primary"
+}
+
 export interface ModalButton {
 	/**
 	 * Display value of the button
@@ -45,7 +54,7 @@ export interface ModalButton {
 	/**
 	 * Button type
 	 */
-	type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary";
+	type: ModalButtonType;
 	/**
 	 * Callback for the button `click` event
 	 */

@@ -7,6 +7,7 @@ import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Modal, ModalService } from "../";
+import { ModalButton } from "./alert-modal.interface";
 
 @Modal()
 @Component({
@@ -60,20 +61,20 @@ class ModalStory {
 	`
 })
 class AlertModalStory {
-	@Input() modalType: string;
+	@Input() modalType: any;
 	@Input() modalLabel: string;
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
-	@Input() buttons: any;
+	@Input() buttons: Array<ModalButton>;
 
 	constructor(private modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.show({
-			modalType: this.modalType,
-			modalLabel: this.modalLabel,
-			modalTitle: this.modalTitle,
-			modalContent: this.modalContent,
+			type: this.modalType,
+			label: this.modalLabel,
+			title: this.modalTitle,
+			content: this.modalContent,
 			buttons: this.buttons
 		});
 	}
