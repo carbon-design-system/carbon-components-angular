@@ -5,7 +5,7 @@ import { Directive, HostBinding } from "@angular/core";
  *
  * Example:
  *
- * ```hmtl
+ * ```html
  * <textarea ibmTextArea></textarea>
  * ```
  *
