@@ -1,3 +1,8 @@
+export enum AlertModalType {
+	default = "default",
+	danger = "danger"
+}
+
 export interface AlertModalData {
 	/**
 	 * Use of `modalType` is deprecated, use `type` instead
@@ -6,7 +11,7 @@ export interface AlertModalData {
 	/**
 	 * type of the modal
 	 */
-	type?: "default" | "danger";
+	type?: AlertModalType;
 	/**
 	 * Use of `modalLabel` is deprecated, use `label` instead
 	 */
