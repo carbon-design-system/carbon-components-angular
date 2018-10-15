@@ -52,7 +52,6 @@ class TableStory implements OnInit, OnChanges {
 	@Input() simpleSort;
 
 	ngOnInit() {
-
 		this.model.header = [
 			new TableHeaderItem({
 				data: "Name"

@@ -41,7 +41,7 @@ export class TableHeaderItem {
 	 *
 	 * @memberof TableHeaderItem
 	 */
-	className = "";
+	className: string;
 
 	/**
 	 * Style for the column, applied to every element in the column.
@@ -91,7 +91,7 @@ export class TableHeaderItem {
 	 * @type {*}
 	 * @memberof TableHeaderItem
 	 */
-	additionalData: any;
+	metadata: any;
 
 	/**
 	 * Used to display data in a desired way.
