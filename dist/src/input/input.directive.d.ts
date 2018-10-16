@@ -3,7 +3,7 @@
  *
  * Example:
  *
- * ```hmtl
+ * ```html
  * <input ibmText/>
  * ```
  *
