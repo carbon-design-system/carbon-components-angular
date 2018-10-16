@@ -70,7 +70,7 @@ class TableStory implements OnInit, OnChanges {
 			}
 		}
 	}
-	
+
 	simpleSort(index: number) {
 		sort(simpleModel, index);
 	}
