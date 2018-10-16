@@ -162,9 +162,10 @@ import { getScrollbarWidth } from "../common/utils";
 				<th *ngIf="model.hasExpandableRows()"></th>
 				<th *ngIf="showSelectionColumn">
 					<ibm-checkbox
-						[size]="size !== 'lg' ? 'sm' : 'md'"
+						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
+						aria-label="Select all rows"
 						(change)="onSelectAllCheckboxChange()">
 					</ibm-checkbox>
 				</th>
@@ -291,6 +292,7 @@ import { getScrollbarWidth } from "../common/utils";
 					</td>
 					<td *ngIf="showSelectionColumn">
 						<ibm-checkbox
+							aria-label="Select row"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
