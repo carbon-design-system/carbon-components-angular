@@ -64,7 +64,7 @@ import Modal from "./modal.decorator";
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
 			<div class="bx--modal-content">
-				<p>{{modalContent}}</p>
+				<p [innerHTML]="modalContent"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">

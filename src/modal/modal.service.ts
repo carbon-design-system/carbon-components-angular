@@ -70,7 +70,11 @@ export class ModalService {
 
 	/**
 	 * Creates and renders a new alert modal component.
-	 * @param data You can pass in `title`, `text` and `buttons` to be used in the modal.
+	 * @param data You can pass in:
+	 * `modalType` - "default" | "danger" = "default",
+	 * `modalLabel` - a label shown over the title,
+	 * `modalTitle` - modal's title,
+	 * `modalContent` - modal's content, could include HTML tags.
 	 * `buttons` is an array of objects
 	 * ```
 	 * {
@@ -82,7 +86,7 @@ export class ModalService {
 	 * @returns {ComponentRef<any>}
 	 * @memberof ModalService
 	 */
-	show(data: {modalType?: string, modalLabel?: string, modalTitle: string, modalContent: string, buttons?: null}) {
+	show(data: {modalType?: string, modalLabel?: string, modalTitle?: string, modalContent?: string, buttons?: []}) {
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {
