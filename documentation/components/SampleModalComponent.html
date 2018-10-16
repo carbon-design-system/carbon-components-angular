@@ -1228,7 +1228,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modal/modal.stories.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modal/modal.stories.ts:28</a></div>
                                 </td>
                             </tr>
     
@@ -1294,7 +1294,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modal/modal.stories.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modal/modal.stories.ts:29</a></div>
                                 </td>
                             </tr>
     
@@ -1316,6 +1316,7 @@ import { ModalModule } from &quot;../&quot;;
 import { Component, Input, Inject } from &quot;@angular/core&quot;;
 import { BrowserAnimationsModule } from &quot;@angular/platform-browser/animations&quot;;
 import { Modal, ModalService } from &quot;../&quot;;
+import { ModalButton, AlertModalType } from &quot;./alert-modal.interface&quot;;
 
 @Modal()
 @Component({
@@ -1369,20 +1370,20 @@ class ModalStory {
 	&#x60;
 })
 class AlertModalStory {
-	@Input() modalType: string;
+	@Input() modalType: AlertModalType;
 	@Input() modalLabel: string;
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
-	@Input() buttons: any;
+	@Input() buttons: Array&lt;ModalButton&gt;;
 
 	constructor(private modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.show({
 			modalType: this.modalType,
-			modalLabel: this.modalLabel,
-			modalTitle: this.modalTitle,
-			modalContent: this.modalContent,
+			label: this.modalLabel,
+			title: this.modalTitle,
+			content: this.modalContent,
 			buttons: this.buttons
 		});
 	}

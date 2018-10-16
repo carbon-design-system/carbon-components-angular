@@ -1,3 +1,7 @@
+export declare enum AlertModalType {
+    default = "default",
+    danger = "danger"
+}
 export interface AlertModalData {
     /**
      * Use of `modalType` is deprecated, use `type` instead
@@ -6,7 +10,7 @@ export interface AlertModalData {
     /**
      * type of the modal
      */
-    type?: "default" | "danger";
+    type?: AlertModalType;
     /**
      * Use of `modalLabel` is deprecated, use `label` instead
      */
@@ -36,6 +40,14 @@ export interface AlertModalData {
      */
     buttons?: Array<ModalButton>;
 }
+export declare enum ModalButtonType {
+    primary = "primary",
+    secondary = "secondary",
+    tertiary = "tertiary",
+    ghost = "ghost",
+    danger = "danger",
+    danger_primary = "danger--primary"
+}
 export interface ModalButton {
     /**
      * Display value of the button
@@ -44,7 +56,7 @@ export interface ModalButton {
     /**
      * Button type
      */
-    type: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary";
+    type: ModalButtonType;
     /**
      * Callback for the button `click` event
      */

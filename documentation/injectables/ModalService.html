@@ -1369,7 +1369,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/modal/modal.service.ts:111</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/modal/modal.service.ts:120</a></div>
                                         </td>
                                     </tr>
             
@@ -1649,6 +1649,15 @@ export class ModalService {
 	 * @memberof ModalService
 	 */
 	show(data: AlertModalData) {
+		for (let key of Object.keys(data)) {
+			if ([&quot;modalType&quot;, &quot;modalLabel&quot;, &quot;modalTitle&quot;, &quot;modalContent&quot;].includes(key)) {
+				try {
+					throw new Error(&#x60;${key} is deprecated, use ${key.replace(&quot;modal&quot;, &quot;&quot;).toLowerCase()} instead&#x60;);
+				} catch (error) {
+					console.warn(error);
+				}
+			}
+		}
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {

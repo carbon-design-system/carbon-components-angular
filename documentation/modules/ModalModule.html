@@ -1464,13 +1464,12 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import {
 	NgModule,
-	ComponentFactoryResolver,
 	Optional,
 	SkipSelf
 } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 import { TranslateModule } from &quot;@ngx-translate/core&quot;;
-import { StaticIcon, StaticIconModule } from &quot;./../icon/static-icon.module&quot;;
+import { StaticIconModule } from &quot;./../icon/static-icon.module&quot;;
 
 // imports
 import { ModalPlaceholderComponent } from &quot;./modal-placeholder.component&quot;;
@@ -1486,6 +1485,7 @@ import { ButtonModule } from &quot;../forms/forms.module&quot;;
 // exports
 export { default as Modal } from &quot;./modal.decorator&quot;;
 export { ModalService } from &quot;./modal.service&quot;;
+export * from &quot;./alert-modal.interface&quot;;
 
 // either provides a new instance of ModalPlaceholderService, or returns the parent
 export function MODAL_PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: ModalPlaceholderService) {
