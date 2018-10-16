@@ -1248,6 +1248,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#ariaLevel">ariaLevel</a>
+                            </li>
+                            <li>
                                 <a href="#expanded">expanded</a>
                             </li>
                             <li>
@@ -1282,6 +1285,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#attr.role">attr.role</a>
+                            </li>
+                            <li>
                                 <a href="#class.bx--accordion__item">class.bx--accordion__item</a>
                             </li>
                             <li>
@@ -1305,7 +1311,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/accordion/accordion-item.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/accordion/accordion-item.component.ts:41</a></div>
                                 </td>
                             </tr>
     
@@ -1315,6 +1321,26 @@
 
     <section>
         <h3 id="inputs">Inputs</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">
+                            <a name="ariaLevel"></a>
+                            <code>ariaLevel</code>
+                        </td>
+                        <td class="col-md-10">
+                            <p>
+                              <em>Default value: </em><code>3</code>
+                            </p>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/accordion/accordion-item.component.ts:41</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -1399,6 +1425,34 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="attr.role"></a>
+                            <span class="name"><b> attr.role</b><a href="#attr.role"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>attr.role:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>heading</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/accordion/accordion-item.component.ts:40</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="class.bx--accordion__item"></a>
                             <span class="name"><b> class.bx--accordion__item</b><a href="#class.bx--accordion__item"><span class="fa fa-link"></span></a></span>
                         </td>
@@ -1477,7 +1531,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/accordion/accordion-item.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/accordion/accordion-item.component.ts:47</a></div>
                                 </td>
                             </tr>
     
@@ -1571,7 +1625,9 @@ export class AccordionItem {
 
 	@HostBinding(&quot;class.bx--accordion__item&quot;) itemClass &#x3D; true;
 	@HostBinding(&quot;class.bx--accordion__item--active&quot;) @Input() expanded &#x3D; false;
-	@HostBinding(&quot;style.display&quot;) @HostBinding(&quot;attr.role&quot;) itemType &#x3D; &quot;list-item&quot;;
+	@HostBinding(&quot;style.display&quot;) itemType &#x3D; &quot;list-item&quot;;
+	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;heading&quot;;
+	@HostBinding(&quot;attr.aria-level&quot;) @Input() ariaLevel &#x3D; 3;
 
 	constructor() {
 		AccordionItem.accordionItemCount++;

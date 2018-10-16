@@ -7,6 +7,8 @@ export declare class AccordionItem {
     itemClass: boolean;
     expanded: boolean;
     itemType: string;
+    role: string;
+    ariaLevel: number;
     constructor();
     toggleExpanded(): void;
 }
