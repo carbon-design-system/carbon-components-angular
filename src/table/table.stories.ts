@@ -49,7 +49,6 @@ class TableStory implements OnInit, OnChanges {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() sortable = true;
-	@Input() simpleSort;
 
 	ngOnInit() {
 		this.model.header = [
@@ -70,6 +69,10 @@ class TableStory implements OnInit, OnChanges {
 				column.sortable = changes.sortable.currentValue;
 			}
 		}
+	}
+	
+	simpleSort(index: number) {
+		sort(simpleModel, index);
 	}
 }
 
@@ -434,10 +437,6 @@ function sort(model, index: number) {
 	model.sort(index);
 }
 
-function simpleSort(index: number) {
-	sort(simpleModel, index);
-}
-
 
 storiesOf("Table", module).addDecorator(
 		moduleMetadata({
@@ -465,13 +464,11 @@ storiesOf("Table", module).addDecorator(
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
-			[sortable]="sortable"
-			[simpleSort]="simpleSort">
+			[sortable]="sortable">
 		</app-table>
 	`,
 		props: {
 			model: simpleModel,
-			simpleSort: simpleSort,
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true),
