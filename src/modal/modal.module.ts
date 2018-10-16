@@ -1,13 +1,12 @@
 // modules
 import {
 	NgModule,
-	ComponentFactoryResolver,
 	Optional,
 	SkipSelf
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
-import { StaticIcon, StaticIconModule } from "./../icon/static-icon.module";
+import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
 import { ModalPlaceholderComponent } from "./modal-placeholder.component";
@@ -23,6 +22,7 @@ import { ButtonModule } from "../forms/forms.module";
 // exports
 export { default as Modal } from "./modal.decorator";
 export { ModalService } from "./modal.service";
+export * from "./alert-modal.interface";
 
 // either provides a new instance of ModalPlaceholderService, or returns the parent
 export function MODAL_PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: ModalPlaceholderService) {

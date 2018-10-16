@@ -90,10 +90,11 @@ import { cycleTabs } from "./../common/tab.service";
 			<div
 				class="bx--modal-container"
 				[@modalState]="modalState"
-				role="main"
+				role="dialog"
 				aria-modal="true"
 				tabindex="0"
 				style="z-index:1;"
+				[attr.aria-label]="modalLabel"
 				#modal>
 				<ng-content></ng-content>
 			</div>
@@ -125,6 +126,13 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	 * @memberof ModalComponent
 	 */
 	@Input() modalType = "default";
+
+	/**
+	 * Label for the modal.
+	 * @memberof ModalComponent
+	 */
+	@Input() modalLabel = "default";
+
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occuring outside bounds of the `Modal` object.
 	 * @memberof ModalComponent
