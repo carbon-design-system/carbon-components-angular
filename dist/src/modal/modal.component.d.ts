@@ -78,6 +78,11 @@ export declare class ModalComponent implements AfterViewInit, OnInit, OnDestroy 
      */
     modalType: string;
     /**
+     * Label for the modal.
+     * @memberof ModalComponent
+     */
+    modalLabel: string;
+    /**
      * Emits event when click occurs within `n-overlay` element. This is to track click events occuring outside bounds of the `Modal` object.
      * @memberof ModalComponent
      */

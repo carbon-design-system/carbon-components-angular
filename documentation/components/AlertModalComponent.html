@@ -1715,7 +1715,7 @@ import Modal from &quot;./modal.decorator&quot;;
 @Component({
 	selector: &quot;ibm-alert-modal&quot;,
 	template: &#x60;
-		&lt;ibm-modal [modalType]&#x3D;&quot;modalType&quot;&gt;
+		&lt;ibm-modal [modalType]&#x3D;&quot;modalType&quot; [modalLabel]&#x3D;&quot;modalTitle&quot;&gt;
 			&lt;ibm-modal-header (closeSelect)&#x3D;&quot;closeModal()&quot;&gt;
 				&lt;p class&#x3D;&quot;bx--modal-header__label bx--type-delta&quot;&gt;{{modalLabel}}&lt;/p&gt;
       			&lt;p class&#x3D;&quot;bx--modal-header__heading bx--type-beta&quot;&gt;{{modalTitle}}&lt;/p&gt;
