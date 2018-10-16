@@ -14,6 +14,13 @@ export declare class TableHeaderItem {
      */
     sorted: boolean;
     /**
+     * Enables sorting on click by default.
+     * If false then this column won't show a sorting arrow at all.
+     *
+     * @memberof TableHeaderItem
+     */
+    sortable: boolean;
+    /**
      * Number of applied filters.
      *
      * `filter()` should set it to appropriate number.
@@ -21,6 +28,12 @@ export declare class TableHeaderItem {
      * @memberof TableHeaderItem
      */
     filterCount: number;
+    /**
+     * Attach a class to the column, both the header and column cells.
+     *
+     * @memberof TableHeaderItem
+     */
+    className: string;
     /**
      * Style for the column, applied to every element in the column.
      *
@@ -50,6 +63,14 @@ export declare class TableHeaderItem {
      * @memberof TableHeaderItem
      */
     data: any;
+    /**
+     * Data for the header item for general usage in the controller.
+     * For example, which `field` is this column related to.
+     *
+     * @type {*}
+     * @memberof TableHeaderItem
+     */
+    metadata: any;
     /**
      * Used to display data in a desired way.
      *

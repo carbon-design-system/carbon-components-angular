@@ -334,6 +334,9 @@
                                     <a href="../components/Table.html" >Table</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/TableStory.html" >TableStory</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/Tabs.html" >Tabs</a>
                                 </li>
                                 <li class="link">
@@ -891,6 +894,9 @@
                                            <a href="../components/Table.html" >Table</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/TableStory.html" >TableStory</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/Tabs.html" >Tabs</a>
                                        </li>
                                        <li class="link">
@@ -1219,7 +1225,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="359" class="link-to-prism">src/table/table.stories.ts:359</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/table/table.stories.ts:406</a></div>
                                         </td>
                                     </tr>
             
@@ -1286,7 +1292,9 @@ import {
 	Component,
 	ViewChild,
 	OnInit,
-	Input
+	Input,
+	OnChanges,
+	SimpleChanges
 } from &quot;@angular/core&quot;;
 import { storiesOf, moduleMetadata } from &quot;@storybook/angular&quot;;
 import {
@@ -1310,6 +1318,51 @@ import {
 import { clone } from &quot;../utils/utils&quot;;
 
 const en &#x3D; require(&quot;./../../src/i18n/en.json&quot;);
+
+@Component({
+	selector: &quot;app-table&quot;,
+	template: &#x60;
+		&lt;ibm-table
+			[model]&#x3D;&quot;model&quot;
+			[size]&#x3D;&quot;size&quot;
+			[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+			[striped]&#x3D;&quot;striped&quot;
+			(sort)&#x3D;&quot;simpleSort($event)&quot;&gt;
+		&lt;/ibm-table&gt;
+	&#x60;
+})
+class TableStory implements OnInit, OnChanges {
+	@Input() model &#x3D; new TableModel();
+	@Input() size &#x3D; &quot;md&quot;;
+	@Input() showSelectionColumn &#x3D; true;
+	@Input() striped &#x3D; true;
+	@Input() sortable &#x3D; true;
+
+	ngOnInit() {
+		this.model.header &#x3D; [
+			new TableHeaderItem({
+				data: &quot;Name&quot;
+			}),
+			new TableHeaderItem({
+				data: &quot;hwer&quot;,
+				style: {&quot;width&quot;: &quot;auto&quot;},
+				className: &quot;my-class&quot;
+			})
+		];
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.sortable) {
+			for (let column of this.model.header) {
+				column.sortable &#x3D; changes.sortable.currentValue;
+			}
+		}
+	}
+
+	simpleSort(index: number) {
+		sort(simpleModel, index);
+	}
+}
 
 @Component({
 	selector: &quot;app-custom-table&quot;,
@@ -1672,10 +1725,6 @@ function sort(model, index: number) {
 	model.sort(index);
 }
 
-function simpleSort(index: number) {
-	sort(simpleModel, index);
-}
-
 
 storiesOf(&quot;Table&quot;, module).addDecorator(
 		moduleMetadata({
@@ -1687,6 +1736,7 @@ storiesOf(&quot;Table&quot;, module).addDecorator(
 				TranslateModule.forRoot()
 			],
 			declarations: [
+				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
 				OverflowTableStory,
@@ -1697,20 +1747,20 @@ storiesOf(&quot;Table&quot;, module).addDecorator(
 	.addDecorator(withKnobs)
 	.add(&quot;default&quot;, () &#x3D;&gt; ({
 		template: &#x60;
-		&lt;ibm-table
+		&lt;app-table
 			[model]&#x3D;&quot;model&quot;
 			[size]&#x3D;&quot;size&quot;
 			[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
 			[striped]&#x3D;&quot;striped&quot;
-			(sort)&#x3D;&quot;simpleSort($event)&quot;&gt;
-		&lt;/ibm-table&gt;
+			[sortable]&#x3D;&quot;sortable&quot;&gt;
+		&lt;/app-table&gt;
 	&#x60;,
 		props: {
 			model: simpleModel,
-			simpleSort: simpleSort,
 			size: selectV2(&quot;size&quot;, {Small: &quot;sm&quot;, Normal: &quot;md&quot;, Large: &quot;lg&quot;}, &quot;md&quot;, &quot;table-size-selection&quot;),
 			showSelectionColumn: boolean(&quot;showSelectionColumn&quot;, true),
-			striped: boolean(&quot;striped&quot;, true)
+			striped: boolean(&quot;striped&quot;, true),
+			sortable: boolean(&quot;sortable&quot;, true)
 		}
 	}))
 	.add(&quot;with expansion&quot;, () &#x3D;&gt; ({
