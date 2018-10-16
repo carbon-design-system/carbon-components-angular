@@ -8,6 +8,24 @@ describe("Table", () => {
 		expect(tableModel.totalDataLength).toEqual(0);
 	});
 
+	it("model should handle different variants of empty data", () => {
+		let tableModel  = new TableModel();
+		tableModel.data = undefined;
+
+		expect(tableModel.data).toEqual([[]]);
+		expect(tableModel.totalDataLength).toEqual(0);
+
+		tableModel.data = null;
+
+		expect(tableModel.data).toEqual([[]]);
+		expect(tableModel.totalDataLength).toEqual(0);
+
+		tableModel.data = [];
+
+		expect(tableModel.data).toEqual([[]]);
+		expect(tableModel.totalDataLength).toEqual(0);
+	});
+
 	it("should set rowsSelected when setting data", () => {
 		let tableModel  = new TableModel();
 		tableModel.data = [
