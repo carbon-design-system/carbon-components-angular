@@ -369,7 +369,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange = (value) => {
+		this.propagateChange = value => {
 			this.value = value;
 			fn(value);
 		};
