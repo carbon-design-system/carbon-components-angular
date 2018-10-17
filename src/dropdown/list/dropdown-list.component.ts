@@ -53,7 +53,10 @@ import { ScrollableList } from "./../scrollable-list.directive";
 @Component({
 	selector: "ibm-dropdown-list",
 	template: `
-		<ul #list class="bx--list-box__menu">
+		<ul
+			#list
+			role="listbox"
+			class="bx--list-box__menu">
 			<li tabindex="{{item.disabled? -1 : 0}}"
 				role="option"
 				*ngFor="let item of displayItems"
@@ -72,7 +75,8 @@ import { ScrollableList } from "./../scrollable-list.directive";
 						type="checkbox"
 						[checked]="item.selected"
 						[disabled]="item.disabled"
-						(click)="doClick($event, item)">
+						(click)="doClick($event, item)"
+						tabindex="-1">
 					<label class="bx--checkbox-label">{{item.content}}</label>
 				</div>
 				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
