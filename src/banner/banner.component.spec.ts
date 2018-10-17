@@ -3,6 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Banner, BannerService } from "./banner.module";
+import { I18nModule } from "../i18n/i18n.module";
 
 
 describe("Banner", () => {
@@ -11,7 +12,8 @@ describe("Banner", () => {
 			declarations: [Banner],
 			providers: [BannerService],
 			imports: [
-				StaticIconModule
+				StaticIconModule,
+				I18nModule
 			]
 		});
 	});

@@ -9,6 +9,7 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { By } from "@angular/platform-browser";
 
 import { NFormsModule } from "./../forms/forms.module";
+import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `<ibm-table [model]="tableModel"></ibm-table>`
@@ -36,7 +37,8 @@ describe("Table", () => {
 				FormsModule,
 				NFormsModule,
 				DialogModule,
-				StaticIconModule
+				StaticIconModule,
+				I18nModule
 			],
 			declarations: [
 				Table,

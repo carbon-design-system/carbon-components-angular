@@ -7,6 +7,7 @@ import { ModalComponent } from "./modal.component";
 import { OverlayComponent } from "./overlay.component";
 import { ModalService } from "./modal.service";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
+import { I18nModule } from "../i18n/i18n.module";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
@@ -29,7 +30,8 @@ describe("ModalComponent", () => {
 		TestBed.configureTestingModule({
 			declarations: [ModalComponent, OverlayComponent],
 			imports: [
-				BrowserAnimationsModule
+				BrowserAnimationsModule,
+				I18nModule
 			],
 			providers: [ModalService, ModalPlaceholderService]
 		});

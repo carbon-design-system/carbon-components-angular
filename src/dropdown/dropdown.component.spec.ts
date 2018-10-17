@@ -7,6 +7,7 @@ import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
 import { ScrollableList } from "./scrollable-list.directive";
+import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
@@ -36,7 +37,8 @@ describe("Dropdown", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule
+				StaticIconModule,
+				I18nModule
 			]
 		});
 	});
