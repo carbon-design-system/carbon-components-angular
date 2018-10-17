@@ -12,7 +12,7 @@ storiesOf("Radio", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-radio-group [(ngModel)]="radio">
+		<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio">
 			<ibm-radio *ngFor="let radio of manyRadios"
 				[value]="radio.num"
 				[disabled]="radio.disabled">{{radio.num}}
