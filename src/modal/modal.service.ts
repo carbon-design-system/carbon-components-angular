@@ -88,6 +88,15 @@ export class ModalService {
 	 * @memberof ModalService
 	 */
 	show(data: AlertModalData) {
+		for (let key of Object.keys(data)) {
+			if (["modalType", "modalLabel", "modalTitle", "modalContent"].includes(key)) {
+				try {
+					throw new Error(`${key} is deprecated, use ${key.replace("modal", "").toLowerCase()} instead`);
+				} catch (error) {
+					console.warn(error);
+				}
+			}
+		}
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {

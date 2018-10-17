@@ -24,7 +24,7 @@ const EN = require("./../i18n/en.json");
 @Component({
 	selector: "ibm-modal-header",
 	template: `
-		<header class="{{modalType}} bx--modal-header" role="banner">
+		<header class="{{modalType}} bx--modal-header">
 			<div class="bx--modal-header">
 				<ng-content></ng-content>
 			</div>

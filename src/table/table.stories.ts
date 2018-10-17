@@ -4,7 +4,9 @@ import {
 	Component,
 	ViewChild,
 	OnInit,
-	Input
+	Input,
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
@@ -24,6 +26,51 @@ import {
 } from "../";
 
 import { clone } from "../utils/utils";
+
+@Component({
+	selector: "app-table",
+	template: `
+		<ibm-table
+			[model]="model"
+			[size]="size"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			(sort)="simpleSort($event)">
+		</ibm-table>
+	`
+})
+class TableStory implements OnInit, OnChanges {
+	@Input() model = new TableModel();
+	@Input() size = "md";
+	@Input() showSelectionColumn = true;
+	@Input() striped = true;
+	@Input() sortable = true;
+
+	ngOnInit() {
+		this.model.header = [
+			new TableHeaderItem({
+				data: "Name"
+			}),
+			new TableHeaderItem({
+				data: "hwer",
+				style: {"width": "auto"},
+				className: "my-class"
+			})
+		];
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.sortable) {
+			for (let column of this.model.header) {
+				column.sortable = changes.sortable.currentValue;
+			}
+		}
+	}
+
+	simpleSort(index: number) {
+		sort(simpleModel, index);
+	}
+}
 
 @Component({
 	selector: "app-custom-table",
@@ -362,10 +409,6 @@ function sort(model, index: number) {
 	model.sort(index);
 }
 
-function simpleSort(index: number) {
-	sort(simpleModel, index);
-}
-
 
 storiesOf("Table", module).addDecorator(
 		moduleMetadata({
@@ -376,6 +419,7 @@ storiesOf("Table", module).addDecorator(
 				PaginationModule
 			],
 			declarations: [
+				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
 				OverflowTableStory,
@@ -386,20 +430,20 @@ storiesOf("Table", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
-		<ibm-table
+		<app-table
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
-			(sort)="simpleSort($event)">
-		</ibm-table>
+			[sortable]="sortable">
+		</app-table>
 	`,
 		props: {
 			model: simpleModel,
-			simpleSort: simpleSort,
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
-			striped: boolean("striped", true)
+			striped: boolean("striped", true),
+			sortable: boolean("sortable", true)
 		}
 	}))
 	.add("with expansion", () => ({
