@@ -10,6 +10,7 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
 import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AlertModalComponent } from "./alert-modal.component";
+import { AlertModalData } from "./alert-modal.interface";
 
 
 /**
@@ -70,7 +71,11 @@ export class ModalService {
 
 	/**
 	 * Creates and renders a new alert modal component.
-	 * @param data You can pass in `title`, `text` and `buttons` to be used in the modal.
+	 * @param data You can pass in:
+	 * `modalType` - "default" | "danger" = "default",
+	 * `modalLabel` - a label shown over the title,
+	 * `modalTitle` - modal's title,
+	 * `modalContent` - modal's content, could include HTML tags.
 	 * `buttons` is an array of objects
 	 * ```
 	 * {
@@ -82,14 +87,23 @@ export class ModalService {
 	 * @returns {ComponentRef<any>}
 	 * @memberof ModalService
 	 */
-	show(data: {modalType?: string, modalLabel?: string, modalTitle: string, modalContent: string, buttons?: null}) {
+	show(data: AlertModalData) {
+		for (let key of Object.keys(data)) {
+			if (["modalType", "modalLabel", "modalTitle", "modalContent"].includes(key)) {
+				try {
+					throw new Error(`${key} is deprecated, use ${key.replace("modal", "").toLowerCase()} instead`);
+				} catch (error) {
+					console.warn(error);
+				}
+			}
+		}
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {
-				modalType: data.modalType,
-				modalLabel: data.modalLabel,
-				modalTitle: data.modalTitle,
-				modalContent: data.modalContent,
+				modalType: data.type || data.modalType,
+				modalLabel: data.label || data.modalLabel,
+				modalTitle: data.title || data.modalTitle,
+				modalContent: data.content || data.modalContent,
 				buttons: data.buttons || []
 			}
 		});

@@ -122,6 +122,12 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	 */
 	radioGroup: RadioGroup;
 	/**
+	 * set to true if the `RadioComponent` needs a tabIndex of 0.
+	 * @type {RadioGroup}
+	 * @memberof RadioComponent
+	 */
+	needsToBeFocusable: boolean;
+	/**
 	 * The value of the `RadioComponent`.
 	 * @type {any}
 	 * @memberof RadioComponent
@@ -153,6 +159,14 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 			// if in group check if it needs checked and use group name
 			this.checked = this.radioGroup.value === this._value;
 			this.name = this.radioGroup.name;
+
+			setTimeout(() => {
+				if (this.radioGroup._radios &&
+					!this.radioGroup._radios.some(radio => radio.checked) &&
+					this.radioGroup._radios.first === this) {
+					this.needsToBeFocusable = true;
+				}
+			}, 0);
 		}
 	}
 
@@ -176,6 +190,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 
 		let groupValueChanged = this.radioGroup && this.value !== this.radioGroup.value;
 		this.checked = true;
+		this.radioGroup._radios.first.needsToBeFocusable = false;
 		this.emitChangeEvent();
 
 		if (this.radioGroup) {
@@ -194,15 +209,5 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	 */
 	markForCheck() {
 		this.changeDetectorRef.markForCheck();
-	}
-
-	get needsToBeFocusable () {
-		if (this.radioGroup._radios &&
-			!this.radioGroup._radios.some(radio => radio.checked) &&
-			this.radioGroup._radios.first === this) {
-			return true;
-		}
-
-		return false;
 	}
 }

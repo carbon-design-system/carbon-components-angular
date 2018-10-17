@@ -171,6 +171,7 @@ import { getScrollbarWidth } from "../common/utils";
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
 					*ngIf="column.visible"
+					[class]="column.className"
 					[ngStyle]="column.style"
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
@@ -182,6 +183,7 @@ import { getScrollbarWidth } from "../common/utils";
 						</div>
 						<button
 							class="bx--table-sort-v2"
+							*ngIf="this.sort.observers.length > 0 && column.sortable"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
 								'bx--table-sort-v2--ascending': column.ascending
@@ -200,6 +202,14 @@ import { getScrollbarWidth } from "../common/utils";
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
 						</button>
+						<span
+							class="bx--table-header-label"
+							*ngIf="this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
+							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
+							<ng-template
+								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
+							</ng-template>
+						</span>
 						<button
 							[ngClass]="{'active': column.filterCount > 0}"
 							*ngIf="column.filterTemplate"
@@ -298,6 +308,7 @@ import { getScrollbarWidth } from "../common/utils";
 					</td>
 					<ng-container *ngFor="let item of row; let i = index">
 						<td *ngIf="model.header[i].visible"
+							[class]="model.header[i].className"
 							[ngStyle]="model.header[i].style">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template

@@ -6,15 +6,18 @@ import { CommonModule } from "@angular/common";
 // imports
 import { LabelComponent } from "./label.component";
 import { TextInput } from "./input.directive";
+import { TextArea } from "./text-area.directive";
 
 @NgModule({
 	declarations: [
 		LabelComponent,
-		TextInput
+		TextInput,
+		TextArea
 	],
 	exports: [
 		LabelComponent,
-		TextInput
+		TextInput,
+		TextArea
 	],
 	imports: [
 		CommonModule,

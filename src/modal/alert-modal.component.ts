@@ -58,13 +58,13 @@ import Modal from "./modal.decorator";
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [modalType]="modalType">
+		<ibm-modal [modalType]="modalType" [modalLabel]="modalTitle">
 			<ibm-modal-header (closeSelect)="closeModal()">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
 			<div class="bx--modal-content">
-				<p>{{modalContent}}</p>
+				<p [innerHTML]="modalContent"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
 				<ng-container *ngFor="let button of buttons; let i = index">
