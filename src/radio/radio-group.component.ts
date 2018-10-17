@@ -109,7 +109,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Determines the render size of the `RadioComponent` inputs within the group.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * (size `"default"` is being deprecated as of next major release, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default")}
 	 * @memberof RadioGroup
 	 */
@@ -369,7 +369,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange = (value) => {
+		this.propagateChange = value => {
 			this.value = value;
 			fn(value);
 		};
