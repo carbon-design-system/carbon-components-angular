@@ -10,8 +10,7 @@ import {
 
 import { BannerService } from "./banner.service";
 import { NotificationContent } from "./banner-content.interface";
-
-const EN = require("./../i18n/en.json");
+import { I18n } from "./../i18n/i18n.module";
 
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -76,11 +75,11 @@ export class Banner implements OnInit {
 
 	@ViewChild("banner") banner;
 
-	constructor(protected bannerService: BannerService) {}
+	constructor(protected bannerService: BannerService, protected i18n: I18n) {}
 
 	ngOnInit() {
 		if (!this.bannerObj.closeLabel) {
-			this.bannerObj.closeLabel = EN.BANNER.CLOSE_BUTTON;
+			this.bannerObj.closeLabel = this.i18n.get().BANNER.CLOSE_BUTTON;
 		}
 	}
 

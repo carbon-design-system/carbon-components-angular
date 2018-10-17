@@ -7,6 +7,7 @@ import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 
 import { ScrollableList } from "./scrollable-list.directive";
+import { I18nModule } from "./../i18n/i18n.module";
 
 export { Dropdown } from "./dropdown.component";
 export { DropdownList } from "./list/dropdown-list.component";
@@ -29,7 +30,8 @@ export { ListItem } from "./list-item.interface";
 	imports: [
 		CommonModule,
 		FormsModule,
-		StaticIconModule
+		StaticIconModule,
+		I18nModule
 	]
 })
 export class DropdownModule {}

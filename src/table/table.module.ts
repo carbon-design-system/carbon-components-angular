@@ -8,6 +8,7 @@ import { NFormsModule } from "./../forms/forms.module";
 import { Table } from "./table.component";
 import { IconModule } from "./../icon/icon.module";
 import { StaticIconModule } from "..";
+import { I18nModule } from "./../i18n/i18n.module";
 
 export { Table } from "./table.component";
 export { TableModel } from "./table-model.class";
@@ -27,7 +28,8 @@ export { TableHeaderItem } from "./table-header-item.class";
 		FormsModule,
 		IconModule,
 		DialogModule,
-		StaticIconModule
+		StaticIconModule,
+		I18nModule
 	]
 })
 export class TableModule {}

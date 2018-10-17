@@ -18,6 +18,7 @@ import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
+import { I18nModule } from "./../i18n/i18n.module";
 
 // exports
 export { DialogService } from "./dialog.service";
@@ -81,6 +82,6 @@ export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
 		Tooltip,
 		OverflowMenuPane
 	],
-	imports: [CommonModule, StaticIconModule]
+	imports: [CommonModule, StaticIconModule, I18nModule]
 })
 export class DialogModule {}

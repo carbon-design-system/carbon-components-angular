@@ -9,8 +9,7 @@ import { Subscription, fromEvent } from "rxjs";
 
 import { TableModel } from "./table.module";
 import { getScrollbarWidth } from "../common/utils";
-
-const EN = require("./../i18n/en.json");
+import { I18n } from "./../i18n/i18n.module";
 
 /**
  * Build your table with this component by extending things that differ from default.
@@ -359,8 +358,11 @@ export class Table {
 	 * @memberof Table
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
-
-	@Input() translations = EN.TABLE;
+	/**
+	 * Object of all the strings table needs.
+	 * Defaults to the `TABLE` value from the i18n service.
+	 */
+	@Input() translations = this.i18n.get().TABLE;
 
 	/**
 	 * `TableModel` with data the table is to display.
@@ -532,7 +534,7 @@ export class Table {
 	 * @param {ApplicationRef} applicationRef
 	 * @memberof Table
 	 */
-	constructor(private applicationRef: ApplicationRef) {}
+	constructor(protected applicationRef: ApplicationRef, protected i18n: I18n) {}
 
 	columnResizeStart(event, column) {
 		this.columnResizeWidth = parseInt(column.style.width, 10);

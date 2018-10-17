@@ -17,6 +17,7 @@ import { OverlayComponent } from "./overlay.component";
 import { ModalHeaderComponent } from "./modal-header.component";
 import { AlertModalComponent } from "./alert-modal.component";
 import { ButtonModule } from "../forms/forms.module";
+import { I18nModule } from "./../i18n/i18n.module";
 
 // exports
 export { default as Modal } from "./modal.decorator";
@@ -66,7 +67,8 @@ export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 	imports: [
 		CommonModule,
 		ButtonModule,
-		StaticIconModule
+		StaticIconModule,
+		I18nModule
 	]
 })
 export class ModalModule { }

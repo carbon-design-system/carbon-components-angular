@@ -1,9 +1,8 @@
-import { Component, ViewChild, HostListener } from "@angular/core";
+import { Component, ViewChild, HostListener, ElementRef } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
-
-const EN = require("./../../i18n/en.json");
+import { I18n } from "./../../i18n/i18n.module";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -28,6 +27,10 @@ const EN = require("./../../i18n/en.json");
 export class OverflowMenuPane extends Dialog {
 	@ViewChild("dialog") dialog;
 
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+		super(elementRef);
+	}
+
 	onDialogInit() {
 		/**
 		 *  -20 shifts the menu up to compensate for the
@@ -40,7 +43,7 @@ export class OverflowMenuPane extends Dialog {
 		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
 
 		if (!this.dialogConfig.menuLabel) {
-			this.dialogConfig.menuLabel = EN.OVERFLOW_MENU.OVERFLOW;
+			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
 
 		setTimeout(() => this.listItems()[0].focus());

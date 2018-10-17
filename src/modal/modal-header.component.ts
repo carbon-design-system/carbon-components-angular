@@ -4,8 +4,7 @@ import {
 	EventEmitter,
 	Input
 } from "@angular/core";
-
-const EN = require("./../i18n/en.json");
+import { I18n } from "./../i18n/i18n.module";
 
 /**
  * ***Inputs***
@@ -56,14 +55,19 @@ export class ModalHeaderComponent {
 	 * @memberof ModalHeaderComponent
 	 */
 	@Input() modalType = "default";
-
-	@Input() closeLabel = EN.MODAL.CLOSE;
+	/**
+	 * Accessible label for the header close button.
+	 * Defaults to the `MODAL.CLOSE` value from the i18n service.
+	 */
+	@Input() closeLabel = this.i18n.get().MODAL.CLOSE;
 
 	/**
 	 * To emit the event of clicking on the close icon within the modal.
 	 * @memberof ModalHeaderComponent
 	 */
 	@Output() closeSelect = new EventEmitter();
+
+	constructor(protected i18n: I18n) {}
 
 	/**
 	 * Handles click for the close icon button within the `Modal`.

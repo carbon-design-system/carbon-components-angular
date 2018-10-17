@@ -4,8 +4,6 @@ import { BannerService } from "./banner.service";
 import { ToastContent } from "./banner-content.interface";
 import { Banner } from "./banner.component";
 
-const EN = require("./../i18n/en.json");
-
 /**
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
@@ -55,7 +53,7 @@ export class Toast extends Banner implements OnInit {
 
 	ngOnInit() {
 		if (!this.bannerObj.closeLabel) {
-			this.bannerObj.closeLabel = EN.BANNER.CLOSE_BUTTON;
+			this.bannerObj.closeLabel = this.i18n.get().BANNER.CLOSE_BUTTON;
 		}
 	}
 }

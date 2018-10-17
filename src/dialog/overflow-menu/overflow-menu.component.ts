@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input } from "@angular/core";
-
-const EN = require("./../../i18n/en.json");
+import { I18n } from "./../../i18n/i18n.module";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -46,9 +45,9 @@ const EN = require("./../../i18n/en.json");
 })
 export class OverflowMenu {
 
-	@Input() buttonLabel = EN.OVERFLOW_MENU.OVERFLOW;
+	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 
 	get open() {
 		if (this.elementRef.nativeElement.children[0].getAttribute("aria-expanded") === "true") {

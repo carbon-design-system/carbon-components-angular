@@ -13,9 +13,6 @@ import { NFormsModule } from "..";
 import { PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";
 
-const en = require("./../../src/i18n/en.json");
-
-
 @Component({
 	selector: "app-pagination",
 	template: `
