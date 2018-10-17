@@ -61,14 +61,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			</div>
 			<input
 				[disabled]="disabled"
-				[attr.aria-expanded]="open"
 				(click)="toggleDropdown()"
 				(keyup)="onSearch($event.target.value)"
 				[value]="selectedValue"
 				class="bx--text-input"
 				aria-label="ListBox input field"
-				role="combobox"
-				aria-autocomplete="list"
 				autocomplete="off"
 				placeholder="Filter..."/>
 			<div
@@ -200,7 +197,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
 	@HostBinding("class") class = "bx--combo-box bx--list-box";
-	@HostBinding("attr.role") role = "listbox";
+	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
 	public open = false;

@@ -9,11 +9,12 @@ import {
 	ViewChild,
 	AfterContentInit,
 	HostListener,
-	OnDestroy,
+	OnDestroy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { fromEvent, of, Subscription } from "rxjs";
+// Observable import is required here so typescript can compile correctly
+import { Observable, fromEvent, of, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 
 import { TranslateService } from "@ngx-translate/core";
