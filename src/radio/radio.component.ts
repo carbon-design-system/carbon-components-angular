@@ -24,7 +24,7 @@ import { RadioGroup } from "./radio-group.component";
  * <ibm-radio [(ngModel)]="radioState">Radio</ibm-radio>
  * ```
  *
- * Also see: [`RadioGroup`](#n-radio-group)
+ * Also see: [`RadioGroup`](#ibm-radio-group)
  *
  * @export
  * @class RadioComponent
@@ -161,9 +161,9 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 			this.name = this.radioGroup.name;
 
 			setTimeout(() => {
-				if (this.radioGroup._radios &&
-					!this.radioGroup._radios.some(radio => radio.checked) &&
-					this.radioGroup._radios.first === this) {
+				if (this.radioGroup.radios &&
+					!this.radioGroup.radios.some(radio => radio.checked) &&
+					this.radioGroup.radios.first === this) {
 					this.needsToBeFocusable = true;
 				}
 			}, 0);
@@ -190,7 +190,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 
 		let groupValueChanged = this.radioGroup && this.value !== this.radioGroup.value;
 		this.checked = true;
-		this.radioGroup._radios.first.needsToBeFocusable = false;
+		this.radioGroup.radios.first.needsToBeFocusable = false;
 		this.emitChangeEvent();
 
 		if (this.radioGroup) {

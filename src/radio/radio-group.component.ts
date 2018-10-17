@@ -59,7 +59,7 @@ export class RadioChange {
  * manyRadios = ["one", "two", "three", "four", "five", "six"];
  * ```
  *
- * Also see: [`RadioComponent`](#n-radio)
+ * Also see: [`RadioComponent`](#ibm-radio)
  *
  *
  * @export
@@ -70,11 +70,7 @@ export class RadioChange {
  */
 @Component({
 	selector: "ibm-radio-group",
-	template: `
-		<div class="bx--radio-button-group">
-			<ng-content></ng-content>
-		</div>
-	`,
+	template: `<ng-content></ng-content>`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -105,7 +101,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	// tslint:disable-next-line:no-forward-ref
-	@ContentChildren(forwardRef(() => RadioComponent)) _radios: QueryList<RadioComponent>;
+	@ContentChildren(forwardRef(() => RadioComponent)) radios: QueryList<RadioComponent>;
 
 	/**
 	 * Determines the render size of the `RadioComponent` inputs within the group.
@@ -197,17 +193,17 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 		this.markRadiosForCheck();
 	}
 
-	/**
+		/**
 	 * Binds 'radiogroup' value to the role attribute for `RadioGroup`.
 	 * @memberof RadioGroup
 	 */
 	@HostBinding("attr.role") role = "radiogroup";
 
 	/**
-	 * Binds 'radiogroup' value to the aria-label attribute for `RadioGroup`.
-	 * @memberof RadioComponent
+	 * Binds 'bx--radio-button-group' value to the class for `RadioGroup`.
+	 * @memberof RadioGroup
 	 */
-	@HostBinding("attr.aria-label") ariaLabel = "radiogroup";
+	@HostBinding("class") class = "bx--radio-button-group";
 
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
@@ -272,9 +268,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	updateSelectedRadioFromValue() {
 		let alreadySelected = this._selected != null && this._selected.value === this._value;
 
-		if (this._radios != null && !alreadySelected) {
+		if (this.radios != null && !alreadySelected) {
 			this._selected = null;
-			this._radios.forEach(radio => {
+			this.radios.forEach(radio => {
 				radio.checked = this.value === radio.value;
 				if (radio.checked) {
 					this._selected = radio;
@@ -302,8 +298,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	markRadiosForCheck() {
-		if (this._radios) {
-			this._radios.forEach(radio => radio.markForCheck());
+		if (this.radios) {
+			this.radios.forEach(radio => radio.markForCheck());
 		}
 	}
 
@@ -312,8 +308,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	updateRadioNames() {
-		if (this._radios) {
-			this._radios.forEach(radio => {
+		if (this.radios) {
+			this.radios.forEach(radio => {
 				radio.name = this.name;
 			});
 		}
