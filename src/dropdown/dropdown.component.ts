@@ -4,20 +4,16 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	ViewEncapsulation,
 	ContentChild,
 	OnInit,
 	ViewChild,
 	AfterContentInit,
-	AfterViewInit,
 	HostListener,
-	forwardRef,
 	OnDestroy,
-	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { Observable, fromEvent, of, Subscription } from "rxjs";
+import { fromEvent, of, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 
 import { TranslateService } from "@ngx-translate/core";
