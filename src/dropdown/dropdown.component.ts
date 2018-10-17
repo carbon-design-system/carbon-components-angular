@@ -4,19 +4,16 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	ViewEncapsulation,
 	ContentChild,
 	OnInit,
 	ViewChild,
 	AfterContentInit,
-	AfterViewInit,
 	HostListener,
-	forwardRef,
-	OnDestroy,
-	HostBinding
+	OnDestroy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
+// Observable import is required here so typescript can compile correctly
 import { Observable, fromEvent, of, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 

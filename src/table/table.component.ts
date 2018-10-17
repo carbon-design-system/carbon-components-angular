@@ -15,26 +15,26 @@ const EN = require("./../i18n/en.json");
 /**
  * Build your table with this component by extending things that differ from default.
  *
- * demo: [https://pages.github.ibm.com/peretz/neutrino/#/table](https://pages.github.ibm.com/peretz/neutrino/#/table)
+ * demo: [https://angular.carbondesignsystem.com/?selectedKind=Table](https://angular.carbondesignsystem.com/?selectedKind=Table)
  *
  * Instead of the usual write-your-own-html approach you had with `<table>`,
- * neutrino table uses model-view-controller approach.
+ * carbon table uses model-view-controller approach.
  *
  * Here, you create a view (with built-in controller) and provide it a model.
  * Changes you make to the model are reflected in the view. Provide same model you use
- * in the table to the `<ibm-table-pagination>` and `<ibm-table-goto-page>` components.
+ * in the table to the `<ibm-pagination>` components.
  * They provide a different view over the same data.
  *
  * ## Basic usage
  *
  * ```html
- * <ibm-table [model]="simpleModel"></ibm-table>
+ * <ibm-table [model]="model"></ibm-table>
  * ```
  *
  * ```typescript
- * public simpleModel = new TableModel();
+ * public model = new TableModel();
  *
- * this.simpleModel.data = [
+ * this.model.data = [
  * 	[new TableItem({data: "asdf"}), new TableItem({data: "qwer"})],
  * 	[new TableItem({data: "csdf"}), new TableItem({data: "zwer"})],
  * 	[new TableItem({data: "bsdf"}), new TableItem({data: "swer"})],
@@ -104,14 +104,10 @@ const EN = require("./../i18n/en.json");
  *
  * See `TableHeaderItem` class for more information.
  *
- * ## Build your own table footer with neutrino components
+ * ## Use pagination as table footer
  *
  * ```html
- * <p class="table-footer">
- * 	<span class="table-selection-info">{{model.selectedRowsCount()}} of {{model.totalDataLength}} rows selected</span>
- * 	<ibm-table-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-table-pagination>
- * 	<ibm-table-goto-page (selectPage)="selectPage($event)"></ibm-table-goto-page>
- * </p>
+ * <ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
  * ```
  *
  * `selectPage()` function should fetch the data from backend, create new `data`, apply it to `model.data`,
@@ -121,27 +117,29 @@ const EN = require("./../i18n/en.json");
  *
  * ```typescript
  * selectPage(page) {
- * 	this.service.getPage(page).then((data: Array<Array<any>>) => {
- * 		let newData = [];
- *
- * 		// create new data from the service data
- * 		data.forEach(dataRow => {
- * 			let row = [];
- * 			dataRow.forEach(dataElement => {
- * 				row.push(new TableItem({
- * 					data: dataElement,
- * 					template: typeof dataElement === "string" ? undefined : this.customTableItemTemplate
- * 					// your template can handle all the data types so you don't have to conditionally set it
- * 					// you can also set different templates for different columns based on index
- * 				}));
- * 			});
- * 			newData.push(row);
- * 		});
- *
+ * 	this.getPage(page).then((data: Array<Array<any>>) => {
  * 		// set the data and update page
- * 		this.model.data = newData;
+ * 		this.model.data = this.prepareData(data);
  * 		this.model.currentPage = page;
  * 	});
+ * }
+ *
+ * private prepareData(data: Array<Array<any>>) {
+ * 	// create new data from the service data
+ * 	let newData = [];
+ * 	data.forEach(dataRow => {
+ * 		let row = [];
+ * 		dataRow.forEach(dataElement => {
+ * 			row.push(new TableItem({
+ * 				data: dataElement,
+ * 				template: typeof dataElement === "string" ? undefined : this.paginationTableItemTemplate
+ * 				// your template can handle all the data types so you don't have to conditionally set it
+ * 				// you can also set different templates for different columns based on index
+ * 			}));
+ * 		});
+ * 		newData.push(row);
+ * 	});
+ * 	return newData;
  * }
  * ```
  *
@@ -164,9 +162,10 @@ const EN = require("./../i18n/en.json");
 				<th *ngIf="model.hasExpandableRows()"></th>
 				<th *ngIf="showSelectionColumn">
 					<ibm-checkbox
-						[size]="size !== 'lg' ? 'sm' : 'md'"
+						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
+						aria-label="Select all rows"
 						(change)="onSelectAllCheckboxChange()">
 					</ibm-checkbox>
 				</th>
@@ -303,6 +302,7 @@ const EN = require("./../i18n/en.json");
 					</td>
 					<td *ngIf="showSelectionColumn">
 						<ibm-checkbox
+							aria-label="Select row"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
@@ -387,7 +387,7 @@ export class Table {
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
 	 *
-	 * @deprecated in the next major neutrino version in favour of
+	 * @deprecated in the next major carbon-components-angular version in favour of
 	 * `showSelectionColumn` because of new attribute `enableSingleSelect`
 	 *  please use `showSelectionColumn` instead
 	 */

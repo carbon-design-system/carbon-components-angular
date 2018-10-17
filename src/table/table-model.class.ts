@@ -15,6 +15,10 @@ export class TableModel implements PaginationModel {
 	 * @memberof TableModel
 	 */
 	set data(newData: Array<Array<TableItem>>) {
+		if (!newData || (Array.isArray(newData) && newData.length === 0) ) {
+			newData = [[]];
+		}
+
 		this._data = newData;
 
 		// init rowsSelected

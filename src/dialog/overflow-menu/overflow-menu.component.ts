@@ -7,11 +7,10 @@ const EN = require("./../../i18n/en.json");
  *
  * html:
  * ```
- * <ibm-overflow-menu [options]="overflowContent"></ibm-overflow-menu>
- * <ng-template #overflowContent>
+ * <ibm-overflow-menu>
  *	<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
  *	<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
- * </ng-template>
+ * </ibm-overflow-menu>
  * ```
  */
 @Component({
