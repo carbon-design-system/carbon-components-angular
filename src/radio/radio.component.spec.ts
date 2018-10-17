@@ -47,7 +47,7 @@ describe("RadioGroup", () => {
 @Component({
 	selector: "test-cmp",
 	template: `
-	<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio">
+	<ibm-radio-group [(ngModel)]="radio">
 		<ibm-radio *ngFor="let one of manyRadios" [value]="one"
 			class="indent">Radio {{one}}
 		</ibm-radio>
