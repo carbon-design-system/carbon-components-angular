@@ -102,6 +102,17 @@ import { getScrollbarWidth } from "../common/utils";
  *
  * See `TableHeaderItem` class for more information.
  *
+ * ## No data template
+ *
+ * When table has no data to show, it can show a message you provide it instead.
+ *
+ * ```html
+ * <ibm-table [model]="model">No data.</ibm-table>
+ * ```
+ *
+ * ... will show `No data.` message, but you can get creative and provide any template you want
+ * to replace table's default `tbody`.
+ *
  * ## Use pagination as table footer
  *
  * ```html
@@ -269,6 +280,7 @@ import { getScrollbarWidth } from "../common/utils";
 			</tr>
 		</thead>
 		<tbody
+		*ngIf="!noData; else noDataTemplate"
 		[ngStyle]="{'overflow-y': 'scroll'}"
 		(scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
@@ -331,6 +343,7 @@ import { getScrollbarWidth } from "../common/utils";
 				</tr>
 			</ng-container>
 		</tbody>
+		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
@@ -510,6 +523,12 @@ export class Table {
 	 * @memberof Table
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
+
+	get noData() {
+		return !this.model.data ||
+			this.model.data.length === 0 ||
+			this.model.data.length === 1 && this.model.data[0].length === 0;
+	}
 
 	private _model: TableModel;
 
