@@ -39,7 +39,7 @@ export class RadioChange {
 /**
  * class: RadioGroup
  *
- * selector: `n-radio-group`
+ * selector: `ibm-radio-group`
  *
  * source: `src/forms/radio.component.ts`
  *
