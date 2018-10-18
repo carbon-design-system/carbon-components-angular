@@ -54,11 +54,15 @@ export interface ModalButton {
      */
     text: string;
     /**
+     * Optional unique ID for the button
+     */
+    id?: string;
+    /**
      * Button type
      */
-    type: ModalButtonType;
+    type?: ModalButtonType;
     /**
      * Callback for the button `click` event
      */
-    click: Function;
+    click?: Function;
 }
