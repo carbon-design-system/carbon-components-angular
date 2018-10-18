@@ -16,7 +16,7 @@ storiesOf("Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-combo-box [items]="items">
+			<ibm-combo-box [items]="items" (selected)="selected($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 		`,
@@ -40,7 +40,7 @@ storiesOf("Combobox", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-combo-box [items]="items" type="multi">
+			<ibm-combo-box [items]="items" type="multi" (selected)="selected($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 		`,
