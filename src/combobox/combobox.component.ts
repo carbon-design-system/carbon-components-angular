@@ -351,6 +351,9 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		});
 		this.view["updateList"](this.items);
 		this.updatePills();
+		// clearSelected can only fire on type=multi
+		// so we just emit getSelected() (just in case there's any disabled but selected items)
+		this.selected.emit(this.view.getSelected() as any);
 	}
 
 	/**
