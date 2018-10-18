@@ -1243,7 +1243,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/table/table.stories.ts:406</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="407" class="link-to-prism">src/table/table.stories.ts:407</a></div>
                                         </td>
                                     </tr>
             
@@ -1346,6 +1346,7 @@ const en &#x3D; require(&quot;./../../src/i18n/en.json&quot;);
 			[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
 			[striped]&#x3D;&quot;striped&quot;
 			(sort)&#x3D;&quot;simpleSort($event)&quot;&gt;
+			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/ibm-table&gt;
 	&#x60;
 })
@@ -1735,6 +1736,11 @@ simpleModel.header &#x3D; [
 	new TableHeaderItem({data: &quot;Name&quot;}), new TableHeaderItem({data: &quot;hwer&quot;, style: {&quot;width&quot;: &quot;auto&quot;} })
 ];
 
+const emptyModel &#x3D; new TableModel();
+emptyModel.header &#x3D; [
+	new TableHeaderItem({data: &quot;Name&quot;}), new TableHeaderItem({data: &quot;hwer&quot;, style: {&quot;width&quot;: &quot;auto&quot;} })
+];
+
 function sort(model, index: number) {
 	if (model.header[index].sorted) {
 		// if already sorted flip sorting direction
@@ -1779,6 +1785,30 @@ storiesOf(&quot;Table&quot;, module).addDecorator(
 			showSelectionColumn: boolean(&quot;showSelectionColumn&quot;, true),
 			striped: boolean(&quot;striped&quot;, true),
 			sortable: boolean(&quot;sortable&quot;, true)
+		}
+	}))
+	.add(&quot;with no data&quot;, () &#x3D;&gt; ({
+		template: &#x60;
+			&lt;app-table
+				[model]&#x3D;&quot;model&quot;
+				[size]&#x3D;&quot;size&quot;
+				[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+				[striped]&#x3D;&quot;striped&quot;&gt;
+				&lt;tbody&gt;&lt;tr&gt;&lt;td class&#x3D;&quot;no-data&quot; colspan&#x3D;&quot;3&quot;&gt;&lt;div&gt;No data.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+			&lt;/app-table&gt;
+		&#x60;,
+		styles: [&#x60;
+			.no-data {
+				width: 100%;
+				height: 150px;
+				text-align: center;
+			}
+		&#x60;],
+		props: {
+			model: emptyModel,
+			size: selectV2(&quot;size&quot;, {Small: &quot;sm&quot;, Normal: &quot;md&quot;, Large: &quot;lg&quot;}, &quot;md&quot;, &quot;table-size-selection&quot;),
+			showSelectionColumn: boolean(&quot;showSelectionColumn&quot;, true),
+			striped: boolean(&quot;striped&quot;, true)
 		}
 	}))
 	.add(&quot;with expansion&quot;, () &#x3D;&gt; ({

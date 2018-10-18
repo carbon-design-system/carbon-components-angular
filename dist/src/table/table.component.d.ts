@@ -92,6 +92,17 @@ import { TableModel } from "./table.module";
  *
  * See `TableHeaderItem` class for more information.
  *
+ * ## No data template
+ *
+ * When table has no data to show, it can show a message you provide it instead.
+ *
+ * ```html
+ * <ibm-table [model]="model">No data.</ibm-table>
+ * ```
+ *
+ * ... will show `No data.` message, but you can get creative and provide any template you want
+ * to replace table's default `tbody`.
+ *
  * ## Use pagination as table footer
  *
  * ```html
@@ -260,6 +271,7 @@ export declare class Table {
      * @memberof Table
      */
     scrollLoad: EventEmitter<TableModel>;
+    readonly noData: boolean;
     private _model;
     private columnResizeWidth;
     private columnResizeMouseX;

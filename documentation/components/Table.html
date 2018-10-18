@@ -1250,6 +1250,10 @@ and override needed functions.</p>
          }
      }
 }</code></pre><p>See <code>TableHeaderItem</code> class for more information.</p>
+<h2 id="no-data-template">No data template</h2>
+<p>When table has no data to show, it can show a message you provide it instead.</p>
+<pre class="line-numbers"><code class="language-html">&lt;ibm-table [model]=&quot;model&quot;&gt;No data.&lt;/ibm-table&gt;</code></pre><p>... will show <code>No data.</code> message, but you can get creative and provide any template you want
+to replace table&#39;s default <code>tbody</code>.</p>
 <h2 id="use-pagination-as-table-footer">Use pagination as table footer</h2>
 <pre class="line-numbers"><code class="language-html">&lt;ibm-pagination [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/ibm-pagination&gt;</code></pre><p><code>selectPage()</code> function should fetch the data from backend, create new <code>data</code>, apply it to <code>model.data</code>,
 and update <code>model.currentPage</code>.</p>
@@ -1508,6 +1512,9 @@ private prepareData(data: Array&lt;Array&lt;any&gt;&gt;) {
                                  <a href="#enableRowSelect">enableRowSelect</a>
                             </li>
                             <li>
+                                 <a href="#noData">noData</a>
+                            </li>
+                            <li>
                                  <a href="#scrollbarWidth">scrollbarWidth</a>
                             </li>
                         </ul>
@@ -1528,7 +1535,7 @@ private prepareData(data: Array&lt;Array&lt;any&gt;&gt;) {
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="523" class="link-to-prism">src/table/table.component.ts:523</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="542" class="link-to-prism">src/table/table.component.ts:542</a></div>
                                 </td>
                             </tr>
     
@@ -1587,7 +1594,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="441" class="link-to-prism">src/table/table.component.ts:441</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="454" class="link-to-prism">src/table/table.component.ts:454</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1610,7 +1617,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="431" class="link-to-prism">src/table/table.component.ts:431</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="444" class="link-to-prism">src/table/table.component.ts:444</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1633,7 +1640,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="391" class="link-to-prism">src/table/table.component.ts:391</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/table/table.component.ts:404</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1655,7 +1662,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="413" class="link-to-prism">src/table/table.component.ts:413</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="426" class="link-to-prism">src/table/table.component.ts:426</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1674,7 +1681,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/table/table.component.ts:368</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="381" class="link-to-prism">src/table/table.component.ts:381</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1697,7 +1704,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="422" class="link-to-prism">src/table/table.component.ts:422</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="435" class="link-to-prism">src/table/table.component.ts:435</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1719,7 +1726,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="405" class="link-to-prism">src/table/table.component.ts:405</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="418" class="link-to-prism">src/table/table.component.ts:418</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1745,7 +1752,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="359" class="link-to-prism">src/table/table.component.ts:359</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/table/table.component.ts:372</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1767,7 +1774,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="465" class="link-to-prism">src/table/table.component.ts:465</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="478" class="link-to-prism">src/table/table.component.ts:478</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1792,7 +1799,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="488" class="link-to-prism">src/table/table.component.ts:488</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="501" class="link-to-prism">src/table/table.component.ts:501</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1813,7 +1820,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="504" class="link-to-prism">src/table/table.component.ts:504</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="517" class="link-to-prism">src/table/table.component.ts:517</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1834,7 +1841,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="512" class="link-to-prism">src/table/table.component.ts:512</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="525" class="link-to-prism">src/table/table.component.ts:525</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1855,7 +1862,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="480" class="link-to-prism">src/table/table.component.ts:480</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="493" class="link-to-prism">src/table/table.component.ts:493</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1876,7 +1883,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="496" class="link-to-prism">src/table/table.component.ts:496</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="509" class="link-to-prism">src/table/table.component.ts:509</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1897,7 +1904,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="472" class="link-to-prism">src/table/table.component.ts:472</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="485" class="link-to-prism">src/table/table.component.ts:485</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1928,7 +1935,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="659" class="link-to-prism">src/table/table.component.ts:659</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="678" class="link-to-prism">src/table/table.component.ts:678</a></div>
                                 </td>
                             </tr>
     
@@ -1996,7 +2003,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="664" class="link-to-prism">src/table/table.component.ts:664</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="683" class="link-to-prism">src/table/table.component.ts:683</a></div>
                                 </td>
                             </tr>
     
@@ -2072,7 +2079,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="669" class="link-to-prism">src/table/table.component.ts:669</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="688" class="link-to-prism">src/table/table.component.ts:688</a></div>
                                 </td>
                             </tr>
     
@@ -2148,7 +2155,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="673" class="link-to-prism">src/table/table.component.ts:673</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="692" class="link-to-prism">src/table/table.component.ts:692</a></div>
                                 </td>
                             </tr>
     
@@ -2224,7 +2231,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="653" class="link-to-prism">src/table/table.component.ts:653</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="672" class="link-to-prism">src/table/table.component.ts:672</a></div>
                                 </td>
                             </tr>
     
@@ -2292,7 +2299,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="681" class="link-to-prism">src/table/table.component.ts:681</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="700" class="link-to-prism">src/table/table.component.ts:700</a></div>
                                 </td>
                             </tr>
     
@@ -2368,7 +2375,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="551" class="link-to-prism">src/table/table.component.ts:551</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="570" class="link-to-prism">src/table/table.component.ts:570</a></div>
                                 </td>
                             </tr>
     
@@ -2436,7 +2443,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="546" class="link-to-prism">src/table/table.component.ts:546</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="565" class="link-to-prism">src/table/table.component.ts:565</a></div>
                                 </td>
                             </tr>
     
@@ -2504,7 +2511,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="533" class="link-to-prism">src/table/table.component.ts:533</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="552" class="link-to-prism">src/table/table.component.ts:552</a></div>
                                 </td>
                             </tr>
     
@@ -2572,7 +2579,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="696" class="link-to-prism">src/table/table.component.ts:696</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="715" class="link-to-prism">src/table/table.component.ts:715</a></div>
                                 </td>
                             </tr>
     
@@ -2632,7 +2639,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="704" class="link-to-prism">src/table/table.component.ts:704</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="723" class="link-to-prism">src/table/table.component.ts:723</a></div>
                                 </td>
                             </tr>
     
@@ -2692,7 +2699,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="612" class="link-to-prism">src/table/table.component.ts:612</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="631" class="link-to-prism">src/table/table.component.ts:631</a></div>
                                 </td>
                             </tr>
     
@@ -2757,7 +2764,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="556" class="link-to-prism">src/table/table.component.ts:556</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="575" class="link-to-prism">src/table/table.component.ts:575</a></div>
                                 </td>
                             </tr>
     
@@ -2818,7 +2825,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="643" class="link-to-prism">src/table/table.component.ts:643</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="662" class="link-to-prism">src/table/table.component.ts:662</a></div>
                                 </td>
                             </tr>
     
@@ -2881,7 +2888,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/table/table.component.ts:584</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="603" class="link-to-prism">src/table/table.component.ts:603</a></div>
                                 </td>
                             </tr>
     
@@ -2917,7 +2924,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="718" class="link-to-prism">src/table/table.component.ts:718</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="737" class="link-to-prism">src/table/table.component.ts:737</a></div>
                                 </td>
                             </tr>
     
@@ -2980,7 +2987,7 @@ to the model.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="565" class="link-to-prism">src/table/table.component.ts:565</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/table/table.component.ts:584</a></div>
                                 </td>
                             </tr>
     
@@ -3024,7 +3031,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="514" class="link-to-prism">src/table/table.component.ts:514</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="533" class="link-to-prism">src/table/table.component.ts:533</a></div>
                                 </td>
                             </tr>
     
@@ -3047,7 +3054,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="522" class="link-to-prism">src/table/table.component.ts:522</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="541" class="link-to-prism">src/table/table.component.ts:541</a></div>
                                 </td>
                             </tr>
     
@@ -3070,7 +3077,7 @@ to the model.</p>
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="523" class="link-to-prism">src/table/table.component.ts:523</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="542" class="link-to-prism">src/table/table.component.ts:542</a></div>
                                 </td>
                             </tr>
     
@@ -3099,7 +3106,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="517" class="link-to-prism">src/table/table.component.ts:517</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="536" class="link-to-prism">src/table/table.component.ts:536</a></div>
                                 </td>
                             </tr>
     
@@ -3128,7 +3135,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="516" class="link-to-prism">src/table/table.component.ts:516</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="535" class="link-to-prism">src/table/table.component.ts:535</a></div>
                                 </td>
                             </tr>
     
@@ -3156,7 +3163,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="521" class="link-to-prism">src/table/table.component.ts:521</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="540" class="link-to-prism">src/table/table.component.ts:540</a></div>
                                 </td>
                             </tr>
     
@@ -3185,7 +3192,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/table/table.component.ts:518</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="537" class="link-to-prism">src/table/table.component.ts:537</a></div>
                                 </td>
                             </tr>
     
@@ -3214,7 +3221,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="519" class="link-to-prism">src/table/table.component.ts:519</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="538" class="link-to-prism">src/table/table.component.ts:538</a></div>
                                 </td>
                             </tr>
     
@@ -3242,7 +3249,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="449" class="link-to-prism">src/table/table.component.ts:449</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="462" class="link-to-prism">src/table/table.component.ts:462</a></div>
                                 </td>
                             </tr>
     
@@ -3276,7 +3283,7 @@ to the model.</p>
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="457" class="link-to-prism">src/table/table.component.ts:457</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="470" class="link-to-prism">src/table/table.component.ts:470</a></div>
                                 </td>
                             </tr>
     
@@ -3311,7 +3318,7 @@ to the model.</p>
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="379" class="link-to-prism">src/table/table.component.ts:379</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="392" class="link-to-prism">src/table/table.component.ts:392</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -3331,7 +3338,7 @@ to the model.</p>
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/table/table.component.ts:368</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="381" class="link-to-prism">src/table/table.component.ts:381</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -3388,7 +3395,7 @@ to the model.</p>
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="395" class="link-to-prism">src/table/table.component.ts:395</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="408" class="link-to-prism">src/table/table.component.ts:408</a></div>
                                     </td>
                                 </tr>
     
@@ -3399,7 +3406,7 @@ to the model.</p>
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="391" class="link-to-prism">src/table/table.component.ts:391</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/table/table.component.ts:404</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -3445,6 +3452,28 @@ to the model.</p>
                 <tbody>
                     <tr>
                         <td class="col-md-4">
+                            <a name="noData"></a>
+                            <span class="name"><b>noData</b><a href="#noData"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>noData()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="527" class="link-to-prism">src/table/table.component.ts:527</a></div>
+                                    </td>
+                                </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
                             <a name="scrollbarWidth"></a>
                             <span class="name"><b>scrollbarWidth</b><a href="#scrollbarWidth"><span class="fa fa-link"></span></a></span>
                         </td>
@@ -3457,7 +3486,7 @@ to the model.</p>
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="692" class="link-to-prism">src/table/table.component.ts:692</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="711" class="link-to-prism">src/table/table.component.ts:711</a></div>
                                     </td>
                                 </tr>
     
@@ -3571,6 +3600,17 @@ import { getScrollbarWidth } from &quot;../common/utils&quot;;
  * &#x60;&#x60;&#x60;
  *
  * See &#x60;TableHeaderItem&#x60; class for more information.
+ *
+ * ## No data template
+ *
+ * When table has no data to show, it can show a message you provide it instead.
+ *
+ * &#x60;&#x60;&#x60;html
+ * &lt;ibm-table [model]&#x3D;&quot;model&quot;&gt;No data.&lt;/ibm-table&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * ... will show &#x60;No data.&#x60; message, but you can get creative and provide any template you want
+ * to replace table&#x27;s default &#x60;tbody&#x60;.
  *
  * ## Use pagination as table footer
  *
@@ -3739,6 +3779,7 @@ import { getScrollbarWidth } from &quot;../common/utils&quot;;
 			&lt;/tr&gt;
 		&lt;/thead&gt;
 		&lt;tbody
+		*ngIf&#x3D;&quot;!noData; else noDataTemplate&quot;
 		[ngStyle]&#x3D;&quot;{&#x27;overflow-y&#x27;: &#x27;scroll&#x27;}&quot;
 		(scroll)&#x3D;&quot;onScroll($event)&quot;&gt;
 			&lt;ng-container *ngFor&#x3D;&quot;let row of model.data; let i &#x3D; index&quot;&gt;
@@ -3801,6 +3842,7 @@ import { getScrollbarWidth } from &quot;../common/utils&quot;;
 				&lt;/tr&gt;
 			&lt;/ng-container&gt;
 		&lt;/tbody&gt;
+		&lt;ng-template #noDataTemplate&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/ng-template&gt;
 		&lt;tfoot&gt;
 			&lt;tr *ngIf&#x3D;&quot;this.model.isLoading&quot;&gt;
 				&lt;td class&#x3D;&quot;table_loading-indicator&quot;&gt;
@@ -3980,6 +4022,12 @@ export class Table {
 	 * @memberof Table
 	 */
 	@Output() scrollLoad &#x3D; new EventEmitter&lt;TableModel&gt;();
+
+	get noData() {
+		return !this.model.data ||
+			this.model.data.length &#x3D;&#x3D;&#x3D; 0 ||
+			this.model.data.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; this.model.data[0].length &#x3D;&#x3D;&#x3D; 0;
+	}
 
 	private _model: TableModel;
 
