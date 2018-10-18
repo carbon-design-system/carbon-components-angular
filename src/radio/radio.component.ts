@@ -143,7 +143,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	 * @memberof RadioComponent
 	 */
 	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+				public changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		super(changeDetectorRef);
 		RadioComponent.radioCount++;
 		this.radioGroup = radioGroup;
@@ -159,14 +159,6 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 			// if in group check if it needs checked and use group name
 			this.checked = this.radioGroup.value === this._value;
 			this.name = this.radioGroup.name;
-
-			setTimeout(() => {
-				if (this.radioGroup.radios &&
-					!this.radioGroup.radios.some(radio => radio.checked) &&
-					this.radioGroup.radios.first === this) {
-					this.needsToBeFocusable = true;
-				}
-			}, 0);
 		}
 	}
 
@@ -190,7 +182,6 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 
 		let groupValueChanged = this.radioGroup && this.value !== this.radioGroup.value;
 		this.checked = true;
-		this.radioGroup.radios.first.needsToBeFocusable = false;
 		this.emitChangeEvent();
 
 		if (this.radioGroup) {

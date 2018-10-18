@@ -193,7 +193,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 		this.markRadiosForCheck();
 	}
 
-		/**
+	/**
 	 * Binds 'radiogroup' value to the role attribute for `RadioGroup`.
 	 * @memberof RadioGroup
 	 */
@@ -357,6 +357,22 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
 		// NgModel occurs *after* the OnInit of the RadioGroup.
 		this.isInitialized = true;
+		this.updateFocusableRadio();
+
+		this.radios.changes.subscribe(updatedRadios => {
+			this.radios = updatedRadios;
+			this.updateFocusableRadio();
+		});
+	}
+
+	updateFocusableRadio() {
+		if (this.radios &&
+			!this.radios.some(radio => radio.checked)) {
+			this.radios.forEach(radio => radio.needsToBeFocusable = false);
+
+			this.radios.toArray()[0].needsToBeFocusable = true;
+			this.radios.forEach(radio => radio.changeDetectorRef.detectChanges());
+		}
 	}
 
 	/**
