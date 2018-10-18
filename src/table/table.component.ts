@@ -304,6 +304,7 @@ import { getScrollbarWidth } from "../common/utils";
 						<button
 						*ngIf="model.isRowExpandable(i)"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])"
+						[attr.aria-label]="expandButtonAriaLabel"
 						class="bx--table-expand-v2__button">
 							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
 								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
@@ -452,6 +453,8 @@ export class Table {
 	 * @memberof Table
 	 */
 	@Input() columnsDraggable = false;
+
+	@Input() expandButtonAriaLabel = "Expand row";
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
