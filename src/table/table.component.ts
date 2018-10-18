@@ -206,9 +206,9 @@ import { getScrollbarWidth } from "../common/utils";
 							<svg
 							class="bx--table-sort-v2__icon"
 							width="10" height="5" viewBox="0 0 10 5"
-							aria-label="Sort rows by this header in descending order"
-							alt="Sort rows by this header in descending order">
-								<title>Sort rows by this header in descending order</title>
+							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
+							[attr.alt]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)">
+								<title>{{(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)}}</title>
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
 						</button>
@@ -455,6 +455,8 @@ export class Table {
 	@Input() columnsDraggable = false;
 
 	@Input() expandButtonAriaLabel = "Expand row";
+	@Input() sortDescendingLabel = "Sort rows by this header in descending order";
+	@Input() sortAscendingLabel = "Sort rows by this header in ascending order";
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
