@@ -1560,6 +1560,9 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
                         <td class="col-md-10">
                             <div><p>Text to show when nothing is selected.</p>
 </div>
+                            <p>
+                              <em>Default value: </em><code>Filter...</code>
+                            </p>
                         </td>
                     </tr>
                             <tr>
@@ -1910,7 +1913,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/combobox/combobox.component.ts:360</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/combobox/combobox.component.ts:363</a></div>
                                 </td>
                             </tr>
     
@@ -2141,7 +2144,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="389" class="link-to-prism">src/combobox/combobox.component.ts:389</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="392" class="link-to-prism">src/combobox/combobox.component.ts:392</a></div>
                                 </td>
                             </tr>
     
@@ -2204,7 +2207,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="427" class="link-to-prism">src/combobox/combobox.component.ts:427</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="430" class="link-to-prism">src/combobox/combobox.component.ts:430</a></div>
                                 </td>
                             </tr>
     
@@ -2272,7 +2275,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="369" class="link-to-prism">src/combobox/combobox.component.ts:369</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/combobox/combobox.component.ts:372</a></div>
                                 </td>
                             </tr>
     
@@ -2429,7 +2432,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/combobox/combobox.component.ts:377</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/combobox/combobox.component.ts:380</a></div>
                                 </td>
                             </tr>
     
@@ -2499,7 +2502,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="442" class="link-to-prism">src/combobox/combobox.component.ts:442</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="445" class="link-to-prism">src/combobox/combobox.component.ts:445</a></div>
                                 </td>
                             </tr>
     
@@ -2892,7 +2895,7 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 				class&#x3D;&quot;bx--text-input&quot;
 				aria-label&#x3D;&quot;ListBox input field&quot;
 				autocomplete&#x3D;&quot;off&quot;
-				placeholder&#x3D;&quot;Filter...&quot;/&gt;
+				[placeholder]&#x3D;&quot;placeholder&quot;/&gt;
 			&lt;div
 				[ngClass]&#x3D;&quot;{&#x27;bx--list-box__menu-icon--open&#x27;: open}&quot;
 				class&#x3D;&quot;bx--list-box__menu-icon&quot;&gt;
@@ -2957,7 +2960,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Text to show when nothing is selected.
 	 * @memberof ComboBox
 	 */
-	@Input() placeholder &#x3D; &quot;&quot;;
+	@Input() placeholder &#x3D; &quot;Filter...&quot;;
 	/**
 	 * Combo box type (supporting single or multi selection of items).
 	 * @type {(&quot;single&quot; | &quot;multi&quot;)}
@@ -3176,6 +3179,9 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		});
 		this.view[&quot;updateList&quot;](this.items);
 		this.updatePills();
+		// clearSelected can only fire on type&#x3D;multi
+		// so we just emit getSelected() (just in case there&#x27;s any disabled but selected items)
+		this.selected.emit(this.view.getSelected() as any);
 	}
 
 	/**
