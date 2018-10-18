@@ -67,7 +67,7 @@ export class CheckboxChange {
 			[indeterminate]="indeterminate"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby"
-			[attr.aria-checked]="indeterminate ? 'mixed' : checked"
+			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
 		<label [for]="id" class="bx--checkbox-label">
