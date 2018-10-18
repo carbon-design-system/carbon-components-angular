@@ -67,7 +67,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="bx--text-input"
 				aria-label="ListBox input field"
 				autocomplete="off"
-				placeholder="Filter..."/>
+				[placeholder]="placeholder"/>
 			<div
 				[ngClass]="{'bx--list-box__menu-icon--open': open}"
 				class="bx--list-box__menu-icon">
@@ -132,7 +132,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Text to show when nothing is selected.
 	 * @memberof ComboBox
 	 */
-	@Input() placeholder = "";
+	@Input() placeholder = "Filter...";
 	/**
 	 * Combo box type (supporting single or multi selection of items).
 	 * @type {("single" | "multi")}
