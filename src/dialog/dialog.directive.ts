@@ -9,7 +9,8 @@ import {
 	TemplateRef,
 	ViewContainerRef,
 	HostListener,
-	OnChanges
+	OnChanges,
+	HostBinding
 } from "@angular/core";
 import { fromEvent } from "rxjs";
 import { DialogService } from "./dialog.service";
@@ -94,6 +95,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	dialogConfig: DialogConfig;
 
+	@HostBinding("attr.role") role = "button";
+	@HostBinding("attr.aria-expanded") expanded = false;
+
 	/**
 	 * Creates an instance of DialogDirective.
 	 * @param {ElementRef} elementRef
@@ -158,7 +162,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.dialogService.isClosed.subscribe(value => {
 			if (value) {
 				this.onClose.emit();
-				this.elementRef.nativeElement.setAttribute("aria-expanded", "false");
+				this.expanded = false;
 			}
 		});
 
@@ -182,7 +186,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
-		this.elementRef.nativeElement.setAttribute("aria-expanded", "true");
+		this.expanded = true;
 	}
 
 	/**
@@ -192,7 +196,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	toggle() {
 		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
-		this.elementRef.nativeElement.setAttribute("aria-expanded", this.dialogService.isOpen);
+		this.expanded = this.dialogService.isOpen;
 	}
 
 	/**
@@ -202,7 +206,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	close() {
 		this.dialogService.close(this.viewContainerRef);
-		this.elementRef.nativeElement.setAttribute("aria-expanded", "false");
+		this.expanded = false;
 	}
 
 	/**
