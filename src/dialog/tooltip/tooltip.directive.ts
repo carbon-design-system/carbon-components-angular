@@ -92,6 +92,6 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
-		this.descriptorID = this.dialogConfig.compID;
+		this.descriptorId = this.dialogConfig.compID;
 	}
 }
