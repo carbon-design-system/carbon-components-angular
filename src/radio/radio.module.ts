@@ -4,10 +4,13 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { RadioComponent, RadioGroup } from "../radio/radio.component";
+import { RadioComponent } from "../radio/radio.component";
+import { RadioGroup } from "../radio/radio-group.component";
+
 
 // exports
-export { RadioComponent, RadioGroup } from "../radio/radio.component";
+export { RadioComponent } from "../radio/radio.component";
+export { RadioGroup } from "../radio/radio-group.component";
 
 @NgModule({
 	declarations: [
