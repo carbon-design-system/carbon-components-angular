@@ -203,7 +203,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * Binds 'bx--radio-button-group' value to the class for `RadioGroup`.
 	 * @memberof RadioGroup
 	 */
-	@HostBinding("class") class = "bx--radio-button-group";
+	@HostBinding("class.bx--radio-button-group") radioButtonGroupClass = true;
 
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
