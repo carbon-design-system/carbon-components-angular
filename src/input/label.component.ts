@@ -6,7 +6,6 @@ import {
 	HostBinding
 } from "@angular/core";
 
-
 /**
  * ```html
  * <ibm-label labelState="success">
