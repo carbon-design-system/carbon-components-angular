@@ -209,6 +209,9 @@ export declare class Table {
      * @memberof Table
      */
     columnsDraggable: boolean;
+    expandButtonAriaLabel: string;
+    sortDescendingLabel: string;
+    sortAscendingLabel: string;
     /**
      * Controls if all checkboxes are viewed as selected.
      *
