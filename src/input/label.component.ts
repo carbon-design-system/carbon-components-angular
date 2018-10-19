@@ -57,7 +57,7 @@ export class LabelComponent implements AfterContentInit {
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
 
-	@HostBinding("class") class = "bx--form-item";
+	@HostBinding("class.bx--form-item") labelComponentClass = true;
 
 	/**
 	 * Creates an instance of LabelComponent.
