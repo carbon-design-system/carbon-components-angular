@@ -1185,7 +1185,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/radio/radio.component.ts</code>
+            <code>src/radio/radio-group.component.ts</code>
         </p>
 
             <p class="comment">
@@ -1259,7 +1259,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/radio/radio.component.ts:35</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/radio/radio-group.component.ts:30</a></div>
                                         </td>
                                     </tr>
             
@@ -1294,7 +1294,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/radio/radio.component.ts:41</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/radio/radio-group.component.ts:36</a></div>
                                         </td>
                                     </tr>
             
@@ -1315,26 +1315,21 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import {
 	AfterContentInit,
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	ContentChildren,
 	Component,
-	Directive,
 	ElementRef,
 	EventEmitter,
 	forwardRef,
 	Input,
 	OnInit,
-	Optional,
 	Output,
 	QueryList,
 	Renderer2,
-	ViewChild,
 	HostBinding
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
-import { CheckboxComponent, CheckboxState } from &quot;../checkbox/checkbox.component&quot;;
-
+import { RadioComponent } from &quot;./radio.component&quot;;
 
 /**
  * Used to emit changes performed on a &#x60;RadioComponent&#x60;.
@@ -1359,7 +1354,7 @@ export class RadioChange {
 /**
  * class: RadioGroup
  *
- * selector: &#x60;n-radio-group&#x60;
+ * selector: &#x60;ibm-radio-group&#x60;
  *
  * source: &#x60;src/forms/radio.component.ts&#x60;
  *
@@ -1379,7 +1374,7 @@ export class RadioChange {
  * manyRadios &#x3D; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;];
  * &#x60;&#x60;&#x60;
  *
- * Also see: [&#x60;RadioComponent&#x60;](#n-radio)
+ * Also see: [&#x60;RadioComponent&#x60;](#ibm-radio)
  *
  *
  * @export
@@ -1390,11 +1385,7 @@ export class RadioChange {
  */
 @Component({
 	selector: &quot;ibm-radio-group&quot;,
-	template: &#x60;
-		&lt;div class&#x3D;&quot;bx--radio-button-group&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/div&gt;
-	&#x60;,
+	template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -1425,11 +1416,11 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	// tslint:disable-next-line:no-forward-ref
-	@ContentChildren(forwardRef(() &#x3D;&gt; RadioComponent)) _radios: QueryList&lt;RadioComponent&gt;;
+	@ContentChildren(forwardRef(() &#x3D;&gt; RadioComponent)) radios: QueryList&lt;RadioComponent&gt;;
 
 	/**
 	 * Determines the render size of the &#x60;RadioComponent&#x60; inputs within the group.
-	 * (size &#x60;&quot;default&quot;&#x60; is being deprecated as of neutrino v1.2.0, please use &#x60;&quot;md&quot;&#x60; instead)
+	 * (size &#x60;&quot;default&quot;&#x60; is being deprecated as of next major release, please use &#x60;&quot;md&quot;&#x60; instead)
 	 * @type {(&quot;sm&quot; | &quot;md&quot; | &quot;default&quot;)}
 	 * @memberof RadioGroup
 	 */
@@ -1524,6 +1515,12 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;radiogroup&quot;;
 
 	/**
+	 * Binds &#x27;bx--radio-button-group&#x27; value to the class for &#x60;RadioGroup&#x60;.
+	 * @memberof RadioGroup
+	 */
+	@HostBinding(&quot;class.bx--radio-button-group&quot;) radioButtonGroupClass &#x3D; true;
+
+	/**
 	 * To track whether the &#x60;RadioGroup&#x60; has been initialized.
 	 * @private
 	 * @memberof RadioGroup
@@ -1586,9 +1583,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	updateSelectedRadioFromValue() {
 		let alreadySelected &#x3D; this._selected !&#x3D; null &amp;&amp; this._selected.value &#x3D;&#x3D;&#x3D; this._value;
 
-		if (this._radios !&#x3D; null &amp;&amp; !alreadySelected) {
+		if (this.radios !&#x3D; null &amp;&amp; !alreadySelected) {
 			this._selected &#x3D; null;
-			this._radios.forEach(radio &#x3D;&gt; {
+			this.radios.forEach(radio &#x3D;&gt; {
 				radio.checked &#x3D; this.value &#x3D;&#x3D;&#x3D; radio.value;
 				if (radio.checked) {
 					this._selected &#x3D; radio;
@@ -1616,8 +1613,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	markRadiosForCheck() {
-		if (this._radios) {
-			this._radios.forEach(radio &#x3D;&gt; radio.markForCheck());
+		if (this.radios) {
+			this.radios.forEach(radio &#x3D;&gt; radio.markForCheck());
 		}
 	}
 
@@ -1626,10 +1623,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	updateRadioNames() {
-		if (this._radios) {
-			this._radios.forEach(radio &#x3D;&gt; {
-				radio.name &#x3D; this.name;
-			});
+		if (this.radios) {
+			this.radios.forEach(radio &#x3D;&gt; radio.name &#x3D; this.name);
 		}
 	}
 
@@ -1675,6 +1670,20 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
 		// NgModel occurs *after* the OnInit of the RadioGroup.
 		this.isInitialized &#x3D; true;
+		this.updateFocusableRadio();
+
+		this.radios.changes.subscribe(updatedRadios &#x3D;&gt; {
+			this.radios &#x3D; updatedRadios;
+			this.updateFocusableRadio();
+		});
+	}
+
+	updateFocusableRadio() {
+		if (this.radios &amp;&amp; !this.radios.some(radio &#x3D;&gt; radio.checked)) {
+			this.radios.forEach(radio &#x3D;&gt; radio.needsToBeFocusable &#x3D; false);
+			this.radios.first.needsToBeFocusable &#x3D; true;
+			this.radios.forEach(radio &#x3D;&gt; radio.changeDetectorRef.detectChanges());
+		}
 	}
 
 	/**
@@ -1683,7 +1692,10 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange &#x3D; fn;
+		this.propagateChange &#x3D; value &#x3D;&gt; {
+			this.value &#x3D; value;
+			fn(value);
+		};
 	}
 
 	/**
@@ -1705,190 +1717,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
-}
-
-
-/**
- * class: RadioComponent (extends CheckboxComponent)
- *
- * selector: &#x60;n-radio&#x60;
- *
- * source: &#x60;src/forms/radio.component.ts&#x60;
- *
- * &#x60;&#x60;&#x60;html
- * &lt;ibm-radio [(ngModel)]&#x3D;&quot;radioState&quot;&gt;Radio&lt;/ibm-radio&gt;
- * &#x60;&#x60;&#x60;
- *
- * Also see: [&#x60;RadioGroup&#x60;](#n-radio-group)
- *
- * @export
- * @class RadioComponent
- * @extends {CheckboxComponent}
- * @implements {OnInit}
- */
-@Component({
-	selector: &quot;ibm-radio&quot;,
-	template: &#x60;
-		&lt;input
-			class&#x3D;&quot;bx--radio-button&quot;
-			type&#x3D;&quot;radio&quot;
-			#inputCheckbox
-			[checked]&#x3D;&quot;checked&quot;
-			[disabled]&#x3D;&quot;disabled&quot;
-			[name]&#x3D;&quot;name&quot;
-			[id]&#x3D;&quot;id&quot;
-			[required]&#x3D;&quot;required&quot;
-			[value]&#x3D;&quot;value&quot;
-			[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
-			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
-			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
-		&lt;label
-			class&#x3D;&quot;bx--radio-button__label&quot;
-			[for]&#x3D;&quot;id&quot;&gt;
-			&lt;span class&#x3D;&quot;bx--radio-button__appearance&quot;&gt;&lt;/span&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/label&gt;
-	&#x60;,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: RadioComponent,
-			multi: true
-		}
-	]
-})
-export class RadioComponent extends CheckboxComponent implements OnInit {
-	/**
-	 * Used to dynamically create unique ids for the &#x60;RadioComponent&#x60;.
-	 * @static
-	 * @memberof RadioComponent
-	 */
-	static radioCount &#x3D; 0;
-
-	/**
-	 * Binds &#x27;radio&#x27; value to the role attribute for &#x60;RadioComponent&#x60;.
-	 * @memberof RadioComponent
-	 */
-	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;radio&quot;;
-
-	/**
-	 * The id for the &#x60;RadioComponent&#x60;.
-	 * @type {string}
-	 * @memberof RadioComponent
-	 */
-	id &#x3D; &#x60;radio-${RadioComponent.radioCount}&#x60;;
-	/**
-	 * The radio group that this &#x60;RadioComponent&#x60; belongs to (if any).
-	 * @type {RadioGroup}
-	 * @memberof RadioComponent
-	 */
-	radioGroup: RadioGroup;
-	/**
-	 * The value of the &#x60;RadioComponent&#x60;.
-	 * @type {any}
-	 * @memberof RadioComponent
-	 */
-	_value: any &#x3D; null;
-
-	/**
-	 * Creates an instance of RadioComponent.
-	 * @param {RadioGroup} radioGroup
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
-	 * @memberof RadioComponent
-	 */
-	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
-		super(changeDetectorRef);
-		RadioComponent.radioCount++;
-		this.radioGroup &#x3D; radioGroup;
-	}
-
-	/**
-	 * If the component has an encompassing &#x60;RadioGroup&#x60; it synchronizes the name with that
-	 * of the group.
-	 * @memberof RadioComponent
-	 */
-	ngOnInit() {
-		if (this.radioGroup) {
-			// if in group check if it needs checked and use group name
-			this.checked &#x3D; this.radioGroup.value &#x3D;&#x3D;&#x3D; this._value;
-			this.name &#x3D; this.radioGroup.name;
-		}
-	}
-
-	/**
-	 * Handles the event of a mouse click on the &#x60;RadioComponent&#x60;.
-	 * @param {Event} event
-	 * @memberof RadioComponent
-	 */
-	onClick(event: Event) {
-		event.stopPropagation();
-	}
-
-	/**
-	 * Synchronizes with the &#x60;RadioGroup&#x60; in the event of a changed &#x60;RadioComponent&#x60;.
-	 * Emits the changes of both the &#x60;RadioGroup&#x60; and &#x60;RadioComponent&#x60;.
-	 * @param {Event} event
-	 * @memberof RadioComponent
-	 */
-	onChange(event: Event) {
-		event.stopPropagation();
-
-		let groupValueChanged &#x3D; this.radioGroup &amp;&amp; this.value !&#x3D;&#x3D; this.radioGroup.value;
-		this.checked &#x3D; true;
-		this.emitChangeEvent();
-
-		if (this.radioGroup) {
-			this.radioGroup.propagateChange(this.value);
-			this.radioGroup.touch();
-			if (groupValueChanged) {
-				this.radioGroup.emitChangeEvent();
-			}
-		}
-	}
-
-	/**
-	 * Calls the &#x60;markForCheck()&#x60; function within the &#x60;changeDetectorRef&#x60; class
-	 * to make sure that Angular&#x27;s change detection is triggered for the input.
-	 * @memberof RadioComponent
-	 */
-	markForCheck() {
-		this.changeDetectorRef.markForCheck();
-	}
-
-	/**
-	 * Returns the value/state of the &#x60;RadioComponent&#x60;.
-	 * @readonly
-	 * @type {any}
-	 * @returns {any}
-	 * @memberof RadioComponent
-	 */
-	@Input()
-	get value(): any {
-		return this._value;
-	}
-
-	/**
-	 * Replaces &#x60;@Input value&#x60; with the provided parameter supplied from the parent.
-	 * @param {any} value
-	 * @memberof RadioComponent
-	 */
-	set value(value: any) {
-		if (this._value !&#x3D;&#x3D; value) {
-			this._value &#x3D; value;
-			if (this.radioGroup !&#x3D; null) {
-				if (!this.checked) {
-					this.checked &#x3D; this.radioGroup.value &#x3D;&#x3D;&#x3D; value;
-				}
-				if (this.checked) {
-					this.radioGroup.selected &#x3D; this;
-				}
-			}
-		}
-	}
 }
 </code></pre>
     </div>

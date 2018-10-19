@@ -1182,7 +1182,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/radio/radio.component.ts</code>
+    <code>src/radio/radio-group.component.ts</code>
 </p>
 
     <p class="comment">
@@ -1190,7 +1190,7 @@
     </p>
     <p class="comment">
         <p>class: RadioGroup</p>
-<p>selector: <code>n-radio-group</code></p>
+<p>selector: <code>ibm-radio-group</code></p>
 <p>source: <code>src/forms/radio.component.ts</code></p>
 <p>Ex:</p>
 <pre class="line-numbers"><code class="language-html">&lt;ibm-radio-group [(ngModel)]=&quot;radio&quot;&gt;
@@ -1199,7 +1199,7 @@
      &lt;/ibm-radio&gt;
 &lt;/ibm-radio-group&gt;
 
-Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="language-typescript">manyRadios = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;];</code></pre><p>Also see: <a href="#n-radio"><code>RadioComponent</code></a></p>
+Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="language-typescript">manyRadios = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;];</code></pre><p>Also see: <a href="#ibm-radio"><code>RadioComponent</code></a></p>
 
     </p>
 
@@ -1278,9 +1278,6 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                                 <span class="modifier">Private</span> <a href="#_name">_name</a>
                             </li>
                             <li>
-                                 <a href="#_radios">_radios</a>
-                            </li>
-                            <li>
                                 <span class="modifier">Private</span> <a href="#_selected">_selected</a>
                             </li>
                             <li>
@@ -1297,6 +1294,9 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                             </li>
                             <li>
                                 <span class="modifier">Static</span> <a href="#radioGroupCount">radioGroupCount</a>
+                            </li>
+                            <li>
+                                 <a href="#radios">radios</a>
                             </li>
                         </ul>
                     </td>
@@ -1332,6 +1332,9 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                             </li>
                             <li>
                                  <a href="#touch">touch</a>
+                            </li>
+                            <li>
+                                 <a href="#updateFocusableRadio">updateFocusableRadio</a>
                             </li>
                             <li>
                                  <a href="#updateRadioNames">updateRadioNames</a>
@@ -1396,6 +1399,9 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                             <li>
                                 <a href="#attr.role">attr.role</a>
                             </li>
+                            <li>
+                                <a href="#class.bx--radio-button-group">class.bx--radio-button-group</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -1437,7 +1443,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/radio/radio.component.ts:244</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/radio/radio-group.component.ts:241</a></div>
                                 </td>
                             </tr>
     
@@ -1509,7 +1515,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/radio/radio.component.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/radio/radio-group.component.ts:182</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1528,7 +1534,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/radio/radio.component.ts:172</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/radio/radio-group.component.ts:163</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1547,7 +1553,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/radio/radio.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/radio/radio-group.component.ts:120</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1561,7 +1567,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </td>
                         <td class="col-md-10">
                             <div><p>Determines the render size of the <code>RadioComponent</code> inputs within the group.
-(size <code>&quot;default&quot;</code> is being deprecated as of neutrino v1.2.0, please use <code>&quot;md&quot;</code> instead)</p>
+(size <code>&quot;default&quot;</code> is being deprecated as of next major release, please use <code>&quot;md&quot;</code> instead)</p>
 </div>
                               <p>
                                 <em>Type:</em>    <code>&quot;sm&quot; | &quot;md&quot; | &quot;default&quot;</code>
@@ -1574,7 +1580,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/radio/radio.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/radio/radio-group.component.ts:112</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1593,7 +1599,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/radio/radio.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/radio/radio-group.component.ts:140</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1618,7 +1624,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/radio/radio.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/radio/radio-group.component.ts:96</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1647,13 +1653,47 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/radio/radio.component.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/radio/radio-group.component.ts:200</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Binds &#39;radiogroup&#39; value to the role attribute for <code>RadioGroup</code>.</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="class.bx--radio-button-group"></a>
+                            <span class="name"><b> class.bx--radio-button-group</b><a href="#class.bx--radio-button-group"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>class.bx--radio-button-group:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>true</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/radio/radio-group.component.ts:206</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>Binds &#39;bx--radio-button-group&#39; value to the class for <code>RadioGroup</code>.</p>
     </div>
                         </td>
                     </tr>
@@ -1685,7 +1725,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/radio/radio.component.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/radio/radio-group.component.ts:258</a></div>
                                 </td>
                             </tr>
     
@@ -1719,7 +1759,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/radio/radio.component.ts:289</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/radio/radio-group.component.ts:286</a></div>
                                 </td>
                             </tr>
     
@@ -1753,7 +1793,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/radio/radio.component.ts:303</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/radio/radio-group.component.ts:300</a></div>
                                 </td>
                             </tr>
     
@@ -1788,7 +1828,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">src/radio/radio.component.ts:358</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="353" class="link-to-prism">src/radio/radio-group.component.ts:353</a></div>
                                 </td>
                             </tr>
     
@@ -1823,7 +1863,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/radio/radio.component.ts:345</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="340" class="link-to-prism">src/radio/radio-group.component.ts:340</a></div>
                                 </td>
                             </tr>
     
@@ -1858,7 +1898,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="370" class="link-to-prism">src/radio/radio.component.ts:370</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="379" class="link-to-prism">src/radio/radio-group.component.ts:379</a></div>
                                 </td>
                             </tr>
     
@@ -1922,7 +1962,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/radio/radio.component.ts:378</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="390" class="link-to-prism">src/radio/radio-group.component.ts:390</a></div>
                                 </td>
                             </tr>
     
@@ -1986,7 +2026,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="335" class="link-to-prism">src/radio/radio.component.ts:335</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="330" class="link-to-prism">src/radio/radio-group.component.ts:330</a></div>
                                 </td>
                             </tr>
     
@@ -1994,6 +2034,38 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         <td class="col-md-4">
                                 <div class="io-description"><p>Callback triggered when a <code>RadioComponent</code> within the <code>RadioGroup</code> is changed.</p>
     </div>
+    
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="updateFocusableRadio"></a>
+                            <span class="name"><b> updateFocusableRadio</b><a href="#updateFocusableRadio"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>updateFocusableRadio()</code>
+                        </td>
+                    </tr>
+    
+    
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/radio/radio-group.component.ts:366</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -2020,7 +2092,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/radio/radio.component.ts:313</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/radio/radio-group.component.ts:310</a></div>
                                 </td>
                             </tr>
     
@@ -2054,7 +2126,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/radio/radio.component.ts:271</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/radio/radio-group.component.ts:268</a></div>
                                 </td>
                             </tr>
     
@@ -2088,7 +2160,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="326" class="link-to-prism">src/radio/radio.component.ts:326</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/radio/radio-group.component.ts:321</a></div>
                                 </td>
                             </tr>
     
@@ -2162,7 +2234,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/radio/radio.component.ts:223</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/radio/radio-group.component.ts:220</a></div>
                                 </td>
                             </tr>
     
@@ -2191,53 +2263,13 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/radio/radio.component.ts:244</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/radio/radio-group.component.ts:241</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>The name attribute associated with the <code>RadioGroup</code>.</p>
-    </div>
-                        </td>
-                    </tr>
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="_radios"></a>
-                            <span class="name"><b> _radios</b><a href="#_radios"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <code>_radios:     <code><a href="../components/RadioComponent.html" target="_self" >QueryList&lt;RadioComponent&gt;</a></code>
-    </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Type : </i>    <code><a href="../components/RadioComponent.html" target="_self" >QueryList&lt;RadioComponent&gt;</a></code>
-    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Decorators : </i><code>ContentChildren</code>
-                            </td>
-                        </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/radio/radio.component.ts:113</a></div>
-                                </td>
-                            </tr>
-    
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-description"><p>The <code>RadioComponent</code> input items in the <code>RadioGroup</code>.</p>
     </div>
                         </td>
                     </tr>
@@ -2266,7 +2298,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/radio/radio.component.ts:237</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/radio/radio-group.component.ts:234</a></div>
                                 </td>
                             </tr>
     
@@ -2301,7 +2333,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/radio/radio.component.ts:230</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/radio/radio-group.component.ts:227</a></div>
                                 </td>
                             </tr>
     
@@ -2335,7 +2367,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/radio/radio.component.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/radio/radio-group.component.ts:213</a></div>
                                 </td>
                             </tr>
     
@@ -2370,7 +2402,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="386" class="link-to-prism">src/radio/radio.component.ts:386</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="398" class="link-to-prism">src/radio/radio-group.component.ts:398</a></div>
                                 </td>
                             </tr>
     
@@ -2399,7 +2431,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="392" class="link-to-prism">src/radio/radio.component.ts:392</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/radio/radio-group.component.ts:404</a></div>
                                 </td>
                             </tr>
     
@@ -2433,13 +2465,53 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/radio/radio.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/radio/radio-group.component.ts:89</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
                             <div class="io-description"><p>Used for creating the <code>RadioGroup</code> &#39;name&#39; property dynamically.</p>
+    </div>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="radios"></a>
+                            <span class="name"><b> radios</b><a href="#radios"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>radios:     <code><a href="../components/RadioComponent.html" target="_self" >QueryList&lt;RadioComponent&gt;</a></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Type : </i>    <code><a href="../components/RadioComponent.html" target="_self" >QueryList&lt;RadioComponent&gt;</a></code>
+    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Decorators : </i><code>ContentChildren</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/radio/radio-group.component.ts:104</a></div>
+                                </td>
+                            </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The <code>RadioComponent</code> input items in the <code>RadioGroup</code>.</p>
     </div>
                         </td>
                     </tr>
@@ -2469,7 +2541,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/radio/radio.component.ts:137</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/radio/radio-group.component.ts:128</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2527,7 +2599,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/radio/radio.component.ts:157</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/radio/radio-group.component.ts:148</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2586,7 +2658,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/radio/radio.component.ts:180</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/radio/radio-group.component.ts:171</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2645,7 +2717,7 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
                     </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/radio/radio.component.ts:200</a></div>
+                                        <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/radio/radio-group.component.ts:191</a></div>
                                     </td>
                                 </tr>
                         <tr>
@@ -2694,26 +2766,21 @@ Radio selected: {{radio}}</code></pre><pre class="line-numbers"><code class="lan
     <div class="tab-pane fade tab-source-code" id="source">
         <pre class="line-numbers"><code class="language-typescript">import {
 	AfterContentInit,
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	ContentChildren,
 	Component,
-	Directive,
 	ElementRef,
 	EventEmitter,
 	forwardRef,
 	Input,
 	OnInit,
-	Optional,
 	Output,
 	QueryList,
 	Renderer2,
-	ViewChild,
 	HostBinding
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
-import { CheckboxComponent, CheckboxState } from &quot;../checkbox/checkbox.component&quot;;
-
+import { RadioComponent } from &quot;./radio.component&quot;;
 
 /**
  * Used to emit changes performed on a &#x60;RadioComponent&#x60;.
@@ -2738,7 +2805,7 @@ export class RadioChange {
 /**
  * class: RadioGroup
  *
- * selector: &#x60;n-radio-group&#x60;
+ * selector: &#x60;ibm-radio-group&#x60;
  *
  * source: &#x60;src/forms/radio.component.ts&#x60;
  *
@@ -2758,7 +2825,7 @@ export class RadioChange {
  * manyRadios &#x3D; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;];
  * &#x60;&#x60;&#x60;
  *
- * Also see: [&#x60;RadioComponent&#x60;](#n-radio)
+ * Also see: [&#x60;RadioComponent&#x60;](#ibm-radio)
  *
  *
  * @export
@@ -2769,11 +2836,7 @@ export class RadioChange {
  */
 @Component({
 	selector: &quot;ibm-radio-group&quot;,
-	template: &#x60;
-		&lt;div class&#x3D;&quot;bx--radio-button-group&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/div&gt;
-	&#x60;,
+	template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -2804,11 +2867,11 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	// tslint:disable-next-line:no-forward-ref
-	@ContentChildren(forwardRef(() &#x3D;&gt; RadioComponent)) _radios: QueryList&lt;RadioComponent&gt;;
+	@ContentChildren(forwardRef(() &#x3D;&gt; RadioComponent)) radios: QueryList&lt;RadioComponent&gt;;
 
 	/**
 	 * Determines the render size of the &#x60;RadioComponent&#x60; inputs within the group.
-	 * (size &#x60;&quot;default&quot;&#x60; is being deprecated as of neutrino v1.2.0, please use &#x60;&quot;md&quot;&#x60; instead)
+	 * (size &#x60;&quot;default&quot;&#x60; is being deprecated as of next major release, please use &#x60;&quot;md&quot;&#x60; instead)
 	 * @type {(&quot;sm&quot; | &quot;md&quot; | &quot;default&quot;)}
 	 * @memberof RadioGroup
 	 */
@@ -2903,6 +2966,12 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;radiogroup&quot;;
 
 	/**
+	 * Binds &#x27;bx--radio-button-group&#x27; value to the class for &#x60;RadioGroup&#x60;.
+	 * @memberof RadioGroup
+	 */
+	@HostBinding(&quot;class.bx--radio-button-group&quot;) radioButtonGroupClass &#x3D; true;
+
+	/**
 	 * To track whether the &#x60;RadioGroup&#x60; has been initialized.
 	 * @private
 	 * @memberof RadioGroup
@@ -2965,9 +3034,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	updateSelectedRadioFromValue() {
 		let alreadySelected &#x3D; this._selected !&#x3D; null &amp;&amp; this._selected.value &#x3D;&#x3D;&#x3D; this._value;
 
-		if (this._radios !&#x3D; null &amp;&amp; !alreadySelected) {
+		if (this.radios !&#x3D; null &amp;&amp; !alreadySelected) {
 			this._selected &#x3D; null;
-			this._radios.forEach(radio &#x3D;&gt; {
+			this.radios.forEach(radio &#x3D;&gt; {
 				radio.checked &#x3D; this.value &#x3D;&#x3D;&#x3D; radio.value;
 				if (radio.checked) {
 					this._selected &#x3D; radio;
@@ -2995,8 +3064,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	markRadiosForCheck() {
-		if (this._radios) {
-			this._radios.forEach(radio &#x3D;&gt; radio.markForCheck());
+		if (this.radios) {
+			this.radios.forEach(radio &#x3D;&gt; radio.markForCheck());
 		}
 	}
 
@@ -3005,10 +3074,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	updateRadioNames() {
-		if (this._radios) {
-			this._radios.forEach(radio &#x3D;&gt; {
-				radio.name &#x3D; this.name;
-			});
+		if (this.radios) {
+			this.radios.forEach(radio &#x3D;&gt; radio.name &#x3D; this.name);
 		}
 	}
 
@@ -3054,6 +3121,20 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
 		// NgModel occurs *after* the OnInit of the RadioGroup.
 		this.isInitialized &#x3D; true;
+		this.updateFocusableRadio();
+
+		this.radios.changes.subscribe(updatedRadios &#x3D;&gt; {
+			this.radios &#x3D; updatedRadios;
+			this.updateFocusableRadio();
+		});
+	}
+
+	updateFocusableRadio() {
+		if (this.radios &amp;&amp; !this.radios.some(radio &#x3D;&gt; radio.checked)) {
+			this.radios.forEach(radio &#x3D;&gt; radio.needsToBeFocusable &#x3D; false);
+			this.radios.first.needsToBeFocusable &#x3D; true;
+			this.radios.forEach(radio &#x3D;&gt; radio.changeDetectorRef.detectChanges());
+		}
 	}
 
 	/**
@@ -3062,7 +3143,10 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange &#x3D; fn;
+		this.propagateChange &#x3D; value &#x3D;&gt; {
+			this.value &#x3D; value;
+			fn(value);
+		};
 	}
 
 	/**
@@ -3084,190 +3168,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * @memberof RadioGroup
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
-}
-
-
-/**
- * class: RadioComponent (extends CheckboxComponent)
- *
- * selector: &#x60;n-radio&#x60;
- *
- * source: &#x60;src/forms/radio.component.ts&#x60;
- *
- * &#x60;&#x60;&#x60;html
- * &lt;ibm-radio [(ngModel)]&#x3D;&quot;radioState&quot;&gt;Radio&lt;/ibm-radio&gt;
- * &#x60;&#x60;&#x60;
- *
- * Also see: [&#x60;RadioGroup&#x60;](#n-radio-group)
- *
- * @export
- * @class RadioComponent
- * @extends {CheckboxComponent}
- * @implements {OnInit}
- */
-@Component({
-	selector: &quot;ibm-radio&quot;,
-	template: &#x60;
-		&lt;input
-			class&#x3D;&quot;bx--radio-button&quot;
-			type&#x3D;&quot;radio&quot;
-			#inputCheckbox
-			[checked]&#x3D;&quot;checked&quot;
-			[disabled]&#x3D;&quot;disabled&quot;
-			[name]&#x3D;&quot;name&quot;
-			[id]&#x3D;&quot;id&quot;
-			[required]&#x3D;&quot;required&quot;
-			[value]&#x3D;&quot;value&quot;
-			[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
-			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;
-			(change)&#x3D;&quot;onChange($event)&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
-		&lt;label
-			class&#x3D;&quot;bx--radio-button__label&quot;
-			[for]&#x3D;&quot;id&quot;&gt;
-			&lt;span class&#x3D;&quot;bx--radio-button__appearance&quot;&gt;&lt;/span&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/label&gt;
-	&#x60;,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: RadioComponent,
-			multi: true
-		}
-	]
-})
-export class RadioComponent extends CheckboxComponent implements OnInit {
-	/**
-	 * Used to dynamically create unique ids for the &#x60;RadioComponent&#x60;.
-	 * @static
-	 * @memberof RadioComponent
-	 */
-	static radioCount &#x3D; 0;
-
-	/**
-	 * Binds &#x27;radio&#x27; value to the role attribute for &#x60;RadioComponent&#x60;.
-	 * @memberof RadioComponent
-	 */
-	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;radio&quot;;
-
-	/**
-	 * The id for the &#x60;RadioComponent&#x60;.
-	 * @type {string}
-	 * @memberof RadioComponent
-	 */
-	id &#x3D; &#x60;radio-${RadioComponent.radioCount}&#x60;;
-	/**
-	 * The radio group that this &#x60;RadioComponent&#x60; belongs to (if any).
-	 * @type {RadioGroup}
-	 * @memberof RadioComponent
-	 */
-	radioGroup: RadioGroup;
-	/**
-	 * The value of the &#x60;RadioComponent&#x60;.
-	 * @type {any}
-	 * @memberof RadioComponent
-	 */
-	_value: any &#x3D; null;
-
-	/**
-	 * Creates an instance of RadioComponent.
-	 * @param {RadioGroup} radioGroup
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
-	 * @memberof RadioComponent
-	 */
-	constructor(@Optional() radioGroup: RadioGroup,
-				protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
-		super(changeDetectorRef);
-		RadioComponent.radioCount++;
-		this.radioGroup &#x3D; radioGroup;
-	}
-
-	/**
-	 * If the component has an encompassing &#x60;RadioGroup&#x60; it synchronizes the name with that
-	 * of the group.
-	 * @memberof RadioComponent
-	 */
-	ngOnInit() {
-		if (this.radioGroup) {
-			// if in group check if it needs checked and use group name
-			this.checked &#x3D; this.radioGroup.value &#x3D;&#x3D;&#x3D; this._value;
-			this.name &#x3D; this.radioGroup.name;
-		}
-	}
-
-	/**
-	 * Handles the event of a mouse click on the &#x60;RadioComponent&#x60;.
-	 * @param {Event} event
-	 * @memberof RadioComponent
-	 */
-	onClick(event: Event) {
-		event.stopPropagation();
-	}
-
-	/**
-	 * Synchronizes with the &#x60;RadioGroup&#x60; in the event of a changed &#x60;RadioComponent&#x60;.
-	 * Emits the changes of both the &#x60;RadioGroup&#x60; and &#x60;RadioComponent&#x60;.
-	 * @param {Event} event
-	 * @memberof RadioComponent
-	 */
-	onChange(event: Event) {
-		event.stopPropagation();
-
-		let groupValueChanged &#x3D; this.radioGroup &amp;&amp; this.value !&#x3D;&#x3D; this.radioGroup.value;
-		this.checked &#x3D; true;
-		this.emitChangeEvent();
-
-		if (this.radioGroup) {
-			this.radioGroup.propagateChange(this.value);
-			this.radioGroup.touch();
-			if (groupValueChanged) {
-				this.radioGroup.emitChangeEvent();
-			}
-		}
-	}
-
-	/**
-	 * Calls the &#x60;markForCheck()&#x60; function within the &#x60;changeDetectorRef&#x60; class
-	 * to make sure that Angular&#x27;s change detection is triggered for the input.
-	 * @memberof RadioComponent
-	 */
-	markForCheck() {
-		this.changeDetectorRef.markForCheck();
-	}
-
-	/**
-	 * Returns the value/state of the &#x60;RadioComponent&#x60;.
-	 * @readonly
-	 * @type {any}
-	 * @returns {any}
-	 * @memberof RadioComponent
-	 */
-	@Input()
-	get value(): any {
-		return this._value;
-	}
-
-	/**
-	 * Replaces &#x60;@Input value&#x60; with the provided parameter supplied from the parent.
-	 * @param {any} value
-	 * @memberof RadioComponent
-	 */
-	set value(value: any) {
-		if (this._value !&#x3D;&#x3D; value) {
-			this._value &#x3D; value;
-			if (this.radioGroup !&#x3D; null) {
-				if (!this.checked) {
-					this.checked &#x3D; this.radioGroup.value &#x3D;&#x3D;&#x3D; value;
-				}
-				if (this.checked) {
-					this.radioGroup.selected &#x3D; this;
-				}
-			}
-		}
-	}
 }
 </code></pre>
     </div>
