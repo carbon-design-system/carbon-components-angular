@@ -46,6 +46,7 @@ export declare class TooltipDirective extends DialogDirective {
      * @memberof TooltipDirective
      */
     tooltipType: "warning" | "error" | "";
+    descriptorId: string;
     /**
      * Creates an instance of `TooltipDirective`.
      * @param {ElementRef} elementRef

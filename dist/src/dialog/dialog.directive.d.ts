@@ -75,6 +75,8 @@ export declare class DialogDirective implements OnInit, OnDestroy, OnChanges {
      */
     onClose: EventEmitter<any>;
     dialogConfig: DialogConfig;
+    role: string;
+    expanded: boolean;
     /**
      * Creates an instance of DialogDirective.
      * @param {ElementRef} elementRef

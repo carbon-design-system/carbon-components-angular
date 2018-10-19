@@ -1277,6 +1277,20 @@
                                 </ul>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <h6><b>HostBindings</b></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <ul class="index-list">
+                                    <li>
+                                        <a href="#attr.aria-describedby">attr.aria-describedby</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -1292,7 +1306,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:65</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:68</a></div>
                                         </td>
                                     </tr>
             
@@ -1368,7 +1382,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:48</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:49</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1391,7 +1405,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:65</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:66</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1414,7 +1428,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:58</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:59</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1422,6 +1436,37 @@
             </section>
 
 
+            <section>
+                <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="attr.aria-describedby"></a>
+                                    <span class="name"><b> attr.aria-describedby</b><a href="#attr.aria-describedby"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>attr.aria-describedby:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:68</a></div>
+                                        </td>
+                                    </tr>
+            
+            
+                        </tbody>
+                    </table>
+            </section>
 
 
             <section>
@@ -1446,7 +1491,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:87</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:90</a></div>
                                         </td>
                                     </tr>
             
@@ -1491,7 +1536,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:41</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:42</a></div>
                                         </td>
                                     </tr>
             
@@ -1512,7 +1557,8 @@
 	ElementRef,
 	Injector,
 	ComponentFactoryResolver,
-	ViewContainerRef
+	ViewContainerRef,
+	HostBinding
 } from &quot;@angular/core&quot;;
 import { DialogDirective } from &quot;./../dialog.directive&quot;;
 import { Tooltip } from &quot;./tooltip.component&quot;;
@@ -1571,6 +1617,8 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input(&quot;tooltip-type&quot;) tooltipType: &quot;warning&quot; | &quot;error&quot; | &quot;&quot; &#x3D; &quot;&quot;;
 
+	@HostBinding(&quot;attr.aria-describedby&quot;) descriptorId: string;
+
 	/**
 	 * Creates an instance of &#x60;TooltipDirective&#x60;.
 	 * @param {ElementRef} elementRef
@@ -1596,7 +1644,7 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID &#x3D; &quot;tooltip-&quot; + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content &#x3D; this.ibmTooltip;
 		this.dialogConfig.type &#x3D; this.tooltipType !&#x3D;&#x3D; undefined ? this.tooltipType : this.type;
-		this.elementRef.nativeElement.setAttribute(&quot;aria-describedby&quot;, this.dialogConfig.compID);
+		this.descriptorId &#x3D; this.dialogConfig.compID;
 	}
 }
 </code></pre>
