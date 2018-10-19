@@ -206,9 +206,9 @@ import { getScrollbarWidth } from "../common/utils";
 							<svg
 							class="bx--table-sort-v2__icon"
 							width="10" height="5" viewBox="0 0 10 5"
-							aria-label="Sort rows by this header in descending order"
-							alt="Sort rows by this header in descending order">
-								<title>Sort rows by this header in descending order</title>
+							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
+							[attr.alt]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)">
+								<title>{{(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)}}</title>
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
 						</button>
@@ -304,6 +304,7 @@ import { getScrollbarWidth } from "../common/utils";
 						<button
 						*ngIf="model.isRowExpandable(i)"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])"
+						[attr.aria-label]="expandButtonAriaLabel"
 						class="bx--table-expand-v2__button">
 							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
 								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
@@ -452,6 +453,10 @@ export class Table {
 	 * @memberof Table
 	 */
 	@Input() columnsDraggable = false;
+
+	@Input() expandButtonAriaLabel = "Expand row";
+	@Input() sortDescendingLabel = "Sort rows by this header in descending order";
+	@Input() sortAscendingLabel = "Sort rows by this header in ascending order";
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
