@@ -368,8 +368,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	updateFocusableRadio() {
 		if (this.radios &&
 			!this.radios.some(radio => radio.checked)) {
-			this.radios.forEach(radio => radio.needsToBeFocusable = false);
 
+			this.radios.forEach(radio => radio.needsToBeFocusable = false);
 			this.radios.toArray()[0].needsToBeFocusable = true;
 			this.radios.forEach(radio => radio.changeDetectorRef.detectChanges());
 		}
