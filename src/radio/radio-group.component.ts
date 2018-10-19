@@ -309,7 +309,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	updateRadioNames() {
 		if (this.radios) {
-			this.radios.forEach(radio => {
+			this.radios.forEach(radio => radio.name = this.name);
 				radio.name = this.name;
 			});
 		}
