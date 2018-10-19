@@ -65,7 +65,7 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
-	@HostBinding("attr.aria-describedby") descriptorID = "";
+	@HostBinding("attr.aria-describedby") descriptorId: string;
 
 	/**
 	 * Creates an instance of `TooltipDirective`.
