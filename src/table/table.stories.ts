@@ -36,6 +36,7 @@ import { clone } from "../utils/utils";
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
 			(sort)="simpleSort($event)">
+			<ng-content></ng-content>
 		</ibm-table>
 	`
 })
@@ -401,6 +402,11 @@ simpleModel.header = [
 	new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
 ];
 
+const emptyModel = new TableModel();
+emptyModel.header = [
+	new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+];
+
 function sort(model, index: number) {
 	if (model.header[index].sorted) {
 		// if already sorted flip sorting direction
@@ -444,6 +450,30 @@ storiesOf("Table", module).addDecorator(
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true),
 			sortable: boolean("sortable", true)
+		}
+	}))
+	.add("with no data", () => ({
+		template: `
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped">
+				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
+			</app-table>
+		`,
+		styles: [`
+			.no-data {
+				width: 100%;
+				height: 150px;
+				text-align: center;
+			}
+		`],
+		props: {
+			model: emptyModel,
+			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			showSelectionColumn: boolean("showSelectionColumn", true),
+			striped: boolean("striped", true)
 		}
 	}))
 	.add("with expansion", () => ({

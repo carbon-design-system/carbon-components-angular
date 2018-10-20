@@ -13,11 +13,15 @@
     "test:watch": "karma start --auto-watch --no-single-run",
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
-    "prepush": "bash scripts/prepush.sh",
     "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
-    "commitmsg": "commitlint -E GIT_PARAMS",
     "commit": "git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "bash scripts/prepush.sh",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "release": {
     "pkgRoot": "dist"
@@ -106,7 +110,7 @@
     "gulp-tap": "1.0.1",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
-    "husky": "0.14.3",
+    "husky": "1.1.2",
     "jasmine-core": "3.1.0",
     "karma": "2.0.2",
     "karma-chrome-launcher": "2.2.0",

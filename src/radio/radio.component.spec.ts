@@ -11,7 +11,8 @@ import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { RadioComponent, RadioGroup } from "./radio.component";
+import { RadioComponent } from "./radio.component";
+import { RadioGroup } from "./radio-group.component";
 
 describe("RadioGroup", () => {
 	beforeEach(() => {
