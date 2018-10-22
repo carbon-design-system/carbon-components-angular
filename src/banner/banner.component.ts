@@ -61,7 +61,7 @@ export class Banner {
 	 */
 	@Input() bannerObj: NotificationContent;
 
-	@Input() label: string = "close";
+	@Input() label = "close";
 
 	/**
 	 * Emits on close.
