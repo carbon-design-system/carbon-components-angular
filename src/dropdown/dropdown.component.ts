@@ -118,6 +118,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() scrollableContainer: string;
 	/**
+	 * Specifies the property to be used as the return value to `ngModel`
+	 */
+	@Input() value: string;
+	/**
 	 * Emits selection events.
 	 * @type {EventEmitter<Object>}
 	 * @memberof Dropdown
@@ -213,15 +217,17 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.view.size = this.size;
 		this.elementRef.nativeElement.classList.add(this.buildClass());
 		this.view.select.subscribe(event => {
-			if (this.type === "single") {
-				this.closeMenu();
-				this.dropdownButton.nativeElement.focus();
-			}
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
 			} else {
-				if (event.item.selected) {
-					this.propagateChange(event.item);
+				this.closeMenu();
+				this.dropdownButton.nativeElement.focus();
+				if (event.item && event.item.selected) {
+					if (this.value) {
+						this.propagateChange(event.item[this.value]);
+					} else {
+						this.propagateChange(event.item);
+					}
 				} else {
 					this.propagateChange(null);
 				}
@@ -258,12 +264,16 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * @memberof Dropdown
 	 */
 	writeValue(value: any) {
-		if (value) {
-			if (this.type === "single") {
-				this.view.propagateSelected([value]);
+		if (this.type === "single") {
+			if (this.value) {
+				const newValue = Object.assign({}, this.view.items.find(item => item[this.value] === value));
+				newValue.selected = true;
+				this.view.propagateSelected([newValue]);
 			} else {
-				this.view.propagateSelected(value);
+				this.view.propagateSelected([value]);
 			}
+		} else {
+			this.view.propagateSelected(value);
 		}
 	}
 
