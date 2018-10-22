@@ -5,7 +5,8 @@ import {
 	ElementRef,
 	Injector,
 	ComponentFactoryResolver,
-	ViewContainerRef
+	ViewContainerRef,
+	HostBinding
 } from "@angular/core";
 import { DialogDirective } from "./../dialog.directive";
 import { Tooltip } from "./tooltip.component";
@@ -64,6 +65,8 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
+	@HostBinding("attr.aria-describedby") descriptorId: string;
+
 	/**
 	 * Creates an instance of `TooltipDirective`.
 	 * @param {ElementRef} elementRef
@@ -89,6 +92,6 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
-		this.elementRef.nativeElement.setAttribute("aria-describedby", this.dialogConfig.compID);
+		this.descriptorId = this.dialogConfig.compID;
 	}
 }
