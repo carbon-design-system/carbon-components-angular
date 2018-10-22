@@ -51,5 +51,5 @@ export class Toast extends Banner {
 	 */
 	@Input() bannerObj: ToastContent;
 
-	@Input() label: String = "close";
+	@Input() label = "close";
 }
