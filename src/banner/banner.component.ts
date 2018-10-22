@@ -35,10 +35,10 @@ import { NotificationContent } from "./banner-content.interface";
 		<button
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
+			aria-label="close"
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
-				aria-label="close"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"

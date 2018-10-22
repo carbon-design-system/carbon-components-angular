@@ -24,11 +24,11 @@ import { Banner } from "./banner.component";
 		</div>
 		<button
 			class="bx--toast-notification__close-button"
+			aria-label="close"
 			type="button"
 			(click)="onClose()">
 			<svg
 				class="bx--toast-notification-icon"
-				aria-label="close"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
