@@ -38,17 +38,28 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	]
 })
 export class Select implements ControlValueAccessor {
+	/**
+	 * Tracks the total number of selects instatiated. Used to generate unique IDs
+	 */
 	static selectCount = 0;
+	/**
+	 * Label for the select. Appears above the input.
+	 */
 	@Input() label = "Select label";
+	/**
+	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
+	 */
 	@Input() id = `select-${Select.selectCount++}`;
+	/**
+	 * Sets the components disabled state
+	 */
 	@Input() disabled = false;
-
-	@Output() change = new EventEmitter();
+	/**
+	 * emits the selected options `value`
+	 */
+	@Output() selected = new EventEmitter();
 
 	@ViewChild("select") select: ElementRef;
-
-	private onChangeHandler;
-	private onTouchedHandler;
 
 	get value() {
 		return this.select.nativeElement.value;
@@ -58,27 +69,52 @@ export class Select implements ControlValueAccessor {
 		this.select.nativeElement.value = v;
 	}
 
+	/**
+	 * Value recviced from the model
+	 */
 	writeValue(obj: any) {
 		this.select.nativeElement.value = obj;
 	}
 
+	/**
+	 * Registers a listener that notifies the model when the control updates
+	 */
 	registerOnChange(fn: any) {
 		this.onChangeHandler = fn;
 	}
 
+	/**
+	 * Registers a listener that notifies the model when the control is blurred
+	 */
 	registerOnTouched(fn: any) {
 		this.onTouchedHandler = fn;
 	}
 
+	/**
+	 * Sets the disabled state through the model
+	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
 	}
 
+	/**
+	 * Handles the change event from the `select`.
+	 * Sends events to the change handler, as well as emits a `selected` event.
+	 */
 	onChange(event) {
 		this.onChangeHandler(event.target.value);
-		this.change.emit(event);
+		this.selected.emit(event.target.value);
 	}
 
+	/**
+	 * placholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
+	 */
+	private onChangeHandler = (_: any) => { };
+	private onTouchedHandler = () => { };
+
+	/**
+	 * Listens for the host blurring, and notifies the model
+	 */
 	@HostListener("blur")
 	private blur() {
 		this.onTouchedHandler();
