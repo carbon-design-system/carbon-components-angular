@@ -41,6 +41,7 @@ export declare class LabelComponent implements AfterContentInit {
      * @memberof LabelComponent
      */
     labelState: "success" | "warning" | "error" | "";
+    labelComponentClass: boolean;
     /**
      * Creates an instance of LabelComponent.
      * @param {ElementRef} elementRef

@@ -1298,6 +1298,20 @@
                         </ul>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.bx--form-item">class.bx--form-item</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -1313,7 +1327,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/input/label.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/input/label.component.ts:59</a></div>
                                 </td>
                             </tr>
     
@@ -1371,7 +1385,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/input/label.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/input/label.component.ts:57</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1379,6 +1393,36 @@
     </section>
 
 
+    <section>
+        <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="class.bx--form-item"></a>
+                            <span class="name"><b> class.bx--form-item</b><a href="#class.bx--form-item"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>class.bx--form-item:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>true</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/input/label.component.ts:59</a></div>
+                                </td>
+                            </tr>
+    
+    
+                </tbody>
+            </table>
+    </section>
 
 
     <section>
@@ -1403,7 +1447,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/input/label.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/input/label.component.ts:74</a></div>
                                 </td>
                             </tr>
     
@@ -1448,7 +1492,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/input/label.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/input/label.component.ts:44</a></div>
                                 </td>
                             </tr>
     
@@ -1477,7 +1521,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/input/label.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/input/label.component.ts:50</a></div>
                                 </td>
                             </tr>
     
@@ -1497,8 +1541,13 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, Input, AfterContentInit, ElementRef } from &quot;@angular/core&quot;;
-
+        <pre class="line-numbers"><code class="language-typescript">import {
+	Component,
+	Input,
+	AfterContentInit,
+	ElementRef,
+	HostBinding
+} from &quot;@angular/core&quot;;
 
 /**
  * &#x60;&#x60;&#x60;html
@@ -1525,10 +1574,8 @@
 @Component({
 	selector: &quot;ibm-label&quot;,
 	template: &#x60;
-	&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
 		&lt;label [for]&#x3D;&quot;labelInputID&quot; class&#x3D;&quot;bx--label&quot;&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/label&gt;
 		&lt;ng-content select&#x3D;&quot;input,textarea,div&quot;&gt;&lt;/ng-content&gt;
-	&lt;/div&gt;
 	&#x60;
 })
 export class LabelComponent implements AfterContentInit {
@@ -1551,6 +1598,8 @@ export class LabelComponent implements AfterContentInit {
 	 * @memberof LabelComponent
 	 */
 	@Input() labelState: &quot;success&quot; | &quot;warning&quot; | &quot;error&quot; | &quot;&quot; &#x3D; &quot;&quot;;
+
+	@HostBinding(&quot;class.bx--form-item&quot;) labelComponentClass &#x3D; true;
 
 	/**
 	 * Creates an instance of LabelComponent.
