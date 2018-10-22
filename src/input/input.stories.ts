@@ -20,10 +20,10 @@ storiesOf("Input", module).addDecorator(
 	}))
 	.add("Input", () => ({
 		template: `
-			<input ibmText placeholder="Optional placeholder text"/>
+			<input ibmText aria-label="input" placeholder="Optional placeholder text"/>
 		`
 	})).add("TextArea", () => ({
 		template: `
-		<textarea ibmTextArea placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
+		<textarea ibmTextArea aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
 		`
 	}));

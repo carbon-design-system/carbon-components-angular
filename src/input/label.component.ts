@@ -1,5 +1,10 @@
-import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
-
+import {
+	Component,
+	Input,
+	AfterContentInit,
+	ElementRef,
+	HostBinding
+} from "@angular/core";
 
 /**
  * ```html
@@ -26,10 +31,8 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
 @Component({
 	selector: "ibm-label",
 	template: `
-	<div class="bx--form-item">
 		<label [for]="labelInputID" class="bx--label"><ng-content></ng-content></label>
 		<ng-content select="input,textarea,div"></ng-content>
-	</div>
 	`
 })
 export class LabelComponent implements AfterContentInit {
@@ -52,6 +55,8 @@ export class LabelComponent implements AfterContentInit {
 	 * @memberof LabelComponent
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
+
+	@HostBinding("class.bx--form-item") labelComponentClass = true;
 
 	/**
 	 * Creates an instance of LabelComponent.
