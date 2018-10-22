@@ -35,7 +35,7 @@ import { NotificationContent } from "./banner-content.interface";
 		<button
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
-			aria-label="close"
+			[attr.aria-label]="label"
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
@@ -60,6 +60,8 @@ export class Banner {
 	 *
 	 */
 	@Input() bannerObj: NotificationContent;
+
+	@Input() label: String = "close";
 
 	/**
 	 * Emits on close.

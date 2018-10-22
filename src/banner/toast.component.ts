@@ -24,7 +24,7 @@ import { Banner } from "./banner.component";
 		</div>
 		<button
 			class="bx--toast-notification__close-button"
-			aria-label="close"
+			[attr.aria-label]="label"
 			type="button"
 			(click)="onClose()">
 			<svg
@@ -50,4 +50,6 @@ export class Toast extends Banner {
 	 *
 	 */
 	@Input() bannerObj: ToastContent;
+
+	@Input() label: String = "close";
 }
