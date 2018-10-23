@@ -66,7 +66,7 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() id = `select-${Select.selectCount++}`;
 	/**
-	 * Sets the components disabled state
+	 * Set to true to disable component.
 	 */
 	@Input() disabled = false;
 	/**
