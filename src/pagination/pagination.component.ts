@@ -147,7 +147,7 @@ export class Pagination {
 	 */
 	@Input() model: PaginationModel;
 
-	@Input() translations = EN.PAGINATION;
+	@Input() translations = this.i18n.get().PAGINATION;
 
 	/**
 	 * Emits the new page number.

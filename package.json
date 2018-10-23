@@ -13,11 +13,15 @@
     "test:watch": "karma start --auto-watch --no-single-run",
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
-    "prepush": "bash scripts/prepush.sh",
     "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
-    "commitmsg": "commitlint -E GIT_PARAMS",
     "commit": "git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "bash scripts/prepush.sh",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "release": {
     "pkgRoot": "dist"
@@ -80,7 +84,7 @@
     "@angular/router": "6.1.0",
     "@commitlint/cli": "7.0.0",
     "@commitlint/config-conventional": "7.0.1",
-    "@compodoc/compodoc": "^1.1.5",
+    "@compodoc/compodoc": "1.1.5",
     "@storybook/addon-actions": "3.4.8",
     "@storybook/addon-knobs": "3.4.8",
     "@storybook/addon-links": "3.4.8",
@@ -106,7 +110,7 @@
     "gulp-tap": "1.0.1",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
-    "husky": "0.14.3",
+    "husky": "1.1.2",
     "jasmine-core": "3.1.0",
     "karma": "2.0.2",
     "karma-chrome-launcher": "2.2.0",
@@ -118,7 +122,7 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "3.0.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "4.9.3",
     "postcss-loader": "2.1.4",
     "raw-loader": "0.5.1",
     "run-sequence": "2.2.0",

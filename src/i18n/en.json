@@ -63,10 +63,10 @@
 			"RESET_SEARCH": "Reset search"
 		}
 	},
-	"MODAL" : {
+	"MODAL": {
 		"CLOSE": "Close modal"
 	},
-	"OVERFLOW_MENU" : {
+	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},
 	"SIDENAV": {
