@@ -66,10 +66,17 @@ export class SwitchChange {
 			(click)="onClick($event)"
 			[disabled]="disabled"
 			[attr.aria-checked]="checked">
-		<label class="bx--toggle__label" [for]="id">
+		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
 			<span class="bx--toggle__text--left">Off</span>
 			<span class="bx--toggle__appearance"></span>
 			<span class="bx--toggle__text--right">On</span>
+		</label>
+		<label *ngIf="size === 'sm'" class="bx--toggle__label" [for]="id">
+			<span class="bx--toggle__appearance">
+				<svg class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
+					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
+				</svg>
+			</span>
 		</label>
 	`,
 	providers: [
@@ -134,5 +141,9 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 		this.renderer.addClass(labelEl, labelClass);
 		this.renderer.addClass(buttonEl, buttonClass);
 		*/
+		if (this.size === "sm") {
+			const inputEl = this.elementRef.nativeElement.querySelector("input");
+			this.renderer.addClass(inputEl, "bx--toggle--small");
+		}
 	}
 }

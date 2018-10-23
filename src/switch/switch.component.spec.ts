@@ -5,13 +5,14 @@ import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
 import { SwitchComponent } from "./switch.component";
+import { CheckboxComponent } from "../checkbox/checkbox.module";
 
 describe("SwitchComponent", () => {
 	let component: SwitchComponent;
 	let fixture: ComponentFixture<SwitchComponent>;
-	let de: DebugElement;
-	let el: HTMLElement;
+	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
+	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -22,8 +23,8 @@ describe("SwitchComponent", () => {
 
 		fixture = TestBed.createComponent(SwitchComponent);
 		component = fixture.componentInstance;
-		de = fixture.debugElement.query(By.css("label"));
-		el = de.nativeElement;
+		fixture.detectChanges();
+		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
 		buttonElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});
 
@@ -40,4 +41,21 @@ describe("SwitchComponent", () => {
 		fixture.detectChanges();
 		expect(component.checked).toBe(false, "setting to off");
 	});
+
+	it("should display small version of switch when size equals sm", () => {
+		component.size = "sm";
+		component.ngOnInit();
+		fixture.detectChanges();
+		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(true);
+	});
+
+	it("should display SVG in small version of switch", () => {
+		component.size = "sm";
+		component.ngOnInit();
+		fixture.detectChanges();
+		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
+		expect(fixture.debugElement.query(By.css("svg")).nativeElement).not.toBeNull();
+		expect(labelElement.innerHTML).toContain("bx--toggle__check");
+	});
+
 });
