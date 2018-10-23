@@ -54,7 +54,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 })
 export class Select implements ControlValueAccessor {
 	/**
-	 * Tracks the total number of selects instatiated. Used to generate unique IDs
+	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
 	static selectCount = 0;
 	/**
