@@ -85,7 +85,7 @@ export class Select implements ControlValueAccessor {
 	}
 
 	/**
-	 * Value recviced from the model
+	 * Value received from the model
 	 */
 	writeValue(obj: any) {
 		this.select.nativeElement.value = obj;
