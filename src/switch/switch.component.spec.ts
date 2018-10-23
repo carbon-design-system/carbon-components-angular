@@ -43,15 +43,14 @@ describe("SwitchComponent", () => {
 	});
 
 	it("should display small version of switch when size equals sm", () => {
+		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(false);
 		component.size = "sm";
-		component.ngOnInit();
 		fixture.detectChanges();
 		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(true);
 	});
 
 	it("should display SVG in small version of switch", () => {
 		component.size = "sm";
-		component.ngOnInit();
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
 		expect(fixture.debugElement.query(By.css("svg")).nativeElement).not.toBeNull();

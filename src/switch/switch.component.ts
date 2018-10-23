@@ -1,18 +1,11 @@
 import { CheckboxComponent } from "../checkbox/checkbox.component";
 import {
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
-	ElementRef,
-	EventEmitter,
-	forwardRef,
 	Input,
-	OnInit,
-	Output,
-	Renderer2,
-	ViewChild
+	OnInit
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 /**
@@ -60,7 +53,10 @@ export class SwitchChange {
 	selector: "ibm-switch",
 	template: `
 		<input
-			class="bx--toggle"
+			[ngClass]="{
+				'bx--toggle': true,
+				'bx--toggle--small': size === 'sm'
+			}"
 			[id]="id"
 			type="checkbox"
 			(click)="onClick($event)"
@@ -114,11 +110,9 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 	/**
 	 * Creates an instance of SwitchComponent.
 	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
 	 * @memberof SwitchComponent
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
 	}
@@ -127,23 +121,5 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 	 * Builds variant classes and appends them to the switch and label elements.
 	 * @memberof SwitchComponent
 	 */
-	ngOnInit() {
-		/* TODO: remove and extend in neutrino
-		// Build variant classes
-		const labelClass = `toggle-label${this.size !== "md" ? `--${this.size}` : ""}`;
-		const buttonClass = `toggle${this.size !== "md" ? `--${this.size}` : ""}`;
-
-		// Get elements
-		const labelEl = this.elementRef.nativeElement.querySelector("label");
-		const buttonEl = this.elementRef.nativeElement.querySelector("button");
-
-		// Add classes to elements
-		this.renderer.addClass(labelEl, labelClass);
-		this.renderer.addClass(buttonEl, buttonClass);
-		*/
-		if (this.size === "sm") {
-			const inputEl = this.elementRef.nativeElement.querySelector("input");
-			this.renderer.addClass(inputEl, "bx--toggle--small");
-		}
-	}
+	ngOnInit() { }
 }
