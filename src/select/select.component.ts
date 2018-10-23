@@ -16,11 +16,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  *
  * ```
  * <ibm-select [(ngModel)]="model">
- *		<option value="default" disabled selected hidden>Choose an option</option>
- *		<option value="option1">Option 1</option>
- *		<option value="option2">Option 2</option>
- *		<option value="option3">Option 3</option>
- *	</ibm-select>
+ * 	<option value="default" disabled selected hidden>Choose an option</option>
+ * 	<option value="option1">Option 1</option>
+ *	<option value="option2">Option 2</option>
+ * 	<option value="option3">Option 3</option>
+ * </ibm-select>
  *	```
 
  */
