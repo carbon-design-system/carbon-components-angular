@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
 import { ScrollableList } from "./scrollable-list.directive";
+import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
@@ -37,8 +37,8 @@ describe("Dropdown", () => {
 				ScrollableList
 			],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
-				StaticIconModule
+				StaticIconModule,
+				I18nModule
 			]
 		});
 	});

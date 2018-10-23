@@ -1,7 +1,6 @@
 // modules
 import { NgModule, Optional, SkipSelf } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
@@ -19,6 +18,7 @@ import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
+import { I18nModule } from "./../i18n/i18n.module";
 
 // exports
 export { DialogService } from "./dialog.service";
@@ -82,6 +82,6 @@ export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
 		Tooltip,
 		OverflowMenuPane
 	],
-	imports: [CommonModule, TranslateModule, StaticIconModule]
+	imports: [CommonModule, StaticIconModule, I18nModule]
 })
 export class DialogModule {}

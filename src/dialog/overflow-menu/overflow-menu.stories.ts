@@ -1,15 +1,12 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { DialogModule } from "../../";
 
 storiesOf("Overflow Menu", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DialogModule,
-				TranslateModule.forRoot()
+				DialogModule
 			]
 		})
 	)

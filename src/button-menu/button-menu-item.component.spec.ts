@@ -2,7 +2,6 @@ import { Component, asNativeElements, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
 import { TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { ButtonMenu, ButtonMenuItem } from "./button-menu.module";
 
@@ -28,14 +27,7 @@ describe("Button Menu", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ButtonMenu, ButtonMenuItem, ButtonMenuTestComponent],
-			imports: [
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader, useClass: TranslateFakeLoader
-					}
-				})
-			]
+			declarations: [ButtonMenu, ButtonMenuItem, ButtonMenuTestComponent]
 		});
 	});
 

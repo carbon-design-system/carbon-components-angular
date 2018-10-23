@@ -1,8 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -89,8 +87,7 @@ storiesOf("Modal", module)
 			],
 			imports: [
 				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
+				BrowserAnimationsModule
 			],
 			entryComponents: [
 				SampleModalComponent
@@ -114,8 +111,7 @@ storiesOf("Modal", module)
 			],
 			imports: [
 				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
+				BrowserAnimationsModule
 			],
 			entryComponents: [
 				SampleModalComponent
@@ -156,8 +152,7 @@ storiesOf("Modal", module)
 			],
 			imports: [
 				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
+				BrowserAnimationsModule
 			],
 			entryComponents: [
 				SampleModalComponent
