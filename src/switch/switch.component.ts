@@ -2,8 +2,7 @@ import { CheckboxComponent } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectorRef,
 	Component,
-	Input,
-	OnInit
+	Input
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -83,7 +82,7 @@ export class SwitchChange {
 		}
 	]
 })
-export class SwitchComponent extends CheckboxComponent implements OnInit {
+export class SwitchComponent extends CheckboxComponent {
 	/**
 	 * Variable used for creating unique ids for switch components.
 	 * @type {number}
@@ -116,10 +115,4 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
 	}
-
-	/**
-	 * Builds variant classes and appends them to the switch and label elements.
-	 * @memberof SwitchComponent
-	 */
-	ngOnInit() { }
 }

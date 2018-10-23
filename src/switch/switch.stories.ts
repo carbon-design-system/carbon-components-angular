@@ -11,8 +11,8 @@ storiesOf("Switch", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-switch [disabled]="disabled"></ibm-switch>
-		<ibm-switch [disabled]="disabled" [size]="'sm'"></ibm-switch>
+			<ibm-switch [disabled]="disabled"></ibm-switch>
+			<ibm-switch [disabled]="disabled" size="sm"></ibm-switch>
 		`,
 		props: {
 			disabled: boolean("disabled", false)
