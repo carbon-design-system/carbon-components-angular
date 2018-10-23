@@ -1,5 +1,6 @@
 import { PaginationModel } from "./pagination.module";
 import { EventEmitter } from "@angular/core";
+import { I18n } from "./../i18n/i18n.module";
 /**
  * Use pagination when you have multiple pages of data to handle.
  *
@@ -24,6 +25,7 @@ import { EventEmitter } from "@angular/core";
  * @class Pagination
  */
 export declare class Pagination {
+    protected i18n: I18n;
     static paginationCounter: number;
     /**
      * `PaginationModel` with the information about pages you're controlling.
@@ -32,6 +34,7 @@ export declare class Pagination {
      * @memberof Pagination
      */
     model: PaginationModel;
+    translations: any;
     /**
      * Emits the new page number.
      *
@@ -68,7 +71,7 @@ export declare class Pagination {
     readonly nextPage: number;
     itemsPerPageSelectId: string;
     currentPageSelectId: string;
-    constructor();
+    constructor(i18n: I18n);
     /**
      * Generates a list of numbers. (Python function)
      * Used to display the correct pagination controls.

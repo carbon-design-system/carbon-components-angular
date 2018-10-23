@@ -1,3 +1,4 @@
+import { OnInit } from "@angular/core";
 import { ToastContent } from "./banner-content.interface";
 import { Banner } from "./banner.component";
 /**
@@ -6,7 +7,7 @@ import { Banner } from "./banner.component";
  * @export
  * @class Banner
  */
-export declare class Toast extends Banner {
+export declare class Toast extends Banner implements OnInit {
     /**
      * Can have `type`, `title`, `subtitle`, and `caption` members.
      *
@@ -16,4 +17,5 @@ export declare class Toast extends Banner {
      *
      */
     bannerObj: ToastContent;
+    ngOnInit(): void;
 }

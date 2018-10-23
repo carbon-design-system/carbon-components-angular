@@ -1,5 +1,6 @@
 import { ApplicationRef, EventEmitter } from "@angular/core";
 import { TableModel } from "./table.module";
+import { I18n } from "./../i18n/i18n.module";
 /**
  * Build your table with this component by extending things that differ from default.
  *
@@ -147,7 +148,8 @@ import { TableModel } from "./table.module";
  * @implements {AfterContentChecked}
  */
 export declare class Table {
-    private applicationRef;
+    protected applicationRef: ApplicationRef;
+    protected i18n: I18n;
     /**
      * Size of the table rows.
      *
@@ -155,6 +157,11 @@ export declare class Table {
      * @memberof Table
      */
     size: "sm" | "md" | "lg";
+    /**
+     * Object of all the strings table needs.
+     * Defaults to the `TABLE` value from the i18n service.
+     */
+    translations: any;
     /**
      * `TableModel` with data the table is to display.
      *
@@ -289,7 +296,7 @@ export declare class Table {
      * @param {ApplicationRef} applicationRef
      * @memberof Table
      */
-    constructor(applicationRef: ApplicationRef);
+    constructor(applicationRef: ApplicationRef, i18n: I18n);
     columnResizeStart(event: any, column: any): void;
     columnResizeProgress(event: any, column: any): void;
     columnResizeEnd(event: any, column: any): void;

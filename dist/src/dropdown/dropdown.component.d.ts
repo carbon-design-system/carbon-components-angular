@@ -1,7 +1,7 @@
 import { EventEmitter, ElementRef, OnInit, AfterContentInit, OnDestroy } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
-import { TranslateService } from "@ngx-translate/core";
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
+import { I18n } from "./../i18n/i18n.module";
 /**
  * Drop-down lists enable users to select one or more items from a list.
  *
@@ -13,8 +13,8 @@ import { AbstractDropdownView } from "./abstract-dropdown-view.class";
  * @implements {OnDestroy}
  */
 export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
-    private elementRef;
-    private translate;
+    protected elementRef: ElementRef;
+    protected i18n: I18n;
     /**
      * Value displayed if no item is selected.
      * @memberof Dropdown
@@ -57,6 +57,16 @@ export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
      * @memberof Dropdown
      */
     scrollableContainer: string;
+    /**
+     * Accessible label for the button that opens the dropdown list.
+     * Defaults to the `DROPDOWN.OPEN` value from the i18n service.
+     */
+    menuButtonLabel: any;
+    /**
+     * Provides the label for the "# selected" text.
+     * Defaults to the `DROPDOWN.SELECTED` value from the i18n service.
+     */
+    selectedLabel: any;
     /**
      * Emits selection events.
      * @type {EventEmitter<Object>}
@@ -125,7 +135,7 @@ export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
      * @param {TranslateService} translate
      * @memberof Dropdown
      */
-    constructor(elementRef: ElementRef, translate: TranslateService);
+    constructor(elementRef: ElementRef, i18n: I18n);
     /**
      * Updates the `type` property in the `@ContentChild`.
      * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
@@ -147,7 +157,7 @@ export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
      * @returns {string}
      * @memberof Dropdown
      */
-    buildClass(): "dropdown" | "dropdown--sm" | "dropdown--lg";
+    buildClass(): "dropdown--sm" | "dropdown" | "dropdown--lg";
     /**
      * Propagates the injected `value`.
      * @param {*} value
@@ -176,7 +186,7 @@ export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
      * @returns
      * @memberof Dropdown
      */
-    getDisplayValue(): Observable<any>;
+    getDisplayValue(): Observable<string>;
     /**
      * Returns `true` if there is a value selected.
      * @returns {boolean}

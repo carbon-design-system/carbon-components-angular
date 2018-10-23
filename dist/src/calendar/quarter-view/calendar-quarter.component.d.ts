@@ -1,8 +1,6 @@
-import { TranslateService } from "@ngx-translate/core";
 import { OnInit } from "@angular/core";
 import { DateTimeModel } from "./../date-time-model.class";
 export declare class CalendarQuarter implements OnInit {
-    private translate;
     /**
      * `DateTimeModel` to be used in this view.
      *
@@ -36,7 +34,7 @@ export declare class CalendarQuarter implements OnInit {
      * @param {TranslateService} translate
      * @memberof CalendarQuarter
      */
-    constructor(translate: TranslateService);
+    constructor();
     ngOnInit(): void;
     /**
      * Wrapper for `range` function in utils because it cannot
