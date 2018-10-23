@@ -37,10 +37,10 @@ import { I18n } from "./../i18n/i18n.module";
 		<button
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
+			[attr.aria-label]="bannerObj.closeLabel"
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
-				[attr.aria-label]="bannerObj.closeLabel"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
