@@ -122,7 +122,7 @@ export class Select implements ControlValueAccessor {
 	}
 
 	/**
-	 * placholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
+	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
 	 */
 	private onChangeHandler = (_: any) => { };
 	private onTouchedHandler = () => { };
