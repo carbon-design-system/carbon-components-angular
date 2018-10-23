@@ -4,7 +4,8 @@ import { Component, Input } from "@angular/core";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
-			<div class="bx--select">
+			<div class="bx--select"
+				[ngClass]="{ 'bx--select--inline': inlineSelect }">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select [attr.id]="id" class="bx--select-input">
 					<ng-content></ng-content>
@@ -18,6 +19,7 @@ import { Component, Input } from "@angular/core";
 })
 export class Select {
 	static selectCount = 0;
+	@Input() inlineSelect = false;
 	@Input() label = "Select label";
 	@Input() id = `select-${Select.selectCount++}`;
 }
