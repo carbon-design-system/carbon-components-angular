@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -41,7 +40,6 @@ xdescribe("Combo box", () => {
 				ScrollableList
 			],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
 				StaticIconModule
 			]
 		});

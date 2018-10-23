@@ -1,7 +1,8 @@
-import { Component, ViewChild, HostListener } from "@angular/core";
+import { Component, ViewChild, HostListener, ElementRef } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
+import { I18n } from "./../../i18n/i18n.module";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -13,7 +14,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.servic
 	template: `
 		<ul
 			role="menu"
-			attr.aria-label="{{'OVERFLOW_MENU.OVERFLOW' | translate}}"
+			[attr.aria-label]="dialogConfig.menuLabel"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open">
 			<ng-template
@@ -26,6 +27,10 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.servic
 export class OverflowMenuPane extends Dialog {
 	@ViewChild("dialog") dialog;
 
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+		super(elementRef);
+	}
+
 	onDialogInit() {
 		/**
 		 *  -20 shifts the menu up to compensate for the
@@ -36,6 +41,10 @@ export class OverflowMenuPane extends Dialog {
 		 * so we need to add some compensation)
 		 */
 		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
+
+		if (!this.dialogConfig.menuLabel) {
+			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
+		}
 
 		setTimeout(() => this.listItems()[0].focus());
 	}

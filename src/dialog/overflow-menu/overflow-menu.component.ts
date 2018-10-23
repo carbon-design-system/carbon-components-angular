@@ -1,4 +1,5 @@
-import { Component, ElementRef } from "@angular/core";
+import { Component, ElementRef, Input } from "@angular/core";
+import { I18n } from "./../../i18n/i18n.module";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -18,7 +19,7 @@ import { Component, ElementRef } from "@angular/core";
 			[ibmOverflowMenu]="options"
 			[appendToBody]="true"
 			[ngClass]="{'bx--overflow-menu--open': open === true}"
-			attr.aria-label="{{'OVERFLOW_MENU.OVERFLOW' | translate}}"
+			[attr.aria-label]="buttonLabel"
 			class="bx--overflow-menu"
 			role="button"
 			placement="bottom"
@@ -43,7 +44,10 @@ import { Component, ElementRef } from "@angular/core";
 	`]
 })
 export class OverflowMenu {
-	constructor(private elementRef: ElementRef) {}
+
+	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
+
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 
 	get open() {
 		if (this.elementRef.nativeElement.children[0].getAttribute("aria-expanded") === "true") {
