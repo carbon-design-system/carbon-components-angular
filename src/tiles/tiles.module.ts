@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 
 import { Tile } from "./tile.component";
 import { ClickableTile } from "./clickable-tile.component";
@@ -18,8 +17,7 @@ export { ClickableTile } from "./clickable-tile.component";
 		ClickableTile
 	],
 	imports: [
-		CommonModule,
-		TranslateModule.forChild()
+		CommonModule
 	]
 })
 export class TilesModule {}

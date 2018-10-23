@@ -1,16 +1,13 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { TabsModule } from "../";
 
 storiesOf("Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TabsModule,
-				TranslateModule.forRoot()
+				TabsModule
 			]
 		})
 	)
