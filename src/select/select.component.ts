@@ -4,8 +4,9 @@ import { Component, Input } from "@angular/core";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
-			<div class="bx--select"
-				[ngClass]="{ 'bx--select--inline': inlineSelect }">
+			<div
+				[ngClass]="{ 'bx--select--inline': inlineSelect }"
+				class="bx--select">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select [attr.id]="id" class="bx--select-input">
 					<ng-content></ng-content>
