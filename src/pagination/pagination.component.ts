@@ -7,8 +7,7 @@ import {
 } from "@angular/core";
 
 import { range } from "../common/utils";
-
-const EN = require("./../i18n/en.json");
+import { I18n } from "./../i18n/i18n.module";
 
 /**
  * Use pagination when you have multiple pages of data to handle.
@@ -219,7 +218,7 @@ export class Pagination {
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
-	constructor() {
+	constructor(protected i18n: I18n) {
 		Pagination.paginationCounter++;
 	}
 
