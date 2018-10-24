@@ -1,8 +1,6 @@
 /// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
 import { Component } from "@angular/core";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
-
 import { TestBed } from "@angular/core/testing";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
@@ -16,7 +14,6 @@ describe("Tabs", () => {
 		TestBed.configureTestingModule({
 			declarations: [Tabs, Tab, TabHeaders, TabsTestComponent],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
 				StaticIconModule
 			]
 		});

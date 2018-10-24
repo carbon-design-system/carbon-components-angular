@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { BannerService } from "./banner.service";
 import { ToastContent } from "./banner-content.interface";
@@ -25,10 +25,10 @@ import { Banner } from "./banner.component";
 		<button
 			class="bx--toast-notification__close-button"
 			type="button"
+			[attr.aria-label]="bannerObj.closeLabel"
 			(click)="onClose()">
 			<svg
 				class="bx--toast-notification-icon"
-				aria-label="close"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
@@ -40,7 +40,7 @@ import { Banner } from "./banner.component";
 	`,
 	providers: [ BannerService ]
 })
-export class Toast extends Banner {
+export class Toast extends Banner implements OnInit {
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -50,4 +50,10 @@ export class Toast extends Banner {
 	 *
 	 */
 	@Input() bannerObj: ToastContent;
+
+	ngOnInit() {
+		if (!this.bannerObj.closeLabel) {
+			this.bannerObj.closeLabel = this.i18n.get().BANNER.CLOSE_BUTTON;
+		}
+	}
 }

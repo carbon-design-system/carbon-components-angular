@@ -5,8 +5,6 @@ import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
 import { Component } from "@angular/core";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { BannerModule, BannerService } from "./banner.module";
 
 @Component({
@@ -60,8 +58,7 @@ storiesOf("Banner", module)
 				ToastStory
 			],
 			imports: [
-				BannerModule,
-				TranslateModule.forRoot()
+				BannerModule
 			]
 		})
 	)
