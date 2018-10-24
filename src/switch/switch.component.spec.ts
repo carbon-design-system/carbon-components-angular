@@ -32,6 +32,13 @@ describe("SwitchComponent", () => {
 		expect(component instanceof SwitchComponent).toBe(true);
 	});
 
+	it("should have input with class 'bx--toggle'", () => {
+		expect(buttonElement.className.includes("bx--toggle")).toEqual(true);
+		component.size = "sm";
+		fixture.detectChanges();
+		expect(buttonElement.className.includes("bx--toggle")).toEqual(true);
+	});
+
 	it("should change state", () => {
 		buttonElement.click();
 		fixture.detectChanges();

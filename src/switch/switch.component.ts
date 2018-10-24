@@ -52,8 +52,8 @@ export class SwitchChange {
 	selector: "ibm-switch",
 	template: `
 		<input
+			class="bx--toggle"
 			[ngClass]="{
-				'bx--toggle': true,
 				'bx--toggle--small': size === 'sm'
 			}"
 			[id]="id"
