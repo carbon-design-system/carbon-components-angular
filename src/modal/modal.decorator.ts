@@ -1,15 +1,20 @@
+import { Output, EventEmitter } from "@angular/core";
+
 /**
+ * # Deprecated - extend BaseModal instead
+ *
  * Decorator used to apply metadata on `Modal` class.
  *
  * class: ModalContainer
  *
  * decorator: @Modal
  * @class ModalContainer
+ * @deprecated
  */
 class ModalContainer {
-	destroy: Function;
+	@Output() close = new EventEmitter();
 	closeModal(): void {
-		this.destroy();
+		this.close.emit();
 	}
 }
 

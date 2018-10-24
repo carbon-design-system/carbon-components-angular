@@ -1,5 +1,10 @@
-import { Component, OnInit, Injector, ViewContainerRef, ViewChild } from "@angular/core";
-import { ModalPlaceholderService } from "./modal-placeholder.service";
+import {
+	Component,
+	OnInit,
+	ViewContainerRef,
+	ViewChild
+} from "@angular/core";
+import { Placeholder } from "./../placeholder/placeholder.service";
 
 
 /**
@@ -45,16 +50,13 @@ export class ModalPlaceholderComponent implements OnInit {
 
 	/**
 	 * Creates an instance of `ModalPlaceholderComponent`.
-	 * @param {ModalService} modalPlaceholderService
-	 * @memberof ModalPlaceholderComponent
 	 */
-	constructor(public modalPlaceholderService: ModalPlaceholderService) {}
+	constructor(public placeholder: Placeholder) {}
 
 	/**
 	 * Initializes the component using `ModalService`.
-	 * @memberof ModalPlaceholderComponent
 	 */
 	ngOnInit(): void {
-		this.modalPlaceholderService.registerViewContainerRef(this.viewContainerRef);
+		this.placeholder.registerViewContainerRef(this.viewContainerRef);
 	}
 }
