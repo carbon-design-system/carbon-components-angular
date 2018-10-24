@@ -17,7 +17,8 @@ describe("Link", () => {
 		expect(component).toBeTruthy();
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
 		expect(directiveEl).not.toBeNull();
-		expect(directiveEl.attributes["aria-disabled"]).toBe("false");
+		expect(directiveEl.attributes["aria-disabled"]).toBe(null);
+		expect(directiveEl.attributes["tabindex"]).toBe(null);
 		expect(directiveEl.attributes["href"]).toBe("https://angular.carbondesignsystem.com/");
 	});
 
@@ -31,8 +32,8 @@ describe("Link", () => {
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(Link));
-		expect(directiveEl.attributes["disabled"]).toBe("true");
 		expect(directiveEl.attributes["aria-disabled"]).toBe("true");
+		expect(directiveEl.attributes["tabindex"]).toBe("-1");
 	});
 });
 
@@ -43,7 +44,7 @@ class TestLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" disabled="true" ibmLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" ibmLink>link</a>`
 })
 class TestDisabledLinkComponent {
 }

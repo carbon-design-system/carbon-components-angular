@@ -21,9 +21,27 @@ import {
 
 export class Link {
 	@HostBinding("class.bx--link") baseClass = true;
+
 	/**
-	 * Set to `true` to disable link.
+	 * Automatically set to `-1` when link is disabled.
 	 * @memberof Link
 	 */
-	@HostBinding("attr.aria-disabled") @Input() disabled = false;
+	@HostBinding("attr.tabindex") tabindex;
+
+	/**
+	 * Set to true to disable link.
+	 * @memberof Link
+	 */
+	@Input()
+	@HostBinding("attr.aria-disabled")
+	set disabled(disabled: boolean) {
+		this._disabled = disabled;
+		this.tabindex = this.disabled ? -1 : null;
+	}
+
+	get disabled(): boolean {
+		return this._disabled;
+	}
+
+	private _disabled;
 }
