@@ -1,8 +1,5 @@
 import { Component, Input, HostBinding } from "@angular/core";
 
-/**
- * This is a sample component to demonstrate how components should be written, and can be used as a template for new components
- */
 @Component({
 	selector: "ibm-loading",
 	template: `
