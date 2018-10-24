@@ -8,7 +8,7 @@ import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
-import { DialogPlaceholderService } from "./../dialog-placeholder.service";
+import { Placeholder } from "./../../placeholder/placeholder.service";
 
 @Component({
 	selector: "test-cmp",
@@ -24,7 +24,7 @@ describe("Tooltip directive", () => {
 			imports: [
 				StaticIconModule
 			],
-			providers: [ DialogPlaceholderService ]
+			providers: [ Placeholder ]
 		});
 	});
 

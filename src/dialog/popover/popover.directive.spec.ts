@@ -6,7 +6,7 @@ import { By } from "@angular/platform-browser";
 import { NFormsModule } from "./../../forms/forms.module";
 import { IconModule } from "./../../icon/icon.module";
 import { StaticIconModule } from "./../../icon/static-icon.module";
-import { DialogPlaceholderService } from "./../dialog-placeholder.service";
+import { Placeholder } from "./../../placeholder/placeholder.service";
 import { Popover } from "./popover.component";
 import { PopoverDirective } from "./popover.directive";
 
@@ -32,7 +32,7 @@ xdescribe("Popover directive", () => {
 				IconModule,
 				StaticIconModule
 			],
-			providers: [ DialogPlaceholderService ]
+			providers: [ Placeholder ]
 		});
 	});
 
