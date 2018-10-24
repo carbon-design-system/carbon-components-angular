@@ -5,7 +5,7 @@ import { Component, Input } from "@angular/core";
 	template: `
 		<div class="bx--form-item">
 			<div
-				[ngClass]="{ 'bx--select--inline': inlineSelect }"
+				[ngClass]="{'bx--select--inline': inlineSelect}"
 				class="bx--select">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select [attr.id]="id" class="bx--select-input">
