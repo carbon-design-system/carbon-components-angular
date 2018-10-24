@@ -53,6 +53,7 @@ export class DialogPlaceholderComponent implements OnInit {
 	 * @memberof DialogPlaceholderComponent
 	 */
 	ngOnInit(): void {
+		console.warn("`ibm-dialog-placeholder` has been deprecated in favour of `ibm-placeholder`");
 		this.placeholder.registerViewContainerRef(this.viewContainerRef);
 	}
 }
