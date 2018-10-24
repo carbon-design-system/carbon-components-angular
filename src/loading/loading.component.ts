@@ -14,11 +14,17 @@ import { Component, Input, HostBinding } from "@angular/core";
 	`
 })
 export class Loading {
+	/**
+     * Specify the size of the button
+	 * @type {("normal" | "sm")}
+	 * @memberof Loading
+     */
 	@Input() size: "normal" | "sm" = "normal";
-@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
 
-	@HostBinding("class.bx--loading-overlay") get isOverlay() {
-		return this.overlay === true;
-	}
-
+	/**
+     * Specify whether you want the loader to be applied with an overlay
+	 * @type {boolean}
+	 * @memberof Loading
+     */
+	@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
 }
