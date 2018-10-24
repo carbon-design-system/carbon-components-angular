@@ -1,6 +1,8 @@
 import {
 	ComponentRef,
-	ViewContainerRef
+	ViewContainerRef,
+	ComponentFactory,
+	Injector
 } from "@angular/core";
 import { Injectable } from "@angular/core";
 
@@ -9,11 +11,11 @@ import { Injectable } from "@angular/core";
  * Also used to insert/remove components from that view.
  */
 @Injectable()
-export class PlaceholderService {
+export class Placeholder {
 	/**
 	 * Maintain a `ViewContainerRef` to an instance of the component.
 	 */
-	public viewContainerRef: ViewContainerRef = null;
+	private viewContainerRef: ViewContainerRef = null;
 	/**
 	 * Used by `PlaceholderComponent` to register view-container reference.
 	 */
@@ -21,28 +23,28 @@ export class PlaceholderService {
 		this.viewContainerRef = vcRef;
 	}
 
-	addComponentRef(component: ComponentRef) {
+	/**
+	 * Creates and returns component in the view.
+	 */
+	createComponent(componentFactory: ComponentFactory<any>, injector: Injector): ComponentRef<any> {
 		if (!this.viewContainerRef) {
 			console.error("No view container defined! Likely due to a missing `ibm-placeholder`");
 		}
-		this.viewContainerRef.insert(component.hostView);
+		return this.viewContainerRef.createComponent(componentFactory, 0, injector);
 	}
 
-	removeComponentRef(component: ComponentRef) {
-		const index = this.viewContainerRef.indexOf(component);
+	destroyComponent(component: ComponentRef<any>) {
+		const index = this.viewContainerRef.indexOf(component.hostView);
 		if (index < 0) {
 			return;
 		}
-		// focus any defined `previouslyFocusedElement`
-		if (this.viewContainerRef.get(index)["previouslyFocusedElement"]) {
-			this.viewContainerRef.get(index)["previouslyFocusedElement"].focus();  // return focus
-		}
+
 		// destroy the view
 		this.viewContainerRef.remove(index);
 	}
 
-	hasComponentRef(component: ComponentRef) {
-		if (this.viewContainerRef.indexOf(component) < 0) {
+	hasComponentRef(component: ComponentRef<any>) {
+		if (this.viewContainerRef.indexOf(component.hostView) < 0) {
 			return false;
 		}
 		return true;

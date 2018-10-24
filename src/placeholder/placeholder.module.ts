@@ -9,20 +9,21 @@ import { CommonModule } from "@angular/common";
 
 // imports
 import { PlaceholderComponent } from "./placeholder.component";
-import { PlaceholderService } from "./placeholder.service";
+import { Placeholder } from "./placeholder.service";
 
 // exports
-export { PlaceholderService } from "./placeholder.service";
+export { PlaceholderComponent } from "./placeholder.component";
+export { Placeholder } from "./placeholder.service";
 
 // either provides a new instance of ModalPlaceholderService, or returns the parent
-export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: PlaceholderService) {
-	return parentService || new PlaceholderService();
+export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: Placeholder) {
+	return parentService || new Placeholder();
 }
 
 // placholder service *must* be a singleton to ensure the placeholder viewref is accessible globally
 export const PLACEHOLDER_SERVICE_PROVIDER = {
-	provide: PlaceholderService,
-	deps: [[new Optional(), new SkipSelf(), PlaceholderService]],
+	provide: Placeholder,
+	deps: [[new Optional(), new SkipSelf(), Placeholder]],
 	useFactory: PLACEHOLDER_SERVICE_PROVIDER_FACTORY
 };
 
