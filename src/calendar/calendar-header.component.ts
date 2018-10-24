@@ -35,7 +35,7 @@ import { range } from "../common/utils";
 					<li
 					class="month_view-month"
 					*ngFor="let month of range(monthCount)">
-						{{getMonth(month) | translate}}
+						{{getMonth(month)}}
 					</li>
 					<li class="pagination_chevron">
 						<a (click)="nextMonth()" title="Next page" aria-label="Next page">

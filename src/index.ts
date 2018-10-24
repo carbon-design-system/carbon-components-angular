@@ -22,5 +22,6 @@ export * from "./input/input.module";
 export * from "./select/select.module";
 export * from "./tiles/tiles.module";
 export * from "./progress-indicator/progress-indicator.module";
+export * from "./i18n/i18n.module";
 export * from "./pagination/pagination.module";
 export * from "./loading/loading.module";
