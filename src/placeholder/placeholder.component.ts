@@ -1,6 +1,10 @@
-import { Component, OnInit, Injector, ViewContainerRef, ViewChild } from "@angular/core";
-import { Placeholder} from "./placeholder.service";
-
+import {
+	Component,
+	OnInit,
+	ViewContainerRef,
+	ViewChild
+} from "@angular/core";
+import { Placeholder } from "./placeholder.service";
 
 /**
  * Using a modal, dialog (Tooltip, OverflowMenu), or any other component that draws out of the normal page flow
