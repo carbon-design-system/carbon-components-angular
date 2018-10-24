@@ -1,11 +1,10 @@
 import {
 	Component,
 	OnInit,
-	Injector,
 	ViewContainerRef,
 	ViewChild
 } from "@angular/core";
-import { DialogPlaceholderService } from "./dialog-placeholder.service";
+import { Placeholder } from "./../placeholder/placeholder.module";
 
 /**
  * Using a dialog (popover, tooltip, etc) with appendToBody="true" in your application
@@ -44,16 +43,16 @@ export class DialogPlaceholderComponent implements OnInit {
 
 	/**
 	 * Creates an instance of `DialogPlaceholderComponent`.
-	 * @param {DialogPlaceholderService} dialogPlaceholderService
+	 * @param {DialogPlaceholderService} placeholder
 	 * @memberof DialogPlaceholderComponent
 	 */
-	constructor(public dialogPlaceholderService: DialogPlaceholderService) { }
+	constructor(public placeholder: Placeholder) { }
 
 	/**
 	 * Initializes the component using `ModalService`.
 	 * @memberof DialogPlaceholderComponent
 	 */
 	ngOnInit(): void {
-		this.dialogPlaceholderService.registerViewContainerRef(this.viewContainerRef);
+		this.placeholder.registerViewContainerRef(this.viewContainerRef);
 	}
 }
