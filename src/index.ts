@@ -23,3 +23,4 @@ export * from "./select/select.module";
 export * from "./tiles/tiles.module";
 export * from "./progress-indicator/progress-indicator.module";
 export * from "./pagination/pagination.module";
+export * from "./loading/loading.module";
