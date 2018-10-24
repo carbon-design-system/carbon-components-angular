@@ -15,7 +15,7 @@ import { Component, Input, HostBinding } from "@angular/core";
 })
 export class Loading {
 	@Input() size: "normal" | "sm" = "normal";
-	@Input() overlay = false;
+@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
 
 	@HostBinding("class.bx--loading-overlay") get isOverlay() {
 		return this.overlay === true;
