@@ -10,6 +10,7 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
 import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AlertModalComponent } from "./alert-modal.component";
+import { AlertModalData } from "./alert-modal.interface";
 
 
 /**
@@ -86,14 +87,23 @@ export class ModalService {
 	 * @returns {ComponentRef<any>}
 	 * @memberof ModalService
 	 */
-	show(data: {modalType?: string, modalLabel?: string, modalTitle?: string, modalContent?: string, buttons?: Array<any>}) {
+	show(data: AlertModalData) {
+		for (let key of Object.keys(data)) {
+			if (["modalType", "modalLabel", "modalTitle", "modalContent"].includes(key)) {
+				try {
+					throw new Error(`${key} is deprecated, use ${key.replace("modal", "").toLowerCase()} instead`);
+				} catch (error) {
+					console.warn(error);
+				}
+			}
+		}
 		return this.create({
 			component: AlertModalComponent,
 			inputs: {
-				modalType: data.modalType,
-				modalLabel: data.modalLabel,
-				modalTitle: data.modalTitle,
-				modalContent: data.modalContent,
+				modalType: data.type || data.modalType,
+				modalLabel: data.label || data.modalLabel,
+				modalTitle: data.title || data.modalTitle,
+				modalContent: data.content || data.modalContent,
 				buttons: data.buttons || []
 			}
 		});

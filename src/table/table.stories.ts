@@ -4,7 +4,9 @@ import {
 	Component,
 	ViewChild,
 	OnInit,
-	Input
+	Input,
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
@@ -13,8 +15,6 @@ import {
 	selectV2,
 	number
 } from "@storybook/addon-knobs/angular";
-
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 import {
 	TableModule,
@@ -27,7 +27,51 @@ import {
 
 import { clone } from "../utils/utils";
 
-const en = require("./../../src/i18n/en.json");
+@Component({
+	selector: "app-table",
+	template: `
+		<ibm-table
+			[model]="model"
+			[size]="size"
+			[showSelectionColumn]="showSelectionColumn"
+			[striped]="striped"
+			(sort)="simpleSort($event)">
+			<ng-content></ng-content>
+		</ibm-table>
+	`
+})
+class TableStory implements OnInit, OnChanges {
+	@Input() model = new TableModel();
+	@Input() size = "md";
+	@Input() showSelectionColumn = true;
+	@Input() striped = true;
+	@Input() sortable = true;
+
+	ngOnInit() {
+		this.model.header = [
+			new TableHeaderItem({
+				data: "Name"
+			}),
+			new TableHeaderItem({
+				data: "hwer",
+				style: {"width": "auto"},
+				className: "my-class"
+			})
+		];
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.sortable) {
+			for (let column of this.model.header) {
+				column.sortable = changes.sortable.currentValue;
+			}
+		}
+	}
+
+	simpleSort(index: number) {
+		sort(simpleModel, index);
+	}
+}
 
 @Component({
 	selector: "app-custom-table",
@@ -61,12 +105,6 @@ class DynamicTableStory implements OnInit {
 	private customHeaderTemplate: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [
@@ -138,12 +176,6 @@ class ExpansionTableStory implements OnInit {
 	private customHeaderTemplate: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [
@@ -220,12 +252,6 @@ class OverflowTableStory implements OnInit {
 	@ViewChild("overflowMenuItemTemplate")
 	private overflowMenuItemTemplate: TemplateRef<any>;
 
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
-
 	ngOnInit() {
 		this.model.data = [
 			[new TableItem({data: "Name 1"}), new TableItem({data: {id: "1"}, template: this.overflowMenuItemTemplate})],
@@ -278,12 +304,6 @@ class PaginationTableStory implements OnInit {
 	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("paginationTableItemTemplate")
 	private paginationTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [[]];
@@ -382,16 +402,17 @@ simpleModel.header = [
 	new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
 ];
 
+const emptyModel = new TableModel();
+emptyModel.header = [
+	new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+];
+
 function sort(model, index: number) {
 	if (model.header[index].sorted) {
 		// if already sorted flip sorting direction
 		model.header[index].ascending = model.header[index].descending;
 	}
 	model.sort(index);
-}
-
-function simpleSort(index: number) {
-	sort(simpleModel, index);
 }
 
 
@@ -401,10 +422,10 @@ storiesOf("Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
-				PaginationModule,
-				TranslateModule.forRoot()
+				PaginationModule
 			],
 			declarations: [
+				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
 				OverflowTableStory,
@@ -415,17 +436,41 @@ storiesOf("Table", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
-		<ibm-table
+		<app-table
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
-			(sort)="simpleSort($event)">
-		</ibm-table>
+			[sortable]="sortable">
+		</app-table>
 	`,
 		props: {
 			model: simpleModel,
-			simpleSort: simpleSort,
+			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			showSelectionColumn: boolean("showSelectionColumn", true),
+			striped: boolean("striped", true),
+			sortable: boolean("sortable", true)
+		}
+	}))
+	.add("with no data", () => ({
+		template: `
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped">
+				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
+			</app-table>
+		`,
+		styles: [`
+			.no-data {
+				width: 100%;
+				height: 150px;
+				text-align: center;
+			}
+		`],
+		props: {
+			model: emptyModel,
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true)

@@ -4,27 +4,22 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	ViewEncapsulation,
 	ContentChild,
 	OnInit,
 	ViewChild,
 	AfterContentInit,
-	AfterViewInit,
 	HostListener,
-	forwardRef,
-	OnDestroy,
-	HostBinding
+	OnDestroy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
+// Observable import is required here so typescript can compile correctly
 import { Observable, fromEvent, of, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 
-import { TranslateService } from "@ngx-translate/core";
-
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../utils/position";
-
+import { I18n } from "./../i18n/i18n.module";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -52,8 +47,8 @@ import { position } from "../utils/position";
 			[disabled]="disabled">
 			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
 			<div class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" aria-label="Open menu">
-					<title>Open menu</title>
+				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" [attr.aria-label]="menuButtonLabel">
+					<title>{{menuButtonLabel}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
 			</div>
@@ -120,6 +115,16 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * @memberof Dropdown
 	 */
 	@Input() scrollableContainer: string;
+	/**
+	 * Accessible label for the button that opens the dropdown list.
+	 * Defaults to the `DROPDOWN.OPEN` value from the i18n service.
+	 */
+	@Input() menuButtonLabel = this.i18n.get().DROPDOWN.OPEN;
+	/**
+	 * Provides the label for the "# selected" text.
+	 * Defaults to the `DROPDOWN.SELECTED` value from the i18n service.
+	 */
+	@Input() selectedLabel = this.i18n.get().DROPDOWN.SELECTED;
 	/**
 	 * Emits selection events.
 	 * @type {EventEmitter<Object>}
@@ -196,7 +201,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * @param {TranslateService} translate
 	 * @memberof Dropdown
 	 */
-	constructor(private elementRef: ElementRef, private translate: TranslateService) {}
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
@@ -347,7 +352,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return this.translate.get("DROPDOWN.SELECTED", {number: selected.length});
+				return of(`${selected.length} ${this.selectedLabel}`);
 			} else {
 				return of(selected[0].content);
 			}
