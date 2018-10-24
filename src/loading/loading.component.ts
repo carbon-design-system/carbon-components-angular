@@ -4,7 +4,7 @@ import { Component, Input, HostBinding } from "@angular/core";
 	selector: "ibm-loading",
 	template: `
 		<div
-			[ngClass]="{ 'bx--loading--small': size === 'sm' }"
+			[ngClass]="{'bx--loading--small': size === 'sm'}"
 			class="bx--loading">
 			<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
 				<title>Loading</title>
