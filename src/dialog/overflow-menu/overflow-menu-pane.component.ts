@@ -13,8 +13,9 @@ import { I18n } from "./../../i18n/i18n.module";
 	selector: "ibm-overflow-menu-pane",
 	template: `
 		<ul
-			role="menu"
 			[attr.aria-label]="dialogConfig.menuLabel"
+			[ngClass]="{ 'bx--overflow-menu--flip': dialogConfig.flip }"
+			role="menu"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open">
 			<ng-template
@@ -40,7 +41,12 @@ export class OverflowMenuPane extends Dialog {
 		 * (position service trys it's best to center everything,
 		 * so we need to add some compensation)
 		 */
-		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
+		this.addGap["bottom"] = pos => {
+			if (this.dialogConfig.flip) {
+				return position.addOffset(pos, -20, -60);
+			}
+			return position.addOffset(pos, -20, 60);
+		}
 
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;

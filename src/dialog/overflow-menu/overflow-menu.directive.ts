@@ -35,7 +35,14 @@ import { OverflowMenuPane } from "./overflow-menu-pane.component";
 	]
 })
 export class OverflowMenuDirective extends DialogDirective {
+	/**
+	 * Takes a template ref of `OverflowMenuOptions`s
+	 */
 	@Input() ibmOverflowMenu: TemplateRef<any>;
+	/**
+	 * Controls wether the overflow menu is flipped
+	 */
+	@Input() flip = false;
 
 	/**
 	 * Creates an instance of `OverflowMenuDirective`.
@@ -51,6 +58,7 @@ export class OverflowMenuDirective extends DialogDirective {
 
 	onDialogInit() {
 		this.dialogConfig.content = this.ibmOverflowMenu;
+		this.dialogConfig.flip = this.flip;
 	}
 
 	@HostListener("keydown", ["$event"])
