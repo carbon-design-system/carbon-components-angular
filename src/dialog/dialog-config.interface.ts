@@ -52,15 +52,6 @@ export interface DialogConfig {
 	 */
 	appendToBody: boolean;
 	/**
-	 * Set to `true` will attempt to place
-	 * `Dialog` for maximum visibility.
-	 * TODO: remove - this doesn't actually do anything
-	 * @type {boolean | string}
-	 * @memberof DialogConfig
-	 * @deprecated
-	 */
-	autoPosition: boolean;
-	/**
 	 * Config object passed to the rendered component. (Optional)
 	 * @type {Object}
 	 * @memberof DialogConfig

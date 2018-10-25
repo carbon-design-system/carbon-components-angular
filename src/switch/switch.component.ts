@@ -91,11 +91,8 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 
 	/**
 	 * Size of the switch component.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default")}
-	 * @memberof SwitchComponent
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 
 	/**
 	 * The unique id allocated to the `SwitchComponent`.

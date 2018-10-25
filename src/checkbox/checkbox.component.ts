@@ -86,9 +86,6 @@ export class CheckboxChange {
 export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Variable used for creating unique ids for checkbox components.
-	 * @type {number}
-	 * @static
-	 * @memberof CheckboxComponent
 	 */
 	static checkboxCount = 0;
 
@@ -96,70 +93,49 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Size of the checkbox.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default")}
-	 * @memberof CheckboxComponent
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 	/**
 	 * Set to `true` for checkbox to be rendered with inline styles.
-	 * @type {boolean}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() inline: boolean;
 	/**
 	 * Set to `true` for checkbox to be rendered with nested styles.
-	 * @type {boolean}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() nested: boolean;
 	/**
 	 * Set to `true` for a disabled checkbox.
-	 * @type {boolean}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() disabled = false;
 	/**
 	 * Sets the name attribute on the `input` element.
-	 * @type {string}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() name: string;
 	/**
 	 * The unique id for the checkbox component.
-	 * @type {string}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
 	/**
 	 * Reflects the required attribute of the `input` element.
-	 * @type {boolean}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() required: boolean;
 	/**
 	 * Sets the value attribute on the `input` element.
-	 * @type {string}
-	 * @memberof CheckboxComponent
 	 */
 	@Input() value: string;
 	/**
 	 * Used to set the `aria-label` attribute on the input element.
-	 * @memberof CheckboxComponent
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("aria-label") ariaLabel = "";
 	/**
 	 * Used to set the `aria-labelledby` attribute on the input element.
-	 * @type {string}
-	 * @memberof CheckboxComponent
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("aria-labelledby") ariaLabelledby: string;
 	/**
 	 * Reflects whether the checkbox state is indeterminate.
 	 * @readonly
-	 * @memberof CheckboxComponent
 	 */
 	@Input() get indeterminate() {
 		return this._indeterminate;
@@ -167,8 +143,6 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Set the checkbox's indeterminate state to match the parameter and transition the view to reflect the change.
-	 * @param indeterminate
-	 * @memberof CheckboxComponent
 	 */
 	set indeterminate(indeterminate: boolean) {
 		let changed = this._indeterminate !== indeterminate;
@@ -186,7 +160,6 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Returns value `true` if state is selected for the checkbox.
 	 * @readonly
-	 * @memberof CheckboxComponent
 	 */
 	@Input() get checked() {
 		return this._checked;
@@ -194,8 +167,6 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Updating the state of a checkbox to match the state of the parameter passed in.
-	 * @param checked
-	 * @memberof CheckboxComponent
 	 */
 	set checked (checked: boolean) {
 		if (checked !== this.checked) {
@@ -213,24 +184,20 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a checkbox after a
 	 * click.
-	 * @memberof CheckboxComponent
 	 */
 	@Output() change = new EventEmitter<CheckboxChange>();
 	/**
 	 * Emits event notifying other classes when a change in state occurs specifically
 	 * on an indeterminate checkbox.
-	 * @memberof CheckboxComponent
 	 */
 	@Output() indeterminateChange = new EventEmitter<boolean>();
 
 	/**
 	 * Set to `true` if the input checkbox is selected (or checked).
-	 * @memberof CheckboxComponent
 	 */
 	_checked = false;
 	/**
 	 * Set to `true` if the input checkbox is in state indeterminate.
-	 * @memberof CheckboxComponent
 	 */
 	_indeterminate = false;
 
@@ -238,8 +205,6 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Maintains a reference to the view DOM element of the `CheckboxComponent`.
-	 * @type {ElementRef}
-	 * @memberof CheckboxComponent
 	 */
 	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
 

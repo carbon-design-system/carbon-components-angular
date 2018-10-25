@@ -74,45 +74,33 @@ import { I18n } from "./../i18n/i18n.module";
 export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	/**
 	 * Value displayed if no item is selected.
-	 * @memberof Dropdown
 	 */
 	@Input() placeholder = "";
 	/**
 	 * The selected value from the `Dropdown`.
-	 * @memberof Dropdown
 	 */
 	@Input() displayValue = "";
 	/**
 	 * Size to render the dropdown field.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default" | "lg")}
-	 * @memberof Dropdown
 	 */
-	@Input() size: "sm" | "md" | "default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
-	 * @type {("single" | "multi")}
-	 * @memberof Dropdown
 	 */
 	@Input() type: "single" | "multi" = "single";
 
 	/**
 	 * Set to `true` to disable the dropdown.
-	 * @memberof Dropdown
 	 */
 	@Input() disabled = false;
 	/**
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
-	 * @type {boolean}
-	 * @memberof Dropdown
 	 */
 	@Input() appendToBody = false;
 	/**
 	 * Query string for the element that contains the `Dropdown`.
 	 * Used to trigger closing the dropdown if it scrolls outside of the viewport of the `scrollableContainer`.
-	 * @type {string}
-	 * @memberof Dropdown
 	 */
 	@Input() scrollableContainer: string;
 	/**
@@ -127,32 +115,23 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	@Input() selectedLabel = this.i18n.get().DROPDOWN.SELECTED;
 	/**
 	 * Emits selection events.
-	 * @type {EventEmitter<Object>}
-	 * @memberof Dropdown
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 	/**
 	 * Emits event notifying to other classes that the `Dropdown` has been closed (collapsed).
-	 * @type {EventEmitter<any>}
-	 * @memberof Dropdown
 	 */
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	/**
 	 * Emits event notifying to other classes that the `Dropdown` has been closed (collapsed).
-	 * @type {EventEmitter<any>}
-	 * @memberof Dropdown
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter<any>();
 
 	/**
 	 * Maintains a reference to the `AbstractDropdownView` object within the content DOM.
-	 * @type {AbstractDropdownView}
-	 * @memberof Dropdown
 	 */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	/**
 	 * Maintains a reference to the view DOM element of the `Dropdown` button.
-	 * @memberof Dropdown
 	 */
 	@ViewChild("dropdownButton") dropdownButton;
 	/**
@@ -162,7 +141,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
-	 * @memberof Dropdown
 	 */
 	menuIsClosed = true;
 
@@ -184,12 +162,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	/**
 	 * Maintains an Event Observable Subscription for tracking window resizes.
 	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
-	 * @memberof Dropdown
 	 */
 	resize: Subscription;
 	/**
 	 *  Maintians an Event Observable Subscription for tracking scrolling within the open `Dropdown` list.
-	 * @memberof Dropdown
 	 */
 	scroll: Subscription;
 
@@ -197,16 +173,12 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 	/**
 	 * Creates an instance of Dropdown.
-	 * @param {ElementRef} elementRef
-	 * @param {TranslateService} translate
-	 * @memberof Dropdown
 	 */
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
 	 * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
-	 * @memberof Dropdown
 	 */
 	ngOnInit() {
 		this.view.type = this.type;
@@ -255,7 +227,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	buildClass() {
 		if (this.size === "sm") { return "dropdown--sm"; }
-		if (this.size === "default") { return "dropdown"; }
 		if (this.size === "md") { return "dropdown"; }
 		if (this.size === "lg") { return "dropdown--lg"; }
 	}
