@@ -141,7 +141,6 @@ export class CodeSnippet {
 
 	showFeedback = false;
 
-
 	/**
 	 * Creates an instance of CodeSnippet.
 	 * @param {ChangeDetectorRef} changeDetectorRef
