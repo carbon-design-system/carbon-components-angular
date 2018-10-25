@@ -3,8 +3,6 @@ import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { DialogModule } from "../../";
 
 storiesOf("Tooltip", module)
@@ -12,7 +10,6 @@ storiesOf("Tooltip", module)
 		moduleMetadata({
 			imports: [
 				DialogModule,
-				TranslateModule.forRoot()
 			]
 		})
 	)

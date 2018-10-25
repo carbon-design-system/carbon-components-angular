@@ -8,7 +8,7 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save-dev carbon-components-angular carbon-components @ngx-translate/core
+$ npm i --save-dev carbon-components-angular carbon-components
 ```
 
 Then we need to include carbon-components in `src/styles.scss`:
@@ -24,7 +24,6 @@ Then set up our translations in `src/app/app.module.ts`:
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 
@@ -34,7 +33,6 @@ import { AppComponent } from './app.component';
   ],
   imports: [
 	BrowserModule,
-	TranslateModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

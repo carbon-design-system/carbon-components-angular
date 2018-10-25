@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 import { FormsModule } from "@angular/forms";
 
 import { Pagination } from "./pagination.component";
@@ -17,7 +16,6 @@ export { Pagination } from "./pagination.component";
 	],
 	imports: [
 		CommonModule,
-		TranslateModule,
 		FormsModule
 	]
 })
