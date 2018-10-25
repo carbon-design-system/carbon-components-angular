@@ -1,8 +1,9 @@
 /**
  * Utilites to manipulate the position of elements relative to other elements
  *
- * @export
  */
+
+import { getScrollbarWidth } from "./window-tools";
 
 // possible positions ... this should probably be moved (along with some other types) to some central location
 export type Placement =
@@ -117,22 +118,19 @@ export namespace position {
 		return calculatePosition(referenceOffset, reference, target, placement);
 	}
 
-	/** check if the placement is within the window. */
-	export function checkPlacement(target: HTMLElement, position: AbsolutePosition): boolean {
-		const elTop = position.top;
-		const elLeft = position.left;
-		const elBottom = target.offsetHeight + position.top;
-		const elRight = target.offsetWidth + position.left;
-		const windowTop = window.scrollY;
-		const windowLeft = window.scrollX;
-		// remove the target height so we get a reasonably accurate window height reading
-		const windowBottom = (window.innerHeight + window.scrollY) - target.offsetHeight;
-		const windowRight = window.innerWidth + window.scrollX;
+	/**
+	 * Get the dimensions of the dialog from an AbsolutePosition and a reference element
+	 */
+	export function getPlacementBox(target: HTMLElement, position: AbsolutePosition) {
+		const targetBottom = target.offsetHeight + position.top;
+		const targetRight = target.offsetWidth + position.left;
 
-		if (elBottom < windowBottom && elRight < windowRight && elTop > windowTop && elLeft > windowLeft) {
-			return true;
-		}
-		return false;
+		return {
+			top: position.top,
+			bottom: targetBottom,
+			left: position.left,
+			right: targetRight
+		};
 	}
 
 	export function addOffset(position: AbsolutePosition, top = 0, left = 0): AbsolutePosition {
