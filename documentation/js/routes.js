@@ -23,24 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var tree = ROUTES_INDEX;
 
-    function cleanStringChildren(obj) {
-        for (var property in obj) {
-            if (obj.hasOwnProperty(property)) {
-                if (property === 'children' && typeof obj[property] === 'object') {
-                    for (var i = obj[property].length - 1; i >= 0 ; i--) {
-                        if (typeof obj[property][i] === 'string') {
-                            obj[property].splice(i, 1);
-                        }
-                    }
-                }
-                if (typeof obj[property] === 'object') {
-                    cleanStringChildren(obj[property]);
-                }
-            }
-        }
-    }
-    cleanStringChildren(tree);
-
     engine = d3.layout.tree().setNodeSizes(true);
 
     engine.spacing(function(a, b) {
@@ -88,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //Node icon
         infos_group.append("text")
-            .attr('font-family', 'Ionicons')
+            .attr('font-family', 'FontAwesome')
             .attr("y", 5)
             .attr("x", 0)
             .attr('class', function(d) {
@@ -99,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .attr('font-size', function(d) {
                 return '15px'
             }).text(function(d) {
-                return '\uf183'
+                return '\uf126'
             });
 
         //node infos
@@ -178,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .attr("x", function(d) {
                 return -18;
             })
-            .attr('font-family', 'Ionicons')
+            .attr('font-family', 'FontAwesome')
             .attr('class', function(d) {
                 return "icon";
             })
@@ -187,10 +169,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }).text(function(d) {
                 var _text = '';
                 if (d.loadChildren) {
-                    _text = '\uf4c1';
+                    _text = '\uf017';
                 }
                 if (d.guarded) {
-                    _text = '\uf1b0';
+                    _text = '\uf023';
                 }
                 return _text;
             });
