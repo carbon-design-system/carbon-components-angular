@@ -41,6 +41,29 @@ storiesOf("Dropdown", module)
 			onClose: action("Dropdown closed")
 		}
 	}))
+	.add("Light", () => ({
+		template: `
+		<ibm-dropdown
+			[light]="true"
+			placeholder="Select"
+			[disabled]="disabled"
+			(selected)="selected($event)"
+			(onClose)="onClose($event)">
+			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+		</ibm-dropdown>
+	`,
+		props: {
+			disabled: boolean("disabled", false),
+			items: object("items", [
+				{ content: "one" },
+				{ content: "two" },
+				{ content: "three" },
+				{ content: "four" }
+			]),
+			selected: action("Selected fired for dropdown"),
+			onClose: action("Dropdown closed")
+		}
+	}))
 	.add("Multi-select", withNotes({ text: "Notes on multi select" })(() => ({
 		template: `
 		<ibm-dropdown
