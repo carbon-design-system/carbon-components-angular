@@ -61,7 +61,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @type {string}
 	 * @memberof DialogDirective
 	 */
-	@Input() wrapperClass = "";
+	@Input() wrapperClass: string;
 	/**
 	 * Spacing between the dialog and it's triggering element
 	 * @type {number}
