@@ -26,7 +26,7 @@ import { range } from "../../common/utils";
 				}">
 					<div>
 						<p>
-							{{months[i * 4 + j] | translate}}
+							{{months[i * 4 + j]}}
 						</p>
 					</div>
 				</td>

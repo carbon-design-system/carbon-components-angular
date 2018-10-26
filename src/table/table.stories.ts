@@ -16,8 +16,6 @@ import {
 	number
 } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
-
 import {
 	TableModule,
 	TableModel,
@@ -28,8 +26,6 @@ import {
 } from "../";
 
 import { clone } from "../utils/utils";
-
-const en = require("./../../src/i18n/en.json");
 
 @Component({
 	selector: "app-table",
@@ -110,12 +106,6 @@ class DynamicTableStory implements OnInit {
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
 
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
-
 	ngOnInit() {
 		this.model.data = [
 			[new TableItem({data: "Name 1"}), new TableItem({data: {name: "Lessy", link: "/table"}, template: this.customTableItemTemplate})],
@@ -186,12 +176,6 @@ class ExpansionTableStory implements OnInit {
 	private customHeaderTemplate: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
 	private customTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [
@@ -268,12 +252,6 @@ class OverflowTableStory implements OnInit {
 	@ViewChild("overflowMenuItemTemplate")
 	private overflowMenuItemTemplate: TemplateRef<any>;
 
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
-
 	ngOnInit() {
 		this.model.data = [
 			[new TableItem({data: "Name 1"}), new TableItem({data: {id: "1"}, template: this.overflowMenuItemTemplate})],
@@ -326,12 +304,6 @@ class PaginationTableStory implements OnInit {
 	private filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("paginationTableItemTemplate")
 	private paginationTableItemTemplate: TemplateRef<any>;
-
-	constructor (private translate: TranslateService) {
-		this.translate.setDefaultLang("en");
-		this.translate.use("en");
-		this.translate.setTranslation("en", en);
-	}
 
 	ngOnInit() {
 		this.model.data = [[]];
@@ -450,8 +422,7 @@ storiesOf("Table", module).addDecorator(
 				NFormsModule,
 				TableModule,
 				DialogModule,
-				PaginationModule,
-				TranslateModule.forRoot()
+				PaginationModule
 			],
 			declarations: [
 				TableStory,
