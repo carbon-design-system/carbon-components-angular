@@ -1,4 +1,4 @@
-import { Directive, HostBinding } from "@angular/core";
+import { Directive, HostBinding, Input } from "@angular/core";
 
 /**
  * A directive for applying styling to a textarea element.
@@ -16,4 +16,5 @@ import { Directive, HostBinding } from "@angular/core";
 })
 export class TextArea {
 	@HostBinding("class.bx--text-area") baseClass = true;
+	@HostBinding("class.bx--text-area--light") @Input() light = false;
 }

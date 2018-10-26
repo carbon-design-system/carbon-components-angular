@@ -1,4 +1,4 @@
-import { Directive, HostBinding } from "@angular/core";
+import { Directive, HostBinding, Input } from "@angular/core";
 
 /**
  * A directive for applying styling to an input element.
@@ -16,4 +16,5 @@ import { Directive, HostBinding } from "@angular/core";
 })
 export class TextInput {
 	@HostBinding("class.bx--text-input") inputClass = true;
+	@HostBinding("class.bx--text-input--light") @Input() light = false;
 }
