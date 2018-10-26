@@ -13,6 +13,7 @@ import { I18n } from "./../../i18n/i18n.module";
 	selector: "ibm-overflow-menu-pane",
 	template: `
 		<ul
+			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
 			(focusout)="clickClose($event)"
@@ -50,7 +51,6 @@ export class OverflowMenuPane extends Dialog {
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		this.escapeClose(event);
 		const listItems = this.listItems();
 
 		switch (event.key) {
@@ -86,13 +86,17 @@ export class OverflowMenuPane extends Dialog {
 				listItems[listItems.length - 1].focus();
 				break;
 
-			case "Tab":
+			case "Esc": // IE specific value
+			case "Escape": {
+				event.stopImmediatePropagation();
 				this.doClose();
+				break;
+			}
 		}
 	}
 
 	clickClose(event) {
-		if (event.target === this.dialogConfig.parentRef.nativeElement.firstChild ||
+		if (this.dialogConfig.parentRef.nativeElement.firstChild.contains(event.target) ||
 			this.listItems().some(button => button === (event.relatedTarget)) ||
 			(event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement)) {
 			return;
