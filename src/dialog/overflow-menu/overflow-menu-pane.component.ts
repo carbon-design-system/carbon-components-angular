@@ -1,5 +1,4 @@
-import { OverflowMenuOption } from "./overflow-menu-option.component";
-import { Component, HostListener, ElementRef, QueryList, AfterViewInit } from "@angular/core";
+import { Component, HostListener, ElementRef } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
@@ -25,7 +24,7 @@ import { I18n } from "./../../i18n/i18n.module";
 		</ul>
 	`
 })
-export class OverflowMenuPane extends Dialog implements AfterViewInit {
+export class OverflowMenuPane extends Dialog {
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		super(elementRef);
