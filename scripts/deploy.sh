@@ -17,5 +17,8 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 	mkdir pages
 	cp -R dist/docs/documentation/ pages/documentation
 	cp -R dist/docs/storybook/* pages
+	version=$(node -e 'const package = require("./package.json"); console.log(package.version);')
+	cp -R dist/docs/documentation/ pages/$version/documentation
+	cp -R dist/docs/storybook/* pages/$version
 	echo "angular.carbondesignsystem.com" > pages/CNAME
 fi
