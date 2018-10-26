@@ -22,7 +22,7 @@ import { I18n } from "./../i18n/i18n.module";
 	selector: "ibm-banner",
 	template: `
 	<div
-		#banner
+		 #banner
 		class="bx--inline-notification bx--inline-notification--{{bannerObj.type}}"
 		role="alert">
 		<div class="bx--inline-notification__details">
