@@ -9,7 +9,7 @@ storiesOf("Tooltip", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DialogModule,
+				DialogModule
 			]
 		})
 	)
