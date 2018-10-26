@@ -1,5 +1,5 @@
 import { CheckboxComponent } from "../checkbox/checkbox.component";
-import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from "@angular/core";
+import { ChangeDetectorRef } from "@angular/core";
 /**
  * Defines the set of states for a switch component.
  * @export
@@ -39,10 +39,8 @@ export declare class SwitchChange {
  * @extends {CheckboxComponent}
  * @implements {OnInit}
  */
-export declare class SwitchComponent extends CheckboxComponent implements OnInit {
+export declare class SwitchComponent extends CheckboxComponent {
     protected changeDetectorRef: ChangeDetectorRef;
-    private elementRef;
-    private renderer;
     /**
      * Variable used for creating unique ids for switch components.
      * @type {number}
@@ -66,14 +64,7 @@ export declare class SwitchComponent extends CheckboxComponent implements OnInit
     /**
      * Creates an instance of SwitchComponent.
      * @param {ChangeDetectorRef} changeDetectorRef
-     * @param {ElementRef} elementRef
-     * @param {Renderer2} renderer
      * @memberof SwitchComponent
      */
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, renderer: Renderer2);
-    /**
-     * Builds variant classes and appends them to the switch and label elements.
-     * @memberof SwitchComponent
-     */
-    ngOnInit(): void;
+    constructor(changeDetectorRef: ChangeDetectorRef);
 }
