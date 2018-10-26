@@ -1,18 +1,10 @@
 import { CheckboxComponent } from "../checkbox/checkbox.component";
 import {
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
-	ElementRef,
-	EventEmitter,
-	forwardRef,
-	Input,
-	OnInit,
-	Output,
-	Renderer2,
-	ViewChild
+	Input
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 /**
@@ -61,15 +53,25 @@ export class SwitchChange {
 	template: `
 		<input
 			class="bx--toggle"
+			[ngClass]="{
+				'bx--toggle--small': size === 'sm'
+			}"
 			[id]="id"
 			type="checkbox"
 			(click)="onClick($event)"
 			[disabled]="disabled"
 			[attr.aria-checked]="checked">
-		<label class="bx--toggle__label" [for]="id">
+		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
 			<span class="bx--toggle__text--left">Off</span>
 			<span class="bx--toggle__appearance"></span>
 			<span class="bx--toggle__text--right">On</span>
+		</label>
+		<label *ngIf="size === 'sm'" class="bx--toggle__label" [for]="id">
+			<span class="bx--toggle__appearance">
+				<svg class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
+					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
+				</svg>
+			</span>
 		</label>
 	`,
 	providers: [
@@ -80,7 +82,7 @@ export class SwitchChange {
 		}
 	]
 })
-export class SwitchComponent extends CheckboxComponent implements OnInit {
+export class SwitchComponent extends CheckboxComponent {
 	/**
 	 * Variable used for creating unique ids for switch components.
 	 * @type {number}
@@ -107,32 +109,10 @@ export class SwitchComponent extends CheckboxComponent implements OnInit {
 	/**
 	 * Creates an instance of SwitchComponent.
 	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
 	 * @memberof SwitchComponent
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
-	}
-
-	/**
-	 * Builds variant classes and appends them to the switch and label elements.
-	 * @memberof SwitchComponent
-	 */
-	ngOnInit() {
-		/* TODO: remove and extend in neutrino
-		// Build variant classes
-		const labelClass = `toggle-label${this.size !== "md" ? `--${this.size}` : ""}`;
-		const buttonClass = `toggle${this.size !== "md" ? `--${this.size}` : ""}`;
-
-		// Get elements
-		const labelEl = this.elementRef.nativeElement.querySelector("label");
-		const buttonEl = this.elementRef.nativeElement.querySelector("button");
-
-		// Add classes to elements
-		this.renderer.addClass(labelEl, labelClass);
-		this.renderer.addClass(buttonEl, buttonClass);
-		*/
 	}
 }
