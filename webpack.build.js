@@ -44,15 +44,7 @@ module.exports = [{
 			"@angular/compiler": angularExt("compiler"),
 			"@angular/http": angularExt("http"),
 		},
-		rxjsExternal,
-		{
-			"@ngx-translate/core": {
-				root: "ngx-translate-core",
-				commonjs: "@ngx-translate/core",
-				commonjs2: "@ngx-translate/core",
-				amd: "@ngx-translate/core"
-			}
-		}
+		rxjsExternal
 	],
 	module: {
 		rules: [

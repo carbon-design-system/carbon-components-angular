@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Toast } from "./toast.component";
 import { Banner } from "./banner.component";
 import { BannerService } from "./banner.service";
+import { I18nModule } from "./../i18n/i18n.module";
 
 export { BannerService } from "./banner.service";
 export { Banner } from "./banner.component";
@@ -22,7 +22,7 @@ export { Toast } from "./toast.component";
 		Toast
 	],
 	entryComponents: [Banner, Toast],
-	imports: [CommonModule, TranslateModule, StaticIconModule],
+	imports: [CommonModule, StaticIconModule, I18nModule],
 	providers: [BannerService]
 })
 export class BannerModule {}

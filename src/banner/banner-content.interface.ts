@@ -4,6 +4,7 @@ export interface BannerContent {
 	target?: string;
 	duration?: number;
 	smart?: boolean;
+	closeLabel?: string;
 }
 
 export interface NotificationContent extends BannerContent {

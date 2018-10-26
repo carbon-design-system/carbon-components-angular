@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { TranslateModule } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 
 import { ScrollableList } from "./scrollable-list.directive";
+import { I18nModule } from "./../i18n/i18n.module";
 
 export { Dropdown } from "./dropdown.component";
 export { DropdownList } from "./list/dropdown-list.component";
@@ -30,8 +30,8 @@ export { ListItem } from "./list-item.interface";
 	imports: [
 		CommonModule,
 		FormsModule,
-		TranslateModule.forChild(),
-		StaticIconModule
+		StaticIconModule,
+		I18nModule
 	]
 })
 export class DropdownModule {}

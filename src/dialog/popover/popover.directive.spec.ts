@@ -2,7 +2,6 @@ import { Component, ElementRef, TemplateRef } from "@angular/core";
 import { TestBed, fakeAsync, tick } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { NFormsModule } from "./../../forms/forms.module";
 import { IconModule } from "./../../icon/icon.module";
@@ -31,12 +30,7 @@ xdescribe("Popover directive", () => {
 				FormsModule,
 				NFormsModule,
 				IconModule,
-				StaticIconModule,
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader, useClass: TranslateFakeLoader
-					}
-				})
+				StaticIconModule
 			],
 			providers: [ DialogPlaceholderService ]
 		});
