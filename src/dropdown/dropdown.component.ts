@@ -116,11 +116,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() scrollableContainer: string;
 	/**
-
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */
 	@Input() value: string;
-  /**
+	/**
 	 * Accessible label for the button that opens the dropdown list.
 	 * Defaults to the `DROPDOWN.OPEN` value from the i18n service.
 	 */
