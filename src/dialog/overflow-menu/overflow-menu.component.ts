@@ -21,7 +21,6 @@ import { I18n } from "./../../i18n/i18n.module";
 			[ngClass]="{'bx--overflow-menu--open': open === true}"
 			[attr.aria-label]="buttonLabel"
 			class="bx--overflow-menu"
-			role="button"
 			placement="bottom"
 			style="display: block;"
 			tabindex="0">

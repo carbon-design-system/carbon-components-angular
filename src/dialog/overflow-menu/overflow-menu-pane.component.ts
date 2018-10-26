@@ -1,4 +1,5 @@
-import { Component, ViewChild, HostListener, ElementRef } from "@angular/core";
+import { OverflowMenuOption } from "./overflow-menu-option.component";
+import { Component, HostListener, ElementRef, QueryList, AfterViewInit } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
@@ -13,10 +14,10 @@ import { I18n } from "./../../i18n/i18n.module";
 	selector: "ibm-overflow-menu-pane",
 	template: `
 		<ul
+			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
-			[attr.aria-label]="dialogConfig.menuLabel"
-			#dialog
-			class="bx--overflow-menu-options bx--overflow-menu-options--open">
+			(focusout)="clickClose($event)"
+			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
 				[ngTemplateOutlet]="dialogConfig.content"
 				[ngTemplateOutletContext]="{overflowMenu: this}">
@@ -24,8 +25,7 @@ import { I18n } from "./../../i18n/i18n.module";
 		</ul>
 	`
 })
-export class OverflowMenuPane extends Dialog {
-	@ViewChild("dialog") dialog;
+export class OverflowMenuPane extends Dialog implements AfterViewInit {
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		super(elementRef);
@@ -86,10 +86,22 @@ export class OverflowMenuPane extends Dialog {
 				event.preventDefault();
 				listItems[listItems.length - 1].focus();
 				break;
+
+			case "Tab":
+				this.doClose();
 		}
 	}
 
+	clickClose(event) {
+		if (event.target === this.dialogConfig.parentRef.nativeElement.firstChild ||
+			this.listItems().some(button => button === (event.relatedTarget)) ||
+			(event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement)) {
+			return;
+		}
+		this.doClose();
+	}
+
 	private listItems() {
-		return Array.from<any>(this.dialog.nativeElement.querySelectorAll(".bx--overflow-menu-options__btn:not([disabled])"));
+		return Array.from<any>(this.elementRef.nativeElement.querySelectorAll(".bx--overflow-menu-options__btn:not([disabled])"));
 	}
 }

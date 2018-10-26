@@ -23,8 +23,10 @@ import {
 		<button
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
+			tabindex="-1"
+			(focus)="onFocus()"
+			(blur)="onBlur()"
 			[disabled]="disabled"
-			[tabindex]="(disabled ? -1 : null)"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
 		</button>
@@ -32,7 +34,7 @@ import {
 })
 export class OverflowMenuOption {
 	@HostBinding("class") optionClass = "bx--overflow-menu-options__option";
-	@HostBinding("attr.role") role = "presentation";
+	@HostBinding("attr.role") role = "none";
 
 	@HostBinding("class.bx--overflow-menu-options__option--danger")
 	public get isDanger(): Boolean {
@@ -72,5 +74,13 @@ export class OverflowMenuOption {
 	 */
 	get content(): string {
 		return this.elementRef.nativeElement.querySelector("button").textContent;
+	}
+
+	onFocus() {
+		this.elementRef.nativeElement.querySelector("button").tabIndex = "0";
+	}
+
+	onBlur() {
+		this.elementRef.nativeElement.querySelector("button").tabIndex = "-1";
 	}
 }
