@@ -46,7 +46,7 @@ export class OverflowMenuPane extends Dialog {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
 
-		setTimeout(() =>  {
+		setTimeout(() => {
 			let options = Array.from<any>(this.dialog.nativeElement.querySelectorAll("*"));
 
 			options.forEach(element => {
