@@ -98,7 +98,7 @@ export class OverflowMenuPane extends Dialog {
 	clickClose(event) {
 		if (this.dialogConfig.parentRef.nativeElement.firstChild.contains(event.target) ||
 			this.listItems().some(button => button === event.relatedTarget) ||
-			(event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement)) {
+			event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement) {
 			return;
 		}
 		this.doClose();
