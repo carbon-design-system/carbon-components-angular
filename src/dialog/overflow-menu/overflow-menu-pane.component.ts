@@ -106,8 +106,8 @@ export class OverflowMenuPane extends Dialog {
 	clickClose(event) {
 		// Opens menu when you click on the menu button and stays open when navigating through the options
 		if (this.dialogConfig.parentRef.nativeElement.firstChild.contains(event.target) ||
-			this.listItems().some(button => button === (event.relatedTarget)) ||
-			(event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement)) {
+			this.listItems().some(button => button === event.relatedTarget) ||
+			event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement) {
 			return;
 		}
 		this.doClose();
