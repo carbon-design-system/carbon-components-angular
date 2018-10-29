@@ -5,11 +5,11 @@ import {
 	ViewContainerRef,
 	Injector
 } from "@angular/core";
-import { ModalComponent } from "./modal.component";
+import { Modal } from "./modal.component";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
 import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
-import { AlertModalComponent } from "./alert-modal.component";
+import { AlertModal } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
 
 
@@ -98,7 +98,7 @@ export class ModalService {
 			}
 		}
 		return this.create({
-			component: AlertModalComponent,
+			component: AlertModal,
 			inputs: {
 				modalType: data.type || data.modalType,
 				modalLabel: data.label || data.modalLabel,

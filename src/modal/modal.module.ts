@@ -8,14 +8,14 @@ import { CommonModule } from "@angular/common";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
-import { ModalPlaceholderComponent } from "./modal-placeholder.component";
+import { ModalPlaceholder } from "./modal-placeholder.component";
 import { ModalService } from "./modal.service";
 import { ModalPlaceholderService } from "./modal-placeholder.service";
-import { ModalComponent } from "./modal.component";
-import { ModalFooterComponent } from "./modal-footer.component";
-import { OverlayComponent } from "./overlay.component";
-import { ModalHeaderComponent } from "./modal-header.component";
-import { AlertModalComponent } from "./alert-modal.component";
+import { Modal } from "./modal.component";
+import { ModalFooter } from "./modal-footer.component";
+import { Overlay } from "./overlay.component";
+import { ModalHeader } from "./modal-header.component";
+import { AlertModal } from "./alert-modal.component";
 import { ButtonModule } from "../forms/forms.module";
 import { I18nModule } from "./../i18n/i18n.module";
 
@@ -38,25 +38,25 @@ export const MODAL_PLACEHOLDER_SERVICE_PROVIDER = {
 
 @NgModule({
 	declarations: [
-		AlertModalComponent,
-		ModalPlaceholderComponent,
-		ModalComponent,
-		ModalHeaderComponent,
-		ModalFooterComponent,
-		OverlayComponent
+		AlertModal,
+		ModalPlaceholder,
+		Modal,
+		ModalHeader,
+		ModalFooter,
+		Overlay
 	],
 	exports: [
-		AlertModalComponent,
-		ModalPlaceholderComponent,
-		ModalComponent,
-		ModalHeaderComponent,
-		ModalFooterComponent
+		AlertModal,
+		ModalPlaceholder,
+		Modal,
+		ModalHeader,
+		ModalFooter
 	],
 	entryComponents: [
-		AlertModalComponent,
-		ModalComponent,
-		ModalFooterComponent,
-		ModalHeaderComponent
+		AlertModal,
+		Modal,
+		ModalFooter,
+		ModalHeader
 	],
 	providers: [
 		// a new modal service should be instantiated each time since in (for example) lazy loaded

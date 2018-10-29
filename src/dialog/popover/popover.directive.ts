@@ -23,7 +23,7 @@ import { DialogService } from "./../dialog.service";
  *
  * demo: [https://pages.github.ibm.com/peretz/neutrino/#/popover](https://pages.github.ibm.com/peretz/neutrino/#/popover)
  *
- * class: PopoverDirective (implements OnInit)
+ * class: Popover (implements OnInit)
  *
  * selector: `nPopover`
  *
@@ -57,7 +57,7 @@ import { DialogService } from "./../dialog.service";
  * ```
  *
  * @export
- * @class PopoverDirective
+ * @class Popover
  * @extends {DialogDirective}
  */
 @Directive({
@@ -67,28 +67,28 @@ import { DialogService } from "./../dialog.service";
 		DialogService
 	]
 })
-export class PopoverDirective extends DialogDirective {
+export class Popover extends DialogDirective {
 	static popoverCounter = 0;
 
 	/**
 	 * To contain the footer template for the `Popover`.
 	 * @type {TemplateRef<any>}
-	 * @memberof PopoverDirective
+	 * @memberof Popover
 	 */
 	@Input() footer: TemplateRef<any>;
 	/**
 	 * The content for the `Popover`.
 	 * @type {(string | TemplateRef<any>)}
-	 * @memberof PopoverDirective
+	 * @memberof Popover
 	 */
 	@Input() ibmPopover: string | TemplateRef<any>;
 
 	/**
-	 * Creates an instance of PopoverDirective.
+	 * Creates an instance of Popover.
 	 * @param {ElementRef} elementRef
 	 * @param {ViewContainerRef} viewContainerRef
 	 * @param {DialogService} dialogService
-	 * @memberof PopoverDirective
+	 * @memberof Popover
 	 */
 	constructor(
 		protected elementRef: ElementRef,
@@ -101,11 +101,11 @@ export class PopoverDirective extends DialogDirective {
 
 	/**
 	 * Extends the `Dialog` component's data structure with popover content.
-	 * @memberof PopoverDirective
+	 * @memberof Popover
 	 */
 	onDialogInit() {
-		PopoverDirective.popoverCounter++;
-		this.dialogConfig.compID = "popover-" + PopoverDirective.popoverCounter;
+		Popover.popoverCounter++;
+		this.dialogConfig.compID = "popover-" + Popover.popoverCounter;
 		this.dialogConfig.content = this.ibmPopover;
 		this.dialogConfig.footer = this.footer;
 	}

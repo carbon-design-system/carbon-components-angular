@@ -28,31 +28,31 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
  * ```
  *
  * @export
- * @class ModalPlaceholderComponent
+ * @class ModalPlaceholder
  * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-modal-placeholder",
 	template: `<div #modalplaceholder></div>`
 })
-export class ModalPlaceholderComponent implements OnInit {
+export class ModalPlaceholder implements OnInit {
 	/**
-	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
+	 * Maintains a reference to the view DOM element of the `ModalPlaceholder`.
 	 * @type {ViewContainerRef}
-	 * @memberof ModalPlaceholderComponent
+	 * @memberof ModalPlaceholder
 	 */
 	@ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
-	 * Creates an instance of `ModalPlaceholderComponent`.
+	 * Creates an instance of `ModalPlaceholder`.
 	 * @param {ModalService} modalPlaceholderService
-	 * @memberof ModalPlaceholderComponent
+	 * @memberof ModalPlaceholder
 	 */
 	constructor(public modalPlaceholderService: ModalPlaceholderService) {}
 
 	/**
 	 * Initializes the component using `ModalService`.
-	 * @memberof ModalPlaceholderComponent
+	 * @memberof ModalPlaceholder
 	 */
 	ngOnInit(): void {
 		this.modalPlaceholderService.registerViewContainerRef(this.viewContainerRef);

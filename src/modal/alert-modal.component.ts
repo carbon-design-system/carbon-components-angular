@@ -52,7 +52,7 @@ import Modal from "./modal.decorator";
  * ```
  *
  * @export
- * @class AlertModalComponent
+ * @class AlertModal
  */
 @Modal()
 @Component({
@@ -80,11 +80,11 @@ import Modal from "./modal.decorator";
 		</ibm-modal>
 	`
 })
-export class AlertModalComponent {
+export class AlertModal {
 	/**
-	 * Creates an instance of `AlertModalComponent`.
+	 * Creates an instance of `AlertModal`.
 	 * @param {ModalService} modalService
-	 * @memberof AlertModalComponent
+	 * @memberof AlertModal
 	 */
 	constructor(
 		@Inject("modalType") public modalType = "default",

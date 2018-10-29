@@ -27,31 +27,31 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
  * ```
  *
  * @export
- * @class DialogPlaceholderComponent
+ * @class DialogPlaceholder
  * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-dialog-placeholder",
 	template: `<div #dialogPlaceholder></div>`
 })
-export class DialogPlaceholderComponent implements OnInit {
+export class DialogPlaceholder implements OnInit {
 	/**
-	 * Maintains a reference to the view DOM element of the `DialogPlaceholderComponent`.
+	 * Maintains a reference to the view DOM element of the `DialogPlaceholder`.
 	 * @type {ViewContainerRef}
-	 * @memberof DialogPlaceholderComponent
+	 * @memberof DialogPlaceholder
 	 */
 	@ViewChild("dialogPlaceholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
-	 * Creates an instance of `DialogPlaceholderComponent`.
+	 * Creates an instance of `DialogPlaceholder`.
 	 * @param {DialogPlaceholderService} dialogPlaceholderService
-	 * @memberof DialogPlaceholderComponent
+	 * @memberof DialogPlaceholder
 	 */
 	constructor(public dialogPlaceholderService: DialogPlaceholderService) { }
 
 	/**
 	 * Initializes the component using `ModalService`.
-	 * @memberof DialogPlaceholderComponent
+	 * @memberof DialogPlaceholder
 	 */
 	ngOnInit(): void {
 		this.dialogPlaceholderService.registerViewContainerRef(this.viewContainerRef);

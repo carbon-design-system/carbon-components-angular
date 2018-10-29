@@ -68,7 +68,7 @@ import { DialogService } from "./../dialog.service";
  *
  *
  * @export
- * @class PopoverMenuDirective
+ * @class PopoverMenu
  * @extends {DialogDirective}
  */
 @Directive({
@@ -78,26 +78,26 @@ import { DialogService } from "./../dialog.service";
 		DialogService
 	]
 })
-export class PopoverMenuDirective extends DialogDirective {
+export class PopoverMenu extends DialogDirective {
 	/**
 	 * Footer template for the `PopoverMenu` component.
 	 * @type {TemplateRef<any>}
-	 * @memberof PopoverMenuDirective
+	 * @memberof PopoverMenu
 	 */
 	@Input() footer: TemplateRef<any>;
 	/**
 	 * The content for the body of the `PopoverMenu`.
 	 * @type {(string | TemplateRef<any>)}
-	 * @memberof PopoverMenuDirective
+	 * @memberof PopoverMenu
 	 */
 	@Input() ibmPopoverMenu: string | TemplateRef<any>;
 
 	/**
-	 * Creates an instance of PopoverMenuDirective.
+	 * Creates an instance of PopoverMenu.
 	 * @param {ElementRef} elementRef
 	 * @param {ViewContainerRef} viewContainerRef
 	 * @param {DialogService} dialogService
-	 * @memberof PopoverMenuDirective
+	 * @memberof PopoverMenu
 	 */
 	constructor(
 		protected elementRef: ElementRef,
@@ -110,7 +110,7 @@ export class PopoverMenuDirective extends DialogDirective {
 
 	/**
 	 * Extends the `Dialog` component's data structure to hold `PopoverMenu` content.
-	 * @memberof PopoverMenuDirective
+	 * @memberof PopoverMenu
 	 */
 	onDialogInit() {
 		this.dialogConfig.content = this.ibmPopoverMenu;
