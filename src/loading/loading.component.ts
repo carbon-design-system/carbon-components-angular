@@ -1,4 +1,5 @@
 import { Component, Input, HostBinding } from "@angular/core";
+import { I18n } from "./../i18n/i18n.module";
 
 @Component({
 	selector: "ibm-loading",
@@ -7,13 +8,19 @@ import { Component, Input, HostBinding } from "@angular/core";
 			[ngClass]="{'bx--loading--small': size === 'sm'}"
 			class="bx--loading">
 			<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-				<title>Loading</title>
+				<title>{{title}}</title>
 				<circle cx="0" cy="0" r="37.5" />
 			</svg>
 		</div>
 	`
 })
 export class Loading {
+	/**
+	 * Accessible title for the loading circle.
+	 * Defaults to the `LOADING.TITLE` value from the i18n service.
+	 */
+	@Input() title = this.i18n.get().LOADING.TITLE;
+
 	/**
 	 * Specify the size of the button
 	 * @type {("normal" | "sm")}
@@ -22,9 +29,11 @@ export class Loading {
 	@Input() size: "normal" | "sm" = "normal";
 
 	/**
-	 * Specify whether you want the loader to be applied with an overlay
+	 * Set to `true` to make loader with an overlay.
 	 * @type {boolean}
 	 * @memberof Loading
 	 */
 	@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
+
+	constructor(private i18n: I18n) {}
 }
