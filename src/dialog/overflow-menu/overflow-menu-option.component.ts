@@ -34,7 +34,7 @@ import {
 })
 export class OverflowMenuOption {
 	@HostBinding("class") optionClass = "bx--overflow-menu-options__option";
-	@HostBinding("attr.role") role = "none";
+	@HostBinding("attr.role") role = "presentation";
 
 	@HostBinding("class.bx--overflow-menu-options__option--danger")
 	public get isDanger(): Boolean {

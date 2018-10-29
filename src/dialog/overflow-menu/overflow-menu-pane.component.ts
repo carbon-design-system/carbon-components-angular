@@ -46,7 +46,16 @@ export class OverflowMenuPane extends Dialog {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
 
-		setTimeout(() => this.listItems()[0].focus());
+		setTimeout(() =>  {
+			let options = Array.from<any>(this.dialog.nativeElement.querySelectorAll("*"));
+
+			options.forEach(element => {
+				if (element.tabIndex === 0) {
+					element.tabIndex = -1;
+				}
+			});
+			this.listItems()[0].focus();
+		}, 0);
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -87,15 +96,15 @@ export class OverflowMenuPane extends Dialog {
 				break;
 
 			case "Esc": // IE specific value
-			case "Escape": {
+			case "Escape":
 				event.stopImmediatePropagation();
 				this.doClose();
 				break;
-			}
 		}
 	}
 
 	clickClose(event) {
+		// Opens menu when you click on the menu button and stays open when navigating through the options
 		if (this.dialogConfig.parentRef.nativeElement.firstChild.contains(event.target) ||
 			this.listItems().some(button => button === (event.relatedTarget)) ||
 			(event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement)) {

@@ -18,7 +18,7 @@ storiesOf("Overflow Menu", module)
 				</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
 				<li class="bx--overflow-menu-options__option">
-					<button class="bx--overflow-menu-options__btn" tabindex="-1">A fully custom option</button>
+					<button class="bx--overflow-menu-options__btn">A fully custom option</button>
 				</li>
 				<ibm-overflow-menu-option>Option 4</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
