@@ -44,4 +44,9 @@ export interface ListItem {
 	 * @memberof ListItem
 	 */
 	items?: ListItem[];
+
+	/**
+	 * Allows for any other custom properties to be included in the ListItem
+	 */
+	[x: string]: any;
 }
