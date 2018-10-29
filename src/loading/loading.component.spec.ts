@@ -10,9 +10,7 @@ describe("Loading", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Loading],
-			imports: [
-				I18nModule
-			]
+			imports: [I18nModule]
 		});
 
 		fixture = TestBed.createComponent(Loading);
