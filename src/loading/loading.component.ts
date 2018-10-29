@@ -29,7 +29,7 @@ export class Loading {
 	@Input() size: "normal" | "sm" = "normal";
 
 	/**
-	 * Specify whether you want the loader to be applied with an overlay
+	 * Set to `true` to make loader with an overlay.
 	 * @type {boolean}
 	 * @memberof Loading
 	 */
