@@ -139,6 +139,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
 				event.preventDefault();
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
+			} else {
+				event.preventDefault();
+				this.allTabHeaders[0].focus();
 			}
 		}
 
@@ -146,6 +149,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
 				this.allTabHeaders[this.currentSelectedTab - 1].focus();
+			} else {
+				event.preventDefault();
+				this.allTabHeaders[this.allTabHeaders.length - 1].focus();
 			}
 		}
 	}
