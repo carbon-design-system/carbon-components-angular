@@ -1,7 +1,7 @@
 import { Component, HostListener, ElementRef } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
-import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
+import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 
 /**
@@ -47,13 +47,7 @@ export class OverflowMenuPane extends Dialog {
 		}
 
 		setTimeout(() => {
-			let options = Array.from<any>(this.dialog.nativeElement.querySelectorAll("*"));
-
-			options.forEach(element => {
-				if (element.tabIndex === 0) {
-					element.tabIndex = -1;
-				}
-			});
+			getFocusElementList(this.elementRef.nativeElement).every(button => button.tabIndex = -1);
 			this.listItems()[0].focus();
 		}, 0);
 	}
