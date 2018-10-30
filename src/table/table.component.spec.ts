@@ -14,7 +14,7 @@ import { I18nModule } from "../i18n/i18n.module";
 @Component({
 	template: `<ibm-table [model]="tableModel"></ibm-table>`
 })
-class TableTestComponent implements OnInit {
+class TableTest implements OnInit {
 	tableModel = new TableModel();
 
 	ngOnInit() {
@@ -42,11 +42,11 @@ describe("Table", () => {
 			],
 			declarations: [
 				Table,
-				TableTestComponent
+				TableTest
 			]
 		});
 
-		fixture = TestBed.createComponent(TableTestComponent);
+		fixture = TestBed.createComponent(TableTest);
 		tableInstance = fixture.debugElement.query(By.css("ibm-table"));
 		fixture.detectChanges();
 	});

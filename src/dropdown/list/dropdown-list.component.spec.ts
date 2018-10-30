@@ -10,7 +10,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 @Component({
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
 })
-class DropdownListTestComponent {
+class DropdownListTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -21,7 +21,7 @@ class DropdownListTestComponent {
 @Component({
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></ibm-dropdown-list>`
 })
-class TestMultiComponent {
+class MultiTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem[];
 	onSelect(ev) {
@@ -35,7 +35,7 @@ describe("Dropdown list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownList,
-				DropdownListTestComponent,
+				DropdownListTest,
 				ScrollableList
 			],
 			imports: [
@@ -45,7 +45,7 @@ describe("Dropdown list", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(DropdownListTestComponent);
+		fixture = TestBed.createComponent(DropdownListTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -68,7 +68,7 @@ describe("Dropdown multi list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownList,
-				TestMultiComponent,
+				MultiTest,
 				ScrollableList
 			],
 			imports: [
@@ -78,7 +78,7 @@ describe("Dropdown multi list", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestMultiComponent);
+		fixture = TestBed.createComponent(MultiTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

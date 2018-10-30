@@ -4,24 +4,24 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { SwitchComponent } from "./switch.component";
-import { CheckboxComponent } from "../checkbox/checkbox.module";
+import { Switch } from "./switch.component";
+import { Checkbox } from "../checkbox/checkbox.module";
 
-describe("SwitchComponent", () => {
-	let component: SwitchComponent;
-	let fixture: ComponentFixture<SwitchComponent>;
+describe("Switch", () => {
+	let component: Switch;
+	let fixture: ComponentFixture<Switch>;
 	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
 	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [SwitchComponent],
+			declarations: [Switch],
 			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(SwitchComponent);
+		fixture = TestBed.createComponent(Switch);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
@@ -29,7 +29,7 @@ describe("SwitchComponent", () => {
 	});
 
 	it("should work", () => {
-		expect(component instanceof SwitchComponent).toBe(true);
+		expect(component instanceof Switch).toBe(true);
 	});
 
 	it("should have input with class 'bx--toggle'", () => {

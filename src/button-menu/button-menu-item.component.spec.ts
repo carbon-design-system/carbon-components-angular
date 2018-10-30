@@ -15,29 +15,29 @@ import { ButtonMenu, ButtonMenuItem } from "./button-menu.module";
 	`,
 	entryComponents: [ButtonMenu, ButtonMenuItem]
 })
-class ButtonMenuTestComponent {
+class ButtonMenuTest {
 	doSomething() {
 		alert("EventEmitter works!");
 	}
 }
 
 describe("Button Menu", () => {
-	let fixture: ComponentFixture<ButtonMenuTestComponent>;
-	let component: ButtonMenuTestComponent;
+	let fixture: ComponentFixture<ButtonMenuTest>;
+	let component: ButtonMenuTest;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ButtonMenu, ButtonMenuItem, ButtonMenuTestComponent]
+			declarations: [ButtonMenu, ButtonMenuItem, ButtonMenuTest]
 		});
 	});
 
 	it("should work", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
-		expect(fixture.componentInstance instanceof ButtonMenuTestComponent).toBe(true);
+		fixture = TestBed.createComponent(ButtonMenuTest);
+		expect(fixture.componentInstance instanceof ButtonMenuTest).toBe(true);
 	});
 
 	it("should display user text on the main button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu value='Test'>
@@ -46,13 +46,13 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector(".btn--primary").textContent.trim()).toEqual("Test");
 	});
 
 	it("should create a large button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu size='lg'>
@@ -61,13 +61,13 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group--lg");
 	});
 
 	it("should create a small button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu size='sm'>
@@ -76,13 +76,13 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group--sm");
 	});
 
 	it("should create a medium button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu size='md'>
@@ -91,19 +91,19 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group");
 	});
 
 	it("should create a medium button on deafult", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("ibm-button-menu").className).toEqual("btn-group");
 	});
 
 	it("should create a primary button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu type='primary'>
@@ -112,13 +112,13 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("button").className).toEqual("btn--primary");
 	});
 
 	it("should create a primary addon button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu type='primary'>
@@ -127,27 +127,27 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toEqual("btn--primary-addon");
 	});
 
 	it("should create a primary button by default", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("button").className).toEqual("btn--primary");
 	});
 
 	it("should create a primary addon button by default", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toEqual("btn--primary-addon");
 	});
 
 	it("should create a secondary button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu type='secondary'>
@@ -156,13 +156,13 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		expect(fixture.nativeElement.querySelector("button").className).toEqual("btn--secondary");
 	});
 
 	it("should create a secondary addon button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu type='secondary'>
@@ -171,14 +171,14 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		expect(fixture.debugElement.queryAll(By.css("button"))[1].nativeElement.className).toEqual("btn--secondary-addon");
 	});
 
 	it("should create a disabled button", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu disabled="true">
@@ -187,14 +187,14 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		expect(fixture.nativeElement.querySelector("ibm-button-menu").getAttribute("disabled")).toBeTruthy();
 	});
 
 	it("should open and close the menu on Click", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		rootButton.click();
 		fixture.detectChanges();
@@ -203,7 +203,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should open and close the menu on Enter", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "Enter"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -218,7 +218,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should open and the menu on Space", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: " "});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -228,7 +228,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should open and the menu on Alt+ArrowDown and close on Alt+ArrowUp", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown", altKey: true});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -244,7 +244,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should move focus to the next item in the menu on ArrowDown", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -258,7 +258,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should move focus to the first item when pressing ArrowDown on the last item", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowDown"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -272,7 +272,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should move focus to the previous item in the menu on ArrowUp", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -286,7 +286,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should move focus to the last item when pressing Arrowup on the first item", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "ArrowUp"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -300,7 +300,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should close menu on escape", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "Escape"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -314,7 +314,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should close menu on tab", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "Tab"});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -328,7 +328,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should close menu on shift+tab", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const event = new KeyboardEvent("keydown", {bubbles: true, key: "Tab", shiftKey: true});
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -342,7 +342,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should close menu when clicking outside of the menu", () => {
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		rootButton.click();
 		fixture.detectChanges();
@@ -353,7 +353,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should create the button menu list appended to body", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu appendToBody='true'>
@@ -362,7 +362,7 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -372,7 +372,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should close the menu that is appendToBody when out of view", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<div class="appendToBody"
@@ -387,7 +387,7 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
@@ -399,7 +399,7 @@ describe("Button Menu", () => {
 
 
 	it("should call EventEmitter with an alert when the primary button is clicked", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu (onClick)="doSomething()">
@@ -408,7 +408,7 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 
 		spyOn(window, "alert");
@@ -418,7 +418,7 @@ describe("Button Menu", () => {
 	});
 
 	it("should call EventEmitter with an alert when the menu is closed", () => {
-		TestBed.overrideComponent(ButtonMenuTestComponent, {
+		TestBed.overrideComponent(ButtonMenuTest, {
 			set: {
 				template: `
 				<ibm-button-menu (close)="doSomething()">
@@ -427,7 +427,7 @@ describe("Button Menu", () => {
 				`
 			}
 		});
-		fixture = TestBed.createComponent(ButtonMenuTestComponent);
+		fixture = TestBed.createComponent(ButtonMenuTest);
 		fixture.detectChanges();
 		const rootButton = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 

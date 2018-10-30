@@ -13,7 +13,7 @@ import { IconService } from "./icon.service";
 		<ibm-sprite></ibm-sprite>
 	`
 })
-class IconTestComponent {}
+class IconTest {}
 
 function iconBackendFactory(backend: MockBackend, options: BaseRequestOptions) {
 	backend.connections.subscribe((connection: MockConnection) => {
@@ -32,7 +32,7 @@ describe("Icon", () => {
 			declarations: [
 				Icon,
 				Sprite,
-				IconTestComponent
+				IconTest
 			],
 			providers: [
 				{
@@ -49,7 +49,7 @@ describe("Icon", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(IconTestComponent);
+		fixture = TestBed.createComponent(IconTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

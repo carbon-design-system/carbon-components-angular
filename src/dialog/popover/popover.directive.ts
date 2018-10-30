@@ -67,7 +67,7 @@ import { DialogService } from "./../dialog.service";
 		DialogService
 	]
 })
-export class Popover extends DialogDirective {
+export class PopoverDirective extends DialogDirective {
 	static popoverCounter = 0;
 
 	/**
@@ -104,8 +104,8 @@ export class Popover extends DialogDirective {
 	 * @memberof Popover
 	 */
 	onDialogInit() {
-		Popover.popoverCounter++;
-		this.dialogConfig.compID = "popover-" + Popover.popoverCounter;
+		PopoverDirective.popoverCounter++;
+		this.dialogConfig.compID = "popover-" + PopoverDirective.popoverCounter;
 		this.dialogConfig.content = this.ibmPopover;
 		this.dialogConfig.footer = this.footer;
 	}
