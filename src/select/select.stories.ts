@@ -28,7 +28,7 @@ storiesOf("Select", module).addDecorator(
 	}))
 	.add("Inline", () => ({
 		template: `
-		<ibm-select [inline]="true">
+		<ibm-select display="inline">
 			<option value="" disabled selected hidden>Choose an option</option>
           <option value="solong">A much longer option that is worth having around to check how text flows</option>
           <optgroup label="Category 1">

@@ -5,7 +5,7 @@ import { Component, Input } from "@angular/core";
 	template: `
 		<div class="bx--form-item">
 			<div
-				[ngClass]="{ 'bx--select--inline': inline }"
+				[ngClass]="{ 'bx--select--inline': display === 'inline' }"
 				class="bx--select">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select [attr.id]="id" class="bx--select-input">
@@ -20,7 +20,7 @@ import { Component, Input } from "@angular/core";
 })
 export class Select {
 	static selectCount = 0;
-	@Input() inline = false;
+	@Input() display: "inline" | "default" = "default";
 	@Input() label = "Select label";
 	@Input() id = `select-${Select.selectCount++}`;
 }
