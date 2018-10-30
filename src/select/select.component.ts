@@ -59,10 +59,10 @@ export class Select implements ControlValueAccessor {
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
 	static selectCount = 0;
-  
-  /**
-   * toggles between `inline` and `default` states.
-   */
+
+	/**
+	 * `inline` or `default` select displays
+	 */
 	@Input() display: "inline" | "default" = "default";
 	/**
 	 * Label for the select. Appears above the input.

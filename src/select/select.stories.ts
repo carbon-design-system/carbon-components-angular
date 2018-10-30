@@ -41,6 +41,7 @@ storiesOf("Select", module).addDecorator(
           </optgroup>
 		</ibm-select>
 	`
+	}))
 	.add("With ngModel", () => ({
 		template: `
 			<ibm-select [(ngModel)]="model">
