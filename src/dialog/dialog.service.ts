@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
-import { PlaceholderRef } from "./../placeholder/placeholder.module";
+import { PlaceholderService } from "./../placeholder/placeholder.module";
 
 /**
  * `Dialog` object to be injected into other components.
@@ -67,7 +67,7 @@ export class DialogService {
 	constructor(
 		protected componentFactoryResolver: ComponentFactoryResolver,
 		protected injector: Injector,
-		protected placeholderRef: PlaceholderRef
+		protected placeholderService: PlaceholderService
 	) {}
 
 	/**
@@ -106,7 +106,7 @@ export class DialogService {
 			// holder for either the provided view, or the view from Placeholder
 			if (dialogConfig.appendToBody) {
 				// add our component to the placeholder
-				this.dialogRef = this.placeholderRef.createComponent(this.componentFactory, this.injector);
+				this.dialogRef = this.placeholderService.createComponent(this.componentFactory, this.injector);
 			} else {
 				// add our component to the view
 				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
@@ -141,7 +141,7 @@ export class DialogService {
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
 			if (this.dialogRef.instance.dialogConfig.appendToBody) {
-				this.placeholderRef.destroyComponent(this.dialogRef);
+				this.placeholderService.destroyComponent(this.dialogRef);
 			} else {
 				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
 			}
