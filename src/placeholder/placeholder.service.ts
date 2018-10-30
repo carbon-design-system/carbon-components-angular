@@ -11,7 +11,7 @@ import { Injectable } from "@angular/core";
  * Also used to insert/remove components from that view.
  */
 @Injectable()
-export class Placeholder {
+export class PlaceholderRef {
 	/**
 	 * Maintain a `ViewContainerRef` to an instance of the component.
 	 */

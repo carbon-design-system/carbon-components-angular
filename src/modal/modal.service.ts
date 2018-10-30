@@ -8,7 +8,7 @@ import { ReplaySubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AlertModalComponent } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
-import { Placeholder } from "./../placeholder/placeholder.module";
+import { PlaceholderRef } from "./../placeholder/placeholder.module";
 
 
 /**
@@ -35,7 +35,7 @@ export class ModalService {
 	 * @param {ComponentFactoryResolver} resolver
 	 * @memberof ModalService
 	 */
-	constructor(public resolver: ComponentFactoryResolver, public placeholder: Placeholder) {}
+	constructor(public resolver: ComponentFactoryResolver, public placeholderRef: PlaceholderRef) {}
 
 	/**
 	 * Creates and renders the modal component that is passed in.
@@ -54,12 +54,12 @@ export class ModalService {
 		const factory = this.resolver.resolveComponentFactory(data.component);
 		let focusedElement = document.activeElement as HTMLElement;
 
-		let component = this.placeholder.createComponent(factory, injector);
+		let component = this.placeholderRef.createComponent(factory, injector);
 
 		component["previouslyFocusedElement"] = focusedElement;  // used to return focus to previously focused element
 
 		component.instance.close.subscribe(_ => {
-			this.placeholder.destroyComponent(component);
+			this.placeholderRef.destroyComponent(component);
 			// filter out our component
 			ModalService.modalList = ModalService.modalList.filter(c => c === component);
 		});
@@ -131,7 +131,7 @@ export class ModalService {
 			index = ModalService.modalList.length - 1;
 		}
 
-		this.placeholder.destroyComponent(ModalService.modalList[index]);
+		this.placeholderRef.destroyComponent(ModalService.modalList[index]);
 		ModalService.modalList.splice(index, 1);
 	}
 }

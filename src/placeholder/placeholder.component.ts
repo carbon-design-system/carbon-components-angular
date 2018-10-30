@@ -4,7 +4,7 @@ import {
 	ViewContainerRef,
 	ViewChild
 } from "@angular/core";
-import { Placeholder } from "./placeholder.service";
+import { PlaceholderRef } from "./placeholder.service";
 
 /**
  * Using a modal, dialog (Tooltip, OverflowMenu), or any other component that draws out of the normal page flow
@@ -25,7 +25,7 @@ import { Placeholder } from "./placeholder.service";
 	selector: "ibm-placeholder",
 	template: `<div #placeholder></div>`
 })
-export class PlaceholderComponent implements OnInit {
+export class Placeholder implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
 	 * @type {ViewContainerRef}
@@ -36,12 +36,12 @@ export class PlaceholderComponent implements OnInit {
 	/**
 	 * Creates an instance of `ModalPlaceholderComponent`.
 	 */
-	constructor(public placeholder: Placeholder) { }
+	constructor(public placeholderRef: PlaceholderRef) { }
 
 	/**
 	 * Initializes the component using `ModalService`.
 	 */
 	ngOnInit(): void {
-		this.placeholder.registerViewContainerRef(this.viewContainerRef);
+		this.placeholderRef.registerViewContainerRef(this.viewContainerRef);
 	}
 }

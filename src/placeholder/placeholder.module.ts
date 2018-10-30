@@ -1,35 +1,34 @@
 // modules
 import {
 	NgModule,
-	ComponentFactoryResolver,
 	Optional,
 	SkipSelf
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { PlaceholderComponent } from "./placeholder.component";
-import { Placeholder } from "./placeholder.service";
+import { Placeholder } from "./placeholder.component";
+import { PlaceholderRef } from "./placeholder.service";
 
 // exports
-export { PlaceholderComponent } from "./placeholder.component";
-export { Placeholder } from "./placeholder.service";
+export { Placeholder } from "./placeholder.component";
+export { PlaceholderRef } from "./placeholder.service";
 
 // either provides a new instance of ModalPlaceholderService, or returns the parent
-export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: Placeholder) {
-	return parentService || new Placeholder();
+export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: PlaceholderRef) {
+	return parentService || new PlaceholderRef();
 }
 
 // placholder service *must* be a singleton to ensure the placeholder viewref is accessible globally
 export const PLACEHOLDER_SERVICE_PROVIDER = {
-	provide: Placeholder,
-	deps: [[new Optional(), new SkipSelf(), Placeholder]],
+	provide: PlaceholderRef,
+	deps: [[new Optional(), new SkipSelf(), PlaceholderRef]],
 	useFactory: PLACEHOLDER_SERVICE_PROVIDER_FACTORY
 };
 
 @NgModule({
-	declarations: [ PlaceholderComponent ],
-	exports: [ PlaceholderComponent ],
+	declarations: [ Placeholder ],
+	exports: [ Placeholder ],
 	providers: [ PLACEHOLDER_SERVICE_PROVIDER ],
 	imports: [ CommonModule ]
 })
