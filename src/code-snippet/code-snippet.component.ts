@@ -51,7 +51,7 @@ export enum SnippetType {
 				class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
 				(click)="toggleSnippetExpansion()"
 				type="button">
-				<span class="bx--snippet-btn--text">{{snippetExpanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
+				<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>
 				<svg
 					class="bx--icon-chevron--down"
 					width="12" height="7"
@@ -110,7 +110,7 @@ export class CodeSnippet {
 	 */
 	@Input() feedbackTimeout = 2000;
 
-	@HostBinding("class.bx--snippet--expand") @Input() snippetExpanded = false;
+	@HostBinding("class.bx--snippet--expand") @Input() expanded = false;
 
 	@HostBinding("class.bx--snippet") snippetClass = true;
 	@HostBinding("class.bx--snippet--single") get snippetSingleClass() {
@@ -153,7 +153,7 @@ export class CodeSnippet {
 	}
 
 	toggleSnippetExpansion() {
-		this.snippetExpanded = !this.snippetExpanded;
+		this.expanded = !this.expanded;
 	}
 
 	/**
