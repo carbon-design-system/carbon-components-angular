@@ -7,6 +7,11 @@ import { Component } from "@angular/core";
 
 import { BannerModule, BannerService } from "./banner.module";
 
+/**
+ * Deprecated in favour of `InlineNotificationStory` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 @Component({
 	selector: "app-banner-story",
 	template: `
@@ -28,6 +33,11 @@ class BannnerStory {
 	}
 }
 
+/**
+ * Deprecated in favour of `ToastNotificationStory` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 @Component({
 	selector: "app-toast-story",
 	template: `

@@ -13,12 +13,14 @@ import { BannerContent, NotificationContent, ToastContent } from "./banner-conte
 import { Banner, Toast } from "./banner.module";
 
 /**
+ * Deprecated in favour of `NotificationService` (to be removed in v3.0).
  * Provides a way to use the banner component.
  *
  * Banners are displayed toward the top of the UI and do not interrupt the user’s work.
  *
  * @export
  * @class BannerService
+ * @deprecated
  */
 @Injectable()
 export class BannerService implements OnDestroy {

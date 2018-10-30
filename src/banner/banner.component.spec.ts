@@ -5,6 +5,11 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { Banner, BannerService } from "./banner.module";
 import { I18nModule } from "../i18n/i18n.module";
 
+/**
+ * Deprecated in favour of `Notification` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 
 describe("Banner", () => {
 	beforeEach(() => {
