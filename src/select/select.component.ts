@@ -29,7 +29,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	template: `
 		<div class="bx--form-item">
 			<div
-				[ngClass]="{ 'bx--select--inline': display === 'inline' }"
+				[ngClass]="{'bx--select--inline': display === 'inline'}"
 				class="bx--select">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select
