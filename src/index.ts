@@ -14,6 +14,7 @@ export * from "./i18n/i18n.module";
 export * from "./icon/icon.module";
 export * from "./input/input.module";
 export * from "./list-group/list-group.module";
+export * from "./loading/loading.module";
 export * from "./modal/modal.module";
 export * from "./pagination/pagination.module";
 export * from "./pill-input/pill-input.module";
