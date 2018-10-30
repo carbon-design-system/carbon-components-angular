@@ -3,6 +3,11 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { SwitchModule } from "../";
 
+/**
+ * Deprecated in favour of `Toggle` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 storiesOf("Switch", module).addDecorator(
 	moduleMetadata({
 		imports: [SwitchModule]

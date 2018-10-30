@@ -7,6 +7,11 @@ import { StaticIconModule } from "../icon/static-icon.module";
 import { SwitchComponent } from "./switch.component";
 import { CheckboxComponent } from "../checkbox/checkbox.module";
 
+/**
+ * Deprecated in favour of `Toggle` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 describe("SwitchComponent", () => {
 	let component: SwitchComponent;
 	let fixture: ComponentFixture<SwitchComponent>;
