@@ -28,10 +28,7 @@ export const PLACEHOLDER_SERVICE_PROVIDER = {
 
 @NgModule({
 	declarations: [ Placeholder ],
-	exports: [
-		Placeholder,
-		PlaceholderService
-	],
+	exports: [ Placeholder ],
 	providers: [ PLACEHOLDER_SERVICE_PROVIDER ],
 	imports: [ CommonModule ]
 })
