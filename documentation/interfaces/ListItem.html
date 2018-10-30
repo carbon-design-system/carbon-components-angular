@@ -119,6 +119,9 @@
                                     <a href="../modules/ListGroupModule.html" >ListGroupModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/LoadingModule.html" >LoadingModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/ModalModule.html" >ModalModule</a>
                                 </li>
                                 <li class="link">
@@ -251,6 +254,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/ListGroup.html" >ListGroup</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/Loading.html" >Loading</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ModalComponent.html" >ModalComponent</a>
@@ -694,6 +700,9 @@
                                            <a href="../modules/ListGroupModule.html" >ListGroupModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/LoadingModule.html" >LoadingModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/ModalModule.html" >ModalModule</a>
                                        </li>
                                        <li class="link">
@@ -826,6 +835,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/ListGroup.html" >ListGroup</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/Loading.html" >Loading</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ModalComponent.html" >ModalComponent</a>
@@ -1251,6 +1263,30 @@ the entire ListItem will be passed to the template as <code>item</code>.</p>
         </section>
 
 
+            <section>
+                <h3 id="inputs">Indexable</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <code>[x: string]:    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            </code>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/dropdown/list-item.interface.ts:46</a></div>
+                                        </td>
+                                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Allows for any other custom properties to be included in the ListItem</p>
+            </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
 
             <section>
                 <h3 id="inputs">Properties</h3>
@@ -1442,6 +1478,11 @@ the entire ListItem will be passed to the template as <code>item</code>.</p>
 	 * @memberof ListItem
 	 */
 	items?: ListItem[];
+
+	/**
+	 * Allows for any other custom properties to be included in the ListItem
+	 */
+	[x: string]: any;
 }
 </code></pre>
     </div>
