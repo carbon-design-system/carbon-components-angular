@@ -63,6 +63,9 @@
 			"RESET_SEARCH": "Reset search"
 		}
 	},
+	"LOADING": {
+		"TITLE": "Loading"
+	},
 	"MODAL": {
 		"CLOSE": "Close modal"
 	},
