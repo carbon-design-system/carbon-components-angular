@@ -1,11 +1,10 @@
 // modules
-import { NgModule, Optional, SkipSelf } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
 import { DialogService } from "./dialog.service";
-import { DialogPlaceholderService } from "./dialog-placeholder.service";
 import { Dialog } from "./dialog.component";
 import { DialogDirective } from "./dialog.directive";
 import { DialogPlaceholder } from "./dialog-placeholder.component";
@@ -19,10 +18,10 @@ import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 import { I18nModule } from "./../i18n/i18n.module";
+import { PlaceholderModule } from "./../placeholder/placeholder.module";
 
 // exports
 export { DialogService } from "./dialog.service";
-export { DialogPlaceholderService } from "./dialog-placeholder.service";
 export { Dialog } from "./dialog.component";
 export { DialogDirective } from "./dialog.directive";
 export { DialogPlaceholder } from "./dialog-placeholder.component";
@@ -35,18 +34,6 @@ export { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 export { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
 export { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
-
-// either provides a new instance of DialogPlaceholderService, or returns the parent
-export function DIALOG_PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: DialogPlaceholderService) {
-	return parentService || new DialogPlaceholderService();
-}
-
-// placholder service *must* be a singleton to ensure the placeholder viewref is accessible globally
-export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
-	provide: DialogPlaceholderService,
-	deps: [[new Optional(), new SkipSelf(), DialogPlaceholderService]],
-	useFactory: DIALOG_PLACEHOLDER_SERVICE_PROVIDER_FACTORY
-};
 
 @NgModule({
 	declarations: [
@@ -73,15 +60,17 @@ export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
 		OverflowMenuOption,
 		DialogPlaceholder
 	],
-	providers: [
-		DialogService,
-		DIALOG_PLACEHOLDER_SERVICE_PROVIDER
-	],
+	providers: [ DialogService ],
 	entryComponents: [
 		Dialog,
 		Tooltip,
 		OverflowMenuPane
 	],
-	imports: [CommonModule, StaticIconModule, I18nModule]
+	imports: [
+		CommonModule,
+		StaticIconModule,
+		I18nModule,
+		PlaceholderModule
+	]
 })
 export class DialogModule {}

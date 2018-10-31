@@ -6,8 +6,8 @@ import { DebugElement } from "@angular/core";
 import { Modal } from "./modal.component";
 import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
-import { ModalPlaceholderService } from "./modal-placeholder.service";
 import { I18nModule } from "../i18n/i18n.module";
+import { PlaceholderModule } from "./../placeholder/placeholder.module";
 
 // snippet to add transform to style so karma doesn't die with
 // 'The provided animation property "transform" is not a supported CSS property for animations in karma-test-shim.js'
@@ -31,9 +31,10 @@ describe("Modal", () => {
 			declarations: [Modal, Overlay],
 			imports: [
 				BrowserAnimationsModule,
-				I18nModule
+				I18nModule,
+				PlaceholderModule
 			],
-			providers: [ModalService, ModalPlaceholderService]
+			providers: [ModalService]
 		});
 
 		fixture = TestBed.createComponent(Modal);
