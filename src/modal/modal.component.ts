@@ -44,7 +44,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 			<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * 			<section class="modal-body">
  * 			<h1>Sample modal works.</h1>
- * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="false">
+ * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right">
  * 				<ibm-icon icon="info" size="sm"></ibm-icon>
  * 			</button>
  * 			{{modalText}}

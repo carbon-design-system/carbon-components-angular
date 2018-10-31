@@ -36,61 +36,55 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Title for the dialog
 	 * @type {string}
-	 * @memberof DialogDirective
 	 */
 	@Input() title = "";
 	/**
 	 * Dialog body content.
 	 * @type {(string | TemplateRef<any>)}
-	 * @memberof DialogDirective
 	 */
 	@Input() ibmDialog: string | TemplateRef<any>;
 	/**
 	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap)
 	 * @type {("click" | "hover" | "mouseenter")}
-	 * @memberof DialogDirective
 	 */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
 	 * Placement of the dialog, usually relative to the element the directive is on.
-	 * @memberof DialogDirective
 	 */
 	@Input() placement = "left";
 	/**
 	 * Class to add to the dialog container
 	 * @type {string}
-	 * @memberof DialogDirective
 	 */
 	@Input() wrapperClass: string;
 	/**
 	 * Spacing between the dialog and it's triggering element
 	 * @type {number}
-	 * @memberof DialogDirective
 	 */
 	@Input() gap = 0;
 	/**
+	 * Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
 	 * Value `true` sets Dialog be appened to the body (to break out of containers)
-	 * @type {boolean}
-	 * @memberof DialogDirective
 	 */
-	@Input() appendToBody = false;
+	@Input() set appendToBody(v: boolean) {
+		console.log("appendToBody has been deprecated. dialogs now append to the body by default.");
+		console.log("ensure you have an ibm-placeholder in your app.");
+		console.log("use appendInline if you need to position your dialogs within the normal page flow");
+		this.appendInline = !v;
+	}
+	get appendToBody() {
+		return !this.appendInline;
+	}
 	/**
-	 * Determines if the Dialog will attempt to place itself for maximum visibility.
-	 * TODO: remove - this doesn't actually do anything
-	 * @type {boolean}
-	 * @memberof DialogDirective
-	 * @deprecated
+	 * Set to `true` to open the dialog next to the triggering component
 	 */
-	@Input() autoPosition: boolean;
+	@Input() appendInline = false;
 	/**
 	 * Optional data for templates
-	 * @memberof DialogDirective
 	 */
 	@Input() data = {};
 	/**
 	 * Config object passed to the rendered component
-	 * @type {DialogConfig}
-	 * @memberof DialogDirective
 	 */
 	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	dialogConfig: DialogConfig;
@@ -103,7 +97,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @param {ElementRef} elementRef
 	 * @param {ViewContainerRef} viewContainerRef
 	 * @param {DialogService} dialogService
-	 * @memberof DialogDirective
 	 */
 	constructor(
 		protected elementRef: ElementRef,
@@ -113,7 +106,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
 	 * @param {any} evt
-	 * @memberof DialogDirective
 	 */
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
@@ -131,8 +123,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			parentRef: this.elementRef,
 			gap: this.gap,
 			trigger: this.trigger,
-			appendToBody: this.appendToBody,
-			autoPosition: this.autoPosition,
+			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
 			data: this.data
 		};
@@ -141,7 +132,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Sets the config object and binds events for hovering or clicking before
 	 * running code from child class.
-	 * @memberof DialogDirective
 	 */
 	ngOnInit() {
 		// fix for safari hijacking clicks
@@ -173,7 +163,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * When the host dies, kill the popover.
 	 * - Useful for use in a modal or similar.
-	 * @memberof DialogDirective
 	 */
 	ngOnDestroy() {
 		this.close();
@@ -182,7 +171,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Helper method to call dialogService 'open'.
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
-	 * @memberof DialogDirective
 	 */
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
@@ -192,7 +180,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Helper method to call dialogService 'toggle'.
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
-	 * @memberof DialogDirective
 	 */
 	toggle() {
 		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
@@ -202,7 +189,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Helper method to call dialogService 'close'.
 	 * - Enforce accessibility by updating an aria attr for nativeElement.
-	 * @memberof DialogDirective
 	 */
 	close() {
 		this.dialogService.close(this.viewContainerRef);
@@ -213,7 +199,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Empty method for child classes to override and specify additional init steps.
 	 * Run after DialogDirective completes it's ngOnInit.
 	 * @protected
-	 * @memberof DialogDirective
 	 */
 	protected onDialogInit() {}
 }
