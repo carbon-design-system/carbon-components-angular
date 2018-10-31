@@ -1,8 +1,14 @@
-import { Component, OnInit, Injector, ViewContainerRef, ViewChild } from "@angular/core";
-import { ModalPlaceholderService } from "./modal-placeholder.service";
+import {
+	Component,
+	OnInit,
+	ViewContainerRef,
+	ViewChild
+} from "@angular/core";
+import { PlaceholderService } from "./../placeholder/placeholder.service";
 
 
 /**
+ * Deprecated with v2.0, will be removed in v3.0
  * Using a modal in your application requires *this* component (`n-modal-placeholder`).
  * It would generally be placed near the end of your app component template
  * (app.component.ts or app.component.html) as:
@@ -27,34 +33,28 @@ import { ModalPlaceholderService } from "./modal-placeholder.service";
  * <ibm-modal-placeholder></ibm-modal-placeholder>
  * ```
  *
- * @export
- * @class ModalPlaceholderComponent
- * @implements {OnInit}
+ * @deprecated
  */
 @Component({
 	selector: "ibm-modal-placeholder",
 	template: `<div #modalplaceholder></div>`
 })
-export class ModalPlaceholderComponent implements OnInit {
+export class ModalPlaceholder implements OnInit {
 	/**
-	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
-	 * @type {ViewContainerRef}
-	 * @memberof ModalPlaceholderComponent
+	 * Maintains a reference to the view DOM element of the `ModalPlaceholder`.
 	 */
 	@ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
-	 * Creates an instance of `ModalPlaceholderComponent`.
-	 * @param {ModalService} modalPlaceholderService
-	 * @memberof ModalPlaceholderComponent
+	 * Creates an instance of `ModalPlaceholder`.
 	 */
-	constructor(public modalPlaceholderService: ModalPlaceholderService) {}
+	constructor(public placeholderService: PlaceholderService) {}
 
 	/**
 	 * Initializes the component using `ModalService`.
-	 * @memberof ModalPlaceholderComponent
 	 */
-	ngOnInit(): void {
-		this.modalPlaceholderService.registerViewContainerRef(this.viewContainerRef);
+	ngOnInit() {
+		console.warn("`ibm-dialog-placeholder` has been deprecated in favour of `ibm-placeholder`");
+		this.placeholderService.registerViewContainerRef(this.viewContainerRef);
 	}
 }

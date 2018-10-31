@@ -8,7 +8,7 @@ import { SampleInterface } from "./../sample.interface";
 @Component({
 	template: `<ibm-sample-sub></ibm-sample-sub>`
 })
-class SampleSubTestComponent {}
+class SampleSubTest {}
 
 describe("Sample Subcomponent", () => {
 	let fixture, wrapper;
@@ -16,13 +16,13 @@ describe("Sample Subcomponent", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				SampleSub,
-				SampleSubTestComponent
+				SampleSubTest
 			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(SampleSubTestComponent);
+		fixture = TestBed.createComponent(SampleSubTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

@@ -77,6 +77,9 @@
 	"MODAL": {
 		"CLOSE": "Close modal"
 	},
+	"NOTIFICATION": {
+		"CLOSE_BUTTON": "Close alert notification"
+	},
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},

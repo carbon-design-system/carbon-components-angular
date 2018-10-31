@@ -18,7 +18,7 @@ import { I18nModule } from "../i18n/i18n.module";
 		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 	</ibm-dropdown>`
 })
-class DropdownTestComponent {
+class DropdownTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -33,7 +33,7 @@ describe("Dropdown", () => {
 			declarations: [
 				Dropdown,
 				DropdownList,
-				DropdownTestComponent,
+				DropdownTest,
 				ScrollableList
 			],
 			imports: [
@@ -44,7 +44,7 @@ describe("Dropdown", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(DropdownTestComponent);
+		fixture = TestBed.createComponent(DropdownTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -74,6 +74,5 @@ describe("Dropdown", () => {
 	it("should keep custom classes on the host el", () => {
 		const el = fixture.debugElement.query(By.css("ibm-dropdown"));
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
-		expect(el.nativeElement.classList.contains("dropdown")).toBe(true);
 	});
 });

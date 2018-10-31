@@ -43,24 +43,10 @@ export class TooltipDirective extends DialogDirective {
 
 	/**
 	 * The string or template content to be exposed by the tooltip.
-	 * @type {(string | TemplateRef<any>)}
-	 * @memberof TooltipDirective
 	 */
 	@Input() ibmTooltip: string | TemplateRef<any>;
 	/**
 	 * Set tooltip type to reflect 'warning' or 'error' styles.
-	 *
-	 * @deprecated from the next major neutrino version in favor of
-	 * `tooltip-type` because of name collision with HTML. Please use
-	 * `tooltip-type` instead.
-	 * @type {("warning" | "error" | "")}
-	 * @memberof TooltipDirective
-	 */
-	@Input() type: "warning" | "error" | "" = "";
-	/**
-	 * Set tooltip type to reflect 'warning' or 'error' styles.
-	 * @type {("warning" | "error" | "")}
-	 * @memberof TooltipDirective
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
@@ -69,10 +55,6 @@ export class TooltipDirective extends DialogDirective {
 
 	/**
 	 * Creates an instance of `TooltipDirective`.
-	 * @param {ElementRef} elementRef
-	 * @param {ViewContainerRef} viewContainerRef
-	 * @param {DialogService} dialogService
-	 * @memberof TooltipDirective
 	 */
 	constructor(
 		protected elementRef: ElementRef,
@@ -85,13 +67,12 @@ export class TooltipDirective extends DialogDirective {
 
 	/**
 	 * Extends the `Dialog` component's data structure with tooltip properties.
-	 * @memberof TooltipDirective
 	 */
 	onDialogInit() {
 		TooltipDirective.tooltipCounter++;
 		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.ibmTooltip;
-		this.dialogConfig.type = this.tooltipType !== undefined ? this.tooltipType : this.type;
+		this.dialogConfig.type = this.tooltipType;
 		this.descriptorId = this.dialogConfig.compID;
 	}
 }

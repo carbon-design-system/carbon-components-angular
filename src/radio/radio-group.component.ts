@@ -14,22 +14,22 @@ import {
 	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { RadioComponent } from "./radio.component";
+import { Radio } from "./radio.component";
 
 /**
- * Used to emit changes performed on a `RadioComponent`.
+ * Used to emit changes performed on a `Radio`.
  * @export
  * @class RadioChange
  */
 export class RadioChange {
 	/**
-	 * Contains the `RadioComponent` that has been changed.
-	 * @type {(RadioComponent | null)}
+	 * Contains the `Radio` that has been changed.
+	 * @type {(Radio | null)}
 	 * @memberof RadioChange
 	 */
-	source: RadioComponent | null;
+	source: Radio | null;
 	/**
-	 * The value of the `RadioComponent` encompassed in the `RadioChange` class.
+	 * The value of the `Radio` encompassed in the `RadioChange` class.
 	 * @type {any}
 	 * @memberof RadioChange
 	 */
@@ -59,14 +59,8 @@ export class RadioChange {
  * manyRadios = ["one", "two", "three", "four", "five", "six"];
  * ```
  *
- * Also see: [`RadioComponent`](#ibm-radio)
+ * Also see: [`Radio`](#ibm-radio)
  *
- *
- * @export
- * @class RadioGroup
- * @implements {OnInit}
- * @implements {AfterContentInit}
- * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-radio-group",
@@ -82,68 +76,52 @@ export class RadioChange {
 export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
 	/**
 	 * Used for creating the `RadioGroup` 'name' property dynamically.
-	 * @type {number}
-	 * @static
-	 * @memberof RadioGroup
 	 */
 	static radioGroupCount = 0;
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
 	 * @type {EventEmitter<RadioChange>}
-	 * @memberof RadioGroup
 	 */
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
 	/**
-	 * The `RadioComponent` input items in the `RadioGroup`.
-	 * @type {QueryList<RadioComponent>}
-	 * @memberof RadioGroup
+	 * The `Radio` input items in the `RadioGroup`.
 	 */
 	// tslint:disable-next-line:no-forward-ref
-	@ContentChildren(forwardRef(() => RadioComponent)) radios: QueryList<RadioComponent>;
+	@ContentChildren(forwardRef(() => Radio)) radios: QueryList<Radio>;
 
 	/**
-	 * Determines the render size of the `RadioComponent` inputs within the group.
-	 * (size `"default"` is being deprecated as of next major release, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default")}
-	 * @memberof RadioGroup
+	 * Determines the render size of the `Radio` inputs within the group.
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 
 	/**
-	 * Returns the `RadioComponent` that is selected within the `RadioGroup`.
+	 * Returns the `Radio` that is selected within the `RadioGroup`.
 	 * @readonly
-	 * @memberof RadioGroup
 	 */
 	@Input()
 	get selected() {
 		return this._selected;
 	}
 	/**
-	 * Sets the passed in `RadioComponent` item as the selected input within the `RadioGroup`.
-	 * @param selected
-	 * @memberof RadioGroup
+	 * Sets the passed in `Radio` item as the selected input within the `RadioGroup`.
 	 */
-	set selected(selected: RadioComponent | null) {
+	set selected(selected: Radio | null) {
 		this._selected = selected;
 		this.value = selected ? selected.value : null;
 		this.checkSelectedRadio();
 	}
 
 	/**
-	 * Returns the value/state of the selected `RadioComponent` within the `RadioGroup`.
-	 * @readonly
-	 * @memberof RadioGroup
+	 * Returns the value/state of the selected `Radio` within the `RadioGroup`.
 	 */
 	@Input()
 	get value() {
 		return this._value;
 	}
 	/**
-	 * Sets the value/state of the selected `RadioComponent` within the `RadioGroup` to the passed in value.
-	 * @param {newValue}
-	 * @memberof RadioGroup
+	 * Sets the value/state of the selected `Radio` within the `RadioGroup` to the passed in value.
 	 */
 	set value(newValue: any) {
 		if (this._value !== newValue) {
@@ -156,8 +134,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Returns the associated name of the `RadioGroup`.
-	 * @readonly
-	 * @memberof RadioGroup
 	 */
 	@Input()
 	get name() {
@@ -165,8 +141,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 	/**
 	 * Replaces the name associated with the `RadioGroup` with the provided parameter.
-	 * @param name
-	 * @memberof RadioGroup
 	 */
 	set name(name: string) {
 		this._name = name;
@@ -175,8 +149,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Returns the disabled value in the `RadioGroup` if there is one.
-	 * @readonly
-	 * @memberof RadioGroup
 	 */
 	@Input()
 	get disabled() {
@@ -185,8 +157,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * Updates the disabled value using the provided parameter and marks the radios to be checked for
 	 * changes.
-	 * @param value
-	 * @memberof RadioGroup
 	 */
 	set disabled(value) {
 		this._disabled = value;
@@ -195,65 +165,44 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Binds 'radiogroup' value to the role attribute for `RadioGroup`.
-	 * @memberof RadioGroup
 	 */
 	@HostBinding("attr.role") role = "radiogroup";
 
 	/**
 	 * Binds 'bx--radio-button-group' value to the class for `RadioGroup`.
-	 * @memberof RadioGroup
 	 */
 	@HostBinding("class.bx--radio-button-group") radioButtonGroupClass = true;
 
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
-	 * @private
-	 * @memberof RadioGroup
 	 */
 	private isInitialized = false;
 	/**
 	 * Reflects whether or not the input is disabled and cannot be selected.
-	 * @type {boolean}
-	 * @private
-	 * @memberof RadioGroup
 	 */
 	private _disabled = false;
 	/**
 	 * The value of the selected option within the `RadioGroup`.
-	 * @private
-	 * @type {any}
-	 * @memberof RadioGroup
 	 */
 	private _value: any = null;
 	/**
-	 * The `RadioComponent` within the `RadioGroup` that is selected.
-	 * @private
-	 * @type {RadioComponent}
-	 * @memberof RadioGroup
+	 * The `Radio` within the `RadioGroup` that is selected.
 	 */
-	private _selected: RadioComponent = null;
+	private _selected: Radio = null;
 	/**
 	 * The name attribute associated with the `RadioGroup`.
-	 * @type {string}
-	 * @private
-	 * @memberof RadioGroup
 	 */
 	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
 
 	/**
 	 * Creates an instance of RadioGroup.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
-	 * @memberof RadioGroup
 	 */
 	constructor(private changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
 	}
 
 	/**
-	 * Updates the selected `RadioComponent` to be checked (selected).
-	 * @memberof RadioGroup
+	 * Updates the selected `Radio` to be checked (selected).
 	 */
 	checkSelectedRadio() {
 		if (this._selected && !this._selected.checked) {
@@ -263,7 +212,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Use the value of the `RadioGroup` to update the selected radio to the right state (selected state).
-	 * @memberof RadioGroup
 	 */
 	updateSelectedRadioFromValue() {
 		let alreadySelected = this._selected != null && this._selected.value === this._value;
@@ -281,7 +229,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
-	 * @memberof RadioGroup
 	 */
 	emitChangeEvent() {
 		if (this.isInitialized) {
@@ -295,7 +242,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * Calls the `markForCheck()` function within the `changeDetectorRef` class
 	 * to trigger Angular's change detection on each radio item.
-	 * @memberof RadioGroup
 	 */
 	markRadiosForCheck() {
 		if (this.radios) {
@@ -305,7 +251,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Synchronizes the names of the radio items with the name of the `RadioGroup`.
-	 * @memberof RadioGroup
 	 */
 	updateRadioNames() {
 		if (this.radios) {
@@ -315,8 +260,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Updates the value of the `RadioGroup` using the provided parameter.
-	 * @param {any} value
-	 * @memberof RadioGroup
 	 */
 	writeValue(value: any) {
 		this.value = value;
@@ -324,8 +267,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Callback triggered when a `RadioComponent` within the `RadioGroup` is changed.
-	 * @memberof RadioGroup
+	 * Callback triggered when a `Radio` within the `RadioGroup` is changed.
 	 */
 	touch() {
 		if (this.onTouched) {
@@ -335,7 +277,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Builds variant class on the radio items within the `RadioGroup`.
-	 * @memberof RadioGroup
 	 */
 	ngOnInit() {
 		// Build variant class
@@ -348,7 +289,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * Marks this component as initialized to avoid the initial value getting set by `NgModel` on `RadioGroup`.
 	 * This avoids `NgModel` setting the initial value before the OnInit of the `RadioGroup`.
-	 * @memberof RadioGroup
 	 */
 	ngAfterContentInit() {
 		// Mark this component as initialized in AfterContentInit because the initial value can
@@ -373,8 +313,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Used to set method to propagate changes back to the form.
-	 * @param {*} fn
-	 * @memberof RadioGroup
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange = value => {
@@ -393,13 +331,11 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Needed to properly implement ControlValueAccessor.
-	 * @memberof RadioGroup
 	 */
 	onTouched: () => any = () => {};
 
 	/**
 	 * Method set in registerOnChange to propagate changes back to the form.
-	 * @memberof RadioGroup
 	 */
 	propagateChange = (_: any) => {};
 }

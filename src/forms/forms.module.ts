@@ -5,14 +5,14 @@ import { CommonModule } from "@angular/common";
 
 // imports
 import { CheckboxModule } from "../checkbox/checkbox.module";
-import { SwitchModule } from "../switch/switch.module";
+import { ToggleModule } from "../toggle/toggle.module";
 import { RadioModule } from "../radio/radio.module";
 import { InputModule } from "../input/input.module";
 import { ButtonModule } from "../button/button.module";
 
 // exports
 export { CheckboxModule } from "../checkbox/checkbox.module";
-export { SwitchModule } from "../switch/switch.module";
+export { ToggleModule } from "../toggle/toggle.module";
 export { RadioModule } from "../radio/radio.module";
 export { InputModule } from "../input/input.module";
 export { ButtonModule } from "../button/button.module";
@@ -20,7 +20,7 @@ export { ButtonModule } from "../button/button.module";
 @NgModule({
 	exports: [
 		CheckboxModule,
-		SwitchModule,
+		ToggleModule,
 		RadioModule,
 		InputModule,
 		ButtonModule
@@ -29,7 +29,7 @@ export { ButtonModule } from "../button/button.module";
 		CommonModule,
 		FormsModule,
 		CheckboxModule,
-		SwitchModule,
+		ToggleModule,
 		RadioModule,
 		InputModule,
 		ButtonModule

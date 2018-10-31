@@ -17,7 +17,6 @@ import { I18n } from "./../../i18n/i18n.module";
 	template: `
 		<div
 			[ibmOverflowMenu]="options"
-			[appendToBody]="true"
 			[ngClass]="{'bx--overflow-menu--open': open === true}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
