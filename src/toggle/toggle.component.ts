@@ -93,11 +93,10 @@ export class ToggleComponent extends CheckboxComponent {
 
 	/**
 	 * Size of the toggle component.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default")}
 	 * @memberof ToggleComponent
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 
 	/**
 	 * The unique id allocated to the `ToggleComponent`.
