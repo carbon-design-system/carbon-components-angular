@@ -21,7 +21,7 @@ class ButtonMenuTestComponent {
 	}
 }
 
-describe("Button Menu", () => {
+xdescribe("Button Menu", () => {
 	let fixture: ComponentFixture<ButtonMenuTestComponent>;
 	let component: ButtonMenuTestComponent;
 

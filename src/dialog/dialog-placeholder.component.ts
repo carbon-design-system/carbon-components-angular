@@ -1,13 +1,13 @@
 import {
 	Component,
 	OnInit,
-	Injector,
 	ViewContainerRef,
 	ViewChild
 } from "@angular/core";
-import { DialogPlaceholderService } from "./dialog-placeholder.service";
+import { PlaceholderService } from "./../placeholder/placeholder.module";
 
 /**
+ * Deprecated as of v2.0, will be removed with v3.0
  * Using a dialog (popover, tooltip, etc) with appendToBody="true" in your application
  * requires *this* component (`n-dialog-placeholder`).
  * It would generally be placed near the end of your app component template
@@ -26,9 +26,7 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
  * <ibm-dialog-placeholder></ibm-dialog-placeholder>
  * ```
  *
- * @export
- * @class DialogPlaceholderComponent
- * @implements {OnInit}
+ * @deprecated
  */
 @Component({
 	selector: "ibm-dialog-placeholder",
@@ -37,23 +35,19 @@ import { DialogPlaceholderService } from "./dialog-placeholder.service";
 export class DialogPlaceholderComponent implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `DialogPlaceholderComponent`.
-	 * @type {ViewContainerRef}
-	 * @memberof DialogPlaceholderComponent
 	 */
 	@ViewChild("dialogPlaceholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
 	 * Creates an instance of `DialogPlaceholderComponent`.
-	 * @param {DialogPlaceholderService} dialogPlaceholderService
-	 * @memberof DialogPlaceholderComponent
 	 */
-	constructor(public dialogPlaceholderService: DialogPlaceholderService) { }
+	constructor(public placeholderService: PlaceholderService) { }
 
 	/**
-	 * Initializes the component using `ModalService`.
-	 * @memberof DialogPlaceholderComponent
+	 * Initializes the component using `PlaceholderService`.
 	 */
-	ngOnInit(): void {
-		this.dialogPlaceholderService.registerViewContainerRef(this.viewContainerRef);
+	ngOnInit() {
+		console.warn("`ibm-dialog-placeholder` has been deprecated in favour of `ibm-placeholder`");
+		this.placeholderService.registerViewContainerRef(this.viewContainerRef);
 	}
 }
