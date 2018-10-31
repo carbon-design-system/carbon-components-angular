@@ -9,6 +9,11 @@ import { SwitchComponent } from "../switch/switch.component";
 // exports
 export { SwitchComponent } from "../switch/switch.component";
 
+/**
+ * Deprecated in favour of `ToggleModule` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 @NgModule({
 	declarations: [
 		SwitchComponent
