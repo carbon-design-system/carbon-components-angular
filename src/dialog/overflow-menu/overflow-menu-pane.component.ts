@@ -55,7 +55,11 @@ export class OverflowMenuPane extends Dialog {
 		}
 
 		setTimeout(() => {
-			getFocusElementList(this.elementRef.nativeElement).every(button => button.tabIndex = -1);
+			getFocusElementList(this.elementRef.nativeElement).every(button => {
+				if (button.tabIndex === undefined) {
+					button.tabIndex = -1;
+				}
+			});
 			this.listItems()[0].focus();
 		}, 0);
 	}
