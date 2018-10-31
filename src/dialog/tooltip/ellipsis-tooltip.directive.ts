@@ -15,7 +15,7 @@ import { Tooltip } from "./tooltip.component";
 /**
  * A directive that creates a tooltip `Dialog` for exposing truncated text.
  *
- * class: EllipsisTooltip (extends Popover)
+ * class: EllipsisTooltip (extends PopoverDirective)
  *
  * selector: `nEllipsisTooltip`
  *

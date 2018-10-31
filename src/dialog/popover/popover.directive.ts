@@ -23,7 +23,7 @@ import { DialogService } from "./../dialog.service";
  *
  * demo: [https://pages.github.ibm.com/peretz/neutrino/#/popover](https://pages.github.ibm.com/peretz/neutrino/#/popover)
  *
- * class: Popover (implements OnInit)
+ * class: PopoverDirective (implements OnInit)
  *
  * selector: `nPopover`
  *
@@ -57,7 +57,7 @@ import { DialogService } from "./../dialog.service";
  * ```
  *
  * @export
- * @class Popover
+ * @class PopoverDirective
  * @extends {DialogDirective}
  */
 @Directive({
