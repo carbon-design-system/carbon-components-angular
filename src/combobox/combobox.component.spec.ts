@@ -19,7 +19,7 @@ import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 		<ibm-dropdown-list></ibm-dropdown-list>
 	</ibm-combo-box>`
 })
-class ComboboxTestComponent {
+class ComboboxTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -36,7 +36,7 @@ xdescribe("Combo box", () => {
 				PillInput,
 				Pill,
 				DropdownList,
-				ComboboxTestComponent,
+				ComboboxTest,
 				ScrollableList
 			],
 			imports: [
@@ -46,7 +46,7 @@ xdescribe("Combo box", () => {
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ComboboxTestComponent);
+		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

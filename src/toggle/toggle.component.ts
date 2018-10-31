@@ -1,4 +1,4 @@
-import { CheckboxComponent } from "../checkbox/checkbox.component";
+import { Checkbox } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectorRef,
 	Component,
@@ -26,13 +26,13 @@ export enum ToggleState {
  */
 export class ToggleChange {
 	/**
-	 * Contains the `ToggleComponent` that has been changed.
-	 * @type {ToggleComponent}
+	 * Contains the `Toggle` that has been changed.
+	 * @type {Toggle}
 	 * @memberof ToggleChange
 	 */
-	source: ToggleComponent;
+	source: Toggle;
 	/**
-	 * The state of the `ToggleComponent` encompassed in the `ToggleChange` class.
+	 * The state of the `Toggle` encompassed in the `ToggleChange` class.
 	 * @type {boolean}
 	 * @memberof ToggleChange
 	 */
@@ -44,7 +44,7 @@ export class ToggleChange {
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
  * @export
- * @class ToggleComponent
+ * @class Toggle
  * @extends {CheckboxComponent}
  * @implements {OnInit}
  */
@@ -77,41 +77,41 @@ export class ToggleChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: ToggleComponent,
+			useExisting: Toggle,
 			multi: true
 		}
 	]
 })
-export class ToggleComponent extends CheckboxComponent {
+export class Toggle extends Checkbox {
 	/**
 	 * Variable used for creating unique ids for toggle components.
 	 * @type {number}
 	 * @static
-	 * @memberof ToggleComponent
+	 * @memberof Toggle
 	 */
 	static toggleCount = 0;
 
 	/**
 	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
-	 * @memberof ToggleComponent
+	 * @memberof Toggle
 	 */
 	@Input() size: "sm" | "md" = "md";
 
 	/**
-	 * The unique id allocated to the `ToggleComponent`.
+	 * The unique id allocated to the `Toggle`.
 	 * @type {string}
-	 * @memberof ToggleComponent
+	 * @memberof Toggle
 	 */
-	id = "toggle-" + ToggleComponent.toggleCount;
+	id = "toggle-" + Toggle.toggleCount;
 
 	/**
-	 * Creates an instance of ToggleComponent.
+	 * Creates an instance of Toggle.
 	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof ToggleComponent
+	 * @memberof Toggle
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
-		ToggleComponent.toggleCount++;
+		Toggle.toggleCount++;
 	}
 }

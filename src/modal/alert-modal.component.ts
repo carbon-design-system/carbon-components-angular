@@ -43,7 +43,7 @@ import { BaseModal } from "./base-modal.class";
  * ```
  *
  * @export
- * @class AlertModalComponent
+ * @class AlertModal
  */
 @Component({
 	selector: "ibm-alert-modal",
@@ -70,11 +70,11 @@ import { BaseModal } from "./base-modal.class";
 		</ibm-modal>
 	`
 })
-export class AlertModalComponent extends BaseModal {
+export class AlertModal extends BaseModal {
 	/**
-	 * Creates an instance of `AlertModalComponent`.
+	 * Creates an instance of `AlertModal`.
 	 * @param {ModalService} modalService
-	 * @memberof AlertModalComponent
+	 * @memberof AlertModal
 	 */
 	constructor(
 		@Inject("modalType") public modalType = "default",

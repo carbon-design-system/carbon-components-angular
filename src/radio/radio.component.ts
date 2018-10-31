@@ -10,11 +10,11 @@ import {
 	AfterContentInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { CheckboxComponent } from "../checkbox/checkbox.component";
+import { Checkbox } from "../checkbox/checkbox.component";
 import { RadioGroup } from "./radio-group.component";
 
 /**
- * class: RadioComponent (extends CheckboxComponent)
+ * class: Radio (extends Checkbox)
  *
  * selector: `n-radio`
  *
@@ -27,8 +27,8 @@ import { RadioGroup } from "./radio-group.component";
  * Also see: [`RadioGroup`](#ibm-radio-group)
  *
  * @export
- * @class RadioComponent
- * @extends {CheckboxComponent}
+ * @class Radio
+ * @extends {Checkbox}
  * @implements {OnInit}
  */
 @Component({
@@ -59,25 +59,25 @@ import { RadioGroup } from "./radio-group.component";
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: RadioComponent,
+			useExisting: Radio,
 			multi: true
 		}
 	]
 })
-export class RadioComponent extends CheckboxComponent implements OnInit {
+export class Radio extends Checkbox implements OnInit {
 	/**
-	 * Used to dynamically create unique ids for the `RadioComponent`.
+	 * Used to dynamically create unique ids for the `Radio`.
 	 * @static
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	static radioCount = 0;
 
 	/**
-	 * Returns the value/state of the `RadioComponent`.
+	 * Returns the value/state of the `Radio`.
 	 * @readonly
 	 * @type {any}
 	 * @returns {any}
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	@Input()
 	get value(): any {
@@ -87,7 +87,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	/**
 	 * Replaces `@Input value` with the provided parameter supplied from the parent.
 	 * @param {any} value
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	set value(value: any) {
 		if (this._value !== value) {
@@ -104,55 +104,55 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	}
 
 	/**
-	 * Binds 'radio' value to the role attribute for `RadioComponent`.
-	 * @memberof RadioComponent
+	 * Binds 'radio' value to the role attribute for `Radio`.
+	 * @memberof Radio
 	 */
 	@HostBinding("attr.role") role = "radio";
 
 	/**
-	 * The id for the `RadioComponent`.
+	 * The id for the `Radio`.
 	 * @type {string}
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
-	id = `radio-${RadioComponent.radioCount}`;
+	id = `radio-${Radio.radioCount}`;
 	/**
-	 * The radio group that this `RadioComponent` belongs to (if any).
+	 * The radio group that this `Radio` belongs to (if any).
 	 * @type {RadioGroup}
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	radioGroup: RadioGroup;
 	/**
-	 * set to true if the `RadioComponent` needs a tabIndex of 0.
+	 * set to true if the `Radio` needs a tabIndex of 0.
 	 * @type {RadioGroup}
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	needsToBeFocusable: boolean;
 	/**
-	 * The value of the `RadioComponent`.
+	 * The value of the `Radio`.
 	 * @type {any}
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	_value: any = null;
 
 	/**
-	 * Creates an instance of RadioComponent.
+	 * Creates an instance of Radio.
 	 * @param {RadioGroup} radioGroup
 	 * @param {ChangeDetectorRef} changeDetectorRef
 	 * @param {ElementRef} elementRef
 	 * @param {Renderer2} renderer
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	constructor(@Optional() radioGroup: RadioGroup,
 				public changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
 		super(changeDetectorRef);
-		RadioComponent.radioCount++;
+		Radio.radioCount++;
 		this.radioGroup = radioGroup;
 	}
 
 	/**
 	 * If the component has an encompassing `RadioGroup` it synchronizes the name with that
 	 * of the group.
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	ngOnInit() {
 		if (this.radioGroup) {
@@ -163,19 +163,19 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	}
 
 	/**
-	 * Handles the event of a mouse click on the `RadioComponent`.
+	 * Handles the event of a mouse click on the `Radio`.
 	 * @param {Event} event
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	onClick(event: Event) {
 		event.stopPropagation();
 	}
 
 	/**
-	 * Synchronizes with the `RadioGroup` in the event of a changed `RadioComponent`.
-	 * Emits the changes of both the `RadioGroup` and `RadioComponent`.
+	 * Synchronizes with the `RadioGroup` in the event of a changed `Radio`.
+	 * Emits the changes of both the `RadioGroup` and `Radio`.
 	 * @param {Event} event
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	onChange(event: Event) {
 		event.stopPropagation();
@@ -196,7 +196,7 @@ export class RadioComponent extends CheckboxComponent implements OnInit {
 	/**
 	 * Calls the `markForCheck()` function within the `changeDetectorRef` class
 	 * to make sure that Angular's change detection is triggered for the input.
-	 * @memberof RadioComponent
+	 * @memberof Radio
 	 */
 	markForCheck() {
 		this.changeDetectorRef.markForCheck();

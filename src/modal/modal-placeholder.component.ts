@@ -39,14 +39,14 @@ import { PlaceholderService } from "./../placeholder/placeholder.service";
 	selector: "ibm-modal-placeholder",
 	template: `<div #modalplaceholder></div>`
 })
-export class ModalPlaceholderComponent implements OnInit {
+export class ModalPlaceholder implements OnInit {
 	/**
-	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
+	 * Maintains a reference to the view DOM element of the `ModalPlaceholder`.
 	 */
 	@ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
-	 * Creates an instance of `ModalPlaceholderComponent`.
+	 * Creates an instance of `ModalPlaceholder`.
 	 */
 	constructor(public placeholderService: PlaceholderService) {}
 

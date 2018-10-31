@@ -4,24 +4,24 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { ToggleComponent } from "./toggle.component";
-import { CheckboxComponent } from "../checkbox/checkbox.module";
+import { Toggle } from "./toggle.component";
+import { Checkbox } from "../checkbox/checkbox.module";
 
-describe("ToggleComponent", () => {
-	let component: ToggleComponent;
-	let fixture: ComponentFixture<ToggleComponent>;
+describe("Toggle", () => {
+	let component: Toggle;
+	let fixture: ComponentFixture<Toggle>;
 	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
 	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ToggleComponent],
+			declarations: [Toggle],
 			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(ToggleComponent);
+		fixture = TestBed.createComponent(Toggle);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
@@ -29,7 +29,7 @@ describe("ToggleComponent", () => {
 	});
 
 	it("should work", () => {
-		expect(component instanceof ToggleComponent).toBe(true);
+		expect(component instanceof Toggle).toBe(true);
 	});
 
 	it("should have input with class 'bx--toggle'", () => {

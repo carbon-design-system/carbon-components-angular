@@ -17,7 +17,7 @@ export class PlaceholderService {
 	 */
 	private viewContainerRef: ViewContainerRef = null;
 	/**
-	 * Used by `PlaceholderComponent` to register view-container reference.
+	 * Used by `Placeholder` to register view-container reference.
 	 */
 	registerViewContainerRef(vcRef: ViewContainerRef): void {
 		this.viewContainerRef = vcRef;
