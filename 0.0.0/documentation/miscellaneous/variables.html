@@ -95,6 +95,9 @@
                                     <a href="../modules/CheckboxModule.html" >CheckboxModule</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../modules/CodeSnippetModule.html" >CodeSnippetModule</a>
+                                </li>
+                                <li class="link">
                                     <a href="../modules/ComboBoxModule.html" >ComboBoxModule</a>
                                 </li>
                                 <li class="link">
@@ -221,6 +224,9 @@
                                 </li>
                                 <li class="link">
                                     <a href="../components/ClickableTile.html" >ClickableTile</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/CodeSnippet.html" >CodeSnippet</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/ComboBox.html" >ComboBox</a>
@@ -676,6 +682,9 @@
                                            <a href="../modules/CheckboxModule.html" >CheckboxModule</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../modules/CodeSnippetModule.html" >CodeSnippetModule</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../modules/ComboBoxModule.html" >ComboBoxModule</a>
                                        </li>
                                        <li class="link">
@@ -802,6 +811,9 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/ClickableTile.html" >ClickableTile</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/CodeSnippet.html" >CodeSnippet</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/ComboBox.html" >ComboBox</a>
@@ -1205,6 +1217,9 @@
                             <a href="#_scrollbarWidth">_scrollbarWidth</a>
                         </li>
                         <li>
+                            <a href="#code">code</a>
+                        </li>
+                        <li>
                             <a href="#DIALOG_PLACEHOLDER_SERVICE_PROVIDER">DIALOG_PLACEHOLDER_SERVICE_PROVIDER</a>
                         </li>
                         <li>
@@ -1215,6 +1230,12 @@
                         </li>
                         <li>
                             <a href="#I18N_SERVICE_PROVIDER">I18N_SERVICE_PROVIDER</a>
+                        </li>
+                        <li>
+                            <a href="#inlineCode">inlineCode</a>
+                        </li>
+                        <li>
+                            <a href="#lessCode">lessCode</a>
                         </li>
                         <li>
                             <a href="#MODAL_PLACEHOLDER_SERVICE_PROVIDER">MODAL_PLACEHOLDER_SERVICE_PROVIDER</a>
@@ -1254,6 +1275,104 @@
     </code>
                         </td>
                     </tr>
+    
+    
+                </tbody>
+            </table>
+    </section>
+    <h3>src/code-snippet/code-snippet.stories.ts</h3>
+    <section>
+        <h3></h3>        <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="code"></a>
+                            <span class="name"><b> code</b><a href="#code"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>code:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>import { storiesOf, moduleMetadata } from &quot;@storybook/angular&quot;;
+    import { withKnobs, boolean } from &quot;@storybook/addon-knobs/angular&quot;;
+    
+    import { CodeSnippetModule } from &quot;..&quot;;
+    
+    storiesOf(&quot;CodeSnippet&quot;, module).addDecorator(
+    	moduleMetadata({
+    		imports: [CodeSnippetModule]
+    	})
+    )
+    	.addDecorator(withKnobs)
+    	.add(&quot;Basic&quot;, () &#x3D;&gt; ({
+    		template: &#x60;&lt;ibm-code-snippet&gt;code&lt;/ibm-code-snippet&gt;&#x60;,
+    		props: { // there&#x27;s more
+    			// disabled: boolean(&quot;disabled&quot;, false)
+    		}
+    	}));</code>
+                            </td>
+                        </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="inlineCode"></a>
+                            <span class="name"><b> inlineCode</b><a href="#inlineCode"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>inlineCode:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>&lt;inline code&gt;</code>
+                            </td>
+                        </tr>
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="lessCode"></a>
+                            <span class="name"><b> lessCode</b><a href="#lessCode"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>lessCode:     <code></code>
+    </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>import { storiesOf, moduleMetadata } from &quot;@storybook/angular&quot;;
+    import { withKnobs, boolean } from &quot;@storybook/addon-knobs/angular&quot;;
+    
+    import { CodeSnippetModule } from &quot;..&quot;;
+    
+    storiesOf(&quot;Code Snippet&quot;, module).addDecorator(
+    	moduleMetadata({
+    		imports: [CodeSnippetModule]
+    	})
+    ) // that&#x27;s it, no more after this line
+    </code>
+                            </td>
+                        </tr>
     
     
                 </tbody>
