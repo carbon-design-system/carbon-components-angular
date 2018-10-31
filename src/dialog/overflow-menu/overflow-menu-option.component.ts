@@ -23,8 +23,10 @@ import {
 		<button
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
+			[tabindex]="tabIndex"
+			(focus)="tabIndex = 0"
+			(blur)="tabIndex = -1"
 			[disabled]="disabled"
-			[tabindex]="(disabled ? -1 : null)"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
 		</button>
@@ -51,6 +53,8 @@ export class OverflowMenuOption {
 	 * disable/enable interactions
 	 */
 	@Input() disabled = false;
+
+	public tabIndex = -1;
 
 	constructor(private elementRef: ElementRef) {}
 

@@ -22,7 +22,6 @@ import { I18n } from "./../../i18n/i18n.module";
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
 			class="bx--overflow-menu"
-			role="button"
 			placement="bottom"
 			style="display: block;"
 			tabindex="0">
