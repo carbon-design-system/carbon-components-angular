@@ -13,10 +13,12 @@ import { NotificationContent } from "./banner-content.interface";
 import { I18n } from "./../i18n/i18n.module";
 
 /**
+ * Deprecated in favour of `InlineNotification` (to be removed in v3.0).
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
  * @export
  * @class Banner
+ * @deprecated
  */
 @Component({
 	selector: "ibm-banner",
@@ -75,7 +77,9 @@ export class Banner implements OnInit {
 
 	@ViewChild("banner") banner;
 
-	constructor(protected bannerService: BannerService, protected i18n: I18n) {}
+	constructor(protected bannerService: BannerService, protected i18n: I18n) {
+		console.warn("`ibm-banner` has been deprecated in favour of `ibm-inline-notification`");
+	}
 
 	ngOnInit() {
 		if (!this.bannerObj.closeLabel) {

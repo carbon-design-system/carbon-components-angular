@@ -5,10 +5,12 @@ import { ToastContent } from "./banner-content.interface";
 import { Banner } from "./banner.component";
 
 /**
+ * Deprecated in favour of `ToastNotification` (to be removed in v3.0).
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
  * @export
  * @class Banner
+ * @deprecated
  */
 @Component({
 	selector: "ibm-toast",
@@ -52,6 +54,8 @@ export class Toast extends Banner implements OnInit {
 	@Input() bannerObj: ToastContent;
 
 	ngOnInit() {
+		console.warn("`ibm-toast` has been deprecated in favour of `ibm-toast-notification`");
+
 		if (!this.bannerObj.closeLabel) {
 			this.bannerObj.closeLabel = this.i18n.get().BANNER.CLOSE_BUTTON;
 		}

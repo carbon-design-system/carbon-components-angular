@@ -45,7 +45,7 @@ export class ToggleChange {
  * ```
  * @export
  * @class Toggle
- * @extends {CheckboxComponent}
+ * @extends {Checkbox}
  * @implements {OnInit}
  */
 @Component({
