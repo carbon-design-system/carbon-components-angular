@@ -27,7 +27,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { CodeSnippetModule } from "..";
 
-storiesOf("CodeSnippet", module).addDecorator(
+storiesOf("Code Snippet", module).addDecorator(
 	moduleMetadata({
 		imports: [CodeSnippetModule]
 	})
