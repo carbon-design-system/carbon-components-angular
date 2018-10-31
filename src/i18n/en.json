@@ -47,6 +47,14 @@
 			}
 		]
 	},
+	"CODE_SNIPPET": {
+		"CODE_SNIPPET_TEXT": "Code Snippet Text",
+		"SHOW_MORE": "Show more",
+		"SHOW_LESS": "Show less",
+		"SHOW_MORE_ICON": "Show more icon",
+		"COPY_CODE": "Copy code",
+		"COPIED": "Copied!"
+	},
 	"DIALOG": {
 		"POPOVER" : {
 			"CLOSE": "Close popover"
