@@ -20,6 +20,7 @@ import { I18n } from "./../../i18n/i18n.module";
 			[appendToBody]="true"
 			[ngClass]="{'bx--overflow-menu--open': open === true}"
 			[attr.aria-label]="buttonLabel"
+			[flip]="flip"
 			class="bx--overflow-menu"
 			placement="bottom"
 			style="display: block;"
@@ -45,6 +46,8 @@ import { I18n } from "./../../i18n/i18n.module";
 export class OverflowMenu {
 
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
+
+	@Input() flip = false;
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 
