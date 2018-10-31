@@ -103,13 +103,16 @@ export class DialogService {
 	 */
 	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig) {
 		if (!this.dialogRef) {
-			// holder for either the provided view, or the view from Placeholder
-			if (dialogConfig.appendToBody) {
-				// add our component to the placeholder
-				this.dialogRef = this.placeholderService.createComponent(this.componentFactory, this.injector);
-			} else {
+			if (dialogConfig.appendInline) {
 				// add our component to the view
 				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
+			} else if (!this.placeholderService.hasPlaceholderRef()) {
+				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
+				setTimeout(() => {
+					window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
+				});
+			} else {
+				this.dialogRef = this.placeholderService.createComponent(this.componentFactory, this.injector);
 			}
 
 			// initialize some extra options
@@ -140,7 +143,7 @@ export class DialogService {
 
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
-			if (this.dialogRef.instance.dialogConfig.appendToBody) {
+			if (this.placeholderService.hasPlaceholderRef() && !this.dialogRef.instance.dialogConfig.appendInline) {
 				this.placeholderService.destroyComponent(this.dialogRef);
 			} else {
 				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
