@@ -8,7 +8,7 @@ import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
-import { DialogPlaceholderService } from "./../dialog-placeholder.service";
+import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 @Component({
 	selector: "test-cmp",
@@ -22,9 +22,9 @@ describe("Tooltip directive", () => {
 		TestBed.configureTestingModule({
 			declarations: [TooltipDirective, Tooltip, TooltipTestComponent],
 			imports: [
-				StaticIconModule
-			],
-			providers: [ DialogPlaceholderService ]
+				StaticIconModule,
+				PlaceholderModule
+			]
 		});
 	});
 

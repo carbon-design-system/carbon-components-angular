@@ -197,7 +197,6 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.modalState = "out";
-		this.close.emit();
 	}
 
 	/**
