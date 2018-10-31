@@ -7,11 +7,11 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { DialogService } from "./dialog.service";
 import { Dialog } from "./dialog.component";
 import { DialogDirective } from "./dialog.directive";
-import { DialogPlaceholderComponent } from "./dialog-placeholder.component";
+import { DialogPlaceholder } from "./dialog-placeholder.component";
 
 import { Tooltip } from "./tooltip/tooltip.component";
 import { TooltipDirective } from "./tooltip/tooltip.directive";
-import { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
+import { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
 import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
@@ -24,11 +24,11 @@ import { PlaceholderModule } from "./../placeholder/placeholder.module";
 export { DialogService } from "./dialog.service";
 export { Dialog } from "./dialog.component";
 export { DialogDirective } from "./dialog.directive";
-export { DialogPlaceholderComponent } from "./dialog-placeholder.component";
+export { DialogPlaceholder } from "./dialog-placeholder.component";
 
 export { Tooltip } from "./tooltip/tooltip.component";
 export { TooltipDirective } from "./tooltip/tooltip.directive";
-export { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
+export { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
 export { OverflowMenu } from "./overflow-menu/overflow-menu.component";
 export { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
@@ -43,10 +43,10 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		OverflowMenuPane,
 		DialogDirective,
 		TooltipDirective,
-		EllipsisTooltipDirective,
+		EllipsisTooltip,
 		OverflowMenuDirective,
 		OverflowMenuOption,
-		DialogPlaceholderComponent
+		DialogPlaceholder
 	],
 	exports: [
 		Dialog,
@@ -55,10 +55,10 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 		OverflowMenuPane,
 		DialogDirective,
 		TooltipDirective,
-		EllipsisTooltipDirective,
+		EllipsisTooltip,
 		OverflowMenuDirective,
 		OverflowMenuOption,
-		DialogPlaceholderComponent
+		DialogPlaceholder
 	],
 	providers: [ DialogService ],
 	entryComponents: [

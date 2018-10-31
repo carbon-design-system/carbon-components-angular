@@ -32,14 +32,14 @@ import { PlaceholderService } from "./../placeholder/placeholder.module";
 	selector: "ibm-dialog-placeholder",
 	template: `<div #dialogPlaceholder></div>`
 })
-export class DialogPlaceholderComponent implements OnInit {
+export class DialogPlaceholder implements OnInit {
 	/**
-	 * Maintains a reference to the view DOM element of the `DialogPlaceholderComponent`.
+	 * Maintains a reference to the view DOM element of the `DialogPlaceholder`.
 	 */
 	@ViewChild("dialogPlaceholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
-	 * Creates an instance of `DialogPlaceholderComponent`.
+	 * Creates an instance of `DialogPlaceholder`.
 	 */
 	constructor(public placeholderService: PlaceholderService) { }
 

@@ -13,7 +13,7 @@ import { ClickableTile } from "./clickable-tile.component";
 describe("ClickableTile", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [ClickableTile, ClickableTileTestComponent]
+			declarations: [ClickableTile, ClickableTileTest]
 		}).compileComponents();
 	}));
 
@@ -26,8 +26,8 @@ describe("ClickableTile", () => {
 	});
 
 	it("should create a disabled ClickableTile", () => {
-		let fixture: ComponentFixture<ClickableTileTestComponent> = TestBed.createComponent(ClickableTileTestComponent);
-		let component: ClickableTileTestComponent = fixture.componentInstance;
+		let fixture: ComponentFixture<ClickableTileTest> = TestBed.createComponent(ClickableTileTest);
+		let component: ClickableTileTest = fixture.componentInstance;
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(ClickableTile));
@@ -45,4 +45,4 @@ describe("ClickableTile", () => {
 	</ibm-clickable-tile>`,
 	entryComponents: [ClickableTile]
 })
-class ClickableTileTestComponent {}
+class ClickableTileTest {}

@@ -1,4 +1,4 @@
-import { CheckboxComponent } from "../checkbox/checkbox.component";
+import { Checkbox } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectorRef,
 	Component,
@@ -30,13 +30,13 @@ export enum SwitchState {
  */
 export class SwitchChange {
 	/**
-	 * Contains the `SwitchComponent` that has been changed.
-	 * @type {SwitchComponent}
+	 * Contains the `Switch` that has been changed.
+	 * @type {Switch}
 	 * @memberof SwitchChange
 	 */
-	source: SwitchComponent;
+	source: Switch;
 	/**
-	 * The state of the `SwitchComponent` encompassed in the `SwitchChange` class.
+	 * The state of the `Switch` encompassed in the `SwitchChange` class.
 	 * @type {boolean}
 	 * @memberof SwitchChange
 	 */
@@ -49,8 +49,8 @@ export class SwitchChange {
  * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
  * ```
  * @export
- * @class SwitchComponent
- * @extends {CheckboxComponent}
+ * @class Switch
+ * @extends {Checkbox}
  * @implements {OnInit}
  * @deprecated
  */
@@ -83,17 +83,17 @@ export class SwitchChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: SwitchComponent,
+			useExisting: Switch,
 			multi: true
 		}
 	]
 })
-export class SwitchComponent extends CheckboxComponent {
+export class Switch extends Checkbox {
 	/**
 	 * Variable used for creating unique ids for switch components.
 	 * @type {number}
 	 * @static
-	 * @memberof SwitchComponent
+	 * @memberof Switch
 	 */
 	static switchCount = 0;
 
@@ -101,25 +101,25 @@ export class SwitchComponent extends CheckboxComponent {
 	 * Size of the switch component.
 	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {("sm" | "md" | "default")}
-	 * @memberof SwitchComponent
+	 * @memberof Switch
 	 */
 	@Input() size: "sm" | "md" | "default" = "md";
 
 	/**
-	 * The unique id allocated to the `SwitchComponent`.
+	 * The unique id allocated to the `Switch`.
 	 * @type {string}
-	 * @memberof SwitchComponent
+	 * @memberof Switch
 	 */
-	id = "switch-" + SwitchComponent.switchCount;
+	id = "switch-" + Switch.switchCount;
 
 	/**
-	 * Creates an instance of SwitchComponent.
+	 * Creates an instance of Switch.
 	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof SwitchComponent
+	 * @memberof Switch
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
-		SwitchComponent.switchCount++;
+		Switch.switchCount++;
 
 		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
 	}

@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 
 /**
  * @export
- * @class ModalFooterComponent
+ * @class ModalFooter
  */
 @Component({
 	selector: "ibm-modal-footer",
@@ -13,4 +13,4 @@ import { Component } from "@angular/core";
 		</footer>
 	`
 })
-export class ModalFooterComponent {}
+export class ModalFooter {}

@@ -4,17 +4,17 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { ToggleComponent } from "../toggle/toggle.component";
+import { Toggle } from "../toggle/toggle.component";
 
 // exports
-export { ToggleComponent } from "../toggle/toggle.component";
+export { Toggle } from "../toggle/toggle.component";
 
 @NgModule({
 	declarations: [
-		ToggleComponent
+		Toggle
 	],
 	exports: [
-		ToggleComponent
+		Toggle
 	],
 	imports: [
 		CommonModule,

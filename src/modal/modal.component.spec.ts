@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
-import { ModalComponent } from "./modal.component";
-import { OverlayComponent } from "./overlay.component";
+import { Modal } from "./modal.component";
+import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
 import { I18nModule } from "../i18n/i18n.module";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
@@ -20,15 +20,15 @@ Object.defineProperty(document.body.style, "transform", {
 	}
 });
 
-describe("ModalComponent", () => {
-	let component: ModalComponent;
-	let fixture: ComponentFixture<ModalComponent>;
+describe("Modal", () => {
+	let component: Modal;
+	let fixture: ComponentFixture<Modal>;
 	let de: DebugElement;
 	let el: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ModalComponent, OverlayComponent],
+			declarations: [Modal, Overlay],
 			imports: [
 				BrowserAnimationsModule,
 				I18nModule,
@@ -37,14 +37,14 @@ describe("ModalComponent", () => {
 			providers: [ModalService]
 		});
 
-		fixture = TestBed.createComponent(ModalComponent);
+		fixture = TestBed.createComponent(Modal);
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("div"));
 		el = de.nativeElement;
 	});
 
 	it("should work", () => {
-		expect(component instanceof ModalComponent).toBe(true);
+		expect(component instanceof Modal).toBe(true);
 	});
 
 	it("should close modal when overlay is clicked", () => {

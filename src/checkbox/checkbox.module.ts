@@ -4,17 +4,17 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { CheckboxComponent } from "./checkbox.component";
+import { Checkbox } from "./checkbox.component";
 
 // exports
-export { CheckboxComponent } from "./checkbox.component";
+export { Checkbox } from "./checkbox.component";
 
 @NgModule({
 	declarations: [
-		CheckboxComponent
+		Checkbox
 	],
 	exports: [
-		CheckboxComponent
+		Checkbox
 	],
 	imports: [
 		CommonModule,
