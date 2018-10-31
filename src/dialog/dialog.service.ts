@@ -105,19 +105,19 @@ export class DialogService {
 		if (!this.dialogRef) {
 			// holder for either the provided view, or the view from DialogPlaceholderService
 			let view = viewContainer;
-			if (dialogConfig.appendToBody && this.dialogPlaceholderService.viewContainerRef) {
+			if (dialogConfig.appendInline) {
+				// add our component to the view
+				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
+			} else if (this.dialogPlaceholderService.viewContainerRef) {
 				view = this.dialogPlaceholderService.viewContainerRef;
 				// add our component to the view
 				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
-			} else if (dialogConfig.appendToBody && !this.dialogPlaceholderService.viewContainerRef) {
+			} else {
 				// fallback to the old insertion method if the viewref doesn't exist
 				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
 				setTimeout(() => {
 					window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
 				});
-			} else {
-				// add our component to the view
-				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
 			}
 
 			// initialize some extra options
@@ -148,11 +148,11 @@ export class DialogService {
 
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
-			if (this.dialogRef.instance.dialogConfig.appendToBody && this.dialogPlaceholderService.viewContainerRef) {
+			if (this.dialogRef.instance.dialogConfig.appendInline) {
+				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
+			} else if (this.dialogPlaceholderService.viewContainerRef) {
 				const vcRef = this.dialogPlaceholderService.viewContainerRef;
 				vcRef.remove(vcRef.indexOf(this.dialogRef.hostView));
-			} else {
-				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
 			}
 			this.dialogRef = null;
 			this.isOpen = false;

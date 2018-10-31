@@ -55,11 +55,10 @@ import { I18n } from "./../i18n/i18n.module";
 		</button>
 		<div
 			#dropdownMenu
-			*ngIf="!menuIsClosed"
 			[ngClass]="{
 				'drop-up': dropUp
 			}">
-			<ng-content></ng-content>
+			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
 	`,
@@ -98,9 +97,23 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() disabled = false;
 	/**
+	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
 	 */
-	@Input() appendToBody = false;
+	@Input() set appendToBody (v) {
+		console.log("appendToBody has been deprecated. dropdowns now append to the body by default.");
+		console.log("ensure you have an ibm-placeholder in your app.");
+		console.log("use appendInline if you need to position your dropdowns within the normal page flow");
+		this.appendInline = !v;
+	}
+
+	get appendToBody() {
+		return !this.appendInline;
+	}
+	/**
+	 * set to `true` to place the dropdown view inline with the component
+	 */
+	@Input() appendInline = false;
 	/**
 	 * Query string for the element that contains the `Dropdown`.
 	 * Used to trigger closing the dropdown if it scrolls outside of the viewport of the `scrollableContainer`.
@@ -397,14 +410,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	_appendToBody() {
 		const positionDropdown = () => {
-			position.setElement(
-				this.dropdownWrapper,
-				position.addOffset(
-					position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom"),
-					window.scrollY,
-					window.scrollX
-				)
-			);
+			let pos = position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom");
+			// add -40 to the top position to account for carbon styles
+			pos = position.addOffset(pos, -40, 0);
+			pos = position.addOffset(pos, window.scrollY, window.scrollX);
+			position.setElement(this.dropdownWrapper, pos);
 		};
 		this.dropdownMenu.nativeElement.style.display = "block";
 		this.dropdownWrapper = document.createElement("div");
@@ -426,9 +436,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	openMenu() {
 		this.menuIsClosed = false;
 
-		// move the dropdown list to the body if appendToBody is true
+		// move the dropdown list to the body if we're not appending inline
 		// and position it relative to the dropdown wrapper
-		if (this.appendToBody) {
+		if (!this.appendInline) {
 			this.addScrollEventListener();
 			this._appendToBody();
 		}
@@ -477,7 +487,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		}
 
 		// move the list back in the component on close
-		if (this.appendToBody) {
+		if (!this.appendInline) {
 			this.removeScrollEventListener();
 			this._appendToDropdown();
 		}
@@ -492,7 +502,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	addScrollEventListener() {
 		if (this.scrollableContainer) {
-			const container = document.querySelector(this.scrollableContainer);
+			const container: HTMLElement = document.querySelector(this.scrollableContainer);
 
 			if (container) {
 				this.scroll = fromEvent(container, "scroll")
