@@ -4,29 +4,24 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { SwitchComponent } from "./switch.component";
+import { ToggleComponent } from "./toggle.component";
 import { CheckboxComponent } from "../checkbox/checkbox.module";
 
-/**
- * Deprecated in favour of `Toggle` (to be removed in v3.0).
- *
- * @deprecated
- */
-describe("SwitchComponent", () => {
-	let component: SwitchComponent;
-	let fixture: ComponentFixture<SwitchComponent>;
+describe("ToggleComponent", () => {
+	let component: ToggleComponent;
+	let fixture: ComponentFixture<ToggleComponent>;
 	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
 	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [SwitchComponent],
+			declarations: [ToggleComponent],
 			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(SwitchComponent);
+		fixture = TestBed.createComponent(ToggleComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
@@ -34,7 +29,7 @@ describe("SwitchComponent", () => {
 	});
 
 	it("should work", () => {
-		expect(component instanceof SwitchComponent).toBe(true);
+		expect(component instanceof ToggleComponent).toBe(true);
 	});
 
 	it("should have input with class 'bx--toggle'", () => {
@@ -54,14 +49,14 @@ describe("SwitchComponent", () => {
 		expect(component.checked).toBe(false, "setting to off");
 	});
 
-	it("should display small version of switch when size equals sm", () => {
+	it("should display small version of toggle when size equals sm", () => {
 		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(false);
 		component.size = "sm";
 		fixture.detectChanges();
 		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(true);
 	});
 
-	it("should display SVG in small version of switch", () => {
+	it("should display SVG in small version of toggle", () => {
 		component.size = "sm";
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;

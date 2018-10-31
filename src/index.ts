@@ -24,3 +24,5 @@ export * from "./tiles/tiles.module";
 export * from "./progress-indicator/progress-indicator.module";
 export * from "./i18n/i18n.module";
 export * from "./pagination/pagination.module";
+export * from "./loading/loading.module";
+export * from "./toggle/toggle.module";

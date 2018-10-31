@@ -8,13 +8,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 /**
- * Deprecated in favour of `ToggleState` (to be removed in v3.0).
- * Defines the set of states for a switch component.
+ * Defines the set of states for a toggle component.
  * @export
  * @enum {number}
- * @deprecated
  */
-export enum SwitchState {
+export enum ToggleState {
 	Init,
 	Indeterminate,
 	Checked,
@@ -22,40 +20,36 @@ export enum SwitchState {
 }
 
 /**
- * Deprecated in favour of `ToggleChange` (to be removed in v3.0).
- * Used to emit changes performed on switch components.
+ * Used to emit changes performed on toggle components.
  * @export
- * @class SwitchChange
- * @deprecated
+ * @class ToggleChange
  */
-export class SwitchChange {
+export class ToggleChange {
 	/**
-	 * Contains the `SwitchComponent` that has been changed.
-	 * @type {SwitchComponent}
-	 * @memberof SwitchChange
+	 * Contains the `ToggleComponent` that has been changed.
+	 * @type {ToggleComponent}
+	 * @memberof ToggleChange
 	 */
-	source: SwitchComponent;
+	source: ToggleComponent;
 	/**
-	 * The state of the `SwitchComponent` encompassed in the `SwitchChange` class.
+	 * The state of the `ToggleComponent` encompassed in the `ToggleChange` class.
 	 * @type {boolean}
-	 * @memberof SwitchChange
+	 * @memberof ToggleChange
 	 */
 	checked: boolean;
 }
 
 /**
- * Deprecated in favour of `Toggle` (to be removed in v3.0).
  * ```html
- * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
+ * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
  * @export
- * @class SwitchComponent
+ * @class ToggleComponent
  * @extends {CheckboxComponent}
  * @implements {OnInit}
- * @deprecated
  */
 @Component({
-	selector: "ibm-switch",
+	selector: "ibm-toggle",
 	template: `
 		<input
 			class="bx--toggle"
@@ -83,44 +77,41 @@ export class SwitchChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: SwitchComponent,
+			useExisting: ToggleComponent,
 			multi: true
 		}
 	]
 })
-export class SwitchComponent extends CheckboxComponent {
+export class ToggleComponent extends CheckboxComponent {
 	/**
-	 * Variable used for creating unique ids for switch components.
+	 * Variable used for creating unique ids for toggle components.
 	 * @type {number}
 	 * @static
-	 * @memberof SwitchComponent
+	 * @memberof ToggleComponent
 	 */
-	static switchCount = 0;
+	static toggleCount = 0;
 
 	/**
-	 * Size of the switch component.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
+	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
-	 * @memberof SwitchComponent
+	 * @memberof ToggleComponent
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 
 	/**
-	 * The unique id allocated to the `SwitchComponent`.
+	 * The unique id allocated to the `ToggleComponent`.
 	 * @type {string}
-	 * @memberof SwitchComponent
+	 * @memberof ToggleComponent
 	 */
-	id = "switch-" + SwitchComponent.switchCount;
+	id = "toggle-" + ToggleComponent.toggleCount;
 
 	/**
-	 * Creates an instance of SwitchComponent.
+	 * Creates an instance of ToggleComponent.
 	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof SwitchComponent
+	 * @memberof ToggleComponent
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
-		SwitchComponent.switchCount++;
-
-		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
+		ToggleComponent.toggleCount++;
 	}
 }
