@@ -1,7 +1,7 @@
-import { Component, ViewChild, HostListener, ElementRef } from "@angular/core";
+import { Component, HostListener, ElementRef } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
-import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
+import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 
 /**
@@ -13,10 +13,14 @@ import { I18n } from "./../../i18n/i18n.module";
 	selector: "ibm-overflow-menu-pane",
 	template: `
 		<ul
-			role="menu"
 			[attr.aria-label]="dialogConfig.menuLabel"
+			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
+			role="menu"
 			#dialog
-			class="bx--overflow-menu-options bx--overflow-menu-options--open">
+			class="bx--overflow-menu-options bx--overflow-menu-options--open"
+			role="menu"
+			(focusout)="clickClose($event)"
+			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
 				[ngTemplateOutlet]="dialogConfig.content"
 				[ngTemplateOutletContext]="{overflowMenu: this}">
@@ -25,7 +29,6 @@ import { I18n } from "./../../i18n/i18n.module";
 	`
 })
 export class OverflowMenuPane extends Dialog {
-	@ViewChild("dialog") dialog;
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		super(elementRef);
@@ -40,18 +43,30 @@ export class OverflowMenuPane extends Dialog {
 		 * (position service trys it's best to center everything,
 		 * so we need to add some compensation)
 		 */
-		this.addGap["bottom"] = pos => position.addOffset(pos, -20, 60);
+		this.addGap["bottom"] = pos => {
+			if (this.dialogConfig.flip) {
+				return position.addOffset(pos, -20, -60);
+			}
+			return position.addOffset(pos, -20, 60);
+		};
 
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
 
-		setTimeout(() => this.listItems()[0].focus());
+		setTimeout(() => {
+			getFocusElementList(this.elementRef.nativeElement).every(button => {
+				// Allows user to set tabindex to 0.
+				if (button.getAttribute("tabindex") === null) {
+					button.tabIndex = -1;
+				}
+			});
+			this.listItems()[0].focus();
+		}, 0);
 	}
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		this.escapeClose(event);
 		const listItems = this.listItems();
 
 		switch (event.key) {
@@ -86,10 +101,26 @@ export class OverflowMenuPane extends Dialog {
 				event.preventDefault();
 				listItems[listItems.length - 1].focus();
 				break;
+
+			case "Esc": // IE specific value
+			case "Escape":
+				event.stopImmediatePropagation();
+				this.doClose();
+				break;
 		}
 	}
 
+	clickClose(event) {
+		// Opens menu when clicking on the menu button and stays open while navigating through the options
+		if (this.dialogConfig.parentRef.nativeElement.firstChild.contains(event.target) ||
+			this.listItems().some(button => button === event.relatedTarget) ||
+			event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement) {
+			return;
+		}
+		this.doClose();
+	}
+
 	private listItems() {
-		return Array.from<any>(this.dialog.nativeElement.querySelectorAll(".bx--overflow-menu-options__btn:not([disabled])"));
+		return Array.from<any>(this.elementRef.nativeElement.querySelectorAll(".bx--overflow-menu-options__btn:not([disabled])"));
 	}
 }
