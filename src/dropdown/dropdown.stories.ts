@@ -1,12 +1,13 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean, object, text } from "@storybook/addon-knobs/angular";
 
 import { DropdownModule } from "../";
 
 // needed to init ngx translate and load the translations
 import { BootstrapModule } from "../../.storybook/bootstrap.module";
+import { stringify } from "querystring";
 
 storiesOf("Dropdown", module)
 	.addDecorator(
@@ -62,4 +63,26 @@ storiesOf("Dropdown", module)
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
 		}
-	})));
+	})))
+	.add("With ngModel", () => ({
+		template: `
+		<ibm-dropdown
+			placeholder="Select"
+			[disabled]="disabled"
+			[(ngModel)]="model"
+			value="content">
+			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+		</ibm-dropdown>
+		<span>{{model | json}}</span>
+		`,
+		props: {
+			disabled: boolean("disabled", false),
+			items: [
+				{ content: "one" },
+				{ content: "two" },
+				{ content: "three" },
+				{ content: "four" }
+			],
+			model: null
+		}
+	}));
