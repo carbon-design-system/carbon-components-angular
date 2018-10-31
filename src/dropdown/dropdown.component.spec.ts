@@ -74,6 +74,5 @@ describe("Dropdown", () => {
 	it("should keep custom classes on the host el", () => {
 		const el = fixture.debugElement.query(By.css("ibm-dropdown"));
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
-		expect(el.nativeElement.classList.contains("dropdown")).toBe(true);
 	});
 });

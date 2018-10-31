@@ -6,8 +6,7 @@ import {
 	OnInit,
 	Optional,
 	Renderer2,
-	HostBinding,
-	AfterContentInit
+	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Checkbox } from "../checkbox/checkbox.component";
