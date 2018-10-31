@@ -1224,11 +1224,15 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_PaginationModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="180,-70 180,-268 316,-268 316,-70 180,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="139,-70 139,-268 357,-268 357,-70 139,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_PaginationModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="202,-78 202,-130 294,-130 294,-78 202,-78"/>
+<polygon fill="none" stroke="#000000" points="257,-78 257,-130 349,-130 349,-78 257,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_PaginationModule_imports</title>
+<polygon fill="none" stroke="#000000" points="147,-78 147,-130 249,-130 249,-78 147,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_PaginationModule_exports</title>
@@ -1237,8 +1241,8 @@
 <!-- Pagination -->
 <g id="node1" class="node">
 <title>Pagination</title>
-<polygon fill="#ffffb3" stroke="#000000" points="285.8837,-122 210.1163,-122 210.1163,-86 285.8837,-86 285.8837,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Pagination</text>
+<polygon fill="#ffffb3" stroke="#000000" points="340.8837,-122 265.1163,-122 265.1163,-86 340.8837,-86 340.8837,-122"/>
+<text text-anchor="middle" x="303" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">Pagination</text>
 </g>
 <!-- PaginationModule -->
 <g id="node2" class="node">
@@ -1249,20 +1253,32 @@
 <!-- Pagination&#45;&gt;PaginationModule -->
 <g id="edge1" class="edge">
 <title>Pagination&#45;&gt;PaginationModule</title>
-<path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M286.3875,-122.1061C286.3875,-122.1061 286.3875,-140.991 286.3875,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="282.8875,-140.9909 286.3875,-150.991 289.8875,-140.991 282.8875,-140.9909"/>
 </g>
 <!-- Pagination  -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>Pagination </title>
 <polygon fill="#fb8072" stroke="#000000" points="287.8845,-252 208.1155,-252 208.1155,-216 287.8845,-216 287.8845,-252"/>
 <text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">Pagination </text>
 </g>
 <!-- PaginationModule&#45;&gt;Pagination  -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>PaginationModule&#45;&gt;Pagination </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+</g>
+<!-- I18nModule -->
+<g id="node3" class="node">
+<title>I18nModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="240.7107,-122 237.7107,-126 216.7107,-126 213.7107,-122 155.2893,-122 155.2893,-86 240.7107,-86 240.7107,-122"/>
+<text text-anchor="middle" x="198" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">I18nModule</text>
+</g>
+<!-- I18nModule&#45;&gt;PaginationModule -->
+<g id="edge2" class="edge">
+<title>I18nModule&#45;&gt;PaginationModule</title>
+<path fill="none" stroke="#000000" d="M214.4443,-122.1061C214.4443,-122.1061 214.4443,-140.991 214.4443,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="210.9443,-140.9909 214.4443,-150.991 217.9443,-140.991 210.9443,-140.9909"/>
 </g>
 </g>
 </svg>
@@ -1311,6 +1327,14 @@
                     </ul>
                 </div>
                 <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span class="fa fa-info-circle"></a></h3>
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                                    <a href="../modules/I18nModule.html" >I18nModule</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
                     <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span class="fa fa-info-circle"></a></h3>
                     <ul class="list-group">
                             <li class="list-group-item">
@@ -1328,6 +1352,7 @@
 import { CommonModule } from &quot;@angular/common&quot;;
 import { FormsModule } from &quot;@angular/forms&quot;;
 
+import { I18nModule } from &quot;./../i18n/i18n.module&quot;;
 import { Pagination } from &quot;./pagination.component&quot;;
 
 export { PaginationModel } from &quot;./pagination-model.class&quot;;
@@ -1342,7 +1367,8 @@ export { Pagination } from &quot;./pagination.component&quot;;
 	],
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		I18nModule
 	]
 })
 export class PaginationModule {}
