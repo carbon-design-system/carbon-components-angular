@@ -143,10 +143,10 @@ export class DialogService {
 
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
-			if (this.dialogRef.instance.dialogConfig.appendInline) {
-				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
-			} else if (this.placeholderService.hasPlaceholderRef()) {
+			if (this.placeholderService.hasPlaceholderRef() && !this.dialogRef.instance.dialogConfig.appendInline) {
 				this.placeholderService.destroyComponent(this.dialogRef);
+			} else {
+				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
 			}
 			this.dialogRef = null;
 			this.isOpen = false;
