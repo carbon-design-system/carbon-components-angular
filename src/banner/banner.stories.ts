@@ -21,7 +21,9 @@ import { BannerModule, BannerService } from "./banner.module";
 	providers: [BannerService]
 })
 class BannnerStory {
-	constructor(private bannerService: BannerService) { }
+	constructor(private bannerService: BannerService) {
+		console.warn("`ibm-banner` has been deprecated in favour of `ibm-inline-notification`");
+	}
 
 	showBanner() {
 		this.bannerService.showBanner({
@@ -47,7 +49,9 @@ class BannnerStory {
 	providers: [BannerService]
 })
 class ToastStory {
-	constructor(private bannerService: BannerService) { }
+	constructor(private bannerService: BannerService) {
+		console.warn("`ibm-toast` has been deprecated in favour of `ibm-toast-notification`");
+	}
 
 	showToast() {
 		this.bannerService.showToast({

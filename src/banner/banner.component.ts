@@ -77,7 +77,9 @@ export class Banner implements OnInit {
 
 	@ViewChild("banner") banner;
 
-	constructor(protected bannerService: BannerService, protected i18n: I18n) {}
+	constructor(protected bannerService: BannerService, protected i18n: I18n) {
+		console.warn("`ibm-banner` has been deprecated in favour of `ibm-inline-notification`");
+	}
 
 	ngOnInit() {
 		if (!this.bannerObj.closeLabel) {
