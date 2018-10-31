@@ -73,22 +73,22 @@ export class PopoverDirective extends DialogDirective {
 	/**
 	 * To contain the footer template for the `Popover`.
 	 * @type {TemplateRef<any>}
-	 * @memberof Popover
+	 * @memberof PopoverDirective
 	 */
 	@Input() footer: TemplateRef<any>;
 	/**
 	 * The content for the `Popover`.
 	 * @type {(string | TemplateRef<any>)}
-	 * @memberof Popover
+	 * @memberof PopoverDirective
 	 */
 	@Input() ibmPopover: string | TemplateRef<any>;
 
 	/**
-	 * Creates an instance of Popover.
+	 * Creates an instance of PopoverDirective.
 	 * @param {ElementRef} elementRef
 	 * @param {ViewContainerRef} viewContainerRef
 	 * @param {DialogService} dialogService
-	 * @memberof Popover
+	 * @memberof PopoverDirective
 	 */
 	constructor(
 		protected elementRef: ElementRef,
@@ -101,7 +101,7 @@ export class PopoverDirective extends DialogDirective {
 
 	/**
 	 * Extends the `Dialog` component's data structure with popover content.
-	 * @memberof Popover
+	 * @memberof PopoverDirective
 	 */
 	onDialogInit() {
 		PopoverDirective.popoverCounter++;
