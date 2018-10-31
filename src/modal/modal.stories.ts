@@ -24,7 +24,7 @@ import { BaseModal } from "./base-modal.class";
 		</ibm-modal>
 	`
 })
-class SampleModalComponent extends BaseModal {
+class SampleModal extends BaseModal {
 	constructor(@Inject("modalText") public modalText) {
 		super();
 	}
@@ -44,7 +44,7 @@ class ModalStory {
 
 	openModal() {
 		this.modalService.create({
-			component: SampleModalComponent,
+			component: SampleModal,
 			inputs: {
 				modalText: this.modalText
 			}
@@ -84,7 +84,7 @@ storiesOf("Modal", module)
 		moduleMetadata({
 			declarations: [
 				ModalStory,
-				SampleModalComponent,
+				SampleModal,
 				AlertModalStory
 			],
 			imports: [
@@ -93,7 +93,7 @@ storiesOf("Modal", module)
 				BrowserAnimationsModule
 			],
 			entryComponents: [
-				SampleModalComponent
+				SampleModal
 			]
 		})
 	)

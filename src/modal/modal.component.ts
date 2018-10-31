@@ -53,7 +53,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
- * export class SampleModalComponent {
+ * export class SampleModal {
  * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
  * 	modalText: string;
  * 	constructor(private injector: Injector) {
@@ -73,13 +73,13 @@ import { cycleTabs } from "./../common/tab.service";
  * })
  * export class ModalDemo {
  * 	openModal() {
- * 		this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello universe."}});
+ * 		this.modalService.create({component: SampleModal, inputs: {modalText: "Hello universe."}});
  * 	}
  * }
  * ```
  *
  * @export
- * @class ModalComponent
+ * @class Modal
  * @implements {OnInit}
  * @implements {OnDestroy}
  */
@@ -112,67 +112,67 @@ import { cycleTabs } from "./../common/tab.service";
 		])
 	]
 })
-export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
 	 * @type {"sm" | "md" | "default" | "lg" | "xl" | "xxl"}
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@Input() size = "default";
 	/**
 	 * Classification of the modal.
 	 * @type {"default" | "danger"}
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@Input() modalType = "default";
 
 	/**
 	 * Label for the modal.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@Input() modalLabel = "default";
 
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occuring outside bounds of the `Modal` object.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@Output() overlaySelected = new EventEmitter();
 	/**
 	 * To emit the closing event of the modal window.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@Output() close = new EventEmitter();
 	/**
 	 * Maintains a reference to the view DOM element of the `Modal`.
 	 * @type {ElementRef}
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@ViewChild("modal") modal: ElementRef;
 
 	/**
 	 * Controls the transitions of the `Modal` component.
 	 * @type {"in" | "out"}
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	modalState = "out";
 
 	/**
 	 * An element should have 'data-modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
-	 * Creates an instance of `ModalComponent`.
+	 * Creates an instance of `Modal`.
 	 * @param {ModalService} modalService
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	constructor(public modalService: ModalService) {}
 
 	/**
 	 * Set modalState on the modal component when it is initialized.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	ngOnInit() {
 		this.modalState = "in";
@@ -180,7 +180,7 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	ngAfterViewInit() {
 		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
@@ -193,7 +193,7 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	/**
 	 * Emit the close event when the modal component is destroyed.
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	ngOnDestroy() {
 		this.modalState = "out";
@@ -202,7 +202,7 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Handle keyboard events to close modal and tab through the content within the modal.
 	 * @param {KeyboardEvent} event
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {

@@ -12,7 +12,7 @@ import { TabHeaders } from "./tab-headers.component";
 describe("Tabs", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tabs, Tab, TabHeaders, TabsTestComponent],
+			declarations: [Tabs, Tab, TabHeaders, TabsTest],
 			imports: [
 				StaticIconModule
 			]
@@ -94,6 +94,6 @@ describe("Tabs", () => {
 
 
 @Component({selector: "test-cmp", template: ""})
-class TabsTestComponent {
+class TabsTest {
 	changeCallback = (event: any) => {};
 }
