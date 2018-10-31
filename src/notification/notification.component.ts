@@ -45,7 +45,6 @@ import { I18n } from "./../i18n/i18n.module";
 				<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"/>
 			</svg>
 		</button>
-
 	`,
 	providers: [NotificationService]
 })
