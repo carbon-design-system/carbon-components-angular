@@ -14,7 +14,7 @@ import { I18n } from "./../../i18n/i18n.module";
 	template: `
 		<ul
 			[attr.aria-label]="dialogConfig.menuLabel"
-			[ngClass]="{ 'bx--overflow-menu--flip': dialogConfig.flip }"
+			[ngClass]="{'bx--overflow-menu--flip': dialogConfig.flip}"
 			role="menu"
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open">
