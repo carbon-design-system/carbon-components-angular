@@ -21,7 +21,14 @@ export declare class OverflowMenuDirective extends DialogDirective {
     protected elementRef: ElementRef;
     protected viewContainerRef: ViewContainerRef;
     protected dialogService: DialogService;
+    /**
+     * Takes a template ref of `OverflowMenuOptions`s
+     */
     ibmOverflowMenu: TemplateRef<any>;
+    /**
+     * Controls wether the overflow menu is flipped
+     */
+    flip: boolean;
     /**
      * Creates an instance of `OverflowMenuDirective`.
      */

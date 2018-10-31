@@ -1516,7 +1516,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/dialog/dialog.component.ts:265</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/dialog/dialog.component.ts:283</a></div>
                                 </td>
                             </tr>
     
@@ -1544,7 +1544,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/dialog/dialog.component.ts:243</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/dialog/dialog.component.ts:261</a></div>
                                 </td>
                             </tr>
     
@@ -1575,7 +1575,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/dialog/dialog.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/dialog/dialog.component.ts:294</a></div>
                                 </td>
                             </tr>
     
@@ -1644,7 +1644,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/dialog/dialog.component.ts:284</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/dialog/dialog.component.ts:302</a></div>
                                 </td>
                             </tr>
     
@@ -2236,13 +2236,31 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		// split always retuns an array, so we can just use the auto position logic
 		// for single positions too
 		const placements &#x3D; this.dialogConfig.placement.split(&quot;,&quot;);
-		for (const placement of placements) {
+		const weightedPlacements &#x3D; placements.map(placement &#x3D;&gt; {
 			const pos &#x3D; findPosition(parentEl, el, placement);
-			if (position.checkPlacement(el, pos)) {
-				dialogPlacement &#x3D; placement;
-				break;
-			}
-		}
+			let box &#x3D; position.getPlacementBox(el, pos);
+			let hiddenHeight &#x3D; box.bottom - window.innerHeight - window.scrollY;
+			let hiddenWidth &#x3D; box.right - window.innerWidth - window.scrollX;
+			// if the hiddenHeight or hiddenWidth is negative, reset to offsetHeight or offsetWidth
+			hiddenHeight &#x3D; hiddenHeight &lt; 0 ? el.offsetHeight : hiddenHeight;
+			hiddenWidth &#x3D; hiddenWidth &lt; 0 ? el.offsetWidth : hiddenWidth;
+			const area &#x3D; el.offsetHeight * el.offsetWidth;
+			const hiddenArea &#x3D; hiddenHeight * hiddenWidth;
+			let visibleArea &#x3D; area - hiddenArea;
+			// if the visibleArea is 0 set it back to area (to calculate the percentage in a useful way)
+			visibleArea &#x3D; visibleArea &#x3D;&#x3D;&#x3D; 0 ? area : visibleArea;
+			const visiblePercent &#x3D; visibleArea / area;
+			return {
+				placement,
+				weight: visiblePercent
+			};
+		});
+
+		// sort the placments from best to worst
+		weightedPlacements.sort((a, b) &#x3D;&gt; b.weight - a.weight);
+		// pick the best!
+		dialogPlacement &#x3D; weightedPlacements[0].placement;
+
 		// calculate the final position
 		const pos &#x3D; findPosition(parentEl, el, dialogPlacement);
 

@@ -1,4 +1,4 @@
-export declare function getScrollbarWidth(): number;
+export * from "./../utils/window-tools";
 /**
  * Does what python's `range` function does, with a slightly different
  * signature because of Typescript limitations.

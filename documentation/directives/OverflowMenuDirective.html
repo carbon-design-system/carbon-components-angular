@@ -1285,6 +1285,9 @@
                             <td class="col-md-4">
                                 <ul class="index-list">
                                     <li>
+                                        <a href="#flip">flip</a>
+                                    </li>
+                                    <li>
                                         <a href="#ibmOverflowMenu">ibmOverflowMenu</a>
                                     </li>
                                 </ul>
@@ -1319,7 +1322,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:38</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:45</a></div>
                                         </td>
                                     </tr>
             
@@ -1381,10 +1384,34 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-2">
+                                    <a name="flip"></a>
+                                    <code>flip</code>
+                                </td>
+                                <td class="col-md-10">
+                                    <div><p>Controls wether the overflow menu is flipped</p>
+</div>
+                                    <p>
+                                      <em>Default value: </em><code>false</code>
+                                    </p>
+                                </td>
+                            </tr>
+                                    <tr>
+                                        <td class="col-md-2" colspan="2">
+                                            <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:45</a></div>
+                                        </td>
+                                    </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-2">
                                     <a name="ibmOverflowMenu"></a>
                                     <code>ibmOverflowMenu</code>
                                 </td>
                                 <td class="col-md-10">
+                                    <div><p>Takes a template ref of <code>OverflowMenuOptions</code>s</p>
+</div>
                                       <p>
                                         <em>Type:</em>    <code>TemplateRef&lt;any&gt;</code>
 
@@ -1393,7 +1420,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-2" colspan="2">
-                                            <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:38</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:41</a></div>
                                         </td>
                                     </tr>
                         </tbody>
@@ -1425,7 +1452,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:57</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:65</a></div>
                                         </td>
                                     </tr>
             
@@ -1455,7 +1482,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:52</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.directive.ts:59</a></div>
                                         </td>
                                     </tr>
             
@@ -1515,7 +1542,14 @@ import { OverflowMenuPane } from &quot;./overflow-menu-pane.component&quot;;
 	]
 })
 export class OverflowMenuDirective extends DialogDirective {
+	/**
+	 * Takes a template ref of &#x60;OverflowMenuOptions&#x60;s
+	 */
 	@Input() ibmOverflowMenu: TemplateRef&lt;any&gt;;
+	/**
+	 * Controls wether the overflow menu is flipped
+	 */
+	@Input() flip &#x3D; false;
 
 	/**
 	 * Creates an instance of &#x60;OverflowMenuDirective&#x60;.
@@ -1531,6 +1565,7 @@ export class OverflowMenuDirective extends DialogDirective {
 
 	onDialogInit() {
 		this.dialogConfig.content &#x3D; this.ibmOverflowMenu;
+		this.dialogConfig.flip &#x3D; this.flip;
 	}
 
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])

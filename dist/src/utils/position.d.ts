@@ -1,7 +1,6 @@
 /**
  * Utilites to manipulate the position of elements relative to other elements
  *
- * @export
  */
 export declare type Placement = "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "left-bottom" | "right-bottom";
 export interface AbsolutePosition {
@@ -19,8 +18,15 @@ export declare namespace position {
     function findRelative(reference: HTMLElement, target: HTMLElement, placement: Placement): AbsolutePosition;
     function findAbsolute(reference: HTMLElement, target: HTMLElement, placement: Placement): AbsolutePosition;
     function findPosition(reference: HTMLElement, target: HTMLElement, placement: Placement, offsetFunction?: typeof getRelativeOffset): AbsolutePosition;
-    /** check if the placement is within the window. */
-    function checkPlacement(target: HTMLElement, position: AbsolutePosition): boolean;
+    /**
+     * Get the dimensions of the dialog from an AbsolutePosition and a reference element
+     */
+    function getPlacementBox(target: HTMLElement, position: AbsolutePosition): {
+        top: number;
+        bottom: number;
+        left: number;
+        right: number;
+    };
     function addOffset(position: AbsolutePosition, top?: number, left?: number): AbsolutePosition;
     function setElement(element: HTMLElement, position: AbsolutePosition): void;
 }

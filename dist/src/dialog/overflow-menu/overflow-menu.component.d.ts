@@ -15,6 +15,7 @@ export declare class OverflowMenu {
     protected elementRef: ElementRef;
     protected i18n: I18n;
     buttonLabel: any;
+    flip: boolean;
     constructor(elementRef: ElementRef, i18n: I18n);
     readonly open: boolean;
 }

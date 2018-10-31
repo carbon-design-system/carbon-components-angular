@@ -1220,9 +1220,6 @@
                             <a href="#calculatePosition">calculatePosition</a>
                         </li>
                         <li>
-                            <a href="#checkPlacement">checkPlacement</a>
-                        </li>
-                        <li>
                             <a href="#clone">clone</a>
                         </li>
                         <li>
@@ -1269,6 +1266,9 @@
                         </li>
                         <li>
                             <a href="#getFocusElementList">getFocusElementList</a>
+                        </li>
+                        <li>
+                            <a href="#getPlacementBox">getPlacementBox</a>
                         </li>
                         <li>
                             <a href="#getRelativeOffset">getRelativeOffset</a>
@@ -1361,24 +1361,6 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="checkPlacement"></a>
-                            <span class="name"><b> checkPlacement</b><a href="#checkPlacement"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>checkPlacement(target: undefined, position: undefined)</code>
-                        </td>
-                    </tr>
-    
-    
-    
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
                             <a name="findAbsolute"></a>
                             <span class="name"><b> findAbsolute</b><a href="#findAbsolute"><span class="fa fa-link"></span></a></span>
                         </td>
@@ -1440,6 +1422,24 @@
                     <tr>
                         <td class="col-md-4">
     <code>getAbsoluteOffset(target: undefined)</code>
+                        </td>
+                    </tr>
+    
+    
+    
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="getPlacementBox"></a>
+                            <span class="name"><b> getPlacementBox</b><a href="#getPlacementBox"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>getPlacementBox(target: undefined, position: undefined)</code>
                         </td>
                     </tr>
     
@@ -1802,7 +1802,7 @@
                 </tbody>
             </table>
     </section>
-    <h3>src/common/utils.ts</h3>
+    <h3>src/utils/window-tools.ts</h3>
     <section>
         <h3></h3>        <table class="table table-sm table-bordered">
                 <tbody>
@@ -1820,78 +1820,6 @@
     
     
     
-                </tbody>
-            </table>
-            <table class="table table-sm table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="col-md-4">
-                            <a name="range"></a>
-                            <span class="name"><b> range</b><a href="#range"><span class="fa fa-link"></span></a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-    <code>range(stop: undefined, start: undefined, step: undefined)</code>
-                        </td>
-                    </tr>
-    
-    
-    
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Does what python&#39;s <code>range</code> function does, with a slightly different
-    signature because of Typescript limitations.</p>
-    <p>Useful for numbered loops in angular templates, since we can do
-    a normal for loop.</p>
-    </div>
-    
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>stop</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>Generate numbers up to, but not including this number</p>
-    </td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>start</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>Starting number of the sequence</p>
-    </td>
-                                                    </tr>
-                                                    <tr>
-                                                      <td>step</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td><p>Difference between each number in the sequence</p>
-    </td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
     </section>
@@ -1964,6 +1892,81 @@
     
     
     
+                </tbody>
+            </table>
+    </section>
+    <h3>src/common/utils.ts</h3>
+    <section>
+        <h3></h3>        <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <a name="range"></a>
+                            <span class="name"><b> range</b><a href="#range"><span class="fa fa-link"></span></a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+    <code>range(stop: undefined, start: undefined, step: undefined)</code>
+                        </td>
+                    </tr>
+    
+    
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Does what python&#39;s <code>range</code> function does, with a slightly different
+    signature because of Typescript limitations.</p>
+    <p>Useful for numbered loops in angular templates, since we can do
+    a normal for loop.</p>
+    </div>
+    
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Type</td>
+                                                    <td>Optional</td>
+                                                    <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                      <td>stop</td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td><p>Generate numbers up to, but not including this number</p>
+    </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>start</td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td><p>Starting number of the sequence</p>
+    </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>step</td>
+                                                      <td>
+                                                      </td>
+                                                      <td>
+                                                      </td>
+                                                      <td><p>Difference between each number in the sequence</p>
+    </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
     </section>

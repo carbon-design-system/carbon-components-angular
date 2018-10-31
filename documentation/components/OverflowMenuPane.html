@@ -1333,7 +1333,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:29</a></div>
                                 </td>
                             </tr>
     
@@ -1404,7 +1404,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:59</a></div>
                                 </td>
                             </tr>
     
@@ -1435,7 +1435,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:98</a></div>
                                 </td>
                             </tr>
     
@@ -1467,7 +1467,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:35</a></div>
                                 </td>
                             </tr>
     
@@ -1510,7 +1510,7 @@
                         </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:29</a></div>
                                 </td>
                             </tr>
     
@@ -1538,8 +1538,9 @@ import { I18n } from &quot;./../../i18n/i18n.module&quot;;
 	selector: &quot;ibm-overflow-menu-pane&quot;,
 	template: &#x60;
 		&lt;ul
-			role&#x3D;&quot;menu&quot;
 			[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;
+			[ngClass]&#x3D;&quot;{&#x27;bx--overflow-menu--flip&#x27;: dialogConfig.flip}&quot;
+			role&#x3D;&quot;menu&quot;
 			#dialog
 			class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;&gt;
 			&lt;ng-template
@@ -1565,7 +1566,12 @@ export class OverflowMenuPane extends Dialog {
 		 * (position service trys it&#x27;s best to center everything,
 		 * so we need to add some compensation)
 		 */
-		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; position.addOffset(pos, -20, 60);
+		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; {
+			if (this.dialogConfig.flip) {
+				return position.addOffset(pos, -20, -60);
+			}
+			return position.addOffset(pos, -20, 60);
+		}
 
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;

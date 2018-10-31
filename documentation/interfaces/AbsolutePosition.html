@@ -1286,7 +1286,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/utils/position.ts:13</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/utils/position.ts:14</a></div>
                                         </td>
                                     </tr>
 
@@ -1319,7 +1319,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/utils/position.ts:14</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/utils/position.ts:15</a></div>
                                         </td>
                                     </tr>
 
@@ -1352,7 +1352,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/utils/position.ts:12</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/utils/position.ts:13</a></div>
                                         </td>
                                     </tr>
 
@@ -1363,7 +1363,10 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">export type Placement &#x3D;
+        <pre class="line-numbers"><code class="language-typescript">import { getScrollbarWidth } from &quot;./window-tools&quot;;
+
+// possible positions ... this should probably be moved (along with some other types) to some central location
+export type Placement &#x3D;
 	&quot;left&quot; | &quot;right&quot; | &quot;top&quot; | &quot;bottom&quot; | &quot;top-left&quot; | &quot;top-right&quot; | &quot;bottom-left&quot; | &quot;bottom-right&quot; | &quot;left-bottom&quot; | &quot;right-bottom&quot;;
 
 export interface AbsolutePosition {
@@ -1475,22 +1478,19 @@ export namespace position {
 		return calculatePosition(referenceOffset, reference, target, placement);
 	}
 
-	/** check if the placement is within the window. */
-	export function checkPlacement(target: HTMLElement, position: AbsolutePosition): boolean {
-		const elTop &#x3D; position.top;
-		const elLeft &#x3D; position.left;
-		const elBottom &#x3D; target.offsetHeight + position.top;
-		const elRight &#x3D; target.offsetWidth + position.left;
-		const windowTop &#x3D; window.scrollY;
-		const windowLeft &#x3D; window.scrollX;
-		// remove the target height so we get a reasonably accurate window height reading
-		const windowBottom &#x3D; (window.innerHeight + window.scrollY) - target.offsetHeight;
-		const windowRight &#x3D; window.innerWidth + window.scrollX;
+	/**
+	 * Get the dimensions of the dialog from an AbsolutePosition and a reference element
+	 */
+	export function getPlacementBox(target: HTMLElement, position: AbsolutePosition) {
+		const targetBottom &#x3D; target.offsetHeight + position.top;
+		const targetRight &#x3D; target.offsetWidth + position.left;
 
-		if (elBottom &lt; windowBottom &amp;&amp; elRight &lt; windowRight &amp;&amp; elTop &gt; windowTop &amp;&amp; elLeft &gt; windowLeft) {
-			return true;
-		}
-		return false;
+		return {
+			top: position.top,
+			bottom: targetBottom,
+			left: position.left,
+			right: targetRight
+		};
 	}
 
 	export function addOffset(position: AbsolutePosition, top &#x3D; 0, left &#x3D; 0): AbsolutePosition {
