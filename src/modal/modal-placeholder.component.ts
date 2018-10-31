@@ -42,8 +42,6 @@ import { PlaceholderService } from "./../placeholder/placeholder.service";
 export class ModalPlaceholderComponent implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
-	 * @type {ViewContainerRef}
-	 * @memberof ModalPlaceholderComponent
 	 */
 	@ViewChild("modalplaceholder", {read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
@@ -55,7 +53,7 @@ export class ModalPlaceholderComponent implements OnInit {
 	/**
 	 * Initializes the component using `ModalService`.
 	 */
-	ngOnInit(): void {
+	ngOnInit() {
 		console.warn("`ibm-dialog-placeholder` has been deprecated in favour of `ibm-placeholder`");
 		this.placeholderService.registerViewContainerRef(this.viewContainerRef);
 	}

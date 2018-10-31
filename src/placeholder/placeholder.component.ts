@@ -15,11 +15,6 @@ import { PlaceholderService } from "./placeholder.service";
  * ```
  * <ibm-placeholder></ibm-placeholder>
  * ```
- *
- *
- * @export
- * @class ModalPlaceholderComponent
- * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-placeholder",
@@ -27,21 +22,19 @@ import { PlaceholderService } from "./placeholder.service";
 })
 export class Placeholder implements OnInit {
 	/**
-	 * Maintains a reference to the view DOM element of the `ModalPlaceholderComponent`.
-	 * @type {ViewContainerRef}
-	 * @memberof ModalPlaceholderComponent
+	 * Maintains a reference to the view DOM element of the `Placeholder`.
 	 */
 	@ViewChild("placeholder", { read: ViewContainerRef }) viewContainerRef: ViewContainerRef;
 
 	/**
-	 * Creates an instance of `ModalPlaceholderComponent`.
+	 * Creates an instance of `Placeholder`.
 	 */
 	constructor(public placeholderService: PlaceholderService) { }
 
 	/**
-	 * Initializes the component using `ModalService`.
+	 * Registers the components view with `PlaceholderService`
 	 */
-	ngOnInit(): void {
+	ngOnInit() {
 		this.placeholderService.registerViewContainerRef(this.viewContainerRef);
 	}
 }
