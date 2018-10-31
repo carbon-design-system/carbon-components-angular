@@ -147,7 +147,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
-	 * Creates an instance of `ModalComponent`.
+	 * Creates an instance of `Modal`.
 	 */
 	constructor(public modalService: ModalService) {}
 
