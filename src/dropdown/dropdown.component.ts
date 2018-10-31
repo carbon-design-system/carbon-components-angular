@@ -101,9 +101,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
 	 */
 	@Input() set appendToBody (v) {
-		console.log("appendToBody has been deprecated. dropdowns now append to the body by default.");
-		console.log("ensure you have an ibm-placeholder in your app.");
-		console.log("use appendInline if you need to position your dropdowns within the normal page flow");
+		console.log("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
+		console.log("Ensure you have an `ibm-placeholder` in your app.");
+		console.log("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
 		this.appendInline = !v;
 	}
 

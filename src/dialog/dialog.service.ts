@@ -106,7 +106,7 @@ export class DialogService {
 			if (dialogConfig.appendInline) {
 				// add our component to the view
 				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
-			} else if (this.placeholderService.hasPlaceholderRef()) {
+			} else if (!this.placeholderService.hasPlaceholderRef()) {
 				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
 				setTimeout(() => {
 					window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
