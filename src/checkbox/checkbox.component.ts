@@ -204,7 +204,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	currentCheckboxState: CheckboxState = CheckboxState.Init;
 
 	/**
-	 * Maintains a reference to the view DOM element of the `CheckboxComponent`.
+	 * Maintains a reference to the view DOM element of the `Checkbox`.
 	 */
 	@ViewChild("inputCheckbox") inputCheckbox: ElementRef;
 
