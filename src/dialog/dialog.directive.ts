@@ -67,7 +67,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Value `true` sets Dialog be appened to the body (to break out of containers)
 	 */
 	@Input() set appendToBody(v: boolean) {
-		console.log("appendToBody has been deprecated. dialogs now append to the body by default.");
+		console.log("`appendToBody` has been deprecated. Dialogs now append to the body by default.");
 		console.log("ensure you have an ibm-placeholder in your app.");
 		console.log("use appendInline if you need to position your dialogs within the normal page flow");
 		this.appendInline = !v;
