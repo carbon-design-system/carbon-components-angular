@@ -1,18 +1,10 @@
-/**
- * Deprecated in favour of `NotificationContent` (to be removed in v3.0).
- *
- * @deprecated
- */
-export interface BannerContent {
+export interface NotificationContent {
 	type: string;
 	title: string;
 	target?: string;
 	duration?: number;
 	smart?: boolean;
 	closeLabel?: string;
-}
-
-export interface NotificationContent extends BannerContent {
 	message: string;
 }
 
