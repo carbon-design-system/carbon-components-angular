@@ -82,7 +82,7 @@ import { cycleTabs } from "./../common/tab.service";
 @Component({
 	selector: "ibm-modal",
 	template: `
-		<ibm-overlay [modalType]="modalType" (overlaySelect)="overlaySelected.emit()">
+		<ibm-overlay [theme]="theme" (overlaySelect)="overlaySelected.emit()">
 			<div
 				class="bx--modal-container"
 				[@modalState]="modalState"
@@ -116,7 +116,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Classification of the modal.
 	 */
-	@Input() modalType: "default" | "danger" = "default";
+	@Input() theme: "default" | "danger" = "default";
 
 	/**
 	 * Label for the modal.

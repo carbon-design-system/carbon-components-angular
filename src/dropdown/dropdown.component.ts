@@ -201,7 +201,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	ngAfterContentInit() {
 		this.view.type = this.type;
 		this.view.size = this.size;
-		this.elementRef.nativeElement.classList.add(this.buildClass());
 		this.view.select.subscribe(event => {
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
@@ -229,15 +228,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (this.appendToBody) {
 			this._appendToDropdown();
 		}
-	}
-
-	/**
-	 * Build the style classes based on the size property of the `Dropdown`.
-	 */
-	buildClass(): string {
-		if (this.size === "sm") { return "dropdown--sm"; }
-		if (this.size === "md") { return "dropdown"; }
-		if (this.size === "lg") { return "dropdown--lg"; }
 	}
 
 	/**
