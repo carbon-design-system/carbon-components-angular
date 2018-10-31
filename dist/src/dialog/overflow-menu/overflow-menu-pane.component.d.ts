@@ -9,9 +9,9 @@ import { I18n } from "./../../i18n/i18n.module";
 export declare class OverflowMenuPane extends Dialog {
     protected elementRef: ElementRef;
     protected i18n: I18n;
-    dialog: any;
     constructor(elementRef: ElementRef, i18n: I18n);
     onDialogInit(): void;
     hostkeys(event: KeyboardEvent): void;
+    clickClose(event: any): void;
     private listItems;
 }

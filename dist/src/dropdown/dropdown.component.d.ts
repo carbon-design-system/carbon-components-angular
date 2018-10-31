@@ -161,7 +161,7 @@ export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
      * @returns {string}
      * @memberof Dropdown
      */
-    buildClass(): "dropdown--sm" | "dropdown" | "dropdown--lg";
+    buildClass(): "dropdown" | "dropdown--sm" | "dropdown--lg";
     /**
      * Propagates the injected `value`.
      * @param {*} value

@@ -25,6 +25,7 @@ export declare class OverflowMenuOption {
      * disable/enable interactions
      */
     disabled: boolean;
+    tabIndex: number;
     constructor(elementRef: ElementRef);
     /**
      * Returns true if the content string is longer than the width of the containing button
