@@ -39,7 +39,10 @@ describe("Tooltip directive", () => {
 	it("should create the tooltip component and tooltip should appear at the top", () => {
 		TestBed.overrideComponent(TooltipTest, {
 			set: {
-				template: "<button ibmTooltip='Hello There' placement='top'>Me</button><ibm-placeholder></ibm-placeholder>"
+				template: `
+					<button ibmTooltip="Hello There" placement="top">Me</button>
+					<ibm-placeholder></ibm-placeholder>
+				`
 			}
 		});
 		const fixture = TestBed.createComponent(TooltipTest);
