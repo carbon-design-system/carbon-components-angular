@@ -24,8 +24,8 @@ import {
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
-			(focus)="tabIndex=0"
-			(blur)="tabIndex=-1"
+			(focus)="tabIndex = 0"
+			(blur)="tabIndex = -1"
 			[disabled]="disabled"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
