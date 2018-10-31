@@ -1,4 +1,4 @@
-import { CheckboxComponent } from "../checkbox/checkbox.component";
+import { Checkbox } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectorRef,
 	Component,
@@ -50,7 +50,7 @@ export class SwitchChange {
  * ```
  * @export
  * @class SwitchComponent
- * @extends {CheckboxComponent}
+ * @extends {Checkbox}
  * @implements {OnInit}
  * @deprecated
  */
@@ -88,7 +88,7 @@ export class SwitchChange {
 		}
 	]
 })
-export class SwitchComponent extends CheckboxComponent {
+export class SwitchComponent extends Checkbox {
 	/**
 	 * Variable used for creating unique ids for switch components.
 	 * @type {number}
