@@ -8,14 +8,14 @@ import { Component } from "@angular/core";
 import { NotificationModule, NotificationService } from "./notification.module";
 
 @Component({
-	selector: "app-inline-notification-story",
+	selector: "app-notification-story",
 	template: `
 		<button class="bx--btn bx--btn--primary" (click)="showNotification()">Show info notification</button>
 		<div class="notification-container"></div>
 	`,
 	providers: [NotificationService]
 })
-class InlineNotificationStory {
+class NotificationStory {
 	constructor(private notificationService: NotificationService) { }
 
 	showNotification() {
@@ -29,18 +29,18 @@ class InlineNotificationStory {
 }
 
 @Component({
-	selector: "app-toast-notification-story",
+	selector: "app-toast-story",
 	template: `
-		<button class="bx--btn bx--btn--primary" (click)="showToastNotification()">Show info toast</button>
+		<button class="bx--btn bx--btn--primary" (click)="showToast()">Show info toast</button>
 		<div class="notification-container"></div>
 	`,
 	providers: [NotificationService]
 })
-class ToastNotificationStory {
+class ToastStory {
 	constructor(private notificationService: NotificationService) { }
 
-	showToastNotification() {
-		this.notificationService.showToastNotification({
+	showToast() {
+		this.notificationService.showToast({
 			type: "info",
 			title: "Sample toast",
 			subtitle: "Sample subtitle message",
@@ -55,8 +55,8 @@ storiesOf("Notification", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [
-				InlineNotificationStory,
-				ToastNotificationStory
+				NotificationStory,
+				ToastStory
 			],
 			imports: [
 				NotificationModule
@@ -66,33 +66,33 @@ storiesOf("Notification", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-inline-notification [notificationObj]="{type: 'error', title: 'Sample notification', message: 'Sample error message'}">
-			</ibm-inline-notification>
-			<ibm-inline-notification [notificationObj]="{type: 'info', title: 'Sample notification', message: 'Sample info message'}">
-			</ibm-inline-notification>
-			<ibm-inline-notification [notificationObj]="{type: 'success', title: 'Sample notification', message: 'Sample success message'}">
-			</ibm-inline-notification>
-			<ibm-inline-notification [notificationObj]="{type: 'warning', title: 'Sample notification', message: 'Sample warning message'}">
-			</ibm-inline-notification>
+			<ibm-notification [notificationObj]="{type: 'error', title: 'Sample notification', message: 'Sample error message'}">
+			</ibm-notification>
+			<ibm-notification [notificationObj]="{type: 'info', title: 'Sample notification', message: 'Sample info message'}">
+			</ibm-notification>
+			<ibm-notification [notificationObj]="{type: 'success', title: 'Sample notification', message: 'Sample success message'}">
+			</ibm-notification>
+			<ibm-notification [notificationObj]="{type: 'warning', title: 'Sample notification', message: 'Sample warning message'}">
+			</ibm-notification>
 		`
 	}))
-	.add("Dynamic inline", () => ({
+	.add("Dynamic", () => ({
 		template: `
-			<app-inline-notification-story></app-inline-notification-story>
+			<app-notification-story></app-notification-story>
 		`
 	}))
 	.add("Toast", () => ({
 		template: `
-			<ibm-toast-notification [notificationObj]="{
+			<ibm-toast [notificationObj]="{
 				type: 'error',
 				title: 'Sample toast',
 				subtitle: 'Sample subtitle message',
 				caption: 'Sample caption'
-			}"></ibm-toast-notification>
+			}"></ibm-toast>
 		`
 	}))
 	.add("Dynamic toast", () => ({
 		template: `
-			<app-toast-notification-story></app-toast-notification-story>
+			<app-toast-story></app-toast-story>
 		`
 	}));

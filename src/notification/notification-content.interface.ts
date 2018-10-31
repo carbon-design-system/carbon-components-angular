@@ -1,4 +1,4 @@
-export interface InlineNotificationContent {
+export interface NotificationContent {
 	type: string;
 	title: string;
 	target?: string;
@@ -8,7 +8,7 @@ export interface InlineNotificationContent {
 	message: string;
 }
 
-export interface ToastNotificationContent extends InlineNotificationContent {
+export interface ToastContent extends NotificationContent {
 	subtitle: string;
 	caption: string;
 }

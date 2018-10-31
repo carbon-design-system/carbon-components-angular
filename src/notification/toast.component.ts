@@ -1,8 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+	Component,
+	Input,
+	OnInit,
+	HostBinding
+} from "@angular/core";
 
 import { NotificationService } from "./notification.service";
-import { InlineNotificationContent } from "./notification-content.interface";
-import { InlineNotification } from "./inline-notification.component";
+import { NotificationContent } from "./notification-content.interface";
+import { Notification } from "./notification.component";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -11,12 +16,8 @@ import { InlineNotification } from "./inline-notification.component";
  * @class Notification
  */
 @Component({
-	selector: "ibm-toast-notification",
+	selector: "ibm-toast",
 	template: `
-	<div
-		#notification
-		class="bx--toast-notification bx--toast-notification--{{notificationObj['type']}}"
-		role="alert">
 		<div class="bx--toast-notification__details">
 			<h3 class="bx--toast-notification__title" [innerHTML]="notificationObj.title"></h3>
 			<p class="bx--toast-notification__subtitle" [innerHTML]="notificationObj.subtitle"></p>
@@ -36,11 +37,10 @@ import { InlineNotification } from "./inline-notification.component";
 				<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"/>
 			</svg>
 		</button>
-	</div>
 	`,
 	providers: [ NotificationService ]
 })
-export class ToastNotification extends InlineNotification implements OnInit {
+export class Toast extends Notification implements OnInit {
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -49,7 +49,16 @@ export class ToastNotification extends InlineNotification implements OnInit {
 	 * `message` is message for notification to display
 	 *
 	 */
-	@Input() notificationObj: InlineNotificationContent;
+	@Input() notificationObj: NotificationContent;
+
+	@HostBinding("attr.id") toastID = "notification";
+	@HostBinding("class.bx--toast-notification") toastClass = true;
+	@HostBinding("attr.role") role = "alert";
+
+	@HostBinding("class.bx--toast-notification--error") get isError() { return this.notificationObj["type"] === "error"; }
+	@HostBinding("class.bx--toast-notification--info") get isInfo() { return this.notificationObj["type"] === "info"; }
+	@HostBinding("class.bx--toast-notification--success") get isSuccess() { return this.notificationObj["type"] === "success"; }
+	@HostBinding("class.bx--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
 
 	ngOnInit() {
 		if (!this.notificationObj.closeLabel) {

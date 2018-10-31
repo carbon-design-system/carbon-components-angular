@@ -2,14 +2,14 @@ import { TestBed } from "@angular/core/testing";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-import { InlineNotification, NotificationService } from "./notification.module";
+import { Notification, NotificationService } from "./notification.module";
 import { I18nModule } from "../i18n/i18n.module";
 
 
 describe("Notification", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [InlineNotification],
+			declarations: [Notification],
 			providers: [NotificationService],
 			imports: [
 				StaticIconModule,
@@ -19,12 +19,12 @@ describe("Notification", () => {
 	});
 
 	it("should work", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
-		expect(fixture.componentInstance instanceof InlineNotification).toBe(true);
+		const fixture = TestBed.createComponent(Notification);
+		expect(fixture.componentInstance instanceof Notification).toBe(true);
 	});
 
 	it("should render info notification", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "info",
 			title: "sample",
@@ -37,7 +37,7 @@ describe("Notification", () => {
 	});
 
 	it("should render danger notification", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "danger",
 			title: "sample",
@@ -50,7 +50,7 @@ describe("Notification", () => {
 	});
 
 	it("should render info warning", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "warning",
 			title: "sample",
@@ -63,7 +63,7 @@ describe("Notification", () => {
 	});
 
 	it("should render info success", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "success",
 			title: "sample",
@@ -76,7 +76,7 @@ describe("Notification", () => {
 	});
 
 	it("should display correct message", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "success",
 			title: "sample",
@@ -90,7 +90,7 @@ describe("Notification", () => {
 	});
 
 	it("should emit change when close button is clicked", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "success",
 			title: "sample",
@@ -107,7 +107,7 @@ describe("Notification", () => {
 	});
 
 	it("should emit change when notification is closed programmatically", () => {
-		const fixture = TestBed.createComponent(InlineNotification);
+		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "info",
 			title: "sample",

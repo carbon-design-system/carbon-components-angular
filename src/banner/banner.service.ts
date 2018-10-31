@@ -10,7 +10,8 @@ import {
 } from "@angular/core";
 
 import { BannerContent, NotificationContent, ToastContent } from "./banner-content.interface";
-import { Banner, Toast } from "./banner.module";
+import { Banner } from "./banner.module";
+import { Toast } from "./toast.component";
 
 /**
  * Deprecated in favour of `NotificationService` (to be removed in v3.0).
@@ -45,6 +46,8 @@ export class BannerService implements OnDestroy {
 		private injector: Injector,
 		private componentFactoryResolver: ComponentFactoryResolver,
 		private applicationRef: ApplicationRef) {
+
+		console.warn("`BannerService` has been deprecated in favour of `NotificationService`");
 	}
 
 	/**

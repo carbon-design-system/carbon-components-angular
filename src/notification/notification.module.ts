@@ -3,25 +3,25 @@ import { CommonModule } from "@angular/common";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-import { ToastNotification } from "./toast-notification.component";
-import { InlineNotification } from "./inline-notification.component";
+import { Toast } from "./toast.component";
+import { Notification } from "./notification.component";
 import { NotificationService } from "./notification.service";
 import { I18nModule } from "./../i18n/i18n.module";
 
 export { NotificationService } from "./notification.service";
-export { InlineNotification } from "./inline-notification.component";
-export { ToastNotification } from "./toast-notification.component";
+export { Notification } from "./notification.component";
+export { Toast } from "./toast.component";
 
 @NgModule({
 	declarations: [
-		InlineNotification,
-		ToastNotification
+		Notification,
+		Toast
 	],
 	exports: [
-		InlineNotification,
-		ToastNotification
+		Notification,
+		Toast
 	],
-	entryComponents: [InlineNotification, ToastNotification],
+	entryComponents: [Notification, Toast],
 	imports: [CommonModule, StaticIconModule, I18nModule],
 	providers: [NotificationService]
 })

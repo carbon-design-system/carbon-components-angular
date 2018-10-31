@@ -5,26 +5,23 @@ import {
 	EventEmitter,
 	ComponentRef,
 	ViewChild,
-	OnInit
+	OnInit,
+	HostBinding
 } from "@angular/core";
 
 import { NotificationService } from "./notification.service";
-import { InlineNotificationContent } from "./notification-content.interface";
+import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "./../i18n/i18n.module";
 
 /**
- * InlineNotification messages are displayed toward the top of the UI and do not interrupt user’s work.
+ * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
  * @export
- * @class InlineNotification
+ * @class Notification
  */
 @Component({
-	selector: "ibm-inline-notification",
+	selector: "ibm-notification",
 	template: `
-	<div
-		#notification
-		class="bx--inline-notification bx--inline-notification--{{notificationObj.type}}"
-		role="alert">
 		<div class="bx--inline-notification__details">
 			<svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 				<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z" fill-rule="evenodd"/>
@@ -48,11 +45,11 @@ import { I18n } from "./../i18n/i18n.module";
 				<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"/>
 			</svg>
 		</button>
-	</div>
+
 	`,
 	providers: [NotificationService]
 })
-export class InlineNotification implements OnInit {
+export class Notification implements OnInit {
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -61,19 +58,28 @@ export class InlineNotification implements OnInit {
 	 * `message` is message for notification to display
 	 *
 	 */
-	@Input() notificationObj: InlineNotificationContent;
+	@Input() notificationObj: NotificationContent;
 
 	/**
 	 * Emits on close.
 	 *
 	 * @type {EventEmitter<any>}
-	 * @memberof InlineNotification
+	 * @memberof Notification
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
-	componentRef: ComponentRef<InlineNotification>;
+	componentRef: ComponentRef<Notification>;
 
 	@ViewChild("notification") notification;
+
+	@HostBinding("attr.id") notificationID = "notification";
+	@HostBinding("class.bx--inline-notification") notificationClass = true;
+	@HostBinding("attr.role") role = "alert";
+
+	@HostBinding("class.bx--inline-notification--error") get isError() { return this.notificationObj.type === "error"; }
+	@HostBinding("class.bx--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
+	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
+	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
 
 	constructor(protected notificationService: NotificationService, protected i18n: I18n) {}
 
@@ -86,7 +92,7 @@ export class InlineNotification implements OnInit {
 	/**
 	 * Emits close event.
 	 *
-	 * @memberof InlineNotification
+	 * @memberof Notification
 	 */
 	onClose() {
 		this.close.emit();

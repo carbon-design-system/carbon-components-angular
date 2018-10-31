@@ -9,8 +9,8 @@ import {
 	OnDestroy
 } from "@angular/core";
 
-import { InlineNotificationContent, ToastNotificationContent } from "./notification-content.interface";
-import { InlineNotification, ToastNotification } from "./notification.module";
+import { NotificationContent, ToastContent } from "./notification-content.interface";
+import { Notification, Toast } from "./notification.module";
 
 /**
  * Provides a way to use the notification component.
@@ -73,10 +73,10 @@ export class NotificationService implements OnDestroy {
 	 * }
 	 * ```
 	 *
-	 * @param {any} [notificationComp=InlineNotification] If provided, used to resolve component factory
+	 * @param {any} [notificationComp=Notification] If provided, used to resolve component factory
 	 * @memberof NotificationService
 	 */
-	showNotification(notificationObj: InlineNotificationContent | ToastNotificationContent, notificationComp = InlineNotification) {
+	showNotification(notificationObj: NotificationContent | ToastContent, notificationComp = Notification) {
 		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(notificationComp);
 
 		let notificationRef = componentFactory.create(this.injector);
@@ -129,19 +129,19 @@ export class NotificationService implements OnDestroy {
 		return notificationRef.instance;
 	}
 
-	showToastNotification(notificationObj: InlineNotificationContent | ToastNotificationContent, notificationComp = ToastNotification) {
+	showToast(notificationObj: NotificationContent | ToastContent, notificationComp = Toast) {
 		return this.showNotification(notificationObj, notificationComp);
 	}
 
 	/**
 	 * Programatically closes notification based on `notificationRef`.
 	 *
-	 * @param notificationRef `ComponentRef` of a notification or `InlineNotification` component you wish to close
+	 * @param notificationRef `ComponentRef` of a notification or `Notification` component you wish to close
 	 * @memberof NotificationService
 	 */
 	close(notificationRef: any) {
 		if (notificationRef) {
-			if (notificationRef instanceof InlineNotification) {
+			if (notificationRef instanceof Notification) {
 				this.close(notificationRef.componentRef);
 			} else {
 				setTimeout( () => {
