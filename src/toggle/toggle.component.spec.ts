@@ -4,24 +4,24 @@ import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { Switch } from "./switch.component";
+import { Toggle } from "./toggle.component";
 import { Checkbox } from "../checkbox/checkbox.module";
 
-describe("Switch", () => {
-	let component: Switch;
-	let fixture: ComponentFixture<Switch>;
+describe("Toggle", () => {
+	let component: Toggle;
+	let fixture: ComponentFixture<Toggle>;
 	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
 	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Switch],
+			declarations: [Toggle],
 			imports: [BrowserAnimationsModule, StaticIconModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(Switch);
+		fixture = TestBed.createComponent(Toggle);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;
@@ -29,7 +29,7 @@ describe("Switch", () => {
 	});
 
 	it("should work", () => {
-		expect(component instanceof Switch).toBe(true);
+		expect(component instanceof Toggle).toBe(true);
 	});
 
 	it("should have input with class 'bx--toggle'", () => {
@@ -49,14 +49,14 @@ describe("Switch", () => {
 		expect(component.checked).toBe(false, "setting to off");
 	});
 
-	it("should display small version of switch when size equals sm", () => {
+	it("should display small version of toggle when size equals sm", () => {
 		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(false);
 		component.size = "sm";
 		fixture.detectChanges();
 		expect(buttonElement.className.includes("bx--toggle--small")).toEqual(true);
 	});
 
-	it("should display SVG in small version of switch", () => {
+	it("should display SVG in small version of toggle", () => {
 		component.size = "sm";
 		fixture.detectChanges();
 		labelElement = fixture.debugElement.query(By.css("label")).nativeElement;

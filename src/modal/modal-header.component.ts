@@ -18,7 +18,7 @@ import { I18n } from "./../i18n/i18n.module";
  * ```
  *
  * @export
- * @class ModalHeaderComponent
+ * @class ModalHeader
  */
 @Component({
 	selector: "ibm-modal-header",
@@ -48,11 +48,11 @@ import { I18n } from "./../i18n/i18n.module";
 
 	`
 })
-export class ModalHeaderComponent {
+export class ModalHeader {
 	/**
 	 * Sets the style on the modal heading based on its category.
 	 * @type {"default" | "warning" | "error"}
-	 * @memberof ModalHeaderComponent
+	 * @memberof ModalHeader
 	 */
 	@Input() modalType = "default";
 	/**
@@ -63,7 +63,7 @@ export class ModalHeaderComponent {
 
 	/**
 	 * To emit the event of clicking on the close icon within the modal.
-	 * @memberof ModalHeaderComponent
+	 * @memberof ModalHeader
 	 */
 	@Output() closeSelect = new EventEmitter();
 
@@ -71,7 +71,7 @@ export class ModalHeaderComponent {
 
 	/**
 	 * Handles click for the close icon button within the `Modal`.
-	 * @memberof ModalHeaderComponent
+	 * @memberof ModalHeader
 	 */
 	public onClose() {
 		this.closeSelect.emit();

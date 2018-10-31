@@ -14,7 +14,7 @@ import {
  * The main purpose for this component is to be able to handle click events that fall outside
  * the bounds of the `Modal` component.
  * @export
- * @class OverlayComponent
+ * @class Overlay
  */
 @Component({
 	selector: "ibm-overlay",
@@ -28,30 +28,30 @@ import {
 		</section>
 	`
 })
-export class OverlayComponent {
+export class Overlay {
 	/**
 	 * Classification of the modal.
 	 * @type {"default" | "danger"}
-	 * @memberof ModalComponent
+	 * @memberof Modal
 	 */
 	@Input() modalType: "default" | "danger" = "default";
 	/**
 	 * To emit the event where the user selects the overlay behind the `Modal`.
-	 * @memberof OverlayComponent
+	 * @memberof Overlay
 	 */
 	@Output() overlaySelect = new EventEmitter();
 	/**
-	 * Maintains a reference to the view DOM element of the `OverlayComponent`.
+	 * Maintains a reference to the view DOM element of the `Overlay`.
 	 * @type {ElementRef}
-	 * @memberof OverlayComponent
+	 * @memberof Overlay
 	 */
 	@ViewChild("overlay") overlay: ElementRef;
 
 	/**
-	 * Handles the user clicking on the `OverlayComponent` which resides outside the `Modal` object.
+	 * Handles the user clicking on the `Overlay` which resides outside the `Modal` object.
 	 * @param {any} event
 	 * @returns null
-	 * @memberof OverlayComponent
+	 * @memberof Overlay
 	 */
 	overlayClick(event) {
 		if (event.target !== this.overlay.nativeElement) { return; }

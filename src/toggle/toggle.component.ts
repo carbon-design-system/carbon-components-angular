@@ -8,11 +8,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 /**
- * Deprecated in favour of `ToggleState` (to be removed in v3.0).
- * Defines the set of states for a switch component.
- * @deprecated
+ * Defines the set of states for a toggle component.
+ * @export
+ * @enum {number}
  */
-export enum SwitchState {
+export enum ToggleState {
 	Init,
 	Indeterminate,
 	Checked,
@@ -20,34 +20,36 @@ export enum SwitchState {
 }
 
 /**
- * Deprecated in favour of `ToggleChange` (to be removed in v3.0).
- * Used to emit changes performed on switch components.
- * @deprecated
+ * Used to emit changes performed on toggle components.
+ * @export
+ * @class ToggleChange
  */
-export class SwitchChange {
+export class ToggleChange {
 	/**
-	 * Contains the `Switch` that has been changed.
-	 * @type {Switch}
-	 * @memberof SwitchChange
+	 * Contains the `Toggle` that has been changed.
+	 * @type {Toggle}
+	 * @memberof ToggleChange
 	 */
-	source: Switch;
+	source: Toggle;
 	/**
-	 * The state of the `Switch` encompassed in the `SwitchChange` class.
+	 * The state of the `Toggle` encompassed in the `ToggleChange` class.
 	 * @type {boolean}
-	 * @memberof SwitchChange
+	 * @memberof ToggleChange
 	 */
 	checked: boolean;
 }
 
 /**
- * Deprecated in favour of `Toggle` (to be removed in v3.0).
  * ```html
- * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
+ * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
- * @deprecated
+ * @export
+ * @class Toggle
+ * @extends {CheckboxComponent}
+ * @implements {OnInit}
  */
 @Component({
-	selector: "ibm-switch",
+	selector: "ibm-toggle",
 	template: `
 		<input
 			class="bx--toggle"
@@ -75,34 +77,41 @@ export class SwitchChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: Switch,
+			useExisting: Toggle,
 			multi: true
 		}
 	]
 })
-export class Switch extends Checkbox {
+export class Toggle extends Checkbox {
 	/**
-	 * Variable used for creating unique ids for switch components.
+	 * Variable used for creating unique ids for toggle components.
+	 * @type {number}
+	 * @static
+	 * @memberof Toggle
 	 */
-	static switchCount = 0;
+	static toggleCount = 0;
 
 	/**
-	 * Size of the switch component.
+	 * Size of the toggle component.
+	 * @type {("sm" | "md" | "default")}
+	 * @memberof Toggle
 	 */
 	@Input() size: "sm" | "md" = "md";
 
 	/**
-	 * The unique id allocated to the `Switch`.
+	 * The unique id allocated to the `Toggle`.
+	 * @type {string}
+	 * @memberof Toggle
 	 */
-	id = "switch-" + Switch.switchCount;
+	id = "toggle-" + Toggle.toggleCount;
 
 	/**
-	 * Creates an instance of Switch.
+	 * Creates an instance of Toggle.
+	 * @param {ChangeDetectorRef} changeDetectorRef
+	 * @memberof Toggle
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
-		Switch.switchCount++;
-
-		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
+		Toggle.toggleCount++;
 	}
 }

@@ -53,7 +53,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
- * export class SampleModalComponent {
+ * export class SampleModal {
  * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
  * 	modalText: string;
  * 	constructor(private injector: Injector) {
@@ -73,7 +73,7 @@ import { cycleTabs } from "./../common/tab.service";
  * })
  * export class ModalDemo {
  * 	openModal() {
- * 		this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello universe."}});
+ * 		this.modalService.create({component: SampleModal, inputs: {modalText: "Hello universe."}});
  * 	}
  * }
  * ```
@@ -108,7 +108,7 @@ import { cycleTabs } from "./../common/tab.service";
 		])
 	]
 })
-export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
 	 */
@@ -175,7 +175,6 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.modalState = "out";
-		this.close.emit();
 	}
 
 	/**

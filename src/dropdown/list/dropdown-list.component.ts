@@ -180,6 +180,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		}, 0);
 		this.index = this.items.findIndex(item => item.selected);
 		this.setupFocusObservable();
+		setTimeout(() => {
+			if (this.type === "single") {
+				this.select.emit({ item: this.items.find(item => item.selected) });
+			} else {
+				this.select.emit(this.getSelected() || []);
+			}
+		});
 	}
 
 	/**
