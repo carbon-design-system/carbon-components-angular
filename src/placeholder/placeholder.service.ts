@@ -49,4 +49,8 @@ export class PlaceholderService {
 		}
 		return true;
 	}
+
+	hasPlaceholderRef() {
+		return !!this.viewContainerRef;
+	}
 }

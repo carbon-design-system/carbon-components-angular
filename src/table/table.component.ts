@@ -231,7 +231,6 @@ import { I18n } from "./../i18n/i18n.module";
 							trigger="click"
 							[title]="translations.FILTER"
 							placement="bottom,top"
-							[appendToBody]="true"
 							[data]="column.filterData">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
