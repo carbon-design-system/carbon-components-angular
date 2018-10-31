@@ -8,6 +8,7 @@ import { PlaceholderService } from "./../placeholder/placeholder.service";
 
 
 /**
+ * Deprecated with v2.0, will be removed in v3.0
  * Using a modal in your application requires *this* component (`n-modal-placeholder`).
  * It would generally be placed near the end of your app component template
  * (app.component.ts or app.component.html) as:
@@ -32,9 +33,7 @@ import { PlaceholderService } from "./../placeholder/placeholder.service";
  * <ibm-modal-placeholder></ibm-modal-placeholder>
  * ```
  *
- * @export
- * @class ModalPlaceholderComponent
- * @implements {OnInit}
+ * @deprecated
  */
 @Component({
 	selector: "ibm-modal-placeholder",

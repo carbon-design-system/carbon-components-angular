@@ -12,7 +12,7 @@ import { PlaceholderService } from "./placeholder.service";
  * It would generally be placed near the end of your root app component template
  * (app.component.ts or app.component.html) as:
  *
- * ...
+ * ```
  * <ibm-placeholder></ibm-placeholder>
  * ```
  *

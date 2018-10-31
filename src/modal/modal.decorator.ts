@@ -1,14 +1,13 @@
 import { Output, EventEmitter } from "@angular/core";
 
 /**
- * # Deprecated - extend BaseModal instead
+ * # Deprecated - extend `BaseModal` instead
  *
  * Decorator used to apply metadata on `Modal` class.
  *
  * class: ModalContainer
  *
  * decorator: @Modal
- * @class ModalContainer
  * @deprecated
  */
 class ModalContainer {

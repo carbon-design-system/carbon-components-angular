@@ -7,6 +7,7 @@ import {
 import { PlaceholderService } from "./../placeholder/placeholder.module";
 
 /**
+ * Deprecated as of v2.0, will be removed with v3.0
  * Using a dialog (popover, tooltip, etc) with appendToBody="true" in your application
  * requires *this* component (`n-dialog-placeholder`).
  * It would generally be placed near the end of your app component template
@@ -25,9 +26,7 @@ import { PlaceholderService } from "./../placeholder/placeholder.module";
  * <ibm-dialog-placeholder></ibm-dialog-placeholder>
  * ```
  *
- * @export
- * @class DialogPlaceholderComponent
- * @implements {OnInit}
+ * @deprecated
  */
 @Component({
 	selector: "ibm-dialog-placeholder",

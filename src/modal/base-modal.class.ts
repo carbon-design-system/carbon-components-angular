@@ -1,9 +1,9 @@
 import { Output, EventEmitter } from "@angular/core";
 
 /**
- * Extend BaseModal in your custom modal implementations to ensure consistent close behaviour.
+ * Extend `BaseModal` in your custom modal implementations to ensure consistent close behaviour.
  *
- * ModalService depends on the `close` event to correctly clean up the component.
+ * `ModalService` depends on the `close` event to correctly clean up the component.
  */
 export class BaseModal {
 	@Output() close = new EventEmitter();
