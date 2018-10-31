@@ -32,24 +32,22 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		let notification = fixture.nativeElement.querySelector(".bx--inline-notification");
-		expect(notification.classList.contains("bx--inline-notification--info")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("bx--inline-notification--info")).toBeTruthy();
 	});
 
 	it("should render danger notification", () => {
 		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
-			type: "danger",
+			type: "error",
 			title: "sample",
 			message: "sample message"
 		};
 		fixture.detectChanges();
 
-		let notification = fixture.nativeElement.querySelector(".bx--inline-notification");
-		expect(notification.classList.contains("bx--inline-notification--danger")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("bx--inline-notification--error")).toBeTruthy();
 	});
 
-	it("should render info warning", () => {
+	it("should render info warning notification", () => {
 		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "warning",
@@ -58,11 +56,10 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		let notification = fixture.nativeElement.querySelector(".bx--inline-notification");
-		expect(notification.classList.contains("bx--inline-notification--warning")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("bx--inline-notification--warning")).toBeTruthy();
 	});
 
-	it("should render info success", () => {
+	it("should render info success notification", () => {
 		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "success",
@@ -71,8 +68,7 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		let notification = fixture.nativeElement.querySelector(".bx--inline-notification");
-		expect(notification.classList.contains("bx--inline-notification--success")).toBeTruthy();
+		expect(fixture.nativeElement.classList.contains("bx--inline-notification--success")).toBeTruthy();
 	});
 
 	it("should display correct message", () => {
