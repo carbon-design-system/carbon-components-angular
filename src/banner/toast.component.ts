@@ -54,7 +54,7 @@ export class Toast extends Banner implements OnInit {
 	@Input() bannerObj: ToastContent;
 
 	ngOnInit() {
-		console.warn("Deprecated - Use notification instead");
+		console.warn("`ibm-toast` has been deprecated in favour of `ibm-toast-notification`");
 
 		if (!this.bannerObj.closeLabel) {
 			this.bannerObj.closeLabel = this.i18n.get().BANNER.CLOSE_BUTTON;
