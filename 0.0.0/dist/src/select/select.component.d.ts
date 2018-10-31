@@ -21,6 +21,10 @@ export declare class Select implements ControlValueAccessor {
      */
     static selectCount: number;
     /**
+     * `inline` or `default` select displays
+     */
+    display: "inline" | "default";
+    /**
      * Label for the select. Appears above the input.
      */
     label: string;
