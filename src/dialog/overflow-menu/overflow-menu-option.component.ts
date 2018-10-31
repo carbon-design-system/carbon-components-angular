@@ -23,9 +23,9 @@ import {
 		<button
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
-			tabindex="-1"
-			(focus)="onFocus()"
-			(blur)="onBlur()"
+			[tabindex]="tabIndex"
+			(focus)="tabIndex=0"
+			(blur)="tabIndex=-1"
 			[disabled]="disabled"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
@@ -54,6 +54,8 @@ export class OverflowMenuOption {
 	 */
 	@Input() disabled = false;
 
+	public tabIndex = -1;
+
 	constructor(private elementRef: ElementRef) {}
 
 	/**
@@ -74,13 +76,5 @@ export class OverflowMenuOption {
 	 */
 	get content(): string {
 		return this.elementRef.nativeElement.querySelector("button").textContent;
-	}
-
-	onFocus() {
-		this.elementRef.nativeElement.querySelector("button").tabIndex = "0";
-	}
-
-	onBlur() {
-		this.elementRef.nativeElement.querySelector("button").tabIndex = "-1";
 	}
 }

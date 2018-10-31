@@ -56,7 +56,8 @@ export class OverflowMenuPane extends Dialog {
 
 		setTimeout(() => {
 			getFocusElementList(this.elementRef.nativeElement).every(button => {
-				if (button.tabIndex === undefined) {
+				// Allows user to set tabindex to 0.
+				if (button.getAttribute("tabindex") === null) {
 					button.tabIndex = -1;
 				}
 			});
