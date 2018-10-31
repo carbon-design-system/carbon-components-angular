@@ -33,10 +33,10 @@ export enum CheckboxState {
 export class CheckboxChange {
 	/**
 	 * Contains the `CheckboxComponent` that has been changed.
-	 * @type {CheckboxComponent}
+	 * @type {Checkbox}
 	 * @memberof CheckboxChange
 	 */
-	source: CheckboxComponent;
+	source: Checkbox;
 	/**
 	 * The state of the `CheckboxComponent` encompassed in the `CheckboxChange` class.
 	 * @type {boolean}
@@ -77,13 +77,13 @@ export class CheckboxChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: CheckboxComponent,
+			useExisting: Checkbox,
 			multi: true
 		}
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
+export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Variable used for creating unique ids for checkbox components.
 	 * @type {number}
@@ -130,7 +130,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	 * @type {string}
 	 * @memberof CheckboxComponent
 	 */
-	@Input() id = `checkbox-${CheckboxComponent.checkboxCount}`;
+	@Input() id = `checkbox-${Checkbox.checkboxCount}`;
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 * @type {boolean}
@@ -249,7 +249,7 @@ export class CheckboxComponent implements ControlValueAccessor, AfterViewInit {
 	 * @memberof CheckboxComponent
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
-		CheckboxComponent.checkboxCount++;
+		Checkbox.checkboxCount++;
 	}
 
 	/**

@@ -26,3 +26,4 @@ export * from "./i18n/i18n.module";
 export * from "./pagination/pagination.module";
 export * from "./loading/loading.module";
 export * from "./notification/notification.module";
+export * from "./toggle/toggle.module";

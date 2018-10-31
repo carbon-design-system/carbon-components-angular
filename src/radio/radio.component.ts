@@ -10,7 +10,7 @@ import {
 	AfterContentInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { CheckboxComponent } from "../checkbox/checkbox.component";
+import { Checkbox } from "../checkbox/checkbox.component";
 import { RadioGroup } from "./radio-group.component";
 
 /**
@@ -28,7 +28,7 @@ import { RadioGroup } from "./radio-group.component";
  *
  * @export
  * @class RadioComponent
- * @extends {CheckboxComponent}
+ * @extends {Checkbox}
  * @implements {OnInit}
  */
 @Component({
@@ -64,7 +64,7 @@ import { RadioGroup } from "./radio-group.component";
 		}
 	]
 })
-export class RadioComponent extends CheckboxComponent implements OnInit {
+export class RadioComponent extends Checkbox implements OnInit {
 	/**
 	 * Used to dynamically create unique ids for the `RadioComponent`.
 	 * @static
