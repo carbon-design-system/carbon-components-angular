@@ -120,5 +120,7 @@ export class SwitchComponent extends CheckboxComponent {
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
 		SwitchComponent.switchCount++;
+
+		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
 	}
 }
