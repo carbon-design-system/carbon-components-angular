@@ -8,9 +8,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 /**
+ * Deprecated in favour of `ToggleState` (to be removed in v3.0).
  * Defines the set of states for a switch component.
  * @export
  * @enum {number}
+ * @deprecated
  */
 export enum SwitchState {
 	Init,
@@ -20,9 +22,11 @@ export enum SwitchState {
 }
 
 /**
+ * Deprecated in favour of `ToggleChange` (to be removed in v3.0).
  * Used to emit changes performed on switch components.
  * @export
  * @class SwitchChange
+ * @deprecated
  */
 export class SwitchChange {
 	/**
@@ -40,6 +44,7 @@ export class SwitchChange {
 }
 
 /**
+ * Deprecated in favour of `Toggle` (to be removed in v3.0).
  * ```html
  * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
  * ```
@@ -47,6 +52,7 @@ export class SwitchChange {
  * @class Switch
  * @extends {Checkbox}
  * @implements {OnInit}
+ * @deprecated
  */
 @Component({
 	selector: "ibm-switch",
@@ -114,5 +120,7 @@ export class Switch extends Checkbox {
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
 		Switch.switchCount++;
+
+		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
 	}
 }

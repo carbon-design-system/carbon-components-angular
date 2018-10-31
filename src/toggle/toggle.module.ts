@@ -4,26 +4,21 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { Switch } from "../switch/switch.component";
+import { ToggleComponent } from "../toggle/toggle.component";
 
 // exports
-export { Switch } from "../switch/switch.component";
+export { ToggleComponent } from "../toggle/toggle.component";
 
-/**
- * Deprecated in favour of `ToggleModule` (to be removed in v3.0).
- *
- * @deprecated
- */
 @NgModule({
 	declarations: [
-		Switch
+		ToggleComponent
 	],
 	exports: [
-		Switch
+		ToggleComponent
 	],
 	imports: [
 		CommonModule,
 		FormsModule
 	]
 })
-export class SwitchModule { }
+export class ToggleModule { }
