@@ -10,8 +10,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * Deprecated in favour of `ToggleState` (to be removed in v3.0).
  * Defines the set of states for a switch component.
- * @export
- * @enum {number}
  * @deprecated
  */
 export enum SwitchState {
@@ -24,8 +22,6 @@ export enum SwitchState {
 /**
  * Deprecated in favour of `ToggleChange` (to be removed in v3.0).
  * Used to emit changes performed on switch components.
- * @export
- * @class SwitchChange
  * @deprecated
  */
 export class SwitchChange {
@@ -48,10 +44,6 @@ export class SwitchChange {
  * ```html
  * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
  * ```
- * @export
- * @class Switch
- * @extends {Checkbox}
- * @implements {OnInit}
  * @deprecated
  */
 @Component({
@@ -91,31 +83,21 @@ export class SwitchChange {
 export class Switch extends Checkbox {
 	/**
 	 * Variable used for creating unique ids for switch components.
-	 * @type {number}
-	 * @static
-	 * @memberof Switch
 	 */
 	static switchCount = 0;
 
 	/**
 	 * Size of the switch component.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default")}
-	 * @memberof Switch
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 
 	/**
 	 * The unique id allocated to the `Switch`.
-	 * @type {string}
-	 * @memberof Switch
 	 */
 	id = "switch-" + Switch.switchCount;
 
 	/**
 	 * Creates an instance of Switch.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof Switch
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);

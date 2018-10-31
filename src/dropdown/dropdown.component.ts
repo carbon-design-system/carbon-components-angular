@@ -24,12 +24,6 @@ import { I18n } from "./../i18n/i18n.module";
 /**
  * Drop-down lists enable users to select one or more items from a list.
  *
- * @export
- * @class Dropdown
- * @implements {OnInit}
- * @implements {AfterContentInit}
- * @implements {AfterViewInit}
- * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-dropdown",
@@ -81,14 +75,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	@Input() displayValue = "";
 	/**
 	 * Size to render the dropdown field.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default" | "lg")}
 	 */
-	@Input() size: "sm" | "md" | "default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Defines whether or not the `Dropdown` supports selecting multiple items as opposed to single
 	 * item selection.
-	 * @type {("single" | "multi")}
 	 */
 	@Input() type: "single" | "multi" = "single";
 
@@ -210,7 +201,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	ngAfterContentInit() {
 		this.view.type = this.type;
 		this.view.size = this.size;
-		this.elementRef.nativeElement.classList.add(this.buildClass());
 		this.view.select.subscribe(event => {
 			if (this.type === "multi") {
 				this.propagateChange(this.view.getSelected());
@@ -238,16 +228,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (this.appendToBody) {
 			this._appendToDropdown();
 		}
-	}
-
-	/**
-	 * Build the style classes based on the size property of the `Dropdown`.
-	 */
-	buildClass(): string {
-		if (this.size === "sm") { return "dropdown--sm"; }
-		if (this.size === "default") { return "dropdown"; }
-		if (this.size === "md") { return "dropdown"; }
-		if (this.size === "lg") { return "dropdown--lg"; }
 	}
 
 	/**

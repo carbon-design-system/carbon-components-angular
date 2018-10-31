@@ -2,8 +2,6 @@ import { ElementRef, TemplateRef } from "@angular/core";
 
 /**
  * Data structure for definig properties of a `Dialog` component.
- * @export
- * @interface DialogConfig
  **/
 export interface DialogConfig {
 	/**
