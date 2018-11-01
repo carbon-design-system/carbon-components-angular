@@ -18,7 +18,7 @@ import { SampleInterface } from "./sample.interface";
 @Component({
 	selector: "ibm-sample",
 	template: `
-		<p>Hello, Neutrino!</p>
+		<p>Hello, Carbon-Angular!</p>
 		<span>{{ foo.required }}</span>
 	`
 })

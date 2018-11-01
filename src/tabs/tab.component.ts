@@ -13,7 +13,7 @@ import {
 let nextId = 0;
 
 /**
-* The `Tab` component is a child of the neutrino `Tabs` component.
+* The `Tab` component is a child of the `Tabs` component.
 * It represents one `Tab` item and its content within a panel of other `Tab` items.
 *
 *

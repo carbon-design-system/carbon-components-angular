@@ -12,7 +12,7 @@
  * ```
  *
  * `content` and `selected` are the only **required** properties you **must** provide.
- * When using a custom item template (supported by all the Neutrino item views, not required by AbstractDropdownView)
+ * When using a custom item template (supported by all the Carbon-Angular item views, not required by AbstractDropdownView)
  * the entire ListItem will be passed to the template as `item`.
  *
  * @export
