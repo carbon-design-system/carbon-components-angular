@@ -138,7 +138,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	ngAfterViewInit() {
 		const dialogElement = this.dialog.nativeElement;
 		// split the wrapper class list and apply separately to avoid IE from
-		// 1. throwing an error due to asigning a readonly property (classList)
+		// 1. throwing an error due to assigning a readonly property (classList)
 		// 2. throwing an SyntaxError due to passing an empty string to .add
 		if (this.dialogConfig.wrapperClass) {
 			for (const extraClass of this.dialogConfig.wrapperClass.split(" ")) {
