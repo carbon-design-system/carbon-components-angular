@@ -1223,7 +1223,7 @@
 $ cd my-project
 $ npm i --save-dev carbon-components-angular carbon-components</code></pre><p>Then we need to include carbon-components in <code>src/styles.scss</code>:</p>
 <pre class="line-numbers"><code class="language-scss">&#64;import &quot;~carbon-components/scss/globals/scss/styles.scss&quot;;</code></pre><blockquote>
-<p><em>Note:</em> For offline usage we&#39;ll need to set <code>$font-path: &#39;~carbon-components/src/globals/fonts&#39;;</code> at the very top of our <code>src/styles.scss</code>. This will copy the fonts to our <code>dist</code> folder upon successful build. If you like the fonts to be a part of your <code>assets</code> folder and not polute the <code>dist</code> folder then copy the fonts from <code>node_modules/carbon-components/src/globals/fonts</code> into our app&#39;s <code>src/assets/fonts</code> folder and add <code>$font-path: &#39;/assets/fonts/&#39;;</code> at the very top of our <code>src/styles.scss</code>.</p>
+<p><em>Note:</em> For offline usage we&#39;ll need to set <code>$font-path: &#39;~carbon-components/src/globals/fonts&#39;;</code> at the very top of our <code>src/styles.scss</code>. This will copy the fonts to our <code>dist</code> folder upon successful build. If you like the fonts to be a part of your <code>assets</code> folder and not pollute the <code>dist</code> folder then copy the fonts from <code>node_modules/carbon-components/src/globals/fonts</code> into our app&#39;s <code>src/assets/fonts</code> folder and add <code>$font-path: &#39;/assets/fonts/&#39;;</code> at the very top of our <code>src/styles.scss</code>.</p>
 </blockquote>
 <p>Then set up our translations in <code>src/app/app.module.ts</code>:</p>
 <pre class="line-numbers"><code class="language-ts">import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
@@ -1272,7 +1272,7 @@ export class AppModule { }</code></pre><p><em>Finally</em> we can run <code>npm 
 <li>attach a screenshot (or a gif!) for design reference if needed</li>
 <li>reference the related issue<ul>
 <li>&quot;closes #123&quot; or &quot;fixes #123&quot; will close issue #123 once the PR is merged</li>
-<li>&quot;issue #123&quot; just refences the issue. Only use this if you definitly need the issue to remain open.</li>
+<li>&quot;issue #123&quot; just references the issue. Only use this if you definitely need the issue to remain open.</li>
 </ul>
 </li>
 <li>@mention any specific other developers that need to be aware of the changes</li>
@@ -1296,11 +1296,11 @@ export class AppModule { }</code></pre><p><em>Finally</em> we can run <code>npm 
 <li>links to application source code or running demo (<a href="https://codesandbox.io/s/angular">Codesandbox is awesome for this!</a>) (including connection/authentication information)</li>
 </ul>
 </li>
-<li>add relevant labels (bug, accsibility, design, discussion, feature, etc)</li>
+<li>add relevant labels (bug, accessibility, design, discussion, feature, etc)</li>
 <li>if you have a fix to contribute, assign yourself, otherwise leave unassigned</li>
 </ul>
 <h4 id="npm-commands">npm commands</h4>
-<p>To keep our build dependancies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.</p>
+<p>To keep our build dependencies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.</p>
 <ul>
 <li><code>npm run storybook</code> to run storybook (port 6006)</li>
 <li><code>npm run build</code> to generate the dist</li>
