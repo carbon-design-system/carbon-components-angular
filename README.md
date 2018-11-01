@@ -66,7 +66,7 @@ _Finally_ we can run `npm start` and start building out our application!
   - attach a screenshot (or a gif!) for design reference if needed
   - reference the related issue
   	- "closes #123" or "fixes #123" will close issue #123 once the PR is merged
-  	- "issue #123" just refences the issue. Only use this if you definitly need the issue to remain open.
+  	- "issue #123" just references the issue. Only use this if you definitely need the issue to remain open.
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
 - [link to code review checklist goes here](#)
@@ -83,7 +83,7 @@ _Finally_ we can run `npm start` and start building out our application!
   - screenshots if needed
   - relevant code snippets
   - links to application source code or running demo ([Codesandbox is awesome for this!](https://codesandbox.io/s/angular)) (including connection/authentication information)
-- add relevant labels (bug, accsibility, design, discussion, feature, etc)
+- add relevant labels (bug, accessibility, design, discussion, feature, etc)
 - if you have a fix to contribute, assign yourself, otherwise leave unassigned
 
 #### npm commands
