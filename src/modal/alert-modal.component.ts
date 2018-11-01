@@ -48,7 +48,7 @@ import { BaseModal } from "./base-modal.class";
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [modalType]="modalType" [modalLabel]="modalTitle">
+		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle">
 			<ibm-modal-header (closeSelect)="closeModal()">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>

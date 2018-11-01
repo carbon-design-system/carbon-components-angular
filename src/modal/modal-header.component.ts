@@ -9,7 +9,7 @@ import { I18n } from "./../i18n/i18n.module";
 /**
  * ***Inputs***
  * ```html
- * <ibm-modal-header [modalType]="default">Header text</ibm-modal-header>
+ * <ibm-modal-header>Header text</ibm-modal-header>
  * ```
  *
  * ***Outputs***
@@ -23,7 +23,7 @@ import { I18n } from "./../i18n/i18n.module";
 @Component({
 	selector: "ibm-modal-header",
 	template: `
-		<header class="{{modalType}} bx--modal-header">
+		<header class="{{theme}} bx--modal-header">
 			<div class="bx--modal-header">
 				<ng-content></ng-content>
 			</div>
@@ -54,7 +54,7 @@ export class ModalHeader {
 	 * @type {"default" | "warning" | "error"}
 	 * @memberof ModalHeader
 	 */
-	@Input() modalType = "default";
+	@Input() theme = "default";
 	/**
 	 * Accessible label for the header close button.
 	 * Defaults to the `MODAL.CLOSE` value from the i18n service.

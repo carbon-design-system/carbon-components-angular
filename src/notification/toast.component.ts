@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 
 import { NotificationService } from "./notification.service";
-import { NotificationContent } from "./notification-content.interface";
+import { NotificationContent, ToastContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
 
 /**
@@ -49,7 +49,7 @@ export class Toast extends Notification implements OnInit {
 	 * `message` is message for notification to display
 	 *
 	 */
-	@Input() notificationObj: NotificationContent;
+	@Input() notificationObj: ToastContent;
 
 	@HostBinding("attr.id") toastID = "notification";
 	@HostBinding("class.bx--toast-notification") toastClass = true;
