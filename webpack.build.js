@@ -22,12 +22,12 @@ function rxjsExternal(context, request, cb) {
 module.exports = [{
 	devtool: "source-map",
 	entry: {
-		neutrino: "./src/index.ts",
+		"carbon-angular": "./src/index.ts",
 	},
 	output: {
 		path: __dirname + "/dist/bundle",
-		filename: "neutrino.umd.js",
-		library: "neutrino",
+		filename: "carbon-angular.umd.js",
+		library: "carbon-angular",
 		libraryTarget: "umd"
 	},
 	externals: [
