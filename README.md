@@ -17,7 +17,7 @@ Then we need to include carbon-components in `src/styles.scss`:
 @import "~carbon-components/scss/globals/scss/styles.scss";
 ```
 
-> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not polute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
+> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not pollute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
 
 Then set up our translations in `src/app/app.module.ts`:
 
@@ -66,7 +66,7 @@ _Finally_ we can run `npm start` and start building out our application!
   - attach a screenshot (or a gif!) for design reference if needed
   - reference the related issue
   	- "closes #123" or "fixes #123" will close issue #123 once the PR is merged
-  	- "issue #123" just refences the issue. Only use this if you definitly need the issue to remain open.
+  	- "issue #123" just references the issue. Only use this if you definitely need the issue to remain open.
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
 - [link to code review checklist goes here](#)
@@ -83,11 +83,11 @@ _Finally_ we can run `npm start` and start building out our application!
   - screenshots if needed
   - relevant code snippets
   - links to application source code or running demo ([Codesandbox is awesome for this!](https://codesandbox.io/s/angular)) (including connection/authentication information)
-- add relevant labels (bug, accsibility, design, discussion, feature, etc)
+- add relevant labels (bug, accessibility, design, discussion, feature, etc)
 - if you have a fix to contribute, assign yourself, otherwise leave unassigned
 
 #### npm commands
-To keep our build dependancies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.
+To keep our build dependencies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.
 - `npm run storybook` to run storybook (port 6006)
 - `npm run build` to generate the dist
 - `docs:build` to build documentation
