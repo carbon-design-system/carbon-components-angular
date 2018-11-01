@@ -35,7 +35,6 @@ storiesOf("Tooltip", module)
 			</ng-template>
 			<span
 				[ibmTooltip]="template"
-				appendToBody="true"
 				trigger="click"
 				placement="bottom"
 				style="cursor: pointer;">
