@@ -109,10 +109,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@Input() displayValue = "";
 	/** "single" or "multi" for single or multi select lists */
 	@Input() type: "single" | "multi" = "single";
-	/** "sm" | "md" | "default" | "lg"
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 */
-	@Input() size: "sm" | "md" | "default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/** is the input disabled. true/false */
 	@Input() disabled = false;
 	/** the direction of the pills */

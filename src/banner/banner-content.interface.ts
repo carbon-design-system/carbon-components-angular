@@ -1,3 +1,8 @@
+/**
+ * Deprecated in favour of `NotificationContent` (to be removed in v3.0).
+ *
+ * @deprecated
+ */
 export interface BannerContent {
 	type: string;
 	title: string;

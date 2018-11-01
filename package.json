@@ -1,6 +1,6 @@
 {
   "name": "carbon-components-angular",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Next generation components",
   "main": "index.js",
   "scripts": {
@@ -95,7 +95,7 @@
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
     "babel-core": "6.26.3",
-    "carbon-components": "9.20.0",
+    "carbon-components": "9.42.3",
     "codelyzer": "4.0.2",
     "commitizen": "2.10.1",
     "core-js": "2.5.5",
@@ -128,7 +128,7 @@
     "run-sequence": "2.2.0",
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
-    "semantic-release": "15.9.6",
+    "semantic-release": "15.10.6",
     "style-loader": "0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",

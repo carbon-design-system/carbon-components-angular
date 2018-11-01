@@ -28,7 +28,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
-			<div class="bx--select">
+			<div
+				[ngClass]="{'bx--select--inline': display === 'inline'}"
+				class="bx--select">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select
 					#select
@@ -57,6 +59,11 @@ export class Select implements ControlValueAccessor {
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
 	static selectCount = 0;
+
+	/**
+	 * `inline` or `default` select displays
+	 */
+	@Input() display: "inline" | "default" = "default";
 	/**
 	 * Label for the select. Appears above the input.
 	 */

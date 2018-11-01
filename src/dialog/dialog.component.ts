@@ -173,7 +173,8 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		const placeDialogInContainer = () => {
 			// only do the work to find the scroll containers if we're appended to body
-			if (this.dialogConfig.appendToBody) {
+			// or skip this work if we're inline
+			if (!this.dialogConfig.appendInline) {
 				// walk the parents and subscribe to all the scroll events we can
 				while (node.parentElement && node !== document.body) {
 					if (isScrollableElement(node)) {
@@ -210,11 +211,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		// helper to find the position based on the current/given environment
 		const findPosition = (reference, target, placement) => {
 			let pos;
-			if (this.dialogConfig.appendToBody) {
+			if (this.dialogConfig.appendInline) {
+				pos = this.addGap[placement](position.findRelative(reference, target, placement));
+			} else {
 				pos = this.addGap[placement](position.findAbsolute(reference, target, placement));
 				pos = position.addOffset(pos, window.scrollY, window.scrollX);
-			} else {
-				pos = this.addGap[placement](position.findRelative(reference, target, placement));
 			}
 			return pos;
 		};
@@ -226,13 +227,31 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		// split always retuns an array, so we can just use the auto position logic
 		// for single positions too
 		const placements = this.dialogConfig.placement.split(",");
-		for (const placement of placements) {
+		const weightedPlacements = placements.map(placement => {
 			const pos = findPosition(parentEl, el, placement);
-			if (position.checkPlacement(el, pos)) {
-				dialogPlacement = placement;
-				break;
-			}
-		}
+			let box = position.getPlacementBox(el, pos);
+			let hiddenHeight = box.bottom - window.innerHeight - window.scrollY;
+			let hiddenWidth = box.right - window.innerWidth - window.scrollX;
+			// if the hiddenHeight or hiddenWidth is negative, reset to offsetHeight or offsetWidth
+			hiddenHeight = hiddenHeight < 0 ? el.offsetHeight : hiddenHeight;
+			hiddenWidth = hiddenWidth < 0 ? el.offsetWidth : hiddenWidth;
+			const area = el.offsetHeight * el.offsetWidth;
+			const hiddenArea = hiddenHeight * hiddenWidth;
+			let visibleArea = area - hiddenArea;
+			// if the visibleArea is 0 set it back to area (to calculate the percentage in a useful way)
+			visibleArea = visibleArea === 0 ? area : visibleArea;
+			const visiblePercent = visibleArea / area;
+			return {
+				placement,
+				weight: visiblePercent
+			};
+		});
+
+		// sort the placments from best to worst
+		weightedPlacements.sort((a, b) => b.weight - a.weight);
+		// pick the best!
+		dialogPlacement = weightedPlacements[0].placement;
+
 		// calculate the final position
 		const pos = findPosition(parentEl, el, dialogPlacement);
 

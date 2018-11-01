@@ -130,25 +130,18 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	@Input() items: Array<ListItem> = [];
 	/**
 	 * Text to show when nothing is selected.
-	 * @memberof ComboBox
 	 */
 	@Input() placeholder = "Filter...";
 	/**
 	 * Combo box type (supporting single or multi selection of items).
-	 * @type {("single" | "multi")}
-	 * @memberof ComboBox
 	 */
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * Combo box render size.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default" | "lg")}
-	 * @memberof ComboBox
 	 */
-	@Input() size: "sm" | "md" | "default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to `true` to disable combobox.
-	 * @memberof ComboBox
 	 */
 	@HostBinding("attr.aria-disabled") @Input() disabled = false;
 	/**
@@ -250,7 +243,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 					this.updatePills();
 					this.propagateChangeCallback(this.view.getSelected());
 				} else {
-					if (event.item.selected) {
+					if (event.item && event.item.selected) {
 						this.selectedValue = event.item.content;
 						this.propagateChangeCallback(event.item);
 					} else {
