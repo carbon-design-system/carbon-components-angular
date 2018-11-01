@@ -128,7 +128,7 @@
     "run-sequence": "2.2.0",
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
-    "semantic-release": "15.9.6",
+    "semantic-release": "15.10.6",
     "style-loader": "0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",
