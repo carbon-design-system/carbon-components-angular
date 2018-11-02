@@ -3824,7 +3824,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	_appendToBody() {
 		const positionDropdown &#x3D; () &#x3D;&gt; {
-			let pos &#x3D; position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, &quot;bottom&quot;);
+			let pos &#x3D; position.findAbsolute(this.dropdownButton.nativeElement, this.dropdownWrapper, &quot;bottom&quot;);
 			// add -40 to the top position to account for carbon styles
 			pos &#x3D; position.addOffset(pos, -40, 0);
 			pos &#x3D; position.addOffset(pos, window.scrollY, window.scrollX);
@@ -3833,7 +3833,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.dropdownMenu.nativeElement.style.display &#x3D; &quot;block&quot;;
 		this.dropdownWrapper &#x3D; document.createElement(&quot;div&quot;);
 		this.dropdownWrapper.className &#x3D; &#x60;dropdown ${this.elementRef.nativeElement.className}&#x60;;
-		this.dropdownWrapper.style.width &#x3D; this.elementRef.nativeElement.offsetWidth + &quot;px&quot;;
+		this.dropdownWrapper.style.width &#x3D; this.dropdownButton.nativeElement.offsetWidth + &quot;px&quot;;
 		this.dropdownWrapper.style.position &#x3D; &quot;absolute&quot;;
 		this.dropdownWrapper.appendChild(this.dropdownMenu.nativeElement);
 		document.body.appendChild(this.dropdownWrapper);
