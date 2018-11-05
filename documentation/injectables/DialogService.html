@@ -1287,6 +1287,9 @@
                                         <span class="modifier">Public</span> <a href="#isOpen">isOpen</a>
                                     </li>
                                     <li>
+                                        <span class="modifier">Private</span> <a href="#listeningForBodyClicks">listeningForBodyClicks</a>
+                                    </li>
+                                    <li>
                                         <span class="modifier">Public</span> <a href="#onClose">onClose</a>
                                     </li>
                                 </ul>
@@ -1310,6 +1313,9 @@
                                          <a href="#open">open</a>
                                     </li>
                                     <li>
+                                         <a href="#singletonClickListen">singletonClickListen</a>
+                                    </li>
+                                    <li>
                                          <a href="#toggle">toggle</a>
                                     </li>
                                 </ul>
@@ -1330,7 +1336,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/dialog.service.ts:59</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/dialog/dialog.service.ts:64</a></div>
                                         </td>
                                     </tr>
             
@@ -1408,7 +1414,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/dialog/dialog.service.ts:141</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/dialog/dialog.service.ts:146</a></div>
                                         </td>
                                     </tr>
             
@@ -1472,7 +1478,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/dialog/dialog.service.ts:78</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/dialog/dialog.service.ts:83</a></div>
                                         </td>
                                     </tr>
             
@@ -1534,7 +1540,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/dialog/dialog.service.ts:104</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dialog/dialog.service.ts:109</a></div>
                                         </td>
                                     </tr>
             
@@ -1595,6 +1601,45 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="singletonClickListen"></a>
+                                    <span class="name"><b> singletonClickListen</b><a href="#singletonClickListen"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>singletonClickListen()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/dialog/dialog.service.ts:176</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Fix for safari hijacking clicks.</p>
+            <p>Runs on <code>ngOnInit</code> of every dialog. Ensures we don&#39;t have multiple listeners
+            because having many of them could degrade performance in certain cases (and is
+            not necessary for our use case)</p>
+            <p>This is an internally used function, can change at any point (even get removed)
+            and changes to it won&#39;t be considered a breaking change. Use at your own risk.</p>
+            </div>
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="toggle"></a>
                                     <span class="name"><b> toggle</b><a href="#toggle"><span class="fa fa-link"></span></a></span>
                                 </td>
@@ -1608,7 +1653,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/dialog/dialog.service.ts:88</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/dialog.service.ts:93</a></div>
                                         </td>
                                     </tr>
             
@@ -1692,7 +1737,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/dialog/dialog.service.ts:31</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/dialog/dialog.service.ts:36</a></div>
                                         </td>
                                     </tr>
             
@@ -1727,7 +1772,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/dialog.service.ts:43</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/dialog.service.ts:48</a></div>
                                         </td>
                                     </tr>
             
@@ -1762,7 +1807,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/dialog.service.ts:59</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/dialog/dialog.service.ts:64</a></div>
                                         </td>
                                     </tr>
             
@@ -1797,7 +1842,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/dialog/dialog.service.ts:51</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/dialog.service.ts:56</a></div>
                                         </td>
                                     </tr>
             
@@ -1832,13 +1877,47 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/dialog/dialog.service.ts:25</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/dialog/dialog.service.ts:30</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-description"><p>Reflects the open or closed state of the <code>Dialog</code>.</p>
+            </div>
+                                </td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <a name="listeningForBodyClicks"></a>
+                                    <span class="name"><b><span class="modifier">Private</span> listeningForBodyClicks</b><a href="#listeningForBodyClicks"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <span class="modifier-icon fa fa-lock"></span><code>listeningForBodyClicks:     <code></code>
+            </code>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <i>Default value : </i><code>false</code>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/dialog/dialog.service.ts:24</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Used in <code>singletonClickListen</code>, don&#39;t count on its existence and values.</p>
             </div>
                                 </td>
                             </tr>
@@ -1867,7 +1946,7 @@
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/dialog.service.ts:37</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/dialog/dialog.service.ts:42</a></div>
                                         </td>
                                     </tr>
             
@@ -1906,6 +1985,11 @@ import { PlaceholderService } from &quot;./../placeholder/placeholder.module&quo
  */
 @Injectable()
 export class DialogService {
+	/**
+	 * Used in &#x60;singletonClickListen&#x60;, don&#x27;t count on its existence and values.
+	 */
+	private static listeningForBodyClicks &#x3D; false;
+
 	/**
 	 * Reflects the open or closed state of the &#x60;Dialog&#x60;.
 	 * @memberof DialogService
@@ -2043,6 +2127,25 @@ export class DialogService {
 			if (this.dialogSubscription) {
 				this.dialogSubscription.unsubscribe();
 			}
+		}
+	}
+
+	/**
+	 * Fix for safari hijacking clicks.
+	 *
+	 * Runs on &#x60;ngOnInit&#x60; of every dialog. Ensures we don&#x27;t have multiple listeners
+	 * because having many of them could degrade performance in certain cases (and is
+	 * not necessary for our use case)
+	 *
+	 * This is an internally used function, can change at any point (even get removed)
+	 * and changes to it won&#x27;t be considered a breaking change. Use at your own risk.
+	 */
+	singletonClickListen() {
+		console.log(&quot;singleton&quot;);
+		if (!DialogService.listeningForBodyClicks) {
+			console.log(&quot;singleton click&quot;);
+			document.body.firstElementChild.addEventListener(&quot;click&quot;, () &#x3D;&gt; null, true);
+			DialogService.listeningForBodyClicks &#x3D; true;
 		}
 	}
 }

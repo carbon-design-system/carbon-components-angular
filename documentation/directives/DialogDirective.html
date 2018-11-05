@@ -2337,7 +2337,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	ngOnInit() {
 		// fix for safari hijacking clicks
-		document.body.firstElementChild.addEventListener(&quot;click&quot;, () &#x3D;&gt; null, true);
+		this.dialogService.singletonClickListen();
 
 		// bind events for hovering or clicking the host
 		if (this.trigger &#x3D;&#x3D;&#x3D; &quot;hover&quot; || this.trigger &#x3D;&#x3D;&#x3D; &quot;mouseenter&quot;) {
