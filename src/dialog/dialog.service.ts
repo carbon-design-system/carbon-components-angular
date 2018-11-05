@@ -19,6 +19,11 @@ import { PlaceholderService } from "./../placeholder/placeholder.module";
 @Injectable()
 export class DialogService {
 	/**
+	 * Used in `singletonClickListen`, don't count on its existence and values.
+	 */
+	private static listeningForBodyClicks = false;
+
+	/**
 	 * Reflects the open or closed state of the `Dialog`.
 	 * @memberof DialogService
 	 */
@@ -155,6 +160,25 @@ export class DialogService {
 			if (this.dialogSubscription) {
 				this.dialogSubscription.unsubscribe();
 			}
+		}
+	}
+
+	/**
+	 * Fix for safari hijacking clicks.
+	 *
+	 * Runs on `ngOnInit` of every dialog. Ensures we don't have multiple listeners
+	 * because having many of them could degrade performance in certain cases (and is
+	 * not necessary for our use case)
+	 *
+	 * This is an internally used function, can change at any point (even get removed)
+	 * and changes to it won't be considered a breaking change. Use at your own risk.
+	 */
+	singletonClickListen() {
+		console.log("singleton");
+		if (!DialogService.listeningForBodyClicks) {
+			console.log("singleton click");
+			document.body.firstElementChild.addEventListener("click", () => null, true);
+			DialogService.listeningForBodyClicks = true;
 		}
 	}
 }
