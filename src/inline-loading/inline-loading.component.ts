@@ -31,10 +31,14 @@ import {
 export class InlineLoading {
 	/**
      * Specify the text description for the loading state.
+	 *
+	 * @memberof InlineLoading
      */
 	@Input() loadingText;
 	/**
      * Specify the text description for the success state.
+	 *
+	 * @memberof InlineLoading
      */
 	@Input() successText;
 
@@ -61,16 +65,23 @@ export class InlineLoading {
 
 	/**
 	 * Emits event after the success state is active
+	 *
+	 * @type {EventEmitter<any>}
+	 * @memberof InlineLoading
 	 */
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
 	/**
      * Provide a delay for the `setTimeout` for success.
+	 *
+	 * @memberof InlineLoading
      */
 	successDelay = 1500;
 
 	/**
      * Set to `true` if the action is completed successfully.
+	 *
+	 * @memberof InlineLoading
      */
 	_success = false;
 }
