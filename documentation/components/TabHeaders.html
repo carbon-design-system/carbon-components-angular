@@ -2116,12 +2116,12 @@ import { Tab } from &quot;./tab.component&quot;;
 						&#x27;bx--tabs__nav-item--selected&#x27;: tab.active
 					}&quot;
 					class&#x3D;&quot;bx--tabs__nav-item&quot;
-					role&#x3D;&quot;presentation&quot;&gt;
+					role&#x3D;&quot;presentation&quot;
+					(click)&#x3D;&quot;selectTab(tabref, tab, i)&quot;&gt;
 					&lt;a
 						[attr.aria-selected]&#x3D;&quot;tab.active&quot;
 						[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
 						[attr.aria-controls]&#x3D;&quot;tab.id&quot;
-						(click)&#x3D;&quot;selectTab(tabref, tab, i)&quot;
 						(focus)&#x3D;&quot;onTabFocus(tabref, i)&quot;
 						draggable&#x3D;&quot;false&quot;
 						id&#x3D;&quot;{{tab.id}}-header&quot;
