@@ -11,6 +11,7 @@ export * from "./dropdown/dropdown.module";
 export * from "./forms/forms.module";
 export * from "./i18n/i18n.module";
 export * from "./icon/icon.module";
+export * from "./inline-loading/inline-loading.module";
 export * from "./input/input.module";
 export * from "./list-group/list-group.module";
 export * from "./loading/loading.module";
