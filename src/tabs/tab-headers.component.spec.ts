@@ -22,5 +22,4 @@ describe("TabHeadersComponent", () => {
 	it("should work", () => {
 		expect(component instanceof TabHeaders).toBe(true);
 	});
-
 });
