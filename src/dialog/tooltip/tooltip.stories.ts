@@ -40,5 +40,6 @@ storiesOf("Tooltip", module)
 				style="cursor: pointer;">
 				Click for tooltip
 			</span>
+			<ibm-placeholder></ibm-placeholder>
 		`
 	}));
