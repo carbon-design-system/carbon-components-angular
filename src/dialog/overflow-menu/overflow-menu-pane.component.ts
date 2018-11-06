@@ -69,44 +69,39 @@ export class OverflowMenuPane extends Dialog {
 	hostkeys(event: KeyboardEvent) {
 		const listItems = this.listItems();
 
-		switch (event.key) {
-			case "Down": // IE specific value
-			case "ArrowDown":
-				event.preventDefault();
-				if (!isFocusInLastItem(event, listItems))  {
-					const index = listItems.findIndex(item => item === event.target);
-					listItems[index + 1].focus();
-				} else {
-					listItems[0].focus();
-				}
-				break;
-
-			case "Up": // IE specific value
-			case "ArrowUp":
-				event.preventDefault();
-				if (!isFocusInFirstItem(event, listItems))  {
-					const index = listItems.findIndex(item => item === event.target);
-					listItems[index - 1].focus();
-				} else {
-					listItems[listItems.length - 1].focus();
-				}
-				break;
-
-			case "Home":
-				event.preventDefault();
+		if (event.key === "Down" || event.key === "ArrowDown") {
+			event.preventDefault();
+			if (!isFocusInLastItem(event, listItems))  {
+				const index = listItems.findIndex(item => item === event.target);
+				listItems[index + 1].focus();
+			} else {
 				listItems[0].focus();
-				break;
+			}
+		}
 
-			case "End":
-				event.preventDefault();
+		if (event.key === "Up" || event.key === "ArrowUp") {
+			event.preventDefault();
+			if (!isFocusInFirstItem(event, listItems))  {
+				const index = listItems.findIndex(item => item === event.target);
+				listItems[index - 1].focus();
+			} else {
 				listItems[listItems.length - 1].focus();
-				break;
+			}
+		}
 
-			case "Esc": // IE specific value
-			case "Escape":
-				event.stopImmediatePropagation();
-				this.doClose();
-				break;
+		if (event.key === "Home") {
+			event.preventDefault();
+			listItems[0].focus();
+		}
+
+		if (event.key === "End") {
+			event.preventDefault();
+			listItems[listItems.length - 1].focus();
+		}
+
+		if (event.key === "Esc" || event.key === "Escape" || event.key === "Tab" && event.shiftKey) {
+			event.preventDefault();
+			this.doClose();
 		}
 	}
 
