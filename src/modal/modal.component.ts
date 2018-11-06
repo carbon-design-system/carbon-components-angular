@@ -167,7 +167,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			primaryFocusElement.focus();
 			return;
 		}
-		getFocusElementList(this.modal.nativeElement)[0].focus();
+		if (getFocusElementList(this.modal.nativeElement).length > 0) {
+			getFocusElementList(this.modal.nativeElement)[0].focus();
+		} else {
+			this.modal.nativeElement.focus();
+		}
 	}
 
 	/**
