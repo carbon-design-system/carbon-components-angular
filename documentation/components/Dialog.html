@@ -1540,7 +1540,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/dialog/dialog.component.ts:284</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/dialog/dialog.component.ts:291</a></div>
                                 </td>
                             </tr>
     
@@ -1568,7 +1568,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/dialog/dialog.component.ts:262</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/dialog/dialog.component.ts:269</a></div>
                                 </td>
                             </tr>
     
@@ -1599,7 +1599,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/dialog/dialog.component.ts:295</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/dialog/dialog.component.ts:302</a></div>
                                 </td>
                             </tr>
     
@@ -1668,7 +1668,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/dialog/dialog.component.ts:303</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/dialog/dialog.component.ts:310</a></div>
                                 </td>
                             </tr>
     
@@ -1736,7 +1736,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/dialog/dialog.component.ts:197</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/dialog/dialog.component.ts:204</a></div>
                                 </td>
                             </tr>
     
@@ -1770,7 +1770,7 @@ explictly defined.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/dialog/dialog.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/dialog/dialog.component.ts:210</a></div>
                                 </td>
                             </tr>
     
@@ -2178,7 +2178,14 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngAfterViewInit() {
 		const dialogElement &#x3D; this.dialog.nativeElement;
-		dialogElement.classList &#x3D; &#x60;${dialogElement.classList} ${this.dialogConfig.wrapperClass}&#x60;;
+		// split the wrapper class list and apply separately to avoid IE from
+		// 1. throwing an error due to assigning a readonly property (classList)
+		// 2. throwing a SyntaxError due to passing an empty string to &#x60;add&#x60;
+		if (this.dialogConfig.wrapperClass) {
+			for (const extraClass of this.dialogConfig.wrapperClass.split(&quot; &quot;)) {
+				dialogElement.classList.add(extraClass);
+			}
+		}
 		this.placeDialog();
 		dialogElement.focus();
 		const parentEl: HTMLElement &#x3D; this.dialogConfig.parentRef.nativeElement;
