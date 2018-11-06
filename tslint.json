@@ -84,6 +84,13 @@
 			true,
 			"always"
 		],
+		"trailing-comma": [
+			true,
+			{
+				"multiline": "never",
+				"singleline": "never"
+			}
+		],
 		"triple-equals": [
 			true,
 			"allow-null-check",
@@ -129,9 +136,6 @@
 		"no-output-rename": true,
 		"no-forward-ref": true,
 		"use-life-cycle-interface": true,
-		"use-pipe-transform-interface": true,
-
-		"templates-use-public": true,
-		"invoke-injectable": true
+		"use-pipe-transform-interface": true
 	}
 }

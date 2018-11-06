@@ -20,6 +20,14 @@ export class TableHeaderItem {
 	sorted = false;
 
 	/**
+	 * Enables sorting on click by default.
+	 * If false then this column won't show a sorting arrow at all.
+	 *
+	 * @memberof TableHeaderItem
+	 */
+	sortable = true;
+
+	/**
 	 * Number of applied filters.
 	 *
 	 * `filter()` should set it to appropriate number.
@@ -27,6 +35,13 @@ export class TableHeaderItem {
 	 * @memberof TableHeaderItem
 	 */
 	filterCount = 0;
+
+	/**
+	 * Attach a class to the column, both the header and column cells.
+	 *
+	 * @memberof TableHeaderItem
+	 */
+	className: string;
 
 	/**
 	 * Style for the column, applied to every element in the column.
@@ -68,6 +83,15 @@ export class TableHeaderItem {
 	 * @memberof TableHeaderItem
 	 */
 	data: any;
+
+	/**
+	 * Data for the header item for general usage in the controller.
+	 * For example, which `field` is this column related to.
+	 *
+	 * @type {*}
+	 * @memberof TableHeaderItem
+	 */
+	metadata: any;
 
 	/**
 	 * Used to display data in a desired way.
@@ -204,14 +228,11 @@ export class TableHeaderItem {
 		};
 		// fill our object with provided props, and fallback to defaults
 		const data = Object.assign({}, defaults, rawData);
-		this.data = data.data;
-		this.visible = data.visible;
-		this.filterCount = data.filterCount;
-		this.template = data.template;
-		this.filterTemplate = data.filterTemplate;
-		this.filterFooter = data.filterFooter;
-		this.filterData = data.filterData;
-		this.style = data.style;
+		for (let property of Object.getOwnPropertyNames(data)) {
+			if (data.hasOwnProperty(property)) {
+				this[property] = data[property];
+			}
+		}
 	}
 
 	/**

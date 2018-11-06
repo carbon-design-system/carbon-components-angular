@@ -5,7 +5,10 @@ module.exports = [{
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: ["ts-loader"]
+				loader: "ts-loader",
+				options: {
+					transpileOnly: true
+				}
 			},
 			{
 				test: /\.html$/,
@@ -30,7 +33,7 @@ module.exports = [{
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: '<html><body></body></html>'
+			templateContent: '<html><body></body></html>'
 		})
 	],
 }];

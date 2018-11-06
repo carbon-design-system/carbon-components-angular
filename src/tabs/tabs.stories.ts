@@ -1,9 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
-
-import { TranslateModule } from "@ngx-translate/core";
+import { withKnobs } from "@storybook/addon-knobs/angular";
 
 import { TabsModule } from "../";
 
@@ -11,9 +7,8 @@ storiesOf("Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TabsModule,
-				TranslateModule.forRoot()
-			],
+				TabsModule
+			]
 		})
 	)
 	.addDecorator(withKnobs)

@@ -47,16 +47,22 @@
 			}
 		]
 	},
+	"CODE_SNIPPET": {
+		"CODE_SNIPPET_TEXT": "Code Snippet Text",
+		"SHOW_MORE": "Show more",
+		"SHOW_LESS": "Show less",
+		"SHOW_MORE_ICON": "Show more icon",
+		"COPY_CODE": "Copy code",
+		"COPIED": "Copied!"
+	},
 	"DIALOG": {
-		"TOOLTIP": {
-			"CLOSE": "Close tooltip"
-		},
 		"POPOVER" : {
 			"CLOSE": "Close popover"
 		}
 	},
 	"DROPDOWN": {
-		"SELECTED": "{{ number }} selected",
+		"OPEN": "Open menu",
+		"SELECTED": "selected",
 		"CLEAR": "Clear selection",
 		"FILTER": {
 			"SELECTED_ONLY": "Show selected only",
@@ -65,11 +71,26 @@
 			"RESET_SEARCH": "Reset search"
 		}
 	},
-	"MODAL" : {
+	"LOADING": {
+		"TITLE": "Loading"
+	},
+	"MODAL": {
 		"CLOSE": "Close modal"
+	},
+	"NOTIFICATION": {
+		"CLOSE_BUTTON": "Close alert notification"
+	},
+	"OVERFLOW_MENU": {
+		"OVERFLOW": "Overflow"
 	},
 	"SIDENAV": {
 		"NAV_LABEL": "Side navigation"
+	},
+	"PAGINATION": {
+		"ITEMS_PER_PAGE": "Items per page:",
+		"OPEN_LIST_OF_OPTIONS": "Open list of options",
+		"BACKWARD": "Backward",
+		"FORWARD": "Forward"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",

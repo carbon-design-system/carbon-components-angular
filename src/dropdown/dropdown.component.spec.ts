@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
 import { ScrollableList } from "./scrollable-list.directive";
+import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
@@ -18,7 +18,7 @@ import { ScrollableList } from "./scrollable-list.directive";
 		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 	</ibm-dropdown>`
 })
-class DropdownTestComponent {
+class DropdownTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -33,18 +33,18 @@ describe("Dropdown", () => {
 			declarations: [
 				Dropdown,
 				DropdownList,
-				DropdownTestComponent,
+				DropdownTest,
 				ScrollableList
 			],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
-				StaticIconModule
+				StaticIconModule,
+				I18nModule
 			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(DropdownTestComponent);
+		fixture = TestBed.createComponent(DropdownTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -74,6 +74,5 @@ describe("Dropdown", () => {
 	it("should keep custom classes on the host el", () => {
 		const el = fixture.debugElement.query(By.css("ibm-dropdown"));
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
-		expect(el.nativeElement.classList.contains("dropdown")).toBe(true);
 	});
 });

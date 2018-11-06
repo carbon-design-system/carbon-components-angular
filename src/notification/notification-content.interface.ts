@@ -1,0 +1,14 @@
+export interface NotificationContent {
+	type: string;
+	title: string;
+	target?: string;
+	duration?: number;
+	smart?: boolean;
+	closeLabel?: string;
+	message: string;
+}
+
+export interface ToastContent extends NotificationContent {
+	subtitle: string;
+	caption: string;
+}

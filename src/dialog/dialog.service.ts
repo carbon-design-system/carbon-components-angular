@@ -1,20 +1,15 @@
 import {
 	EventEmitter,
 	Injector,
-	Component,
 	ComponentRef,
 	ComponentFactory,
 	ComponentFactoryResolver,
 	Injectable,
-	ApplicationRef,
-	ViewContainerRef,
-	Host
+	ViewContainerRef
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogConfig } from "./dialog-config.interface";
-import { DialogPlaceholderService } from "./dialog-placeholder.service";
-import { Popover } from "..";
-
+import { PlaceholderService } from "./../placeholder/placeholder.module";
 
 /**
  * `Dialog` object to be injected into other components.
@@ -23,6 +18,11 @@ import { Popover } from "..";
  */
 @Injectable()
 export class DialogService {
+	/**
+	 * Used in `singletonClickListen`, don't count on its existence and values.
+	 */
+	private static listeningForBodyClicks = false;
+
 	/**
 	 * Reflects the open or closed state of the `Dialog`.
 	 * @memberof DialogService
@@ -72,7 +72,7 @@ export class DialogService {
 	constructor(
 		protected componentFactoryResolver: ComponentFactoryResolver,
 		protected injector: Injector,
-		protected dialogPlaceholderService: DialogPlaceholderService
+		protected placeholderService: PlaceholderService
 	) {}
 
 	/**
@@ -108,21 +108,16 @@ export class DialogService {
 	 */
 	open(viewContainer: ViewContainerRef, dialogConfig: DialogConfig) {
 		if (!this.dialogRef) {
-			// holder for either the provided view, or the view from DialogPlaceholderService
-			let view = viewContainer;
-			if (dialogConfig.appendToBody && this.dialogPlaceholderService.viewContainerRef) {
-				view = this.dialogPlaceholderService.viewContainerRef;
+			if (dialogConfig.appendInline) {
 				// add our component to the view
-				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
-			} else if (dialogConfig.appendToBody && !this.dialogPlaceholderService.viewContainerRef) {
-				// fallback to the old insertion method if the viewref doesn't exist
-				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
+				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
+			} else if (!this.placeholderService.hasPlaceholderRef()) {
+				this.dialogRef = viewContainer.createComponent(this.componentFactory, 0, this.injector);
 				setTimeout(() => {
 					window.document.querySelector("body").appendChild(this.dialogRef.location.nativeElement);
 				});
 			} else {
-				// add our component to the view
-				this.dialogRef = view.createComponent(this.componentFactory, 0, this.injector);
+				this.dialogRef = this.placeholderService.createComponent(this.componentFactory, this.injector);
 			}
 
 			// initialize some extra options
@@ -133,7 +128,7 @@ export class DialogService {
 			this.isOpen = true;
 
 			this.dialogSubscription = this.onClose.subscribe(() => {
-				this.close(view);
+				this.close(viewContainer);
 			});
 
 			this.dialogRef.instance.elementRef.nativeElement.focus();
@@ -153,9 +148,8 @@ export class DialogService {
 
 		if (this.dialogRef) {
 			let elementToFocus = this.dialogRef.instance.dialogConfig["previouslyFocusedElement"];
-			if (this.dialogRef.instance.dialogConfig.appendToBody && this.dialogPlaceholderService.viewContainerRef) {
-				const vcRef = this.dialogPlaceholderService.viewContainerRef;
-				vcRef.remove(vcRef.indexOf(this.dialogRef.hostView));
+			if (this.placeholderService.hasPlaceholderRef() && !this.dialogRef.instance.dialogConfig.appendInline) {
+				this.placeholderService.destroyComponent(this.dialogRef);
 			} else {
 				viewContainer.remove(viewContainer.indexOf(this.dialogRef.hostView));
 			}
@@ -166,6 +160,25 @@ export class DialogService {
 			if (this.dialogSubscription) {
 				this.dialogSubscription.unsubscribe();
 			}
+		}
+	}
+
+	/**
+	 * Fix for safari hijacking clicks.
+	 *
+	 * Runs on `ngOnInit` of every dialog. Ensures we don't have multiple listeners
+	 * because having many of them could degrade performance in certain cases (and is
+	 * not necessary for our use case)
+	 *
+	 * This is an internally used function, can change at any point (even get removed)
+	 * and changes to it won't be considered a breaking change. Use at your own risk.
+	 */
+	singletonClickListen() {
+		console.log("singleton");
+		if (!DialogService.listeningForBodyClicks) {
+			console.log("singleton click");
+			document.body.firstElementChild.addEventListener("click", () => null, true);
+			DialogService.listeningForBodyClicks = true;
 		}
 	}
 }

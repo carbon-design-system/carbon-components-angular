@@ -1,8 +1,6 @@
 import {
 	Input,
-	Output,
 	Directive,
-	EventEmitter,
 	ElementRef,
 	HostListener,
 	OnChanges,
@@ -12,7 +10,7 @@ import {
 
 @Directive({
 	selector: "[ibmScrollableList]",
-	exportAs: "scrollable-list",
+	exportAs: "scrollable-list"
 })
 export class ScrollableList implements OnChanges, AfterViewInit {
 	/**

@@ -1,23 +1,27 @@
 {
   "name": "carbon-components-angular",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Next generation components",
   "main": "index.js",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s .storybook/public -p 6006",
     "docs:build": "compodoc src -p tsconfig.json",
     "docs:server": "compodoc src -p tsconfig.json -s -w",
-    "lint": "tslint -e spec.ts src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
+    "lint": "tslint src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
     "test": "karma start",
     "test:watch": "karma start --auto-watch --no-single-run",
     "utils:add": "git subtree add --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
     "utils:update": "git subtree pull --prefix=src/utils git@github.ibm.com:peretz/utils.git master --squash",
-    "prepush": "bash scripts/prepush.sh",
-    "build-storybook": "build-storybook -c .storybook -o dist/docs/storybook",
+    "build-storybook": "build-storybook -c .storybook -s .storybook/public -o dist/docs/storybook",
     "semantic-release": "semantic-release",
-    "commitmsg": "commitlint -E GIT_PARAMS",
     "commit": "git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "bash scripts/prepush.sh",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "release": {
     "pkgRoot": "dist"
@@ -48,7 +52,7 @@
     "type": "git",
     "url": "git@github.com:IBM/carbon-components-angular.git"
   },
-  "license": "Apache-2",
+  "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
     "@angular/animations": "^6.1.0",
@@ -59,11 +63,10 @@
     "@angular/http": "^6.1.0",
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
-    "@ngx-translate/core": "^10.0.0",
     "core-js": "^2.5.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "carbon-components": "^9.1.13"
+    "carbon-components": "^9.20.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.7.1",
@@ -79,10 +82,9 @@
     "@angular/platform-browser-dynamic": "6.1.0",
     "@angular/platform-server": "6.1.0",
     "@angular/router": "6.1.0",
-    "@commitlint/cli": "7.0.0",
+    "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.0.1",
     "@compodoc/compodoc": "1.0.4",
-    "@ngx-translate/core": "10.0.2",
     "@storybook/addon-actions": "3.4.8",
     "@storybook/addon-knobs": "3.4.8",
     "@storybook/addon-links": "3.4.8",
@@ -93,7 +95,7 @@
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
     "babel-core": "6.26.3",
-    "carbon-components": "9.1.13",
+    "carbon-components": "9.42.3",
     "codelyzer": "4.0.2",
     "commitizen": "2.10.1",
     "core-js": "2.5.5",
@@ -108,7 +110,7 @@
     "gulp-tap": "1.0.1",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
-    "husky": "0.14.3",
+    "husky": "1.1.2",
     "jasmine-core": "3.1.0",
     "karma": "2.0.2",
     "karma-chrome-launcher": "2.2.0",
@@ -120,14 +122,13 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "3.0.0",
-    "marked": "0.3.7",
-    "node-sass": "4.9.0",
+    "node-sass": "4.9.3",
     "postcss-loader": "2.1.4",
     "raw-loader": "0.5.1",
     "run-sequence": "2.2.0",
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
-    "semantic-release": "15.9.6",
+    "semantic-release": "15.10.6",
     "style-loader": "0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",

@@ -53,12 +53,12 @@ import { Tab } from "./tab.component";
 						'bx--tabs__nav-item--selected': tab.active
 					}"
 					class="bx--tabs__nav-item"
-					role="presentation">
+					role="presentation"
+					(click)="selectTab(tabref, tab, i)">
 					<a
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
-						(click)="selectTab(tabref, tab, i)"
 						(focus)="onTabFocus(tabref, i)"
 						draggable="false"
 						id="{{tab.id}}-header"
@@ -139,6 +139,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
 				event.preventDefault();
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
+			} else {
+				event.preventDefault();
+				this.allTabHeaders[0].focus();
 			}
 		}
 
@@ -146,6 +149,9 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
 				this.allTabHeaders[this.currentSelectedTab - 1].focus();
+			} else {
+				event.preventDefault();
+				this.allTabHeaders[this.allTabHeaders.length - 1].focus();
 			}
 		}
 	}

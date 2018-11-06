@@ -1,10 +1,12 @@
-import { TableHeaderItem } from "./table-header-item.class";
-import { TableItem } from "./table-item.class";
 import {
 	EventEmitter
 } from "@angular/core";
 
-export class TableModel {
+import { PaginationModel } from "./../pagination/pagination-model.class";
+import { TableHeaderItem } from "./table-header-item.class";
+import { TableItem } from "./table-item.class";
+
+export class TableModel implements PaginationModel {
 	/**
 	 * Sets data of the table.
 	 *
@@ -13,6 +15,10 @@ export class TableModel {
 	 * @memberof TableModel
 	 */
 	set data(newData: Array<Array<TableItem>>) {
+		if (!newData || (Array.isArray(newData) && newData.length === 0) ) {
+			newData = [[]];
+		}
+
 		this._data = newData;
 
 		// init rowsSelected

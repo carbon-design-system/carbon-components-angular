@@ -11,19 +11,20 @@ import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { RadioComponent, RadioGroup } from "./radio.component";
+import { Radio } from "./radio.component";
+import { RadioGroup } from "./radio-group.component";
 
 describe("RadioGroup", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadioComponent, RadioGroup, RadioTestComponent],
+			declarations: [Radio, RadioGroup, RadioTest],
 			imports: [BrowserAnimationsModule, FormsModule, StaticIconModule],
 			providers: []
 		});
 	});
 
 	it("should work", () => {
-		const fixture = TestBed.createComponent(RadioTestComponent);
+		const fixture = TestBed.createComponent(RadioTest);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(RadioGroup));
@@ -31,11 +32,11 @@ describe("RadioGroup", () => {
 	});
 
 	it("should select one", () => {
-		const fixture = TestBed.createComponent(RadioTestComponent);
+		const fixture = TestBed.createComponent(RadioTest);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(RadioGroup));
-		const radioOne = fixture.debugElement.query(By.directive(RadioComponent));
+		const radioOne = fixture.debugElement.query(By.directive(Radio));
 		radioOne.nativeElement.querySelector("input").click();
 		fixture.detectChanges();
 
@@ -51,29 +52,29 @@ describe("RadioGroup", () => {
 			class="indent">Radio {{one}}
 		</ibm-radio>
 	</ibm-radio-group>`,
-	entryComponents: [RadioComponent]
+	entryComponents: [Radio]
 })
-class RadioTestComponent {
+class RadioTest {
 	manyRadios = ["one", "two", "three", "four", "five", "six"];
 	radio: string;
 }
 
 
 describe("RadioComponent", () => {
-	let component: RadioComponent;
-	let fixture: ComponentFixture<RadioComponent>;
+	let component: Radio;
+	let fixture: ComponentFixture<Radio>;
 	let de: DebugElement;
 	let el: HTMLElement;
 	let inputElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [RadioComponent],
+			declarations: [Radio],
 			imports: [BrowserAnimationsModule],
 			providers: []
 		});
 
-		fixture = TestBed.createComponent(RadioComponent);
+		fixture = TestBed.createComponent(Radio);
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
@@ -81,6 +82,6 @@ describe("RadioComponent", () => {
 	});
 
 	it("should work", () => {
-		expect(component instanceof RadioComponent).toBe(true);
+		expect(component instanceof Radio).toBe(true);
 	});
 });

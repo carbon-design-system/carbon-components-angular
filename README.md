@@ -20,7 +20,7 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save-dev carbon-components-angular carbon-components @ngx-translate/core
+$ npm i --save-dev carbon-components-angular carbon-components
 ```
 
 Then we need to include carbon-components in `src/styles.scss`:
@@ -29,12 +29,13 @@ Then we need to include carbon-components in `src/styles.scss`:
 @import "~carbon-components/scss/globals/scss/styles.scss";
 ```
 
-And set up our translations in `src/app/app.module.ts`:
+> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not pollute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
+
+Then set up our translations in `src/app/app.module.ts`:
 
 ```ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 
@@ -44,7 +45,6 @@ import { AppComponent } from './app.component';
   ],
   imports: [
 	BrowserModule,
-	TranslateModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -80,7 +80,7 @@ _Finally_ we can run `npm start` and start building out our application!
   - attach a screenshot (or a gif!) for design reference if needed
   - reference the related issue
   	- "closes #123" or "fixes #123" will close issue #123 once the PR is merged
-  	- "issue #123" just refences the issue. Only use this if you definitly need the issue to remain open.
+  	- "issue #123" just references the issue. Only use this if you definitely need the issue to remain open.
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
 - [link to code review checklist goes here](#)
@@ -97,11 +97,11 @@ _Finally_ we can run `npm start` and start building out our application!
   - screenshots if needed
   - relevant code snippets
   - links to application source code or running demo ([Codesandbox is awesome for this!](https://codesandbox.io/s/angular)) (including connection/authentication information)
-- add relevant labels (bug, accsibility, design, discussion, feature, etc)
+- add relevant labels (bug, accessibility, design, discussion, feature, etc)
 - if you have a fix to contribute, assign yourself, otherwise leave unassigned
 
 #### npm commands
-To keep our build dependancies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.
+To keep our build dependencies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.
 - `npm run storybook` to run storybook (port 6006)
 - `npm run build` to generate the dist
 - `docs:build` to build documentation
@@ -113,7 +113,9 @@ To keep our build dependancies local we use npm scripts to run our webpack, gulp
  - [Style guide (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Style-guide)
  - [General component API guidelines (WIP)](https://github.com/IBM/carbon-components-angular/wiki/Component-API-guidelines)
  - [Angular style guide](https://angular.io/styleguide)
- - [I18N tooling](https://angular.io/docs/ts/latest/cookbook/i18n.html)
+ - I18N tooling
+	- [I18N guide](https://angular.io/guide/i18n)
+	- [ngx-translate](https://github.com/ngx-translate/core)
  - (Angular 2+ doesn't have anything like ngAria, instead here's [The A11Y Project](http://a11yproject.com/), [WAI-ARIA specs](https://www.w3.org/TR/wai-aria/), and [WAI-ARIA Authoring Practices](https://www.w3.org/TR/2016/WD-wai-aria-practices-1.1-20160317/))
  - [TypeScript docs](https://www.typescriptlang.org/docs/tutorial.html)
 

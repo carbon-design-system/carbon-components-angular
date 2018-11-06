@@ -1,7 +1,7 @@
 import {
 	Component,
 	Input,
-	OnInit,
+	OnInit
 } from "@angular/core";
 import { DateTimeModel } from "./../date-time-model.class";
 import { range } from "../../common/utils";
@@ -26,7 +26,7 @@ import { range } from "../../common/utils";
 				}">
 					<div>
 						<p>
-							{{months[i * 4 + j] | translate}}
+							{{months[i * 4 + j]}}
 						</p>
 					</div>
 				</td>

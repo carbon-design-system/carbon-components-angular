@@ -1,7 +1,7 @@
 import {
 	Component,
 	Input,
-	OnInit,
+	OnInit
 } from "@angular/core";
 import { DateTimeModel } from "./../date-time-model.class";
 import { range } from "../../common/utils";
@@ -15,7 +15,7 @@ import { range } from "../../common/utils";
 		*ngFor="let month of range(monthCount)">
 			<table class="calendar_grid calendar_month">
 				<tr class="grid_row_header--month">
-					<th *ngFor="let day of model.daysOfWeek"><div>{{day | translate}}</div></th>
+					<th *ngFor="let day of model.daysOfWeek"><div>{{day}}</div></th>
 				</tr>
 				<tr
 				class="grid_row--month"

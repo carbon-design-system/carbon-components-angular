@@ -10,7 +10,7 @@ import { SampleInterface } from "./sample.interface";
 		<ibm-sample [foo]="testData"></ibm-sample>
 	`
 })
-class SampleTestComponent {
+class SampleTest {
 	public testData: SampleInterface = {
 		required: "test"
 	};
@@ -22,13 +22,13 @@ describe("Sample", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				Sample,
-				SampleTestComponent
-			],
+				SampleTest
+			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(SampleTestComponent);
+		fixture = TestBed.createComponent(SampleTest);
 		wrapper = fixture.componentInstance;
 		instance = fixture.debugElement.query(By.css("ibm-sample")).componentInstance;
 		element = fixture.debugElement.query(By.css("ibm-sample")).nativeElement;

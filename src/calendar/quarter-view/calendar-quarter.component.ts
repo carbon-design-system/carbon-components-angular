@@ -1,8 +1,7 @@
-import { TranslateService } from "@ngx-translate/core";
 import {
 	Component,
 	Input,
-	OnInit,
+	OnInit
 } from "@angular/core";
 import { DateTimeModel } from "./../date-time-model.class";
 import { range } from "../../common/utils";
@@ -27,10 +26,10 @@ import { range } from "../../common/utils";
 				}">
 					<div>
 						<p class="top">
-							{{quarters[i * 2 + j].name | translate}}
+							{{quarters[i * 2 + j].name}}
 						</p>
 						<p class="bottom">
-							{{quarters[i * 2 + j].months | translate}}
+							{{quarters[i * 2 + j].months}}
 						</p>
 					</div>
 				</td>
@@ -77,10 +76,10 @@ export class CalendarQuarter implements OnInit {
 	 * @param {TranslateService} translate
 	 * @memberof CalendarQuarter
 	 */
-	constructor(private translate: TranslateService) {
-		this.translate.get("CALENDAR.QUARTERS").subscribe((res: Array<any>) => {
-			this.quarters = res;
-		});
+	constructor() {
+		// this.translate.get("CALENDAR.QUARTERS").subscribe((res: Array<any>) => {
+		// 	this.quarters = res;
+		// });
 	}
 
 	ngOnInit() {

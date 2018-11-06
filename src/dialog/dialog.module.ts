@@ -1,88 +1,76 @@
 // modules
-import { NgModule, Optional, SkipSelf } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
 import { DialogService } from "./dialog.service";
-import { DialogPlaceholderService } from "./dialog-placeholder.service";
 import { Dialog } from "./dialog.component";
 import { DialogDirective } from "./dialog.directive";
-import { DialogPlaceholderComponent } from "./dialog-placeholder.component";
-
-import { Popover } from "./popover/popover.component";
-import { PopoverDirective } from "./popover/popover.directive";
-import { PopoverMenu } from "./popover/popover-menu.component";
-import { PopoverMenuDirective } from "./popover/popover-menu.directive";
+import { DialogPlaceholder } from "./dialog-placeholder.component";
 
 import { Tooltip } from "./tooltip/tooltip.component";
 import { TooltipDirective } from "./tooltip/tooltip.directive";
-import { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
+import { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
+
+import { OverflowMenu } from "./overflow-menu/overflow-menu.component";
+import { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
+import { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
+import { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
+import { I18nModule } from "./../i18n/i18n.module";
+import { PlaceholderModule } from "./../placeholder/placeholder.module";
 
 // exports
 export { DialogService } from "./dialog.service";
-export { DialogPlaceholderService } from "./dialog-placeholder.service";
 export { Dialog } from "./dialog.component";
 export { DialogDirective } from "./dialog.directive";
-export { DialogPlaceholderComponent } from "./dialog-placeholder.component";
-
-export { Popover } from "./popover/popover.component";
-export { PopoverDirective } from "./popover/popover.directive";
-export { PopoverMenu } from "./popover/popover-menu.component";
-export { PopoverMenuDirective } from "./popover/popover-menu.directive";
+export { DialogPlaceholder } from "./dialog-placeholder.component";
 
 export { Tooltip } from "./tooltip/tooltip.component";
 export { TooltipDirective } from "./tooltip/tooltip.directive";
-export { EllipsisTooltipDirective } from "./tooltip/ellipsis-tooltip.directive";
+export { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
-// either provides a new instance of DialogPlaceholderService, or returns the parent
-export function DIALOG_PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: DialogPlaceholderService) {
-	return parentService || new DialogPlaceholderService();
-}
-
-// placholder service *must* be a singleton to ensure the placeholder viewref is accessible globally
-export const DIALOG_PLACEHOLDER_SERVICE_PROVIDER = {
-	provide: DialogPlaceholderService,
-	deps: [[new Optional(), new SkipSelf(), DialogPlaceholderService]],
-	useFactory: DIALOG_PLACEHOLDER_SERVICE_PROVIDER_FACTORY
-};
+export { OverflowMenu } from "./overflow-menu/overflow-menu.component";
+export { OverflowMenuPane } from "./overflow-menu/overflow-menu-pane.component";
+export { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
+export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 
 @NgModule({
 	declarations: [
 		Dialog,
-		Popover,
-		PopoverMenu,
 		Tooltip,
+		OverflowMenu,
+		OverflowMenuPane,
 		DialogDirective,
-		PopoverDirective,
-		PopoverMenuDirective,
 		TooltipDirective,
-		EllipsisTooltipDirective,
-		DialogPlaceholderComponent
+		EllipsisTooltip,
+		OverflowMenuDirective,
+		OverflowMenuOption,
+		DialogPlaceholder
 	],
 	exports: [
 		Dialog,
-		Popover,
-		PopoverMenu,
 		Tooltip,
+		OverflowMenu,
+		OverflowMenuPane,
 		DialogDirective,
-		PopoverDirective,
-		PopoverMenuDirective,
 		TooltipDirective,
-		EllipsisTooltipDirective,
-		DialogPlaceholderComponent
+		EllipsisTooltip,
+		OverflowMenuDirective,
+		OverflowMenuOption,
+		DialogPlaceholder
 	],
-	providers: [
-		DialogService,
-		DIALOG_PLACEHOLDER_SERVICE_PROVIDER
-	],
+	providers: [ DialogService ],
 	entryComponents: [
 		Dialog,
-		Popover,
-		PopoverMenu,
-		Tooltip
+		Tooltip,
+		OverflowMenuPane
 	],
-	imports: [CommonModule, TranslateModule, StaticIconModule]
+	imports: [
+		CommonModule,
+		StaticIconModule,
+		I18nModule,
+		PlaceholderModule
+	]
 })
 export class DialogModule {}

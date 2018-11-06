@@ -32,3 +32,5 @@ deploy:
     skip_cleanup: true
     true:
       branch: master
+notifications:
+  email: false
