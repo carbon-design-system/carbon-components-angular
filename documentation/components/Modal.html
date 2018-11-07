@@ -1631,7 +1631,7 @@ export class ModalDemo {
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/modal/modal.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/modal/modal.component.ts:188</a></div>
                                 </td>
                             </tr>
     
@@ -1695,7 +1695,7 @@ export class ModalDemo {
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/modal/modal.component.ts:176</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/modal/modal.component.ts:180</a></div>
                                 </td>
                             </tr>
     
@@ -1922,7 +1922,7 @@ import {
 	transition,
 	animate
 } from &quot;@angular/animations&quot;;
-import { cycleTabs } from &quot;./../common/tab.service&quot;;
+import { cycleTabs, getFocusElementList } from &quot;./../common/tab.service&quot;;
 
 
 /**
@@ -2071,7 +2071,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			primaryFocusElement.focus();
 			return;
 		}
-		this.modal.nativeElement.focus();
+		if (getFocusElementList(this.modal.nativeElement).length &gt; 0) {
+			getFocusElementList(this.modal.nativeElement)[0].focus();
+		} else {
+			this.modal.nativeElement.focus();
+		}
 	}
 
 	/**
