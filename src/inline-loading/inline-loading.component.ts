@@ -44,7 +44,6 @@ export class InlineLoading {
 
 	/**
 	 * Returns value `true` if the component is in the success state.
-	 * @readonly
 	 */
 	@Input() get success() {
 		return this._success;
