@@ -120,7 +120,7 @@ export class OverflowMenuPane extends Dialog {
 		this.doClose();
 	}
 
-	private listItems() {
+	protected listItems() {
 		return Array.from<any>(this.elementRef.nativeElement.querySelectorAll(".bx--overflow-menu-options__btn:not([disabled])"));
 	}
 }

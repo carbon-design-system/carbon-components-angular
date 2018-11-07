@@ -56,7 +56,7 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
  * export class SampleModal {
  * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
  * 	modalText: string;
- * 	constructor(private injector: Injector) {
+ * 	constructor(protected injector: Injector) {
  * 		this.modalText = this.injector.get("modalText");
  * 	}
  * }

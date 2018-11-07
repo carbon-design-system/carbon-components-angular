@@ -131,14 +131,14 @@ export class Select implements ControlValueAccessor {
 	/**
 	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
 	 */
-	private onChangeHandler = (_: any) => { };
-	private onTouchedHandler = () => { };
+	protected onChangeHandler = (_: any) => { };
+	protected onTouchedHandler = () => { };
 
 	/**
 	 * Listens for the host blurring, and notifies the model
 	 */
 	@HostListener("blur")
-	private blur() {
+	protected blur() {
 		this.onTouchedHandler();
 	}
 }

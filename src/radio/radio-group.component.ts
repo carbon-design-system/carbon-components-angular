@@ -176,28 +176,28 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
 	 */
-	private isInitialized = false;
+	protected isInitialized = false;
 	/**
 	 * Reflects whether or not the input is disabled and cannot be selected.
 	 */
-	private _disabled = false;
+	protected _disabled = false;
 	/**
 	 * The value of the selected option within the `RadioGroup`.
 	 */
-	private _value: any = null;
+	protected _value: any = null;
 	/**
 	 * The `Radio` within the `RadioGroup` that is selected.
 	 */
-	private _selected: Radio = null;
+	protected _selected: Radio = null;
 	/**
 	 * The name attribute associated with the `RadioGroup`.
 	 */
-	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
+	protected _name = `radio-group-${RadioGroup.radioGroupCount}`;
 
 	/**
 	 * Creates an instance of RadioGroup.
 	 */
-	constructor(private changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
 	}
 

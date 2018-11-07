@@ -180,7 +180,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	scroll: Subscription;
 
-	private onTouchedCallback: () => void = this._noop;
+	protected onTouchedCallback: () => void = this._noop;
 
 	/**
 	 * Creates an instance of Dropdown.
