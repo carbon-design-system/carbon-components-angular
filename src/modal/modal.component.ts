@@ -18,7 +18,7 @@ import {
 	transition,
 	animate
 } from "@angular/animations";
-import { cycleTabs } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
 
 /**
@@ -167,7 +167,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			primaryFocusElement.focus();
 			return;
 		}
-		this.modal.nativeElement.focus();
+		if (getFocusElementList(this.modal.nativeElement).length > 0) {
+			getFocusElementList(this.modal.nativeElement)[0].focus();
+		} else {
+			this.modal.nativeElement.focus();
+		}
 	}
 
 	/**
