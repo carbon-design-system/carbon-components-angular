@@ -5,7 +5,6 @@ import {
 	EventEmitter,
 	ComponentRef,
 	ViewChild,
-	OnInit,
 	HostBinding
 } from "@angular/core";
 
@@ -48,7 +47,7 @@ import { I18n } from "./../i18n/i18n.module";
 	`,
 	providers: [NotificationService]
 })
-export class Notification implements OnInit {
+export class Notification {
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -57,7 +56,12 @@ export class Notification implements OnInit {
 	 * `message` is message for notification to display
 	 *
 	 */
-	@Input() notificationObj: NotificationContent;
+	@Input() get notificationObj(): NotificationContent {
+		return this._notificationObj;
+	}
+	set notificationObj(obj: NotificationContent) {
+		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
+	}
 
 	/**
 	 * Emits on close.
@@ -80,13 +84,15 @@ export class Notification implements OnInit {
 	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
 
-	constructor(protected notificationService: NotificationService, protected i18n: I18n) {}
+	protected defaultNotificationObj = {
+		title: "",
+		message: "",
+		type: "info",
+		closeLabel: this.i18n.get().NOTIFICATION.CLOSE_BUTTON
+	};
+	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
 
-	ngOnInit() {
-		if (!this.notificationObj.closeLabel) {
-			this.notificationObj.closeLabel = this.i18n.get().NOTIFICATION.CLOSE_BUTTON;
-		}
-	}
+	constructor(protected notificationService: NotificationService, protected i18n: I18n) {}
 
 	/**
 	 * Emits close event.
