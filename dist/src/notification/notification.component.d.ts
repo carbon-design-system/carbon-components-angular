@@ -1,4 +1,4 @@
-import { EventEmitter, ComponentRef, OnInit } from "@angular/core";
+import { EventEmitter, ComponentRef } from "@angular/core";
 import { NotificationService } from "./notification.service";
 import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "./../i18n/i18n.module";
@@ -8,7 +8,7 @@ import { I18n } from "./../i18n/i18n.module";
  * @export
  * @class Notification
  */
-export declare class Notification implements OnInit {
+export declare class Notification {
     protected notificationService: NotificationService;
     protected i18n: I18n;
     /**
@@ -36,8 +36,14 @@ export declare class Notification implements OnInit {
     readonly isInfo: boolean;
     readonly isSuccess: boolean;
     readonly isWarning: boolean;
+    protected defaultNotificationObj: {
+        title: string;
+        message: string;
+        type: string;
+        closeLabel: any;
+    };
+    protected _notificationObj: NotificationContent;
     constructor(notificationService: NotificationService, i18n: I18n);
-    ngOnInit(): void;
     /**
      * Emits close event.
      *
