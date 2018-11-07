@@ -40,9 +40,9 @@ export class NotificationService implements OnDestroy {
 	 * @memberof NotificationService
 	 */
 	constructor(
-		private injector: Injector,
-		private componentFactoryResolver: ComponentFactoryResolver,
-		private applicationRef: ApplicationRef) {
+		protected injector: Injector,
+		protected componentFactoryResolver: ComponentFactoryResolver,
+		protected applicationRef: ApplicationRef) {
 	}
 
 	/**

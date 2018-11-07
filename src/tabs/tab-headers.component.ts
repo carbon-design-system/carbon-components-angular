@@ -226,10 +226,10 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Determines which `Tab` is initially selected.
-	 * @private
+	 * @protected
 	 * @memberof Tabs
 	 */
-	private setFirstTab() {
+	protected setFirstTab() {
 		setTimeout(() => {
 			let firstTab = this.tabs.find(tab => tab.active);
 			if (!firstTab && this.tabs.first) {

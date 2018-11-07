@@ -114,7 +114,7 @@ export class TableHeaderItem {
 	 *
 	 * ```typescript
 	 * (at)ViewChild("customHeaderTemplate")
-	 * private customHeaderTemplate: TemplateRef<any>;
+	 * protected customHeaderTemplate: TemplateRef<any>;
 	 * ```
 	 *
 	 * Set the template to the header item, for example:
@@ -207,10 +207,10 @@ export class TableHeaderItem {
 	/**
 	 * used in `ascending`
 	 *
-	 * @private
+	 * @protected
 	 * @memberof TableHeaderItem
 	 */
-	private _ascending = true;
+	protected _ascending = true;
 
 	/**
 	 * Creates an instance of TableHeaderItem.

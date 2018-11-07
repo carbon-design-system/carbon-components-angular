@@ -102,9 +102,9 @@ class DynamicTableStory implements OnInit {
 	@Input() striped = true;
 
 	@ViewChild("customHeaderTemplate")
-	private customHeaderTemplate: TemplateRef<any>;
+	protected customHeaderTemplate: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
-	private customTableItemTemplate: TemplateRef<any>;
+	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
 		this.model.data = [
@@ -173,9 +173,9 @@ class ExpansionTableStory implements OnInit {
 	@Input() striped = true;
 
 	@ViewChild("customHeaderTemplate")
-	private customHeaderTemplate: TemplateRef<any>;
+	protected customHeaderTemplate: TemplateRef<any>;
 	@ViewChild("customTableItemTemplate")
-	private customTableItemTemplate: TemplateRef<any>;
+	protected customTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
 		this.model.data = [
@@ -250,7 +250,7 @@ class OverflowTableStory implements OnInit {
 	@Input() striped = true;
 
 	@ViewChild("overflowMenuItemTemplate")
-	private overflowMenuItemTemplate: TemplateRef<any>;
+	protected overflowMenuItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
 		this.model.data = [
@@ -301,9 +301,9 @@ class PaginationTableStory implements OnInit {
 	@ViewChild("filter")
 	filter: TemplateRef<any>;
 	@ViewChild("filterableHeaderTemplate")
-	private filterableHeaderTemplate: TemplateRef<any>;
+	protected filterableHeaderTemplate: TemplateRef<any>;
 	@ViewChild("paginationTableItemTemplate")
-	private paginationTableItemTemplate: TemplateRef<any>;
+	protected paginationTableItemTemplate: TemplateRef<any>;
 
 	ngOnInit() {
 		this.model.data = [[]];
@@ -354,7 +354,7 @@ class PaginationTableStory implements OnInit {
 		});
 	}
 
-	private prepareData(data: Array<Array<any>>) {
+	protected prepareData(data: Array<Array<any>>) {
 		// create new data from the service data
 		let newData = [];
 		data.forEach(dataRow => {

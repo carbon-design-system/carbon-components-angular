@@ -56,7 +56,7 @@ export class OverflowMenuOption {
 
 	public tabIndex = -1;
 
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	/**
 	 * Returns true if the content string is longer than the width of the containing button
