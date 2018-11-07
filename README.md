@@ -1,5 +1,17 @@
-# Carbon Components Angular [![npm](https://img.shields.io/npm/v/carbon-components-angular.svg)](https://www.npmjs.com/package/carbon-components-angular) [![Travis](https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master)](https://travis-ci.com/IBM/carbon-components-angular)
-An _Angular_ implementation of the Carbon Design System
+<p align="center">
+	<h1 align="center">Carbon Components Angular</h1>
+	<p align="center">
+	An Angular implementation of the Carbon Design System
+		<br /><br />
+		<a href="https://travis-ci.com/IBM/carbon-components-angular">
+			<img src="https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master" />
+		</a>
+		<a href="https://www.npmjs.com/package/carbon-components-angular">
+			<img src="https://img.shields.io/npm/v/carbon-components-angular.svg" />
+		</a>
+		<img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+	</p>
+</p>
 
 ### Getting started
 
@@ -43,6 +55,8 @@ export class AppModule { }
 _Finally_ we can run `npm start` and start building out our application!
 
 > *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` scss is our recommended setup.
+
+[![Edit Carbon Components Angular](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0129r494ql)
 
 ### Contributing
 
