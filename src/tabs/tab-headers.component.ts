@@ -135,7 +135,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+		if (event.key === "Right" || event.key === "ArrowRight") {
 			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
 				event.preventDefault();
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
@@ -145,7 +145,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			}
 		}
 
-		if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+		if (event.key === "Left" || event.key === "ArrowLeft") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
 				this.allTabHeaders[this.currentSelectedTab - 1].focus();
@@ -153,6 +153,21 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 				event.preventDefault();
 				this.allTabHeaders[this.allTabHeaders.length - 1].focus();
 			}
+		}
+
+		if (event.key === "Home") {
+			event.preventDefault();
+			this.allTabHeaders[0].focus();
+		}
+
+		if (event.key === "End") {
+			event.preventDefault();
+			this.allTabHeaders[this.allTabHeaders.length - 1].focus();
+		}
+
+		if (event.key === " ") {
+			let selectedTab = Array.from<any>(this.tabInput);
+			this.selectTab(event.target, selectedTab[this.currentSelectedTab], this.currentSelectedTab);
 		}
 	}
 

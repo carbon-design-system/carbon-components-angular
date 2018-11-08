@@ -66,6 +66,7 @@ let nextId = 0;
 	selector: "ibm-tab",
 	template: `
 		<div
+			tabIndex="0"
 			role="tabpanel"
 			*ngIf="shouldRender()"
 			[ngStyle]="{'display': active ? null : 'none'}"
