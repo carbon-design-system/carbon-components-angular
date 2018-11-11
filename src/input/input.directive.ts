@@ -15,6 +15,13 @@ import { Directive, HostBinding, Input } from "@angular/core";
 	selector: "[ibmText]"
 })
 export class TextInput {
+	/**
+	 * `light` or `dark` input theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
 	@HostBinding("class.bx--text-input") inputClass = true;
-	@HostBinding("class.bx--text-input--light") @Input() light = false;
+	@HostBinding("class.bx--text-input--light") get isLightTheme() {
+		return this.theme === "light";
+	}
 }

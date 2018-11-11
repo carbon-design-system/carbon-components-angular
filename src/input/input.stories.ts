@@ -25,7 +25,7 @@ storiesOf("Input", module).addDecorator(
 	}))
 	.add("Light Input", () => ({
 		template: `
-			<input ibmText [light]="true" aria-label="input" placeholder="Optional placeholder text"/>
+			<input ibmText [theme]="'light'" aria-label="input" placeholder="Optional placeholder text"/>
 		`
 	}))
 	.add("TextArea", () => ({
@@ -35,6 +35,6 @@ storiesOf("Input", module).addDecorator(
 	}))
 	.add("Light TextArea", () => ({
 		template: `
-		<textarea ibmTextArea [light]="true" aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
+		<textarea ibmTextArea [theme]="'light'" aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
 		`
 	}));
