@@ -30,8 +30,7 @@ import { I18n } from "./../i18n/i18n.module";
 	template: `
 	<div
 		class="bx--list-box"
-		[ngClass]="{'bx--dropdown--light': light}"
-	>
+		[ngClass]="{'bx--dropdown--light': theme === 'light'}">
 		<button
 			type="button"
 			#dropdownButton
@@ -86,10 +85,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() type: "single" | "multi" = "single";
 	/**
-	 * Set to `true` to apply the light style to the dropdown.
+	 * `light` or `dark` dropdown theme
 	 * @memberof Dropdown
 	 */
-	@Input() light = false;
+	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * Set to `true` to disable the dropdown.
 	 */

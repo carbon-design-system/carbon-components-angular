@@ -44,7 +44,7 @@ storiesOf("Dropdown", module)
 	.add("Light", () => ({
 		template: `
 		<ibm-dropdown
-			[light]="true"
+			[theme]="'light'"
 			placeholder="Select"
 			[disabled]="disabled"
 			(selected)="selected($event)"
