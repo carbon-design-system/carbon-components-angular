@@ -4,8 +4,7 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter,
-	ChangeDetectionStrategy
+	EventEmitter
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -114,6 +113,12 @@ export class Toggle extends Checkbox {
 	id = "toggle-" + Toggle.toggleCount;
 
 	/**
+	 * Emits event notifying other classes when a change in state occurs on a toggle after a
+	 * click.
+	 */
+	@Output() change = new EventEmitter<ToggleChange>();
+
+	/**
 	 * Creates an instance of Toggle.
 	 * @param {ChangeDetectorRef} changeDetectorRef
 	 * @memberof Toggle
@@ -121,5 +126,18 @@ export class Toggle extends Checkbox {
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
+	}
+
+	/**
+	 * Creates instance of `ToggleChange` used to propagate the change event.
+	 * @memberof To
+	 */
+	emitChangeEvent() {
+		let event = new ToggleChange();
+		event.source = this;
+		event.checked = this.checked;
+
+		this.propagateChange(this.checked);
+		this.change.emit(event);
 	}
 }

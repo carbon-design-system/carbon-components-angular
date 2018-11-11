@@ -1,18 +1,15 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { Switch } from "./switch.component";
-import { Checkbox } from "../checkbox/checkbox.module";
+import { Switch, SwitchChange } from "./switch.component";
 
 describe("Switch", () => {
 	let component: Switch;
 	let fixture: ComponentFixture<Switch>;
 	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
-	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -70,4 +67,11 @@ describe("Switch", () => {
 		expect(buttonElement.attributes.getNamedItem("aria-checked").value).toEqual("true");
 	});
 
+	it("should emit SwitchChange event", (done: any) => {
+		component.change.subscribe((data: any) => {
+			expect(data instanceof SwitchChange).toEqual(true);
+			done();
+		});
+		component.emitChangeEvent();
+	});
 });

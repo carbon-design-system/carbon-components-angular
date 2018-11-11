@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core
 import { By } from "@angular/platform-browser";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { Toggle } from "./toggle.component";
+import { Toggle, ToggleChange } from "./toggle.component";
 
 describe("Toggle", () => {
 	let component: Toggle;
@@ -67,4 +67,11 @@ describe("Toggle", () => {
 		expect(buttonElement.attributes.getNamedItem("aria-checked").value).toEqual("true");
 	});
 
+	it("should emit ToggleChange event", (done: any) => {
+		component.change.subscribe((data: any) => {
+			expect(data instanceof ToggleChange).toEqual(true);
+			done();
+		});
+		component.emitChangeEvent();
+	});
 });
