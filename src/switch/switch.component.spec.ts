@@ -64,4 +64,10 @@ describe("Switch", () => {
 		expect(labelElement.innerHTML).toContain("bx--toggle__check");
 	});
 
+	it("should match the input checked value", () => {
+		component.checked = true;
+		fixture.detectChanges();
+		expect(buttonElement.attributes.getNamedItem("aria-checked").value).toEqual("true");
+	});
+
 });

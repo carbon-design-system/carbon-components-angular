@@ -51,14 +51,19 @@ export class SwitchChange {
 	template: `
 		<input
 			class="bx--toggle"
+			type="checkbox"
 			[ngClass]="{
 				'bx--toggle--small': size === 'sm'
 			}"
 			[id]="id"
-			type="checkbox"
-			(click)="onClick($event)"
+			[value]="value"
+			[name]="name"
+			[required]="required"
+			[checked]="checked"
 			[disabled]="disabled"
-			[attr.aria-checked]="checked">
+			[attr.aria-checked]="checked"
+			(change)="onChange($event)"
+			(click)="onClick($event)">
 		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
 			<span class="bx--toggle__text--left">Off</span>
 			<span class="bx--toggle__appearance"></span>

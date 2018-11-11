@@ -2,7 +2,10 @@ import { Checkbox } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectorRef,
 	Component,
-	Input
+	Input,
+	Output,
+	EventEmitter,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -53,14 +56,19 @@ export class ToggleChange {
 	template: `
 		<input
 			class="bx--toggle"
+			type="checkbox"
 			[ngClass]="{
 				'bx--toggle--small': size === 'sm'
 			}"
 			[id]="id"
-			type="checkbox"
-			(click)="onClick($event)"
+			[value]="value"
+			[name]="name"
+			[required]="required"
+			[checked]="checked"
 			[disabled]="disabled"
-			[attr.aria-checked]="checked">
+			[attr.aria-checked]="checked"
+			(change)="onChange($event)"
+			(click)="onClick($event)">
 		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
 			<span class="bx--toggle__text--left">Off</span>
 			<span class="bx--toggle__appearance"></span>
