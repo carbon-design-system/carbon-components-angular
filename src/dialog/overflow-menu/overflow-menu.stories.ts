@@ -1,6 +1,17 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
+import { withKnobs, boolean, number } from "@storybook/addon-knobs/angular";
 
 import { DialogModule } from "../../";
+
+let options;
+
+cost createOptions = (count: number): Array<string> => {
+	if (options && count === options.length) {
+		return options;
+	}
+	options = Array(count).fill(0).map((x, i) => "Option " + (i+1));
+	return options;
+};
 
 storiesOf("Overflow Menu", module)
 	.addDecorator(
@@ -10,6 +21,7 @@ storiesOf("Overflow Menu", module)
 			]
 		})
 	)
+	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
 			<ibm-overflow-menu>
@@ -43,5 +55,19 @@ storiesOf("Overflow Menu", module)
 		props: {
 			click: () => console.log("click"),
 			selected: () => console.log("selected")
+		}
+	}))
+	.add("Dynamic", () => ({
+		template: `
+			<span>Dynamic OverflowMenu, using the optionCount knob to change the number of menu options</span>
+			<ibm-overflow-menu>
+				<ibm-overflow-menu-option *ngFor="let option of options(optionCount)">
+					{{option}}
+				</ibm-overflow-menu-option>
+			</ibm-overflow-menu>
+		`,
+		props: {
+			optionCount: number("optionCount", 10),
+			options: createOptions
 		}
 	}));
