@@ -19,7 +19,8 @@ import { I18n } from "./../../i18n/i18n.module";
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
-			(focusout)="clickClose($event)"
+			(focusout)="menuClose($event)"
+			(click)="doClose()"
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
 				[ngTemplateOutlet]="dialogConfig.content"
@@ -110,14 +111,10 @@ export class OverflowMenuPane extends Dialog {
 		}
 	}
 
-	clickClose(event) {
-		// Opens menu when clicking on the menu button and stays open while navigating through the options
-		if (this.dialogConfig.parentRef.nativeElement.firstChild.contains(event.target) ||
-			this.listItems().some(button => button === event.relatedTarget) ||
-			event.type === "focusout" && event.relatedTarget === this.dialogConfig.parentRef.nativeElement) {
-			return;
+	menuClose(event) {
+		if (this.listItems().some(button => button === document.activeElement)) {
+			this.doClose();
 		}
-		this.doClose();
 	}
 
 	protected listItems() {
