@@ -12,7 +12,7 @@ storiesOf("Search", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 		<div style="width: 250px;">
-			<ibm-search [theme]="theme" [placeholder]="placeholder" size="lg"></ibm-search>
+			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" size="lg"></ibm-search>
 		</div>
 		`,
 		props: {
@@ -24,7 +24,7 @@ storiesOf("Search", module).addDecorator(
 	.add("Small", () => ({
 		template: `
 		<div style="width: 250px;">
-			<ibm-search [theme]="theme" [placeholder]="placeholder" size="sm"></ibm-search>
+			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" size="sm"></ibm-search>
 		</div>
 		`,
 		props: {
