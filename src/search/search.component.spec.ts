@@ -76,4 +76,14 @@ describe("Search", () => {
 		fixture.detectChanges();
 		expect(component.value).toEqual("");
 	});
+
+	it("should have dark and light theme", () => {
+		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
+		component.theme = "dark";
+		fixture.detectChanges();
+		expect(containerElement.className.includes("bx--search--light")).toEqual(false);
+		component.theme = "light";
+		fixture.detectChanges();
+		expect(containerElement.className.includes("bx--search--light")).toEqual(true);
+	});
 });

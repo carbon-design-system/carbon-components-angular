@@ -39,7 +39,8 @@ export class SearchChange {
 				class="bx--search"
 				[ngClass]="{
 					'bx--search--sm': size === 'sm',
-					'bx--search--lg': size === 'lg'
+					'bx--search--lg': size === 'lg',
+					'bx--search--light': theme === 'light'
 				}"
 				role="search">
 				<label class="bx--label" [for]="id">Search</label>
@@ -101,6 +102,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
+	/**
+	 * `light` or `dark` search theme.
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * Size of the search field.
 	 */
