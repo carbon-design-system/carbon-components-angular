@@ -54,8 +54,6 @@ export class SearchChange {
 					[disabled]="disabled"
 					[required]="required"
 					[attr.aria-labelledby]="ariaLabelledby"
-					(click)="onClick($event)"
-					(change)="onChange($event)"
 					(input)="onSearch($event.target.value)"/>
 				<svg
 					class="bx--search-magnifier"
@@ -180,22 +178,6 @@ export class Search implements ControlValueAccessor {
 	}
 
 	/**
-	 * Executes on the event of a change within `Search` to block propagation.
-	 * @param {any} event
-	 * @memberof Search
-	 */
-	onChange(event) {
-		event.stopPropagation();
-	}
-
-	/**
-	 * Handles click events on the `Search` and emits changes to other classes.
-	 * @param {any} event
-	 * @memberof Search
-	 */
-	onClick(event) {}
-
-	/**
 	 * Called when search input is blurred. Needed to properly implement `ControlValueAccessor`.
 	 * @memberof Search
 	 */
@@ -222,6 +204,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
+		this.propagateChange(this.value);
 	}
 
 	/**
@@ -232,5 +215,6 @@ export class Search implements ControlValueAccessor {
 		event.source = this;
 		event.value = this.value;
 		this.change.emit(event);
+		this.propagateChange(this.value);
 	}
 }
