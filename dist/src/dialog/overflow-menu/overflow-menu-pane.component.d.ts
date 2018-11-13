@@ -12,6 +12,6 @@ export declare class OverflowMenuPane extends Dialog {
     constructor(elementRef: ElementRef, i18n: I18n);
     onDialogInit(): void;
     hostkeys(event: KeyboardEvent): void;
-    clickClose(event: any): void;
+    menuClose(event: any): void;
     protected listItems(): any[];
 }
