@@ -1,33 +1,26 @@
-var webpack = require("webpack");
-var ExtractText = require("extract-text-webpack-plugin");
-var nodeExternals = require('webpack-node-externals');
-var path = require('path');
-
 function angularExt(lib) {
 	let ns = `@angular/${lib}`;
-	return {root: ['ng', lib], commonjs: ns, commonjs2: ns, amd: ns};
+	return {root: ["ng", lib], commonjs: ns, commonjs2: ns, amd: ns};
 }
 
 function rxjsExternal(context, request, cb) {
-	if (/^rxjs\/add\/observable\//.test(request)) {
-	  return cb(null, {root: ['Rx', 'Observable'], commonjs: request, commonjs2: request, amd: request});
-	} else if (/^rxjs\/add\/operator\//.test(request)) {
-	  return cb(null, {root: ['Rx', 'Observable', 'prototype'], commonjs: request, commonjs2: request, amd: request});
-	} else if (/^rxjs\//.test(request)) {
-	  return cb(null, {root: ['Rx'], commonjs: request, commonjs2: request, amd: request});
+	if (request.match(/^rxjs(\/|$)/)) {
+		const pathParts = request.split("/");
+		return cb(null, {root: pathParts, commonjs: request, commonjs2: request, amd: request});
 	}
 	cb();
 }
 
 module.exports = [{
+	mode: "production",
 	devtool: "source-map",
 	entry: {
-		neutrino: "./src/index.ts",
+		carbonAngular: "./src/index.ts",
 	},
 	output: {
 		path: __dirname + "/dist/bundle",
-		filename: "neutrino.umd.js",
-		library: "neutrino",
+		filename: "carbon-angular.umd.js",
+		library: "carbonAngular",
 		libraryTarget: "umd"
 	},
 	externals: [
