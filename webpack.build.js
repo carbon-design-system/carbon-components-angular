@@ -33,6 +33,12 @@ module.exports = [{
 				commonjs2: "@angular/platform-browser",
 				amd: "@angular/platform-browser"
 			},
+			"@angular/platform-browser/animations": {
+				root: ["ng", "platformBrowser", "animations"],
+				commonjs: "@angular/platform-browser/animations",
+				commonjs2: "@angular/platform-browser/animations",
+				amd: "@angular/platform-browser/animations"
+			},
 			"@angular/forms": angularExt("forms"),
 			"@angular/compiler": angularExt("compiler"),
 			"@angular/http": angularExt("http"),
