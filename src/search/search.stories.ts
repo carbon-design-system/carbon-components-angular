@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean, select, text } from "@storybook/addon-knobs/angular";
 
 import { SearchModule } from "../";
 
@@ -12,14 +12,24 @@ storiesOf("Search", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 		<div style="width: 250px;">
-			<ibm-search [size]="'lg'"></ibm-search>
+			<ibm-search [theme]="theme" [placeholder]="placeholder" size="lg"></ibm-search>
 		</div>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false),
+			placeholder: text("placeholder", "Search")
+		}
 	}))
 	.add("Small", () => ({
 		template: `
 		<div style="width: 250px;">
-			<ibm-search [size]="'sm'"></ibm-search>
+			<ibm-search [theme]="theme" [placeholder]="placeholder" size="sm"></ibm-search>
 		</div>
-		`
+		`,
+		props: {
+			theme: select("theme", ["dark", "light"], "dark"),
+			disabled: boolean("disabled", false),
+			placeholder: text("placeholder", "Search")
+		}
 	}));
