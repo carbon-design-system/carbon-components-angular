@@ -4,7 +4,7 @@
   "description": "Next generation components",
   "main": "index.js",
   "scripts": {
-    "bui ld": "bash scripts/build.sh",
+    "build": "bash scripts/build.sh",
     "storybook": "start-storybook -s .storybook/public -p 6006",
     "docs:build": "compodoc src -p tsconfig.json",
     "docs:server": "compodoc src -p tsconfig.json -s -w",
