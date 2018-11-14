@@ -44,7 +44,7 @@ storiesOf("Select", module).addDecorator(
 	}))
 	.add("Light", () => ({
 		template: `
-		<ibm-select [theme]="'light'">
+		<ibm-select theme="light">
 			<option value="" disabled selected hidden>Choose an option</option>
           <option value="solong">A much longer option that is worth having around to check how text flows</option>
           <optgroup label="Category 1">
