@@ -1,7 +1,7 @@
 import { Component, HostListener, ElementRef, AfterViewInit } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
-import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
+import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 
 /**
@@ -53,18 +53,6 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
-
-		// setTimeout(() => {
-		// 	const focusElementList = getFocusElementList(this.elementRef.nativeElement);
-		// 	focusElementList.every(button => {
-		// 		// Allows user to set tabindex to 0.
-		// 		if (button.getAttribute("tabindex") === null) {
-		// 			button.tabIndex = -1;
-		// 		}
-		// 	});
-		// 	focusElementList[0].tabIndex = 0;
-		// 	// this.listItems()[0].focus();
-		// });
 	}
 
 	@HostListener("keydown", ["$event"])
