@@ -1261,6 +1261,12 @@
             <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/docs/ts/latest/api/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
 
 
 <section>
@@ -1309,7 +1315,7 @@
                                 <span class="modifier">Protected</span> <a href="#listItems">listItems</a>
                             </li>
                             <li>
-                                 <a href="#menuClose">menuClose</a>
+                                 <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
                                  <a href="#onDialogInit">onDialogInit</a>
@@ -1346,7 +1352,7 @@
                     </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:31</a></div>
                                 </td>
                             </tr>
     
@@ -1417,7 +1423,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:59</a></div>
                                 </td>
                             </tr>
     
@@ -1448,7 +1454,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:118</a></div>
                                 </td>
                             </tr>
     
@@ -1467,20 +1473,20 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <a name="menuClose"></a>
-                            <span class="name"><b> menuClose</b><a href="#menuClose"><span class="fa fa-link"></span></a></span>
+                            <a name="ngAfterViewInit"></a>
+                            <span class="name"><b> ngAfterViewInit</b><a href="#ngAfterViewInit"><span class="fa fa-link"></span></a></span>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-    <code>menuClose(event: )</code>
+    <code>ngAfterViewInit()</code>
                         </td>
                     </tr>
     
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:105</a></div>
                                 </td>
                             </tr>
     
@@ -1488,37 +1494,9 @@
                         <td class="col-md-4">
     
                                 <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Type</td>
-                                                    <td>Optional</td>
-                                                    <td>Description</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                      <td>event</td>
-                                                      <td>
-                                                      </td>
-                                                      <td>
-                                                      </td>
-                                                      <td></td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
     
                                 </div>
-                                    <div class="io-description">
-                                        
-                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -1540,7 +1518,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:37</a></div>
                                 </td>
                             </tr>
     
@@ -1562,10 +1540,10 @@
 
 
     <div class="tab-pane fade tab-source-code" id="source">
-        <pre class="line-numbers"><code class="language-typescript">import { Component, HostListener, ElementRef } from &quot;@angular/core&quot;;
+        <pre class="line-numbers"><code class="language-typescript">import { Component, HostListener, ElementRef, AfterViewInit } from &quot;@angular/core&quot;;
 import { Dialog } from &quot;../dialog.component&quot;;
 import { position } from &quot;../../utils/position&quot;;
-import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from &quot;./../../common/tab.service&quot;;
+import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../../common/tab.service&quot;;
 import { I18n } from &quot;./../../i18n/i18n.module&quot;;
 
 /**
@@ -1583,7 +1561,6 @@ import { I18n } from &quot;./../../i18n/i18n.module&quot;;
 			#dialog
 			class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;
 			role&#x3D;&quot;menu&quot;
-			(focusout)&#x3D;&quot;menuClose($event)&quot;
 			(click)&#x3D;&quot;doClose()&quot;
 			[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;&gt;
 			&lt;ng-template
@@ -1593,7 +1570,7 @@ import { I18n } from &quot;./../../i18n/i18n.module&quot;;
 		&lt;/ul&gt;
 	&#x60;
 })
-export class OverflowMenuPane extends Dialog {
+export class OverflowMenuPane extends Dialog implements AfterViewInit {
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		super(elementRef);
@@ -1618,16 +1595,6 @@ export class OverflowMenuPane extends Dialog {
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
-
-		setTimeout(() &#x3D;&gt; {
-			getFocusElementList(this.elementRef.nativeElement).every(button &#x3D;&gt; {
-				// Allows user to set tabindex to 0.
-				if (button.getAttribute(&quot;tabindex&quot;) &#x3D;&#x3D;&#x3D; null) {
-					button.tabIndex &#x3D; -1;
-				}
-			});
-			this.listItems()[0].focus();
-		}, 0);
 	}
 
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
@@ -1669,16 +1636,25 @@ export class OverflowMenuPane extends Dialog {
 
 			case &quot;Esc&quot;: // IE specific value
 			case &quot;Escape&quot;:
+			case &quot;Tab&quot;:
 				event.stopImmediatePropagation();
 				this.doClose();
 				break;
+			default: break;
 		}
 	}
 
-	menuClose(event) {
-		if (this.listItems().some(button &#x3D;&gt; button &#x3D;&#x3D;&#x3D; document.activeElement)) {
-			this.doClose();
-		}
+	ngAfterViewInit() {
+		const focusElementList &#x3D; this.listItems();
+		focusElementList.forEach(button &#x3D;&gt; {
+			// Allows user to set tabindex to 0.
+			if (button.getAttribute(&quot;tabindex&quot;) &#x3D;&#x3D;&#x3D; null) {
+				button.tabIndex &#x3D; -1;
+			}
+		});
+		focusElementList[0].tabIndex &#x3D; 0;
+		focusElementList[0].focus();
+		super.ngAfterViewInit();
 	}
 
 	protected listItems() {

@@ -1,4 +1,4 @@
-import { ElementRef } from "@angular/core";
+import { ElementRef, EventEmitter } from "@angular/core";
 /**
  * `OverflowMenuOption` represents a single option in an overflow menu
  *
@@ -25,8 +25,10 @@ export declare class OverflowMenuOption {
      * disable/enable interactions
      */
     disabled: boolean;
+    selected: EventEmitter<any>;
     tabIndex: number;
     constructor(elementRef: ElementRef);
+    onClick(event: any): void;
     /**
      * Returns true if the content string is longer than the width of the containing button
      *
