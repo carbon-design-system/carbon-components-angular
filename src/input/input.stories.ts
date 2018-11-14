@@ -25,7 +25,7 @@ storiesOf("Input", module).addDecorator(
 	}))
 	.add("Light Input", () => ({
 		template: `
-			<input ibmText [theme]="'light'" aria-label="input" placeholder="Optional placeholder text"/>
+			<input ibmText theme="light" aria-label="input" placeholder="Optional placeholder text"/>
 		`
 	}))
 	.add("TextArea", () => ({
