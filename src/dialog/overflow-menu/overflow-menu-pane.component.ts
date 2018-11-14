@@ -111,9 +111,6 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 			}
 		});
 		focusElementList[0].tabIndex = 0;
-		const temporarilyPreventClick = event => {
-			event.stopPropagation();
-		};
 		focusElementList[0].focus();
 		super.ngAfterViewInit();
 	}
