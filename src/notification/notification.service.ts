@@ -10,7 +10,8 @@ import {
 } from "@angular/core";
 
 import { NotificationContent, ToastContent } from "./notification-content.interface";
-import { Notification, Toast } from "./notification.module";
+import { Notification } from "./notification.component";
+import { Toast } from "./toast.component";
 
 /**
  * Provides a way to use the notification component.
