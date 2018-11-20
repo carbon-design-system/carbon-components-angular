@@ -29,7 +29,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	template: `
 		<div class="bx--form-item">
 			<div
-				[ngClass]="{'bx--select--inline': display === 'inline'}"
+				[ngClass]="{
+					'bx--select--inline': display === 'inline',
+					'bx--select--light': theme === 'light'
+				}"
 				class="bx--select">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select
@@ -76,6 +79,10 @@ export class Select implements ControlValueAccessor {
 	 * Set to true to disable component.
 	 */
 	@Input() disabled = false;
+	/**
+	 * `light` or `dark` select theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * emits the selected options `value`
 	 */
