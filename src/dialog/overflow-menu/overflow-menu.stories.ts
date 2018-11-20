@@ -5,13 +5,13 @@ import { DialogModule } from "../../";
 
 let options;
 
-cost createOptions = (count: number): Array<string> => {
+function createOptions(count: number): Array<string> {
 	if (options && count === options.length) {
 		return options;
 	}
 	options = Array(count).fill(0).map((x, i) => "Option " + (i+1));
 	return options;
-};
+}
 
 storiesOf("Overflow Menu", module)
 	.addDecorator(
@@ -59,7 +59,10 @@ storiesOf("Overflow Menu", module)
 	}))
 	.add("Dynamic", () => ({
 		template: `
-			<span>Dynamic OverflowMenu, using the optionCount knob to change the number of menu options</span>
+			<span>
+				Dynamic <code style="font-family: monospace;">OverflowMenu</code>, using the <code style="font-family: monospace;">optionCount</code> knob <br/>
+				to change the number of menu options
+			</span>
 			<ibm-overflow-menu>
 				<ibm-overflow-menu-option *ngFor="let option of options(optionCount)">
 					{{option}}
