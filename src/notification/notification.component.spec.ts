@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 
-import { Notification, NotificationService } from "./notification.module";
+import { Notification, NotificationService, NotificationDisplayService } from "./notification.module";
 import { I18nModule } from "../i18n/i18n.module";
 
 
@@ -10,7 +10,7 @@ describe("Notification", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Notification],
-			providers: [NotificationService],
+			providers: [NotificationDisplayService],
 			imports: [
 				StaticIconModule,
 				I18nModule
