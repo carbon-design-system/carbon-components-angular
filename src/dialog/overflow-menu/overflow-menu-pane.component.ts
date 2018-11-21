@@ -1,7 +1,7 @@
-import { Component, HostListener, ElementRef } from "@angular/core";
+import { Component, HostListener, ElementRef, AfterViewInit } from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
-import { getFocusElementList, isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
+import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 
 /**
@@ -19,7 +19,6 @@ import { I18n } from "./../../i18n/i18n.module";
 			#dialog
 			class="bx--overflow-menu-options bx--overflow-menu-options--open"
 			role="menu"
-			(focusout)="menuClose($event)"
 			(click)="doClose()"
 			[attr.aria-label]="dialogConfig.menuLabel">
 			<ng-template
@@ -29,7 +28,7 @@ import { I18n } from "./../../i18n/i18n.module";
 		</ul>
 	`
 })
-export class OverflowMenuPane extends Dialog {
+export class OverflowMenuPane extends Dialog implements AfterViewInit {
 
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		super(elementRef);
@@ -54,16 +53,6 @@ export class OverflowMenuPane extends Dialog {
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
-
-		setTimeout(() => {
-			getFocusElementList(this.elementRef.nativeElement).every(button => {
-				// Allows user to set tabindex to 0.
-				if (button.getAttribute("tabindex") === null) {
-					button.tabIndex = -1;
-				}
-			});
-			this.listItems()[0].focus();
-		}, 0);
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -105,16 +94,25 @@ export class OverflowMenuPane extends Dialog {
 
 			case "Esc": // IE specific value
 			case "Escape":
+			case "Tab":
 				event.stopImmediatePropagation();
 				this.doClose();
 				break;
+			default: break;
 		}
 	}
 
-	menuClose(event) {
-		if (this.listItems().some(button => button === document.activeElement)) {
-			this.doClose();
-		}
+	ngAfterViewInit() {
+		const focusElementList = this.listItems();
+		focusElementList.forEach(button => {
+			// Allows user to set tabindex to 0.
+			if (button.getAttribute("tabindex") === null) {
+				button.tabIndex = -1;
+			}
+		});
+		focusElementList[0].tabIndex = 0;
+		focusElementList[0].focus();
+		super.ngAfterViewInit();
 	}
 
 	protected listItems() {
