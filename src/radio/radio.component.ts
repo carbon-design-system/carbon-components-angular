@@ -142,7 +142,7 @@ export class Radio extends Checkbox implements OnInit {
 	 * @memberof Radio
 	 */
 	constructor(@Optional() radioGroup: RadioGroup,
-				public changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+				public changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
 		super(changeDetectorRef);
 		Radio.radioCount++;
 		this.radioGroup = radioGroup;

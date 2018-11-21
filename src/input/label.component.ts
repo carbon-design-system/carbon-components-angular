@@ -63,7 +63,7 @@ export class Label implements AfterContentInit {
 	 * @param {ElementRef} elementRef
 	 * @memberof Label
 	 */
-	constructor(private elementRef: ElementRef) {
+	constructor(protected elementRef: ElementRef) {
 		Label.labelCounter++;
 	}
 

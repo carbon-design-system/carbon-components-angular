@@ -4,7 +4,7 @@ const EN = require("./en.json");
 
 @Injectable()
 export class I18n {
-	private translationStrings = EN;
+	protected translationStrings = EN;
 
 	public set(strings) {
 		this.translationStrings = Object.assign({}, EN, strings);

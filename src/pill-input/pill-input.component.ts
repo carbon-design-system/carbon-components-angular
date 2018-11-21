@@ -138,7 +138,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@HostBinding("style.width.%") width = "100";
 
 	/** instaniates a pill-input */
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	/**
 	 * Updates the pills, and subscribes to their `remove` events.
@@ -386,7 +386,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	/**
 	 * checks weather the placeholder should be displayed or not.
 	 */
-	private checkPlaceholderVisibility(): void {
+	protected checkPlaceholderVisibility(): void {
 		if (this.type === "single") {
 			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focusActive && !this.getInputText());
 		} else {
@@ -399,7 +399,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 *
 	 * @param target node to set the selection on
 	 */
-	private setSelection(target) {
+	protected setSelection(target) {
 		let selectionRange = document.createRange();
 		let selection = window.getSelection();
 		selectionRange.selectNodeContents(target);
