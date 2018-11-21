@@ -34,7 +34,7 @@ export class ContentSwitcher implements AfterViewInit {
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList<ContentSwitcherOption>;
 
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
 		this.options.first.active = true;
