@@ -102,7 +102,7 @@ describe("Notification", () => {
 		expect(fixture.componentInstance.close.emit).toHaveBeenCalled();
 	});
 
-	xit("should emit change when notification is closed programmatically", () => {
+	it("should emit change when notification is closed programmatically", () => {
 		const fixture = TestBed.createComponent(Notification);
 		fixture.componentInstance.notificationObj = {
 			type: "info",
