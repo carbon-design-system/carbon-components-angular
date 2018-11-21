@@ -2,7 +2,9 @@ import {
 	HostBinding,
 	Component,
 	Input,
-	ElementRef
+	ElementRef,
+	Output,
+	EventEmitter
 } from "@angular/core";
 
 /**
@@ -26,6 +28,7 @@ import {
 			[tabindex]="tabIndex"
 			(focus)="tabIndex = 0"
 			(blur)="tabIndex = -1"
+			(click)="onClick($event)"
 			[disabled]="disabled"
 			[title]="(titleEnabled ? content : '')">
 			<ng-content></ng-content>
@@ -54,9 +57,15 @@ export class OverflowMenuOption {
 	 */
 	@Input() disabled = false;
 
+	@Output() selected: EventEmitter<any> = new EventEmitter();
+
 	public tabIndex = -1;
 
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
+
+	onClick(event) {
+		this.selected.emit();
+	}
 
 	/**
 	 * Returns true if the content string is longer than the width of the containing button

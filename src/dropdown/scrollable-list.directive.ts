@@ -36,12 +36,12 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	@Input() scrollBy = 10;
 
 	// keeps track of the setInterval for hover scrolling
-	private hoverScrollInterval;
+	protected hoverScrollInterval;
 	// tracks the last touch event
-	private lastTouch;
-	private canScrollUp = false;
-	private canScrollDown = false;
-	private list = this.elementRef.nativeElement;
+	protected lastTouch;
+	protected canScrollUp = false;
+	protected canScrollDown = false;
+	protected list = this.elementRef.nativeElement;
 
 	constructor(protected elementRef: ElementRef) {}
 

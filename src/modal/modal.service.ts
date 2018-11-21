@@ -28,7 +28,7 @@ import { PlaceholderService } from "./../placeholder/placeholder.module";
 @Injectable()
 export class ModalService {
 	// track all our open modals
-	private static modalList: Array<ComponentRef<any>> = [];
+	protected static modalList: Array<ComponentRef<any>> = [];
 
 	/**
 	 * Creates an instance of `ModalService`.

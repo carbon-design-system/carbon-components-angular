@@ -129,11 +129,11 @@ export class TableModel implements PaginationModel {
 	/**
 	 * Absolute total number of rows of the table.
 	 *
-	 * @private
+	 * @protected
 	 * @type {number}
 	 * @memberof TableModel
 	 */
-	private _totalDataLength: number;
+	protected _totalDataLength: number;
 
 	/**
 	 * Manually set data length in case the data in the table doesn't
@@ -172,11 +172,11 @@ export class TableModel implements PaginationModel {
 	/**
 	 * Used in `data`
 	 *
-	 * @private
+	 * @protected
 	 * @type {Array<Array<TableItem>>}
 	 * @memberof TableModel
 	 */
-	private _data: Array<Array<TableItem>> = [[]];
+	protected _data: Array<Array<TableItem>> = [[]];
 
 	/**
 	 * Returns how many rows is currently selected
@@ -561,12 +561,12 @@ export class TableModel implements PaginationModel {
 	 * Like in Python, positive numbers start from the top and
 	 * negative numbers start from the bottom.
 	 *
-	 * @private
+	 * @protected
 	 * @param {number} index
 	 * @returns {number}
 	 * @memberof TableModel
 	 */
-	private realRowIndex(index: number): number {
+	protected realRowIndex(index: number): number {
 		return this.realIndex(index, this.data.length);
 	}
 
@@ -575,12 +575,12 @@ export class TableModel implements PaginationModel {
 	 * Like in Python, positive numbers start from the top and
 	 * negative numbers start from the bottom.
 	 *
-	 * @private
+	 * @protected
 	 * @param {number} index
 	 * @returns {number}
 	 * @memberof TableModel
 	 */
-	private realColumnIndex(index: number): number {
+	protected realColumnIndex(index: number): number {
 		return this.realIndex(index, this.data[0].length);
 	}
 
@@ -588,13 +588,13 @@ export class TableModel implements PaginationModel {
 	 * Generic function to calculate the real index of something.
 	 * Used by `realRowIndex()` and `realColumnIndex()`
 	 *
-	 * @private
+	 * @protected
 	 * @param {number} index
 	 * @param {number} length
 	 * @returns {number}
 	 * @memberof TableModel
 	 */
-	private realIndex(index: number, length: number): number {
+	protected realIndex(index: number, length: number): number {
 		if (index == null) {
 			return length - 1;
 		} else if (index >= 0) {
