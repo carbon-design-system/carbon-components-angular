@@ -9,7 +9,7 @@ function createOptions(count: number): Array<string> {
 	if (options && count === options.length) {
 		return options;
 	}
-	options = Array(count).fill(0).map((x, i) => "Option " + (i+1));
+	options = Array(count).fill(0).map((x, i) => "Option " + (i + 1));
 	return options;
 }
 
