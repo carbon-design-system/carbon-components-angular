@@ -29,6 +29,12 @@ export declare class CodeSnippet {
     display: SnippetType;
     translations: any;
     /**
+     * Set to `"light"` to apply the light style on the code snippet.
+     * @type {"light" | "dark"}
+     * @memberof CodeSnippet
+     */
+    theme: "light" | "dark";
+    /**
      * Text displayed in the tooltip when user clicks button to copy code.
      *
      * @memberof CodeSnippet
@@ -45,6 +51,7 @@ export declare class CodeSnippet {
     readonly snippetSingleClass: boolean;
     readonly snippetMultiClass: boolean;
     readonly snippetInlineClass: boolean;
+    readonly snippetInlineLightClass: boolean;
     readonly btnCopyClass: boolean;
     readonly displayStyle: string;
     readonly attrType: string;
