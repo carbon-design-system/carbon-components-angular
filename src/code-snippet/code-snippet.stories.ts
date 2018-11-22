@@ -66,4 +66,10 @@ storiesOf("CodeSnippet", module).addDecorator(
 		props: {
 			inlineCode
 		}
+	}))
+	.add("Inline Light", () => ({
+		template: `Here is some <ibm-code-snippet display="inline" theme="light">{{inlineCode}}</ibm-code-snippet> for you.`,
+		props: {
+			inlineCode
+		}
 	}));
