@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
+import { I18nModule } from "../i18n/i18n.module";
 import { Search } from "./search.component";
 
 @NgModule({
