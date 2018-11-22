@@ -1422,10 +1422,12 @@ export class NotificationDisplayService {
 	 * Programatically closes notification based on &#x60;notificationRef&#x60;.	 *
 	 */
 	close(notificationRef: any) {
-		setTimeout(() &#x3D;&gt; {
-			this.applicationRef.detachView(notificationRef.hostView);
-			notificationRef.destroy();
-		}, 200);
+		if (notificationRef.hostView) {
+			setTimeout( () &#x3D;&gt; {
+				this.applicationRef.detachView(notificationRef.hostView);
+				notificationRef.destroy();
+			}, 200);
+		}
 	}
 }
 </code></pre>

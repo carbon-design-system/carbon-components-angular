@@ -3245,7 +3245,7 @@ export class TableModel implements PaginationModel {
 		this.rowsContext &#x3D; new Array&lt;string&gt;(this._data.length);
 
 		// only create a fresh header if necessary (header doesn&#x27;t exist or differs in length)
-		if (this.header &#x3D;&#x3D; null || this.header.length !&#x3D;&#x3D; this._data[0].length) {
+		if (this.header &#x3D;&#x3D; null || (this.header.length !&#x3D;&#x3D; this._data[0].length &amp;&amp; this._data[0].length &gt; 0)) {
 			let header &#x3D; new Array&lt;TableHeaderItem&gt;();
 			for (let i &#x3D; 0; i &lt; this._data[0].length; i++) {
 				header.push(new TableHeaderItem());
