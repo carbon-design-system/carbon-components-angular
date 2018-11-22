@@ -27,6 +27,11 @@ export declare class Dropdown implements OnInit, AfterContentInit, OnDestroy {
      */
     type: "single" | "multi";
     /**
+     * `light` or `dark` dropdown theme
+     * @memberof Dropdown
+     */
+    theme: "light" | "dark";
+    /**
      * Set to `true` to disable the dropdown.
      */
     disabled: boolean;
