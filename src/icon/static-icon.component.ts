@@ -418,7 +418,7 @@ export class StaticIcon implements AfterViewInit {
 	 *
 	 * @param {ElementRef} elementRef
 	 */
-	constructor(private elementRef: ElementRef) { }
+	constructor(protected elementRef: ElementRef) { }
 
 	public ngAfterViewInit() {
 		const el = this.elementRef.nativeElement;

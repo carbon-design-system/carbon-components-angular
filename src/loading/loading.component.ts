@@ -35,5 +35,5 @@ export class Loading {
 	 */
 	@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
 
-	constructor(private i18n: I18n) {}
+	constructor(protected i18n: I18n) {}
 }

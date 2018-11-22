@@ -16,7 +16,7 @@ import { NotificationModule, NotificationService } from "./notification.module";
 	providers: [NotificationService]
 })
 class NotificationStory {
-	constructor(private notificationService: NotificationService) { }
+	constructor(protected notificationService: NotificationService) { }
 
 	showNotification() {
 		this.notificationService.showNotification({
@@ -37,7 +37,7 @@ class NotificationStory {
 	providers: [NotificationService]
 })
 class ToastStory {
-	constructor(private notificationService: NotificationService) { }
+	constructor(protected notificationService: NotificationService) { }
 
 	showToast() {
 		this.notificationService.showToast({

@@ -42,7 +42,7 @@ export class TableItem {
 	 *
 	 * ```typescript
 	 * (at)ViewChild("customItemTemplate")
-	 * private customItemTemplate: TemplateRef<any>;
+	 * protected customItemTemplate: TemplateRef<any>;
 	 * ```
 	 *
 	 * Set the template to the table item, for example:

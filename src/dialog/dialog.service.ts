@@ -21,7 +21,7 @@ export class DialogService {
 	/**
 	 * Used in `singletonClickListen`, don't count on its existence and values.
 	 */
-	private static listeningForBodyClicks = false;
+	protected static listeningForBodyClicks = false;
 
 	/**
 	 * Reflects the open or closed state of the `Dialog`.
@@ -57,11 +57,11 @@ export class DialogService {
 
 	/**
 	 * To watch the event that closes the `Dialog`.
-	 * @private
+	 * @protected
 	 * @type {Subscription}
 	 * @memberof DialogService
 	 */
-	private dialogSubscription: Subscription;
+	protected dialogSubscription: Subscription;
 
 	/**
 	 * Creates an instance of `DialogService`.
@@ -174,9 +174,7 @@ export class DialogService {
 	 * and changes to it won't be considered a breaking change. Use at your own risk.
 	 */
 	singletonClickListen() {
-		console.log("singleton");
 		if (!DialogService.listeningForBodyClicks) {
-			console.log("singleton click");
 			document.body.firstElementChild.addEventListener("click", () => null, true);
 			DialogService.listeningForBodyClicks = true;
 		}
