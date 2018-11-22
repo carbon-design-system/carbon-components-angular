@@ -2,13 +2,13 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	HostBinding
 } from "@angular/core";
 
 @Component({
 	selector: "ibm-inline-loading",
 	template: `
-		<div class="bx--inline-loading">
 		<div class="bx--inline-loading__animation">
 			<div
 				*ngIf="success === false"
@@ -25,7 +25,6 @@ import {
 		</div>
 		<p *ngIf="success === false" class="bx--inline-loading__text">{{loadingText}}</p>
 		<p *ngIf="success === true" class="bx--inline-loading__text">{{successText}}</p>
-		</div>
 	`
 })
 export class InlineLoading {
@@ -70,6 +69,8 @@ export class InlineLoading {
 	 */
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
+	@HostBinding("class.bx--inline-loading") loadingClass = true;
+
 	/**
 	 * Provide a delay for the `setTimeout` for success.
 	 *
@@ -82,5 +83,5 @@ export class InlineLoading {
 	 *
 	 * @memberof InlineLoading
 	 */
-	_success = false;
+	protected _success = false;
 }
