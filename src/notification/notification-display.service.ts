@@ -11,9 +11,11 @@ export class NotificationDisplayService {
 	 * Programatically closes notification based on `notificationRef`.	 *
 	 */
 	close(notificationRef: any) {
-		setTimeout(() => {
-			this.applicationRef.detachView(notificationRef.hostView);
-			notificationRef.destroy();
-		}, 200);
+		if (notificationRef.hostView) {
+			setTimeout( () => {
+				this.applicationRef.detachView(notificationRef.hostView);
+				notificationRef.destroy();
+			}, 200);
+		}
 	}
 }

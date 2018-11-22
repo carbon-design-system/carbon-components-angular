@@ -137,14 +137,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Reflects whether the checkbox state is indeterminate.
 	 * @readonly
 	 */
-	@Input() get indeterminate() {
+	get indeterminate() {
 		return this._indeterminate;
 	}
 
 	/**
 	 * Set the checkbox's indeterminate state to match the parameter and transition the view to reflect the change.
 	 */
-	set indeterminate(indeterminate: boolean) {
+	@Input() set indeterminate(indeterminate: boolean) {
 		let changed = this._indeterminate !== indeterminate;
 		this._indeterminate = indeterminate;
 
@@ -161,14 +161,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Returns value `true` if state is selected for the checkbox.
 	 * @readonly
 	 */
-	@Input() get checked() {
+	get checked() {
 		return this._checked;
 	}
 
 	/**
 	 * Updating the state of a checkbox to match the state of the parameter passed in.
 	 */
-	set checked (checked: boolean) {
+	@Input() set checked (checked: boolean) {
 		if (checked !== this.checked) {
 			if (this._indeterminate) {
 				Promise.resolve().then(() => {
