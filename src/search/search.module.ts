@@ -15,7 +15,8 @@ import { Search } from "./search.component";
 	],
 	imports: [
 		FormsModule,
-		CommonModule
+		CommonModule,
+		I18nModule
 	]
 })
 export class SearchModule { }
