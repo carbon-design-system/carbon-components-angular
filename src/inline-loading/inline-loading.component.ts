@@ -40,6 +40,12 @@ export class InlineLoading {
 	 * @memberof InlineLoading
 	 */
 	@Input() successText;
+	/**
+	 * Provide a delay for the `setTimeout` for success.
+	 *
+	 * @memberof InlineLoading
+	 */
+	@Input() successDelay = 1500;
 
 	/**
 	 * Returns value `true` if the component is in the success state.
@@ -54,9 +60,7 @@ export class InlineLoading {
 		this._success = success;
 		if (this._success) {
 			setTimeout(() => {
-				if (this.onSuccess.observers.length > 0) {
-					this.onSuccess.emit();
-				}
+				this.onSuccess.emit();
 			}, this.successDelay);
 		}
 	}
@@ -70,13 +74,6 @@ export class InlineLoading {
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
 	@HostBinding("class.bx--inline-loading") loadingClass = true;
-
-	/**
-	 * Provide a delay for the `setTimeout` for success.
-	 *
-	 * @memberof InlineLoading
-	 */
-	successDelay = 1500;
 
 	/**
 	 * Set to `true` if the action is completed successfully.
