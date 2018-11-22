@@ -40,7 +40,7 @@ class ModalStory {
 
 	@Input() modalText = "Hello, World";
 
-	constructor(private modalService: ModalService) { }
+	constructor(protected modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.create({
@@ -66,7 +66,7 @@ class AlertModalStory {
 	@Input() modalContent: string;
 	@Input() buttons: Array<ModalButton>;
 
-	constructor(private modalService: ModalService) { }
+	constructor(protected modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.show({

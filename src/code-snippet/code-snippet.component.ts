@@ -97,6 +97,13 @@ export class CodeSnippet {
 	@Input() translations = this.i18n.get().CODE_SNIPPET;
 
 	/**
+	 * Set to `"light"` to apply the light style on the code snippet.
+	 * @type {"light" | "dark"}
+	 * @memberof CodeSnippet
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
+	/**
 	 * Text displayed in the tooltip when user clicks button to copy code.
 	 *
 	 * @memberof CodeSnippet
@@ -121,6 +128,9 @@ export class CodeSnippet {
 	}
 	@HostBinding("class.bx--snippet--inline") get snippetInlineClass() {
 		return this.display === SnippetType.inline;
+	}
+	@HostBinding("class.bx--snippet--light") get snippetInlineLightClass() {
+		return this.display === SnippetType.inline && this.theme === "light";
 	}
 	@HostBinding("class.bx--btn--copy") get btnCopyClass() {
 		return this.display === SnippetType.inline;

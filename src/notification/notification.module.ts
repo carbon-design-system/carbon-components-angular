@@ -6,9 +6,11 @@ import { StaticIconModule } from "./../icon/static-icon.module";
 import { Toast } from "./toast.component";
 import { Notification } from "./notification.component";
 import { NotificationService } from "./notification.service";
+import { NotificationDisplayService } from "./notification-display.service";
 import { I18nModule } from "./../i18n/i18n.module";
 
 export { NotificationService } from "./notification.service";
+export { NotificationDisplayService } from "./notification-display.service";
 export { Notification } from "./notification.component";
 export { Toast } from "./toast.component";
 
@@ -23,6 +25,6 @@ export { Toast } from "./toast.component";
 	],
 	entryComponents: [Notification, Toast],
 	imports: [CommonModule, StaticIconModule, I18nModule],
-	providers: [NotificationService]
+	providers: [NotificationService, NotificationDisplayService]
 })
 export class NotificationModule {}

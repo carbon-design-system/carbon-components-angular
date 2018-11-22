@@ -200,16 +200,16 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	/** used to update the displayValue of `n-pill-input` */
 	public selectedValue = "";
 
-	private noop = this._noop.bind(this);
-	private onTouchedCallback: () => void = this._noop;
-	private propagateChangeCallback: (_: any) => void = this._noop;
+	protected noop = this._noop.bind(this);
+	protected onTouchedCallback: () => void = this._noop;
+	protected propagateChangeCallback: (_: any) => void = this._noop;
 
 	/**
 	 * Creates an instance of ComboBox.
 	 * @param {ElementRef} elementRef
 	 * @memberof ComboBox
 	 */
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	/**
 	 * Lifecycle hook.
@@ -435,7 +435,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		});
 	}
 
-	private updateSelected() {
+	protected updateSelected() {
 		const selected = this.view.getSelected();
 		if (selected) {
 			if (this.type === "multi") {

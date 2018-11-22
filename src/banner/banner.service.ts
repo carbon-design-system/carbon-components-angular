@@ -43,9 +43,9 @@ export class BannerService implements OnDestroy {
 	 * @memberof BannerService
 	 */
 	constructor(
-		private injector: Injector,
-		private componentFactoryResolver: ComponentFactoryResolver,
-		private applicationRef: ApplicationRef) {
+		protected injector: Injector,
+		protected componentFactoryResolver: ComponentFactoryResolver,
+		protected applicationRef: ApplicationRef) {
 		console.warn("`BannerService` has been deprecated in favour of `NotificationService`");
 	}
 

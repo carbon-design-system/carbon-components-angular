@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
+import { withKnobs } from "@storybook/addon-knobs/angular";
 
 import { InputModule } from "../";
 
@@ -22,8 +22,19 @@ storiesOf("Input", module).addDecorator(
 		template: `
 			<input ibmText aria-label="input" placeholder="Optional placeholder text"/>
 		`
-	})).add("TextArea", () => ({
+	}))
+	.add("Light Input", () => ({
+		template: `
+			<input ibmText theme="light" aria-label="input" placeholder="Optional placeholder text"/>
+		`
+	}))
+	.add("TextArea", () => ({
 		template: `
 		<textarea ibmTextArea aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
+		`
+	}))
+	.add("Light TextArea", () => ({
+		template: `
+		<textarea ibmTextArea theme="light" aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
 		`
 	}));

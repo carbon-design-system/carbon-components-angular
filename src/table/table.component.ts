@@ -134,7 +134,7 @@ import { I18n } from "./../i18n/i18n.module";
  * 	});
  * }
  *
- * private prepareData(data: Array<Array<any>>) {
+ * protected prepareData(data: Array<Array<any>>) {
  * 	// create new data from the service data
  * 	let newData = [];
  * 	data.forEach(dataRow => {
@@ -540,16 +540,16 @@ export class Table {
 			this.model.data.length === 1 && this.model.data[0].length === 0;
 	}
 
-	private _model: TableModel;
+	protected _model: TableModel;
 
-	private columnResizeWidth: number;
-	private columnResizeMouseX: number;
-	private mouseMoveSubscription: Subscription;
-	private mouseUpSubscription: Subscription;
+	protected columnResizeWidth: number;
+	protected columnResizeMouseX: number;
+	protected mouseMoveSubscription: Subscription;
+	protected mouseUpSubscription: Subscription;
 
-	private isColumnDragging = false;
-	private columnDraggedHoverIndex = -1;
-	private columnDraggedPosition = "";
+	protected isColumnDragging = false;
+	protected columnDraggedHoverIndex = -1;
+	protected columnDraggedPosition = "";
 
 	/**
 	 * Creates an instance of Table.
