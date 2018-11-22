@@ -3,6 +3,7 @@ import { By } from "@angular/platform-browser";
 
 import { Search } from "./search.component";
 import { FormsModule } from "@angular/forms";
+import { I18nModule } from "../i18n/i18n.module";
 
 describe("Search", () => {
 	let component: Search;
@@ -14,7 +15,7 @@ describe("Search", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Search],
-			imports: [FormsModule],
+			imports: [FormsModule, I18nModule],
 			providers: []
 		});
 	});

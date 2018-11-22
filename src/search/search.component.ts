@@ -6,7 +6,7 @@ import {
 	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "../i18n/i18n.module";
 
 /**
  * Used to emit changes performed on search components.
@@ -151,7 +151,7 @@ export class Search implements ControlValueAccessor {
 	 * @param i18n The i18n translations.
 	 * @memberof Search
 	 */
-	constructor(private i18n: I18n) {
+	constructor(protected i18n: I18n) {
 		Search.searchCount++;
 	}
 
