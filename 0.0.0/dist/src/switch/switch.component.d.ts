@@ -1,5 +1,5 @@
 import { Checkbox } from "../checkbox/checkbox.component";
-import { ChangeDetectorRef } from "@angular/core";
+import { ChangeDetectorRef, EventEmitter } from "@angular/core";
 /**
  * Deprecated in favour of `ToggleState` (to be removed in v3.0).
  * Defines the set of states for a switch component.
@@ -52,7 +52,17 @@ export declare class Switch extends Checkbox {
      */
     id: string;
     /**
+     * Emits event notifying other classes when a change in state occurs on a switch after a
+     * click.
+     */
+    change: EventEmitter<SwitchChange>;
+    /**
      * Creates an instance of Switch.
      */
     constructor(changeDetectorRef: ChangeDetectorRef);
+    /**
+     * Creates instance of `SwitchChange` used to propagate the change event.
+     * @memberof To
+     */
+    emitChangeEvent(): void;
 }

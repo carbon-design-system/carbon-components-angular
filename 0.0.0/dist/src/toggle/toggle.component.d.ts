@@ -1,5 +1,5 @@
 import { Checkbox } from "../checkbox/checkbox.component";
-import { ChangeDetectorRef } from "@angular/core";
+import { ChangeDetectorRef, EventEmitter } from "@angular/core";
 /**
  * Defines the set of states for a toggle component.
  * @export
@@ -61,9 +61,19 @@ export declare class Toggle extends Checkbox {
      */
     id: string;
     /**
+     * Emits event notifying other classes when a change in state occurs on a toggle after a
+     * click.
+     */
+    change: EventEmitter<ToggleChange>;
+    /**
      * Creates an instance of Toggle.
      * @param {ChangeDetectorRef} changeDetectorRef
      * @memberof Toggle
      */
     constructor(changeDetectorRef: ChangeDetectorRef);
+    /**
+     * Creates instance of `ToggleChange` used to propagate the change event.
+     * @memberof To
+     */
+    emitChangeEvent(): void;
 }

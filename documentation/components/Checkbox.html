@@ -1600,13 +1600,17 @@
                             <code>checked</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Returns value <code>true</code> if state is selected for the checkbox.</p>
+                            <div><p>Updating the state of a checkbox to match the state of the parameter passed in.</p>
 </div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/checkbox/checkbox.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/checkbox/checkbox.component.ts:171</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -1660,13 +1664,17 @@
                             <code>indeterminate</code>
                         </td>
                         <td class="col-md-10">
-                            <div><p>Reflects whether the checkbox state is indeterminate.</p>
+                            <div><p>Set the checkbox&#39;s indeterminate state to match the parameter and transition the view to reflect the change.</p>
 </div>
+                              <p>
+                                <em>Type:</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                              </p>
                         </td>
                     </tr>
                             <tr>
                                 <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/checkbox/checkbox.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/checkbox/checkbox.component.ts:147</a></div>
                                 </td>
                             </tr>
                 </tbody>
@@ -2672,6 +2680,16 @@ on an indeterminate checkbox.</p>
                         </td>
                     </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>indeterminate()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/checkbox/checkbox.component.ts:140</a></div>
+                                    </td>
+                                </tr>
     
                     <tr>
                         <td class="col-md-4">
@@ -2731,6 +2749,16 @@ on an indeterminate checkbox.</p>
                         </td>
                     </tr>
     
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="accessor"><b>get</b><code>checked()</code></span>
+                        </td>
+                    </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/checkbox/checkbox.component.ts:164</a></div>
+                                    </td>
+                                </tr>
     
                     <tr>
                         <td class="col-md-4">
@@ -2925,14 +2953,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Reflects whether the checkbox state is indeterminate.
 	 * @readonly
 	 */
-	@Input() get indeterminate() {
+	get indeterminate() {
 		return this._indeterminate;
 	}
 
 	/**
 	 * Set the checkbox&#x27;s indeterminate state to match the parameter and transition the view to reflect the change.
 	 */
-	set indeterminate(indeterminate: boolean) {
+	@Input() set indeterminate(indeterminate: boolean) {
 		let changed &#x3D; this._indeterminate !&#x3D;&#x3D; indeterminate;
 		this._indeterminate &#x3D; indeterminate;
 
@@ -2949,14 +2977,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Returns value &#x60;true&#x60; if state is selected for the checkbox.
 	 * @readonly
 	 */
-	@Input() get checked() {
+	get checked() {
 		return this._checked;
 	}
 
 	/**
 	 * Updating the state of a checkbox to match the state of the parameter passed in.
 	 */
-	set checked (checked: boolean) {
+	@Input() set checked (checked: boolean) {
 		if (checked !&#x3D;&#x3D; this.checked) {
 			if (this._indeterminate) {
 				Promise.resolve().then(() &#x3D;&gt; {
