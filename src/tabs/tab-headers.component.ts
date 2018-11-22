@@ -143,6 +143,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	keyboardInput(event) {
 		let tabsArray = Array.from<any>(this.tabs);
 
+		// "Right" is an ie11 specific value
 		if (event.key === "Right" || event.key === "ArrowRight") {
 			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
 				event.preventDefault();
@@ -159,6 +160,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			}
 		}
 
+		// "Left" is an ie11 specific value
 		if (event.key === "Left" || event.key === "ArrowLeft") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
