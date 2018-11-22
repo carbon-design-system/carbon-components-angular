@@ -6,6 +6,7 @@ import {
 	HostBinding
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { I18n } from "src/i18n/i18n.module";
 
 /**
  * Used to emit changes performed on search components.
@@ -43,7 +44,7 @@ export class SearchChange {
 				'bx--search--light': theme === 'light'
 			}"
 			role="search">
-			<label class="bx--label" [for]="id">Search</label>
+			<label class="bx--label" [for]="id">{{label}}</label>
 			<input
 				class="bx--search-input"
 				type="text"
@@ -68,8 +69,8 @@ export class SearchChange {
 				[ngClass]="{
 					'bx--search-close--hidden': !value || value === 0
 				}"
-				title="Clear search input"
-				[attr.aria-label]="ariaLabel"
+				[title]="clearButtonTitle"
+				[attr.aria-label]="clearButtonTitle"
 				(click)="clearSearch()">
 				<svg
 					width="16"
@@ -129,14 +130,17 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() value = "";
 	/**
-	 * Sets the placeholder attribute on the  `input` element.
+	 * Sets the text inside the `label` tag.
 	 */
-	@Input() placeholder = "Search";
+	@Input() label = this.i18n.get().SEARCH.LABEL;
 	/**
-	 * Used to set the `aria-label` attribute on the input element.
+	 * Sets the placeholder attribute on the `input` element.
 	 */
-	// tslint:disable-next-line:no-input-rename
-	@Input("aria-label") ariaLabel = "Clear search input";
+	@Input() placeholder = this.i18n.get().SEARCH.PLACEHOLDER;
+	/**
+	 * Used to set the `title` attribute of the clear button.
+	 */
+	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -144,13 +148,17 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Creates an instance of `Search`.
+	 * @param i18n The i18n translations.
 	 * @memberof Search
 	 */
-	constructor() {
+	constructor(protected i18n: I18n) {
 		Search.searchCount++;
 	}
 
-	// this is the initial value set to the component
+	/**
+	 * This is the initial value set to the component
+	 * @param value The input value.
+	 */
 	public writeValue(value: any) {
 		this.value = value;
 	}
