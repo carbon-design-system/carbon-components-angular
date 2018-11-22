@@ -29,7 +29,7 @@ export class TableModel implements PaginationModel {
 		this.rowsContext = new Array<string>(this._data.length);
 
 		// only create a fresh header if necessary (header doesn't exist or differs in length)
-		if (this.header == null || this.header.length !== this._data[0].length) {
+		if (this.header == null || (this.header.length !== this._data[0].length && this._data[0].length > 0)) {
 			let header = new Array<TableHeaderItem>();
 			for (let i = 0; i < this._data[0].length; i++) {
 				header.push(new TableHeaderItem());

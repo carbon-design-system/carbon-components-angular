@@ -605,4 +605,20 @@ describe("Table", () => {
 		expect(tableModel.header[2].data).toEqual("h3");
 		expect(tableModel.header.length).toEqual(3);
 	});
+
+	it("should preserve header if data is emptied", () => {
+		let tableModel  = new TableModel();
+		tableModel.header = [
+			new TableHeaderItem({data: "h1"}), new TableHeaderItem({data: "h2"}), new TableHeaderItem({data: "h3"})
+		];
+		tableModel.data = [
+			[new TableItem({data: "A"}), new TableItem({data: "B"}), new TableItem({data: "C"})],
+			[new TableItem({data: "D"}), new TableItem({data: "E"}), new TableItem({data: "F"})]
+		];
+		tableModel.data = [[]];
+		expect(tableModel.header.length).toEqual(3);
+		expect(tableModel.header[0].data).toEqual("h1");
+		expect(tableModel.header[1].data).toEqual("h2");
+		expect(tableModel.header[2].data).toEqual("h3");
+	});
 });
