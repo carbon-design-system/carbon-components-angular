@@ -11,18 +11,20 @@ storiesOf("Toggle", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-toggle [disabled]="disabled"></ibm-toggle>
+			<ibm-toggle [disabled]="disabled" [checked]="checked"></ibm-toggle>
 		`,
 		props: {
-			disabled: boolean("disabled", false)
+			disabled: boolean("disabled", false),
+			checked: boolean("checked", false)
 		}
 
 	}))
 	.add("Small", () => ({
 		template: `
-			<ibm-toggle [disabled]="disabled" size="sm"></ibm-toggle>
+			<ibm-toggle [disabled]="disabled" [checked]="checked" size="sm"></ibm-toggle>
 		`,
 		props: {
-			disabled: boolean("disabled", false)
+			disabled: boolean("disabled", false),
+			checked: boolean("checked", false)
 		}
 	}));

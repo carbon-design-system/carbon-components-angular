@@ -2,7 +2,9 @@ import { Checkbox } from "../checkbox/checkbox.component";
 import {
 	ChangeDetectorRef,
 	Component,
-	Input
+	Input,
+	Output,
+	EventEmitter
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -51,14 +53,19 @@ export class SwitchChange {
 	template: `
 		<input
 			class="bx--toggle"
+			type="checkbox"
 			[ngClass]="{
 				'bx--toggle--small': size === 'sm'
 			}"
 			[id]="id"
-			type="checkbox"
-			(click)="onClick($event)"
+			[value]="value"
+			[name]="name"
+			[required]="required"
+			[checked]="checked"
 			[disabled]="disabled"
-			[attr.aria-checked]="checked">
+			[attr.aria-checked]="checked"
+			(change)="onChange($event)"
+			(click)="onClick($event)">
 		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
 			<span class="bx--toggle__text--left">Off</span>
 			<span class="bx--toggle__appearance"></span>
@@ -97,6 +104,12 @@ export class Switch extends Checkbox {
 	id = "switch-" + Switch.switchCount;
 
 	/**
+	 * Emits event notifying other classes when a change in state occurs on a switch after a
+	 * click.
+	 */
+	@Output() change = new EventEmitter<SwitchChange>();
+
+	/**
 	 * Creates an instance of Switch.
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
@@ -104,5 +117,18 @@ export class Switch extends Checkbox {
 		Switch.switchCount++;
 
 		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
+	}
+
+	/**
+	 * Creates instance of `SwitchChange` used to propagate the change event.
+	 * @memberof To
+	 */
+	emitChangeEvent() {
+		let event = new SwitchChange();
+		event.source = this;
+		event.checked = this.checked;
+
+		this.propagateChange(this.checked);
+		this.change.emit(event);
 	}
 }
