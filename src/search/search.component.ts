@@ -67,7 +67,7 @@ export class SearchChange {
 			<button
 				class="bx--search-close"
 				[ngClass]="{
-					'bx--search-close--hidden': !value || value === 0
+					'bx--search-close--hidden': !value || value.length === 0
 				}"
 				[title]="clearButtonTitle"
 				[attr.aria-label]="clearButtonTitle"
