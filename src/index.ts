@@ -22,6 +22,7 @@ export * from "./pill-input/pill-input.module";
 export * from "./placeholder/placeholder.module";
 export * from "./progress-indicator/progress-indicator.module";
 export * from "./radio/radio.module";
+export * from "./search/search.module";
 export * from "./select/select.module";
 export * from "./switch/switch.module";
 export * from "./table/table.module";
