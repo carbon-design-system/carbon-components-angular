@@ -1,5 +1,6 @@
 import { Component, Input, HostBinding, EventEmitter, Output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { I18n } from "../i18n/i18n.module";
 
 /**
  * Used to emit changes performed on number input components.
@@ -109,13 +110,13 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
-	@Input() label = "Number Input label";
+	@Input() label = this.i18n.get().NUMBER.LABEL;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<NumberChange>();
 
-	constructor() {
+	constructor(protected i18n: I18n) {
 		Number.numberCount++;
 	}
 

@@ -80,6 +80,9 @@
 	"NOTIFICATION": {
 		"CLOSE_BUTTON": "Close alert notification"
 	},
+	"NUMBER": {
+		"LABEL": "Number Input label"
+	},
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},
