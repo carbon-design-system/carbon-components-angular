@@ -34,7 +34,8 @@ export class NumberChange {
 			data-numberinput
 			class="bx--number"
 			[ngClass]="{
-				'bx--number--light': theme === 'light'
+				'bx--number--light': theme === 'light',
+				'bx--number--helpertext': helperText
 			}">
 			<label [for]="id" class="bx--label">{{label}}</label>
 			<input
@@ -61,6 +62,7 @@ export class NumberChange {
 					</svg>
 				</button>
 			</div>
+			<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 		</div>
 	`,
 	providers: [
@@ -111,6 +113,10 @@ export class Number implements ControlValueAccessor {
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = this.i18n.get().NUMBER.LABEL;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */

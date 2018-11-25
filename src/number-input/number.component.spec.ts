@@ -12,6 +12,7 @@ describe("Number", () => {
 	let containerElement: HTMLElement;
 	let buttonUp: HTMLButtonElement;
 	let buttonDown: HTMLButtonElement;
+	let helperTextElement: HTMLDivElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -60,6 +61,15 @@ describe("Number", () => {
 		component.required = true;
 		fixture.detectChanges();
 		expect(inputElement.required).toEqual(true);
+	});
+
+	it("should bind input helperText", () => {
+		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
+		component.helperText = "Helper text here.";
+		fixture.detectChanges();
+		helperTextElement = fixture.debugElement.query(By.css(".bx--form__helper-text")).nativeElement;
+		expect(containerElement.className.includes("bx--number--helpertext")).toEqual(true);
+		expect(helperTextElement.innerHTML.includes("Helper text here.")).toEqual(true);
 	});
 
 	it("should display control buttons", () => {
