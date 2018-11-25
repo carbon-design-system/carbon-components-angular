@@ -12,6 +12,7 @@ describe("Number", () => {
 	let containerElement: HTMLElement;
 	let buttonUp: HTMLButtonElement;
 	let buttonDown: HTMLButtonElement;
+	let labelElement: HTMLDivElement;
 	let helperTextElement: HTMLDivElement;
 
 	beforeEach(() => {
@@ -26,6 +27,7 @@ describe("Number", () => {
 		fixture = TestBed.createComponent(Number);
 		component = fixture.componentInstance;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
+		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
 	});
 
 	it("should work", () => {
@@ -63,8 +65,20 @@ describe("Number", () => {
 		expect(inputElement.required).toEqual(true);
 	});
 
+	it("should bind input label", () => {
+		component.label = "Number Input";
+		fixture.detectChanges();
+		labelElement = fixture.debugElement.query(By.css(".bx--label")).nativeElement;
+		expect(labelElement.innerHTML.includes("Number Input")).toEqual(true);
+		expect(containerElement.className.includes("bx--number--nolabel")).toEqual(false);
+
+		component.label = null;
+		fixture.detectChanges();
+		expect(fixture.debugElement.query(By.css(".bx--label"))).toBeNull();
+		expect(containerElement.className.includes("bx--number--nolabel")).toEqual(true);
+	});
+
 	it("should bind input helperText", () => {
-		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
 		component.helperText = "Helper text here.";
 		fixture.detectChanges();
 		helperTextElement = fixture.debugElement.query(By.css(".bx--form__helper-text")).nativeElement;
@@ -116,7 +130,6 @@ describe("Number", () => {
 	});
 
 	it("should have dark and light theme", () => {
-		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
 		component.theme = "dark";
 		fixture.detectChanges();
 		expect(containerElement.className.includes("bx--number--light")).toEqual(false);

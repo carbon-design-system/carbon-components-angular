@@ -1,6 +1,5 @@
 import { Component, Input, HostBinding, EventEmitter, Output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { I18n } from "../i18n/i18n.module";
 
 /**
  * Used to emit changes performed on number input components.
@@ -35,9 +34,10 @@ export class NumberChange {
 			class="bx--number"
 			[ngClass]="{
 				'bx--number--light': theme === 'light',
+				'bx--number--nolabel': !label,
 				'bx--number--helpertext': helperText
 			}">
-			<label [for]="id" class="bx--label">{{label}}</label>
+			<label *ngIf="label" [for]="id" class="bx--label">{{label}}</label>
 			<input
 				type="number"
 				[id]="id"
@@ -112,7 +112,7 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
-	@Input() label = this.i18n.get().NUMBER.LABEL;
+	@Input() label;
 	/**
 	 * Sets the optional helper text.
 	 */
@@ -122,7 +122,11 @@ export class Number implements ControlValueAccessor {
 	 */
 	@Output() change = new EventEmitter<NumberChange>();
 
-	constructor(protected i18n: I18n) {
+	/**
+	 * Creates an instance of `Number`.
+	 * @memberof Number
+	 */
+	constructor() {
 		Number.numberCount++;
 	}
 
