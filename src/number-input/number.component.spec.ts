@@ -37,6 +37,18 @@ describe("Number", () => {
 		expect(inputElement.value).toEqual("1");
 	});
 
+	it("should bind input min", () => {
+		component.min = 0;
+		fixture.detectChanges();
+		expect(inputElement.min).toEqual("0");
+	});
+
+	it("should bind input max", () => {
+		component.max = 100;
+		fixture.detectChanges();
+		expect(inputElement.max).toEqual("100");
+	});
+
 	it("should bind input disabled", () => {
 		expect(inputElement.disabled).toEqual(false);
 		component.disabled = true;
@@ -67,9 +79,27 @@ describe("Number", () => {
 		expect(component.value).toEqual(2);
 	});
 
+	it("should not increment value if max is reached", () => {
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		component.value = 100;
+		component.max = 100;
+		buttonUp.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual(100);
+	});
+
 	it("should decrement value when button down is clicked", () => {
 		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
 		component.value = 1;
+		buttonUp.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual(0);
+	});
+
+	it("should not decrement value min is reached", () => {
+		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
+		component.value = 0;
+		component.min = 0;
 		buttonUp.click();
 		fixture.detectChanges();
 		expect(component.value).toEqual(0);

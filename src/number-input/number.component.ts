@@ -38,10 +38,10 @@ export class NumberChange {
 			<label [for]="id" class="bx--label">Number Input label</label>
 			<input
 				type="number"
-				min="0"
-				max="100"
 				[id]="id"
 				[value]="value"
+				[min]="min"
+				[max]="max"
 				[disabled]="disabled"
 				[required]="required"/>
 			<div class="bx--number__controls">
@@ -99,6 +99,14 @@ export class Number implements ControlValueAccessor {
 	 */
 	@Input() value = 0;
 	/**
+	 * Sets the min attribute on the `input` element.
+	 */
+	@Input() min = 0;
+	/**
+	 * Sets the max attribute on the `input` element.
+	 */
+	@Input() max = 100;
+	/**
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = "Number Input label";
@@ -152,16 +160,20 @@ export class Number implements ControlValueAccessor {
 	 * Adds 1 to the current `value`.
 	 */
 	onIncrement(): void {
-		this.value++;
-		this.emitChangeEvent();
+		if (this.value < this.max) {
+			this.value++;
+			this.emitChangeEvent();
+		}
 	}
 
 	/**
 	 * Subtract 1 to the current `value`.
 	 */
 	onDecrement(): void {
-		this.value--;
-		this.emitChangeEvent();
+		if (this.value > this.min) {
+			this.value--;
+			this.emitChangeEvent();
+		}
 	}
 
 	/**
