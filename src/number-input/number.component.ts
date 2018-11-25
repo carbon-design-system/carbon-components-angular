@@ -36,7 +36,7 @@ export class NumberChange {
 			[ngClass]="{
 				'bx--number--light': theme === 'light'
 			}">
-			<label [for]="id" class="bx--label">Number Input label</label>
+			<label [for]="id" class="bx--label">{{label}}</label>
 			<input
 				type="number"
 				[id]="id"
