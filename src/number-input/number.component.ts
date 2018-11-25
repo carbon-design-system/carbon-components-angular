@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding } from "@angular/core";
+import { Component, Input, HostBinding, EventEmitter, Output } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
@@ -46,20 +46,29 @@ export class NumberChange {
 				[required]="required"/>
 			<div class="bx--number__controls">
 				<button
-					class="bx--number__control-btn up-icon">
+					class="bx--number__control-btn up-icon"
+					(click)="onIncrement()">
 					<svg width="10" height="5" viewBox="0 0 10 5">
 						<path d="M0 5L5 .002 10 5z" fill-rule="evenodd" />
 					</svg>
 				</button>
 				<button
-					class="bx--number__control-btn down-icon">
+					class="bx--number__control-btn down-icon"
+					(click)="onDecrement()">
 					<svg width="10" height="5" viewBox="0 0 10 5">
 						<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 					</svg>
 				</button>
 			</div>
 		</div>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: Number,
+			multi: true
+		}
+	]
 })
 export class Number implements ControlValueAccessor {
 	/**
@@ -93,6 +102,10 @@ export class Number implements ControlValueAccessor {
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = "Number Input label";
+	/**
+	 * Emits event notifying other classes when a change in state occurs in the input.
+	 */
+	@Output() change = new EventEmitter<NumberChange>();
 
 	constructor() {
 		Number.numberCount++;
@@ -134,4 +147,32 @@ export class Number implements ControlValueAccessor {
 	 * @memberof Number
 	 */
 	propagateChange = (_: any) => {};
+
+	/**
+	 * Adds 1 to the current `value`.
+	 */
+	onIncrement(): void {
+		this.value++;
+		this.emitChangeEvent();
+	}
+
+	/**
+	 * Subtract 1 to the current `value`.
+	 */
+	onDecrement(): void {
+		this.value--;
+		this.emitChangeEvent();
+	}
+
+	/**
+	 * Creates a class of `NumberChange` to emit the change in the `Number`.
+	 */
+	emitChangeEvent(): void {
+		let event = new NumberChange();
+		event.source = this;
+		event.value = this.value;
+		this.change.emit(event);
+		this.propagateChange(this.value);
+	}
+
 }

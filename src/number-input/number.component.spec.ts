@@ -59,6 +59,22 @@ describe("Number", () => {
 		expect(buttonDown.className.includes("down-icon")).toEqual(true);
 	});
 
+	it("should increment value when button up is clicked", () => {
+		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
+		component.value = 1;
+		buttonUp.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual(2);
+	});
+
+	it("should decrement value when button down is clicked", () => {
+		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
+		component.value = 1;
+		buttonUp.click();
+		fixture.detectChanges();
+		expect(component.value).toEqual(0);
+	});
+
 	it("should have dark and light theme", () => {
 		containerElement = fixture.debugElement.query(By.css(".bx--number")).nativeElement;
 		component.theme = "dark";
