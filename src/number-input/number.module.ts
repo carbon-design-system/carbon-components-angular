@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 // imports
-import { I18nModule } from "../i18n/i18n.module";
 import { Number } from "./number.component";
 
 @NgModule({
@@ -16,8 +15,7 @@ import { Number } from "./number.component";
 	],
 	imports: [
 		FormsModule,
-		CommonModule,
-		I18nModule
+		CommonModule
 	]
 })
 export class NumberModule { }

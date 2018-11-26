@@ -3,7 +3,6 @@ import { By } from "@angular/platform-browser";
 
 import { Number } from "./number.component";
 import { FormsModule } from "@angular/forms";
-import { I18nModule } from "../i18n/i18n.module";
 
 describe("Number", () => {
 	let component: Number;
@@ -18,7 +17,7 @@ describe("Number", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Number],
-			imports: [FormsModule, I18nModule],
+			imports: [FormsModule],
 			providers: []
 		});
 	});
