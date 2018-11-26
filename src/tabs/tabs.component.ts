@@ -42,7 +42,7 @@ import { TabHeaders } from "./tab-headers.component";
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
 				[tabs]="tabs"
-				[automaticActivation]="automaticActivation"
+				[followFocus]="followFocus"
 				[cacheActive]="cacheActive">
 			</ibm-tab-headers>
 			<ng-content></ng-content>
@@ -70,7 +70,7 @@ export class Tabs implements AfterContentInit {
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they recieve focus.
 	 * @memberof Tabs
 	 */
-	@Input() automaticActivation = false;
+	@Input() followFocus = true;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.

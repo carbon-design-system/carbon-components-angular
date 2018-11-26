@@ -14,13 +14,13 @@ storiesOf("Tabs", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-tabs [automaticActivation]="automaticActivation">
+			<ibm-tabs [followFocus]="followFocus">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
-			automaticActivation: boolean("automaticActivation", false)
+			followFocus: boolean("followFocus", true)
 		}
 	}))
 	.add("With template", () => ({
