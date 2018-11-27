@@ -4060,7 +4060,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 				*ngIf&#x3D;&quot;model.rowsExpanded[i]&quot;
 				class&#x3D;&quot;bx--expandable-row-v2&quot;
 				[attr.data-child-row]&#x3D;&quot;(model.rowsExpanded[i] ? &#x27;true&#x27; : null)&quot;&gt;
-					&lt;td [attr.colspan]&#x3D;&quot;model.data.length + 2&quot;&gt;
+					&lt;td [attr.colspan]&#x3D;&quot;row.length + 2&quot;&gt;
 						&lt;ng-container *ngIf&#x3D;&quot;!firstExpandedTemplateInRow(row)&quot;&gt;{{firstExpandedDataInRow(row)}}&lt;/ng-container&gt;
 						&lt;ng-template
 							[ngTemplateOutlet]&#x3D;&quot;firstExpandedTemplateInRow(row)&quot;
