@@ -40,7 +40,8 @@ describe("Dropdown list", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule, I18nModule
+				StaticIconModule,
+				I18nModule
 			]
 		});
 	});
@@ -73,7 +74,8 @@ describe("Dropdown multi list", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule, I18nModule
+				StaticIconModule,
+				I18nModule
 			]
 		});
 	});

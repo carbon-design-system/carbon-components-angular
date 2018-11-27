@@ -51,14 +51,14 @@ import { ScrollableList } from "./../scrollable-list.directive";
 			#list
 			role="listbox"
 			class="bx--list-box__menu"
-			[attr.aria-label]="dropdownListLabel">
+			[attr.aria-label]="ariaLabel">
 			<li tabindex="-1"
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
 				(keydown)="doKeyDown($event, item)"
-				(focus)="listElementList[i].classList.add('bx--list-box__menu-item--highlighted'); listElementList[i].tabIndex = 0"
-				(blur)="listElementList[i].classList.remove('bx--list-box__menu-item--highlighted'); listElementList[i].tabIndex = -1"
+				(focus)="onItemFocus(i)"
+				(blur)="onItemBlur(i)"
 				class="bx--list-box__menu-item"
 				[ngClass]="{
 					selected: item.selected,
@@ -92,7 +92,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 	]
 }) // conceptually this extends list-group, but we dont have to
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
-	@Input() dropdownListLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
+	@Input() ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the `DropdownList`.
 	 */
@@ -398,5 +398,15 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			}
 			this.index = this.items.indexOf(item);
 		}
+	}
+
+	onItemFocus(index) {
+		this.listElementList[index].classList.add("bx--list-box__menu-item--highlighted");
+		this.listElementList[index].tabIndex = 0;
+	}
+
+	onItemBlur(index) {
+		this.listElementList[index].classList.remove("bx--list-box__menu-item--highlighted");
+		this.listElementList[index].tabIndex = -1;
 	}
 }
