@@ -18,6 +18,7 @@ export * from "./list-group/list-group.module";
 export * from "./loading/loading.module";
 export * from "./modal/modal.module";
 export * from "./notification/notification.module";
+export * from "./number-input/number.module";
 export * from "./pagination/pagination.module";
 export * from "./pill-input/pill-input.module";
 export * from "./placeholder/placeholder.module";
