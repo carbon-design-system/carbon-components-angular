@@ -54,7 +54,7 @@ export class ModalPlaceholder implements OnInit {
 	 * Initializes the component using `ModalService`.
 	 */
 	ngOnInit() {
-		console.warn("`ibm-modal-placeholder` has been deprecated in favour of `ibm-placeholder`");
+		console.warn("`ibm-dialog-placeholder` has been deprecated in favour of `ibm-placeholder`");
 		this.placeholderService.registerViewContainerRef(this.viewContainerRef);
 	}
 }

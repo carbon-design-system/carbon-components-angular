@@ -6,6 +6,7 @@ import { StaticIconModule } from "./../../icon/static-icon.module";
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
+import { I18nModule } from "../../i18n/i18n.module";
 
 @Component({
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
@@ -39,7 +40,7 @@ describe("Dropdown list", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule
+				StaticIconModule, I18nModule
 			]
 		});
 	});
@@ -72,7 +73,7 @@ describe("Dropdown multi list", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule
+				StaticIconModule, I18nModule
 			]
 		});
 	});
