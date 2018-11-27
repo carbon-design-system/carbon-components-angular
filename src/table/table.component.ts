@@ -334,7 +334,7 @@ import { I18n } from "./../i18n/i18n.module";
 				*ngIf="model.rowsExpanded[i]"
 				class="bx--expandable-row-v2"
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
-					<td [attr.colspan]="model.data.length + 2">
+					<td [attr.colspan]="model.header.length + 2">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
 						<ng-template
 							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
