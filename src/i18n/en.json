@@ -83,6 +83,11 @@
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},
+	"SEARCH": {
+		"LABEL": "Search",
+		"PLACEHOLDER": "Search",
+		"CLEAR_BUTTON": "Clear search input"
+	},
 	"SIDENAV": {
 		"NAV_LABEL": "Side navigation"
 	},
