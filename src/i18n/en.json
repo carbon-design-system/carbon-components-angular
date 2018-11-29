@@ -95,7 +95,8 @@
 		"ITEMS_PER_PAGE": "Items per page:",
 		"OPEN_LIST_OF_OPTIONS": "Open list of options",
 		"BACKWARD": "Backward",
-		"FORWARD": "Forward"
+		"FORWARD": "Forward",
+		"TEXT": "{{start}}-{{end}} of {{total}} items"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",

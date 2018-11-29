@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 import { range } from "../common/utils";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n, replace } from "./../i18n/i18n.module";
 
 /**
  * Use pagination when you have multiple pages of data to handle.
@@ -72,7 +72,7 @@ import { I18n } from "./../i18n/i18n.module";
 			</div>
 			<span class="bx--pagination__text">
 				<span>|&nbsp;</span>
-				{{startItemIndex}}-{{endItemIndex}} of {{model.totalDataLength}} items
+				{{replace(text, {start: startItemIndex, end: endItemIndex, total: model.totalDataLength }) | async}}
 			</span>
 		</div>
 		<div class="bx--pagination__right bx--pagination--inline">
@@ -218,6 +218,8 @@ export class Pagination {
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
+	text = this.i18n.get("PAGINATION.TEXT");
+
 	constructor(protected i18n: I18n) {
 		Pagination.paginationCounter++;
 	}
@@ -234,5 +236,9 @@ export class Pagination {
 	 */
 	range(stop: number, start = 0, step = 1) {
 		return range(stop, start, step);
+	}
+
+	replace(subject, variables) {
+		return replace(subject, variables);
 	}
 }
