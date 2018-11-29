@@ -259,7 +259,6 @@ export class Pagination {
 	totalItemsText = this.i18n.get("PAGINATION.TOTAL_ITEMS");
 	totalPagesText = this.i18n.get("PAGINATION.TOTAL_PAGES");
 
-
 	constructor(protected i18n: I18n) {
 		Pagination.paginationCounter++;
 	}
