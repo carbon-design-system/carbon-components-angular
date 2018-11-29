@@ -4,7 +4,7 @@ Code shared across our repos. To be used as a subtree.
 ## Modules
 
 ### position.ts
-A robust positioning service pulled from neutrino.
+A robust positioning service pulled from Carbon-Angular.
 
 #### `Position` type
 
