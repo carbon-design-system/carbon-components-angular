@@ -20,7 +20,7 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save-dev carbon-components-angular carbon-components
+$ npm i --save carbon-components-angular carbon-components
 ```
 
 Then we need to include carbon-components in `src/styles.scss`:
