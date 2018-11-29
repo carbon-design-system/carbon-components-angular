@@ -42,7 +42,7 @@ import { I18n } from "./../../i18n/i18n.module";
 		}
 
 		/*
-		rotate the overflow menu container as well as the icon.
+		Rotate the overflow menu container as well as the icon, since
 		Since we calclate our menu position based on the container, not the icon
 		*/
 		.bx--data-table-v2 .bx--overflow-menu {
