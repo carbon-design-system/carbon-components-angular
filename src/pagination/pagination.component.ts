@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 import { range } from "../common/utils";
-import { I18n, replace } from "./../i18n/i18n.module";
+import { I18n } from "./../i18n/i18n.module";
 import { BehaviorSubject } from "rxjs";
 
 /**
@@ -73,11 +73,11 @@ import { BehaviorSubject } from "rxjs";
 			</div>
 			<span class="bx--pagination__text">
 				<span>|&nbsp;</span>
-				{{replace(totalItemsText, {start: startItemIndex, end: endItemIndex, total: model.totalDataLength }) | async}}
+				{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
 			</span>
 		</div>
 		<div class="bx--pagination__right bx--pagination--inline">
-			<span class="bx--pagination__text">{{replace(totalPagesText, {current: currentPage, last: lastPage}) | async}}</span>
+			<span class="bx--pagination__text">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</span>
 			<button
 				class="bx--pagination__button bx--pagination__button--backward"
 				(click)="selectPage.emit(previousPage)"
@@ -275,9 +275,5 @@ export class Pagination {
 	 */
 	range(stop: number, start = 0, step = 1) {
 		return range(stop, start, step);
-	}
-
-	replace(subject, variables) {
-		return replace(subject, variables);
 	}
 }
