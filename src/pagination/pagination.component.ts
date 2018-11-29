@@ -72,11 +72,11 @@ import { I18n, replace } from "./../i18n/i18n.module";
 			</div>
 			<span class="bx--pagination__text">
 				<span>|&nbsp;</span>
-				{{replace(text, {start: startItemIndex, end: endItemIndex, total: model.totalDataLength }) | async}}
+				{{replace(totalItems, {start: startItemIndex, end: endItemIndex, total: model.totalDataLength }) | async}}
 			</span>
 		</div>
 		<div class="bx--pagination__right bx--pagination--inline">
-			<span class="bx--pagination__text">{{currentPage}} of {{lastPage}} pages</span>
+			<span class="bx--pagination__text">{{replace(totalPages, {current: currentPage, last: lastPage}) | async}}</span>
 			<button
 				class="bx--pagination__button bx--pagination__button--backward"
 				(click)="selectPage.emit(previousPage)"
@@ -218,7 +218,8 @@ export class Pagination {
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
-	text = this.i18n.get("PAGINATION.TEXT");
+	totalItems = this.i18n.get("PAGINATION.TOTAL_ITEMS");
+	totalPages = this.i18n.get("PAGINATION.TOTAL_PAGES");
 
 	constructor(protected i18n: I18n) {
 		Pagination.paginationCounter++;
