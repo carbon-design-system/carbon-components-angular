@@ -8,6 +8,7 @@ import {
 
 import { range } from "../common/utils";
 import { I18n, replace } from "./../i18n/i18n.module";
+import { BehaviorSubject } from "rxjs";
 
 /**
  * Use pagination when you have multiple pages of data to handle.
@@ -37,13 +38,13 @@ import { I18n, replace } from "./../i18n/i18n.module";
 	template: `
 	<div class="bx--pagination">
 		<div class="bx--pagination__left">
-			<span class="bx--pagination__text">{{translations.ITEMS_PER_PAGE}}</span>
+			<span class="bx--pagination__text">{{itemsPerPageText | async}}</span>
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline">
 					<label
 						[for]="itemsPerPageSelectId"
 						class="bx--label bx--visually-hidden">
-						{{translations.ITEMS_PER_PAGE}}
+						{{itemsPerPageText | async}}
 					</label>
 					<select
 						[id]="itemsPerPageSelectId"
@@ -63,20 +64,20 @@ import { I18n, replace } from "./../i18n/i18n.module";
 						role="img"
 						viewBox="0 0 10 5"
 						width="10"
-						[attr.aria-label]="translations.OPEN_LIST_OF_OPTIONS"
-						[attr.alt]="translations.OPEN_LIST_OF_OPTIONS">
-						<title>{{translations.OPEN_LIST_OF_OPTIONS}}</title>
+						[attr.aria-label]="optionsListText | async"
+						[attr.alt]="optionsListText | async">
+						<title>{{optionsListText | async}}</title>
 						<path d="M0 0l5 4.998L10 0z"></path>
 					</svg>
 				</div>
 			</div>
 			<span class="bx--pagination__text">
 				<span>|&nbsp;</span>
-				{{replace(totalItems, {start: startItemIndex, end: endItemIndex, total: model.totalDataLength }) | async}}
+				{{replace(totalItemsText, {start: startItemIndex, end: endItemIndex, total: model.totalDataLength }) | async}}
 			</span>
 		</div>
 		<div class="bx--pagination__right bx--pagination--inline">
-			<span class="bx--pagination__text">{{replace(totalPages, {current: currentPage, last: lastPage}) | async}}</span>
+			<span class="bx--pagination__text">{{replace(totalPagesText, {current: currentPage, last: lastPage}) | async}}</span>
 			<button
 				class="bx--pagination__button bx--pagination__button--backward"
 				(click)="selectPage.emit(previousPage)"
@@ -88,15 +89,15 @@ import { I18n, replace } from "./../i18n/i18n.module";
 					role="img"
 					viewBox="0 0 7 12"
 					width="7"
-					[attr.aria-label]="translations.BACKWARD"
-					[attr.alt]="translations.BACKWARD">
-					<title>{{translations.BACKWARD}}</title>
+					[attr.aria-label]="backwardText | async"
+					[attr.alt]="backwardText | async">
+					<title>{{backwardText |async }}</title>
 					<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
 				</svg>
 			</button>
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline">
-				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{translations.ITEMS_PER_PAGE}}</label>
+				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>
 				<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">
 					<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
 				</select>
@@ -107,9 +108,9 @@ import { I18n, replace } from "./../i18n/i18n.module";
 					role="img"
 					viewBox="0 0 10 5"
 					width="10"
-					[attr.aria-label]="translations.OPEN_LIST_OF_OPTIONS"
-					[attr.alt]="translations.OPEN_LIST_OF_OPTIONS">
-					<title>{{translations.OPEN_LIST_OF_OPTIONS}}</title>
+					[attr.aria-label]="optionsListText | async"
+					[attr.alt]="optionsListText | async">
+					<title>{{optionsListText | async}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
 			</div>
@@ -125,9 +126,9 @@ import { I18n, replace } from "./../i18n/i18n.module";
 				role="img"
 				viewBox="0 0 7 12"
 				width="7"
-				[attr.aria-label]="translations.FORWARD"
-				[attr.alt]="translations.FORWARD">
-				<title>{{translations.FORWARD}}</title>
+				[attr.aria-label]="forwardText | async"
+				[attr.alt]="forwardText | async">
+				<title>{{forwardText | async}}</title>
 				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
 			</svg>
 		</button>
@@ -146,7 +147,40 @@ export class Pagination {
 	 */
 	@Input() model: PaginationModel;
 
-	@Input() translations = this.i18n.get().PAGINATION;
+	/**
+	 * Expects an object that contains some or all of:
+	 * ```
+	 * {
+	 *		"ITEMS_PER_PAGE": "Items per page:",
+	 *		"OPEN_LIST_OF_OPTIONS": "Open list of options",
+	 *		"BACKWARD": "Backward",
+	 *		"FORWARD": "Forward",
+	 *		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
+	 *		"TOTAL_PAGES": "{{current}} of {{last}} pages"
+	 * }
+	 * ```
+	 */
+	@Input()
+	set translations (value) {
+		if (value.ITEMS_PER_PAGE) {
+			this.itemsPerPageText = new BehaviorSubject(value.ITEMS_PER_PAGE);
+		}
+		if (value.OPEN_LIST_OF_OPTIONS) {
+			this.optionsListText = new BehaviorSubject(value.OPEN_LIST_OF_OPTIONS);
+		}
+		if (value.BACKWARD) {
+			this.backwardText = new BehaviorSubject(value.BACKWARD);
+		}
+		if (value.FORWARD) {
+			this.forwardText = new BehaviorSubject(value.FORWARD);
+		}
+		if (value.TOTAL_ITEMS) {
+			this.totalItemsText = new BehaviorSubject(value.TOTAL_ITEMS);
+		}
+		if (value.TOTAL_PAGES) {
+			this.totalPagesText = new BehaviorSubject(value.TOTAL_PAGES);
+		}
+	}
 
 	/**
 	 * Emits the new page number.
@@ -218,8 +252,13 @@ export class Pagination {
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
-	totalItems = this.i18n.get("PAGINATION.TOTAL_ITEMS");
-	totalPages = this.i18n.get("PAGINATION.TOTAL_PAGES");
+	itemsPerPageText = this.i18n.get("PAGINATION.ITEMS_PER_PAGE");
+	optionsListText = this.i18n.get("PAGINATION.OPEN_LIST_OF_OPTIONS");
+	backwardText = this.i18n.get("PAGINATION.BACKWARD");
+	forwardText = this.i18n.get("PAGINATION.FORWARD");
+	totalItemsText = this.i18n.get("PAGINATION.TOTAL_ITEMS");
+	totalPagesText = this.i18n.get("PAGINATION.TOTAL_PAGES");
+
 
 	constructor(protected i18n: I18n) {
 		Pagination.paginationCounter++;
