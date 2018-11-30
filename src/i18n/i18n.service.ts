@@ -71,13 +71,17 @@ export class I18n {
 		if (!path) {
 			return this.translationStrings;
 		}
-		const value = this.getValueFromPath(path);
-		if (this.translations.has(path)) {
-			return this.translations.get(path);
+		try {
+			const value = this.getValueFromPath(path);
+			if (this.translations.has(path)) {
+				return this.translations.get(path);
+			}
+			const translation = new BehaviorSubject(value);
+			this.translations.set(path, translation);
+			return translation;
+		} catch (err) {
+			console.error(err);
 		}
-		const translation = new BehaviorSubject(value);
-		this.translations.set(path, translation);
-		return translation;
 	}
 
 	/**
