@@ -5,7 +5,7 @@ import { map } from "rxjs/operators";
 const EN = require("./en.json");
 
 /**
- * Takes the Observable returned from `i18n.get` and an object of variables to replace.
+ * Takes the `Observable` returned from `i18n.get` and an object of variables to replace.
  *
  * The keys specify the variable name in the string.
  *
