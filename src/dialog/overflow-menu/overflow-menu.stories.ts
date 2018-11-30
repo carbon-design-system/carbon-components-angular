@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, number } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean, number } from "@storybook/addon-knobs";
 
 import { DialogModule } from "../../";
 
@@ -60,7 +60,8 @@ storiesOf("Overflow Menu", module)
 	.add("Dynamic", () => ({
 		template: `
 			<span>
-				Dynamic <code style="font-family: monospace;">OverflowMenu</code>, using the <code style="font-family: monospace;">optionCount</code> knob <br/>
+				Dynamic <code style="font-family: monospace;">OverflowMenu</code>,
+				using the <code style="font-family: monospace;">optionCount</code> knob <br/>
 				to change the number of menu options
 			</span>
 			<ibm-overflow-menu>

@@ -96,7 +96,7 @@
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
     "babel-loader": "8.0.4",
-    "carbon-components": "9.42.3",
+    "carbon-components": "9.56.2",
     "codelyzer": "4.5.0",
     "commitizen": "2.10.1",
     "core-js": "2.5.5",

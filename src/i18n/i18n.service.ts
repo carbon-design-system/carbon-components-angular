@@ -5,12 +5,12 @@ import { map } from "rxjs/operators";
 const EN = require("./en.json");
 
 /**
- * Takes the Observable returned from `i18n.get` and an object of variables to replace.
+ * Takes the `Observable` returned from `i18n.get` and an object of variables to replace.
  *
  * The keys specify the variable name in the string.
  *
  * Example:
- * ```
+ * ```typescript
  * service.set({ "TEST": "{{foo}} {{bar}}" });
  *
  * service.replace(service.get("TEST"), { foo: "test", bar: "asdf" })
@@ -38,7 +38,8 @@ export const replace = (subject, variables) => subject.pipe(
  * The I18n service is a minimal internal service used to supply our components with translated strings.
  *
  * All the components that support I18n also support directly passed strings.
- * Usage of I18n is optional, and it is not reccommended for application use (libraries like ngx-translate are a better choice)
+ * Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
+ * are a better choice)
  *
  */
 @Injectable()
@@ -85,7 +86,7 @@ export class I18n {
 	}
 
 	/**
-	 * Takes the Observable returned from `i18n.get` and an object of variables to replace.
+	 * Takes the `Observable` returned from `i18n.get` and an object of variables to replace.
 	 *
 	 * The keys specify the variable name in the string.
 	 *
