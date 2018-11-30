@@ -10,7 +10,7 @@ const EN = require("./en.json");
  * The keys specify the variable name in the string.
  *
  * Example:
- * ```
+ * ```typescript
  * service.set({ "TEST": "{{foo}} {{bar}}" });
  *
  * service.replace(service.get("TEST"), { foo: "test", bar: "asdf" })
