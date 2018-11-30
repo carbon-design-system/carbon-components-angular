@@ -38,7 +38,8 @@ export const replace = (subject, variables) => subject.pipe(
  * The I18n service is a minimal internal service used to supply our components with translated strings.
  *
  * All the components that support I18n also support directly passed strings.
- * Usage of I18n is optional, and it is not reccommended for application use (libraries like ngx-translate are a better choice)
+ * Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
+ * are a better choice)
  *
  */
 @Injectable()
