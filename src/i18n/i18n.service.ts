@@ -73,6 +73,7 @@ export class I18n {
 			return this.translationStrings;
 		}
 		try {
+			// we run this here to validate the path exists before adding it to the translation map
 			const value = this.getValueFromPath(path);
 			if (this.translations.has(path)) {
 				return this.translations.get(path);
