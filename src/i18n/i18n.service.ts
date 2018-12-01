@@ -34,8 +34,30 @@ export const replace = (subject, variables) => subject.pipe(
 	})
 );
 
+// custom deep object merge
+const merge = (target, ...objects) => {
+	for (const object of objects) {
+		for (const key in object) {
+			if (object.hasOwnProperty(key)) {
+				// since we're dealing just with JSON this simple check should be enough
+				if (object[key] instanceof Object) {
+					if (!target[key]) {
+						target[key] = {};
+					}
+					// recursivly merge into the target
+					// most translations only run 3 or 4 levels deep, so no stack explosions
+					target[key] = merge(target[key], object[key]);
+				} else {
+					target[key] = object[key];
+				}
+			}
+		}
+	}
+	return target;
+};
+
 /**
- * The I18n service is a minimal internal service used to supply our components with translated strings.
+ * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
  *
  * All the components that support I18n also support directly passed strings.
  * Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
@@ -54,7 +76,8 @@ export class I18n {
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
 	public set(strings) {
-		this.translationStrings = Object.assign({}, EN, strings);
+		this.translationStrings = merge({}, EN, strings);
+		// iterate over all our tracked translations and update each observable
 		const translations = Array.from(this.translations);
 		for (const [path, subject] of translations) {
 			subject.next(this.getValueFromPath(path));
