@@ -367,7 +367,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
 			event.preventDefault();
 			// this.checkScrollArrows();
-			if (event.key === "ArrowDown" || event.key === "Down" && this.hasNextElement()) {
+			if ((event.key === "ArrowDown" || event.key === "Down") && this.hasNextElement()) {
 				this.getNextElement().focus();
 			} else if (event.key === "ArrowUp" || event.key === "Up") {
 				if (this.hasPrevElement()) {
