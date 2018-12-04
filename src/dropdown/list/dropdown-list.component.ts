@@ -12,6 +12,7 @@ import {
 	ElementRef
 } from "@angular/core";
 
+import { I18n } from "../../i18n/i18n.module";
 import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";
@@ -49,12 +50,15 @@ import { ScrollableList } from "./../scrollable-list.directive";
 		<ul
 			#list
 			role="listbox"
-			class="bx--list-box__menu">
-			<li tabindex="{{item.disabled? -1 : 0}}"
+			class="bx--list-box__menu"
+			[attr.aria-label]="ariaLabel">
+			<li tabindex="-1"
 				role="option"
-				*ngFor="let item of displayItems"
+				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
 				(keydown)="doKeyDown($event, item)"
+				(focus)="onItemFocus(i)"
+				(blur)="onItemBlur(i)"
 				class="bx--list-box__menu-item"
 				[ngClass]="{
 					selected: item.selected,
@@ -88,6 +92,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 	]
 }) // conceptually this extends list-group, but we dont have to
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
+	@Input() ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the `DropdownList`.
 	 */
@@ -139,7 +144,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef) {}
+	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
 
 	/**
 	 * Updates list when changes occur within the items belonging to the `DropdownList`.
@@ -353,23 +358,23 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Manages the keyboard accessiblity for navigation and selection within a `DropdownList`.
 	 */
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
-		if (event.key && (event.key === "Enter" || event.key === " ")) {
+		// "Spacebar", "Down", and "Up" are IE specific values
+		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
 			event.preventDefault();
-			this.doClick(event, item);
-		} else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+			if (event.key === "Enter") {
+				this.doClick(event, item);
+			}
+		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
 			event.preventDefault();
 			// this.checkScrollArrows();
-			if (event.key === "ArrowDown" && this.hasNextElement()) {
+			if ((event.key === "ArrowDown" || event.key === "Down") && this.hasNextElement()) {
 				this.getNextElement().focus();
-			} else if (event.key === "ArrowUp") {
+			} else if (event.key === "ArrowUp" || event.key === "Up") {
 				if (this.hasPrevElement()) {
 					this.getPrevElement().focus();
 				} else if (this.getSelected()) {
 					this.clearSelected.nativeElement.focus();
 				}
-			}
-			if (event.shiftKey) {
-				(event.target as HTMLElement).click();
 			}
 		}
 	}
@@ -393,5 +398,15 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			}
 			this.index = this.items.indexOf(item);
 		}
+	}
+
+	onItemFocus(index) {
+		this.listElementList[index].classList.add("bx--list-box__menu-item--highlighted");
+		this.listElementList[index].tabIndex = 0;
+	}
+
+	onItemBlur(index) {
+		this.listElementList[index].classList.remove("bx--list-box__menu-item--highlighted");
+		this.listElementList[index].tabIndex = -1;
 	}
 }
