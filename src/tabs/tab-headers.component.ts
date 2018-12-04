@@ -98,7 +98,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * Set to 'true' to have tabs automatically activated and have their content displayed when they recieve focus.
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 * @memberof TabHeaders
 	 */
 	@Input() followFocus: boolean;
@@ -193,7 +193,8 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			this.allTabHeaders[this.allTabHeaders.length - 1].focus();
 		}
 
-		if (event.key === " " && !this.followFocus) {
+		// `"Spacebar"` is IE11 specific value
+		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
 			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
 		}
 	}
