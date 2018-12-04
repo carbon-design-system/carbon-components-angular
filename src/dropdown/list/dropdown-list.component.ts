@@ -359,7 +359,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// "Spacebar", "Down", and "Up" are IE specific values
-		if (event.key && event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
 			event.preventDefault();
 			if (event.key === "Enter") {
 				this.doClick(event, item);

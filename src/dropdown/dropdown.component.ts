@@ -276,15 +276,15 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	@HostListener("keydown", ["$event"])
 	// "Esc", "Spacebar", "Down", and "Up" are IE specific values
 	onKeyDown(event: KeyboardEvent) {
-		if (event.key === "Escape" || event.key === "Esc" && !this.menuIsClosed) {
+		if ((event.key === "Escape" || event.key === "Esc") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
 		if (event.key === "Escape" || event.key === "Esc") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (this.menuIsClosed && event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp" ||
-			event.key === "Spacebar" || event.key === "Down" || event.key === "Up") {
+		} else if (this.menuIsClosed && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp" ||
+			event.key === "Spacebar" || event.key === "Down" || event.key === "Up")) {
 			event.preventDefault();
 			this.openMenu();
 		}
@@ -366,7 +366,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	_keyboardNav(event: KeyboardEvent) {
 		// "Esc" is an IE specific value
-		if (event.key === "Escape" || event.key === "Esc" && !this.menuIsClosed) {
+		if ((event.key === "Escape" || event.key === "Esc") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
 		if (event.key === "Escape" || event.key === "Esc") {
