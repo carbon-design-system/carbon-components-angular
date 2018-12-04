@@ -8,6 +8,7 @@ demo/bundle
 .idea
 .vscode
 .cache
+.cache/
 doc/
 documentation/
 dist/
