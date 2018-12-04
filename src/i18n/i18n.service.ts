@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { map } from "rxjs/operators";
+import { merge } from "./../utils/object";
 
 const EN = require("./en.json");
 
@@ -35,7 +36,7 @@ export const replace = (subject, variables) => subject.pipe(
 );
 
 /**
- * The I18n service is a minimal internal service used to supply our components with translated strings.
+ * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
  *
  * All the components that support I18n also support directly passed strings.
  * Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
@@ -54,7 +55,8 @@ export class I18n {
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
 	public set(strings) {
-		this.translationStrings = Object.assign({}, EN, strings);
+		this.translationStrings = merge({}, EN, strings);
+		// iterate over all our tracked translations and update each observable
 		const translations = Array.from(this.translations);
 		for (const [path, subject] of translations) {
 			subject.next(this.getValueFromPath(path));

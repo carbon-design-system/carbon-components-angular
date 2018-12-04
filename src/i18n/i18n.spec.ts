@@ -61,4 +61,11 @@ describe("i18n service", () => {
 			done();
 		});
 	});
+
+	it("should keep the default translation strings", () => {
+		service.set({ "BANNER": { "TEST": "TEST" } });
+
+		expect(service.get().BANNER.CLOSE_BUTTON).toBe(EN.BANNER.CLOSE_BUTTON);
+		expect(service.get().BANNER.TEST).toBe("TEST");
+	});
 });
