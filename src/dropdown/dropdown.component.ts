@@ -274,15 +274,17 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Adds keyboard functionality for navigation, selection and closing of the `Dropdown`.
 	 */
 	@HostListener("keydown", ["$event"])
+	// "Esc", "Spacebar", "Down", and "Up" are IE specific values
 	onKeyDown(event: KeyboardEvent) {
-		if (event.key === "Escape" && !this.menuIsClosed) {
+		if ((event.key === "Escape" || event.key === "Esc") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
-		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+		if (event.key === "Escape" || event.key === "Esc") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (event.key === "ArrowDown" && event.altKey) {
+		} else if (this.menuIsClosed && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp" ||
+			event.key === "Spacebar" || event.key === "Down" || event.key === "Up")) {
 			event.preventDefault();
 			this.openMenu();
 		}
@@ -303,12 +305,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	closedDropdownNavigation(event) {
-		if (event.key === "ArrowDown") {
+		// "Down", and "Up" are IE specific values
+		if (event.key === "ArrowDown" || event.key === "Down") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
-		} else if (event.key === "ArrowUp") {
+		} else if (event.key === "ArrowUp" || event.key === "Up") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
@@ -362,10 +365,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		if (event.key === "Escape" && !this.menuIsClosed) {
+		// "Esc" is an IE specific value
+		if ((event.key === "Escape" || event.key === "Esc") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+		if (event.key === "Escape" || event.key === "Esc") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
@@ -456,7 +460,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
-		// setTimeout(() => this.view.initFocus(), 0);
+		setTimeout(() => this.view.initFocus(), 0);
 	}
 
 	/**

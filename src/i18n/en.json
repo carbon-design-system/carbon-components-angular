@@ -71,6 +71,9 @@
 			"RESET_SEARCH": "Reset search"
 		}
 	},
+	"DROPDOWN_LIST": {
+		"LABEL": "Listbox"
+	},
 	"LOADING": {
 		"TITLE": "Loading"
 	},
