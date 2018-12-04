@@ -4,7 +4,7 @@ export interface NotificationContent {
 	target?: string;
 	duration?: number;
 	smart?: boolean;
-	closeLabel?: string;
+	closeLabel?: any;
 	message: string;
 }
 

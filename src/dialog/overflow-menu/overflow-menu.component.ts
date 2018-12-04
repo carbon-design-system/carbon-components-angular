@@ -1,4 +1,9 @@
-import { Component, ElementRef, Input } from "@angular/core";
+import {
+	Component,
+	ElementRef,
+	Input,
+	ViewEncapsulation
+} from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
 
 /**
@@ -40,7 +45,20 @@ import { I18n } from "./../../i18n/i18n.module";
 		.bx--overflow-menu--open {
 			opacity: 1
 		}
-	`]
+
+		/*
+		Rotate the overflow menu container as well as the icon, since
+		we calculate our menu position based on the container, not the icon.
+		*/
+		.bx--data-table-v2 .bx--overflow-menu {
+			transform: rotate(90deg);
+		}
+
+		.bx--data-table-v2 .bx--overflow-menu__icon {
+			transform: rotate(180deg);
+		}
+	`],
+	encapsulation: ViewEncapsulation.None
 })
 export class OverflowMenu {
 

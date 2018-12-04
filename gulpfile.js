@@ -29,7 +29,7 @@ const dirs = {
 
 const licenseTemplate = `/*!
  *
- * Neutrino v@PACKAGE_VERSION@ | @FILE_NAME@
+ * carbon-angular v@PACKAGE_VERSION@ | @FILE_NAME@
  *
  * Copyright 2014, @THIS_YEAR@ IBM
  *

@@ -11,6 +11,7 @@ import {
 import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "./../i18n/i18n.module";
 import { NotificationDisplayService } from "./notification-display.service";
+import { of } from "rxjs";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -33,7 +34,7 @@ import { NotificationDisplayService } from "./notification-display.service";
 		<button
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
-			[attr.aria-label]="notificationObj.closeLabel"
+			[attr.aria-label]="notificationObj.closeLabel | async"
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
@@ -59,6 +60,9 @@ export class Notification {
 		return this._notificationObj;
 	}
 	set notificationObj(obj: NotificationContent) {
+		if (obj.closeLabel) {
+			obj.closeLabel = of(obj.closeLabel);
+		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
 	}
 
@@ -87,7 +91,7 @@ export class Notification {
 		title: "",
 		message: "",
 		type: "info",
-		closeLabel: this.i18n.get().NOTIFICATION.CLOSE_BUTTON
+		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON")
 	};
 	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
 
