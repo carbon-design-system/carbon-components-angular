@@ -1347,7 +1347,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The I18n service is a minimal internal service used to supply our components with translated strings.</p>
+                <p>The I18n service is a minimal internal singleton service used to supply our components with translated strings.</p>
 <p>All the components that support I18n also support directly passed strings.
 Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
 are a better choice)</p>
@@ -1427,7 +1427,7 @@ are a better choice)</p>
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/i18n/i18n.service.ts:71</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/i18n/i18n.service.ts:73</a></div>
                                         </td>
                                     </tr>
             
@@ -1493,7 +1493,7 @@ are a better choice)</p>
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/i18n/i18n.service.ts:115</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/i18n/i18n.service.ts:117</a></div>
                                         </td>
                                     </tr>
             
@@ -1557,7 +1557,7 @@ are a better choice)</p>
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/i18n/i18n.service.ts:106</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/i18n/i18n.service.ts:108</a></div>
                                         </td>
                                     </tr>
             
@@ -1635,7 +1635,7 @@ are a better choice)</p>
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/i18n/i18n.service.ts:56</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/i18n/i18n.service.ts:57</a></div>
                                         </td>
                                     </tr>
             
@@ -1704,7 +1704,7 @@ are a better choice)</p>
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/i18n/i18n.service.ts:49</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/i18n/i18n.service.ts:50</a></div>
                                         </td>
                                     </tr>
             
@@ -1732,7 +1732,7 @@ are a better choice)</p>
                                 </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/i18n/i18n.service.ts:47</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/i18n/i18n.service.ts:48</a></div>
                                         </td>
                                     </tr>
             
@@ -1748,6 +1748,7 @@ are a better choice)</p>
         <pre class="line-numbers"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
 import { BehaviorSubject } from &quot;rxjs&quot;;
 import { map } from &quot;rxjs/operators&quot;;
+import { merge } from &quot;./../utils/object&quot;;
 
 const EN &#x3D; require(&quot;./en.json&quot;);
 
@@ -1782,7 +1783,7 @@ export const replace &#x3D; (subject, variables) &#x3D;&gt; subject.pipe(
 );
 
 /**
- * The I18n service is a minimal internal service used to supply our components with translated strings.
+ * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
  *
  * All the components that support I18n also support directly passed strings.
  * Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
@@ -1801,7 +1802,8 @@ export class I18n {
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
 	public set(strings) {
-		this.translationStrings &#x3D; Object.assign({}, EN, strings);
+		this.translationStrings &#x3D; merge({}, EN, strings);
+		// iterate over all our tracked translations and update each observable
 		const translations &#x3D; Array.from(this.translations);
 		for (const [path, subject] of translations) {
 			subject.next(this.getValueFromPath(path));
