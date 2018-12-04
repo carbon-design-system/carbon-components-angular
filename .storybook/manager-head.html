@@ -43,7 +43,7 @@ function setExperimental(event) {
 var experimentalToggleInterval = setInterval(function() {
 	if(!document.getElementsByTagName("iframe")[0] ||
 		!document.getElementsByTagName("iframe")[0].contentDocument ||
-		!document.getElementsByTagName("iframe")[0].contentDocument.body) {
+		!document.getElementsByTagName("iframe")[0].contentDocument.getElementById("root")) {
 		return;
 	}
 
@@ -68,5 +68,5 @@ var experimentalToggleInterval = setInterval(function() {
 		</div>
 	`);
 	document.getElementsByTagName("iframe")[0].contentWindow.setExperimental = setExperimental;
-}, 800);
+}, 100);
 </script>
