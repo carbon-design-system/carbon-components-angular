@@ -20,6 +20,7 @@ import { configure } from "@storybook/angular";
 
 // load global styles
 require("!style-loader!css-loader!sass-loader!./preview.scss");
+require("!style-loader!css-loader!sass-loader!./preview-experimental.scss");
 
 require("../src/index.stories");
 // automatically import all files ending in *.stories.ts
