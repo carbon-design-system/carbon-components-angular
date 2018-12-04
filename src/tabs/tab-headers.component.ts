@@ -98,6 +98,12 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	@Input() cacheActive = false;
 	/**
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
+	 * @memberof TabHeaders
+	 */
+	@Input() followFocus: boolean;
+
+	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 * @memberof TabHeaders
 	 */
@@ -135,24 +141,61 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+		let tabsArray = Array.from<any>(this.tabs);
+
+		// "Right" is an ie11 specific value
+		if (event.key === "Right" || event.key === "ArrowRight") {
 			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
 				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[this.currentSelectedTab + 1], this.currentSelectedTab);
+				}
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
 			} else {
 				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[0], 0);
+				}
 				this.allTabHeaders[0].focus();
 			}
 		}
 
-		if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+		// "Left" is an ie11 specific value
+		if (event.key === "Left" || event.key === "ArrowLeft") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[this.currentSelectedTab - 1], this.currentSelectedTab);
+				}
 				this.allTabHeaders[this.currentSelectedTab - 1].focus();
 			} else {
 				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
+				}
 				this.allTabHeaders[this.allTabHeaders.length - 1].focus();
 			}
+		}
+
+		if (event.key === "Home") {
+			event.preventDefault();
+			if (this.followFocus) {
+				this.selectTab(event.target, tabsArray[0], 0);
+			}
+			this.allTabHeaders[0].focus();
+		}
+
+		if (event.key === "End") {
+			event.preventDefault();
+			if (this.followFocus) {
+				this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
+			}
+			this.allTabHeaders[this.allTabHeaders.length - 1].focus();
+		}
+
+		// `"Spacebar"` is IE11 specific value
+		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
+			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
 		}
 	}
 

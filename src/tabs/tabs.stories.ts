@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { TabsModule } from "../";
 
@@ -14,11 +14,14 @@ storiesOf("Tabs", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-tabs>
+			<ibm-tabs [followFocus]="followFocus">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 			</ibm-tabs>
-		`
+		`,
+		props: {
+			followFocus: boolean("followFocus", true)
+		}
 	}))
 	.add("With template", () => ({
 		template: `
