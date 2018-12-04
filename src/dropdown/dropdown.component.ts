@@ -274,7 +274,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Adds keyboard functionality for navigation, selection and closing of the `Dropdown`.
 	 */
 	@HostListener("keydown", ["$event"])
-	// "Esc", "Spacebar", "Down", and "up" are IE specific values
+	// "Esc", "Spacebar", "Down", and "Up" are IE specific values
 	onKeyDown(event: KeyboardEvent) {
 		if (event.key === "Escape" || event.key === "Esc" && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
