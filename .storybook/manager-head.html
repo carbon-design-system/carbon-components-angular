@@ -20,8 +20,8 @@
 	outline: 0;
 	cursor: pointer;
 }
-.experimental .selected,
-.selected {
+.experimental .experimental-selected,
+.experimental-selected {
 	background: darkcyan;
 	color: white;
 }
@@ -32,12 +32,12 @@ function setExperimental(event) {
 	var classList = document.getElementsByTagName("iframe")[0].contentDocument.body.classList;
 	if(event.target.previousElementSibling) {
 		classList.add("experimental");
-		event.target.previousElementSibling.classList.remove("selected");
+		event.target.previousElementSibling.classList.remove("experimental-selected");
 	} else {
 		classList.remove("experimental");
-		event.target.nextElementSibling.classList.remove("selected");
+		event.target.nextElementSibling.classList.remove("experimental-selected");
 	}
-	event.target.classList.add("selected");
+	event.target.classList.add("experimental-selected");
 };
 
 var experimentalToggleInterval = setInterval(function() {
@@ -56,7 +56,7 @@ var experimentalToggleInterval = setInterval(function() {
 		"beforeend",
 		`<div style="position: fixed; right: 15px; bottom: 15px">
 			<button
-				class="toggle-btn selected"
+				class="toggle-btn experimental-selected"
 				onclick="setExperimental(event)">
 				Standard
 			</button>
