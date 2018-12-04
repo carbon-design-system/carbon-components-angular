@@ -6,6 +6,7 @@ import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 import { Component } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
+import { I18n } from "../i18n/i18n.module";
 
 @Component({
 	selector: "app-notification-story",
