@@ -28,6 +28,5 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class DatePickerRange {
-	type = "range"
-
+	type = "range";
 }
