@@ -1,13 +1,8 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
-import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, number } from "@storybook/addon-knobs/angular";
 
 import { BreadcrumbModule, DialogModule } from "../";
 import { BreadcrumbItem } from "../breadcrumb/breadcrumb-item.interface";
-import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
-
-const MAXIMUM_ITEM_COUNT = 50;
 
 let breadcrumbItems;
 
@@ -53,13 +48,13 @@ storiesOf("Breadcrumb", module)
 		template: `
 		<ibm-breadcrumb
 			[noTrailingSlash]="noTrailingSlash"
-			[overflowThreshold]="overflowThreshold"
-		  [breadcrumbItems]="breadcrumbItems(itemCount)">
+			[threshold]="threshold"
+			[items]="items(itemCount)">
 		</ibm-breadcrumb>`,
 		props: {
 			noTrailingSlash: boolean("noTrailingSlash", true),
 			itemCount: number("itemCount", 10),
-			overflowThreshold: number("overflowThreshold", 4),
-			breadcrumbItems: createBreadcrumbItems
+			threshold: number("threshold", 4),
+			items: createBreadcrumbItems
 		}
 	}));

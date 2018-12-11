@@ -5,7 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@angular/platform-browser-dynamic/testing";
 
-import { BreadcrumbComponent } from "./breadcrumb.component";
+import { Breadcrumb } from "./breadcrumb.component";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
 import { OverflowMenu } from "../dialog/overflow-menu/overflow-menu.component";
@@ -30,9 +30,9 @@ import { OverflowMenu } from "../dialog/overflow-menu/overflow-menu.component";
 			Breadcrumb 5
 		</ibm-breadcrumb-item>
 	</ibm-breadcrumb>`,
-	entryComponents: [BreadcrumbComponent]
+	entryComponents: [Breadcrumb]
 })
-class TestBreadcrumbComponent {
+class TestBreadcrumb {
 	_noTrailingSlash = true;
 
 	set noTrailingSlash(val: boolean) {
@@ -45,32 +45,32 @@ class TestBreadcrumbComponent {
 	template: `
 	<ibm-breadcrumb
 		[noTrailingSlash]="_noTrailingSlash"
-		[overflowThreshold]="_overflowThreshold"
-		[breadcrumbItems]="_breadcrumbItems">
+		[threshold]="_threshold"
+		[items]="_items">
 	</ibm-breadcrumb>`,
-	entryComponents: [BreadcrumbComponent]
+	entryComponents: [Breadcrumb]
 })
-class TestBreadcrumbModelComponent {
+class TestBreadcrumbModel {
 	_noTrailingSlash = true;
-	_overflowThreshold = 4;
-	_breadcrumbItems = [];
+	_threshold = 4;
+	_items = [];
 
 	set noTrailingSlash(val: boolean) {
 		this._noTrailingSlash = val;
 	}
 
-	set overflowThreshold(val: number) {
-		this._overflowThreshold = val;
+	set threshold(val: number) {
+		this._threshold = val;
 	}
 
-	set breadcrumItems(val: BreadcrumbItem[]) {
-		this._breadcrumbItems = val;
+	set items(val: BreadcrumbItem[]) {
+		this._items = val;
 	}
 }
 
-describe("BreadcrumbComponent", () => {
-	let component: BreadcrumbComponent;
-	let fixture: ComponentFixture<BreadcrumbComponent>;
+describe("Breadcrumb", () => {
+	let component: Breadcrumb;
+	let fixture: ComponentFixture<Breadcrumb>;
 
 	beforeEach(async(() => {
 		TestBed.resetTestEnvironment();
@@ -80,16 +80,16 @@ describe("BreadcrumbComponent", () => {
 			imports: [FormsModule],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 			declarations: [
-				BreadcrumbComponent,
+				Breadcrumb,
 				BreadcrumbItemComponent,
-				TestBreadcrumbComponent,
-				TestBreadcrumbModelComponent
+				TestBreadcrumb,
+				TestBreadcrumbModel
 			]
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(BreadcrumbComponent);
+		fixture = TestBed.createComponent(Breadcrumb);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -99,12 +99,12 @@ describe("BreadcrumbComponent", () => {
 	});
 
 	it("should create a breadcrumb with four items and no overflow menu", () => {
-		const testFixture: ComponentFixture<TestBreadcrumbComponent> =
-			TestBed.createComponent(TestBreadcrumbComponent);
+		const testFixture: ComponentFixture<TestBreadcrumb> =
+			TestBed.createComponent(TestBreadcrumb);
 		const testComponent = testFixture.componentInstance;
 		testFixture.detectChanges();
 
-		const breadcrumbElement = testFixture.debugElement.query(By.directive(BreadcrumbComponent));
+		const breadcrumbElement = testFixture.debugElement.query(By.directive(Breadcrumb));
 		expect(breadcrumbElement).not.toBeNull();
 		const breadcrumbItemElements = testFixture.debugElement.queryAll(By.directive(BreadcrumbItemComponent));
 		expect(breadcrumbItemElements).not.toBeNull();
@@ -113,12 +113,12 @@ describe("BreadcrumbComponent", () => {
 		expect(overflowMenuElement).toBeNull();
 	});
 
-	it("should create a breadcrumb with six items and an overflow menu in second position", () => {
-		const testFixture: ComponentFixture<TestBreadcrumbModelComponent> =
-			TestBed.createComponent(TestBreadcrumbModelComponent);
+	it("should create a breadcrumb with five items and an overflow menu in second position", () => {
+		const testFixture: ComponentFixture<TestBreadcrumbModel> =
+			TestBed.createComponent(TestBreadcrumbModel);
 		const testComponent = testFixture.componentInstance;
-		testComponent.overflowThreshold = 4;
-		testComponent.breadcrumItems = [
+		testComponent.threshold = 4;
+		testComponent.items = [
 			{ content: "Breadcrumb 1", href: "#1" },
 			{ content: "Breadcrumb 2", href: "#2" },
 			{ content: "Breadcrumb 3", href: "#3" },
@@ -127,7 +127,7 @@ describe("BreadcrumbComponent", () => {
 		];
 		testFixture.detectChanges();
 
-		const breadcrumbElement = testFixture.debugElement.query(By.directive(BreadcrumbComponent));
+		const breadcrumbElement = testFixture.debugElement.query(By.directive(Breadcrumb));
 		expect(breadcrumbElement).not.toBeNull();
 		const breadcrumbItemElements = testFixture.debugElement.queryAll(By.directive(BreadcrumbItemComponent));
 		expect(breadcrumbItemElements).not.toBeNull();

@@ -15,19 +15,19 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			'bx--breadcrumb--no-trailing-slash' : noTrailingSlash
 		}"
 		[attr.aria-label]="ariaLabel">
-		<ng-template [ngIf]="showContent">
-		  <ng-content></ng-content>
+		<ng-template [ngIf]="shouldShowContent">
+			<ng-content></ng-content>
 		</ng-template>
-		<ng-template [ngIf]="!showOverflow">
+		<ng-template [ngIf]="!shouldShowOverflow">
 			<ibm-breadcrumb-item
-			  *ngFor="let item of items"
-			  [href]="item.href">
-			  {{item.content}}
+				*ngFor="let item of items"
+				[href]="item.href">
+				{{item.content}}
 			</ibm-breadcrumb-item>
 		</ng-template>
-		<ng-template [ngIf]="showOverflow">
+		<ng-template [ngIf]="shouldShowOverflow">
 			<ibm-breadcrumb-item [href]="first?.href">
-			  {{first?.content}}
+				{{first?.content}}
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item>
 				<ibm-overflow-menu>
@@ -42,64 +42,67 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 				</ibm-overflow-menu>
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item [href]="secondLast?.href">
-			  {{secondLast?.content}}
+				{{secondLast?.content}}
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item [href]="last?.href">
-			  {{last?.content}}
+				{{last?.content}}
 			</ibm-breadcrumb-item>
 		</ng-template>
 	</nav>`
 })
-export class BreadcrumbComponent {
-
-	threshold: number;
-	first: BreadcrumbItem;
-	overflowItems: BreadcrumbItem[] = [];
-	secondLast: BreadcrumbItem;
-	last: BreadcrumbItem;
-	items: Array<BreadcrumbItem>;
+export class Breadcrumb {
+	_threshold: number;
+	_items: Array<BreadcrumbItem>;
 
 	@Input() noTrailingSlash = false;
 
 	@Input() ariaLabel: string;
 
 	@Input()
-	set overflowThreshold(threshold: number) {
-		this.threshold = threshold;
+	set threshold(threshold: number) {
+		this._threshold = threshold;
 		if (isNaN(threshold) || threshold < MINIMUM_OVERFLOW_THRESHOLD) {
-			this.threshold = MINIMUM_OVERFLOW_THRESHOLD;
+			this._threshold = MINIMUM_OVERFLOW_THRESHOLD;
 		}
-		this.update();
+	}
+
+	get threshold(): number {
+		return this._threshold;
 	}
 
 	@Input()
-	set breadcrumbItems(items: Array<BreadcrumbItem>) {
-		this.items = items;
-		this.update();
+	set items(items: Array<BreadcrumbItem>) {
+		this._items = items;
 	}
 
-	get showContent(): boolean {
+	get items(): Array<BreadcrumbItem> {
+		return this._items;
+	}
+
+	get shouldShowContent(): boolean {
 		return !this.items;
 	}
 
-	get showOverflow(): boolean {
+	get shouldShowOverflow(): boolean {
 		if (!this.items) {
 			return false;
 		}
 		return this.items.length > this.threshold;
 	}
 
-	update(): void {
-		if (this.showOverflow) {
-			this.first = this.items[0];
-			this.overflowItems = this.items.slice(1, this.items.length - 2);
-			this.secondLast = this.items[this.items.length - 2];
-			this.last = this.items[this.items.length - 1];
-			return;
-		}
-		this.first = null;
-		this.overflowItems = [];
-		this.secondLast = null;
-		this.last = null;
+	get first(): BreadcrumbItem {
+		return this.shouldShowOverflow ? this.items[0] : null;
+	}
+
+	get overflowItems(): Array<BreadcrumbItem> {
+		return this.shouldShowOverflow ? this.items.slice(1, this.items.length - 2) : [];
+	}
+
+	get secondLast(): BreadcrumbItem {
+		return this.shouldShowOverflow ? this.items[this.items.length - 2] : null;
+	}
+
+	get last(): BreadcrumbItem {
+		return this.shouldShowOverflow ? this.items[this.items.length - 1] : null;
 	}
 }
