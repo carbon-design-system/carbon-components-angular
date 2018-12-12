@@ -18,17 +18,13 @@ export class RowDirective {
 	selector: "[ibmCol]"
 })
 export class ColumnDirective implements OnInit {
-	@Input()
-	class = "";
+	@Input() class = "";
 
-	@Input()
-	columnNumbers = {};
+	@Input() columnNumbers = {};
 
-	@Input()
-	offsets = {};
+	@Input() offsets = {};
 
-	@HostBinding("class")
-	columnClasses: string;
+	@HostBinding("class") columnClasses: string;
 
 	ngOnInit() {
 		const classNames = [];
@@ -45,7 +41,7 @@ export class ColumnDirective implements OnInit {
 				classNames.push(`bx--offset-${key}-${this.offsets[key]}`);
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 
 		if (this.class !== "") {
