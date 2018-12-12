@@ -10,7 +10,7 @@
 		"module": "es2015",
 		"moduleResolution": "node",
 		"outDir": "./dist",
-		"rootDirs": ["src", "stories"],
+		"rootDir": "src",
 		"target": "es5",
 		"inlineSources": true,
 		"typeRoots": [
@@ -18,7 +18,10 @@
 			"./demo/typings.d.ts"
 		]
 	},
-	"files": [
-		"./src/index.ts"
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"src/**/*.stories.ts"
 	]
 }
