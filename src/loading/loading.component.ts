@@ -4,13 +4,15 @@ import { I18n } from "./../i18n/i18n.module";
 @Component({
 	selector: "ibm-loading",
 	template: `
-		<div
-			[ngClass]="{'bx--loading--small': size === 'sm'}"
-			class="bx--loading">
-			<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-				<title>{{title}}</title>
-				<circle cx="0" cy="0" r="37.5" />
-			</svg>
+		<div class="bx--loading-overlay">
+			<div
+				[ngClass]="{'bx--loading--small': size === 'sm'}"
+				class="bx--loading">
+				<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+					<title>{{title}}</title>
+					<circle cx="0" cy="0" r="37.5" />
+				</svg>
+			</div>
 		</div>
 	`
 })
