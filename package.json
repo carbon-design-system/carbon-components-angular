@@ -8,7 +8,7 @@
     "storybook": "start-storybook -s .storybook/public -p 6006",
     "docs:build": "compodoc -p tsconfig.json",
     "docs:server": "compodoc -p tsconfig.json -s -w",
-	"docs": "compodoc -h",
+    "docs": "compodoc -h",
     "lint": "tslint src/**/*.ts && stylelint src/**/*.scss --config .stylelintrc.yml",
     "test": "karma start",
     "test:watch": "karma start --auto-watch --no-single-run",
