@@ -17,13 +17,13 @@ A robust positioning service pulled from Carbon-Angular.
 Finds the offset of `target` relative to all other positioned elements in the DOM
 
 ##### `getAbsoluteOffset(target: HTMLElement): Offset`
-Finds the absolute page position of the element, irrespctive of any other elements
+Finds the absolute page position of the element, irrespective of any other elements
 
 ##### `findRelative(reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition`
-Calculates a valid `AbsolutePosition` for `toPosition` given the `reference` element and `position` paramaters. Uses `getRelativeOffset` to find the starting position.
+Calculates a valid `AbsolutePosition` for `toPosition` given the `reference` element and `position` parameters. Uses `getRelativeOffset` to find the starting position.
 
 ##### `findAbsolute(reference: HTMLElement, toPosition: HTMLElement, position: Position): AbsolutePosition`
-Calculates a valid `AbsolutePosition` for `toPosition` given the `reference` element and `position` paramaters. Uses `getAbsoluteOffset` to find the starting position.
+Calculates a valid `AbsolutePosition` for `toPosition` given the `reference` element and `position` parameters. Uses `getAbsoluteOffset` to find the starting position.
 
 ##### `findPosition(reference: HTMLElement, toPosition: HTMLElement, position: Position, offsetFunction = getRelativeOffset): AbsolutePosition`
 Helper function that can behave as `findAbsolute` or `findRelative` as needed.
