@@ -9,6 +9,7 @@ import { Table } from "./table.component";
 import { IconModule } from "./../icon/icon.module";
 import { StaticIconModule } from "..";
 import { I18nModule } from "./../i18n/i18n.module";
+import { LoadingModule } from "./../loading/loading.module";
 
 export { Table } from "./table.component";
 export { TableModel } from "./table-model.class";
@@ -28,6 +29,7 @@ export { TableHeaderItem } from "./table-header-item.class";
 		FormsModule,
 		IconModule,
 		DialogModule,
+		LoadingModule,
 		StaticIconModule,
 		I18nModule
 	]

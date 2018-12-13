@@ -342,15 +342,17 @@ class PaginationTableStory implements OnInit {
 		}
 
 		return new Promise(resolve => {
-			setTimeout(() => resolve(fullPage), 150);
+			setTimeout(() => resolve(fullPage), 500);
 		});
 	}
 
 	selectPage(page) {
+		this.model.isLoading = true;
 		this.getPage(page).then((data: Array<Array<any>>) => {
 			// set the data and update page
 			this.model.data = this.prepareData(data);
 			this.model.currentPage = page;
+			this.model.isLoading = false;
 		});
 	}
 
