@@ -41,7 +41,7 @@ export class ColumnDirective implements OnInit {
 				classNames.push(`bx--offset-${key}-${this.offsets[key]}`);
 			});
 		} catch (err) {
-			console.error(err);
+			console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);
 		}
 
 		if (this.class !== "") {
