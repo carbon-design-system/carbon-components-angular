@@ -79,30 +79,30 @@ export class FileUploader implements OnInit {
 	 */
 	@Input() translations = this.i18n.get().FILE_UPLOADER;
 	/**
-     * Provided labels for the user to modify
-     */
+	 * Provided labels for the user to modify
+	 */
 	@Input() labelTitle;
 	@Input() buttonLabel = "Add file";
 	@Input() labelDescription = "500kb max file size.";
 	/**
-     * Specify the types of files that the input should be able to receive
-     */
+	 * Specify the types of files that the input should be able to receive
+	 */
 	@Input() accept = [];
 	/**
-     * Specify if the component should accept multiple files to upload
-     */
+	 * Specify if the component should accept multiple files to upload
+	 */
 	@Input() multiple = true;
 	/**
-     * Provide a unique id for the underlying <input> node
-     */
+	 * Provide a unique id for the underlying <input> node
+	 */
 	@Input() fileUploaderId = `file-uploader-${FileUploader.fileUploaderCount}`;
 	/**
 	 * Maintains a reference to the view DOM element of the underlying <input> node
 	 */
 	@ViewChild("file") file;
 	/**
-     * The list of files that have been submitted to be uploaded
-     */
+	 * The list of files that have been submitted to be uploaded
+	 */
 	@Input() filesObj: Set<FileUploaderContent> = new Set();
 	@Output() filesObjChange = new EventEmitter<any>();
 
