@@ -21,11 +21,11 @@ import { NotificationService } from "../notification/notification.service";
 			[buttonLabel]="buttonLabel"
 			[accept]="accept"
 			[multiple]="multiple"
-			[(filesObj)]="filesObj">
+			[(files)]="files">
 		</ibm-file-uploader>
 
 		<br><div [id]="notificationId" style="width: 300px"></div>
-		<button ibmButton *ngIf="filesObj && filesObj.size > 0" (click)="onUpload()">
+		<button ibmButton *ngIf="files && files.size > 0" (click)="onUpload()">
 			Upload
 		</button>
 	`
@@ -34,7 +34,7 @@ class FileUploaderStory {
 	static notificationCount = 0;
 
 	@Input() notificationId = `notification-${FileUploaderStory.notificationCount}`;
-	@Input() filesObj: any;
+	@Input() files: any;
 	@Input() labelTitle;
 	@Input() labelDescription;
 	@Input() buttonLabel;
@@ -48,7 +48,7 @@ class FileUploaderStory {
 	}
 
 	onUpload() {
-		this.filesObj.forEach(content => {
+		this.files.forEach(content => {
 			if (content.file.size > this.maxSize) {
 				this.notificationService.showNotification({
 					type: "error",
@@ -59,9 +59,9 @@ class FileUploaderStory {
 			}
 		});
 
-		let filesArray = Array.from<any>(this.filesObj);
+		let filesArray = Array.from<any>(this.files);
 		if (filesArray.every(content => content.file.size <= this.maxSize)) {
-            this.filesObj.forEach(content => {
+            this.files.forEach(content => {
                 if (!content.uploaded) {
 					content.state = "upload";
 					setTimeout(() => {

@@ -35,9 +35,9 @@ const noop = () => {
 				[multiple]="multiple"
 				(change)="onFilesAdded()"/>
 			<div class="bx--file-container">
-				<span class="bx--file__selected-file" *ngFor="let content of filesObj">
+				<span class="bx--file__selected-file" *ngFor="let content of files">
 					<p class="bx--file-filename">{{content.file.name}}</p>
-					<span *ngIf="content.state === 'edit'" class="bx--file__state-container" (click)="removeFiles(content)">
+					<span *ngIf="content.state === 'edit'" class="bx--file__state-container" (click)="removeFile(content)">
 						<svg class="bx--file-close" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"
 							[attr.aria-label]="translations.CLOSE_BUTTON" [attr.alt]="translations.CLOSE_BUTTON">
 							<title>{{translations.CLOSE_TITLE}}</title>
@@ -103,8 +103,8 @@ export class FileUploader implements OnInit {
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
-	@Input() filesObj: Set<FileUploaderContent> = new Set();
-	@Output() filesObjChange = new EventEmitter<any>();
+	@Input() files: Set<FileUploaderContent> = new Set();
+	@Output() filesChange = new EventEmitter<any>();
 
 	private onTouchedCallback: () => void = noop;
 	private onChangeCallback: (_: Set<FileUploaderContent>) => void = noop;
@@ -129,9 +129,9 @@ export class FileUploader implements OnInit {
 	}
 
 	ngOnInit() {
-		if (!this.filesObj) {
-			this.filesObj = new Set();
-			this.filesObjChange.emit(this.filesObj);
+		if (!this.files) {
+			this.files = new Set();
+			this.filesChange.emit(this.files);
 		}
 	}
 
@@ -156,17 +156,17 @@ export class FileUploader implements OnInit {
 				state: "edit",
 				file: file
 			};
-			this.filesObj.add(fileDescriptor);
-			this.filesObjChange.emit(this.filesObj);
+			this.files.add(fileDescriptor);
+			this.filesChange.emit(this.files);
 		}
 
-		this.value = this.filesObj;
+		this.value = this.files;
 	}
 
-	removeFiles(file) {
-		this.filesObj.delete(file);
+	removeFile(file) {
+		this.files.delete(file);
 		this.file.nativeElement.value = "";
-		this.filesObjChange.emit(this.filesObj);
+		this.filesChange.emit(this.files);
 	}
 
 	/**
