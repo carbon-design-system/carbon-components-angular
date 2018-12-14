@@ -9,7 +9,7 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "../i18n/i18n.module";
-import { FileUploaderContent } from "./file-uploader.interface";
+import { FileItem } from "./file-uploader.interface";
 
 const noop = () => {
 };
@@ -103,11 +103,11 @@ export class FileUploader implements OnInit {
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
-	@Input() files: Set<FileUploaderContent> = new Set();
+	@Input() files: Set<FileItem> = new Set();
 	@Output() filesChange = new EventEmitter<any>();
 
 	private onTouchedCallback: () => void = noop;
-	private onChangeCallback: (_: Set<FileUploaderContent>) => void = noop;
+	private onChangeCallback: (_: Set<FileItem>) => void = noop;
 
 	private innerValue: any;
 
@@ -118,10 +118,10 @@ export class FileUploader implements OnInit {
 	/**
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */
-	get value(): Set<FileUploaderContent> {
+	get value(): Set<FileItem> {
 		return this.innerValue;
 	}
-	set value(v: Set<FileUploaderContent>) {
+	set value(v: Set<FileItem>) {
 		if (v !== this.innerValue) {
 			this.innerValue = v;
 			this.onChangeCallback(v);
@@ -142,7 +142,7 @@ export class FileUploader implements OnInit {
 	/**
 	 * Propagates the injected `value`.
 	 */
-	writeValue(value: Set<FileUploaderContent>) {
+	writeValue(value: Set<FileItem>) {
 		if (value !== this.innerValue) {
 			this.innerValue = value;
 		}
@@ -151,7 +151,7 @@ export class FileUploader implements OnInit {
 	onFilesAdded() {
 		const files: File[] = this.file.nativeElement.files;
 		for (let file of files) {
-			const fileDescriptor: FileUploaderContent = {
+			const fileDescriptor: FileItem = {
 				uploaded: false,
 				state: "edit",
 				file: file
