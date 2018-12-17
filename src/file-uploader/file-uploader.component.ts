@@ -35,28 +35,12 @@ const noop = () => {
 				[multiple]="multiple"
 				(change)="onFilesAdded()"/>
 			<div class="bx--file-container">
-				<span class="bx--file__selected-file" *ngFor="let content of files">
-					<p class="bx--file-filename">{{content.file.name}}</p>
-					<span *ngIf="content.state === 'edit'" class="bx--file__state-container" (click)="removeFile(content)">
-						<svg class="bx--file-close" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"
-							[attr.aria-label]="translations.CLOSE_BUTTON" [attr.alt]="translations.CLOSE_BUTTON">
-							<title>{{translations.CLOSE_TITLE}}</title>
-							<path d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414
-							8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
-						</svg>
-					</span>
-					<span *ngIf="content.state === 'upload'">
-						<ibm-loading size="sm"></ibm-loading>
-					</span>
-					<span *ngIf="content.state === 'complete'" class="bx--file__state-container">
-						<svg class="bx--file-complete" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"
-							[attr.aria-label]="translations.CHECKMARK" [attr.alt]="translations.CHECKMARK">
-							<title>{{translations.CHECKMARK_TITLE}}</title>
-							<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.293-11.332L6.75 9.21 4.707 7.168 3.293 8.582 6.75
-							 12.04l5.957-5.957-1.414-1.414z"></path>
-						</svg>
-					</span>
-				</span>
+				<ibm-file *ngFor="let content of files"
+					[content]="content"
+					[files]="files"
+					[file]="file"
+					[filesChange]="filesChange">
+				</ibm-file>
 			</div>
 		</div>
 	`,
@@ -73,11 +57,6 @@ export class FileUploader implements OnInit {
 	 * Variable used for creating unique ids for file-uploader components
 	 */
 	static fileUploaderCount = 0;
-
-	/**
-	 * Accessible translations for the close and complete icons
-	 */
-	@Input() translations = this.i18n.get().FILE_UPLOADER;
 	/**
 	 * Provided labels for the user to modify
 	 */
@@ -111,7 +90,7 @@ export class FileUploader implements OnInit {
 
 	private innerValue: any;
 
-	constructor(protected i18n: I18n) {
+	constructor() {
 		FileUploader.fileUploaderCount++;
 	}
 
@@ -161,12 +140,6 @@ export class FileUploader implements OnInit {
 		}
 
 		this.value = this.files;
-	}
-
-	removeFile(file) {
-		this.files.delete(file);
-		this.file.nativeElement.value = "";
-		this.filesChange.emit(this.files);
 	}
 
 	/**
