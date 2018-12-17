@@ -89,7 +89,6 @@ export class TooltipDirective extends DialogDirective {
 
 	@HostListener("keydown", ["$event"])
 	onKeydown(event: KeyboardEvent) {
-		console.log(event.key);
 		if (this.trigger === "click" && (event.key === "Enter" || event.key === " " )) {
 			this.open();
 		}

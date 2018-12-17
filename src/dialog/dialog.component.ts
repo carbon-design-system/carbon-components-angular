@@ -307,9 +307,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @memberof Dialog
 	 */
 	ngOnDestroy() {
-		if (this.resizeSubscription) {
-			this.resizeSubscription.unsubscribe();
-		}
+		this.resizeSubscription.unsubscribe();
 		this.scrollSubscription.unsubscribe();
 	}
 }
