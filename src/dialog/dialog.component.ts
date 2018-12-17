@@ -146,7 +146,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			}
 		}
 		this.placeDialog();
-		dialogElement.focus();
 		const parentEl: HTMLElement = this.dialogConfig.parentRef.nativeElement;
 		let node = parentEl;
 		let observables = [];
@@ -308,7 +307,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * @memberof Dialog
 	 */
 	ngOnDestroy() {
-		this.resizeSubscription.unsubscribe();
+		if (this.resizeSubscription) {
+			this.resizeSubscription.unsubscribe();
+		}
 		this.scrollSubscription.unsubscribe();
 	}
 }

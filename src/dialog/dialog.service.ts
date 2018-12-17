@@ -143,7 +143,7 @@ export class DialogService {
 	 * @param {any} [evt]
 	 * @memberof DialogService
 	 */
-	close(viewContainer: ViewContainerRef) {
+	close(viewContainer: ViewContainerRef, focusPreviouslyFocusedElement = true) {
 		this.isClosed.emit(true);
 
 		if (this.dialogRef) {
@@ -155,7 +155,9 @@ export class DialogService {
 			}
 			this.dialogRef = null;
 			this.isOpen = false;
-			elementToFocus.focus();
+			if (focusPreviouslyFocusedElement) {
+				elementToFocus.focus();
+			}
 
 			if (this.dialogSubscription) {
 				this.dialogSubscription.unsubscribe();

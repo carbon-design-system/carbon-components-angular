@@ -6,7 +6,8 @@ import {
 	Injector,
 	ComponentFactoryResolver,
 	ViewContainerRef,
-	HostBinding
+	HostBinding,
+	HostListener
 } from "@angular/core";
 import { DialogDirective } from "./../dialog.directive";
 import { Tooltip } from "./tooltip.component";
@@ -51,7 +52,13 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
-	@HostBinding("attr.aria-describedby") descriptorId: string;
+	@HostBinding("tabindex") tabIndex = 0;
+
+	@HostBinding("attr.aria-describedby") get descriptorId(): string {
+		if (this.expanded) {
+			return this.dialogConfig.compID;
+		}
+	}
 
 	/**
 	 * Creates an instance of `TooltipDirective`.
@@ -73,6 +80,21 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
-		this.descriptorId = this.dialogConfig.compID;
+	}
+
+	close() {
+		this.dialogService.close(this.viewContainerRef, false);
+		this.expanded = false;
+	}
+
+	@HostListener("keydown", ["$event"])
+	onKeydown(event: KeyboardEvent) {
+		console.log(event.key);
+		if (this.trigger === "click" && (event.key === "Enter" || event.key === " " )) {
+			this.open();
+		}
+		if (event.key === "Escape") {
+			this.close();
+		}
 	}
 }

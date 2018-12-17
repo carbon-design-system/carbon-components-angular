@@ -1,7 +1,8 @@
 import {
 	Component,
 	TemplateRef,
-	HostBinding
+	HostBinding,
+	HostListener
 } from "@angular/core";
 import { Dialog } from "./../dialog.component";
 
@@ -15,7 +16,6 @@ import { Dialog } from "./../dialog.component";
 			#dialog
 			[id]="dialogConfig.compID"
 			role="tooltip"
-			tabindex="0"
 			class="bx--tooltip bx--tooltip--shown">
 			<span class="bx--tooltip__caret" aria-hidden="true"></span>
 			<ng-template
@@ -42,5 +42,10 @@ export class Tooltip extends Dialog {
 	 */
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
+	}
+
+	@HostListener("keydown", ["$event"])
+	onBlur(event: KeyboardEvent) {
+		this.doClose();
 	}
 }
