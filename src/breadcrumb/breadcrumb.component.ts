@@ -51,13 +51,13 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	</nav>`
 })
 export class Breadcrumb {
-	items: Array<BreadcrumbItem>;
-
-  protected _threshold: number;
+	@Input() items: Array<BreadcrumbItem>;
 
 	@Input() noTrailingSlash = false;
 
 	@Input() ariaLabel: string;
+
+	protected _threshold: number;
 
 	@Input()
 	set threshold(threshold: number) {
