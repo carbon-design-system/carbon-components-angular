@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>Notification</li>
+  <li>Toast</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/notification/notification.component.ts</code>
+    <code>src/notification/toast.component.ts</code>
 </p>
 
     <p class="comment">
@@ -66,7 +66,19 @@
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+    </p>
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
     <p class="comment">
         <h3>Example</h3>
@@ -91,29 +103,25 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ibm-notification</code></td>
+                <td class="col-md-9"><code>ibm-toast</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;bx--inline-notification__details&quot;&gt;
-	&lt;svg class&#x3D;&quot;bx--inline-notification__icon&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-		&lt;path d&#x3D;&quot;M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z&quot; fill-rule&#x3D;&quot;evenodd&quot;/&gt;
-	&lt;/svg&gt;
-	&lt;div class&#x3D;&quot;bx--inline-notification__text-wrapper&quot;&gt;
-		&lt;p [innerHTML]&#x3D;&quot;notificationObj.title&quot; class&#x3D;&quot;bx--inline-notification__title&quot;&gt;&lt;/p&gt;
-		&lt;p [innerHTML]&#x3D;&quot;notificationObj.message&quot; class&#x3D;&quot;bx--inline-notification__subtitle&quot;&gt;&lt;/p&gt;
-	&lt;/div&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;bx--toast-notification__details&quot;&gt;
+	&lt;h3 class&#x3D;&quot;bx--toast-notification__title&quot; [innerHTML]&#x3D;&quot;notificationObj.title&quot;&gt;&lt;/h3&gt;
+	&lt;p class&#x3D;&quot;bx--toast-notification__subtitle&quot; [innerHTML]&#x3D;&quot;notificationObj.subtitle&quot;&gt;&lt;/p&gt;
+	&lt;p class&#x3D;&quot;bx--toast-notification__caption&quot; [innerHTML]&#x3D;&quot;notificationObj.caption&quot;&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;button
-	(click)&#x3D;&quot;onClose()&quot;
-	class&#x3D;&quot;bx--inline-notification__close-button&quot;
-	[attr.aria-label]&#x3D;&quot;notificationObj.closeLabel | async&quot;
-	type&#x3D;&quot;button&quot;&gt;
+	class&#x3D;&quot;bx--toast-notification__close-button&quot;
+	type&#x3D;&quot;button&quot;
+	[attr.aria-label]&#x3D;&quot;notificationObj.closeLabel&quot;
+	(click)&#x3D;&quot;onClose()&quot;&gt;
 	&lt;svg
-		class&#x3D;&quot;bx--inline-notification__close-icon&quot;
+		class&#x3D;&quot;bx--toast-notification-icon&quot;
 		width&#x3D;&quot;10&quot;
 		height&#x3D;&quot;10&quot;
 		viewBox&#x3D;&quot;0 0 10 10&quot;
@@ -175,6 +183,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
                                 <a href="#destroy">destroy</a>
                             </li>
                             <li>
@@ -192,6 +203,9 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#notificationObj">notificationObj</a>
+                            </li>
                             <li>
                                 <a href="#notificationObj">notificationObj</a>
                             </li>
@@ -229,6 +243,27 @@
                                 <a href="#attr.role">attr.role</a>
                             </li>
                             <li>
+                                <a href="#class.bx--toast-notification">class.bx--toast-notification</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--toast-notification--error">class.bx--toast-notification--error</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--toast-notification--info">class.bx--toast-notification--info</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--toast-notification--success">class.bx--toast-notification--success</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--toast-notification--warning">class.bx--toast-notification--warning</a>
+                            </li>
+                            <li>
+                                <a href="#attr.id">attr.id</a>
+                            </li>
+                            <li>
+                                <a href="#attr.role">attr.role</a>
+                            </li>
+                            <li>
                                 <a href="#class.bx--inline-notification">class.bx--inline-notification</a>
                             </li>
                             <li>
@@ -248,87 +283,38 @@
                 </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#notificationObj">notificationObj</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
 
-    <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(notificationDisplayService: <a href="../injectables/NotificationDisplayService.html">NotificationDisplayService</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/notification/notification.component.ts:96</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>notificationDisplayService</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/NotificationDisplayService.html" target="_self" >NotificationDisplayService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="notificationObj"></a>
+                        <code>notificationObj</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Can have <code>type</code>, <code>title</code>, <code>subtitle</code>, and <code>caption</code> members.</p>
+<p><code>type</code> can be one of <code>&quot;info&quot;</code>, <code>&quot;warning&quot;</code>, <code>&quot;danger&quot;</code>, <code>&quot;success&quot;</code></p>
+<p><code>message</code> is message for notification to display</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="../interfaces/ToastContent.html" target="_self" >ToastContent</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/notification/toast.component.ts:50</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -347,9 +333,15 @@
                             </p>
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/notification/notification.component.ts:59</a></div>
+                                    <div class="io-line">Defined in Notification:73</div>
                             </td>
                         </tr>
             </tbody>
@@ -371,9 +363,15 @@
 
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/notification/notification.component.ts:75</a></div>
+                                    <div class="io-line">Defined in Notification:89</div>
                             </td>
                         </tr>
             </tbody>
@@ -406,7 +404,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/notification/notification.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/notification/toast.component.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -439,7 +437,230 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/notification/notification.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/notification/toast.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--toast-notification"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--toast-notification
+                            </b>
+                            <a href="#class.bx--toast-notification"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--toast-notification:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/notification/toast.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--toast-notification--error"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--toast-notification--error
+                            </b>
+                            <a href="#class.bx--toast-notification--error"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--toast-notification--error:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/notification/toast.component.ts:56</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--toast-notification--info"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--toast-notification--info
+                            </b>
+                            <a href="#class.bx--toast-notification--info"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--toast-notification--info:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/notification/toast.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--toast-notification--success"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--toast-notification--success
+                            </b>
+                            <a href="#class.bx--toast-notification--success"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--toast-notification--success:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/notification/toast.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--toast-notification--warning"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--toast-notification--warning
+                            </b>
+                            <a href="#class.bx--toast-notification--warning"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--toast-notification--warning:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/notification/toast.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attr.id"></a>
+                        <span class="name">
+                            <b>
+                            attr.id
+                            </b>
+                            <a href="#attr.id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>attr.id:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;notification&quot;</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in Notification:95</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attr.role"></a>
+                        <span class="name">
+                            <b>
+                            attr.role
+                            </b>
+                            <a href="#attr.role"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>attr.role:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;alert&quot;</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in Notification:97</div>
                             </td>
                         </tr>
 
@@ -470,9 +691,15 @@
                             <i>Default value : </i><code>true</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/notification/notification.component.ts:82</a></div>
+                                    <div class="io-line">Defined in Notification:96</div>
                             </td>
                         </tr>
 
@@ -498,9 +725,15 @@
 </code>
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/notification/notification.component.ts:85</a></div>
+                                    <div class="io-line">Defined in Notification:99</div>
                             </td>
                         </tr>
 
@@ -526,9 +759,15 @@
 </code>
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/notification/notification.component.ts:86</a></div>
+                                    <div class="io-line">Defined in Notification:100</div>
                             </td>
                         </tr>
 
@@ -554,9 +793,15 @@
 </code>
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/notification/notification.component.ts:87</a></div>
+                                    <div class="io-line">Defined in Notification:101</div>
                             </td>
                         </tr>
 
@@ -582,9 +827,15 @@
 </code>
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/notification/notification.component.ts:88</a></div>
+                                    <div class="io-line">Defined in Notification:102</div>
                             </td>
                         </tr>
 
@@ -599,6 +850,44 @@
         <h3 id="methods">
             Methods
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/notification/toast.component.ts:61</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -619,9 +908,15 @@
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/notification/notification.component.ts:109</a></div>
+                                    <div class="io-line">Defined in Notification:123</div>
                             </td>
                         </tr>
 
@@ -657,9 +952,15 @@
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/notification/notification.component.ts:105</a></div>
+                                    <div class="io-line">Defined in Notification:119</div>
                             </td>
                         </tr>
 
@@ -715,9 +1016,15 @@
                             <i>Default value : </i><code>Object.assign({}, this.defaultNotificationObj)</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/notification/notification.component.ts:96</a></div>
+                                    <div class="io-line">Defined in Notification:110</div>
                             </td>
                         </tr>
 
@@ -749,9 +1056,15 @@
 
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/notification/notification.component.ts:77</a></div>
+                                    <div class="io-line">Defined in Notification:91</div>
                             </td>
                         </tr>
 
@@ -794,9 +1107,15 @@
 	}</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/notification/notification.component.ts:90</a></div>
+                                    <div class="io-line">Defined in Notification:104</div>
                             </td>
                         </tr>
 
@@ -831,9 +1150,15 @@
                             </code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Notification.html" target="_self" >Notification</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/notification/notification.component.ts:79</a></div>
+                                    <div class="io-line">Defined in Notification:93</div>
                             </td>
                         </tr>
 
@@ -842,66 +1167,6 @@
         </table>
 </section>
 
-    <section>
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="notificationObj"></a>
-                        <span class="name"><b>notificationObj</b><a href="#notificationObj"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>notificationObj(obj)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/notification/notification.component.ts:62</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                            <td>obj</td>
-                                                    
-                                                    
-                                                        <td>
-                                                                No
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-</section>
 </div>
 
 
@@ -909,17 +1174,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
 	Input,
-	Output,
-	EventEmitter,
-	ComponentRef,
-	ViewChild,
+	OnInit,
 	HostBinding
 } from &quot;@angular/core&quot;;
 
-import { NotificationContent } from &quot;./notification-content.interface&quot;;
-import { I18n } from &quot;./../i18n/i18n.module&quot;;
-import { NotificationDisplayService } from &quot;./notification-display.service&quot;;
-import { of } from &quot;rxjs&quot;;
+import { NotificationContent, ToastContent } from &quot;./notification-content.interface&quot;;
+import { Notification } from &quot;./notification.component&quot;;
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -928,24 +1188,20 @@ import { of } from &quot;rxjs&quot;;
  * @class Notification
  */
 @Component({
-	selector: &quot;ibm-notification&quot;,
+	selector: &quot;ibm-toast&quot;,
 	template: &#x60;
-		&lt;div class&#x3D;&quot;bx--inline-notification__details&quot;&gt;
-			&lt;svg class&#x3D;&quot;bx--inline-notification__icon&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-				&lt;path d&#x3D;&quot;M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z&quot; fill-rule&#x3D;&quot;evenodd&quot;/&gt;
-			&lt;/svg&gt;
-			&lt;div class&#x3D;&quot;bx--inline-notification__text-wrapper&quot;&gt;
-				&lt;p [innerHTML]&#x3D;&quot;notificationObj.title&quot; class&#x3D;&quot;bx--inline-notification__title&quot;&gt;&lt;/p&gt;
-				&lt;p [innerHTML]&#x3D;&quot;notificationObj.message&quot; class&#x3D;&quot;bx--inline-notification__subtitle&quot;&gt;&lt;/p&gt;
-			&lt;/div&gt;
+		&lt;div class&#x3D;&quot;bx--toast-notification__details&quot;&gt;
+			&lt;h3 class&#x3D;&quot;bx--toast-notification__title&quot; [innerHTML]&#x3D;&quot;notificationObj.title&quot;&gt;&lt;/h3&gt;
+			&lt;p class&#x3D;&quot;bx--toast-notification__subtitle&quot; [innerHTML]&#x3D;&quot;notificationObj.subtitle&quot;&gt;&lt;/p&gt;
+			&lt;p class&#x3D;&quot;bx--toast-notification__caption&quot; [innerHTML]&#x3D;&quot;notificationObj.caption&quot;&gt;&lt;/p&gt;
 		&lt;/div&gt;
 		&lt;button
-			(click)&#x3D;&quot;onClose()&quot;
-			class&#x3D;&quot;bx--inline-notification__close-button&quot;
-			[attr.aria-label]&#x3D;&quot;notificationObj.closeLabel | async&quot;
-			type&#x3D;&quot;button&quot;&gt;
+			class&#x3D;&quot;bx--toast-notification__close-button&quot;
+			type&#x3D;&quot;button&quot;
+			[attr.aria-label]&#x3D;&quot;notificationObj.closeLabel&quot;
+			(click)&#x3D;&quot;onClose()&quot;&gt;
 			&lt;svg
-				class&#x3D;&quot;bx--inline-notification__close-icon&quot;
+				class&#x3D;&quot;bx--toast-notification-icon&quot;
 				width&#x3D;&quot;10&quot;
 				height&#x3D;&quot;10&quot;
 				viewBox&#x3D;&quot;0 0 10 10&quot;
@@ -955,67 +1211,30 @@ import { of } from &quot;rxjs&quot;;
 		&lt;/button&gt;
 	&#x60;
 })
-export class Notification {
+export class Toast extends Notification implements OnInit {
 	/**
-	 * Can have &#x60;type&#x60;, &#x60;title&#x60;, and &#x60;message&#x60; members.
+	 * Can have &#x60;type&#x60;, &#x60;title&#x60;, &#x60;subtitle&#x60;, and &#x60;caption&#x60; members.
 	 *
 	 * &#x60;type&#x60; can be one of &#x60;&quot;info&quot;&#x60;, &#x60;&quot;warning&quot;&#x60;, &#x60;&quot;danger&quot;&#x60;, &#x60;&quot;success&quot;&#x60;
 	 *
 	 * &#x60;message&#x60; is message for notification to display
 	 *
 	 */
-	@Input() get notificationObj(): NotificationContent {
-		return this._notificationObj;
-	}
-	set notificationObj(obj: NotificationContent) {
-		if (obj.closeLabel) {
-			obj.closeLabel &#x3D; of(obj.closeLabel);
-		}
-		this._notificationObj &#x3D; Object.assign({}, this.defaultNotificationObj, obj);
-	}
+	@Input() notificationObj: ToastContent;
 
-	/**
-	 * Emits on close.
-	 *
-	 * @type {EventEmitter&lt;any&gt;}
-	 * @memberof Notification
-	 */
-	@Output() close: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
-
-	componentRef: ComponentRef&lt;Notification&gt;;
-
-	@ViewChild(&quot;notification&quot;) notification;
-
-	@HostBinding(&quot;attr.id&quot;) notificationID &#x3D; &quot;notification&quot;;
-	@HostBinding(&quot;class.bx--inline-notification&quot;) notificationClass &#x3D; true;
+	@HostBinding(&quot;attr.id&quot;) toastID &#x3D; &quot;notification&quot;;
+	@HostBinding(&quot;class.bx--toast-notification&quot;) toastClass &#x3D; true;
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;alert&quot;;
 
-	@HostBinding(&quot;class.bx--inline-notification--error&quot;) get isError() { return this.notificationObj.type &#x3D;&#x3D;&#x3D; &quot;error&quot;; }
-	@HostBinding(&quot;class.bx--inline-notification--info&quot;) get isInfo() { return this.notificationObj.type &#x3D;&#x3D;&#x3D; &quot;info&quot;; }
-	@HostBinding(&quot;class.bx--inline-notification--success&quot;) get isSuccess() { return this.notificationObj.type &#x3D;&#x3D;&#x3D; &quot;success&quot;; }
-	@HostBinding(&quot;class.bx--inline-notification--warning&quot;) get isWarning() { return this.notificationObj.type &#x3D;&#x3D;&#x3D; &quot;warning&quot;; }
+	@HostBinding(&quot;class.bx--toast-notification--error&quot;) get isError() { return this.notificationObj[&quot;type&quot;] &#x3D;&#x3D;&#x3D; &quot;error&quot;; }
+	@HostBinding(&quot;class.bx--toast-notification--info&quot;) get isInfo() { return this.notificationObj[&quot;type&quot;] &#x3D;&#x3D;&#x3D; &quot;info&quot;; }
+	@HostBinding(&quot;class.bx--toast-notification--success&quot;) get isSuccess() { return this.notificationObj[&quot;type&quot;] &#x3D;&#x3D;&#x3D; &quot;success&quot;; }
+	@HostBinding(&quot;class.bx--toast-notification--warning&quot;) get isWarning() { return this.notificationObj[&quot;type&quot;] &#x3D;&#x3D;&#x3D; &quot;warning&quot;; }
 
-	protected defaultNotificationObj &#x3D; {
-		title: &quot;&quot;,
-		message: &quot;&quot;,
-		type: &quot;info&quot;,
-		closeLabel: this.i18n.get(&quot;NOTIFICATION.CLOSE_BUTTON&quot;)
-	};
-	protected _notificationObj: NotificationContent &#x3D; Object.assign({}, this.defaultNotificationObj);
-
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {}
-
-	/**
-	 * Emits close event.
-	 *
-	 * @memberof Notification
-	 */
-	onClose() {
-		this.close.emit();
-	}
-
-	destroy() {
-		this.notificationDisplayService.close(this);
+	ngOnInit() {
+		if (!this.notificationObj.closeLabel) {
+			this.notificationObj.closeLabel &#x3D; this.i18n.get().NOTIFICATION.CLOSE_BUTTON;
+		}
 	}
 }
 </code></pre>
@@ -1048,10 +1267,10 @@ export class Notification {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="bx--inline-notification__details">	<svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">		<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z" fill-rule="evenodd"/>	</svg>	<div class="bx--inline-notification__text-wrapper">		<p [innerHTML]="notificationObj.title" class="bx--inline-notification__title"></p>		<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>	</div></div><button	(click)="onClose()"	class="bx--inline-notification__close-button"	[attr.aria-label]="notificationObj.closeLabel | async"	type="button">	<svg		class="bx--inline-notification__close-icon"		width="10"		height="10"		viewBox="0 0 10 10"		xmlns="http://www.w3.org/2000/svg">		<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"/>	</svg></button>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div class="bx--toast-notification__details">	<h3 class="bx--toast-notification__title" [innerHTML]="notificationObj.title"></h3>	<p class="bx--toast-notification__subtitle" [innerHTML]="notificationObj.subtitle"></p>	<p class="bx--toast-notification__caption" [innerHTML]="notificationObj.caption"></p></div><button	class="bx--toast-notification__close-button"	type="button"	[attr.aria-label]="notificationObj.closeLabel"	(click)="onClose()">	<svg		class="bx--toast-notification-icon"		width="10"		height="10"		viewBox="0 0 10 10"		xmlns="http://www.w3.org/2000/svg">		<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"/>	</svg></button>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
-    var ACTUAL_COMPONENT = {'name': 'Notification'};
+    var ACTUAL_COMPONENT = {'name': 'Toast-1'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1085,7 +1304,7 @@ export class Notification {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'Notification.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Toast-1.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
