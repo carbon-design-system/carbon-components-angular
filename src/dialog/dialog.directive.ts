@@ -114,6 +114,16 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.toggle();
 	}
 
+	@HostListener("keydown", ["$event"])
+	onKeydown(event: KeyboardEvent) {
+		if (this.trigger === "click" && (event.key === "Enter" || event.key === " " )) {
+			this.open();
+		}
+		if (event.key === "Escape") {
+			this.close();
+		}
+	}
+
 	ngOnChanges() {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {

@@ -86,14 +86,4 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogService.close(this.viewContainerRef, false);
 		this.expanded = false;
 	}
-
-	@HostListener("keydown", ["$event"])
-	onKeydown(event: KeyboardEvent) {
-		if (this.trigger === "click" && (event.key === "Enter" || event.key === " " )) {
-			this.open();
-		}
-		if (event.key === "Escape") {
-			this.close();
-		}
-	}
 }
