@@ -1,5 +1,5 @@
 export interface FileItem {
 	file: File;
-	state: string;
+	state: "edit" | "upload" | "complete";
 	uploaded: boolean;
 }
