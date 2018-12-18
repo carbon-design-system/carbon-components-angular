@@ -13,7 +13,7 @@ import { OverflowMenu } from "../dialog/overflow-menu/overflow-menu.component";
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<ibm-breadcrumb [noTrailingSlash]="_noTrailingSlash">
+	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
 		<ibm-breadcrumb-item href="#">
 			Breadcrumb 1
 		</ibm-breadcrumb-item>
@@ -40,9 +40,9 @@ class TestBreadcrumb {
 	selector: "test-breadcrumb",
 	template: `
 	<ibm-breadcrumb
-		[noTrailingSlash]="_noTrailingSlash"
-		[threshold]="_threshold"
-		[items]="_items">
+		[noTrailingSlash]="noTrailingSlash"
+		[threshold]="threshold"
+		[items]="items">
 	</ibm-breadcrumb>`,
 	entryComponents: [Breadcrumb]
 })
