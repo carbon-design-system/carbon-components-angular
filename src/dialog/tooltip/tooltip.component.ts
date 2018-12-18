@@ -2,8 +2,11 @@ import {
 	Component,
 	TemplateRef,
 	HostBinding,
-	HostListener
+	HostListener,
+	Input
 } from "@angular/core";
+import { getFocusElementList } from "./../../common/tab.service";
+
 import { Dialog } from "./../dialog.component";
 
 /**
@@ -14,6 +17,7 @@ import { Dialog } from "./../dialog.component";
 	template: `
 		<div
 			#dialog
+			[tabindex]="tabIndex"
 			[id]="dialogConfig.compID"
 			role="tooltip"
 			class="bx--tooltip bx--tooltip--shown">
@@ -37,10 +41,13 @@ export class Tooltip extends Dialog {
 	 */
 	public hasContentTemplate = false;
 
+	@Input() tabIndex;
 	/**
 	 * Check whether there is a template for the `Tooltip` content.
 	 */
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
+
+		this.tabIndex = getFocusElementList(this.dialog.nativeElement).length > 0 ? 0 : -1;
 	}
 }

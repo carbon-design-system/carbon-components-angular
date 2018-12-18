@@ -19,7 +19,7 @@ import {
 import { throttleTime } from "rxjs/operators";
 // the AbsolutePosition is required to import the declaration correctly
 import position, { AbsolutePosition } from "./../utils/position";
-import { cycleTabs } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
 
@@ -146,6 +146,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			}
 		}
 		this.placeDialog();
+		if (getFocusElementList(this.dialog.nativeElement).length > 0) {
+			dialogElement.focus();
+		}
 		const parentEl: HTMLElement = this.dialogConfig.parentRef.nativeElement;
 		let node = parentEl;
 		let observables = [];
