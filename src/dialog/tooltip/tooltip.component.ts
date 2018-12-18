@@ -43,9 +43,4 @@ export class Tooltip extends Dialog {
 	onDialogInit() {
 		this.hasContentTemplate = this.dialogConfig.content instanceof TemplateRef;
 	}
-
-	@HostListener("keydown", ["$event"])
-	onBlur(event: KeyboardEvent) {
-		this.doClose();
-	}
 }
