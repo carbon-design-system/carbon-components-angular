@@ -33,11 +33,7 @@ import { OverflowMenu } from "../dialog/overflow-menu/overflow-menu.component";
 	entryComponents: [Breadcrumb]
 })
 class TestBreadcrumb {
-	_noTrailingSlash = true;
-
-	set noTrailingSlash(val: boolean) {
-		this._noTrailingSlash = val;
-	}
+	noTrailingSlash = true;
 }
 
 @Component({
@@ -51,21 +47,9 @@ class TestBreadcrumb {
 	entryComponents: [Breadcrumb]
 })
 class TestBreadcrumbModel {
-	_noTrailingSlash = true;
-	_threshold = 4;
-	_items = [];
-
-	set noTrailingSlash(val: boolean) {
-		this._noTrailingSlash = val;
-	}
-
-	set threshold(val: number) {
-		this._threshold = val;
-	}
-
-	set items(val: BreadcrumbItem[]) {
-		this._items = val;
-	}
+	noTrailingSlash = true;
+	threshold = 4;
+	items = [];
 }
 
 describe("Breadcrumb", () => {
