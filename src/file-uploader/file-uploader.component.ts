@@ -35,12 +35,7 @@ const noop = () => {
 				[multiple]="multiple"
 				(change)="onFilesAdded()"/>
 			<div class="bx--file-container">
-				<ibm-file *ngFor="let content of files"
-					[content]="content"
-					[files]="files"
-					[file]="file"
-					[filesChange]="filesChange">
-				</ibm-file>
+				<ibm-file *ngFor="let content of files" [content]="content" (remove)="removeFile(content)"></ibm-file>
 			</div>
 		</div>
 	`,
@@ -140,6 +135,12 @@ export class FileUploader implements OnInit {
 		}
 
 		this.value = this.files;
+	}
+
+	removeFile(file) {
+		this.files.delete(file);
+		this.file.nativeElement.value = "";
+		this.filesChange.emit(this.files);
 	}
 
 	/**

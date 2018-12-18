@@ -17,7 +17,7 @@ import { FileItem } from "./file-uploader.interface";
 	selector: "ibm-file",
 	template: `
 		<p class="bx--file-filename">{{content.file.name}}</p>
-		<span *ngIf="content.state === 'edit'" class="bx--file__state-container" (click)="removeFile(content)">
+		<span *ngIf="content.state === 'edit'" class="bx--file__state-container" (click)="remove.emit()">
 			<svg class="bx--file-close" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"
 				[attr.aria-label]="translations.CLOSE_BUTTON" [attr.alt]="translations.CLOSE_BUTTON">
 				<title>{{translations.CLOSE_TITLE}}</title>
@@ -47,23 +47,10 @@ export class File {
 	 * A single FileItem from the set of FileItems
 	 */
 	@Input() content: FileItem;
-	/**
-	 * Maintains a reference to the view DOM element of the underlying <input> node
-	 */
-	@Input() file;
-	/**
-	 * The list of files that have been submitted to be uploaded
-	 */
-	@Input() files: Set<FileItem>;
-	@Input() filesChange;
+
+	@Output() remove = new EventEmitter();
 
 	@HostBinding("class.bx--file__selected-file") selectedFile = true;
 
 	constructor(protected i18n: I18n) {}
-
-	removeFile(file) {
-		this.files.delete(file);
-		this.file.value = "";
-		this.filesChange.emit(this.files);
-	}
 }
