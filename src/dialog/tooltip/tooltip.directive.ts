@@ -81,9 +81,4 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
 	}
-
-	close() {
-		this.dialogService.close(this.viewContainerRef, false);
-		this.expanded = false;
-	}
 }

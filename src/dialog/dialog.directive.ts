@@ -122,6 +122,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		if (event.key === "Escape") {
 			this.close();
 		}
+		if (event.target === this.dialogConfig.parentRef.nativeElement && (event.key === "Tab" || event.key === "Tab" && event.shiftKey)) {
+			this.close();
+		}
 	}
 
 	ngOnChanges() {
