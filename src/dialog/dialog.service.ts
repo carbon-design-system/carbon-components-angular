@@ -155,7 +155,7 @@ export class DialogService {
 			}
 			this.dialogRef = null;
 			this.isOpen = false;
-				elementToFocus.focus();
+			elementToFocus.focus();
 
 			if (this.dialogSubscription) {
 				this.dialogSubscription.unsubscribe();
