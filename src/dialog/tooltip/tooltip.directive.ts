@@ -52,9 +52,7 @@ export class TooltipDirective extends DialogDirective {
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
 	@HostBinding("attr.aria-describedby") get descriptorId(): string {
-		if (this.expanded) {
-			return this.dialogConfig.compID;
-		}
+		return this.expanded ? this.dialogConfig.compID : null;
 	}
 
 	/**
