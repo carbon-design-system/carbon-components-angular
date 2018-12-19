@@ -16,6 +16,7 @@ import "core-js/es6/reflect";
 import "core-js/es7/reflect";
 import "zone.js/dist/zone";
 
+import '@storybook/addon-storysource/register';
 import "@storybook/addon-actions/register";
 import "@storybook/addon-links/register";
 import "@storybook/addon-notes/register";
