@@ -11,8 +11,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 import { FileItem } from "./file-uploader.interface";
 
-const noop = () => {
-};
+const noop = () => {};
 
 @Component({
 	selector: "ibm-file-uploader",
@@ -49,13 +48,13 @@ const noop = () => {
 })
 export class FileUploader implements OnInit {
 	/**
-	 * Variable used for creating unique ids for file-uploader components
+	 * Counter used to create unique ids for file-uploader components
 	 */
 	static fileUploaderCount = 0;
 	/**
 	 * Provided labels for the user to modify
 	 */
-	@Input() labelTitle;
+	@Input() labelTitle: string;
 	@Input() buttonLabel = "Add file";
 	@Input() labelDescription = "500kb max file size.";
 	/**
@@ -80,10 +79,10 @@ export class FileUploader implements OnInit {
 	@Input() files: Set<FileItem> = new Set();
 	@Output() filesChange = new EventEmitter<any>();
 
-	private onTouchedCallback: () => void = noop;
-	private onChangeCallback: (_: Set<FileItem>) => void = noop;
+	protected onTouchedCallback: () => void = noop;
+	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
-	private innerValue: any;
+	protected innerValue: any;
 
 	constructor() {
 		FileUploader.fileUploaderCount++;
@@ -125,7 +124,7 @@ export class FileUploader implements OnInit {
 	onFilesAdded() {
 		const files: File[] = this.file.nativeElement.files;
 		for (let file of files) {
-			const fileDescriptor: FileItem = {
+			const fileItem: FileItem = {
 				uploaded: false,
 				state: "edit",
 				file: file
