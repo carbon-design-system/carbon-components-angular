@@ -1,4 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
+import { action } from "@storybook/addon-actions";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 
 import { StructuredListModule } from "../";
 
@@ -6,17 +8,18 @@ storiesOf("Structured List", module).addDecorator(
 	moduleMetadata({
 		imports: [StructuredListModule]
 	}))
+	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-structured-list>
+			<ibm-structured-list [border]="border" [condensed]="condensed" [nowrap]="nowrap">
 				<ibm-list-header>
-					<ibm-list-column>Column 1</ibm-list-column>
-					<ibm-list-column>Column 2</ibm-list-column>
+					<ibm-list-column nowrap="true">Column 1</ibm-list-column>
+					<ibm-list-column nowrap="true">Column 2</ibm-list-column>
 					<ibm-list-column>Column 3</ibm-list-column>
 				</ibm-list-header>
 				<ibm-list-row>
 					<ibm-list-column>Row 1</ibm-list-column>
-					<ibm-list-column whiteSpace="nowrap">Row One</ibm-list-column>
+					<ibm-list-column nowrap="true">Row One</ibm-list-column>
 					<ibm-list-column>
 						Lorem ipsum dolor sit amet,
 						consectetur adipiscing elit. Nunc dui magna,
@@ -27,7 +30,7 @@ storiesOf("Structured List", module).addDecorator(
 				</ibm-list-row>
 				<ibm-list-row>
 					<ibm-list-column>Row 2</ibm-list-column>
-					<ibm-list-column whiteSpace="nowrap">Row Two</ibm-list-column>
+					<ibm-list-column nowrap="true">Row Two</ibm-list-column>
 					<ibm-list-column>
 						Lorem ipsum dolor sit amet,
 						consectetur adipiscing elit. Nunc dui magna,
@@ -37,19 +40,29 @@ storiesOf("Structured List", module).addDecorator(
 					</ibm-list-column>
 				</ibm-list-row>
 			</ibm-structured-list>
-		`
+		`,
+		props: {
+			border: boolean("border", false),
+			condensed: boolean("condensed", false),
+			nowrap: boolean("nowrap", false)
+		}
 	}))
 	.add("With selection", () => ({
 		template: `
-			<ibm-structured-list selection="true">
+			<ibm-structured-list
+				[border]="border"
+				[condensed]="condensed"
+				[nowrap]="nowrap"
+				selection="true"
+				(selected)="selected($event)">
 				<ibm-list-header>
-					<ibm-list-column>Column 1</ibm-list-column>
-					<ibm-list-column>Column 2</ibm-list-column>
+					<ibm-list-column nowrap="true">Column 1</ibm-list-column>
+					<ibm-list-column nowrap="true">Column 2</ibm-list-column>
 					<ibm-list-column>Column 3</ibm-list-column>
 				</ibm-list-header>
-				<ibm-list-row>
+				<ibm-list-row value="row1">
 					<ibm-list-column>Row 1</ibm-list-column>
-					<ibm-list-column whiteSpace="nowrap">Row One</ibm-list-column>
+					<ibm-list-column nowrap="true">Row One</ibm-list-column>
 					<ibm-list-column>
 						Lorem ipsum dolor sit amet,
 						consectetur adipiscing elit. Nunc dui magna,
@@ -58,9 +71,9 @@ storiesOf("Structured List", module).addDecorator(
 						Pellentesque vulputate nisl a porttitor interdum.
 					</ibm-list-column>
 				</ibm-list-row>
-				<ibm-list-row>
+				<ibm-list-row value="row2">
 					<ibm-list-column>Row 2</ibm-list-column>
-					<ibm-list-column whiteSpace="nowrap">Row Two</ibm-list-column>
+					<ibm-list-column nowrap="true">Row Two</ibm-list-column>
 					<ibm-list-column>
 						Lorem ipsum dolor sit amet,
 						consectetur adipiscing elit. Nunc dui magna,
@@ -70,6 +83,12 @@ storiesOf("Structured List", module).addDecorator(
 					</ibm-list-column>
 				</ibm-list-row>
 			</ibm-structured-list>
-		`
+		`,
+		props: {
+			selected: action("row selected"),
+			border: boolean("border", false),
+			condensed: boolean("condensed", false),
+			nowrap: boolean("nowrap", false)
+		}
 	}));
 

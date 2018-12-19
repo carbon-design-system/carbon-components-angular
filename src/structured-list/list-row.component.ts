@@ -7,7 +7,9 @@ import {
 	Input,
 	HostListener,
 	ViewChild,
-	ElementRef
+	ElementRef,
+	EventEmitter,
+	Output
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
 
@@ -19,10 +21,11 @@ import { ListColumn } from "./list-column.component";
 				#input
 				tabindex="-1"
 				class="bx--structured-list-input"
-				[value]="value"
 				type="radio"
+				[value]="value"
 				[name]="name"
-				[title]="label"/>
+				[title]="label"
+				(change)="onChange($event)"/>
 			<div class="bx--structured-list-td">
 				<svg class="bx--structured-list-svg" width="16" height="16" viewBox="0 0 16 16">
 					<path
@@ -51,18 +54,32 @@ export class ListRow implements AfterContentInit {
 		if (!this.input) { return; }
 		return this.input.nativeElement.checked;
 	}
-	@Input() @HostBinding("attr.aria-label") label = "label";
+	/**
+	 * Applys an accessible label to the row. Defaults to `null` (no label)
+	 */
+	@Input() @HostBinding("attr.aria-label") label = null;
+	/**
+	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuedList`
+	 */
 	@Input() value;
 
+	@Output() change: EventEmitter<Event> = new EventEmitter();
+
+	/**
+	 * Set by the containing `StructuredList`. Enables or disables row level selection features.
+	 */
+	selection = false;
+	/**
+	 * Set by the containing `StrucuredList`. When `selection = true` used for the `name` property on the radio input.
+	 */
+	name = "list";
+
 	@HostBinding("class.bx--structured-list-row") wrapper = true;
-	@HostBinding("attr.tabindex") tabindex = "0";
+	@HostBinding("attr.tabindex") tabindex = this.selection ? "0" : null;
 
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
 	@ViewChild("input") input: ElementRef;
-
-	selection = false;
-	name = "list";
 
 	ngAfterContentInit() {
 		this.columns.forEach(column => {
@@ -73,6 +90,11 @@ export class ListRow implements AfterContentInit {
 
 	@HostListener("click")
 	onclick() {
+		if (!this.selection) { return false; }
 		this.input.nativeElement.click();
+	}
+
+	onChange(event) {
+		this.change.emit(event);
 	}
 }
