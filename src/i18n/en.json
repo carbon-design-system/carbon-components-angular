@@ -78,7 +78,8 @@
 		"CLOSE_BUTTON": "Close button",
 		"CLOSE_TITLE": "Delete File",
 		"CHECKMARK": "Checkmark",
-		"CHECKMARK_TITLE": "File uploaded!"
+		"CHECKMARK_TITLE": "File uploaded!",
+		"OPEN": "Add file"
 	},
 	"LOADING": {
 		"TITLE": "Loading"

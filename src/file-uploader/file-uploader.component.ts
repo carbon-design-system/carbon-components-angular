@@ -9,7 +9,7 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "../i18n/i18n.module";
-import { FileItem } from "./file-uploader.interface";
+import { FileItem } from "./file-item.interface";
 
 const noop = () => {};
 
@@ -21,12 +21,12 @@ const noop = () => {};
 		<div class="bx--file">
 			<button
 				ibmButton="secondary"
-				(click)="file.click()"
+				(click)="fileInput.click()"
 				[attr.for]="fileUploaderId">
 				{{buttonLabel}}
 			</button>
 			<input
-				#file
+				#fileInput
 				type="file"
 				class="bx--file-input"
 				[accept]="accept"
@@ -34,7 +34,7 @@ const noop = () => {};
 				[multiple]="multiple"
 				(change)="onFilesAdded()"/>
 			<div class="bx--file-container">
-				<ibm-file *ngFor="let content of files" [content]="content" (remove)="removeFile(content)"></ibm-file>
+				<ibm-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
 			</div>
 		</div>
 	`,
@@ -52,11 +52,18 @@ export class FileUploader implements OnInit {
 	 */
 	static fileUploaderCount = 0;
 	/**
-	 * Provided labels for the user to modify
+	 * Accessible label for the button that opens the upload window
+	 * Defaults to the `FILE_UPLOADER.OPEN` value from the i18n service
+	 */
+	@Input() buttonLabel = this.i18n.get().FILE_UPLOADER.OPEN;
+	/**
+	 * Provides the label for the title
 	 */
 	@Input() labelTitle: string;
-	@Input() buttonLabel = "Add file";
-	@Input() labelDescription = "500kb max file size.";
+	/**
+	 * Provides the label for the desription
+	 */
+	@Input() labelDescription: String;
 	/**
 	 * Specify the types of files that the input should be able to receive
 	 */
@@ -72,7 +79,7 @@ export class FileUploader implements OnInit {
 	/**
 	 * Maintains a reference to the view DOM element of the underlying <input> node
 	 */
-	@ViewChild("file") file;
+	@ViewChild("fileInput") fileInput;
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
@@ -82,9 +89,7 @@ export class FileUploader implements OnInit {
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
-	protected innerValue: any;
-
-	constructor() {
+	constructor(protected i18n: I18n) {
 		FileUploader.fileUploaderCount++;
 	}
 
@@ -92,11 +97,11 @@ export class FileUploader implements OnInit {
 	 * Specifies the property to be used as the return value to `ngModel`
 	 */
 	get value(): Set<FileItem> {
-		return this.innerValue;
+		return this.files;
 	}
 	set value(v: Set<FileItem>) {
-		if (v !== this.innerValue) {
-			this.innerValue = v;
+		if (v !== this.files) {
+			this.files = v;
 			this.onChangeCallback(v);
 		}
 	}
@@ -116,29 +121,29 @@ export class FileUploader implements OnInit {
 	 * Propagates the injected `value`.
 	 */
 	writeValue(value: Set<FileItem>) {
-		if (value !== this.innerValue) {
-			this.innerValue = value;
+		if (value !== this.value) {
+			this.files = value;
 		}
 	}
 
 	onFilesAdded() {
-		const files: File[] = this.file.nativeElement.files;
+		const files: File[] = this.fileInput.nativeElement.files;
 		for (let file of files) {
 			const fileItem: FileItem = {
 				uploaded: false,
 				state: "edit",
 				file: file
 			};
-			this.files.add(fileDescriptor);
+			this.files.add(fileItem);
 			this.filesChange.emit(this.files);
 		}
 
 		this.value = this.files;
 	}
 
-	removeFile(file) {
-		this.files.delete(file);
-		this.file.nativeElement.value = "";
+	removeFile(fileItem) {
+		this.files.delete(fileItem);
+		this.fileInput.nativeElement.value = "";
 		this.filesChange.emit(this.files);
 	}
 

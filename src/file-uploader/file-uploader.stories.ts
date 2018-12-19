@@ -48,11 +48,11 @@ class FileUploaderStory {
 	}
 
 	onUpload() {
-		this.files.forEach(content => {
-			if (content.file.size > this.maxSize) {
+		this.files.forEach(fileItem => {
+			if (fileItem.file.size > this.maxSize) {
 				this.notificationService.showNotification({
 					type: "error",
-					title: `'${content.file.name}' exceeds size limit`,
+					title: `'${fileItem.file.name}' exceeds size limit`,
 					message: `500kb max size. Please select a new file and try again`,
 					target: `#${this.notificationId}`
 				});
@@ -60,14 +60,14 @@ class FileUploaderStory {
 		});
 
 		let filesArray = Array.from<any>(this.files);
-		if (filesArray.every(content => content.file.size <= this.maxSize)) {
-            this.files.forEach(content => {
-                if (!content.uploaded) {
-					content.state = "upload";
+		if (filesArray.every(fileItem => fileItem.file.size <= this.maxSize)) {
+            this.files.forEach(fileItem => {
+                if (!fileItem.uploaded) {
+					fileItem.state = "upload";
 					setTimeout(() => {
-						content.state = "complete";
-						content.uploaded = true;
-						console.log(content);
+						fileItem.state = "complete";
+						fileItem.uploaded = true;
+						console.log(fileItem);
 					}, 1500);
 				}
 			});
@@ -111,11 +111,11 @@ class NgModelFileUploaderStory {
 	}
 
 	onUpload() {
-		this.model.forEach(content => {
-			if (content.file.size > this.maxSize) {
+		this.model.forEach(fileItem => {
+			if (fileItem.file.size > this.maxSize) {
 				this.notificationService.showNotification({
 					type: "error",
-					title: `'${content.file.name}' exceeds size limit`,
+					title: `'${fileItem.file.name}' exceeds size limit`,
 					message: `500kb max size. Please select a new file and try again`,
 					target: `#${this.notificationId}`
 				});
@@ -123,14 +123,14 @@ class NgModelFileUploaderStory {
 		});
 
 		let filesArray = Array.from<any>(this.model);
-		if (filesArray.every(content => content.file.size <= this.maxSize)) {
-            this.model.forEach(content => {
-                if (!content.uploaded) {
-					content.state = "upload";
+		if (filesArray.every(fileItem => fileItem.file.size <= this.maxSize)) {
+            this.model.forEach(fileItem => {
+                if (!fileItem.uploaded) {
+					fileItem.state = "upload";
 					setTimeout(() => {
-						content.state = "complete";
-						content.uploaded = true;
-						console.log(content);
+						fileItem.state = "complete";
+						fileItem.uploaded = true;
+						console.log(fileItem);
 					}, 1500);
 				}
 			});
