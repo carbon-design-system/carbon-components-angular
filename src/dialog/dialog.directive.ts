@@ -114,19 +114,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		this.toggle();
 	}
 
-	@HostListener("keydown", ["$event"])
-	onKeydown(event: KeyboardEvent) {
-		if (this.trigger === "click" && (event.key === "Enter" || event.key === " " )) {
-			this.open();
-		}
-		if (event.key === "Escape") {
-			this.close();
-		}
-		if (event.target === this.dialogConfig.parentRef.nativeElement && (event.key === "Tab" || event.key === "Tab" && event.shiftKey)) {
-			this.close();
-		}
-	}
-
 	ngOnChanges() {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
 		this.dialogConfig = {
@@ -150,6 +137,14 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// fix for safari hijacking clicks
 		this.dialogService.singletonClickListen();
 
+		fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
+			// "Esc" is an IE specific value
+			if (event.target === this.dialogConfig.parentRef.nativeElement && (event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
+				event.key === "Escape" || event.key === "Esc") {
+				this.close();
+			}
+		});
+
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
 			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
@@ -158,6 +153,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
 			fromEvent(this.elementRef.nativeElement, "click").subscribe(() => this.toggle());
+			fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
+				// "Spacebar" is an IE specific value
+				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+					this.open();
+				}
+			});
 		}
 
 		// call onClose when the dialog is closed
