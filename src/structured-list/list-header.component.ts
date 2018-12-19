@@ -1,4 +1,10 @@
-import { Component, HostBinding, ContentChildren, QueryList, AfterContentInit } from "@angular/core";
+import {
+	Component,
+	HostBinding,
+	ContentChildren,
+	QueryList,
+	AfterContentInit
+} from "@angular/core";
 import { ListColumn } from "./list-column.component";
 
 /**

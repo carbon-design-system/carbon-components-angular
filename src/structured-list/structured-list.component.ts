@@ -1,6 +1,15 @@
-import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter } from "@angular/core";
+import {
+	Component,
+	Input,
+	ContentChildren,
+	QueryList,
+	AfterContentInit,
+	Output,
+	EventEmitter
+} from "@angular/core";
 import { ListRow } from "./list-row.component";
 import { ListHeader } from "./list-header.component";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
@@ -56,9 +65,16 @@ import { ListHeader } from "./list-header.component";
 				<ng-content></ng-content>
 			</div>
 		</section>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: StructuredList,
+			multi: true
+		}
+	]
 })
-export class StructuredList implements AfterContentInit {
+export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	/**
 	 * A counter to provide unique default values.
 	 */
@@ -100,6 +116,10 @@ export class StructuredList implements AfterContentInit {
 	@ContentChildren(ListRow) rows: QueryList<ListRow>;
 	@ContentChildren(ListHeader) headers: QueryList<ListHeader>;
 
+	onChange = (_: any) => { };
+
+	onTouched = () => { };
+
 	ngAfterContentInit() {
 		const setSelection = (rowOrHeader: ListRow | ListHeader) => {
 			rowOrHeader.selection = this.selection;
@@ -109,13 +129,35 @@ export class StructuredList implements AfterContentInit {
 		this.rows.forEach(row => {
 			setSelection(row);
 			row.name = this.name;
-			row.change.subscribe(event => {
+			row.change.subscribe(() => {
 				this.selected.emit({
 					value: row.value,
 					selected: row.selected,
 					name: this.name
 				});
+				this.onChange(row.value);
 			});
 		});
 	}
+
+	writeValue(value: any) {
+		if (!this.rows) { return; }
+		this.rows.forEach(row => {
+			if (row.value === value) {
+				row.selected = true;
+			} else {
+				row.selected = false;
+			}
+		});
+	}
+
+	registerOnChange(fn: any) {
+		this.onChange = fn;
+	}
+
+	registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	setDisabledState() { }
 }
