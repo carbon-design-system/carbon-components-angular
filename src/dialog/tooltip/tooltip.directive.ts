@@ -52,12 +52,11 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
+
 	@HostBinding("tabindex") tabIndex = 0;
 
 	@HostBinding("attr.aria-describedby") get descriptorId(): string {
-		if (this.expanded) {
-			return this.dialogConfig.compID;
-		}
+		return this.expanded ? this.dialogConfig.compID : null;
 	}
 
 	/**
