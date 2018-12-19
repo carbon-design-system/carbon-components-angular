@@ -6402,6 +6402,13 @@ var TooltipDirective = /** @class */ (function (_super) {
         return _this;
     }
     TooltipDirective_1 = TooltipDirective;
+    Object.defineProperty(TooltipDirective.prototype, "descriptorId", {
+        get: function () {
+            return this.expanded ? this.dialogConfig.compID : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Extends the `Dialog` component's data structure with tooltip properties.
      */
@@ -6410,7 +6417,6 @@ var TooltipDirective = /** @class */ (function (_super) {
         this.dialogConfig.compID = "tooltip-" + TooltipDirective_1.tooltipCounter;
         this.dialogConfig.content = this.ibmTooltip;
         this.dialogConfig.type = this.tooltipType;
-        this.descriptorId = this.dialogConfig.compID;
     };
     var TooltipDirective_1, _a, _b, _c, _d;
     TooltipDirective.tooltipCounter = 0;
@@ -6424,8 +6430,9 @@ var TooltipDirective = /** @class */ (function (_super) {
     ], TooltipDirective.prototype, "tooltipType", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("attr.aria-describedby"),
-        __metadata("design:type", String)
-    ], TooltipDirective.prototype, "descriptorId", void 0);
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [])
+    ], TooltipDirective.prototype, "descriptorId", null);
     TooltipDirective = TooltipDirective_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"])({
             selector: "[ibmTooltip]",
@@ -9000,7 +9007,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListGroup, ListGroupModule, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, AlertModalType, ModalButtonType, BaseModal */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListGroup, ListGroupModule, Loading, LoadingModule, Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9152,13 +9159,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalService"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalModule"]; });
-
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalButtonType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["BaseModal"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalModule"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_19__["NotificationService"]; });
@@ -11044,7 +11051,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
+/*! exports provided: Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18965,4 +18972,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.e49dbba52fd6ce9a8c6c.bundle.js.map
+//# sourceMappingURL=iframe.3abbbf0c1d284ccf646c.bundle.js.map

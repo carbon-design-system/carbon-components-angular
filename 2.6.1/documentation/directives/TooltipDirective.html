@@ -184,7 +184,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -366,7 +366,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -491,7 +491,9 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input(&quot;tooltip-type&quot;) tooltipType: &quot;warning&quot; | &quot;error&quot; | &quot;&quot; &#x3D; &quot;&quot;;
 
-	@HostBinding(&quot;attr.aria-describedby&quot;) descriptorId: string;
+	@HostBinding(&quot;attr.aria-describedby&quot;) get descriptorId(): string {
+		return this.expanded ? this.dialogConfig.compID : null;
+	}
 
 	/**
 	 * Creates an instance of &#x60;TooltipDirective&#x60;.
@@ -513,7 +515,6 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID &#x3D; &quot;tooltip-&quot; + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content &#x3D; this.ibmTooltip;
 		this.dialogConfig.type &#x3D; this.tooltipType;
-		this.descriptorId &#x3D; this.dialogConfig.compID;
 	}
 }
 </code></pre>
