@@ -51,7 +51,9 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
-	@HostBinding("attr.aria-describedby") descriptorId: string;
+	@HostBinding("attr.aria-describedby") get descriptorId(): string {
+		return this.expanded ? this.dialogConfig.compID : null;
+	}
 
 	/**
 	 * Creates an instance of `TooltipDirective`.
@@ -73,6 +75,5 @@ export class TooltipDirective extends DialogDirective {
 		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
-		this.descriptorId = this.dialogConfig.compID;
 	}
 }
