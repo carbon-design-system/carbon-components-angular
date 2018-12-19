@@ -2,7 +2,6 @@ import {
 	Component,
 	TemplateRef,
 	HostBinding,
-	HostListener,
 	Input
 } from "@angular/core";
 import { getFocusElementList } from "./../../common/tab.service";

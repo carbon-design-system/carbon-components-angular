@@ -6,8 +6,7 @@ import {
 	Injector,
 	ComponentFactoryResolver,
 	ViewContainerRef,
-	HostBinding,
-	HostListener
+	HostBinding
 } from "@angular/core";
 import { DialogDirective } from "./../dialog.directive";
 import { Tooltip } from "./tooltip.component";
