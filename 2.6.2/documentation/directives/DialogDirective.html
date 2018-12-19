@@ -708,7 +708,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/dialog/dialog.directive.ts:193</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/dialog/dialog.directive.ts:207</a></div>
                             </td>
                         </tr>
 
@@ -789,7 +789,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/dialog/dialog.directive.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/dialog/dialog.directive.ts:181</a></div>
                             </td>
                         </tr>
 
@@ -875,7 +875,7 @@ running code from child class.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/dialog/dialog.directive.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/dialog/dialog.directive.ts:217</a></div>
                             </td>
                         </tr>
 
@@ -916,7 +916,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/dialog/dialog.directive.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/dialog/dialog.directive.ts:189</a></div>
                             </td>
                         </tr>
 
@@ -959,7 +959,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/dialog/dialog.directive.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/dialog/dialog.directive.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -1244,6 +1244,14 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// fix for safari hijacking clicks
 		this.dialogService.singletonClickListen();
 
+		fromEvent(this.elementRef.nativeElement, &quot;keydown&quot;).subscribe((event: KeyboardEvent) &#x3D;&gt; {
+			// &quot;Esc&quot; is an IE specific value
+			if (event.target &#x3D;&#x3D;&#x3D; this.dialogConfig.parentRef.nativeElement &amp;&amp; (event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Tab&quot; &amp;&amp; event.shiftKey) ||
+				event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Esc&quot;) {
+				this.close();
+			}
+		});
+
 		// bind events for hovering or clicking the host
 		if (this.trigger &#x3D;&#x3D;&#x3D; &quot;hover&quot; || this.trigger &#x3D;&#x3D;&#x3D; &quot;mouseenter&quot;) {
 			fromEvent(this.elementRef.nativeElement, &quot;mouseenter&quot;).subscribe(() &#x3D;&gt; this.toggle());
@@ -1252,6 +1260,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			fromEvent(this.elementRef.nativeElement, &quot;blur&quot;).subscribe(() &#x3D;&gt; this.close());
 		} else {
 			fromEvent(this.elementRef.nativeElement, &quot;click&quot;).subscribe(() &#x3D;&gt; this.toggle());
+			fromEvent(this.elementRef.nativeElement, &quot;keydown&quot;).subscribe((event: KeyboardEvent) &#x3D;&gt; {
+				// &quot;Spacebar&quot; is an IE specific value
+				if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) {
+					this.open();
+				}
+			});
 		}
 
 		// call onClose when the dialog is closed

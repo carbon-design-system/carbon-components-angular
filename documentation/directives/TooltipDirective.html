@@ -164,6 +164,9 @@
                             <li>
                                 <a href="#attr.aria-describedby">attr.aria-describedby</a>
                             </li>
+                            <li>
+                                <a href="#tabindex">tabindex</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -184,7 +187,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -329,7 +332,40 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tabindex"></a>
+                        <span class="name">
+                            <b>
+                            tabindex
+                            </b>
+                            <a href="#tabindex"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tabindex:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -366,7 +402,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/dialog/tooltip/tooltip.directive.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -490,6 +526,9 @@ export class TooltipDirective extends DialogDirective {
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input(&quot;tooltip-type&quot;) tooltipType: &quot;warning&quot; | &quot;error&quot; | &quot;&quot; &#x3D; &quot;&quot;;
+
+
+	@HostBinding(&quot;tabindex&quot;) tabIndex &#x3D; 0;
 
 	@HostBinding(&quot;attr.aria-describedby&quot;) get descriptorId(): string {
 		return this.expanded ? this.dialogConfig.compID : null;

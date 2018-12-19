@@ -101,9 +101,9 @@
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
 	#dialog
+	[tabindex]&#x3D;&quot;tabIndex&quot;
 	[id]&#x3D;&quot;dialogConfig.compID&quot;
 	role&#x3D;&quot;tooltip&quot;
-	tabindex&#x3D;&quot;0&quot;
 	class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
 	&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
 	&lt;ng-template
@@ -222,6 +222,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#tabIndex">tabIndex</a>
+                            </li>
+                            <li>
                                 <a href="#dialogConfig">dialogConfig</a>
                             </li>
                         </ul>
@@ -283,6 +286,23 @@
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="tabIndex"></a>
+                        <code>tabIndex</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:43</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -371,7 +391,7 @@ explictly defined.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -414,7 +434,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:291</div>
+                                    <div class="io-line">Defined in Dialog:293</div>
                             </td>
                         </tr>
 
@@ -462,7 +482,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:269</div>
+                                    <div class="io-line">Defined in Dialog:271</div>
                             </td>
                         </tr>
 
@@ -505,7 +525,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -553,7 +573,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:302</div>
+                                    <div class="io-line">Defined in Dialog:304</div>
                             </td>
                         </tr>
 
@@ -646,7 +666,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:310</div>
+                                    <div class="io-line">Defined in Dialog:312</div>
                             </td>
                         </tr>
 
@@ -738,7 +758,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:204</div>
+                                    <div class="io-line">Defined in Dialog:206</div>
                             </td>
                         </tr>
 
@@ -784,7 +804,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:210</div>
+                                    <div class="io-line">Defined in Dialog:212</div>
                             </td>
                         </tr>
 
@@ -836,7 +856,7 @@ in respect to the parent element.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -1224,8 +1244,11 @@ to not obscure the content beneath.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
 	TemplateRef,
-	HostBinding
+	HostBinding,
+	Input
 } from &quot;@angular/core&quot;;
+import { getFocusElementList } from &quot;./../../common/tab.service&quot;;
+
 import { Dialog } from &quot;./../dialog.component&quot;;
 
 /**
@@ -1236,9 +1259,9 @@ import { Dialog } from &quot;./../dialog.component&quot;;
 	template: &#x60;
 		&lt;div
 			#dialog
+			[tabindex]&#x3D;&quot;tabIndex&quot;
 			[id]&#x3D;&quot;dialogConfig.compID&quot;
 			role&#x3D;&quot;tooltip&quot;
-			tabindex&#x3D;&quot;0&quot;
 			class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
 			&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
 			&lt;ng-template
@@ -1260,11 +1283,14 @@ export class Tooltip extends Dialog {
 	 */
 	public hasContentTemplate &#x3D; false;
 
+	@Input() tabIndex;
 	/**
 	 * Check whether there is a template for the &#x60;Tooltip&#x60; content.
 	 */
 	onDialogInit() {
 		this.hasContentTemplate &#x3D; this.dialogConfig.content instanceof TemplateRef;
+
+		this.tabIndex &#x3D; getFocusElementList(this.dialog.nativeElement).length &gt; 0 ? 0 : -1;
 	}
 }
 </code></pre>
@@ -1297,7 +1323,7 @@ export class Tooltip extends Dialog {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	#dialog	[id]="dialogConfig.compID"	role="tooltip"	tabindex="0"	class="bx--tooltip bx--tooltip--shown">	<span class="bx--tooltip__caret" aria-hidden="true"></span>	<ng-template			*ngIf="hasContentTemplate"			[ngTemplateOutlet]="dialogConfig.content"			[ngTemplateOutletContext]="{tooltip: this}">	</ng-template>	<p		*ngIf="!hasContentTemplate">		{{dialogConfig.content}}	</p></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div	#dialog	[tabindex]="tabIndex"	[id]="dialogConfig.compID"	role="tooltip"	class="bx--tooltip bx--tooltip--shown">	<span class="bx--tooltip__caret" aria-hidden="true"></span>	<ng-template			*ngIf="hasContentTemplate"			[ngTemplateOutlet]="dialogConfig.content"			[ngTemplateOutletContext]="{tooltip: this}">	</ng-template>	<p		*ngIf="!hasContentTemplate">		{{dialogConfig.content}}	</p></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Tooltip'};

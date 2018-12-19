@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>Tooltip</li>
+  <li>Dialog</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,25 +55,33 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/dialog/tooltip/tooltip.component.ts</code>
+    <code>src/dialog/dialog.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Extend the <code>Dialog</code> component to create a tooltip for exposing content.</p>
+        <p>Implements a <code>Dialog</code> that can be positioned anywhere on the page.
+Used to implement a popover or tooltip.</p>
 
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
     <p class="comment">
-        <h3>Extends</h3>
+        <h3>Example</h3>
     </p>
-    <p class="comment">
-            <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-    </p>
-
-
+    <div class="io-description">
+    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -92,32 +100,11 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ibm-tooltip</code></td>
+                <td class="col-md-9"><code>ibm-dialog</code></td>
             </tr>
 
 
 
-            <tr>
-                <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
-	#dialog
-	[id]&#x3D;&quot;dialogConfig.compID&quot;
-	role&#x3D;&quot;tooltip&quot;
-	tabindex&#x3D;&quot;0&quot;
-	class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
-	&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
-	&lt;ng-template
-			*ngIf&#x3D;&quot;hasContentTemplate&quot;
-			[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
-			[ngTemplateOutletContext]&#x3D;&quot;{tooltip: this}&quot;&gt;
-	&lt;/ng-template&gt;
-	&lt;p
-		*ngIf&#x3D;&quot;!hasContentTemplate&quot;&gt;
-		{{dialogConfig.content}}
-	&lt;/p&gt;
-&lt;/div&gt;
-</code></pre></td>
-            </tr>
 
 
 
@@ -143,10 +130,6 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#hasContentTemplate">hasContentTemplate</a>
-                            </li>
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#addGap">addGap</a>
@@ -187,9 +170,6 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#onDialogInit">onDialogInit</a>
-                            </li>
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#doClose">doClose</a>
@@ -243,20 +223,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>HostBindings</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#style.display">style.display</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -280,6 +246,56 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/dialog/dialog.component.ts:108</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of <code>Dialog</code>.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -300,15 +316,9 @@ explictly defined.</p>
                             </p>
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Dialog:61</div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/dialog/dialog.component.ts:61</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -330,52 +340,11 @@ explictly defined.</p>
 
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Dialog:54</div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/dialog/dialog.component.ts:54</a></div>
                             </td>
                         </tr>
-            </tbody>
-        </table>
-</section>
-    <section>
-    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="style.display"></a>
-                        <span class="name">
-                            <b>
-                            style.display
-                            </b>
-                            <a href="#style.display"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>style.display:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;inline-block&quot;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:34</a></div>
-                            </td>
-                        </tr>
-
-
             </tbody>
         </table>
 </section>
@@ -406,15 +375,9 @@ explictly defined.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:291</div>
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/dialog/dialog.component.ts:293</a></div>
                             </td>
                         </tr>
 
@@ -454,15 +417,9 @@ explictly defined.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:269</div>
+                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dialog/dialog.component.ts:271</a></div>
                             </td>
                         </tr>
 
@@ -487,46 +444,6 @@ explictly defined.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="onDialogInit"></a>
-                        <span class="name">
-                            <b>
-                            onDialogInit
-                            </b>
-                            <a href="#onDialogInit"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>onDialogInit()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:43</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Check whether there is a template for the <code>Tooltip</code> content.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="doClose"></a>
                         <span class="name">
                             <b>
@@ -545,15 +462,9 @@ explictly defined.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:302</div>
+                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/dialog/dialog.component.ts:304</a></div>
                             </td>
                         </tr>
 
@@ -591,15 +502,9 @@ explictly defined.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:138</div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/dialog/dialog.component.ts:138</a></div>
                             </td>
                         </tr>
 
@@ -638,15 +543,9 @@ in respect to the parent element.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:310</div>
+                                    <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/dialog/dialog.component.ts:312</a></div>
                             </td>
                         </tr>
 
@@ -684,15 +583,9 @@ in respect to the parent element.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:121</div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/dialog.component.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -730,15 +623,9 @@ in respect to the parent element.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:204</div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.component.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -776,15 +663,9 @@ in respect to the parent element.</p>
                 </tr>
 
 
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:210</div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/dialog/dialog.component.ts:212</a></div>
                             </td>
                         </tr>
 
@@ -809,46 +690,6 @@ in respect to the parent element.</p>
         <h3 id="inputs">
             Properties
         </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="hasContentTemplate"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            hasContentTemplate
-                            </b>
-                            <a href="#hasContentTemplate"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span><code>hasContentTemplate:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:38</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Value is set to <code>true</code> if the <code>Tooltip</code> is to display a <code>TemplateRef</code> instead of a string.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -887,15 +728,9 @@ in respect to the parent element.</p>
 	}</code>
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:101</div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dialog/dialog.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -940,15 +775,9 @@ to not obscure the content beneath.</p>
                             <i>Default value : </i><code>{}</code>
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:73</div>
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dialog/dialog.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -995,15 +824,9 @@ to not obscure the content beneath.</p>
                             </code>
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:67</div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/dialog/dialog.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -1042,15 +865,9 @@ to not obscure the content beneath.</p>
 
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:80</div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/dialog/dialog.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -1095,15 +912,9 @@ to not obscure the content beneath.</p>
                             <i>Default value : </i><code>fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100))</code>
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:48</div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/dialog.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -1142,15 +953,9 @@ to not obscure the content beneath.</p>
 
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:88</div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/dialog/dialog.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -1194,15 +999,9 @@ to not obscure the content beneath.</p>
                             <i>Default value : </i><code>new Subscription()</code>
                         </td>
                     </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:94</div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dialog/dialog.component.ts:94</a></div>
                             </td>
                         </tr>
 
@@ -1223,48 +1022,318 @@ to not obscure the content beneath.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
-	TemplateRef,
-	HostBinding
+	Input,
+	Output,
+	EventEmitter,
+	ElementRef,
+	ViewChild,
+	OnInit,
+	AfterViewInit,
+	OnDestroy,
+	HostListener
 } from &quot;@angular/core&quot;;
-import { Dialog } from &quot;./../dialog.component&quot;;
+import {
+	Observable,
+	Subscription,
+	fromEvent,
+	merge
+} from &quot;rxjs&quot;;
+import { throttleTime } from &quot;rxjs/operators&quot;;
+// the AbsolutePosition is required to import the declaration correctly
+import position, { AbsolutePosition } from &quot;./../utils/position&quot;;
+import { cycleTabs, getFocusElementList } from &quot;./../common/tab.service&quot;;
+import { DialogConfig } from &quot;./dialog-config.interface&quot;;
+
 
 /**
- * Extend the &#x60;Dialog&#x60; component to create a tooltip for exposing content.
+ * Implements a &#x60;Dialog&#x60; that can be positioned anywhere on the page.
+ * Used to implement a popover or tooltip.
+ *
+ * @export
+ * @class Dialog
+ * @implements {OnInit}
+ * @implements {AfterViewInit}
+ * @implements {OnDestroy}
  */
 @Component({
-	selector: &quot;ibm-tooltip&quot;,
-	template: &#x60;
-		&lt;div
-			#dialog
-			[id]&#x3D;&quot;dialogConfig.compID&quot;
-			role&#x3D;&quot;tooltip&quot;
-			tabindex&#x3D;&quot;0&quot;
-			class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
-			&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
-			&lt;ng-template
-					*ngIf&#x3D;&quot;hasContentTemplate&quot;
-					[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
-					[ngTemplateOutletContext]&#x3D;&quot;{tooltip: this}&quot;&gt;
-			&lt;/ng-template&gt;
-			&lt;p
-				*ngIf&#x3D;&quot;!hasContentTemplate&quot;&gt;
-				{{dialogConfig.content}}
-			&lt;/p&gt;
-		&lt;/div&gt;
-		&#x60;
+	selector: &quot;ibm-dialog&quot;,
+	template: &quot;&quot;
 })
-export class Tooltip extends Dialog {
-	@HostBinding(&quot;style.display&quot;) style &#x3D; &quot;inline-block&quot;;
+export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
-	 * Value is set to &#x60;true&#x60; if the &#x60;Tooltip&#x60; is to display a &#x60;TemplateRef&#x60; instead of a string.
+	 * One static event observable to handle window resizing.
+	 * @protected
+	 * @static
+	 * @type {Observable&lt;any&gt;}
+	 * @memberof Dialog
 	 */
-	public hasContentTemplate &#x3D; false;
+	protected static resizeObservable: Observable&lt;any&gt; &#x3D; fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100));
+	/**
+	 * Emits event that handles the closing of a &#x60;Dialog&#x60; object.
+	 * @type {EventEmitter&lt;any&gt;}
+	 * @memberof Dialog
+	 */
+	@Output() close: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+	/**
+	 * Receives &#x60;DialogConfig&#x60; interface object with properties of &#x60;Dialog&#x60;
+	 * explictly defined.
+	 * @type {DialogConfig}
+	 * @memberof Dialog
+	 */
+	@Input() dialogConfig: DialogConfig;
+	/**
+	 * Maintains a reference to the view DOM element of the &#x60;Dialog&#x60;.
+	 * @type {ElementRef}
+	 * @memberof Dialog
+	 */
+	@ViewChild(&quot;dialog&quot;) dialog: ElementRef;
 
 	/**
-	 * Check whether there is a template for the &#x60;Tooltip&#x60; content.
+	 * Stores the data received from &#x60;dialogConfig&#x60;.
+	 * @memberof Dialog
 	 */
-	onDialogInit() {
-		this.hasContentTemplate &#x3D; this.dialogConfig.content instanceof TemplateRef;
+	public data &#x3D; {};
+
+	/**
+	 * The placement of the &#x60;Dialog&#x60; is recieved from the &#x60;Position&#x60; service.
+	 * @type {Placement}
+	 * @memberof Dialog
+	 */
+	public placement: string;
+
+	/**
+	 * &#x60;Subscription&#x60; used to update placement in the event of a window resize.
+	 * @protected
+	 * @type {Subscription}
+	 * @memberof Dialog
+	 */
+	protected resizeSubscription: Subscription;
+	/**
+	 * Subscription to all the scrollable parents &#x60;scroll&#x60; event
+	 */
+	// add a new subscription temprarily so that contexts (such as tests)
+	// that don&#x27;t run ngAfterViewInit have something to unsubscribe in ngOnDestroy
+	protected scrollSubscription: Subscription &#x3D; new Subscription();
+	/**
+	 * Handles offsetting the &#x60;Dialog&#x60; item based on the defined position
+	 * to not obscure the content beneath.
+	 * @protected
+	 * @memberof Dialog
+	 */
+	protected addGap &#x3D; {
+		&quot;left&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, -this.dialogConfig.gap),
+		&quot;right&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, this.dialogConfig.gap),
+		&quot;top&quot;: pos &#x3D;&gt; position.addOffset(pos, -this.dialogConfig.gap),
+		&quot;bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, this.dialogConfig.gap),
+		&quot;left-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, -this.dialogConfig.gap),
+		&quot;right-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, this.dialogConfig.gap)
+	};
+
+	/**
+	 * Creates an instance of &#x60;Dialog&#x60;.
+	 * @param {ElementRef} elementRef
+	 * @memberof Dialog
+	 */
+	constructor(protected elementRef: ElementRef) {}
+
+	/**
+	 * Initilize the &#x60;Dialog&#x60;, set the placement and gap, and add a &#x60;Subscription&#x60; to resize events.
+	 * @memberof Dialog
+	 */
+	ngOnInit() {
+		this.placement &#x3D; this.dialogConfig.placement.split(&quot;,&quot;)[0];
+		this.data &#x3D; this.dialogConfig.data;
+
+		this.resizeSubscription &#x3D; Dialog.resizeObservable.subscribe(() &#x3D;&gt; {
+			this.placeDialog();
+		});
+
+		// run any additional initlization code that consuming classes may have
+		this.onDialogInit();
+	}
+
+	/**
+	 * After the DOM is ready, focus is set and dialog is placed
+	 * in respect to the parent element.
+	 * @memberof Dialog
+	 */
+	ngAfterViewInit() {
+		const dialogElement &#x3D; this.dialog.nativeElement;
+		// split the wrapper class list and apply separately to avoid IE from
+		// 1. throwing an error due to assigning a readonly property (classList)
+		// 2. throwing a SyntaxError due to passing an empty string to &#x60;add&#x60;
+		if (this.dialogConfig.wrapperClass) {
+			for (const extraClass of this.dialogConfig.wrapperClass.split(&quot; &quot;)) {
+				dialogElement.classList.add(extraClass);
+			}
+		}
+		this.placeDialog();
+		if (getFocusElementList(this.dialog.nativeElement).length &gt; 0) {
+			dialogElement.focus();
+		}
+		const parentEl: HTMLElement &#x3D; this.dialogConfig.parentRef.nativeElement;
+		let node &#x3D; parentEl;
+		let observables &#x3D; [];
+
+		// if the element has an overflow set as part of
+		// its computed style it can scroll
+		const isScrollableElement &#x3D; (element: HTMLElement) &#x3D;&gt; {
+			const computedStyle &#x3D; getComputedStyle(element);
+			return (
+				computedStyle.overflow &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
+				computedStyle.overflow &#x3D;&#x3D;&#x3D; &quot;scroll&quot; ||
+				computedStyle[&quot;overflow-y&quot;] &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
+				computedStyle[&quot;overflow-y&quot;] &#x3D;&#x3D;&#x3D; &quot;scroll&quot; ||
+				computedStyle[&quot;overflow-x&quot;] &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
+				computedStyle[&quot;overflow-x&quot;] &#x3D;&#x3D;&#x3D; &quot;scroll&quot;
+			);
+		};
+
+		const isVisibleInContainer &#x3D; (element, container) &#x3D;&gt; {
+			const elementRect &#x3D; element.getBoundingClientRect();
+			const containerRect &#x3D; container.getBoundingClientRect();
+			return elementRect.bottom &lt;&#x3D; containerRect.bottom &amp;&amp; elementRect.top &gt;&#x3D; containerRect.top;
+		};
+
+		const placeDialogInContainer &#x3D; () &#x3D;&gt; {
+			// only do the work to find the scroll containers if we&#x27;re appended to body
+			// or skip this work if we&#x27;re inline
+			if (!this.dialogConfig.appendInline) {
+				// walk the parents and subscribe to all the scroll events we can
+				while (node.parentElement &amp;&amp; node !&#x3D;&#x3D; document.body) {
+					if (isScrollableElement(node)) {
+						observables.push(fromEvent(node, &quot;scroll&quot;));
+					}
+					node &#x3D; node.parentElement;
+				}
+				// subscribe to the observable, and update the position and visibility
+				const scrollObservable &#x3D; merge(...observables);
+				this.scrollSubscription &#x3D; scrollObservable.subscribe((event: any) &#x3D;&gt; {
+					this.placeDialog();
+					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
+						this.doClose();
+					}
+				});
+			}
+		};
+
+		// settimeout to let the DOM settle before attempting to place the dialog
+		setTimeout(placeDialogInContainer);
+	}
+
+	/**
+	 * Empty method to be overridden by consuming classes to run any additional initialization code.
+	 * @memberof Dialog
+	 */
+	onDialogInit() {}
+
+	/**
+	 * Uses the position service to position the &#x60;Dialog&#x60; in screen space
+	 * @memberof Dialog
+	 */
+	placeDialog(): void {
+		// helper to find the position based on the current/given environment
+		const findPosition &#x3D; (reference, target, placement) &#x3D;&gt; {
+			let pos;
+			if (this.dialogConfig.appendInline) {
+				pos &#x3D; this.addGap[placement](position.findRelative(reference, target, placement));
+			} else {
+				pos &#x3D; this.addGap[placement](position.findAbsolute(reference, target, placement));
+				pos &#x3D; position.addOffset(pos, window.scrollY, window.scrollX);
+			}
+			return pos;
+		};
+
+		let parentEl &#x3D; this.dialogConfig.parentRef.nativeElement;
+		let el &#x3D; this.dialog.nativeElement;
+		let dialogPlacement &#x3D; this.placement;
+
+		// split always retuns an array, so we can just use the auto position logic
+		// for single positions too
+		const placements &#x3D; this.dialogConfig.placement.split(&quot;,&quot;);
+		const weightedPlacements &#x3D; placements.map(placement &#x3D;&gt; {
+			const pos &#x3D; findPosition(parentEl, el, placement);
+			let box &#x3D; position.getPlacementBox(el, pos);
+			let hiddenHeight &#x3D; box.bottom - window.innerHeight - window.scrollY;
+			let hiddenWidth &#x3D; box.right - window.innerWidth - window.scrollX;
+			// if the hiddenHeight or hiddenWidth is negative, reset to offsetHeight or offsetWidth
+			hiddenHeight &#x3D; hiddenHeight &lt; 0 ? el.offsetHeight : hiddenHeight;
+			hiddenWidth &#x3D; hiddenWidth &lt; 0 ? el.offsetWidth : hiddenWidth;
+			const area &#x3D; el.offsetHeight * el.offsetWidth;
+			const hiddenArea &#x3D; hiddenHeight * hiddenWidth;
+			let visibleArea &#x3D; area - hiddenArea;
+			// if the visibleArea is 0 set it back to area (to calculate the percentage in a useful way)
+			visibleArea &#x3D; visibleArea &#x3D;&#x3D;&#x3D; 0 ? area : visibleArea;
+			const visiblePercent &#x3D; visibleArea / area;
+			return {
+				placement,
+				weight: visiblePercent
+			};
+		});
+
+		// sort the placments from best to worst
+		weightedPlacements.sort((a, b) &#x3D;&gt; b.weight - a.weight);
+		// pick the best!
+		dialogPlacement &#x3D; weightedPlacements[0].placement;
+
+		// calculate the final position
+		const pos &#x3D; findPosition(parentEl, el, dialogPlacement);
+
+		// update the element
+		position.setElement(el, pos);
+		setTimeout(() &#x3D;&gt; { this.placement &#x3D; dialogPlacement; });
+	}
+
+	/**
+	 * Sets up a KeyboardEvent to close &#x60;Dialog&#x60; with Escape key.
+	 * @param {KeyboardEvent} event
+	 * @memberof Dialog
+	 */
+	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
+	escapeClose(event: KeyboardEvent) {
+		switch (event.key) {
+			case &quot;Esc&quot;: // IE specific value
+			case &quot;Escape&quot;: {
+				event.stopImmediatePropagation();
+				this.doClose();
+				break;
+			}
+			case &quot;Tab&quot;: {
+				cycleTabs(event, this.elementRef.nativeElement);
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Sets up a event Listener to close &#x60;Dialog&#x60; if click event occurs outside
+	 * &#x60;Dialog&#x60; object.
+	 * @param {any} event
+	 * @memberof Dialog
+	 */
+	@HostListener(&quot;document:click&quot;, [&quot;$event&quot;])
+	clickClose(event) {
+		if (!this.elementRef.nativeElement.contains(event.target)
+			&amp;&amp; !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
+			this.doClose();
+		}
+	}
+
+	/**
+	 * Closes &#x60;Dialog&#x60; object by emitting the close event upwards to parents.
+	 * @memberof Dialog
+	 */
+	public doClose() {
+		this.close.emit();
+	}
+
+	/**
+	 * At destruction of component, &#x60;Dialog&#x60; unsubscribes from handling window resizing changes.
+	 * @memberof Dialog
+	 */
+	ngOnDestroy() {
+		this.resizeSubscription.unsubscribe();
+		this.scrollSubscription.unsubscribe();
 	}
 }
 </code></pre>
@@ -1297,10 +1366,10 @@ export class Tooltip extends Dialog {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	#dialog	[id]="dialogConfig.compID"	role="tooltip"	tabindex="0"	class="bx--tooltip bx--tooltip--shown">	<span class="bx--tooltip__caret" aria-hidden="true"></span>	<ng-template			*ngIf="hasContentTemplate"			[ngTemplateOutlet]="dialogConfig.content"			[ngTemplateOutletContext]="{tooltip: this}">	</ng-template>	<p		*ngIf="!hasContentTemplate">		{{dialogConfig.content}}	</p></div></div>'
+        var COMPONENT_TEMPLATE = '<div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
-    var ACTUAL_COMPONENT = {'name': 'Tooltip'};
+    var ACTUAL_COMPONENT = {'name': 'Dialog'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1334,7 +1403,7 @@ export class Tooltip extends Dialog {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'Tooltip.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Dialog.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

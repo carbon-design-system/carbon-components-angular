@@ -377,7 +377,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/dialog/dialog.component.ts:291</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/dialog/dialog.component.ts:293</a></div>
                             </td>
                         </tr>
 
@@ -419,7 +419,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/dialog/dialog.component.ts:269</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dialog/dialog.component.ts:271</a></div>
                             </td>
                         </tr>
 
@@ -464,7 +464,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/dialog/dialog.component.ts:302</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/dialog/dialog.component.ts:304</a></div>
                             </td>
                         </tr>
 
@@ -545,7 +545,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/dialog/dialog.component.ts:310</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/dialog/dialog.component.ts:312</a></div>
                             </td>
                         </tr>
 
@@ -625,7 +625,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/dialog/dialog.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.component.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -665,7 +665,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/dialog/dialog.component.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/dialog/dialog.component.ts:212</a></div>
                             </td>
                         </tr>
 
@@ -1041,7 +1041,7 @@ import {
 import { throttleTime } from &quot;rxjs/operators&quot;;
 // the AbsolutePosition is required to import the declaration correctly
 import position, { AbsolutePosition } from &quot;./../utils/position&quot;;
-import { cycleTabs } from &quot;./../common/tab.service&quot;;
+import { cycleTabs, getFocusElementList } from &quot;./../common/tab.service&quot;;
 import { DialogConfig } from &quot;./dialog-config.interface&quot;;
 
 
@@ -1168,7 +1168,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			}
 		}
 		this.placeDialog();
-		dialogElement.focus();
+		if (getFocusElementList(this.dialog.nativeElement).length &gt; 0) {
+			dialogElement.focus();
+		}
 		const parentEl: HTMLElement &#x3D; this.dialogConfig.parentRef.nativeElement;
 		let node &#x3D; parentEl;
 		let observables &#x3D; [];

@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>OverflowMenuPane</li>
+  <li>Tooltip</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,15 +55,14 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/dialog/overflow-menu/overflow-menu-pane.component.ts</code>
+    <code>src/dialog/tooltip/tooltip.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Extend the <code>Dialog</code> component to create an overflow menu.</p>
-<p>Not used directly. See overflow-menu.component and overflow-menu.directive for more</p>
+        <p>Extend the <code>Dialog</code> component to create a tooltip for exposing content.</p>
 
     </p>
 
@@ -74,12 +73,6 @@
             <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
     </p>
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
-    </p>
 
 
 <section>
@@ -99,28 +92,31 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ibm-overflow-menu-pane</code></td>
+                <td class="col-md-9"><code>ibm-tooltip</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ul
-	[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;
-	[ngClass]&#x3D;&quot;{&#x27;bx--overflow-menu--flip&#x27;: dialogConfig.flip}&quot;
-	role&#x3D;&quot;menu&quot;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
 	#dialog
-	class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;
-	role&#x3D;&quot;menu&quot;
-	(click)&#x3D;&quot;doClose()&quot;
-	[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;&gt;
+	[tabindex]&#x3D;&quot;tabIndex&quot;
+	[id]&#x3D;&quot;dialogConfig.compID&quot;
+	role&#x3D;&quot;tooltip&quot;
+	class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
+	&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
 	&lt;ng-template
-		[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
-		[ngTemplateOutletContext]&#x3D;&quot;{overflowMenu: this}&quot;&gt;
+			*ngIf&#x3D;&quot;hasContentTemplate&quot;
+			[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
+			[ngTemplateOutletContext]&#x3D;&quot;{tooltip: this}&quot;&gt;
 	&lt;/ng-template&gt;
-&lt;/ul&gt;
-	</code></pre></td>
+	&lt;p
+		*ngIf&#x3D;&quot;!hasContentTemplate&quot;&gt;
+		{{dialogConfig.content}}
+	&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></td>
             </tr>
 
 
@@ -147,6 +143,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#hasContentTemplate">hasContentTemplate</a>
+                            </li>
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#addGap">addGap</a>
@@ -188,13 +188,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
-                                <a href="#listItems">listItems</a>
-                            </li>
-                            <li>
-                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
-                            </li>
-                            <li>
                                 <a href="#onDialogInit">onDialogInit</a>
                             </li>
                             <li>
@@ -229,6 +222,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#tabIndex">tabIndex</a>
+                            </li>
+                            <li>
                                 <a href="#dialogConfig">dialogConfig</a>
                             </li>
                         </ul>
@@ -250,6 +246,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#style.display">style.display</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -259,9 +269,6 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#keydown">keydown</a>
-                            </li>
                             <li>
                                 <a href="#document:click">document:click</a>
                             </li>
@@ -276,69 +283,26 @@
     </table>
 </section>
 
-    <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:31</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="tabIndex"></a>
+                        <code>tabIndex</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:43</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -400,43 +364,44 @@ explictly defined.</p>
             </tbody>
         </table>
 </section>
-
     <section>
-    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="keydown"></a>
+                        <a name="style.display"></a>
                         <span class="name">
                             <b>
-                            keydown
+                            style.display
                             </b>
-                            <a href="#keydown"><span class="icon ion-ios-link"></span></a>
+                            <a href="#style.display"><span class="icon ion-ios-link"></span></a>
                         </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>style.display:     <code></code>
+</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Arguments : </i><code>'$event' </code>
+                            <i>Default value : </i><code>&quot;inline-block&quot;</code>
                         </td>
                     </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>keydown(event: KeyboardEvent)</code>
-                    </td>
-                </tr>
-
-
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:37</a></div>
                             </td>
                         </tr>
 
 
             </tbody>
         </table>
-        <table class="table table-sm table-bordered">
+</section>
+
+    <section>
+    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -469,7 +434,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:291</div>
+                                    <div class="io-line">Defined in Dialog:293</div>
                             </td>
                         </tr>
 
@@ -517,7 +482,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:269</div>
+                                    <div class="io-line">Defined in Dialog:271</div>
                             </td>
                         </tr>
 
@@ -542,84 +507,6 @@ explictly defined.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="listItems"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Protected</span>
-                            listItems
-                            </b>
-                            <a href="#listItems"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                            <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>listItems()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:119</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ngAfterViewInit"></a>
-                        <span class="name">
-                            <b>
-                            ngAfterViewInit
-                            </b>
-                            <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>ngAfterViewInit()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:102</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="onDialogInit"></a>
                         <span class="name">
                             <b>
@@ -638,13 +525,15 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:47</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Check whether there is a template for the <code>Tooltip</code> content.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -684,7 +573,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:302</div>
+                                    <div class="io-line">Defined in Dialog:304</div>
                             </td>
                         </tr>
 
@@ -777,7 +666,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:310</div>
+                                    <div class="io-line">Defined in Dialog:312</div>
                             </td>
                         </tr>
 
@@ -869,7 +758,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:204</div>
+                                    <div class="io-line">Defined in Dialog:206</div>
                             </td>
                         </tr>
 
@@ -915,7 +804,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:210</div>
+                                    <div class="io-line">Defined in Dialog:212</div>
                             </td>
                         </tr>
 
@@ -940,6 +829,46 @@ in respect to the parent element.</p>
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasContentTemplate"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            hasContentTemplate
+                            </b>
+                            <a href="#hasContentTemplate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>hasContentTemplate:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Value is set to <code>true</code> if the <code>Tooltip</code> is to display a <code>TemplateRef</code> instead of a string.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -1312,126 +1241,56 @@ to not obscure the content beneath.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, HostListener, ElementRef, AfterViewInit } from &quot;@angular/core&quot;;
-import { Dialog } from &quot;../dialog.component&quot;;
-import { position } from &quot;../../utils/position&quot;;
-import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../../common/tab.service&quot;;
-import { I18n } from &quot;./../../i18n/i18n.module&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	TemplateRef,
+	HostBinding,
+	Input
+} from &quot;@angular/core&quot;;
+import { getFocusElementList } from &quot;./../../common/tab.service&quot;;
+
+import { Dialog } from &quot;./../dialog.component&quot;;
 
 /**
- * Extend the &#x60;Dialog&#x60; component to create an overflow menu.
- *
- * Not used directly. See overflow-menu.component and overflow-menu.directive for more
+ * Extend the &#x60;Dialog&#x60; component to create a tooltip for exposing content.
  */
 @Component({
-	selector: &quot;ibm-overflow-menu-pane&quot;,
+	selector: &quot;ibm-tooltip&quot;,
 	template: &#x60;
-		&lt;ul
-			[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;
-			[ngClass]&#x3D;&quot;{&#x27;bx--overflow-menu--flip&#x27;: dialogConfig.flip}&quot;
-			role&#x3D;&quot;menu&quot;
+		&lt;div
 			#dialog
-			class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;
-			role&#x3D;&quot;menu&quot;
-			(click)&#x3D;&quot;doClose()&quot;
-			[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;&gt;
+			[tabindex]&#x3D;&quot;tabIndex&quot;
+			[id]&#x3D;&quot;dialogConfig.compID&quot;
+			role&#x3D;&quot;tooltip&quot;
+			class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
+			&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
 			&lt;ng-template
-				[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
-				[ngTemplateOutletContext]&#x3D;&quot;{overflowMenu: this}&quot;&gt;
+					*ngIf&#x3D;&quot;hasContentTemplate&quot;
+					[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
+					[ngTemplateOutletContext]&#x3D;&quot;{tooltip: this}&quot;&gt;
 			&lt;/ng-template&gt;
-		&lt;/ul&gt;
-	&#x60;
+			&lt;p
+				*ngIf&#x3D;&quot;!hasContentTemplate&quot;&gt;
+				{{dialogConfig.content}}
+			&lt;/p&gt;
+		&lt;/div&gt;
+		&#x60;
 })
-export class OverflowMenuPane extends Dialog implements AfterViewInit {
+export class Tooltip extends Dialog {
+	@HostBinding(&quot;style.display&quot;) style &#x3D; &quot;inline-block&quot;;
+	/**
+	 * Value is set to &#x60;true&#x60; if the &#x60;Tooltip&#x60; is to display a &#x60;TemplateRef&#x60; instead of a string.
+	 */
+	public hasContentTemplate &#x3D; false;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
-		super(elementRef);
-	}
-
+	@Input() tabIndex;
+	/**
+	 * Check whether there is a template for the &#x60;Tooltip&#x60; content.
+	 */
 	onDialogInit() {
-		/**
-		 *  60 shifts the menu right to align the arrow.
-		 * (position service trys it&#x27;s best to center everything,
-		 * so we need to add some compensation)
-		 */
-		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; {
-			if (this.dialogConfig.flip) {
-				return position.addOffset(pos, 0, -60);
-			}
-			return position.addOffset(pos, 0, 60);
-		};
+		this.hasContentTemplate &#x3D; this.dialogConfig.content instanceof TemplateRef;
 
-		if (!this.dialogConfig.menuLabel) {
-			this.dialogConfig.menuLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;
-		}
-	}
-
-	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
-	hostkeys(event: KeyboardEvent) {
-		const listItems &#x3D; this.listItems();
-
-		switch (event.key) {
-			case &quot;Down&quot;: // IE specific value
-			case &quot;ArrowDown&quot;:
-				event.preventDefault();
-				if (!isFocusInLastItem(event, listItems))  {
-					const index &#x3D; listItems.findIndex(item &#x3D;&gt; item &#x3D;&#x3D;&#x3D; event.target);
-					listItems[index + 1].focus();
-				} else {
-					listItems[0].focus();
-				}
-				break;
-
-			case &quot;Up&quot;: // IE specific value
-			case &quot;ArrowUp&quot;:
-				event.preventDefault();
-				if (!isFocusInFirstItem(event, listItems))  {
-					const index &#x3D; listItems.findIndex(item &#x3D;&gt; item &#x3D;&#x3D;&#x3D; event.target);
-					listItems[index - 1].focus();
-				} else {
-					listItems[listItems.length - 1].focus();
-				}
-				break;
-
-			case &quot;Home&quot;:
-				event.preventDefault();
-				listItems[0].focus();
-				break;
-
-			case &quot;End&quot;:
-				event.preventDefault();
-				listItems[listItems.length - 1].focus();
-				break;
-
-			case &quot;Esc&quot;: // IE specific value
-			case &quot;Escape&quot;:
-			case &quot;Tab&quot;:
-				event.stopImmediatePropagation();
-				this.doClose();
-				break;
-			default: break;
-		}
-	}
-
-	ngAfterViewInit() {
-		// wait for the menu to exist in the DOM before setting focus
-		// TODO: work on a more elegant solution (afterDialogInit hook maybe?)
-		setTimeout(() &#x3D;&gt; {
-			const focusElementList &#x3D; this.listItems();
-			focusElementList.forEach(button &#x3D;&gt; {
-				// Allows user to set tabindex to 0.
-				if (button.getAttribute(&quot;tabindex&quot;) &#x3D;&#x3D;&#x3D; null) {
-					button.tabIndex &#x3D; -1;
-				}
-			});
-			focusElementList[0].tabIndex &#x3D; 0;
-			focusElementList[0].focus();
-		});
-		super.ngAfterViewInit();
-	}
-
-	protected listItems() {
-		return Array.from&lt;any&gt;(this.elementRef.nativeElement.querySelectorAll(&quot;.bx--overflow-menu-options__btn:not([disabled])&quot;));
+		this.tabIndex &#x3D; getFocusElementList(this.dialog.nativeElement).length &gt; 0 ? 0 : -1;
 	}
 }
 </code></pre>
@@ -1464,10 +1323,10 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ul	[attr.aria-label]="dialogConfig.menuLabel"	[ngClass]="{\'bx--overflow-menu--flip\': dialogConfig.flip}"	role="menu"	#dialog	class="bx--overflow-menu-options bx--overflow-menu-options--open"	role="menu"	(click)="doClose()"	[attr.aria-label]="dialogConfig.menuLabel">	<ng-template		[ngTemplateOutlet]="dialogConfig.content"		[ngTemplateOutletContext]="{overflowMenu: this}">	</ng-template></ul>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div	#dialog	[tabindex]="tabIndex"	[id]="dialogConfig.compID"	role="tooltip"	class="bx--tooltip bx--tooltip--shown">	<span class="bx--tooltip__caret" aria-hidden="true"></span>	<ng-template			*ngIf="hasContentTemplate"			[ngTemplateOutlet]="dialogConfig.content"			[ngTemplateOutletContext]="{tooltip: this}">	</ng-template>	<p		*ngIf="!hasContentTemplate">		{{dialogConfig.content}}	</p></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListGroup', 'selector': 'ibm-list-group'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
-    var ACTUAL_COMPONENT = {'name': 'OverflowMenuPane'};
+    var ACTUAL_COMPONENT = {'name': 'Tooltip'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1501,7 +1360,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'OverflowMenuPane.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Tooltip.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

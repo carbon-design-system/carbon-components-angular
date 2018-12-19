@@ -4880,7 +4880,9 @@ var Dialog = /** @class */ (function () {
             }
         }
         this.placeDialog();
-        dialogElement.focus();
+        if (Object(_common_tab_service__WEBPACK_IMPORTED_MODULE_4__["getFocusElementList"])(this.dialog.nativeElement).length > 0) {
+            dialogElement.focus();
+        }
         var parentEl = this.dialogConfig.parentRef.nativeElement;
         var node = parentEl;
         var observables = [];
@@ -5202,6 +5204,13 @@ var DialogDirective = /** @class */ (function () {
         var _this = this;
         // fix for safari hijacking clicks
         this.dialogService.singletonClickListen();
+        Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["fromEvent"])(this.elementRef.nativeElement, "keydown").subscribe(function (event) {
+            // "Esc" is an IE specific value
+            if (event.target === _this.dialogConfig.parentRef.nativeElement && (event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
+                event.key === "Escape" || event.key === "Esc") {
+                _this.close();
+            }
+        });
         // bind events for hovering or clicking the host
         if (this.trigger === "hover" || this.trigger === "mouseenter") {
             Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["fromEvent"])(this.elementRef.nativeElement, "mouseenter").subscribe(function () { return _this.toggle(); });
@@ -5211,6 +5220,12 @@ var DialogDirective = /** @class */ (function () {
         }
         else {
             Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["fromEvent"])(this.elementRef.nativeElement, "click").subscribe(function () { return _this.toggle(); });
+            Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["fromEvent"])(this.elementRef.nativeElement, "keydown").subscribe(function (event) {
+                // "Spacebar" is an IE specific value
+                if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+                    _this.open();
+                }
+            });
         }
         // call onClose when the dialog is closed
         // - Enforce accessibility by updating an aria attr for nativeElement.
@@ -6269,7 +6284,8 @@ var EllipsisTooltip = /** @class */ (function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tooltip", function() { return Tooltip; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _dialog_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../dialog.component */ "./src/dialog/dialog.component.ts");
+/* harmony import */ var _common_tab_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../common/tab.service */ "./src/common/tab.service.ts");
+/* harmony import */ var _dialog_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../dialog.component */ "./src/dialog/dialog.component.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -6291,6 +6307,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 /**
  * Extend the `Dialog` component to create a tooltip for exposing content.
  */
@@ -6310,19 +6327,24 @@ var Tooltip = /** @class */ (function (_super) {
      */
     Tooltip.prototype.onDialogInit = function () {
         this.hasContentTemplate = this.dialogConfig.content instanceof _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"];
+        this.tabIndex = Object(_common_tab_service__WEBPACK_IMPORTED_MODULE_1__["getFocusElementList"])(this.dialog.nativeElement).length > 0 ? 0 : -1;
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("style.display"),
         __metadata("design:type", Object)
     ], Tooltip.prototype, "style", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Tooltip.prototype, "tabIndex", void 0);
     Tooltip = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-tooltip",
-            template: "\n\t\t<div\n\t\t\t#dialog\n\t\t\t[id]=\"dialogConfig.compID\"\n\t\t\trole=\"tooltip\"\n\t\t\ttabindex=\"0\"\n\t\t\tclass=\"bx--tooltip bx--tooltip--shown\">\n\t\t\t<span class=\"bx--tooltip__caret\" aria-hidden=\"true\"></span>\n\t\t\t<ng-template\n\t\t\t\t\t*ngIf=\"hasContentTemplate\"\n\t\t\t\t\t[ngTemplateOutlet]=\"dialogConfig.content\"\n\t\t\t\t\t[ngTemplateOutletContext]=\"{tooltip: this}\">\n\t\t\t</ng-template>\n\t\t\t<p\n\t\t\t\t*ngIf=\"!hasContentTemplate\">\n\t\t\t\t{{dialogConfig.content}}\n\t\t\t</p>\n\t\t</div>\n\t\t"
+            template: "\n\t\t<div\n\t\t\t#dialog\n\t\t\t[tabindex]=\"tabIndex\"\n\t\t\t[id]=\"dialogConfig.compID\"\n\t\t\trole=\"tooltip\"\n\t\t\tclass=\"bx--tooltip bx--tooltip--shown\">\n\t\t\t<span class=\"bx--tooltip__caret\" aria-hidden=\"true\"></span>\n\t\t\t<ng-template\n\t\t\t\t\t*ngIf=\"hasContentTemplate\"\n\t\t\t\t\t[ngTemplateOutlet]=\"dialogConfig.content\"\n\t\t\t\t\t[ngTemplateOutletContext]=\"{tooltip: this}\">\n\t\t\t</ng-template>\n\t\t\t<p\n\t\t\t\t*ngIf=\"!hasContentTemplate\">\n\t\t\t\t{{dialogConfig.content}}\n\t\t\t</p>\n\t\t</div>\n\t\t"
         })
     ], Tooltip);
     return Tooltip;
-}(_dialog_component__WEBPACK_IMPORTED_MODULE_1__["Dialog"]));
+}(_dialog_component__WEBPACK_IMPORTED_MODULE_2__["Dialog"]));
 
 
 
@@ -6398,6 +6420,7 @@ var TooltipDirective = /** @class */ (function (_super) {
          */
         // tslint:disable-next-line:no-input-rename
         _this.tooltipType = "";
+        _this.tabIndex = 0;
         dialogService.create(_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["Tooltip"]);
         return _this;
     }
@@ -6428,6 +6451,10 @@ var TooltipDirective = /** @class */ (function (_super) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])("tooltip-type"),
         __metadata("design:type", String)
     ], TooltipDirective.prototype, "tooltipType", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("tabindex"),
+        __metadata("design:type", Object)
+    ], TooltipDirective.prototype, "tabIndex", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("attr.aria-describedby"),
         __metadata("design:type", String),
@@ -9007,7 +9034,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListGroup, ListGroupModule, Loading, LoadingModule, Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListGroup, ListGroupModule, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9159,13 +9186,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalService"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalModule"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalButtonType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["BaseModal"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_18__["ModalModule"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_19__["NotificationService"]; });
@@ -11051,7 +11078,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule */
+/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18972,4 +18999,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.3abbbf0c1d284ccf646c.bundle.js.map
+//# sourceMappingURL=iframe.9d95202967e52c907099.bundle.js.map
