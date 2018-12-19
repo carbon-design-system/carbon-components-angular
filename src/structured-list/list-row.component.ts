@@ -13,6 +13,24 @@ import {
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
 
+/**
+ * ListRow provides a container for the ListColumns that make up the body of a structured list.
+ *
+ * Example:
+ * ```
+ * 	<ibm-list-row>
+ *		<ibm-list-column>Row 1</ibm-list-column>
+ *		<ibm-list-column nowrap="true">Row One</ibm-list-column>
+ *		<ibm-list-column>
+ *			Lorem ipsum dolor sit amet,
+ *			consectetur adipiscing elit. Nunc dui magna,
+ *			finibus id tortor sed, aliquet bibendum augue.
+ *			Aenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.
+ *			Pellentesque vulputate nisl a porttitor interdum.
+ *		</ibm-list-column>
+ *	</ibm-list-row>
+ * ```
+ */
 @Component({
 	selector: "ibm-list-row",
 	template: `
@@ -55,14 +73,16 @@ export class ListRow implements AfterContentInit {
 		return this.input.nativeElement.checked;
 	}
 	/**
-	 * Applys an accessible label to the row. Defaults to `null` (no label)
+	 * Applys an accessible label to the row. Defaults to `null` (no label).
 	 */
 	@Input() @HostBinding("attr.aria-label") label = null;
 	/**
-	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuedList`
+	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuedList`.
 	 */
 	@Input() value;
-
+	/**
+	 * Internal event used to notify the containing `StructuredList` of changes.
+	 */
 	@Output() change: EventEmitter<Event> = new EventEmitter();
 
 	/**
