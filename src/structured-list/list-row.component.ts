@@ -77,7 +77,7 @@ export class ListRow implements AfterContentInit {
 	 */
 	@Input() @HostBinding("attr.aria-label") label = null;
 	/**
-	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuedList`.
+	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuredList`.
 	 */
 	@Input() value;
 	/**
