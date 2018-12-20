@@ -80,7 +80,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	static listCount = 0;
 	/**
-	 * Set to true to enable radio like selection of the rows.
+	 * Set to `true` to enable radio like selection of the rows.
 	 */
 	@Input() selection = false;
 	/**
