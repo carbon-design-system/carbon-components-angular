@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input } from "@angular/core";
 
 /**
- * ListColumn represents a single column in a StructuredList.
+ * `ListColumn` represents a single column in a `StructuredList`.
  *
  * `ListColumn`s can be used in a `ListHeader` to specify the column headers, or in `ListRow`s to specify the column data.
  *
