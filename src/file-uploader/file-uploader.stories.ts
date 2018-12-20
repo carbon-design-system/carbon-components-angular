@@ -16,9 +16,9 @@ import { NotificationService } from "../notification/notification.service";
 	selector: "app-file-uploader",
 	template: `
 		<ibm-file-uploader
-			[labelTitle]="labelTitle"
-			[labelDescription]="labelDescription"
-			[buttonLabel]="buttonLabel"
+			[title]="title"
+			[description]="description"
+			[buttonText]="buttonText"
 			[accept]="accept"
 			[multiple]="multiple"
 			[(files)]="files">
@@ -35,9 +35,9 @@ class FileUploaderStory {
 
 	@Input() notificationId = `notification-${FileUploaderStory.notificationCount}`;
 	@Input() files: any;
-	@Input() labelTitle;
-	@Input() labelDescription;
-	@Input() buttonLabel;
+	@Input() title;
+	@Input() description;
+	@Input() buttonText;
 	@Input() accept;
 	@Input() multiple;
 
@@ -79,9 +79,9 @@ class FileUploaderStory {
 	selector: "app-ngmodel-file-uploader",
 	template: `
 		<ibm-file-uploader
-			[labelTitle]="labelTitle"
-			[labelDescription]="labelDescription"
-			[buttonLabel]="buttonLabel"
+			[title]="title"
+			[description]="description"
+			[buttonText]="buttonText"
 			[accept]="accept"
 			[multiple]="multiple"
 			[(ngModel)]="model">
@@ -97,9 +97,9 @@ class NgModelFileUploaderStory {
 	static notificationCount = 0;
 
 	@Input() notificationId = `notification-${FileUploaderStory.notificationCount}`;
-	@Input() labelTitle;
-	@Input() labelDescription;
-	@Input() buttonLabel;
+	@Input() title;
+	@Input() description;
+	@Input() buttonText;
 	@Input() accept;
 	@Input() multiple;
 
@@ -149,17 +149,17 @@ storiesOf("File Uploader", module)
 	.add("Basic", () => ({
 		template: `
 			<app-file-uploader
-				[labelTitle]="labelTitle"
-				[labelDescription]="labelDescription"
-				[buttonLabel]="buttonLabel"
+				[title]="title"
+				[description]="description"
+				[buttonText]="buttonText"
 				[accept]="accept"
 				[multiple]="multiple">
 			</app-file-uploader>
 		`,
 		props: {
-			labelTitle: text("The label title", "Account Photo"),
-			labelDescription: text("The label description", "only .jpg and .png files. 500kb max file size."),
-			buttonLabel: text("Button label", "Add files"),
+			title: text("The title", "Account Photo"),
+			description: text("The description", "only .jpg and .png files. 500kb max file size."),
+			buttonText: text("Button text", "Add files"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
 		}
@@ -167,17 +167,17 @@ storiesOf("File Uploader", module)
 	.add("Using ngModel", () => ({
 		template: `
 			<app-ngmodel-file-uploader
-				[labelTitle]="labelTitle"
-				[labelDescription]="labelDescription"
-				[buttonLabel]="buttonLabel"
+				[title]="title"
+				[description]="description"
+				[buttonText]="buttonText"
 				[accept]="accept"
 				[multiple]="multiple">
 			</app-ngmodel-file-uploader>
 		`,
 		props: {
-			labelTitle: text("The label title", "Account Photo"),
-			labelDescription: text("The label description", "only .jpg and .png files. 500kb max file size."),
-			buttonLabel: text("Button label", "Add files"),
+			title: text("The title", "Account Photo"),
+			description: text("The description", "only .jpg and .png files. 500kb max file size."),
+			buttonText: text("Button text", "Add files"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
 		}

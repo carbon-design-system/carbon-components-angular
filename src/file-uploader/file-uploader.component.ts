@@ -16,14 +16,14 @@ const noop = () => {};
 @Component({
 	selector: "ibm-file-uploader",
 	template: `
-		<strong class="bx--label">{{labelTitle}}</strong>
-		<p class="bx--label-description">{{labelDescription}}</p>
+		<strong class="bx--label">{{title}}</strong>
+		<p class="bx--label-description">{{description}}</p>
 		<div class="bx--file">
 			<button
 				ibmButton="secondary"
 				(click)="fileInput.click()"
 				[attr.for]="fileUploaderId">
-				{{buttonLabel}}
+				{{buttonText}}
 			</button>
 			<input
 				#fileInput
@@ -52,18 +52,18 @@ export class FileUploader implements OnInit {
 	 */
 	static fileUploaderCount = 0;
 	/**
-	 * Accessible label for the button that opens the upload window
+	 * Accessible text for the button that opens the upload window
 	 * Defaults to the `FILE_UPLOADER.OPEN` value from the i18n service
 	 */
-	@Input() buttonLabel = this.i18n.get().FILE_UPLOADER.OPEN;
+	@Input() buttonText = this.i18n.get().FILE_UPLOADER.OPEN;
 	/**
 	 * Provides the label for the title
 	 */
-	@Input() labelTitle: string;
+	@Input() title: string;
 	/**
 	 * Provides the label for the desription
 	 */
-	@Input() labelDescription: String;
+	@Input() description: String;
 	/**
 	 * Specify the types of files that the input should be able to receive
 	 */
