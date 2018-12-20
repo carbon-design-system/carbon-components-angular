@@ -90,7 +90,7 @@ export class ListRow implements AfterContentInit {
 	 */
 	selection = false;
 	/**
-	 * Set by the containing `StrucuredList`. When `selection = true` used for the `name` property on the radio input.
+	 * Set by the containing `StructuredList`. When `selection = true`, used for the `name` property on the radio input.
 	 */
 	name = "list";
 
