@@ -14,7 +14,7 @@ import {
 import { ListColumn } from "./list-column.component";
 
 /**
- * ListRow provides a container for the ListColumns that make up the body of a structured list.
+ * `ListRow` provides a container for the `ListColumn`s that make up the body of a structured list.
  *
  * Example:
  * ```
