@@ -14,10 +14,10 @@ import {
 import { ListColumn } from "./list-column.component";
 
 /**
- * ListRow provides a container for the ListColumns that make up the body of a structured list.
+ * `ListRow` provides a container for the `ListColumn`s that make up the body of a structured list.
  *
  * Example:
- * ```
+ * ```html
  * 	<ibm-list-row>
  *		<ibm-list-column>Row 1</ibm-list-column>
  *		<ibm-list-column nowrap="true">Row One</ibm-list-column>
@@ -73,11 +73,11 @@ export class ListRow implements AfterContentInit {
 		return this.input.nativeElement.checked;
 	}
 	/**
-	 * Applys an accessible label to the row. Defaults to no label.
+	 * Applies an accessible label to the row. Defaults to no label.
 	 */
 	@Input() @HostBinding("attr.aria-label") label;
 	/**
-	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuedList`.
+	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuredList`.
 	 */
 	@Input() value;
 	/**
@@ -90,7 +90,7 @@ export class ListRow implements AfterContentInit {
 	 */
 	selection = false;
 	/**
-	 * Set by the containing `StrucuredList`. When `selection = true` used for the `name` property on the radio input.
+	 * Set by the containing `StructuredList`. When `selection = true`, used for the `name` property on the radio input.
 	 */
 	name = "list";
 

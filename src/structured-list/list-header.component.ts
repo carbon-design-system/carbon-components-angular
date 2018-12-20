@@ -8,10 +8,10 @@ import {
 import { ListColumn } from "./list-column.component";
 
 /**
- * ListHeader provides a container for the ListColumns that make up the header of a structured list.
+ * `ListHeader` provides a container for the `ListColumn`s that make up the header of a structured list.
  *
  * Example:
- * ```
+ * ```html
  * 	<ibm-list-header>
  *		<ibm-list-column nowrap="true">Column 1</ibm-list-column>
  *		<ibm-list-column nowrap="true">Column 2</ibm-list-column>

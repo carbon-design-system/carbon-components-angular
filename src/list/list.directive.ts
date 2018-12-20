@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostBinding } from "@angular/core";
 
 /**
- * Applys either ordered or unorded styling to the list container it is applied to.
+ * Applies either ordered or unordered styling to the list container it is applied to.
  *
  * For `ul`s it will apply unordered list styles, and for `ol`s it will apply ordered list styles.
  *

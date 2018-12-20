@@ -17,7 +17,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  * See (structured-list/usage)[https://www.carbondesignsystem.com/components/structured-list/usage] for usage guidance.
  *
  * A basic structued list looks something like:
- * ```
+ * ```html
  *	<ibm-structured-list>
  *		<ibm-list-header>
  *			<ibm-list-column nowrap="true">Column 1</ibm-list-column>
@@ -80,19 +80,19 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	static listCount = 0;
 	/**
-	 * Set to true to enable radio like selection of the rows.
+	 * Set to `true` to enable radio like selection of the rows.
 	 */
 	@Input() selection = false;
 	/**
-	 * Applies a border and white background.
+	 * Set to `true` to apply a border and white background.
 	 */
 	@Input() border = false;
 	/**
-	 * Applies a condensed style to the headers and rows.
+	 * Set to `true` to apply a condensed style to the headers and rows.
 	 */
 	@Input() condensed = false;
 	/**
-	 * Applies `white-space: nowrap` on _all_ conent.
+	 * Set to `true` to apply `white-space: nowrap` on _all_ conent.
 	 */
 	@Input() nowrap = false;
 	/**
@@ -103,7 +103,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 * Emits an event when the row selection changes.
 	 *
 	 * Emits an object that looks like:
-	 * ```
+	 * ```javascript
 	 * {
 	 * 	value: "something",
 	 * 	selected: true,
