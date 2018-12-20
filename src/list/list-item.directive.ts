@@ -1,7 +1,7 @@
 import { Directive, HostBinding } from "@angular/core";
 
 /**
- * Applys list styling to the item it is used on. Best used with `li`s.
+ * Applies list styling to the item it is used on. Best used with `li`s.
  */
 @Directive({
 	selector: "[ibmListItem]"
