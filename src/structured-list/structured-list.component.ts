@@ -88,7 +88,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	@Input() border = false;
 	/**
-	 * Applies a condensed style to the headers and rows.
+	 * Set to `true` to apply a condensed style to the headers and rows.
 	 */
 	@Input() condensed = false;
 	/**
