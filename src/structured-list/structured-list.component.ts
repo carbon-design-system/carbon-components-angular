@@ -92,7 +92,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	@Input() condensed = false;
 	/**
-	 * Applies `white-space: nowrap` on _all_ conent.
+	 * Set to `true` to apply `white-space: nowrap` on _all_ conent.
 	 */
 	@Input() nowrap = false;
 	/**
