@@ -103,7 +103,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 * Emits an event when the row selection changes.
 	 *
 	 * Emits an object that looks like:
-	 * ```
+	 * ```javascript
 	 * {
 	 * 	value: "something",
 	 * 	selected: true,
