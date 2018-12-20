@@ -8,7 +8,7 @@ import {
 import { ListColumn } from "./list-column.component";
 
 /**
- * ListHeader provides a container for the ListColumns that make up the header of a structured list.
+ * `ListHeader` provides a container for the `ListColumn`s that make up the header of a structured list.
  *
  * Example:
  * ```
