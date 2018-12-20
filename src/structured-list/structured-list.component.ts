@@ -84,7 +84,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 */
 	@Input() selection = false;
 	/**
-	 * Applies a border and white background.
+	 * Set to `true` to apply a border and white background.
 	 */
 	@Input() border = false;
 	/**
