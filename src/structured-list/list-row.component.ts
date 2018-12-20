@@ -17,7 +17,7 @@ import { ListColumn } from "./list-column.component";
  * `ListRow` provides a container for the `ListColumn`s that make up the body of a structured list.
  *
  * Example:
- * ```
+ * ```html
  * 	<ibm-list-row>
  *		<ibm-list-column>Row 1</ibm-list-column>
  *		<ibm-list-column nowrap="true">Row One</ibm-list-column>
