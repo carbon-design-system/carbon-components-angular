@@ -73,9 +73,9 @@ export class ListRow implements AfterContentInit {
 		return this.input.nativeElement.checked;
 	}
 	/**
-	 * Applys an accessible label to the row. Defaults to `null` (no label).
+	 * Applys an accessible label to the row. Defaults to no label.
 	 */
-	@Input() @HostBinding("attr.aria-label") label = null;
+	@Input() @HostBinding("attr.aria-label") label;
 	/**
 	 * The value for the row. Returned via `ngModel` or `selected` event on the containing `StructuedList`.
 	 */

@@ -158,6 +158,4 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	registerOnTouched(fn: any) {
 		this.onTouched = fn;
 	}
-
-	setDisabledState() { }
 }
