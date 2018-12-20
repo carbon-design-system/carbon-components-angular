@@ -6,7 +6,7 @@ import { Component, HostBinding, Input } from "@angular/core";
  * `ListColumn`s can be used in a `ListHeader` to specify the column headers, or in `ListRow`s to specify the column data.
  *
  * Example:
- * ```
+ * ```html
  * <ibm-list-column nowrap="true">Column 1</ibm-list-column>
  * ```
  */
