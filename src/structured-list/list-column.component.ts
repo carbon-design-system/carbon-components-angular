@@ -18,7 +18,7 @@ export class ListColumn {
 	@HostBinding("class.bx--structured-list-th") isHeaderColumn = true;
 	@HostBinding("class.bx--structured-list-td") isBodyColumn = true;
 	/**
-	 * Applies `white-space: nowrap` to the content of this ListColumn
+	 * Applies `white-space: nowrap` to the content of this `ListColumn`
 	 */
 	@HostBinding("class.bx--structured-list-content--nowrap") @Input() nowrap = false;
 }
