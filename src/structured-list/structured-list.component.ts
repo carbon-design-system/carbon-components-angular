@@ -17,7 +17,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  * See (structured-list/usage)[https://www.carbondesignsystem.com/components/structured-list/usage] for usage guidance.
  *
  * A basic structued list looks something like:
- * ```
+ * ```html
  *	<ibm-structured-list>
  *		<ibm-list-header>
  *			<ibm-list-column nowrap="true">Column 1</ibm-list-column>
