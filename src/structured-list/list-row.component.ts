@@ -73,7 +73,7 @@ export class ListRow implements AfterContentInit {
 		return this.input.nativeElement.checked;
 	}
 	/**
-	 * Applys an accessible label to the row. Defaults to `null` (no label).
+	 * Applies an accessible label to the row. Defaults to `null` (no label).
 	 */
 	@Input() @HostBinding("attr.aria-label") label = null;
 	/**
