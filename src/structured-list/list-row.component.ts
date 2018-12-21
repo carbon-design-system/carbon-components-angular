@@ -61,11 +61,7 @@ export class ListRow implements AfterContentInit {
 	@Input() @HostBinding("class.bx--structured-list-row--selected")
 	set selected(value: boolean) {
 		if (!this.input) { return; }
-		if (value) {
-			this.input.nativeElement.checked = true;
-		} else {
-			this.input.nativeElement.checked = null;
-		}
+		this.input.nativeElement.checked = value ? true : null;
 	}
 
 	get selected() {
