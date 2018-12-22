@@ -44,7 +44,7 @@ export class File {
 	 */
 	@Input() translations = this.i18n.get().FILE_UPLOADER;
 	/**
-	 * A single FileItem from the set of FileItems
+	 * A single `FileItem` from the set of `FileItem`s
 	 */
 	@Input() fileItem: FileItem;
 
