@@ -127,7 +127,7 @@ export class FileUploader implements OnInit {
 	}
 
 	onFilesAdded() {
-		const files: File[] = this.fileInput.nativeElement.files;
+		const files = this.fileInput.nativeElement.files;
 		for (let file of files) {
 			const fileItem: FileItem = {
 				uploaded: false,
