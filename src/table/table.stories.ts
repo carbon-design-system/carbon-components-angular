@@ -54,7 +54,6 @@ class TableStory implements OnInit, OnChanges {
 			}),
 			new TableHeaderItem({
 				data: "hwer",
-				style: {"width": "auto"},
 				className: "my-class"
 			})
 		];
@@ -399,7 +398,7 @@ simpleModel.data = [
 	[new TableItem({data: "Name 4"}), new TableItem({data: "twer"})]
 ];
 simpleModel.header = [
-	new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer", style: {"width": "auto"} })
+	new TableHeaderItem({data: "Name"}), new TableHeaderItem({data: "hwer" })
 ];
 
 const emptyModel = new TableModel();
