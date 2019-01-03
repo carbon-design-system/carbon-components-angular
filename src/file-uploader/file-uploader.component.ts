@@ -52,16 +52,17 @@ export class FileUploader implements OnInit {
 	 */
 	static fileUploaderCount = 0;
 	/**
-	 * Accessible text for the button that opens the upload window
+	 * Accessible text for the button that opens the upload window.
+	 *
 	 * Defaults to the `FILE_UPLOADER.OPEN` value from the i18n service
 	 */
 	@Input() buttonText = this.i18n.get().FILE_UPLOADER.OPEN;
 	/**
-	 * text that is set to the title
+	 * Text set to the title
 	 */
 	@Input() title: string;
 	/**
-	 * text that is set to the description
+	 * Text set to the description
 	 */
 	@Input() description: string;
 	/**
@@ -70,7 +71,7 @@ export class FileUploader implements OnInit {
 	@Input() accept = [];
 	/**
 	 * Set to `false` to let the component accept a single file on upload
-	 * deafult value is `true`
+	 * Defaults to `true`. Accepts multiple files.
 	 */
 	@Input() multiple = true;
 	/**
