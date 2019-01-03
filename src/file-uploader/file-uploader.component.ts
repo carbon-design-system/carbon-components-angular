@@ -150,7 +150,7 @@ export class FileUploader implements OnInit {
 	}
 
 	/**
-	 * Registers the function injected to control the touch use of the `FileUploader`.
+	 * Registers the injected function to control the touch use of the `FileUploader`.
 	 */
 	registerOnTouched(fn: any) {
 		this.onTouchedCallback = fn;
