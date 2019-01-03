@@ -24,7 +24,7 @@ import { NotificationService } from "../notification/notification.service";
 			[(files)]="files">
 		</ibm-file-uploader>
 
-		<br><div [id]="notificationId" style="width: 300px"></div>
+		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
 		<button ibmButton *ngIf="files && files.size > 0" (click)="onUpload()">
 			Upload
 		</button>
