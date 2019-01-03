@@ -8,6 +8,7 @@ export * from "./combobox/combobox.module";
 export * from "./content-switcher/content-switcher.module";
 export * from "./dialog/dialog.module";
 export * from "./dropdown/dropdown.module";
+export * from "./file-uploader/file-uploader.module";
 export * from "./forms/forms.module";
 export * from "./i18n/i18n.module";
 export * from "./icon/icon.module";
