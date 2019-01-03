@@ -70,7 +70,8 @@ export class FileUploader implements OnInit {
 	 */
 	@Input() accept = [];
 	/**
-	 * Set to `false` to let the component accept a single file on upload
+	 * Set to `false` to tell the component to only accept a single file on upload.
+	 *
 	 * Defaults to `true`. Accepts multiple files.
 	 */
 	@Input() multiple = true;
