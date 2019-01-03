@@ -1,5 +1,6 @@
 export * from "./accordion/accordion.module";
 export * from "./banner/banner.module";
+export * from "./breadcrumb/breadcrumb.module";
 export * from "./button/button.module";
 export * from "./calendar/calendar.module";
 export * from "./checkbox/checkbox.module";
@@ -26,9 +27,9 @@ export * from "./progress-indicator/progress-indicator.module";
 export * from "./radio/radio.module";
 export * from "./search/search.module";
 export * from "./select/select.module";
+export * from "./slider/slider.module";
 export * from "./structured-list/structured-list.module";
 export * from "./switch/switch.module";
 export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./tiles/tiles.module";
-export * from "./breadcrumb/breadcrumb.module";
