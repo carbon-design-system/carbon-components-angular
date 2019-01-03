@@ -1,8 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
 import { CodeSnippetModule } from "..";
-
 
 const code = `import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
@@ -62,14 +61,9 @@ storiesOf("CodeSnippet", module).addDecorator(
 		}
 	}))
 	.add("Inline", () => ({
-		template: `Here is some <ibm-code-snippet display="inline">{{inlineCode}}</ibm-code-snippet> for you.`,
+		template: `Here is some <ibm-code-snippet display="inline" [theme]="theme">{{inlineCode}}</ibm-code-snippet> for you.`,
 		props: {
-			inlineCode
-		}
-	}))
-	.add("Inline Light", () => ({
-		template: `Here is some <ibm-code-snippet display="inline" theme="light">{{inlineCode}}</ibm-code-snippet> for you.`,
-		props: {
-			inlineCode
+			inlineCode,
+			theme: select("Theme", ["dark", "light"], "dark")
 		}
 	}));

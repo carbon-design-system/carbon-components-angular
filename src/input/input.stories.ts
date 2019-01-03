@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
 import { InputModule } from "../";
 
@@ -20,21 +20,17 @@ storiesOf("Input", module).addDecorator(
 	}))
 	.add("Input", () => ({
 		template: `
-			<input ibmText aria-label="input" placeholder="Optional placeholder text"/>
-		`
-	}))
-	.add("Light Input", () => ({
-		template: `
-			<input ibmText theme="light" aria-label="input" placeholder="Optional placeholder text"/>
-		`
+		<input ibmText [theme]="theme" aria-label="input" placeholder="Optional placeholder text"/>
+	`,
+		props: {
+			theme: select("Theme", ["dark", "light"], "dark")
+		}
 	}))
 	.add("TextArea", () => ({
 		template: `
-		<textarea ibmTextArea aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
-		`
-	}))
-	.add("Light TextArea", () => ({
-		template: `
-		<textarea ibmTextArea theme="light" aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
-		`
+		<textarea ibmTextArea [theme]="theme" aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
+	`,
+		props: {
+			theme: select("Theme", ["dark", "light"], "dark")
+		}
 	}));
