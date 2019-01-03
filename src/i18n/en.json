@@ -74,6 +74,13 @@
 	"DROPDOWN_LIST": {
 		"LABEL": "Listbox"
 	},
+	"FILE_UPLOADER": {
+		"CHECKMARK": "Checkmark",
+		"CHECKMARK_TITLE": "File uploaded!",
+		"OPEN": "Add file",
+		"REMOVE_BUTTON": "Close button",
+		"REMOVE_TITLE": "Delete File"
+	},
 	"LOADING": {
 		"TITLE": "Loading"
 	},
