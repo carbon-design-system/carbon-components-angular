@@ -50,7 +50,7 @@ export class TableHeaderItem {
 	 *
 	 * @memberof TableHeaderItem
 	 */
-	style = {"width": "150px"};
+	style = {};
 
 	/**
 	 * If true, sort is set to ascending, if false descending will be true.
