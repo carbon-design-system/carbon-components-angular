@@ -57,23 +57,24 @@ export class FileUploader implements OnInit {
 	 */
 	@Input() buttonText = this.i18n.get().FILE_UPLOADER.OPEN;
 	/**
-	 * Provides the label for the title
+	 * text that is set to the title
 	 */
 	@Input() title: string;
 	/**
-	 * Provides the label for the desription
+	 * text that is set to the description
 	 */
-	@Input() description: String;
+	@Input() description: string;
 	/**
 	 * Specify the types of files that the input should be able to receive
 	 */
 	@Input() accept = [];
 	/**
-	 * Specify if the component should accept multiple files to upload
+	 * Set to `false` to let the component accept a single file on upload
+	 * deafult value is `true`
 	 */
 	@Input() multiple = true;
 	/**
-	 * Provide a unique id for the underlying <input> node
+	 * Provides a unique id for the underlying <input> node
 	 */
 	@Input() fileUploaderId = `file-uploader-${FileUploader.fileUploaderCount}`;
 	/**
@@ -83,7 +84,7 @@ export class FileUploader implements OnInit {
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
-	@Input() files: Set<FileItem> = new Set();
+	@Input() files: Set<FileItem>;
 	@Output() filesChange = new EventEmitter<any>();
 
 	protected onTouchedCallback: () => void = noop;
@@ -107,6 +108,7 @@ export class FileUploader implements OnInit {
 	}
 
 	ngOnInit() {
+		// overrides the undefined files value set by the user
 		if (!this.files) {
 			this.files = new Set();
 			this.filesChange.emit(this.files);
@@ -148,7 +150,7 @@ export class FileUploader implements OnInit {
 	}
 
 	/**
-	 * Registering the function injected to control the touch use of the `FileUploader`.
+	 * Registers the function injected to control the touch use of the `FileUploader`.
 	 */
 	registerOnTouched(fn: any) {
 		this.onTouchedCallback = fn;
