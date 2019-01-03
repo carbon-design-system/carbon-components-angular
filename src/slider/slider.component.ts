@@ -13,7 +13,36 @@ import { fromEvent, Subscription } from "rxjs";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
+ * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
+ * The simpelist possible slider usage looks something like:
+ * ```html
+ * <ibm-slider></ibm-slider>
+ * ```
+ *
+ * That will render a slider without labels or alternative value input. Labels can be provided by
+ * elements with `[minLabel]` and `[maxLabel]` attributes, and an `input` (may use the `ibmInput` directive) can be supplied
+ * for use as an alternative value field.
+ *
+ * ex:
+ * ```html
+ * <!-- full example -->
+ * <ibm-slider>
+ *		<span minLabel>0GB</span>
+ *		<span maxLabel>100GB</span>
+ *		<input/>
+ *	</ibm-slider>
+ * <!-- with just an input -->
+ * <ibm-slider>
+ *		<input/>
+ *	</ibm-slider>
+ * <!-- with just one label -->
+ * <ibm-slider>
+ *		<span maxLabel>Maximum</span>
+ *	</ibm-slider>
+ * ```
+ *
+ * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
  */
 @Component({
 	selector: "ibm-slider",
@@ -63,11 +92,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	]
 })
 export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
+	/** Used to generate unique IDs */
 	private static count = 0;
-
+	/** The lower bound of our range */
 	@Input() min = 0;
+	/** The upper bound of our range */
 	@Input() max = 100;
+	/** The interval for our range */
 	@Input() step = 1;
+	/** Set the inital value. Avliable for two way binding */
 	@Input() set value(v) {
 		if (v > this.max) {
 			v = this.max;
@@ -91,8 +124,14 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	get value() {
 		return this._value;
 	}
+	/** Base ID for the slider. The min and max labels get IDs `${this.id}-bottom-range` and `${this.id}-top-range` respectivly */
 	@Input() id = `slider-${Slider.count++}`;
+	/** Value used to "multiply" the `step` when using arrow keys to select values */
 	@Input() shiftMultiplier = 4;
+	/** Disables the range visually and functionally */
+	// TODO: implement disabled state
+	@Input() disabled = false;
+	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number> = new EventEmitter();
 	@HostBinding("class.bx--slider-container") hostClass = true;
 	@ViewChild("thumb") thumb: ElementRef;
@@ -103,6 +142,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	public topRangeId = `${this.id}-top-range`;
 
 	protected isMouseDown = false;
+	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected slidAmount = 0;
 	protected input;
@@ -111,8 +151,11 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	constructor(protected elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
+		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse
 		this.eventSubscriptions.push(fromEvent(document, "mousemove").subscribe(this.onMouseMove.bind(this)));
 		this.eventSubscriptions.push(fromEvent(document, "mouseup").subscribe(this.onMouseUp.bind(this)));
+
+		// ODO: ontouchstart/ontouchmove/ontouchend
 
 		// set up the optional input
 		this.input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
@@ -122,42 +165,52 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			this.input.classList.add("bx--text-input");
 			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
 			this.input.value = this.value;
+			// bind events on our optional input
 			this.eventSubscriptions.push(fromEvent(this.input, "change").subscribe(this.onChange.bind(this)));
 			this.eventSubscriptions.push(fromEvent(this.input, "focus").subscribe(this.onFocus.bind(this)));
 		}
 	}
 
+	/** Clean up our DOMEvent subscriptions */
 	ngOnDestroy() {
 		this.eventSubscriptions.forEach(subscription => {
 			subscription.unsubscribe();
 		});
 	}
 
+	/** Send changes back to the model */
 	propagateChange = (_: any) => { };
 
+	/** Register a change propagation function for `ControlValueAccessor` */
 	registerOnChange(fn: any) {
 		this.propagateChange = fn;
 	}
 
+	/** Callback to notify the model when our input has been touched */
 	onTouched: () => any = () => { };
 
+	/** Register a callback to notify when our input has been touched */
 	registerOnTouched(fn: any) {
 		this.onTouched = fn;
 	}
 
+	/** Recives a value from the model */
 	writeValue(v: any) {
 		this.value = v;
 	}
 
+	/** Returns the amount of "completeness" as a fraction of the total track width */
 	getPercentComplete() {
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 		return this.slidAmount / trackWidth;
 	}
 
+	/** Helper function to return the CSS transform `scaleX` function */
 	scaleX(complete) {
 		return `scaleX(${complete})`;
 	}
 
+	/** Converts a given px value to a "real" value in our range */
 	convertToValue(pxAmount) {
 		// basic concept borrowed from carbon-components
 		// ref: https://github.com/IBM/carbon-components/blob/43bf3abdc2f8bdaa38aa84e0f733adde1e1e8894/src/components/slider/slider.js#L147-L151
@@ -168,6 +221,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		return rounded + this.min;
 	}
 
+	/** Converts a given "real" value to a px value we can update the view with */
 	convertToPx(value) {
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 		if (value >= this.max) {
@@ -181,28 +235,42 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		return Math.round(trackWidth * (value / this.max));
 	}
 
+	/**
+	 * Increments the value by the step value, or the step value multiplied by the `multiplier` argument.
+	 *
+	 * @argument multiplier Defaults to `1`, multiplied with the step value.
+	 */
 	incrementValue(multiplier = 1) {
 		this.value = this.value + (this.step * multiplier);
 	}
 
+	/**
+	 * Decrements the value by the step value, or the step value multiplied by the `multiplier` argument.
+	 *
+	 * @argument multiplier Defaults to `1`, multiplied with the step value.
+	 */
 	decrementValue(multiplier = 1) {
 		this.value = this.value - (this.step * multiplier);
 	}
 
+	/** Change handler for the optional input */
 	onChange(event) {
 		this.value = event.target.value;
 	}
 
+	/** Handles clicks on the range track, and setting the value to it's "real" equivilent */
 	onClick(event) {
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
 		this.value = this.convertToValue(event.clientX - trackLeft);
 		console.log(event);
 	}
 
+	/** Focus handler for the optional input */
 	onFocus({target}) {
 		target.select();
 	}
 
+	/** Mouse move handler. Responsible for updating the value and visual selection based on mouse movement */
 	onMouseMove(event) {
 		if (this.isMouseDown) {
 			const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
@@ -217,16 +285,19 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		}
 	}
 
+	/** Enables the `onMouseMove` handler */
 	onMouseDown(event) {
 		event.preventDefault();
 		this.thumb.nativeElement.focus();
 		this.isMouseDown = true;
 	}
 
+	/** Disables the `onMouseMove` handler */
 	onMouseUp() {
 		this.isMouseDown = false;
 	}
 
+	/** Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown */
 	onKeyDown(event: KeyboardEvent) {
 		event.preventDefault();
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;
