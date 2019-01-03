@@ -12,22 +12,11 @@ storiesOf("Search", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 		<div style="width: 250px;">
-			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" size="lg"></ibm-search>
+			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" [size]="size"></ibm-search>
 		</div>
 		`,
 		props: {
-			theme: select("theme", ["dark", "light"], "dark"),
-			disabled: boolean("disabled", false),
-			placeholder: text("placeholder", "Search")
-		}
-	}))
-	.add("Small", () => ({
-		template: `
-		<div style="width: 250px;">
-			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" size="sm"></ibm-search>
-		</div>
-		`,
-		props: {
+			size: select("size", ["lg", "sm"], "lg"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
 			placeholder: text("placeholder", "Search")

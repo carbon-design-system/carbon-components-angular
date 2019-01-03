@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object, text } from "@storybook/addon-knobs/angular";
+import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs/angular";
 
 import { DropdownModule } from "../";
 
@@ -22,6 +22,7 @@ storiesOf("Dropdown", module)
 	.add("Basic", () => ({
 		template: `
 		<ibm-dropdown
+			[theme]="theme"
 			placeholder="Select"
 			[disabled]="disabled"
 			(selected)="selected($event)"
@@ -38,30 +39,8 @@ storiesOf("Dropdown", module)
 				{ content: "four" }
 			]),
 			selected: action("Selected fired for dropdown"),
-			onClose: action("Dropdown closed")
-		}
-	}))
-	.add("Light", () => ({
-		template: `
-		<ibm-dropdown
-			theme="light"
-			placeholder="Select"
-			[disabled]="disabled"
-			(selected)="selected($event)"
-			(onClose)="onClose($event)">
-			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-		</ibm-dropdown>
-	`,
-		props: {
-			disabled: boolean("disabled", false),
-			items: object("items", [
-				{ content: "one" },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			]),
-			selected: action("Selected fired for dropdown"),
-			onClose: action("Dropdown closed")
+			onClose: action("Dropdown closed"),
+			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
 	.add("Multi-select", withNotes({ text: "Notes on multi select" })(() => ({
