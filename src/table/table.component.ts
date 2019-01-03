@@ -170,7 +170,7 @@ import { I18n } from "./../i18n/i18n.module";
 		<thead>
 			<tr>
 				<th *ngIf="model.hasExpandableRows()"></th>
-				<th *ngIf="showSelectionColumn">
+				<th *ngIf="showSelectionColumn" style="width: 10px;">
 					<ibm-checkbox
 						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
