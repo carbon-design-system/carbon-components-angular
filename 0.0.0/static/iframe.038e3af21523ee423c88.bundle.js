@@ -1457,8 +1457,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { ButtonModule } from '../';\n\nstoriesOf('Button', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ButtonModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<button ibmButton>A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\">A primary danger button</button>\n\t\t`,\n  }))\n  .add('Small', () => ({\n    template: `\n\t\t\t<button ibmButton size=\"sm\">A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\" size=\"sm\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\" size=\"sm\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\" size=\"sm\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\" size=\"sm\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\" size=\"sm\">A primary danger button</button>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "Button@Small": { "startLoc": { "col": 7, "line": 30 }, "endLoc": { "col": 4, "line": 44 } }, "Button@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 29 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { ButtonModule } from '../';\n\nstoriesOf('Button', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ButtonModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<button ibmButton [size]=\"size\">A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\" [size]=\"size\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\" [size]=\"size\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\" [size]=\"size\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\" [size]=\"size\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\" [size]=\"size\">A primary danger button</button>\n\t\t`,\n    props: {\n      size: select('Size of the buttons', ['normal', 'sm'], 'normal'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Button@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 32 } } };
 
 
 
@@ -1468,10 +1468,10 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Button", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t\t<button ibmButton>A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\">A primary danger button</button>\n\t\t"
-}); })
-    .add("Small", function () { return ({
-    template: "\n\t\t\t<button ibmButton size=\"sm\">A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\" size=\"sm\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\" size=\"sm\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\" size=\"sm\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\" size=\"sm\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\" size=\"sm\">A primary danger button</button>\n\t\t"
+    template: "\n\t\t\t<button ibmButton [size]=\"size\">A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\" [size]=\"size\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\" [size]=\"size\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\" [size]=\"size\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\" [size]=\"size\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\" [size]=\"size\">A primary danger button</button>\n\t\t",
+    props: {
+        size: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Size of the buttons", ["normal", "sm"], "normal")
+    }
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -3594,8 +3594,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! .. */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs } from '@storybook/addon-knobs/angular';\n\nimport { CodeSnippetModule } from '..';\n\nconst code = `import { storiesOf, moduleMetadata } from \"@storybook/angular\";\nimport { withKnobs, boolean } from \"@storybook/addon-knobs/angular\";\n\nimport { CodeSnippetModule } from \"..\";\n\nstoriesOf(\"CodeSnippet\", module).addDecorator(\n\tmoduleMetadata({\n\t\timports: [CodeSnippetModule]\n\t})\n)\n\t.addDecorator(withKnobs)\n\t.add(\"Basic\", () => ({\n\t\ttemplate: \\`<ibm-code-snippet>code</ibm-code-snippet>\\`,\n\t\tprops: { // there's more\n\t\t\t// disabled: boolean(\"disabled\", false)\n\t\t}\n\t}));`;\n\nconst lessCode = `import { storiesOf, moduleMetadata } from \"@storybook/angular\";\nimport { withKnobs, boolean } from \"@storybook/addon-knobs/angular\";\n\nimport { CodeSnippetModule } from \"..\";\n\nstoriesOf(\"Code Snippet\", module).addDecorator(\n\tmoduleMetadata({\n\t\timports: [CodeSnippetModule]\n\t})\n) // that's it, no more after this line\n`;\n\nconst inlineCode = '<inline code>';\n\nstoriesOf('CodeSnippet', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [CodeSnippetModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `<ibm-code-snippet display=\"single\">{{code}}</ibm-code-snippet>`,\n    props: {\n      code,\n    },\n  }))\n  .add('Multi', () => ({\n    template: `\n\t\t\t<h2>With a lot of code</h2>\n\t\t\t<ibm-code-snippet display=\"multi\">{{code}}</ibm-code-snippet>\n\n\t\t\t<h2 style=\"margin-top: 60px\">With less code</h2>\n\t\t\t<ibm-code-snippet display=\"multi\">{{lessCode}}</ibm-code-snippet>\n\t\t`,\n    props: {\n      code,\n      lessCode,\n    },\n  }))\n  .add('Inline', () => ({\n    template: `Here is some <ibm-code-snippet display=\"inline\">{{inlineCode}}</ibm-code-snippet> for you.`,\n    props: {\n      inlineCode,\n    },\n  }))\n  .add('Inline Light', () => ({\n    template: `Here is some <ibm-code-snippet display=\"inline\" theme=\"light\">{{inlineCode}}</ibm-code-snippet> for you.`,\n    props: {\n      inlineCode,\n    },\n  }));\n";
-var __ADDS_MAP__ = { "CodeSnippet@Inline Light": { "startLoc": { "col": 7, "line": 70 }, "endLoc": { "col": 4, "line": 75 } }, "CodeSnippet@Inline": { "startLoc": { "col": 7, "line": 64 }, "endLoc": { "col": 4, "line": 69 } }, "CodeSnippet@Multi": { "startLoc": { "col": 7, "line": 51 }, "endLoc": { "col": 4, "line": 63 } }, "CodeSnippet@Basic": { "startLoc": { "col": 7, "line": 45 }, "endLoc": { "col": 4, "line": 50 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { CodeSnippetModule } from '..';\n\nconst code = `import { storiesOf, moduleMetadata } from \"@storybook/angular\";\nimport { withKnobs, boolean } from \"@storybook/addon-knobs/angular\";\n\nimport { CodeSnippetModule } from \"..\";\n\nstoriesOf(\"CodeSnippet\", module).addDecorator(\n\tmoduleMetadata({\n\t\timports: [CodeSnippetModule]\n\t})\n)\n\t.addDecorator(withKnobs)\n\t.add(\"Basic\", () => ({\n\t\ttemplate: \\`<ibm-code-snippet>code</ibm-code-snippet>\\`,\n\t\tprops: { // there's more\n\t\t\t// disabled: boolean(\"disabled\", false)\n\t\t}\n\t}));`;\n\nconst lessCode = `import { storiesOf, moduleMetadata } from \"@storybook/angular\";\nimport { withKnobs, boolean } from \"@storybook/addon-knobs/angular\";\n\nimport { CodeSnippetModule } from \"..\";\n\nstoriesOf(\"Code Snippet\", module).addDecorator(\n\tmoduleMetadata({\n\t\timports: [CodeSnippetModule]\n\t})\n) // that's it, no more after this line\n`;\n\nconst inlineCode = '<inline code>';\n\nstoriesOf('CodeSnippet', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [CodeSnippetModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `<ibm-code-snippet display=\"single\">{{code}}</ibm-code-snippet>`,\n    props: {\n      code,\n    },\n  }))\n  .add('Multi', () => ({\n    template: `\n\t\t\t<h2>With a lot of code</h2>\n\t\t\t<ibm-code-snippet display=\"multi\">{{code}}</ibm-code-snippet>\n\n\t\t\t<h2 style=\"margin-top: 60px\">With less code</h2>\n\t\t\t<ibm-code-snippet display=\"multi\">{{lessCode}}</ibm-code-snippet>\n\t\t`,\n    props: {\n      code,\n      lessCode,\n    },\n  }))\n  .add('Inline', () => ({\n    template: `Here is some <ibm-code-snippet display=\"inline\" [theme]=\"theme\">{{inlineCode}}</ibm-code-snippet> for you.`,\n    props: {\n      inlineCode,\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "CodeSnippet@Inline": { "startLoc": { "col": 7, "line": 64 }, "endLoc": { "col": 4, "line": 70 } }, "CodeSnippet@Multi": { "startLoc": { "col": 7, "line": 51 }, "endLoc": { "col": 4, "line": 63 } }, "CodeSnippet@Basic": { "startLoc": { "col": 7, "line": 45 }, "endLoc": { "col": 4, "line": 50 } } };
 
 
 
@@ -3620,15 +3620,10 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("CodeSnippe
     }
 }); })
     .add("Inline", function () { return ({
-    template: "Here is some <ibm-code-snippet display=\"inline\">{{inlineCode}}</ibm-code-snippet> for you.",
+    template: "Here is some <ibm-code-snippet display=\"inline\" [theme]=\"theme\">{{inlineCode}}</ibm-code-snippet> for you.",
     props: {
-        inlineCode: inlineCode
-    }
-}); })
-    .add("Inline Light", function () { return ({
-    template: "Here is some <ibm-code-snippet display=\"inline\" theme=\"light\">{{inlineCode}}</ibm-code-snippet> for you.",
-    props: {
-        inlineCode: inlineCode
+        inlineCode: inlineCode,
+        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Theme", ["dark", "light"], "dark")
     }
 }); });
 
@@ -7294,8 +7289,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 /* harmony import */ var _storybook_bootstrap_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.storybook/bootstrap.module */ "./.storybook/bootstrap.module.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object, text } from '@storybook/addon-knobs/angular';\n\nimport { DropdownModule } from '../';\n\n// needed to init ngx translate and load the translations\nimport { BootstrapModule } from '../../.storybook/bootstrap.module';\nimport { stringify } from 'querystring';\n\nstoriesOf('Dropdown', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [DropdownModule, BootstrapModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n    },\n  }))\n  .add('Light', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\ttheme=\"light\"\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n    },\n  }))\n  .add(\n    'Multi-select',\n    withNotes({ text: 'Notes on multi select' })(() => ({\n      template: `\n\t\t<ibm-dropdown\n\t\t\ttype=\"multi\"\n\t\t\tplaceholder=\"Multi-select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n      props: {\n        disabled: boolean('disabled', false),\n        items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n        selected: action('Selected fired for multi-select dropdown'),\n        onClose: action('Multi-select dropdown closed'),\n      },\n    }))\n  )\n  .add('With ngModel', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[(ngModel)]=\"model\"\n\t\t\tvalue=\"content\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t\t<span>{{model | json}}</span>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n      model: null,\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Dropdown@With ngModel": { "startLoc": { "col": 7, "line": 75 }, "endLoc": { "col": 4, "line": 91 } }, "Dropdown@Multi-select": { "startLoc": { "col": 4, "line": 55 }, "endLoc": { "col": 7, "line": 73 } }, "Dropdown@Light": { "startLoc": { "col": 7, "line": 36 }, "endLoc": { "col": 4, "line": 53 } }, "Dropdown@Basic": { "startLoc": { "col": 7, "line": 19 }, "endLoc": { "col": 4, "line": 35 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select, boolean, object, text } from '@storybook/addon-knobs/angular';\n\nimport { DropdownModule } from '../';\n\n// needed to init ngx translate and load the translations\nimport { BootstrapModule } from '../../.storybook/bootstrap.module';\nimport { stringify } from 'querystring';\n\nstoriesOf('Dropdown', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [DropdownModule, BootstrapModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\t[theme]=\"theme\"\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add(\n    'Multi-select',\n    withNotes({ text: 'Notes on multi select' })(() => ({\n      template: `\n\t\t<ibm-dropdown\n\t\t\ttype=\"multi\"\n\t\t\tplaceholder=\"Multi-select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n      props: {\n        disabled: boolean('disabled', false),\n        items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n        selected: action('Selected fired for multi-select dropdown'),\n        onClose: action('Multi-select dropdown closed'),\n      },\n    }))\n  )\n  .add('With ngModel', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[(ngModel)]=\"model\"\n\t\t\tvalue=\"content\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t\t<span>{{model | json}}</span>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n      model: null,\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Dropdown@With ngModel": { "startLoc": { "col": 7, "line": 59 }, "endLoc": { "col": 4, "line": 75 } }, "Dropdown@Multi-select": { "startLoc": { "col": 4, "line": 39 }, "endLoc": { "col": 7, "line": 57 } }, "Dropdown@Basic": { "startLoc": { "col": 7, "line": 19 }, "endLoc": { "col": 4, "line": 37 } } };
 
 
 
@@ -7312,7 +7307,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Dropdown",
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t<ibm-dropdown\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t",
+    template: "\n\t\t<ibm-dropdown\n\t\t\t[theme]=\"theme\"\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t",
     props: {
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["boolean"])("disabled", false),
         items: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["object"])("items", [
@@ -7322,21 +7317,8 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Dropdown",
             { content: "four" }
         ]),
         selected: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Selected fired for dropdown"),
-        onClose: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Dropdown closed")
-    }
-}); })
-    .add("Light", function () { return ({
-    template: "\n\t\t<ibm-dropdown\n\t\t\ttheme=\"light\"\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t",
-    props: {
-        disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["boolean"])("disabled", false),
-        items: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["object"])("items", [
-            { content: "one" },
-            { content: "two" },
-            { content: "three" },
-            { content: "four" }
-        ]),
-        selected: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Selected fired for dropdown"),
-        onClose: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Dropdown closed")
+        onClose: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Dropdown closed"),
+        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["select"])("theme", ["dark", "light"], "dark")
     }
 }); })
     .add("Multi-select", Object(_storybook_addon_notes__WEBPACK_IMPORTED_MODULE_1__["withNotes"])({ text: "Notes on multi select" })(function () { return ({
@@ -10218,8 +10200,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs } from '@storybook/addon-knobs/angular';\n\nimport { InputModule } from '../';\n\nstoriesOf('Input', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [InputModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Label', () => ({\n    template: `\n\t\t<ibm-label>\n\t\t\tSome Title\n\t\t\t<input ibmText placeholder=\"Optional placeholder text\">\n\t\t</ibm-label>\n\t`,\n  }))\n  .add('Input', () => ({\n    template: `\n\t\t\t<input ibmText aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t\t`,\n  }))\n  .add('Light Input', () => ({\n    template: `\n\t\t\t<input ibmText theme=\"light\" aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t\t`,\n  }))\n  .add('TextArea', () => ({\n    template: `\n\t\t<textarea ibmTextArea aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t\t`,\n  }))\n  .add('Light TextArea', () => ({\n    template: `\n\t\t<textarea ibmTextArea theme=\"light\" aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "Input@Light TextArea": { "startLoc": { "col": 7, "line": 37 }, "endLoc": { "col": 4, "line": 41 } }, "Input@TextArea": { "startLoc": { "col": 7, "line": 32 }, "endLoc": { "col": 4, "line": 36 } }, "Input@Light Input": { "startLoc": { "col": 7, "line": 27 }, "endLoc": { "col": 4, "line": 31 } }, "Input@Input": { "startLoc": { "col": 7, "line": 22 }, "endLoc": { "col": 4, "line": 26 } }, "Input@Label": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 21 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { InputModule } from '../';\n\nstoriesOf('Input', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [InputModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Label', () => ({\n    template: `\n\t\t<ibm-label>\n\t\t\tSome Title\n\t\t\t<input ibmText placeholder=\"Optional placeholder text\">\n\t\t</ibm-label>\n\t`,\n  }))\n  .add('Input', () => ({\n    template: `\n\t\t<input ibmText [theme]=\"theme\" aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add('TextArea', () => ({\n    template: `\n\t\t<textarea ibmTextArea [theme]=\"theme\" aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Input@TextArea": { "startLoc": { "col": 7, "line": 30 }, "endLoc": { "col": 4, "line": 37 } }, "Input@Input": { "startLoc": { "col": 7, "line": 22 }, "endLoc": { "col": 4, "line": 29 } }, "Input@Label": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 21 } } };
 
 
 
@@ -10231,16 +10213,16 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Input", mo
     template: "\n\t\t<ibm-label>\n\t\t\tSome Title\n\t\t\t<input ibmText placeholder=\"Optional placeholder text\">\n\t\t</ibm-label>\n\t"
 }); })
     .add("Input", function () { return ({
-    template: "\n\t\t\t<input ibmText aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t\t"
-}); })
-    .add("Light Input", function () { return ({
-    template: "\n\t\t\t<input ibmText theme=\"light\" aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t\t"
+    template: "\n\t\t<input ibmText [theme]=\"theme\" aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t",
+    props: {
+        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Theme", ["dark", "light"], "dark")
+    }
 }); })
     .add("TextArea", function () { return ({
-    template: "\n\t\t<textarea ibmTextArea aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t\t"
-}); })
-    .add("Light TextArea", function () { return ({
-    template: "\n\t\t<textarea ibmTextArea theme=\"light\" aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t\t"
+    template: "\n\t\t<textarea ibmTextArea [theme]=\"theme\" aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t",
+    props: {
+        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Theme", ["dark", "light"], "dark")
+    }
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -10938,8 +10920,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { LoadingModule } from '../';\n\nstoriesOf('Loading', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [LoadingModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-loading [overlay]=\"true\"></ibm-loading>\n\t\t`,\n  }))\n  .add('Small', () => ({\n    template: `\n\t\t<ibm-loading size=\"sm\"></ibm-loading>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "Loading@Small": { "startLoc": { "col": 7, "line": 19 }, "endLoc": { "col": 4, "line": 23 } }, "Loading@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 18 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, select } from '@storybook/addon-knobs/angular';\n\nimport { LoadingModule } from '../';\n\nstoriesOf('Loading', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [LoadingModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-loading [size]=\"size\" [overlay]=\"overlay\"></ibm-loading>\n\t`,\n    props: {\n      overlay: boolean('With overlay', false),\n      size: select('Size of the loading circle', ['normal', 'sm'], 'normal'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Loading@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 22 } } };
 
 
 
@@ -10948,10 +10930,11 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Loading", 
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t<ibm-loading [overlay]=\"true\"></ibm-loading>\n\t\t"
-}); })
-    .add("Small", function () { return ({
-    template: "\n\t\t<ibm-loading size=\"sm\"></ibm-loading>\n\t\t"
+    template: "\n\t\t<ibm-loading [size]=\"size\" [overlay]=\"overlay\"></ibm-loading>\n\t",
+    props: {
+        overlay: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("With overlay", false),
+        size: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Size of the loading circle", ["normal", "sm"], "normal")
+    }
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -13218,8 +13201,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number, select } from '@storybook/addon-knobs/angular';\n\nimport { NumberModule } from '../';\n\nstoriesOf('Number', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NumberModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\tlabel=\"Number Input label\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('With no label', () => ({\n    template: `\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('With helper text', () => ({\n    template: `\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\tlabel=\"Number Input label\"\n\t\t\t\t\thelperText=\"Optional helper text here\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Number@With helper text": { "startLoc": { "col": 7, "line": 48 }, "endLoc": { "col": 4, "line": 66 } }, "Number@With no label": { "startLoc": { "col": 7, "line": 31 }, "endLoc": { "col": 4, "line": 47 } }, "Number@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 30 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number, select, text } from '@storybook/addon-knobs/angular';\n\nimport { NumberModule } from '../';\n\nstoriesOf('Number', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NumberModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\t[label]=\"label\"\n\t\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n      helperText: text('helper text', 'Optional helper text here'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Number@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 33 } } };
 
 
 
@@ -13228,26 +13211,10 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Number", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\tlabel=\"Number Input label\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t",
+    template: "\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\t[label]=\"label\"\n\t\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t",
     props: {
-        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("theme", ["dark", "light"], "dark"),
-        min: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("min", 0),
-        max: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("max", 100),
-        disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false)
-    }
-}); })
-    .add("With no label", function () { return ({
-    template: "\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t",
-    props: {
-        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("theme", ["dark", "light"], "dark"),
-        min: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("min", 0),
-        max: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("max", 100),
-        disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false)
-    }
-}); })
-    .add("With helper text", function () { return ({
-    template: "\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\tlabel=\"Number Input label\"\n\t\t\t\t\thelperText=\"Optional helper text here\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t",
-    props: {
+        label: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("label", "Number Input Label"),
+        helperText: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("helper text", "Optional helper text here"),
         theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("theme", ["dark", "light"], "dark"),
         min: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("min", 0),
         max: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("max", 100),
@@ -15567,8 +15534,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select, text } from '@storybook/addon-knobs/angular';\n\nimport { SearchModule } from '../';\n\nstoriesOf('Search', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SearchModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" size=\"lg\"></ibm-search>\n\t\t</div>\n\t\t`,\n    props: {\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      disabled: boolean('disabled', false),\n      placeholder: text('placeholder', 'Search'),\n    },\n  }))\n  .add('Small', () => ({\n    template: `\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" size=\"sm\"></ibm-search>\n\t\t</div>\n\t\t`,\n    props: {\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      disabled: boolean('disabled', false),\n      placeholder: text('placeholder', 'Search'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Search@Small": { "startLoc": { "col": 7, "line": 25 }, "endLoc": { "col": 4, "line": 36 } }, "Search@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 24 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select, text } from '@storybook/addon-knobs/angular';\n\nimport { SearchModule } from '../';\n\nstoriesOf('Search', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SearchModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" [size]=\"size\"></ibm-search>\n\t\t</div>\n\t\t`,\n    props: {\n      size: select('size', ['lg', 'sm'], 'lg'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      disabled: boolean('disabled', false),\n      placeholder: text('placeholder', 'Search'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Search@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 25 } } };
 
 
 
@@ -15577,16 +15544,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Search", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" size=\"lg\"></ibm-search>\n\t\t</div>\n\t\t",
+    template: "\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" [size]=\"size\"></ibm-search>\n\t\t</div>\n\t\t",
     props: {
-        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("theme", ["dark", "light"], "dark"),
-        disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false),
-        placeholder: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("placeholder", "Search")
-    }
-}); })
-    .add("Small", function () { return ({
-    template: "\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" size=\"sm\"></ibm-search>\n\t\t</div>\n\t\t",
-    props: {
+        size: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("size", ["lg", "sm"], "lg"),
         theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("theme", ["dark", "light"], "dark"),
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false),
         placeholder: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("placeholder", "Search")
@@ -15941,8 +15901,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs } from '@storybook/addon-knobs/angular';\n\nimport { SelectModule } from '../';\n\nstoriesOf('Select', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SelectModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-select>\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n\t\t\t<option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n\t\t\t<optgroup label=\"Category 1\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t</optgroup>\n\t\t\t<optgroup label=\"Category 2\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t  \t</optgroup>\n\t\t</ibm-select>\n\t`,\n  }))\n  .add('Inline', () => ({\n    template: `\n\t\t<ibm-select display=\"inline\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n          <option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n          <optgroup label=\"Category 1\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n          <optgroup label=\"Category 2\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n\t\t</ibm-select>\n\t`,\n  }))\n  .add('Light', () => ({\n    template: `\n\t\t<ibm-select theme=\"light\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n          <option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n          <optgroup label=\"Category 1\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n          <optgroup label=\"Category 2\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n\t\t</ibm-select>\n\t`,\n  }))\n  .add('With ngModel', () => ({\n    template: `\n\t\t\t<ibm-select [(ngModel)]=\"model\">\n\t\t\t\t<option value=\"default\" disabled selected hidden>Choose an option</option>\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t\t<option value=\"option3\">Option 3</option>\n\t\t\t</ibm-select>\n\t\t\t<br>\n\t\t\t<span>Selected: {{ model }}</span>\n\t\t`,\n    props: {\n      model: 'default',\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Select@With ngModel": { "startLoc": { "col": 7, "line": 62 }, "endLoc": { "col": 4, "line": 76 } }, "Select@Light": { "startLoc": { "col": 7, "line": 46 }, "endLoc": { "col": 4, "line": 61 } }, "Select@Inline": { "startLoc": { "col": 7, "line": 30 }, "endLoc": { "col": 4, "line": 45 } }, "Select@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 29 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { SelectModule } from '../';\n\nstoriesOf('Select', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SelectModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-select [theme]=\"theme\" [display]=\"display\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n\t\t\t<option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n\t\t\t<optgroup label=\"Category 1\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t</optgroup>\n\t\t\t<optgroup label=\"Category 2\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t  \t</optgroup>\n\t\t</ibm-select>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n      display: select('Display', ['default', 'inline'], 'default'),\n    },\n  }))\n  .add('With ngModel', () => ({\n    template: `\n\t\t\t<ibm-select [(ngModel)]=\"model\">\n\t\t\t\t<option value=\"default\" disabled selected hidden>Choose an option</option>\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t\t<option value=\"option3\">Option 3</option>\n\t\t\t</ibm-select>\n\t\t\t<br>\n\t\t\t<span>Selected: {{ model }}</span>\n\t\t`,\n    props: {\n      model: 'default',\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Select@With ngModel": { "startLoc": { "col": 7, "line": 34 }, "endLoc": { "col": 4, "line": 48 } }, "Select@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 33 } } };
 
 
 
@@ -15951,13 +15911,11 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Select", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t<ibm-select>\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n\t\t\t<option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n\t\t\t<optgroup label=\"Category 1\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t</optgroup>\n\t\t\t<optgroup label=\"Category 2\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t  \t</optgroup>\n\t\t</ibm-select>\n\t"
-}); })
-    .add("Inline", function () { return ({
-    template: "\n\t\t<ibm-select display=\"inline\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n          <option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n          <optgroup label=\"Category 1\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n          <optgroup label=\"Category 2\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n\t\t</ibm-select>\n\t"
-}); })
-    .add("Light", function () { return ({
-    template: "\n\t\t<ibm-select theme=\"light\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n          <option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n          <optgroup label=\"Category 1\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n          <optgroup label=\"Category 2\">\n              <option value=\"option1\">Option 1</option>\n              <option value=\"option2\">Option 2</option>\n          </optgroup>\n\t\t</ibm-select>\n\t"
+    template: "\n\t\t<ibm-select [theme]=\"theme\" [display]=\"display\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n\t\t\t<option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n\t\t\t<optgroup label=\"Category 1\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t</optgroup>\n\t\t\t<optgroup label=\"Category 2\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t  \t</optgroup>\n\t\t</ibm-select>\n\t",
+    props: {
+        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Theme", ["dark", "light"], "dark"),
+        display: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Display", ["default", "inline"], "default")
+    }
 }); })
     .add("With ngModel", function () { return ({
     template: "\n\t\t\t<ibm-select [(ngModel)]=\"model\">\n\t\t\t\t<option value=\"default\" disabled selected hidden>Choose an option</option>\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t\t<option value=\"option3\">Option 3</option>\n\t\t\t</ibm-select>\n\t\t\t<br>\n\t\t\t<span>Selected: {{ model }}</span>\n\t\t",
@@ -19779,8 +19737,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { ToggleModule } from '../';\n\nstoriesOf('Toggle', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ToggleModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\"></ibm-toggle>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      checked: boolean('checked', false),\n    },\n  }))\n  .add('Small', () => ({\n    template: `\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\" size=\"sm\"></ibm-toggle>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      checked: boolean('checked', false),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Toggle@Small": { "startLoc": { "col": 7, "line": 22 }, "endLoc": { "col": 4, "line": 30 } }, "Toggle@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 21 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select } from '@storybook/addon-knobs/angular';\n\nimport { ToggleModule } from '../';\n\nstoriesOf('Toggle', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ToggleModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\" [size]=\"size\"></ibm-toggle>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      checked: boolean('checked', false),\n      size: select('size', ['md', 'sm'], 'md'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Toggle@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 22 } } };
 
 
 
@@ -19789,17 +19747,11 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Toggle", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\"></ibm-toggle>\n\t\t",
+    template: "\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\" [size]=\"size\"></ibm-toggle>\n\t\t",
     props: {
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false),
-        checked: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("checked", false)
-    }
-}); })
-    .add("Small", function () { return ({
-    template: "\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\" size=\"sm\"></ibm-toggle>\n\t\t",
-    props: {
-        disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false),
-        checked: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("checked", false)
+        checked: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("checked", false),
+        size: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("size", ["md", "sm"], "md")
     }
 }); });
 
@@ -20066,4 +20018,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.eed1696a5f0b6ee8a08a.bundle.js.map
+//# sourceMappingURL=iframe.038e3af21523ee423c88.bundle.js.map
