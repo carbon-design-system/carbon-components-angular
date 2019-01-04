@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * The simpelist possible slider usage looks something like:
+ * The simplest possible slider usage looks something like:
  * ```html
  * <ibm-slider></ibm-slider>
  * ```
@@ -102,7 +102,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() max = 100;
 	/** The interval for our range */
 	@Input() step = 1;
-	/** Set the inital value. Avliable for two way binding */
+	/** Set the initial value. Available for two way binding */
 	@Input() set value(v) {
 		if (v > this.max) {
 			v = this.max;
@@ -126,7 +126,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	get value() {
 		return this._value;
 	}
-	/** Base ID for the slider. The min and max labels get IDs `${this.id}-bottom-range` and `${this.id}-top-range` respectivly */
+	/** Base ID for the slider. The min and max labels get IDs `${this.id}-bottom-range` and `${this.id}-top-range` respectively */
 	@Input() id = `slider-${Slider.count++}`;
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
 	@Input() shiftMultiplier = 4;
@@ -207,7 +207,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.onTouched = fn;
 	}
 
-	/** Recives a value from the model */
+	/** Receives a value from the model */
 	writeValue(v: any) {
 		this.value = v;
 	}
@@ -271,7 +271,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.value = event.target.value;
 	}
 
-	/** Handles clicks on the range track, and setting the value to it's "real" equivilent */
+	/** Handles clicks on the range track, and setting the value to it's "real" equivalent */
 	onClick(event) {
 		if (this.disabled) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
