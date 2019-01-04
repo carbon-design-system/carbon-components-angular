@@ -47,7 +47,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "ibm-slider",
 	template: `
-		<div class="bx--slider">
+		<div
+			class="bx--slider"
+			[ngClass]="{'bx--slider--disabled': disabled}">
 			<div
 				#thumb
 				class="bx--slider__thumb"
@@ -114,7 +116,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.slidAmount = this.convertToPx(v);
 
 		if (this.input) {
-			this.input.value = v;
+			this.input.value = v.toString();
 		}
 
 		this.propagateChange(v);
@@ -129,8 +131,18 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
 	@Input() shiftMultiplier = 4;
 	/** Disables the range visually and functionally */
-	// TODO: implement disabled state
-	@Input() disabled = false;
+	@Input() set disabled(v) {
+		this._disabled = v;
+		// for some reason `this.input` never exists here, so we have to query for it here too
+		const input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
+		if (input) {
+			input.disabled = v;
+		}
+	}
+
+	get disabled() {
+		return this._disabled;
+	}
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number> = new EventEmitter();
 	@HostBinding("class.bx--slider-container") hostClass = true;
@@ -145,8 +157,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected slidAmount = 0;
-	protected input;
+	protected input: HTMLInputElement;
 	protected _value = 0;
+	protected _disabled = false;
 
 	constructor(protected elementRef: ElementRef) {}
 
@@ -164,7 +177,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			this.input.classList.add("bx--slider-text-input");
 			this.input.classList.add("bx--text-input");
 			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
-			this.input.value = this.value;
+			this.input.value = this.value.toString();
 			// bind events on our optional input
 			this.eventSubscriptions.push(fromEvent(this.input, "change").subscribe(this.onChange.bind(this)));
 			this.eventSubscriptions.push(fromEvent(this.input, "focus").subscribe(this.onFocus.bind(this)));
@@ -260,6 +273,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Handles clicks on the range track, and setting the value to it's "real" equivilent */
 	onClick(event) {
+		if (this.disabled) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
 		this.value = this.convertToValue(event.clientX - trackLeft);
 		console.log(event);
@@ -272,6 +286,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Mouse move handler. Responsible for updating the value and visual selection based on mouse movement */
 	onMouseMove(event) {
+		if (this.disabled) { return; }
 		if (this.isMouseDown) {
 			const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 			const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
@@ -288,6 +303,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Enables the `onMouseMove` handler */
 	onMouseDown(event) {
 		event.preventDefault();
+		if (this.disabled) { return; }
 		this.thumb.nativeElement.focus();
 		this.isMouseDown = true;
 	}
