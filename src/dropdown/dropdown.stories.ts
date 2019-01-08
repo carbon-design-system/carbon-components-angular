@@ -87,4 +87,13 @@ storiesOf("Dropdown", module)
 			],
 			model: null
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 300px">
+			<ibm-dropdown skeleton="true"></ibm-dropdown>
+			&nbsp;
+			<ibm-dropdown skeleton="true" inline="true"></ibm-dropdown>
+		</div>
+		`
 	}));

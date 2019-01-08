@@ -30,7 +30,14 @@ import { I18n } from "./../i18n/i18n.module";
 	template: `
 	<div
 		class="bx--list-box"
-		[ngClass]="{'bx--dropdown--light': theme === 'light'}">
+		[ngClass]="{
+			'bx--dropdown--light': theme === 'light',
+			'bx--dropdown': !skeleton,
+			'bx--list-box--inline': inline,
+			'bx--skeleton': skeleton,
+			'bx--dropdown-v2': skeleton,
+			'bx--form-item': skeleton
+		}">
 		<button
 			type="button"
 			#dropdownButton
@@ -42,7 +49,7 @@ import { I18n } from "./../i18n/i18n.module";
 			(blur)="onBlur()"
 			[disabled]="disabled">
 			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
-			<div class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+			<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
 				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" [attr.aria-label]="menuButtonLabel">
 					<title>{{menuButtonLabel}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
@@ -93,6 +100,14 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Set to `true` to disable the dropdown.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a loading dropdown.
+	 */
+	@Input() skeleton = false;
+	/**
+	 * Set to `true` for an inline dropdown.
+	 */
+	@Input() inline = false;
 	/**
 	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
@@ -198,33 +213,37 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
 	 */
 	ngOnInit() {
-		this.view.type = this.type;
+		if (!this.skeleton) {
+			this.view.type = this.type;
+		}
 	}
 
 	/**
 	 * Initializes classes and subscribes to events for single or multi selection.
 	 */
 	ngAfterContentInit() {
-		this.view.type = this.type;
-		this.view.size = this.size;
-		this.view.select.subscribe(event => {
-			if (this.type === "multi") {
-				this.propagateChange(this.view.getSelected());
-			} else {
-				this.closeMenu();
-				this.dropdownButton.nativeElement.focus();
-				if (event.item && event.item.selected) {
-					if (this.value) {
-						this.propagateChange(event.item[this.value]);
-					} else {
-						this.propagateChange(event.item);
-					}
+		if (!this.skeleton) {
+			this.view.type = this.type;
+			this.view.size = this.size;
+			this.view.select.subscribe(event => {
+				if (this.type === "multi") {
+					this.propagateChange(this.view.getSelected());
 				} else {
-					this.propagateChange(null);
+					this.closeMenu();
+					this.dropdownButton.nativeElement.focus();
+					if (event.item && event.item.selected) {
+						if (this.value) {
+							this.propagateChange(event.item[this.value]);
+						} else {
+							this.propagateChange(event.item);
+						}
+					} else {
+						this.propagateChange(null);
+					}
 				}
-			}
-			this.selected.emit(event);
-		});
+				this.selected.emit(event);
+			});
+		}
 	}
 
 	/**
@@ -323,17 +342,19 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Returns the display value if there is no selection, otherwise the selection will be returned.
 	 */
 	getDisplayValue(): Observable<string> {
-		let selected = this.view.getSelected();
-		if (selected && !this.displayValue) {
-			if (this.type === "multi") {
-				return of(`${selected.length} ${this.selectedLabel}`);
-			} else {
-				return of(selected[0].content);
+		if (!this.skeleton) {
+			let selected = this.view.getSelected();
+			if (selected && !this.displayValue) {
+				if (this.type === "multi") {
+					return of(`${selected.length} ${this.selectedLabel}`);
+				} else {
+					return of(selected[0].content);
+				}
+			} else if (selected) {
+				return of(this.displayValue);
 			}
-		} else if (selected) {
-			return of(this.displayValue);
+			return of(this.placeholder);
 		}
-		return of(this.placeholder);
 	}
 
 	/**
