@@ -52,4 +52,16 @@ storiesOf("Accordion", module)
 			],
 			selected: action("item expanded")
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+			<div style="width: 500px">
+				<ibm-accordion skeleton="true">
+					<ibm-accordion-item expanded="true"></ibm-accordion-item>
+					<ibm-accordion-item></ibm-accordion-item>
+					<ibm-accordion-item></ibm-accordion-item>
+					<ibm-accordion-item></ibm-accordion-item>
+				</ibm-accordion>
+			</div>
+		`
 	}));
