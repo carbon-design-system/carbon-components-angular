@@ -17,7 +17,7 @@ import {
 	</ng-template>`
 })
 export class BreadcrumbItemComponent {
-	@Input() href: string;
+	@Input() href = "/#";
 
 	@HostBinding("class.bx--breadcrumb-item") itemClass = true;
 }

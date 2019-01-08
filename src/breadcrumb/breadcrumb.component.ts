@@ -12,6 +12,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	template: `
 	<nav #nav class="bx--breadcrumb"
 		[ngClass]="{
+			'bx--skeleton' : skeleton,
 			'bx--breadcrumb--no-trailing-slash' : noTrailingSlash
 		}"
 		[attr.aria-label]="ariaLabel">
@@ -56,6 +57,8 @@ export class Breadcrumb {
 	@Input() noTrailingSlash = false;
 
 	@Input() ariaLabel: string;
+
+	@Input() skeleton = false;
 
 	protected _threshold: number;
 
