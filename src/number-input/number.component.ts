@@ -30,15 +30,23 @@ export class NumberChange {
 @Component({
 	selector: "ibm-number",
 	template: `
+		<label
+			*ngIf="skeleton && label"
+			class="bx--label"
+			[ngClass]="{
+				'bx--skeleton' : skeleton
+			}">
+		</label>
 		<div
 			data-numberinput
 			class="bx--number"
 			[ngClass]="{
 				'bx--number--light': theme === 'light',
 				'bx--number--nolabel': !label,
-				'bx--number--helpertext': helperText
+				'bx--number--helpertext': helperText,
+				'bx--skeleton' : skeleton
 			}">
-			<label *ngIf="label" [for]="id" class="bx--label">{{label}}</label>
+			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
 			<input
 				type="number"
 				[id]="id"
@@ -47,7 +55,7 @@ export class NumberChange {
 				[max]="max"
 				[disabled]="disabled"
 				[required]="required"/>
-			<div class="bx--number__controls">
+			<div *ngIf="!skeleton" class="bx--number__controls">
 				<button
 					class="bx--number__control-btn up-icon"
 					(click)="onIncrement()">
@@ -90,6 +98,10 @@ export class Number implements ControlValueAccessor {
 	 * Set to `true` for a disabled number input.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a loading number component.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * The unique id for the number component.
 	 */
