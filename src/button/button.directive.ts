@@ -24,7 +24,7 @@ export class Button implements OnInit {
 	/**
 	 * sets the button type
 	 */
-	@Input() ibmButton: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" = "primary";
+	@Input() ibmButton: "primary" | "secondary" | "tertiary" | "ghost" | "danger" | "danger--primary" | "skeleton" = "primary";
 	/**
 	 * Specify the size of the button
 	 */
@@ -37,6 +37,7 @@ export class Button implements OnInit {
 	@HostBinding("class.bx--btn--ghost") ghost = false;
 	@HostBinding("class.bx--btn--danger") danger = false;
 	@HostBinding("class.bx--btn--danger--primary") dangerPrimary = false;
+	@HostBinding("class.bx--skeleton") skeleton = false;
 	@HostBinding("class.bx--btn--sm") smallSize = false;
 
 	ngOnInit() {
@@ -51,6 +52,7 @@ export class Button implements OnInit {
 			case "ghost": this.ghost = true; break;
 			case "danger": this.danger = true; break;
 			case "danger--primary": this.dangerPrimary = true; break;
+			case "skeleton": this.skeleton = true; break;
 			default: this.primary = true; break;
 		}
 	}
