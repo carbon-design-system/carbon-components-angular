@@ -32,7 +32,7 @@ storiesOf("Button", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
-			<button ibmButton="skeleton" [size]="size"></button>
+			<button ibmButton="primary" skeleton="true" [size]="size"></button>
 		`,
 		props: {
 			size: select("Size of the buttons", ["normal", "sm"], "normal")
