@@ -16,11 +16,27 @@ import { AccordionItem } from "./accordion-item.component";
 	`
 })
 export class Accordion implements AfterContentInit {
-	@ContentChildren(AccordionItem) childs: QueryList<AccordionItem>;
+	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 
-	@Input() skeleton = false;
+	protected _skeleton = false;
+
+	@Input()
+	set skeleton(value: any) {
+		this._skeleton = value;
+		this.updateChildren();
+	}
+
+	get skeleton(): any {
+		return this._skeleton;
+	}
 
 	ngAfterContentInit() {
-		this.childs.toArray().forEach(child => child.skeleton = this.skeleton);
+		this.updateChildren();
+	}
+
+	protected updateChildren() {
+		if (this.children) {
+			this.children.toArray().forEach(child => child.skeleton = this.skeleton);
+		}
 	}
 }
