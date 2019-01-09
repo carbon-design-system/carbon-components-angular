@@ -1,9 +1,13 @@
 import {
 	Component,
-	Input
+	Input,
+	ContentChildren,
+	QueryList,
+	AfterContentInit
 } from "@angular/core";
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
+import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
@@ -51,7 +55,9 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 		</ng-template>
 	</nav>`
 })
-export class Breadcrumb {
+export class Breadcrumb implements AfterContentInit {
+	@ContentChildren(BreadcrumbItemComponent) childs: QueryList<BreadcrumbItemComponent>;
+
 	@Input() items: Array<BreadcrumbItem>;
 
 	@Input() noTrailingSlash = false;
@@ -72,6 +78,10 @@ export class Breadcrumb {
 
 	get threshold(): number {
 		return this._threshold;
+	}
+
+	ngAfterContentInit() {
+		this.childs.toArray().forEach(child => child.skeleton = this.skeleton);
 	}
 
 	get shouldShowContent(): boolean {
