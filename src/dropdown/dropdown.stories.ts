@@ -91,9 +91,21 @@ storiesOf("Dropdown", module)
 	.add("Skeleton", () => ({
 		template: `
 		<div style="width: 300px">
-			<ibm-dropdown skeleton="true"></ibm-dropdown>
+			<ibm-dropdown skeleton="true">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
 			&nbsp;
-			<ibm-dropdown skeleton="true" inline="true"></ibm-dropdown>
+			<ibm-dropdown skeleton="true" inline="true">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
 		</div>
-		`
+		`,
+		props: {
+			items: [
+				{ content: "one" },
+				{ content: "two" },
+				{ content: "three" },
+				{ content: "four" }
+			]
+		}
 	}));

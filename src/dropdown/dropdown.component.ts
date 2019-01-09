@@ -213,7 +213,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
 	 */
 	ngOnInit() {
-		if (!this.skeleton) {
+		if (this.view) {
 			this.view.type = this.type;
 		}
 	}
@@ -222,7 +222,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Initializes classes and subscribes to events for single or multi selection.
 	 */
 	ngAfterContentInit() {
-		if (!this.skeleton) {
+		if (this.view) {
 			this.view.type = this.type;
 			this.view.size = this.size;
 			this.view.select.subscribe(event => {
@@ -342,7 +342,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Returns the display value if there is no selection, otherwise the selection will be returned.
 	 */
 	getDisplayValue(): Observable<string> {
-		if (!this.skeleton) {
+		if (this.view) {
 			let selected = this.view.getSelected();
 			if (selected && !this.displayValue) {
 				if (this.type === "multi") {
