@@ -384,7 +384,7 @@ export class Table {
 			header.push(new TableHeaderItem());
 			row.push(new TableItem());
 		}
-		for (let j = 0; j < rowCount - 1 ; j++) {
+		for (let i = 0; i < rowCount - 1; i++) {
 			data.push(row);
 		}
 
