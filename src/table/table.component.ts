@@ -374,7 +374,7 @@ export class Table {
 	 * @param {number} rowCount
 	 * @param {number} columnCount
 	 */
-	static skeletonModelHeader(rowCount: number, columnCount: number) {
+	static skeletonModel(rowCount: number, columnCount: number) {
 		const model = new TableModel();
 		let header = new Array<TableHeaderItem>();
 		let data = new Array<Array<TableItem>>();

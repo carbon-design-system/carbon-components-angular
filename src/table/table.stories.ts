@@ -435,7 +435,7 @@ class SkeletonTableStory implements OnInit, OnChanges {
 
 	ngOnInit() {
 		// Creates an empty table with 5 rows and 5 columns
-		this.skeletonModel = Table.skeletonModelHeader(5, 5);
+		this.skeletonModel = Table.skeletonModel(5, 5);
 	}
 }
 
