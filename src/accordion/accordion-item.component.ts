@@ -21,8 +21,13 @@ import {
 				viewBox="0 0 7 12">
           		<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"/>
 			</svg>
-			<p *ngIf="skeleton" class="bx--skeleton__text bx--accordion__title"></p>
-			<p *ngIf="!skeleton" class="bx--accordion__title">{{title}}</p>
+			<p
+				class="bx--accordion__title"
+				[ngClass]="{
+					'bx--skeleton__text': skeleton
+				}">
+				{{!skeleton ? title : null}}
+			</p>
 		</button>
 		<div [id]="id" class="bx--accordion__content">
 			<ng-content *ngIf="!skeleton; else skeletonTemp"></ng-content>
