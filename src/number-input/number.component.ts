@@ -30,13 +30,7 @@ export class NumberChange {
 @Component({
 	selector: "ibm-number",
 	template: `
-		<label
-			*ngIf="skeleton && label"
-			class="bx--label"
-			[ngClass]="{
-				'bx--skeleton' : skeleton
-			}">
-		</label>
+		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
 		<div
 			data-numberinput
 			class="bx--number"
