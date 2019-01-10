@@ -58,7 +58,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 				'bx--structured-list--border': border,
 				'bx--structured-list--selection': selection,
 				'bx--structured-list--condensed': condensed,
-				'bx--structured-list-content--nowrap': nowrap
+				'bx--structured-list-content--nowrap': nowrap,
+				'bx--skeleton': skeleton
 			}">
 			<ng-content select="ibm-list-header"></ng-content>
 			<div class="bx--structured-list-tbody">
@@ -99,6 +100,23 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 	 * Used when `selection = true` as the row radio group `name`
 	 */
 	@Input() name = `structured-list-${StructuredList.listCount++}`;
+
+	/**
+	 * Sets the skeleton value for all `ListHeader` to the skeleton value of `StructuredList`.
+	 */
+	@Input()
+	set skeleton(value: any) {
+		this._skeleton = value;
+		this.updateChildren();
+	}
+
+	/**
+	 * Returns the skeleton value in the `StructuredList` if there is one.
+	 */
+	get skeleton(): any {
+		return this._skeleton;
+	}
+
 	/**
 	 * Emits an event when the row selection changes.
 	 *
@@ -115,6 +133,8 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 
 	@ContentChildren(ListRow) rows: QueryList<ListRow>;
 	@ContentChildren(ListHeader) headers: QueryList<ListHeader>;
+
+	protected _skeleton = false;
 
 	onChange = (_: any) => { };
 
@@ -138,6 +158,7 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 				this.onChange(row.value);
 			});
 		});
+		this.updateChildren();
 	}
 
 	writeValue(value: any) {
@@ -157,5 +178,11 @@ export class StructuredList implements AfterContentInit, ControlValueAccessor {
 
 	registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	protected updateChildren() {
+		if (this.headers) {
+			this.headers.toArray().forEach(child => child.skeleton = this.skeleton);
+		}
 	}
 }
