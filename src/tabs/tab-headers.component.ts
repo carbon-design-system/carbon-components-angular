@@ -25,7 +25,12 @@ import { Tab } from "./tab.component";
 @Component({
 	selector: "ibm-tab-headers",
 	template: `
-		<nav class="bx--tabs" role="navigation">
+		<nav
+			class="bx--tabs"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}"
+			role="navigation">
 			<div class="bx--tabs-trigger" tabindex="0" (click)="showTabList()">
 				<a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1">
 					<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
@@ -102,6 +107,10 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @memberof TabHeaders
 	 */
 	@Input() followFocus: boolean;
+	/**
+	 * Set to `true` for a loading table.
+	 */
+	@Input() skeleton = false;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.

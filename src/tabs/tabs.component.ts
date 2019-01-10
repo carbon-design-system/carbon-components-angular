@@ -41,6 +41,7 @@ import { TabHeaders } from "./tab-headers.component";
 	template: `
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
+				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[followFocus]="followFocus"
 				[cacheActive]="cacheActive">
@@ -48,6 +49,7 @@ import { TabHeaders } from "./tab-headers.component";
 			<ng-content></ng-content>
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
+				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
 			</ibm-tab-headers>
@@ -71,6 +73,10 @@ export class Tabs implements AfterContentInit {
 	 * @memberof Tabs
 	 */
 	@Input() followFocus = true;
+	/**
+	 * Set to `true` for a loading table.
+	 */
+	@Input() skeleton = false;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
