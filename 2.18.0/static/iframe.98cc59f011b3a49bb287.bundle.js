@@ -16086,6 +16086,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  */
 var ListColumn = /** @class */ (function () {
     function ListColumn() {
+        this.skeleton = false;
         this.isHeaderColumn = true;
         this.isBodyColumn = true;
         /**
@@ -16093,6 +16094,10 @@ var ListColumn = /** @class */ (function () {
          */
         this.nowrap = false;
     }
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], ListColumn.prototype, "skeleton", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--structured-list-th"),
         __metadata("design:type", Object)
@@ -16108,7 +16113,7 @@ var ListColumn = /** @class */ (function () {
     ListColumn = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-list-column",
-            template: "<ng-content></ng-content>"
+            template: "\n\t\t<span *ngIf=\"skeleton\"></span>\n\t\t<ng-content></ng-content>\n\t"
         })
     ], ListColumn);
     return ListColumn;
@@ -16160,18 +16165,42 @@ var ListHeader = /** @class */ (function () {
          * Set by the containing `StructuredList`. Adds a dummy header for the selection column when set to true.
          */
         this.selection = false;
+        this._skeleton = false;
     }
+    Object.defineProperty(ListHeader.prototype, "skeleton", {
+        get: function () {
+            return this._skeleton;
+        },
+        set: function (value) {
+            this._skeleton = value;
+            this.updateChildren();
+        },
+        enumerable: true,
+        configurable: true
+    });
     ListHeader.prototype.ngAfterContentInit = function () {
         this.columns.forEach(function (column) {
             column.isBodyColumn = false;
             column.isHeaderColumn = true;
         });
+        this.updateChildren();
+    };
+    ListHeader.prototype.updateChildren = function () {
+        var _this = this;
+        if (this.columns) {
+            this.columns.toArray().forEach(function (child) { return child.skeleton = _this.skeleton; });
+        }
     };
     var _a;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--structured-list-thead"),
         __metadata("design:type", Object)
     ], ListHeader.prototype, "wrapper", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], ListHeader.prototype, "skeleton", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChildren"])(_list_column_component__WEBPACK_IMPORTED_MODULE_1__["ListColumn"]),
         __metadata("design:type", typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"]) === "function" && _a || Object)
@@ -16431,10 +16460,28 @@ var StructuredList = /** @class */ (function () {
          * ```
          */
         this.selected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._skeleton = false;
         this.onChange = function (_) { };
         this.onTouched = function () { };
     }
     StructuredList_1 = StructuredList;
+    Object.defineProperty(StructuredList.prototype, "skeleton", {
+        /**
+         * Returns the skeleton value in the `StructuredList` if there is one.
+         */
+        get: function () {
+            return this._skeleton;
+        },
+        /**
+         * Sets the skeleton value for all `ListHeader` to the skeleton value of `StructuredList`.
+         */
+        set: function (value) {
+            this._skeleton = value;
+            this.updateChildren();
+        },
+        enumerable: true,
+        configurable: true
+    });
     StructuredList.prototype.ngAfterContentInit = function () {
         var _this = this;
         var setSelection = function (rowOrHeader) {
@@ -16453,6 +16500,7 @@ var StructuredList = /** @class */ (function () {
                 _this.onChange(row.value);
             });
         });
+        this.updateChildren();
     };
     StructuredList.prototype.writeValue = function (value) {
         if (!this.rows) {
@@ -16472,6 +16520,12 @@ var StructuredList = /** @class */ (function () {
     };
     StructuredList.prototype.registerOnTouched = function (fn) {
         this.onTouched = fn;
+    };
+    StructuredList.prototype.updateChildren = function () {
+        var _this = this;
+        if (this.headers) {
+            this.headers.toArray().forEach(function (child) { return child.skeleton = _this.skeleton; });
+        }
     };
     var StructuredList_1, _a, _b, _c;
     /**
@@ -16499,6 +16553,11 @@ var StructuredList = /** @class */ (function () {
         __metadata("design:type", Object)
     ], StructuredList.prototype, "name", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], StructuredList.prototype, "skeleton", null);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _a || Object)
     ], StructuredList.prototype, "selected", void 0);
@@ -16513,7 +16572,7 @@ var StructuredList = /** @class */ (function () {
     StructuredList = StructuredList_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-structured-list",
-            template: "\n\t\t<section\n\t\t\tclass=\"bx--structured-list\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--structured-list--border': border,\n\t\t\t\t'bx--structured-list--selection': selection,\n\t\t\t\t'bx--structured-list--condensed': condensed,\n\t\t\t\t'bx--structured-list-content--nowrap': nowrap\n\t\t\t}\">\n\t\t\t<ng-content select=\"ibm-list-header\"></ng-content>\n\t\t\t<div class=\"bx--structured-list-tbody\">\n\t\t\t\t<ng-content></ng-content>\n\t\t\t</div>\n\t\t</section>\n\t",
+            template: "\n\t\t<section\n\t\t\tclass=\"bx--structured-list\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--structured-list--border': border,\n\t\t\t\t'bx--structured-list--selection': selection,\n\t\t\t\t'bx--structured-list--condensed': condensed,\n\t\t\t\t'bx--structured-list-content--nowrap': nowrap,\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<ng-content select=\"ibm-list-header\"></ng-content>\n\t\t\t<div class=\"bx--structured-list-tbody\">\n\t\t\t\t<ng-content></ng-content>\n\t\t\t</div>\n\t\t</section>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NG_VALUE_ACCESSOR"],
@@ -16613,8 +16672,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs';\n\nimport { StructuredListModule } from '../';\n\nstoriesOf('Structured List', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [StructuredListModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-structured-list [border]=\"border\" [condensed]=\"condensed\" [nowrap]=\"nowrap\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>Column 3</ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column>Row 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row One</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column>Row 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row Two</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t`,\n    props: {\n      border: boolean('border', false),\n      condensed: boolean('condensed', false),\n      nowrap: boolean('nowrap', false),\n    },\n  }))\n  .add('With selection', () => ({\n    template: `\n\t\t\t<ibm-structured-list\n\t\t\t\t[border]=\"border\"\n\t\t\t\t[condensed]=\"condensed\"\n\t\t\t\t[nowrap]=\"nowrap\"\n\t\t\t\tselection=\"true\"\n\t\t\t\t(selected)=\"selected($event)\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>Column 3</ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row value=\"row1\">\n\t\t\t\t\t<ibm-list-column>Row 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row One</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row value=\"row2\">\n\t\t\t\t\t<ibm-list-column>Row 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row Two</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t`,\n    props: {\n      selected: action('row selected'),\n      border: boolean('border', false),\n      condensed: boolean('condensed', false),\n      nowrap: boolean('nowrap', false),\n    },\n  }))\n  .add('With ngModel', () => ({\n    template: `\n\t\t\t<ibm-structured-list\n\t\t\t\t[border]=\"border\"\n\t\t\t\t[condensed]=\"condensed\"\n\t\t\t\t[nowrap]=\"nowrap\"\n\t\t\t\tselection=\"true\"\n\t\t\t\t[(ngModel)]=\"valueSelected\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>Column 3</ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row value=\"row1\">\n\t\t\t\t\t<ibm-list-column>Row 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row One</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row value=\"row2\">\n\t\t\t\t\t<ibm-list-column>Row 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row Two</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t\t<p>{{valueSelected}}</p>\n\t\t`,\n    props: {\n      border: boolean('border', false),\n      condensed: boolean('condensed', false),\n      nowrap: boolean('nowrap', false),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Structured List@With ngModel": { "startLoc": { "col": 7, "line": 96 }, "endLoc": { "col": 4, "line": 139 } }, "Structured List@With selection": { "startLoc": { "col": 7, "line": 52 }, "endLoc": { "col": 4, "line": 95 } }, "Structured List@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 51 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs';\n\nimport { StructuredListModule } from '../';\n\nstoriesOf('Structured List', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [StructuredListModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-structured-list [border]=\"border\" [condensed]=\"condensed\" [nowrap]=\"nowrap\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>Column 3</ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column>Row 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row One</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column>Row 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row Two</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t`,\n    props: {\n      border: boolean('border', false),\n      condensed: boolean('condensed', false),\n      nowrap: boolean('nowrap', false),\n    },\n  }))\n  .add('With selection', () => ({\n    template: `\n\t\t\t<ibm-structured-list\n\t\t\t\t[border]=\"border\"\n\t\t\t\t[condensed]=\"condensed\"\n\t\t\t\t[nowrap]=\"nowrap\"\n\t\t\t\tselection=\"true\"\n\t\t\t\t(selected)=\"selected($event)\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>Column 3</ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row value=\"row1\">\n\t\t\t\t\t<ibm-list-column>Row 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row One</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row value=\"row2\">\n\t\t\t\t\t<ibm-list-column>Row 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row Two</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t`,\n    props: {\n      selected: action('row selected'),\n      border: boolean('border', false),\n      condensed: boolean('condensed', false),\n      nowrap: boolean('nowrap', false),\n    },\n  }))\n  .add('With ngModel', () => ({\n    template: `\n\t\t\t<ibm-structured-list\n\t\t\t\t[border]=\"border\"\n\t\t\t\t[condensed]=\"condensed\"\n\t\t\t\t[nowrap]=\"nowrap\"\n\t\t\t\tselection=\"true\"\n\t\t\t\t[(ngModel)]=\"valueSelected\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Column 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>Column 3</ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row value=\"row1\">\n\t\t\t\t\t<ibm-list-column>Row 1</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row One</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row value=\"row2\">\n\t\t\t\t\t<ibm-list-column>Row 2</ibm-list-column>\n\t\t\t\t\t<ibm-list-column nowrap=\"true\">Row Two</ibm-list-column>\n\t\t\t\t\t<ibm-list-column>\n\t\t\t\t\t\tLorem ipsum dolor sit amet,\n\t\t\t\t\t\tconsectetur adipiscing elit. Nunc dui magna,\n\t\t\t\t\t\tfinibus id tortor sed, aliquet bibendum augue.\n\t\t\t\t\t\tAenean posuere sem vel euismod dignissim. Nulla ut cursus dolor.\n\t\t\t\t\t\tPellentesque vulputate nisl a porttitor interdum.\n\t\t\t\t\t</ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t\t<p>{{valueSelected}}</p>\n\t\t`,\n    props: {\n      border: boolean('border', false),\n      condensed: boolean('condensed', false),\n      nowrap: boolean('nowrap', false),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 800px\">\n\t\t\t<ibm-structured-list skeleton=\"true\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\n\t\t\t<ibm-structured-list skeleton=\"true\" border=\"true\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t</div>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Structured List@Skeleton": { "startLoc": { "col": 7, "line": 140 }, "endLoc": { "col": 4, "line": 180 } }, "Structured List@With ngModel": { "startLoc": { "col": 7, "line": 96 }, "endLoc": { "col": 4, "line": 139 } }, "Structured List@With selection": { "startLoc": { "col": 7, "line": 52 }, "endLoc": { "col": 4, "line": 95 } }, "Structured List@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 51 } } };
 
 
 
@@ -16647,6 +16706,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Structured
         condensed: Object(_storybook_addon_knobs__WEBPACK_IMPORTED_MODULE_2__["boolean"])("condensed", false),
         nowrap: Object(_storybook_addon_knobs__WEBPACK_IMPORTED_MODULE_2__["boolean"])("nowrap", false)
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<div style=\"width: 800px\">\n\t\t\t<ibm-structured-list skeleton=\"true\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\n\t\t\t<ibm-structured-list skeleton=\"true\" border=\"true\">\n\t\t\t\t<ibm-list-header>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-header>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t\t<ibm-list-row>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t\t<ibm-list-column></ibm-list-column>\n\t\t\t\t</ibm-list-row>\n\t\t\t</ibm-structured-list>\n\t\t</div>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20156,4 +20218,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.180ca4dc699be82223c8.bundle.js.map
+//# sourceMappingURL=iframe.98cc59f011b3a49bb287.bundle.js.map
