@@ -57,7 +57,8 @@ export class ToggleChange {
 			class="bx--toggle"
 			type="checkbox"
 			[ngClass]="{
-				'bx--toggle--small': size === 'sm'
+				'bx--toggle--small': size === 'sm',
+				'bx--skeleton': skeleton
 			}"
 			[id]="id"
 			[value]="value"
@@ -68,12 +69,25 @@ export class ToggleChange {
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
-		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
-			<span class="bx--toggle__text--left">Off</span>
+		<label
+			*ngIf="size === 'md'"
+			class="bx--toggle__label"
+			[for]="id"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}">
+			<span class="bx--toggle__text--left">{{ !skeleton ? "Off" : null }}</span>
 			<span class="bx--toggle__appearance"></span>
-			<span class="bx--toggle__text--right">On</span>
+			<span class="bx--toggle__text--right">{{ !skeleton ? "On" : null }}</span>
 		</label>
-		<label *ngIf="size === 'sm'" class="bx--toggle__label" [for]="id">
+
+		<label
+			*ngIf="size === 'sm'"
+			class="bx--toggle__label"
+			[for]="id"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}">
 			<span class="bx--toggle__appearance">
 				<svg class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
 					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
@@ -104,6 +118,12 @@ export class Toggle extends Checkbox {
 	 * @memberof Toggle
 	 */
 	@Input() size: "sm" | "md" = "md";
+	/**
+	 * Set to `true` for a loading toggle.
+	 * @type {(boolean)}
+	 * @memberof Toggle
+	 */
+	@Input() skeleton = false;
 
 	/**
 	 * The unique id allocated to the `Toggle`.
