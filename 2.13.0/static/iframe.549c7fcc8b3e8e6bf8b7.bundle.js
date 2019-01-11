@@ -19676,6 +19676,12 @@ var Toggle = /** @class */ (function (_super) {
          */
         _this.size = "md";
         /**
+         * Set to `true` for a loading toggle.
+         * @type {(boolean)}
+         * @memberof Toggle
+         */
+        _this.skeleton = false;
+        /**
          * The unique id allocated to the `Toggle`.
          * @type {string}
          * @memberof Toggle
@@ -19714,13 +19720,17 @@ var Toggle = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], Toggle.prototype, "size", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        __metadata("design:type", Object)
+    ], Toggle.prototype, "skeleton", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         __metadata("design:type", Object)
     ], Toggle.prototype, "change", void 0);
     Toggle = Toggle_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "ibm-toggle",
-            template: "\n\t\t<input\n\t\t\tclass=\"bx--toggle\"\n\t\t\ttype=\"checkbox\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--toggle--small': size === 'sm'\n\t\t\t}\"\n\t\t\t[id]=\"id\"\n\t\t\t[value]=\"value\"\n\t\t\t[name]=\"name\"\n\t\t\t[required]=\"required\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[attr.aria-checked]=\"checked\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\">\n\t\t<label *ngIf=\"size === 'md'\" class=\"bx--toggle__label\" [for]=\"id\">\n\t\t\t<span class=\"bx--toggle__text--left\">Off</span>\n\t\t\t<span class=\"bx--toggle__appearance\"></span>\n\t\t\t<span class=\"bx--toggle__text--right\">On</span>\n\t\t</label>\n\t\t<label *ngIf=\"size === 'sm'\" class=\"bx--toggle__label\" [for]=\"id\">\n\t\t\t<span class=\"bx--toggle__appearance\">\n\t\t\t\t<svg class=\"bx--toggle__check\" width=\"6px\" height=\"5px\" viewBox=\"0 0 6 5\">\n\t\t\t\t\t<path d=\"M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z\"/>\n\t\t\t\t</svg>\n\t\t\t</span>\n\t\t</label>\n\t",
+            template: "\n\t\t<input\n\t\t\tclass=\"bx--toggle\"\n\t\t\ttype=\"checkbox\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--toggle--small': size === 'sm',\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\"\n\t\t\t[id]=\"id\"\n\t\t\t[value]=\"value\"\n\t\t\t[name]=\"name\"\n\t\t\t[required]=\"required\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[attr.aria-checked]=\"checked\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\">\n\t\t<label\n\t\t\t*ngIf=\"size === 'md'\"\n\t\t\tclass=\"bx--toggle__label\"\n\t\t\t[for]=\"id\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<span class=\"bx--toggle__text--left\">{{ !skeleton ? \"Off\" : null }}</span>\n\t\t\t<span class=\"bx--toggle__appearance\"></span>\n\t\t\t<span class=\"bx--toggle__text--right\">{{ !skeleton ? \"On\" : null }}</span>\n\t\t</label>\n\n\t\t<label\n\t\t\t*ngIf=\"size === 'sm'\"\n\t\t\tclass=\"bx--toggle__label\"\n\t\t\t[for]=\"id\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<span class=\"bx--toggle__appearance\">\n\t\t\t\t<svg class=\"bx--toggle__check\" width=\"6px\" height=\"5px\" viewBox=\"0 0 6 5\">\n\t\t\t\t\t<path d=\"M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z\"/>\n\t\t\t\t</svg>\n\t\t\t</span>\n\t\t</label>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
@@ -19810,8 +19820,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select } from '@storybook/addon-knobs/angular';\n\nimport { ToggleModule } from '../';\n\nstoriesOf('Toggle', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ToggleModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\" [size]=\"size\"></ibm-toggle>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      checked: boolean('checked', false),\n      size: select('size', ['md', 'sm'], 'md'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Toggle@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 22 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select } from '@storybook/addon-knobs/angular';\n\nimport { ToggleModule } from '../';\n\nstoriesOf('Toggle', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ToggleModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-toggle [disabled]=\"disabled\" [checked]=\"checked\" [size]=\"size\"></ibm-toggle>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      checked: boolean('checked', false),\n      size: select('size', ['md', 'sm'], 'md'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<ibm-toggle skeleton=\"true\"></ibm-toggle>\n\t\t\t&nbsp;\n\t\t\t<ibm-toggle skeleton=\"true\" size=\"sm\"></ibm-toggle>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Toggle@Skeleton": { "startLoc": { "col": 7, "line": 23 }, "endLoc": { "col": 4, "line": 29 } }, "Toggle@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 22 } } };
 
 
 
@@ -19826,6 +19836,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Toggle", m
         checked: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("checked", false),
         size: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("size", ["md", "sm"], "md")
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t\t<ibm-toggle skeleton=\"true\"></ibm-toggle>\n\t\t\t&nbsp;\n\t\t\t<ibm-toggle skeleton=\"true\" size=\"sm\"></ibm-toggle>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20091,4 +20104,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.334d8029138b4bb18f90.bundle.js.map
+//# sourceMappingURL=iframe.549c7fcc8b3e8e6bf8b7.bundle.js.map
