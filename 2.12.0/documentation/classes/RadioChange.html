@@ -374,6 +374,22 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
+	 * Returns the skeleton value in the &#x60;RadioGroup&#x60; if there is one.
+	 */
+	@Input()
+	get skeleton(): any {
+		return this._skeleton;
+	}
+
+	/**
+	 * Sets the skeleton value for all &#x60;Radio&#x60; to the skeleton value of &#x60;RadioGroup&#x60;.
+	 */
+	set skeleton(value: any) {
+		this._skeleton &#x3D; value;
+		this.updateChildren();
+	}
+
+	/**
 	 * Binds &#x27;radiogroup&#x27; value to the role attribute for &#x60;RadioGroup&#x60;.
 	 */
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;radiogroup&quot;;
@@ -391,6 +407,10 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * Reflects whether or not the input is disabled and cannot be selected.
 	 */
 	protected _disabled &#x3D; false;
+	/**
+	 * Reflects wheather or not the dropdown is loading.
+	 */
+	protected _skeleton &#x3D; false;
 	/**
 	 * The value of the selected option within the &#x60;RadioGroup&#x60;.
 	 */
@@ -511,6 +531,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 			this.radios &#x3D; updatedRadios;
 			this.updateFocusableRadio();
 		});
+
+		this.updateChildren();
 	}
 
 	updateFocusableRadio() {
@@ -548,6 +570,12 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * Method set in registerOnChange to propagate changes back to the form.
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
+
+	protected updateChildren() {
+		if (this.radios) {
+			this.radios.toArray().forEach(child &#x3D;&gt; child.skeleton &#x3D; this.skeleton);
+		}
+	}
 }
 </code></pre>
     </div>

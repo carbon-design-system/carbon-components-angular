@@ -14668,6 +14668,10 @@ var RadioGroup = /** @class */ (function () {
          */
         this._disabled = false;
         /**
+         * Reflects wheather or not the dropdown is loading.
+         */
+        this._skeleton = false;
+        /**
          * The value of the selected option within the `RadioGroup`.
          */
         this._value = null;
@@ -14764,6 +14768,23 @@ var RadioGroup = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(RadioGroup.prototype, "skeleton", {
+        /**
+         * Returns the skeleton value in the `RadioGroup` if there is one.
+         */
+        get: function () {
+            return this._skeleton;
+        },
+        /**
+         * Sets the skeleton value for all `Radio` to the skeleton value of `RadioGroup`.
+         */
+        set: function (value) {
+            this._skeleton = value;
+            this.updateChildren();
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Updates the selected `Radio` to be checked (selected).
      */
@@ -14856,6 +14877,7 @@ var RadioGroup = /** @class */ (function () {
             _this.radios = updatedRadios;
             _this.updateFocusableRadio();
         });
+        this.updateChildren();
     };
     RadioGroup.prototype.updateFocusableRadio = function () {
         if (this.radios && !this.radios.some(function (radio) { return radio.checked; })) {
@@ -14880,6 +14902,12 @@ var RadioGroup = /** @class */ (function () {
      */
     RadioGroup.prototype.registerOnTouched = function (fn) {
         this.onTouched = fn;
+    };
+    RadioGroup.prototype.updateChildren = function () {
+        var _this = this;
+        if (this.radios) {
+            this.radios.toArray().forEach(function (child) { return child.skeleton = _this.skeleton; });
+        }
     };
     var RadioGroup_1, _a, _b, _c, _d, _e, _f;
     /**
@@ -14918,6 +14946,11 @@ var RadioGroup = /** @class */ (function () {
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], RadioGroup.prototype, "disabled", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], RadioGroup.prototype, "skeleton", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("attr.role"),
         __metadata("design:type", Object)
@@ -15020,6 +15053,10 @@ var Radio = /** @class */ (function (_super) {
         _this.changeDetectorRef = changeDetectorRef;
         _this.elementRef = elementRef;
         _this.renderer = renderer;
+        /**
+         * Set to `true` for a loading table.
+         */
+        _this.skeleton = false;
         /**
          * Binds 'radio' value to the role attribute for `Radio`.
          * @memberof Radio
@@ -15130,6 +15167,10 @@ var Radio = /** @class */ (function (_super) {
     Radio.radioCount = 0;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Radio.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], Radio.prototype, "value", null);
@@ -15140,7 +15181,7 @@ var Radio = /** @class */ (function (_super) {
     Radio = Radio_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-radio",
-            template: "\n\t\t<input\n\t\t\tclass=\"bx--radio-button\"\n\t\t\ttype=\"radio\"\n\t\t\t#inputCheckbox\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[name]=\"name\"\n\t\t\t[id]=\"id\"\n\t\t\t[required]=\"required\"\n\t\t\t[value]=\"value\"\n\t\t\t[attr.aria-label]=\"ariaLabel\"\n\t\t\t[attr.aria-labelledby]=\"ariaLabelledby\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\"\n\t\t\t[tabindex]=\"(checked || needsToBeFocusable ? 0 : -1)\">\n\t\t<label\n\t\t\tclass=\"bx--radio-button__label\"\n\t\t\t[for]=\"id\">\n\t\t\t<span class=\"bx--radio-button__appearance\"></span>\n\t\t\t<ng-content></ng-content>\n\t\t</label>\n\t",
+            template: "\n\t\t<input\n\t\t\t*ngIf=\"!skeleton\"\n\t\t\tclass=\"bx--radio-button\"\n\t\t\ttype=\"radio\"\n\t\t\t#inputCheckbox\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[name]=\"name\"\n\t\t\t[id]=\"id\"\n\t\t\t[required]=\"required\"\n\t\t\t[value]=\"value\"\n\t\t\t[attr.aria-label]=\"ariaLabel\"\n\t\t\t[attr.aria-labelledby]=\"ariaLabelledby\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\"\n\t\t\t[tabindex]=\"(checked || needsToBeFocusable ? 0 : -1)\">\n\t\t<div *ngIf=\"skeleton\" class=\"bx--radio-button bx--skeleton\"></div>\n\t\t<label\n\t\t\tclass=\"bx--radio-button__label\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\"\n\t\t\t[for]=\"id\">\n\t\t\t<span class=\"bx--radio-button__appearance\"></span>\n\t\t\t<ng-content></ng-content>\n\t\t</label>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -15240,8 +15281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { RadioModule } from '../';\n\nstoriesOf('Radio', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [RadioModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-radio-group aria-label=\"radiogroup\" [(ngModel)]=\"radio\" (change)=\"onChange($event)\">\n\t\t\t<ibm-radio *ngFor=\"let radio of manyRadios\"\n\t\t\t\t[value]=\"radio.num\"\n\t\t\t\t[disabled]=\"radio.disabled\">{{radio.num}}\n\t\t\t</ibm-radio>\n\t\t</ibm-radio-group>\n\t\t`,\n    props: {\n      onChange: action('Radio change'),\n      manyRadios: [{ num: 'one', disabled: false }, { num: 'two' }, { num: 'three' }, { num: 'four' }],\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Radio@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 27 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { RadioModule } from '../';\n\nstoriesOf('Radio', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [RadioModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-radio-group aria-label=\"radiogroup\" [(ngModel)]=\"radio\" (change)=\"onChange($event)\">\n\t\t\t<ibm-radio *ngFor=\"let radio of manyRadios\"\n\t\t\t\t[value]=\"radio.num\"\n\t\t\t\t[disabled]=\"radio.disabled\">{{radio.num}}\n\t\t\t</ibm-radio>\n\t\t</ibm-radio-group>\n\t\t`,\n    props: {\n      onChange: action('Radio change'),\n      manyRadios: [{ num: 'one', disabled: false }, { num: 'two' }, { num: 'three' }, { num: 'four' }],\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<ibm-radio-group skeleton=\"true\">\n\t\t\t<ibm-radio></ibm-radio>\n\t\t</ibm-radio-group>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Radio@Skeleton": { "startLoc": { "col": 7, "line": 28 }, "endLoc": { "col": 4, "line": 34 } }, "Radio@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 27 } } };
 
 
 
@@ -15261,6 +15302,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Radio", mo
             { num: "four" }
         ]
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<ibm-radio-group skeleton=\"true\">\n\t\t\t<ibm-radio></ibm-radio>\n\t\t</ibm-radio-group>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20047,4 +20091,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.fd0b2f071b446703ce7b.bundle.js.map
+//# sourceMappingURL=iframe.334d8029138b4bb18f90.bundle.js.map
