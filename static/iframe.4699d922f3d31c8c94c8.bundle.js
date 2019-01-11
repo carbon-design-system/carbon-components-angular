@@ -14496,15 +14496,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var ProgressIndicator = /** @class */ (function () {
     function ProgressIndicator() {
         this.steps = [];
+        this.skeleton = false;
     }
+    ProgressIndicator.skeletonSteps = function (stepCount) {
+        var steps = [];
+        for (var i = 0; i < stepCount; i++) {
+            steps.push({ "state": ["incomplete"] });
+        }
+        return steps;
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], ProgressIndicator.prototype, "steps", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], ProgressIndicator.prototype, "skeleton", void 0);
     ProgressIndicator = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-progress-indicator",
-            template: "\n\t<ul data-progress data-progress-current class=\"bx--progress\">\n\t\t<li\n\t\tclass=\"bx--progress-step bx--progress-step--{{step.state}}\"\n\t\t*ngFor=\"let step of steps; let i = index\">\n\t\t\t<svg *ngIf=\"step.state == 'complete'\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\">\n\t\t\t\t<g fill-rule=\"nonzero\">\n\t\t\t\t\t<path d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"/>\n\t\t\t\t\t<path d=\"M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z\"/>\n\t\t\t\t</g>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'current'\">\n\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"6\"></circle>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'incomplete'\">\n\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t</svg>\n\t\t\t<p class=\"bx--progress-label\">{{step.text}}</p>\n\t\t\t<span class=\"bx--progress-line\"></span>\n\t\t</li>\n\t</ul>\n\t"
+            template: "\n\t<ul\n\t\tdata-progress\n\t\tdata-progress-current\n\t\tclass=\"bx--progress\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--skeleton': skeleton\n\t\t}\">\n\t\t<li\n\t\tclass=\"bx--progress-step bx--progress-step--{{step.state}}\"\n\t\t*ngFor=\"let step of steps; let i = index\">\n\t\t\t<svg *ngIf=\"step.state == 'complete'\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\">\n\t\t\t\t<g fill-rule=\"nonzero\">\n\t\t\t\t\t<path d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"/>\n\t\t\t\t\t<path d=\"M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z\"/>\n\t\t\t\t</g>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'current'\">\n\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"6\"></circle>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'incomplete'\">\n\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t</svg>\n\t\t\t<p class=\"bx--progress-label\">{{step.text}}</p>\n\t\t\t<span class=\"bx--progress-line\"></span>\n\t\t</li>\n\t</ul>\n\t"
         })
     ], ProgressIndicator);
     return ProgressIndicator;
@@ -14569,24 +14581,60 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "withStorySource", function() { return withStorySource; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__STORY__", function() { return __STORY__; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__ADDS_MAP__", function() { return __ADDS_MAP__; });
-/* harmony import */ var _storybook_angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @storybook/angular */ "./node_modules/@storybook/angular/dist/client/index.js");
-/* harmony import */ var _storybook_angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @storybook/addon-knobs/angular */ "./node_modules/@storybook/addon-knobs/angular.js");
-/* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _storybook_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @storybook/angular */ "./node_modules/@storybook/angular/dist/client/index.js");
+/* harmony import */ var _storybook_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_angular__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @storybook/addon-knobs/angular */ "./node_modules/@storybook/addon-knobs/angular.js");
+/* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ */ "./src/index.ts");
+/* harmony import */ var _progress_indicator_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./progress-indicator.component */ "./src/progress-indicator/progress-indicator.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { ProgressIndicatorModule } from '../';\n\nstoriesOf('ProgressIndicator', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ProgressIndicatorModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-progress-indicator [steps]=\"steps\">\n\t\t</ibm-progress-indicator>\n\t\t`,\n    props: {\n      steps: [\n        {\n          text: '1. ONE',\n          state: ['complete'],\n        },\n        {\n          text: '2. TWO',\n          state: ['complete'],\n        },\n        {\n          text: '3. THREE',\n          state: ['current'],\n        },\n        {\n          text: '4. FOUR',\n          state: ['incomplete'],\n        },\n        {\n          text: '5. FIVE',\n          state: ['incomplete'],\n        },\n        {\n          text: '6. SIX',\n          state: ['incomplete'],\n        },\n      ],\n    },\n  }));\n";
-var __ADDS_MAP__ = { "ProgressIndicator@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 48 } } };
+var __STORY__ = "import { Component, Input, OnInit } from '@angular/core';\nimport { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { ProgressIndicatorModule } from '../';\nimport { ProgressIndicator } from './progress-indicator.component';\n\n@Component({\n  selector: 'app-skeleton-progress-indicator',\n  template: `\n    <ibm-progress-indicator [steps]=\"skeletonSteps\" skeleton=\"true\"> </ibm-progress-indicator>\n  `,\n})\nclass SkeletonStory implements OnInit {\n  @Input() skeletonSteps = [];\n\n  ngOnInit() {\n    // Creates an empty progress indicator with 4 steps\n    this.skeletonSteps = ProgressIndicator.skeletonSteps(4);\n  }\n}\n\nstoriesOf('ProgressIndicator', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ProgressIndicatorModule],\n      declarations: [SkeletonStory],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-progress-indicator [steps]=\"steps\">\n\t\t</ibm-progress-indicator>\n\t\t`,\n    props: {\n      steps: [\n        {\n          text: '1. ONE',\n          state: ['complete'],\n        },\n        {\n          text: '2. TWO',\n          state: ['complete'],\n        },\n        {\n          text: '3. THREE',\n          state: ['current'],\n        },\n        {\n          text: '4. FOUR',\n          state: ['incomplete'],\n        },\n        {\n          text: '5. FIVE',\n          state: ['incomplete'],\n        },\n        {\n          text: '6. SIX',\n          state: ['incomplete'],\n        },\n      ],\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<app-skeleton-progress-indicator></app-skeleton-progress-indicator>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "ProgressIndicator@Skeleton": { "startLoc": { "col": 7, "line": 67 }, "endLoc": { "col": 4, "line": 71 } }, "ProgressIndicator@Basic": { "startLoc": { "col": 7, "line": 33 }, "endLoc": { "col": 4, "line": 66 } } };
 
 
 
-Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("ProgressIndicator", module).addDecorator(withStorySource(__STORY__, __ADDS_MAP__))
-    .addDecorator(Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["moduleMetadata"])({
+
+
+var SkeletonStory = /** @class */ (function () {
+    function SkeletonStory() {
+        this.skeletonSteps = [];
+    }
+    SkeletonStory.prototype.ngOnInit = function () {
+        // Creates an empty progress indicator with 4 steps
+        this.skeletonSteps = _progress_indicator_component__WEBPACK_IMPORTED_MODULE_4__["ProgressIndicator"].skeletonSteps(4);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], SkeletonStory.prototype, "skeletonSteps", void 0);
+    SkeletonStory = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: "app-skeleton-progress-indicator",
+            template: "\n\t\t<ibm-progress-indicator [steps]=\"skeletonSteps\" skeleton=\"true\">\n\t\t</ibm-progress-indicator>\n\t"
+        })
+    ], SkeletonStory);
+    return SkeletonStory;
+}());
+Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_1__["storiesOf"])("ProgressIndicator", module).addDecorator(withStorySource(__STORY__, __ADDS_MAP__))
+    .addDecorator(Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_1__["moduleMetadata"])({
     imports: [
-        ___WEBPACK_IMPORTED_MODULE_2__["ProgressIndicatorModule"]
+        ___WEBPACK_IMPORTED_MODULE_3__["ProgressIndicatorModule"]
+    ],
+    declarations: [
+        SkeletonStory
     ]
 }))
-    .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
+    .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__["withKnobs"])
     .add("Basic", function () { return ({
     template: "\n\t\t<ibm-progress-indicator [steps]=\"steps\">\n\t\t</ibm-progress-indicator>\n\t\t",
     props: {
@@ -14617,6 +14665,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("ProgressIn
             }
         ]
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<app-skeleton-progress-indicator></app-skeleton-progress-indicator>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20218,4 +20269,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.98cc59f011b3a49bb287.bundle.js.map
+//# sourceMappingURL=iframe.4699d922f3d31c8c94c8.bundle.js.map
