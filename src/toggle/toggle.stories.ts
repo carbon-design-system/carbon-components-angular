@@ -18,4 +18,11 @@ storiesOf("Toggle", module).addDecorator(
 			checked: boolean("checked", false),
 			size: select("size", ["md", "sm"], "md")
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+			<ibm-toggle skeleton="true"></ibm-toggle>
+			&nbsp;
+			<ibm-toggle skeleton="true" size="sm"></ibm-toggle>
+		`
 	}));
