@@ -28,4 +28,11 @@ storiesOf("Radio", module).addDecorator(
 				{ num: "four" }
 			]
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<ibm-radio-group skeleton="true">
+			<ibm-radio></ibm-radio>
+		</ibm-radio-group>
+		`
 	}));
