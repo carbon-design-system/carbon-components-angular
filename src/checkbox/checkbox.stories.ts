@@ -28,4 +28,7 @@ storiesOf("Checkbox", module).addDecorator(
 			onChange: action("Change fired!"),
 			onIndeterminateChange: action("Indeterminate change fired!")
 		}
-	}));
+	}))
+	.add("Skeleton", () => ({
+		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`
+}));
