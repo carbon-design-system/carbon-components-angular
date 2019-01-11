@@ -13015,6 +13015,10 @@ var Number = /** @class */ (function () {
          */
         this.disabled = false;
         /**
+         * Set to `true` for a loading number component.
+         */
+        this.skeleton = false;
+        /**
          * The unique id for the number component.
          */
         this.id = "number-" + Number_1.numberCount;
@@ -13109,6 +13113,10 @@ var Number = /** @class */ (function () {
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
+    ], Number.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
     ], Number.prototype, "id", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -13141,7 +13149,7 @@ var Number = /** @class */ (function () {
     Number = Number_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-number",
-            template: "\n\t\t<div\n\t\t\tdata-numberinput\n\t\t\tclass=\"bx--number\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--number--light': theme === 'light',\n\t\t\t\t'bx--number--nolabel': !label,\n\t\t\t\t'bx--number--helpertext': helperText\n\t\t\t}\">\n\t\t\t<label *ngIf=\"label\" [for]=\"id\" class=\"bx--label\">{{label}}</label>\n\t\t\t<input\n\t\t\t\ttype=\"number\"\n\t\t\t\t[id]=\"id\"\n\t\t\t\t[value]=\"value\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[required]=\"required\"/>\n\t\t\t<div class=\"bx--number__controls\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn up-icon\"\n\t\t\t\t\t(click)=\"onIncrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 5L5 .002 10 5z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn down-icon\"\n\t\t\t\t\t(click)=\"onDecrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div *ngIf=\"helperText\" class=\"bx--form__helper-text\">{{helperText}}</div>\n\t\t</div>\n\t",
+            template: "\n\t\t<label *ngIf=\"skeleton && label\" class=\"bx--label bx--skeleton\"></label>\n\t\t<div\n\t\t\tdata-numberinput\n\t\t\tclass=\"bx--number\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--number--light': theme === 'light',\n\t\t\t\t'bx--number--nolabel': !label,\n\t\t\t\t'bx--number--helpertext': helperText,\n\t\t\t\t'bx--skeleton' : skeleton\n\t\t\t}\">\n\t\t\t<label *ngIf=\"!skeleton && label\" [for]=\"id\" class=\"bx--label\">{{label}}</label>\n\t\t\t<input\n\t\t\t\ttype=\"number\"\n\t\t\t\t[id]=\"id\"\n\t\t\t\t[value]=\"value\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[required]=\"required\"/>\n\t\t\t<div *ngIf=\"!skeleton\" class=\"bx--number__controls\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn up-icon\"\n\t\t\t\t\t(click)=\"onIncrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 5L5 .002 10 5z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn down-icon\"\n\t\t\t\t\t(click)=\"onDecrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div *ngIf=\"helperText\" class=\"bx--form__helper-text\">{{helperText}}</div>\n\t\t</div>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -13230,8 +13238,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number, select, text } from '@storybook/addon-knobs/angular';\n\nimport { NumberModule } from '../';\n\nstoriesOf('Number', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NumberModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\t[label]=\"label\"\n\t\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n      helperText: text('helper text', 'Optional helper text here'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Number@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 33 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number, select, text } from '@storybook/addon-knobs/angular';\n\nimport { NumberModule } from '../';\n\nstoriesOf('Number', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NumberModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<div style=\"width: 250px;\">\n\t\t\t\t<ibm-number\n\t\t\t\t\t[label]=\"label\"\n\t\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t\t[theme]=\"theme\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[disabled]=\"disabled\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n      helperText: text('helper text', 'Optional helper text here'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<div style=\"width: 75px;\">\n\t\t\t<ibm-number [label]=\"label\" skeleton=\"true\"></ibm-number>\n\t\t\t</div>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Number@Skeleton": { "startLoc": { "col": 7, "line": 34 }, "endLoc": { "col": 4, "line": 43 } }, "Number@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 33 } } };
 
 
 
@@ -13248,6 +13256,12 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Number", m
         min: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("min", 0),
         max: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("max", 100),
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false)
+    }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t\t<div style=\"width: 75px;\">\n\t\t\t<ibm-number [label]=\"label\" skeleton=\"true\"></ibm-number>\n\t\t\t</div>\n\t\t",
+    props: {
+        label: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("label", "Number Input Label")
     }
 }); });
 
@@ -20123,4 +20137,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.62897b83980308c3fa83.bundle.js.map
+//# sourceMappingURL=iframe.aecf5ef1550b918f43f7.bundle.js.map

@@ -240,15 +240,17 @@ export class NumberChange {
 @Component({
 	selector: &quot;ibm-number&quot;,
 	template: &#x60;
+		&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
 		&lt;div
 			data-numberinput
 			class&#x3D;&quot;bx--number&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
 				&#x27;bx--number--nolabel&#x27;: !label,
-				&#x27;bx--number--helpertext&#x27;: helperText
+				&#x27;bx--number--helpertext&#x27;: helperText,
+				&#x27;bx--skeleton&#x27; : skeleton
 			}&quot;&gt;
-			&lt;label *ngIf&#x3D;&quot;label&quot; [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
+			&lt;label *ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot; [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
 			&lt;input
 				type&#x3D;&quot;number&quot;
 				[id]&#x3D;&quot;id&quot;
@@ -257,7 +259,7 @@ export class NumberChange {
 				[max]&#x3D;&quot;max&quot;
 				[disabled]&#x3D;&quot;disabled&quot;
 				[required]&#x3D;&quot;required&quot;/&gt;
-			&lt;div class&#x3D;&quot;bx--number__controls&quot;&gt;
+			&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
 				&lt;button
 					class&#x3D;&quot;bx--number__control-btn up-icon&quot;
 					(click)&#x3D;&quot;onIncrement()&quot;&gt;
@@ -300,6 +302,10 @@ export class Number implements ControlValueAccessor {
 	 * Set to &#x60;true&#x60; for a disabled number input.
 	 */
 	@Input() disabled &#x3D; false;
+	/**
+	 * Set to &#x60;true&#x60; for a loading number component.
+	 */
+	@Input() skeleton &#x3D; false;
 	/**
 	 * The unique id for the number component.
 	 */
