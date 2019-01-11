@@ -13331,6 +13331,10 @@ var Pagination = /** @class */ (function () {
     function Pagination(i18n) {
         this.i18n = i18n;
         /**
+         * Set to `true` for a loading pagination component.
+         */
+        this.skeleton = false;
+        /**
          * Emits the new page number.
          *
          * You should tie into this and update `model.currentPage` once the fresh
@@ -13484,6 +13488,10 @@ var Pagination = /** @class */ (function () {
     Pagination.paginationCounter = 0;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        __metadata("design:type", Object)
+    ], Pagination.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         __metadata("design:type", typeof (_a = typeof _pagination_module__WEBPACK_IMPORTED_MODULE_0__["PaginationModel"] !== "undefined" && _pagination_module__WEBPACK_IMPORTED_MODULE_0__["PaginationModel"]) === "function" && _a || Object)
     ], Pagination.prototype, "model", void 0);
     __decorate([
@@ -13498,7 +13506,7 @@ var Pagination = /** @class */ (function () {
     Pagination = Pagination_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "ibm-pagination",
-            template: "\n\t<div class=\"bx--pagination\">\n\t\t<div class=\"bx--pagination__left\">\n\t\t\t<span class=\"bx--pagination__text\">{{itemsPerPageText | async}}</span>\n\t\t\t<div class=\"bx--form-item\">\n\t\t\t\t<div class=\"bx--select bx--select--inline\">\n\t\t\t\t\t<label\n\t\t\t\t\t\t[for]=\"itemsPerPageSelectId\"\n\t\t\t\t\t\tclass=\"bx--label bx--visually-hidden\">\n\t\t\t\t\t\t{{itemsPerPageText | async}}\n\t\t\t\t\t</label>\n\t\t\t\t\t<select\n\t\t\t\t\t\t[id]=\"itemsPerPageSelectId\"\n\t\t\t\t\t\t[(ngModel)]=\"itemsPerPage\"\n\t\t\t\t\t\tclass=\"bx--select-input\"\n\t\t\t\t\t\taria-describedby=\"false\">\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"10\">10</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"20\">20</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"30\">30</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"40\">40</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"50\">50</option>\n\t\t\t\t\t</select>\n\t\t\t\t\t<svg\n\t\t\t\t\t\tclass=\"bx--select__arrow\"\n\t\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\t\theight=\"5\"\n\t\t\t\t\t\trole=\"img\"\n\t\t\t\t\t\tviewBox=\"0 0 10 5\"\n\t\t\t\t\t\twidth=\"10\"\n\t\t\t\t\t\t[attr.aria-label]=\"optionsListText | async\"\n\t\t\t\t\t\t[attr.alt]=\"optionsListText | async\">\n\t\t\t\t\t\t<title>{{optionsListText | async}}</title>\n\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<span class=\"bx--pagination__text\">\n\t\t\t\t<span>|&nbsp;</span>\n\t\t\t\t{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}\n\t\t\t</span>\n\t\t</div>\n\t\t<div class=\"bx--pagination__right bx--pagination--inline\">\n\t\t\t<span class=\"bx--pagination__text\">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</span>\n\t\t\t<button\n\t\t\t\tclass=\"bx--pagination__button bx--pagination__button--backward\"\n\t\t\t\t(click)=\"selectPage.emit(previousPage)\"\n\t\t\t\t[disabled]=\"(currentPage <= 1 ? true : null)\">\n\t\t\t\t<svg\n\t\t\t\t\tclass=\"bx--pagination__button-icon\"\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"12\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 7 12\"\n\t\t\t\t\twidth=\"7\"\n\t\t\t\t\t[attr.aria-label]=\"backwardText | async\"\n\t\t\t\t\t[attr.alt]=\"backwardText | async\">\n\t\t\t\t\t<title>{{backwardText |async }}</title>\n\t\t\t\t\t<path d=\"M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z\"></path>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t\t<div class=\"bx--form-item\">\n\t\t\t\t<div class=\"bx--select bx--select--inline\">\n\t\t\t\t<label [for]=\"currentPageSelectId\" class=\"bx--label bx--visually-hidden\">{{itemsPerPageText | async}}</label>\n\t\t\t\t<select [id]=\"currentPageSelectId\" class=\"bx--select-input\" aria-describedby=\"false\" [(ngModel)]=\"currentPage\">\n\t\t\t\t\t<option *ngFor=\"let i of range(lastPage + 1, 1)\" class=\"bx--select-option\" [value]=\"i\">{{i}}</option>\n\t\t\t\t</select>\n\t\t\t\t<svg\n\t\t\t\t\tclass=\"bx--select__arrow\"\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"5\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 10 5\"\n\t\t\t\t\twidth=\"10\"\n\t\t\t\t\t[attr.aria-label]=\"optionsListText | async\"\n\t\t\t\t\t[attr.alt]=\"optionsListText | async\">\n\t\t\t\t\t<title>{{optionsListText | async}}</title>\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</div>\n\t\t<button\n\t\t\tclass=\"bx--pagination__button bx--pagination__button--forward\"\n\t\t\t(click)=\"selectPage.emit(nextPage)\"\n\t\t\t[disabled]=\"(currentPage >= lastPage ? true : null)\">\n\t\t\t<svg\n\t\t\t\tclass=\"bx--pagination__button-icon\"\n\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\theight=\"12\"\n\t\t\t\trole=\"img\"\n\t\t\t\tviewBox=\"0 0 7 12\"\n\t\t\t\twidth=\"7\"\n\t\t\t\t[attr.aria-label]=\"forwardText | async\"\n\t\t\t\t[attr.alt]=\"forwardText | async\">\n\t\t\t\t<title>{{forwardText | async}}</title>\n\t\t\t\t<path d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\"></path>\n\t\t\t</svg>\n\t\t</button>\n\t\t</div>\n\t</div>\n\t"
+            template: "\n\t<div\n\t\tclass=\"bx--pagination\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--skeleton' : skeleton\n\t\t}\">\n\n\t\t<div *ngIf=\"skeleton\" class=\"bx--pagination__left\">\n\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 70px\"></p>\n\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 35px\"></p>\n\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 105px\"></p>\n\t\t</div>\n\n\t\t<div *ngIf=\"!skeleton\" class=\"bx--pagination__left\">\n\t\t\t<span class=\"bx--pagination__text\">{{itemsPerPageText | async}}</span>\n\t\t\t<div class=\"bx--form-item\">\n\t\t\t\t<div class=\"bx--select bx--select--inline\">\n\t\t\t\t\t<label\n\t\t\t\t\t\t[for]=\"itemsPerPageSelectId\"\n\t\t\t\t\t\tclass=\"bx--label bx--visually-hidden\">\n\t\t\t\t\t\t{{itemsPerPageText | async}}\n\t\t\t\t\t</label>\n\t\t\t\t\t<select\n\t\t\t\t\t\t[id]=\"itemsPerPageSelectId\"\n\t\t\t\t\t\t[(ngModel)]=\"itemsPerPage\"\n\t\t\t\t\t\tclass=\"bx--select-input\"\n\t\t\t\t\t\taria-describedby=\"false\">\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"10\">10</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"20\">20</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"30\">30</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"40\">40</option>\n\t\t\t\t\t\t<option class=\"bx--select-option\" value=\"50\">50</option>\n\t\t\t\t\t</select>\n\t\t\t\t\t<svg\n\t\t\t\t\t\tclass=\"bx--select__arrow\"\n\t\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\t\theight=\"5\"\n\t\t\t\t\t\trole=\"img\"\n\t\t\t\t\t\tviewBox=\"0 0 10 5\"\n\t\t\t\t\t\twidth=\"10\"\n\t\t\t\t\t\t[attr.aria-label]=\"optionsListText | async\"\n\t\t\t\t\t\t[attr.alt]=\"optionsListText | async\">\n\t\t\t\t\t\t<title>{{optionsListText | async}}</title>\n\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<span class=\"bx--pagination__text\">\n\t\t\t\t<span>|&nbsp;</span>\n\t\t\t\t{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}\n\t\t\t</span>\n\t\t</div>\n\n\t\t<div *ngIf=\"skeleton\" class=\"bx--pagination__right bx--pagination--inline\">\n\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 70px\"></p>\n\t\t</div>\n\n\t\t<div *ngIf=\"!skeleton\" class=\"bx--pagination__right bx--pagination--inline\">\n\t\t\t<span class=\"bx--pagination__text\">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</span>\n\t\t\t<button\n\t\t\t\tclass=\"bx--pagination__button bx--pagination__button--backward\"\n\t\t\t\t(click)=\"selectPage.emit(previousPage)\"\n\t\t\t\t[disabled]=\"(currentPage <= 1 ? true : null)\">\n\t\t\t\t<svg\n\t\t\t\t\tclass=\"bx--pagination__button-icon\"\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"12\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 7 12\"\n\t\t\t\t\twidth=\"7\"\n\t\t\t\t\t[attr.aria-label]=\"backwardText | async\"\n\t\t\t\t\t[attr.alt]=\"backwardText | async\">\n\t\t\t\t\t<title>{{backwardText |async }}</title>\n\t\t\t\t\t<path d=\"M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z\"></path>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t\t<div class=\"bx--form-item\">\n\t\t\t\t<div class=\"bx--select bx--select--inline\">\n\t\t\t\t<label [for]=\"currentPageSelectId\" class=\"bx--label bx--visually-hidden\">{{itemsPerPageText | async}}</label>\n\t\t\t\t<select [id]=\"currentPageSelectId\" class=\"bx--select-input\" aria-describedby=\"false\" [(ngModel)]=\"currentPage\">\n\t\t\t\t\t<option *ngFor=\"let i of range(lastPage + 1, 1)\" class=\"bx--select-option\" [value]=\"i\">{{i}}</option>\n\t\t\t\t</select>\n\t\t\t\t<svg\n\t\t\t\t\tclass=\"bx--select__arrow\"\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"5\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 10 5\"\n\t\t\t\t\twidth=\"10\"\n\t\t\t\t\t[attr.aria-label]=\"optionsListText | async\"\n\t\t\t\t\t[attr.alt]=\"optionsListText | async\">\n\t\t\t\t\t<title>{{optionsListText | async}}</title>\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</div>\n\t\t<button\n\t\t\tclass=\"bx--pagination__button bx--pagination__button--forward\"\n\t\t\t(click)=\"selectPage.emit(nextPage)\"\n\t\t\t[disabled]=\"(currentPage >= lastPage ? true : null)\">\n\t\t\t<svg\n\t\t\t\tclass=\"bx--pagination__button-icon\"\n\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\theight=\"12\"\n\t\t\t\trole=\"img\"\n\t\t\t\tviewBox=\"0 0 7 12\"\n\t\t\t\twidth=\"7\"\n\t\t\t\t[attr.aria-label]=\"forwardText | async\"\n\t\t\t\t[attr.alt]=\"forwardText | async\">\n\t\t\t\t<title>{{forwardText | async}}</title>\n\t\t\t\t<path d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\"></path>\n\t\t\t</svg>\n\t\t</button>\n\t\t</div>\n\t</div>\n\t"
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__["I18n"]) === "function" && _b || Object])
     ], Pagination);
@@ -13597,8 +13605,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { Component, OnInit, Input } from '@angular/core';\nimport { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, number } from '@storybook/addon-knobs/angular';\n\nimport { NFormsModule } from '..';\nimport { PaginationModule } from './pagination.module';\nimport { PaginationModel } from './pagination-model.class';\n\n@Component({\n  selector: 'app-pagination',\n  template: `\n    <ibm-pagination [model]=\"model\" (selectPage)=\"selectPage($event)\"> </ibm-pagination>\n  `,\n})\nclass PaginationStory implements OnInit {\n  @Input() model = new PaginationModel();\n\n  @Input() get totalDataLength() {\n    return this.model.totalDataLength;\n  }\n  set totalDataLength(value) {\n    this.model.totalDataLength = value;\n  }\n\n  ngOnInit() {\n    this.model.pageLength = 10;\n    this.model.currentPage = 1;\n  }\n\n  selectPage(page) {\n    console.log('Loading page', page, 'from pagination model');\n    this.model.currentPage = page;\n  }\n}\n\nstoriesOf('Pagination', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NFormsModule, PaginationModule],\n      declarations: [PaginationStory],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('default', () => ({\n    template: `\n\t\t\t<app-pagination [totalDataLength]=\"totalDataLength\"></app-pagination>\n\t\t`,\n    props: {\n      totalDataLength: number('totalDataLength', 105),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Pagination@default": { "startLoc": { "col": 7, "line": 44 }, "endLoc": { "col": 4, "line": 51 } } };
+var __STORY__ = "import { Component, OnInit, Input } from '@angular/core';\nimport { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, number } from '@storybook/addon-knobs/angular';\n\nimport { NFormsModule } from '..';\nimport { PaginationModule } from './pagination.module';\nimport { PaginationModel } from './pagination-model.class';\n\n@Component({\n  selector: 'app-pagination',\n  template: `\n    <ibm-pagination [model]=\"model\" [skeleton]=\"skeleton\" (selectPage)=\"selectPage($event)\"> </ibm-pagination>\n  `,\n})\nclass PaginationStory implements OnInit {\n  @Input() model = new PaginationModel();\n  @Input() skeleton = false;\n\n  @Input() get totalDataLength() {\n    return this.model.totalDataLength;\n  }\n  set totalDataLength(value) {\n    this.model.totalDataLength = value;\n  }\n\n  ngOnInit() {\n    this.model.pageLength = 10;\n    this.model.currentPage = 1;\n  }\n\n  selectPage(page) {\n    console.log('Loading page', page, 'from pagination model');\n    this.model.currentPage = page;\n  }\n}\n\nstoriesOf('Pagination', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NFormsModule, PaginationModule],\n      declarations: [PaginationStory],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('default', () => ({\n    template: `\n\t\t\t<app-pagination [totalDataLength]=\"totalDataLength\"></app-pagination>\n\t\t`,\n    props: {\n      totalDataLength: number('totalDataLength', 105),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<app-pagination [totalDataLength]=\"totalDataLength\" [skeleton]=\"true\"></app-pagination>\n\t\t`,\n    props: {\n      totalDataLength: number('totalDataLength', 105),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Pagination@Skeleton": { "startLoc": { "col": 7, "line": 53 }, "endLoc": { "col": 4, "line": 60 } }, "Pagination@default": { "startLoc": { "col": 7, "line": 45 }, "endLoc": { "col": 4, "line": 52 } } };
 
 
 
@@ -13608,6 +13616,7 @@ var __ADDS_MAP__ = { "Pagination@default": { "startLoc": { "col": 7, "line": 44 
 var PaginationStory = /** @class */ (function () {
     function PaginationStory() {
         this.model = new _pagination_model_class__WEBPACK_IMPORTED_MODULE_5__["PaginationModel"]();
+        this.skeleton = false;
     }
     Object.defineProperty(PaginationStory.prototype, "totalDataLength", {
         get: function () {
@@ -13633,13 +13642,17 @@ var PaginationStory = /** @class */ (function () {
     ], PaginationStory.prototype, "model", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], PaginationStory.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], PaginationStory.prototype, "totalDataLength", null);
     PaginationStory = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "app-pagination",
-            template: "\n\t\t<ibm-pagination\n\t\t\t[model]=\"model\"\n\t\t\t(selectPage)=\"selectPage($event)\">\n\t\t</ibm-pagination>\n\t"
+            template: "\n\t\t<ibm-pagination\n\t\t\t[model]=\"model\"\n\t\t\t[skeleton]=\"skeleton\"\n\t\t\t(selectPage)=\"selectPage($event)\">\n\t\t</ibm-pagination>\n\t"
         })
     ], PaginationStory);
     return PaginationStory;
@@ -13656,6 +13669,12 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_1__["storiesOf"])("Pagination
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__["withKnobs"])
     .add("default", function () { return ({
     template: "\n\t\t\t<app-pagination [totalDataLength]=\"totalDataLength\"></app-pagination>\n\t\t",
+    props: {
+        totalDataLength: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__["number"])("totalDataLength", 105)
+    }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t\t<app-pagination [totalDataLength]=\"totalDataLength\" [skeleton]=\"true\"></app-pagination>\n\t\t",
     props: {
         totalDataLength: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__["number"])("totalDataLength", 105)
     }
@@ -20104,4 +20123,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.549c7fcc8b3e8e6bf8b7.bundle.js.map
+//# sourceMappingURL=iframe.62897b83980308c3fa83.bundle.js.map
