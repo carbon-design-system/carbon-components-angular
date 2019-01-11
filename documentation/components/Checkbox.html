@@ -126,7 +126,12 @@
 	[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;
 	(change)&#x3D;&quot;onChange($event)&quot;
 	(click)&#x3D;&quot;onClick($event)&quot;&gt;
-&lt;label [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--checkbox-label&quot;&gt;
+&lt;label
+	[for]&#x3D;&quot;id&quot;
+	class&#x3D;&quot;bx--checkbox-label&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;bx--skeleton&#x27; : skeleton
+	}&quot;&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/label&gt;
 	</code></pre></td>
@@ -271,6 +276,9 @@
                                 <a href="#size">size</a>
                             </li>
                             <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
                                 <a href="#value">value</a>
                             </li>
                         </ul>
@@ -343,7 +351,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/checkbox/checkbox.component.ts:209</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/checkbox/checkbox.component.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -402,7 +410,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/checkbox/checkbox.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/checkbox/checkbox.component.ts:139</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -425,7 +433,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/checkbox/checkbox.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/checkbox/checkbox.component.ts:144</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -448,7 +456,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/checkbox/checkbox.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/checkbox/checkbox.component.ts:180</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -470,7 +478,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/checkbox/checkbox.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/checkbox/checkbox.component.ts:114</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -492,7 +500,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/checkbox/checkbox.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/checkbox/checkbox.component.ts:126</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -515,7 +523,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/checkbox/checkbox.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/checkbox/checkbox.component.ts:156</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -538,7 +546,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/checkbox/checkbox.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/checkbox/checkbox.component.ts:106</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -561,7 +569,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/checkbox/checkbox.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/checkbox/checkbox.component.ts:122</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -584,7 +592,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/checkbox/checkbox.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/checkbox/checkbox.component.ts:110</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -607,7 +615,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/checkbox/checkbox.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/checkbox/checkbox.component.ts:130</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -633,7 +641,29 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/checkbox/checkbox.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/checkbox/checkbox.component.ts:102</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> for a loading checkbox.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/checkbox/checkbox.component.ts:118</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -656,7 +686,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/checkbox/checkbox.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/checkbox/checkbox.component.ts:134</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -681,7 +711,7 @@ click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/checkbox/checkbox.component.ts:188</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/checkbox/checkbox.component.ts:197</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -703,7 +733,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/checkbox/checkbox.component.ts:193</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/checkbox/checkbox.component.ts:202</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -736,7 +766,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/checkbox/checkbox.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/checkbox/checkbox.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -773,7 +803,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/checkbox/checkbox.component.ts:319</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="328" class="link-to-prism">src/checkbox/checkbox.component.ts:328</a></div>
                             </td>
                         </tr>
 
@@ -815,7 +845,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/checkbox/checkbox.component.ts:224</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/checkbox/checkbox.component.ts:233</a></div>
                             </td>
                         </tr>
 
@@ -860,7 +890,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/checkbox/checkbox.component.ts:332</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="341" class="link-to-prism">src/checkbox/checkbox.component.ts:341</a></div>
                             </td>
                         </tr>
 
@@ -900,7 +930,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/checkbox/checkbox.component.ts:267</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/checkbox/checkbox.component.ts:276</a></div>
                             </td>
                         </tr>
 
@@ -967,7 +997,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/checkbox/checkbox.component.ts:276</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/checkbox/checkbox.component.ts:285</a></div>
                             </td>
                         </tr>
 
@@ -1036,7 +1066,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/checkbox/checkbox.component.ts:250</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/checkbox/checkbox.component.ts:259</a></div>
                             </td>
                         </tr>
 
@@ -1109,7 +1139,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/checkbox/checkbox.component.ts:258</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/checkbox/checkbox.component.ts:267</a></div>
                             </td>
                         </tr>
 
@@ -1187,7 +1217,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/checkbox/checkbox.component.ts:236</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/checkbox/checkbox.component.ts:245</a></div>
                             </td>
                         </tr>
 
@@ -1227,7 +1257,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/checkbox/checkbox.component.ts:297</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/checkbox/checkbox.component.ts:306</a></div>
                             </td>
                         </tr>
 
@@ -1300,7 +1330,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="241" class="link-to-prism">src/checkbox/checkbox.component.ts:241</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/checkbox/checkbox.component.ts:250</a></div>
                             </td>
                         </tr>
 
@@ -1380,7 +1410,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/checkbox/checkbox.component.ts:198</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/checkbox/checkbox.component.ts:207</a></div>
                             </td>
                         </tr>
 
@@ -1419,7 +1449,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/checkbox/checkbox.component.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/checkbox/checkbox.component.ts:211</a></div>
                             </td>
                         </tr>
 
@@ -1465,7 +1495,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/checkbox/checkbox.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/checkbox/checkbox.component.ts:95</a></div>
                             </td>
                         </tr>
 
@@ -1510,7 +1540,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/checkbox/checkbox.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/checkbox/checkbox.component.ts:213</a></div>
                             </td>
                         </tr>
 
@@ -1553,7 +1583,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/checkbox/checkbox.component.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/checkbox/checkbox.component.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -1598,7 +1628,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/checkbox/checkbox.component.ts:289</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/checkbox/checkbox.component.ts:298</a></div>
                             </td>
                         </tr>
 
@@ -1637,7 +1667,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="343" class="link-to-prism">src/checkbox/checkbox.component.ts:343</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="352" class="link-to-prism">src/checkbox/checkbox.component.ts:352</a></div>
                             </td>
                         </tr>
 
@@ -1672,7 +1702,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/checkbox/checkbox.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/checkbox/checkbox.component.ts:149</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1692,7 +1722,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/checkbox/checkbox.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/checkbox/checkbox.component.ts:156</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1752,7 +1782,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/checkbox/checkbox.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/checkbox/checkbox.component.ts:173</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1772,7 +1802,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/checkbox/checkbox.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/checkbox/checkbox.component.ts:180</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1893,7 +1923,12 @@ export class CheckboxChange {
 			[attr.aria-checked]&#x3D;&quot;(indeterminate ? &#x27;mixed&#x27; : checked)&quot;
 			(change)&#x3D;&quot;onChange($event)&quot;
 			(click)&#x3D;&quot;onClick($event)&quot;&gt;
-		&lt;label [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--checkbox-label&quot;&gt;
+		&lt;label
+			[for]&#x3D;&quot;id&quot;
+			class&#x3D;&quot;bx--checkbox-label&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--skeleton&#x27; : skeleton
+			}&quot;&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/label&gt;
 	&#x60;,
@@ -1930,6 +1965,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Set to &#x60;true&#x60; for a disabled checkbox.
 	 */
 	@Input() disabled &#x3D; false;
+	/**
+	 * Set to &#x60;true&#x60; for a loading checkbox.
+	 */
+	@Input() skeleton &#x3D; false;
 	/**
 	 * Sets the name attribute on the &#x60;input&#x60; element.
 	 */
@@ -2195,7 +2234,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><input	#inputCheckbox	class="bx--checkbox"	type="checkbox"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[indeterminate]="indeterminate"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="(indeterminate ? \'mixed\' : checked)"	(change)="onChange($event)"	(click)="onClick($event)"><label [for]="id" class="bx--checkbox-label">	<ng-content></ng-content></label>	</div>'
+        var COMPONENT_TEMPLATE = '<div><input	#inputCheckbox	class="bx--checkbox"	type="checkbox"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[indeterminate]="indeterminate"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="(indeterminate ? \'mixed\' : checked)"	(change)="onChange($event)"	(click)="onClick($event)"><label	[for]="id"	class="bx--checkbox-label"	[ngClass]="{		\'bx--skeleton\' : skeleton	}">	<ng-content></ng-content></label>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Checkbox'};

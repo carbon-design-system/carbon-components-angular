@@ -2863,6 +2863,10 @@ var Checkbox = /** @class */ (function () {
          */
         this.disabled = false;
         /**
+         * Set to `true` for a loading checkbox.
+         */
+        this.skeleton = false;
+        /**
          * The unique id for the checkbox component.
          */
         this.id = "checkbox-" + Checkbox_1.checkboxCount;
@@ -3081,6 +3085,10 @@ var Checkbox = /** @class */ (function () {
     ], Checkbox.prototype, "disabled", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Checkbox.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], Checkbox.prototype, "name", void 0);
     __decorate([
@@ -3128,7 +3136,7 @@ var Checkbox = /** @class */ (function () {
     Checkbox = Checkbox_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-checkbox",
-            template: "\n\t\t<input\n\t\t\t#inputCheckbox\n\t\t\tclass=\"bx--checkbox\"\n\t\t\ttype=\"checkbox\"\n\t\t\t[id]=\"id\"\n\t\t\t[value]=\"value\"\n\t\t\t[name]=\"name\"\n\t\t\t[required]=\"required\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[indeterminate]=\"indeterminate\"\n\t\t\t[attr.aria-label]=\"ariaLabel\"\n\t\t\t[attr.aria-labelledby]=\"ariaLabelledby\"\n\t\t\t[attr.aria-checked]=\"(indeterminate ? 'mixed' : checked)\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\">\n\t\t<label [for]=\"id\" class=\"bx--checkbox-label\">\n\t\t\t<ng-content></ng-content>\n\t\t</label>\n\t",
+            template: "\n\t\t<input\n\t\t\t#inputCheckbox\n\t\t\tclass=\"bx--checkbox\"\n\t\t\ttype=\"checkbox\"\n\t\t\t[id]=\"id\"\n\t\t\t[value]=\"value\"\n\t\t\t[name]=\"name\"\n\t\t\t[required]=\"required\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[indeterminate]=\"indeterminate\"\n\t\t\t[attr.aria-label]=\"ariaLabel\"\n\t\t\t[attr.aria-labelledby]=\"ariaLabelledby\"\n\t\t\t[attr.aria-checked]=\"(indeterminate ? 'mixed' : checked)\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\">\n\t\t<label\n\t\t\t[for]=\"id\"\n\t\t\tclass=\"bx--checkbox-label\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton' : skeleton\n\t\t\t}\">\n\t\t\t<ng-content></ng-content>\n\t\t</label>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -3221,8 +3229,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { CheckboxModule } from '../';\n\nstoriesOf('Checkbox', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [CheckboxModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-checkbox\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[indeterminate]=\"indeterminate\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(indeterminateChange)=\"onIndeterminateChange($event)\">\n\t\t\tCheckbox\n\t\t</ibm-checkbox>\n\t`,\n    props: {\n      checked: boolean('checked', false),\n      disabled: boolean('disabled', false),\n      indeterminate: boolean('indeterminate', false),\n      onChange: action('Change fired!'),\n      onIndeterminateChange: action('Indeterminate change fired!'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Checkbox@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 32 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { CheckboxModule } from '../';\n\nstoriesOf('Checkbox', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [CheckboxModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-checkbox\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[indeterminate]=\"indeterminate\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(indeterminateChange)=\"onIndeterminateChange($event)\">\n\t\t\tCheckbox\n\t\t</ibm-checkbox>\n\t`,\n    props: {\n      checked: boolean('checked', false),\n      disabled: boolean('disabled', false),\n      indeterminate: boolean('indeterminate', false),\n      onChange: action('Change fired!'),\n      onIndeterminateChange: action('Indeterminate change fired!'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `<ibm-checkbox skeleton=\"true\"></ibm-checkbox>`,\n  }));\n";
+var __ADDS_MAP__ = { "Checkbox@Skeleton": { "startLoc": { "col": 7, "line": 33 }, "endLoc": { "col": 4, "line": 35 } }, "Checkbox@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 32 } } };
 
 
 
@@ -3240,6 +3248,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Checkbox",
         onChange: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_1__["action"])("Change fired!"),
         onIndeterminateChange: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_1__["action"])("Indeterminate change fired!")
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "<ibm-checkbox skeleton=\"true\"></ibm-checkbox>"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20145,4 +20156,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.0d7d87a0cb1601b0b7ba.bundle.js.map
+//# sourceMappingURL=iframe.180ca4dc699be82223c8.bundle.js.map
