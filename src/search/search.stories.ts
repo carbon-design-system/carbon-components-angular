@@ -25,7 +25,8 @@ storiesOf("Search", module).addDecorator(
 	.add("Skeleton", () => ({
 		template: `
 		<div style="width: 200px;">
-			<ibm-search skeleton="true"></ibm-search>&nbsp;
+			<ibm-search skeleton="true"></ibm-search>
+			&nbsp;
 			<ibm-search skeleton="true" size="sm"></ibm-search>
 		</div>
 		`
