@@ -71,6 +71,7 @@ storiesOf("CodeSnippet", module).addDecorator(
 		template: `
 			<div style="width: 800px">
 				<ibm-code-snippet display="single" skeleton="true"></ibm-code-snippet>
+				<br>
 				<ibm-code-snippet display="multi" skeleton="true"></ibm-code-snippet>
 			</div>
 		`
