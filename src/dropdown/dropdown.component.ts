@@ -29,14 +29,11 @@ import { I18n } from "./../i18n/i18n.module";
 	selector: "ibm-dropdown",
 	template: `
 	<div
-		class="bx--list-box"
+		class="bx--list-box bx--dropdown-v2"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
-			'bx--dropdown': !skeleton,
 			'bx--list-box--inline': inline,
-			'bx--skeleton': skeleton,
-			'bx--dropdown-v2': skeleton,
-			'bx--form-item': skeleton
+			'bx--skeleton': skeleton
 		}">
 		<button
 			type="button"
@@ -222,28 +219,29 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Initializes classes and subscribes to events for single or multi selection.
 	 */
 	ngAfterContentInit() {
-		if (this.view) {
-			this.view.type = this.type;
-			this.view.size = this.size;
-			this.view.select.subscribe(event => {
-				if (this.type === "multi") {
-					this.propagateChange(this.view.getSelected());
-				} else {
-					this.closeMenu();
-					this.dropdownButton.nativeElement.focus();
-					if (event.item && event.item.selected) {
-						if (this.value) {
-							this.propagateChange(event.item[this.value]);
-						} else {
-							this.propagateChange(event.item);
-						}
-					} else {
-						this.propagateChange(null);
-					}
-				}
-				this.selected.emit(event);
-			});
+		if (!this.view) {
+			return;
 		}
+		this.view.type = this.type;
+		this.view.size = this.size;
+		this.view.select.subscribe(event => {
+			if (this.type === "multi") {
+				this.propagateChange(this.view.getSelected());
+			} else {
+				this.closeMenu();
+				this.dropdownButton.nativeElement.focus();
+				if (event.item && event.item.selected) {
+					if (this.value) {
+						this.propagateChange(event.item[this.value]);
+					} else {
+						this.propagateChange(event.item);
+					}
+				} else {
+					this.propagateChange(null);
+				}
+			}
+			this.selected.emit(event);
+		});
 	}
 
 	/**
@@ -342,19 +340,20 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Returns the display value if there is no selection, otherwise the selection will be returned.
 	 */
 	getDisplayValue(): Observable<string> {
-		if (this.view) {
-			let selected = this.view.getSelected();
-			if (selected && !this.displayValue) {
-				if (this.type === "multi") {
-					return of(`${selected.length} ${this.selectedLabel}`);
-				} else {
-					return of(selected[0].content);
-				}
-			} else if (selected) {
-				return of(this.displayValue);
-			}
-			return of(this.placeholder);
+		if (!this.view) {
+			return;
 		}
+		let selected = this.view.getSelected();
+		if (selected && !this.displayValue) {
+			if (this.type === "multi") {
+				return of(`${selected.length} ${this.selectedLabel}`);
+			} else {
+				return of(selected[0].content);
+			}
+		} else if (selected) {
+			return of(this.displayValue);
+		}
+		return of(this.placeholder);
 	}
 
 	/**
