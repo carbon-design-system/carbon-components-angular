@@ -126,6 +126,9 @@
                             <li>
                                 <a href="#size">size</a>
                             </li>
+                            <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -223,6 +226,26 @@
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/button/button.directive.ts:31</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/button/button.directive.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -454,7 +477,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/button/button.directive.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/button/button.directive.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -524,7 +547,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/button/button.directive.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/button/button.directive.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -587,6 +610,7 @@ export class Button implements OnInit {
 	@HostBinding(&quot;class.bx--btn--ghost&quot;) ghost &#x3D; false;
 	@HostBinding(&quot;class.bx--btn--danger&quot;) danger &#x3D; false;
 	@HostBinding(&quot;class.bx--btn--danger--primary&quot;) dangerPrimary &#x3D; false;
+	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
 	@HostBinding(&quot;class.bx--btn--sm&quot;) smallSize &#x3D; false;
 
 	ngOnInit() {
