@@ -86,6 +86,7 @@ describe("Number", () => {
 	});
 
 	it("should display control buttons", () => {
+		fixture.detectChanges();
 		buttonUp = fixture.debugElement.queryAll(By.css("button"))[0].nativeElement;
 		buttonDown = fixture.debugElement.queryAll(By.css("button"))[1].nativeElement;
 		expect(buttonUp.className.includes("bx--number__control-btn")).toEqual(true);
@@ -95,6 +96,7 @@ describe("Number", () => {
 	});
 
 	it("should increment value when button up is clicked", () => {
+		fixture.detectChanges();
 		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
 		component.value = 1;
 		buttonUp.click();
@@ -103,6 +105,7 @@ describe("Number", () => {
 	});
 
 	it("should not increment value if max is reached", () => {
+		fixture.detectChanges();
 		buttonUp = fixture.debugElement.query(By.css(".up-icon")).nativeElement;
 		component.value = 100;
 		component.max = 100;
@@ -112,6 +115,7 @@ describe("Number", () => {
 	});
 
 	it("should decrement value when button down is clicked", () => {
+		fixture.detectChanges();
 		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
 		component.value = 1;
 		buttonUp.click();
@@ -120,6 +124,7 @@ describe("Number", () => {
 	});
 
 	it("should not decrement value min is reached", () => {
+		fixture.detectChanges();
 		buttonUp = fixture.debugElement.query(By.css(".down-icon")).nativeElement;
 		component.value = 0;
 		component.min = 0;
