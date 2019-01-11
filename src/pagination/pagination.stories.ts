@@ -58,7 +58,9 @@ storiesOf("Pagination", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
-			<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
+			<div style="width: 800px">
+				<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
+			</div>
 		`,
 		props: {
 			totalDataLength: number("totalDataLength", 105)

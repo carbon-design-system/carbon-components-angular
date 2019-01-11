@@ -435,13 +435,15 @@ storiesOf("Table", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
-		<app-table
-			[model]="model"
-			[size]="size"
-			[showSelectionColumn]="showSelectionColumn"
-			[striped]="striped"
-			[sortable]="sortable">
-		</app-table>
+		<div style="width: 650px">
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[sortable]="sortable">
+			</app-table>
+		</div>
 	`,
 		props: {
 			model: simpleModel,
@@ -453,13 +455,15 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with no data", () => ({
 		template: `
-			<app-table
-				[model]="model"
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
-			</app-table>
+			<div style="width: 650px">
+				<app-table
+					[model]="model"
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+					<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
+				</app-table>
+			</div>
 		`,
 		styles: [`
 			.no-data {
@@ -477,11 +481,13 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with expansion", () => ({
 		template: `
-			<app-expansion-table
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-			</app-expansion-table>
+			<div style="width: 650px">
+				<app-expansion-table
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+				</app-expansion-table>
+			</div>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
@@ -491,11 +497,13 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with dynamic content", () => ({
 		template: `
-			<app-custom-table
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-			</app-custom-table>
+			<div style="width: 650px">
+				<app-custom-table
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+				</app-custom-table>
+			</div>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
@@ -505,11 +513,13 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with overflow menu", () => ({
 		template: `
-			<app-overflow-table
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-			</app-overflow-table>
+			<div style="width: 650px">
+				<app-overflow-table
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+				</app-overflow-table>
+			</div>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
@@ -519,7 +529,9 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with pagination", () => ({
 		template: `
+		<div style="width: 650px">
 			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
+		</div>
 		`,
 		props: {
 			model: simpleModel,

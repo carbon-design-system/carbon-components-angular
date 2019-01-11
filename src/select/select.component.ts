@@ -33,7 +33,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'bx--select--inline': display === 'inline',
 					'bx--select--light': theme === 'light'
 				}"
-				class="bx--select">
+				class="bx--select"
+				style="width: 100%">
 				<label [attr.for]="id" class="bx--label">{{label}}</label>
 				<select
 					#select
