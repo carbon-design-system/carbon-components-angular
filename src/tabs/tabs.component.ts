@@ -74,7 +74,7 @@ export class Tabs implements AfterContentInit {
 	 */
 	@Input() followFocus = true;
 	/**
-	 * Set to `true` for a loading table.
+	 * Set to `true` to put tabs in a loading state.
 	 */
 	@Input() skeleton = false;
 
