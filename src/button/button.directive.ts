@@ -37,6 +37,7 @@ export class Button implements OnInit {
 	@HostBinding("class.bx--btn--ghost") ghost = false;
 	@HostBinding("class.bx--btn--danger") danger = false;
 	@HostBinding("class.bx--btn--danger--primary") dangerPrimary = false;
+	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--btn--sm") smallSize = false;
 
 	ngOnInit() {
