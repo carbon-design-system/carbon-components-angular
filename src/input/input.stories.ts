@@ -36,18 +36,14 @@ storiesOf("Input", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
-		<div style="width: 300px">
-			<ibm-label skeleton="true">
-				<input ibmText skeleton="true">
-			</ibm-label>
-			<br>
+		<ibm-label skeleton="true">
 			<input ibmText skeleton="true">
-		</div>
+		</ibm-label>
+		<br>
+		<input ibmText skeleton="true">
 		<br><br>
-		<div style="width: 160px">
-			<ibm-label skeleton="true">
-				<div ibmTextArea skeleton="true"></div>
-			</ibm-label>
-		</div>
+		<ibm-label skeleton="true">
+			<div ibmTextArea skeleton="true"></div>
+		</ibm-label>
 		`
 	}));
