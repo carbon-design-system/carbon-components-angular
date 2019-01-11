@@ -119,7 +119,7 @@ export class Toggle extends Checkbox {
 	 */
 	@Input() size: "sm" | "md" = "md";
 	/**
-	 * Set to `true` for a loading table.
+	 * Set to `true` for a loading toggle.
 	 * @type {(boolean)}
 	 * @memberof Toggle
 	 */
