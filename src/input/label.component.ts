@@ -31,7 +31,14 @@ import {
 @Component({
 	selector: "ibm-label",
 	template: `
-		<label [for]="labelInputID" class="bx--label"><ng-content></ng-content></label>
+		<label
+			[for]="labelInputID"
+			class="bx--label"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}">
+			<ng-content></ng-content>
+		</label>
 		<ng-content select="input,textarea,div"></ng-content>
 	`
 })
@@ -55,6 +62,10 @@ export class Label implements AfterContentInit {
 	 * @memberof Label
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
+	/**
+	 * Set to `true` for a loading label.
+	 */
+	@Input() skeleton = false;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 
