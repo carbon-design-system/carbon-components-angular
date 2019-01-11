@@ -18,12 +18,14 @@ import { PaginationModel } from "./pagination-model.class";
 	template: `
 		<ibm-pagination
 			[model]="model"
+			[skeleton]="skeleton"
 			(selectPage)="selectPage($event)">
 		</ibm-pagination>
 	`
 })
 class PaginationStory implements OnInit {
 	@Input() model = new PaginationModel();
+	@Input() skeleton = false;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;
@@ -61,6 +63,14 @@ storiesOf("Pagination", module).addDecorator(
 			<div style="width: 800px">
 				<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
 			</div>
+		`,
+		props: {
+			totalDataLength: number("totalDataLength", 105)
+		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+			<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
 		`,
 		props: {
 			totalDataLength: number("totalDataLength", 105)
