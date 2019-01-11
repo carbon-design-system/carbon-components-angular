@@ -9544,7 +9544,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9703,13 +9703,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalService"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalModule"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalButtonType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["BaseModal"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalModule"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_20__["NotificationService"]; });
@@ -10095,6 +10095,7 @@ var TextInput = /** @class */ (function () {
          */
         this.theme = "dark";
         this.inputClass = true;
+        this.skeleton = false;
     }
     Object.defineProperty(TextInput.prototype, "isLightTheme", {
         get: function () {
@@ -10111,6 +10112,10 @@ var TextInput = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--text-input"),
         __metadata("design:type", Object)
     ], TextInput.prototype, "inputClass", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--skeleton"), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], TextInput.prototype, "skeleton", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--text-input--light"),
         __metadata("design:type", Object),
@@ -10208,8 +10213,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { InputModule } from '../';\n\nstoriesOf('Input', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [InputModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Label', () => ({\n    template: `\n\t\t<ibm-label>\n\t\t\tSome Title\n\t\t\t<input ibmText placeholder=\"Optional placeholder text\">\n\t\t</ibm-label>\n\t`,\n  }))\n  .add('Input', () => ({\n    template: `\n\t\t<input ibmText [theme]=\"theme\" aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add('TextArea', () => ({\n    template: `\n\t\t<textarea ibmTextArea [theme]=\"theme\" aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Input@TextArea": { "startLoc": { "col": 7, "line": 30 }, "endLoc": { "col": 4, "line": 37 } }, "Input@Input": { "startLoc": { "col": 7, "line": 22 }, "endLoc": { "col": 4, "line": 29 } }, "Input@Label": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 21 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { InputModule } from '../';\n\nstoriesOf('Input', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [InputModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Label', () => ({\n    template: `\n\t\t<ibm-label>\n\t\t\tSome Title\n\t\t\t<input ibmText placeholder=\"Optional placeholder text\">\n\t\t</ibm-label>\n\t`,\n  }))\n  .add('Input', () => ({\n    template: `\n\t\t<input ibmText [theme]=\"theme\" aria-label=\"input\" placeholder=\"Optional placeholder text\"/>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add('TextArea', () => ({\n    template: `\n\t\t<textarea ibmTextArea [theme]=\"theme\" aria-label=\"textarea\" placeholder=\"Optional placeholder text\" rows=\"4\" cols=\"50\"></textarea>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-label skeleton=\"true\">\n\t\t\t\t<input ibmText skeleton=\"true\">\n\t\t\t</ibm-label>\n\t\t\t<br>\n\t\t\t<input ibmText skeleton=\"true\">\n\t\t</div>\n\t\t<br><br>\n\t\t<div style=\"width: 160px\">\n\t\t\t<ibm-label skeleton=\"true\">\n\t\t\t\t<div ibmTextArea skeleton=\"true\"></div>\n\t\t\t</ibm-label>\n\t\t</div>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Input@Skeleton": { "startLoc": { "col": 7, "line": 38 }, "endLoc": { "col": 4, "line": 54 } }, "Input@TextArea": { "startLoc": { "col": 7, "line": 30 }, "endLoc": { "col": 4, "line": 37 } }, "Input@Input": { "startLoc": { "col": 7, "line": 22 }, "endLoc": { "col": 4, "line": 29 } }, "Input@Label": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 21 } } };
 
 
 
@@ -10231,6 +10236,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Input", mo
     props: {
         theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Theme", ["dark", "light"], "dark")
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-label skeleton=\"true\">\n\t\t\t\t<input ibmText skeleton=\"true\">\n\t\t\t</ibm-label>\n\t\t\t<br>\n\t\t\t<input ibmText skeleton=\"true\">\n\t\t</div>\n\t\t<br><br>\n\t\t<div style=\"width: 160px\">\n\t\t\t<ibm-label skeleton=\"true\">\n\t\t\t\t<div ibmTextArea skeleton=\"true\"></div>\n\t\t\t</ibm-label>\n\t\t</div>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -10300,6 +10308,10 @@ var Label = /** @class */ (function () {
          * @memberof Label
          */
         this.labelState = "";
+        /**
+         * Set to `true` for a loading label.
+         */
+        this.skeleton = false;
         this.labelClass = true;
         Label_1.labelCounter++;
     }
@@ -10323,13 +10335,17 @@ var Label = /** @class */ (function () {
         __metadata("design:type", String)
     ], Label.prototype, "labelState", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Label.prototype, "skeleton", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--form-item"),
         __metadata("design:type", Object)
     ], Label.prototype, "labelClass", void 0);
     Label = Label_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-label",
-            template: "\n\t\t<label [for]=\"labelInputID\" class=\"bx--label\"><ng-content></ng-content></label>\n\t\t<ng-content select=\"input,textarea,div\"></ng-content>\n\t"
+            template: "\n\t\t<label\n\t\t\t[for]=\"labelInputID\"\n\t\t\tclass=\"bx--label\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<ng-content></ng-content>\n\t\t</label>\n\t\t<ng-content select=\"input,textarea,div\"></ng-content>\n\t"
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _a || Object])
     ], Label);
@@ -10379,6 +10395,7 @@ var TextArea = /** @class */ (function () {
          */
         this.theme = "dark";
         this.baseClass = true;
+        this.skeleton = false;
     }
     Object.defineProperty(TextArea.prototype, "isLightTheme", {
         get: function () {
@@ -10395,6 +10412,10 @@ var TextArea = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--text-area"),
         __metadata("design:type", Object)
     ], TextArea.prototype, "baseClass", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--skeleton"), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], TextArea.prototype, "skeleton", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--text-area--light"),
         __metadata("design:type", Object),
@@ -11647,7 +11668,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule */
+/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20026,4 +20047,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.bb8e604ed837b6fb3d38.bundle.js.map
+//# sourceMappingURL=iframe.fd0b2f071b446703ce7b.bundle.js.map

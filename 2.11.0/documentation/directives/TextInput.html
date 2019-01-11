@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Directives</li>
-  <li>TextArea</li>
+  <li>TextInput</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,16 +55,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/input/text-area.directive.ts</code>
+            <code>src/input/input.directive.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>A directive for applying styling to a textarea element.</p>
+                <p>A directive for applying styling to an input element.</p>
 <p>Example:</p>
-<div><pre class="line-numbers"><code class="language-html"> * &lt;textarea ibmTextArea&gt;&lt;/textarea&gt;
+<div><pre class="line-numbers"><code class="language-html"> * &lt;input ibmText/&gt;
  *</code></pre></div><p>See the <a href="http://www.carbondesignsystem.com/components/text-input/code">vanilla carbon docs</a> for more detail.</p>
 
             </p>
@@ -78,7 +78,7 @@
 
                     <tr>
                         <td class="col-md-3">Selector</td>
-                        <td class="col-md-9"><code>[ibmTextArea]</code></td>
+                        <td class="col-md-9"><code>[ibmText]</code></td>
                     </tr>
 
                 </tbody>
@@ -100,6 +100,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
                                 <a href="#theme">theme</a>
                             </li>
                         </ul>
@@ -116,10 +119,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#class.bx--text-area">class.bx--text-area</a>
+                                <a href="#class.bx--text-input">class.bx--text-input</a>
                             </li>
                             <li>
-                                <a href="#class.bx--text-area--light">class.bx--text-area--light</a>
+                                <a href="#class.bx--text-input--light">class.bx--text-input--light</a>
                             </li>
                         </ul>
                     </td>
@@ -133,6 +136,26 @@
 
             <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/input/input.directive.ts:24</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -154,7 +177,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/input/text-area.directive.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/input/input.directive.ts:21</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -166,18 +189,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="class.bx--text-area"></a>
+                        <a name="class.bx--text-input"></a>
                         <span class="name">
                             <b>
-                            class.bx--text-area
+                            class.bx--text-input
                             </b>
-                            <a href="#class.bx--text-area"><span class="icon ion-ios-link"></span></a>
+                            <a href="#class.bx--text-input"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>class.bx--text-area:     <code></code>
+                        <code>class.bx--text-input:     <code></code>
 </code>
                     </td>
                 </tr>
@@ -188,7 +211,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/input/text-area.directive.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/input/input.directive.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -199,24 +222,24 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="class.bx--text-area--light"></a>
+                        <a name="class.bx--text-input--light"></a>
                         <span class="name">
                             <b>
-                            class.bx--text-area--light
+                            class.bx--text-input--light
                             </b>
-                            <a href="#class.bx--text-area--light"><span class="icon ion-ios-link"></span></a>
+                            <a href="#class.bx--text-input--light"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>class.bx--text-area--light:     <code></code>
+                        <code>class.bx--text-input--light:     <code></code>
 </code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/input/text-area.directive.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/input/input.directive.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -236,27 +259,28 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostBinding, Input } from &quot;@angular/core&quot;;
 
 /**
- * A directive for applying styling to a textarea element.
+ * A directive for applying styling to an input element.
  *
  * Example:
  *
  * &#x60;&#x60;&#x60;html
- * &lt;textarea ibmTextArea&gt;&lt;/textarea&gt;
+ * &lt;input ibmText/&gt;
  * &#x60;&#x60;&#x60;
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/text-input/code) for more detail.
  */
 @Directive({
-	selector: &quot;[ibmTextArea]&quot;
+	selector: &quot;[ibmText]&quot;
 })
-export class TextArea {
+export class TextInput {
 	/**
 	 * &#x60;light&#x60; or &#x60;dark&#x60; input theme
 	 */
 	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
 
-	@HostBinding(&quot;class.bx--text-area&quot;) baseClass &#x3D; true;
-	@HostBinding(&quot;class.bx--text-area--light&quot;) get isLightTheme() {
+	@HostBinding(&quot;class.bx--text-input&quot;) inputClass &#x3D; true;
+	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
+	@HostBinding(&quot;class.bx--text-input--light&quot;) get isLightTheme() {
 		return this.theme &#x3D;&#x3D;&#x3D; &quot;light&quot;;
 	}
 }
@@ -293,7 +317,7 @@ export class TextArea {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
-            var COMPODOC_CURRENT_PAGE_URL = 'TextArea.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TextInput.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

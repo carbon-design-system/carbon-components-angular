@@ -100,6 +100,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
                                 <a href="#theme">theme</a>
                             </li>
                         </ul>
@@ -133,6 +136,26 @@
 
             <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/input/input.directive.ts:24</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -216,7 +239,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/input/input.directive.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/input/input.directive.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -256,6 +279,7 @@ export class TextInput {
 	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
 
 	@HostBinding(&quot;class.bx--text-input&quot;) inputClass &#x3D; true;
+	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
 	@HostBinding(&quot;class.bx--text-input--light&quot;) get isLightTheme() {
 		return this.theme &#x3D;&#x3D;&#x3D; &quot;light&quot;;
 	}
