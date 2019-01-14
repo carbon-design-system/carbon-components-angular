@@ -30,8 +30,8 @@ import {
 			</p>
 		</button>
 		<div [id]="id" class="bx--accordion__content">
-			<ng-content *ngIf="!skeleton; else skeletonTemp"></ng-content>
-			<ng-template #skeletonTemp>
+			<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
+			<ng-template #skeletonTemplate>
 				<p class="bx--skeleton__text" style="width: 90%"></p>
 				<p class="bx--skeleton__text" style="width: 80%"></p>
 				<p class="bx--skeleton__text" style="width: 95%"></p>
