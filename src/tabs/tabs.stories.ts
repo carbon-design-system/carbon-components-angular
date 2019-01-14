@@ -39,4 +39,12 @@ storiesOf("Tabs", module)
 				<ibm-tab [heading]="customTab">foo</ibm-tab>
 			</ibm-tabs>
 		`
+	}))
+	.add("Skeleton", () => ({
+		template: `
+			<ibm-tabs skeleton="true">
+				<ibm-tab></ibm-tab>
+				<ibm-tab></ibm-tab>
+			</ibm-tabs>
+		`
 	}));
