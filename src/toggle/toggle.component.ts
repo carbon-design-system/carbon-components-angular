@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
+import { I18n } from "../i18n/i18n.module";
 
 /**
  * Defines the set of states for a toggle component.
@@ -76,9 +77,9 @@ export class ToggleChange {
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{ !skeleton ? "Off" : null }}</span>
+			<span class="bx--toggle__text--left">{{!skeleton ? leftText : null}}</span>
 			<span class="bx--toggle__appearance"></span>
-			<span class="bx--toggle__text--right">{{ !skeleton ? "On" : null }}</span>
+			<span class="bx--toggle__text--right">{{!skeleton ? rightText : null}}</span>
 		</label>
 
 		<label
@@ -113,6 +114,18 @@ export class Toggle extends Checkbox {
 	static toggleCount = 0;
 
 	/**
+	 * Text that is set on the left side of the toggle.
+	 * @type {(string)}
+	 * @memberof Toggle
+	 */
+	@Input() leftText = this.i18n.get().TOGGLE.LEFTTEXT;
+	/**
+	 * Text that is set on the right side of the toggle.
+	 * @type {(string)}
+	 * @memberof Toggle
+	 */
+	@Input() rightText = this.i18n.get().TOGGLE.RIGHTTEXT;
+	/**
 	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
 	 * @memberof Toggle
@@ -143,7 +156,7 @@ export class Toggle extends Checkbox {
 	 * @param {ChangeDetectorRef} changeDetectorRef
 	 * @memberof Toggle
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
 	}
