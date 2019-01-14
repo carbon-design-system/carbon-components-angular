@@ -373,7 +373,7 @@ export class Table {
 	 *
 	 * Example:
 	 *
-	 * ```hmtl
+	 * ```typescript
 	 * this.model = Table.skeletonModel(5, 5);
 	 * ```
 	 *
