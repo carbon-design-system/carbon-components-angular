@@ -16,27 +16,35 @@ const noop = () => {};
 @Component({
 	selector: "ibm-file-uploader",
 	template: `
-		<strong class="bx--label">{{title}}</strong>
-		<p class="bx--label-description">{{description}}</p>
-		<div class="bx--file">
-			<button
-				ibmButton="secondary"
-				(click)="fileInput.click()"
-				[attr.for]="fileUploaderId">
-				{{buttonText}}
-			</button>
-			<input
-				#fileInput
-				type="file"
-				class="bx--file-input"
-				[accept]="accept"
-				[id]="fileUploaderId"
-				[multiple]="multiple"
-				(change)="onFilesAdded()"/>
-			<div class="bx--file-container">
-				<ibm-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
+		<ng-container *ngIf="!skeleton; else skeletonTemp">
+			<strong class="bx--label">{{title}}</strong>
+			<p class="bx--label-description">{{description}}</p>
+			<div class="bx--file">
+				<button
+					ibmButton="secondary"
+					(click)="fileInput.click()"
+					[attr.for]="fileUploaderId">
+					{{buttonText}}
+				</button>
+				<input
+					#fileInput
+					type="file"
+					class="bx--file-input"
+					[accept]="accept"
+					[id]="fileUploaderId"
+					[multiple]="multiple"
+					(change)="onFilesAdded()"/>
+				<div class="bx--file-container">
+					<ibm-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
+				</div>
 			</div>
-		</div>
+		</ng-container>
+
+		<ng-template #skeletonTemp>
+			<div class="bx--skeleton__text" style="width: 100px"></div>
+			<div class="bx--skeleton__text" style="width: 225px"></div>
+			<button ibmButton skeleton="true"></button>
+		</ng-template>
 	`,
 	providers: [
 		{
@@ -75,6 +83,10 @@ export class FileUploader implements OnInit {
 	 * Defaults to `true`. Accepts multiple files.
 	 */
 	@Input() multiple = true;
+	/**
+	 * Set to `true` for a loading file uploader.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * Provides a unique id for the underlying <input> node
 	 */
