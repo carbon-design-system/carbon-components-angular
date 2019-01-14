@@ -21,6 +21,7 @@ import { NotificationService } from "../notification/notification.service";
 			[buttonText]="buttonText"
 			[accept]="accept"
 			[multiple]="multiple"
+			[skeleton]="skeleton"
 			[(files)]="files">
 		</ibm-file-uploader>
 
@@ -40,6 +41,7 @@ class FileUploaderStory {
 	@Input() buttonText;
 	@Input() accept;
 	@Input() multiple;
+	@Input() skeleton = false;
 
 	protected maxSize = 500000;
 
@@ -181,4 +183,9 @@ storiesOf("File Uploader", module)
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+			<app-file-uploader skeleton="true"></app-file-uploader>
+		`
 	}));

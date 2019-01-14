@@ -1,4 +1,11 @@
-import { Component } from "@angular/core";
+import {
+	Component,
+	Input,
+	ContentChildren,
+	QueryList,
+	AfterContentInit
+} from "@angular/core";
+import { AccordionItem } from "./accordion-item.component";
 
 @Component({
 	selector: "ibm-accordion",
@@ -8,6 +15,28 @@ import { Component } from "@angular/core";
 		</ul>
 	`
 })
-export class Accordion {
+export class Accordion implements AfterContentInit {
+	@ContentChildren(AccordionItem) children: QueryList<AccordionItem>;
 
+	protected _skeleton = false;
+
+	@Input()
+	set skeleton(value: any) {
+		this._skeleton = value;
+		this.updateChildren();
+	}
+
+	get skeleton(): any {
+		return this._skeleton;
+	}
+
+	ngAfterContentInit() {
+		this.updateChildren();
+	}
+
+	protected updateChildren() {
+		if (this.children) {
+			this.children.toArray().forEach(child => child.skeleton = this.skeleton);
+		}
+	}
 }
