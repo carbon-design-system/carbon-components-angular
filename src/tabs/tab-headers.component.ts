@@ -108,7 +108,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	@Input() followFocus: boolean;
 	/**
-	 * Set to `true` for a loading table.
+	 * Set to `true` to put tabs in a loading state.
 	 */
 	@Input() skeleton = false;
 
