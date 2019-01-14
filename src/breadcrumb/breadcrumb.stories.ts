@@ -57,4 +57,16 @@ storiesOf("Breadcrumb", module)
 		threshold: number("threshold", 4),
 		items: createBreadcrumbItems
 	}
+}))
+.add("Skeleton", () => ({
+	template: `
+	<ibm-breadcrumb skeleton="true" [noTrailingSlash]="noTrailingSlash">
+		<ibm-breadcrumb-item></ibm-breadcrumb-item>
+		<ibm-breadcrumb-item></ibm-breadcrumb-item>
+		<ibm-breadcrumb-item></ibm-breadcrumb-item>
+		<ibm-breadcrumb-item></ibm-breadcrumb-item>
+	</ibm-breadcrumb>`,
+	props: {
+		noTrailingSlash: boolean("noTrailingSlash", true)
+	}
 }));
