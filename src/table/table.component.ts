@@ -190,6 +190,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)">
+						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
 						class="column-resize-handle"
@@ -322,12 +323,11 @@ import { I18n } from "./../i18n/i18n.module";
 							(change)="onRowCheckboxChange(i)">
 						</ibm-checkbox>
 					</td>
-					<ng-container *ngFor="let item of row; let j = index">
-						<td *ngIf="model.header[j].visible"
-							[class]="model.header[j].className"
-							[ngStyle]="model.header[j].style">
+					<ng-container *ngFor="let item of row; let i = index">
+						<td *ngIf="model.header[i].visible"
+							[class]="model.header[i].className"
+							[ngStyle]="model.header[i].style">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
-							<span *ngIf="skeleton && i === 0"></span>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 							</ng-template>
