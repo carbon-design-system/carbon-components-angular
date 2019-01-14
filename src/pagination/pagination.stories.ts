@@ -60,7 +60,9 @@ storiesOf("Pagination", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
-			<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
+			<div style="width: 800px">
+				<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
+			</div>
 		`,
 		props: {
 			totalDataLength: number("totalDataLength", 105)
@@ -68,7 +70,9 @@ storiesOf("Pagination", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
-			<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
+			<div style="width: 800px">
+				<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
+			</div>
 		`,
 		props: {
 			totalDataLength: number("totalDataLength", 105)
