@@ -371,6 +371,12 @@ export class Table {
 	/**
 	 * Creates a skeleton model with a row and column count specified by the user
 	 *
+	 * Example:
+	 *
+	 * ```hmtl
+	 * this.model = Table.skeletonModel(5, 5);
+	 * ```
+	 *
 	 * @param {number} rowCount
 	 * @param {number} columnCount
 	 */
