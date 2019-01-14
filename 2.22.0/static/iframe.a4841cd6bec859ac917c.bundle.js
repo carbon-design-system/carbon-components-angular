@@ -9687,7 +9687,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, AlertModalType, ModalButtonType, BaseModal */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9846,13 +9846,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalService"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalModule"]; });
-
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalButtonType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["BaseModal"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_19__["ModalModule"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_20__["NotificationService"]; });
@@ -11811,7 +11811,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
+/*! exports provided: Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19062,6 +19062,10 @@ var TabHeaders = /** @class */ (function () {
          */
         this.cacheActive = false;
         /**
+         * Set to `true` to put tabs in a loading state.
+         */
+        this.skeleton = false;
+        /**
          * The index of the first visible tab.
          * @memberof TabHeaders
          */
@@ -19223,6 +19227,10 @@ var TabHeaders = /** @class */ (function () {
         __metadata("design:type", Boolean)
     ], TabHeaders.prototype, "followFocus", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], TabHeaders.prototype, "skeleton", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("tabList"),
         __metadata("design:type", Object)
     ], TabHeaders.prototype, "headerContainer", void 0);
@@ -19239,7 +19247,7 @@ var TabHeaders = /** @class */ (function () {
     TabHeaders = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-tab-headers",
-            template: "\n\t\t<nav class=\"bx--tabs\" role=\"navigation\">\n\t\t\t<div class=\"bx--tabs-trigger\" tabindex=\"0\" (click)=\"showTabList()\">\n\t\t\t\t<a href=\"javascript:void(0)\" class=\"bx--tabs-trigger-text\" tabindex=\"-1\">\n\t\t\t\t\t<ng-container *ngIf=\"!getSelectedTab().headingIsTemplate\">\n\t\t\t\t\t\t{{ getSelectedTab().heading }}\n\t\t\t\t\t</ng-container>\n\t\t\t\t\t<ng-template\n\t\t\t\t\t\t*ngIf=\"getSelectedTab().headingIsTemplate\"\n\t\t\t\t\t\t[ngTemplateOutlet]=\"getSelectedTab().heading\">\n\t\t\t\t\t</ng-template>\n\t\t\t\t</a>\n\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t\t<ul\n\t\t\t\t#tabList\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--tabs__nav--hidden': !tabListVisible\n\t\t\t\t}\"\n\t\t\t\tclass=\"bx--tabs__nav\"\n\t\t\t\trole=\"tablist\">\n\t\t\t\t<li\n\t\t\t\t\t*ngFor=\"let tab of tabs; let i = index;\"\n\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t'bx--tabs__nav-item--selected': tab.active\n\t\t\t\t\t}\"\n\t\t\t\t\tclass=\"bx--tabs__nav-item\"\n\t\t\t\t\trole=\"presentation\"\n\t\t\t\t\t(click)=\"selectTab(tabref, tab, i)\">\n\t\t\t\t\t<a\n\t\t\t\t\t\t[attr.aria-selected]=\"tab.active\"\n\t\t\t\t\t\t[attr.tabindex]=\"(tab.active?0:-1)\"\n\t\t\t\t\t\t[attr.aria-controls]=\"tab.id\"\n\t\t\t\t\t\t(focus)=\"onTabFocus(tabref, i)\"\n\t\t\t\t\t\tdraggable=\"false\"\n\t\t\t\t\t\tid=\"{{tab.id}}-header\"\n\t\t\t\t\t\tclass=\"bx--tabs__nav-link\"\n\t\t\t\t\t\thref=\"javascript:void(0)\"\n\t\t\t\t\t\trole=\"tab\">\n\t\t\t\t\t\t<ng-container *ngIf=\"!tab.headingIsTemplate\">\n\t\t\t\t\t\t\t{{ tab.heading }}\n\t\t\t\t\t\t</ng-container>\n\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t*ngIf=\"tab.headingIsTemplate\"\n\t\t\t\t\t\t\t[ngTemplateOutlet]=\"tab.heading\">\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</nav>\n\t\t<div>\n\t\t\t<ng-content select=\"ibm-tab\"></ng-content>\n\t\t</div>\n\t "
+            template: "\n\t\t<nav\n\t\t\tclass=\"bx--tabs\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\"\n\t\t\trole=\"navigation\">\n\t\t\t<div class=\"bx--tabs-trigger\" tabindex=\"0\" (click)=\"showTabList()\">\n\t\t\t\t<a href=\"javascript:void(0)\" class=\"bx--tabs-trigger-text\" tabindex=\"-1\">\n\t\t\t\t\t<ng-container *ngIf=\"!getSelectedTab().headingIsTemplate\">\n\t\t\t\t\t\t{{ getSelectedTab().heading }}\n\t\t\t\t\t</ng-container>\n\t\t\t\t\t<ng-template\n\t\t\t\t\t\t*ngIf=\"getSelectedTab().headingIsTemplate\"\n\t\t\t\t\t\t[ngTemplateOutlet]=\"getSelectedTab().heading\">\n\t\t\t\t\t</ng-template>\n\t\t\t\t</a>\n\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t\t<ul\n\t\t\t\t#tabList\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--tabs__nav--hidden': !tabListVisible\n\t\t\t\t}\"\n\t\t\t\tclass=\"bx--tabs__nav\"\n\t\t\t\trole=\"tablist\">\n\t\t\t\t<li\n\t\t\t\t\t*ngFor=\"let tab of tabs; let i = index;\"\n\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t'bx--tabs__nav-item--selected': tab.active\n\t\t\t\t\t}\"\n\t\t\t\t\tclass=\"bx--tabs__nav-item\"\n\t\t\t\t\trole=\"presentation\"\n\t\t\t\t\t(click)=\"selectTab(tabref, tab, i)\">\n\t\t\t\t\t<a\n\t\t\t\t\t\t[attr.aria-selected]=\"tab.active\"\n\t\t\t\t\t\t[attr.tabindex]=\"(tab.active?0:-1)\"\n\t\t\t\t\t\t[attr.aria-controls]=\"tab.id\"\n\t\t\t\t\t\t(focus)=\"onTabFocus(tabref, i)\"\n\t\t\t\t\t\tdraggable=\"false\"\n\t\t\t\t\t\tid=\"{{tab.id}}-header\"\n\t\t\t\t\t\tclass=\"bx--tabs__nav-link\"\n\t\t\t\t\t\thref=\"javascript:void(0)\"\n\t\t\t\t\t\trole=\"tab\">\n\t\t\t\t\t\t<ng-container *ngIf=\"!tab.headingIsTemplate\">\n\t\t\t\t\t\t\t{{ tab.heading }}\n\t\t\t\t\t\t</ng-container>\n\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t*ngIf=\"tab.headingIsTemplate\"\n\t\t\t\t\t\t\t[ngTemplateOutlet]=\"tab.heading\">\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</nav>\n\t\t<div>\n\t\t\t<ng-content select=\"ibm-tab\"></ng-content>\n\t\t</div>\n\t "
         })
     ], TabHeaders);
     return TabHeaders;
@@ -19499,6 +19507,10 @@ var Tabs = /** @class */ (function () {
          * @memberof Tabs
          */
         this.followFocus = true;
+        /**
+         * Set to `true` to put tabs in a loading state.
+         */
+        this.skeleton = false;
     }
     /**
      * After content is initialized update `Tab`s to cache (if turned on) and set the inital
@@ -19530,6 +19542,10 @@ var Tabs = /** @class */ (function () {
         __metadata("design:type", Object)
     ], Tabs.prototype, "followFocus", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Tabs.prototype, "skeleton", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChildren"])(_tab_component__WEBPACK_IMPORTED_MODULE_1__["Tab"], { descendants: false }),
         __metadata("design:type", typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"]) === "function" && _a || Object)
     ], Tabs.prototype, "tabs", void 0);
@@ -19540,7 +19556,7 @@ var Tabs = /** @class */ (function () {
     Tabs = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-tabs",
-            template: "\n\t\t\t<ibm-tab-headers\n\t\t\t\t*ngIf=\"hasTabHeaders() && position === 'top'\"\n\t\t\t\t[tabs]=\"tabs\"\n\t\t\t\t[followFocus]=\"followFocus\"\n\t\t\t\t[cacheActive]=\"cacheActive\">\n\t\t\t</ibm-tab-headers>\n\t\t\t<ng-content></ng-content>\n\t\t\t<ibm-tab-headers\n\t\t\t\t*ngIf=\"hasTabHeaders() && position === 'bottom'\"\n\t\t\t\t[tabs]=\"tabs\"\n\t\t\t\t[cacheActive]=\"cacheActive\">\n\t\t\t</ibm-tab-headers>\n\t "
+            template: "\n\t\t\t<ibm-tab-headers\n\t\t\t\t*ngIf=\"hasTabHeaders() && position === 'top'\"\n\t\t\t\t[skeleton]=\"skeleton\"\n\t\t\t\t[tabs]=\"tabs\"\n\t\t\t\t[followFocus]=\"followFocus\"\n\t\t\t\t[cacheActive]=\"cacheActive\">\n\t\t\t</ibm-tab-headers>\n\t\t\t<ng-content></ng-content>\n\t\t\t<ibm-tab-headers\n\t\t\t\t*ngIf=\"hasTabHeaders() && position === 'bottom'\"\n\t\t\t\t[skeleton]=\"skeleton\"\n\t\t\t\t[tabs]=\"tabs\"\n\t\t\t\t[cacheActive]=\"cacheActive\">\n\t\t\t</ibm-tab-headers>\n\t "
         })
     ], Tabs);
     return Tabs;
@@ -19633,8 +19649,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { TabsModule } from '../';\n\nstoriesOf('Tabs', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [TabsModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n    props: {\n      followFocus: boolean('followFocus', true),\n    },\n  }))\n  .add('With template', () => ({\n    template: `\n\t\t\t<ng-template #customTab>\n\t\t\t\tSomething custom\n\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" style=\"display: inline-block; height: 12px; width: 12px; fill: #3d70b2;\">\n\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t</svg>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs>\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "Tabs@With template": { "startLoc": { "col": 7, "line": 24 }, "endLoc": { "col": 4, "line": 40 } }, "Tabs@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 23 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { TabsModule } from '../';\n\nstoriesOf('Tabs', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [TabsModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n    props: {\n      followFocus: boolean('followFocus', true),\n    },\n  }))\n  .add('With template', () => ({\n    template: `\n\t\t\t<ng-template #customTab>\n\t\t\t\tSomething custom\n\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" style=\"display: inline-block; height: 12px; width: 12px; fill: #3d70b2;\">\n\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t</svg>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs>\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<ibm-tabs skeleton=\"true\">\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Tabs@Skeleton": { "startLoc": { "col": 7, "line": 41 }, "endLoc": { "col": 4, "line": 48 } }, "Tabs@With template": { "startLoc": { "col": 7, "line": 24 }, "endLoc": { "col": 4, "line": 40 } }, "Tabs@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 23 } } };
 
 
 
@@ -19653,6 +19669,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Tabs", mod
 }); })
     .add("With template", function () { return ({
     template: "\n\t\t\t<ng-template #customTab>\n\t\t\t\tSomething custom\n\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" style=\"display: inline-block; height: 12px; width: 12px; fill: #3d70b2;\">\n\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t</svg>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs>\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t"
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t\t<ibm-tabs skeleton=\"true\">\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20404,4 +20423,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.48b8b8ca923b5294613e.bundle.js.map
+//# sourceMappingURL=iframe.a4841cd6bec859ac917c.bundle.js.map
