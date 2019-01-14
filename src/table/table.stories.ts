@@ -17,6 +17,7 @@ import {
 } from "@storybook/addon-knobs/angular";
 
 import {
+	Table,
 	TableModule,
 	TableModel,
 	TableItem,
@@ -414,6 +415,29 @@ function sort(model, index: number) {
 	model.sort(index);
 }
 
+@Component({
+	selector: "app-skeleton-table",
+	template: `
+		<ibm-table
+			[model]="skeletonModel"
+			[skeleton]="skeleton"
+			[size]="size"
+			[striped]="striped">
+			<ng-content></ng-content>
+		</ibm-table>
+	`
+})
+class SkeletonTableStory implements OnInit, OnChanges {
+	@Input() size = "md";
+	@Input() striped = false;
+	@Input() skeleton = true;
+	@Input() skeletonModel = new TableModel();
+
+	ngOnInit() {
+		// Creates an empty table with 5 rows and 5 columns
+		this.skeletonModel = Table.skeletonModel(5, 5);
+	}
+}
 
 storiesOf("Table", module).addDecorator(
 		moduleMetadata({
@@ -428,7 +452,8 @@ storiesOf("Table", module).addDecorator(
 				DynamicTableStory,
 				ExpansionTableStory,
 				OverflowTableStory,
-				PaginationTableStory
+				PaginationTableStory,
+				SkeletonTableStory
 			]
 		})
 	)
@@ -524,6 +549,21 @@ storiesOf("Table", module).addDecorator(
 		props: {
 			model: simpleModel,
 			totalDataLength: number("totalDataLength", 105)
+		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 800px">
+			<app-skeleton-table
+				[skeletonModel]="skeletonModel"
+				[size]="size"
+				[striped]="striped">
+			</app-skeleton-table>
+		</div>
+	`,
+		props: {
+			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			striped: boolean("striped", false)
 		}
 	}));
 

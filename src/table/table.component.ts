@@ -8,6 +8,8 @@ import {
 import { Subscription, fromEvent } from "rxjs";
 
 import { TableModel } from "./table.module";
+import { TableHeaderItem } from "./table-header-item.class";
+import { TableItem } from "./table-item.class";
 import { getScrollbarWidth } from "../common/utils";
 import { I18n } from "./../i18n/i18n.module";
 
@@ -165,12 +167,13 @@ import { I18n } from "./../i18n/i18n.module";
 	[ngClass]="{
 		'bx--data-table-v2--compact': size === 'sm',
 		'bx--data-table-v2--tall': size === 'lg',
-		'bx--data-table-v2--zebra': striped
+		'bx--data-table-v2--zebra': striped,
+		'bx--skeleton': skeleton
 	}">
 		<thead>
 			<tr>
 				<th *ngIf="model.hasExpandableRows()"></th>
-				<th *ngIf="showSelectionColumn" style="width: 10px;">
+				<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">
 					<ibm-checkbox
 						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
@@ -187,6 +190,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)">
+						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
 						class="column-resize-handle"
@@ -215,7 +219,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</button>
 						<span
 							class="bx--table-header-label"
-							*ngIf="this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
+							*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
 							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 							<ng-template
 								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
@@ -271,7 +275,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 					</th>
 				</ng-container>
-				<th [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+				<th *ngIf="!skeleton" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 					<!--
 						Scrollbar pushes body to the left so this header column is added to push
 						the title bar the same amount and keep the header and body columns aligned.
@@ -311,7 +315,7 @@ import { I18n } from "./../i18n/i18n.module";
 							</svg>
 						</button>
 					</td>
-					<td *ngIf="showSelectionColumn">
+					<td *ngIf="!skeleton && showSelectionColumn">
 						<ibm-checkbox
 							aria-label="Select row"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
@@ -365,12 +369,47 @@ import { I18n } from "./../i18n/i18n.module";
 })
 export class Table {
 	/**
+	 * Creates a skeleton model with a row and column count specified by the user
+	 *
+	 * Example:
+	 *
+	 * ```typescript
+	 * this.model = Table.skeletonModel(5, 5);
+	 * ```
+	 *
+	 * @param {number} rowCount
+	 * @param {number} columnCount
+	 */
+	static skeletonModel(rowCount: number, columnCount: number) {
+		const model = new TableModel();
+		let header = new Array<TableHeaderItem>();
+		let data = new Array<Array<TableItem>>();
+		let row = new Array<TableItem>();
+
+		for (let i = 0; i < columnCount; i++) {
+			header.push(new TableHeaderItem());
+			row.push(new TableItem());
+		}
+		for (let i = 0; i < rowCount - 1; i++) {
+			data.push(row);
+		}
+
+		model.header = header;
+		model.data = data;
+		return model;
+	}
+
+	/**
 	 * Size of the table rows.
 	 *
 	 * @type {("sm" | "md" | "lg")}
 	 * @memberof Table
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
+	/**
+	 * Set to `true` for a loading table.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * Object of all the strings table needs.
 	 * Defaults to the `TABLE` value from the i18n service.
