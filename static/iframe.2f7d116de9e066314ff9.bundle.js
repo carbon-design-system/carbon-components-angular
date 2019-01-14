@@ -11604,10 +11604,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * 		</ibm-modal>`,
  * 	styles: [require('./sample-modal.component.scss')]
  * })
- * export class SampleModal {
- * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
+ * export class SampleModal extends BaseModal {
  * 	modalText: string;
  * 	constructor(protected injector: Injector) {
+ * 		super();
  * 		this.modalText = this.injector.get("modalText");
  * 	}
  * }
@@ -20533,4 +20533,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.276095a79f5529796e8f.bundle.js.map
+//# sourceMappingURL=iframe.2f7d116de9e066314ff9.bundle.js.map

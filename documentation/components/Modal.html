@@ -85,10 +85,10 @@ placed near the end of your app component template (app.component.ts or app.comp
          &lt;/ibm-modal&gt;`,
  *     styleUrls: [&quot;./sample-modal.component.scss&quot;]
  * })
- * export class SampleModal {
- *     closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
+ * export class SampleModal extends BaseModal {
  *     modalText: string;
  *     constructor(protected injector: Injector) {
+ *         super();
  *         this.modalText = this.injector.get(&quot;modalText&quot;);
  *     }
  * }
@@ -864,10 +864,10 @@ import { cycleTabs, getFocusElementList } from &quot;./../common/tab.service&quo
  * 		&lt;/ibm-modal&gt;&#x60;,
  * 	styleUrls: [&quot;./sample-modal.component.scss&quot;]
  * })
- * export class SampleModal {
- * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
+ * export class SampleModal extends BaseModal {
  * 	modalText: string;
  * 	constructor(protected injector: Injector) {
+ * 		super();
  * 		this.modalText &#x3D; this.injector.get(&quot;modalText&quot;);
  * 	}
  * }
