@@ -1,9 +1,13 @@
 import {
 	Component,
-	Input
+	Input,
+	ContentChildren,
+	QueryList,
+	AfterContentInit
 } from "@angular/core";
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
+import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
@@ -12,6 +16,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	template: `
 	<nav #nav class="bx--breadcrumb"
 		[ngClass]="{
+			'bx--skeleton' : skeleton,
 			'bx--breadcrumb--no-trailing-slash' : noTrailingSlash
 		}"
 		[attr.aria-label]="ariaLabel">
@@ -50,7 +55,9 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 		</ng-template>
 	</nav>`
 })
-export class Breadcrumb {
+export class Breadcrumb implements AfterContentInit {
+	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;
+
 	@Input() items: Array<BreadcrumbItem>;
 
 	@Input() noTrailingSlash = false;
@@ -58,6 +65,17 @@ export class Breadcrumb {
 	@Input() ariaLabel: string;
 
 	protected _threshold: number;
+	protected _skeleton = false;
+
+	@Input()
+	set skeleton(value: any) {
+		this._skeleton = value;
+		this.updateChildren();
+	}
+
+	get skeleton(): any {
+		return this._skeleton;
+	}
 
 	@Input()
 	set threshold(threshold: number) {
@@ -69,6 +87,10 @@ export class Breadcrumb {
 
 	get threshold(): number {
 		return this._threshold;
+	}
+
+	ngAfterContentInit() {
+		this.updateChildren();
 	}
 
 	get shouldShowContent(): boolean {
@@ -96,5 +118,11 @@ export class Breadcrumb {
 
 	get last(): BreadcrumbItem {
 		return this.shouldShowOverflow ? this.items[this.items.length - 1] : null;
+	}
+
+	protected updateChildren() {
+		if (this.children) {
+			this.children.toArray().forEach(child => child.skeleton = this.skeleton);
+		}
 	}
 }

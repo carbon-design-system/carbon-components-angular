@@ -22,6 +22,7 @@ describe("Search", () => {
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(Search);
+		fixture.detectChanges();
 		component = fixture.componentInstance;
 		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});

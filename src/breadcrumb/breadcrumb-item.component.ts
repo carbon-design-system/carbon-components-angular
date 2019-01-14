@@ -8,8 +8,8 @@ import {
 	selector: "ibm-breadcrumb-item",
 	template: `
 	<a class="bx--link"
-		href="{{href}}"
-		*ngIf="href; else content">
+		href="{{skeleton ? href : '/#'}}"
+		*ngIf="skeleton || href; else content">
 		<ng-container *ngTemplateOutlet="content"></ng-container>
 	</a>
 	<ng-template #content>
@@ -18,6 +18,8 @@ import {
 })
 export class BreadcrumbItemComponent {
 	@Input() href: string;
+
+	@Input() skeleton = false;
 
 	@HostBinding("class.bx--breadcrumb-item") itemClass = true;
 }
