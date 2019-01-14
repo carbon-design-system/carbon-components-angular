@@ -60,6 +60,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
+    </p>
 
 
 <section>
@@ -88,6 +94,7 @@
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;nav #nav class&#x3D;&quot;bx--breadcrumb&quot;
 	[ngClass]&#x3D;&quot;{
+		&#x27;bx--skeleton&#x27; : skeleton,
 		&#x27;bx--breadcrumb--no-trailing-slash&#x27; : noTrailingSlash
 	}&quot;
 	[attr.aria-label]&#x3D;&quot;ariaLabel&quot;&gt;
@@ -153,12 +160,37 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#_skeleton">_skeleton</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#_threshold">_threshold</a>
+                            </li>
+                            <li>
+                                <a href="#children">children</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngAfterContentInit">ngAfterContentInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#updateChildren">updateChildren</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -178,6 +210,9 @@
                                 <a href="#noTrailingSlash">noTrailingSlash</a>
                             </li>
                             <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
                                 <a href="#threshold">threshold</a>
                             </li>
                         </ul>
@@ -195,6 +230,9 @@
                     <tr>
                         <td class="col-md-4">
                             <ul class="index-list">
+                                <li>
+                                    <a href="#skeleton">skeleton</a>
+                                </li>
                                 <li>
                                     <a href="#threshold">threshold</a>
                                 </li>
@@ -242,7 +280,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:65</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -263,7 +301,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:61</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -283,7 +321,28 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:63</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:71</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -304,7 +363,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:81</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -313,12 +372,130 @@
 
 
 
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngAfterContentInit"></a>
+                        <span class="name">
+                            <b>
+                            ngAfterContentInit
+                            </b>
+                            <a href="#ngAfterContentInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngAfterContentInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:92</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateChildren"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            updateChildren
+                            </b>
+                            <a href="#updateChildren"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>updateChildren()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:123</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_skeleton"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _skeleton
+                            </b>
+                            <a href="#_skeleton"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_skeleton:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:68</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -347,7 +524,50 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="children"></a>
+                        <span class="name">
+                            <b>
+                            children
+                            </b>
+                            <a href="#children"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>children:     <code><a href="../interfaces/BreadcrumbItem.html" target="_self" >QueryList&lt;BreadcrumbItemComponent&gt;</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/BreadcrumbItem.html" target="_self" >QueryList&lt;BreadcrumbItemComponent&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ContentChildren(BreadcrumbItemComponent)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -364,6 +584,75 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="skeleton"></a>
+                        <span class="name"><b>skeleton</b><a href="#skeleton"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>skeleton()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:76</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>skeleton(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:71</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="threshold"></a>
                         <span class="name"><b>threshold</b><a href="#threshold"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -376,7 +665,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:88</a></div>
                                 </td>
                             </tr>
 
@@ -387,7 +676,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:81</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -445,7 +734,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:96</a></div>
                                 </td>
                             </tr>
 
@@ -467,7 +756,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:100</a></div>
                                 </td>
                             </tr>
 
@@ -489,7 +778,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:107</a></div>
                                 </td>
                             </tr>
 
@@ -511,7 +800,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:111</a></div>
                                 </td>
                             </tr>
 
@@ -533,7 +822,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:115</a></div>
                                 </td>
                             </tr>
 
@@ -555,7 +844,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:119</a></div>
                                 </td>
                             </tr>
 
@@ -568,10 +857,14 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
-	Input
+	Input,
+	ContentChildren,
+	QueryList,
+	AfterContentInit
 } from &quot;@angular/core&quot;;
 
 import { BreadcrumbItem } from &quot;./breadcrumb-item.interface&quot;;
+import { BreadcrumbItemComponent } from &quot;./breadcrumb-item.component&quot;;
 
 const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 
@@ -580,6 +873,7 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 	template: &#x60;
 	&lt;nav #nav class&#x3D;&quot;bx--breadcrumb&quot;
 		[ngClass]&#x3D;&quot;{
+			&#x27;bx--skeleton&#x27; : skeleton,
 			&#x27;bx--breadcrumb--no-trailing-slash&#x27; : noTrailingSlash
 		}&quot;
 		[attr.aria-label]&#x3D;&quot;ariaLabel&quot;&gt;
@@ -618,7 +912,9 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 		&lt;/ng-template&gt;
 	&lt;/nav&gt;&#x60;
 })
-export class Breadcrumb {
+export class Breadcrumb implements AfterContentInit {
+	@ContentChildren(BreadcrumbItemComponent) children: QueryList&lt;BreadcrumbItemComponent&gt;;
+
 	@Input() items: Array&lt;BreadcrumbItem&gt;;
 
 	@Input() noTrailingSlash &#x3D; false;
@@ -626,6 +922,17 @@ export class Breadcrumb {
 	@Input() ariaLabel: string;
 
 	protected _threshold: number;
+	protected _skeleton &#x3D; false;
+
+	@Input()
+	set skeleton(value: any) {
+		this._skeleton &#x3D; value;
+		this.updateChildren();
+	}
+
+	get skeleton(): any {
+		return this._skeleton;
+	}
 
 	@Input()
 	set threshold(threshold: number) {
@@ -637,6 +944,10 @@ export class Breadcrumb {
 
 	get threshold(): number {
 		return this._threshold;
+	}
+
+	ngAfterContentInit() {
+		this.updateChildren();
 	}
 
 	get shouldShowContent(): boolean {
@@ -664,6 +975,12 @@ export class Breadcrumb {
 
 	get last(): BreadcrumbItem {
 		return this.shouldShowOverflow ? this.items[this.items.length - 1] : null;
+	}
+
+	protected updateChildren() {
+		if (this.children) {
+			this.children.toArray().forEach(child &#x3D;&gt; child.skeleton &#x3D; this.skeleton);
+		}
 	}
 }
 </code></pre>
@@ -696,7 +1013,7 @@ export class Breadcrumb {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav #nav class="bx--breadcrumb"	[ngClass]="{		\'bx--breadcrumb--no-trailing-slash\' : noTrailingSlash	}"	[attr.aria-label]="ariaLabel">	<ng-template [ngIf]="shouldShowContent">		<ng-content></ng-content>	</ng-template>	<ng-template [ngIf]="!shouldShowOverflow">		<ibm-breadcrumb-item			*ngFor="let item of items"			[href]="item.href">			{{item.content}}		</ibm-breadcrumb-item>	</ng-template>	<ng-template [ngIf]="shouldShowOverflow">		<ibm-breadcrumb-item [href]="first?.href">			{{first?.content}}		</ibm-breadcrumb-item>		<ibm-breadcrumb-item>			<ibm-overflow-menu>				<li class="bx--overflow-menu-options__option"					*ngFor="let item of overflowItems">					<a class="bx--overflow-menu-options__btn"						href="{{item?.href}}"						style="text-decoration: none;">						{{item?.content}}					</a>				</li>			</ibm-overflow-menu>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item [href]="secondLast?.href">			{{secondLast?.content}}		</ibm-breadcrumb-item>		<ibm-breadcrumb-item [href]="last?.href">			{{last?.content}}		</ibm-breadcrumb-item>	</ng-template></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav #nav class="bx--breadcrumb"	[ngClass]="{		\'bx--skeleton\' : skeleton,		\'bx--breadcrumb--no-trailing-slash\' : noTrailingSlash	}"	[attr.aria-label]="ariaLabel">	<ng-template [ngIf]="shouldShowContent">		<ng-content></ng-content>	</ng-template>	<ng-template [ngIf]="!shouldShowOverflow">		<ibm-breadcrumb-item			*ngFor="let item of items"			[href]="item.href">			{{item.content}}		</ibm-breadcrumb-item>	</ng-template>	<ng-template [ngIf]="shouldShowOverflow">		<ibm-breadcrumb-item [href]="first?.href">			{{first?.content}}		</ibm-breadcrumb-item>		<ibm-breadcrumb-item>			<ibm-overflow-menu>				<li class="bx--overflow-menu-options__option"					*ngFor="let item of overflowItems">					<a class="bx--overflow-menu-options__btn"						href="{{item?.href}}"						style="text-decoration: none;">						{{item?.content}}					</a>				</li>			</ibm-overflow-menu>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item [href]="secondLast?.href">			{{secondLast?.content}}		</ibm-breadcrumb-item>		<ibm-breadcrumb-item [href]="last?.href">			{{last?.content}}		</ibm-breadcrumb-item>	</ng-template></nav></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Breadcrumb'};

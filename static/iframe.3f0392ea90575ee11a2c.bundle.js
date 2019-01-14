@@ -992,6 +992,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var BreadcrumbItemComponent = /** @class */ (function () {
     function BreadcrumbItemComponent() {
+        this.skeleton = false;
         this.itemClass = true;
     }
     __decorate([
@@ -999,13 +1000,17 @@ var BreadcrumbItemComponent = /** @class */ (function () {
         __metadata("design:type", String)
     ], BreadcrumbItemComponent.prototype, "href", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], BreadcrumbItemComponent.prototype, "skeleton", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class.bx--breadcrumb-item"),
         __metadata("design:type", Object)
     ], BreadcrumbItemComponent.prototype, "itemClass", void 0);
     BreadcrumbItemComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-breadcrumb-item",
-            template: "\n\t<a class=\"bx--link\"\n\t\thref=\"{{href}}\"\n\t\t*ngIf=\"href; else content\">\n\t\t<ng-container *ngTemplateOutlet=\"content\"></ng-container>\n\t</a>\n\t<ng-template #content>\n\t\t<ng-content></ng-content>\n\t</ng-template>"
+            template: "\n\t<a class=\"bx--link\"\n\t\thref=\"{{skeleton ? href : '/#'}}\"\n\t\t*ngIf=\"skeleton || href; else content\">\n\t\t<ng-container *ngTemplateOutlet=\"content\"></ng-container>\n\t</a>\n\t<ng-template #content>\n\t\t<ng-content></ng-content>\n\t</ng-template>"
         })
     ], BreadcrumbItemComponent);
     return BreadcrumbItemComponent;
@@ -1037,6 +1042,7 @@ var BreadcrumbItemComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Breadcrumb", function() { return Breadcrumb; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _breadcrumb_item_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./breadcrumb-item.component */ "./src/breadcrumb/breadcrumb-item.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1047,11 +1053,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MINIMUM_OVERFLOW_THRESHOLD = 4;
 var Breadcrumb = /** @class */ (function () {
     function Breadcrumb() {
         this.noTrailingSlash = false;
+        this._skeleton = false;
     }
+    Object.defineProperty(Breadcrumb.prototype, "skeleton", {
+        get: function () {
+            return this._skeleton;
+        },
+        set: function (value) {
+            this._skeleton = value;
+            this.updateChildren();
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Breadcrumb.prototype, "threshold", {
         get: function () {
             return this._threshold;
@@ -1065,6 +1084,9 @@ var Breadcrumb = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Breadcrumb.prototype.ngAfterContentInit = function () {
+        this.updateChildren();
+    };
     Object.defineProperty(Breadcrumb.prototype, "shouldShowContent", {
         get: function () {
             return !this.items;
@@ -1110,10 +1132,20 @@ var Breadcrumb = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    var _a;
+    Breadcrumb.prototype.updateChildren = function () {
+        var _this = this;
+        if (this.children) {
+            this.children.toArray().forEach(function (child) { return child.skeleton = _this.skeleton; });
+        }
+    };
+    var _a, _b;
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChildren"])(_breadcrumb_item_component__WEBPACK_IMPORTED_MODULE_1__["BreadcrumbItemComponent"]),
+        __metadata("design:type", typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"]) === "function" && _a || Object)
+    ], Breadcrumb.prototype, "children", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", typeof (_a = typeof Array !== "undefined" && Array) === "function" && _a || Object)
+        __metadata("design:type", typeof (_b = typeof Array !== "undefined" && Array) === "function" && _b || Object)
     ], Breadcrumb.prototype, "items", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -1125,13 +1157,18 @@ var Breadcrumb = /** @class */ (function () {
     ], Breadcrumb.prototype, "ariaLabel", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Breadcrumb.prototype, "skeleton", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], Breadcrumb.prototype, "threshold", null);
     Breadcrumb = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-breadcrumb",
-            template: "\n\t<nav #nav class=\"bx--breadcrumb\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--breadcrumb--no-trailing-slash' : noTrailingSlash\n\t\t}\"\n\t\t[attr.aria-label]=\"ariaLabel\">\n\t\t<ng-template [ngIf]=\"shouldShowContent\">\n\t\t\t<ng-content></ng-content>\n\t\t</ng-template>\n\t\t<ng-template [ngIf]=\"!shouldShowOverflow\">\n\t\t\t<ibm-breadcrumb-item\n\t\t\t\t*ngFor=\"let item of items\"\n\t\t\t\t[href]=\"item.href\">\n\t\t\t\t{{item.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t</ng-template>\n\t\t<ng-template [ngIf]=\"shouldShowOverflow\">\n\t\t\t<ibm-breadcrumb-item [href]=\"first?.href\">\n\t\t\t\t{{first?.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t\t<ibm-breadcrumb-item>\n\t\t\t\t<ibm-overflow-menu>\n\t\t\t\t\t<li class=\"bx--overflow-menu-options__option\"\n\t\t\t\t\t\t*ngFor=\"let item of overflowItems\">\n\t\t\t\t\t\t<a class=\"bx--overflow-menu-options__btn\"\n\t\t\t\t\t\t\thref=\"{{item?.href}}\"\n\t\t\t\t\t\t\tstyle=\"text-decoration: none;\">\n\t\t\t\t\t\t\t{{item?.content}}\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ibm-overflow-menu>\n\t\t\t</ibm-breadcrumb-item>\n\t\t\t<ibm-breadcrumb-item [href]=\"secondLast?.href\">\n\t\t\t\t{{secondLast?.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t\t<ibm-breadcrumb-item [href]=\"last?.href\">\n\t\t\t\t{{last?.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t</ng-template>\n\t</nav>"
+            template: "\n\t<nav #nav class=\"bx--breadcrumb\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--skeleton' : skeleton,\n\t\t\t'bx--breadcrumb--no-trailing-slash' : noTrailingSlash\n\t\t}\"\n\t\t[attr.aria-label]=\"ariaLabel\">\n\t\t<ng-template [ngIf]=\"shouldShowContent\">\n\t\t\t<ng-content></ng-content>\n\t\t</ng-template>\n\t\t<ng-template [ngIf]=\"!shouldShowOverflow\">\n\t\t\t<ibm-breadcrumb-item\n\t\t\t\t*ngFor=\"let item of items\"\n\t\t\t\t[href]=\"item.href\">\n\t\t\t\t{{item.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t</ng-template>\n\t\t<ng-template [ngIf]=\"shouldShowOverflow\">\n\t\t\t<ibm-breadcrumb-item [href]=\"first?.href\">\n\t\t\t\t{{first?.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t\t<ibm-breadcrumb-item>\n\t\t\t\t<ibm-overflow-menu>\n\t\t\t\t\t<li class=\"bx--overflow-menu-options__option\"\n\t\t\t\t\t\t*ngFor=\"let item of overflowItems\">\n\t\t\t\t\t\t<a class=\"bx--overflow-menu-options__btn\"\n\t\t\t\t\t\t\thref=\"{{item?.href}}\"\n\t\t\t\t\t\t\tstyle=\"text-decoration: none;\">\n\t\t\t\t\t\t\t{{item?.content}}\n\t\t\t\t\t\t</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ibm-overflow-menu>\n\t\t\t</ibm-breadcrumb-item>\n\t\t\t<ibm-breadcrumb-item [href]=\"secondLast?.href\">\n\t\t\t\t{{secondLast?.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t\t<ibm-breadcrumb-item [href]=\"last?.href\">\n\t\t\t\t{{last?.content}}\n\t\t\t</ibm-breadcrumb-item>\n\t\t</ng-template>\n\t</nav>"
         })
     ], Breadcrumb);
     return Breadcrumb;
@@ -1222,8 +1259,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number } from '@storybook/addon-knobs/angular';\n\nimport { BreadcrumbModule, DialogModule } from '../';\nimport { BreadcrumbItem } from '../breadcrumb/breadcrumb-item.interface';\n\nlet breadcrumbItems;\n\nconst createBreadcrumbItems = (count: number): Array<BreadcrumbItem> => {\n  if (breadcrumbItems && count === breadcrumbItems.length) {\n    return breadcrumbItems;\n  }\n  breadcrumbItems = Array(count)\n    .fill(0)\n    .map((x, i) => ({ content: ' Breadcrumb ' + (i + 1), href: '#' + (i + 1) }));\n  return breadcrumbItems;\n};\n\nstoriesOf('Breadcrumb', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [BreadcrumbModule, DialogModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t<ibm-breadcrumb [noTrailingSlash]=\"noTrailingSlash\">\n\t\t<ibm-breadcrumb-item href=\"#1\">\n\t\t\tBreadcrumb 1\n\t\t</ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item href=\"#2\">\n\t\t\tBreadcrumb 2\n\t\t</ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item href=\"#3\">\n\t\t\tBreadcrumb 3\n\t\t</ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item href=\"#4\">\n\t\t\tBreadcrumb 4\n\t\t</ibm-breadcrumb-item>\n\t</ibm-breadcrumb>`,\n    props: {\n      noTrailingSlash: boolean('noTrailingSlash', true),\n    },\n  }))\n  .add('Model', () => ({\n    template: `\n\t<ibm-breadcrumb\n\t\t[noTrailingSlash]=\"noTrailingSlash\"\n\t\t[threshold]=\"threshold\"\n\t\t[items]=\"items(itemCount)\">\n\t</ibm-breadcrumb>`,\n    props: {\n      noTrailingSlash: boolean('noTrailingSlash', true),\n      itemCount: number('itemCount', 10),\n      threshold: number('threshold', 4),\n      items: createBreadcrumbItems,\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Breadcrumb@Model": { "startLoc": { "col": 7, "line": 46 }, "endLoc": { "col": 4, "line": 59 } }, "Breadcrumb@Basic": { "startLoc": { "col": 7, "line": 26 }, "endLoc": { "col": 4, "line": 45 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number } from '@storybook/addon-knobs/angular';\n\nimport { BreadcrumbModule, DialogModule } from '../';\nimport { BreadcrumbItem } from '../breadcrumb/breadcrumb-item.interface';\n\nlet breadcrumbItems;\n\nconst createBreadcrumbItems = (count: number): Array<BreadcrumbItem> => {\n  if (breadcrumbItems && count === breadcrumbItems.length) {\n    return breadcrumbItems;\n  }\n  breadcrumbItems = Array(count)\n    .fill(0)\n    .map((x, i) => ({ content: ' Breadcrumb ' + (i + 1), href: '#' + (i + 1) }));\n  return breadcrumbItems;\n};\n\nstoriesOf('Breadcrumb', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [BreadcrumbModule, DialogModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t<ibm-breadcrumb [noTrailingSlash]=\"noTrailingSlash\">\n\t\t<ibm-breadcrumb-item href=\"#1\">\n\t\t\tBreadcrumb 1\n\t\t</ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item href=\"#2\">\n\t\t\tBreadcrumb 2\n\t\t</ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item href=\"#3\">\n\t\t\tBreadcrumb 3\n\t\t</ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item href=\"#4\">\n\t\t\tBreadcrumb 4\n\t\t</ibm-breadcrumb-item>\n\t</ibm-breadcrumb>`,\n    props: {\n      noTrailingSlash: boolean('noTrailingSlash', true),\n    },\n  }))\n  .add('Model', () => ({\n    template: `\n\t<ibm-breadcrumb\n\t\t[noTrailingSlash]=\"noTrailingSlash\"\n\t\t[threshold]=\"threshold\"\n\t\t[items]=\"items(itemCount)\">\n\t</ibm-breadcrumb>`,\n    props: {\n      noTrailingSlash: boolean('noTrailingSlash', true),\n      itemCount: number('itemCount', 10),\n      threshold: number('threshold', 4),\n      items: createBreadcrumbItems,\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t<ibm-breadcrumb skeleton=\"true\" [noTrailingSlash]=\"noTrailingSlash\">\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t</ibm-breadcrumb>`,\n    props: {\n      noTrailingSlash: boolean('noTrailingSlash', true),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Breadcrumb@Skeleton": { "startLoc": { "col": 7, "line": 60 }, "endLoc": { "col": 4, "line": 71 } }, "Breadcrumb@Model": { "startLoc": { "col": 7, "line": 46 }, "endLoc": { "col": 4, "line": 59 } }, "Breadcrumb@Basic": { "startLoc": { "col": 7, "line": 26 }, "endLoc": { "col": 4, "line": 45 } } };
 
 
 
@@ -1256,6 +1293,12 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Breadcrumb
         itemCount: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("itemCount", 10),
         threshold: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("threshold", 4),
         items: createBreadcrumbItems
+    }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t<ibm-breadcrumb skeleton=\"true\" [noTrailingSlash]=\"noTrailingSlash\">\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t\t<ibm-breadcrumb-item></ibm-breadcrumb-item>\n\t</ibm-breadcrumb>",
+    props: {
+        noTrailingSlash: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("noTrailingSlash", true)
     }
 }); });
 
@@ -20269,4 +20312,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.4699d922f3d31c8c94c8.bundle.js.map
+//# sourceMappingURL=iframe.3f0392ea90575ee11a2c.bundle.js.map
