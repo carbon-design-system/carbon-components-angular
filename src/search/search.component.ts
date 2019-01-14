@@ -41,29 +41,35 @@ export class SearchChange {
 			[ngClass]="{
 				'bx--search--sm': size === 'sm',
 				'bx--search--lg': size === 'lg',
-				'bx--search--light': theme === 'light'
+				'bx--search--light': theme === 'light',
+				'bx--skeleton': skeleton
 			}"
 			role="search">
 			<label class="bx--label" [for]="id">{{label}}</label>
-			<input
-				class="bx--search-input"
-				type="text"
-				role="search"
-				[id]="id"
-				[value]="value"
-				[placeholder]="placeholder"
-				[disabled]="disabled"
-				[required]="required"
-				(input)="onSearch($event.target.value)"/>
-			<svg
-				class="bx--search-magnifier"
-				width="16"
-				height="16"
-				viewBox="0 0 16 16">
-				<path
-					d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-					fill-rule="nonzero"/>
-			</svg>
+
+			<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
+			<ng-template #enableInput>
+				<input
+					class="bx--search-input"
+					type="text"
+					role="search"
+					[id]="id"
+					[value]="value"
+					[placeholder]="placeholder"
+					[disabled]="disabled"
+					[required]="required"
+					(input)="onSearch($event.target.value)"/>
+				<svg
+					class="bx--search-magnifier"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16">
+					<path
+						d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+						fill-rule="nonzero"/>
+				</svg>
+			</ng-template>
+
 			<button
 				class="bx--search-close"
 				[ngClass]="{
@@ -113,6 +119,10 @@ export class Search implements ControlValueAccessor {
 	 * Set to `true` for a disabled search input.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a loading search component.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * Sets the name attribute on the `input` element.
 	 */
