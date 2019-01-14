@@ -33,4 +33,17 @@ storiesOf("Input", module).addDecorator(
 		props: {
 			theme: select("Theme", ["dark", "light"], "dark")
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<ibm-label skeleton="true">
+			<input ibmText skeleton="true">
+		</ibm-label>
+		<br>
+		<input ibmText skeleton="true">
+		<br><br>
+		<ibm-label skeleton="true">
+			<div ibmTextArea skeleton="true"></div>
+		</ibm-label>
+		`
 	}));

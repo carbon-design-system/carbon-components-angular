@@ -3,7 +3,8 @@ import {
 	HostBinding,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	Input
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
 
@@ -31,6 +32,16 @@ import { ListColumn } from "./list-column.component";
 export class ListHeader implements AfterContentInit {
 	@HostBinding("class.bx--structured-list-thead") wrapper = true;
 
+	@Input()
+	set skeleton(value: any) {
+		this._skeleton = value;
+		this.updateChildren();
+	}
+
+	get skeleton(): any {
+		return this._skeleton;
+	}
+
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
 	/**
@@ -38,10 +49,19 @@ export class ListHeader implements AfterContentInit {
 	 */
 	selection = false;
 
+	protected _skeleton = false;
+
 	ngAfterContentInit() {
 		this.columns.forEach(column => {
 			column.isBodyColumn = false;
 			column.isHeaderColumn = true;
 		});
+		this.updateChildren();
+	}
+
+	protected updateChildren() {
+		if (this.columns) {
+			this.columns.toArray().forEach(child => child.skeleton = this.skeleton);
+		}
 	}
 }

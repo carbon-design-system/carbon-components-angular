@@ -21,14 +21,16 @@ storiesOf("Dropdown", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-dropdown
-			[theme]="theme"
-			placeholder="Select"
-			[disabled]="disabled"
-			(selected)="selected($event)"
-			(onClose)="onClose($event)">
-			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-		</ibm-dropdown>
+		<div style="width: 300px">
+			<ibm-dropdown
+				[theme]="theme"
+				placeholder="Select"
+				[disabled]="disabled"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
+		</div>
 	`,
 		props: {
 			disabled: boolean("disabled", false),
@@ -45,14 +47,16 @@ storiesOf("Dropdown", module)
 	}))
 	.add("Multi-select", withNotes({ text: "Notes on multi select" })(() => ({
 		template: `
-		<ibm-dropdown
-			type="multi"
-			placeholder="Multi-select"
-			[disabled]="disabled"
-			(selected)="selected($event)"
-			(onClose)="onClose($event)">
-			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-		</ibm-dropdown>
+		<div style="width: 300px">
+			<ibm-dropdown
+				type="multi"
+				placeholder="Multi-select"
+				[disabled]="disabled"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
+		</div>
 	`,
 		props: {
 			disabled: boolean("disabled", false),
@@ -68,14 +72,16 @@ storiesOf("Dropdown", module)
 	})))
 	.add("With ngModel", () => ({
 		template: `
-		<ibm-dropdown
-			placeholder="Select"
-			[disabled]="disabled"
-			[(ngModel)]="model"
-			value="content">
-			<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-		</ibm-dropdown>
-		<span>{{model | json}}</span>
+		<div style="width: 300px">
+			<ibm-dropdown
+				placeholder="Select"
+				[disabled]="disabled"
+				[(ngModel)]="model"
+				value="content">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
+			<span>{{model | json}}</span>
+		</div>
 		`,
 		props: {
 			disabled: boolean("disabled", false),
@@ -86,5 +92,26 @@ storiesOf("Dropdown", module)
 				{ content: "four" }
 			],
 			model: null
+		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 300px">
+			<ibm-dropdown skeleton="true">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
+			&nbsp;
+			<ibm-dropdown skeleton="true" inline="true">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
+		</div>
+		`,
+		props: {
+			items: [
+				{ content: "one" },
+				{ content: "two" },
+				{ content: "three" },
+				{ content: "four" }
+			]
 		}
 	}));

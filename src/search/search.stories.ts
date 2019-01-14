@@ -11,9 +11,7 @@ storiesOf("Search", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<div style="width: 250px;">
 			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" [size]="size"></ibm-search>
-		</div>
 		`,
 		props: {
 			size: select("size", ["lg", "sm"], "lg"),
@@ -21,4 +19,13 @@ storiesOf("Search", module).addDecorator(
 			disabled: boolean("disabled", false),
 			placeholder: text("placeholder", "Search")
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 200px;">
+			<ibm-search skeleton="true"></ibm-search>
+			&nbsp;
+			<ibm-search skeleton="true" size="sm"></ibm-search>
+		</div>
+		`
 	}));

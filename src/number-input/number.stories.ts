@@ -11,15 +11,14 @@ storiesOf("Number", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<div style="width: 250px;">
-				<ibm-number
-					[label]="label"
-					[helperText]="[helperText]"
-					[theme]="theme"
-					[min]="min"
-					[max]="max"
-					[disabled]="disabled"></ibm-number>
-			</div>
+			<ibm-number
+				[label]="label"
+				[helperText]="[helperText]"
+				[theme]="theme"
+				[min]="min"
+				[max]="max"
+				[disabled]="disabled">
+			</ibm-number>
 		`,
 		props: {
 			label: text("label", "Number Input Label"),
@@ -28,5 +27,13 @@ storiesOf("Number", module).addDecorator(
 			min: number("min", 0),
 			max: number("max", 100),
 			disabled: boolean("disabled", false)
+		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+			<ibm-number [label]="label" skeleton="true"></ibm-number>
+		`,
+		props: {
+			label: text("label", "Number Input Label")
 		}
 	}));

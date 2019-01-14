@@ -17,6 +17,7 @@ import {
 } from "@storybook/addon-knobs/angular";
 
 import {
+	Table,
 	TableModule,
 	TableModel,
 	TableItem,
@@ -414,6 +415,29 @@ function sort(model, index: number) {
 	model.sort(index);
 }
 
+@Component({
+	selector: "app-skeleton-table",
+	template: `
+		<ibm-table
+			[model]="skeletonModel"
+			[skeleton]="skeleton"
+			[size]="size"
+			[striped]="striped">
+			<ng-content></ng-content>
+		</ibm-table>
+	`
+})
+class SkeletonTableStory implements OnInit, OnChanges {
+	@Input() size = "md";
+	@Input() striped = false;
+	@Input() skeleton = true;
+	@Input() skeletonModel = new TableModel();
+
+	ngOnInit() {
+		// Creates an empty table with 5 rows and 5 columns
+		this.skeletonModel = Table.skeletonModel(5, 5);
+	}
+}
 
 storiesOf("Table", module).addDecorator(
 		moduleMetadata({
@@ -428,20 +452,23 @@ storiesOf("Table", module).addDecorator(
 				DynamicTableStory,
 				ExpansionTableStory,
 				OverflowTableStory,
-				PaginationTableStory
+				PaginationTableStory,
+				SkeletonTableStory
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
-		<app-table
-			[model]="model"
-			[size]="size"
-			[showSelectionColumn]="showSelectionColumn"
-			[striped]="striped"
-			[sortable]="sortable">
-		</app-table>
+		<div style="width: 650px">
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[sortable]="sortable">
+			</app-table>
+		</div>
 	`,
 		props: {
 			model: simpleModel,
@@ -453,13 +480,15 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with no data", () => ({
 		template: `
-			<app-table
-				[model]="model"
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
-			</app-table>
+			<div style="width: 650px">
+				<app-table
+					[model]="model"
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+					<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
+				</app-table>
+			</div>
 		`,
 		styles: [`
 			.no-data {
@@ -477,11 +506,13 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with expansion", () => ({
 		template: `
-			<app-expansion-table
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-			</app-expansion-table>
+			<div style="width: 650px">
+				<app-expansion-table
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+				</app-expansion-table>
+			</div>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
@@ -491,11 +522,13 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with dynamic content", () => ({
 		template: `
-			<app-custom-table
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-			</app-custom-table>
+			<div style="width: 650px">
+				<app-custom-table
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+				</app-custom-table>
+			</div>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
@@ -505,11 +538,13 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with overflow menu", () => ({
 		template: `
-			<app-overflow-table
-				[size]="size"
-				[showSelectionColumn]="showSelectionColumn"
-				[striped]="striped">
-			</app-overflow-table>
+			<div style="width: 650px">
+				<app-overflow-table
+					[size]="size"
+					[showSelectionColumn]="showSelectionColumn"
+					[striped]="striped">
+				</app-overflow-table>
+			</div>
 		`,
 		props: {
 			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
@@ -519,11 +554,28 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("with pagination", () => ({
 		template: `
+		<div style="width: 650px">
 			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
+		</div>
 		`,
 		props: {
 			model: simpleModel,
 			totalDataLength: number("totalDataLength", 105)
+		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 800px">
+			<app-skeleton-table
+				[skeletonModel]="skeletonModel"
+				[size]="size"
+				[striped]="striped">
+			</app-skeleton-table>
+		</div>
+	`,
+		props: {
+			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			striped: boolean("striped", false)
 		}
 	}));
 
