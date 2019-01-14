@@ -124,8 +124,8 @@
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
 	},
 	"TOGGLE": {
-		"LEFTTEXT": "Off",
-		"RIGHTTEXT": "On"
+		"OFF": "Off",
+		"ON": "On"
 	},
 	"TOPNAV": {
 		"SKIP_TO_MAIN": "Skip to main content",
