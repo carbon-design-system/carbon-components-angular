@@ -134,5 +134,46 @@ storiesOf("Structured List", module).addDecorator(
 			condensed: boolean("condensed", false),
 			nowrap: boolean("nowrap", false)
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 800px">
+			<ibm-structured-list skeleton="true">
+				<ibm-list-header>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+				</ibm-list-header>
+				<ibm-list-row>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+				</ibm-list-row>
+				<ibm-list-row>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+				</ibm-list-row>
+			</ibm-structured-list>
+
+			<ibm-structured-list skeleton="true" border="true">
+				<ibm-list-header>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+				</ibm-list-header>
+				<ibm-list-row>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+				</ibm-list-row>
+				<ibm-list-row>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+					<ibm-list-column></ibm-list-column>
+				</ibm-list-row>
+			</ibm-structured-list>
+		</div>
+		`
 	}));
 

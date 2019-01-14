@@ -70,7 +70,12 @@ export class CheckboxChange {
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
-		<label [for]="id" class="bx--checkbox-label">
+		<label
+			[for]="id"
+			class="bx--checkbox-label"
+			[ngClass]="{
+				'bx--skeleton' : skeleton
+			}">
 			<ng-content></ng-content>
 		</label>
 	`,
@@ -107,6 +112,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Set to `true` for a disabled checkbox.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a loading checkbox.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * Sets the name attribute on the `input` element.
 	 */

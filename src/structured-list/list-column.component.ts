@@ -12,9 +12,14 @@ import { Component, HostBinding, Input } from "@angular/core";
  */
 @Component({
 	selector: "ibm-list-column",
-	template: `<ng-content></ng-content>`
+	template: `
+		<span *ngIf="skeleton"></span>
+		<ng-content></ng-content>
+	`
 })
 export class ListColumn {
+	@Input() skeleton = false;
+
 	@HostBinding("class.bx--structured-list-th") isHeaderColumn = true;
 	@HostBinding("class.bx--structured-list-td") isBodyColumn = true;
 	/**
