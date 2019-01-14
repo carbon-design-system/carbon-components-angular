@@ -6798,6 +6798,14 @@ var Dropdown = /** @class */ (function () {
          */
         this.disabled = false;
         /**
+         * Set to `true` for a loading dropdown.
+         */
+        this.skeleton = false;
+        /**
+         * Set to `true` for an inline dropdown.
+         */
+        this.inline = false;
+        /**
          * set to `true` to place the dropdown view inline with the component
          */
         this.appendInline = false;
@@ -6863,13 +6871,18 @@ var Dropdown = /** @class */ (function () {
      * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
      */
     Dropdown.prototype.ngOnInit = function () {
-        this.view.type = this.type;
+        if (this.view) {
+            this.view.type = this.type;
+        }
     };
     /**
      * Initializes classes and subscribes to events for single or multi selection.
      */
     Dropdown.prototype.ngAfterContentInit = function () {
         var _this = this;
+        if (!this.view) {
+            return;
+        }
         this.view.type = this.type;
         this.view.size = this.size;
         this.view.select.subscribe(function (event) {
@@ -6987,6 +7000,9 @@ var Dropdown = /** @class */ (function () {
      * Returns the display value if there is no selection, otherwise the selection will be returned.
      */
     Dropdown.prototype.getDisplayValue = function () {
+        if (!this.view) {
+            return;
+        }
         var selected = this.view.getSelected();
         if (selected && !this.displayValue) {
             if (this.type === "multi") {
@@ -7226,6 +7242,14 @@ var Dropdown = /** @class */ (function () {
     ], Dropdown.prototype, "disabled", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Dropdown.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Dropdown.prototype, "inline", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], Dropdown.prototype, "appendToBody", null);
@@ -7284,7 +7308,7 @@ var Dropdown = /** @class */ (function () {
     Dropdown = Dropdown_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-dropdown",
-            template: "\n\t<div\n\t\tclass=\"bx--list-box\"\n\t\t[ngClass]=\"{'bx--dropdown--light': theme === 'light'}\">\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\t#dropdownButton\n\t\t\tclass=\"bx--list-box__field\"\n\t\t\t[ngClass]=\"{'a': !menuIsClosed}\"\n\t\t\t[attr.aria-expanded]=\"!menuIsClosed\"\n\t\t\t[attr.aria-disabled]=\"disabled\"\n\t\t\t(click)=\"toggleMenu()\"\n\t\t\t(blur)=\"onBlur()\"\n\t\t\t[disabled]=\"disabled\">\n\t\t\t<span class=\"bx--list-box__label\">{{getDisplayValue() | async}}</span>\n\t\t\t<div class=\"bx--list-box__menu-icon\" [ngClass]=\"{'bx--list-box__menu-icon--open': !menuIsClosed }\">\n\t\t\t\t<svg fill-rule=\"evenodd\" height=\"5\" role=\"img\" viewBox=\"0 0 10 5\" width=\"10\" alt=\"Open menu\" [attr.aria-label]=\"menuButtonLabel\">\n\t\t\t\t\t<title>{{menuButtonLabel}}</title>\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</button>\n\t\t<div\n\t\t\t#dropdownMenu\n\t\t\t[ngClass]=\"{\n\t\t\t\t'drop-up': dropUp\n\t\t\t}\">\n\t\t\t<ng-content *ngIf=\"!menuIsClosed\"></ng-content>\n\t\t</div>\n\t</div>\n\t",
+            template: "\n\t<div\n\t\tclass=\"bx--list-box bx--dropdown-v2\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--dropdown--light': theme === 'light',\n\t\t\t'bx--list-box--inline': inline,\n\t\t\t'bx--skeleton': skeleton\n\t\t}\">\n\t\t<button\n\t\t\ttype=\"button\"\n\t\t\t#dropdownButton\n\t\t\tclass=\"bx--list-box__field\"\n\t\t\t[ngClass]=\"{'a': !menuIsClosed}\"\n\t\t\t[attr.aria-expanded]=\"!menuIsClosed\"\n\t\t\t[attr.aria-disabled]=\"disabled\"\n\t\t\t(click)=\"toggleMenu()\"\n\t\t\t(blur)=\"onBlur()\"\n\t\t\t[disabled]=\"disabled\">\n\t\t\t<span class=\"bx--list-box__label\">{{getDisplayValue() | async}}</span>\n\t\t\t<div *ngIf=\"!skeleton\" class=\"bx--list-box__menu-icon\" [ngClass]=\"{'bx--list-box__menu-icon--open': !menuIsClosed }\">\n\t\t\t\t<svg fill-rule=\"evenodd\" height=\"5\" role=\"img\" viewBox=\"0 0 10 5\" width=\"10\" alt=\"Open menu\" [attr.aria-label]=\"menuButtonLabel\">\n\t\t\t\t\t<title>{{menuButtonLabel}}</title>\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</button>\n\t\t<div\n\t\t\t#dropdownMenu\n\t\t\t[ngClass]=\"{\n\t\t\t\t'drop-up': dropUp\n\t\t\t}\">\n\t\t\t<ng-content *ngIf=\"!menuIsClosed\"></ng-content>\n\t\t</div>\n\t</div>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -7405,8 +7429,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 /* harmony import */ var _storybook_bootstrap_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../.storybook/bootstrap.module */ "./.storybook/bootstrap.module.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select, boolean, object, text } from '@storybook/addon-knobs/angular';\n\nimport { DropdownModule } from '../';\n\n// needed to init ngx translate and load the translations\nimport { BootstrapModule } from '../../.storybook/bootstrap.module';\nimport { stringify } from 'querystring';\n\nstoriesOf('Dropdown', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [DropdownModule, BootstrapModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\t[theme]=\"theme\"\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add(\n    'Multi-select',\n    withNotes({ text: 'Notes on multi select' })(() => ({\n      template: `\n\t\t<ibm-dropdown\n\t\t\ttype=\"multi\"\n\t\t\tplaceholder=\"Multi-select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n      props: {\n        disabled: boolean('disabled', false),\n        items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n        selected: action('Selected fired for multi-select dropdown'),\n        onClose: action('Multi-select dropdown closed'),\n      },\n    }))\n  )\n  .add('With ngModel', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[(ngModel)]=\"model\"\n\t\t\tvalue=\"content\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t\t<span>{{model | json}}</span>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n      model: null,\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Dropdown@With ngModel": { "startLoc": { "col": 7, "line": 59 }, "endLoc": { "col": 4, "line": 75 } }, "Dropdown@Multi-select": { "startLoc": { "col": 4, "line": 39 }, "endLoc": { "col": 7, "line": 57 } }, "Dropdown@Basic": { "startLoc": { "col": 7, "line": 19 }, "endLoc": { "col": 4, "line": 37 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select, boolean, object, text } from '@storybook/addon-knobs/angular';\n\nimport { DropdownModule } from '../';\n\n// needed to init ngx translate and load the translations\nimport { BootstrapModule } from '../../.storybook/bootstrap.module';\nimport { stringify } from 'querystring';\n\nstoriesOf('Dropdown', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [DropdownModule, BootstrapModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\t[theme]=\"theme\"\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add(\n    'Multi-select',\n    withNotes({ text: 'Notes on multi select' })(() => ({\n      template: `\n\t\t<ibm-dropdown\n\t\t\ttype=\"multi\"\n\t\t\tplaceholder=\"Multi-select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(selected)=\"selected($event)\"\n\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t`,\n      props: {\n        disabled: boolean('disabled', false),\n        items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n        selected: action('Selected fired for multi-select dropdown'),\n        onClose: action('Multi-select dropdown closed'),\n      },\n    }))\n  )\n  .add('With ngModel', () => ({\n    template: `\n\t\t<ibm-dropdown\n\t\t\tplaceholder=\"Select\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[(ngModel)]=\"model\"\n\t\t\tvalue=\"content\">\n\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t</ibm-dropdown>\n\t\t<span>{{model | json}}</span>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n      model: null,\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown skeleton=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t\t&nbsp;\n\t\t\t<ibm-dropdown skeleton=\"true\" inline=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t\t`,\n    props: {\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Dropdown@Skeleton": { "startLoc": { "col": 7, "line": 76 }, "endLoc": { "col": 4, "line": 91 } }, "Dropdown@With ngModel": { "startLoc": { "col": 7, "line": 59 }, "endLoc": { "col": 4, "line": 75 } }, "Dropdown@Multi-select": { "startLoc": { "col": 4, "line": 39 }, "endLoc": { "col": 7, "line": 57 } }, "Dropdown@Basic": { "startLoc": { "col": 7, "line": 19 }, "endLoc": { "col": 4, "line": 37 } } };
 
 
 
@@ -7462,6 +7486,17 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Dropdown",
             { content: "four" }
         ],
         model: null
+    }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown skeleton=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t\t&nbsp;\n\t\t\t<ibm-dropdown skeleton=\"true\" inline=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t\t",
+    props: {
+        items: [
+            { content: "one" },
+            { content: "two" },
+            { content: "three" },
+            { content: "four" }
+        ]
     }
 }); });
 
@@ -20369,4 +20404,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.ff74801b945f70bffe7b.bundle.js.map
+//# sourceMappingURL=iframe.48b8b8ca923b5294613e.bundle.js.map
