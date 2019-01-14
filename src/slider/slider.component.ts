@@ -276,7 +276,6 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		if (this.disabled) { return; }
 		const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
 		this.value = this.convertToValue(event.clientX - trackLeft);
-		console.log(event);
 	}
 
 	/** Focus handler for the optional input */
