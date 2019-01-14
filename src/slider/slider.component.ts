@@ -54,7 +54,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				#thumb
 				class="bx--slider__thumb"
 				tabindex="0"
-				[ngStyle]="{'left.%': getPercentComplete() * 100}"
+				[ngStyle]="{'left.%': getFractionComplete() * 100}"
 				(mousedown)="onMouseDown($event)"
 				(keydown)="onKeyDown($event)">
 			</div>
@@ -65,7 +65,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 			</div>
 			<div
 				class="bx--slider__filled-track"
-				[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getPercentComplete())}">
+				[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
 			</div>
 			<input
 				#range
@@ -213,7 +213,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	}
 
 	/** Returns the amount of "completeness" as a fraction of the total track width */
-	getPercentComplete() {
+	getFractionComplete() {
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 		return this.slidAmount / trackWidth;
 	}
@@ -286,18 +286,15 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Mouse move handler. Responsible for updating the value and visual selection based on mouse movement */
 	onMouseMove(event) {
-		if (this.disabled) { return; }
-		if (this.isMouseDown) {
-			const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
-			const trackLeft = this.track.nativeElement.getBoundingClientRect().left;
-			if (
-				event.clientX - trackLeft <= trackWidth
-				&& event.clientX - trackLeft >= 0
-			) {
-				this.slidAmount = event.clientX - trackLeft;
-			}
-			this.value = this.convertToValue(this.slidAmount);
+		if (this.disabled || !this.isMouseDown) { return; }
+		const track = this.track.nativeElement.getBoundingClientRect();
+		if (
+			event.clientX - track.left <= track.width
+			&& event.clientX - track.left >= 0
+		) {
+			this.slidAmount = event.clientX - track.left;
 		}
+		this.value = this.convertToValue(this.slidAmount);
 	}
 
 	/** Enables the `onMouseMove` handler */
