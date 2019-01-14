@@ -290,6 +290,7 @@ var AccordionItem = /** @class */ (function () {
     function AccordionItem() {
         this.title = "Title " + AccordionItem_1.accordionItemCount;
         this.id = "accordion-item-" + AccordionItem_1.accordionItemCount;
+        this.skeleton = false;
         this.selected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.itemClass = true;
         this.expanded = false;
@@ -300,8 +301,10 @@ var AccordionItem = /** @class */ (function () {
     }
     AccordionItem_1 = AccordionItem;
     AccordionItem.prototype.toggleExpanded = function () {
-        this.expanded = !this.expanded;
-        this.selected.emit({ id: this.id, expanded: this.expanded });
+        if (!this.skeleton) {
+            this.expanded = !this.expanded;
+            this.selected.emit({ id: this.id, expanded: this.expanded });
+        }
     };
     var AccordionItem_1;
     AccordionItem.accordionItemCount = 0;
@@ -313,6 +316,10 @@ var AccordionItem = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], AccordionItem.prototype, "id", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], AccordionItem.prototype, "skeleton", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
@@ -340,7 +347,7 @@ var AccordionItem = /** @class */ (function () {
     AccordionItem = AccordionItem_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-accordion-item",
-            template: "\n\t\t<button\n\t\t\t[attr.aria-expanded]=\"expanded\"\n\t\t\t[attr.aria-controls]=\"id\"\n\t\t\t(click)=\"toggleExpanded()\"\n\t\t\tclass=\"bx--accordion__heading\">\n\t\t\t<svg\n\t\t\t\tclass=\"bx--accordion__arrow\"\n\t\t\t\twidth=\"7\"\n\t\t\t\theight=\"12\"\n\t\t\t\tviewBox=\"0 0 7 12\">\n          \t\t<path fill-rule=\"nonzero\" d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\"/>\n\t\t\t</svg>\n\t\t\t <p class=\"bx--accordion__title\">{{title}}</p>\n\t\t</button>\n\t\t<div [id]=\"id\" class=\"bx--accordion__content\">\n\t\t\t<ng-content></ng-content>\n\t\t</div>\n\t"
+            template: "\n\t\t<button\n\t\t\t[attr.aria-expanded]=\"expanded\"\n\t\t\t[attr.aria-controls]=\"id\"\n\t\t\t(click)=\"toggleExpanded()\"\n\t\t\tclass=\"bx--accordion__heading\">\n\t\t\t<svg\n\t\t\t\tclass=\"bx--accordion__arrow\"\n\t\t\t\twidth=\"7\"\n\t\t\t\theight=\"12\"\n\t\t\t\tviewBox=\"0 0 7 12\">\n          \t\t<path fill-rule=\"nonzero\" d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\"/>\n\t\t\t</svg>\n\t\t\t<p\n\t\t\t\tclass=\"bx--accordion__title\"\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--skeleton__text': skeleton\n\t\t\t\t}\">\n\t\t\t\t{{!skeleton ? title : null}}\n\t\t\t</p>\n\t\t</button>\n\t\t<div [id]=\"id\" class=\"bx--accordion__content\">\n\t\t\t<ng-content *ngIf=\"!skeleton; else skeletonTemplate\"></ng-content>\n\t\t\t<ng-template #skeletonTemplate>\n\t\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 90%\"></p>\n\t\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 80%\"></p>\n\t\t\t\t<p class=\"bx--skeleton__text\" style=\"width: 95%\"></p>\n\t\t\t</ng-template>\n\t\t</div>\n\t"
         }),
         __metadata("design:paramtypes", [])
     ], AccordionItem);
@@ -362,16 +369,52 @@ var AccordionItem = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Accordion", function() { return Accordion; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _accordion_item_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./accordion-item.component */ "./src/accordion/accordion-item.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var Accordion = /** @class */ (function () {
     function Accordion() {
+        this._skeleton = false;
     }
+    Object.defineProperty(Accordion.prototype, "skeleton", {
+        get: function () {
+            return this._skeleton;
+        },
+        set: function (value) {
+            this._skeleton = value;
+            this.updateChildren();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Accordion.prototype.ngAfterContentInit = function () {
+        this.updateChildren();
+    };
+    Accordion.prototype.updateChildren = function () {
+        var _this = this;
+        if (this.children) {
+            this.children.toArray().forEach(function (child) { return child.skeleton = _this.skeleton; });
+        }
+    };
+    var _a;
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChildren"])(_accordion_item_component__WEBPACK_IMPORTED_MODULE_1__["AccordionItem"]),
+        __metadata("design:type", typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"]) === "function" && _a || Object)
+    ], Accordion.prototype, "children", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Accordion.prototype, "skeleton", null);
     Accordion = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-accordion",
@@ -458,8 +501,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { AccordionModule } from '../';\n\nstoriesOf('Accordion', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [AccordionModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-accordion>\n\t\t\t\t<ibm-accordion-item title=\"Section 1 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t\t<ibm-accordion-item title=\"Section 2 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t\t<ibm-accordion-item title=\"Section 3 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t\t<ibm-accordion-item title=\"Section 4 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t</ibm-accordion>\n\t\t`,\n    props: {\n      items: [\n        {\n          content: 'one',\n        },\n        {\n          content: 'two',\n        },\n        {\n          content: 'three',\n        },\n        {\n          content: 'four',\n        },\n      ],\n      selected: action('item expanded'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Accordion@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 53 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { AccordionModule } from '../';\n\nstoriesOf('Accordion', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [AccordionModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-accordion>\n\t\t\t\t<ibm-accordion-item title=\"Section 1 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t\t<ibm-accordion-item title=\"Section 2 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t\t<ibm-accordion-item title=\"Section 3 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t\t<ibm-accordion-item title=\"Section 4 title\" (selected)=\"selected($event)\">Lorem ipsum dolor sit amet, \\\n\t\t\t\tconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \\\n\t\t\t\tet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation \\\n\t\t\t\tullamco laboris nisi ut aliquip ex ea commodo consequat.</ibm-accordion-item>\n\t\t\t</ibm-accordion>\n\t\t`,\n    props: {\n      items: [\n        {\n          content: 'one',\n        },\n        {\n          content: 'two',\n        },\n        {\n          content: 'three',\n        },\n        {\n          content: 'four',\n        },\n      ],\n      selected: action('item expanded'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<div style=\"width: 500px\">\n\t\t\t\t<ibm-accordion skeleton=\"true\">\n\t\t\t\t\t<ibm-accordion-item expanded=\"true\"></ibm-accordion-item>\n\t\t\t\t\t<ibm-accordion-item></ibm-accordion-item>\n\t\t\t\t\t<ibm-accordion-item></ibm-accordion-item>\n\t\t\t\t\t<ibm-accordion-item></ibm-accordion-item>\n\t\t\t\t</ibm-accordion>\n\t\t\t</div>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Accordion@Skeleton": { "startLoc": { "col": 7, "line": 54 }, "endLoc": { "col": 4, "line": 65 } }, "Accordion@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 53 } } };
 
 
 
@@ -490,6 +533,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Accordion"
         ],
         selected: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_1__["action"])("item expanded")
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t\t<div style=\"width: 500px\">\n\t\t\t\t<ibm-accordion skeleton=\"true\">\n\t\t\t\t\t<ibm-accordion-item expanded=\"true\"></ibm-accordion-item>\n\t\t\t\t\t<ibm-accordion-item></ibm-accordion-item>\n\t\t\t\t\t<ibm-accordion-item></ibm-accordion-item>\n\t\t\t\t\t<ibm-accordion-item></ibm-accordion-item>\n\t\t\t\t</ibm-accordion>\n\t\t\t</div>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20323,4 +20369,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.a9447bf97c669cc5214d.bundle.js.map
+//# sourceMappingURL=iframe.ff74801b945f70bffe7b.bundle.js.map
