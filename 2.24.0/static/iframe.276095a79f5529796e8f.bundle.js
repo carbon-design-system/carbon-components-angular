@@ -16025,6 +16025,10 @@ var Select = /** @class */ (function () {
          */
         this.disabled = false;
         /**
+         * Set to true for a loading select.
+         */
+        this.skeleton = false;
+        /**
          * `light` or `dark` select theme
          */
         this.theme = "dark";
@@ -16110,6 +16114,10 @@ var Select = /** @class */ (function () {
     ], Select.prototype, "disabled", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Select.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], Select.prototype, "theme", void 0);
     __decorate([
@@ -16129,7 +16137,7 @@ var Select = /** @class */ (function () {
     Select = Select_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-select",
-            template: "\n\t\t<div class=\"bx--form-item\">\n\t\t\t<div\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--select--inline': display === 'inline',\n\t\t\t\t\t'bx--select--light': theme === 'light'\n\t\t\t\t}\"\n\t\t\t\tclass=\"bx--select\">\n\t\t\t\t<label [attr.for]=\"id\" class=\"bx--label\">{{label}}</label>\n\t\t\t\t<select\n\t\t\t\t\t#select\n\t\t\t\t\t[attr.id]=\"id\"\n\t\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t\t(change)=\"onChange($event)\"\n\t\t\t\t\tclass=\"bx--select-input\">\n\t\t\t\t\t<ng-content></ng-content>\n\t\t\t\t</select>\n\t\t\t\t<svg class=\"bx--select__arrow\" width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</div>\n\t",
+            template: "\n\t\t<div class=\"bx--form-item\">\n\t\t\t<label *ngIf=\"skeleton\" [attr.for]=\"id\" class=\"bx--label bx--skeleton\"></label>\n\t\t\t<div\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--select--inline': display === 'inline',\n\t\t\t\t\t'bx--select--light': theme === 'light',\n\t\t\t\t\t'bx--skeleton': skeleton\n\t\t\t\t}\"\n\t\t\t\tclass=\"bx--select\">\n\t\t\t\t<label *ngIf=\"!skeleton\" [attr.for]=\"id\" class=\"bx--label\">{{label}}</label>\n\t\t\t\t<select\n\t\t\t\t\t#select\n\t\t\t\t\t[attr.id]=\"id\"\n\t\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t\t(change)=\"onChange($event)\"\n\t\t\t\t\tclass=\"bx--select-input\">\n\t\t\t\t\t<ng-content></ng-content>\n\t\t\t\t</select>\n\t\t\t\t<svg *ngIf=\"!skeleton\" class=\"bx--select__arrow\" width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</div>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -16228,8 +16236,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { SelectModule } from '../';\n\nstoriesOf('Select', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SelectModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-select [theme]=\"theme\" [display]=\"display\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n\t\t\t<option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n\t\t\t<optgroup label=\"Category 1\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t</optgroup>\n\t\t\t<optgroup label=\"Category 2\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t  \t</optgroup>\n\t\t</ibm-select>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n      display: select('Display', ['default', 'inline'], 'default'),\n    },\n  }))\n  .add('With ngModel', () => ({\n    template: `\n\t\t\t<ibm-select [(ngModel)]=\"model\">\n\t\t\t\t<option value=\"default\" disabled selected hidden>Choose an option</option>\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t\t<option value=\"option3\">Option 3</option>\n\t\t\t</ibm-select>\n\t\t\t<br>\n\t\t\t<span>Selected: {{ model }}</span>\n\t\t`,\n    props: {\n      model: 'default',\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Select@With ngModel": { "startLoc": { "col": 7, "line": 34 }, "endLoc": { "col": 4, "line": 48 } }, "Select@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 33 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { SelectModule } from '../';\n\nstoriesOf('Select', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SelectModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-select [theme]=\"theme\" [display]=\"display\">\n\t\t\t<option value=\"\" disabled selected hidden>Choose an option</option>\n\t\t\t<option value=\"solong\">A much longer option that is worth having around to check how text flows</option>\n\t\t\t<optgroup label=\"Category 1\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t</optgroup>\n\t\t\t<optgroup label=\"Category 2\">\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t  \t</optgroup>\n\t\t</ibm-select>\n\t`,\n    props: {\n      theme: select('Theme', ['dark', 'light'], 'dark'),\n      display: select('Display', ['default', 'inline'], 'default'),\n    },\n  }))\n  .add('With ngModel', () => ({\n    template: `\n\t\t\t<ibm-select [(ngModel)]=\"model\">\n\t\t\t\t<option value=\"default\" disabled selected hidden>Choose an option</option>\n\t\t\t\t<option value=\"option1\">Option 1</option>\n\t\t\t\t<option value=\"option2\">Option 2</option>\n\t\t\t\t<option value=\"option3\">Option 3</option>\n\t\t\t</ibm-select>\n\t\t\t<br>\n\t\t\t<span>Selected: {{ model }}</span>\n\t\t`,\n    props: {\n      model: 'default',\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-select skeleton=\"true\"></ibm-select>\n\t\t</div>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Select@Skeleton": { "startLoc": { "col": 7, "line": 49 }, "endLoc": { "col": 4, "line": 55 } }, "Select@With ngModel": { "startLoc": { "col": 7, "line": 34 }, "endLoc": { "col": 4, "line": 48 } }, "Select@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 33 } } };
 
 
 
@@ -16249,6 +16257,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Select", m
     props: {
         model: "default"
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-select skeleton=\"true\"></ibm-select>\n\t\t</div>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20522,4 +20533,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.616e04cb44b9e411c8cf.bundle.js.map
+//# sourceMappingURL=iframe.276095a79f5529796e8f.bundle.js.map

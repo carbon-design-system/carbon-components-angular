@@ -115,13 +115,15 @@
             <tr>
                 <td class="col-md-3">template</td>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
+	&lt;label *ngIf&#x3D;&quot;skeleton&quot; [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
 	&lt;div
 		[ngClass]&#x3D;&quot;{
 			&#x27;bx--select--inline&#x27;: display &#x3D;&#x3D;&#x3D; &#x27;inline&#x27;,
-			&#x27;bx--select--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
+			&#x27;bx--select--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+			&#x27;bx--skeleton&#x27;: skeleton
 		}&quot;
 		class&#x3D;&quot;bx--select&quot;&gt;
-		&lt;label [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
+		&lt;label *ngIf&#x3D;&quot;!skeleton&quot; [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
 		&lt;select
 			#select
 			[attr.id]&#x3D;&quot;id&quot;
@@ -130,7 +132,7 @@
 			class&#x3D;&quot;bx--select-input&quot;&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/select&gt;
-		&lt;svg class&#x3D;&quot;bx--select__arrow&quot; width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
+		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--select__arrow&quot; width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
 		&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
 		&lt;/svg&gt;
 	&lt;/div&gt;
@@ -229,6 +231,9 @@
                                 <a href="#label">label</a>
                             </li>
                             <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
                                 <a href="#theme">theme</a>
                             </li>
                         </ul>
@@ -304,7 +309,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/select/select.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/select/select.component.ts:83</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -330,7 +335,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/select/select.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/select/select.component.ts:71</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -352,7 +357,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/select/select.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/select/select.component.ts:79</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -374,7 +379,29 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/select/select.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/select/select.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to true for a loading select.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/select/select.component.ts:87</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -400,7 +427,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/select/select.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/select/select.component.ts:91</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -424,7 +451,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/select/select.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/select/select.component.ts:95</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -454,7 +481,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/select/select.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/select/select.component.ts:154</a></div>
                             </td>
                         </tr>
 
@@ -497,7 +524,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/select/select.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/select/select.component.ts:139</a></div>
                             </td>
                         </tr>
 
@@ -565,7 +592,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/select/select.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/select/select.component.ts:117</a></div>
                             </td>
                         </tr>
 
@@ -636,7 +663,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/select/select.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/select/select.component.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -707,7 +734,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/select/select.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/select/select.component.ts:131</a></div>
                             </td>
                         </tr>
 
@@ -778,7 +805,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/select/select.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/select/select.component.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -861,7 +888,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/select/select.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/select/select.component.ts:147</a></div>
                             </td>
                         </tr>
 
@@ -901,7 +928,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/select/select.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/select/select.component.ts:148</a></div>
                             </td>
                         </tr>
 
@@ -944,7 +971,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/select/select.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/select/select.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -984,7 +1011,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/select/select.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/select/select.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -1019,7 +1046,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/select/select.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/select/select.component.ts:99</a></div>
                                 </td>
                             </tr>
 
@@ -1030,7 +1057,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/select/select.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/select/select.component.ts:103</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1103,13 +1130,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 	selector: &quot;ibm-select&quot;,
 	template: &#x60;
 		&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
+			&lt;label *ngIf&#x3D;&quot;skeleton&quot; [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
 			&lt;div
 				[ngClass]&#x3D;&quot;{
 					&#x27;bx--select--inline&#x27;: display &#x3D;&#x3D;&#x3D; &#x27;inline&#x27;,
-					&#x27;bx--select--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
+					&#x27;bx--select--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+					&#x27;bx--skeleton&#x27;: skeleton
 				}&quot;
 				class&#x3D;&quot;bx--select&quot;&gt;
-				&lt;label [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
+				&lt;label *ngIf&#x3D;&quot;!skeleton&quot; [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
 				&lt;select
 					#select
 					[attr.id]&#x3D;&quot;id&quot;
@@ -1118,7 +1147,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quo
 					class&#x3D;&quot;bx--select-input&quot;&gt;
 					&lt;ng-content&gt;&lt;/ng-content&gt;
 				&lt;/select&gt;
-				&lt;svg class&#x3D;&quot;bx--select__arrow&quot; width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
+				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--select__arrow&quot; width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
 				&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
 				&lt;/svg&gt;
 			&lt;/div&gt;
@@ -1154,6 +1183,10 @@ export class Select implements ControlValueAccessor {
 	 * Set to true to disable component.
 	 */
 	@Input() disabled &#x3D; false;
+	/**
+	 * Set to true for a loading select.
+	 */
+	@Input() skeleton &#x3D; false;
 	/**
 	 * &#x60;light&#x60; or &#x60;dark&#x60; select theme
 	 */
@@ -1254,7 +1287,7 @@ export class Select implements ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="bx--form-item">	<div		[ngClass]="{			\'bx--select--inline\': display === \'inline\',			\'bx--select--light\': theme === \'light\'		}"		class="bx--select">		<label [attr.for]="id" class="bx--label">{{label}}</label>		<select			#select			[attr.id]="id"			[disabled]="disabled"			(change)="onChange($event)"			class="bx--select-input">			<ng-content></ng-content>		</select>		<svg class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">		<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />		</svg>	</div></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div class="bx--form-item">	<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>	<div		[ngClass]="{			\'bx--select--inline\': display === \'inline\',			\'bx--select--light\': theme === \'light\',			\'bx--skeleton\': skeleton		}"		class="bx--select">		<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>		<select			#select			[attr.id]="id"			[disabled]="disabled"			(change)="onChange($event)"			class="bx--select-input">			<ng-content></ng-content>		</select>		<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">		<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />		</svg>	</div></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Select'};
