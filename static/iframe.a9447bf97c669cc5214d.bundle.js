@@ -15521,6 +15521,10 @@ var Search = /** @class */ (function () {
          */
         this.disabled = false;
         /**
+         * Set to `true` for a loading search component.
+         */
+        this.skeleton = false;
+        /**
          * The unique id for the search component.
          */
         this.id = "search-" + Search_1.searchCount;
@@ -15628,6 +15632,10 @@ var Search = /** @class */ (function () {
     ], Search.prototype, "disabled", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Search.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], Search.prototype, "name", void 0);
     __decorate([
@@ -15661,7 +15669,7 @@ var Search = /** @class */ (function () {
     Search = Search_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-search",
-            template: "\n\t\t<div\n\t\t\tclass=\"bx--search\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--search--sm': size === 'sm',\n\t\t\t\t'bx--search--lg': size === 'lg',\n\t\t\t\t'bx--search--light': theme === 'light'\n\t\t\t}\"\n\t\t\trole=\"search\">\n\t\t\t<label class=\"bx--label\" [for]=\"id\">{{label}}</label>\n\t\t\t<input\n\t\t\t\tclass=\"bx--search-input\"\n\t\t\t\ttype=\"text\"\n\t\t\t\trole=\"search\"\n\t\t\t\t[id]=\"id\"\n\t\t\t\t[value]=\"value\"\n\t\t\t\t[placeholder]=\"placeholder\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[required]=\"required\"\n\t\t\t\t(input)=\"onSearch($event.target.value)\"/>\n\t\t\t<svg\n\t\t\t\tclass=\"bx--search-magnifier\"\n\t\t\t\twidth=\"16\"\n\t\t\t\theight=\"16\"\n\t\t\t\tviewBox=\"0 0 16 16\">\n\t\t\t\t<path\n\t\t\t\t\td=\"M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z\"\n\t\t\t\t\tfill-rule=\"nonzero\"/>\n\t\t\t</svg>\n\t\t\t<button\n\t\t\t\tclass=\"bx--search-close\"\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--search-close--hidden': !value || value.length === 0\n\t\t\t\t}\"\n\t\t\t\t[title]=\"clearButtonTitle\"\n\t\t\t\t[attr.aria-label]=\"clearButtonTitle\"\n\t\t\t\t(click)=\"clearSearch()\">\n\t\t\t\t<svg\n\t\t\t\t\twidth=\"16\"\n\t\t\t\t\theight=\"16\"\n\t\t\t\t\tviewBox=\"0 0 16 16\"\n\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t<path\n\t\t\t\t\t\td=\"M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414\n\t\t\t\t\t\t\t8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"\n\t\t\t\t\t\tfill-rule=\"evenodd\"/>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t</div>\n\t",
+            template: "\n\t\t<div\n\t\t\tclass=\"bx--search\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--search--sm': size === 'sm',\n\t\t\t\t'bx--search--lg': size === 'lg',\n\t\t\t\t'bx--search--light': theme === 'light',\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\"\n\t\t\trole=\"search\">\n\t\t\t<label class=\"bx--label\" [for]=\"id\">{{label}}</label>\n\n\t\t\t<div *ngIf=\"skeleton; else enableInput\" class=\"bx--search-input\"></div>\n\t\t\t<ng-template #enableInput>\n\t\t\t\t<input\n\t\t\t\t\tclass=\"bx--search-input\"\n\t\t\t\t\ttype=\"text\"\n\t\t\t\t\trole=\"search\"\n\t\t\t\t\t[id]=\"id\"\n\t\t\t\t\t[value]=\"value\"\n\t\t\t\t\t[placeholder]=\"placeholder\"\n\t\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t\t[required]=\"required\"\n\t\t\t\t\t(input)=\"onSearch($event.target.value)\"/>\n\t\t\t\t<svg\n\t\t\t\t\tclass=\"bx--search-magnifier\"\n\t\t\t\t\twidth=\"16\"\n\t\t\t\t\theight=\"16\"\n\t\t\t\t\tviewBox=\"0 0 16 16\">\n\t\t\t\t\t<path\n\t\t\t\t\t\td=\"M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z\"\n\t\t\t\t\t\tfill-rule=\"nonzero\"/>\n\t\t\t\t</svg>\n\t\t\t</ng-template>\n\n\t\t\t<button\n\t\t\t\tclass=\"bx--search-close\"\n\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t'bx--search-close--hidden': !value || value.length === 0\n\t\t\t\t}\"\n\t\t\t\t[title]=\"clearButtonTitle\"\n\t\t\t\t[attr.aria-label]=\"clearButtonTitle\"\n\t\t\t\t(click)=\"clearSearch()\">\n\t\t\t\t<svg\n\t\t\t\t\twidth=\"16\"\n\t\t\t\t\theight=\"16\"\n\t\t\t\t\tviewBox=\"0 0 16 16\"\n\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t<path\n\t\t\t\t\t\td=\"M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414\n\t\t\t\t\t\t\t8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"\n\t\t\t\t\t\tfill-rule=\"evenodd\"/>\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t</div>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -15753,8 +15761,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select, text } from '@storybook/addon-knobs/angular';\n\nimport { SearchModule } from '../';\n\nstoriesOf('Search', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SearchModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" [size]=\"size\"></ibm-search>\n\t\t</div>\n\t\t`,\n    props: {\n      size: select('size', ['lg', 'sm'], 'lg'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      disabled: boolean('disabled', false),\n      placeholder: text('placeholder', 'Search'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Search@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 25 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, select, text } from '@storybook/addon-knobs/angular';\n\nimport { SearchModule } from '../';\n\nstoriesOf('Search', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SearchModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<div style=\"width: 250px;\">\n\t\t\t<ibm-search [theme]=\"theme\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" [size]=\"size\"></ibm-search>\n\t\t</div>\n\t\t`,\n    props: {\n      size: select('size', ['lg', 'sm'], 'lg'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      disabled: boolean('disabled', false),\n      placeholder: text('placeholder', 'Search'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 200px;\">\n\t\t\t<ibm-search skeleton=\"true\"></ibm-search>\n\t\t\t&nbsp;\n\t\t\t<ibm-search skeleton=\"true\" size=\"sm\"></ibm-search>\n\t\t</div>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Search@Skeleton": { "startLoc": { "col": 7, "line": 26 }, "endLoc": { "col": 4, "line": 34 } }, "Search@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 25 } } };
 
 
 
@@ -15770,6 +15778,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Search", m
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false),
         placeholder: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("placeholder", "Search")
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<div style=\"width: 200px;\">\n\t\t\t<ibm-search skeleton=\"true\"></ibm-search>\n\t\t\t&nbsp;\n\t\t\t<ibm-search skeleton=\"true\" size=\"sm\"></ibm-search>\n\t\t</div>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -20312,4 +20323,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.3f0392ea90575ee11a2c.bundle.js.map
+//# sourceMappingURL=iframe.a9447bf97c669cc5214d.bundle.js.map
