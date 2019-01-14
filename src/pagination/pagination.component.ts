@@ -36,8 +36,19 @@ import { BehaviorSubject } from "rxjs";
 @Component({
 	selector: "ibm-pagination",
 	template: `
-	<div class="bx--pagination">
-		<div class="bx--pagination__left">
+	<div
+		class="bx--pagination"
+		[ngClass]="{
+			'bx--skeleton' : skeleton
+		}">
+
+		<div *ngIf="skeleton" class="bx--pagination__left">
+			<p class="bx--skeleton__text" style="width: 70px"></p>
+			<p class="bx--skeleton__text" style="width: 35px"></p>
+			<p class="bx--skeleton__text" style="width: 105px"></p>
+		</div>
+
+		<div *ngIf="!skeleton" class="bx--pagination__left">
 			<span class="bx--pagination__text">{{itemsPerPageText | async}}</span>
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline">
@@ -76,7 +87,12 @@ import { BehaviorSubject } from "rxjs";
 				{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
 			</span>
 		</div>
-		<div class="bx--pagination__right bx--pagination--inline">
+
+		<div *ngIf="skeleton" class="bx--pagination__right bx--pagination--inline">
+			<p class="bx--skeleton__text" style="width: 70px"></p>
+		</div>
+
+		<div *ngIf="!skeleton" class="bx--pagination__right bx--pagination--inline">
 			<span class="bx--pagination__text">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</span>
 			<button
 				class="bx--pagination__button bx--pagination__button--backward"
@@ -139,6 +155,10 @@ import { BehaviorSubject } from "rxjs";
 export class Pagination {
 	static paginationCounter = 0;
 
+	/**
+	 * Set to `true` for a loading pagination component.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * `PaginationModel` with the information about pages you're controlling.
 	 *

@@ -3,7 +3,13 @@ import { Component, Input } from "@angular/core";
 @Component({
 	selector: "ibm-progress-indicator",
 	template: `
-	<ul data-progress data-progress-current class="bx--progress">
+	<ul
+		data-progress
+		data-progress-current
+		class="bx--progress"
+		[ngClass]="{
+			'bx--skeleton': skeleton
+		}">
 		<li
 		class="bx--progress-step bx--progress-step--{{step.state}}"
 		*ngFor="let step of steps; let i = index">
@@ -27,5 +33,15 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class ProgressIndicator {
+	static skeletonSteps(stepCount: number) {
+		const steps = [];
+		for (let i = 0; i < stepCount; i++) {
+			steps.push({"state": ["incomplete"]});
+		}
+
+		return steps;
+	}
+
 	@Input() steps = [];
+	@Input() skeleton = false;
 }
