@@ -118,13 +118,13 @@ export class Toggle extends Checkbox {
 	 * @type {(string)}
 	 * @memberof Toggle
 	 */
-	@Input() leftText = this.i18n.get().TOGGLE.LEFTTEXT;
+	@Input() leftText = this.i18n.get().TOGGLE.OFF;
 	/**
 	 * Text that is set on the right side of the toggle.
 	 * @type {(string)}
 	 * @memberof Toggle
 	 */
-	@Input() rightText = this.i18n.get().TOGGLE.RIGHTTEXT;
+	@Input() rightText = this.i18n.get().TOGGLE.ON;
 	/**
 	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
