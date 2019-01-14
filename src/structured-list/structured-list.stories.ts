@@ -86,7 +86,7 @@ storiesOf("Structured List", module).addDecorator(
 		`,
 		props: {
 			selected: action("row selected"),
-			border: boolean("border", false),
+			border: boolean("border", true),
 			condensed: boolean("condensed", false),
 			nowrap: boolean("nowrap", false)
 		}
@@ -130,7 +130,7 @@ storiesOf("Structured List", module).addDecorator(
 			<p>{{valueSelected}}</p>
 		`,
 		props: {
-			border: boolean("border", false),
+			border: boolean("border", true),
 			condensed: boolean("condensed", false),
 			nowrap: boolean("nowrap", false)
 		}

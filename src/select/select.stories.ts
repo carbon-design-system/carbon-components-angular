@@ -48,4 +48,11 @@ storiesOf("Select", module).addDecorator(
 		props: {
 			model: "default"
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<div style="width: 300px">
+			<ibm-select skeleton="true"></ibm-select>
+		</div>
+		`
 	}));
