@@ -16,7 +16,7 @@ const noop = () => {};
 @Component({
 	selector: "ibm-file-uploader",
 	template: `
-		<ng-container *ngIf="!skeleton; else skeletonTemp">
+		<ng-container *ngIf="!skeleton; else skeletonTemplate">
 			<strong class="bx--label">{{title}}</strong>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
@@ -40,7 +40,7 @@ const noop = () => {};
 			</div>
 		</ng-container>
 
-		<ng-template #skeletonTemp>
+		<ng-template #skeletonTemplate>
 			<div class="bx--skeleton__text" style="width: 100px"></div>
 			<div class="bx--skeleton__text" style="width: 225px"></div>
 			<button ibmButton skeleton="true"></button>
