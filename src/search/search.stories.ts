@@ -11,25 +11,21 @@ storiesOf("Search", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<div style="width: 250px;">
-			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" size="lg"></ibm-search>
-		</div>
+			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" [size]="size"></ibm-search>
 		`,
 		props: {
+			size: select("size", ["lg", "sm"], "lg"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
 			placeholder: text("placeholder", "Search")
 		}
 	}))
-	.add("Small", () => ({
+	.add("Skeleton", () => ({
 		template: `
-		<div style="width: 250px;">
-			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" size="sm"></ibm-search>
+		<div style="width: 200px;">
+			<ibm-search skeleton="true"></ibm-search>
+			&nbsp;
+			<ibm-search skeleton="true" size="sm"></ibm-search>
 		</div>
-		`,
-		props: {
-			theme: select("theme", ["dark", "light"], "dark"),
-			disabled: boolean("disabled", false),
-			placeholder: text("placeholder", "Search")
-		}
+		`
 	}));
