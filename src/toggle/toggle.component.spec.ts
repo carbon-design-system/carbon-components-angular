@@ -27,8 +27,6 @@ describe("Toggle", () => {
 	});
 
 	it("should work", () => {
-		fixture.detectChanges();
-
 		expect(component instanceof Toggle).toBe(true);
 	});
 
