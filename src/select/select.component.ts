@@ -35,7 +35,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					'bx--select--light': theme === 'light',
 					'bx--skeleton': skeleton
 				}"
-				class="bx--select">
+				class="bx--select"
+				style="width: 100%">
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
 				<select
 					#select
