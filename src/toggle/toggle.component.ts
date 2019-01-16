@@ -77,9 +77,9 @@ export class ToggleChange {
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{!skeleton ? leftText : null}}</span>
+			<span class="bx--toggle__text--left">{{(!skeleton ? offText : null) | async }}</span>
 			<span class="bx--toggle__appearance"></span>
-			<span class="bx--toggle__text--right">{{!skeleton ? rightText : null}}</span>
+			<span class="bx--toggle__text--right">{{(!skeleton ? onText : null) | async}}</span>
 		</label>
 
 		<label
@@ -118,13 +118,30 @@ export class Toggle extends Checkbox {
 	 * @type {(string)}
 	 * @memberof Toggle
 	 */
-	@Input() leftText = this.i18n.get().TOGGLE.OFF;
+	@Input()
+	set offText(value) {
+		this._offText.next(value);
+	}
+
+	get offText() {
+		return this._offText;
+	}
+
 	/**
 	 * Text that is set on the right side of the toggle.
 	 * @type {(string)}
 	 * @memberof Toggle
 	 */
-	@Input() rightText = this.i18n.get().TOGGLE.ON;
+	@Input()
+	set onText(value) {
+		this._onText.next(value);
+	}
+
+	get onText() {
+		return this._onText;
+	}
+
+
 	/**
 	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
@@ -151,6 +168,8 @@ export class Toggle extends Checkbox {
 	 */
 	@Output() change = new EventEmitter<ToggleChange>();
 
+	protected _offText = this.i18n.get("TOGGLE.OFF");
+	protected _onText = this.i18n.get("TOGGLE.ON");
 	/**
 	 * Creates an instance of Toggle.
 	 * @param {ChangeDetectorRef} changeDetectorRef
