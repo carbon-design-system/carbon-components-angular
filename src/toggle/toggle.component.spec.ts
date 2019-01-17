@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core
 import { By } from "@angular/platform-browser";
 import { StaticIconModule } from "../icon/static-icon.module";
 
+import { I18nModule } from "../i18n/i18n.module";
 import { Toggle, ToggleChange } from "./toggle.component";
 
 describe("Toggle", () => {
@@ -14,7 +15,7 @@ describe("Toggle", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Toggle],
-			imports: [BrowserAnimationsModule, StaticIconModule],
+			imports: [BrowserAnimationsModule, StaticIconModule, I18nModule],
 			providers: []
 		});
 
