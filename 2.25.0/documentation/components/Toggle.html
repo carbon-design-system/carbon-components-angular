@@ -135,9 +135,9 @@
 	[ngClass]&#x3D;&quot;{
 		&#x27;bx--skeleton&#x27;: skeleton
 	}&quot;&gt;
-	&lt;span class&#x3D;&quot;bx--toggle__text--left&quot;&gt;{{ !skeleton ? &quot;Off&quot; : null }}&lt;/span&gt;
+	&lt;span class&#x3D;&quot;bx--toggle__text--left&quot;&gt;{{(!skeleton ? offText : null) | async }}&lt;/span&gt;
 	&lt;span class&#x3D;&quot;bx--toggle__appearance&quot;&gt;&lt;/span&gt;
-	&lt;span class&#x3D;&quot;bx--toggle__text--right&quot;&gt;{{ !skeleton ? &quot;On&quot; : null }}&lt;/span&gt;
+	&lt;span class&#x3D;&quot;bx--toggle__text--right&quot;&gt;{{(!skeleton ? onText : null) | async}}&lt;/span&gt;
 &lt;/label&gt;
 
 &lt;label
@@ -180,6 +180,14 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_offText">_offText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_onText">_onText</a>
+                            </li>
                             <li>
                                 <a href="#id">id</a>
                             </li>
@@ -272,6 +280,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#offText">offText</a>
+                            </li>
+                            <li>
+                                <a href="#onText">onText</a>
+                            </li>
+                            <li>
                                 <a href="#size">size</a>
                             </li>
                             <li>
@@ -357,6 +371,23 @@
                 </tr>
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#offText">offText</a>
+                                </li>
+                                <li>
+                                    <a href="#onText">onText</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -367,12 +398,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(changeDetectorRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+<code>constructor(changeDetectorRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/toggle/toggle.component.ts:139</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/toggle/toggle.component.ts:172</a></div>
                             </td>
                         </tr>
 
@@ -403,6 +434,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -414,6 +457,44 @@
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="offText"></a>
+                        <code>offText</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Text that is set on the left side of the toggle.</p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/toggle/toggle.component.ts:122</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="onText"></a>
+                        <code>onText</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Text that is set on the right side of the toggle.</p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/toggle/toggle.component.ts:136</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -435,7 +516,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/toggle/toggle.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/toggle/toggle.component.ts:150</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -457,7 +538,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/toggle/toggle.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/toggle/toggle.component.ts:156</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -858,7 +939,7 @@ click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/toggle/toggle.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/toggle/toggle.component.ts:169</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -990,7 +1071,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/toggle/toggle.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/toggle/toggle.component.ts:187</a></div>
                             </td>
                         </tr>
 
@@ -1675,6 +1756,74 @@ on an indeterminate checkbox.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_offText"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _offText
+                            </b>
+                            <a href="#_offText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_offText:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TOGGLE.OFF&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/toggle/toggle.component.ts:171</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_onText"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _onText
+                            </b>
+                            <a href="#_onText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_onText:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TOGGLE.ON&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/toggle/toggle.component.ts:172</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="id"></a>
                         <span class="name">
                             <b>
@@ -1697,7 +1846,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/toggle/toggle.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/toggle/toggle.component.ts:163</a></div>
                             </td>
                         </tr>
 
@@ -1743,7 +1892,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/toggle/toggle.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/toggle/toggle.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -2096,6 +2245,145 @@ on an indeterminate checkbox.</p>
         </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="offText"></a>
+                        <span class="name"><b>offText</b><a href="#offText"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>offText()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/toggle/toggle.component.ts:126</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>offText(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/toggle/toggle.component.ts:122</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Text that is set on the left side of the toggle.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onText"></a>
+                        <span class="name"><b>onText</b><a href="#onText"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>onText()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/toggle/toggle.component.ts:140</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>onText(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/toggle/toggle.component.ts:136</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Text that is set on the right side of the toggle.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -2110,6 +2398,7 @@ import {
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
+import { I18n } from &quot;../i18n/i18n.module&quot;;
 
 /**
  * Defines the set of states for a toggle component.
@@ -2178,9 +2467,9 @@ export class ToggleChange {
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--skeleton&#x27;: skeleton
 			}&quot;&gt;
-			&lt;span class&#x3D;&quot;bx--toggle__text--left&quot;&gt;{{ !skeleton ? &quot;Off&quot; : null }}&lt;/span&gt;
+			&lt;span class&#x3D;&quot;bx--toggle__text--left&quot;&gt;{{(!skeleton ? offText : null) | async }}&lt;/span&gt;
 			&lt;span class&#x3D;&quot;bx--toggle__appearance&quot;&gt;&lt;/span&gt;
-			&lt;span class&#x3D;&quot;bx--toggle__text--right&quot;&gt;{{ !skeleton ? &quot;On&quot; : null }}&lt;/span&gt;
+			&lt;span class&#x3D;&quot;bx--toggle__text--right&quot;&gt;{{(!skeleton ? onText : null) | async}}&lt;/span&gt;
 		&lt;/label&gt;
 
 		&lt;label
@@ -2215,6 +2504,35 @@ export class Toggle extends Checkbox {
 	static toggleCount &#x3D; 0;
 
 	/**
+	 * Text that is set on the left side of the toggle.
+	 * @type {(string)}
+	 * @memberof Toggle
+	 */
+	@Input()
+	set offText(value) {
+		this._offText.next(value);
+	}
+
+	get offText() {
+		return this._offText;
+	}
+
+	/**
+	 * Text that is set on the right side of the toggle.
+	 * @type {(string)}
+	 * @memberof Toggle
+	 */
+	@Input()
+	set onText(value) {
+		this._onText.next(value);
+	}
+
+	get onText() {
+		return this._onText;
+	}
+
+
+	/**
 	 * Size of the toggle component.
 	 * @type {(&quot;sm&quot; | &quot;md&quot; | &quot;default&quot;)}
 	 * @memberof Toggle
@@ -2240,12 +2558,14 @@ export class Toggle extends Checkbox {
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;ToggleChange&gt;();
 
+	protected _offText &#x3D; this.i18n.get(&quot;TOGGLE.OFF&quot;);
+	protected _onText &#x3D; this.i18n.get(&quot;TOGGLE.ON&quot;);
 	/**
 	 * Creates an instance of Toggle.
 	 * @param {ChangeDetectorRef} changeDetectorRef
 	 * @memberof Toggle
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
 	}
@@ -2293,7 +2613,7 @@ export class Toggle extends Checkbox {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><input	class="bx--toggle"	type="checkbox"	[ngClass]="{		\'bx--toggle--small\': size === \'sm\',		\'bx--skeleton\': skeleton	}"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[attr.aria-checked]="checked"	(change)="onChange($event)"	(click)="onClick($event)"><label	*ngIf="size === \'md\'"	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__text--left">{{ !skeleton ? "Off" : null }}</span>	<span class="bx--toggle__appearance"></span>	<span class="bx--toggle__text--right">{{ !skeleton ? "On" : null }}</span></label><label	*ngIf="size === \'sm\'"	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__appearance">		<svg class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">			<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>		</svg>	</span></label>	</div>'
+        var COMPONENT_TEMPLATE = '<div><input	class="bx--toggle"	type="checkbox"	[ngClass]="{		\'bx--toggle--small\': size === \'sm\',		\'bx--skeleton\': skeleton	}"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[attr.aria-checked]="checked"	(change)="onChange($event)"	(click)="onClick($event)"><label	*ngIf="size === \'md\'"	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__text--left">{{(!skeleton ? offText : null) | async }}</span>	<span class="bx--toggle__appearance"></span>	<span class="bx--toggle__text--right">{{(!skeleton ? onText : null) | async}}</span></label><label	*ngIf="size === \'sm\'"	class="bx--toggle__label"	[for]="id"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<span class="bx--toggle__appearance">		<svg class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">			<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>		</svg>	</span></label>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Toggle'};

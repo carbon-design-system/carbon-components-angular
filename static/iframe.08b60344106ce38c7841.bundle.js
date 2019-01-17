@@ -8827,10 +8827,10 @@ var NFormsModule = /** @class */ (function () {
 /*!**************************!*\
   !*** ./src/i18n/en.json ***!
   \**************************/
-/*! exports provided: BANNER, CALENDAR, CODE_SNIPPET, DIALOG, DROPDOWN, DROPDOWN_LIST, FILE_UPLOADER, LOADING, MODAL, NOTIFICATION, OVERFLOW_MENU, SEARCH, SIDENAV, PAGINATION, TABLE, TABS, TOPNAV, default */
+/*! exports provided: BANNER, CALENDAR, CODE_SNIPPET, DIALOG, DROPDOWN, DROPDOWN_LIST, FILE_UPLOADER, LOADING, MODAL, NOTIFICATION, OVERFLOW_MENU, SEARCH, SIDENAV, PAGINATION, TABLE, TABS, TOGGLE, TOPNAV, default */
 /***/ (function(module) {
 
-module.exports = {"BANNER":{"CLOSE_BUTTON":"Close alert banner"},"CALENDAR":{"MONTHS":{"JANUARY":"January","FEBRUARY":"February","MARCH":"March","APRIL":"April","MAY":"May","JUNE":"June","JULY":"July","AUGUST":"August","SEPTEMBER":"September","OCTOBER":"October","NOVEMBER":"November","DECEMBER":"December"},"SHORTWEEKDAYS":{"SUNDAY":"Sun","MONDAY":"Mon","TUESDAY":"Tue","WEDNESDAY":"Wed","THURSDAY":"Thu","FRIDAY":"Fri","SATURDAY":"Sat"},"QUARTERS":[{"name":"Q1","months":"January-March"},{"name":"Q2","months":"April-June"},{"name":"Q3","months":"July-September"},{"name":"Q4","months":"October-December"}]},"CODE_SNIPPET":{"CODE_SNIPPET_TEXT":"Code Snippet Text","SHOW_MORE":"Show more","SHOW_LESS":"Show less","SHOW_MORE_ICON":"Show more icon","COPY_CODE":"Copy code","COPIED":"Copied!"},"DIALOG":{"POPOVER":{"CLOSE":"Close popover"}},"DROPDOWN":{"OPEN":"Open menu","SELECTED":"selected","CLEAR":"Clear selection","FILTER":{"SELECTED_ONLY":"Show selected only","SEARCH":"Search","NO_RESULTS":"No search results","RESET_SEARCH":"Reset search"}},"DROPDOWN_LIST":{"LABEL":"Listbox"},"FILE_UPLOADER":{"CHECKMARK":"Checkmark","CHECKMARK_TITLE":"File uploaded!","OPEN":"Add file","REMOVE_BUTTON":"Close button","REMOVE_TITLE":"Delete File"},"LOADING":{"TITLE":"Loading"},"MODAL":{"CLOSE":"Close modal"},"NOTIFICATION":{"CLOSE_BUTTON":"Close alert notification"},"OVERFLOW_MENU":{"OVERFLOW":"Overflow"},"SEARCH":{"LABEL":"Search","PLACEHOLDER":"Search","CLEAR_BUTTON":"Clear search input"},"SIDENAV":{"NAV_LABEL":"Side navigation"},"PAGINATION":{"ITEMS_PER_PAGE":"Items per page:","OPEN_LIST_OF_OPTIONS":"Open list of options","BACKWARD":"Backward","FORWARD":"Forward","TOTAL_ITEMS":"{{start}}-{{end}} of {{total}} items","TOTAL_PAGES":"{{current}} of {{last}} pages"},"TABLE":{"GO_TO_PAGE":"Go to page","PREVIOUS_PAGE":"Previous page","NEXT_PAGE":"Next page","PREVIOUS_3":"Scroll to previous 3 pages","NEXT_3":"Scroll to next 3 pages","FILTER":"Filter","END_OF_DATA":"You've reached the end of your content","SCROLL_TOP":"Scroll to top"},"TABS":{"BUTTON_ARIA_LEFT":"Go to the previous tab","BUTTON_ARIA_RIGHT":"Go to the next tab"},"TOPNAV":{"SKIP_TO_MAIN":"Skip to main content","HAMBURGER":{"TOGGLE":"Toggle primary navigation menu","TITLE":"Primary navigation menu"}}};
+module.exports = {"BANNER":{"CLOSE_BUTTON":"Close alert banner"},"CALENDAR":{"MONTHS":{"JANUARY":"January","FEBRUARY":"February","MARCH":"March","APRIL":"April","MAY":"May","JUNE":"June","JULY":"July","AUGUST":"August","SEPTEMBER":"September","OCTOBER":"October","NOVEMBER":"November","DECEMBER":"December"},"SHORTWEEKDAYS":{"SUNDAY":"Sun","MONDAY":"Mon","TUESDAY":"Tue","WEDNESDAY":"Wed","THURSDAY":"Thu","FRIDAY":"Fri","SATURDAY":"Sat"},"QUARTERS":[{"name":"Q1","months":"January-March"},{"name":"Q2","months":"April-June"},{"name":"Q3","months":"July-September"},{"name":"Q4","months":"October-December"}]},"CODE_SNIPPET":{"CODE_SNIPPET_TEXT":"Code Snippet Text","SHOW_MORE":"Show more","SHOW_LESS":"Show less","SHOW_MORE_ICON":"Show more icon","COPY_CODE":"Copy code","COPIED":"Copied!"},"DIALOG":{"POPOVER":{"CLOSE":"Close popover"}},"DROPDOWN":{"OPEN":"Open menu","SELECTED":"selected","CLEAR":"Clear selection","FILTER":{"SELECTED_ONLY":"Show selected only","SEARCH":"Search","NO_RESULTS":"No search results","RESET_SEARCH":"Reset search"}},"DROPDOWN_LIST":{"LABEL":"Listbox"},"FILE_UPLOADER":{"CHECKMARK":"Checkmark","CHECKMARK_TITLE":"File uploaded!","OPEN":"Add file","REMOVE_BUTTON":"Close button","REMOVE_TITLE":"Delete File"},"LOADING":{"TITLE":"Loading"},"MODAL":{"CLOSE":"Close modal"},"NOTIFICATION":{"CLOSE_BUTTON":"Close alert notification"},"OVERFLOW_MENU":{"OVERFLOW":"Overflow"},"SEARCH":{"LABEL":"Search","PLACEHOLDER":"Search","CLEAR_BUTTON":"Clear search input"},"SIDENAV":{"NAV_LABEL":"Side navigation"},"PAGINATION":{"ITEMS_PER_PAGE":"Items per page:","OPEN_LIST_OF_OPTIONS":"Open list of options","BACKWARD":"Backward","FORWARD":"Forward","TOTAL_ITEMS":"{{start}}-{{end}} of {{total}} items","TOTAL_PAGES":"{{current}} of {{last}} pages"},"TABLE":{"GO_TO_PAGE":"Go to page","PREVIOUS_PAGE":"Previous page","NEXT_PAGE":"Next page","PREVIOUS_3":"Scroll to previous 3 pages","NEXT_3":"Scroll to next 3 pages","FILTER":"Filter","END_OF_DATA":"You've reached the end of your content","SCROLL_TOP":"Scroll to top"},"TABS":{"BUTTON_ARIA_LEFT":"Go to the previous tab","BUTTON_ARIA_RIGHT":"Go to the next tab"},"TOGGLE":{"OFF":"Off","ON":"On"},"TOPNAV":{"SKIP_TO_MAIN":"Skip to main content","HAMBURGER":{"TOGGLE":"Toggle primary navigation menu","TITLE":"Primary navigation menu"}}};
 
 /***/ }),
 
@@ -20036,6 +20036,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _checkbox_checkbox_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../checkbox/checkbox.component */ "./src/checkbox/checkbox.component.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../i18n/i18n.module */ "./src/i18n/i18n.module.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -20055,6 +20056,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -20097,9 +20099,10 @@ var Toggle = /** @class */ (function (_super) {
      * @param {ChangeDetectorRef} changeDetectorRef
      * @memberof Toggle
      */
-    function Toggle(changeDetectorRef) {
+    function Toggle(changeDetectorRef, i18n) {
         var _this = _super.call(this, changeDetectorRef) || this;
         _this.changeDetectorRef = changeDetectorRef;
+        _this.i18n = i18n;
         /**
          * Size of the toggle component.
          * @type {("sm" | "md" | "default")}
@@ -20123,10 +20126,42 @@ var Toggle = /** @class */ (function (_super) {
          * click.
          */
         _this.change = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        _this._offText = _this.i18n.get("TOGGLE.OFF");
+        _this._onText = _this.i18n.get("TOGGLE.ON");
         Toggle_1.toggleCount++;
         return _this;
     }
     Toggle_1 = Toggle;
+    Object.defineProperty(Toggle.prototype, "offText", {
+        get: function () {
+            return this._offText;
+        },
+        /**
+         * Text that is set on the left side of the toggle.
+         * @type {(string)}
+         * @memberof Toggle
+         */
+        set: function (value) {
+            this._offText.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Toggle.prototype, "onText", {
+        get: function () {
+            return this._onText;
+        },
+        /**
+         * Text that is set on the right side of the toggle.
+         * @type {(string)}
+         * @memberof Toggle
+         */
+        set: function (value) {
+            this._onText.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Creates instance of `ToggleChange` used to propagate the change event.
      * @memberof To
@@ -20138,7 +20173,7 @@ var Toggle = /** @class */ (function (_super) {
         this.propagateChange(this.checked);
         this.change.emit(event);
     };
-    var Toggle_1, _a;
+    var Toggle_1, _a, _b;
     /**
      * Variable used for creating unique ids for toggle components.
      * @type {number}
@@ -20146,6 +20181,16 @@ var Toggle = /** @class */ (function (_super) {
      * @memberof Toggle
      */
     Toggle.toggleCount = 0;
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Toggle.prototype, "offText", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Toggle.prototype, "onText", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         __metadata("design:type", String)
@@ -20161,7 +20206,7 @@ var Toggle = /** @class */ (function (_super) {
     Toggle = Toggle_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "ibm-toggle",
-            template: "\n\t\t<input\n\t\t\tclass=\"bx--toggle\"\n\t\t\ttype=\"checkbox\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--toggle--small': size === 'sm',\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\"\n\t\t\t[id]=\"id\"\n\t\t\t[value]=\"value\"\n\t\t\t[name]=\"name\"\n\t\t\t[required]=\"required\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[attr.aria-checked]=\"checked\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\">\n\t\t<label\n\t\t\t*ngIf=\"size === 'md'\"\n\t\t\tclass=\"bx--toggle__label\"\n\t\t\t[for]=\"id\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<span class=\"bx--toggle__text--left\">{{ !skeleton ? \"Off\" : null }}</span>\n\t\t\t<span class=\"bx--toggle__appearance\"></span>\n\t\t\t<span class=\"bx--toggle__text--right\">{{ !skeleton ? \"On\" : null }}</span>\n\t\t</label>\n\n\t\t<label\n\t\t\t*ngIf=\"size === 'sm'\"\n\t\t\tclass=\"bx--toggle__label\"\n\t\t\t[for]=\"id\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<span class=\"bx--toggle__appearance\">\n\t\t\t\t<svg class=\"bx--toggle__check\" width=\"6px\" height=\"5px\" viewBox=\"0 0 6 5\">\n\t\t\t\t\t<path d=\"M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z\"/>\n\t\t\t\t</svg>\n\t\t\t</span>\n\t\t</label>\n\t",
+            template: "\n\t\t<input\n\t\t\tclass=\"bx--toggle\"\n\t\t\ttype=\"checkbox\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--toggle--small': size === 'sm',\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\"\n\t\t\t[id]=\"id\"\n\t\t\t[value]=\"value\"\n\t\t\t[name]=\"name\"\n\t\t\t[required]=\"required\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[attr.aria-checked]=\"checked\"\n\t\t\t(change)=\"onChange($event)\"\n\t\t\t(click)=\"onClick($event)\">\n\t\t<label\n\t\t\t*ngIf=\"size === 'md'\"\n\t\t\tclass=\"bx--toggle__label\"\n\t\t\t[for]=\"id\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<span class=\"bx--toggle__text--left\">{{(!skeleton ? offText : null) | async }}</span>\n\t\t\t<span class=\"bx--toggle__appearance\"></span>\n\t\t\t<span class=\"bx--toggle__text--right\">{{(!skeleton ? onText : null) | async}}</span>\n\t\t</label>\n\n\t\t<label\n\t\t\t*ngIf=\"size === 'sm'\"\n\t\t\tclass=\"bx--toggle__label\"\n\t\t\t[for]=\"id\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--skeleton': skeleton\n\t\t\t}\">\n\t\t\t<span class=\"bx--toggle__appearance\">\n\t\t\t\t<svg class=\"bx--toggle__check\" width=\"6px\" height=\"5px\" viewBox=\"0 0 6 5\">\n\t\t\t\t\t<path d=\"M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z\"/>\n\t\t\t\t</svg>\n\t\t\t</span>\n\t\t</label>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
@@ -20170,7 +20215,7 @@ var Toggle = /** @class */ (function (_super) {
                 }
             ]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]) === "function" && _a || Object, typeof (_b = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__["I18n"]) === "function" && _b || Object])
     ], Toggle);
     return Toggle;
 }(_checkbox_checkbox_component__WEBPACK_IMPORTED_MODULE_0__["Checkbox"]));
@@ -20192,8 +20237,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../toggle/toggle.component */ "./src/toggle/toggle.component.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toggle", function() { return _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_3__["Toggle"]; });
+/* harmony import */ var _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../i18n/i18n.module */ "./src/i18n/i18n.module.ts");
+/* harmony import */ var _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../toggle/toggle.component */ "./src/toggle/toggle.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toggle", function() { return _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_4__["Toggle"]; });
 
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20207,6 +20253,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 // imports
 
+
 // exports
 
 var ToggleModule = /** @class */ (function () {
@@ -20215,14 +20262,15 @@ var ToggleModule = /** @class */ (function () {
     ToggleModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
-                _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_3__["Toggle"]
+                _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_4__["Toggle"]
             ],
             exports: [
-                _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_3__["Toggle"]
+                _toggle_toggle_component__WEBPACK_IMPORTED_MODULE_4__["Toggle"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"],
+                _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_3__["I18nModule"]
             ]
         })
     ], ToggleModule);
@@ -20535,4 +20583,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.a2e850a9e91115c4db30.bundle.js.map
+//# sourceMappingURL=iframe.08b60344106ce38c7841.bundle.js.map

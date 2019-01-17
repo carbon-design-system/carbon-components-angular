@@ -73,9 +73,13 @@
 <title>cluster_ToggleModule_Toggle_providers</title>
 <polygon fill="none" stroke="#000000" points="16,-78 16,-176.5901 624,-176.5901 624,-78 16,-78"/>
 </g>
+<g id="clust4" class="cluster">
+<title>cluster_ToggleModule_imports</title>
+<polygon fill="none" stroke="#000000" points="174,-189.5901 174,-241.5901 276,-241.5901 276,-189.5901 174,-189.5901"/>
+</g>
 <g id="clust5" class="cluster">
 <title>cluster_ToggleModule_exports</title>
-<polygon fill="none" stroke="#000000" points="282,-319.5901 282,-371.5901 358,-371.5901 358,-319.5901 282,-319.5901"/>
+<polygon fill="none" stroke="#000000" points="234,-319.5901 234,-371.5901 310,-371.5901 310,-319.5901 234,-319.5901"/>
 </g>
 <!-- Toggle -->
 <g id="node1" class="node">
@@ -86,26 +90,26 @@
 <!-- ToggleModule -->
 <g id="node2" class="node">
 <title>ToggleModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="369.7078,-298.5901 366.7078,-302.5901 345.7078,-302.5901 342.7078,-298.5901 270.2922,-298.5901 270.2922,-262.5901 369.7078,-262.5901 369.7078,-298.5901"/>
-<text text-anchor="middle" x="320" y="-276.3901" font-family="Times,serif" font-size="14.00" fill="#000000">ToggleModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="321.7078,-298.5901 318.7078,-302.5901 297.7078,-302.5901 294.7078,-298.5901 222.2922,-298.5901 222.2922,-262.5901 321.7078,-262.5901 321.7078,-298.5901"/>
+<text text-anchor="middle" x="272" y="-276.3901" font-family="Times,serif" font-size="14.00" fill="#000000">ToggleModule</text>
 </g>
 <!-- Toggle&#45;&gt;ToggleModule -->
 <g id="edge1" class="edge">
 <title>Toggle&#45;&gt;ToggleModule</title>
-<path fill="none" stroke="#000000" d="M320,-233.6962C320,-233.6962 320,-252.581 320,-252.581"/>
-<polygon fill="#000000" stroke="#000000" points="316.5001,-252.581 320,-262.581 323.5001,-252.5811 316.5001,-252.581"/>
+<path fill="none" stroke="#000000" d="M306.8875,-233.6962C306.8875,-233.6962 306.8875,-252.581 306.8875,-252.581"/>
+<polygon fill="#000000" stroke="#000000" points="303.3875,-252.581 306.8875,-262.581 310.3875,-252.5811 303.3875,-252.581"/>
 </g>
 <!-- Toggle  -->
-<g id="node4" class="node">
+<g id="node5" class="node">
 <title>Toggle </title>
-<polygon fill="#fb8072" stroke="#000000" points="349.658,-363.5901 290.342,-363.5901 290.342,-327.5901 349.658,-327.5901 349.658,-363.5901"/>
-<text text-anchor="middle" x="320" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">Toggle </text>
+<polygon fill="#fb8072" stroke="#000000" points="301.658,-363.5901 242.342,-363.5901 242.342,-327.5901 301.658,-327.5901 301.658,-363.5901"/>
+<text text-anchor="middle" x="272" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">Toggle </text>
 </g>
 <!-- ToggleModule&#45;&gt;Toggle  -->
-<g id="edge3" class="edge">
+<g id="edge4" class="edge">
 <title>ToggleModule&#45;&gt;Toggle </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M320,-298.6962C320,-298.6962 320,-317.581 320,-317.581"/>
-<polygon fill="#000000" stroke="#000000" points="316.5001,-317.581 320,-327.581 323.5001,-317.5811 316.5001,-317.581"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M272,-298.6962C272,-298.6962 272,-317.581 272,-317.581"/>
+<polygon fill="#000000" stroke="#000000" points="268.5001,-317.581 272,-327.581 275.5001,-317.5811 268.5001,-317.581"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Toggle, multi: true
@@ -128,6 +132,18 @@
 }&#45;&gt;Toggle</title>
 <path fill="none" stroke="#000000" d="M320,-168.5989C320,-168.5989 320,-187.2551 320,-187.2551"/>
 <polygon fill="#000000" stroke="#000000" points="316.5001,-187.255 320,-197.2551 323.5001,-187.2551 316.5001,-187.255"/>
+</g>
+<!-- I18nModule -->
+<g id="node4" class="node">
+<title>I18nModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="267.7107,-233.5901 264.7107,-237.5901 243.7107,-237.5901 240.7107,-233.5901 182.2893,-233.5901 182.2893,-197.5901 267.7107,-197.5901 267.7107,-233.5901"/>
+<text text-anchor="middle" x="225" y="-211.3901" font-family="Times,serif" font-size="14.00" fill="#000000">I18nModule</text>
+</g>
+<!-- I18nModule&#45;&gt;ToggleModule -->
+<g id="edge3" class="edge">
+<title>I18nModule&#45;&gt;ToggleModule</title>
+<path fill="none" stroke="#000000" d="M245.0007,-233.6962C245.0007,-233.6962 245.0007,-252.581 245.0007,-252.581"/>
+<polygon fill="#000000" stroke="#000000" points="241.5008,-252.581 245.0007,-262.581 248.5008,-252.5811 241.5008,-252.581"/>
 </g>
 </g>
 </svg>
@@ -177,6 +193,15 @@
                     </ul>
                 </div>
                 <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../modules/I18nModule.html">I18nModule</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
                     <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
@@ -199,6 +224,7 @@ import { FormsModule } from &quot;@angular/forms&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 
 // imports
+import { I18nModule } from &quot;../i18n/i18n.module&quot;;
 import { Toggle } from &quot;../toggle/toggle.component&quot;;
 
 // exports
@@ -213,7 +239,8 @@ export { Toggle } from &quot;../toggle/toggle.component&quot;;
 	],
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		I18nModule
 	]
 })
 export class ToggleModule { }

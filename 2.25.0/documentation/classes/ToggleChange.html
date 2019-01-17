@@ -143,7 +143,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/toggle/toggle.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/toggle/toggle.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +183,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/toggle/toggle.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/toggle/toggle.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -218,6 +218,7 @@ import {
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
+import { I18n } from &quot;../i18n/i18n.module&quot;;
 
 /**
  * Defines the set of states for a toggle component.
@@ -286,9 +287,9 @@ export class ToggleChange {
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--skeleton&#x27;: skeleton
 			}&quot;&gt;
-			&lt;span class&#x3D;&quot;bx--toggle__text--left&quot;&gt;{{ !skeleton ? &quot;Off&quot; : null }}&lt;/span&gt;
+			&lt;span class&#x3D;&quot;bx--toggle__text--left&quot;&gt;{{(!skeleton ? offText : null) | async }}&lt;/span&gt;
 			&lt;span class&#x3D;&quot;bx--toggle__appearance&quot;&gt;&lt;/span&gt;
-			&lt;span class&#x3D;&quot;bx--toggle__text--right&quot;&gt;{{ !skeleton ? &quot;On&quot; : null }}&lt;/span&gt;
+			&lt;span class&#x3D;&quot;bx--toggle__text--right&quot;&gt;{{(!skeleton ? onText : null) | async}}&lt;/span&gt;
 		&lt;/label&gt;
 
 		&lt;label
@@ -323,6 +324,35 @@ export class Toggle extends Checkbox {
 	static toggleCount &#x3D; 0;
 
 	/**
+	 * Text that is set on the left side of the toggle.
+	 * @type {(string)}
+	 * @memberof Toggle
+	 */
+	@Input()
+	set offText(value) {
+		this._offText.next(value);
+	}
+
+	get offText() {
+		return this._offText;
+	}
+
+	/**
+	 * Text that is set on the right side of the toggle.
+	 * @type {(string)}
+	 * @memberof Toggle
+	 */
+	@Input()
+	set onText(value) {
+		this._onText.next(value);
+	}
+
+	get onText() {
+		return this._onText;
+	}
+
+
+	/**
 	 * Size of the toggle component.
 	 * @type {(&quot;sm&quot; | &quot;md&quot; | &quot;default&quot;)}
 	 * @memberof Toggle
@@ -348,12 +378,14 @@ export class Toggle extends Checkbox {
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;ToggleChange&gt;();
 
+	protected _offText &#x3D; this.i18n.get(&quot;TOGGLE.OFF&quot;);
+	protected _onText &#x3D; this.i18n.get(&quot;TOGGLE.ON&quot;);
 	/**
 	 * Creates an instance of Toggle.
 	 * @param {ChangeDetectorRef} changeDetectorRef
 	 * @memberof Toggle
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
 		Toggle.toggleCount++;
 	}
