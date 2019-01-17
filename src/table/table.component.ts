@@ -199,6 +199,7 @@ import { I18n } from "./../i18n/i18n.module";
 						<button
 							class="bx--table-sort-v2"
 							*ngIf="this.sort.observers.length > 0 && column.sortable"
+							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
 								'bx--table-sort-v2--ascending': column.ascending
@@ -210,10 +211,7 @@ import { I18n } from "./../i18n/i18n.module";
 							</ng-template>
 							<svg
 							class="bx--table-sort-v2__icon"
-							width="10" height="5" viewBox="0 0 10 5"
-							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
-							[attr.alt]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)">
-								<title>{{(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)}}</title>
+							width="10" height="5" viewBox="0 0 10 5">
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
 						</button>
