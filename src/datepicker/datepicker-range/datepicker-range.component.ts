@@ -11,13 +11,13 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 					<div class="bx--date-picker-container">
 						<label for="date-picker-1" class="bx--label">Start date label</label>
 						<input type="text" id="date-picker-1" class="bx--date-picker__input" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"
-							data-date-picker-input-from data-input/>
+							data-input/>
 					</div>
 
 					<div class="bx--date-picker-container">
 						<label for="date-picker-2" class="bx--label">End date label</label>
 						<input type="text" id="secondRangeInput" class="bx--date-picker__input" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"
-							data-date-picker-input-to/>
+							/>
 					</div>
 
 					<svg data-date-picker-icon class="bx--date-picker__icon" width="14" height="16" viewBox="0 0 14 16" data-open>
@@ -28,13 +28,13 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 				</div>
 			</ng2-flatpickr>
 		</div>
-
 	`
 })
 export class DatePickerRange {
 	flatpickrOptions: FlatpickrOptions = {
 		// mode: "range",
 		dateFormat: "m/d/Y",
-		"plugins": [rangePlugin({ input: "#secondRangeInput"})]
+		"plugins": [rangePlugin({ input: "#secondRangeInput"})],
+		allowInput: true
 	};
 }

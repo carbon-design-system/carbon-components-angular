@@ -30,6 +30,7 @@ import { FlatpickrOptions } from "ng2-flatpickr";
 })
 export class DatePickerSingle {
 	flatpickrOptions: FlatpickrOptions = {
-		dateFormat: "m/d/Y"
+		dateFormat: "m/d/Y",
+		allowInput: true
 	};
 }
