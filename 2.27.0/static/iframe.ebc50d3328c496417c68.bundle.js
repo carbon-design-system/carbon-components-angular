@@ -16346,6 +16346,8 @@ var Slider = /** @class */ (function () {
         this.id = "slider-" + Slider_1.count++;
         /** Value used to "multiply" the `step` when using arrow keys to select values */
         this.shiftMultiplier = 4;
+        /** Set to `true` for a loading slider */
+        this.skeleton = false;
         /** Emits every time a new value is selected */
         this.valueChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.hostClass = true;
@@ -16440,6 +16442,9 @@ var Slider = /** @class */ (function () {
     };
     /** Returns the amount of "completeness" as a fraction of the total track width */
     Slider.prototype.getFractionComplete = function () {
+        if (!this.track) {
+            return 0;
+        }
         var trackWidth = this.track.nativeElement.getBoundingClientRect().width;
         return this.slidAmount / trackWidth;
     };
@@ -16459,6 +16464,9 @@ var Slider = /** @class */ (function () {
     };
     /** Converts a given "real" value to a px value we can update the view with */
     Slider.prototype.convertToPx = function (value) {
+        if (!this.track) {
+            return 0;
+        }
         var trackWidth = this.track.nativeElement.getBoundingClientRect().width;
         if (value >= this.max) {
             return trackWidth;
@@ -16569,6 +16577,10 @@ var Slider = /** @class */ (function () {
     ], Slider.prototype, "shiftMultiplier", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Slider.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object),
         __metadata("design:paramtypes", [Object])
     ], Slider.prototype, "disabled", null);
@@ -16595,7 +16607,7 @@ var Slider = /** @class */ (function () {
     Slider = Slider_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-slider",
-            template: "\n\t\t<div\n\t\t\tclass=\"bx--slider\"\n\t\t\t[ngClass]=\"{'bx--slider--disabled': disabled}\">\n\t\t\t<div\n\t\t\t\t#thumb\n\t\t\t\tclass=\"bx--slider__thumb\"\n\t\t\t\ttabindex=\"0\"\n\t\t\t\t[ngStyle]=\"{'left.%': getFractionComplete() * 100}\"\n\t\t\t\t(mousedown)=\"onMouseDown($event)\"\n\t\t\t\t(keydown)=\"onKeyDown($event)\">\n\t\t\t</div>\n\t\t\t<div\n\t\t\t\t#track\n\t\t\t\tclass=\"bx--slider__track\"\n\t\t\t\t(click)=\"onClick($event)\">\n\t\t\t</div>\n\t\t\t<div\n\t\t\t\tclass=\"bx--slider__filled-track\"\n\t\t\t\t[ngStyle]=\"{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}\">\n\t\t\t</div>\n\t\t\t<input\n\t\t\t\t#range\n\t\t\t\taria-label=\"slider\"\n\t\t\t\tclass=\"bx--slider__input\"\n\t\t\t\ttype=\"range\"\n\t\t\t\t[step]=\"step\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[value]=\"value\">\n\t\t</div>\n\t\t<label [id]=\"bottomRangeId\" class=\"bx--slider__range-label\">\n\t\t\t<ng-content select=\"[minLabel]\"></ng-content>\n\t\t</label>\n\t\t<label [id]=\"topRangeId\" class=\"bx--slider__range-label\">\n\t\t\t<ng-content select=\"[maxLabel]\"></ng-content>\n\t\t</label>\n\t\t<ng-content select=\"input\"></ng-content>\n\t",
+            template: "\n\t\t<ng-container *ngIf=\"!skeleton; else skeletonTemplate\">\n\t\t\t<div\n\t\t\t\tclass=\"bx--slider\"\n\t\t\t\t[ngClass]=\"{'bx--slider--disabled': disabled}\">\n\t\t\t\t<div\n\t\t\t\t\t#thumb\n\t\t\t\t\tclass=\"bx--slider__thumb\"\n\t\t\t\t\ttabindex=\"0\"\n\t\t\t\t\t[ngStyle]=\"{'left.%': getFractionComplete() * 100}\"\n\t\t\t\t\t(mousedown)=\"onMouseDown($event)\"\n\t\t\t\t\t(keydown)=\"onKeyDown($event)\">\n\t\t\t\t</div>\n\t\t\t\t<div\n\t\t\t\t\t#track\n\t\t\t\t\tclass=\"bx--slider__track\"\n\t\t\t\t\t(click)=\"onClick($event)\">\n\t\t\t\t</div>\n\t\t\t\t<div\n\t\t\t\t\tclass=\"bx--slider__filled-track\"\n\t\t\t\t\t[ngStyle]=\"{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}\">\n\t\t\t\t</div>\n\t\t\t\t<input\n\t\t\t\t\t#range\n\t\t\t\t\taria-label=\"slider\"\n\t\t\t\t\tclass=\"bx--slider__input\"\n\t\t\t\t\ttype=\"range\"\n\t\t\t\t\t[step]=\"step\"\n\t\t\t\t\t[min]=\"min\"\n\t\t\t\t\t[max]=\"max\"\n\t\t\t\t\t[value]=\"value\">\n\t\t\t</div>\n\t\t\t<label [id]=\"bottomRangeId\" class=\"bx--slider__range-label\">\n\t\t\t\t<ng-content select=\"[minLabel]\"></ng-content>\n\t\t\t</label>\n\t\t\t<label [id]=\"topRangeId\" class=\"bx--slider__range-label\">\n\t\t\t\t<ng-content select=\"[maxLabel]\"></ng-content>\n\t\t\t</label>\n\t\t\t<ng-content select=\"input\"></ng-content>\n\t\t</ng-container>\n\n\t\t<ng-template #skeletonTemplate>\n\t\t\t<div class=\"bx--form-item\">\n\t\t\t\t<label class=\"bx--label bx--skeleton\"></label>\n\t\t\t\t<div class=\"bx--slider-container bx--skeleton\">\n\t\t\t\t\t<span class=\"bx--slider__range-label\"></span>\n\t\t\t\t\t<div class=\"bx--slider\">\n\t\t\t\t\t\t<div class=\"bx--slider__thumb\"></div>\n\t\t\t\t\t\t<div class=\"bx--slider__track\"></div>\n\t\t\t\t\t\t<div class=\"bx--slider__filled-track\"></div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<span class=\"bx--slider__range-label\"></span>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ng-template>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
@@ -16674,8 +16686,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _slider_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./slider.module */ "./src/slider/slider.module.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, number, text, boolean } from '@storybook/addon-knobs/angular';\n\nimport { SliderModule } from './slider.module';\n\nstoriesOf('Slider', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SliderModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `<ibm-slider [disabled]=\"disabled\"></ibm-slider>`,\n    props: {\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('Advanced', () => ({\n    template: `\n\t\t<ibm-slider\n\t\t\t[min]=\"min\"\n\t\t\t[max]=\"max\"\n\t\t\t[step]=\"step\"\n\t\t\t[value]=\"value\"\n\t\t\t[shiftMultiplier]=\"shiftMultiplier\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(valueChange)=\"valueChange($event)\">\n\t\t\t<span minLabel>{{minLabel}}</span>\n\t\t\t<span maxLabel>{{maxLabel}}</span>\n\t\t\t<input/>\n\t\t</ibm-slider>\n\t`,\n    props: {\n      min: number('min', 0),\n      max: number('max', 100),\n      step: number('step', 1),\n      value: number('value', 0),\n      minLabel: text('minLabel', '0'),\n      maxLabel: text('maxLabel', '100'),\n      disabled: boolean('disabled', false),\n      shiftMultiplier: number('shiftMultiplier', 4),\n      valueChange: action('Value changed'),\n    },\n  }))\n  .add('With NgModel', () => ({\n    template: `\n\t\t<ibm-slider [(ngModel)]=\"model\" [disabled]=\"disabled\"></ibm-slider>\n\t\t<br>\n\t\t<span>model: {{model}}</span>\n\t`,\n    props: {\n      model: 0,\n      disabled: boolean('disabled', false),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Slider@With NgModel": { "startLoc": { "col": 7, "line": 47 }, "endLoc": { "col": 4, "line": 57 } }, "Slider@Advanced": { "startLoc": { "col": 7, "line": 20 }, "endLoc": { "col": 4, "line": 46 } }, "Slider@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 19 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, number, text, boolean } from '@storybook/addon-knobs/angular';\n\nimport { SliderModule } from './slider.module';\n\nstoriesOf('Slider', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [SliderModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `<ibm-slider [disabled]=\"disabled\"></ibm-slider>`,\n    props: {\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('Advanced', () => ({\n    template: `\n\t\t<ibm-slider\n\t\t\t[min]=\"min\"\n\t\t\t[max]=\"max\"\n\t\t\t[step]=\"step\"\n\t\t\t[value]=\"value\"\n\t\t\t[shiftMultiplier]=\"shiftMultiplier\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t(valueChange)=\"valueChange($event)\">\n\t\t\t<span minLabel>{{minLabel}}</span>\n\t\t\t<span maxLabel>{{maxLabel}}</span>\n\t\t\t<input/>\n\t\t</ibm-slider>\n\t`,\n    props: {\n      min: number('min', 0),\n      max: number('max', 100),\n      step: number('step', 1),\n      value: number('value', 0),\n      minLabel: text('minLabel', '0'),\n      maxLabel: text('maxLabel', '100'),\n      disabled: boolean('disabled', false),\n      shiftMultiplier: number('shiftMultiplier', 4),\n      valueChange: action('Value changed'),\n    },\n  }))\n  .add('With NgModel', () => ({\n    template: `\n\t\t<ibm-slider [(ngModel)]=\"model\" [disabled]=\"disabled\"></ibm-slider>\n\t\t<br>\n\t\t<span>model: {{model}}</span>\n\t`,\n    props: {\n      model: 0,\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<ibm-slider skeleton=\"true\"></ibm-slider>\n\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Slider@Skeleton": { "startLoc": { "col": 7, "line": 58 }, "endLoc": { "col": 4, "line": 62 } }, "Slider@With NgModel": { "startLoc": { "col": 7, "line": 47 }, "endLoc": { "col": 4, "line": 57 } }, "Slider@Advanced": { "startLoc": { "col": 7, "line": 20 }, "endLoc": { "col": 4, "line": 46 } }, "Slider@Basic": { "startLoc": { "col": 7, "line": 14 }, "endLoc": { "col": 4, "line": 19 } } };
 
 
 
@@ -16710,6 +16722,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Slider", m
         model: 0,
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_2__["boolean"])("disabled", false)
     }
+}); })
+    .add("Skeleton", function () { return ({
+    template: "\n\t\t<ibm-slider skeleton=\"true\"></ibm-slider>\n\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -21056,4 +21071,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.d0ff739ff091b62e43b6.bundle.js.map
+//# sourceMappingURL=iframe.ebc50d3328c496417c68.bundle.js.map
