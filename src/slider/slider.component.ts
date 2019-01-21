@@ -147,7 +147,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() id = `slider-${Slider.count++}`;
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
 	@Input() shiftMultiplier = 4;
-	/** Set to `true` for a loading table */
+	/** Set to `true` for a loading slider */
 	@Input() skeleton = false;
 	/** Disables the range visually and functionally */
 	@Input() set disabled(v) {
