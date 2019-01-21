@@ -78,7 +78,7 @@ function calculatePosition(referenceOffset: Offset, reference: HTMLElement, targ
 
 export namespace position {
 	export function getRelativeOffset(target: HTMLElement): Offset {
-		// start with the inital element offsets
+		// start with the initial element offsets
 		let offsets = {
 			left: target.offsetLeft,
 			top: target.offsetTop
@@ -93,9 +93,53 @@ export namespace position {
 	}
 
 	export function getAbsoluteOffset(target: HTMLElement): Offset {
+		let positionedElement;
+		let currentNode = target;
+		let margins = {
+			top: 0,
+			left: 0
+		};
+
+		// searches either for a parent `positionedElement` or for
+		// containing elements with additional margins
+		// once we have a `positionedElement` we can stop searching
+		// since we use offsetParent we end up skipping most elements
+		while (currentNode.offsetParent && !positionedElement) {
+			const computed = getComputedStyle(currentNode.offsetParent);
+			if (computed.position !== "static") {
+				positionedElement = currentNode.offsetParent;
+			}
+
+			// find static elements with additional margins
+			// since they tend to throw off our positioning
+			// (usually this is just the body)
+			if (
+				computed.position === "static" &&
+				computed.marginLeft &&
+				computed.marginTop
+			) {
+				if (parseInt(computed.marginTop, 10)) {
+					margins.top += parseInt(computed.marginTop, 10);
+				}
+				if (parseInt(computed.marginLeft, 10)) {
+					margins.left += parseInt(computed.marginLeft, 10);
+				}
+			}
+
+			currentNode = currentNode.offsetParent as HTMLElement;
+		}
+
+		// if we don't find any `relativeElement` on our walk
+		// default to the body
+		if (!positionedElement) {
+			positionedElement = document.body;
+		}
+
+		const targetRect = target.getBoundingClientRect();
+		const relativeRect = positionedElement.getBoundingClientRect();
 		return {
-			top: target.getBoundingClientRect().top,
-			left: target.getBoundingClientRect().left - document.body.getBoundingClientRect().left
+			top: targetRect.top - relativeRect.top + margins.top,
+			left: targetRect.left - relativeRect.left + margins.left
 		};
 	}
 
