@@ -20903,21 +20903,14 @@ var position;
     }
     position_1.getRelativeOffset = getRelativeOffset;
     function getAbsoluteOffset(target) {
-        var positionedElement;
         var currentNode = target;
         var margins = {
             top: 0,
             left: 0
         };
-        // searches either for a parent `positionedElement` or for
-        // containing elements with additional margins
-        // once we have a `positionedElement` we can stop searching
-        // since we use offsetParent we end up skipping most elements
-        while (currentNode.offsetParent && !positionedElement) {
+        // searches for containing elements with additional margins
+        while (currentNode.offsetParent) {
             var computed = getComputedStyle(currentNode.offsetParent);
-            if (computed.position !== "static") {
-                positionedElement = currentNode.offsetParent;
-            }
             // find static elements with additional margins
             // since they tend to throw off our positioning
             // (usually this is just the body)
@@ -20933,13 +20926,8 @@ var position;
             }
             currentNode = currentNode.offsetParent;
         }
-        // if we don't find any `relativeElement` on our walk
-        // default to the body
-        if (!positionedElement) {
-            positionedElement = document.body;
-        }
         var targetRect = target.getBoundingClientRect();
-        var relativeRect = positionedElement.getBoundingClientRect();
+        var relativeRect = document.body.getBoundingClientRect();
         return {
             top: targetRect.top - relativeRect.top + margins.top,
             left: targetRect.left - relativeRect.left + margins.left
@@ -21068,4 +21056,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.6497e89cfc10c455e541.bundle.js.map
+//# sourceMappingURL=iframe.d0ff739ff091b62e43b6.bundle.js.map

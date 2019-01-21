@@ -286,23 +286,15 @@ export namespace position {
 	}
 
 	export function getAbsoluteOffset(target: HTMLElement): Offset {
-		let positionedElement;
 		let currentNode &#x3D; target;
 		let margins &#x3D; {
 			top: 0,
 			left: 0
 		};
 
-		// searches either for a parent &#x60;positionedElement&#x60; or for
-		// containing elements with additional margins
-		// once we have a &#x60;positionedElement&#x60; we can stop searching
-		// since we use offsetParent we end up skipping most elements
-		while (currentNode.offsetParent &amp;&amp; !positionedElement) {
+		// searches for containing elements with additional margins
+		while (currentNode.offsetParent) {
 			const computed &#x3D; getComputedStyle(currentNode.offsetParent);
-			if (computed.position !&#x3D;&#x3D; &quot;static&quot;) {
-				positionedElement &#x3D; currentNode.offsetParent;
-			}
-
 			// find static elements with additional margins
 			// since they tend to throw off our positioning
 			// (usually this is just the body)
@@ -322,14 +314,8 @@ export namespace position {
 			currentNode &#x3D; currentNode.offsetParent as HTMLElement;
 		}
 
-		// if we don&#x27;t find any &#x60;relativeElement&#x60; on our walk
-		// default to the body
-		if (!positionedElement) {
-			positionedElement &#x3D; document.body;
-		}
-
 		const targetRect &#x3D; target.getBoundingClientRect();
-		const relativeRect &#x3D; positionedElement.getBoundingClientRect();
+		const relativeRect &#x3D; document.body.getBoundingClientRect();
 		return {
 			top: targetRect.top - relativeRect.top + margins.top,
 			left: targetRect.left - relativeRect.left + margins.left
