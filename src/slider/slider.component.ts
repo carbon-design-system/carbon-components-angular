@@ -47,43 +47,60 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "ibm-slider",
 	template: `
-		<div
-			class="bx--slider"
-			[ngClass]="{'bx--slider--disabled': disabled}">
+		<ng-container *ngIf="!skeleton; else skeletonTemplate">
 			<div
-				#thumb
-				class="bx--slider__thumb"
-				tabindex="0"
-				[ngStyle]="{'left.%': getFractionComplete() * 100}"
-				(mousedown)="onMouseDown($event)"
-				(keydown)="onKeyDown($event)">
+				class="bx--slider"
+				[ngClass]="{'bx--slider--disabled': disabled}">
+				<div
+					#thumb
+					class="bx--slider__thumb"
+					tabindex="0"
+					[ngStyle]="{'left.%': getFractionComplete() * 100}"
+					(mousedown)="onMouseDown($event)"
+					(keydown)="onKeyDown($event)">
+				</div>
+				<div
+					#track
+					class="bx--slider__track"
+					(click)="onClick($event)">
+				</div>
+				<div
+					class="bx--slider__filled-track"
+					[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
+				</div>
+				<input
+					#range
+					aria-label="slider"
+					class="bx--slider__input"
+					type="range"
+					[step]="step"
+					[min]="min"
+					[max]="max"
+					[value]="value">
 			</div>
-			<div
-				#track
-				class="bx--slider__track"
-				(click)="onClick($event)">
+			<label [id]="bottomRangeId" class="bx--slider__range-label">
+				<ng-content select="[minLabel]"></ng-content>
+			</label>
+			<label [id]="topRangeId" class="bx--slider__range-label">
+				<ng-content select="[maxLabel]"></ng-content>
+			</label>
+			<ng-content select="input"></ng-content>
+		</ng-container>
+
+		<ng-template #skeletonTemplate>
+			<div class="bx--form-item">
+				<label class="bx--label bx--skeleton"></label>
+				<div class="bx--slider-container bx--skeleton">
+					<span class="bx--slider__range-label"></span>
+					<div class="bx--slider">
+						<div class="bx--slider__thumb"></div>
+						<div class="bx--slider__track"></div>
+						<div class="bx--slider__filled-track"></div>
+					</div>
+					<span class="bx--slider__range-label"></span>
+				</div>
 			</div>
-			<div
-				class="bx--slider__filled-track"
-				[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
-			</div>
-			<input
-				#range
-				aria-label="slider"
-				class="bx--slider__input"
-				type="range"
-				[step]="step"
-				[min]="min"
-				[max]="max"
-				[value]="value">
-		</div>
-		<label [id]="bottomRangeId" class="bx--slider__range-label">
-			<ng-content select="[minLabel]"></ng-content>
-		</label>
-		<label [id]="topRangeId" class="bx--slider__range-label">
-			<ng-content select="[maxLabel]"></ng-content>
-		</label>
-		<ng-content select="input"></ng-content>
+		</ng-template>
 	`,
 	providers: [
 		{
@@ -130,6 +147,8 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() id = `slider-${Slider.count++}`;
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
 	@Input() shiftMultiplier = 4;
+	/** Set to `true` for a loading table */
+	@Input() skeleton = false;
 	/** Disables the range visually and functionally */
 	@Input() set disabled(v) {
 		this._disabled = v;
@@ -214,6 +233,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Returns the amount of "completeness" as a fraction of the total track width */
 	getFractionComplete() {
+		if (!this.track) {
+			return 0;
+		}
+
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 		return this.slidAmount / trackWidth;
 	}
@@ -236,6 +259,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Converts a given "real" value to a px value we can update the view with */
 	convertToPx(value) {
+		if (!this.track) {
+			return 0;
+		}
+
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
 		if (value >= this.max) {
 			return trackWidth;
