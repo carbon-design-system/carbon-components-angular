@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>Dialog</li>
+  <li>OverflowMenuPane</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,33 +55,32 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/dialog/dialog.component.ts</code>
+    <code>src/dialog/overflow-menu/overflow-menu-pane.component.ts</code>
 </p>
 
     <p class="comment">
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Implements a <code>Dialog</code> that can be positioned anywhere on the page.
-Used to implement a popover or tooltip.</p>
+        <p>Extend the <code>Dialog</code> component to create an overflow menu.</p>
+<p>Not used directly. See overflow-menu.component and overflow-menu.directive for more</p>
 
     </p>
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+    </p>
 
     <p class="comment">
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
                 <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
-                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -100,11 +99,29 @@ Used to implement a popover or tooltip.</p>
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ibm-dialog</code></td>
+                <td class="col-md-9"><code>ibm-overflow-menu-pane</code></td>
             </tr>
 
 
 
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ul
+	[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;
+	[ngClass]&#x3D;&quot;{&#x27;bx--overflow-menu--flip&#x27;: dialogConfig.flip}&quot;
+	role&#x3D;&quot;menu&quot;
+	#dialog
+	class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;
+	role&#x3D;&quot;menu&quot;
+	(click)&#x3D;&quot;doClose()&quot;
+	[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;&gt;
+	&lt;ng-template
+		[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
+		[ngTemplateOutletContext]&#x3D;&quot;{overflowMenu: this}&quot;&gt;
+	&lt;/ng-template&gt;
+&lt;/ul&gt;
+	</code></pre></td>
+            </tr>
 
 
 
@@ -171,6 +188,16 @@ Used to implement a popover or tooltip.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#listItems">listItems</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDialogInit">onDialogInit</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#doClose">doClose</a>
                             </li>
@@ -233,6 +260,9 @@ Used to implement a popover or tooltip.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#keydown">keydown</a>
+                            </li>
+                            <li>
                                 <a href="#document:click">document:click</a>
                             </li>
                             <li>
@@ -252,19 +282,17 @@ Used to implement a popover or tooltip.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/dialog/dialog.component.ts:108</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:31</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of <code>Dialog</code>.</p>
-</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -281,6 +309,18 @@ Used to implement a popover or tooltip.</p>
                                                   
                                                         <td>
                                                                     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -316,9 +356,15 @@ explictly defined.</p>
                             </p>
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/dialog/dialog.component.ts:61</a></div>
+                                    <div class="io-line">Defined in Dialog:61</div>
                             </td>
                         </tr>
             </tbody>
@@ -340,9 +386,15 @@ explictly defined.</p>
 
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/dialog/dialog.component.ts:54</a></div>
+                                    <div class="io-line">Defined in Dialog:54</div>
                             </td>
                         </tr>
             </tbody>
@@ -351,6 +403,40 @@ explictly defined.</p>
 
     <section>
     <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="keydown"></a>
+                        <span class="name">
+                            <b>
+                            keydown
+                            </b>
+                            <a href="#keydown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Arguments : </i><code>'$event' </code>
+                        </td>
+                    </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>keydown(event: KeyboardEvent)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:56</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -375,9 +461,15 @@ explictly defined.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/dialog/dialog.component.ts:293</a></div>
+                                    <div class="io-line">Defined in Dialog:291</div>
                             </td>
                         </tr>
 
@@ -417,9 +509,15 @@ explictly defined.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dialog/dialog.component.ts:271</a></div>
+                                    <div class="io-line">Defined in Dialog:269</div>
                             </td>
                         </tr>
 
@@ -444,6 +542,122 @@ explictly defined.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="listItems"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            listItems
+                            </b>
+                            <a href="#listItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>listItems()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:119</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngAfterViewInit"></a>
+                        <span class="name">
+                            <b>
+                            ngAfterViewInit
+                            </b>
+                            <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:102</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onDialogInit"></a>
+                        <span class="name">
+                            <b>
+                            onDialogInit
+                            </b>
+                            <a href="#onDialogInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onDialogInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="doClose"></a>
                         <span class="name">
                             <b>
@@ -462,9 +676,15 @@ explictly defined.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/dialog/dialog.component.ts:304</a></div>
+                                    <div class="io-line">Defined in Dialog:302</div>
                             </td>
                         </tr>
 
@@ -502,9 +722,15 @@ explictly defined.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/dialog/dialog.component.ts:138</a></div>
+                                    <div class="io-line">Defined in Dialog:138</div>
                             </td>
                         </tr>
 
@@ -543,9 +769,15 @@ in respect to the parent element.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/dialog/dialog.component.ts:312</a></div>
+                                    <div class="io-line">Defined in Dialog:310</div>
                             </td>
                         </tr>
 
@@ -583,9 +815,15 @@ in respect to the parent element.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/dialog.component.ts:121</a></div>
+                                    <div class="io-line">Defined in Dialog:121</div>
                             </td>
                         </tr>
 
@@ -623,9 +861,15 @@ in respect to the parent element.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.component.ts:206</a></div>
+                                    <div class="io-line">Defined in Dialog:206</div>
                             </td>
                         </tr>
 
@@ -663,9 +907,15 @@ in respect to the parent element.</p>
                 </tr>
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/dialog/dialog.component.ts:212</a></div>
+                                    <div class="io-line">Defined in Dialog:211</div>
                             </td>
                         </tr>
 
@@ -728,9 +978,15 @@ in respect to the parent element.</p>
 	}</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dialog/dialog.component.ts:101</a></div>
+                                    <div class="io-line">Defined in Dialog:101</div>
                             </td>
                         </tr>
 
@@ -775,9 +1031,15 @@ to not obscure the content beneath.</p>
                             <i>Default value : </i><code>{}</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/dialog/dialog.component.ts:73</a></div>
+                                    <div class="io-line">Defined in Dialog:73</div>
                             </td>
                         </tr>
 
@@ -824,9 +1086,15 @@ to not obscure the content beneath.</p>
                             </code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/dialog/dialog.component.ts:67</a></div>
+                                    <div class="io-line">Defined in Dialog:67</div>
                             </td>
                         </tr>
 
@@ -865,9 +1133,15 @@ to not obscure the content beneath.</p>
 
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/dialog/dialog.component.ts:80</a></div>
+                                    <div class="io-line">Defined in Dialog:80</div>
                             </td>
                         </tr>
 
@@ -912,9 +1186,15 @@ to not obscure the content beneath.</p>
                             <i>Default value : </i><code>fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100))</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/dialog.component.ts:48</a></div>
+                                    <div class="io-line">Defined in Dialog:48</div>
                             </td>
                         </tr>
 
@@ -953,9 +1233,15 @@ to not obscure the content beneath.</p>
 
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/dialog/dialog.component.ts:88</a></div>
+                                    <div class="io-line">Defined in Dialog:88</div>
                             </td>
                         </tr>
 
@@ -999,9 +1285,15 @@ to not obscure the content beneath.</p>
                             <i>Default value : </i><code>new Subscription()</code>
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dialog/dialog.component.ts:94</a></div>
+                                    <div class="io-line">Defined in Dialog:94</div>
                             </td>
                         </tr>
 
@@ -1020,320 +1312,126 @@ to not obscure the content beneath.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-	Component,
-	Input,
-	Output,
-	EventEmitter,
-	ElementRef,
-	ViewChild,
-	OnInit,
-	AfterViewInit,
-	OnDestroy,
-	HostListener
-} from &quot;@angular/core&quot;;
-import {
-	Observable,
-	Subscription,
-	fromEvent,
-	merge
-} from &quot;rxjs&quot;;
-import { throttleTime } from &quot;rxjs/operators&quot;;
-// the AbsolutePosition is required to import the declaration correctly
-import position, { AbsolutePosition } from &quot;./../utils/position&quot;;
-import { cycleTabs, getFocusElementList } from &quot;./../common/tab.service&quot;;
-import { DialogConfig } from &quot;./dialog-config.interface&quot;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, HostListener, ElementRef, AfterViewInit } from &quot;@angular/core&quot;;
+import { Dialog } from &quot;../dialog.component&quot;;
+import { position } from &quot;../../utils/position&quot;;
+import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../../common/tab.service&quot;;
+import { I18n } from &quot;./../../i18n/i18n.module&quot;;
 
 /**
- * Implements a &#x60;Dialog&#x60; that can be positioned anywhere on the page.
- * Used to implement a popover or tooltip.
+ * Extend the &#x60;Dialog&#x60; component to create an overflow menu.
  *
- * @export
- * @class Dialog
- * @implements {OnInit}
- * @implements {AfterViewInit}
- * @implements {OnDestroy}
+ * Not used directly. See overflow-menu.component and overflow-menu.directive for more
  */
 @Component({
-	selector: &quot;ibm-dialog&quot;,
-	template: &quot;&quot;
+	selector: &quot;ibm-overflow-menu-pane&quot;,
+	template: &#x60;
+		&lt;ul
+			[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;
+			[ngClass]&#x3D;&quot;{&#x27;bx--overflow-menu--flip&#x27;: dialogConfig.flip}&quot;
+			role&#x3D;&quot;menu&quot;
+			#dialog
+			class&#x3D;&quot;bx--overflow-menu-options bx--overflow-menu-options--open&quot;
+			role&#x3D;&quot;menu&quot;
+			(click)&#x3D;&quot;doClose()&quot;
+			[attr.aria-label]&#x3D;&quot;dialogConfig.menuLabel&quot;&gt;
+			&lt;ng-template
+				[ngTemplateOutlet]&#x3D;&quot;dialogConfig.content&quot;
+				[ngTemplateOutletContext]&#x3D;&quot;{overflowMenu: this}&quot;&gt;
+			&lt;/ng-template&gt;
+		&lt;/ul&gt;
+	&#x60;
 })
-export class Dialog implements OnInit, AfterViewInit, OnDestroy {
-	/**
-	 * One static event observable to handle window resizing.
-	 * @protected
-	 * @static
-	 * @type {Observable&lt;any&gt;}
-	 * @memberof Dialog
-	 */
-	protected static resizeObservable: Observable&lt;any&gt; &#x3D; fromEvent(window, &quot;resize&quot;).pipe(throttleTime(100));
-	/**
-	 * Emits event that handles the closing of a &#x60;Dialog&#x60; object.
-	 * @type {EventEmitter&lt;any&gt;}
-	 * @memberof Dialog
-	 */
-	@Output() close: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
-	/**
-	 * Receives &#x60;DialogConfig&#x60; interface object with properties of &#x60;Dialog&#x60;
-	 * explictly defined.
-	 * @type {DialogConfig}
-	 * @memberof Dialog
-	 */
-	@Input() dialogConfig: DialogConfig;
-	/**
-	 * Maintains a reference to the view DOM element of the &#x60;Dialog&#x60;.
-	 * @type {ElementRef}
-	 * @memberof Dialog
-	 */
-	@ViewChild(&quot;dialog&quot;) dialog: ElementRef;
+export class OverflowMenuPane extends Dialog implements AfterViewInit {
 
-	/**
-	 * Stores the data received from &#x60;dialogConfig&#x60;.
-	 * @memberof Dialog
-	 */
-	public data &#x3D; {};
-
-	/**
-	 * The placement of the &#x60;Dialog&#x60; is recieved from the &#x60;Position&#x60; service.
-	 * @type {Placement}
-	 * @memberof Dialog
-	 */
-	public placement: string;
-
-	/**
-	 * &#x60;Subscription&#x60; used to update placement in the event of a window resize.
-	 * @protected
-	 * @type {Subscription}
-	 * @memberof Dialog
-	 */
-	protected resizeSubscription: Subscription;
-	/**
-	 * Subscription to all the scrollable parents &#x60;scroll&#x60; event
-	 */
-	// add a new subscription temprarily so that contexts (such as tests)
-	// that don&#x27;t run ngAfterViewInit have something to unsubscribe in ngOnDestroy
-	protected scrollSubscription: Subscription &#x3D; new Subscription();
-	/**
-	 * Handles offsetting the &#x60;Dialog&#x60; item based on the defined position
-	 * to not obscure the content beneath.
-	 * @protected
-	 * @memberof Dialog
-	 */
-	protected addGap &#x3D; {
-		&quot;left&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, -this.dialogConfig.gap),
-		&quot;right&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, this.dialogConfig.gap),
-		&quot;top&quot;: pos &#x3D;&gt; position.addOffset(pos, -this.dialogConfig.gap),
-		&quot;bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, this.dialogConfig.gap),
-		&quot;left-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, -this.dialogConfig.gap),
-		&quot;right-bottom&quot;: pos &#x3D;&gt; position.addOffset(pos, 0, this.dialogConfig.gap)
-	};
-
-	/**
-	 * Creates an instance of &#x60;Dialog&#x60;.
-	 * @param {ElementRef} elementRef
-	 * @memberof Dialog
-	 */
-	constructor(protected elementRef: ElementRef) {}
-
-	/**
-	 * Initilize the &#x60;Dialog&#x60;, set the placement and gap, and add a &#x60;Subscription&#x60; to resize events.
-	 * @memberof Dialog
-	 */
-	ngOnInit() {
-		this.placement &#x3D; this.dialogConfig.placement.split(&quot;,&quot;)[0];
-		this.data &#x3D; this.dialogConfig.data;
-
-		this.resizeSubscription &#x3D; Dialog.resizeObservable.subscribe(() &#x3D;&gt; {
-			this.placeDialog();
-		});
-
-		// run any additional initlization code that consuming classes may have
-		this.onDialogInit();
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+		super(elementRef);
 	}
 
-	/**
-	 * After the DOM is ready, focus is set and dialog is placed
-	 * in respect to the parent element.
-	 * @memberof Dialog
-	 */
-	ngAfterViewInit() {
-		const dialogElement &#x3D; this.dialog.nativeElement;
-		// split the wrapper class list and apply separately to avoid IE from
-		// 1. throwing an error due to assigning a readonly property (classList)
-		// 2. throwing a SyntaxError due to passing an empty string to &#x60;add&#x60;
-		if (this.dialogConfig.wrapperClass) {
-			for (const extraClass of this.dialogConfig.wrapperClass.split(&quot; &quot;)) {
-				dialogElement.classList.add(extraClass);
+	onDialogInit() {
+		/**
+		 *  60 shifts the menu right to align the arrow.
+		 * (position service trys it&#x27;s best to center everything,
+		 * so we need to add some compensation)
+		 */
+		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; {
+			if (this.dialogConfig.flip) {
+				return position.addOffset(pos, 0, -60);
 			}
+			return position.addOffset(pos, 0, 60);
+		};
+
+		if (!this.dialogConfig.menuLabel) {
+			this.dialogConfig.menuLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 		}
-		this.placeDialog();
-		if (getFocusElementList(this.dialog.nativeElement).length &gt; 0) {
-			dialogElement.focus();
-		}
-		const parentEl: HTMLElement &#x3D; this.dialogConfig.parentRef.nativeElement;
-		let node &#x3D; parentEl;
-		let observables &#x3D; [];
-
-		// if the element has an overflow set as part of
-		// its computed style it can scroll
-		const isScrollableElement &#x3D; (element: HTMLElement) &#x3D;&gt; {
-			const computedStyle &#x3D; getComputedStyle(element);
-			return (
-				computedStyle.overflow &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
-				computedStyle.overflow &#x3D;&#x3D;&#x3D; &quot;scroll&quot; ||
-				computedStyle[&quot;overflow-y&quot;] &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
-				computedStyle[&quot;overflow-y&quot;] &#x3D;&#x3D;&#x3D; &quot;scroll&quot; ||
-				computedStyle[&quot;overflow-x&quot;] &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
-				computedStyle[&quot;overflow-x&quot;] &#x3D;&#x3D;&#x3D; &quot;scroll&quot;
-			);
-		};
-
-		const isVisibleInContainer &#x3D; (element, container) &#x3D;&gt; {
-			const elementRect &#x3D; element.getBoundingClientRect();
-			const containerRect &#x3D; container.getBoundingClientRect();
-			return elementRect.bottom &lt;&#x3D; containerRect.bottom &amp;&amp; elementRect.top &gt;&#x3D; containerRect.top;
-		};
-
-		const placeDialogInContainer &#x3D; () &#x3D;&gt; {
-			// only do the work to find the scroll containers if we&#x27;re appended to body
-			// or skip this work if we&#x27;re inline
-			if (!this.dialogConfig.appendInline) {
-				// walk the parents and subscribe to all the scroll events we can
-				while (node.parentElement &amp;&amp; node !&#x3D;&#x3D; document.body) {
-					if (isScrollableElement(node)) {
-						observables.push(fromEvent(node, &quot;scroll&quot;));
-					}
-					node &#x3D; node.parentElement;
-				}
-				// subscribe to the observable, and update the position and visibility
-				const scrollObservable &#x3D; merge(...observables);
-				this.scrollSubscription &#x3D; scrollObservable.subscribe((event: any) &#x3D;&gt; {
-					this.placeDialog();
-					if (!isVisibleInContainer(this.dialogConfig.parentRef.nativeElement, event.target)) {
-						this.doClose();
-					}
-				});
-			}
-		};
-
-		// settimeout to let the DOM settle before attempting to place the dialog
-		setTimeout(placeDialogInContainer);
 	}
 
-	/**
-	 * Empty method to be overridden by consuming classes to run any additional initialization code.
-	 * @memberof Dialog
-	 */
-	onDialogInit() {}
-
-	/**
-	 * Uses the position service to position the &#x60;Dialog&#x60; in screen space
-	 * @memberof Dialog
-	 */
-	placeDialog(): void {
-		// helper to find the position based on the current/given environment
-		const findPosition &#x3D; (reference, target, placement) &#x3D;&gt; {
-			let pos;
-			if (this.dialogConfig.appendInline) {
-				pos &#x3D; this.addGap[placement](position.findRelative(reference, target, placement));
-			} else {
-				pos &#x3D; this.addGap[placement](position.findAbsolute(reference, target, placement));
-				pos &#x3D; position.addOffset(pos, window.scrollY, window.scrollX);
-			}
-			return pos;
-		};
-
-		let parentEl &#x3D; this.dialogConfig.parentRef.nativeElement;
-		let el &#x3D; this.dialog.nativeElement;
-		let dialogPlacement &#x3D; this.placement;
-
-		// split always retuns an array, so we can just use the auto position logic
-		// for single positions too
-		const placements &#x3D; this.dialogConfig.placement.split(&quot;,&quot;);
-		const weightedPlacements &#x3D; placements.map(placement &#x3D;&gt; {
-			const pos &#x3D; findPosition(parentEl, el, placement);
-			let box &#x3D; position.getPlacementBox(el, pos);
-			let hiddenHeight &#x3D; box.bottom - window.innerHeight - window.scrollY;
-			let hiddenWidth &#x3D; box.right - window.innerWidth - window.scrollX;
-			// if the hiddenHeight or hiddenWidth is negative, reset to offsetHeight or offsetWidth
-			hiddenHeight &#x3D; hiddenHeight &lt; 0 ? el.offsetHeight : hiddenHeight;
-			hiddenWidth &#x3D; hiddenWidth &lt; 0 ? el.offsetWidth : hiddenWidth;
-			const area &#x3D; el.offsetHeight * el.offsetWidth;
-			const hiddenArea &#x3D; hiddenHeight * hiddenWidth;
-			let visibleArea &#x3D; area - hiddenArea;
-			// if the visibleArea is 0 set it back to area (to calculate the percentage in a useful way)
-			visibleArea &#x3D; visibleArea &#x3D;&#x3D;&#x3D; 0 ? area : visibleArea;
-			const visiblePercent &#x3D; visibleArea / area;
-			return {
-				placement,
-				weight: visiblePercent
-			};
-		});
-
-		// sort the placments from best to worst
-		weightedPlacements.sort((a, b) &#x3D;&gt; b.weight - a.weight);
-		// pick the best!
-		dialogPlacement &#x3D; weightedPlacements[0].placement;
-
-		// calculate the final position
-		const pos &#x3D; findPosition(parentEl, el, dialogPlacement);
-
-		// update the element
-		position.setElement(el, pos);
-		setTimeout(() &#x3D;&gt; { this.placement &#x3D; dialogPlacement; });
-	}
-
-	/**
-	 * Sets up a KeyboardEvent to close &#x60;Dialog&#x60; with Escape key.
-	 * @param {KeyboardEvent} event
-	 * @memberof Dialog
-	 */
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
-	escapeClose(event: KeyboardEvent) {
+	hostkeys(event: KeyboardEvent) {
+		const listItems &#x3D; this.listItems();
+
 		switch (event.key) {
+			case &quot;Down&quot;: // IE specific value
+			case &quot;ArrowDown&quot;:
+				event.preventDefault();
+				if (!isFocusInLastItem(event, listItems))  {
+					const index &#x3D; listItems.findIndex(item &#x3D;&gt; item &#x3D;&#x3D;&#x3D; event.target);
+					listItems[index + 1].focus();
+				} else {
+					listItems[0].focus();
+				}
+				break;
+
+			case &quot;Up&quot;: // IE specific value
+			case &quot;ArrowUp&quot;:
+				event.preventDefault();
+				if (!isFocusInFirstItem(event, listItems))  {
+					const index &#x3D; listItems.findIndex(item &#x3D;&gt; item &#x3D;&#x3D;&#x3D; event.target);
+					listItems[index - 1].focus();
+				} else {
+					listItems[listItems.length - 1].focus();
+				}
+				break;
+
+			case &quot;Home&quot;:
+				event.preventDefault();
+				listItems[0].focus();
+				break;
+
+			case &quot;End&quot;:
+				event.preventDefault();
+				listItems[listItems.length - 1].focus();
+				break;
+
 			case &quot;Esc&quot;: // IE specific value
-			case &quot;Escape&quot;: {
+			case &quot;Escape&quot;:
+			case &quot;Tab&quot;:
 				event.stopImmediatePropagation();
 				this.doClose();
 				break;
-			}
-			case &quot;Tab&quot;: {
-				cycleTabs(event, this.elementRef.nativeElement);
-				break;
-			}
+			default: break;
 		}
 	}
 
-	/**
-	 * Sets up a event Listener to close &#x60;Dialog&#x60; if click event occurs outside
-	 * &#x60;Dialog&#x60; object.
-	 * @param {any} event
-	 * @memberof Dialog
-	 */
-	@HostListener(&quot;document:click&quot;, [&quot;$event&quot;])
-	clickClose(event) {
-		if (!this.elementRef.nativeElement.contains(event.target)
-			&amp;&amp; !this.dialogConfig.parentRef.nativeElement.contains(event.target) ) {
-			this.doClose();
-		}
+	ngAfterViewInit() {
+		// wait for the menu to exist in the DOM before setting focus
+		// TODO: work on a more elegant solution (afterDialogInit hook maybe?)
+		setTimeout(() &#x3D;&gt; {
+			const focusElementList &#x3D; this.listItems();
+			focusElementList.forEach(button &#x3D;&gt; {
+				// Allows user to set tabindex to 0.
+				if (button.getAttribute(&quot;tabindex&quot;) &#x3D;&#x3D;&#x3D; null) {
+					button.tabIndex &#x3D; -1;
+				}
+			});
+			focusElementList[0].tabIndex &#x3D; 0;
+			focusElementList[0].focus();
+		});
+		super.ngAfterViewInit();
 	}
 
-	/**
-	 * Closes &#x60;Dialog&#x60; object by emitting the close event upwards to parents.
-	 * @memberof Dialog
-	 */
-	public doClose() {
-		this.close.emit();
-	}
-
-	/**
-	 * At destruction of component, &#x60;Dialog&#x60; unsubscribes from handling window resizing changes.
-	 * @memberof Dialog
-	 */
-	ngOnDestroy() {
-		this.resizeSubscription.unsubscribe();
-		this.scrollSubscription.unsubscribe();
+	protected listItems() {
+		return Array.from&lt;any&gt;(this.elementRef.nativeElement.querySelectorAll(&quot;.bx--overflow-menu-options__btn:not([disabled])&quot;));
 	}
 }
 </code></pre>
@@ -1366,10 +1464,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div></div>'
+        var COMPONENT_TEMPLATE = '<div><ul	[attr.aria-label]="dialogConfig.menuLabel"	[ngClass]="{\'bx--overflow-menu--flip\': dialogConfig.flip}"	role="menu"	#dialog	class="bx--overflow-menu-options bx--overflow-menu-options--open"	role="menu"	(click)="doClose()"	[attr.aria-label]="dialogConfig.menuLabel">	<ng-template		[ngTemplateOutlet]="dialogConfig.content"		[ngTemplateOutletContext]="{overflowMenu: this}">	</ng-template></ul>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
-    var ACTUAL_COMPONENT = {'name': 'Dialog'};
+    var ACTUAL_COMPONENT = {'name': 'OverflowMenuPane'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -1403,7 +1501,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'Dialog.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'OverflowMenuPane.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
