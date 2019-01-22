@@ -231,11 +231,12 @@ export class Pagination {
 	 * @memberof Pagination
 	 */
 	get lastPage(): number {
-		return Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		let last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		return last !== 0 ? last : 1;
 	}
 
 	get startItemIndex() {
-		return (this.currentPage - 1) * this.model.pageLength + 1;
+		return this.endItemIndex !== 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
 	}
 
 	get endItemIndex() {
