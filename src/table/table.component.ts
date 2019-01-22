@@ -5,7 +5,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { Subscription, fromEvent, BehaviorSubject } from "rxjs";
+import { Subscription, fromEvent } from "rxjs";
 
 import { TableModel } from "./table.module";
 import { TableHeaderItem } from "./table-header-item.class";
@@ -529,19 +529,19 @@ export class Table {
 	@Input()
 	set translations (value) {
 		if (value.FILTER) {
-			this.filterTitle = new BehaviorSubject(value.FILTER);
+			this.filterTitle.next(value.FILTER);
 		}
 		if (value.END_OF_DATA) {
-			this.endOfDataText = new BehaviorSubject(value.END_OF_DATA);
+			this.endOfDataText.next(value.END_OF_DATA);
 		}
 		if (value.SCROLL_TOP) {
-			this.scrollTopText = new BehaviorSubject(value.SCROLL_TOP);
+			this.scrollTopText.next(value.SCROLL_TOP);
 		}
 		if (value.CHECKBOX_HEADER) {
-			this.checkboxHeaderLabel = new BehaviorSubject(value.CHECKBOX_HEADER);
+			this.checkboxHeaderLabel.next(value.CHECKBOX_HEADER);
 		}
 		if (value.CHECKBOX_ROW) {
-			this.checkboxRowLabel = new BehaviorSubject(value.CHECKBOX_ROW);
+			this.checkboxRowLabel.next(value.CHECKBOX_ROW);
 		}
 	}
 
