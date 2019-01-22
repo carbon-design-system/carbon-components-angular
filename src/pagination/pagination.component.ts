@@ -75,8 +75,7 @@ import { BehaviorSubject } from "rxjs";
 						role="img"
 						viewBox="0 0 10 5"
 						width="10"
-						[attr.aria-label]="optionsListText | async"
-						[attr.alt]="optionsListText | async">
+						[attr.aria-label]="optionsListText | async">
 						<title>{{optionsListText | async}}</title>
 						<path d="M0 0l5 4.998L10 0z"></path>
 					</svg>
@@ -105,8 +104,7 @@ import { BehaviorSubject } from "rxjs";
 					role="img"
 					viewBox="0 0 7 12"
 					width="7"
-					[attr.aria-label]="backwardText | async"
-					[attr.alt]="backwardText | async">
+					[attr.aria-label]="backwardText | async">
 					<title>{{backwardText |async }}</title>
 					<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
 				</svg>
@@ -124,8 +122,7 @@ import { BehaviorSubject } from "rxjs";
 					role="img"
 					viewBox="0 0 10 5"
 					width="10"
-					[attr.aria-label]="optionsListText | async"
-					[attr.alt]="optionsListText | async">
+					[attr.aria-label]="optionsListText | async">
 					<title>{{optionsListText | async}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
@@ -142,8 +139,7 @@ import { BehaviorSubject } from "rxjs";
 				role="img"
 				viewBox="0 0 7 12"
 				width="7"
-				[attr.aria-label]="forwardText | async"
-				[attr.alt]="forwardText | async">
+				[attr.aria-label]="forwardText | async">
 				<title>{{forwardText | async}}</title>
 				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
 			</svg>
