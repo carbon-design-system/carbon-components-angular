@@ -1,11 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
 	selector: "ibm-date-picker",
 	template: `
 	<ibm-date-picker-simple *ngIf="view === 'simple'"></ibm-date-picker-simple>
-	<ibm-date-picker-single *ngIf="view === 'single'"></ibm-date-picker-single>
-	<ibm-date-picker-range *ngIf="view === 'range'"></ibm-date-picker-range>
+	<ibm-date-picker-single *ngIf="view === 'single'" (selectDate)="selectDate.emit($event)"></ibm-date-picker-single>
+	<ibm-date-picker-range *ngIf="view === 'range'" (selectDates)="selectDates.emit($event)"></ibm-date-picker-range>
 	`
 })
 export class DatePicker {
@@ -17,5 +17,7 @@ export class DatePicker {
 	 */
 	@Input() view: "simple" | "single" | "range" = "simple";
 
+	@Output() selectDate: EventEmitter<any> = new EventEmitter();
 
+	@Output() selectDates: EventEmitter<any> = new EventEmitter();
 }

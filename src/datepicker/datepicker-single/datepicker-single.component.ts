@@ -34,10 +34,10 @@ export class DatePickerSingle {
 	flatpickrOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
 		allowInput: true,
-		onChange: ( selectedDates: any ) => { this.doSelect(selectedDates); }
+		onChange: ( selectedDate: any ) => { this.doSelect(selectedDate); }
 	};
 
-	doSelect(selectedDates) {
-		this.selectDate.emit(selectedDates);
+	doSelect(selectedDate) {
+		this.selectDate.emit(selectedDate);
 	}
 }
