@@ -5,7 +5,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { Subscription, fromEvent } from "rxjs";
+import { Subscription, fromEvent, BehaviorSubject } from "rxjs";
 
 import { TableModel } from "./table.module";
 import { TableHeaderItem } from "./table-header-item.class";
@@ -178,7 +178,7 @@ import { I18n } from "./../i18n/i18n.module";
 						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
-						aria-label="Select all rows"
+						[attr.aria-label]="checkboxHeaderLabel | async"
 						(change)="onSelectAllCheckboxChange()">
 					</ibm-checkbox>
 				</th>
@@ -199,7 +199,7 @@ import { I18n } from "./../i18n/i18n.module";
 						<button
 							class="bx--table-sort-v2"
 							*ngIf="this.sort.observers.length > 0 && column.sortable"
-							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
+							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
 							aria-live="polite"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
@@ -232,7 +232,7 @@ import { I18n } from "./../i18n/i18n.module";
 							aria-haspopup="true"
 							[ibmTooltip]="column.filterTemplate"
 							trigger="click"
-							[title]="translations.FILTER"
+							[title]="filterTitle | async"
 							placement="bottom,top"
 							[data]="column.filterData">
 							<svg
@@ -307,7 +307,7 @@ import { I18n } from "./../i18n/i18n.module";
 						<button
 						*ngIf="model.isRowExpandable(i)"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])"
-						[attr.aria-label]="expandButtonAriaLabel"
+						[attr.aria-label]="expandButtonAriaLabel | async"
 						class="bx--table-expand-v2__button">
 							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
 								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
@@ -316,7 +316,7 @@ import { I18n } from "./../i18n/i18n.module";
 					</td>
 					<td *ngIf="!skeleton && showSelectionColumn">
 						<ibm-checkbox
-							aria-label="Select row"
+							[attr.aria-label]="checkboxRowLabel | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
@@ -356,9 +356,9 @@ import { I18n } from "./../i18n/i18n.module";
 			</tr>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
-					<h5>{{translations.END_OF_DATA}}</h5>
+					<h5>{{endOfDataText | async}}</h5>
 					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						{{translations.SCROLL_TOP}}
+						{{scrollTopText | async}}
 					</button>
 				</td>
 			</tr>
@@ -409,11 +409,6 @@ export class Table {
 	 * Set to `true` for a loading table.
 	 */
 	@Input() skeleton = false;
-	/**
-	 * Object of all the strings table needs.
-	 * Defaults to the `TABLE` value from the i18n service.
-	 */
-	@Input() translations = this.i18n.get().TABLE;
 
 	/**
 	 * `TableModel` with data the table is to display.
@@ -497,9 +492,64 @@ export class Table {
 	 */
 	@Input() columnsDraggable = false;
 
-	@Input() expandButtonAriaLabel = "Expand row";
-	@Input() sortDescendingLabel = "Sort rows by this header in descending order";
-	@Input() sortAscendingLabel = "Sort rows by this header in ascending order";
+	@Input()
+	set expandButtonAriaLabel(value) {
+		this._expandButtonAriaLabel.next(value);
+	}
+	get expandButtonAriaLabel() {
+		return this._expandButtonAriaLabel;
+	}
+	@Input()
+	set sortDescendingLabel(value) {
+		this._sortDescendingLabel.next(value);
+	}
+	get sortDescendingLabel() {
+		return this._sortDescendingLabel;
+	}
+	@Input()
+	set sortAscendingLabel(value) {
+		this._sortAscendingLabel.next(value);
+	}
+	get sortAscendingLabel() {
+		return this._sortAscendingLabel;
+	}
+
+	/**
+	 * Expects an object that contains some or all of:
+	 * ```
+	 * {
+	 *		"FILTER": "Filter",
+	 *		"END_OF_DATA": "You've reached the end of your content",
+	 *		"SCROLL_TOP": "Scroll to top",
+	 *		"CHECKBOX_HEADER": "Select all rows",
+	 *		"CHECKBOX_ROW": "Select row"
+	 * }
+	 * ```
+	 */
+	@Input()
+	set translations (value) {
+		if (value.FILTER) {
+			this.filterTitle = new BehaviorSubject(value.FILTER);
+		}
+		if (value.END_OF_DATA) {
+			this.endOfDataText = new BehaviorSubject(value.END_OF_DATA);
+		}
+		if (value.SCROLL_TOP) {
+			this.scrollTopText = new BehaviorSubject(value.SCROLL_TOP);
+		}
+		if (value.CHECKBOX_HEADER) {
+			this.checkboxHeaderLabel = new BehaviorSubject(value.CHECKBOX_HEADER);
+		}
+		if (value.CHECKBOX_ROW) {
+			this.checkboxRowLabel = new BehaviorSubject(value.CHECKBOX_ROW);
+		}
+	}
+
+	checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
+	checkboxRowLabel = this.i18n.get("TABLE.CHECKBOX_ROW");
+	endOfDataText = this.i18n.get("TABLE.END_OF_DATA");
+	scrollTopText = this.i18n.get("TABLE.SCROLL_TOP");
+	filterTitle = this.i18n.get("TABLE.FILTER");
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
@@ -579,6 +629,10 @@ export class Table {
 	}
 
 	protected _model: TableModel;
+
+	protected _expandButtonAriaLabel  = this.i18n.get("TABLE.EXPAND_BUTTON");
+	protected _sortDescendingLabel = this.i18n.get("TABLE.SORT_DESCENDING");
+	protected _sortAscendingLabel = this.i18n.get("TABLE.SORT_ASCENDING");
 
 	protected columnResizeWidth: number;
 	protected columnResizeMouseX: number;
