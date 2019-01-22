@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>ModalHeader</li>
+  <li>File</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,27 +55,12 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/modal/modal-header.component.ts</code>
+    <code>src/file-uploader/file.component.ts</code>
 </p>
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p><strong><em>Inputs</em></strong></p>
-<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-modal-header&gt;Header text&lt;/ibm-modal-header&gt;
- *</code></pre></div><p><strong><em>Outputs</em></strong></p>
-<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-modal-header (closeSelect)=&quot;closeModal()&quot;&gt;Header text&lt;/ibm-modal-header&gt;
- *</code></pre></div>
-    </p>
 
 
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -94,36 +79,33 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>ibm-modal-header</code></td>
+                <td class="col-md-9"><code>ibm-file</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;header class&#x3D;&quot;{{theme}} bx--modal-header&quot;&gt;
-	&lt;div class&#x3D;&quot;bx--modal-header&quot;&gt;
-		&lt;ng-content&gt;&lt;/ng-content&gt;
-	&lt;/div&gt;
-	&lt;button
-		class&#x3D;&quot;bx--modal-close&quot;
-		[attr.aria-label]&#x3D;&quot;closeLabel&quot;
-		(click)&#x3D;&quot;onClose()&quot;&gt;
-		&lt;svg
-			class&#x3D;&quot;bx--modal-close__icon&quot;
-			fill-rule&#x3D;&quot;evenodd&quot;
-			height&#x3D;&quot;10&quot;
-			role&#x3D;&quot;img&quot;
-			viewBox&#x3D;&quot;0 0 10 10&quot;
-			width&#x3D;&quot;10&quot;
-			[attr.aria-label]&#x3D;&quot;closeLabel&quot;
-			[attr.alt]&#x3D;&quot;closeLabel&quot;&gt;
-			&lt;title&gt;{{closeLabel}}&lt;/title&gt;
-			&lt;path d&#x3D;&quot;M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z&quot;&gt;&lt;/path&gt;
-		&lt;/svg&gt;
-	&lt;/button&gt;
-&lt;/header&gt;
-
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;p class&#x3D;&quot;bx--file-filename&quot;&gt;{{fileItem.file.name}}&lt;/p&gt;
+&lt;span *ngIf&#x3D;&quot;fileItem.state &#x3D;&#x3D;&#x3D; &#x27;edit&#x27;&quot; class&#x3D;&quot;bx--file__state-container&quot; (click)&#x3D;&quot;remove.emit()&quot;&gt;
+	&lt;svg class&#x3D;&quot;bx--file-close&quot; fill-rule&#x3D;&quot;evenodd&quot; role&#x3D;&quot;img&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot; tabindex&#x3D;&quot;0&quot;
+		[attr.aria-label]&#x3D;&quot;translations.REMOVE_BUTTON&quot;&gt;
+		&lt;title&gt;{{translations.REMOVE_TITLE}}&lt;/title&gt;
+		&lt;path d&#x3D;&quot;M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414
+		8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z&quot;&gt;&lt;/path&gt;
+	&lt;/svg&gt;
+&lt;/span&gt;
+&lt;span *ngIf&#x3D;&quot;fileItem.state &#x3D;&#x3D;&#x3D; &#x27;upload&#x27;&quot;&gt;
+	&lt;ibm-loading size&#x3D;&quot;sm&quot;&gt;&lt;/ibm-loading&gt;
+&lt;/span&gt;
+&lt;span *ngIf&#x3D;&quot;fileItem.state &#x3D;&#x3D;&#x3D; &#x27;complete&#x27;&quot; class&#x3D;&quot;bx--file__state-container&quot;&gt;
+	&lt;svg class&#x3D;&quot;bx--file-complete&quot; fill-rule&#x3D;&quot;evenodd&quot; role&#x3D;&quot;img&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot; tabindex&#x3D;&quot;0&quot;
+		[attr.aria-label]&#x3D;&quot;translations.CHECKMARK&quot;&gt;
+		&lt;title&gt;{{translations.CHECKMARK_TITLE}}&lt;/title&gt;
+		&lt;path d&#x3D;&quot;M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.293-11.332L6.75 9.21 4.707 7.168 3.293 8.582 6.75
+		12.04l5.957-5.957-1.414-1.414z&quot;&gt;&lt;/path&gt;
+	&lt;/svg&gt;
+&lt;/span&gt;
 	</code></pre></td>
             </tr>
 
@@ -144,21 +126,6 @@
     <table class="table table-sm table-bordered index-table">
         <tbody>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#onClose">onClose</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -169,10 +136,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#closeLabel">closeLabel</a>
+                                <a href="#fileItem">fileItem</a>
                             </li>
                             <li>
-                                <a href="#theme">theme</a>
+                                <a href="#translations">translations</a>
                             </li>
                         </ul>
                     </td>
@@ -187,12 +154,26 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#closeSelect">closeSelect</a>
+                                <a href="#remove">remove</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.bx--file__selected-file">class.bx--file__selected-file</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
         </tbody>
@@ -210,7 +191,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/modal/modal-header.component.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/file-uploader/file.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -254,21 +235,21 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
-                        <a name="closeLabel"></a>
-                        <code>closeLabel</code>
+                        <a name="fileItem"></a>
+                        <code>fileItem</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>Accessible label for the header close button.
-Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
+                        <div><p>A single <code>FileItem</code> from the set of <code>FileItem</code>s</p>
 </div>
-                        <p>
-                            <em>Default value : </em><code>this.i18n.get().MODAL.CLOSE</code>
-                        </p>
+                            <p>
+                            <em>Type :</em>    <code><a href="../interfaces/FileItem.html" target="_self" >FileItem</a></code>
+
+                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/modal/modal-header.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/file-uploader/file.component.ts:49</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -277,20 +258,20 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
             <tbody>
                 <tr>
                     <td class="col-md-2">
-                        <a name="theme"></a>
-                        <code>theme</code>
+                        <a name="translations"></a>
+                        <code>translations</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>Sets the style on the modal heading based on its category.</p>
+                        <div><p>Accessible translations for the close and complete icons</p>
 </div>
                         <p>
-                            <em>Default value : </em><code>&quot;default&quot;</code>
+                            <em>Default value : </em><code>this.i18n.get().FILE_UPLOADER</code>
                         </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/modal/modal-header.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/file-uploader/file.component.ts:45</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -302,74 +283,59 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
             <tbody>
                 <tr>
                     <td class="col-md-2">
-                        <a name="closeSelect"></a>
-                        <code>closeSelect</code>
+                        <a name="remove"></a>
+                        <code>remove</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>To emit the event of clicking on the close icon within the modal.</p>
-</div>
                         <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/modal/modal-header.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/file-uploader/file.component.ts:51</a></div>
                             </td>
                         </tr>
             </tbody>
         </table>
 </section>
-
-
     <section>
-    
-        <h3 id="methods">
-            Methods
-        </h3>
-        <table class="table table-sm table-bordered">
+    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="onClose"></a>
+                        <a name="class.bx--file__selected-file"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Public</span>
-                            onClose
+                            class.bx--file__selected-file
                             </b>
-                            <a href="#onClose"><span class="icon ion-ios-link"></span></a>
+                            <a href="#class.bx--file__selected-file"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                            <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>onClose()</code>
+                        <code>class.bx--file__selected-file:     <code></code>
+</code>
                     </td>
                 </tr>
-
-
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/modal/modal-header.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/file-uploader/file.component.ts:53</a></div>
                             </td>
                         </tr>
 
 
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Handles click for the close icon button within the <code>Modal</code>.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
+
+
 
 
 </div>
@@ -378,82 +344,58 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
+	Input,
 	Output,
+	ViewChild,
 	EventEmitter,
-	Input
+	OnInit,
+	HostBinding
 } from &quot;@angular/core&quot;;
-import { I18n } from &quot;./../i18n/i18n.module&quot;;
+import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
-/**
- * ***Inputs***
- * &#x60;&#x60;&#x60;html
- * &lt;ibm-modal-header&gt;Header text&lt;/ibm-modal-header&gt;
- * &#x60;&#x60;&#x60;
- *
- * ***Outputs***
- * &#x60;&#x60;&#x60;html
- * &lt;ibm-modal-header (closeSelect)&#x3D;&quot;closeModal()&quot;&gt;Header text&lt;/ibm-modal-header&gt;
- * &#x60;&#x60;&#x60;
- *
- * @export
- * @class ModalHeader
- */
+import { I18n } from &quot;../i18n/i18n.module&quot;;
+import { FileItem } from &quot;./file-item.interface&quot;;
+
 @Component({
-	selector: &quot;ibm-modal-header&quot;,
+	selector: &quot;ibm-file&quot;,
 	template: &#x60;
-		&lt;header class&#x3D;&quot;{{theme}} bx--modal-header&quot;&gt;
-			&lt;div class&#x3D;&quot;bx--modal-header&quot;&gt;
-				&lt;ng-content&gt;&lt;/ng-content&gt;
-			&lt;/div&gt;
-			&lt;button
-				class&#x3D;&quot;bx--modal-close&quot;
-				[attr.aria-label]&#x3D;&quot;closeLabel&quot;
-				(click)&#x3D;&quot;onClose()&quot;&gt;
-				&lt;svg
-					class&#x3D;&quot;bx--modal-close__icon&quot;
-					fill-rule&#x3D;&quot;evenodd&quot;
-					height&#x3D;&quot;10&quot;
-					role&#x3D;&quot;img&quot;
-					viewBox&#x3D;&quot;0 0 10 10&quot;
-					width&#x3D;&quot;10&quot;
-					[attr.aria-label]&#x3D;&quot;closeLabel&quot;
-					[attr.alt]&#x3D;&quot;closeLabel&quot;&gt;
-					&lt;title&gt;{{closeLabel}}&lt;/title&gt;
-					&lt;path d&#x3D;&quot;M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-			&lt;/button&gt;
-		&lt;/header&gt;
-
+		&lt;p class&#x3D;&quot;bx--file-filename&quot;&gt;{{fileItem.file.name}}&lt;/p&gt;
+		&lt;span *ngIf&#x3D;&quot;fileItem.state &#x3D;&#x3D;&#x3D; &#x27;edit&#x27;&quot; class&#x3D;&quot;bx--file__state-container&quot; (click)&#x3D;&quot;remove.emit()&quot;&gt;
+			&lt;svg class&#x3D;&quot;bx--file-close&quot; fill-rule&#x3D;&quot;evenodd&quot; role&#x3D;&quot;img&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot; tabindex&#x3D;&quot;0&quot;
+				[attr.aria-label]&#x3D;&quot;translations.REMOVE_BUTTON&quot;&gt;
+				&lt;title&gt;{{translations.REMOVE_TITLE}}&lt;/title&gt;
+				&lt;path d&#x3D;&quot;M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414
+				8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z&quot;&gt;&lt;/path&gt;
+			&lt;/svg&gt;
+		&lt;/span&gt;
+		&lt;span *ngIf&#x3D;&quot;fileItem.state &#x3D;&#x3D;&#x3D; &#x27;upload&#x27;&quot;&gt;
+			&lt;ibm-loading size&#x3D;&quot;sm&quot;&gt;&lt;/ibm-loading&gt;
+		&lt;/span&gt;
+		&lt;span *ngIf&#x3D;&quot;fileItem.state &#x3D;&#x3D;&#x3D; &#x27;complete&#x27;&quot; class&#x3D;&quot;bx--file__state-container&quot;&gt;
+			&lt;svg class&#x3D;&quot;bx--file-complete&quot; fill-rule&#x3D;&quot;evenodd&quot; role&#x3D;&quot;img&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot; tabindex&#x3D;&quot;0&quot;
+				[attr.aria-label]&#x3D;&quot;translations.CHECKMARK&quot;&gt;
+				&lt;title&gt;{{translations.CHECKMARK_TITLE}}&lt;/title&gt;
+				&lt;path d&#x3D;&quot;M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.293-11.332L6.75 9.21 4.707 7.168 3.293 8.582 6.75
+				12.04l5.957-5.957-1.414-1.414z&quot;&gt;&lt;/path&gt;
+			&lt;/svg&gt;
+		&lt;/span&gt;
 	&#x60;
 })
-export class ModalHeader {
+export class File {
 	/**
-	 * Sets the style on the modal heading based on its category.
-	 * @type {&quot;default&quot; | &quot;warning&quot; | &quot;error&quot;}
-	 * @memberof ModalHeader
+	 * Accessible translations for the close and complete icons
 	 */
-	@Input() theme &#x3D; &quot;default&quot;;
+	@Input() translations &#x3D; this.i18n.get().FILE_UPLOADER;
 	/**
-	 * Accessible label for the header close button.
-	 * Defaults to the &#x60;MODAL.CLOSE&#x60; value from the i18n service.
+	 * A single &#x60;FileItem&#x60; from the set of &#x60;FileItem&#x60;s
 	 */
-	@Input() closeLabel &#x3D; this.i18n.get().MODAL.CLOSE;
+	@Input() fileItem: FileItem;
 
-	/**
-	 * To emit the event of clicking on the close icon within the modal.
-	 * @memberof ModalHeader
-	 */
-	@Output() closeSelect &#x3D; new EventEmitter();
+	@Output() remove &#x3D; new EventEmitter();
+
+	@HostBinding(&quot;class.bx--file__selected-file&quot;) selectedFile &#x3D; true;
 
 	constructor(protected i18n: I18n) {}
-
-	/**
-	 * Handles click for the close icon button within the &#x60;Modal&#x60;.
-	 * @memberof ModalHeader
-	 */
-	public onClose() {
-		this.closeSelect.emit();
-	}
 }
 </code></pre>
     </div>
@@ -485,10 +427,10 @@ export class ModalHeader {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><header class="{{theme}} bx--modal-header">	<div class="bx--modal-header">		<ng-content></ng-content>	</div>	<button		class="bx--modal-close"		[attr.aria-label]="closeLabel"		(click)="onClose()">		<svg			class="bx--modal-close__icon"			fill-rule="evenodd"			height="10"			role="img"			viewBox="0 0 10 10"			width="10"			[attr.aria-label]="closeLabel"			[attr.alt]="closeLabel">			<title>{{closeLabel}}</title>			<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>		</svg>	</button></header>	</div>'
+        var COMPONENT_TEMPLATE = '<div><p class="bx--file-filename">{{fileItem.file.name}}</p><span *ngIf="fileItem.state === \'edit\'" class="bx--file__state-container" (click)="remove.emit()">	<svg class="bx--file-close" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"		[attr.aria-label]="translations.REMOVE_BUTTON">		<title>{{translations.REMOVE_TITLE}}</title>		<path d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414		8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>	</svg></span><span *ngIf="fileItem.state === \'upload\'">	<ibm-loading size="sm"></ibm-loading></span><span *ngIf="fileItem.state === \'complete\'" class="bx--file__state-container">	<svg class="bx--file-complete" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"		[attr.aria-label]="translations.CHECKMARK">		<title>{{translations.CHECKMARK_TITLE}}</title>		<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.293-11.332L6.75 9.21 4.707 7.168 3.293 8.582 6.75		12.04l5.957-5.957-1.414-1.414z"></path>	</svg></span>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
-    var ACTUAL_COMPONENT = {'name': 'ModalHeader'};
+    var ACTUAL_COMPONENT = {'name': 'File'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -522,7 +464,7 @@ export class ModalHeader {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'ModalHeader.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'File.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
