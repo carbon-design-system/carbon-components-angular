@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
@@ -31,10 +31,16 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 	`
 })
 export class DatePickerRange {
+	@Output() selectDates: EventEmitter<any> = new EventEmitter();
+
 	flatpickrOptions: FlatpickrOptions = {
-		// mode: "range",
 		dateFormat: "m/d/Y",
 		"plugins": [rangePlugin({ input: "#secondRangeInput"})],
-		allowInput: true
+		allowInput: true,
+		onChange: ( selectedDates: any ) => { this.doSelect(selectedDates); }
 	};
+
+	doSelect(selectedDates) {
+		this.selectDates.emit(selectedDates);
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, Input, ContentChild, TemplateRef, ViewChild, AfterViewInit, OnInit, ElementRef } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 
 @Component({
@@ -29,8 +29,15 @@ import { FlatpickrOptions } from "ng2-flatpickr";
 	`
 })
 export class DatePickerSingle {
+	@Output() selectDate: EventEmitter<any> = new EventEmitter();
+
 	flatpickrOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
-		allowInput: true
+		allowInput: true,
+		onChange: ( selectedDates: any ) => { this.doSelect(selectedDates); }
 	};
+
+	doSelect(selectedDates) {
+		this.selectDate.emit(selectedDates);
+	}
 }
