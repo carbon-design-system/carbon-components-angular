@@ -2,6 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, number } from "@storybook/addon-knobs";
 
 import { DialogModule } from "../../";
+import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 let options;
 
@@ -17,7 +18,8 @@ storiesOf("Overflow Menu", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DialogModule
+				DialogModule,
+				PlaceholderModule
 			]
 		})
 	)
@@ -36,6 +38,7 @@ storiesOf("Overflow Menu", module)
 				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 			</ibm-overflow-menu>
+			<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			click: () => console.log("click"),

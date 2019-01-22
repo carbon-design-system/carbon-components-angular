@@ -200,6 +200,7 @@ import { I18n } from "./../i18n/i18n.module";
 							class="bx--table-sort-v2"
 							*ngIf="this.sort.observers.length > 0 && column.sortable"
 							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
+							aria-live="polite"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
 								'bx--table-sort-v2--ascending': column.ascending

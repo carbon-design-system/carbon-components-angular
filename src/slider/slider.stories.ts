@@ -51,4 +51,9 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 		model: 0,
 		disabled: boolean("disabled", false)
 	}
+}))
+.add("Skeleton", () => ({
+	template: `
+		<ibm-slider skeleton="true"></ibm-slider>
+	`
 }));
