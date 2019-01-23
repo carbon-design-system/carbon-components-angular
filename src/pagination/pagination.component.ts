@@ -231,8 +231,8 @@ export class Pagination {
 	 * @memberof Pagination
 	 */
 	get lastPage(): number {
-		let last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
-		return last !== 0 ? last : 1;
+		const last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		return last > 0 ? last : 1;
 	}
 
 	get startItemIndex() {
