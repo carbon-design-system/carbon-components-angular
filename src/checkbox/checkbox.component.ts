@@ -94,20 +94,18 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	static checkboxCount = 0;
 
-	@HostBinding("attr.class") class = "bx--checkbox-wrapper";
-
 	/**
 	 * Size of the checkbox.
 	 */
 	@Input() size: "sm" | "md" = "md";
 	/**
-	 * Set to `true` for checkbox to be rendered with inline styles.
-	 */
-	@Input() inline: boolean;
-	/**
 	 * Set to `true` for checkbox to be rendered with nested styles.
 	 */
 	@Input() nested: boolean;
+	/**
+	 * Set to `true` for checkbox to be rendered without any classes on the host element.
+	 */
+	@Input() inline = false;
 	/**
 	 * Set to `true` for a disabled checkbox.
 	 */
@@ -190,6 +188,13 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		}
 	}
 
+	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
+		return !this.inline;
+	}
+	@HostBinding("class.bx--form-item") get formItemClass() {
+		return !this.inline;
+	}
+
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a checkbox after a
 	 * click.
@@ -224,18 +229,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Checkbox.checkboxCount++;
-	}
-
-	/**
-	 * Creates a class name based on `@Input() size`, `@Input() inline`, and `@Input() nested`.
-	 * @return {string}
-	 */
-	public getVariantClass() {
-		if (this.inline || this.nested) {
-			return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "md" ? `-${this.size}` : ""}`;
-		} else {
-			return `checkbox${this.size !== "md" ? `--${this.size}` : ""}`;
-		}
 	}
 
 	/**
