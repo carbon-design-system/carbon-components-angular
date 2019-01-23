@@ -236,7 +236,7 @@ export class Pagination {
 	}
 
 	get startItemIndex() {
-		return this.endItemIndex !== 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
+		return this.endItemIndex > 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
 	}
 
 	get endItemIndex() {
