@@ -13638,14 +13638,15 @@ var Pagination = /** @class */ (function () {
          * @memberof Pagination
          */
         get: function () {
-            return Math.ceil(this.model.totalDataLength / this.model.pageLength);
+            var last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
+            return last > 0 ? last : 1;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Pagination.prototype, "startItemIndex", {
         get: function () {
-            return (this.currentPage - 1) * this.model.pageLength + 1;
+            return this.endItemIndex > 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
         },
         enumerable: true,
         configurable: true
@@ -21104,4 +21105,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.1ee249cb4156b33942e3.bundle.js.map
+//# sourceMappingURL=iframe.5e148e38bb8fb0108506.bundle.js.map
