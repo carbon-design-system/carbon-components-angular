@@ -214,7 +214,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 					[size]&#x3D;&quot;size !&#x3D;&#x3D; (&#x27;lg&#x27; ? &#x27;sm&#x27; : &#x27;md&#x27;)&quot;
 					[(ngModel)]&#x3D;&quot;selectAllCheckbox&quot;
 					[indeterminate]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
-					aria-label&#x3D;&quot;Select all rows&quot;
+					[attr.aria-label]&#x3D;&quot;checkboxHeaderLabel | async&quot;
 					(change)&#x3D;&quot;onSelectAllCheckboxChange()&quot;&gt;
 				&lt;/ibm-checkbox&gt;
 			&lt;/th&gt;
@@ -235,7 +235,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 					&lt;button
 						class&#x3D;&quot;bx--table-sort-v2&quot;
 						*ngIf&#x3D;&quot;this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
-						[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? sortDescendingLabel : sortAscendingLabel)&quot;
+						[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? sortDescendingLabel : sortAscendingLabel) | async&quot;
 						aria-live&#x3D;&quot;polite&quot;
 						[ngClass]&#x3D;&quot;{
 							&#x27;bx--table-sort-v2--active&#x27;: column.sorted,
@@ -268,7 +268,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 						aria-haspopup&#x3D;&quot;true&quot;
 						[ibmTooltip]&#x3D;&quot;column.filterTemplate&quot;
 						trigger&#x3D;&quot;click&quot;
-						[title]&#x3D;&quot;translations.FILTER&quot;
+						[title]&#x3D;&quot;filterTitle | async&quot;
 						placement&#x3D;&quot;bottom,top&quot;
 						[data]&#x3D;&quot;column.filterData&quot;&gt;
 						&lt;svg
@@ -343,7 +343,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 					&lt;button
 					*ngIf&#x3D;&quot;model.isRowExpandable(i)&quot;
 					(click)&#x3D;&quot;model.expandRow(i, !model.rowsExpanded[i])&quot;
-					[attr.aria-label]&#x3D;&quot;expandButtonAriaLabel&quot;
+					[attr.aria-label]&#x3D;&quot;expandButtonAriaLabel | async&quot;
 					class&#x3D;&quot;bx--table-expand-v2__button&quot;&gt;
 						&lt;svg class&#x3D;&quot;bx--table-expand-v2__svg&quot; width&#x3D;&quot;7&quot; height&#x3D;&quot;12&quot; viewBox&#x3D;&quot;0 0 7 12&quot;&gt;
 							&lt;path fill-rule&#x3D;&quot;nonzero&quot; d&#x3D;&quot;M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z&quot; /&gt;
@@ -352,7 +352,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 				&lt;/td&gt;
 				&lt;td *ngIf&#x3D;&quot;!skeleton &amp;&amp; showSelectionColumn&quot;&gt;
 					&lt;ibm-checkbox
-						aria-label&#x3D;&quot;Select row&quot;
+						[attr.aria-label]&#x3D;&quot;checkboxRowLabel | async&quot;
 						[size]&#x3D;&quot;size !&#x3D;&#x3D; (&#x27;lg&#x27; ? &#x27;sm&#x27; : &#x27;md&#x27;)&quot;
 						[(ngModel)]&#x3D;&quot;model.rowsSelected[i]&quot;
 						(change)&#x3D;&quot;onRowCheckboxChange(i)&quot;&gt;
@@ -392,9 +392,9 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 		&lt;/tr&gt;
 		&lt;tr *ngIf&#x3D;&quot;this.model.isEnd&quot;&gt;
 			&lt;td class&#x3D;&quot;table_end-indicator&quot;&gt;
-				&lt;h5&gt;{{translations.END_OF_DATA}}&lt;/h5&gt;
+				&lt;h5&gt;{{endOfDataText | async}}&lt;/h5&gt;
 				&lt;button (click)&#x3D;&quot;scrollToTop($event)&quot; class&#x3D;&quot;btn--secondary-sm&quot;&gt;
-					{{translations.SCROLL_TOP}}
+					{{scrollTopText | async}}
 				&lt;/button&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -429,7 +429,25 @@ class&#x3D;&quot;bx--data-table-v2&quot;
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#_expandButtonAriaLabel">_expandButtonAriaLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#_model">_model</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_sortAscendingLabel">_sortAscendingLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_sortDescendingLabel">_sortDescendingLabel</a>
+                            </li>
+                            <li>
+                                <a href="#checkboxHeaderLabel">checkboxHeaderLabel</a>
+                            </li>
+                            <li>
+                                <a href="#checkboxRowLabel">checkboxRowLabel</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -448,6 +466,12 @@ class&#x3D;&quot;bx--data-table-v2&quot;
                                 <a href="#columnResizeWidth">columnResizeWidth</a>
                             </li>
                             <li>
+                                <a href="#endOfDataText">endOfDataText</a>
+                            </li>
+                            <li>
+                                <a href="#filterTitle">filterTitle</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#isColumnDragging">isColumnDragging</a>
                             </li>
@@ -458,6 +482,9 @@ class&#x3D;&quot;bx--data-table-v2&quot;
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#mouseUpSubscription">mouseUpSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#scrollTopText">scrollTopText</a>
                             </li>
                             <li>
                                 <a href="#selectAllCheckbox">selectAllCheckbox</a>
@@ -637,6 +664,18 @@ class&#x3D;&quot;bx--data-table-v2&quot;
                                     <a href="#enableRowSelect">enableRowSelect</a>
                                 </li>
                                 <li>
+                                    <a href="#expandButtonAriaLabel">expandButtonAriaLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#sortDescendingLabel">sortDescendingLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#sortAscendingLabel">sortAscendingLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#translations">translations</a>
+                                </li>
+                                <li>
                                     <a href="#noData">noData</a>
                                 </li>
                                 <li>
@@ -660,7 +699,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/table/table.component.ts:590</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="644" class="link-to-prism">src/table/table.component.ts:644</a></div>
                             </td>
                         </tr>
 
@@ -733,7 +772,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="498" class="link-to-prism">src/table/table.component.ts:498</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="493" class="link-to-prism">src/table/table.component.ts:493</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -756,7 +795,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="488" class="link-to-prism">src/table/table.component.ts:488</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="483" class="link-to-prism">src/table/table.component.ts:483</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -779,7 +818,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="448" class="link-to-prism">src/table/table.component.ts:448</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="443" class="link-to-prism">src/table/table.component.ts:443</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -801,7 +840,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="470" class="link-to-prism">src/table/table.component.ts:470</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="465" class="link-to-prism">src/table/table.component.ts:465</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -814,14 +853,11 @@ to the model.</p>
                         <code>expandButtonAriaLabel</code>
                     </td>
                     <td class="col-md-10">
-                        <p>
-                            <em>Default value : </em><code>&quot;Expand row&quot;</code>
-                        </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="500" class="link-to-prism">src/table/table.component.ts:500</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="496" class="link-to-prism">src/table/table.component.ts:496</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -840,7 +876,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/table/table.component.ts:425</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="420" class="link-to-prism">src/table/table.component.ts:420</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -863,7 +899,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="479" class="link-to-prism">src/table/table.component.ts:479</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="474" class="link-to-prism">src/table/table.component.ts:474</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -885,7 +921,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="462" class="link-to-prism">src/table/table.component.ts:462</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="457" class="link-to-prism">src/table/table.component.ts:457</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -946,14 +982,11 @@ to the model.</p>
                         <code>sortAscendingLabel</code>
                     </td>
                     <td class="col-md-10">
-                        <p>
-                            <em>Default value : </em><code>&quot;Sort rows by this header in ascending order&quot;</code>
-                        </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="502" class="link-to-prism">src/table/table.component.ts:502</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/table/table.component.ts:510</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -966,14 +999,11 @@ to the model.</p>
                         <code>sortDescendingLabel</code>
                     </td>
                     <td class="col-md-10">
-                        <p>
-                            <em>Default value : </em><code>&quot;Sort rows by this header in descending order&quot;</code>
-                        </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="501" class="link-to-prism">src/table/table.component.ts:501</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="503" class="link-to-prism">src/table/table.component.ts:503</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -995,7 +1025,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="526" class="link-to-prism">src/table/table.component.ts:526</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="576" class="link-to-prism">src/table/table.component.ts:576</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1008,17 +1038,20 @@ to the model.</p>
                         <code>translations</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>Object of all the strings table needs.
-Defaults to the <code>TABLE</code> value from the i18n service.</p>
-</div>
-                        <p>
-                            <em>Default value : </em><code>this.i18n.get().TABLE</code>
-                        </p>
+                        <div><p>Expects an object that contains some or all of:</p>
+<div><pre class="line-numbers"><code class="language-none">     * {
+     *        &quot;FILTER&quot;: &quot;Filter&quot;,
+     *        &quot;END_OF_DATA&quot;: &quot;You&#39;ve reached the end of your content&quot;,
+     *        &quot;SCROLL_TOP&quot;: &quot;Scroll to top&quot;,
+     *        &quot;CHECKBOX_HEADER&quot;: &quot;Select all rows&quot;,
+     *        &quot;CHECKBOX_ROW&quot;: &quot;Select row&quot;
+     * }
+     *</code></pre></div></div>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="416" class="link-to-prism">src/table/table.component.ts:416</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="530" class="link-to-prism">src/table/table.component.ts:530</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1042,7 +1075,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="549" class="link-to-prism">src/table/table.component.ts:549</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="599" class="link-to-prism">src/table/table.component.ts:599</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1063,7 +1096,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="565" class="link-to-prism">src/table/table.component.ts:565</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="615" class="link-to-prism">src/table/table.component.ts:615</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1084,7 +1117,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="573" class="link-to-prism">src/table/table.component.ts:573</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="623" class="link-to-prism">src/table/table.component.ts:623</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1105,7 +1138,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="541" class="link-to-prism">src/table/table.component.ts:541</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="591" class="link-to-prism">src/table/table.component.ts:591</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1126,7 +1159,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="557" class="link-to-prism">src/table/table.component.ts:557</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="607" class="link-to-prism">src/table/table.component.ts:607</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1147,7 +1180,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="533" class="link-to-prism">src/table/table.component.ts:533</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="583" class="link-to-prism">src/table/table.component.ts:583</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1182,7 +1215,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="726" class="link-to-prism">src/table/table.component.ts:726</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="780" class="link-to-prism">src/table/table.component.ts:780</a></div>
                             </td>
                         </tr>
 
@@ -1256,7 +1289,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="731" class="link-to-prism">src/table/table.component.ts:731</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="785" class="link-to-prism">src/table/table.component.ts:785</a></div>
                             </td>
                         </tr>
 
@@ -1339,7 +1372,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="736" class="link-to-prism">src/table/table.component.ts:736</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="790" class="link-to-prism">src/table/table.component.ts:790</a></div>
                             </td>
                         </tr>
 
@@ -1422,7 +1455,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="740" class="link-to-prism">src/table/table.component.ts:740</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="794" class="link-to-prism">src/table/table.component.ts:794</a></div>
                             </td>
                         </tr>
 
@@ -1505,7 +1538,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="720" class="link-to-prism">src/table/table.component.ts:720</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="774" class="link-to-prism">src/table/table.component.ts:774</a></div>
                             </td>
                         </tr>
 
@@ -1579,7 +1612,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="748" class="link-to-prism">src/table/table.component.ts:748</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="802" class="link-to-prism">src/table/table.component.ts:802</a></div>
                             </td>
                         </tr>
 
@@ -1662,7 +1695,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="618" class="link-to-prism">src/table/table.component.ts:618</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="672" class="link-to-prism">src/table/table.component.ts:672</a></div>
                             </td>
                         </tr>
 
@@ -1736,7 +1769,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="613" class="link-to-prism">src/table/table.component.ts:613</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="667" class="link-to-prism">src/table/table.component.ts:667</a></div>
                             </td>
                         </tr>
 
@@ -1810,7 +1843,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="600" class="link-to-prism">src/table/table.component.ts:600</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="654" class="link-to-prism">src/table/table.component.ts:654</a></div>
                             </td>
                         </tr>
 
@@ -1884,7 +1917,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="763" class="link-to-prism">src/table/table.component.ts:763</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="817" class="link-to-prism">src/table/table.component.ts:817</a></div>
                             </td>
                         </tr>
 
@@ -1949,7 +1982,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="771" class="link-to-prism">src/table/table.component.ts:771</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="825" class="link-to-prism">src/table/table.component.ts:825</a></div>
                             </td>
                         </tr>
 
@@ -2014,7 +2047,7 @@ Defaults to the <code>TABLE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="679" class="link-to-prism">src/table/table.component.ts:679</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="733" class="link-to-prism">src/table/table.component.ts:733</a></div>
                             </td>
                         </tr>
 
@@ -2087,7 +2120,7 @@ Emits the <code>selectRow</code> or <code>deselectRow</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="623" class="link-to-prism">src/table/table.component.ts:623</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="677" class="link-to-prism">src/table/table.component.ts:677</a></div>
                             </td>
                         </tr>
 
@@ -2156,7 +2189,7 @@ Emits the <code>selectRow</code> or <code>deselectRow</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="710" class="link-to-prism">src/table/table.component.ts:710</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/table/table.component.ts:764</a></div>
                             </td>
                         </tr>
 
@@ -2224,7 +2257,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="651" class="link-to-prism">src/table/table.component.ts:651</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="705" class="link-to-prism">src/table/table.component.ts:705</a></div>
                             </td>
                         </tr>
 
@@ -2266,7 +2299,7 @@ Emits the <code>selectAll</code> or <code>deselectAll</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="785" class="link-to-prism">src/table/table.component.ts:785</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="839" class="link-to-prism">src/table/table.component.ts:839</a></div>
                             </td>
                         </tr>
 
@@ -2421,7 +2454,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="632" class="link-to-prism">src/table/table.component.ts:632</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="686" class="link-to-prism">src/table/table.component.ts:686</a></div>
                             </td>
                         </tr>
 
@@ -2444,6 +2477,40 @@ Emits the <code>scrollLoad</code> event.</p>
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_expandButtonAriaLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _expandButtonAriaLabel
+                            </b>
+                            <a href="#_expandButtonAriaLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_expandButtonAriaLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.EXPAND_BUTTON&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="633" class="link-to-prism">src/table/table.component.ts:633</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -2472,7 +2539,141 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="581" class="link-to-prism">src/table/table.component.ts:581</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="631" class="link-to-prism">src/table/table.component.ts:631</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_sortAscendingLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _sortAscendingLabel
+                            </b>
+                            <a href="#_sortAscendingLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_sortAscendingLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.SORT_ASCENDING&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="635" class="link-to-prism">src/table/table.component.ts:635</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_sortDescendingLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _sortDescendingLabel
+                            </b>
+                            <a href="#_sortDescendingLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_sortDescendingLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.SORT_DESCENDING&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="634" class="link-to-prism">src/table/table.component.ts:634</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkboxHeaderLabel"></a>
+                        <span class="name">
+                            <b>
+                            checkboxHeaderLabel
+                            </b>
+                            <a href="#checkboxHeaderLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checkboxHeaderLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.CHECKBOX_HEADER&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="548" class="link-to-prism">src/table/table.component.ts:548</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkboxRowLabel"></a>
+                        <span class="name">
+                            <b>
+                            checkboxRowLabel
+                            </b>
+                            <a href="#checkboxRowLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checkboxRowLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.CHECKBOX_ROW&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="549" class="link-to-prism">src/table/table.component.ts:549</a></div>
                             </td>
                         </tr>
 
@@ -2506,7 +2707,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="589" class="link-to-prism">src/table/table.component.ts:589</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="643" class="link-to-prism">src/table/table.component.ts:643</a></div>
                             </td>
                         </tr>
 
@@ -2546,7 +2747,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="590" class="link-to-prism">src/table/table.component.ts:590</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="644" class="link-to-prism">src/table/table.component.ts:644</a></div>
                             </td>
                         </tr>
 
@@ -2581,7 +2782,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="584" class="link-to-prism">src/table/table.component.ts:584</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="638" class="link-to-prism">src/table/table.component.ts:638</a></div>
                             </td>
                         </tr>
 
@@ -2616,7 +2817,73 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="583" class="link-to-prism">src/table/table.component.ts:583</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="637" class="link-to-prism">src/table/table.component.ts:637</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="endOfDataText"></a>
+                        <span class="name">
+                            <b>
+                            endOfDataText
+                            </b>
+                            <a href="#endOfDataText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>endOfDataText:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.END_OF_DATA&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="550" class="link-to-prism">src/table/table.component.ts:550</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filterTitle"></a>
+                        <span class="name">
+                            <b>
+                            filterTitle
+                            </b>
+                            <a href="#filterTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>filterTitle:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.FILTER&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="552" class="link-to-prism">src/table/table.component.ts:552</a></div>
                             </td>
                         </tr>
 
@@ -2650,7 +2917,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="588" class="link-to-prism">src/table/table.component.ts:588</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="642" class="link-to-prism">src/table/table.component.ts:642</a></div>
                             </td>
                         </tr>
 
@@ -2685,7 +2952,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="585" class="link-to-prism">src/table/table.component.ts:585</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="639" class="link-to-prism">src/table/table.component.ts:639</a></div>
                             </td>
                         </tr>
 
@@ -2720,7 +2987,40 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="586" class="link-to-prism">src/table/table.component.ts:586</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="640" class="link-to-prism">src/table/table.component.ts:640</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="scrollTopText"></a>
+                        <span class="name">
+                            <b>
+                            scrollTopText
+                            </b>
+                            <a href="#scrollTopText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>scrollTopText:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE.SCROLL_TOP&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="551" class="link-to-prism">src/table/table.component.ts:551</a></div>
                             </td>
                         </tr>
 
@@ -2753,7 +3053,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/table/table.component.ts:510</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="560" class="link-to-prism">src/table/table.component.ts:560</a></div>
                             </td>
                         </tr>
 
@@ -2792,7 +3092,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/table/table.component.ts:518</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="568" class="link-to-prism">src/table/table.component.ts:568</a></div>
                             </td>
                         </tr>
 
@@ -2827,7 +3127,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="436" class="link-to-prism">src/table/table.component.ts:436</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="431" class="link-to-prism">src/table/table.component.ts:431</a></div>
                                 </td>
                             </tr>
 
@@ -2838,7 +3138,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="425" class="link-to-prism">src/table/table.component.ts:425</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="420" class="link-to-prism">src/table/table.component.ts:420</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2894,7 +3194,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="452" class="link-to-prism">src/table/table.component.ts:452</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="447" class="link-to-prism">src/table/table.component.ts:447</a></div>
                                 </td>
                             </tr>
 
@@ -2905,7 +3205,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="448" class="link-to-prism">src/table/table.component.ts:448</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="443" class="link-to-prism">src/table/table.component.ts:443</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2953,6 +3253,265 @@ Emits the <code>scrollLoad</code> event.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="expandButtonAriaLabel"></a>
+                        <span class="name"><b>expandButtonAriaLabel</b><a href="#expandButtonAriaLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>expandButtonAriaLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="499" class="link-to-prism">src/table/table.component.ts:499</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>expandButtonAriaLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="496" class="link-to-prism">src/table/table.component.ts:496</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortDescendingLabel"></a>
+                        <span class="name"><b>sortDescendingLabel</b><a href="#sortDescendingLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortDescendingLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="506" class="link-to-prism">src/table/table.component.ts:506</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>sortDescendingLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="503" class="link-to-prism">src/table/table.component.ts:503</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortAscendingLabel"></a>
+                        <span class="name"><b>sortAscendingLabel</b><a href="#sortAscendingLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortAscendingLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="513" class="link-to-prism">src/table/table.component.ts:513</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>sortAscendingLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/table/table.component.ts:510</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="translations"></a>
+                        <span class="name"><b>translations</b><a href="#translations"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>translations(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="530" class="link-to-prism">src/table/table.component.ts:530</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Expects an object that contains some or all of:</p>
+<div><pre class="line-numbers"><code class="language-none">     * {
+     *        &quot;FILTER&quot;: &quot;Filter&quot;,
+     *        &quot;END_OF_DATA&quot;: &quot;You&#39;ve reached the end of your content&quot;,
+     *        &quot;SCROLL_TOP&quot;: &quot;Scroll to top&quot;,
+     *        &quot;CHECKBOX_HEADER&quot;: &quot;Select all rows&quot;,
+     *        &quot;CHECKBOX_ROW&quot;: &quot;Select row&quot;
+     * }
+     *</code></pre></div></div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="noData"></a>
                         <span class="name"><b>noData</b><a href="#noData"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -2965,7 +3524,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="575" class="link-to-prism">src/table/table.component.ts:575</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="625" class="link-to-prism">src/table/table.component.ts:625</a></div>
                                 </td>
                             </tr>
 
@@ -2987,7 +3546,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="759" class="link-to-prism">src/table/table.component.ts:759</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="813" class="link-to-prism">src/table/table.component.ts:813</a></div>
                                 </td>
                             </tr>
 
@@ -3178,7 +3737,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 						[size]&#x3D;&quot;size !&#x3D;&#x3D; (&#x27;lg&#x27; ? &#x27;sm&#x27; : &#x27;md&#x27;)&quot;
 						[(ngModel)]&#x3D;&quot;selectAllCheckbox&quot;
 						[indeterminate]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
-						aria-label&#x3D;&quot;Select all rows&quot;
+						[attr.aria-label]&#x3D;&quot;checkboxHeaderLabel | async&quot;
 						(change)&#x3D;&quot;onSelectAllCheckboxChange()&quot;&gt;
 					&lt;/ibm-checkbox&gt;
 				&lt;/th&gt;
@@ -3199,7 +3758,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 						&lt;button
 							class&#x3D;&quot;bx--table-sort-v2&quot;
 							*ngIf&#x3D;&quot;this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
-							[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? sortDescendingLabel : sortAscendingLabel)&quot;
+							[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? sortDescendingLabel : sortAscendingLabel) | async&quot;
 							aria-live&#x3D;&quot;polite&quot;
 							[ngClass]&#x3D;&quot;{
 								&#x27;bx--table-sort-v2--active&#x27;: column.sorted,
@@ -3232,7 +3791,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 							aria-haspopup&#x3D;&quot;true&quot;
 							[ibmTooltip]&#x3D;&quot;column.filterTemplate&quot;
 							trigger&#x3D;&quot;click&quot;
-							[title]&#x3D;&quot;translations.FILTER&quot;
+							[title]&#x3D;&quot;filterTitle | async&quot;
 							placement&#x3D;&quot;bottom,top&quot;
 							[data]&#x3D;&quot;column.filterData&quot;&gt;
 							&lt;svg
@@ -3307,7 +3866,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 						&lt;button
 						*ngIf&#x3D;&quot;model.isRowExpandable(i)&quot;
 						(click)&#x3D;&quot;model.expandRow(i, !model.rowsExpanded[i])&quot;
-						[attr.aria-label]&#x3D;&quot;expandButtonAriaLabel&quot;
+						[attr.aria-label]&#x3D;&quot;expandButtonAriaLabel | async&quot;
 						class&#x3D;&quot;bx--table-expand-v2__button&quot;&gt;
 							&lt;svg class&#x3D;&quot;bx--table-expand-v2__svg&quot; width&#x3D;&quot;7&quot; height&#x3D;&quot;12&quot; viewBox&#x3D;&quot;0 0 7 12&quot;&gt;
 								&lt;path fill-rule&#x3D;&quot;nonzero&quot; d&#x3D;&quot;M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z&quot; /&gt;
@@ -3316,7 +3875,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 					&lt;/td&gt;
 					&lt;td *ngIf&#x3D;&quot;!skeleton &amp;&amp; showSelectionColumn&quot;&gt;
 						&lt;ibm-checkbox
-							aria-label&#x3D;&quot;Select row&quot;
+							[attr.aria-label]&#x3D;&quot;checkboxRowLabel | async&quot;
 							[size]&#x3D;&quot;size !&#x3D;&#x3D; (&#x27;lg&#x27; ? &#x27;sm&#x27; : &#x27;md&#x27;)&quot;
 							[(ngModel)]&#x3D;&quot;model.rowsSelected[i]&quot;
 							(change)&#x3D;&quot;onRowCheckboxChange(i)&quot;&gt;
@@ -3356,9 +3915,9 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 			&lt;/tr&gt;
 			&lt;tr *ngIf&#x3D;&quot;this.model.isEnd&quot;&gt;
 				&lt;td class&#x3D;&quot;table_end-indicator&quot;&gt;
-					&lt;h5&gt;{{translations.END_OF_DATA}}&lt;/h5&gt;
+					&lt;h5&gt;{{endOfDataText | async}}&lt;/h5&gt;
 					&lt;button (click)&#x3D;&quot;scrollToTop($event)&quot; class&#x3D;&quot;btn--secondary-sm&quot;&gt;
-						{{translations.SCROLL_TOP}}
+						{{scrollTopText | async}}
 					&lt;/button&gt;
 				&lt;/td&gt;
 			&lt;/tr&gt;
@@ -3409,11 +3968,6 @@ export class Table {
 	 * Set to &#x60;true&#x60; for a loading table.
 	 */
 	@Input() skeleton &#x3D; false;
-	/**
-	 * Object of all the strings table needs.
-	 * Defaults to the &#x60;TABLE&#x60; value from the i18n service.
-	 */
-	@Input() translations &#x3D; this.i18n.get().TABLE;
 
 	/**
 	 * &#x60;TableModel&#x60; with data the table is to display.
@@ -3497,9 +4051,64 @@ export class Table {
 	 */
 	@Input() columnsDraggable &#x3D; false;
 
-	@Input() expandButtonAriaLabel &#x3D; &quot;Expand row&quot;;
-	@Input() sortDescendingLabel &#x3D; &quot;Sort rows by this header in descending order&quot;;
-	@Input() sortAscendingLabel &#x3D; &quot;Sort rows by this header in ascending order&quot;;
+	@Input()
+	set expandButtonAriaLabel(value) {
+		this._expandButtonAriaLabel.next(value);
+	}
+	get expandButtonAriaLabel() {
+		return this._expandButtonAriaLabel;
+	}
+	@Input()
+	set sortDescendingLabel(value) {
+		this._sortDescendingLabel.next(value);
+	}
+	get sortDescendingLabel() {
+		return this._sortDescendingLabel;
+	}
+	@Input()
+	set sortAscendingLabel(value) {
+		this._sortAscendingLabel.next(value);
+	}
+	get sortAscendingLabel() {
+		return this._sortAscendingLabel;
+	}
+
+	/**
+	 * Expects an object that contains some or all of:
+	 * &#x60;&#x60;&#x60;
+	 * {
+	 *		&quot;FILTER&quot;: &quot;Filter&quot;,
+	 *		&quot;END_OF_DATA&quot;: &quot;You&#x27;ve reached the end of your content&quot;,
+	 *		&quot;SCROLL_TOP&quot;: &quot;Scroll to top&quot;,
+	 *		&quot;CHECKBOX_HEADER&quot;: &quot;Select all rows&quot;,
+	 *		&quot;CHECKBOX_ROW&quot;: &quot;Select row&quot;
+	 * }
+	 * &#x60;&#x60;&#x60;
+	 */
+	@Input()
+	set translations (value) {
+		if (value.FILTER) {
+			this.filterTitle.next(value.FILTER);
+		}
+		if (value.END_OF_DATA) {
+			this.endOfDataText.next(value.END_OF_DATA);
+		}
+		if (value.SCROLL_TOP) {
+			this.scrollTopText.next(value.SCROLL_TOP);
+		}
+		if (value.CHECKBOX_HEADER) {
+			this.checkboxHeaderLabel.next(value.CHECKBOX_HEADER);
+		}
+		if (value.CHECKBOX_ROW) {
+			this.checkboxRowLabel.next(value.CHECKBOX_ROW);
+		}
+	}
+
+	checkboxHeaderLabel &#x3D; this.i18n.get(&quot;TABLE.CHECKBOX_HEADER&quot;);
+	checkboxRowLabel &#x3D; this.i18n.get(&quot;TABLE.CHECKBOX_ROW&quot;);
+	endOfDataText &#x3D; this.i18n.get(&quot;TABLE.END_OF_DATA&quot;);
+	scrollTopText &#x3D; this.i18n.get(&quot;TABLE.SCROLL_TOP&quot;);
+	filterTitle &#x3D; this.i18n.get(&quot;TABLE.FILTER&quot;);
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
@@ -3579,6 +4188,10 @@ export class Table {
 	}
 
 	protected _model: TableModel;
+
+	protected _expandButtonAriaLabel  &#x3D; this.i18n.get(&quot;TABLE.EXPAND_BUTTON&quot;);
+	protected _sortDescendingLabel &#x3D; this.i18n.get(&quot;TABLE.SORT_DESCENDING&quot;);
+	protected _sortAscendingLabel &#x3D; this.i18n.get(&quot;TABLE.SORT_ASCENDING&quot;);
 
 	protected columnResizeWidth: number;
 	protected columnResizeMouseX: number;
@@ -3817,7 +4430,7 @@ export class Table {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><tableclass="bx--data-table-v2"[ngClass]="{	\'bx--data-table-v2--compact\': size === \'sm\',	\'bx--data-table-v2--tall\': size === \'lg\',	\'bx--data-table-v2--zebra\': striped,	\'bx--skeleton\': skeleton}">	<thead>		<tr>			<th *ngIf="model.hasExpandableRows()"></th>			<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">				<ibm-checkbox					[size]="size !== (\'lg\' ? \'sm\' : \'md\')"					[(ngModel)]="selectAllCheckbox"					[indeterminate]="selectAllCheckboxSomeSelected"					aria-label="Select all rows"					(change)="onSelectAllCheckboxChange()">				</ibm-checkbox>			</th>			<ng-container *ngFor="let column of model.header; let i = index">				<th [ngClass]=\'{"thead_action": column.filterTemplate || this.sort.observers.length > 0}\'				*ngIf="column.visible"				[class]="column.className"				[ngStyle]="column.style"				[draggable]="columnsDraggable"				(dragstart)="columnDragStart($event, i)"				(dragend)="columnDragEnd($event, i)">					<span *ngIf="skeleton"></span>					<div					*ngIf="columnsResizable"					class="column-resize-handle"					(mousedown)="columnResizeStart($event, column)">					</div>					<button						class="bx--table-sort-v2"						*ngIf="this.sort.observers.length > 0 && column.sortable"						[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"						aria-live="polite"						[ngClass]="{							\'bx--table-sort-v2--active\': column.sorted,							\'bx--table-sort-v2--ascending\': column.ascending						}"						(click)="sort.emit(i)">						<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>						<svg						class="bx--table-sort-v2__icon"						width="10" height="5" viewBox="0 0 10 5">							<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />						</svg>					</button>					<span						class="bx--table-header-label"						*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">						<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>					</span>					<button						[ngClass]="{\'active\': column.filterCount > 0}"						*ngIf="column.filterTemplate"						type="button"						aria-expanded="false"						aria-haspopup="true"						[ibmTooltip]="column.filterTemplate"						trigger="click"						[title]="translations.FILTER"						placement="bottom,top"						[data]="column.filterData">						<svg							xmlns="http://www.w3.org/2000/svg"							class="icon--sm"							width="16"							height="16"							viewBox="0 0 16 16">							<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>						</svg>						<span *ngIf="column.filterCount > 0">							{{column.filterCount}}						</span>					</button>					<div					*ngIf="columnsDraggable && isColumnDragging"					class="drop-area">						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'left\'"						class="drop-indicator-left"></div>						<div						class="drop-area-left"						(dragenter)="columnDragEnter($event, \'left\', i)"						(dragleave)="columnDragLeave($event, \'left\', i)"						(dragover)="columnDragover($event, \'left\', i)"						(drop)="columnDrop($event, \'left\', i)">						</div>						<div						class="drop-area-right"						(dragenter)="columnDragEnter($event, \'right\', i)"						(dragleave)="columnDragLeave($event, \'right\', i)"						(dragover)="columnDragover($event, \'right\', i)"						(drop)="columnDrop($event, \'right\', i)">						</div>						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'right\'"						class="drop-indicator-right"></div>					</div>				</th>			</ng-container>			<th *ngIf="!skeleton" [ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">				<!--					Scrollbar pushes body to the left so this header column is added to push					the title bar the same amount and keep the header and body columns aligned.				-->			</th>		</tr>	</thead>	<tbody	*ngIf="!noData; else noDataTemplate"	[ngStyle]="{\'overflow-y\': \'scroll\'}"	(scroll)="onScroll($event)">		<ng-container *ngFor="let row of model.data; let i = index">			<tr *ngIf="!model.isRowFiltered(i)"				(click)="onRowSelect(i)"				[attr.data-parent-row]="(model.isRowExpandable(i) ? \'true\' : null)"				[ngClass]="{					\'bx--data-table-v2--selected\': model.rowsSelected[i],					\'bx--parent-row-v2\': model.isRowExpandable(i),					\'bx--expandable-row-v2\': model.rowsExpanded[i],					\'tbody_row--selectable\': enableSingleSelect,					\'tbody_row--success\': !model.rowsSelected[i] && model.rowsContext[i] === \'success\',					\'tbody_row--warning\': !model.rowsSelected[i] && model.rowsContext[i] === \'warning\',					\'tbody_row--info\': !model.rowsSelected[i] && model.rowsContext[i] === \'info\',					\'tbody_row--error\': !model.rowsSelected[i] && model.rowsContext[i] === \'error\'				}">				<td				*ngIf="model.hasExpandableRows()"				class="bx--table-expand-v2"				[attr.data-previous-value]="(model.rowsExpanded[i] ? \'collapsed\' : null)">					<button					*ngIf="model.isRowExpandable(i)"					(click)="model.expandRow(i, !model.rowsExpanded[i])"					[attr.aria-label]="expandButtonAriaLabel"					class="bx--table-expand-v2__button">						<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">							<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />						</svg>					</button>				</td>				<td *ngIf="!skeleton && showSelectionColumn">					<ibm-checkbox						aria-label="Select row"						[size]="size !== (\'lg\' ? \'sm\' : \'md\')"						[(ngModel)]="model.rowsSelected[i]"						(change)="onRowCheckboxChange(i)">					</ibm-checkbox>				</td>				<ng-container *ngFor="let item of row; let i = index">					<td *ngIf="model.header[i].visible"						[class]="model.header[i].className"						[ngStyle]="model.header[i].style">						<ng-container *ngIf="!item.template">{{item.data}}</ng-container>						<ng-template							[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">						</ng-template>					</td>				</ng-container>			</tr>			<tr			*ngIf="model.rowsExpanded[i]"			class="bx--expandable-row-v2"			[attr.data-child-row]="(model.rowsExpanded[i] ? \'true\' : null)">				<td [attr.colspan]="row.length + 2">					<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>					<ng-template						[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"						[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">					</ng-template>				</td>			</tr>		</ng-container>	</tbody>	<ng-template #noDataTemplate><ng-content></ng-content></ng-template>	<tfoot>		<tr *ngIf="this.model.isLoading">			<td class="table_loading-indicator">				<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>			</td>		</tr>		<tr *ngIf="this.model.isEnd">			<td class="table_end-indicator">				<h5>{{translations.END_OF_DATA}}</h5>				<button (click)="scrollToTop($event)" class="btn--secondary-sm">					{{translations.SCROLL_TOP}}				</button>			</td>		</tr>	</tfoot></table></div>'
+        var COMPONENT_TEMPLATE = '<div><tableclass="bx--data-table-v2"[ngClass]="{	\'bx--data-table-v2--compact\': size === \'sm\',	\'bx--data-table-v2--tall\': size === \'lg\',	\'bx--data-table-v2--zebra\': striped,	\'bx--skeleton\': skeleton}">	<thead>		<tr>			<th *ngIf="model.hasExpandableRows()"></th>			<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">				<ibm-checkbox					[size]="size !== (\'lg\' ? \'sm\' : \'md\')"					[(ngModel)]="selectAllCheckbox"					[indeterminate]="selectAllCheckboxSomeSelected"					[attr.aria-label]="checkboxHeaderLabel | async"					(change)="onSelectAllCheckboxChange()">				</ibm-checkbox>			</th>			<ng-container *ngFor="let column of model.header; let i = index">				<th [ngClass]=\'{"thead_action": column.filterTemplate || this.sort.observers.length > 0}\'				*ngIf="column.visible"				[class]="column.className"				[ngStyle]="column.style"				[draggable]="columnsDraggable"				(dragstart)="columnDragStart($event, i)"				(dragend)="columnDragEnd($event, i)">					<span *ngIf="skeleton"></span>					<div					*ngIf="columnsResizable"					class="column-resize-handle"					(mousedown)="columnResizeStart($event, column)">					</div>					<button						class="bx--table-sort-v2"						*ngIf="this.sort.observers.length > 0 && column.sortable"						[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"						aria-live="polite"						[ngClass]="{							\'bx--table-sort-v2--active\': column.sorted,							\'bx--table-sort-v2--ascending\': column.ascending						}"						(click)="sort.emit(i)">						<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>						<svg						class="bx--table-sort-v2__icon"						width="10" height="5" viewBox="0 0 10 5">							<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />						</svg>					</button>					<span						class="bx--table-header-label"						*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">						<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>					</span>					<button						[ngClass]="{\'active\': column.filterCount > 0}"						*ngIf="column.filterTemplate"						type="button"						aria-expanded="false"						aria-haspopup="true"						[ibmTooltip]="column.filterTemplate"						trigger="click"						[title]="filterTitle | async"						placement="bottom,top"						[data]="column.filterData">						<svg							xmlns="http://www.w3.org/2000/svg"							class="icon--sm"							width="16"							height="16"							viewBox="0 0 16 16">							<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>						</svg>						<span *ngIf="column.filterCount > 0">							{{column.filterCount}}						</span>					</button>					<div					*ngIf="columnsDraggable && isColumnDragging"					class="drop-area">						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'left\'"						class="drop-indicator-left"></div>						<div						class="drop-area-left"						(dragenter)="columnDragEnter($event, \'left\', i)"						(dragleave)="columnDragLeave($event, \'left\', i)"						(dragover)="columnDragover($event, \'left\', i)"						(drop)="columnDrop($event, \'left\', i)">						</div>						<div						class="drop-area-right"						(dragenter)="columnDragEnter($event, \'right\', i)"						(dragleave)="columnDragLeave($event, \'right\', i)"						(dragover)="columnDragover($event, \'right\', i)"						(drop)="columnDrop($event, \'right\', i)">						</div>						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'right\'"						class="drop-indicator-right"></div>					</div>				</th>			</ng-container>			<th *ngIf="!skeleton" [ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">				<!--					Scrollbar pushes body to the left so this header column is added to push					the title bar the same amount and keep the header and body columns aligned.				-->			</th>		</tr>	</thead>	<tbody	*ngIf="!noData; else noDataTemplate"	[ngStyle]="{\'overflow-y\': \'scroll\'}"	(scroll)="onScroll($event)">		<ng-container *ngFor="let row of model.data; let i = index">			<tr *ngIf="!model.isRowFiltered(i)"				(click)="onRowSelect(i)"				[attr.data-parent-row]="(model.isRowExpandable(i) ? \'true\' : null)"				[ngClass]="{					\'bx--data-table-v2--selected\': model.rowsSelected[i],					\'bx--parent-row-v2\': model.isRowExpandable(i),					\'bx--expandable-row-v2\': model.rowsExpanded[i],					\'tbody_row--selectable\': enableSingleSelect,					\'tbody_row--success\': !model.rowsSelected[i] && model.rowsContext[i] === \'success\',					\'tbody_row--warning\': !model.rowsSelected[i] && model.rowsContext[i] === \'warning\',					\'tbody_row--info\': !model.rowsSelected[i] && model.rowsContext[i] === \'info\',					\'tbody_row--error\': !model.rowsSelected[i] && model.rowsContext[i] === \'error\'				}">				<td				*ngIf="model.hasExpandableRows()"				class="bx--table-expand-v2"				[attr.data-previous-value]="(model.rowsExpanded[i] ? \'collapsed\' : null)">					<button					*ngIf="model.isRowExpandable(i)"					(click)="model.expandRow(i, !model.rowsExpanded[i])"					[attr.aria-label]="expandButtonAriaLabel | async"					class="bx--table-expand-v2__button">						<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">							<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />						</svg>					</button>				</td>				<td *ngIf="!skeleton && showSelectionColumn">					<ibm-checkbox						[attr.aria-label]="checkboxRowLabel | async"						[size]="size !== (\'lg\' ? \'sm\' : \'md\')"						[(ngModel)]="model.rowsSelected[i]"						(change)="onRowCheckboxChange(i)">					</ibm-checkbox>				</td>				<ng-container *ngFor="let item of row; let i = index">					<td *ngIf="model.header[i].visible"						[class]="model.header[i].className"						[ngStyle]="model.header[i].style">						<ng-container *ngIf="!item.template">{{item.data}}</ng-container>						<ng-template							[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">						</ng-template>					</td>				</ng-container>			</tr>			<tr			*ngIf="model.rowsExpanded[i]"			class="bx--expandable-row-v2"			[attr.data-child-row]="(model.rowsExpanded[i] ? \'true\' : null)">				<td [attr.colspan]="row.length + 2">					<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>					<ng-template						[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"						[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">					</ng-template>				</td>			</tr>		</ng-container>	</tbody>	<ng-template #noDataTemplate><ng-content></ng-content></ng-template>	<tfoot>		<tr *ngIf="this.model.isLoading">			<td class="table_loading-indicator">				<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>			</td>		</tr>		<tr *ngIf="this.model.isEnd">			<td class="table_end-indicator">				<h5>{{endOfDataText | async}}</h5>				<button (click)="scrollToTop($event)" class="btn--secondary-sm">					{{scrollTopText | async}}				</button>			</td>		</tr>	</tfoot></table></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Table'};

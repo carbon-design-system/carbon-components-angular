@@ -8832,7 +8832,7 @@ var NFormsModule = /** @class */ (function () {
 /*! exports provided: BANNER, CALENDAR, CODE_SNIPPET, DIALOG, DROPDOWN, DROPDOWN_LIST, FILE_UPLOADER, LOADING, MODAL, NOTIFICATION, OVERFLOW_MENU, SEARCH, SIDENAV, PAGINATION, TABLE, TABS, TOGGLE, TOPNAV, default */
 /***/ (function(module) {
 
-module.exports = {"BANNER":{"CLOSE_BUTTON":"Close alert banner"},"CALENDAR":{"MONTHS":{"JANUARY":"January","FEBRUARY":"February","MARCH":"March","APRIL":"April","MAY":"May","JUNE":"June","JULY":"July","AUGUST":"August","SEPTEMBER":"September","OCTOBER":"October","NOVEMBER":"November","DECEMBER":"December"},"SHORTWEEKDAYS":{"SUNDAY":"Sun","MONDAY":"Mon","TUESDAY":"Tue","WEDNESDAY":"Wed","THURSDAY":"Thu","FRIDAY":"Fri","SATURDAY":"Sat"},"QUARTERS":[{"name":"Q1","months":"January-March"},{"name":"Q2","months":"April-June"},{"name":"Q3","months":"July-September"},{"name":"Q4","months":"October-December"}]},"CODE_SNIPPET":{"CODE_SNIPPET_TEXT":"Code Snippet Text","SHOW_MORE":"Show more","SHOW_LESS":"Show less","SHOW_MORE_ICON":"Show more icon","COPY_CODE":"Copy code","COPIED":"Copied!"},"DIALOG":{"POPOVER":{"CLOSE":"Close popover"}},"DROPDOWN":{"OPEN":"Open menu","SELECTED":"selected","CLEAR":"Clear selection","FILTER":{"SELECTED_ONLY":"Show selected only","SEARCH":"Search","NO_RESULTS":"No search results","RESET_SEARCH":"Reset search"}},"DROPDOWN_LIST":{"LABEL":"Listbox"},"FILE_UPLOADER":{"CHECKMARK":"Checkmark","CHECKMARK_TITLE":"File uploaded!","OPEN":"Add file","REMOVE_BUTTON":"Close button","REMOVE_TITLE":"Delete File"},"LOADING":{"TITLE":"Loading"},"MODAL":{"CLOSE":"Close modal"},"NOTIFICATION":{"CLOSE_BUTTON":"Close alert notification"},"OVERFLOW_MENU":{"OVERFLOW":"Overflow"},"SEARCH":{"LABEL":"Search","PLACEHOLDER":"Search","CLEAR_BUTTON":"Clear search input"},"SIDENAV":{"NAV_LABEL":"Side navigation"},"PAGINATION":{"ITEMS_PER_PAGE":"Items per page:","OPEN_LIST_OF_OPTIONS":"Open list of options","BACKWARD":"Backward","FORWARD":"Forward","TOTAL_ITEMS":"{{start}}-{{end}} of {{total}} items","TOTAL_PAGES":"{{current}} of {{last}} pages"},"TABLE":{"GO_TO_PAGE":"Go to page","PREVIOUS_PAGE":"Previous page","NEXT_PAGE":"Next page","PREVIOUS_3":"Scroll to previous 3 pages","NEXT_3":"Scroll to next 3 pages","FILTER":"Filter","END_OF_DATA":"You've reached the end of your content","SCROLL_TOP":"Scroll to top"},"TABS":{"BUTTON_ARIA_LEFT":"Go to the previous tab","BUTTON_ARIA_RIGHT":"Go to the next tab"},"TOGGLE":{"OFF":"Off","ON":"On"},"TOPNAV":{"SKIP_TO_MAIN":"Skip to main content","HAMBURGER":{"TOGGLE":"Toggle primary navigation menu","TITLE":"Primary navigation menu"}}};
+module.exports = {"BANNER":{"CLOSE_BUTTON":"Close alert banner"},"CALENDAR":{"MONTHS":{"JANUARY":"January","FEBRUARY":"February","MARCH":"March","APRIL":"April","MAY":"May","JUNE":"June","JULY":"July","AUGUST":"August","SEPTEMBER":"September","OCTOBER":"October","NOVEMBER":"November","DECEMBER":"December"},"SHORTWEEKDAYS":{"SUNDAY":"Sun","MONDAY":"Mon","TUESDAY":"Tue","WEDNESDAY":"Wed","THURSDAY":"Thu","FRIDAY":"Fri","SATURDAY":"Sat"},"QUARTERS":[{"name":"Q1","months":"January-March"},{"name":"Q2","months":"April-June"},{"name":"Q3","months":"July-September"},{"name":"Q4","months":"October-December"}]},"CODE_SNIPPET":{"CODE_SNIPPET_TEXT":"Code Snippet Text","SHOW_MORE":"Show more","SHOW_LESS":"Show less","SHOW_MORE_ICON":"Show more icon","COPY_CODE":"Copy code","COPIED":"Copied!"},"DIALOG":{"POPOVER":{"CLOSE":"Close popover"}},"DROPDOWN":{"OPEN":"Open menu","SELECTED":"selected","CLEAR":"Clear selection","FILTER":{"SELECTED_ONLY":"Show selected only","SEARCH":"Search","NO_RESULTS":"No search results","RESET_SEARCH":"Reset search"}},"DROPDOWN_LIST":{"LABEL":"Listbox"},"FILE_UPLOADER":{"CHECKMARK":"Checkmark","CHECKMARK_TITLE":"File uploaded!","OPEN":"Add file","REMOVE_BUTTON":"Close button","REMOVE_TITLE":"Delete File"},"LOADING":{"TITLE":"Loading"},"MODAL":{"CLOSE":"Close modal"},"NOTIFICATION":{"CLOSE_BUTTON":"Close alert notification"},"OVERFLOW_MENU":{"OVERFLOW":"Overflow"},"SEARCH":{"LABEL":"Search","PLACEHOLDER":"Search","CLEAR_BUTTON":"Clear search input"},"SIDENAV":{"NAV_LABEL":"Side navigation"},"PAGINATION":{"ITEMS_PER_PAGE":"Items per page:","OPEN_LIST_OF_OPTIONS":"Open list of options","BACKWARD":"Backward","FORWARD":"Forward","TOTAL_ITEMS":"{{start}}-{{end}} of {{total}} items","TOTAL_PAGES":"{{current}} of {{last}} pages"},"TABLE":{"GO_TO_PAGE":"Go to page","PREVIOUS_PAGE":"Previous page","NEXT_PAGE":"Next page","PREVIOUS_3":"Scroll to previous 3 pages","NEXT_3":"Scroll to next 3 pages","FILTER":"Filter","END_OF_DATA":"You've reached the end of your content","SCROLL_TOP":"Scroll to top","CHECKBOX_HEADER":"Select all rows","CHECKBOX_ROW":"Select row","EXPAND_BUTTON":"Expand row","SORT_DESCENDING":"Sort rows by this header in descending order","SORT_ASCENDING":"Sort rows by this header in ascending order"},"TABS":{"BUTTON_ARIA_LEFT":"Go to the previous tab","BUTTON_ARIA_RIGHT":"Go to the next tab"},"TOGGLE":{"OFF":"Off","ON":"On"},"TOPNAV":{"SKIP_TO_MAIN":"Skip to main content","HAMBURGER":{"TOGGLE":"Toggle primary navigation menu","TITLE":"Primary navigation menu"}}};
 
 /***/ }),
 
@@ -18535,11 +18535,6 @@ var Table = /** @class */ (function () {
          */
         this.skeleton = false;
         /**
-         * Object of all the strings table needs.
-         * Defaults to the `TABLE` value from the i18n service.
-         */
-        this.translations = this.i18n.get().TABLE;
-        /**
          * Controls whether to show the selection checkboxes column or not.
          *
          * @type {boolean}
@@ -18578,9 +18573,11 @@ var Table = /** @class */ (function () {
          * @memberof Table
          */
         this.columnsDraggable = false;
-        this.expandButtonAriaLabel = "Expand row";
-        this.sortDescendingLabel = "Sort rows by this header in descending order";
-        this.sortAscendingLabel = "Sort rows by this header in ascending order";
+        this.checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
+        this.checkboxRowLabel = this.i18n.get("TABLE.CHECKBOX_ROW");
+        this.endOfDataText = this.i18n.get("TABLE.END_OF_DATA");
+        this.scrollTopText = this.i18n.get("TABLE.SCROLL_TOP");
+        this.filterTitle = this.i18n.get("TABLE.FILTER");
         /**
          * Controls if all checkboxes are viewed as selected.
          *
@@ -18643,6 +18640,9 @@ var Table = /** @class */ (function () {
          * @memberof Table
          */
         this.scrollLoad = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._expandButtonAriaLabel = this.i18n.get("TABLE.EXPAND_BUTTON");
+        this._sortDescendingLabel = this.i18n.get("TABLE.SORT_DESCENDING");
+        this._sortAscendingLabel = this.i18n.get("TABLE.SORT_ASCENDING");
         this.isColumnDragging = false;
         this.columnDraggedHoverIndex = -1;
         this.columnDraggedPosition = "";
@@ -18711,6 +18711,69 @@ var Table = /** @class */ (function () {
          */
         set: function (value) {
             this.showSelectionColumn = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Table.prototype, "expandButtonAriaLabel", {
+        get: function () {
+            return this._expandButtonAriaLabel;
+        },
+        set: function (value) {
+            this._expandButtonAriaLabel.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Table.prototype, "sortDescendingLabel", {
+        get: function () {
+            return this._sortDescendingLabel;
+        },
+        set: function (value) {
+            this._sortDescendingLabel.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Table.prototype, "sortAscendingLabel", {
+        get: function () {
+            return this._sortAscendingLabel;
+        },
+        set: function (value) {
+            this._sortAscendingLabel.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Table.prototype, "translations", {
+        /**
+         * Expects an object that contains some or all of:
+         * ```
+         * {
+         *		"FILTER": "Filter",
+         *		"END_OF_DATA": "You've reached the end of your content",
+         *		"SCROLL_TOP": "Scroll to top",
+         *		"CHECKBOX_HEADER": "Select all rows",
+         *		"CHECKBOX_ROW": "Select row"
+         * }
+         * ```
+         */
+        set: function (value) {
+            if (value.FILTER) {
+                this.filterTitle.next(value.FILTER);
+            }
+            if (value.END_OF_DATA) {
+                this.endOfDataText.next(value.END_OF_DATA);
+            }
+            if (value.SCROLL_TOP) {
+                this.scrollTopText.next(value.SCROLL_TOP);
+            }
+            if (value.CHECKBOX_HEADER) {
+                this.checkboxHeaderLabel.next(value.CHECKBOX_HEADER);
+            }
+            if (value.CHECKBOX_ROW) {
+                this.checkboxRowLabel.next(value.CHECKBOX_ROW);
+            }
         },
         enumerable: true,
         configurable: true
@@ -18904,10 +18967,6 @@ var Table = /** @class */ (function () {
     ], Table.prototype, "skeleton", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], Table.prototype, "translations", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", typeof (_a = typeof _table_module__WEBPACK_IMPORTED_MODULE_2__["TableModel"] !== "undefined" && _table_module__WEBPACK_IMPORTED_MODULE_2__["TableModel"]) === "function" && _a || Object),
         __metadata("design:paramtypes", [typeof (_b = typeof _table_module__WEBPACK_IMPORTED_MODULE_2__["TableModel"] !== "undefined" && _table_module__WEBPACK_IMPORTED_MODULE_2__["TableModel"]) === "function" && _b || Object])
     ], Table.prototype, "model", null);
@@ -18938,16 +18997,24 @@ var Table = /** @class */ (function () {
     ], Table.prototype, "columnsDraggable", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], Table.prototype, "expandButtonAriaLabel", void 0);
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Table.prototype, "expandButtonAriaLabel", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], Table.prototype, "sortDescendingLabel", void 0);
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Table.prototype, "sortDescendingLabel", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Object)
-    ], Table.prototype, "sortAscendingLabel", void 0);
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Table.prototype, "sortAscendingLabel", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], Table.prototype, "translations", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -18979,7 +19046,7 @@ var Table = /** @class */ (function () {
     Table = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-table",
-            template: "\n\t<table\n\tclass=\"bx--data-table-v2\"\n\t[ngClass]=\"{\n\t\t'bx--data-table-v2--compact': size === 'sm',\n\t\t'bx--data-table-v2--tall': size === 'lg',\n\t\t'bx--data-table-v2--zebra': striped,\n\t\t'bx--skeleton': skeleton\n\t}\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th *ngIf=\"model.hasExpandableRows()\"></th>\n\t\t\t\t<th *ngIf=\"!skeleton && showSelectionColumn\" style=\"width: 10px;\">\n\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t[(ngModel)]=\"selectAllCheckbox\"\n\t\t\t\t\t\t[indeterminate]=\"selectAllCheckboxSomeSelected\"\n\t\t\t\t\t\taria-label=\"Select all rows\"\n\t\t\t\t\t\t(change)=\"onSelectAllCheckboxChange()\">\n\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t</th>\n\t\t\t\t<ng-container *ngFor=\"let column of model.header; let i = index\">\n\t\t\t\t\t<th [ngClass]='{\"thead_action\": column.filterTemplate || this.sort.observers.length > 0}'\n\t\t\t\t\t*ngIf=\"column.visible\"\n\t\t\t\t\t[class]=\"column.className\"\n\t\t\t\t\t[ngStyle]=\"column.style\"\n\t\t\t\t\t[draggable]=\"columnsDraggable\"\n\t\t\t\t\t(dragstart)=\"columnDragStart($event, i)\"\n\t\t\t\t\t(dragend)=\"columnDragEnd($event, i)\">\n\t\t\t\t\t\t<span *ngIf=\"skeleton\"></span>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsResizable\"\n\t\t\t\t\t\tclass=\"column-resize-handle\"\n\t\t\t\t\t\t(mousedown)=\"columnResizeStart($event, column)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2\"\n\t\t\t\t\t\t\t*ngIf=\"this.sort.observers.length > 0 && column.sortable\"\n\t\t\t\t\t\t\t[attr.aria-label]=\"(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)\"\n\t\t\t\t\t\t\taria-live=\"polite\"\n\t\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--active': column.sorted,\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--ascending': column.ascending\n\t\t\t\t\t\t\t}\"\n\t\t\t\t\t\t\t(click)=\"sort.emit(i)\">\n\t\t\t\t\t\t\t<span *ngIf=\"!column.template\" [title]=\"column.data\">{{column.data}}</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2__icon\"\n\t\t\t\t\t\t\twidth=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"bx--table-header-label\"\n\t\t\t\t\t\t\t*ngIf=\"!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)\">\n\t\t\t\t\t\t\t<span *ngIf=\"!column.template\" [title]=\"column.data\">{{column.data}}</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t[ngClass]=\"{'active': column.filterCount > 0}\"\n\t\t\t\t\t\t\t*ngIf=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttype=\"button\"\n\t\t\t\t\t\t\taria-expanded=\"false\"\n\t\t\t\t\t\t\taria-haspopup=\"true\"\n\t\t\t\t\t\t\t[ibmTooltip]=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttrigger=\"click\"\n\t\t\t\t\t\t\t[title]=\"translations.FILTER\"\n\t\t\t\t\t\t\tplacement=\"bottom,top\"\n\t\t\t\t\t\t\t[data]=\"column.filterData\">\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\t\t\t\t\t\t\tclass=\"icon--sm\"\n\t\t\t\t\t\t\t\twidth=\"16\"\n\t\t\t\t\t\t\t\theight=\"16\"\n\t\t\t\t\t\t\t\tviewBox=\"0 0 16 16\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z\"/>\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t<span *ngIf=\"column.filterCount > 0\">\n\t\t\t\t\t\t\t\t{{column.filterCount}}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsDraggable && isColumnDragging\"\n\t\t\t\t\t\tclass=\"drop-area\">\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'left'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-left\"></div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-left\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'left', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'left', i)\">\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-right\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'right', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'right', i)\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'right'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-right\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</th>\n\t\t\t\t</ng-container>\n\t\t\t\t<th *ngIf=\"!skeleton\" [ngStyle]=\"{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}\">\n\t\t\t\t\t<!--\n\t\t\t\t\t\tScrollbar pushes body to the left so this header column is added to push\n\t\t\t\t\t\tthe title bar the same amount and keep the header and body columns aligned.\n\t\t\t\t\t-->\n\t\t\t\t</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody\n\t\t*ngIf=\"!noData; else noDataTemplate\"\n\t\t[ngStyle]=\"{'overflow-y': 'scroll'}\"\n\t\t(scroll)=\"onScroll($event)\">\n\t\t\t<ng-container *ngFor=\"let row of model.data; let i = index\">\n\t\t\t\t<tr *ngIf=\"!model.isRowFiltered(i)\"\n\t\t\t\t\t(click)=\"onRowSelect(i)\"\n\t\t\t\t\t[attr.data-parent-row]=\"(model.isRowExpandable(i) ? 'true' : null)\"\n\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t'bx--data-table-v2--selected': model.rowsSelected[i],\n\t\t\t\t\t\t'bx--parent-row-v2': model.isRowExpandable(i),\n\t\t\t\t\t\t'bx--expandable-row-v2': model.rowsExpanded[i],\n\t\t\t\t\t\t'tbody_row--selectable': enableSingleSelect,\n\t\t\t\t\t\t'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',\n\t\t\t\t\t\t'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',\n\t\t\t\t\t\t'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',\n\t\t\t\t\t\t'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'\n\t\t\t\t\t}\">\n\t\t\t\t\t<td\n\t\t\t\t\t*ngIf=\"model.hasExpandableRows()\"\n\t\t\t\t\tclass=\"bx--table-expand-v2\"\n\t\t\t\t\t[attr.data-previous-value]=\"(model.rowsExpanded[i] ? 'collapsed' : null)\">\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t*ngIf=\"model.isRowExpandable(i)\"\n\t\t\t\t\t\t(click)=\"model.expandRow(i, !model.rowsExpanded[i])\"\n\t\t\t\t\t\t[attr.aria-label]=\"expandButtonAriaLabel\"\n\t\t\t\t\t\tclass=\"bx--table-expand-v2__button\">\n\t\t\t\t\t\t\t<svg class=\"bx--table-expand-v2__svg\" width=\"7\" height=\"12\" viewBox=\"0 0 7 12\">\n\t\t\t\t\t\t\t\t<path fill-rule=\"nonzero\" d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td *ngIf=\"!skeleton && showSelectionColumn\">\n\t\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\t\taria-label=\"Select row\"\n\t\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t\t[(ngModel)]=\"model.rowsSelected[i]\"\n\t\t\t\t\t\t\t(change)=\"onRowCheckboxChange(i)\">\n\t\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t\t</td>\n\t\t\t\t\t<ng-container *ngFor=\"let item of row; let i = index\">\n\t\t\t\t\t\t<td *ngIf=\"model.header[i].visible\"\n\t\t\t\t\t\t\t[class]=\"model.header[i].className\"\n\t\t\t\t\t\t\t[ngStyle]=\"model.header[i].style\">\n\t\t\t\t\t\t\t<ng-container *ngIf=\"!item.template\">{{item.data}}</ng-container>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"item.template\" [ngTemplateOutletContext]=\"{data: item.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t</ng-container>\n\t\t\t\t</tr>\n\t\t\t\t<tr\n\t\t\t\t*ngIf=\"model.rowsExpanded[i]\"\n\t\t\t\tclass=\"bx--expandable-row-v2\"\n\t\t\t\t[attr.data-child-row]=\"(model.rowsExpanded[i] ? 'true' : null)\">\n\t\t\t\t\t<td [attr.colspan]=\"row.length + 2\">\n\t\t\t\t\t\t<ng-container *ngIf=\"!firstExpandedTemplateInRow(row)\">{{firstExpandedDataInRow(row)}}</ng-container>\n\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t[ngTemplateOutlet]=\"firstExpandedTemplateInRow(row)\"\n\t\t\t\t\t\t\t[ngTemplateOutletContext]=\"{data: firstExpandedDataInRow(row)}\">\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</ng-container>\n\t\t</tbody>\n\t\t<ng-template #noDataTemplate><ng-content></ng-content></ng-template>\n\t\t<tfoot>\n\t\t\t<tr *ngIf=\"this.model.isLoading\">\n\t\t\t\t<td class=\"table_loading-indicator\">\n\t\t\t\t\t<ibm-static-icon icon=\"loading_rows\" size=\"lg\"></ibm-static-icon>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t\t<tr *ngIf=\"this.model.isEnd\">\n\t\t\t\t<td class=\"table_end-indicator\">\n\t\t\t\t\t<h5>{{translations.END_OF_DATA}}</h5>\n\t\t\t\t\t<button (click)=\"scrollToTop($event)\" class=\"btn--secondary-sm\">\n\t\t\t\t\t\t{{translations.SCROLL_TOP}}\n\t\t\t\t\t</button>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</tfoot>\n\t</table>\n\t"
+            template: "\n\t<table\n\tclass=\"bx--data-table-v2\"\n\t[ngClass]=\"{\n\t\t'bx--data-table-v2--compact': size === 'sm',\n\t\t'bx--data-table-v2--tall': size === 'lg',\n\t\t'bx--data-table-v2--zebra': striped,\n\t\t'bx--skeleton': skeleton\n\t}\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th *ngIf=\"model.hasExpandableRows()\"></th>\n\t\t\t\t<th *ngIf=\"!skeleton && showSelectionColumn\" style=\"width: 10px;\">\n\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t[(ngModel)]=\"selectAllCheckbox\"\n\t\t\t\t\t\t[indeterminate]=\"selectAllCheckboxSomeSelected\"\n\t\t\t\t\t\t[attr.aria-label]=\"checkboxHeaderLabel | async\"\n\t\t\t\t\t\t(change)=\"onSelectAllCheckboxChange()\">\n\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t</th>\n\t\t\t\t<ng-container *ngFor=\"let column of model.header; let i = index\">\n\t\t\t\t\t<th [ngClass]='{\"thead_action\": column.filterTemplate || this.sort.observers.length > 0}'\n\t\t\t\t\t*ngIf=\"column.visible\"\n\t\t\t\t\t[class]=\"column.className\"\n\t\t\t\t\t[ngStyle]=\"column.style\"\n\t\t\t\t\t[draggable]=\"columnsDraggable\"\n\t\t\t\t\t(dragstart)=\"columnDragStart($event, i)\"\n\t\t\t\t\t(dragend)=\"columnDragEnd($event, i)\">\n\t\t\t\t\t\t<span *ngIf=\"skeleton\"></span>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsResizable\"\n\t\t\t\t\t\tclass=\"column-resize-handle\"\n\t\t\t\t\t\t(mousedown)=\"columnResizeStart($event, column)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2\"\n\t\t\t\t\t\t\t*ngIf=\"this.sort.observers.length > 0 && column.sortable\"\n\t\t\t\t\t\t\t[attr.aria-label]=\"(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async\"\n\t\t\t\t\t\t\taria-live=\"polite\"\n\t\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--active': column.sorted,\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--ascending': column.ascending\n\t\t\t\t\t\t\t}\"\n\t\t\t\t\t\t\t(click)=\"sort.emit(i)\">\n\t\t\t\t\t\t\t<span *ngIf=\"!column.template\" [title]=\"column.data\">{{column.data}}</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2__icon\"\n\t\t\t\t\t\t\twidth=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"bx--table-header-label\"\n\t\t\t\t\t\t\t*ngIf=\"!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)\">\n\t\t\t\t\t\t\t<span *ngIf=\"!column.template\" [title]=\"column.data\">{{column.data}}</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t[ngClass]=\"{'active': column.filterCount > 0}\"\n\t\t\t\t\t\t\t*ngIf=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttype=\"button\"\n\t\t\t\t\t\t\taria-expanded=\"false\"\n\t\t\t\t\t\t\taria-haspopup=\"true\"\n\t\t\t\t\t\t\t[ibmTooltip]=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttrigger=\"click\"\n\t\t\t\t\t\t\t[title]=\"filterTitle | async\"\n\t\t\t\t\t\t\tplacement=\"bottom,top\"\n\t\t\t\t\t\t\t[data]=\"column.filterData\">\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\t\t\t\t\t\t\tclass=\"icon--sm\"\n\t\t\t\t\t\t\t\twidth=\"16\"\n\t\t\t\t\t\t\t\theight=\"16\"\n\t\t\t\t\t\t\t\tviewBox=\"0 0 16 16\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z\"/>\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t<span *ngIf=\"column.filterCount > 0\">\n\t\t\t\t\t\t\t\t{{column.filterCount}}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsDraggable && isColumnDragging\"\n\t\t\t\t\t\tclass=\"drop-area\">\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'left'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-left\"></div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-left\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'left', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'left', i)\">\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-right\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'right', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'right', i)\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'right'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-right\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</th>\n\t\t\t\t</ng-container>\n\t\t\t\t<th *ngIf=\"!skeleton\" [ngStyle]=\"{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}\">\n\t\t\t\t\t<!--\n\t\t\t\t\t\tScrollbar pushes body to the left so this header column is added to push\n\t\t\t\t\t\tthe title bar the same amount and keep the header and body columns aligned.\n\t\t\t\t\t-->\n\t\t\t\t</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody\n\t\t*ngIf=\"!noData; else noDataTemplate\"\n\t\t[ngStyle]=\"{'overflow-y': 'scroll'}\"\n\t\t(scroll)=\"onScroll($event)\">\n\t\t\t<ng-container *ngFor=\"let row of model.data; let i = index\">\n\t\t\t\t<tr *ngIf=\"!model.isRowFiltered(i)\"\n\t\t\t\t\t(click)=\"onRowSelect(i)\"\n\t\t\t\t\t[attr.data-parent-row]=\"(model.isRowExpandable(i) ? 'true' : null)\"\n\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t'bx--data-table-v2--selected': model.rowsSelected[i],\n\t\t\t\t\t\t'bx--parent-row-v2': model.isRowExpandable(i),\n\t\t\t\t\t\t'bx--expandable-row-v2': model.rowsExpanded[i],\n\t\t\t\t\t\t'tbody_row--selectable': enableSingleSelect,\n\t\t\t\t\t\t'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',\n\t\t\t\t\t\t'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',\n\t\t\t\t\t\t'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',\n\t\t\t\t\t\t'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'\n\t\t\t\t\t}\">\n\t\t\t\t\t<td\n\t\t\t\t\t*ngIf=\"model.hasExpandableRows()\"\n\t\t\t\t\tclass=\"bx--table-expand-v2\"\n\t\t\t\t\t[attr.data-previous-value]=\"(model.rowsExpanded[i] ? 'collapsed' : null)\">\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t*ngIf=\"model.isRowExpandable(i)\"\n\t\t\t\t\t\t(click)=\"model.expandRow(i, !model.rowsExpanded[i])\"\n\t\t\t\t\t\t[attr.aria-label]=\"expandButtonAriaLabel | async\"\n\t\t\t\t\t\tclass=\"bx--table-expand-v2__button\">\n\t\t\t\t\t\t\t<svg class=\"bx--table-expand-v2__svg\" width=\"7\" height=\"12\" viewBox=\"0 0 7 12\">\n\t\t\t\t\t\t\t\t<path fill-rule=\"nonzero\" d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td *ngIf=\"!skeleton && showSelectionColumn\">\n\t\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\t\t[attr.aria-label]=\"checkboxRowLabel | async\"\n\t\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t\t[(ngModel)]=\"model.rowsSelected[i]\"\n\t\t\t\t\t\t\t(change)=\"onRowCheckboxChange(i)\">\n\t\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t\t</td>\n\t\t\t\t\t<ng-container *ngFor=\"let item of row; let i = index\">\n\t\t\t\t\t\t<td *ngIf=\"model.header[i].visible\"\n\t\t\t\t\t\t\t[class]=\"model.header[i].className\"\n\t\t\t\t\t\t\t[ngStyle]=\"model.header[i].style\">\n\t\t\t\t\t\t\t<ng-container *ngIf=\"!item.template\">{{item.data}}</ng-container>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"item.template\" [ngTemplateOutletContext]=\"{data: item.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t</ng-container>\n\t\t\t\t</tr>\n\t\t\t\t<tr\n\t\t\t\t*ngIf=\"model.rowsExpanded[i]\"\n\t\t\t\tclass=\"bx--expandable-row-v2\"\n\t\t\t\t[attr.data-child-row]=\"(model.rowsExpanded[i] ? 'true' : null)\">\n\t\t\t\t\t<td [attr.colspan]=\"row.length + 2\">\n\t\t\t\t\t\t<ng-container *ngIf=\"!firstExpandedTemplateInRow(row)\">{{firstExpandedDataInRow(row)}}</ng-container>\n\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t[ngTemplateOutlet]=\"firstExpandedTemplateInRow(row)\"\n\t\t\t\t\t\t\t[ngTemplateOutletContext]=\"{data: firstExpandedDataInRow(row)}\">\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</ng-container>\n\t\t</tbody>\n\t\t<ng-template #noDataTemplate><ng-content></ng-content></ng-template>\n\t\t<tfoot>\n\t\t\t<tr *ngIf=\"this.model.isLoading\">\n\t\t\t\t<td class=\"table_loading-indicator\">\n\t\t\t\t\t<ibm-static-icon icon=\"loading_rows\" size=\"lg\"></ibm-static-icon>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t\t<tr *ngIf=\"this.model.isEnd\">\n\t\t\t\t<td class=\"table_end-indicator\">\n\t\t\t\t\t<h5>{{endOfDataText | async}}</h5>\n\t\t\t\t\t<button (click)=\"scrollToTop($event)\" class=\"btn--secondary-sm\">\n\t\t\t\t\t\t{{scrollTopText | async}}\n\t\t\t\t\t</button>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</tfoot>\n\t</table>\n\t"
         }),
         __metadata("design:paramtypes", [typeof (_c = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"]) === "function" && _c || Object, typeof (_d = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_6__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_6__["I18n"]) === "function" && _d || Object])
     ], Table);
@@ -21105,4 +21172,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.5e148e38bb8fb0108506.bundle.js.map
+//# sourceMappingURL=iframe.c95630b2eff9a69c6c1c.bundle.js.map
