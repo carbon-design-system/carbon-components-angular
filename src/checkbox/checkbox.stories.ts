@@ -12,19 +12,28 @@ storiesOf("Checkbox", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-checkbox
-			[checked]="checked"
-			[disabled]="disabled"
-			[indeterminate]="indeterminate"
-			(change)="onChange($event)"
-			(indeterminateChange)="onIndeterminateChange($event)">
-			Checkbox
-		</ibm-checkbox>
+		<fieldset class="bx--fieldset">
+			<legend class="bx--label">Checkbox</legend>
+			<ibm-checkbox
+				checked="true"
+				(change)="onChange($event)">
+				Checkbox
+			</ibm-checkbox>
+			<ibm-checkbox
+				indeterminate="true"
+				(change)="onChange($event)"
+				(indeterminateChange)="onIndeterminateChange($event)">
+				Indeterminate checkbox
+			</ibm-checkbox>
+			<ibm-checkbox
+				disabled="true"
+				(change)="onChange($event)"
+				(indeterminateChange)="onIndeterminateChange($event)">
+				Disabled checkbox
+			</ibm-checkbox>
+		</fieldset>
 	`,
 		props: {
-			checked: boolean("checked", false),
-			disabled: boolean("disabled", false),
-			indeterminate: boolean("indeterminate", false),
 			onChange: action("Change fired!"),
 			onIndeterminateChange: action("Indeterminate change fired!")
 		}
