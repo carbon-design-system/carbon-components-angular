@@ -53,8 +53,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					viewBox="0 0 10 10"
 					width="10"
 					focusable="false"
-					aria-label="Clear all selected items"
-					alt="Clear all selected items">
+					aria-label="Clear all selected items">
 					<title>Clear all selected items</title>
 					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
 				</svg>
@@ -77,7 +76,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					role="img"
 					viewBox="0 0 10 5"
 					width="10"
-					alt="Close menu"
 					aria-label="Close menu">
 					<title>Close menu</title>
 					<path d="M0 0l5 4.998L10 0z"></path>

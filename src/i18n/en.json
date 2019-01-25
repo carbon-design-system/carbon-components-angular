@@ -117,7 +117,13 @@
 		"NEXT_3": "Scroll to next 3 pages",
 		"FILTER": "Filter",
 		"END_OF_DATA": "You've reached the end of your content",
-		"SCROLL_TOP": "Scroll to top"
+		"SCROLL_TOP": "Scroll to top",
+		"CHECKBOX_HEADER": "Select all rows",
+		"CHECKBOX_ROW": "Select row",
+		"EXPAND_BUTTON": "Expand row",
+		"SORT_DESCENDING": "Sort rows by this header in descending order",
+		"SORT_ASCENDING": "Sort rows by this header in ascending order"
+
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
