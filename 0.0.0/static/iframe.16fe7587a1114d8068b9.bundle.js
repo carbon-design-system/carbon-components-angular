@@ -1553,8 +1553,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { ButtonModule } from '../';\n\nstoriesOf('Button', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ButtonModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<button ibmButton [size]=\"size\">A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\" [size]=\"size\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\" [size]=\"size\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\" [size]=\"size\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\" [size]=\"size\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\" [size]=\"size\">A primary danger button</button>\n\t\t`,\n    props: {\n      size: select('Size of the buttons', ['normal', 'sm'], 'normal'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<button ibmButton skeleton=\"true\"></button>\n\t\t\t&nbsp;\n\t\t\t<button ibmButton skeleton=\"true\" size=\"sm\"></button>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "Button@Skeleton": { "startLoc": { "col": 7, "line": 33 }, "endLoc": { "col": 4, "line": 39 } }, "Button@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 32 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select } from '@storybook/addon-knobs/angular';\n\nimport { ButtonModule } from '../';\n\nstoriesOf('Button', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [ButtonModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<button [ibmButton]=\"ibmButton\" [size]=\"size\">Button</button>\n\t\t\t&nbsp;\n\t\t\t<button [ibmButton]=\"ibmButton\" [size]=\"size\" disabled=\"true\">Button</button>\n\t\t\t&nbsp;\n\t\t\t<button [ibmButton]=\"ibmButton\" [size]=\"size\">\n\t\t\t\tWith icon\n\t\t\t\t<svg class=\"bx--btn__icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t<path d=\"M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\" fill-rule=\"evenodd\" />\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t`,\n    props: {\n      ibmButton: select(\n        'Button kind',\n        ['primary', 'secondary', 'tertiary', 'ghost', 'danger', 'danger--primary'],\n        'primary'\n      ),\n      size: select('Size of the buttons', ['normal', 'sm'], 'normal'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<button ibmButton skeleton=\"true\"></button>\n\t\t\t&nbsp;\n\t\t\t<button ibmButton skeleton=\"true\" size=\"sm\"></button>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Button@Skeleton": { "startLoc": { "col": 7, "line": 37 }, "endLoc": { "col": 4, "line": 43 } }, "Button@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 36 } } };
 
 
 
@@ -1564,8 +1564,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Button", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t\t<button ibmButton [size]=\"size\">A button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"secondary\" [size]=\"size\">A secondary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"tertiary\" [size]=\"size\">A tertiary button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"ghost\" [size]=\"size\">A ghost button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger\" [size]=\"size\">A danger button</button>\n\t\t\t<br><br>\n\t\t\t<button ibmButton=\"danger--primary\" [size]=\"size\">A primary danger button</button>\n\t\t",
+    template: "\n\t\t\t<button [ibmButton]=\"ibmButton\" [size]=\"size\">Button</button>\n\t\t\t&nbsp;\n\t\t\t<button [ibmButton]=\"ibmButton\" [size]=\"size\" disabled=\"true\">Button</button>\n\t\t\t&nbsp;\n\t\t\t<button [ibmButton]=\"ibmButton\" [size]=\"size\">\n\t\t\t\tWith icon\n\t\t\t\t<svg class=\"bx--btn__icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t<path d=\"M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\" fill-rule=\"evenodd\" />\n\t\t\t\t</svg>\n\t\t\t</button>\n\t\t",
     props: {
+        ibmButton: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary"], "primary"),
         size: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("Size of the buttons", ["normal", "sm"], "normal")
     }
 }); })
@@ -9740,7 +9741,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, SliderModule, Slider, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, SliderModule, Slider, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9908,13 +9909,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_20__["ModalService"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_20__["ModalModule"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_20__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_20__["ModalButtonType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_20__["BaseModal"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_20__["ModalModule"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_21__["NotificationService"]; });
@@ -11870,7 +11871,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, AlertModalType, ModalButtonType, BaseModal, ModalModule */
+/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21172,4 +21173,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.c95630b2eff9a69c6c1c.bundle.js.map
+//# sourceMappingURL=iframe.16fe7587a1114d8068b9.bundle.js.map
