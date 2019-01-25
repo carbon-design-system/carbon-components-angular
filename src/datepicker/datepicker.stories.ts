@@ -14,13 +14,6 @@ storiesOf("DatePicker", module)
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("Simple", () => ({
-		template: `
-		<ibm-date-picker view="simple">
-		</ibm-date-picker>
-		`
-	}))
-	.addDecorator(withKnobs)
 	.add("Single", () => ({
 		template: `
 		<ibm-date-picker view="single"
