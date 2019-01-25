@@ -31,9 +31,7 @@ export class Button implements OnInit {
 	@Input() size: "normal" | "sm" = "normal";
 	// a whole lot of HostBindings ... this way we don't have to touch the elementRef directly
 	@HostBinding("class.bx--btn") get baseClass() {
-		if (!this.toolbarAction) {
-			return true;
-		}
+		return !this.toolbarAction;
 	}
 	@HostBinding("class.bx--btn--primary") primary = true;
 	@HostBinding("class.bx--btn--secondary") secondary = false;
