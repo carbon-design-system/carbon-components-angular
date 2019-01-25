@@ -322,7 +322,7 @@ import { I18n } from "./../i18n/i18n.module";
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
-						>/ibm-checkbox>
+						</ibm-checkbox>
 					</td>
 					<ng-container *ngFor="let item of row; let i = index">
 						<td *ngIf="model.header[i].visible"
