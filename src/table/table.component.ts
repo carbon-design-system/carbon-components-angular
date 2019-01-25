@@ -8,6 +8,8 @@ import {
 import { Subscription, fromEvent } from "rxjs";
 
 import { TableModel } from "./table.module";
+import { TableHeaderItem } from "./table-header-item.class";
+import { TableItem } from "./table-item.class";
 import { getScrollbarWidth } from "../common/utils";
 import { I18n } from "./../i18n/i18n.module";
 
@@ -165,17 +167,18 @@ import { I18n } from "./../i18n/i18n.module";
 	[ngClass]="{
 		'bx--data-table-v2--compact': size === 'sm',
 		'bx--data-table-v2--tall': size === 'lg',
-		'bx--data-table-v2--zebra': striped
+		'bx--data-table-v2--zebra': striped,
+		'bx--skeleton': skeleton
 	}">
 		<thead>
 			<tr>
 				<th *ngIf="model.hasExpandableRows()"></th>
-				<th *ngIf="showSelectionColumn">
+				<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">
 					<ibm-checkbox
 						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
-						aria-label="Select all rows"
+						[attr.aria-label]="checkboxHeaderLabel | async"
 						(change)="onSelectAllCheckboxChange()">
 					</ibm-checkbox>
 				</th>
@@ -187,6 +190,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)">
+						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
 						class="column-resize-handle"
@@ -195,6 +199,8 @@ import { I18n } from "./../i18n/i18n.module";
 						<button
 							class="bx--table-sort-v2"
 							*ngIf="this.sort.observers.length > 0 && column.sortable"
+							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
+							aria-live="polite"
 							[ngClass]="{
 								'bx--table-sort-v2--active': column.sorted,
 								'bx--table-sort-v2--ascending': column.ascending
@@ -206,16 +212,13 @@ import { I18n } from "./../i18n/i18n.module";
 							</ng-template>
 							<svg
 							class="bx--table-sort-v2__icon"
-							width="10" height="5" viewBox="0 0 10 5"
-							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)"
-							[attr.alt]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)">
-								<title>{{(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel)}}</title>
+							width="10" height="5" viewBox="0 0 10 5">
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
 						</button>
 						<span
 							class="bx--table-header-label"
-							*ngIf="this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
+							*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
 							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 							<ng-template
 								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
@@ -229,7 +232,7 @@ import { I18n } from "./../i18n/i18n.module";
 							aria-haspopup="true"
 							[ibmTooltip]="column.filterTemplate"
 							trigger="click"
-							[title]="translations.FILTER"
+							[title]="filterTitle | async"
 							placement="bottom,top"
 							[data]="column.filterData">
 							<svg
@@ -271,7 +274,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 					</th>
 				</ng-container>
-				<th [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+				<th *ngIf="!skeleton" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 					<!--
 						Scrollbar pushes body to the left so this header column is added to push
 						the title bar the same amount and keep the header and body columns aligned.
@@ -304,16 +307,16 @@ import { I18n } from "./../i18n/i18n.module";
 						<button
 						*ngIf="model.isRowExpandable(i)"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])"
-						[attr.aria-label]="expandButtonAriaLabel"
+						[attr.aria-label]="expandButtonAriaLabel | async"
 						class="bx--table-expand-v2__button">
 							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
 								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
 							</svg>
 						</button>
 					</td>
-					<td *ngIf="showSelectionColumn">
+					<td *ngIf="!skeleton && showSelectionColumn">
 						<ibm-checkbox
-							aria-label="Select row"
+							[attr.aria-label]="checkboxRowLabel | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
@@ -349,9 +352,9 @@ import { I18n } from "./../i18n/i18n.module";
 		<tfoot>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
-					<h5>{{translations.END_OF_DATA}}</h5>
+					<h5>{{endOfDataText | async}}</h5>
 					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						{{translations.SCROLL_TOP}}
+						{{scrollTopText | async}}
 					</button>
 				</td>
 			</tr>
@@ -372,6 +375,37 @@ import { I18n } from "./../i18n/i18n.module";
 })
 export class Table {
 	/**
+	 * Creates a skeleton model with a row and column count specified by the user
+	 *
+	 * Example:
+	 *
+	 * ```typescript
+	 * this.model = Table.skeletonModel(5, 5);
+	 * ```
+	 *
+	 * @param {number} rowCount
+	 * @param {number} columnCount
+	 */
+	static skeletonModel(rowCount: number, columnCount: number) {
+		const model = new TableModel();
+		let header = new Array<TableHeaderItem>();
+		let data = new Array<Array<TableItem>>();
+		let row = new Array<TableItem>();
+
+		for (let i = 0; i < columnCount; i++) {
+			header.push(new TableHeaderItem());
+			row.push(new TableItem());
+		}
+		for (let i = 0; i < rowCount - 1; i++) {
+			data.push(row);
+		}
+
+		model.header = header;
+		model.data = data;
+		return model;
+	}
+
+	/**
 	 * Size of the table rows.
 	 *
 	 * @type {("sm" | "md" | "lg")}
@@ -379,10 +413,9 @@ export class Table {
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
-	 * Object of all the strings table needs.
-	 * Defaults to the `TABLE` value from the i18n service.
+	 * Set to `true` for a loading table.
 	 */
-	@Input() translations = this.i18n.get().TABLE;
+	@Input() skeleton = false;
 
 	/**
 	 * `TableModel` with data the table is to display.
@@ -466,9 +499,64 @@ export class Table {
 	 */
 	@Input() columnsDraggable = false;
 
-	@Input() expandButtonAriaLabel = "Expand row";
-	@Input() sortDescendingLabel = "Sort rows by this header in descending order";
-	@Input() sortAscendingLabel = "Sort rows by this header in ascending order";
+	@Input()
+	set expandButtonAriaLabel(value) {
+		this._expandButtonAriaLabel.next(value);
+	}
+	get expandButtonAriaLabel() {
+		return this._expandButtonAriaLabel;
+	}
+	@Input()
+	set sortDescendingLabel(value) {
+		this._sortDescendingLabel.next(value);
+	}
+	get sortDescendingLabel() {
+		return this._sortDescendingLabel;
+	}
+	@Input()
+	set sortAscendingLabel(value) {
+		this._sortAscendingLabel.next(value);
+	}
+	get sortAscendingLabel() {
+		return this._sortAscendingLabel;
+	}
+
+	/**
+	 * Expects an object that contains some or all of:
+	 * ```
+	 * {
+	 *		"FILTER": "Filter",
+	 *		"END_OF_DATA": "You've reached the end of your content",
+	 *		"SCROLL_TOP": "Scroll to top",
+	 *		"CHECKBOX_HEADER": "Select all rows",
+	 *		"CHECKBOX_ROW": "Select row"
+	 * }
+	 * ```
+	 */
+	@Input()
+	set translations (value) {
+		if (value.FILTER) {
+			this.filterTitle.next(value.FILTER);
+		}
+		if (value.END_OF_DATA) {
+			this.endOfDataText.next(value.END_OF_DATA);
+		}
+		if (value.SCROLL_TOP) {
+			this.scrollTopText.next(value.SCROLL_TOP);
+		}
+		if (value.CHECKBOX_HEADER) {
+			this.checkboxHeaderLabel.next(value.CHECKBOX_HEADER);
+		}
+		if (value.CHECKBOX_ROW) {
+			this.checkboxRowLabel.next(value.CHECKBOX_ROW);
+		}
+	}
+
+	checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
+	checkboxRowLabel = this.i18n.get("TABLE.CHECKBOX_ROW");
+	endOfDataText = this.i18n.get("TABLE.END_OF_DATA");
+	scrollTopText = this.i18n.get("TABLE.SCROLL_TOP");
+	filterTitle = this.i18n.get("TABLE.FILTER");
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
@@ -548,6 +636,10 @@ export class Table {
 	}
 
 	protected _model: TableModel;
+
+	protected _expandButtonAriaLabel  = this.i18n.get("TABLE.EXPAND_BUTTON");
+	protected _sortDescendingLabel = this.i18n.get("TABLE.SORT_DESCENDING");
+	protected _sortAscendingLabel = this.i18n.get("TABLE.SORT_ASCENDING");
 
 	protected columnResizeWidth: number;
 	protected columnResizeMouseX: number;

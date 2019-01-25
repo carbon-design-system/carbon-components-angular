@@ -2,6 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, number } from "@storybook/addon-knobs";
 
 import { DialogModule } from "../../";
+import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 let options;
 
@@ -17,14 +18,15 @@ storiesOf("Overflow Menu", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DialogModule
+				DialogModule,
+				PlaceholderModule
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-overflow-menu>
+			<ibm-overflow-menu [flip]="flip">
 				<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 					An example option that is really long to show what should be done to handle long text
 				</ibm-overflow-menu-option>
@@ -36,25 +38,12 @@ storiesOf("Overflow Menu", module)
 				<ibm-overflow-menu-option disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 			</ibm-overflow-menu>
-
-			<span>Flipped OverflowMenu</span>
-			<ibm-overflow-menu flip="true" style="display: inline-block;">
-				<ibm-overflow-menu-option>
-					An example option that is really long to show what should be done to handle long text
-				</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
-				<li class="bx--overflow-menu-options__option">
-					<button class="bx--overflow-menu-options__btn">A fully custom option</button>
-				</li>
-				<ibm-overflow-menu-option>Option 4</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option disabled="true">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
-			</ibm-overflow-menu>
-			<ibm-dialog-placeholder></ibm-dialog-placeholder>
+			<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			click: () => console.log("click"),
-			selected: () => console.log("selected")
+			selected: () => console.log("selected"),
+			flip: boolean("Flip overflow to open on the left", false)
 		}
 	}))
 	.add("Dynamic", () => ({

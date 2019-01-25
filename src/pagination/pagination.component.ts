@@ -36,8 +36,19 @@ import { BehaviorSubject } from "rxjs";
 @Component({
 	selector: "ibm-pagination",
 	template: `
-	<div class="bx--pagination">
-		<div class="bx--pagination__left">
+	<div
+		class="bx--pagination"
+		[ngClass]="{
+			'bx--skeleton' : skeleton
+		}">
+
+		<div *ngIf="skeleton" class="bx--pagination__left">
+			<p class="bx--skeleton__text" style="width: 70px"></p>
+			<p class="bx--skeleton__text" style="width: 35px"></p>
+			<p class="bx--skeleton__text" style="width: 105px"></p>
+		</div>
+
+		<div *ngIf="!skeleton" class="bx--pagination__left">
 			<span class="bx--pagination__text">{{itemsPerPageText | async}}</span>
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline">
@@ -64,8 +75,7 @@ import { BehaviorSubject } from "rxjs";
 						role="img"
 						viewBox="0 0 10 5"
 						width="10"
-						[attr.aria-label]="optionsListText | async"
-						[attr.alt]="optionsListText | async">
+						[attr.aria-label]="optionsListText | async">
 						<title>{{optionsListText | async}}</title>
 						<path d="M0 0l5 4.998L10 0z"></path>
 					</svg>
@@ -76,7 +86,12 @@ import { BehaviorSubject } from "rxjs";
 				{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
 			</span>
 		</div>
-		<div class="bx--pagination__right bx--pagination--inline">
+
+		<div *ngIf="skeleton" class="bx--pagination__right bx--pagination--inline">
+			<p class="bx--skeleton__text" style="width: 70px"></p>
+		</div>
+
+		<div *ngIf="!skeleton" class="bx--pagination__right bx--pagination--inline">
 			<span class="bx--pagination__text">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</span>
 			<button
 				class="bx--pagination__button bx--pagination__button--backward"
@@ -89,8 +104,7 @@ import { BehaviorSubject } from "rxjs";
 					role="img"
 					viewBox="0 0 7 12"
 					width="7"
-					[attr.aria-label]="backwardText | async"
-					[attr.alt]="backwardText | async">
+					[attr.aria-label]="backwardText | async">
 					<title>{{backwardText |async }}</title>
 					<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
 				</svg>
@@ -108,8 +122,7 @@ import { BehaviorSubject } from "rxjs";
 					role="img"
 					viewBox="0 0 10 5"
 					width="10"
-					[attr.aria-label]="optionsListText | async"
-					[attr.alt]="optionsListText | async">
+					[attr.aria-label]="optionsListText | async">
 					<title>{{optionsListText | async}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
@@ -126,8 +139,7 @@ import { BehaviorSubject } from "rxjs";
 				role="img"
 				viewBox="0 0 7 12"
 				width="7"
-				[attr.aria-label]="forwardText | async"
-				[attr.alt]="forwardText | async">
+				[attr.aria-label]="forwardText | async">
 				<title>{{forwardText | async}}</title>
 				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
 			</svg>
@@ -139,6 +151,10 @@ import { BehaviorSubject } from "rxjs";
 export class Pagination {
 	static paginationCounter = 0;
 
+	/**
+	 * Set to `true` for a loading pagination component.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * `PaginationModel` with the information about pages you're controlling.
 	 *
@@ -215,11 +231,12 @@ export class Pagination {
 	 * @memberof Pagination
 	 */
 	get lastPage(): number {
-		return Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		const last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
+		return last > 0 ? last : 1;
 	}
 
 	get startItemIndex() {
-		return (this.currentPage - 1) * this.model.pageLength + 1;
+		return this.endItemIndex > 0 ? (this.currentPage - 1) * this.model.pageLength + 1 : 0;
 	}
 
 	get endItemIndex() {

@@ -1,9 +1,1 @@
 @import "~carbon-components/src/globals/scss/styles";
-
-
-body {
-	padding: 20px;
-	// for tooltips/popovers ... can be on any chld element before the popover
-	// but body is most conveient
-	position: relative;
-}

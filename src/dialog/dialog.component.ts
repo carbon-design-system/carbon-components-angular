@@ -19,7 +19,7 @@ import {
 import { throttleTime } from "rxjs/operators";
 // the AbsolutePosition is required to import the declaration correctly
 import position, { AbsolutePosition } from "./../utils/position";
-import { cycleTabs } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
 
@@ -146,7 +146,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			}
 		}
 		this.placeDialog();
-		dialogElement.focus();
+		if (getFocusElementList(this.dialog.nativeElement).length > 0) {
+			dialogElement.focus();
+		}
 		const parentEl: HTMLElement = this.dialogConfig.parentRef.nativeElement;
 		let node = parentEl;
 		let observables = [];
@@ -205,7 +207,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * Uses the position service to position the `Dialog` in screen space
-	 * @memberof Dialog
 	 */
 	placeDialog(): void {
 		// helper to find the position based on the current/given environment
@@ -224,7 +225,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		let el = this.dialog.nativeElement;
 		let dialogPlacement = this.placement;
 
-		// split always retuns an array, so we can just use the auto position logic
+		// split always returns an array, so we can just use the auto position logic
 		// for single positions too
 		const placements = this.dialogConfig.placement.split(",");
 		const weightedPlacements = placements.map(placement => {
@@ -247,7 +248,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			};
 		});
 
-		// sort the placments from best to worst
+		// sort the placements from best to worst
 		weightedPlacements.sort((a, b) => b.weight - a.weight);
 		// pick the best!
 		dialogPlacement = weightedPlacements[0].placement;
@@ -263,7 +264,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Sets up a KeyboardEvent to close `Dialog` with Escape key.
 	 * @param {KeyboardEvent} event
-	 * @memberof Dialog
 	 */
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {

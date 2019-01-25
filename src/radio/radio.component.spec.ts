@@ -65,7 +65,6 @@ describe("RadioComponent", () => {
 	let fixture: ComponentFixture<Radio>;
 	let de: DebugElement;
 	let el: HTMLElement;
-	let inputElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -78,7 +77,6 @@ describe("RadioComponent", () => {
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));
 		el = de.nativeElement;
-		inputElement = fixture.debugElement.query(By.css("input")).nativeElement;
 	});
 
 	it("should work", () => {
