@@ -14,20 +14,17 @@ storiesOf("Checkbox", module).addDecorator(
 		template: `
 		<fieldset class="bx--fieldset">
 			<legend class="bx--label">Checkbox</legend>
-			<!-- input + label -->
 			<ibm-checkbox
 				checked="true"
 				(change)="onChange($event)">
 				Checkbox
 			</ibm-checkbox>
-			<!-- input + label indeterminate -->
 			<ibm-checkbox
 				indeterminate="true"
 				(change)="onChange($event)"
 				(indeterminateChange)="onIndeterminateChange($event)">
 				Indeterminate checkbox
 			</ibm-checkbox>
-			<!-- input + label disabled -->
 			<ibm-checkbox
 				disabled="true"
 				(change)="onChange($event)"
