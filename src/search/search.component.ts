@@ -63,25 +63,25 @@ export class SearchChange {
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onSearch($event.target.value)"/>
-					<button
-						*ngIf="toolbar; else svg"
-						class="bx--toolbar-search__btn"
-						aria-label="Toolbar search"
-						tabindex="0"
-						(click)="openSearch($event)">
-						<ng-template [ngTemplateOutlet]="svg"></ng-template>
-					</button>
-					<ng-template #svg>
-						<svg
-							class="bx--search-magnifier"
-							width="16"
-							height="16"
-							viewBox="0 0 16 16">
-							<path
-								d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-								fill-rule="nonzero"/>
-						</svg>
-					</ng-template>
+				<button
+					*ngIf="toolbar; else svg"
+					class="bx--toolbar-search__btn"
+					aria-label="Toolbar search"
+					tabindex="0"
+					(click)="openSearch($event)">
+					<ng-template [ngTemplateOutlet]="svg"></ng-template>
+				</button>
+				<ng-template #svg>
+					<svg
+						class="bx--search-magnifier"
+						width="16"
+						height="16"
+						viewBox="0 0 16 16">
+						<path
+							d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+							fill-rule="nonzero"/>
+					</svg>
+				</ng-template>
 			</ng-template>
 
 			<button
