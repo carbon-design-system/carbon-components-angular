@@ -1,12 +1,14 @@
 import { Component, Input } from "@angular/core";
 
+let nextId = 0;
+
 @Component({
 	selector: "ibm-date-picker-input",
 	template: `
 	<div class="bx--form-item">
 		<div class="bx--date-picker bx--date-picker--simple bx--date-picker">
 			<div class="bx--date-picker-container">
-				<label [for]="rangeId" class="bx--label">
+				<label [for]="id" class="bx--label">
 					{{label}}
 				</label>
 				<svg *ngIf="type == 'single'"
@@ -23,11 +25,11 @@ import { Component, Input } from "@angular/core";
 				autocomplete="off"
 				type="text"
 				class="bx--date-picker__input"
-				pattern="\d{1,2}/\d{1,2}/\d{4}"
-				placeholder="mm/dd/yyyy"
+				[pattern]="pattern"
+				[placeholder]="placeholder"
 				data-date-picker-input
 				[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
-				[id]= "type == 'range' ? rangeId : 'single'"/>
+				[id]= "type == 'range' ? id : 'single'"/>
 			</div>
 
 			<svg *ngIf= "type == 'range' && hasIcon"
@@ -53,8 +55,15 @@ export class DatePickerInput {
 	 * @memberof Datepicker
 	 */
 	@Input() type: "simple" | "single" | "range" = "simple";
-	@Input() rangeId: string;
+
+	@Input() id = `datepicker-${nextId++}`;
+
 	@Input() hasIcon: string;
+
 	@Input() label: string;
+
+	@Input() placeholder = "mm/dd/yyyy";
+
+	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
 
 }

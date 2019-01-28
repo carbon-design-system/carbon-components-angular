@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
+let nextId = 0;
+
 @Component({
 	selector: "ibm-date-picker",
 	template: `
@@ -16,7 +18,9 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 					<div class="bx--date-picker-container" #flatpickr>
 						<ibm-date-picker-input
 						[label]= "label"
-						[rangeId]="'firstRangeInput'"
+						[placeholder]= "placeholder"
+						[pattern]= "pattern"
+						[id]= "id"
 						[type]= "range ? 'range' : 'single'"
 						[hasIcon]= "range ? false : true"
 						(selectDates)="selectDates.emit($event)">
@@ -27,7 +31,9 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 					<div *ngIf="range" class="bx--date-picker-container">
 						<ibm-date-picker-input
 						[label]= "label"
-						[rangeId]="'secondRangeInput'"
+						[placeholder]= "placeholder"
+						[pattern]= "pattern"
+						[id]= "id + '-rangeInput'"
 						[type]= "range ? 'range' : 'single'"
 						[hasIcon]= "range ? true : null"
 						(selectDates)="selectDates.emit($event)">
@@ -39,14 +45,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 	</div>
 	`
 })
-// <label for="secondRangeInput" class="bx--label">Date Picker label</label>
-// 						<input
-// 						type="text"
-// 						id="secondRangeInput"
-// 						class="bx--date-picker__input"
-// 						pattern="\d{1,2}/\d{1,2}/\d{4}"
-// 						placeholder="mm/dd/yyyy"
-// 						autocomplete="off"/>
+
 export class DatePicker {
 	/**
 	 * Select a calendar view for the `model`.
@@ -57,6 +56,11 @@ export class DatePicker {
 
 	@Input() label: string;
 
+	@Input() placeholder = "mm/dd/yyyy";
+
+	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+
+	@Input() id = `datepicker-${nextId++}`;
 
 	@Output() selectDates: EventEmitter<any> = new EventEmitter();
 
@@ -68,7 +72,7 @@ export class DatePicker {
 
 	flatpickrOptionsRange: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
-		"plugins": [rangePlugin({ input: "#secondRangeInput"})],
+		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
 		allowInput: true,
 		onChange: (selectedDates: any) => { this.doSelect(selectedDates); }
 	};
@@ -76,4 +80,6 @@ export class DatePicker {
 	doSelect(selectedDates) {
 		this.selectDates.emit(selectedDates);
 	}
+
+
 }
