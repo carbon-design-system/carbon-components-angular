@@ -30,7 +30,7 @@ let nextId = 0;
 
 					<div *ngIf="range" class="bx--date-picker-container">
 						<ibm-date-picker-input
-						[label]= "label"
+						[label]= "label2"
 						[placeholder]= "placeholder"
 						[pattern]= "pattern"
 						[id]= "id + '-rangeInput'"
@@ -55,6 +55,8 @@ export class DatePicker {
 	@Input() range: boolean;
 
 	@Input() label: string;
+
+	@Input() label2: string;
 
 	@Input() placeholder = "mm/dd/yyyy";
 

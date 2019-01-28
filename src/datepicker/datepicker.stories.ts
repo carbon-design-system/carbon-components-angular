@@ -28,7 +28,8 @@ storiesOf("DatePicker", module)
 	.add("Range", () => ({
 		template: `
 		<ibm-date-picker
-		label="Date Picker Label2"
+		label="Date Picker Label"
+		label2="Date Picker Label2"
 		range="true"
 		(selectDates)="selectDates($event)">
 		</ibm-date-picker>
