@@ -16,17 +16,20 @@ storiesOf("DatePicker", module)
 	.addDecorator(withKnobs)
 	.add("Single", () => ({
 		template: `
-		<ibm-date-picker view="single"
-			(selectDate)="selectDate($event)">
+		<ibm-date-picker
+			label="Date Picker Label"
+			(selectDates)="selectDates($event)">
 		</ibm-date-picker>
 		`,
 		props: {
-			selectDate: action("Date change fired!")
+			selectDates: action("Date change fired!")
 		}
 	}))
 	.add("Range", () => ({
 		template: `
-		<ibm-date-picker view="range"
+		<ibm-date-picker
+		label="Date Picker Label"
+		range="true"
 		(selectDates)="selectDates($event)">
 		</ibm-date-picker>
 		`,
