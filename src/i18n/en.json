@@ -125,6 +125,9 @@
 		"SORT_ASCENDING": "Sort rows by this header in ascending order"
 
 	},
+	"TABLE_TOOLBAR": {
+		"ACTION_BAR": "Table Action Bar"
+	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
