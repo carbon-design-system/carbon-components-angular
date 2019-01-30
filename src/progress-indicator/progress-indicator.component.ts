@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { ExperimentalService } from "./../experimental.module";
 
 @Component({
 	selector: "ibm-progress-indicator",
@@ -20,11 +21,26 @@ import { Component, Input } from "@angular/core";
 				</g>
 			</svg>
 			<svg *ngIf="step.state == 'current'">
-				<circle cx="12" cy="12" r="12"></circle>
-				<circle cx="12" cy="12" r="6"></circle>
+				<!-- old icon -->
+				<g *ngIf="!isExperimental">
+					<circle cx="12" cy="12" r="12"></circle>
+					<circle cx="12" cy="12" r="6"></circle>
+				</g>
+				<!-- new icon -->
+				<path *ngIf="isExperimental" d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>
 			</svg>
 			<svg *ngIf="step.state == 'incomplete'">
-				<circle cx="12" cy="12" r="12"></circle>
+				<!-- old icon -->
+				<circle *ngIf="!isExperimental" cx="12" cy="12" r="12"></circle>
+				<!-- new icon -->
+				<path
+					*ngIf="isExperimental"
+					d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
+				</path>
+			</svg>
+			<svg *ngIf="step.state == 'error'">
+				<path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"></path>
+				<path d="M7.5 4h1v5h-1zm.5 6.2c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8s-.4-.8-.8-.8z"></path>
 			</svg>
 			<p class="bx--progress-label">{{step.text}}</p>
 			<span class="bx--progress-line"></span>
@@ -43,5 +59,12 @@ export class ProgressIndicator {
 	}
 
 	@Input() steps = [];
+
 	@Input() skeleton = false;
+
+	get isExperimental() {
+		return this.experimental.isExperimental;
+	}
+
+	constructor(protected experimental: ExperimentalService) {}
 }

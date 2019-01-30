@@ -8,6 +8,7 @@ import { Notification } from "./notification.component";
 import { NotificationService } from "./notification.service";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18nModule } from "./../i18n/i18n.module";
+import { ExperimentalModule } from "./../experimental.module";
 
 export { NotificationService } from "./notification.service";
 export { NotificationDisplayService } from "./notification-display.service";
@@ -24,7 +25,12 @@ export { Toast } from "./toast.component";
 		Toast
 	],
 	entryComponents: [Notification, Toast],
-	imports: [CommonModule, StaticIconModule, I18nModule],
+	imports: [
+		CommonModule,
+		StaticIconModule,
+		I18nModule,
+		ExperimentalModule
+	],
 	providers: [NotificationService, NotificationDisplayService]
 })
 export class NotificationModule {}

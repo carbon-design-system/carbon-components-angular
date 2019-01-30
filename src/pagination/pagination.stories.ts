@@ -12,6 +12,8 @@ import {
 import { NFormsModule } from "..";
 import { PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";
+import { ExperimentalModule } from "../experimental.module";
+import { ExperimentalComponenent } from "../../.storybook/experimental.component";
 
 @Component({
 	selector: "app-pagination",
@@ -50,16 +52,19 @@ storiesOf("Pagination", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,
-				PaginationModule
+				PaginationModule,
+				ExperimentalModule
 			],
 			declarations: [
-				PaginationStory
+				PaginationStory,
+				ExperimentalComponenent
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("default", () => ({
 		template: `
+			<app-experimental-component></app-experimental-component>
 			<div style="width: 800px">
 				<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
 			</div>
@@ -70,6 +75,7 @@ storiesOf("Pagination", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
+			<app-experimental-component></app-experimental-component>
 			<div style="width: 800px">
 				<app-pagination [totalDataLength]="totalDataLength" [skeleton]="true"></app-pagination>
 			</div>

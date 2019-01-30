@@ -12,7 +12,6 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import {
 	withKnobs,
 	boolean,
-	selectV2,
 	select,
 	number
 } from "@storybook/addon-knobs/angular";
@@ -23,7 +22,6 @@ import {
 	TableModel,
 	TableItem,
 	TableHeaderItem,
-	TableToolbar,
 	NFormsModule,
 	DialogModule,
 	SearchModule,
@@ -478,7 +476,7 @@ storiesOf("Table", module).addDecorator(
 	`,
 		props: {
 			model: simpleModel,
-			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true),
 			sortable: boolean("sortable", true)
@@ -505,7 +503,7 @@ storiesOf("Table", module).addDecorator(
 		`],
 		props: {
 			model: emptyModel,
-			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true)
 		}
@@ -605,7 +603,7 @@ storiesOf("Table", module).addDecorator(
 			</div>
 		`,
 		props: {
-			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true)
 		}
@@ -621,7 +619,7 @@ storiesOf("Table", module).addDecorator(
 			</div>
 		`,
 		props: {
-			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true)
 		}
@@ -637,7 +635,7 @@ storiesOf("Table", module).addDecorator(
 			</div>
 		`,
 		props: {
-			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true)
 		}
@@ -664,7 +662,7 @@ storiesOf("Table", module).addDecorator(
 		</div>
 	`,
 		props: {
-			size: selectV2("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			striped: boolean("striped", false)
 		}
 	}));
