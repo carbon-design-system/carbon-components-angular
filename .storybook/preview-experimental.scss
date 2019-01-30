@@ -1,6 +1,7 @@
 $feature-flags: (
 	components-x: true,
 	ui-shell: true,
+	css--reset: false
 );
 .experimental {
 	@import "~carbon-components/src/globals/scss/styles";

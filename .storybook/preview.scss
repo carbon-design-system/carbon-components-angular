@@ -1,1 +1,6 @@
+$feature-flags: (
+	ui-shell: true,
+	css--reset: false
+);
+
 @import "~carbon-components/src/globals/scss/styles";
