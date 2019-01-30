@@ -3,6 +3,7 @@ import { Dialog } from "../dialog.component";
 import { position } from "../../utils/position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
+import { ExperimentalService } from "./../../experimental.module";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -29,22 +30,28 @@ import { I18n } from "./../../i18n/i18n.module";
 	`
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {
-
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected experimental: ExperimentalService) {
 		super(elementRef);
 	}
 
 	onDialogInit() {
-		/**
-		 *  60 shifts the menu right to align the arrow.
-		 * (position service trys it's best to center everything,
-		 * so we need to add some compensation)
-		 */
 		this.addGap["bottom"] = pos => {
-			if (this.dialogConfig.flip) {
-				return position.addOffset(pos, 0, -60);
+			let offset;
+			if (this.experimental.isExperimental) {
+				/*
+				* 16 is half the width of the overflow menu trigger element.
+				* we also move the element by half of it's own width, since
+				* position service will try and center everything
+				*/
+				offset = Math.round(this.dialog.nativeElement.offsetWidth / 2) - 16;
+			} else {
+				// 60 shifts the menu right to align the arrow.
+				offset = 60;
 			}
-			return position.addOffset(pos, 0, 60);
+			if (this.dialogConfig.flip) {
+				return position.addOffset(pos, 0, -offset);
+			}
+			return position.addOffset(pos, 0, offset);
 		};
 
 		if (!this.dialogConfig.menuLabel) {
