@@ -15,7 +15,6 @@ module.exports = (baseConfig, env, defaultConfig) => {
 		enforce: 'pre',
 	});
 
-	console.log(defaultConfig);
 	defaultConfig.mode = "development";
 	defaultConfig.devtool = "source-map";
 	return defaultConfig;

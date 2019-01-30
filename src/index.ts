@@ -34,3 +34,4 @@ export * from "./switch/switch.module";
 export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./tiles/tiles.module";
+export * from "./experimental.module";

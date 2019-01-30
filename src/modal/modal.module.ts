@@ -18,6 +18,7 @@ import { AlertModal } from "./alert-modal.component";
 import { ButtonModule } from "../forms/forms.module";
 import { I18nModule } from "./../i18n/i18n.module";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { ExperimentalModule } from "./../experimental.module";
 
 // exports
 export { default as Modal } from "./modal.decorator";
@@ -53,7 +54,8 @@ export * from "./base-modal.class";
 		ButtonModule,
 		StaticIconModule,
 		I18nModule,
-		PlaceholderModule
+		PlaceholderModule,
+		ExperimentalModule
 	]
 })
 export class ModalModule { }
