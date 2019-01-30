@@ -282,12 +282,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, i18n: <a href="../injectables/I18n.html">I18n</a>, experimental: <a href="../injectables/ExperimentalService.html">ExperimentalService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -321,6 +321,18 @@
                                                   
                                                         <td>
                                                                     <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>experimental</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/ExperimentalService.html" target="_self" >ExperimentalService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -429,7 +441,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -562,7 +574,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -600,7 +612,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -1317,6 +1329,7 @@ import { Dialog } from &quot;../dialog.component&quot;;
 import { position } from &quot;../../utils/position&quot;;
 import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../../common/tab.service&quot;;
 import { I18n } from &quot;./../../i18n/i18n.module&quot;;
+import { ExperimentalService } from &quot;./../../experimental.module&quot;;
 
 /**
  * Extend the &#x60;Dialog&#x60; component to create an overflow menu.
@@ -1343,22 +1356,28 @@ import { I18n } from &quot;./../../i18n/i18n.module&quot;;
 	&#x60;
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {
-
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected experimental: ExperimentalService) {
 		super(elementRef);
 	}
 
 	onDialogInit() {
-		/**
-		 *  60 shifts the menu right to align the arrow.
-		 * (position service trys it&#x27;s best to center everything,
-		 * so we need to add some compensation)
-		 */
 		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; {
-			if (this.dialogConfig.flip) {
-				return position.addOffset(pos, 0, -60);
+			let offset;
+			if (this.experimental.isExperimental) {
+				/*
+				* 16 is half the width of the overflow menu trigger element.
+				* we also move the element by half of it&#x27;s own width, since
+				* position service will try and center everything
+				*/
+				offset &#x3D; Math.round(this.dialog.nativeElement.offsetWidth / 2) - 16;
+			} else {
+				// 60 shifts the menu right to align the arrow.
+				offset &#x3D; 60;
 			}
-			return position.addOffset(pos, 0, 60);
+			if (this.dialogConfig.flip) {
+				return position.addOffset(pos, 0, -offset);
+			}
+			return position.addOffset(pos, 0, offset);
 		};
 
 		if (!this.dialogConfig.menuLabel) {

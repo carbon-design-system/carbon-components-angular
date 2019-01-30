@@ -63,11 +63,15 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_ProgressIndicatorModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="161,-70 161,-268 335,-268 335,-70 161,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="96,-70 96,-268 400,-268 400,-70 96,-70"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_ProgressIndicatorModule_declarations</title>
-<polygon fill="none" stroke="#000000" points="183,-78 183,-130 313,-130 313,-78 183,-78"/>
+<polygon fill="none" stroke="#000000" points="262,-78 262,-130 392,-130 392,-78 262,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ProgressIndicatorModule_imports</title>
+<polygon fill="none" stroke="#000000" points="104,-78 104,-130 254,-130 254,-78 104,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_ProgressIndicatorModule_exports</title>
@@ -76,8 +80,8 @@
 <!-- ProgressIndicator -->
 <g id="node1" class="node">
 <title>ProgressIndicator</title>
-<polygon fill="#ffffb3" stroke="#000000" points="305.2395,-122 190.7605,-122 190.7605,-86 305.2395,-86 305.2395,-122"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ProgressIndicator</text>
+<polygon fill="#ffffb3" stroke="#000000" points="384.2395,-122 269.7605,-122 269.7605,-86 384.2395,-86 384.2395,-122"/>
+<text text-anchor="middle" x="327" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ProgressIndicator</text>
 </g>
 <!-- ProgressIndicatorModule -->
 <g id="node2" class="node">
@@ -88,20 +92,32 @@
 <!-- ProgressIndicator&#45;&gt;ProgressIndicatorModule -->
 <g id="edge1" class="edge">
 <title>ProgressIndicator&#45;&gt;ProgressIndicatorModule</title>
-<path fill="none" stroke="#000000" d="M248,-122.1061C248,-122.1061 248,-140.991 248,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="244.5001,-140.9909 248,-150.991 251.5001,-140.991 244.5001,-140.9909"/>
+<path fill="none" stroke="#000000" d="M298.3875,-122.1061C298.3875,-122.1061 298.3875,-140.991 298.3875,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="294.8875,-140.9909 298.3875,-150.991 301.8875,-140.991 294.8875,-140.9909"/>
 </g>
 <!-- ProgressIndicator  -->
-<g id="node3" class="node">
+<g id="node4" class="node">
 <title>ProgressIndicator </title>
 <polygon fill="#fb8072" stroke="#000000" points="307.2394,-252 188.7606,-252 188.7606,-216 307.2394,-216 307.2394,-252"/>
 <text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">ProgressIndicator </text>
 </g>
 <!-- ProgressIndicatorModule&#45;&gt;ProgressIndicator  -->
-<g id="edge2" class="edge">
+<g id="edge3" class="edge">
 <title>ProgressIndicatorModule&#45;&gt;ProgressIndicator </title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248,-187.1061C248,-187.1061 248,-205.991 248,-205.991"/>
 <polygon fill="#000000" stroke="#000000" points="244.5001,-205.9909 248,-215.991 251.5001,-205.991 244.5001,-205.9909"/>
+</g>
+<!-- ExperimentalModule -->
+<g id="node3" class="node">
+<title>ExperimentalModule</title>
+<polygon fill="#8dd3c7" stroke="#000000" points="246.4692,-122 243.4692,-126 222.4692,-126 219.4692,-122 111.5308,-122 111.5308,-86 246.4692,-86 246.4692,-122"/>
+<text text-anchor="middle" x="179" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ExperimentalModule</text>
+</g>
+<!-- ExperimentalModule&#45;&gt;ProgressIndicatorModule -->
+<g id="edge2" class="edge">
+<title>ExperimentalModule&#45;&gt;ProgressIndicatorModule</title>
+<path fill="none" stroke="#000000" d="M207.6701,-122.1061C207.6701,-122.1061 207.6701,-140.991 207.6701,-140.991"/>
+<polygon fill="#000000" stroke="#000000" points="204.1701,-140.9909 207.6701,-150.991 211.1701,-140.991 204.1701,-140.9909"/>
 </g>
 </g>
 </svg>
@@ -151,6 +167,15 @@
                     </ul>
                 </div>
                 <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../modules/ExperimentalModule.html">ExperimentalModule</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
                     <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
@@ -171,6 +196,7 @@
 import { CommonModule } from &quot;@angular/common&quot;;
 
 import { ProgressIndicator } from &quot;./progress-indicator.component&quot;;
+import { ExperimentalModule } from &quot;./../experimental.module&quot;;
 
 
 @NgModule({
@@ -180,7 +206,7 @@ import { ProgressIndicator } from &quot;./progress-indicator.component&quot;;
 	exports: [
 		ProgressIndicator
 	],
-	imports: [CommonModule]
+	imports: [CommonModule, ExperimentalModule]
 })
 export class ProgressIndicatorModule { }
 </code></pre>
