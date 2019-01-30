@@ -25,9 +25,10 @@ import { I18n } from "./../../i18n/i18n.module";
 			[ngClass]="{'bx--overflow-menu--open': open === true}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
+			role="button"
+			aria-haspopup="true"
 			class="bx--overflow-menu"
 			placement="bottom"
-			style="display: block;"
 			tabindex="0">
 			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">

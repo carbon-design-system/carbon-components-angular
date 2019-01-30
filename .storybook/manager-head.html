@@ -35,30 +35,34 @@
 
 <script>
 function setExperimental(event) {
-	var classList = document.getElementsByTagName("iframe")[0].contentDocument.body.classList;
+	var frame = document.querySelector("#storybook-preview-iframe");
+	var classList = frame.contentDocument.body.classList;
 	if(event.target.previousElementSibling) {
 		classList.add("experimental");
+		classList.remove("carbon");
 		event.target.previousElementSibling.classList.remove("experimental-selected");
 	} else {
 		classList.remove("experimental");
+		classList.add("carbon");
 		event.target.nextElementSibling.classList.remove("experimental-selected");
 	}
 	event.target.classList.add("experimental-selected");
 };
 
 var experimentalToggleInterval = setInterval(function() {
-	if(!document.getElementsByTagName("iframe")[0] ||
-		!document.getElementsByTagName("iframe")[0].contentDocument ||
-		!document.getElementsByTagName("iframe")[0].contentDocument.getElementById("root")) {
+	var frame = document.querySelector("#storybook-preview-iframe");
+	if(!frame ||
+		!frame.contentDocument ||
+		!frame.contentDocument.getElementById("root")) {
 		return;
 	}
 
-	document.getElementsByTagName("iframe")[0].contentDocument.head.appendChild(
+	frame.contentDocument.head.appendChild(
 		document.getElementById("iframestyle")
 	);
 
 	clearInterval(experimentalToggleInterval);
-	document.getElementsByTagName("iframe")[0].contentDocument.body.insertAdjacentHTML(
+	frame.contentDocument.body.insertAdjacentHTML(
 		"beforeend",
 		`<div style="position: fixed; right: 15px; bottom: 15px">
 			<button
@@ -73,6 +77,9 @@ var experimentalToggleInterval = setInterval(function() {
 			</button>
 		</div>
 	`);
-	document.getElementsByTagName("iframe")[0].contentWindow.setExperimental = setExperimental;
+	frame.contentWindow.setExperimental = setExperimental;
+
+	var classList = frame.contentDocument.body.classList;
+	classList.add("carbon");
 }, 100);
 </script>

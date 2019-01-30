@@ -1,8 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, number } from "@storybook/addon-knobs";
+import { withKnobs, number, boolean } from "@storybook/addon-knobs";
 
 import { DialogModule } from "../../";
 import { PlaceholderModule } from "../../placeholder/placeholder.module";
+import { ExperimentalModule } from "../../experimental.module";
+import { ExperimentalComponenent } from "../../../.storybook/experimental.component";
 
 let options;
 
@@ -17,15 +19,19 @@ function createOptions(count: number): Array<string> {
 storiesOf("Overflow Menu", module)
 	.addDecorator(
 		moduleMetadata({
+			declarations: [ExperimentalComponenent],
 			imports: [
 				DialogModule,
-				PlaceholderModule
+				ExperimentalModule,
+				PlaceholderModule,
+				ExperimentalModule
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
+			<app-experimental-component></app-experimental-component>
 			<ibm-overflow-menu [flip]="flip">
 				<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 					An example option that is really long to show what should be done to handle long text

@@ -8,9 +8,13 @@ import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
+import { ExperimentalComponenent } from "../../.storybook/experimental.component";
+
 import { ProgressIndicatorModule } from "../";
 import { ProgressIndicator } from "./progress-indicator.component";
 
+// NOTE: non-experimental styles include some temporary workarounds in preview.scss
+// these should be removed when experimental becomes non-experimental
 @Component({
 	selector: "app-skeleton-progress-indicator",
 	template: `
@@ -30,19 +34,19 @@ class SkeletonStory implements OnInit {
 storiesOf("ProgressIndicator", module)
 	.addDecorator(
 		moduleMetadata({
+			declarations: [ExperimentalComponenent, SkeletonStory],
 			imports: [
 				ProgressIndicatorModule
-			],
-			declarations: [
-				SkeletonStory
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-progress-indicator [steps]="steps">
-		</ibm-progress-indicator>
+		<app-experimental-component></app-experimental-component>
+		<div style="display: flex;">
+			<ibm-progress-indicator [steps]="steps"></ibm-progress-indicator>
+		</div>
 		`,
 		props: {
 			steps : [
@@ -75,6 +79,7 @@ storiesOf("ProgressIndicator", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
+		<app-experimental-component></app-experimental-component>
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		`
 	}));

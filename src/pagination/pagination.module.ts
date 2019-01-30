@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "./../i18n/i18n.module";
+import { ExperimentalModule } from "./../experimental.module";
 
 export { PaginationModel } from "./pagination-model.class";
 export { Pagination } from "./pagination.component";
@@ -18,7 +19,8 @@ export { Pagination } from "./pagination.component";
 	imports: [
 		CommonModule,
 		FormsModule,
-		I18nModule
+		I18nModule,
+		ExperimentalModule
 	]
 })
 export class PaginationModule {}
