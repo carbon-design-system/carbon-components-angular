@@ -11,8 +11,6 @@ const sass = require("node-sass");
 const tap = require("gulp-tap");
 const path = require("path");
 const fs = require("fs");
-const es = require("event-stream");
-const runSequence = require("run-sequence");
 
 //
 // Variables
@@ -51,55 +49,55 @@ const licenseTemplate = `/*!
 //
 // Build tasks
 // =================================
-gulp.task("build:angular", _ =>
+const buildAngular = () =>
 	gulp.src(dirs.TS)
 		.pipe(replaceTemplates())
-		.pipe(gulp.dest(`${dirs.DIST}/src`))
-);
+		.pipe(gulp.dest(`${dirs.DIST}/src`));
 
-gulp.task("build:i18n", _ =>
+const buildI18n = () =>
 	gulp.src(dirs.i18n)
-		.pipe(gulp.dest(`${dirs.DIST}/i18n`))
-);
+		.pipe(gulp.dest(`${dirs.DIST}/i18n`));
 
-gulp.task("build:license", _ =>
-	es.merge(
-		gulp.src("LICENSE.md")
-			.pipe(gulp.dest(dirs.DIST)),
-		gulp.src([
-			`${dirs.DIST}/**/*.scss`,
-			`${dirs.DIST}/**/*.css`,
-			`${dirs.DIST}/**/*.ts`,
-			`${dirs.DIST}/**/*.js`
-		])
-			.pipe(licenseHeaders())
-			.pipe(gulp.dest(dirs.DIST))
-	)
-);
+const moveLicense = () =>
+	gulp.src("LICENSE.md")
+		.pipe(gulp.dest(dirs.DIST));
 
-gulp.task("build:package", _ =>
+const buildLicense = () =>
+	gulp.src([
+		`${dirs.DIST}/**/*.scss`,
+		`${dirs.DIST}/**/*.css`,
+		`${dirs.DIST}/**/*.ts`,
+		`${dirs.DIST}/**/*.js`
+	])
+	.pipe(licenseHeaders())
+	.pipe(gulp.dest(dirs.DIST));
+
+const buildPackage = () =>
 	gulp.src("package.json")
-		.pipe(gulp.dest(dirs.DIST))
-);
+		.pipe(gulp.dest(dirs.DIST));
 
-gulp.task("build:readme", _ =>
+const buildReadme = () =>
 	gulp.src("README.md")
-		.pipe(gulp.dest(dirs.DIST))
-);
-
-gulp.task("build:changelog", _ =>
-	gulp.src("CHANGELOG.md")
-		.pipe(gulp.dest(dirs.DIST))
-);
+		.pipe(gulp.dest(dirs.DIST));
 
 //
 // Running tasks
 // =================================
-gulp.task("build", () => runSequence("build:angular", "build:i18n"));
+const build = gulp.series(buildAngular, buildI18n);
 
-gulp.task("build:meta", _ =>
-	runSequence("build:package", ["build:license", "build:readme", "build:changelog"])
-);
+const buildMeta = gulp.series(buildPackage, gulp.parallel(moveLicense, buildLicense, buildReadme));
+
+module.exports = {
+	build,
+	buildAngular,
+	buildI18n,
+	buildLicense,
+	buildPackage,
+	buildReadme,
+	moveLicense,
+	buildMeta,
+	default: build
+};
 
 //
 // Functions

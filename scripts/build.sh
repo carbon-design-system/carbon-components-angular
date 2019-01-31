@@ -9,7 +9,7 @@ webpack --config webpack.build.js
 rm -rf dist/src dist/waste demo/bundle/documentation
 
 # move/generate/update meta files into dist
-gulp build:meta
+gulp buildMeta
 
 # generate ALL the documentation
 mkdir dist/docs
