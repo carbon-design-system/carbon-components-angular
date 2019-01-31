@@ -98,9 +98,6 @@
 		"PLACEHOLDER": "Search",
 		"CLEAR_BUTTON": "Clear search input"
 	},
-	"SIDENAV": {
-		"NAV_LABEL": "Side navigation"
-	},
 	"PAGINATION": {
 		"ITEMS_PER_PAGE": "Items per page:",
 		"OPEN_LIST_OF_OPTIONS": "Open list of options",
@@ -136,11 +133,16 @@
 		"OFF": "Off",
 		"ON": "On"
 	},
-	"TOPNAV": {
-		"SKIP_TO_MAIN": "Skip to main content",
-		"HAMBURGER": {
-			"TOGGLE": "Toggle primary navigation menu",
-			"TITLE": "Primary navigation menu"
+	"UI_SHELL": {
+		"SKIP_TO": "Skip to content",
+		"HEADER": {
+			"MENU": "Open menu"
+		},
+		"SIDE_NAV": {
+			"LABEL": "Side navigation",
+			"SWITCHER": "Switcher",
+			"TOGGLE_OPEN": "Open",
+			"TOGGLE_CLOSE": "Close"
 		}
 	}
 }
