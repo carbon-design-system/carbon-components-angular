@@ -175,6 +175,7 @@ import { I18n } from "./../i18n/i18n.module";
 				<th *ngIf="model.hasExpandableRows()"></th>
 				<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">
 					<ibm-checkbox
+						inline="true"
 						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
@@ -316,6 +317,7 @@ import { I18n } from "./../i18n/i18n.module";
 					</td>
 					<td *ngIf="!skeleton && showSelectionColumn">
 						<ibm-checkbox
+							inline="true"
 							[attr.aria-label]="checkboxRowLabel | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"

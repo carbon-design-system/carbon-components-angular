@@ -1,1 +1,59 @@
-@import "~carbon-components/src/globals/scss/styles";
+$feature-flags: (
+	components-x: false,
+	ui-shell: true,
+	css--body: false, // we're providing our own body styles
+	css--reset: false // prevent thousands of resets being included...
+);
+
+.carbon {
+	@import '~carbon-components/scss/globals/scss/styles';
+
+	// carbon body reset and styles
+	// @include reset;
+	@include font-family;
+	color: $text-01;
+	background-color: $ui-02;
+	line-height: 1;
+
+	@include typography;
+
+	// padding/margin body reset
+	padding: 0;
+	margin: 0;
+
+	// for some reason this isn't included when tabs are built. So lets just manually include it here.
+	.bx--tabs__nav-item + .bx--tabs__nav-item {
+		margin-left: 3rem;
+	}
+
+	// for some reason this isn't included when progress indicator is built. So lets just manually include it here.
+	.bx--progress-step:first-child .bx--progress-line {
+		display: none;
+	}
+
+	// for some reason all this isn't included when structured list is built. So lets just manually include it here.
+	.bx--structured-list--selection .bx--structured-list-row:hover:not(.bx--structured-list-row--header-row) {
+		background-color: $hover-row;
+		cursor: pointer;
+	}
+
+	.bx--structured-list-row:focus:not(.bx--structured-list-row--header-row) {
+		@include focus-outline('border');
+	}
+
+	.bx--structured-list-svg {
+		display: inline-block;
+		fill: transparent;
+		vertical-align: middle;
+		transition: $transition--base $carbon--standard-easing;
+	}
+
+	.bx--structured-list-row:hover .bx--structured-list-svg {
+		fill: $hover-row;
+	}
+
+	.bx--structured-list-input:checked + .bx--structured-list-row .bx--structured-list-svg,
+	.bx--structured-list-input:checked + .bx--structured-list-td .bx--structured-list-svg {
+		fill: $brand-02;
+	}
+}
