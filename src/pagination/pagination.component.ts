@@ -9,6 +9,7 @@ import {
 import { range } from "../common/utils";
 import { I18n } from "./../i18n/i18n.module";
 import { BehaviorSubject } from "rxjs";
+import { ExperimentalService } from "./../experimental.module";
 
 /**
  * Use pagination when you have multiple pages of data to handle.
@@ -41,7 +42,7 @@ import { BehaviorSubject } from "rxjs";
 		[ngClass]="{
 			'bx--skeleton' : skeleton
 		}">
-
+		<!-- left skeleton div -->
 		<div *ngIf="skeleton" class="bx--pagination__left">
 			<p class="bx--skeleton__text" style="width: 70px"></p>
 			<p class="bx--skeleton__text" style="width: 35px"></p>
@@ -49,37 +50,51 @@ import { BehaviorSubject } from "rxjs";
 		</div>
 
 		<div *ngIf="!skeleton" class="bx--pagination__left">
-			<span class="bx--pagination__text">{{itemsPerPageText | async}}</span>
-			<div class="bx--form-item">
-				<div class="bx--select bx--select--inline">
-					<label
-						[for]="itemsPerPageSelectId"
-						class="bx--label bx--visually-hidden">
-						{{itemsPerPageText | async}}
-					</label>
-					<select
-						[id]="itemsPerPageSelectId"
-						[(ngModel)]="itemsPerPage"
-						class="bx--select-input"
-						aria-describedby="false">
-						<option class="bx--select-option" value="10">10</option>
-						<option class="bx--select-option" value="20">20</option>
-						<option class="bx--select-option" value="30">30</option>
-						<option class="bx--select-option" value="40">40</option>
-						<option class="bx--select-option" value="50">50</option>
-					</select>
-					<svg
-						class="bx--select__arrow"
-						fill-rule="evenodd"
-						height="5"
-						role="img"
-						viewBox="0 0 10 5"
-						width="10"
-						[attr.aria-label]="optionsListText | async">
-						<title>{{optionsListText | async}}</title>
-						<path d="M0 0l5 4.998L10 0z"></path>
-					</svg>
-				</div>
+			<div class="bx--select bx--select--inline">
+				<label
+					[for]="itemsPerPageSelectId"
+					class="bx--label bx--visually-hidden">
+					{{itemsPerPageText | async}}
+				</label>
+				<select
+					[id]="itemsPerPageSelectId"
+					[(ngModel)]="itemsPerPage"
+					class="bx--select-input"
+					aria-describedby="false">
+					<option class="bx--select-option" value="10">{{itemsPerPageText | async}} 10</option>
+					<option class="bx--select-option" value="20">20</option>
+					<option class="bx--select-option" value="30">30</option>
+					<option class="bx--select-option" value="40">40</option>
+					<option class="bx--select-option" value="50">50</option>
+				</select>
+				<!-- old icon -->
+				<svg
+					*ngIf="!isExperimental"
+					class="bx--select__arrow"
+					fill-rule="evenodd"
+					height="5"
+					role="img"
+					viewBox="0 0 10 5"
+					width="10"
+					[attr.aria-label]="optionsListText | async">
+					<title>{{optionsListText | async}}</title>
+					<path d="M0 0l5 4.998L10 0z"></path>
+				</svg>
+				<!-- new icon -->
+				<svg
+					*ngIf="isExperimental"
+					class="bx--select__arrow"
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					height="6"
+					role="img"
+					viewBox="0 0 10 6"
+					width="10"
+					style="will-change: transform;"
+					[attr.aria-label]="optionsListText | async">
+					<title>{{optionsListText | async}}</title>
+					<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
+				</svg>
 			</div>
 			<span class="bx--pagination__text">
 				<span>|&nbsp;</span>
@@ -87,13 +102,22 @@ import { BehaviorSubject } from "rxjs";
 			</span>
 		</div>
 
+		<!-- right skeleton div -->
 		<div *ngIf="skeleton" class="bx--pagination__right bx--pagination--inline">
 			<p class="bx--skeleton__text" style="width: 70px"></p>
 		</div>
 
-		<div *ngIf="!skeleton" class="bx--pagination__right bx--pagination--inline">
-			<span class="bx--pagination__text">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</span>
+		<div *ngIf="!skeleton" class="bx--pagination__right" ngClass="{'bx--pagination--inline': isExperimental}">
+			<!-- old span -->
+			<span
+				*ngIf="!isExperimental"
+				class="bx--pagination__text">
+				{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}
+			</span>
+
+			<!-- old button -->
 			<button
+				*ngIf="!isExperimental"
 				class="bx--pagination__button bx--pagination__button--backward"
 				(click)="selectPage.emit(previousPage)"
 				[disabled]="(currentPage <= 1 ? true : null)">
@@ -109,13 +133,16 @@ import { BehaviorSubject } from "rxjs";
 					<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
 				</svg>
 			</button>
-			<div class="bx--form-item">
-				<div class="bx--select bx--select--inline">
+
+			<div *ngIf="isExperimental" class="bx--select bx--select--inline">
 				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>
 				<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">
-					<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
+					<option class="bx--select-option" value="1">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</option>
+					<option *ngFor="let i of range(lastPage + 1, 2)" class="bx--select-option" [value]="i">{{i}}</option>
 				</select>
+				<!-- old icon -->
 				<svg
+					*ngIf="!isExperimental"
 					class="bx--select__arrow"
 					fill-rule="evenodd"
 					height="5"
@@ -126,24 +153,91 @@ import { BehaviorSubject } from "rxjs";
 					<title>{{optionsListText | async}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
+				<!-- new icon -->
+				<svg
+					*ngIf="isExperimental"
+					class="bx--select__arrow"
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					height="6"
+					role="img"
+					viewBox="0 0 10 6"
+					width="10"
+					style="will-change: transform;"
+					[attr.aria-label]="optionsListText | async">
+					<title>{{optionsListText | async}}</title>
+					<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
+				</svg>
 			</div>
-		</div>
-		<button
-			class="bx--pagination__button bx--pagination__button--forward"
-			(click)="selectPage.emit(nextPage)"
-			[disabled]="(currentPage >= lastPage ? true : null)">
-			<svg
-				class="bx--pagination__button-icon"
-				fill-rule="evenodd"
-				height="12"
-				role="img"
-				viewBox="0 0 7 12"
-				width="7"
-				[attr.aria-label]="forwardText | async">
-				<title>{{forwardText | async}}</title>
-				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
-			</svg>
-		</button>
+
+			<input
+				type="number"
+				class="bx--text-input"
+				placeholder="0"
+				value="1"
+				*ngIf="!isExperimental"
+				[(ngModel)]="currentPage">
+
+			<!-- old button -->
+			<button
+				*ngIf="!isExperimental"
+				class="bx--pagination__button bx--pagination__button--forward"
+				(click)="selectPage.emit(nextPage)"
+				[disabled]="(currentPage >= lastPage ? true : null)">
+				<svg
+					class="bx--pagination__button-icon"
+					fill-rule="evenodd"
+					height="12"
+					role="img"
+					viewBox="0 0 7 12"
+					width="7"
+					[attr.aria-label]="forwardText | async">
+					<title>{{forwardText | async}}</title>
+					<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
+				</svg>
+			</button>
+
+			<!-- new butons -->
+			<button
+				*ngIf="isExperimental"
+				class="bx--pagination__button"
+				tabindex="0"
+				[attr.aria-label]="backwardText | async"
+				(click)="selectPage.emit(previousPage)"
+				[disabled]="(currentPage <= 1 ? true : null)">
+				<svg
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					style="will-change: transform;"
+					xmlns="http://www.w3.org/2000/svg"
+					class="bx--pagination__nav-arrow"
+					width="24" height="24"
+					viewBox="0 0 32 32"
+					aria-hidden="true">
+					<path d="M19 23l-8-7 8-7v14z"></path>
+				</svg>
+			</button>
+
+			<button
+				*ngIf="isExperimental"
+				class="bx--pagination__button"
+				tabindex="0"
+				[attr.aria-label]="forwardText | async"
+				(click)="selectPage.emit(nextPage)"
+				[disabled]="(currentPage >= lastPage ? true : null)">
+				<svg
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					style="will-change: transform;"
+					xmlns="http://www.w3.org/2000/svg"
+					class="bx--pagination__nav-arrow"
+					width="24"
+					height="24"
+					viewBox="0 0 32 32"
+					aria-hidden="true">
+					<path d="M13 9l8 7-8 7V9z"></path>
+				</svg>
+			</button>
 		</div>
 	</div>
 	`
@@ -266,6 +360,10 @@ export class Pagination {
 		return this.currentPage >= lastPage ? lastPage : this.currentPage + 1;
 	}
 
+	get isExperimental() {
+		return this.experimental.isExperimental;
+	}
+
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
@@ -276,7 +374,7 @@ export class Pagination {
 	totalItemsText = this.i18n.get("PAGINATION.TOTAL_ITEMS");
 	totalPagesText = this.i18n.get("PAGINATION.TOTAL_PAGES");
 
-	constructor(protected i18n: I18n) {
+	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
 		Pagination.paginationCounter++;
 	}
 

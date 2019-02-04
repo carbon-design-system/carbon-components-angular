@@ -36,12 +36,7 @@ storiesOf("Tiles", module)
 	}))
 	.add("Clickable", () => ({
 		template: `
-		<p>Normal</p>
 		<ibm-clickable-tile href="#">
-			clickable tile content goes here...
-		</ibm-clickable-tile>
-		<p>Disabled</p>
-		<ibm-clickable-tile href="#" [disabled]="true">
 			clickable tile content goes here...
 		</ibm-clickable-tile>
 		`

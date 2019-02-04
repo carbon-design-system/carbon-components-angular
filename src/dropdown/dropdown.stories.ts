@@ -5,16 +5,11 @@ import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs
 
 import { DropdownModule } from "../";
 
-// needed to init ngx translate and load the translations
-import { BootstrapModule } from "../../.storybook/bootstrap.module";
-import { stringify } from "querystring";
-
 storiesOf("Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DropdownModule,
-				BootstrapModule
+				DropdownModule
 			]
 		})
 	)

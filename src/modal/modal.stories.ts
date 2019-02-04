@@ -8,6 +8,8 @@ import { Modal, ModalService } from "../";
 import { ModalButton, AlertModalType } from "./alert-modal.interface";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { BaseModal } from "./base-modal.class";
+import { ExperimentalComponenent } from "../../.storybook/experimental.component";
+import { ExperimentalModule } from "../experimental.module";
 
 @Component({
 	selector: "app-sample-modal",
@@ -85,12 +87,14 @@ storiesOf("Modal", module)
 			declarations: [
 				ModalStory,
 				SampleModal,
-				AlertModalStory
+				AlertModalStory,
+				ExperimentalComponenent
 			],
 			imports: [
 				ModalModule,
 				PlaceholderModule,
-				BrowserAnimationsModule
+				BrowserAnimationsModule,
+				ExperimentalModule
 			],
 			entryComponents: [
 				SampleModal
@@ -109,6 +113,7 @@ storiesOf("Modal", module)
 	}))
 	.add("Transactional", () => ({
 		template: `
+		<app-experimental-component></app-experimental-component>
 		<app-alert-modal-story
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
@@ -135,6 +140,7 @@ storiesOf("Modal", module)
 	}))
 	.add("Passive", () => ({
 		template: `
+		<app-experimental-component></app-experimental-component>
 		<app-alert-modal-story
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
