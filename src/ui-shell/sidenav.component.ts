@@ -61,7 +61,7 @@ import { I18n } from "./../i18n/i18n.module";
 export class SideNav {
 	@HostBinding("attr.role") role = "complementary";
 	@HostBinding("class.bx--side-nav") hostClass = true;
-	@HostBinding("class.bx--side-nav--expanded") expanded = false;
+	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = false;
 
 	constructor(public i18n: I18n) { }
 
