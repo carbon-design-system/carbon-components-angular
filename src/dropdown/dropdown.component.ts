@@ -106,6 +106,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() inline = false;
 	/**
+	 * Set to `true` for a dropdown without arrow key activation.
+	 */
+	@Input() disableArrowKeys = false;
+	/**
 	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
 	 */
@@ -303,6 +307,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		} else if (this.menuIsClosed && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp" ||
 			event.key === "Spacebar" || event.key === "Down" || event.key === "Up")) {
 			event.preventDefault();
+			if (this.disableArrowKeys && (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up")) {
+				return;
+			}
 			this.openMenu();
 		}
 
