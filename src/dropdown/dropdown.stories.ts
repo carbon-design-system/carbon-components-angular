@@ -17,6 +17,7 @@ storiesOf("Dropdown", module)
 	.add("Basic", () => ({
 		template: `
 		<div style="width: 300px">
+			<input type="text"/>
 			<ibm-dropdown
 				[theme]="theme"
 				placeholder="Select"
