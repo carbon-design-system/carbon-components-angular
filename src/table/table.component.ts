@@ -348,10 +348,14 @@ import { I18n } from "./../i18n/i18n.module";
 					</td>
 				</tr>
 			</ng-container>
-			<ibm-loading *ngIf="this.model.isLoading" overlay="true"></ibm-loading>
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
+			<tr *ngIf="this.model.isLoading">
+				<td class="table_loading-indicator">
+					<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
+				</td>
+			</tr>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
 					<h5>{{endOfDataText | async}}</h5>
@@ -362,18 +366,7 @@ import { I18n } from "./../i18n/i18n.module";
 			</tr>
 		</tfoot>
 	</table>
-	`,
-	styles: [`
-	table {
-		position: relative;
-	}
-	ibm-loading {
-		bottom: 0;
-		height: auto;
-		position: absolute;
-		top: 3rem;
-	}
-	`]
+	`
 })
 export class Table {
 	/**
