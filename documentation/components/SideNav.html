@@ -46,9 +46,6 @@
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
         <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
@@ -90,67 +87,55 @@
             </tr>
 
 
-            <tr>
-                <td class="col-md-3">styles</td>
-                <td class="col-md-9"><code>
-			.bx--header ~ .bx--side-nav--wrapper .bx--side-nav {
-				top: 3rem;
-			}
-		</code></td>
-            </tr>
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;aside
-	class&#x3D;&quot;bx--side-nav&quot;
-	[ngClass]&#x3D;&quot;{ &#x27;bx--side-nav--expanded&#x27;: expanded }&quot;&gt;
-	&lt;nav
-		class&#x3D;&quot;bx--side-nav__navigation&quot;
-		role&#x3D;&quot;navigation&quot;
-		[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;UI_SHELL.SIDE_NAV.LABEL&#x27;)&quot;&gt;
-		&lt;ng-content select&#x3D;&quot;ibm-sidenav-header&quot;&gt;&lt;/ng-content&gt;
-		&lt;ul class&#x3D;&quot;bx--side-nav__items&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/ul&gt;
-		&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
-			&lt;button
-				class&#x3D;&quot;bx--side-nav__toggle&quot;
-				type&#x3D;&quot;button&quot;
-				[title]&#x3D;&quot;(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async&quot;
-				(click)&#x3D;&quot;toggle()&quot;&gt;
-				&lt;div class&#x3D;&quot;bx--side-nav__icon&quot;&gt;
-					&lt;svg
-						*ngIf&#x3D;&quot;expanded&quot;
-						focusable&#x3D;&quot;false&quot;
-						preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-						style&#x3D;&quot;will-change: transform;&quot;
-						xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-						width&#x3D;&quot;20&quot;
-						height&#x3D;&quot;20&quot;
-						viewBox&#x3D;&quot;0 0 32 32&quot;
-						aria-hidden&#x3D;&quot;true&quot;&gt;
-						&lt;path d&#x3D;&quot;M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z&quot;&gt;&lt;/path&gt;
-					&lt;/svg&gt;
-					&lt;svg
-						*ngIf&#x3D;&quot;!expanded&quot;
-						focusable&#x3D;&quot;false&quot;
-						preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-						style&#x3D;&quot;will-change: transform;&quot;
-						xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-						width&#x3D;&quot;20&quot;
-						height&#x3D;&quot;20&quot;
-						viewBox&#x3D;&quot;0 0 32 32&quot;
-						aria-hidden&#x3D;&quot;true&quot;&gt;
-						&lt;path d&#x3D;&quot;M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z&quot;&gt;&lt;/path&gt;
-					&lt;/svg&gt;
-				&lt;/div&gt;
-				&lt;span class&#x3D;&quot;bx--assistive-text&quot;&gt;
-					{{(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async}}
-				&lt;/span&gt;
-			&lt;/button&gt;
-		&lt;/footer&gt;
-	&lt;/nav&gt;
-&lt;/aside&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;nav
+	class&#x3D;&quot;bx--side-nav__navigation&quot;
+	role&#x3D;&quot;navigation&quot;
+	[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;UI_SHELL.SIDE_NAV.LABEL&#x27;)&quot;&gt;
+	&lt;ng-content select&#x3D;&quot;ibm-sidenav-header&quot;&gt;&lt;/ng-content&gt;
+	&lt;ul class&#x3D;&quot;bx--side-nav__items&quot;&gt;
+		&lt;ng-content&gt;&lt;/ng-content&gt;
+	&lt;/ul&gt;
+	&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
+		&lt;button
+			class&#x3D;&quot;bx--side-nav__toggle&quot;
+			type&#x3D;&quot;button&quot;
+			[title]&#x3D;&quot;(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async&quot;
+			(click)&#x3D;&quot;toggle()&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--side-nav__icon&quot;&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;expanded&quot;
+					focusable&#x3D;&quot;false&quot;
+					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+					style&#x3D;&quot;will-change: transform;&quot;
+					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+					width&#x3D;&quot;20&quot;
+					height&#x3D;&quot;20&quot;
+					viewBox&#x3D;&quot;0 0 32 32&quot;
+					aria-hidden&#x3D;&quot;true&quot;&gt;
+					&lt;path d&#x3D;&quot;M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z&quot;&gt;&lt;/path&gt;
+				&lt;/svg&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;!expanded&quot;
+					focusable&#x3D;&quot;false&quot;
+					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+					style&#x3D;&quot;will-change: transform;&quot;
+					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+					width&#x3D;&quot;20&quot;
+					height&#x3D;&quot;20&quot;
+					viewBox&#x3D;&quot;0 0 32 32&quot;
+					aria-hidden&#x3D;&quot;true&quot;&gt;
+					&lt;path d&#x3D;&quot;M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z&quot;&gt;&lt;/path&gt;
+				&lt;/svg&gt;
+			&lt;/div&gt;
+			&lt;span class&#x3D;&quot;bx--assistive-text&quot;&gt;
+				{{(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async}}
+			&lt;/span&gt;
+		&lt;/button&gt;
+	&lt;/footer&gt;
+&lt;/nav&gt;
 	</code></pre></td>
             </tr>
 
@@ -226,7 +211,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#class.bx--side-nav--wrapper">class.bx--side-nav--wrapper</a>
+                                <a href="#attr.role">attr.role</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--side-nav">class.bx--side-nav</a>
                             </li>
                         </ul>
                     </td>
@@ -248,7 +236,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/ui-shell/sidenav.component.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/ui-shell/sidenav.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -303,7 +291,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/ui-shell/sidenav.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/ui-shell/sidenav.component.ts:64</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -315,18 +303,51 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="class.bx--side-nav--wrapper"></a>
+                        <a name="attr.role"></a>
                         <span class="name">
                             <b>
-                            class.bx--side-nav--wrapper
+                            attr.role
                             </b>
-                            <a href="#class.bx--side-nav--wrapper"><span class="icon ion-ios-link"></span></a>
+                            <a href="#attr.role"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>class.bx--side-nav--wrapper:     <code></code>
+                        <code>attr.role:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;complementary&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/ui-shell/sidenav.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--side-nav"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--side-nav
+                            </b>
+                            <a href="#class.bx--side-nav"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--side-nav:     <code></code>
 </code>
                     </td>
                 </tr>
@@ -337,7 +358,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/ui-shell/sidenav.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/ui-shell/sidenav.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -374,7 +395,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ui-shell/sidenav.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/ui-shell/sidenav.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -425,7 +446,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/ui-shell/sidenav.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/ui-shell/sidenav.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -449,70 +470,59 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 @Component({
 	selector: &quot;ibm-sidenav&quot;,
 	template: &#x60;
-		&lt;aside
-			class&#x3D;&quot;bx--side-nav&quot;
-			[ngClass]&#x3D;&quot;{ &#x27;bx--side-nav--expanded&#x27;: expanded }&quot;&gt;
-			&lt;nav
-				class&#x3D;&quot;bx--side-nav__navigation&quot;
-				role&#x3D;&quot;navigation&quot;
-				[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;UI_SHELL.SIDE_NAV.LABEL&#x27;)&quot;&gt;
-				&lt;ng-content select&#x3D;&quot;ibm-sidenav-header&quot;&gt;&lt;/ng-content&gt;
-				&lt;ul class&#x3D;&quot;bx--side-nav__items&quot;&gt;
-					&lt;ng-content&gt;&lt;/ng-content&gt;
-				&lt;/ul&gt;
-				&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
-					&lt;button
-						class&#x3D;&quot;bx--side-nav__toggle&quot;
-						type&#x3D;&quot;button&quot;
-						[title]&#x3D;&quot;(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async&quot;
-						(click)&#x3D;&quot;toggle()&quot;&gt;
-						&lt;div class&#x3D;&quot;bx--side-nav__icon&quot;&gt;
-							&lt;svg
-								*ngIf&#x3D;&quot;expanded&quot;
-								focusable&#x3D;&quot;false&quot;
-								preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-								style&#x3D;&quot;will-change: transform;&quot;
-								xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-								width&#x3D;&quot;20&quot;
-								height&#x3D;&quot;20&quot;
-								viewBox&#x3D;&quot;0 0 32 32&quot;
-								aria-hidden&#x3D;&quot;true&quot;&gt;
-								&lt;path d&#x3D;&quot;M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z&quot;&gt;&lt;/path&gt;
-							&lt;/svg&gt;
-							&lt;svg
-								*ngIf&#x3D;&quot;!expanded&quot;
-								focusable&#x3D;&quot;false&quot;
-								preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-								style&#x3D;&quot;will-change: transform;&quot;
-								xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-								width&#x3D;&quot;20&quot;
-								height&#x3D;&quot;20&quot;
-								viewBox&#x3D;&quot;0 0 32 32&quot;
-								aria-hidden&#x3D;&quot;true&quot;&gt;
-								&lt;path d&#x3D;&quot;M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z&quot;&gt;&lt;/path&gt;
-							&lt;/svg&gt;
-						&lt;/div&gt;
-						&lt;span class&#x3D;&quot;bx--assistive-text&quot;&gt;
-							{{(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async}}
-						&lt;/span&gt;
-					&lt;/button&gt;
-				&lt;/footer&gt;
-			&lt;/nav&gt;
-		&lt;/aside&gt;
+		&lt;nav
+			class&#x3D;&quot;bx--side-nav__navigation&quot;
+			role&#x3D;&quot;navigation&quot;
+			[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;UI_SHELL.SIDE_NAV.LABEL&#x27;)&quot;&gt;
+			&lt;ng-content select&#x3D;&quot;ibm-sidenav-header&quot;&gt;&lt;/ng-content&gt;
+			&lt;ul class&#x3D;&quot;bx--side-nav__items&quot;&gt;
+				&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;/ul&gt;
+			&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
+				&lt;button
+					class&#x3D;&quot;bx--side-nav__toggle&quot;
+					type&#x3D;&quot;button&quot;
+					[title]&#x3D;&quot;(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async&quot;
+					(click)&#x3D;&quot;toggle()&quot;&gt;
+					&lt;div class&#x3D;&quot;bx--side-nav__icon&quot;&gt;
+						&lt;svg
+							*ngIf&#x3D;&quot;expanded&quot;
+							focusable&#x3D;&quot;false&quot;
+							preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+							style&#x3D;&quot;will-change: transform;&quot;
+							xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+							width&#x3D;&quot;20&quot;
+							height&#x3D;&quot;20&quot;
+							viewBox&#x3D;&quot;0 0 32 32&quot;
+							aria-hidden&#x3D;&quot;true&quot;&gt;
+							&lt;path d&#x3D;&quot;M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z&quot;&gt;&lt;/path&gt;
+						&lt;/svg&gt;
+						&lt;svg
+							*ngIf&#x3D;&quot;!expanded&quot;
+							focusable&#x3D;&quot;false&quot;
+							preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+							style&#x3D;&quot;will-change: transform;&quot;
+							xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+							width&#x3D;&quot;20&quot;
+							height&#x3D;&quot;20&quot;
+							viewBox&#x3D;&quot;0 0 32 32&quot;
+							aria-hidden&#x3D;&quot;true&quot;&gt;
+							&lt;path d&#x3D;&quot;M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z&quot;&gt;&lt;/path&gt;
+						&lt;/svg&gt;
+					&lt;/div&gt;
+					&lt;span class&#x3D;&quot;bx--assistive-text&quot;&gt;
+						{{(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async}}
+					&lt;/span&gt;
+				&lt;/button&gt;
+			&lt;/footer&gt;
+		&lt;/nav&gt;
 	&#x60;,
-	styles: [
-		&#x60;
-			.bx--header ~ .bx--side-nav--wrapper .bx--side-nav {
-				top: 3rem;
-			}
-		&#x60;
-	],
 	encapsulation: ViewEncapsulation.None
 })
 export class SideNav {
-	@Input() expanded &#x3D; false;
-
-	@HostBinding(&quot;class.bx--side-nav--wrapper&quot;) hostClass &#x3D; true;
+	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;complementary&quot;;
+	@HostBinding(&quot;class.bx--side-nav&quot;) hostClass &#x3D; true;
+	@HostBinding(&quot;class.bx--side-nav--expanded&quot;) @Input() expanded &#x3D; false;
 
 	constructor(public i18n: I18n) { }
 
@@ -524,14 +534,6 @@ export class SideNav {
     </div>
 
 
-    <div class="tab-pane fade " id="c-styleData">
-            <pre class="line-numbers"><code class="language-scss">
-			.bx--header ~ .bx--side-nav--wrapper .bx--side-nav {
-				top: 3rem;
-			}
-		
-</code></pre>
-    </div>
 
     <div class="tab-pane fade " id="c-tree">
         <div id="tree-container"></div>
@@ -558,7 +560,7 @@ export class SideNav {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><aside	class="bx--side-nav"	[ngClass]="{ \'bx--side-nav--expanded\': expanded }">	<nav		class="bx--side-nav__navigation"		role="navigation"		[attr.aria-label]="i18n.get(\'UI_SHELL.SIDE_NAV.LABEL\')">		<ng-content select="ibm-sidenav-header"></ng-content>		<ul class="bx--side-nav__items">			<ng-content></ng-content>		</ul>		<footer class="bx--side-nav__footer">			<button				class="bx--side-nav__toggle"				type="button"				[title]="(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async"				(click)="toggle()">				<div class="bx--side-nav__icon">					<svg						*ngIf="expanded"						focusable="false"						preserveAspectRatio="xMidYMid meet"						style="will-change: transform;"						xmlns="http://www.w3.org/2000/svg"						width="20"						height="20"						viewBox="0 0 32 32"						aria-hidden="true">						<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>					</svg>					<svg						*ngIf="!expanded"						focusable="false"						preserveAspectRatio="xMidYMid meet"						style="will-change: transform;"						xmlns="http://www.w3.org/2000/svg"						width="20"						height="20"						viewBox="0 0 32 32"						aria-hidden="true">						<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>					</svg>				</div>				<span class="bx--assistive-text">					{{(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async}}				</span>			</button>		</footer>	</nav></aside>	</div>'
+        var COMPONENT_TEMPLATE = '<div><nav	class="bx--side-nav__navigation"	role="navigation"	[attr.aria-label]="i18n.get(\'UI_SHELL.SIDE_NAV.LABEL\')">	<ng-content select="ibm-sidenav-header"></ng-content>	<ul class="bx--side-nav__items">		<ng-content></ng-content>	</ul>	<footer class="bx--side-nav__footer">		<button			class="bx--side-nav__toggle"			type="button"			[title]="(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async"			(click)="toggle()">			<div class="bx--side-nav__icon">				<svg					*ngIf="expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>				</svg>				<svg					*ngIf="!expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>				</svg>			</div>			<span class="bx--assistive-text">				{{(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async}}			</span>		</button>	</footer></nav>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'SideNav'};
