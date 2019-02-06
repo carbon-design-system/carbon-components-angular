@@ -16,30 +16,34 @@ storiesOf("Tooltip", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<span
-				ibmTooltip="tooltip text"
-				trigger="hover"
-				placement="bottom"
-				style="cursor: pointer;">
-				Hover for tooltip
-			</span>
+			<div>
+				<span
+					ibmTooltip="tooltip text"
+					trigger="hover"
+					placement="bottom"
+					style="cursor: pointer;">
+					Hover for tooltip
+				</span>
+			</div>
 		`
 	}))
 	.add("With Template", () => ({
 	template: `
-			<ng-template #template let-tooltip="tooltip">
-				<p>hello</p>
-				<div>
-					<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
-				</div>
-			</ng-template>
-			<span
-				[ibmTooltip]="template"
-				trigger="click"
-				placement="bottom"
-				style="cursor: pointer;">
-				Click for tooltip
-			</span>
-			<ibm-placeholder></ibm-placeholder>
+			<div>
+				<ng-template #template let-tooltip="tooltip">
+					<p>hello</p>
+					<div>
+						<button class="bx--btn bx--btn--primary" (click)="tooltip.doClose()">Close</button>
+					</div>
+				</ng-template>
+				<span
+					[ibmTooltip]="template"
+					trigger="click"
+					placement="bottom"
+					style="cursor: pointer;">
+					Click for tooltip
+				</span>
+				<ibm-placeholder></ibm-placeholder>
+			</div>
 		`
 	}));
