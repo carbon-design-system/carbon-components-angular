@@ -66,7 +66,7 @@ export class SearchChange {
 				<button
 					*ngIf="toolbar; else svg"
 					class="bx--toolbar-search__btn"
-					aria-label="Toolbar search"
+					[attr.aria-label]="i18n.get('SEARCH.TOOLBAR_SEARCH') | async"
 					tabindex="0"
 					(click)="openSearch($event)">
 					<ng-template [ngTemplateOutlet]="svg"></ng-template>
@@ -142,6 +142,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() skeleton = false;
 	/**
+	 * Set to `true` to expand the toolbar search component.
+	 */
+	@Input() active = false;
+	/**
 	 * Sets the name attribute on the `input` element.
 	 */
 	@Input() name: string;
@@ -173,8 +177,6 @@ export class Search implements ControlValueAccessor {
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<SearchChange>();
-
-	active = false;
 
 	/**
 	 * Creates an instance of `Search`.
