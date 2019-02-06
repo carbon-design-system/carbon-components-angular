@@ -82,4 +82,38 @@ storiesOf("ProgressIndicator", module)
 		<app-experimental-component></app-experimental-component>
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		`
+	}))
+	.add("Vertical", () => ({
+		template: `
+		<app-experimental-component></app-experimental-component>
+		<ibm-progress-indicator [vertical]="true" [steps]="steps"></ibm-progress-indicator>
+		`,
+		props: {
+			steps : [
+				{
+					text: "1. ONE",
+					state: ["complete"]
+				},
+				{
+					text: "2. TWO",
+					state: ["complete"]
+				},
+				{
+					text: "3. THREE",
+					state: ["current"]
+				},
+				{
+					text: "4. FOUR",
+					state: ["incomplete"]
+				},
+				{
+					text: "5. FIVE",
+					state: ["incomplete"]
+				},
+				{
+					text: "6. SIX",
+					state: ["incomplete"]
+				}
+			]
+		}
 	}));

@@ -9,7 +9,8 @@ import { ExperimentalService } from "./../experimental.module";
 		data-progress-current
 		class="bx--progress"
 		[ngClass]="{
-			'bx--skeleton': skeleton
+			'bx--skeleton': skeleton,
+			'bx--progress--vertical': vertical
 		}">
 		<li
 		class="bx--progress-step bx--progress-step--{{step.state}}"
@@ -59,7 +60,7 @@ export class ProgressIndicator {
 	}
 
 	@Input() steps = [];
-
+	@Input() vertical = false;
 	@Input() skeleton = false;
 
 	get isExperimental() {
