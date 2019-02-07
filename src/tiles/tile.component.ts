@@ -23,5 +23,5 @@ import {
 	template: `<ng-content></ng-content>`
 })
 export class Tile {
-	@HostBinding("class") tileClass = "bx--tile";
+	@HostBinding("class.bx--tile") tileClass = true;
 }
