@@ -143,7 +143,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/search/search.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/search/search.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +183,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/search/search.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/search/search.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -213,7 +213,9 @@
 	Input,
 	EventEmitter,
 	Output,
-	HostBinding
+	HostBinding,
+	ElementRef,
+	HostListener
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 import { I18n } from &quot;../i18n/i18n.module&quot;;
@@ -252,7 +254,9 @@ export class SearchChange {
 				&#x27;bx--search--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
 				&#x27;bx--search--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;,
 				&#x27;bx--search--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
-				&#x27;bx--skeleton&#x27;: skeleton
+				&#x27;bx--skeleton&#x27;: skeleton,
+				&#x27;bx--toolbar-search&#x27;: toolbar,
+				&#x27;bx--toolbar-search--active&#x27;: toolbar &amp;&amp; active
 			}&quot;
 			role&#x3D;&quot;search&quot;&gt;
 			&lt;label class&#x3D;&quot;bx--label&quot; [for]&#x3D;&quot;id&quot;&gt;{{label}}&lt;/label&gt;
@@ -269,15 +273,25 @@ export class SearchChange {
 					[disabled]&#x3D;&quot;disabled&quot;
 					[required]&#x3D;&quot;required&quot;
 					(input)&#x3D;&quot;onSearch($event.target.value)&quot;/&gt;
-				&lt;svg
-					class&#x3D;&quot;bx--search-magnifier&quot;
-					width&#x3D;&quot;16&quot;
-					height&#x3D;&quot;16&quot;
-					viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
-					&lt;path
-						d&#x3D;&quot;M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z&quot;
-						fill-rule&#x3D;&quot;nonzero&quot;/&gt;
-				&lt;/svg&gt;
+				&lt;button
+					*ngIf&#x3D;&quot;toolbar; else svg&quot;
+					class&#x3D;&quot;bx--toolbar-search__btn&quot;
+					[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;SEARCH.TOOLBAR_SEARCH&#x27;) | async&quot;
+					tabindex&#x3D;&quot;0&quot;
+					(click)&#x3D;&quot;openSearch($event)&quot;&gt;
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;svg&quot;&gt;&lt;/ng-template&gt;
+				&lt;/button&gt;
+				&lt;ng-template #svg&gt;
+					&lt;svg
+						class&#x3D;&quot;bx--search-magnifier&quot;
+						width&#x3D;&quot;16&quot;
+						height&#x3D;&quot;16&quot;
+						viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
+						&lt;path
+							d&#x3D;&quot;M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z&quot;
+							fill-rule&#x3D;&quot;nonzero&quot;/&gt;
+					&lt;/svg&gt;
+				&lt;/ng-template&gt;
 			&lt;/ng-template&gt;
 
 			&lt;button
@@ -330,9 +344,17 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() disabled &#x3D; false;
 	/**
+	 * Set to &#x60;true&#x60; for a toolbar search component.
+	 */
+	@Input() toolbar &#x3D; false;
+	/**
 	 * Set to &#x60;true&#x60; for a loading search component.
 	 */
 	@Input() skeleton &#x3D; false;
+	/**
+	 * Set to &#x60;true&#x60; to expand the toolbar search component.
+	 */
+	@Input() active &#x3D; false;
 	/**
 	 * Sets the name attribute on the &#x60;input&#x60; element.
 	 */
@@ -371,7 +393,7 @@ export class Search implements ControlValueAccessor {
 	 * @param i18n The i18n translations.
 	 * @memberof Search
 	 */
-	constructor(protected i18n: I18n) {
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		Search.searchCount++;
 	}
 
@@ -439,6 +461,29 @@ export class Search implements ControlValueAccessor {
 		event.value &#x3D; this.value;
 		this.change.emit(event);
 		this.propagateChange(this.value);
+	}
+
+	openSearch(event) {
+		this.active &#x3D; true;
+		this.elementRef.nativeElement.querySelector(&quot;.bx--search-input&quot;).focus();
+	}
+
+	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
+	keyDown(event: KeyboardEvent) {
+		if (this.toolbar) {
+			if (event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot;) {
+				this.active &#x3D; false;
+			} else if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot;) {
+				this.openSearch(event);
+			}
+		}
+	}
+
+	@HostListener(&quot;focusout&quot;, [&quot;$event&quot;])
+	focusOut(event) {
+		if (this.toolbar &amp;&amp; event.relatedTarget &#x3D;&#x3D;&#x3D; null) {
+			this.active &#x3D; false;
+		}
 	}
 }
 </code></pre>
