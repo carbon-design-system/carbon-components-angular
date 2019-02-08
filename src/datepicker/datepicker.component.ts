@@ -65,6 +65,8 @@ export class DatePicker {
 
 	@Output() selectDates: EventEmitter<any> = new EventEmitter();
 
+	datesSelected = [];
+
 	flatpickrOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
 		allowInput: true,
@@ -93,6 +95,7 @@ export class DatePicker {
 	};
 
 	doSelect(selectedDates) {
+		selectedDates = this.datesSelected;
 		this.selectDates.emit(selectedDates);
 	}
 
@@ -106,7 +109,20 @@ export class DatePicker {
 		document.querySelector(".flatpickr-weekdays").classList.add(this.settings.classWeekdays);
 		document.querySelector(".flatpickr-days").classList.add(this.settings.classDays);
 
-		// console.log(document.querySelectorAll(".flatpickr-weekday"));
+		Array.from(document.querySelectorAll(".flatpickr-weekday")).forEach(item => {
+			const currentItem = item;
+			currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, "");
+			currentItem.classList.add(this.settings.classWeekday);
+		});
+
+		Array.from(document.querySelectorAll(".flatpickr-day")).forEach(item => {
+			item.classList.add(this.settings.classDay);
+			if (item.classList.contains("today") && this.datesSelected.length > 0) {
+				item.classList.add("no-border");
+			} else if (item.classList.contains("today") && this.datesSelected.length === 0) {
+				item.classList.remove("no-border");
+			}
+		});
 	}
 
 
