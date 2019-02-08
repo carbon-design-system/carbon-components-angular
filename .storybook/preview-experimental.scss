@@ -1,23 +1,32 @@
 $feature-flags: (
 	components-x: true,
-	ui-shell: true,
-	css--body: false, // we're providing our own body styles
-	css--reset: false // prevent thousands of resets being included...
+	ui-shell: true
 );
+
+$css--body: false; // we're providing our own body styles
+$css--reset: false; // prevent thousands of resets being included...
 
 .experimental {
 	@import '~carbon-components/scss/globals/scss/styles';
+	@import '~carbon-components/scss/globals/scss/css--typography';
 
 	// carbon body reset and styles
-	// @include reset;
+	@include typography;
 	@include font-family;
+	// reset
 	color: $text-01;
 	background-color: $ui-02;
 	line-height: 1;
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 
-	@include typography;
-
-	// padding/margin body reset
-	padding: 0;
-	margin: 0;
+    & > *,
+    & > *:before,
+    & > *:after {
+      box-sizing: inherit;
+    }
 }
