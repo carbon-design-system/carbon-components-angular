@@ -27,7 +27,6 @@ let nextId = 0;
 						</ibm-date-picker-input>
 					</div>
 
-
 					<div *ngIf="range" class="bx--date-picker-container">
 						<ibm-date-picker-input
 						[label]= "label2"
@@ -69,18 +68,45 @@ export class DatePicker {
 	flatpickrOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
 		allowInput: true,
-		onChange: (selectedDates: any) => { this.doSelect(selectedDates); }
+		onChange: (selectedDates: any) => { this.doSelect(selectedDates); },
+		onOpen: () => { this.updateClassNames(); }
 	};
 
 	flatpickrOptionsRange: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
 		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
 		allowInput: true,
-		onChange: (selectedDates: any) => { this.doSelect(selectedDates); }
+		onChange: (selectedDates: any) => { this.doSelect(selectedDates); },
+		onOpen: () => { this.updateClassNames(); }
+	};
+
+	settings = {
+		classCalendarContainer: `bx--date-picker__calendar`,
+		classMonth: `bx--date-picker__month`,
+		classWeekdays: `bx--date-picker__weekdays`,
+		classDays: `bx--date-picker__days`,
+		classWeekday: `bx--date-picker__weekday`,
+		classDay: `bx--date-picker__day`,
+		classFocused: `bx--focused`,
+		classVisuallyHidden: `bx--visually-hidden`,
+		attribType: this.range ? "range" : "single"
 	};
 
 	doSelect(selectedDates) {
 		this.selectDates.emit(selectedDates);
+	}
+
+	updateClassNames() {
+
+		const element = document.querySelector(".flatpickr-calendar");
+
+		element.classList.add(this.settings.classCalendarContainer);
+
+		document.querySelector(".flatpickr-month").classList.add(this.settings.classMonth);
+		document.querySelector(".flatpickr-weekdays").classList.add(this.settings.classWeekdays);
+		document.querySelector(".flatpickr-days").classList.add(this.settings.classDays);
+
+		// console.log(document.querySelectorAll(".flatpickr-weekday"));
 	}
 
 
