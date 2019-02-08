@@ -1,5 +1,4 @@
-import { Component, Input, Inject, Renderer2 } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
+import { Component, Input } from "@angular/core";
 
 let nextId = 0;
 
@@ -69,8 +68,4 @@ export class DatePickerInput {
 
 	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
 
-	constructor(
-		private renderer: Renderer2,
-		@Inject(DOCUMENT) private document: any
-	) { }
 }

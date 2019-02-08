@@ -1,11 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs } from "@storybook/addon-knobs/angular";
 import { DatePickerModule, ExperimentalModule } from "../";
 import { ExperimentalComponenent } from "../../.storybook/experimental.component";
 
-storiesOf("DatePicker", module)
+storiesOf("Date Picker", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [ExperimentalComponenent],
@@ -33,7 +32,7 @@ storiesOf("DatePicker", module)
 		<app-experimental-component></app-experimental-component>
 		<ibm-date-picker
 		label="Date Picker Label"
-		label2="Date Picker Label2"
+		rangeLabel="Date Picker Label2"
 		range="true"
 		(selectDates)="selectDates($event)">
 		</ibm-date-picker>

@@ -29,7 +29,7 @@ let nextId = 0;
 
 					<div *ngIf="range" class="bx--date-picker-container">
 						<ibm-date-picker-input
-						[label]= "label2"
+						[label]= "rangeLabel"
 						[placeholder]= "placeholder"
 						[pattern]= "pattern"
 						[id]= "id + '-rangeInput'"
@@ -55,7 +55,7 @@ export class DatePicker {
 
 	@Input() label: string;
 
-	@Input() label2: string;
+	@Input() rangeLabel: string;
 
 	@Input() placeholder = "mm/dd/yyyy";
 
@@ -95,27 +95,30 @@ export class DatePicker {
 	};
 
 	doSelect(selectedDates) {
-		selectedDates = this.datesSelected;
-		this.selectDates.emit(selectedDates);
+		this.selectDates.emit(this.datesSelected);
 	}
 
 	updateClassNames() {
 
-		const element = document.querySelector(".flatpickr-calendar");
+		const calendarContainer = document.querySelector(".flatpickr-calendar");
+		const monthContainer = document.querySelector(".flatpickr-month");
+		const weekdaysContainer = document.querySelector(".flatpickr-weekdays");
+		const weekdayContainer = document.querySelectorAll(".flatpickr-weekday");
+		const daysContainer = document.querySelector(".flatpickr-days");
+		const dayContainer = document.querySelectorAll(".flatpickr-day");
 
-		element.classList.add(this.settings.classCalendarContainer);
+		calendarContainer.classList.add(this.settings.classCalendarContainer);
+		monthContainer.classList.add(this.settings.classMonth);
+		weekdaysContainer.classList.add(this.settings.classWeekdays);
+		daysContainer.classList.add(this.settings.classDays);
 
-		document.querySelector(".flatpickr-month").classList.add(this.settings.classMonth);
-		document.querySelector(".flatpickr-weekdays").classList.add(this.settings.classWeekdays);
-		document.querySelector(".flatpickr-days").classList.add(this.settings.classDays);
-
-		Array.from(document.querySelectorAll(".flatpickr-weekday")).forEach(item => {
+		Array.from(weekdayContainer).forEach(item => {
 			const currentItem = item;
 			currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, "");
 			currentItem.classList.add(this.settings.classWeekday);
 		});
 
-		Array.from(document.querySelectorAll(".flatpickr-day")).forEach(item => {
+		Array.from(dayContainer).forEach(item => {
 			item.classList.add(this.settings.classDay);
 			if (item.classList.contains("today") && this.datesSelected.length > 0) {
 				item.classList.add("no-border");
@@ -124,6 +127,4 @@ export class DatePicker {
 			}
 		});
 	}
-
-
 }
