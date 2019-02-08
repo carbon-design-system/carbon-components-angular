@@ -96,7 +96,8 @@
 	"SEARCH": {
 		"LABEL": "Search",
 		"PLACEHOLDER": "Search",
-		"CLEAR_BUTTON": "Clear search input"
+		"CLEAR_BUTTON": "Clear search input",
+		"TOOLBAR_SEARCH": "Toolbar search"
 	},
 	"PAGINATION": {
 		"ITEMS_PER_PAGE": "Items per page:",
