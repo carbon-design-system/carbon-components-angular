@@ -954,11 +954,13 @@ export class Table implements AfterViewInit {
 
 	handleInteractions(event: KeyboardEvent) {
 		switch (event.key) {
+			case "Right": // IE specific value
 			case "ArrowRight":
 				if (this.columnIndex < this.getTotalColumns() - 1) {
 					this.columnIndex++;
 				}
 				break;
+			case "Left": // IE specific value
 			case "ArrowLeft":
 				if (this.columnIndex > 0) {
 					this.columnIndex--;
