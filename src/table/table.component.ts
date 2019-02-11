@@ -176,35 +176,42 @@ import { I18n } from "./../i18n/i18n.module";
 		'bx--skeleton': skeleton
 	}">
 		<thead>
-			<tr #headerRow>
+			<tr>
 				<th *ngIf="model.hasExpandableRows()"
-					tabindex="-1"
+					[ibmDataGridFocus]="isDataGrid"
+					[columnIndex]="columnIndex"
 					(keyup)="handleInteractions($event)"
-					(click)="setExpandIndex($event)">
+					(click)="setExpandIndex($event)"
+					tabindex="-1">
 				</th>
-				<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">
+				<th *ngIf="!skeleton && showSelectionColumn"
+					[ibmDataGridFocus]="isDataGrid"
+					[columnIndex]="columnIndex"
+					(keyup)="handleInteractions($event)"
+					(click)="setCheckboxIndex()"
+					style="width: 10px;">
 					<ibm-checkbox
 						inline="true"
 						[size]="size !== ('lg' ? 'sm' : 'md')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
 						[attr.aria-label]="checkboxHeaderLabel | async"
-						(change)="onSelectAllCheckboxChange()"
-						(keyup)="handleInteractions($event)"
-						(click)="setCheckboxIndex(0)">
+						(change)="onSelectAllCheckboxChange()">
 					</ibm-checkbox>
 				</th>
 				<ng-container *ngFor="let column of model.header; let i = index">
 					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
-					tabindex="-1"
 					*ngIf="column.visible"
 					[class]="column.className"
 					[ngStyle]="column.style"
+					[ibmDataGridFocus]="isDataGrid"
+					[columnIndex]="columnIndex"
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)"
 					(keyup)="handleInteractions($event)"
-					(click)="setIndex($event, i, 0)">
+					(click)="setIndex($event, i)"
+					tabindex="-1">
 						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
@@ -310,7 +317,6 @@ import { I18n } from "./../i18n/i18n.module";
 		(scroll)="onScroll($event)">
 			<ng-container *ngFor="let row of model.data; let i = index">
 				<tr *ngIf="!model.isRowFiltered(i)"
-					#bodyRows
 					(click)="onRowSelect(i)"
 					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
 					[ngClass]="{
@@ -326,38 +332,45 @@ import { I18n } from "./../i18n/i18n.module";
 					<td
 					*ngIf="model.hasExpandableRows()"
 					class="bx--table-expand-v2"
-					tabindex="-1"
+					[ibmDataGridFocus]="isDataGrid"
+					[columnIndex]="columnIndex"
 					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
 					(keyup)="handleInteractions($event)"
-					(click)="setExpandIndex($event)">
+					(click)="setExpandIndex($event)"
+					tabindex="-1">
 						<button
 						*ngIf="model.isRowExpandable(i)"
 						class="bx--table-expand-v2__button"
 						[attr.aria-label]="expandButtonAriaLabel | async"
-						(click)="model.expandRow(i, !model.rowsExpanded[i]); handleTabIndex()">
+						(click)="model.expandRow(i, !model.rowsExpanded[i])">
 							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
 								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
 							</svg>
 						</button>
 					</td>
-					<td *ngIf="!skeleton && showSelectionColumn">
+					<td
+						*ngIf="!skeleton && showSelectionColumn"
+						[ibmDataGridFocus]="isDataGrid"
+						[columnIndex]="columnIndex"
+						(keyup)="handleInteractions($event)"
+						(click)="setCheckboxIndex()">
 						<ibm-checkbox
 							inline="true"
 							[attr.aria-label]="checkboxRowLabel | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
-							(change)="onRowCheckboxChange(i)"
-							(keyup)="handleInteractions($event)"
-							(click)="setCheckboxIndex(i)">
+							(change)="onRowCheckboxChange(i)">
 						</ibm-checkbox>
 					</td>
 					<ng-container *ngFor="let item of row; let j = index">
 						<td *ngIf="model.header[j].visible"
 							[class]="model.header[j].className"
-							tabindex="-1"
 							[ngStyle]="model.header[j].style"
+							[ibmDataGridFocus]="isDataGrid"
+							[columnIndex]="columnIndex"
 							(keyup)="handleInteractions($event)"
-							(click)="setIndex($event, j, i)">
+							(click)="setIndex($event, j)"
+							tabindex="-1">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
@@ -366,13 +379,16 @@ import { I18n } from "./../i18n/i18n.module";
 					</ng-container>
 				</tr>
 				<tr
-				#bodyRows
 				*ngIf="model.rowsExpanded[i]"
 				class="bx--expandable-row-v2"
-				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)"
-				(keyup)="handleInteractions($event)"
-				(click)="setExpandIndex($event)">
-					<td tabindex="-1" [attr.colspan]="row.length + 2">
+				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
+					<td
+						[ibmDataGridFocus]="isDataGrid"
+						[columnIndex]="columnIndex"
+						[attr.colspan]="row.length + 2"
+						(keyup)="handleInteractions($event)"
+						(click)="setExpandIndex($event)"
+						tabindex="-1">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
 						<ng-template
 							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
@@ -445,9 +461,9 @@ export class Table implements AfterViewInit {
 	 */
 	@Input() skeleton = false;
 	/**
-	 * Set to `true` for a data grid keyboard interactions.
+	 * Set to `true` for a data grid with keyboard interactions.
 	 */
-	@Input() dataGridInteractions = false;
+	@Input() isDataGrid = false;
 
 	/**
 	 * `TableModel` with data the table is to display.
@@ -467,7 +483,7 @@ export class Table implements AfterViewInit {
 		this._model.dataChange.subscribe(() => {
 			this.updateSelectAllCheckbox();
 			this.getTotalColumns();
-			if (this.dataGridInteractions) {
+			if (this.isDataGrid) {
 				this.handleTabIndex();
 			}
 		});
@@ -673,11 +689,7 @@ export class Table implements AfterViewInit {
 			this.model.data.length === 1 && this.model.data[0].length === 0;
 	}
 
-	@ViewChildren("bodyRows") bodyRows;
-	@ViewChildren("headerRow") headerRow;
-
 	columnIndex = 0;
-	rowIndex = 0;
 
 	protected _model: TableModel;
 
@@ -704,7 +716,7 @@ export class Table implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.getTotalColumns();
-		if (this.dataGridInteractions) {
+		if (this.isDataGrid) {
 			this.handleTabIndex();
 		}
 	}
@@ -899,10 +911,6 @@ export class Table implements AfterViewInit {
 		this.model.isEnd = false;
 	}
 
-	list(selector) {
-		return Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll(selector));
-	}
-
 	handleTabIndex() {
 		setTimeout(() => {
 			const focusElementList = getFocusElementList(this.elementRef.nativeElement, tabbableSelectorIgnoreTabIndex);
@@ -911,10 +919,11 @@ export class Table implements AfterViewInit {
 					tabbable.tabIndex = -1;
 				});
 
-				if (this.sort.observers.length === 0 && !this.showSelectionColumn) {
-					this.setTabIndex(this.bodyRows.toArray()[0].nativeElement.querySelectorAll("td")[0]);
+				const rows = this.elementRef.nativeElement.firstElementChild.rows;
+				if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
+					this.setTabIndex(rows[0].querySelector("th"));
 				} else {
-					this.setTabIndex(this.headerRow.toArray()[0].nativeElement.querySelectorAll("th")[0]);
+					this.setTabIndex(rows[1].querySelector("td"));
 				}
 			}
 		});
@@ -931,193 +940,75 @@ export class Table implements AfterViewInit {
 	}
 
 	setTabIndex(firstCell) {
-		if (this.sort.observers.length > 0 && firstCell.tagName === "TH" && firstCell.querySelector("span")) {
-			firstCell.querySelector("span").tabIndex = 0;
-		} else if (getFocusElementList(firstCell, tabbableSelectorIgnoreTabIndex).length > 0) {
-			getFocusElementList(firstCell, tabbableSelectorIgnoreTabIndex)[0].tabIndex = 0;
+		const focusElementList = getFocusElementList(firstCell, tabbableSelectorIgnoreTabIndex);
+		if (firstCell.firstElementChild &&
+			firstCell.firstElementChild.classList.contains("bx--table-sort-v2")) {
+			focusElementList[1].tabIndex = 0;
+		} else if (focusElementList.length > 0) {
+			focusElementList[0].tabIndex = 0;
 		} else {
 			firstCell.tabIndex = 0;
 		}
 	}
 
-	focus(elementList, rowIndex, columnIndex) {
-		const focusElement = elementList.toArray()[rowIndex].nativeElement.querySelectorAll("td, th")[columnIndex];
-		const focusElementList = getFocusElementList(focusElement, tabbableSelectorIgnoreTabIndex);
-
-		// Checks if there is a focused element inside the header sort button
-		if (focusElement.firstElementChild && focusElement.firstElementChild.classList.contains("bx--table-sort-v2")) {
-			focusElementList[1].focus();
-		} else if (focusElementList.length > 0) {
-			focusElementList[0].focus();
-		}  else {
-			focusElement.focus();
-		}
-	}
-
-
 	handleInteractions(event: KeyboardEvent) {
-		if (!this.dataGridInteractions) {
-			return;
-		}
-
 		switch (event.key) {
 			case "ArrowRight":
-				this.shiftFocusRight(event);
+				if (this.columnIndex < this.getTotalColumns() - 1) {
+					this.columnIndex++;
+				}
 				break;
 			case "ArrowLeft":
-				this.shiftFocusLeft(event);
-				break;
-			case "ArrowDown":
-				this.shiftFocusDown(event);
-				break;
-			case "ArrowUp":
-				this.shiftFocusUp(event);
+				if (this.columnIndex > 0) {
+					this.columnIndex--;
+				}
 				break;
 			case "Home":
-				this.shiftFocusFirst(event);
+				this.columnIndex = 0;
 				break;
 			case "End":
-				this.shiftFocusLast(event);
+				this.columnIndex = this.getTotalColumns() - 1;
 				break;
 		}
 	}
 
-	shiftFocusRight(event) {
-		if (this.list("th").some(th => th.contains(event.target)) &&
-			this.columnIndex < this.headerRow.toArray()[0].nativeElement.querySelectorAll("th:not([style*='width: 0'])").length - 1) {
-			this.focus(this.headerRow, 0, ++this.columnIndex);
-		} else if (this.list("td").some(td => td.contains(event.target)) &&
-			this.columnIndex < this.getTotalColumns() - 1 &&
-			event.target.closest("tr").className !== "bx--expandable-row-v2") {
-			this.focus(this.bodyRows, this.rowIndex, ++this.columnIndex);
-		}
-	}
-
-	shiftFocusLeft(event) {
-		if (this.columnIndex > 0) {
-			if (this.list("th").some(th => th.contains(event.target))) {
-				this.focus(this.headerRow, 0, --this.columnIndex);
-			} else if (this.list("td").some(td => td.contains(event.target)) &&
-				event.target.closest("tr").className !== "bx--expandable-row-v2") {
-				this.focus(this.bodyRows, this.rowIndex, --this.columnIndex);
-			}
-		}
-	}
-
-	shiftFocusDown(event) {
-		if (this.list("th").some(th => th.contains(event.target)) && this.bodyRows.length > 0) {
-			this.rowIndex = 0;
-		} else if (this.list("td").some(td => td.contains(event.target)) && this.rowIndex < this.bodyRows.length - 1) {
-			this.rowIndex++;
-		}
-
-		if (event.target.closest("tr").nextElementSibling &&
-			event.target.closest("tr").nextElementSibling.className === "bx--expandable-row-v2") {
-			this.focus(this.bodyRows, this.rowIndex, 0);
-		} else {
-			this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
-		}
-	}
-
-	shiftFocusUp(event) {
-		if (this.list("td").some(td => td.contains(event.target))) {
-			if (this.rowIndex === 0 && (this.showSelectionColumn || this.sort.observers.length > 0)) {
-				this.focus(this.headerRow, 0, this.columnIndex);
-			} else if (this.rowIndex > 0) {
-				if (event.target.closest("tr").previousElementSibling.className === "bx--expandable-row-v2") {
-				this.focus(this.bodyRows, --this.rowIndex, 0);
-				} else {
-					this.focus(this.bodyRows, --this.rowIndex, this.columnIndex);
-				}
-			}
-		}
-	}
-
-	shiftFocusFirst(event) {
-		this.columnIndex = 0;
-		if (this.list("th").some(th => th.contains(event.target))) {
-			this.focus(this.headerRow, 0, this.columnIndex);
-		} else if (this.list("td").some(td => td.contains(event.target))) {
-			this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
-		}
-	}
-
-	shiftFocusLast(event) {
-		this.columnIndex = this.getTotalColumns() - 1;
-		if (this.list("th").some(th => th.contains(event.target))) {
-			this.focus(this.headerRow, 0, this.columnIndex);
-		} else if (this.list("td").some(td => td.contains(event.target))) {
-			this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
-		}
-	}
-
-	setIndex(event, columnIndex, rowIndex) {
+	setIndex(event, columnIndex) {
 		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
-			columnIndex = columnIndex + 2;
+			this.columnIndex = columnIndex + 2;
 		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
-			columnIndex++;
+			this.columnIndex = columnIndex + 1;
 		}
-		this.columnIndex = columnIndex;
-		this.rowIndex = rowIndex;
-
-		if (this.list("th").some(th => th.contains(event.target))) {
-			this.focus(this.headerRow, this.rowIndex, this.columnIndex);
-		} else if (this.list("td").some(td => td.contains(event.target))) {
-			this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
-		}
-
 	}
 
-	setCheckboxIndex(rowIndex) {
+	setCheckboxIndex() {
 		if (this.model.hasExpandableRows()) {
 			this.columnIndex = 1;
 		} else {
 			this.columnIndex = 0;
 		}
-		this.rowIndex = rowIndex;
 	}
 
 	setExpandIndex(event) {
 		if (event.target.closest("td").classList.contains("bx--table-expand-v2")) {
 			this.columnIndex = 0;
 		}
-		const bodyArray = [];
-		this.bodyRows.toArray().forEach(element => bodyArray.push(element.nativeElement.firstElementChild));
-
-		const index = bodyArray.findIndex(item => item === event.target.closest("td"));
-		this.rowIndex = index;
-
-		this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
 	}
 
 	@HostListener("focusout",  ["$event"])
 	focusOut(event) {
 		if (event.relatedTarget === null) {
 			this.columnIndex = 0;
-			this.rowIndex = 0;
 		}
 	}
 
 	@HostListener("keyup", ["$event"])
 	keyUp(event: KeyboardEvent) {
-		if (!this.dataGridInteractions) {
-			return;
-		}
 		if (event.key === "Home" && event.ctrlKey) {
-			this.rowIndex = 0;
 			this.columnIndex = 0;
-			if (this.showSelectionColumn || this.sort.observers.length > 0) {
-				this.focus(this.headerRow, this.rowIndex, this.columnIndex);
-			} else {
-				this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
-			}
 		} else if (event.key === "End" && event.ctrlKey) {
 			this.columnIndex = this.getTotalColumns() - 1;
-			this.rowIndex = this.bodyRows.length - 1;
-			this.focus(this.bodyRows, this.rowIndex, this.columnIndex);
 		} else if (event.key === "Tab" && event.shiftKey) {
 			this.columnIndex = 0;
-			this.rowIndex = 0;
 		}
 	}
 }
