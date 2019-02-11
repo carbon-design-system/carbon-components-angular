@@ -750,6 +750,7 @@ export class Table implements AfterViewInit {
 				this.model.selectRow(index, false);
 			});
 			this.model.selectRow(index, !this.model.rowsSelected[index]);
+			this.onRowCheckboxChange(index);
 		}
 	}
 

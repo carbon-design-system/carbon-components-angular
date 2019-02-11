@@ -3,7 +3,9 @@ import {
 	Input,
 	EventEmitter,
 	Output,
-	HostBinding
+	HostBinding,
+	ElementRef,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
@@ -42,7 +44,9 @@ export class SearchChange {
 				'bx--search--sm': size === 'sm',
 				'bx--search--lg': size === 'lg',
 				'bx--search--light': theme === 'light',
-				'bx--skeleton': skeleton
+				'bx--skeleton': skeleton,
+				'bx--toolbar-search': toolbar,
+				'bx--toolbar-search--active': toolbar && active
 			}"
 			role="search">
 			<label class="bx--label" [for]="id">{{label}}</label>
@@ -59,15 +63,25 @@ export class SearchChange {
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onSearch($event.target.value)"/>
-				<svg
-					class="bx--search-magnifier"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16">
-					<path
-						d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-						fill-rule="nonzero"/>
-				</svg>
+				<button
+					*ngIf="toolbar; else svg"
+					class="bx--toolbar-search__btn"
+					[attr.aria-label]="i18n.get('SEARCH.TOOLBAR_SEARCH') | async"
+					tabindex="0"
+					(click)="openSearch($event)">
+					<ng-template [ngTemplateOutlet]="svg"></ng-template>
+				</button>
+				<ng-template #svg>
+					<svg
+						class="bx--search-magnifier"
+						width="16"
+						height="16"
+						viewBox="0 0 16 16">
+						<path
+							d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+							fill-rule="nonzero"/>
+					</svg>
+				</ng-template>
 			</ng-template>
 
 			<button
@@ -120,9 +134,17 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() disabled = false;
 	/**
+	 * Set to `true` for a toolbar search component.
+	 */
+	@Input() toolbar = false;
+	/**
 	 * Set to `true` for a loading search component.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` to expand the toolbar search component.
+	 */
+	@Input() active = false;
 	/**
 	 * Sets the name attribute on the `input` element.
 	 */
@@ -161,7 +183,7 @@ export class Search implements ControlValueAccessor {
 	 * @param i18n The i18n translations.
 	 * @memberof Search
 	 */
-	constructor(protected i18n: I18n) {
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		Search.searchCount++;
 	}
 
@@ -217,7 +239,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
-		this.propagateChange(this.value);
+		this.emitChangeEvent();
 	}
 
 	/**
@@ -229,5 +251,28 @@ export class Search implements ControlValueAccessor {
 		event.value = this.value;
 		this.change.emit(event);
 		this.propagateChange(this.value);
+	}
+
+	openSearch(event) {
+		this.active = true;
+		this.elementRef.nativeElement.querySelector(".bx--search-input").focus();
+	}
+
+	@HostListener("keydown", ["$event"])
+	keyDown(event: KeyboardEvent) {
+		if (this.toolbar) {
+			if (event.key === "Escape") {
+				this.active = false;
+			} else if (event.key === "Enter") {
+				this.openSearch(event);
+			}
+		}
+	}
+
+	@HostListener("focusout", ["$event"])
+	focusOut(event) {
+		if (this.toolbar && event.relatedTarget === null) {
+			this.active = false;
+		}
 	}
 }
