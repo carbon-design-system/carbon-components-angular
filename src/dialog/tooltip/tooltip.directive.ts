@@ -39,8 +39,6 @@ import { DialogService } from "./../dialog.service";
 	]
 })
 export class TooltipDirective extends DialogDirective {
-	static tooltipCounter = 0;
-
 	/**
 	 * The string or template content to be exposed by the tooltip.
 	 */
@@ -74,8 +72,6 @@ export class TooltipDirective extends DialogDirective {
 	 * Extends the `Dialog` component's data structure with tooltip properties.
 	 */
 	onDialogInit() {
-		TooltipDirective.tooltipCounter++;
-		this.dialogConfig.compID = "tooltip-" + TooltipDirective.tooltipCounter;
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
 	}
