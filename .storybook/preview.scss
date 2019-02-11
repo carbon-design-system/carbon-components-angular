@@ -28,4 +28,10 @@ $css--reset: false; // prevent thousands of resets being included...
 	& > *:after {
 		box-sizing: inherit;
 	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 }
