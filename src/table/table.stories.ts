@@ -27,7 +27,6 @@ import {
 	SearchModule,
 	ButtonModule
 } from "../";
-import { action } from "@storybook/addon-actions";
 
 import { clone } from "../utils/utils";
 
@@ -38,10 +37,8 @@ import { clone } from "../utils/utils";
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
-			[enableSingleSelect]="enableSingleSelect"
 			[striped]="striped"
-			(sort)="simpleSort($event)"
-			(selectRow)="selectRow($event)">
+			(sort)="simpleSort($event)">
 			<ng-content></ng-content>
 		</ibm-table>
 	`
@@ -50,7 +47,6 @@ class TableStory implements OnInit, OnChanges {
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
-	@Input() enableSingleSelect = false;
 	@Input() striped = true;
 	@Input() sortable = true;
 
@@ -76,13 +72,6 @@ class TableStory implements OnInit, OnChanges {
 
 	simpleSort(index: number) {
 		sort(simpleModel, index);
-	}
-
-	selectRow(event) {
-		action({
-			eventName: "selectRow",
-			eventData: event
-		});
 	}
 }
 
@@ -482,7 +471,6 @@ storiesOf("Table", module).addDecorator(
 				[model]="model"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
-				[enableSingleSelect]="enableSingleSelect"
 				[striped]="striped"
 				[sortable]="sortable">
 			</app-table>
@@ -492,7 +480,6 @@ storiesOf("Table", module).addDecorator(
 			model: simpleModel,
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
-			enableSingleSelect: boolean("enableSingleSelect", false),
 			striped: boolean("striped", true),
 			sortable: boolean("sortable", true)
 		}
