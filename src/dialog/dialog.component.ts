@@ -216,7 +216,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 				pos = this.addGap[placement](position.findRelative(reference, target, placement));
 			} else {
 				pos = this.addGap[placement](position.findAbsolute(reference, target, placement));
-				pos = position.addOffset(pos, window.scrollY, window.scrollX);
 			}
 			return pos;
 		};
