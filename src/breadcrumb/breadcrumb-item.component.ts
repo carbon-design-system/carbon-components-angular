@@ -8,7 +8,7 @@ import {
 	selector: "ibm-breadcrumb-item",
 	template: `
 	<a class="bx--link"
-		href="{{skeleton ? href : '/#'}}"
+		href="{{skeleton ? '/#' : href}}"
 		*ngIf="skeleton || href; else content">
 		<ng-container *ngTemplateOutlet="content"></ng-container>
 	</a>

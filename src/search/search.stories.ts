@@ -20,6 +20,13 @@ storiesOf("Search", module).addDecorator(
 			placeholder: text("placeholder", "Search")
 		}
 	}))
+	.add("Toolbar search", () => ({
+		template: `
+		<div class="bx--toolbar">
+			<ibm-search placeholder="search" size="sm" toolbar="true"></ibm-search>
+		</div>
+		`
+	}))
 	.add("Skeleton", () => ({
 		template: `
 		<div style="width: 200px;">
