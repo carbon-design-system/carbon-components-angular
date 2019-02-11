@@ -17,15 +17,15 @@ $css--reset: false; // prevent thousands of resets being included...
 	color: $text-01;
 	background-color: $ui-02;
 	box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
 
-    & > *,
-    & > *:before,
-    & > *:after {
-      box-sizing: inherit;
-    }
+	& > *,
+	& > *:before,
+	& > *:after {
+		box-sizing: inherit;
+	}
 }
