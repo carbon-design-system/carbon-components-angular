@@ -449,7 +449,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value &#x3D; &quot;&quot;;
-		this.propagateChange(this.value);
+		this.emitChangeEvent();
 	}
 
 	/**

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Storybook</title>
+
+  
+
+  
+
+  
+    <style>
+  html, body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<script>
+  try {
+    if (window.parent !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+      window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+    }
+  } catch (e) {
+    console.warn('unable to connect to parent frame for connecting dev tools');
+  }
+</script>
+<meta property="og:title" content="Carbon Components Angular">
+<meta property="og:description" content="An Angular implementation of the Carbon Design System for IBM.">
+<meta property="og:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
+<meta property="og:url" content="https://angular.carbondesignsystem.com">
+
+<meta name="twitter:title" content="Carbon Components Angular">
+<meta name="twitter:description" content="An Angular implementation of the Carbon Design System for IBM.">
+<meta name="twitter:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style id="iframestyle">
+.sb-show-main:not(.welcome) {
+	padding: 3em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.experimental .toggle-btn,
+.toggle-btn {
+	padding: 9px;
+	background: white;
+	border: none;
+	border-radius: 5px;
+	color: darkcyan;
+	transition: all 0.2s ease-out;
+	outline: 0;
+	cursor: pointer;
+}
+.experimental .experimental-selected,
+.experimental-selected {
+	background: darkcyan;
+	color: white;
+}
+</style>
+
+<script>
+function setExperimental(event) {
+	var frame = document.querySelector("#storybook-preview-iframe");
+	var classList = frame.contentDocument.body.classList;
+	if(event.target.previousElementSibling) {
+		classList.add("experimental");
+		classList.remove("carbon");
+		event.target.previousElementSibling.classList.remove("experimental-selected");
+	} else {
+		classList.remove("experimental");
+		classList.add("carbon");
+		event.target.nextElementSibling.classList.remove("experimental-selected");
+	}
+	event.target.classList.add("experimental-selected");
+};
+
+var experimentalToggleInterval = setInterval(function() {
+	var frame = document.querySelector("#storybook-preview-iframe");
+	if(!frame ||
+		!frame.contentDocument ||
+		!frame.contentDocument.getElementById("root")) {
+		return;
+	}
+
+	frame.contentDocument.head.appendChild(
+		document.getElementById("iframestyle")
+	);
+
+	clearInterval(experimentalToggleInterval);
+	frame.contentDocument.body.insertAdjacentHTML(
+		"beforeend",
+		`<div style="position: fixed; right: 15px; bottom: 15px">
+			<button
+				class="toggle-btn experimental-selected"
+				onclick="setExperimental(event)">
+				Standard
+			</button>
+			<button
+				class="toggle-btn"
+				onclick="setExperimental(event)">
+				Experimental
+			</button>
+		</div>
+	`);
+	frame.contentWindow.setExperimental = setExperimental;
+
+	var classList = frame.contentDocument.body.classList;
+	classList.add("carbon");
+}, 100);
+</script>
+
+  
+
+  
+  
+</head>
+<body>
+
+
+
+<div id="root"></div>
+
+
+
+
+  <script src="static/runtime~manager.16a639f5253b2fc5c06a.bundle.js"></script>
+
+  <script src="static/manager.32a970e859d2c9a809ea.bundle.js"></script>
+
+
+</body>
+</html>
