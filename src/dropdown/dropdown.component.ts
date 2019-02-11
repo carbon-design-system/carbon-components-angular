@@ -229,7 +229,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 				this.propagateChange(this.view.getSelected());
 			} else {
 				this.closeMenu();
-				this.dropdownButton.nativeElement.focus();
 				if (event.item && event.item.selected) {
 					if (this.value) {
 						this.propagateChange(event.item[this.value]);
@@ -487,9 +486,14 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Collapsing the dropdown menu and removing unnecessary `EventListeners`.
 	 */
 	closeMenu() {
+		// return early if the menu is already closed
+		if (this.menuIsClosed) { return; }
 		this.menuIsClosed = true;
 		this.onClose.emit();
 		this.close.emit();
+
+		// focus the trigger button when we close ...
+		this.dropdownButton.nativeElement.focus();
 
 		// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 		if (this.view["disableScroll"]) {
