@@ -171,6 +171,9 @@ Used to implement a popover or tooltip.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#afterDialogViewInit">afterDialogViewInit</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#doClose">doClose</a>
                             </li>
@@ -377,7 +380,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/dialog/dialog.component.ts:290</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/dialog/dialog.component.ts:299</a></div>
                             </td>
                         </tr>
 
@@ -419,7 +422,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/dialog/dialog.component.ts:268</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/dialog/dialog.component.ts:277</a></div>
                             </td>
                         </tr>
 
@@ -444,6 +447,47 @@ explictly defined.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="afterDialogViewInit"></a>
+                        <span class="name">
+                            <b>
+                            afterDialogViewInit
+                            </b>
+                            <a href="#afterDialogViewInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>afterDialogViewInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/dialog/dialog.component.ts:215</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Empty method to be overridden by consuming classes to run any additional initialization code after the view is available.
+NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply that it will exist in the DOM</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="doClose"></a>
                         <span class="name">
                             <b>
@@ -464,7 +508,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/dialog/dialog.component.ts:301</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/dialog/dialog.component.ts:310</a></div>
                             </td>
                         </tr>
 
@@ -545,7 +589,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/dialog/dialog.component.ts:309</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="318" class="link-to-prism">src/dialog/dialog.component.ts:318</a></div>
                             </td>
                         </tr>
 
@@ -625,7 +669,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.component.ts:206</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/dialog/dialog.component.ts:209</a></div>
                             </td>
                         </tr>
 
@@ -665,7 +709,7 @@ in respect to the parent element.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/dialog/dialog.component.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/dialog/dialog.component.ts:220</a></div>
                             </td>
                         </tr>
 
@@ -1218,14 +1262,23 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		};
 
 		// settimeout to let the DOM settle before attempting to place the dialog
-		setTimeout(placeDialogInContainer);
+		// and before notifying components that the DOM is ready
+		setTimeout(() &#x3D;&gt; {
+			placeDialogInContainer();
+			this.afterDialogViewInit();
+		});
 	}
 
 	/**
 	 * Empty method to be overridden by consuming classes to run any additional initialization code.
-	 * @memberof Dialog
 	 */
 	onDialogInit() {}
+
+	/**
+	 * Empty method to be overridden by consuming classes to run any additional initialization code after the view is available.
+	 * NOTE: this does _not_ guarantee the dialog will be positioned, simply that it will exist in the DOM
+	 */
+	afterDialogViewInit() {}
 
 	/**
 	 * Uses the position service to position the &#x60;Dialog&#x60; in screen space

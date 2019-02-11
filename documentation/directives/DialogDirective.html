@@ -63,7 +63,7 @@
             </p>
             <p class="comment">
                 <p>A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)</p>
-<p>This class contains the relevant intilization code, specific templates, options, and additional inputs
+<p>This class contains the relevant initialization code, specific templates, options, and additional inputs
 should be specified in the derived class.</p>
 <p>NOTE: All child classes should add <code>DialogService</code> as a provider, otherwise they will lose context that
 the service relies on.</p>
@@ -116,6 +116,10 @@ the service relies on.</p>
                         <ul class="index-list">
                             <li>
                                 <a href="#dialogConfig">dialogConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#dialogCounter">dialogCounter</a>
                             </li>
                         </ul>
                     </td>
@@ -221,6 +225,12 @@ the service relies on.</p>
                                 <a href="#attr.aria-expanded">attr.aria-expanded</a>
                             </li>
                             <li>
+                                <a href="#attr.aria-haspopup">attr.aria-haspopup</a>
+                            </li>
+                            <li>
+                                <a href="#attr.aria-owns">attr.aria-owns</a>
+                            </li>
+                            <li>
                                 <a href="#attr.role">attr.role</a>
                             </li>
                         </ul>
@@ -271,7 +281,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/dialog.directive.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dialog/dialog.directive.ts:98</a></div>
                             </td>
                         </tr>
 
@@ -354,7 +364,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/dialog/dialog.directive.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/dialog/dialog.directive.ts:82</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -368,7 +378,7 @@ the service relies on.</p>
                     </td>
                     <td class="col-md-10">
                         <div><p>Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-Value <code>true</code> sets Dialog be appened to the body (to break out of containers)</p>
+Value <code>true</code> appends Dialog to the body (to break out of containers)</p>
 </div>
                             <p>
                             <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
@@ -378,7 +388,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/dialog/dialog.directive.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/dialog/dialog.directive.ts:70</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -400,7 +410,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/dialog/dialog.directive.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/dialog/dialog.directive.ts:86</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -422,7 +432,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/dialog/dialog.directive.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/dialog.directive.ts:65</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -445,7 +455,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/dialog.directive.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/dialog/dialog.directive.ts:46</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -467,7 +477,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/dialog/dialog.directive.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/dialog/dialog.directive.ts:55</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -489,7 +499,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/dialog/dialog.directive.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/dialog/dialog.directive.ts:41</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -515,7 +525,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/dialog/dialog.directive.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/dialog/dialog.directive.ts:51</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -538,7 +548,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/dialog/dialog.directive.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/dialog/dialog.directive.ts:60</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -562,7 +572,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/dialog/dialog.directive.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/dialog.directive.ts:90</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -595,7 +605,74 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/dialog.directive.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dialog/dialog.directive.ts:94</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attr.aria-haspopup"></a>
+                        <span class="name">
+                            <b>
+                            attr.aria-haspopup
+                            </b>
+                            <a href="#attr.aria-haspopup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>attr.aria-haspopup:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/dialog/dialog.directive.ts:95</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attr.aria-owns"></a>
+                        <span class="name">
+                            <b>
+                            attr.aria-owns
+                            </b>
+                            <a href="#attr.aria-owns"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>attr.aria-owns:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/dialog/dialog.directive.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -628,7 +705,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/dialog/dialog.directive.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/dialog.directive.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -665,7 +742,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/dialog/dialog.directive.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/dialog/dialog.directive.ts:116</a></div>
                             </td>
                         </tr>
 
@@ -708,7 +785,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/dialog/dialog.directive.ts:207</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/dialog/dialog.directive.ts:215</a></div>
                             </td>
                         </tr>
 
@@ -751,7 +828,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/dialog/dialog.directive.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/dialog/dialog.directive.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -789,7 +866,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/dialog/dialog.directive.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/dialog/dialog.directive.ts:189</a></div>
                             </td>
                         </tr>
 
@@ -832,7 +909,7 @@ Value <code>true</code> sets Dialog be appened to the body (to break out of cont
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/dialog/dialog.directive.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/dialog/dialog.directive.ts:141</a></div>
                             </td>
                         </tr>
 
@@ -875,7 +952,7 @@ running code from child class.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/dialog/dialog.directive.ts:217</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/dialog/dialog.directive.ts:225</a></div>
                             </td>
                         </tr>
 
@@ -916,7 +993,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/dialog/dialog.directive.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/dialog/dialog.directive.ts:197</a></div>
                             </td>
                         </tr>
 
@@ -959,7 +1036,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/dialog/dialog.directive.ts:198</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/dialog/dialog.directive.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -1014,7 +1091,47 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/dialog.directive.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/dialog/dialog.directive.ts:91</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialogCounter"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            dialogCounter
+                            </b>
+                            <a href="#dialogCounter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>dialogCounter:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/dialog/dialog.directive.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -1043,7 +1160,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/dialog/dialog.directive.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/dialog/dialog.directive.ts:76</a></div>
                                 </td>
                             </tr>
 
@@ -1054,13 +1171,13 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/dialog/dialog.directive.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/dialog/dialog.directive.ts:70</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-description"><p>Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-Value <code>true</code> sets Dialog be appened to the body (to break out of containers)</p>
+Value <code>true</code> appends Dialog to the body (to break out of containers)</p>
 </div>
 
                                 <div class="io-description">
@@ -1126,7 +1243,7 @@ import { DialogConfig } from &quot;./dialog-config.interface&quot;;
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
  *
- * This class contains the relevant intilization code, specific templates, options, and additional inputs
+ * This class contains the relevant initialization code, specific templates, options, and additional inputs
  * should be specified in the derived class.
  *
  * NOTE: All child classes should add &#x60;DialogService&#x60; as a provider, otherwise they will lose context that
@@ -1140,6 +1257,7 @@ import { DialogConfig } from &quot;./dialog-config.interface&quot;;
 	]
 })
 export class DialogDirective implements OnInit, OnDestroy, OnChanges {
+	static dialogCounter &#x3D; 0;
 	/**
 	 * Title for the dialog
 	 * @type {string}
@@ -1171,7 +1289,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Input() gap &#x3D; 0;
 	/**
 	 * Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-	 * Value &#x60;true&#x60; sets Dialog be appened to the body (to break out of containers)
+	 * Value &#x60;true&#x60; appends Dialog to the body (to break out of containers)
 	 */
 	@Input() set appendToBody(v: boolean) {
 		console.log(&quot;&#x60;appendToBody&#x60; has been deprecated. Dialogs now append to the body by default.&quot;);
@@ -1198,6 +1316,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;button&quot;;
 	@HostBinding(&quot;attr.aria-expanded&quot;) expanded &#x3D; false;
+	@HostBinding(&quot;attr.aria-haspopup&quot;) hasPopup &#x3D; true;
+	@HostBinding(&quot;attr.aria-owns&quot;) get ariaOwns(): string {
+		return this.expanded ? this.dialogConfig.compID : null;
+	}
 
 	/**
 	 * Creates an instance of DialogDirective.
@@ -1276,6 +1398,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.expanded &#x3D; false;
 			}
 		});
+
+		DialogDirective.dialogCounter++;
+		this.dialogConfig.compID &#x3D; &quot;dialog-&quot; + DialogDirective.dialogCounter;
 
 		// run any code a child class may need
 		this.onDialogInit();
