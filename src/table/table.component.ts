@@ -181,8 +181,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[ibmDataGridFocus]="isDataGrid"
 					[columnIndex]="columnIndex"
 					(keyup)="handleInteractions($event)"
-					(click)="setExpandIndex($event)"
-					tabindex="-1">
+					(click)="setExpandIndex($event)">
 				</th>
 				<th *ngIf="!skeleton && showSelectionColumn"
 					[ibmDataGridFocus]="isDataGrid"
@@ -210,8 +209,7 @@ import { I18n } from "./../i18n/i18n.module";
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)"
 					(keyup)="handleInteractions($event)"
-					(click)="setIndex($event, i)"
-					tabindex="-1">
+					(click)="setIndex($event, i)">
 						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
@@ -220,7 +218,6 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 						<button
 							class="bx--table-sort-v2"
-							tabindex="-1"
 							*ngIf="this.sort.observers.length > 0 && column.sortable"
 							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
 							aria-live="polite"
@@ -240,7 +237,6 @@ import { I18n } from "./../i18n/i18n.module";
 							</ng-template>
 							<svg
 							class="bx--table-sort-v2__icon"
-							tabindex="-1"
 							width="10" height="5" viewBox="0 0 10 5">
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
@@ -336,8 +332,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[columnIndex]="columnIndex"
 					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
 					(keyup)="handleInteractions($event)"
-					(click)="setExpandIndex($event)"
-					tabindex="-1">
+					(click)="setExpandIndex($event)">
 						<button
 						*ngIf="model.isRowExpandable(i)"
 						class="bx--table-expand-v2__button"
@@ -369,8 +364,7 @@ import { I18n } from "./../i18n/i18n.module";
 							[ibmDataGridFocus]="isDataGrid"
 							[columnIndex]="columnIndex"
 							(keyup)="handleInteractions($event)"
-							(click)="setIndex($event, j)"
-							tabindex="-1">
+							(click)="setIndex($event, j)">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
@@ -387,8 +381,7 @@ import { I18n } from "./../i18n/i18n.module";
 						[columnIndex]="columnIndex"
 						[attr.colspan]="row.length + 2"
 						(keyup)="handleInteractions($event)"
-						(click)="setExpandIndex($event)"
-						tabindex="-1">
+						(click)="setExpandIndex($event)">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
 						<ng-template
 							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
@@ -919,13 +912,16 @@ export class Table implements AfterViewInit {
 				focusElementList.forEach(tabbable => {
 					tabbable.tabIndex = -1;
 				});
+			}
+			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th:not([style*='width: 0'])")).forEach(cell => {
+				cell.tabIndex = -1;
+			});
 
-				const rows = this.elementRef.nativeElement.firstElementChild.rows;
-				if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-					this.setTabIndex(rows[0].querySelector("th"));
-				} else {
-					this.setTabIndex(rows[1].querySelector("td"));
-				}
+			const rows = this.elementRef.nativeElement.firstElementChild.rows;
+			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
+				this.setTabIndex(rows[0].querySelector("th"));
+			} else {
+				this.setTabIndex(rows[1].querySelector("td"));
 			}
 		});
 	}
@@ -992,9 +988,7 @@ export class Table implements AfterViewInit {
 	}
 
 	setExpandIndex(event) {
-		if (event.target.closest("td").classList.contains("bx--table-expand-v2")) {
-			this.columnIndex = 0;
-		}
+		this.columnIndex = 0;
 	}
 
 	@HostListener("focusout",  ["$event"])

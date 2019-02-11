@@ -103,6 +103,9 @@ export class DataGridFocus {
 
 	@HostListener("click", ["$event"])
 	onClick() {
+		if (!this.ibmDataGridFocus) {
+			return;
+		}
 		this.focus(this.elementRef.nativeElement);
 	}
 }
