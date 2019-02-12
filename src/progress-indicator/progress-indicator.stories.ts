@@ -86,7 +86,7 @@ storiesOf("ProgressIndicator", module)
 	.add("Vertical", () => ({
 		template: `
 		<app-experimental-component></app-experimental-component>
-		<ibm-progress-indicator [vertical]="true" [steps]="steps"></ibm-progress-indicator>
+		<ibm-progress-indicator [orientation]="'vertical'" [steps]="steps"></ibm-progress-indicator>
 		`,
 		props: {
 			steps : [
