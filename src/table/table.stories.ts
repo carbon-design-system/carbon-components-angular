@@ -168,8 +168,8 @@ class DynamicTableStory implements OnInit {
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
-			[isDataGrid]="isDataGrid"
->
+			(sort)="customSort($event)"
+			[isDataGrid]="isDataGrid">
 		</ibm-table>
 	`
 })
