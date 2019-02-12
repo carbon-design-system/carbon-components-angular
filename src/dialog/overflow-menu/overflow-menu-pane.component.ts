@@ -106,21 +106,16 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 		}
 	}
 
-	ngAfterViewInit() {
-		// wait for the menu to exist in the DOM before setting focus
-		// TODO: work on a more elegant solution (afterDialogInit hook maybe?)
-		setTimeout(() => {
-			const focusElementList = this.listItems();
-			focusElementList.forEach(button => {
-				// Allows user to set tabindex to 0.
-				if (button.getAttribute("tabindex") === null) {
-					button.tabIndex = -1;
-				}
-			});
-			focusElementList[0].tabIndex = 0;
-			focusElementList[0].focus();
+	afterDialogViewInit() {
+		const focusElementList = this.listItems();
+		focusElementList.forEach(button => {
+			// Allows user to set tabindex to 0.
+			if (button.getAttribute("tabindex") === null) {
+				button.tabIndex = -1;
+			}
 		});
-		super.ngAfterViewInit();
+		focusElementList[0].tabIndex = 0;
+		focusElementList[0].focus();
 	}
 
 	protected listItems() {
