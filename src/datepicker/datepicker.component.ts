@@ -1,3 +1,4 @@
+import { array } from "@storybook/addon-knobs/angular";
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
@@ -8,34 +9,37 @@ let nextId = 0;
 	selector: "ibm-date-picker",
 	template: `
 	<div class="bx--form-item">
-		<ng2-flatpickr [setDate]="value" [config]= "range ? flatpickrOptionsRange : flatpickrOptions" [hideButton]="true">
+		<ng2-flatpickr
+			[setDate]= "value"
+			[config]= "range ? flatpickrOptionsRange : flatpickrOptions"
+			[hideButton]="true">
 			<div class="bx--form-item">
 				<div
-				data-date-picker
-				[attr.data-date-picker-type]= "range ? 'range' : 'single'"
-				class="bx--date-picker"
-				[ngClass]= "range ? 'bx--date-picker--range' : 'bx--date-picker--single'">
-					<div class="bx--date-picker-container" #flatpickr>
+					data-date-picker
+					[attr.data-date-picker-type]= "range ? 'range' : 'single'"
+					class="bx--date-picker"
+					[ngClass]= "range ? 'bx--date-picker--range' : 'bx--date-picker--single'">
+					<div class="bx--date-picker-container">
 						<ibm-date-picker-input
-						[label]= "label"
-						[placeholder]= "placeholder"
-						[pattern]= "pattern"
-						[id]= "id"
-						[type]= "range ? 'range' : 'single'"
-						[hasIcon]= "range ? false : true"
-						(valueChange)="valueChange.emit($event)">
+							[label]= "label"
+							[placeholder]= "placeholder"
+							[pattern]= "pattern"
+							[id]= "id"
+							[type]= "range ? 'range' : 'single'"
+							[hasIcon]= "range ? false : true"
+							(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
 
 					<div *ngIf="range" class="bx--date-picker-container">
 						<ibm-date-picker-input
-						[label]= "rangeLabel"
-						[placeholder]= "placeholder"
-						[pattern]= "pattern"
-						[id]= "id + '-rangeInput'"
-						[type]= "range ? 'range' : 'single'"
-						[hasIcon]= "range ? true : null"
-						(valueChange)="valueChange.emit($event)">
+							[label]= "rangeLabel"
+							[placeholder]= "placeholder"
+							[pattern]= "pattern"
+							[id]= "id + '-rangeInput'"
+							[type]= "range ? 'range' : 'single'"
+							[hasIcon]= "range ? true : null"
+							(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -63,11 +67,9 @@ export class DatePicker {
 
 	@Input() id = `datepicker-${nextId++}`;
 
-	@Input() value: string;
+	@Input() value: array;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
-
-	datesSelected = [];
 
 	flatpickrOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
@@ -82,7 +84,8 @@ export class DatePicker {
 		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
 		allowInput: true,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
-		onOpen: () => { this.updateClassNames(); }
+		onOpen: () => { this.updateClassNames(); },
+		value: this.value
 	};
 
 	settings = {
@@ -123,9 +126,9 @@ export class DatePicker {
 
 		Array.from(dayContainer).forEach(item => {
 			item.classList.add(this.settings.classDay);
-			if (item.classList.contains("today") && this.datesSelected.length > 0) {
+			if (item.classList.contains("today") && this.value.length > 0) {
 				item.classList.add("no-border");
-			} else if (item.classList.contains("today") && this.datesSelected.length === 0) {
+			} else if (item.classList.contains("today") && this.value.length === 0) {
 				item.classList.remove("no-border");
 			}
 		});

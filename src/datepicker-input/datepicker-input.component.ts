@@ -7,7 +7,7 @@ let nextId = 0;
 	template: `
 	<div class="bx--form-item">
 		<div class="bx--date-picker"
-		[ngClass]= "'bx--date-picker--'+type">
+		[ngClass]= "'bx--date-picker--' + type">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
 					{{label}}
@@ -24,14 +24,14 @@ let nextId = 0;
 						fill-rule="nonzero"/>
 				</svg>
 				<input
-				autocomplete="off"
-				type="text"
-				class="bx--date-picker__input"
-				[pattern]="pattern"
-				[placeholder]="placeholder"
-				data-date-picker-input
-				[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
-				[id]= "type == 'range' ? id : 'single'"/>
+					autocomplete="off"
+					type="text"
+					class="bx--date-picker__input"
+					[pattern]="pattern"
+					[placeholder]="placeholder"
+					data-date-picker-input
+					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
+					[id]= "id"/>
 			</div>
 
 			<svg *ngIf= "type == 'range' && hasIcon"
@@ -60,7 +60,7 @@ export class DatePickerInput {
 
 	@Input() id = `datepicker-${nextId++}`;
 
-	@Input() hasIcon: string;
+	@Input() hasIcon = false;
 
 	@Input() label: string;
 
