@@ -72,7 +72,7 @@ export class DatePicker {
 	flatpickrOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
 		allowInput: true,
-		onChange: (selectedDates: any) => { this.doSelect(selectedDates); },
+		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); },
 		value: this.value
 	};
@@ -81,7 +81,7 @@ export class DatePicker {
 		dateFormat: "m/d/Y",
 		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
 		allowInput: true,
-		onChange: (selectedDates: any) => { this.doSelect(selectedDates); },
+		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); }
 	};
 
@@ -97,8 +97,8 @@ export class DatePicker {
 		attribType: this.range ? "range" : "single"
 	};
 
-	doSelect(selectedDates) {
-		this.valueChange.emit(this.datesSelected);
+	doSelect(selectedValue) {
+		this.valueChange.emit(selectedValue);
 	}
 
 	updateClassNames() {
