@@ -373,7 +373,7 @@ import { I18n } from "./../i18n/i18n.module";
 					</ng-container>
 				</tr>
 				<tr
-				*ngIf="model.rowsExpanded[i]"
+				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
 				class="bx--expandable-row-v2"
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
