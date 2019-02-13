@@ -8,7 +8,7 @@ let nextId = 0;
 	selector: "ibm-date-picker",
 	template: `
 	<div class="bx--form-item">
-		<ng2-flatpickr [setDate]="date" [config]= "range ? flatpickrOptionsRange : flatpickrOptions" [hideButton]="true">
+		<ng2-flatpickr [setDate]="value" [config]= "range ? flatpickrOptionsRange : flatpickrOptions" [hideButton]="true">
 			<div class="bx--form-item">
 				<div
 				data-date-picker
@@ -23,7 +23,7 @@ let nextId = 0;
 						[id]= "id"
 						[type]= "range ? 'range' : 'single'"
 						[hasIcon]= "range ? false : true"
-						(datesChange)="datesChange.emit($event)">
+						(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
 
@@ -35,7 +35,7 @@ let nextId = 0;
 						[id]= "id + '-rangeInput'"
 						[type]= "range ? 'range' : 'single'"
 						[hasIcon]= "range ? true : null"
-						(datesChange)="datesChange.emit($event)">
+						(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -63,9 +63,9 @@ export class DatePicker {
 
 	@Input() id = `datepicker-${nextId++}`;
 
-	@Input() date: string;
+	@Input() value: string;
 
-	@Output() datesChange: EventEmitter<any> = new EventEmitter();
+	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
 	datesSelected = [];
 
@@ -74,7 +74,7 @@ export class DatePicker {
 		allowInput: true,
 		onChange: (selectedDates: any) => { this.doSelect(selectedDates); },
 		onOpen: () => { this.updateClassNames(); },
-		date: this.date
+		value: this.value
 	};
 
 	flatpickrOptionsRange: FlatpickrOptions = {
@@ -98,7 +98,7 @@ export class DatePicker {
 	};
 
 	doSelect(selectedDates) {
-		this.datesChange.emit(this.datesSelected);
+		this.valueChange.emit(this.datesSelected);
 	}
 
 	updateClassNames() {
