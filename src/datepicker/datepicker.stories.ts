@@ -20,13 +20,13 @@ storiesOf("Date Picker", module)
 		<app-experimental-component></app-experimental-component>
 		<ibm-date-picker
 			label="Date Picker Label"
-			[defaultDate]="defaultDate"
-			(selectDates)="selectDates($event)">
+			[date]="date"
+			(datesChange)="datesChange($event)">
 		</ibm-date-picker>
 		`,
 		props: {
-			defaultDate: text("defaultDate", "01/01/2011"),
-			selectDates: action("Date change fired!")
+			date: text("date", "01/01/2011"),
+			datesChange: action("Date change fired!")
 		}
 	}))
 	.add("Range", () => ({
@@ -36,11 +36,11 @@ storiesOf("Date Picker", module)
 		label="Date Picker Label"
 		rangeLabel="Date Picker Label2"
 		range="true"
-		(selectDates)="selectDates($event)">
+		(datesChange)="datesChange($event)">
 		</ibm-date-picker>
 		`,
 		props: {
-			selectDates: action("Date change fired!")
+			datesChange: action("Date change fired!")
 		}
 	}));
 
