@@ -196,14 +196,23 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		};
 
 		// settimeout to let the DOM settle before attempting to place the dialog
-		setTimeout(placeDialogInContainer);
+		// and before notifying components that the DOM is ready
+		setTimeout(() => {
+			placeDialogInContainer();
+			this.afterDialogViewInit();
+		});
 	}
 
 	/**
 	 * Empty method to be overridden by consuming classes to run any additional initialization code.
-	 * @memberof Dialog
 	 */
 	onDialogInit() {}
+
+	/**
+	 * Empty method to be overridden by consuming classes to run any additional initialization code after the view is available.
+	 * NOTE: this does _not_ guarantee the dialog will be positioned, simply that it will exist in the DOM
+	 */
+	afterDialogViewInit() {}
 
 	/**
 	 * Uses the position service to position the `Dialog` in screen space

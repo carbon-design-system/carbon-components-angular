@@ -19,7 +19,7 @@ import { DialogConfig } from "./dialog-config.interface";
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
  *
- * This class contains the relevant intilization code, specific templates, options, and additional inputs
+ * This class contains the relevant initialization code, specific templates, options, and additional inputs
  * should be specified in the derived class.
  *
  * NOTE: All child classes should add `DialogService` as a provider, otherwise they will lose context that
@@ -33,6 +33,7 @@ import { DialogConfig } from "./dialog-config.interface";
 	]
 })
 export class DialogDirective implements OnInit, OnDestroy, OnChanges {
+	static dialogCounter = 0;
 	/**
 	 * Title for the dialog
 	 * @type {string}
@@ -64,7 +65,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Input() gap = 0;
 	/**
 	 * Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-	 * Value `true` sets Dialog be appened to the body (to break out of containers)
+	 * Value `true` appends Dialog to the body (to break out of containers)
 	 */
 	@Input() set appendToBody(v: boolean) {
 		console.log("`appendToBody` has been deprecated. Dialogs now append to the body by default.");
@@ -91,6 +92,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 	@HostBinding("attr.role") role = "button";
 	@HostBinding("attr.aria-expanded") expanded = false;
+	@HostBinding("attr.aria-haspopup") hasPopup = true;
+	@HostBinding("attr.aria-owns") get ariaOwns(): string {
+		return this.expanded ? this.dialogConfig.compID : null;
+	}
 
 	/**
 	 * Creates an instance of DialogDirective.
@@ -169,6 +174,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.expanded = false;
 			}
 		});
+
+		DialogDirective.dialogCounter++;
+		this.dialogConfig.compID = "dialog-" + DialogDirective.dialogCounter;
 
 		// run any code a child class may need
 		this.onDialogInit();
