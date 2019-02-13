@@ -8,7 +8,7 @@ let nextId = 0;
 	selector: "ibm-date-picker",
 	template: `
 	<div class="bx--form-item">
-		<ng2-flatpickr [config]= "range ? flatpickrOptionsRange : flatpickrOptions" [hideButton]="true">
+		<ng2-flatpickr [setDate]="defaultDate" [config]= "range ? flatpickrOptionsRange : flatpickrOptions" [hideButton]="true">
 			<div class="bx--form-item">
 				<div
 				data-date-picker
@@ -63,6 +63,8 @@ export class DatePicker {
 
 	@Input() id = `datepicker-${nextId++}`;
 
+	@Input() defaultDate: string;
+
 	@Output() selectDates: EventEmitter<any> = new EventEmitter();
 
 	datesSelected = [];
@@ -71,7 +73,8 @@ export class DatePicker {
 		dateFormat: "m/d/Y",
 		allowInput: true,
 		onChange: (selectedDates: any) => { this.doSelect(selectedDates); },
-		onOpen: () => { this.updateClassNames(); }
+		onOpen: () => { this.updateClassNames(); },
+		defaultDate: this.defaultDate
 	};
 
 	flatpickrOptionsRange: FlatpickrOptions = {
