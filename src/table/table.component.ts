@@ -475,11 +475,23 @@ export class Table implements AfterViewInit {
 		this._model.rowsSelectedChange.subscribe(() => this.updateSelectAllCheckbox());
 		this._model.dataChange.subscribe(() => {
 			this.updateSelectAllCheckbox();
-			this.getTotalColumns();
 			if (this.isDataGrid) {
+				this.getTotalColumns();
 				this.handleTabIndex();
 			}
 		});
+		if (this.isDataGrid) {
+			this._model.rowsExpandedChange.subscribe(() => {
+				setTimeout(() => {
+					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row-v2:not(.bx--parent-row-v2)");
+					Array.from<any>(expandedRows).forEach(row => {
+						if (row.firstElementChild.tabindex === undefined || row.firstElementChild.tabIndex !== -1) {
+							row.firstElementChild.tabIndex = -1;
+						}
+					});
+				});
+			});
+		}
 	}
 
 	get model(): TableModel {
@@ -913,9 +925,9 @@ export class Table implements AfterViewInit {
 					tabbable.tabIndex = -1;
 				});
 			}
-			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th:not([style*='width: 0'])")).forEach(cell => {
-				cell.tabIndex = -1;
-			});
+			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th:not([style*='width: 0'])")).forEach(cell =>
+				cell.tabIndex = -1
+			);
 
 			const rows = this.elementRef.nativeElement.firstElementChild.rows;
 			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
