@@ -14980,6 +14980,7 @@ var ProgressIndicator = /** @class */ (function () {
     function ProgressIndicator(experimental) {
         this.experimental = experimental;
         this.steps = [];
+        this.orientation = "horizontal";
         this.skeleton = false;
     }
     ProgressIndicator.skeletonSteps = function (stepCount) {
@@ -15003,12 +15004,16 @@ var ProgressIndicator = /** @class */ (function () {
     ], ProgressIndicator.prototype, "steps", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], ProgressIndicator.prototype, "orientation", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], ProgressIndicator.prototype, "skeleton", void 0);
     ProgressIndicator = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-progress-indicator",
-            template: "\n\t<ul\n\t\tdata-progress\n\t\tdata-progress-current\n\t\tclass=\"bx--progress\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--skeleton': skeleton\n\t\t}\">\n\t\t<li\n\t\tclass=\"bx--progress-step bx--progress-step--{{step.state}}\"\n\t\t*ngFor=\"let step of steps; let i = index\">\n\t\t\t<svg *ngIf=\"step.state == 'complete'\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\">\n\t\t\t\t<g fill-rule=\"nonzero\">\n\t\t\t\t\t<path d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"/>\n\t\t\t\t\t<path d=\"M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z\"/>\n\t\t\t\t</g>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'current'\">\n\t\t\t\t<!-- old icon -->\n\t\t\t\t<g *ngIf=\"!isExperimental\">\n\t\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"6\"></circle>\n\t\t\t\t</g>\n\t\t\t\t<!-- new icon -->\n\t\t\t\t<path *ngIf=\"isExperimental\" d=\"M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0\" ></path>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'incomplete'\">\n\t\t\t\t<!-- old icon -->\n\t\t\t\t<circle *ngIf=\"!isExperimental\" cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t\t<!-- new icon -->\n\t\t\t\t<path\n\t\t\t\t\t*ngIf=\"isExperimental\"\n\t\t\t\t\td=\"M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z\">\n\t\t\t\t</path>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'error'\">\n\t\t\t\t<path d=\"M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z\"></path>\n\t\t\t\t<path d=\"M7.5 4h1v5h-1zm.5 6.2c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8s-.4-.8-.8-.8z\"></path>\n\t\t\t</svg>\n\t\t\t<p class=\"bx--progress-label\">{{step.text}}</p>\n\t\t\t<span class=\"bx--progress-line\"></span>\n\t\t</li>\n\t</ul>\n\t"
+            template: "\n\t<ul\n\t\tdata-progress\n\t\tdata-progress-current\n\t\tclass=\"bx--progress\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--skeleton': skeleton,\n\t\t\t'bx--progress--vertical': (orientation === 'vertical')\n\t\t}\">\n\t\t<li\n\t\tclass=\"bx--progress-step bx--progress-step--{{step.state}}\"\n\t\t*ngFor=\"let step of steps; let i = index\">\n\t\t\t<svg *ngIf=\"step.state == 'complete'\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\">\n\t\t\t\t<g fill-rule=\"nonzero\">\n\t\t\t\t\t<path d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"/>\n\t\t\t\t\t<path d=\"M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z\"/>\n\t\t\t\t</g>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'current'\">\n\t\t\t\t<!-- old icon -->\n\t\t\t\t<g *ngIf=\"!isExperimental\">\n\t\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t\t\t<circle cx=\"12\" cy=\"12\" r=\"6\"></circle>\n\t\t\t\t</g>\n\t\t\t\t<!-- new icon -->\n\t\t\t\t<path *ngIf=\"isExperimental\" d=\"M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0\" ></path>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'incomplete'\">\n\t\t\t\t<!-- old icon -->\n\t\t\t\t<circle *ngIf=\"!isExperimental\" cx=\"12\" cy=\"12\" r=\"12\"></circle>\n\t\t\t\t<!-- new icon -->\n\t\t\t\t<path\n\t\t\t\t\t*ngIf=\"isExperimental\"\n\t\t\t\t\td=\"M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z\">\n\t\t\t\t</path>\n\t\t\t</svg>\n\t\t\t<svg *ngIf=\"step.state == 'error'\">\n\t\t\t\t<path d=\"M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z\"></path>\n\t\t\t\t<path d=\"M7.5 4h1v5h-1zm.5 6.2c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8s-.4-.8-.8-.8z\"></path>\n\t\t\t</svg>\n\t\t\t<p class=\"bx--progress-label\">{{step.text}}</p>\n\t\t\t<span class=\"bx--progress-line\"></span>\n\t\t</li>\n\t</ul>\n\t"
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof _experimental_module__WEBPACK_IMPORTED_MODULE_1__["ExperimentalService"] !== "undefined" && _experimental_module__WEBPACK_IMPORTED_MODULE_1__["ExperimentalService"]) === "function" && _a || Object])
     ], ProgressIndicator);
@@ -15094,8 +15099,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { Component, Input, OnInit } from '@angular/core';\nimport { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { ExperimentalComponenent } from '../../.storybook/experimental.component';\n\nimport { ProgressIndicatorModule } from '../';\nimport { ProgressIndicator } from './progress-indicator.component';\n\n// NOTE: non-experimental styles include some temporary workarounds in preview.scss\n// these should be removed when experimental becomes non-experimental\n@Component({\n  selector: 'app-skeleton-progress-indicator',\n  template: `\n    <ibm-progress-indicator [steps]=\"skeletonSteps\" skeleton=\"true\"> </ibm-progress-indicator>\n  `,\n})\nclass SkeletonStory implements OnInit {\n  @Input() skeletonSteps = [];\n\n  ngOnInit() {\n    // Creates an empty progress indicator with 4 steps\n    this.skeletonSteps = ProgressIndicator.skeletonSteps(4);\n  }\n}\n\nstoriesOf('ProgressIndicator', module)\n  .addDecorator(\n    moduleMetadata({\n      declarations: [ExperimentalComponenent, SkeletonStory],\n      imports: [ProgressIndicatorModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<div style=\"display: flex;\">\n\t\t\t<ibm-progress-indicator [steps]=\"steps\"></ibm-progress-indicator>\n\t\t</div>\n\t\t`,\n    props: {\n      steps: [\n        {\n          text: '1. ONE',\n          state: ['complete'],\n        },\n        {\n          text: '2. TWO',\n          state: ['complete'],\n        },\n        {\n          text: '3. THREE',\n          state: ['current'],\n        },\n        {\n          text: '4. FOUR',\n          state: ['incomplete'],\n        },\n        {\n          text: '5. FIVE',\n          state: ['incomplete'],\n        },\n        {\n          text: '6. SIX',\n          state: ['incomplete'],\n        },\n      ],\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<app-skeleton-progress-indicator></app-skeleton-progress-indicator>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "ProgressIndicator@Skeleton": { "startLoc": { "col": 7, "line": 73 }, "endLoc": { "col": 4, "line": 78 } }, "ProgressIndicator@Basic": { "startLoc": { "col": 7, "line": 37 }, "endLoc": { "col": 4, "line": 72 } } };
+var __STORY__ = "import { Component, Input, OnInit } from '@angular/core';\nimport { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, boolean, object } from '@storybook/addon-knobs/angular';\n\nimport { ExperimentalComponenent } from '../../.storybook/experimental.component';\n\nimport { ProgressIndicatorModule } from '../';\nimport { ProgressIndicator } from './progress-indicator.component';\n\n// NOTE: non-experimental styles include some temporary workarounds in preview.scss\n// these should be removed when experimental becomes non-experimental\n@Component({\n  selector: 'app-skeleton-progress-indicator',\n  template: `\n    <ibm-progress-indicator [steps]=\"skeletonSteps\" skeleton=\"true\"> </ibm-progress-indicator>\n  `,\n})\nclass SkeletonStory implements OnInit {\n  @Input() skeletonSteps = [];\n\n  ngOnInit() {\n    // Creates an empty progress indicator with 4 steps\n    this.skeletonSteps = ProgressIndicator.skeletonSteps(4);\n  }\n}\n\nstoriesOf('ProgressIndicator', module)\n  .addDecorator(\n    moduleMetadata({\n      declarations: [ExperimentalComponenent, SkeletonStory],\n      imports: [ProgressIndicatorModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<div style=\"display: flex;\">\n\t\t\t<ibm-progress-indicator [steps]=\"steps\"></ibm-progress-indicator>\n\t\t</div>\n\t\t`,\n    props: {\n      steps: [\n        {\n          text: '1. ONE',\n          state: ['complete'],\n        },\n        {\n          text: '2. TWO',\n          state: ['complete'],\n        },\n        {\n          text: '3. THREE',\n          state: ['current'],\n        },\n        {\n          text: '4. FOUR',\n          state: ['incomplete'],\n        },\n        {\n          text: '5. FIVE',\n          state: ['incomplete'],\n        },\n        {\n          text: '6. SIX',\n          state: ['incomplete'],\n        },\n      ],\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<app-skeleton-progress-indicator></app-skeleton-progress-indicator>\n\t\t`,\n  }))\n  .add('Vertical', () => ({\n    template: `\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<ibm-progress-indicator [orientation]=\"'vertical'\" [steps]=\"steps\"></ibm-progress-indicator>\n\t\t`,\n    props: {\n      steps: [\n        {\n          text: '1. ONE',\n          state: ['complete'],\n        },\n        {\n          text: '2. TWO',\n          state: ['complete'],\n        },\n        {\n          text: '3. THREE',\n          state: ['current'],\n        },\n        {\n          text: '4. FOUR',\n          state: ['incomplete'],\n        },\n        {\n          text: '5. FIVE',\n          state: ['incomplete'],\n        },\n        {\n          text: '6. SIX',\n          state: ['incomplete'],\n        },\n      ],\n    },\n  }));\n";
+var __ADDS_MAP__ = { "ProgressIndicator@Vertical": { "startLoc": { "col": 7, "line": 79 }, "endLoc": { "col": 4, "line": 112 } }, "ProgressIndicator@Skeleton": { "startLoc": { "col": 7, "line": 73 }, "endLoc": { "col": 4, "line": 78 } }, "ProgressIndicator@Basic": { "startLoc": { "col": 7, "line": 37 }, "endLoc": { "col": 4, "line": 72 } } };
 
 
 
@@ -15165,6 +15170,37 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_1__["storiesOf"])("ProgressIn
 }); })
     .add("Skeleton", function () { return ({
     template: "\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<app-skeleton-progress-indicator></app-skeleton-progress-indicator>\n\t\t"
+}); })
+    .add("Vertical", function () { return ({
+    template: "\n\t\t<app-experimental-component></app-experimental-component>\n\t\t<ibm-progress-indicator [orientation]=\"'vertical'\" [steps]=\"steps\"></ibm-progress-indicator>\n\t\t",
+    props: {
+        steps: [
+            {
+                text: "1. ONE",
+                state: ["complete"]
+            },
+            {
+                text: "2. TWO",
+                state: ["complete"]
+            },
+            {
+                text: "3. THREE",
+                state: ["current"]
+            },
+            {
+                text: "4. FOUR",
+                state: ["incomplete"]
+            },
+            {
+                text: "5. FIVE",
+                state: ["incomplete"]
+            },
+            {
+                text: "6. SIX",
+                state: ["incomplete"]
+            }
+        ]
+    }
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -22460,4 +22496,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.5037283d83e2533cc231.bundle.js.map
+//# sourceMappingURL=iframe.fc5d6c01e6b3639c328e.bundle.js.map

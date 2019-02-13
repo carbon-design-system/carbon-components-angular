@@ -91,7 +91,8 @@
 	data-progress-current
 	class&#x3D;&quot;bx--progress&quot;
 	[ngClass]&#x3D;&quot;{
-		&#x27;bx--skeleton&#x27;: skeleton
+		&#x27;bx--skeleton&#x27;: skeleton,
+		&#x27;bx--progress--vertical&#x27;: (orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27;)
 	}&quot;&gt;
 	&lt;li
 	class&#x3D;&quot;bx--progress-step bx--progress-step--{{step.state}}&quot;
@@ -173,6 +174,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#orientation">orientation</a>
+                            </li>
+                            <li>
                                 <a href="#skeleton">skeleton</a>
                             </li>
                             <li>
@@ -214,7 +218,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -258,6 +262,30 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
+                        <a name="orientation"></a>
+                        <code>orientation</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code>&quot;horizontal&quot; | &quot;vertical&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;horizontal&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:63</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
                         <a name="skeleton"></a>
                         <code>skeleton</code>
                     </td>
@@ -269,7 +297,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:64</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -289,7 +317,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:62</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -327,7 +355,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -397,7 +425,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/progress-indicator/progress-indicator.component.ts:66</a></div>
                                 </td>
                             </tr>
 
@@ -419,7 +447,8 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 		data-progress-current
 		class&#x3D;&quot;bx--progress&quot;
 		[ngClass]&#x3D;&quot;{
-			&#x27;bx--skeleton&#x27;: skeleton
+			&#x27;bx--skeleton&#x27;: skeleton,
+			&#x27;bx--progress--vertical&#x27;: (orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27;)
 		}&quot;&gt;
 		&lt;li
 		class&#x3D;&quot;bx--progress-step bx--progress-step--{{step.state}}&quot;
@@ -469,7 +498,7 @@ export class ProgressIndicator {
 	}
 
 	@Input() steps &#x3D; [];
-
+	@Input() orientation: &quot;horizontal&quot; | &quot;vertical&quot; &#x3D; &quot;horizontal&quot;;
 	@Input() skeleton &#x3D; false;
 
 	get isExperimental() {
@@ -508,7 +537,7 @@ export class ProgressIndicator {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ul	data-progress	data-progress-current	class="bx--progress"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<li	class="bx--progress-step bx--progress-step--{{step.state}}"	*ngFor="let step of steps; let i = index">		<svg *ngIf="step.state == \'complete\'" width="16" height="16" viewBox="0 0 16 16">			<g fill-rule="nonzero">				<path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>				<path d="M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z"/>			</g>		</svg>		<svg *ngIf="step.state == \'current\'">			<!-- old icon -->			<g *ngIf="!isExperimental">				<circle cx="12" cy="12" r="12"></circle>				<circle cx="12" cy="12" r="6"></circle>			</g>			<!-- new icon -->			<path *ngIf="isExperimental" d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>		</svg>		<svg *ngIf="step.state == \'incomplete\'">			<!-- old icon -->			<circle *ngIf="!isExperimental" cx="12" cy="12" r="12"></circle>			<!-- new icon -->			<path				*ngIf="isExperimental"				d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">			</path>		</svg>		<svg *ngIf="step.state == \'error\'">			<path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"></path>			<path d="M7.5 4h1v5h-1zm.5 6.2c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8s-.4-.8-.8-.8z"></path>		</svg>		<p class="bx--progress-label">{{step.text}}</p>		<span class="bx--progress-line"></span>	</li></ul></div>'
+        var COMPONENT_TEMPLATE = '<div><ul	data-progress	data-progress-current	class="bx--progress"	[ngClass]="{		\'bx--skeleton\': skeleton,		\'bx--progress--vertical\': (orientation === \'vertical\')	}">	<li	class="bx--progress-step bx--progress-step--{{step.state}}"	*ngFor="let step of steps; let i = index">		<svg *ngIf="step.state == \'complete\'" width="16" height="16" viewBox="0 0 16 16">			<g fill-rule="nonzero">				<path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>				<path d="M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z"/>			</g>		</svg>		<svg *ngIf="step.state == \'current\'">			<!-- old icon -->			<g *ngIf="!isExperimental">				<circle cx="12" cy="12" r="12"></circle>				<circle cx="12" cy="12" r="6"></circle>			</g>			<!-- new icon -->			<path *ngIf="isExperimental" d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0" ></path>		</svg>		<svg *ngIf="step.state == \'incomplete\'">			<!-- old icon -->			<circle *ngIf="!isExperimental" cx="12" cy="12" r="12"></circle>			<!-- new icon -->			<path				*ngIf="isExperimental"				d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">			</path>		</svg>		<svg *ngIf="step.state == \'error\'">			<path d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"></path>			<path d="M7.5 4h1v5h-1zm.5 6.2c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8s-.4-.8-.8-.8z"></path>		</svg>		<p class="bx--progress-label">{{step.text}}</p>		<span class="bx--progress-line"></span>	</li></ul></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ProgressIndicator'};
