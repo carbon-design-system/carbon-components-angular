@@ -485,7 +485,7 @@ export class Table implements AfterViewInit {
 				setTimeout(() => {
 					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row-v2:not(.bx--parent-row-v2)");
 					Array.from<any>(expandedRows).forEach(row => {
-						if (row.firstElementChild.tabindex === undefined || row.firstElementChild.tabIndex !== -1) {
+						if (row.firstElementChild.tabIndex === undefined || row.firstElementChild.tabIndex !== -1) {
 							row.firstElementChild.tabIndex = -1;
 						}
 					});
