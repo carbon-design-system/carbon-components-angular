@@ -3,8 +3,6 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
-let nextId = 0;
-
 @Component({
 	selector: "ibm-date-picker",
 	template: `
@@ -50,6 +48,9 @@ let nextId = 0;
 })
 
 export class DatePicker {
+
+	private static datePickerCount = 0;
+
 	/**
 	 * Select a calendar view for the `model`.
 	 *
@@ -65,7 +66,7 @@ export class DatePicker {
 
 	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
 
-	@Input() id = `datepicker-${nextId++}`;
+	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
 	@Input() value: array;
 

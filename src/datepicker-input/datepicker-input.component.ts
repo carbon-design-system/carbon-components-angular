@@ -1,7 +1,5 @@
 import { Component, Input } from "@angular/core";
 
-let nextId = 0;
-
 @Component({
 	selector: "ibm-date-picker-input",
 	template: `
@@ -49,6 +47,9 @@ let nextId = 0;
 	`
 })
 export class DatePickerInput {
+
+	private static datePickerCount = 0;
+
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.
@@ -58,7 +59,7 @@ export class DatePickerInput {
 	 */
 	@Input() type: "simple" | "single" | "range" = "simple";
 
-	@Input() id = `datepicker-${nextId++}`;
+	@Input() id = `datepicker-${DatePickerInput.datePickerCount++}`;
 
 	@Input() hasIcon = false;
 
