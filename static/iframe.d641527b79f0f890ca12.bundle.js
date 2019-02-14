@@ -7194,7 +7194,6 @@ var Dropdown = /** @class */ (function () {
             var pos = _utils_position__WEBPACK_IMPORTED_MODULE_5__["position"].findAbsolute(_this.dropdownButton.nativeElement, _this.dropdownWrapper, "bottom");
             // add -40 to the top position to account for carbon styles
             pos = _utils_position__WEBPACK_IMPORTED_MODULE_5__["position"].addOffset(pos, -40, 0);
-            pos = _utils_position__WEBPACK_IMPORTED_MODULE_5__["position"].addOffset(pos, window.scrollY, window.scrollX);
             _utils_position__WEBPACK_IMPORTED_MODULE_5__["position"].setElement(_this.dropdownWrapper, pos);
         };
         this.dropdownMenu.nativeElement.style.display = "block";
@@ -9942,7 +9941,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, EXPERIMENTAL_SERVICE_PROVIDER_FACTORY, EXPERIMENTAL_SERVICE_PROVIDER, ExperimentalService, ExperimentalModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, SliderModule, Slider, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableToolbar, TableToolbarActions, TableToolbarSearch, TableToolbarContent, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Header, HeaderItem, HeaderMenu, HeaderNavigation, HeaderGlobal, HeaderAction, SideNav, SideNavHeader, SideNavItem, SideNavMenu, UIShellModule, AlertModalType, ModalButtonType */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, EXPERIMENTAL_SERVICE_PROVIDER_FACTORY, EXPERIMENTAL_SERVICE_PROVIDER, ExperimentalService, ExperimentalModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, SliderModule, Slider, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableToolbar, TableToolbarActions, TableToolbarSearch, TableToolbarContent, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Header, HeaderItem, HeaderMenu, HeaderNavigation, HeaderGlobal, HeaderAction, SideNav, SideNavHeader, SideNavItem, SideNavMenu, UIShellModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10119,13 +10118,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["ModalService"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["BaseModal"]; });
-
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["ModalModule"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["ModalButtonType"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["BaseModal"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_22__["NotificationService"]; });
@@ -12121,7 +12120,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, BaseModal, ModalModule, AlertModalType, ModalButtonType */
+/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22496,4 +22495,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.fc5d6c01e6b3639c328e.bundle.js.map
+//# sourceMappingURL=iframe.d641527b79f0f890ca12.bundle.js.map
