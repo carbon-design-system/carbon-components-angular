@@ -2,10 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	OnChanges,
 	OnDestroy,
 	EventEmitter,
-	forwardRef,
 	TemplateRef,
 	AfterViewInit,
 	ViewChild,
@@ -17,6 +15,7 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";
 import { ScrollableList } from "./../scrollable-list.directive";
+import { Observable, isObservable } from "rxjs";
 
 
 /**
@@ -90,13 +89,25 @@ import { ScrollableList } from "./../scrollable-list.directive";
 			useExisting: DropdownList
 		}
 	]
-}) // conceptually this extends list-group, but we dont have to
-export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
+})
+export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	@Input() ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the `DropdownList`.
 	 */
-	@Input() items: Array<ListItem> = [];
+	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
+		if (isObservable(value)) {
+			value.subscribe(v => {
+				this.updateList(v);
+			});
+		} else {
+			this.updateList(value);
+		}
+	}
+
+	get items(): Array<ListItem> | Observable<Array<ListItem>> {
+		return this._items as Array<ListItem>;
+	}
 	/**
 	 * Template to bind to items in the `DropdownList` (optional).
 	 */
@@ -141,19 +152,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	protected focusJump;
 
+	protected _items: Array<ListItem> = [];
+
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
 	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
-
-	/**
-	 * Updates list when changes occur within the items belonging to the `DropdownList`.
-	 */
-	ngOnChanges(changes) {
-		if (changes.items) {
-			this.updateList(changes.items.currentValue);
-		}
-	}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -161,7 +165,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	ngAfterViewInit() {
 		this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
-		this.index = this.items.findIndex(item => item.selected);
+		this.index = this._items.findIndex(item => item.selected);
 		this.setupFocusObservable();
 	}
 
@@ -178,16 +182,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Updates the displayed list of items and then retrieves the most current properties for the `DropdownList` from the DOM.
 	 */
 	updateList(items) {
-		this.items = items.map(item => Object.assign({}, item));
-		this.displayItems = this.items;
+		this._items = items.map(item => Object.assign({}, item));
+		this.displayItems = this._items;
 		setTimeout(() => {
 			this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		}, 0);
-		this.index = this.items.findIndex(item => item.selected);
+		this.index = this._items.findIndex(item => item.selected);
 		this.setupFocusObservable();
 		setTimeout(() => {
 			if (this.type === "single") {
-				this.select.emit({ item: this.items.find(item => item.selected) });
+				this.select.emit({ item: this._items.find(item => item.selected) });
 			} else {
 				this.select.emit(this.getSelected() || []);
 			}
@@ -199,9 +203,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	filterBy(query = "") {
 		if (query) {
-			this.displayItems = this.items.filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
+			this.displayItems = this._items.filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
 		} else {
-			this.displayItems = this.items;
+			this.displayItems = this._items;
 		}
 	}
 
@@ -224,17 +228,18 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */
 	getNextItem(): ListItem {
-		if (this.index < this.items.length - 1) {
+		if (this.index < this._items.length - 1) {
 			this.index++;
 		}
-		return this.items[this.index];
+		return this._items[this.index];
 	}
 
 	/**
 	 * Returns `true` if the selected item is not the last item in the `DropdownList`.
+	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
-		if (this.index < this.items.length - 1) {
+		if (this.index < this._items.length - 1) {
 			return true;
 		}
 		return false;
@@ -244,11 +249,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Returns the `HTMLElement` for the item that is subsequent to the selected item.
 	 */
 	getNextElement(): HTMLElement {
-		if (this.index < this.items.length - 1) {
+		if (this.index < this._items.length - 1) {
 			this.index++;
 		}
 		let elem = this.listElementList[this.index];
-		let item = this.items[this.index];
+		let item = this._items[this.index];
 		if (item.disabled) {
 			return this.getNextElement();
 		}
@@ -262,11 +267,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		if (this.index > 0) {
 			this.index--;
 		}
-		return this.items[this.index];
+		return this._items[this.index];
 	}
 
 	/**
 	 * Returns `true` if the selected item is not the first in the list.
+	 * TODO: standardize
 	 */
 	hasPrevElement(): boolean {
 		if (this.index > 0) {
@@ -283,7 +289,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			this.index--;
 		}
 		let elem = this.listElementList[this.index];
-		let item = this.items[this.index];
+		let item = this._items[this.index];
 		if (item.disabled) {
 			return this.getPrevElement();
 		}
@@ -295,9 +301,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	getCurrentItem(): ListItem {
 		if (this.index < 0) {
-			return this.items[0];
+			return this._items[0];
 		}
-		return this.items[this.index];
+		return this._items[this.index];
 	}
 
 	/**
@@ -311,10 +317,17 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	/**
+	 * returns the items as an Array
+	 */
+	getListItems() {
+		return this._items;
+	}
+
+	/**
 	 * Returns a list containing the selected item(s) in the `DropdownList`.
 	 */
 	getSelected(): ListItem[] {
-		let selected = this.items.filter(item => item.selected);
+		let selected = this._items.filter(item => item.selected);
 		if (selected.length === 0) {
 			return null;
 		}
@@ -332,7 +345,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			delete tempNewItem.selected;
 			// stringify for compare
 			tempNewItem = JSON.stringify(tempNewItem);
-			for (let oldItem of this.items) {
+			for (let oldItem of this._items) {
 				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 				delete tempOldItem.selected;
 				tempOldItem = JSON.stringify(tempOldItem);
@@ -387,7 +400,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			item.selected = !item.selected;
 			if (this.type === "single") {
 				// reset the selection
-				for (let otherItem of this.items) {
+				for (let otherItem of this._items) {
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
 
@@ -396,7 +409,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				// emit an array of selected items
 				this.select.emit(this.getSelected());
 			}
-			this.index = this.items.indexOf(item);
+			this.index = this._items.indexOf(item);
 		}
 	}
 

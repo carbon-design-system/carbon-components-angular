@@ -218,7 +218,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 */
 	ngOnChanges(changes) {
 		if (changes.items) {
-			this.view["updateList"](changes.items.currentValue);
+			this.view.items = changes.items.currentValue;
 			this.updateSelected();
 		}
 	}
@@ -254,9 +254,9 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 					this.closeDropdown();
 				}
 				this.selected.emit(event);
-				this.view["filterBy"]("");
+				this.view.filterBy("");
 			});
-			this.view["updateList"](this.items);
+			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {
@@ -290,7 +290,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
-		} else if (ev.key === "ArrowUp" && this.dropdownMenu.nativeElement.contains(ev.target) && !this.view["hasPrevElement"]()) {
+		} else if (ev.key === "ArrowUp" && this.dropdownMenu.nativeElement.contains(ev.target) && !this.view.hasPrevElement()) {
 			this.elementRef.nativeElement.querySelector(".combobox_input").focus();
 		}
 	}
@@ -340,7 +340,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 			}
 			return item;
 		});
-		this.view["updateList"](this.items);
+		this.view.items = this.items;
 		this.updatePills();
 		// clearSelected can only fire on type=multi
 		// so we just emit getSelected() (just in case there's any disabled but selected items)
@@ -349,7 +349,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Closes the dropdown and emits the close event.
-	 * @memberof ComboBox
 	 */
 	public closeDropdown() {
 		this.open = false;
@@ -358,7 +357,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Opens the dropdown.
-	 * @memberof ComboBox
 	 */
 	public openDropdown() {
 		this.open = true;
@@ -366,7 +364,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Toggles the dropdown.
-	 * @memberof ComboBox
 	 */
 	public toggleDropdown() {
 		if (this.open) {
@@ -381,7 +378,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * @param {string} searchString
 	 */
 	public onSearch(searchString) {
-		this.view["filterBy"](searchString);
+		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
 		} else {
@@ -390,7 +387,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
 			// of any given item
-			const matches = this.view.items.some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
+			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
 				if (selected) {
@@ -399,7 +396,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 					this.view.select.emit({ item: selected[0] });
 					this.propagateChangeCallback(null);
 				} else {
-					this.view["filterBy"]("");
+					this.view.filterBy("");
 				}
 			}
 		}
@@ -421,10 +418,10 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	public onSubmit(ev) {
 		let index = 0;
 		if (ev.after) {
-			index = this.view.items.indexOf(ev.after) + 1;
+			index = this.view.getListItems().indexOf(ev.after) + 1;
 		}
 		this.submit.emit({
-			items: this.view.items,
+			items: this.view.getListItems(),
 			index,
 			value: {
 				content: ev.value,

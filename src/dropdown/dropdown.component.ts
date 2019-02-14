@@ -20,6 +20,7 @@ import { throttleTime } from "rxjs/operators";
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../utils/position";
 import { I18n } from "./../i18n/i18n.module";
+import { ListItem } from "./list-item.interface";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -258,7 +259,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	writeValue(value: any) {
 		if (this.type === "single") {
 			if (this.value) {
-				const newValue = Object.assign({}, this.view.items.find(item => item[this.value] === value));
+				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.value] === value));
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
