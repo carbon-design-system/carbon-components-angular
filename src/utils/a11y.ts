@@ -1,3 +1,5 @@
+import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
+
 function findSiblingElem(target, direction: "nextElementSibling" | "previousElementSibling") {
 	if (target[direction]) {
 		if (target[direction].classList.contains("disabled")) {
@@ -93,5 +95,16 @@ export function focusPrevElem(elem, parentRef = null) {
 				parentRef.querySelector("[tabindex='0']").focus();
 			}
 		}
+	}
+}
+
+export function setTabIndex(element: HTMLElement, index: -1 | 0 | 1) {
+	const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
+	if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
+		focusElementList[1].tabIndex = index;
+	} else if (focusElementList.length > 0) {
+		focusElementList[0].tabIndex = index;
+	} else {
+		element.tabIndex = index;
 	}
 }

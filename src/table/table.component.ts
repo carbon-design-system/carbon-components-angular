@@ -16,6 +16,7 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 import { getScrollbarWidth } from "../common/utils";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
+import { setTabIndex } from "../utils/a11y";
 import { I18n } from "./../i18n/i18n.module";
 
 /**
@@ -439,17 +440,6 @@ export class Table implements AfterViewInit {
 		model.header = header;
 		model.data = data;
 		return model;
-	}
-
-	static setTabIndex(element: HTMLElement, value: number) {
-		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
-			focusElementList[1].tabIndex = value;
-		} else if (focusElementList.length > 0) {
-			focusElementList[0].tabIndex = value;
-		} else {
-			element.tabIndex = value;
-		}
 	}
 
 	/**
@@ -935,15 +925,15 @@ export class Table implements AfterViewInit {
 					tabbable.tabIndex = -1;
 				});
 			}
-			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th:not([style*='width: 0'])")).forEach(cell =>
-				Table.setTabIndex(cell, -1)
+			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th")).forEach(cell =>
+				setTabIndex(cell, -1)
 			);
 
 			const rows = this.elementRef.nativeElement.firstElementChild.rows;
 			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-				Table.setTabIndex(rows[0].querySelector("th"), 0);
+				setTabIndex(rows[0].querySelector("th"), 0);
 			} else {
-				Table.setTabIndex(rows[1].querySelector("td"), 0);
+				setTabIndex(rows[1].querySelector("td"), 0);
 			}
 		});
 	}
@@ -1002,21 +992,12 @@ export class Table implements AfterViewInit {
 		this.columnIndex = 0;
 	}
 
-	@HostListener("focusout",  ["$event"])
-	focusOut(event) {
-		if (event.relatedTarget === null) {
-			this.columnIndex = 0;
-		}
-	}
-
 	@HostListener("keyup", ["$event"])
 	keyUp(event: KeyboardEvent) {
 		if (event.key === "Home" && event.ctrlKey) {
 			this.columnIndex = 0;
 		} else if (event.key === "End" && event.ctrlKey) {
 			this.columnIndex = this.getTotalColumns() - 1;
-		} else if (event.key === "Tab" && event.shiftKey) {
-			this.columnIndex = 0;
 		}
 	}
 }
