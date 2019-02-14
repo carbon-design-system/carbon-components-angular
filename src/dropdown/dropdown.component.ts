@@ -429,7 +429,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			let pos = position.findAbsolute(this.dropdownButton.nativeElement, this.dropdownWrapper, "bottom");
 			// add -40 to the top position to account for carbon styles
 			pos = position.addOffset(pos, -40, 0);
-			pos = position.addOffset(pos, window.scrollY, window.scrollX);
 			position.setElement(this.dropdownWrapper, pos);
 		};
 		this.dropdownMenu.nativeElement.style.display = "block";
