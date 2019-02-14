@@ -25,12 +25,19 @@ export interface ListItem {
 	 * @memberof ListItem
 	 */
 	content: string;
+
+	/**
+	 * Secondary Content to be displayed in the list.
+	 * @type {string}
+	 * @memberof ListItem
+	 */
+	sec_content?: string;
 	/**
 	 * Flag for the selected state of the item.
 	 * @type {boolean}
 	 * @memberof ListItem
 	 */
-	selected: boolean;
+	selected?: boolean;
 	/**
 	 * If the item is in a disabled state.
 	 * (Note: not all lists have to support disabled states, and not all lists behave the same with disabled items)

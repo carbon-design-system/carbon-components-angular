@@ -34,25 +34,36 @@ import { I18n } from "./../i18n/i18n.module";
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton
-		}">
-		<button
-			type="button"
+        }">
+		<div
 			#dropdownButton
 			class="bx--list-box__field"
-			[ngClass]="{'a': !menuIsClosed}"
+			[ngClass]="{'a': !menuIsClosed, 'no-selections': type === 'single' || ( !view.getSelected() || !view.getSelected().length )}"
 			[attr.aria-expanded]="!menuIsClosed"
-			[attr.aria-disabled]="disabled"
-			(click)="toggleMenu()"
+            [attr.aria-disabled]="disabled"
 			(blur)="onBlur()"
-			[disabled]="disabled">
-			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
-			<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" [attr.aria-label]="menuButtonLabel">
-					<title>{{menuButtonLabel}}</title>
-					<path d="M0 0l5 4.998L10 0z"></path>
-				</svg>
-			</div>
-		</button>
+            >
+			<span (click)="clearSelected()" *ngIf="type === 'multi' && view.getSelected() && view.getSelected().length"
+			 class="bx--tag bx--tag--ibm">
+                {{view.getSelected().length}}
+                &nbsp;
+                <svg class="close-tag" width="8" height="8" viewBox="0 0 10 10">
+                    <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
+                </svg>
+            </span>
+            <div class="click-container" [class.left-padded]="view.getSelected() && view.getSelected().length" (click)="toggleMenu()">
+                <span class="bx--list-box__label" [class.selected]="view.getSelected() && view.getSelected().length">
+                    {{getDisplayValue() | async}}
+                </span>
+                <div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+                    <svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10"
+                    alt="Open menu" [attr.aria-label]="menuButtonLabel">
+                        <title>{{menuButtonLabel}}</title>
+                        <path d="M0 0l5 4.998L10 0z"></path>
+                    </svg>
+                </div>
+            </div>
+		</div>
 		<div
 			#dropdownMenu
 			[ngClass]="{
@@ -62,6 +73,7 @@ import { I18n } from "./../i18n/i18n.module";
 		</div>
 	</div>
 	`,
+	styleUrls: ["dropdown.component.scss"],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -229,6 +241,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 				this.propagateChange(this.view.getSelected());
 			} else {
 				this.closeMenu();
+				this.dropdownButton.nativeElement.focus();
 				if (event.item && event.item.selected) {
 					if (this.value) {
 						this.propagateChange(event.item[this.value]);
@@ -345,7 +358,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return of(`${selected.length} ${this.selectedLabel}`);
+				return of(`${this.selectedLabel}`);
 			} else {
 				return of(selected[0].content);
 			}
@@ -549,6 +562,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Controls toggling menu states between open/expanded and closed/collapsed.
 	 */
 	toggleMenu() {
+		const selected = this.view.getSelected();
 		if (this.menuIsClosed) {
 			this.openMenu();
 		} else {
@@ -570,5 +584,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		}
 
 		return false;
+	}
+
+	clearSelected() {
+		this.view.resetSelected();
+		this.selected.emit([]);
 	}
 }

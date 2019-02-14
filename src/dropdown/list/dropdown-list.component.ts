@@ -66,7 +66,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 				}">
 				<div
 					*ngIf="!listTpl && type === 'multi'"
-					class="bx--form-item bx--checkbox-wrapper">
+					class="bx--form-item checkbox-wrapper">
 					<input
 						class="bx--checkbox"
 						type="checkbox"
@@ -74,7 +74,10 @@ import { ScrollableList } from "./../scrollable-list.directive";
 						[disabled]="item.disabled"
 						(click)="doClick($event, item)"
 						tabindex="-1">
-					<label class="bx--checkbox-label">{{item.content}}</label>
+						<label class="bx--checkbox-label">
+							<span>{{item.content}}</span>
+							&nbsp;<span [hidden]="!item.sec_content" class="sec-content">({{item.sec_content}})</span>
+						</label>
 				</div>
 				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 				<ng-template
@@ -84,6 +87,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 				</ng-template>
 			</li>
 		</ul>`,
+	styleUrls: ["dropdown-list.component.scss"],
 	providers: [
 		{
 			provide: AbstractDropdownView,
@@ -408,5 +412,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	onItemBlur(index) {
 		this.listElementList[index].classList.remove("bx--list-box__menu-item--highlighted");
 		this.listElementList[index].tabIndex = -1;
+	}
+
+	resetSelected() {
+		this.items.map((item) => {
+			item.selected = false;
+		});
 	}
 }

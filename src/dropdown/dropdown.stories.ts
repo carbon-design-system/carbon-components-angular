@@ -57,7 +57,7 @@ storiesOf("Dropdown", module)
 			disabled: boolean("disabled", false),
 			items: object("items", [
 				{ content: "one" },
-				{ content: "two" },
+				{ content: "two", sec_content: "Some secondary Content" },
 				{ content: "three" },
 				{ content: "four" }
 			]),
