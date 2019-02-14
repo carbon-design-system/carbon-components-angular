@@ -720,8 +720,8 @@ export class Table implements AfterViewInit {
 	constructor(protected elementRef: ElementRef, protected applicationRef: ApplicationRef, protected i18n: I18n) {}
 
 	ngAfterViewInit() {
-		this.getTotalColumns();
 		if (this.isDataGrid) {
+			this.getTotalColumns();
 			this.handleTabIndex();
 		}
 	}
@@ -925,9 +925,7 @@ export class Table implements AfterViewInit {
 					tabbable.tabIndex = -1;
 				});
 			}
-			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th")).forEach(cell =>
-				setTabIndex(cell, -1)
-			);
+			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th")).forEach(cell => setTabIndex(cell, -1));
 
 			const rows = this.elementRef.nativeElement.firstElementChild.rows;
 			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
