@@ -4,6 +4,7 @@ import {
 	ElementRef,
 	HostListener
 } from "@angular/core";
+import { Table } from "./table.component";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
 
 @Directive({
@@ -40,62 +41,85 @@ export class DataGridFocus {
 			case "Right": // IE specific value
 			case "ArrowRight":
 				if (this.elementRef.nativeElement.nextElementSibling) {
-					this.focus(this.elementRef.nativeElement.nextElementSibling);
+					const nextSibling = this.elementRef.nativeElement.nextElementSibling;
+					Table.setTabIndex(this.elementRef.nativeElement, -1);
+					Table.setTabIndex(nextSibling, 0);
+					this.focus(nextSibling);
 				}
 				break;
 			case "Left": // IE specific value
 			case "ArrowLeft":
 				if (this.elementRef.nativeElement.previousElementSibling) {
-					this.focus(this.elementRef.nativeElement.previousElementSibling);
+					const previousSibling = this.elementRef.nativeElement.previousElementSibling;
+					Table.setTabIndex(this.elementRef.nativeElement, -1);
+					Table.setTabIndex(previousSibling, 0);
+					this.focus(previousSibling);
 				}
 				break;
 			case "Down": // IE specific value
 			case "ArrowDown":
 				if (rowIndex < rows.length - 1) {
 					rowIndex++;
-					const bodyCells = rows[rowIndex].querySelectorAll("td");
+					const row = rows[rowIndex].querySelectorAll("td");
+					Table.setTabIndex(this.elementRef.nativeElement, -1);
 					if (rows[rowIndex].className === "bx--expandable-row-v2") {
-						this.focus(bodyCells[0]);
+						Table.setTabIndex(row[0], 0);
+						this.focus(row[0]);
 					} else {
-						this.focus(bodyCells[this.columnIndex]);
+						Table.setTabIndex(row[this.columnIndex], 0);
+						this.focus(row[this.columnIndex]);
 					}
 				}
 				break;
 			case "Up": // IE specific value
 			case "ArrowUp":
-				const headerCells = rows[0].querySelectorAll("th");
-				if (rowIndex === 1 &&
-					Array.from(headerCells).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-					this.focus(headerCells[this.columnIndex]);
+				const headerRow = rows[0].querySelectorAll("th");
+				Table.setTabIndex(this.elementRef.nativeElement, -1);
+				if (rowIndex === 1 && Array.from(headerRow).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
+					Table.setTabIndex(headerRow[this.columnIndex], 0);
+					this.focus(headerRow[this.columnIndex]);
 				} else if (rowIndex > 1) {
 					rowIndex--;
-					const bodyCells = rows[rowIndex].querySelectorAll("td");
+					const row = rows[rowIndex].querySelectorAll("td");
 					if (rows[rowIndex].className === "bx--expandable-row-v2") {
-						this.focus(bodyCells[0]);
+						Table.setTabIndex(row[0], 0);
+						this.focus(row[0]);
 					} else {
-						this.focus(bodyCells[this.columnIndex]);
+						Table.setTabIndex(row[this.columnIndex], 0);
+						this.focus(row[this.columnIndex]);
 					}
 				}
 				break;
 			case "Home":
-				this.focus(rows[rowIndex].querySelectorAll("th, td")[0]);
+				Table.setTabIndex(this.elementRef.nativeElement, -1);
 				if (event.ctrlKey) {
-					const rows = this.elementRef.nativeElement.closest("table").rows;
-					const headerCells = rows[0].querySelectorAll("th");
-					if (Array.from(headerCells).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-						this.focus(headerCells[0]);
+					const headerRow = rows[0].querySelectorAll("th");
+					if (Array.from(headerRow).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
+						Table.setTabIndex(headerRow[0], 0);
+						this.focus(headerRow[0]);
 					} else {
-						this.focus(rows[1].querySelectorAll("td")[0]);
+						const firstBodyCell = rows[1].querySelectorAll("td")[0];
+						Table.setTabIndex(firstBodyCell, 0);
+						this.focus(firstBodyCell);
 					}
+				} else if (this.elementRef.nativeElement.parentElement.className !== "bx--expandable-row-v2") {
+					const firstRowCell = rows[rowIndex].querySelectorAll("th, td")[0];
+					Table.setTabIndex(firstRowCell, 0);
+					this.focus(firstRowCell);
 				}
 				break;
 			case "End":
-				this.columnIndex = rows[rows.length - 1].querySelectorAll("td").length - 1;
-				this.focus(rows[rowIndex].querySelectorAll("th, td")[this.columnIndex]);
+				const lastRow = rows[rows.length - 1].querySelectorAll("td");
+				Table.setTabIndex(this.elementRef.nativeElement, -1);
 				if (event.ctrlKey) {
-					const rows = this.elementRef.nativeElement.closest("table").rows;
-					this.columnIndex = rows[rows.length - 1].querySelectorAll("td").length - 1;
-					this.focus(rows[rows.length - 1].querySelectorAll("td")[this.columnIndex]);
+					this.columnIndex = lastRow.length - 1;
+					Table.setTabIndex(lastRow[this.columnIndex], 0);
+					this.focus(lastRow[this.columnIndex]);
+				} else if (this.elementRef.nativeElement.parentElement.className !== "bx--expandable-row-v2") {
+					this.columnIndex = lastRow.length - 1;
+					const lastRowCell = rows[rowIndex].querySelectorAll("th, td")[this.columnIndex];
+					Table.setTabIndex(lastRowCell, 0);
+					this.focus(lastRowCell);
 				}
 				break;
 		}
@@ -106,6 +130,9 @@ export class DataGridFocus {
 		if (!this.ibmDataGridFocus) {
 			return;
 		}
+		const focusElementList = getFocusElementList(this.elementRef.nativeElement.closest("table"), tabbableSelectorIgnoreTabIndex);
+		focusElementList.forEach(element => Table.setTabIndex(element, -1));
+		Table.setTabIndex(this.elementRef.nativeElement, 0);
 		this.focus(this.elementRef.nativeElement);
 	}
 }

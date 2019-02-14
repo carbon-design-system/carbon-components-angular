@@ -380,7 +380,6 @@ import { I18n } from "./../i18n/i18n.module";
 						[ibmDataGridFocus]="isDataGrid"
 						[columnIndex]="columnIndex"
 						[attr.colspan]="row.length + 2"
-						(keyup)="handleInteractions($event)"
 						(click)="setExpandIndex($event)">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
 						<ng-template
@@ -440,6 +439,18 @@ export class Table implements AfterViewInit {
 		model.header = header;
 		model.data = data;
 		return model;
+	}
+
+	static setTabIndex(element: HTMLElement, value: number) {
+		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
+		if (element.firstElementChild &&
+			element.firstElementChild.classList.contains("bx--table-sort-v2")) {
+			focusElementList[1].tabIndex = value;
+		} else if (focusElementList.length > 0) {
+			focusElementList[0].tabIndex = value;
+		} else {
+			element.tabIndex = value;
+		}
 	}
 
 	/**
@@ -926,14 +937,14 @@ export class Table implements AfterViewInit {
 				});
 			}
 			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th:not([style*='width: 0'])")).forEach(cell =>
-				cell.tabIndex = -1
+				Table.setTabIndex(cell, -1)
 			);
 
 			const rows = this.elementRef.nativeElement.firstElementChild.rows;
 			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-				this.setTabIndex(rows[0].querySelector("th"));
+				Table.setTabIndex(rows[0].querySelector("th"), 0);
 			} else {
-				this.setTabIndex(rows[1].querySelector("td"));
+				Table.setTabIndex(rows[1].querySelector("td"), 0);
 			}
 		});
 	}
@@ -948,18 +959,7 @@ export class Table implements AfterViewInit {
 		}
 	}
 
-	setTabIndex(firstCell) {
-		const focusElementList = getFocusElementList(firstCell, tabbableSelectorIgnoreTabIndex);
-		if (firstCell.firstElementChild &&
-			firstCell.firstElementChild.classList.contains("bx--table-sort-v2")) {
-			focusElementList[1].tabIndex = 0;
-		} else if (focusElementList.length > 0) {
-			focusElementList[0].tabIndex = 0;
-		} else {
-			firstCell.tabIndex = 0;
-		}
-	}
-
+	// This is handled in the component so that the columnIndex is saved as you go into expandable rows
 	handleInteractions(event: KeyboardEvent) {
 		switch (event.key) {
 			case "Right": // IE specific value
