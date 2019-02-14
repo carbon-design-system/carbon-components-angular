@@ -443,8 +443,7 @@ export class Table implements AfterViewInit {
 
 	static setTabIndex(element: HTMLElement, value: number) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild &&
-			element.firstElementChild.classList.contains("bx--table-sort-v2")) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
 			focusElementList[1].tabIndex = value;
 		} else if (focusElementList.length > 0) {
 			focusElementList[0].tabIndex = value;

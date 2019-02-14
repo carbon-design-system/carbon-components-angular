@@ -19,8 +19,7 @@ export class DataGridFocus {
 
 	focus(focusElement) {
 		const focusElementList = getFocusElementList(focusElement, tabbableSelectorIgnoreTabIndex);
-		if (focusElement.firstElementChild &&
-			focusElement.firstElementChild.classList.contains("bx--table-sort-v2")) {
+		if (focusElement.firstElementChild && focusElement.firstElementChild.classList.contains("bx--table-sort-v2")) {
 			focusElementList[1].focus();
 		} else if (focusElementList.length > 0) {
 			focusElementList[0].focus();
