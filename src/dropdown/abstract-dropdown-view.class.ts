@@ -7,24 +7,16 @@ import { Observable } from "rxjs";
  * A component that intends to be used within `Dropdown` must provide an implementation that extends this base class.
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
- *
- * @export
- * @class AbstractDropdownView
  */
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.
-	 * @type {Array<ListItem>}
 	 */
-	@Input() set items(value: Array<ListItem> | Observable<Array<ListItem>>) {
-	}
+	@Input() set items(value: Array<ListItem> | Observable<Array<ListItem>>) { }
 
-	get items(): Array<ListItem> | Observable<Array<ListItem>> {
-		return;
-	}
+	get items(): Array<ListItem> | Observable<Array<ListItem>> { return; }
 	/**
 	 * Emits selection events to other class.
-	 * @type {EventEmitter<Object>}
 	 */
 	@Output() select: EventEmitter<Object>;
 	/**
@@ -73,7 +65,7 @@ export class AbstractDropdownView {
 	 */
 	getCurrentElement(): HTMLElement { return; }
 	/**
-	 * Returns the current items as an Array
+	 * Guaranteed to return the current items as an Array.
 	 */
 	getListItems(): Array<ListItem> { return; }
 	/**

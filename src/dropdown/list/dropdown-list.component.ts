@@ -15,7 +15,7 @@ import { AbstractDropdownView } from "./../abstract-dropdown-view.class";
 import { ListItem } from "./../list-item.interface";
 import { watchFocusJump } from "./../dropdowntools";
 import { ScrollableList } from "./../scrollable-list.directive";
-import { Observable, isObservable } from "rxjs";
+import { Observable, isObservable, Subscription } from "rxjs";
 
 
 /**
@@ -97,16 +97,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
 		if (isObservable(value)) {
-			value.subscribe(v => {
-				this.updateList(v);
-			});
+			this._itemsSubscription.unsubscribe();
+			this._itemsSubscription = value.subscribe(v => this.updateList(v));
 		} else {
 			this.updateList(value);
 		}
+		this._originalItems = value;
 	}
 
 	get items(): Array<ListItem> | Observable<Array<ListItem>> {
-		return this._items as Array<ListItem>;
+		return this._originalItems;
 	}
 	/**
 	 * Template to bind to items in the `DropdownList` (optional).
@@ -151,7 +151,17 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Observable bound to keydown events to control filtering.
 	 */
 	protected focusJump;
-
+	/**
+	 * Tracks the current (if any) subscription to the items observable so we can clean up when the input is updated.
+	 */
+	protected _itemsSubscription: Subscription;
+	/**
+	 * Used to retain the original items passed to the setter.
+	 */
+	protected _originalItems: Array<ListItem> | Observable<Array<ListItem>>;
+	/**
+	 * Useful representation of the items, should be accessed via `getListItems`.
+	 */
 	protected _items: Array<ListItem> = [];
 
 	/**
@@ -165,7 +175,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	ngAfterViewInit() {
 		this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
-		this.index = this._items.findIndex(item => item.selected);
+		this.index = this.getListItems().findIndex(item => item.selected);
 		this.setupFocusObservable();
 	}
 
@@ -203,9 +213,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	filterBy(query = "") {
 		if (query) {
-			this.displayItems = this._items.filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
+			this.displayItems = this.getListItems().filter(item => item.content.toLowerCase().includes(query.toLowerCase()));
 		} else {
-			this.displayItems = this._items;
+			this.displayItems = this.getListItems();
 		}
 	}
 
@@ -228,10 +238,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */
 	getNextItem(): ListItem {
-		if (this.index < this._items.length - 1) {
+		if (this.index < this.getListItems().length - 1) {
 			this.index++;
 		}
-		return this._items[this.index];
+		return this.getListItems()[this.index];
 	}
 
 	/**
@@ -239,7 +249,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
-		if (this.index < this._items.length - 1) {
+		if (this.index < this.getListItems().length - 1) {
 			return true;
 		}
 		return false;
@@ -249,11 +259,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns the `HTMLElement` for the item that is subsequent to the selected item.
 	 */
 	getNextElement(): HTMLElement {
-		if (this.index < this._items.length - 1) {
+		if (this.index < this.getListItems().length - 1) {
 			this.index++;
 		}
 		let elem = this.listElementList[this.index];
-		let item = this._items[this.index];
+		let item = this.getListItems()[this.index];
 		if (item.disabled) {
 			return this.getNextElement();
 		}
@@ -267,7 +277,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index > 0) {
 			this.index--;
 		}
-		return this._items[this.index];
+		return this.getListItems()[this.index];
 	}
 
 	/**
@@ -289,7 +299,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			this.index--;
 		}
 		let elem = this.listElementList[this.index];
-		let item = this._items[this.index];
+		let item = this.getListItems()[this.index];
 		if (item.disabled) {
 			return this.getPrevElement();
 		}
@@ -301,9 +311,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	getCurrentItem(): ListItem {
 		if (this.index < 0) {
-			return this._items[0];
+			return this.getListItems()[0];
 		}
-		return this._items[this.index];
+		return this.getListItems()[this.index];
 	}
 
 	/**
@@ -317,9 +327,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	}
 
 	/**
-	 * returns the items as an Array
+	 * Returns the items as an Array
 	 */
-	getListItems() {
+	getListItems(): Array<ListItem> {
 		return this._items;
 	}
 
@@ -327,7 +337,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns a list containing the selected item(s) in the `DropdownList`.
 	 */
 	getSelected(): ListItem[] {
-		let selected = this._items.filter(item => item.selected);
+		let selected = this.getListItems().filter(item => item.selected);
 		if (selected.length === 0) {
 			return null;
 		}
@@ -345,7 +355,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			delete tempNewItem.selected;
 			// stringify for compare
 			tempNewItem = JSON.stringify(tempNewItem);
-			for (let oldItem of this._items) {
+			for (let oldItem of this.getListItems()) {
 				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 				delete tempOldItem.selected;
 				tempOldItem = JSON.stringify(tempOldItem);
@@ -361,14 +371,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	}
 
 	/**
-	 * Initalizes focus in the list, effectivly a wrapper for `getCurrentElement().focus()`
+	 * Initializes focus in the list, effectively a wrapper for `getCurrentElement().focus()`
 	 */
 	initFocus() {
 		this.getCurrentElement().focus();
 	}
 
 	/**
-	 * Manages the keyboard accessiblity for navigation and selection within a `DropdownList`.
+	 * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
 	 */
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// "Spacebar", "Down", and "Up" are IE specific values
@@ -400,7 +410,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			if (this.type === "single") {
 				item.selected = true;
 				// reset the selection
-				for (let otherItem of this._items) {
+				for (let otherItem of this.getListItems()) {
 					if (item !== otherItem) { otherItem.selected = false; }
 				}
 
@@ -410,7 +420,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				// emit an array of selected items
 				this.select.emit(this.getSelected());
 			}
-			this.index = this._items.indexOf(item);
+			this.index = this.getListItems().indexOf(item);
 		}
 	}
 
