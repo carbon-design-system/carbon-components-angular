@@ -286,7 +286,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.closeDropdown();
-		} else if (ev.key === "ArrowDown"
+		} else if ((ev.key === "ArrowDown" || ev.key === "Down") // `"Down"` is IE specific value
 			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
