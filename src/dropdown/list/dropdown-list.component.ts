@@ -397,8 +397,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	doClick(event, item) {
 		if (!item.disabled) {
-			item.selected = !item.selected;
 			if (this.type === "single") {
+				item.selected = true;
 				// reset the selection
 				for (let otherItem of this._items) {
 					if (item !== otherItem) { otherItem.selected = false; }
@@ -406,6 +406,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 				this.select.emit({item});
 			} else {
+				item.selected = !item.selected;
 				// emit an array of selected items
 				this.select.emit(this.getSelected());
 			}
