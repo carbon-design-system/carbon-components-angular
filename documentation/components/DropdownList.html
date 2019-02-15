@@ -1345,7 +1345,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="408" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:408</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="409" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:409</a></div>
                             </td>
                         </tr>
 
@@ -1410,7 +1410,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="403" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:403</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:404</a></div>
                             </td>
                         </tr>
 
@@ -2374,8 +2374,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	doClick(event, item) {
 		if (!item.disabled) {
-			item.selected &#x3D; !item.selected;
 			if (this.type &#x3D;&#x3D;&#x3D; &quot;single&quot;) {
+				item.selected &#x3D; true;
 				// reset the selection
 				for (let otherItem of this.items) {
 					if (item !&#x3D;&#x3D; otherItem) { otherItem.selected &#x3D; false; }
@@ -2383,6 +2383,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 
 				this.select.emit({item});
 			} else {
+				item.selected &#x3D; !item.selected;
 				// emit an array of selected items
 				this.select.emit(this.getSelected());
 			}

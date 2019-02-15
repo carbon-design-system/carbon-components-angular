@@ -8009,8 +8009,8 @@ var DropdownList = /** @class */ (function () {
      */
     DropdownList.prototype.doClick = function (event, item) {
         if (!item.disabled) {
-            item.selected = !item.selected;
             if (this.type === "single") {
+                item.selected = true;
                 // reset the selection
                 for (var _i = 0, _a = this.items; _i < _a.length; _i++) {
                     var otherItem = _a[_i];
@@ -8021,6 +8021,7 @@ var DropdownList = /** @class */ (function () {
                 this.select.emit({ item: item });
             }
             else {
+                item.selected = !item.selected;
                 // emit an array of selected items
                 this.select.emit(this.getSelected());
             }
@@ -22495,4 +22496,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.d641527b79f0f890ca12.bundle.js.map
+//# sourceMappingURL=iframe.1dbd63e0e2013e3d820e.bundle.js.map
