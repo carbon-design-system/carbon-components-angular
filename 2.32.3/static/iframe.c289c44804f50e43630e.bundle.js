@@ -3992,7 +3992,7 @@ var ComboBox = /** @class */ (function () {
                         _this.selectedValue = "";
                         _this.propagateChangeCallback(null);
                     }
-                    // not gaurding these since the nativeElement has to be loaded
+                    // not guarding these since the nativeElement has to be loaded
                     // for select to even fire
                     _this.elementRef.nativeElement.querySelector("input").focus();
                     _this.closeDropdown();
@@ -4030,13 +4030,16 @@ var ComboBox = /** @class */ (function () {
         if (ev.key === "Escape") {
             this.closeDropdown();
         }
-        else if (ev.key === "ArrowDown" && !this.dropdownMenu.nativeElement.contains(ev.target)) {
+        else if ((ev.key === "ArrowDown" || ev.key === "Down") // `"Down"` is IE specific value
+            && (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
             ev.stopPropagation();
             this.openDropdown();
             setTimeout(function () { return _this.view.getCurrentElement().focus(); }, 0);
         }
-        else if (ev.key === "ArrowUp" && this.dropdownMenu.nativeElement.contains(ev.target) && !this.view["hasPrevElement"]()) {
-            this.elementRef.nativeElement.querySelector(".combobox_input").focus();
+        else if ((ev.key === "ArrowUp" || ev.key === "Up") // `"Up"` is IE specific value
+            && this.dropdownMenu.nativeElement.contains(ev.target)
+            && !this.view["hasPrevElement"]()) {
+            this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
         }
     };
     /*
@@ -4087,7 +4090,6 @@ var ComboBox = /** @class */ (function () {
     };
     /**
      * Closes the dropdown and emits the close event.
-     * @memberof ComboBox
      */
     ComboBox.prototype.closeDropdown = function () {
         this.open = false;
@@ -4095,14 +4097,12 @@ var ComboBox = /** @class */ (function () {
     };
     /**
      * Opens the dropdown.
-     * @memberof ComboBox
      */
     ComboBox.prototype.openDropdown = function () {
         this.open = true;
     };
     /**
      * Toggles the dropdown.
-     * @memberof ComboBox
      */
     ComboBox.prototype.toggleDropdown = function () {
         if (this.open) {
@@ -4243,7 +4243,7 @@ var ComboBox = /** @class */ (function () {
     ComboBox = ComboBox_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-combo-box",
-            template: "\n\t\t<div\n\t\t\t[attr.aria-expanded]=\"open\"\n\t\t\trole=\"button\"\n\t\t\tclass=\"bx--list-box__field\"\n\t\t\ttabindex=\"0\"\n\t\t\ttype=\"button\"\n\t\t\taria-label=\"close menu\"\n\t\t\taria-haspopup=\"true\">\n\t\t\t<div\n\t\t\t\t*ngIf=\"type === 'multi' && pills.length > 0\"\n\t\t\t\t(click)=\"clearSelected()\"\n\t\t\t\trole=\"button\"\n\t\t\t\tclass=\"bx--list-box__selection bx--list-box__selection--multi\"\n\t\t\t\ttabindex=\"0\"\n\t\t\t\ttitle=\"Clear all selected items\">\n\t\t\t\t{{ pills.length }}\n\t\t\t\t<svg\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"10\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 10 10\"\n\t\t\t\t\twidth=\"10\"\n\t\t\t\t\tfocusable=\"false\"\n\t\t\t\t\taria-label=\"Clear all selected items\">\n\t\t\t\t\t<title>Clear all selected items</title>\n\t\t\t\t\t<path d=\"M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t\t<input\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(click)=\"toggleDropdown()\"\n\t\t\t\t(keyup)=\"onSearch($event.target.value)\"\n\t\t\t\t[value]=\"selectedValue\"\n\t\t\t\tclass=\"bx--text-input\"\n\t\t\t\taria-label=\"ListBox input field\"\n\t\t\t\tautocomplete=\"off\"\n\t\t\t\t[placeholder]=\"placeholder\"/>\n\t\t\t<div\n\t\t\t\t[ngClass]=\"{'bx--list-box__menu-icon--open': open}\"\n\t\t\t\tclass=\"bx--list-box__menu-icon\">\n\t\t\t\t<svg\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"5\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 10 5\"\n\t\t\t\t\twidth=\"10\"\n\t\t\t\t\taria-label=\"Close menu\">\n\t\t\t\t\t<title>Close menu</title>\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</div>\n\t\t<div\n\t\t\t#dropdownMenu\n\t\t\t*ngIf=\"open\">\n\t\t\t<ng-content></ng-content>\n\t\t</div>\n\t",
+            template: "\n\t\t<div\n\t\t\t[attr.aria-expanded]=\"open\"\n\t\t\trole=\"button\"\n\t\t\tclass=\"bx--list-box__field\"\n\t\t\ttabindex=\"0\"\n\t\t\ttype=\"button\"\n\t\t\taria-label=\"close menu\"\n\t\t\taria-haspopup=\"true\"\n\t\t\t(click)=\"toggleDropdown()\">\n\t\t\t<div\n\t\t\t\t*ngIf=\"type === 'multi' && pills.length > 0\"\n\t\t\t\t(click)=\"clearSelected()\"\n\t\t\t\trole=\"button\"\n\t\t\t\tclass=\"bx--list-box__selection bx--list-box__selection--multi\"\n\t\t\t\ttabindex=\"0\"\n\t\t\t\ttitle=\"Clear all selected items\">\n\t\t\t\t{{ pills.length }}\n\t\t\t\t<svg\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"10\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 10 10\"\n\t\t\t\t\twidth=\"10\"\n\t\t\t\t\tfocusable=\"false\"\n\t\t\t\t\taria-label=\"Clear all selected items\">\n\t\t\t\t\t<title>Clear all selected items</title>\n\t\t\t\t\t<path d=\"M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t\t<input\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(keyup)=\"onSearch($event.target.value)\"\n\t\t\t\t[value]=\"selectedValue\"\n\t\t\t\tclass=\"bx--text-input\"\n\t\t\t\taria-label=\"ListBox input field\"\n\t\t\t\tautocomplete=\"off\"\n\t\t\t\t[placeholder]=\"placeholder\"/>\n\t\t\t<div\n\t\t\t\t[ngClass]=\"{'bx--list-box__menu-icon--open': open}\"\n\t\t\t\tclass=\"bx--list-box__menu-icon\">\n\t\t\t\t<svg\n\t\t\t\t\tfill-rule=\"evenodd\"\n\t\t\t\t\theight=\"5\"\n\t\t\t\t\trole=\"img\"\n\t\t\t\t\tviewBox=\"0 0 10 5\"\n\t\t\t\t\twidth=\"10\"\n\t\t\t\t\taria-label=\"Close menu\">\n\t\t\t\t\t<title>Close menu</title>\n\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\"></path>\n\t\t\t\t</svg>\n\t\t\t</div>\n\t\t</div>\n\t\t<div\n\t\t\t#dropdownMenu\n\t\t\t*ngIf=\"open\">\n\t\t\t<ng-content></ng-content>\n\t\t</div>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["NG_VALUE_ACCESSOR"],
@@ -9942,7 +9942,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Welcome", 
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, EXPERIMENTAL_SERVICE_PROVIDER_FACTORY, EXPERIMENTAL_SERVICE_PROVIDER, ExperimentalService, ExperimentalModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, SliderModule, Slider, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableToolbar, TableToolbarActions, TableToolbarSearch, TableToolbarContent, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Header, HeaderItem, HeaderMenu, HeaderNavigation, HeaderGlobal, HeaderAction, SideNav, SideNavHeader, SideNavItem, SideNavMenu, UIShellModule, AlertModalType, ModalButtonType, BaseModal */
+/*! exports provided: Accordion, AccordionItem, AccordionModule, BannerService, Banner, BannerModule, Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem, BreadcrumbModule, Button, ButtonModule, DateTimeModel, CalendarModule, Checkbox, CheckboxModule, CodeSnippet, CodeSnippetModule, ComboBox, ComboBoxModule, ContentSwitcher, ContentSwitcherOption, ContentSwitcherModule, DialogService, Dialog, DialogDirective, DialogPlaceholder, Tooltip, TooltipDirective, EllipsisTooltip, OverflowMenu, OverflowMenuPane, OverflowMenuDirective, OverflowMenuOption, DialogModule, Dropdown, DropdownList, ScrollableList, AbstractDropdownView, ListItem, DropdownModule, EXPERIMENTAL_SERVICE_PROVIDER_FACTORY, EXPERIMENTAL_SERVICE_PROVIDER, ExperimentalService, ExperimentalModule, FileUploader, FileUploaderModule, ToggleModule, RadioModule, InputModule, NFormsModule, I18n, replace, ReplacePipe, I18N_SERVICE_PROVIDER_FACTORY, I18N_SERVICE_PROVIDER, I18nModule, StaticIconModule, Icon, IconService, Sprite, IconModule, InlineLoading, InlineLoadingModule, TextInput, Label, Link, LinkModule, ListModule, ListItemDirective, List, Loading, LoadingModule, Modal, ModalService, BaseModal, ModalModule, NotificationService, NotificationDisplayService, Notification, Toast, NotificationModule, NumberModule, Number, PaginationModel, Pagination, PaginationModule, PillInput, Pill, PillInputModule, Placeholder, PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER_FACTORY, PLACEHOLDER_SERVICE_PROVIDER, PlaceholderModule, ProgressIndicatorModule, Radio, RadioGroup, SearchModule, Search, Select, Option, OptGroup, SelectModule, SliderModule, Slider, StructuredListModule, StructuredList, ListRow, ListHeader, ListColumn, Switch, SwitchModule, Table, TableModel, TableItem, TableHeaderItem, TableToolbar, TableToolbarActions, TableToolbarSearch, TableToolbarContent, TableModule, Tabs, Tab, TabHeaders, TabsModule, Tile, ClickableTile, TilesModule, Header, HeaderItem, HeaderMenu, HeaderNavigation, HeaderGlobal, HeaderAction, SideNav, SideNavHeader, SideNavItem, SideNavMenu, UIShellModule, AlertModalType, ModalButtonType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10119,13 +10119,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalService", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["ModalService"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["BaseModal"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalModule", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["ModalModule"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AlertModalType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["AlertModalType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ModalButtonType", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["ModalButtonType"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BaseModal", function() { return _modal_modal_module__WEBPACK_IMPORTED_MODULE_21__["BaseModal"]; });
 
 /* harmony import */ var _notification_notification_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./notification/notification.module */ "./src/notification/notification.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return _notification_notification_module__WEBPACK_IMPORTED_MODULE_22__["NotificationService"]; });
@@ -12121,7 +12121,7 @@ function Modal() {
 /*!***********************************!*\
   !*** ./src/modal/modal.module.ts ***!
   \***********************************/
-/*! exports provided: Modal, ModalService, ModalModule, AlertModalType, ModalButtonType, BaseModal */
+/*! exports provided: Modal, ModalService, BaseModal, ModalModule, AlertModalType, ModalButtonType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22496,4 +22496,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.1dbd63e0e2013e3d820e.bundle.js.map
+//# sourceMappingURL=iframe.c289c44804f50e43630e.bundle.js.map

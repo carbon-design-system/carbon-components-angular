@@ -123,7 +123,8 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 	tabindex&#x3D;&quot;0&quot;
 	type&#x3D;&quot;button&quot;
 	aria-label&#x3D;&quot;close menu&quot;
-	aria-haspopup&#x3D;&quot;true&quot;&gt;
+	aria-haspopup&#x3D;&quot;true&quot;
+	(click)&#x3D;&quot;toggleDropdown()&quot;&gt;
 	&lt;div
 		*ngIf&#x3D;&quot;type &#x3D;&#x3D;&#x3D; &#x27;multi&#x27; &amp;&amp; pills.length &gt; 0&quot;
 		(click)&#x3D;&quot;clearSelected()&quot;
@@ -146,7 +147,6 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 	&lt;/div&gt;
 	&lt;input
 		[disabled]&#x3D;&quot;disabled&quot;
-		(click)&#x3D;&quot;toggleDropdown()&quot;
 		(keyup)&#x3D;&quot;onSearch($event.target.value)&quot;
 		[value]&#x3D;&quot;selectedValue&quot;
 		class&#x3D;&quot;bx--text-input&quot;
@@ -842,7 +842,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/combobox/combobox.component.ts:301</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/combobox/combobox.component.ts:304</a></div>
                             </td>
                         </tr>
 
@@ -882,7 +882,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/combobox/combobox.component.ts:336</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/combobox/combobox.component.ts:339</a></div>
                             </td>
                         </tr>
 
@@ -922,7 +922,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="354" class="link-to-prism">src/combobox/combobox.component.ts:354</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="356" class="link-to-prism">src/combobox/combobox.component.ts:356</a></div>
                             </td>
                         </tr>
 
@@ -1149,7 +1149,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="316" class="link-to-prism">src/combobox/combobox.component.ts:316</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/combobox/combobox.component.ts:319</a></div>
                             </td>
                         </tr>
 
@@ -1337,7 +1337,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/combobox/combobox.component.ts:363</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="364" class="link-to-prism">src/combobox/combobox.component.ts:364</a></div>
                             </td>
                         </tr>
 
@@ -1377,7 +1377,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="320" class="link-to-prism">src/combobox/combobox.component.ts:320</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/combobox/combobox.component.ts:323</a></div>
                             </td>
                         </tr>
 
@@ -1446,7 +1446,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/combobox/combobox.component.ts:324</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="327" class="link-to-prism">src/combobox/combobox.component.ts:327</a></div>
                             </td>
                         </tr>
 
@@ -1559,7 +1559,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="331" class="link-to-prism">src/combobox/combobox.component.ts:331</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/combobox/combobox.component.ts:334</a></div>
                             </td>
                         </tr>
 
@@ -1639,7 +1639,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/combobox/combobox.component.ts:306</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/combobox/combobox.component.ts:309</a></div>
                             </td>
                         </tr>
 
@@ -2064,7 +2064,8 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 			tabindex&#x3D;&quot;0&quot;
 			type&#x3D;&quot;button&quot;
 			aria-label&#x3D;&quot;close menu&quot;
-			aria-haspopup&#x3D;&quot;true&quot;&gt;
+			aria-haspopup&#x3D;&quot;true&quot;
+			(click)&#x3D;&quot;toggleDropdown()&quot;&gt;
 			&lt;div
 				*ngIf&#x3D;&quot;type &#x3D;&#x3D;&#x3D; &#x27;multi&#x27; &amp;&amp; pills.length &gt; 0&quot;
 				(click)&#x3D;&quot;clearSelected()&quot;
@@ -2087,7 +2088,6 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 			&lt;/div&gt;
 			&lt;input
 				[disabled]&#x3D;&quot;disabled&quot;
-				(click)&#x3D;&quot;toggleDropdown()&quot;
 				(keyup)&#x3D;&quot;onSearch($event.target.value)&quot;
 				[value]&#x3D;&quot;selectedValue&quot;
 				class&#x3D;&quot;bx--text-input&quot;
@@ -2275,7 +2275,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 						this.selectedValue &#x3D; &quot;&quot;;
 						this.propagateChangeCallback(null);
 					}
-					// not gaurding these since the nativeElement has to be loaded
+					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector(&quot;input&quot;).focus();
 					this.closeDropdown();
@@ -2313,12 +2313,15 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot;) {
 			this.closeDropdown();
-		} else if (ev.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot; &amp;&amp; !this.dropdownMenu.nativeElement.contains(ev.target)) {
+		} else if ((ev.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot; || ev.key &#x3D;&#x3D;&#x3D; &quot;Down&quot;) // &#x60;&quot;Down&quot;&#x60; is IE specific value
+			&amp;&amp; (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() &#x3D;&gt; this.view.getCurrentElement().focus(), 0);
-		} else if (ev.key &#x3D;&#x3D;&#x3D; &quot;ArrowUp&quot; &amp;&amp; this.dropdownMenu.nativeElement.contains(ev.target) &amp;&amp; !this.view[&quot;hasPrevElement&quot;]()) {
-			this.elementRef.nativeElement.querySelector(&quot;.combobox_input&quot;).focus();
+		} else if ((ev.key &#x3D;&#x3D;&#x3D; &quot;ArrowUp&quot; || ev.key &#x3D;&#x3D;&#x3D; &quot;Up&quot;) // &#x60;&quot;Up&quot;&#x60; is IE specific value
+			&amp;&amp; this.dropdownMenu.nativeElement.contains(ev.target)
+			&amp;&amp; !this.view[&quot;hasPrevElement&quot;]()) {
+			this.elementRef.nativeElement.querySelector(&quot;.bx--text-input&quot;).focus();
 		}
 	}
 
@@ -2376,7 +2379,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Closes the dropdown and emits the close event.
-	 * @memberof ComboBox
 	 */
 	public closeDropdown() {
 		this.open &#x3D; false;
@@ -2385,7 +2387,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Opens the dropdown.
-	 * @memberof ComboBox
 	 */
 	public openDropdown() {
 		this.open &#x3D; true;
@@ -2393,7 +2394,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Toggles the dropdown.
-	 * @memberof ComboBox
 	 */
 	public toggleDropdown() {
 		if (this.open) {
@@ -2502,7 +2502,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	[attr.aria-expanded]="open"	role="button"	class="bx--list-box__field"	tabindex="0"	type="button"	aria-label="close menu"	aria-haspopup="true">	<div		*ngIf="type === \'multi\' && pills.length > 0"		(click)="clearSelected()"		role="button"		class="bx--list-box__selection bx--list-box__selection--multi"		tabindex="0"		title="Clear all selected items">		{{ pills.length }}		<svg			fill-rule="evenodd"			height="10"			role="img"			viewBox="0 0 10 10"			width="10"			focusable="false"			aria-label="Clear all selected items">			<title>Clear all selected items</title>			<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>		</svg>	</div>	<input		[disabled]="disabled"		(click)="toggleDropdown()"		(keyup)="onSearch($event.target.value)"		[value]="selectedValue"		class="bx--text-input"		aria-label="ListBox input field"		autocomplete="off"		[placeholder]="placeholder"/>	<div		[ngClass]="{\'bx--list-box__menu-icon--open\': open}"		class="bx--list-box__menu-icon">		<svg			fill-rule="evenodd"			height="5"			role="img"			viewBox="0 0 10 5"			width="10"			aria-label="Close menu">			<title>Close menu</title>			<path d="M0 0l5 4.998L10 0z"></path>		</svg>	</div></div><div	#dropdownMenu	*ngIf="open">	<ng-content></ng-content></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div	[attr.aria-expanded]="open"	role="button"	class="bx--list-box__field"	tabindex="0"	type="button"	aria-label="close menu"	aria-haspopup="true"	(click)="toggleDropdown()">	<div		*ngIf="type === \'multi\' && pills.length > 0"		(click)="clearSelected()"		role="button"		class="bx--list-box__selection bx--list-box__selection--multi"		tabindex="0"		title="Clear all selected items">		{{ pills.length }}		<svg			fill-rule="evenodd"			height="10"			role="img"			viewBox="0 0 10 10"			width="10"			focusable="false"			aria-label="Clear all selected items">			<title>Clear all selected items</title>			<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>		</svg>	</div>	<input		[disabled]="disabled"		(keyup)="onSearch($event.target.value)"		[value]="selectedValue"		class="bx--text-input"		aria-label="ListBox input field"		autocomplete="off"		[placeholder]="placeholder"/>	<div		[ngClass]="{\'bx--list-box__menu-icon--open\': open}"		class="bx--list-box__menu-icon">		<svg			fill-rule="evenodd"			height="5"			role="img"			viewBox="0 0 10 5"			width="10"			aria-label="Close menu">			<title>Close menu</title>			<path d="M0 0l5 4.998L10 0z"></path>		</svg>	</div></div><div	#dropdownMenu	*ngIf="open">	<ng-content></ng-content></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ComboBox'};
