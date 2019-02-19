@@ -30,6 +30,7 @@ import {
 		(click)="onClick($event)"
 		(keydown)="onKeyDown($event)"
 		[href]="href"
+		[target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
 	</a>`
@@ -41,6 +42,13 @@ export class ClickableTile {
 	 * @memberof ClickableTile
 	 */
 	@Input() href: string;
+
+	/**
+	 * Sets the `target` attribute on the `ibm-clickable-tile` element.
+	 * @type {string}
+	 * @memberof ClickableTile
+	 */
+	@Input() target: string;
 
 	/**
 	 * Set to `true` to disable the clickable tile.
