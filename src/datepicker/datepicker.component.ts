@@ -58,6 +58,15 @@ export class DatePicker {
 	 */
 	@Input() range: boolean;
 
+	/**
+	 * Format of date
+	 *
+	 * For reference: https://flatpickr.js.org/formatting/
+	 *
+	 * @memberof Datepicker
+	 */
+	@Input() dateFormat = "m/d/Y";
+
 	@Input() label: string;
 
 	@Input() rangeLabel: string;
@@ -73,7 +82,7 @@ export class DatePicker {
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
 	flatpickrOptions: FlatpickrOptions = {
-		dateFormat: "m/d/Y",
+		dateFormat: this.dateFormat,
 		allowInput: true,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); },
@@ -81,7 +90,7 @@ export class DatePicker {
 	};
 
 	flatpickrOptionsRange: FlatpickrOptions = {
-		dateFormat: "m/d/Y",
+		dateFormat: this.dateFormat,
 		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
 		allowInput: true,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },

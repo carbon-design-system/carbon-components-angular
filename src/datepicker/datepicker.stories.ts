@@ -44,7 +44,7 @@ storiesOf("Date Picker", module)
 			value: array("value", [
 				"01/01/2011",
 				"01/01/2012"
-				]),
+			]),
 			valueChange: action("Date change fired!")
 		}
 	}));

@@ -20,9 +20,7 @@ storiesOf("DatePickerInput", module)
 	.add("Simple", () => ({
 		template: `
 		<app-experimental-component></app-experimental-component>
-		<ibm-date-picker-input
-		label="Date Picker Label">
-		</ibm-date-picker-input>
+		<ibm-date-picker-input label="Date Picker Label"></ibm-date-picker-input>
 		`
 	}));
 
