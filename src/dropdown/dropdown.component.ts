@@ -305,10 +305,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			this.dropdownButton.nativeElement.focus();
 		} else if (this.menuIsClosed && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp" ||
 			event.key === "Spacebar" || event.key === "Down" || event.key === "Up")) {
-			event.preventDefault();
 			if (this.disableArrowKeys && (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up")) {
 				return;
 			}
+			event.preventDefault();
 			this.openMenu();
 		}
 

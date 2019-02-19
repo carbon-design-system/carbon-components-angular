@@ -180,14 +180,12 @@ import { I18n } from "./../i18n/i18n.module";
 			<tr>
 				<th *ngIf="model.hasExpandableRows()"
 					[ibmDataGridFocus]="isDataGrid"
-					[columnIndex]="columnIndex"
-					(keyup)="handleInteractions($event)"
+					[(columnIndex)]="columnIndex"
 					(click)="setExpandIndex($event)">
 				</th>
 				<th *ngIf="!skeleton && showSelectionColumn"
 					[ibmDataGridFocus]="isDataGrid"
-					[columnIndex]="columnIndex"
-					(keyup)="handleInteractions($event)"
+					[(columnIndex)]="columnIndex"
 					(click)="setCheckboxIndex()"
 					style="width: 10px;">
 					<ibm-checkbox
@@ -205,11 +203,10 @@ import { I18n } from "./../i18n/i18n.module";
 					[class]="column.className"
 					[ngStyle]="column.style"
 					[ibmDataGridFocus]="isDataGrid"
-					[columnIndex]="columnIndex"
+					[(columnIndex)]="columnIndex"
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)"
-					(keyup)="handleInteractions($event)"
 					(click)="setIndex($event, i)">
 						<span *ngIf="skeleton"></span>
 						<div
@@ -330,9 +327,8 @@ import { I18n } from "./../i18n/i18n.module";
 					*ngIf="model.hasExpandableRows()"
 					class="bx--table-expand-v2"
 					[ibmDataGridFocus]="isDataGrid"
-					[columnIndex]="columnIndex"
+					[(columnIndex)]="columnIndex"
 					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
-					(keyup)="handleInteractions($event)"
 					(click)="setExpandIndex($event)">
 						<button
 						*ngIf="model.isRowExpandable(i)"
@@ -347,8 +343,7 @@ import { I18n } from "./../i18n/i18n.module";
 					<td
 						*ngIf="!skeleton && showSelectionColumn"
 						[ibmDataGridFocus]="isDataGrid"
-						[columnIndex]="columnIndex"
-						(keyup)="handleInteractions($event)"
+						[(columnIndex)]="columnIndex"
 						(click)="setCheckboxIndex()">
 						<ibm-checkbox
 							inline="true"
@@ -363,8 +358,7 @@ import { I18n } from "./../i18n/i18n.module";
 							[class]="model.header[j].className"
 							[ngStyle]="model.header[j].style"
 							[ibmDataGridFocus]="isDataGrid"
-							[columnIndex]="columnIndex"
-							(keyup)="handleInteractions($event)"
+							[(columnIndex)]="columnIndex"
 							(click)="setIndex($event, j)">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
@@ -379,7 +373,7 @@ import { I18n } from "./../i18n/i18n.module";
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
 						[ibmDataGridFocus]="isDataGrid"
-						[columnIndex]="columnIndex"
+						[(columnIndex)]="columnIndex"
 						[attr.colspan]="row.length + 2"
 						(click)="setExpandIndex($event)">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
@@ -482,6 +476,7 @@ export class Table implements AfterViewInit {
 		});
 		if (this.isDataGrid) {
 			this._model.rowsExpandedChange.subscribe(() => {
+				// Allows the expanded row to have a focus state when it exists in the DOM
 				setTimeout(() => {
 					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row-v2:not(.bx--parent-row-v2)");
 					Array.from<any>(expandedRows).forEach(row => {
@@ -946,30 +941,6 @@ export class Table implements AfterViewInit {
 		}
 	}
 
-	// This is handled in the component so that the columnIndex is saved as you go into expandable rows
-	handleInteractions(event: KeyboardEvent) {
-		switch (event.key) {
-			case "Right": // IE specific value
-			case "ArrowRight":
-				if (this.columnIndex < this.getTotalColumns() - 1) {
-					this.columnIndex++;
-				}
-				break;
-			case "Left": // IE specific value
-			case "ArrowLeft":
-				if (this.columnIndex > 0) {
-					this.columnIndex--;
-				}
-				break;
-			case "Home":
-				this.columnIndex = 0;
-				break;
-			case "End":
-				this.columnIndex = this.getTotalColumns() - 1;
-				break;
-		}
-	}
-
 	setIndex(event, columnIndex) {
 		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
 			this.columnIndex = columnIndex + 2;
@@ -988,14 +959,5 @@ export class Table implements AfterViewInit {
 
 	setExpandIndex(event) {
 		this.columnIndex = 0;
-	}
-
-	@HostListener("keyup", ["$event"])
-	keyUp(event: KeyboardEvent) {
-		if (event.key === "Home" && event.ctrlKey) {
-			this.columnIndex = 0;
-		} else if (event.key === "End" && event.ctrlKey) {
-			this.columnIndex = this.getTotalColumns() - 1;
-		}
 	}
 }
