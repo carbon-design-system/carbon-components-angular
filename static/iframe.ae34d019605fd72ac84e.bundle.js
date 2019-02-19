@@ -3961,7 +3961,7 @@ var ComboBox = /** @class */ (function () {
      */
     ComboBox.prototype.ngOnChanges = function (changes) {
         if (changes.items) {
-            this.view["updateList"](changes.items.currentValue);
+            this.view.items = changes.items.currentValue;
             this.updateSelected();
         }
     };
@@ -3998,9 +3998,9 @@ var ComboBox = /** @class */ (function () {
                     _this.closeDropdown();
                 }
                 _this.selected.emit(event);
-                _this.view["filterBy"]("");
+                _this.view.filterBy("");
             });
-            this.view["updateList"](this.items);
+            this.view.items = this.items;
             // update the rest of combobox with any pre-selected items
             // setTimeout just defers the call to the next check cycle
             setTimeout(function () {
@@ -4038,7 +4038,7 @@ var ComboBox = /** @class */ (function () {
         }
         else if ((ev.key === "ArrowUp" || ev.key === "Up") // `"Up"` is IE specific value
             && this.dropdownMenu.nativeElement.contains(ev.target)
-            && !this.view["hasPrevElement"]()) {
+            && !this.view.hasPrevElement()) {
             this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
         }
     };
@@ -4082,7 +4082,7 @@ var ComboBox = /** @class */ (function () {
             }
             return item;
         });
-        this.view["updateList"](this.items);
+        this.view.items = this.items;
         this.updatePills();
         // clearSelected can only fire on type=multi
         // so we just emit getSelected() (just in case there's any disabled but selected items)
@@ -4117,7 +4117,7 @@ var ComboBox = /** @class */ (function () {
      * @param {string} searchString
      */
     ComboBox.prototype.onSearch = function (searchString) {
-        this.view["filterBy"](searchString);
+        this.view.filterBy(searchString);
         if (searchString !== "") {
             this.openDropdown();
         }
@@ -4127,7 +4127,7 @@ var ComboBox = /** @class */ (function () {
         if (this.type === "single") {
             // deselect if the input doesn't match the content
             // of any given item
-            var matches = this.view.items.some(function (item) { return item.content.toLowerCase().includes(searchString.toLowerCase()); });
+            var matches = this.view.getListItems().some(function (item) { return item.content.toLowerCase().includes(searchString.toLowerCase()); });
             if (!matches) {
                 var selected = this.view.getSelected();
                 if (selected) {
@@ -4137,7 +4137,7 @@ var ComboBox = /** @class */ (function () {
                     this.propagateChangeCallback(null);
                 }
                 else {
-                    this.view["filterBy"]("");
+                    this.view.filterBy("");
                 }
             }
         }
@@ -4158,10 +4158,10 @@ var ComboBox = /** @class */ (function () {
     ComboBox.prototype.onSubmit = function (ev) {
         var index = 0;
         if (ev.after) {
-            index = this.view.items.indexOf(ev.after) + 1;
+            index = this.view.getListItems().indexOf(ev.after) + 1;
         }
         this.submit.emit({
-            items: this.view.items,
+            items: this.view.getListItems(),
             index: index,
             value: {
                 content: ev.value,
@@ -6767,9 +6767,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * A component that intends to be used within `Dropdown` must provide an implementation that extends this base class.
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
- *
- * @export
- * @class AbstractDropdownView
  */
 var AbstractDropdownView = /** @class */ (function () {
     function AbstractDropdownView() {
@@ -6783,10 +6780,23 @@ var AbstractDropdownView = /** @class */ (function () {
          */
         this.size = "md";
     }
+    Object.defineProperty(AbstractDropdownView.prototype, "items", {
+        get: function () { return; },
+        /**
+         * The items to be displayed in the list within the `AbstractDropDownView`.
+         */
+        set: function (value) { },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
      */
     AbstractDropdownView.prototype.getNextItem = function () { return; };
+    /**
+     * Returns a boolean if the currently selected item is preceded by another
+     */
+    AbstractDropdownView.prototype.hasNextElement = function () { return; };
     /**
      * Returns the `HTMLElement` for the item that is subsequent to the selected item.
      */
@@ -6795,6 +6805,10 @@ var AbstractDropdownView = /** @class */ (function () {
      * Returns the `ListItem` that precedes the selected item within `DropdownList`.
      */
     AbstractDropdownView.prototype.getPrevItem = function () { return; };
+    /**
+     * Returns a boolean if the currently selected item is followed by another
+     */
+    AbstractDropdownView.prototype.hasPrevElement = function () { return; };
     /**
      * Returns the `HTMLElement` for the item that precedes the selected item.
      */
@@ -6812,22 +6826,32 @@ var AbstractDropdownView = /** @class */ (function () {
      */
     AbstractDropdownView.prototype.getCurrentElement = function () { return; };
     /**
+     * Guaranteed to return the current items as an Array.
+     */
+    AbstractDropdownView.prototype.getListItems = function () { return; };
+    /**
      * Transforms array input list of items to the correct state by updating the selected item(s).
      */
     AbstractDropdownView.prototype.propagateSelected = function (value) { };
     /**
-     * Initalizes focus in the list
+     *
+     * @param value value to filter the list by
+     */
+    AbstractDropdownView.prototype.filterBy = function (value) { };
+    /**
+     * Initializes focus in the list
      * In most cases this just calls `getCurrentElement().focus()`
      */
     AbstractDropdownView.prototype.initFocus = function () { };
-    var _a, _b;
+    var _a, _b, _c, _d, _e;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", typeof (_a = typeof Array !== "undefined" && Array) === "function" && _a || Object)
-    ], AbstractDropdownView.prototype, "items", void 0);
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], AbstractDropdownView.prototype, "items", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-        __metadata("design:type", typeof (_b = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _b || Object)
+        __metadata("design:type", typeof (_e = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _e || Object)
     ], AbstractDropdownView.prototype, "select", void 0);
     return AbstractDropdownView;
 }());
@@ -7031,7 +7055,7 @@ var Dropdown = /** @class */ (function () {
         var _this = this;
         if (this.type === "single") {
             if (this.value) {
-                var newValue = Object.assign({}, this.view.items.find(function (item) { return item[_this.value] === value; }));
+                var newValue = Object.assign({}, this.view.getListItems().find(function (item) { return item[_this.value] === value; }));
                 newValue.selected = true;
                 this.view.propagateSelected([newValue]);
             }
@@ -7541,9 +7565,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @storybook/addon-knobs/angular */ "./node_modules/@storybook/addon-knobs/angular.js");
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ */ "./src/index.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select, boolean, object, text } from '@storybook/addon-knobs/angular';\n\nimport { DropdownModule } from '../';\n\nstoriesOf('Dropdown', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [DropdownModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\tplaceholder=\"Select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(selected)=\"selected($event)\"\n\t\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add(\n    'Multi-select',\n    withNotes({ text: 'Notes on multi select' })(() => ({\n      template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\ttype=\"multi\"\n\t\t\t\tplaceholder=\"Multi-select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(selected)=\"selected($event)\"\n\t\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t`,\n      props: {\n        disabled: boolean('disabled', false),\n        items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n        selected: action('Selected fired for multi-select dropdown'),\n        onClose: action('Multi-select dropdown closed'),\n      },\n    }))\n  )\n  .add('With ngModel', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\tplaceholder=\"Select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[(ngModel)]=\"model\"\n\t\t\t\tvalue=\"content\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t\t<span>{{model | json}}</span>\n\t\t</div>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n      model: null,\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown skeleton=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t\t&nbsp;\n\t\t\t<ibm-dropdown skeleton=\"true\" inline=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t\t`,\n    props: {\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Dropdown@Skeleton": { "startLoc": { "col": 7, "line": 78 }, "endLoc": { "col": 4, "line": 93 } }, "Dropdown@With ngModel": { "startLoc": { "col": 7, "line": 59 }, "endLoc": { "col": 4, "line": 77 } }, "Dropdown@Multi-select": { "startLoc": { "col": 4, "line": 37 }, "endLoc": { "col": 7, "line": 57 } }, "Dropdown@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 35 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withNotes } from '@storybook/addon-notes';\nimport { action } from '@storybook/addon-actions';\nimport { withKnobs, select, boolean, object, text } from '@storybook/addon-knobs/angular';\n\nimport { DropdownModule } from '../';\nimport { of } from 'rxjs';\n\nstoriesOf('Dropdown', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [DropdownModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\tplaceholder=\"Select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(selected)=\"selected($event)\"\n\t\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add(\n    'Multi-select',\n    withNotes({ text: 'Notes on multi select' })(() => ({\n      template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\ttype=\"multi\"\n\t\t\t\tplaceholder=\"Multi-select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(selected)=\"selected($event)\"\n\t\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t`,\n      props: {\n        disabled: boolean('disabled', false),\n        items: object('items', [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n        selected: action('Selected fired for multi-select dropdown'),\n        onClose: action('Multi-select dropdown closed'),\n      },\n    }))\n  )\n  .add('With ngModel', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\tplaceholder=\"Select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[(ngModel)]=\"model\"\n\t\t\t\tvalue=\"content\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t\t<span>{{model | json}}</span>\n\t\t</div>\n\t\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n      model: null,\n    },\n  }))\n  .add('With Observable items', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\tplaceholder=\"Select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(selected)=\"selected($event)\"\n\t\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t`,\n    props: {\n      disabled: boolean('disabled', false),\n      items: of([{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }]),\n      selected: action('Selected fired for dropdown'),\n      onClose: action('Dropdown closed'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown skeleton=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t\t&nbsp;\n\t\t\t<ibm-dropdown skeleton=\"true\" inline=\"true\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t\t`,\n    props: {\n      items: [{ content: 'one' }, { content: 'two' }, { content: 'three' }, { content: 'four' }],\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Dropdown@Skeleton": { "startLoc": { "col": 7, "line": 100 }, "endLoc": { "col": 4, "line": 115 } }, "Dropdown@With Observable items": { "startLoc": { "col": 7, "line": 79 }, "endLoc": { "col": 4, "line": 99 } }, "Dropdown@With ngModel": { "startLoc": { "col": 7, "line": 60 }, "endLoc": { "col": 4, "line": 78 } }, "Dropdown@Multi-select": { "startLoc": { "col": 4, "line": 38 }, "endLoc": { "col": 7, "line": 58 } }, "Dropdown@Basic": { "startLoc": { "col": 7, "line": 16 }, "endLoc": { "col": 4, "line": 36 } } };
+
 
 
 
@@ -7596,6 +7622,21 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Dropdown",
             { content: "four" }
         ],
         model: null
+    }
+}); })
+    .add("With Observable items", function () { return ({
+    template: "\n\t\t<div style=\"width: 300px\">\n\t\t\t<ibm-dropdown\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\tplaceholder=\"Select\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t(selected)=\"selected($event)\"\n\t\t\t\t(onClose)=\"onClose($event)\">\n\t\t\t\t<ibm-dropdown-list [items]=\"items\"></ibm-dropdown-list>\n\t\t\t</ibm-dropdown>\n\t\t</div>\n\t",
+    props: {
+        disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["boolean"])("disabled", false),
+        items: Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])([
+            { content: "one" },
+            { content: "two" },
+            { content: "three" },
+            { content: "four" }
+        ]),
+        selected: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Selected fired for dropdown"),
+        onClose: Object(_storybook_addon_actions__WEBPACK_IMPORTED_MODULE_2__["action"])("Dropdown closed"),
+        theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_3__["select"])("theme", ["dark", "light"], "dark")
     }
 }); })
     .add("Skeleton", function () { return ({
@@ -7700,6 +7741,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../i18n/i18n.module */ "./src/i18n/i18n.module.ts");
 /* harmony import */ var _abstract_dropdown_view_class__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../abstract-dropdown-view.class */ "./src/dropdown/abstract-dropdown-view.class.ts");
 /* harmony import */ var _dropdowntools__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../dropdowntools */ "./src/dropdown/dropdowntools.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7709,6 +7751,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -7747,10 +7790,6 @@ var DropdownList = /** @class */ (function () {
         this.i18n = i18n;
         this.ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
         /**
-         * The list items belonging to the `DropdownList`.
-         */
-        this.items = [];
-        /**
          * Template to bind to items in the `DropdownList` (optional).
          */
         this.listTpl = null;
@@ -7777,23 +7816,40 @@ var DropdownList = /** @class */ (function () {
          * Maintains the index for the selected item within the `DropdownList`.
          */
         this.index = -1;
+        /**
+         * Useful representation of the items, should be accessed via `getListItems`.
+         */
+        this._items = [];
     }
     DropdownList_1 = DropdownList;
-    /**
-     * Updates list when changes occur within the items belonging to the `DropdownList`.
-     */
-    DropdownList.prototype.ngOnChanges = function (changes) {
-        if (changes.items) {
-            this.updateList(changes.items.currentValue);
-        }
-    };
+    Object.defineProperty(DropdownList.prototype, "items", {
+        get: function () {
+            return this._originalItems;
+        },
+        /**
+         * The list items belonging to the `DropdownList`.
+         */
+        set: function (value) {
+            var _this = this;
+            if (Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["isObservable"])(value)) {
+                this._itemsSubscription.unsubscribe();
+                this._itemsSubscription = value.subscribe(function (v) { return _this.updateList(v); });
+            }
+            else {
+                this.updateList(value);
+            }
+            this._originalItems = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Retrieves array of list items and index of the selected item after view has rendered.
      * Additionally, any Observables for the `DropdownList` are initialized.
      */
     DropdownList.prototype.ngAfterViewInit = function () {
         this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li"));
-        this.index = this.items.findIndex(function (item) { return item.selected; });
+        this.index = this.getListItems().findIndex(function (item) { return item.selected; });
         this.setupFocusObservable();
     };
     /**
@@ -7809,16 +7865,16 @@ var DropdownList = /** @class */ (function () {
      */
     DropdownList.prototype.updateList = function (items) {
         var _this = this;
-        this.items = items.map(function (item) { return Object.assign({}, item); });
-        this.displayItems = this.items;
+        this._items = items.map(function (item) { return Object.assign({}, item); });
+        this.displayItems = this._items;
         setTimeout(function () {
             _this.listElementList = Array.from(_this.list.nativeElement.querySelectorAll("li"));
         }, 0);
-        this.index = this.items.findIndex(function (item) { return item.selected; });
+        this.index = this._items.findIndex(function (item) { return item.selected; });
         this.setupFocusObservable();
         setTimeout(function () {
             if (_this.type === "single") {
-                _this.select.emit({ item: _this.items.find(function (item) { return item.selected; }) });
+                _this.select.emit({ item: _this._items.find(function (item) { return item.selected; }) });
             }
             else {
                 _this.select.emit(_this.getSelected() || []);
@@ -7831,10 +7887,10 @@ var DropdownList = /** @class */ (function () {
     DropdownList.prototype.filterBy = function (query) {
         if (query === void 0) { query = ""; }
         if (query) {
-            this.displayItems = this.items.filter(function (item) { return item.content.toLowerCase().includes(query.toLowerCase()); });
+            this.displayItems = this.getListItems().filter(function (item) { return item.content.toLowerCase().includes(query.toLowerCase()); });
         }
         else {
-            this.displayItems = this.items;
+            this.displayItems = this.getListItems();
         }
     };
     /**
@@ -7855,16 +7911,17 @@ var DropdownList = /** @class */ (function () {
      * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
      */
     DropdownList.prototype.getNextItem = function () {
-        if (this.index < this.items.length - 1) {
+        if (this.index < this.getListItems().length - 1) {
             this.index++;
         }
-        return this.items[this.index];
+        return this.getListItems()[this.index];
     };
     /**
      * Returns `true` if the selected item is not the last item in the `DropdownList`.
+     * TODO: standardize
      */
     DropdownList.prototype.hasNextElement = function () {
-        if (this.index < this.items.length - 1) {
+        if (this.index < this.getListItems().length - 1) {
             return true;
         }
         return false;
@@ -7873,11 +7930,11 @@ var DropdownList = /** @class */ (function () {
      * Returns the `HTMLElement` for the item that is subsequent to the selected item.
      */
     DropdownList.prototype.getNextElement = function () {
-        if (this.index < this.items.length - 1) {
+        if (this.index < this.getListItems().length - 1) {
             this.index++;
         }
         var elem = this.listElementList[this.index];
-        var item = this.items[this.index];
+        var item = this.getListItems()[this.index];
         if (item.disabled) {
             return this.getNextElement();
         }
@@ -7890,10 +7947,11 @@ var DropdownList = /** @class */ (function () {
         if (this.index > 0) {
             this.index--;
         }
-        return this.items[this.index];
+        return this.getListItems()[this.index];
     };
     /**
      * Returns `true` if the selected item is not the first in the list.
+     * TODO: standardize
      */
     DropdownList.prototype.hasPrevElement = function () {
         if (this.index > 0) {
@@ -7909,7 +7967,7 @@ var DropdownList = /** @class */ (function () {
             this.index--;
         }
         var elem = this.listElementList[this.index];
-        var item = this.items[this.index];
+        var item = this.getListItems()[this.index];
         if (item.disabled) {
             return this.getPrevElement();
         }
@@ -7920,9 +7978,9 @@ var DropdownList = /** @class */ (function () {
      */
     DropdownList.prototype.getCurrentItem = function () {
         if (this.index < 0) {
-            return this.items[0];
+            return this.getListItems()[0];
         }
-        return this.items[this.index];
+        return this.getListItems()[this.index];
     };
     /**
      * Returns the `HTMLElement` for the item that is selected within the `DropdownList`.
@@ -7934,10 +7992,16 @@ var DropdownList = /** @class */ (function () {
         return this.listElementList[this.index];
     };
     /**
+     * Returns the items as an Array
+     */
+    DropdownList.prototype.getListItems = function () {
+        return this._items;
+    };
+    /**
      * Returns a list containing the selected item(s) in the `DropdownList`.
      */
     DropdownList.prototype.getSelected = function () {
-        var selected = this.items.filter(function (item) { return item.selected; });
+        var selected = this.getListItems().filter(function (item) { return item.selected; });
         if (selected.length === 0) {
             return null;
         }
@@ -7955,7 +8019,7 @@ var DropdownList = /** @class */ (function () {
             delete tempNewItem.selected;
             // stringify for compare
             tempNewItem = JSON.stringify(tempNewItem);
-            for (var _a = 0, _b = this.items; _a < _b.length; _a++) {
+            for (var _a = 0, _b = this.getListItems(); _a < _b.length; _a++) {
                 var oldItem = _b[_a];
                 var tempOldItem = Object.assign({}, oldItem);
                 delete tempOldItem.selected;
@@ -7972,13 +8036,13 @@ var DropdownList = /** @class */ (function () {
         }
     };
     /**
-     * Initalizes focus in the list, effectivly a wrapper for `getCurrentElement().focus()`
+     * Initializes focus in the list, effectively a wrapper for `getCurrentElement().focus()`
      */
     DropdownList.prototype.initFocus = function () {
         this.getCurrentElement().focus();
     };
     /**
-     * Manages the keyboard accessiblity for navigation and selection within a `DropdownList`.
+     * Manages the keyboard accessibility for navigation and selection within a `DropdownList`.
      */
     DropdownList.prototype.doKeyDown = function (event, item) {
         // "Spacebar", "Down", and "Up" are IE specific values
@@ -8012,7 +8076,7 @@ var DropdownList = /** @class */ (function () {
             if (this.type === "single") {
                 item.selected = true;
                 // reset the selection
-                for (var _i = 0, _a = this.items; _i < _a.length; _i++) {
+                for (var _i = 0, _a = this.getListItems(); _i < _a.length; _i++) {
                     var otherItem = _a[_i];
                     if (item !== otherItem) {
                         otherItem.selected = false;
@@ -8025,7 +8089,7 @@ var DropdownList = /** @class */ (function () {
                 // emit an array of selected items
                 this.select.emit(this.getSelected());
             }
-            this.index = this.items.indexOf(item);
+            this.index = this.getListItems().indexOf(item);
         }
     };
     DropdownList.prototype.onItemFocus = function (index) {
@@ -8036,30 +8100,31 @@ var DropdownList = /** @class */ (function () {
         this.listElementList[index].classList.remove("bx--list-box__menu-item--highlighted");
         this.listElementList[index].tabIndex = -1;
     };
-    var DropdownList_1, _a, _b, _c, _d, _e, _f, _g;
+    var DropdownList_1, _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], DropdownList.prototype, "ariaLabel", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", typeof (_a = typeof Array !== "undefined" && Array) === "function" && _a || Object)
-    ], DropdownList.prototype, "items", void 0);
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], DropdownList.prototype, "items", null);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], DropdownList.prototype, "listTpl", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
-        __metadata("design:type", typeof (_c = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _c || Object)
+        __metadata("design:type", typeof (_f = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _f || Object)
     ], DropdownList.prototype, "select", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("list"),
-        __metadata("design:type", typeof (_d = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _d || Object)
+        __metadata("design:type", typeof (_g = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _g || Object)
     ], DropdownList.prototype, "list", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])("clearSelected"),
-        __metadata("design:type", typeof (_e = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _e || Object)
+        __metadata("design:type", typeof (_h = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _h || Object)
     ], DropdownList.prototype, "clearSelected", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -8075,9 +8140,8 @@ var DropdownList = /** @class */ (function () {
                     useExisting: DropdownList_1
                 }
             ]
-        }) // conceptually this extends list-group, but we dont have to
-        ,
-        __metadata("design:paramtypes", [typeof (_f = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _f || Object, typeof (_g = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"]) === "function" && _g || Object])
+        }),
+        __metadata("design:paramtypes", [typeof (_j = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _j || Object, typeof (_k = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"]) === "function" && _k || Object])
     ], DropdownList);
     return DropdownList;
 }());
@@ -22500,4 +22564,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.ffb66228e268b2fa2d9c.bundle.js.map
+//# sourceMappingURL=iframe.ae34d019605fd72ac84e.bundle.js.map

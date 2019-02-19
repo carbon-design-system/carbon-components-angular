@@ -91,7 +91,6 @@
     <p class="comment">
                 <code><a href="../classes/AbstractDropdownView.html" target="_self" >AbstractDropdownView</a></code>
                 <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
-                <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
                 <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
@@ -192,6 +191,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_items">_items</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_itemsSubscription">_itemsSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_originalItems">_originalItems</a>
+                            </li>
+                            <li>
                                 <a href="#clearSelected">clearSelected</a>
                             </li>
                             <li>
@@ -249,6 +260,9 @@
                                 <a href="#getCurrentItem">getCurrentItem</a>
                             </li>
                             <li>
+                                <a href="#getListItems">getListItems</a>
+                            </li>
+                            <li>
                                 <a href="#getNextElement">getNextElement</a>
                             </li>
                             <li>
@@ -274,9 +288,6 @@
                             </li>
                             <li>
                                 <a href="#ngAfterViewInit">ngAfterViewInit</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnChanges">ngOnChanges</a>
                             </li>
                             <li>
                                 <a href="#ngOnDestroy">ngOnDestroy</a>
@@ -341,6 +352,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#items">items</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -356,7 +381,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:142</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:165</a></div>
                             </td>
                         </tr>
 
@@ -425,7 +450,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:94</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -440,18 +465,11 @@
                     <td class="col-md-10">
                         <div><p>The list items belonging to the <code>DropdownList</code>.</p>
 </div>
-                            <p>
-                            <em>Type :</em>    <code><a href="../interfaces/ListItem.html" target="_self" >Array&lt;ListItem&gt;</a></code>
-
-                            </p>
-                        <p>
-                            <em>Default value : </em><code>[]</code>
-                        </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:98</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -477,7 +495,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:114</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -504,7 +522,7 @@ item selection.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -528,7 +546,7 @@ item selection.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:118</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -563,7 +581,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="385" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:385</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="408" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:408</a></div>
                             </td>
                         </tr>
 
@@ -639,14 +657,14 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:360</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="383" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:383</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Manages the keyboard accessiblity for navigation and selection within a <code>DropdownList</code>.</p>
+                            <div class="io-description"><p>Manages the keyboard accessibility for navigation and selection within a <code>DropdownList</code>.</p>
 </div>
 
                             <div class="io-description">
@@ -722,7 +740,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:214</a></div>
                             </td>
                         </tr>
 
@@ -797,7 +815,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="306" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:306</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:322</a></div>
                             </td>
                         </tr>
 
@@ -837,7 +855,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:296</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:312</a></div>
                             </td>
                         </tr>
 
@@ -849,6 +867,46 @@ item selection.</p>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="../interfaces/ListItem.html" target="_self" >ListItem</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getListItems"></a>
+                        <span class="name">
+                            <b>
+                            getListItems
+                            </b>
+                            <a href="#getListItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getListItems()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:332</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns the items as an Array</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="../interfaces/ListItem.html" target="_self" >Array&lt;ListItem&gt;</a></code>
 
                             </div>
                     </td>
@@ -877,7 +935,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:246</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:261</a></div>
                             </td>
                         </tr>
 
@@ -917,7 +975,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:226</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:240</a></div>
                             </td>
                         </tr>
 
@@ -957,7 +1015,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:281</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:297</a></div>
                             </td>
                         </tr>
 
@@ -997,7 +1055,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:276</a></div>
                             </td>
                         </tr>
 
@@ -1037,7 +1095,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="316" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:316</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:339</a></div>
                             </td>
                         </tr>
 
@@ -1077,14 +1135,15 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:236</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:251</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Returns <code>true</code> if the selected item is not the last item in the <code>DropdownList</code>.</p>
+                            <div class="io-description"><p>Returns <code>true</code> if the selected item is not the last item in the <code>DropdownList</code>.
+TODO: standardize</p>
 </div>
 
                             <div class="io-description">
@@ -1117,14 +1176,15 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:271</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:287</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Returns <code>true</code> if the selected item is not the first in the list.</p>
+                            <div class="io-description"><p>Returns <code>true</code> if the selected item is not the first in the list.
+TODO: standardize</p>
 </div>
 
                             <div class="io-description">
@@ -1157,14 +1217,14 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="353" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:353</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="376" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:376</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Initalizes focus in the list, effectivly a wrapper for <code>getCurrentElement().focus()</code></p>
+                            <div class="io-description"><p>Initializes focus in the list, effectively a wrapper for <code>getCurrentElement().focus()</code></p>
 </div>
 
                             <div class="io-description">
@@ -1197,7 +1257,7 @@ item selection.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:176</a></div>
                             </td>
                         </tr>
 
@@ -1212,73 +1272,6 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ngOnChanges"></a>
-                        <span class="name">
-                            <b>
-                            ngOnChanges
-                            </b>
-                            <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>ngOnChanges(changes)</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:152</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Updates list when changes occur within the items belonging to the <code>DropdownList</code>.</p>
-</div>
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>changes</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -1305,7 +1298,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:185</a></div>
                             </td>
                         </tr>
 
@@ -1345,7 +1338,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="409" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:409</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="432" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:432</a></div>
                             </td>
                         </tr>
 
@@ -1410,7 +1403,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:404</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="427" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:427</a></div>
                             </td>
                         </tr>
 
@@ -1475,7 +1468,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="327" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:327</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="350" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:350</a></div>
                             </td>
                         </tr>
 
@@ -1546,7 +1539,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:226</a></div>
                             </td>
                         </tr>
 
@@ -1587,7 +1580,7 @@ key input matching the first letter of the item in the list.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:194</a></div>
                             </td>
                         </tr>
 
@@ -1643,6 +1636,134 @@ key input matching the first letter of the item in the list.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_items"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _items
+                            </b>
+                            <a href="#_items"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_items:     <code><a href="../interfaces/ListItem.html" target="_self" >Array&lt;ListItem&gt;</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/ListItem.html" target="_self" >Array&lt;ListItem&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:165</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Useful representation of the items, should be accessed via <code>getListItems</code>.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_itemsSubscription"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _itemsSubscription
+                            </b>
+                            <a href="#_itemsSubscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_itemsSubscription:     <code>Subscription</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:157</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Tracks the current (if any) subscription to the items observable so we can clean up when the input is updated.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_originalItems"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _originalItems
+                            </b>
+                            <a href="#_originalItems"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_originalItems:     <code><a href="../interfaces/ListItem.html" target="_self" >Array&lt;ListItem&gt; | Observable&lt;Array&lt;ListItem&gt;&gt;</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/ListItem.html" target="_self" >Array&lt;ListItem&gt; | Observable&lt;Array&lt;ListItem&gt;&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:161</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Used to retain the original items passed to the setter.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="clearSelected"></a>
                         <span class="name">
                             <b>
@@ -1675,7 +1796,7 @@ key input matching the first letter of the item in the list.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -1721,7 +1842,7 @@ key input matching the first letter of the item in the list.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:141</a></div>
                             </td>
                         </tr>
 
@@ -1764,7 +1885,7 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:170</a></div>
                             </td>
                         </tr>
 
@@ -1793,7 +1914,7 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:153</a></div>
                             </td>
                         </tr>
 
@@ -1833,7 +1954,7 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -1882,7 +2003,7 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:122</a></div>
                             </td>
                         </tr>
 
@@ -1923,7 +2044,7 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:149</a></div>
                             </td>
                         </tr>
 
@@ -1969,7 +2090,7 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:135</a></div>
                             </td>
                         </tr>
 
@@ -1984,6 +2105,78 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
         </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="items"></a>
+                        <span class="name"><b>items</b><a href="#items"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>items()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:108</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>items(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:98</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The list items belonging to the <code>DropdownList</code>.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -1992,10 +2185,8 @@ it is always a subset of the total items in <code>DropdownList</code>).</p>
 	Component,
 	Input,
 	Output,
-	OnChanges,
 	OnDestroy,
 	EventEmitter,
-	forwardRef,
 	TemplateRef,
 	AfterViewInit,
 	ViewChild,
@@ -2007,6 +2198,7 @@ import { AbstractDropdownView } from &quot;./../abstract-dropdown-view.class&quo
 import { ListItem } from &quot;./../list-item.interface&quot;;
 import { watchFocusJump } from &quot;./../dropdowntools&quot;;
 import { ScrollableList } from &quot;./../scrollable-list.directive&quot;;
+import { Observable, isObservable, Subscription } from &quot;rxjs&quot;;
 
 
 /**
@@ -2080,13 +2272,25 @@ import { ScrollableList } from &quot;./../scrollable-list.directive&quot;;
 			useExisting: DropdownList
 		}
 	]
-}) // conceptually this extends list-group, but we dont have to
-export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChanges, OnDestroy {
+})
+export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	@Input() ariaLabel &#x3D; this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the &#x60;DropdownList&#x60;.
 	 */
-	@Input() items: Array&lt;ListItem&gt; &#x3D; [];
+	@Input() set items (value: Array&lt;ListItem&gt; | Observable&lt;Array&lt;ListItem&gt;&gt;) {
+		if (isObservable(value)) {
+			this._itemsSubscription.unsubscribe();
+			this._itemsSubscription &#x3D; value.subscribe(v &#x3D;&gt; this.updateList(v));
+		} else {
+			this.updateList(value);
+		}
+		this._originalItems &#x3D; value;
+	}
+
+	get items(): Array&lt;ListItem&gt; | Observable&lt;Array&lt;ListItem&gt;&gt; {
+		return this._originalItems;
+	}
 	/**
 	 * Template to bind to items in the &#x60;DropdownList&#x60; (optional).
 	 */
@@ -2130,6 +2334,18 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Observable bound to keydown events to control filtering.
 	 */
 	protected focusJump;
+	/**
+	 * Tracks the current (if any) subscription to the items observable so we can clean up when the input is updated.
+	 */
+	protected _itemsSubscription: Subscription;
+	/**
+	 * Used to retain the original items passed to the setter.
+	 */
+	protected _originalItems: Array&lt;ListItem&gt; | Observable&lt;Array&lt;ListItem&gt;&gt;;
+	/**
+	 * Useful representation of the items, should be accessed via &#x60;getListItems&#x60;.
+	 */
+	protected _items: Array&lt;ListItem&gt; &#x3D; [];
 
 	/**
 	 * Creates an instance of &#x60;DropdownList&#x60;.
@@ -2137,21 +2353,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	constructor(public elementRef: ElementRef, protected i18n: I18n) {}
 
 	/**
-	 * Updates list when changes occur within the items belonging to the &#x60;DropdownList&#x60;.
-	 */
-	ngOnChanges(changes) {
-		if (changes.items) {
-			this.updateList(changes.items.currentValue);
-		}
-	}
-
-	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
 	 * Additionally, any Observables for the &#x60;DropdownList&#x60; are initialized.
 	 */
 	ngAfterViewInit() {
 		this.listElementList &#x3D; Array.from(this.list.nativeElement.querySelectorAll(&quot;li&quot;)) as HTMLElement[];
-		this.index &#x3D; this.items.findIndex(item &#x3D;&gt; item.selected);
+		this.index &#x3D; this.getListItems().findIndex(item &#x3D;&gt; item.selected);
 		this.setupFocusObservable();
 	}
 
@@ -2168,16 +2375,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Updates the displayed list of items and then retrieves the most current properties for the &#x60;DropdownList&#x60; from the DOM.
 	 */
 	updateList(items) {
-		this.items &#x3D; items.map(item &#x3D;&gt; Object.assign({}, item));
-		this.displayItems &#x3D; this.items;
+		this._items &#x3D; items.map(item &#x3D;&gt; Object.assign({}, item));
+		this.displayItems &#x3D; this._items;
 		setTimeout(() &#x3D;&gt; {
 			this.listElementList &#x3D; Array.from(this.list.nativeElement.querySelectorAll(&quot;li&quot;)) as HTMLElement[];
 		}, 0);
-		this.index &#x3D; this.items.findIndex(item &#x3D;&gt; item.selected);
+		this.index &#x3D; this._items.findIndex(item &#x3D;&gt; item.selected);
 		this.setupFocusObservable();
 		setTimeout(() &#x3D;&gt; {
 			if (this.type &#x3D;&#x3D;&#x3D; &quot;single&quot;) {
-				this.select.emit({ item: this.items.find(item &#x3D;&gt; item.selected) });
+				this.select.emit({ item: this._items.find(item &#x3D;&gt; item.selected) });
 			} else {
 				this.select.emit(this.getSelected() || []);
 			}
@@ -2189,9 +2396,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	filterBy(query &#x3D; &quot;&quot;) {
 		if (query) {
-			this.displayItems &#x3D; this.items.filter(item &#x3D;&gt; item.content.toLowerCase().includes(query.toLowerCase()));
+			this.displayItems &#x3D; this.getListItems().filter(item &#x3D;&gt; item.content.toLowerCase().includes(query.toLowerCase()));
 		} else {
-			this.displayItems &#x3D; this.items;
+			this.displayItems &#x3D; this.getListItems();
 		}
 	}
 
@@ -2214,17 +2421,18 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Returns the &#x60;ListItem&#x60; that is subsequent to the selected item in the &#x60;DropdownList&#x60;.
 	 */
 	getNextItem(): ListItem {
-		if (this.index &lt; this.items.length - 1) {
+		if (this.index &lt; this.getListItems().length - 1) {
 			this.index++;
 		}
-		return this.items[this.index];
+		return this.getListItems()[this.index];
 	}
 
 	/**
 	 * Returns &#x60;true&#x60; if the selected item is not the last item in the &#x60;DropdownList&#x60;.
+	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
-		if (this.index &lt; this.items.length - 1) {
+		if (this.index &lt; this.getListItems().length - 1) {
 			return true;
 		}
 		return false;
@@ -2234,11 +2442,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 * Returns the &#x60;HTMLElement&#x60; for the item that is subsequent to the selected item.
 	 */
 	getNextElement(): HTMLElement {
-		if (this.index &lt; this.items.length - 1) {
+		if (this.index &lt; this.getListItems().length - 1) {
 			this.index++;
 		}
 		let elem &#x3D; this.listElementList[this.index];
-		let item &#x3D; this.items[this.index];
+		let item &#x3D; this.getListItems()[this.index];
 		if (item.disabled) {
 			return this.getNextElement();
 		}
@@ -2252,11 +2460,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 		if (this.index &gt; 0) {
 			this.index--;
 		}
-		return this.items[this.index];
+		return this.getListItems()[this.index];
 	}
 
 	/**
 	 * Returns &#x60;true&#x60; if the selected item is not the first in the list.
+	 * TODO: standardize
 	 */
 	hasPrevElement(): boolean {
 		if (this.index &gt; 0) {
@@ -2273,7 +2482,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			this.index--;
 		}
 		let elem &#x3D; this.listElementList[this.index];
-		let item &#x3D; this.items[this.index];
+		let item &#x3D; this.getListItems()[this.index];
 		if (item.disabled) {
 			return this.getPrevElement();
 		}
@@ -2285,9 +2494,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	 */
 	getCurrentItem(): ListItem {
 		if (this.index &lt; 0) {
-			return this.items[0];
+			return this.getListItems()[0];
 		}
-		return this.items[this.index];
+		return this.getListItems()[this.index];
 	}
 
 	/**
@@ -2301,10 +2510,17 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	/**
+	 * Returns the items as an Array
+	 */
+	getListItems(): Array&lt;ListItem&gt; {
+		return this._items;
+	}
+
+	/**
 	 * Returns a list containing the selected item(s) in the &#x60;DropdownList&#x60;.
 	 */
 	getSelected(): ListItem[] {
-		let selected &#x3D; this.items.filter(item &#x3D;&gt; item.selected);
+		let selected &#x3D; this.getListItems().filter(item &#x3D;&gt; item.selected);
 		if (selected.length &#x3D;&#x3D;&#x3D; 0) {
 			return null;
 		}
@@ -2322,7 +2538,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			delete tempNewItem.selected;
 			// stringify for compare
 			tempNewItem &#x3D; JSON.stringify(tempNewItem);
-			for (let oldItem of this.items) {
+			for (let oldItem of this.getListItems()) {
 				let tempOldItem: string | ListItem &#x3D; Object.assign({}, oldItem);
 				delete tempOldItem.selected;
 				tempOldItem &#x3D; JSON.stringify(tempOldItem);
@@ -2338,14 +2554,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	/**
-	 * Initalizes focus in the list, effectivly a wrapper for &#x60;getCurrentElement().focus()&#x60;
+	 * Initializes focus in the list, effectively a wrapper for &#x60;getCurrentElement().focus()&#x60;
 	 */
 	initFocus() {
 		this.getCurrentElement().focus();
 	}
 
 	/**
-	 * Manages the keyboard accessiblity for navigation and selection within a &#x60;DropdownList&#x60;.
+	 * Manages the keyboard accessibility for navigation and selection within a &#x60;DropdownList&#x60;.
 	 */
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// &quot;Spacebar&quot;, &quot;Down&quot;, and &quot;Up&quot; are IE specific values
@@ -2377,7 +2593,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 			if (this.type &#x3D;&#x3D;&#x3D; &quot;single&quot;) {
 				item.selected &#x3D; true;
 				// reset the selection
-				for (let otherItem of this.items) {
+				for (let otherItem of this.getListItems()) {
 					if (item !&#x3D;&#x3D; otherItem) { otherItem.selected &#x3D; false; }
 				}
 
@@ -2387,7 +2603,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 				// emit an array of selected items
 				this.select.emit(this.getSelected());
 			}
-			this.index &#x3D; this.items.indexOf(item);
+			this.index &#x3D; this.getListItems().indexOf(item);
 		}
 	}
 
