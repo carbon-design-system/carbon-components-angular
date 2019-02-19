@@ -21065,12 +21065,16 @@ var ClickableTile = /** @class */ (function () {
     ], ClickableTile.prototype, "href", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], ClickableTile.prototype, "target", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], ClickableTile.prototype, "disabled", void 0);
     ClickableTile = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-clickable-tile",
-            template: "\n\t<a\n\t\tclass=\"bx--tile bx--tile--clickable\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--tile--is-clicked': clicked\n\t\t}\"\n\t\ttabindex=\"0\"\n\t\t(click)=\"onClick($event)\"\n\t\t(keydown)=\"onKeyDown($event)\"\n\t\t[href]=\"href\"\n\t\t[attr.aria-disabled]=\"disabled\">\n\t\t<ng-content></ng-content>\n\t</a>"
+            template: "\n\t<a\n\t\tclass=\"bx--tile bx--tile--clickable\"\n\t\t[ngClass]=\"{\n\t\t\t'bx--tile--is-clicked': clicked\n\t\t}\"\n\t\ttabindex=\"0\"\n\t\t(click)=\"onClick($event)\"\n\t\t(keydown)=\"onKeyDown($event)\"\n\t\t[href]=\"href\"\n\t\t[target]=\"target\"\n\t\t[attr.aria-disabled]=\"disabled\">\n\t\t<ng-content></ng-content>\n\t</a>"
         })
     ], ClickableTile);
     return ClickableTile;
@@ -21210,7 +21214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs } from '@storybook/addon-knobs/angular';\n\nimport { TilesModule } from '../';\n\nstoriesOf('Tiles', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [TilesModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-tile>\n\t\t\ttile content goes here...\n\t\t</ibm-tile>\n\t\t`,\n  }))\n  .add('Multiple', () => ({\n    template: `\n\t\t<div style=\"display: flex; flex-flow: row wrap; justify-content: space-around;\">\n\t\t\t<ibm-tile>\n\t\t\t\tTile 1\n\t\t\t</ibm-tile>\n\t\t\t<ibm-tile>\n\t\t\t\tTile 2\n\t\t\t</ibm-tile>\n\t\t\t<ibm-tile>\n\t\t\t\tTile 3\n\t\t\t</ibm-tile>\n\t\t</div>\n\t\t`,\n  }))\n  .add('Clickable', () => ({\n    template: `\n\t\t<ibm-clickable-tile href=\"#\">\n\t\t\tclickable tile content goes here...\n\t\t</ibm-clickable-tile>\n\t\t`,\n  }));\n";
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs } from '@storybook/addon-knobs/angular';\n\nimport { TilesModule } from '../';\n\nstoriesOf('Tiles', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [TilesModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t<ibm-tile>\n\t\t\ttile content goes here...\n\t\t</ibm-tile>\n\t\t`,\n  }))\n  .add('Multiple', () => ({\n    template: `\n\t\t<div style=\"display: flex; flex-flow: row wrap; justify-content: space-around;\">\n\t\t\t<ibm-tile>\n\t\t\t\tTile 1\n\t\t\t</ibm-tile>\n\t\t\t<ibm-tile>\n\t\t\t\tTile 2\n\t\t\t</ibm-tile>\n\t\t\t<ibm-tile>\n\t\t\t\tTile 3\n\t\t\t</ibm-tile>\n\t\t</div>\n\t\t`,\n  }))\n  .add('Clickable', () => ({\n    template: `\n\t\t<ibm-clickable-tile href=\"https://www.carbondesignsystem.com/\" target=\"_blank\">\n\t\t\tClick the tile to open the Carbon Design System\n\t\t</ibm-clickable-tile>\n\t\t`,\n  }));\n";
 var __ADDS_MAP__ = { "Tiles@Clickable": { "startLoc": { "col": 7, "line": 35 }, "endLoc": { "col": 4, "line": 41 } }, "Tiles@Multiple": { "startLoc": { "col": 7, "line": 20 }, "endLoc": { "col": 4, "line": 34 } }, "Tiles@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 19 } } };
 
 
@@ -21229,7 +21233,7 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Tiles", mo
     template: "\n\t\t<div style=\"display: flex; flex-flow: row wrap; justify-content: space-around;\">\n\t\t\t<ibm-tile>\n\t\t\t\tTile 1\n\t\t\t</ibm-tile>\n\t\t\t<ibm-tile>\n\t\t\t\tTile 2\n\t\t\t</ibm-tile>\n\t\t\t<ibm-tile>\n\t\t\t\tTile 3\n\t\t\t</ibm-tile>\n\t\t</div>\n\t\t"
 }); })
     .add("Clickable", function () { return ({
-    template: "\n\t\t<ibm-clickable-tile href=\"#\">\n\t\t\tclickable tile content goes here...\n\t\t</ibm-clickable-tile>\n\t\t"
+    template: "\n\t\t<ibm-clickable-tile href=\"https://www.carbondesignsystem.com/\" target=\"_blank\">\n\t\t\tClick the tile to open the Carbon Design System\n\t\t</ibm-clickable-tile>\n\t\t"
 }); });
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
@@ -22496,4 +22500,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.c289c44804f50e43630e.bundle.js.map
+//# sourceMappingURL=iframe.ffb66228e268b2fa2d9c.bundle.js.map

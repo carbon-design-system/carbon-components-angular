@@ -111,6 +111,7 @@
 	(click)&#x3D;&quot;onClick($event)&quot;
 	(keydown)&#x3D;&quot;onKeyDown($event)&quot;
 	[href]&#x3D;&quot;href&quot;
+	[target]&#x3D;&quot;target&quot;
 	[attr.aria-disabled]&#x3D;&quot;disabled&quot;&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/a&gt;</code></pre></td>
@@ -179,6 +180,9 @@
                             <li>
                                 <a href="#href">href</a>
                             </li>
+                            <li>
+                                <a href="#target">target</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -210,7 +214,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/tiles/clickable-tile.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/tiles/clickable-tile.component.ts:58</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -233,7 +237,30 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/tiles/clickable-tile.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/tiles/clickable-tile.component.ts:44</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="target"></a>
+                        <code>target</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Sets the <code>target</code> attribute on the <code>ibm-clickable-tile</code> element.</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/tiles/clickable-tile.component.ts:51</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -269,7 +296,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/tiles/clickable-tile.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/tiles/clickable-tile.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -334,7 +361,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/tiles/clickable-tile.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/tiles/clickable-tile.component.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -410,7 +437,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/tiles/clickable-tile.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/tiles/clickable-tile.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -455,6 +482,7 @@
 		(click)&#x3D;&quot;onClick($event)&quot;
 		(keydown)&#x3D;&quot;onKeyDown($event)&quot;
 		[href]&#x3D;&quot;href&quot;
+		[target]&#x3D;&quot;target&quot;
 		[attr.aria-disabled]&#x3D;&quot;disabled&quot;&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
 	&lt;/a&gt;&#x60;
@@ -466,6 +494,13 @@ export class ClickableTile {
 	 * @memberof ClickableTile
 	 */
 	@Input() href: string;
+
+	/**
+	 * Sets the &#x60;target&#x60; attribute on the &#x60;ibm-clickable-tile&#x60; element.
+	 * @type {string}
+	 * @memberof ClickableTile
+	 */
+	@Input() target: string;
 
 	/**
 	 * Set to &#x60;true&#x60; to disable the clickable tile.
@@ -516,7 +551,7 @@ export class ClickableTile {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a	class="bx--tile bx--tile--clickable"	[ngClass]="{		\'bx--tile--is-clicked\': clicked	}"	tabindex="0"	(click)="onClick($event)"	(keydown)="onKeyDown($event)"	[href]="href"	[attr.aria-disabled]="disabled">	<ng-content></ng-content></a></div>'
+        var COMPONENT_TEMPLATE = '<div><a	class="bx--tile bx--tile--clickable"	[ngClass]="{		\'bx--tile--is-clicked\': clicked	}"	tabindex="0"	(click)="onClick($event)"	(keydown)="onKeyDown($event)"	[href]="href"	[target]="target"	[attr.aria-disabled]="disabled">	<ng-content></ng-content></a></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ClickableTile'};
