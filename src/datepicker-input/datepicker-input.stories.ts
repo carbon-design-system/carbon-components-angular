@@ -4,8 +4,6 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { ExperimentalComponenent } from "../../.storybook/experimental.component";
 import { ExperimentalModule } from "..";
 
-
-
 storiesOf("DatePickerInput", module)
 	.addDecorator(
 		moduleMetadata({
@@ -23,5 +21,3 @@ storiesOf("DatePickerInput", module)
 		<ibm-date-picker-input label="Date Picker Label"></ibm-date-picker-input>
 		`
 	}));
-
-

@@ -48,5 +48,3 @@ storiesOf("Date Picker", module)
 			valueChange: action("Date change fired!")
 		}
 	}));
-
-

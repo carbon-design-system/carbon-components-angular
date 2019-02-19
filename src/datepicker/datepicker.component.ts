@@ -46,13 +46,11 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 	</div>
 	`
 })
-
 export class DatePicker {
-
 	private static datePickerCount = 0;
 
 	/**
-	 * Select a calendar view for the `model`.
+	 * Select calendar range mode
 	 *
 	 * @memberof Datepicker
 	 */
@@ -105,9 +103,7 @@ export class DatePicker {
 		classDays: `bx--date-picker__days`,
 		classWeekday: `bx--date-picker__weekday`,
 		classDay: `bx--date-picker__day`,
-		classFocused: `bx--focused`,
-		classVisuallyHidden: `bx--visually-hidden`,
-		attribType: this.range ? "range" : "single"
+		classVisuallyHidden: `bx--visually-hidden`
 	};
 
 	doSelect(selectedValue) {
@@ -115,7 +111,6 @@ export class DatePicker {
 	}
 
 	updateClassNames() {
-
 		const calendarContainer = document.querySelector(".flatpickr-calendar");
 		const monthContainer = document.querySelector(".flatpickr-month");
 		const weekdaysContainer = document.querySelector(".flatpickr-weekdays");

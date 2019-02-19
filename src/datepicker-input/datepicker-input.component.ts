@@ -47,7 +47,6 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class DatePickerInput {
-
 	private static datePickerCount = 0;
 
 	/**
@@ -68,5 +67,4 @@ export class DatePickerInput {
 	@Input() placeholder = "mm/dd/yyyy";
 
 	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
-
 }
