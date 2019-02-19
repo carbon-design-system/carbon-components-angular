@@ -73,7 +73,52 @@ import { I18n } from "./../i18n/i18n.module";
 		</div>
 	</div>
 	`,
-	styleUrls: ["dropdown.component.scss"],
+	styles: [`.bx--list-box {
+					background: #fff;
+					display: flex;
+					flex-flow: row nowrap;
+					align-items: center;
+				}
+				.bx--list-box:focus-within {
+					box-shadow: 0 2px 0 0 #3d70b2;
+				}
+				.bx--list-box .bx--list-box__field {
+					display: flex;
+					flex-flow: row nowrap;
+					padding-left: 0;
+				}
+				.bx--list-box .bx--list-box__field.no-selections {
+					padding-left: 1rem;
+				}
+				.bx--list-box .bx--list-box__field[aria-disabled=true] {
+					opacity: 0.5;
+					pointer-events: none;
+				}
+				.bx--list-box .bx--list-box__field .click-container {
+					flex: auto;
+				}
+				.bx--list-box .bx--list-box__field .click-container.left-padded {
+					padding-left: 0.25rem;
+				}
+				.bx--list-box .bx--list-box__label {
+					font-weight: normal;
+					color: #8897a2;
+				}
+				.bx--list-box .bx--list-box__label.selected {
+					font-weight: 600;
+					color: #152935;
+				}
+				.bx--list-box .bx--tag {
+					margin-left: 0.5rem;
+					line-height: 0rem;
+					background: #3d70b2;
+					color: #fff;
+				}
+				.bx--list-box .bx--tag svg.close-tag {
+					fill: #fff;
+					margin-top: -0.1rem;
+				}
+				`],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -562,7 +607,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Controls toggling menu states between open/expanded and closed/collapsed.
 	 */
 	toggleMenu() {
-		const selected = this.view.getSelected();
 		if (this.menuIsClosed) {
 			this.openMenu();
 		} else {

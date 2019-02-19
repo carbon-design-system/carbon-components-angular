@@ -87,7 +87,21 @@ import { ScrollableList } from "./../scrollable-list.directive";
 				</ng-template>
 			</li>
 		</ul>`,
-	styleUrls: ["dropdown-list.component.scss"],
+	styles: [`.bx--list-box__menu-item:hover {
+					text-decoration: none;
+				}
+				.bx--list-box__menu-item.bx--list-box__menu-item--highlighted {
+					text-decoration: none;
+				}
+				.bx--list-box__menu-item .checkbox-wrapper {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+				.bx--list-box__menu-item .checkbox-wrapper .bx--checkbox-label span.sec-content {
+					color: #888;
+				}
+				`],
 	providers: [
 		{
 			provide: AbstractDropdownView,
