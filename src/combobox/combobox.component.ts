@@ -37,7 +37,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			tabindex="0"
 			type="button"
 			aria-label="close menu"
-			aria-haspopup="true">
+			aria-haspopup="true"
+			(click)="toggleDropdown()">
 			<div
 				*ngIf="type === 'multi' && pills.length > 0"
 				(click)="clearSelected()"
@@ -60,7 +61,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			</div>
 			<input
 				[disabled]="disabled"
-				(click)="toggleDropdown()"
 				(keyup)="onSearch($event.target.value)"
 				[value]="selectedValue"
 				class="bx--text-input"
@@ -248,7 +248,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 						this.selectedValue = "";
 						this.propagateChangeCallback(null);
 					}
-					// not gaurding these since the nativeElement has to be loaded
+					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
 					this.closeDropdown();
@@ -286,12 +286,15 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.closeDropdown();
-		} else if (ev.key === "ArrowDown" && !this.dropdownMenu.nativeElement.contains(ev.target)) {
+		} else if ((ev.key === "ArrowDown" || ev.key === "Down") // `"Down"` is IE specific value
+			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
-		} else if (ev.key === "ArrowUp" && this.dropdownMenu.nativeElement.contains(ev.target) && !this.view.hasPrevElement()) {
-			this.elementRef.nativeElement.querySelector(".combobox_input").focus();
+		} else if ((ev.key === "ArrowUp" || ev.key === "Up") // `"Up"` is IE specific value
+			&& this.dropdownMenu.nativeElement.contains(ev.target)
+			&& !this.view.hasPrevElement()) {
+			this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
 		}
 	}
 
