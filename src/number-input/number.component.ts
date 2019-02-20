@@ -33,6 +33,7 @@ export class NumberChange {
 		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
 		<div
 			data-numberinput
+			[attr.data-invalid]="(invalid ? '' : null)"
 			class="bx--number"
 			[ngClass]="{
 				'bx--number--light': theme === 'light',
@@ -64,6 +65,9 @@ export class NumberChange {
 						<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 					</svg>
 				</button>
+			</div>
+			<div *ngIf="invalid" class="bx--form-requirement">
+				{{invalidText}}
 			</div>
 			<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 		</div>
@@ -97,6 +101,10 @@ export class Number implements ControlValueAccessor {
 	 */
 	@Input() skeleton = false;
 	/**
+	 * Set to `true` for an invalid number component.
+	 */
+	@Input() invalid = false;
+	/**
 	 * The unique id for the number component.
 	 */
 	@Input() id = `number-${Number.numberCount}`;
@@ -124,6 +132,10 @@ export class Number implements ControlValueAccessor {
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -204,5 +216,4 @@ export class Number implements ControlValueAccessor {
 		this.change.emit(event);
 		this.propagateChange(this.value);
 	}
-
 }

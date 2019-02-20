@@ -17,15 +17,19 @@ storiesOf("Number", module).addDecorator(
 				[theme]="theme"
 				[min]="min"
 				[max]="max"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[disabled]="disabled">
 			</ibm-number>
 		`,
 		props: {
 			label: text("label", "Number Input Label"),
 			helperText: text("helper text", "Optional helper text here"),
+			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),
 			max: number("max", 100),
+			invalid: boolean("Show form validation", false),
 			disabled: boolean("disabled", false)
 		}
 	}))
