@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 import { Table } from "./table.component";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { setTabIndex } from "../utils/a11y";
 
 @Directive({
 	selector: "[ibmDataGridFocus]"
@@ -25,6 +24,7 @@ export class DataGridFocus {
 	get columnIndex(): number {
 		return this._columnIndex;
 	}
+
 	@Output() columnIndexChange: EventEmitter<number> = new EventEmitter();
 
 	protected _columnIndex: number;
@@ -60,8 +60,8 @@ export class DataGridFocus {
 				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < headerRow.length - 1) {
 					this.columnIndex++;
 					const nextSibling = element.nextElementSibling;
-					setTabIndex(element, -1);
-					setTabIndex(nextSibling, 0);
+					Table.setTabIndex(element, -1);
+					Table.setTabIndex(nextSibling, 0);
 					this.focus(nextSibling);
 				}
 				break;
@@ -70,8 +70,8 @@ export class DataGridFocus {
 				if (element.previousElementSibling) {
 					this.columnIndex--;
 					const previousSibling = element.previousElementSibling;
-					setTabIndex(element, -1);
-					setTabIndex(previousSibling, 0);
+					Table.setTabIndex(element, -1);
+					Table.setTabIndex(previousSibling, 0);
 					this.focus(previousSibling);
 				}
 				break;
@@ -80,62 +80,68 @@ export class DataGridFocus {
 				if (rowIndex < rows.length - 1) {
 					rowIndex++;
 					const row = rows[rowIndex].querySelectorAll("td");
-					setTabIndex(element, -1);
-					if (rows[rowIndex].classList.item(0) === "bx--expandable-row-v2") {
-						setTabIndex(row[0], 0);
+					Table.setTabIndex(element, -1);
+					if (rows[rowIndex].classList.contains("bx--expandable-row-v2") && !rows[rowIndex].classList.contains("bx--parent-row-v2")) {
+						Table.setTabIndex(row[0], 0);
 						this.focus(row[0]);
 					} else {
-						setTabIndex(row[this.columnIndex], 0);
+						if (this.columnIndex > row.length - 1) {
+							this.columnIndex = row.length - 1;
+						}
+						Table.setTabIndex(row[this.columnIndex], 0);
 						this.focus(row[this.columnIndex]);
 					}
 				}
 				break;
 			case "Up": // IE specific value
 			case "ArrowUp":
-				if ((rowIndex !== 1 && Array.from(headerRow).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length < 0)) ||
+				if ((rowIndex === 1 && Array.from(headerRow).every(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length === 0)) ||
 					rowIndex === 0) {
 						return;
 				}
-				setTabIndex(element, -1);
+				Table.setTabIndex(element, -1);
 				rowIndex--;
 				const row = rows[rowIndex].querySelectorAll("td, th");
-				if (rows[rowIndex].classList.item(0) === "bx--expandable-row-v2") {
-					setTabIndex(row[0], 0);
+				if (rows[rowIndex].classList.contains("bx--expandable-row-v2") && !rows[rowIndex].classList.contains("bx--parent-row-v2")) {
+					Table.setTabIndex(row[0], 0);
 					this.focus(row[0]);
 				} else {
-					setTabIndex(row[this.columnIndex], 0);
+					if (this.columnIndex > row.length - 1) {
+						this.columnIndex = row.length - 1;
+					}
+					Table.setTabIndex(row[this.columnIndex], 0);
 					this.focus(row[this.columnIndex]);
 				}
 				break;
 			case "Home":
 				this.columnIndex = 0;
-				setTabIndex(element, -1);
+				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
 					if (Array.from(headerRow).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-						setTabIndex(headerRow[0], 0);
+						Table.setTabIndex(headerRow[0], 0);
 						this.focus(headerRow[0]);
 					} else {
 						const firstBodyCell = rows[1].querySelectorAll("td")[0];
-						setTabIndex(firstBodyCell, 0);
+						Table.setTabIndex(firstBodyCell, 0);
 						this.focus(firstBodyCell);
 					}
 				} else {
 					const firstRowCell = rows[rowIndex].querySelectorAll("th, td")[0];
-					setTabIndex(firstRowCell, 0);
+					Table.setTabIndex(firstRowCell, 0);
 					this.focus(firstRowCell);
 				}
 				break;
 			case "End":
 				const lastRow = rows[rows.length - 1].querySelectorAll("td");
-				setTabIndex(element, -1);
+				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
 					this.columnIndex = lastRow.length - 1;
-					setTabIndex(lastRow[this.columnIndex], 0);
+					Table.setTabIndex(lastRow[this.columnIndex], 0);
 					this.focus(lastRow[this.columnIndex]);
 				} else {
 					const currentRow = rows[rowIndex].querySelectorAll("th, td");
 					this.columnIndex = currentRow.length - 1;
-					setTabIndex(currentRow[this.columnIndex], 0);
+					Table.setTabIndex(currentRow[this.columnIndex], 0);
 					this.focus(currentRow[this.columnIndex]);
 				}
 				break;
@@ -148,8 +154,8 @@ export class DataGridFocus {
 			return;
 		}
 		const focusElementList = getFocusElementList(this.elementRef.nativeElement.closest("table"), tabbableSelectorIgnoreTabIndex);
-		focusElementList.forEach(element => setTabIndex(element, -1));
-		setTabIndex(this.elementRef.nativeElement, 0);
+		focusElementList.forEach(element => Table.setTabIndex(element, -1));
+		Table.setTabIndex(this.elementRef.nativeElement, 0);
 		this.focus(this.elementRef.nativeElement);
 	}
 }

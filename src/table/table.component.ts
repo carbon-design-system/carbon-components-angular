@@ -16,7 +16,6 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 import { getScrollbarWidth } from "../common/utils";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { setTabIndex } from "../utils/a11y";
 import { I18n } from "./../i18n/i18n.module";
 
 /**
@@ -436,6 +435,17 @@ export class Table implements AfterViewInit {
 		return model;
 	}
 
+	static setTabIndex(element: HTMLElement, index: -1 | 0) {
+		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
+		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
+			focusElementList[1].tabIndex = index;
+		} else if (focusElementList.length > 0) {
+			focusElementList[0].tabIndex = index;
+		} else {
+			element.tabIndex = index;
+		}
+	}
+
 	/**
 	 * Size of the table rows.
 	 *
@@ -470,7 +480,6 @@ export class Table implements AfterViewInit {
 		this._model.dataChange.subscribe(() => {
 			this.updateSelectAllCheckbox();
 			if (this.isDataGrid) {
-				this.getTotalColumns();
 				this.handleTabIndex();
 			}
 		});
@@ -716,7 +725,6 @@ export class Table implements AfterViewInit {
 
 	ngAfterViewInit() {
 		if (this.isDataGrid) {
-			this.getTotalColumns();
 			this.handleTabIndex();
 		}
 	}
@@ -920,25 +928,15 @@ export class Table implements AfterViewInit {
 					tabbable.tabIndex = -1;
 				});
 			}
-			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th")).forEach(cell => setTabIndex(cell, -1));
+			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th")).forEach(cell => Table.setTabIndex(cell, -1));
 
 			const rows = this.elementRef.nativeElement.firstElementChild.rows;
 			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
-				setTabIndex(rows[0].querySelector("th"), 0);
+				Table.setTabIndex(rows[0].querySelector("th"), 0);
 			} else {
-				setTabIndex(rows[1].querySelector("td"), 0);
+				Table.setTabIndex(rows[1].querySelector("td"), 0);
 			}
 		});
-	}
-
-	getTotalColumns() {
-		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
-			return this.model.header.length + 2;
-		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
-			return this.model.header.length + 1;
-		} else {
-			return this.model.header.length;
-		}
 	}
 
 	setIndex(event, columnIndex) {

@@ -97,14 +97,3 @@ export function focusPrevElem(elem, parentRef = null) {
 		}
 	}
 }
-
-export function setTabIndex(element: HTMLElement, index: -1 | 0 | 1) {
-	const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-	if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
-		focusElementList[1].tabIndex = index;
-	} else if (focusElementList.length > 0) {
-		focusElementList[0].tabIndex = index;
-	} else {
-		element.tabIndex = index;
-	}
-}
