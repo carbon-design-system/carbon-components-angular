@@ -49,7 +49,8 @@ export class NumberChange {
 				[min]="min"
 				[max]="max"
 				[disabled]="disabled"
-				[required]="required"/>
+				[required]="required"
+				(input)="onNumberInputChange($event)"/>
 			<div *ngIf="!skeleton" class="bx--number__controls">
 				<button
 					class="bx--number__control-btn up-icon"
@@ -215,5 +216,10 @@ export class Number implements ControlValueAccessor {
 		event.value = this.value;
 		this.change.emit(event);
 		this.propagateChange(this.value);
+	}
+
+	onNumberInputChange(event) {
+		this.value = event.target.value;
+		this.emitChangeEvent();
 	}
 }
