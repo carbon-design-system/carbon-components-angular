@@ -16,6 +16,7 @@ import {
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { filter } from "rxjs/operators";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -262,6 +263,10 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 			setTimeout(() => {
 				this.updateSelected();
 			});
+
+			this.view.blur.pipe(filter(v => v === "top")).subscribe(() => {
+				this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
+			});
 		}
 	}
 
@@ -294,7 +299,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		} else if ((ev.key === "ArrowUp" || ev.key === "Up") // `"Up"` is IE specific value
 			&& this.dropdownMenu.nativeElement.contains(ev.target)
 			&& !this.view.hasPrevElement()) {
-			this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
+			// this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
 		}
 	}
 
