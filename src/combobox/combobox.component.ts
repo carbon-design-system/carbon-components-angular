@@ -296,10 +296,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
-		} else if ((ev.key === "ArrowUp" || ev.key === "Up") // `"Up"` is IE specific value
-			&& this.dropdownMenu.nativeElement.contains(ev.target)
-			&& !this.view.hasPrevElement()) {
-			// this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
 		}
 	}
 
