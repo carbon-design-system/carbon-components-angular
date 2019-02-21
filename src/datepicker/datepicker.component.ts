@@ -96,16 +96,6 @@ export class DatePicker {
 		value: this.value
 	};
 
-	settings = {
-		classCalendarContainer: `bx--date-picker__calendar`,
-		classMonth: `bx--date-picker__month`,
-		classWeekdays: `bx--date-picker__weekdays`,
-		classDays: `bx--date-picker__days`,
-		classWeekday: `bx--date-picker__weekday`,
-		classDay: `bx--date-picker__day`,
-		classVisuallyHidden: `bx--visually-hidden`
-	};
-
 	doSelect(selectedValue) {
 		this.valueChange.emit(selectedValue);
 	}
@@ -118,19 +108,19 @@ export class DatePicker {
 		const daysContainer = document.querySelector(".flatpickr-days");
 		const dayContainer = document.querySelectorAll(".flatpickr-day");
 
-		calendarContainer.classList.add(this.settings.classCalendarContainer);
-		monthContainer.classList.add(this.settings.classMonth);
-		weekdaysContainer.classList.add(this.settings.classWeekdays);
-		daysContainer.classList.add(this.settings.classDays);
+		calendarContainer.classList.add("bx--date-picker__calendar");
+		monthContainer.classList.add("bx--date-picker__month");
+		weekdaysContainer.classList.add("bx--date-picker__weekdays");
+		daysContainer.classList.add("bx--date-picker__days");
 
 		Array.from(weekdayContainer).forEach(item => {
 			const currentItem = item;
 			currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, "");
-			currentItem.classList.add(this.settings.classWeekday);
+			currentItem.classList.add("bx--date-picker__weekday");
 		});
 
 		Array.from(dayContainer).forEach(item => {
-			item.classList.add(this.settings.classDay);
+			item.classList.add("bx--date-picker__day");
 			if (item.classList.contains("today") && this.value.length > 0) {
 				item.classList.add("no-border");
 			} else if (item.classList.contains("today") && this.value.length === 0) {
