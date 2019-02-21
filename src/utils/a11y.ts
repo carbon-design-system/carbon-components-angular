@@ -1,5 +1,3 @@
-import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-
 function findSiblingElem(target, direction: "nextElementSibling" | "previousElementSibling") {
 	if (target[direction]) {
 		if (target[direction].classList.contains("disabled")) {
