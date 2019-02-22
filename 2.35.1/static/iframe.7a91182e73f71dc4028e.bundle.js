@@ -19649,7 +19649,6 @@ var Table = /** @class */ (function () {
      * Creates an instance of Table.
      *
      * @param {ApplicationRef} applicationRef
-     * @memberof Table
      */
     function Table(elementRef, applicationRef, i18n) {
         this.elementRef = elementRef;
@@ -19659,7 +19658,6 @@ var Table = /** @class */ (function () {
          * Size of the table rows.
          *
          * @type {("sm" | "md" | "lg")}
-         * @memberof Table
          */
         this.size = "md";
         /**
@@ -19674,14 +19672,12 @@ var Table = /** @class */ (function () {
          * Controls whether to show the selection checkboxes column or not.
          *
          * @type {boolean}
-         * @memberof Table
          */
         this.showSelectionColumn = true;
         /**
          * Controls whether to enable multiple or single row selection.
          *
          * @type {boolean}
-         * @memberof Table
          */
         this.enableSingleSelect = false;
         /**
@@ -19689,7 +19685,6 @@ var Table = /** @class */ (function () {
          * `scrollLoad` event is emitted.
          *
          * @type {number}
-         * @memberof Table
          */
         this.scrollLoadDistance = 0;
         /**
@@ -19697,7 +19692,6 @@ var Table = /** @class */ (function () {
          *
          * Works for columns with width set in pixels.
          *
-         * @memberof Table
          */
         this.columnsResizable = false;
         /**
@@ -19706,7 +19700,6 @@ var Table = /** @class */ (function () {
          * Changing the column order in table changes table model. Be aware of it when you add additional data
          * to the model.
          *
-         * @memberof Table
          */
         this.columnsDraggable = false;
         this.checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
@@ -19718,62 +19711,57 @@ var Table = /** @class */ (function () {
          * Controls if all checkboxes are viewed as selected.
          *
          * @type {boolean}
-         * @memberof Table
          */
         this.selectAllCheckbox = false;
         /**
          * Controls the indeterminate state of the header checkbox.
          *
          * @type {boolean}
-         * @memberof Table
          */
         this.selectAllCheckboxSomeSelected = false;
         /**
          * Set to `false` to remove table rows (zebra) stripes.
          *
          * @type {boolean}
-         * @memberof Table
          */
         this.striped = true;
         /**
+         * Set to `true` to stick the header to the top of the table
+         */
+        this.stickyHeader = false;
+        /**
          * Emits an index of the column that wants to be sorted.
          *
-         * @memberof Table
          */
         this.sort = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Emits if all rows are selected.
          *
          * @param {TableModel} model
-         * @memberof Table
          */
         this.selectAll = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Emits if all rows are deselected.
          *
          * @param {TableModel} model
-         * @memberof Table
          */
         this.deselectAll = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Emits if a single row is selected.
          *
          * @param {Object} ({model: this.model, selectedRowIndex: index})
-         * @memberof Table
          */
         this.selectRow = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Emits if a single row is deselected.
          *
          * @param {Object} ({model: this.model, deselectedRowIndex: index})
-         * @memberof Table
          */
         this.deselectRow = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Emits when table requires more data to be loaded.
          *
          * @param {TableModel} model
-         * @memberof Table
          */
         this.scrollLoad = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.columnIndex = 0;
@@ -19833,7 +19821,6 @@ var Table = /** @class */ (function () {
          * `TableModel` with data the table is to display.
          *
          * @type {TableModel}
-         * @memberof Table
          */
         set: function (m) {
             var _this = this;
@@ -20006,7 +19993,6 @@ var Table = /** @class */ (function () {
      * Updates all the checkboxes in the table view.
      * Emits the `selectAll` or `deselectAll` event.
      *
-     * @memberof Table
      */
     Table.prototype.onSelectAllCheckboxChange = function () {
         this.applicationRef.tick(); // give app time to process the click if needed
@@ -20032,7 +20018,6 @@ var Table = /** @class */ (function () {
      *
      * @param {number} index
      * @returns
-     * @memberof Table
      */
     Table.prototype.onRowCheckboxChange = function (index) {
         var startValue = this.model.rowsSelected[0];
@@ -20059,7 +20044,6 @@ var Table = /** @class */ (function () {
      * Emits the `scrollLoad` event.
      *
      * @param {any} event
-     * @memberof Table
      */
     Table.prototype.onScroll = function (event) {
         var distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
@@ -20124,7 +20108,6 @@ var Table = /** @class */ (function () {
      * Emits the `scrollLoad` event.
      *
      * @param {any} event
-     * @memberof Table
      */
     Table.prototype.scrollToTop = function (event) {
         event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
@@ -20236,6 +20219,10 @@ var Table = /** @class */ (function () {
         __metadata("design:type", Object)
     ], Table.prototype, "striped", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Table.prototype, "stickyHeader", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
     ], Table.prototype, "sort", void 0);
@@ -20262,7 +20249,7 @@ var Table = /** @class */ (function () {
     Table = Table_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-table",
-            template: "\n\t<table\n\tclass=\"bx--data-table-v2\"\n\t[ngClass]=\"{\n\t\t'bx--data-table-v2--compact': size === 'sm',\n\t\t'bx--data-table-v2--tall': size === 'lg',\n\t\t'bx--data-table-v2--zebra': striped,\n\t\t'bx--skeleton': skeleton\n\t}\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th *ngIf=\"model.hasExpandableRows()\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t(click)=\"setExpandIndex($event)\">\n\t\t\t\t</th>\n\t\t\t\t<th *ngIf=\"!skeleton && showSelectionColumn\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t(click)=\"setCheckboxIndex()\"\n\t\t\t\t\tstyle=\"width: 10px;\">\n\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\tinline=\"true\"\n\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t[(ngModel)]=\"selectAllCheckbox\"\n\t\t\t\t\t\t[indeterminate]=\"selectAllCheckboxSomeSelected\"\n\t\t\t\t\t\t[attr.aria-label]=\"checkboxHeaderLabel | async\"\n\t\t\t\t\t\t(change)=\"onSelectAllCheckboxChange()\">\n\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t</th>\n\t\t\t\t<ng-container *ngFor=\"let column of model.header; let i = index\">\n\t\t\t\t\t<th [ngClass]='{\"thead_action\": column.filterTemplate || this.sort.observers.length > 0}'\n\t\t\t\t\t*ngIf=\"column.visible\"\n\t\t\t\t\t[class]=\"column.className\"\n\t\t\t\t\t[ngStyle]=\"column.style\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t[draggable]=\"columnsDraggable\"\n\t\t\t\t\t(dragstart)=\"columnDragStart($event, i)\"\n\t\t\t\t\t(dragend)=\"columnDragEnd($event, i)\"\n\t\t\t\t\t(click)=\"setIndex($event, i)\">\n\t\t\t\t\t\t<span *ngIf=\"skeleton\"></span>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsResizable\"\n\t\t\t\t\t\tclass=\"column-resize-handle\"\n\t\t\t\t\t\t(mousedown)=\"columnResizeStart($event, column)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2\"\n\t\t\t\t\t\t\t*ngIf=\"this.sort.observers.length > 0 && column.sortable\"\n\t\t\t\t\t\t\t[attr.aria-label]=\"(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async\"\n\t\t\t\t\t\t\taria-live=\"polite\"\n\t\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--active': column.sorted,\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--ascending': column.ascending\n\t\t\t\t\t\t\t}\"\n\t\t\t\t\t\t\t(click)=\"sort.emit(i)\">\n\t\t\t\t\t\t\t<span\n\t\t\t\t\t\t\t\t*ngIf=\"!column.template\"\n\t\t\t\t\t\t\t\t[title]=\"column.data\"\n\t\t\t\t\t\t\t\ttabindex=\"-1\">\n\t\t\t\t\t\t\t\t{{column.data}}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2__icon\"\n\t\t\t\t\t\t\twidth=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"bx--table-header-label\"\n\t\t\t\t\t\t\t*ngIf=\"!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)\">\n\t\t\t\t\t\t\t<span *ngIf=\"!column.template\" [title]=\"column.data\">{{column.data}}</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t[ngClass]=\"{'active': column.filterCount > 0}\"\n\t\t\t\t\t\t\t*ngIf=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttype=\"button\"\n\t\t\t\t\t\t\taria-expanded=\"false\"\n\t\t\t\t\t\t\taria-haspopup=\"true\"\n\t\t\t\t\t\t\t[ibmTooltip]=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttrigger=\"click\"\n\t\t\t\t\t\t\t[title]=\"filterTitle | async\"\n\t\t\t\t\t\t\tplacement=\"bottom,top\"\n\t\t\t\t\t\t\t[data]=\"column.filterData\">\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\t\t\t\t\t\t\tclass=\"icon--sm\"\n\t\t\t\t\t\t\t\twidth=\"16\"\n\t\t\t\t\t\t\t\theight=\"16\"\n\t\t\t\t\t\t\t\tviewBox=\"0 0 16 16\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z\"/>\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t<span *ngIf=\"column.filterCount > 0\">\n\t\t\t\t\t\t\t\t{{column.filterCount}}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsDraggable && isColumnDragging\"\n\t\t\t\t\t\tclass=\"drop-area\">\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'left'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-left\"></div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-left\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'left', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'left', i)\">\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-right\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'right', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'right', i)\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'right'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-right\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</th>\n\t\t\t\t</ng-container>\n\t\t\t\t<th *ngIf=\"!skeleton\" [ngStyle]=\"{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}\">\n\t\t\t\t\t<!--\n\t\t\t\t\t\tScrollbar pushes body to the left so this header column is added to push\n\t\t\t\t\t\tthe title bar the same amount and keep the header and body columns aligned.\n\t\t\t\t\t-->\n\t\t\t\t</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody\n\t\t*ngIf=\"!noData; else noDataTemplate\"\n\t\t[ngStyle]=\"{'overflow-y': 'scroll'}\"\n\t\t(scroll)=\"onScroll($event)\">\n\t\t\t<ng-container *ngFor=\"let row of model.data; let i = index\">\n\t\t\t\t<tr *ngIf=\"!model.isRowFiltered(i)\"\n\t\t\t\t\t(click)=\"onRowSelect(i)\"\n\t\t\t\t\t[attr.data-parent-row]=\"(model.isRowExpandable(i) ? 'true' : null)\"\n\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t'bx--data-table-v2--selected': model.rowsSelected[i],\n\t\t\t\t\t\t'bx--parent-row-v2': model.isRowExpandable(i),\n\t\t\t\t\t\t'bx--expandable-row-v2': model.rowsExpanded[i],\n\t\t\t\t\t\t'tbody_row--selectable': enableSingleSelect,\n\t\t\t\t\t\t'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',\n\t\t\t\t\t\t'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',\n\t\t\t\t\t\t'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',\n\t\t\t\t\t\t'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'\n\t\t\t\t\t}\">\n\t\t\t\t\t<td\n\t\t\t\t\t*ngIf=\"model.hasExpandableRows()\"\n\t\t\t\t\tclass=\"bx--table-expand-v2\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t[attr.data-previous-value]=\"(model.rowsExpanded[i] ? 'collapsed' : null)\"\n\t\t\t\t\t(click)=\"setExpandIndex($event)\">\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t*ngIf=\"model.isRowExpandable(i)\"\n\t\t\t\t\t\tclass=\"bx--table-expand-v2__button\"\n\t\t\t\t\t\t[attr.aria-label]=\"expandButtonAriaLabel | async\"\n\t\t\t\t\t\t(click)=\"model.expandRow(i, !model.rowsExpanded[i])\">\n\t\t\t\t\t\t\t<svg class=\"bx--table-expand-v2__svg\" width=\"7\" height=\"12\" viewBox=\"0 0 7 12\">\n\t\t\t\t\t\t\t\t<path fill-rule=\"nonzero\" d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td\n\t\t\t\t\t\t*ngIf=\"!skeleton && showSelectionColumn\"\n\t\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t\t(click)=\"setCheckboxIndex()\">\n\t\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\t\tinline=\"true\"\n\t\t\t\t\t\t\t[attr.aria-label]=\"checkboxRowLabel | async\"\n\t\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t\t[(ngModel)]=\"model.rowsSelected[i]\"\n\t\t\t\t\t\t\t(change)=\"onRowCheckboxChange(i)\">\n\t\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t\t</td>\n\t\t\t\t\t<ng-container *ngFor=\"let item of row; let j = index\">\n\t\t\t\t\t\t<td *ngIf=\"model.header[j].visible\"\n\t\t\t\t\t\t\t[class]=\"model.header[j].className\"\n\t\t\t\t\t\t\t[ngStyle]=\"model.header[j].style\"\n\t\t\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t\t\t(click)=\"setIndex($event, j)\">\n\t\t\t\t\t\t\t<ng-container *ngIf=\"!item.template\">{{item.data}}</ng-container>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"item.template\" [ngTemplateOutletContext]=\"{data: item.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t</ng-container>\n\t\t\t\t</tr>\n\t\t\t\t<tr\n\t\t\t\t*ngIf=\"model.rowsExpanded[i] && !model.isRowFiltered(i)\"\n\t\t\t\tclass=\"bx--expandable-row-v2\"\n\t\t\t\t[attr.data-child-row]=\"(model.rowsExpanded[i] ? 'true' : null)\">\n\t\t\t\t\t<td\n\t\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t\t[attr.colspan]=\"row.length + 2\"\n\t\t\t\t\t\t(click)=\"setExpandIndex($event)\">\n\t\t\t\t\t\t<ng-container *ngIf=\"!firstExpandedTemplateInRow(row)\">{{firstExpandedDataInRow(row)}}</ng-container>\n\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t[ngTemplateOutlet]=\"firstExpandedTemplateInRow(row)\"\n\t\t\t\t\t\t\t[ngTemplateOutletContext]=\"{data: firstExpandedDataInRow(row)}\">\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</ng-container>\n\t\t</tbody>\n\t\t<ng-template #noDataTemplate><ng-content></ng-content></ng-template>\n\t\t<tfoot>\n\t\t\t<tr *ngIf=\"this.model.isLoading\">\n\t\t\t\t<td class=\"table_loading-indicator\">\n\t\t\t\t\t<ibm-static-icon icon=\"loading_rows\" size=\"lg\"></ibm-static-icon>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t\t<tr *ngIf=\"this.model.isEnd\">\n\t\t\t\t<td class=\"table_end-indicator\">\n\t\t\t\t\t<h5>{{endOfDataText | async}}</h5>\n\t\t\t\t\t<button (click)=\"scrollToTop($event)\" class=\"btn--secondary-sm\">\n\t\t\t\t\t\t{{scrollTopText | async}}\n\t\t\t\t\t</button>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</tfoot>\n\t</table>\n\t"
+            template: "\n\t<table\n\tclass=\"bx--data-table-v2\"\n\t[ngClass]=\"{\n\t\t'bx--data-table-v2--compact': size === 'sm',\n\t\t'bx--data-table-v2--tall': size === 'lg',\n\t\t'bx--data-table-v2--zebra': striped,\n\t\t'bx--skeleton': skeleton\n\t}\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th *ngIf=\"model.hasExpandableRows()\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t(click)=\"setExpandIndex($event)\">\n\t\t\t\t</th>\n\t\t\t\t<th *ngIf=\"!skeleton && showSelectionColumn\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t(click)=\"setCheckboxIndex()\"\n\t\t\t\t\tstyle=\"width: 10px;\">\n\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\tinline=\"true\"\n\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t[(ngModel)]=\"selectAllCheckbox\"\n\t\t\t\t\t\t[indeterminate]=\"selectAllCheckboxSomeSelected\"\n\t\t\t\t\t\t[attr.aria-label]=\"checkboxHeaderLabel | async\"\n\t\t\t\t\t\t(change)=\"onSelectAllCheckboxChange()\">\n\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t</th>\n\t\t\t\t<ng-container *ngFor=\"let column of model.header; let i = index\">\n\t\t\t\t\t<th [ngClass]='{\"thead_action\": column.filterTemplate || this.sort.observers.length > 0}'\n\t\t\t\t\t*ngIf=\"column.visible\"\n\t\t\t\t\t[class]=\"column.className\"\n\t\t\t\t\t[ngStyle]=\"column.style\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t[draggable]=\"columnsDraggable\"\n\t\t\t\t\t(dragstart)=\"columnDragStart($event, i)\"\n\t\t\t\t\t(dragend)=\"columnDragEnd($event, i)\"\n\t\t\t\t\t(click)=\"setIndex($event, i)\">\n\t\t\t\t\t\t<span *ngIf=\"skeleton\"></span>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsResizable\"\n\t\t\t\t\t\tclass=\"column-resize-handle\"\n\t\t\t\t\t\t(mousedown)=\"columnResizeStart($event, column)\">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2\"\n\t\t\t\t\t\t\t*ngIf=\"this.sort.observers.length > 0 && column.sortable\"\n\t\t\t\t\t\t\t[attr.aria-label]=\"(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async\"\n\t\t\t\t\t\t\taria-live=\"polite\"\n\t\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--active': column.sorted,\n\t\t\t\t\t\t\t\t'bx--table-sort-v2--ascending': column.ascending\n\t\t\t\t\t\t\t}\"\n\t\t\t\t\t\t\t(click)=\"sort.emit(i)\">\n\t\t\t\t\t\t\t<span\n\t\t\t\t\t\t\t\t*ngIf=\"!column.template\"\n\t\t\t\t\t\t\t\t[title]=\"column.data\"\n\t\t\t\t\t\t\t\ttabindex=\"-1\">\n\t\t\t\t\t\t\t\t{{column.data}}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\tclass=\"bx--table-sort-v2__icon\"\n\t\t\t\t\t\t\twidth=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"bx--table-header-label\"\n\t\t\t\t\t\t\t*ngIf=\"!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)\">\n\t\t\t\t\t\t\t<span *ngIf=\"!column.template\" [title]=\"column.data\">{{column.data}}</span>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"column.template\" [ngTemplateOutletContext]=\"{data: column.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t[ngClass]=\"{'active': column.filterCount > 0}\"\n\t\t\t\t\t\t\t*ngIf=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttype=\"button\"\n\t\t\t\t\t\t\taria-expanded=\"false\"\n\t\t\t\t\t\t\taria-haspopup=\"true\"\n\t\t\t\t\t\t\t[ibmTooltip]=\"column.filterTemplate\"\n\t\t\t\t\t\t\ttrigger=\"click\"\n\t\t\t\t\t\t\t[title]=\"filterTitle | async\"\n\t\t\t\t\t\t\tplacement=\"bottom,top\"\n\t\t\t\t\t\t\t[data]=\"column.filterData\">\n\t\t\t\t\t\t\t<svg\n\t\t\t\t\t\t\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\t\t\t\t\t\t\tclass=\"icon--sm\"\n\t\t\t\t\t\t\t\twidth=\"16\"\n\t\t\t\t\t\t\t\theight=\"16\"\n\t\t\t\t\t\t\t\tviewBox=\"0 0 16 16\">\n\t\t\t\t\t\t\t\t<path d=\"M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z\"/>\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t<span *ngIf=\"column.filterCount > 0\">\n\t\t\t\t\t\t\t\t{{column.filterCount}}\n\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t*ngIf=\"columnsDraggable && isColumnDragging\"\n\t\t\t\t\t\tclass=\"drop-area\">\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'left'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-left\"></div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-left\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'left', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'left', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'left', i)\">\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"drop-area-right\"\n\t\t\t\t\t\t\t(dragenter)=\"columnDragEnter($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragleave)=\"columnDragLeave($event, 'right', i)\"\n\t\t\t\t\t\t\t(dragover)=\"columnDragover($event, 'right', i)\"\n\t\t\t\t\t\t\t(drop)=\"columnDrop($event, 'right', i)\">\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"columnDraggedHoverIndex == i && columnDraggedPosition == 'right'\"\n\t\t\t\t\t\t\tclass=\"drop-indicator-right\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</th>\n\t\t\t\t</ng-container>\n\t\t\t\t<th *ngIf=\"!skeleton && stickyHeader\" [ngStyle]=\"{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}\">\n\t\t\t\t\t<!--\n\t\t\t\t\t\tScrollbar pushes body to the left so this header column is added to push\n\t\t\t\t\t\tthe title bar the same amount and keep the header and body columns aligned.\n\t\t\t\t\t-->\n\t\t\t\t</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody\n\t\t*ngIf=\"!noData; else noDataTemplate\"\n\t\t[ngStyle]=\"{'overflow-y': 'scroll'}\"\n\t\t(scroll)=\"onScroll($event)\">\n\t\t\t<ng-container *ngFor=\"let row of model.data; let i = index\">\n\t\t\t\t<tr *ngIf=\"!model.isRowFiltered(i)\"\n\t\t\t\t\t(click)=\"onRowSelect(i)\"\n\t\t\t\t\t[attr.data-parent-row]=\"(model.isRowExpandable(i) ? 'true' : null)\"\n\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t'bx--data-table-v2--selected': model.rowsSelected[i],\n\t\t\t\t\t\t'bx--parent-row-v2': model.isRowExpandable(i),\n\t\t\t\t\t\t'bx--expandable-row-v2': model.rowsExpanded[i],\n\t\t\t\t\t\t'tbody_row--selectable': enableSingleSelect,\n\t\t\t\t\t\t'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',\n\t\t\t\t\t\t'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',\n\t\t\t\t\t\t'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',\n\t\t\t\t\t\t'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'\n\t\t\t\t\t}\">\n\t\t\t\t\t<td\n\t\t\t\t\t*ngIf=\"model.hasExpandableRows()\"\n\t\t\t\t\tclass=\"bx--table-expand-v2\"\n\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t[attr.data-previous-value]=\"(model.rowsExpanded[i] ? 'collapsed' : null)\"\n\t\t\t\t\t(click)=\"setExpandIndex($event)\">\n\t\t\t\t\t\t<button\n\t\t\t\t\t\t*ngIf=\"model.isRowExpandable(i)\"\n\t\t\t\t\t\tclass=\"bx--table-expand-v2__button\"\n\t\t\t\t\t\t[attr.aria-label]=\"expandButtonAriaLabel | async\"\n\t\t\t\t\t\t(click)=\"model.expandRow(i, !model.rowsExpanded[i])\">\n\t\t\t\t\t\t\t<svg class=\"bx--table-expand-v2__svg\" width=\"7\" height=\"12\" viewBox=\"0 0 7 12\">\n\t\t\t\t\t\t\t\t<path fill-rule=\"nonzero\" d=\"M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z\" />\n\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t</button>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td\n\t\t\t\t\t\t*ngIf=\"!skeleton && showSelectionColumn\"\n\t\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t\t(click)=\"setCheckboxIndex()\">\n\t\t\t\t\t\t<ibm-checkbox\n\t\t\t\t\t\t\tinline=\"true\"\n\t\t\t\t\t\t\t[attr.aria-label]=\"checkboxRowLabel | async\"\n\t\t\t\t\t\t\t[size]=\"size !== ('lg' ? 'sm' : 'md')\"\n\t\t\t\t\t\t\t[(ngModel)]=\"model.rowsSelected[i]\"\n\t\t\t\t\t\t\t(change)=\"onRowCheckboxChange(i)\">\n\t\t\t\t\t\t</ibm-checkbox>\n\t\t\t\t\t</td>\n\t\t\t\t\t<ng-container *ngFor=\"let item of row; let j = index\">\n\t\t\t\t\t\t<td *ngIf=\"model.header[j].visible\"\n\t\t\t\t\t\t\t[class]=\"model.header[j].className\"\n\t\t\t\t\t\t\t[ngStyle]=\"model.header[j].style\"\n\t\t\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t\t\t(click)=\"setIndex($event, j)\">\n\t\t\t\t\t\t\t<ng-container *ngIf=\"!item.template\">{{item.data}}</ng-container>\n\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t[ngTemplateOutlet]=\"item.template\" [ngTemplateOutletContext]=\"{data: item.data}\">\n\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t</ng-container>\n\t\t\t\t</tr>\n\t\t\t\t<tr\n\t\t\t\t*ngIf=\"model.rowsExpanded[i] && !model.isRowFiltered(i)\"\n\t\t\t\tclass=\"bx--expandable-row-v2\"\n\t\t\t\t[attr.data-child-row]=\"(model.rowsExpanded[i] ? 'true' : null)\">\n\t\t\t\t\t<td\n\t\t\t\t\t\t[ibmDataGridFocus]=\"isDataGrid\"\n\t\t\t\t\t\t[(columnIndex)]=\"columnIndex\"\n\t\t\t\t\t\t[attr.colspan]=\"row.length + 2\"\n\t\t\t\t\t\t(click)=\"setExpandIndex($event)\">\n\t\t\t\t\t\t<ng-container *ngIf=\"!firstExpandedTemplateInRow(row)\">{{firstExpandedDataInRow(row)}}</ng-container>\n\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t[ngTemplateOutlet]=\"firstExpandedTemplateInRow(row)\"\n\t\t\t\t\t\t\t[ngTemplateOutletContext]=\"{data: firstExpandedDataInRow(row)}\">\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</ng-container>\n\t\t</tbody>\n\t\t<ng-template #noDataTemplate><ng-content></ng-content></ng-template>\n\t\t<tfoot>\n\t\t\t<tr *ngIf=\"this.model.isLoading\">\n\t\t\t\t<td class=\"table_loading-indicator\">\n\t\t\t\t\t<ibm-static-icon icon=\"loading_rows\" size=\"lg\"></ibm-static-icon>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t\t<tr *ngIf=\"this.model.isEnd\">\n\t\t\t\t<td class=\"table_end-indicator\">\n\t\t\t\t\t<h5>{{endOfDataText | async}}</h5>\n\t\t\t\t\t<button (click)=\"scrollToTop($event)\" class=\"btn--secondary-sm\">\n\t\t\t\t\t\t{{scrollTopText | async}}\n\t\t\t\t\t</button>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</tfoot>\n\t</table>\n\t"
         }),
         __metadata("design:paramtypes", [typeof (_c = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _c || Object, typeof (_d = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ApplicationRef"]) === "function" && _d || Object, typeof (_e = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_7__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_7__["I18n"]) === "function" && _e || Object])
     ], Table);
@@ -23345,4 +23332,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.e2fc88f86151482b4117.bundle.js.map
+//# sourceMappingURL=iframe.7a91182e73f71dc4028e.bundle.js.map
