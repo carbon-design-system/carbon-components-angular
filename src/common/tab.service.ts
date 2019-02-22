@@ -3,8 +3,13 @@ export let tabbableSelector = "a[href], area[href], input:not([disabled]):not([t
 		"textarea:not([disabled]):not([tabindex=\'-1\']), " +
 		"iframe, object, embed, *[tabindex]:not([tabindex=\'-1\']), *[contenteditable=true]";
 
-export function getFocusElementList(element) {
-	let elements = element.querySelectorAll(tabbableSelector);
+export let tabbableSelectorIgnoreTabIndex = "a[href], area[href], input:not([disabled]), " +
+		"button:not([disabled]),select:not([disabled]), " +
+		"textarea:not([disabled]), " +
+		"iframe, object, embed, *[tabindex], *[contenteditable=true]";
+
+export function getFocusElementList(element, selector = tabbableSelector) {
+	let elements = element.querySelectorAll(selector);
 	return elements ? Array.prototype.filter.call(elements, el => isVisible(el)) : elements;
 }
 

@@ -36,8 +36,8 @@ storiesOf("Tiles", module)
 	}))
 	.add("Clickable", () => ({
 		template: `
-		<ibm-clickable-tile href="#">
-			clickable tile content goes here...
+		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
+			Click the tile to open the Carbon Design System
 		</ibm-clickable-tile>
 		`
 	}));

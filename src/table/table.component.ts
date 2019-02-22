@@ -3,7 +3,11 @@ import {
 	ApplicationRef,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ViewChildren,
+	ElementRef,
+	AfterViewInit,
+	HostListener
 } from "@angular/core";
 import { Subscription, fromEvent } from "rxjs";
 
@@ -11,6 +15,7 @@ import { TableModel } from "./table.module";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 import { getScrollbarWidth } from "../common/utils";
+import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
 import { I18n } from "./../i18n/i18n.module";
 
 /**
@@ -172,8 +177,16 @@ import { I18n } from "./../i18n/i18n.module";
 	}">
 		<thead>
 			<tr>
-				<th *ngIf="model.hasExpandableRows()"></th>
-				<th *ngIf="!skeleton && showSelectionColumn" style="width: 10px;">
+				<th *ngIf="model.hasExpandableRows()"
+					[ibmDataGridFocus]="isDataGrid"
+					[(columnIndex)]="columnIndex"
+					(click)="setExpandIndex($event)">
+				</th>
+				<th *ngIf="!skeleton && showSelectionColumn"
+					[ibmDataGridFocus]="isDataGrid"
+					[(columnIndex)]="columnIndex"
+					(click)="setCheckboxIndex()"
+					style="width: 10px;">
 					<ibm-checkbox
 						inline="true"
 						[size]="size !== ('lg' ? 'sm' : 'md')"
@@ -188,9 +201,12 @@ import { I18n } from "./../i18n/i18n.module";
 					*ngIf="column.visible"
 					[class]="column.className"
 					[ngStyle]="column.style"
+					[ibmDataGridFocus]="isDataGrid"
+					[(columnIndex)]="columnIndex"
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
-					(dragend)="columnDragEnd($event, i)">
+					(dragend)="columnDragEnd($event, i)"
+					(click)="setIndex($event, i)">
 						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
@@ -207,7 +223,12 @@ import { I18n } from "./../i18n/i18n.module";
 								'bx--table-sort-v2--ascending': column.ascending
 							}"
 							(click)="sort.emit(i)">
-							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
+							<span
+								*ngIf="!column.template"
+								[title]="column.data"
+								tabindex="-1">
+								{{column.data}}
+							</span>
 							<ng-template
 								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 							</ng-template>
@@ -275,7 +296,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 					</th>
 				</ng-container>
-				<th *ngIf="!skeleton" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+				<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 					<!--
 						Scrollbar pushes body to the left so this header column is added to push
 						the title bar the same amount and keep the header and body columns aligned.
@@ -304,18 +325,25 @@ import { I18n } from "./../i18n/i18n.module";
 					<td
 					*ngIf="model.hasExpandableRows()"
 					class="bx--table-expand-v2"
-					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)">
+					[ibmDataGridFocus]="isDataGrid"
+					[(columnIndex)]="columnIndex"
+					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
+					(click)="setExpandIndex($event)">
 						<button
 						*ngIf="model.isRowExpandable(i)"
-						(click)="model.expandRow(i, !model.rowsExpanded[i])"
+						class="bx--table-expand-v2__button"
 						[attr.aria-label]="expandButtonAriaLabel | async"
-						class="bx--table-expand-v2__button">
+						(click)="model.expandRow(i, !model.rowsExpanded[i])">
 							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
 								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
 							</svg>
 						</button>
 					</td>
-					<td *ngIf="!skeleton && showSelectionColumn">
+					<td
+						*ngIf="!skeleton && showSelectionColumn"
+						[ibmDataGridFocus]="isDataGrid"
+						[(columnIndex)]="columnIndex"
+						(click)="setCheckboxIndex()">
 						<ibm-checkbox
 							inline="true"
 							[attr.aria-label]="checkboxRowLabel | async"
@@ -324,10 +352,13 @@ import { I18n } from "./../i18n/i18n.module";
 							(change)="onRowCheckboxChange(i)">
 						</ibm-checkbox>
 					</td>
-					<ng-container *ngFor="let item of row; let i = index">
-						<td *ngIf="model.header[i].visible"
-							[class]="model.header[i].className"
-							[ngStyle]="model.header[i].style">
+					<ng-container *ngFor="let item of row; let j = index">
+						<td *ngIf="model.header[j].visible"
+							[class]="model.header[j].className"
+							[ngStyle]="model.header[j].style"
+							[ibmDataGridFocus]="isDataGrid"
+							[(columnIndex)]="columnIndex"
+							(click)="setIndex($event, j)">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
@@ -339,7 +370,11 @@ import { I18n } from "./../i18n/i18n.module";
 				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
 				class="bx--expandable-row-v2"
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
-					<td [attr.colspan]="row.length + 2">
+					<td
+						[ibmDataGridFocus]="isDataGrid"
+						[(columnIndex)]="columnIndex"
+						[attr.colspan]="row.length + 2"
+						(click)="setExpandIndex($event)">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
 						<ng-template
 							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
@@ -368,7 +403,7 @@ import { I18n } from "./../i18n/i18n.module";
 	</table>
 	`
 })
-export class Table {
+export class Table implements AfterViewInit {
 	/**
 	 * Creates a skeleton model with a row and column count specified by the user
 	 *
@@ -400,23 +435,36 @@ export class Table {
 		return model;
 	}
 
+	static setTabIndex(element: HTMLElement, index: -1 | 0) {
+		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
+		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
+			focusElementList[1].tabIndex = index;
+		} else if (focusElementList.length > 0) {
+			focusElementList[0].tabIndex = index;
+		} else {
+			element.tabIndex = index;
+		}
+	}
+
 	/**
 	 * Size of the table rows.
 	 *
 	 * @type {("sm" | "md" | "lg")}
-	 * @memberof Table
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Set to `true` for a loading table.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` for a data grid with keyboard interactions.
+	 */
+	@Input() isDataGrid = false;
 
 	/**
 	 * `TableModel` with data the table is to display.
 	 *
 	 * @type {TableModel}
-	 * @memberof Table
 	 */
 	@Input()
 	set model(m: TableModel) {
@@ -427,7 +475,25 @@ export class Table {
 
 		this._model = m;
 		this._model.rowsSelectedChange.subscribe(() => this.updateSelectAllCheckbox());
-		this._model.dataChange.subscribe(() => this.updateSelectAllCheckbox());
+		this._model.dataChange.subscribe(() => {
+			this.updateSelectAllCheckbox();
+			if (this.isDataGrid) {
+				this.handleTabIndex();
+			}
+		});
+		if (this.isDataGrid) {
+			this._model.rowsExpandedChange.subscribe(() => {
+				// Allows the expanded row to have a focus state when it exists in the DOM
+				setTimeout(() => {
+					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row-v2:not(.bx--parent-row-v2)");
+					Array.from<any>(expandedRows).forEach(row => {
+						if (row.firstElementChild.tabIndex === undefined || row.firstElementChild.tabIndex !== -1) {
+							row.firstElementChild.tabIndex = -1;
+						}
+					});
+				});
+			});
+		}
 	}
 
 	get model(): TableModel {
@@ -454,7 +520,6 @@ export class Table {
 	 * Controls whether to show the selection checkboxes column or not.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	@Input() showSelectionColumn = true;
 
@@ -462,7 +527,6 @@ export class Table {
 	 * Controls whether to enable multiple or single row selection.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	@Input() enableSingleSelect = false;
 
@@ -471,7 +535,6 @@ export class Table {
 	 * `scrollLoad` event is emitted.
 	 *
 	 * @type {number}
-	 * @memberof Table
 	 */
 	@Input() scrollLoadDistance = 0;
 
@@ -480,7 +543,6 @@ export class Table {
 	 *
 	 * Works for columns with width set in pixels.
 	 *
-	 * @memberof Table
 	 */
 	@Input() columnsResizable = false;
 
@@ -490,7 +552,6 @@ export class Table {
 	 * Changing the column order in table changes table model. Be aware of it when you add additional data
 	 * to the model.
 	 *
-	 * @memberof Table
 	 */
 	@Input() columnsDraggable = false;
 
@@ -557,7 +618,6 @@ export class Table {
 	 * Controls if all checkboxes are viewed as selected.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	selectAllCheckbox = false;
 
@@ -565,7 +625,6 @@ export class Table {
 	 * Controls the indeterminate state of the header checkbox.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	selectAllCheckboxSomeSelected = false;
 
@@ -573,14 +632,17 @@ export class Table {
 	 * Set to `false` to remove table rows (zebra) stripes.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	@Input() striped = true;
 
 	/**
+	 * Set to `true` to stick the header to the top of the table
+	 */
+	@Input() stickyHeader = false;
+
+	/**
 	 * Emits an index of the column that wants to be sorted.
 	 *
-	 * @memberof Table
 	 */
 	@Output() sort = new EventEmitter<number>();
 
@@ -588,7 +650,6 @@ export class Table {
 	 * Emits if all rows are selected.
 	 *
 	 * @param {TableModel} model
-	 * @memberof Table
 	 */
 	@Output() selectAll = new EventEmitter<Object>();
 
@@ -596,7 +657,6 @@ export class Table {
 	 * Emits if all rows are deselected.
 	 *
 	 * @param {TableModel} model
-	 * @memberof Table
 	 */
 	@Output() deselectAll = new EventEmitter<Object>();
 
@@ -604,7 +664,6 @@ export class Table {
 	 * Emits if a single row is selected.
 	 *
 	 * @param {Object} ({model: this.model, selectedRowIndex: index})
-	 * @memberof Table
 	 */
 	@Output() selectRow = new EventEmitter<Object>();
 
@@ -612,7 +671,6 @@ export class Table {
 	 * Emits if a single row is deselected.
 	 *
 	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
-	 * @memberof Table
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
 
@@ -620,7 +678,6 @@ export class Table {
 	 * Emits when table requires more data to be loaded.
 	 *
 	 * @param {TableModel} model
-	 * @memberof Table
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
 
@@ -629,6 +686,8 @@ export class Table {
 			this.model.data.length === 0 ||
 			this.model.data.length === 1 && this.model.data[0].length === 0;
 	}
+
+	columnIndex = 0;
 
 	protected _model: TableModel;
 
@@ -649,9 +708,14 @@ export class Table {
 	 * Creates an instance of Table.
 	 *
 	 * @param {ApplicationRef} applicationRef
-	 * @memberof Table
 	 */
-	constructor(protected applicationRef: ApplicationRef, protected i18n: I18n) {}
+	constructor(protected elementRef: ElementRef, protected applicationRef: ApplicationRef, protected i18n: I18n) {}
+
+	ngAfterViewInit() {
+		if (this.isDataGrid) {
+			this.handleTabIndex();
+		}
+	}
 
 	columnResizeStart(event, column) {
 		this.columnResizeWidth = parseInt(column.style.width, 10);
@@ -703,7 +767,6 @@ export class Table {
 	 * Updates all the checkboxes in the table view.
 	 * Emits the `selectAll` or `deselectAll` event.
 	 *
-	 * @memberof Table
 	 */
 	onSelectAllCheckboxChange() {
 		this.applicationRef.tick(); // give app time to process the click if needed
@@ -731,7 +794,6 @@ export class Table {
 	 *
 	 * @param {number} index
 	 * @returns
-	 * @memberof Table
 	 */
 	onRowCheckboxChange(index: number) {
 		let startValue = this.model.rowsSelected[0];
@@ -762,7 +824,6 @@ export class Table {
 	 * Emits the `scrollLoad` event.
 	 *
 	 * @param {any} event
-	 * @memberof Table
 	 */
 	onScroll(event) {
 		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
@@ -837,10 +898,48 @@ export class Table {
 	 * Emits the `scrollLoad` event.
 	 *
 	 * @param {any} event
-	 * @memberof Table
 	 */
 	scrollToTop(event) {
 		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
 		this.model.isEnd = false;
+	}
+
+	handleTabIndex() {
+		setTimeout(() => {
+			const focusElementList = getFocusElementList(this.elementRef.nativeElement, tabbableSelectorIgnoreTabIndex);
+			if (focusElementList.length > 0) {
+				focusElementList.forEach(tabbable => {
+					tabbable.tabIndex = -1;
+				});
+			}
+			Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll("td, th")).forEach(cell => Table.setTabIndex(cell, -1));
+
+			const rows = this.elementRef.nativeElement.firstElementChild.rows;
+			if (Array.from(rows[0].querySelectorAll("th")).some(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length > 0)) {
+				Table.setTabIndex(rows[0].querySelector("th"), 0);
+			} else {
+				Table.setTabIndex(rows[1].querySelector("td"), 0);
+			}
+		});
+	}
+
+	setIndex(event, columnIndex) {
+		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
+			this.columnIndex = columnIndex + 2;
+		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
+			this.columnIndex = columnIndex + 1;
+		}
+	}
+
+	setCheckboxIndex() {
+		if (this.model.hasExpandableRows()) {
+			this.columnIndex = 1;
+		} else {
+			this.columnIndex = 0;
+		}
+	}
+
+	setExpandIndex(event) {
+		this.columnIndex = 0;
 	}
 }
