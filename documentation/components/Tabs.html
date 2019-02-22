@@ -202,6 +202,9 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                                 <a href="#followFocus">followFocus</a>
                             </li>
                             <li>
+                                <a href="#isNavigation">isNavigation</a>
+                            </li>
+                            <li>
                                 <a href="#position">position</a>
                             </li>
                             <li>
@@ -261,6 +264,28 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/tabs/tabs.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="isNavigation"></a>
+                        <code>isNavigation</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> to have the tabIndex of the all tabpanels be -1.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/tabs/tabs.component.ts:83</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -345,7 +370,7 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/tabs/tabs.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/tabs/tabs.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -385,7 +410,7 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/tabs/tabs.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/tabs/tabs.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -441,7 +466,7 @@ selected Tab item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/tabs/tabs.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tabs/tabs.component.ts:94</a></div>
                             </td>
                         </tr>
 
@@ -490,7 +515,7 @@ selected Tab item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/tabs/tabs.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/tabs/tabs.component.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -588,6 +613,10 @@ export class Tabs implements AfterContentInit {
 	 * Set to &#x60;true&#x60; to put tabs in a loading state.
 	 */
 	@Input() skeleton &#x3D; false;
+	/**
+	 * Set to &#x60;true&#x60; to have the tabIndex of the all tabpanels be -1.
+	 */
+	@Input() isNavigation &#x3D; false;
 
 	/**
 	 * Maintains a &#x60;QueryList&#x60; of the &#x60;Tab&#x60; elements and updates if &#x60;Tab&#x60;s are added or removed.
@@ -609,6 +638,10 @@ export class Tabs implements AfterContentInit {
 		if (this.tabHeaders) {
 			this.tabHeaders.cacheActive &#x3D; this.cacheActive;
 		}
+
+		this.tabs.forEach(tab &#x3D;&gt; {
+			tab.tabIndex &#x3D; this.isNavigation ? -1 : 0;
+		});
 	}
 
 	/**

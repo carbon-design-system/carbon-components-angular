@@ -21496,47 +21496,40 @@ var Tab = /** @class */ (function () {
         /**
          * Boolean value reflects if the `Tab` is using a custom template for the heading.
          * Default value is false.
-         * @memberof Tab
          */
         this.headingIsTemplate = false;
         /**
          * Indicates whether the `Tab` is active/selected.
          * Determines whether it's `TabPanel` is rendered.
-         * @memberof Tab
          */
         this.active = false;
         /**
          * Indicates whether or not the `Tab` item is disabled.
-         * @memberof Tab
          */
         this.disabled = false;
+        this.tabIndex = 0;
         // do we need id's?
         /**
          * Sets the id of the `Tab`. Will be uniquely generated if not provided.
-         * @memberof Tab
          */
         this.id = "n-tab-" + nextId++;
         /**
          * Set to true to have Tab items cached and not reloaded on tab switching.
-         * @memberof Tab
          */
         this.cacheActive = false;
         /**
          * Value 'selected' to be emitted after a new `Tab` is selected.
          * @type {EventEmitter<void>}
-         * @memberof Tab
          */
         this.selected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         /**
          * Used to set the id property on the element.
-         * @memberof Tab
          */
         this.attrClass = this.id;
     }
     /**
      * Checks for custom heading template on initialization and updates the value
      * of the boolean 'headingIsTemplate'.
-     * @memberof Tab
      */
     Tab.prototype.ngOnInit = function () {
         if (this.heading instanceof _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]) {
@@ -21545,7 +21538,6 @@ var Tab = /** @class */ (function () {
     };
     /**
      * Emit the status of the `Tab`, specifically 'select' and 'selected' properties.
-     * @memberof Tab
      */
     Tab.prototype.doSelect = function () {
         this.selected.emit();
@@ -21553,7 +21545,6 @@ var Tab = /** @class */ (function () {
     /**
     * Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
     * @returns boolean
-    * @memberof Tab
     */
     Tab.prototype.shouldRender = function () {
         return this.active || this.cacheActive;
@@ -21574,6 +21565,10 @@ var Tab = /** @class */ (function () {
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
+    ], Tab.prototype, "tabIndex", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
     ], Tab.prototype, "id", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -21590,7 +21585,7 @@ var Tab = /** @class */ (function () {
     Tab = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-tab",
-            template: "\n\t\t<div\n\t\t\ttabIndex=\"0\"\n\t\t\trole=\"tabpanel\"\n\t\t\t*ngIf=\"shouldRender()\"\n\t\t\t[ngStyle]=\"{'display': active ? null : 'none'}\"\n\t\t\t[attr.aria-labelledby]=\"id + '-header'\">\n\t\t\t<ng-content></ng-content>\n\t\t</div>\n\t "
+            template: "\n\t\t<div\n\t\t\t[tabindex]=\"tabIndex\"\n\t\t\trole=\"tabpanel\"\n\t\t\t*ngIf=\"shouldRender()\"\n\t\t\t[ngStyle]=\"{'display': active ? null : 'none'}\"\n\t\t\t[attr.aria-labelledby]=\"id + '-header'\">\n\t\t\t<ng-content></ng-content>\n\t\t</div>\n\t "
         })
     ], Tab);
     return Tab;
@@ -21673,6 +21668,10 @@ var Tabs = /** @class */ (function () {
          * Set to `true` to put tabs in a loading state.
          */
         this.skeleton = false;
+        /**
+         * Set to `true` to have the tabIndex of the all tabpanels be -1.
+         */
+        this.isNavigation = false;
     }
     /**
      * After content is initialized update `Tab`s to cache (if turned on) and set the inital
@@ -21680,9 +21679,13 @@ var Tabs = /** @class */ (function () {
      * @memberof Tabs
      */
     Tabs.prototype.ngAfterContentInit = function () {
+        var _this = this;
         if (this.tabHeaders) {
             this.tabHeaders.cacheActive = this.cacheActive;
         }
+        this.tabs.forEach(function (tab) {
+            tab.tabIndex = _this.isNavigation ? -1 : 0;
+        });
     };
     /**
      * true if the n-tab's are passed directly to the component as children
@@ -21707,6 +21710,10 @@ var Tabs = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], Tabs.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Tabs.prototype, "isNavigation", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChildren"])(_tab_component__WEBPACK_IMPORTED_MODULE_1__["Tab"], { descendants: false }),
         __metadata("design:type", typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["QueryList"]) === "function" && _a || Object)
@@ -21811,8 +21818,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { TabsModule } from '../';\n\n// NOTE: non-experimental styles include some temporary workarounds in preview.scss\n// these should be removed when experimental becomes non-experimental\nstoriesOf('Tabs', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [TabsModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n    props: {\n      followFocus: boolean('followFocus', true),\n    },\n  }))\n  .add('With template', () => ({\n    template: `\n\t\t\t<ng-template #customTab>\n\t\t\t\t<div style=\"height: 14px;\">\n\t\t\t\t\tSomething custom\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"\n\t\t\t\t\tstyle=\"height: 14px; width: 14px; fill: #3d70b2;\">\n\t\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs>\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<ibm-tabs skeleton=\"true\">\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n  }));\n";
-var __ADDS_MAP__ = { "Tabs@Skeleton": { "startLoc": { "col": 7, "line": 46 }, "endLoc": { "col": 4, "line": 53 } }, "Tabs@With template": { "startLoc": { "col": 7, "line": 26 }, "endLoc": { "col": 4, "line": 45 } }, "Tabs@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 25 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean } from '@storybook/addon-knobs/angular';\n\nimport { TabsModule } from '../';\n\n// NOTE: non-experimental styles include some temporary workarounds in preview.scss\n// these should be removed when experimental becomes non-experimental\nstoriesOf('Tabs', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [TabsModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\" [isNavigation]=\"isNavigation\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n    props: {\n      followFocus: boolean('followFocus', true),\n      isNavigation: boolean('isNavigation', false),\n    },\n  }))\n  .add('With template', () => ({\n    template: `\n\t\t\t<ng-template #customTab>\n\t\t\t\t<div style=\"height: 14px;\">\n\t\t\t\t\tSomething custom\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"\n\t\t\t\t\tstyle=\"height: 14px; width: 14px; fill: #3d70b2;\">\n\t\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\" [isNavigation]=\"isNavigation\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n    props: {\n      followFocus: boolean('followFocus', true),\n      isNavigation: boolean('isNavigation', false),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<ibm-tabs skeleton=\"true\">\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t`,\n  }));\n";
+var __ADDS_MAP__ = { "Tabs@Skeleton": { "startLoc": { "col": 7, "line": 51 }, "endLoc": { "col": 4, "line": 58 } }, "Tabs@With template": { "startLoc": { "col": 7, "line": 27 }, "endLoc": { "col": 4, "line": 50 } }, "Tabs@Basic": { "startLoc": { "col": 7, "line": 15 }, "endLoc": { "col": 4, "line": 26 } } };
 
 
 
@@ -21826,13 +21833,18 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Tabs", mod
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t",
+    template: "\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\" [isNavigation]=\"isNavigation\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t",
     props: {
-        followFocus: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("followFocus", true)
+        followFocus: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("followFocus", true),
+        isNavigation: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("isNavigation", false)
     }
 }); })
     .add("With template", function () { return ({
-    template: "\n\t\t\t<ng-template #customTab>\n\t\t\t\t<div style=\"height: 14px;\">\n\t\t\t\t\tSomething custom\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"\n\t\t\t\t\tstyle=\"height: 14px; width: 14px; fill: #3d70b2;\">\n\t\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs>\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t"
+    template: "\n\t\t\t<ng-template #customTab>\n\t\t\t\t<div style=\"height: 14px;\">\n\t\t\t\t\tSomething custom\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"\n\t\t\t\t\tstyle=\"height: 14px; width: 14px; fill: #3d70b2;\">\n\t\t\t\t\t\t<path d=\"M8 14.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z\"></path>\n\t\t\t\t\t\t<path d=\"M9 13H7V7h2z\"></path>\n\t\t\t\t\t\t<path d=\"M7 4a1 1 0 1 1 2 0 1 1 0 1 1-2 0\"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t</div>\n\t\t\t</ng-template>\n\t\t\t<ibm-tabs [followFocus]=\"followFocus\" [isNavigation]=\"isNavigation\">\n\t\t\t\t<ibm-tab heading=\"one\">foo</ibm-tab>\n\t\t\t\t<ibm-tab heading=\"two\">bar</ibm-tab>\n\t\t\t\t<ibm-tab [heading]=\"customTab\">foo</ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t",
+    props: {
+        followFocus: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("followFocus", true),
+        isNavigation: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("isNavigation", false)
+    }
 }); })
     .add("Skeleton", function () { return ({
     template: "\n\t\t\t<ibm-tabs skeleton=\"true\">\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t\t<ibm-tab></ibm-tab>\n\t\t\t</ibm-tabs>\n\t\t"
@@ -23337,4 +23349,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.477403a604a4c6ee16d4.bundle.js.map
+//# sourceMappingURL=iframe.785c8c2dfcd4e2e2dbed.bundle.js.map
