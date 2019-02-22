@@ -7,6 +7,7 @@ export * from "./checkbox/checkbox.module";
 export * from "./code-snippet/code-snippet.module";
 export * from "./combobox/combobox.module";
 export * from "./content-switcher/content-switcher.module";
+export * from "./datepicker/datepicker.module";
 export * from "./dialog/dialog.module";
 export * from "./dropdown/dropdown.module";
 export * from "./experimental.module";
