@@ -111,7 +111,7 @@ you load the page.</p>
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
 	class&#x3D;&quot;bx--pagination&quot;
 	[ngClass]&#x3D;&quot;{
-		&#x27;bx--skeleton&#x27; : skeleton
+		&#x27;bx--skeleton&#x27;: skeleton
 	}&quot;&gt;
 	&lt;!-- left skeleton div --&gt;
 	&lt;div *ngIf&#x3D;&quot;skeleton&quot; class&#x3D;&quot;bx--pagination__left&quot;&gt;
@@ -121,54 +121,65 @@ you load the page.</p>
 	&lt;/div&gt;
 
 	&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__left&quot;&gt;
-		&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;&gt;
-			&lt;label
-				[for]&#x3D;&quot;itemsPerPageSelectId&quot;
-				class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;
-				{{itemsPerPageText | async}}
-			&lt;/label&gt;
-			&lt;select
-				[id]&#x3D;&quot;itemsPerPageSelectId&quot;
-				[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
-				class&#x3D;&quot;bx--select-input&quot;
-				aria-describedby&#x3D;&quot;false&quot;&gt;
-				&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;10&quot;&gt;{{itemsPerPageText | async}} 10&lt;/option&gt;
-				&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;20&quot;&gt;20&lt;/option&gt;
-				&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;30&quot;&gt;30&lt;/option&gt;
-				&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;40&quot;&gt;40&lt;/option&gt;
-				&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;50&quot;&gt;50&lt;/option&gt;
-			&lt;/select&gt;
-			&lt;!-- old icon --&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;!isExperimental&quot;
-				class&#x3D;&quot;bx--select__arrow&quot;
-				fill-rule&#x3D;&quot;evenodd&quot;
-				height&#x3D;&quot;5&quot;
-				role&#x3D;&quot;img&quot;
-				viewBox&#x3D;&quot;0 0 10 5&quot;
-				width&#x3D;&quot;10&quot;
-				[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-				&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-				&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
-			&lt;/svg&gt;
-			&lt;!-- new icon --&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;isExperimental&quot;
-				class&#x3D;&quot;bx--select__arrow&quot;
-				focusable&#x3D;&quot;false&quot;
-				preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-				height&#x3D;&quot;6&quot;
-				role&#x3D;&quot;img&quot;
-				viewBox&#x3D;&quot;0 0 10 6&quot;
-				width&#x3D;&quot;10&quot;
-				style&#x3D;&quot;will-change: transform;&quot;
-				[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-				&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-				&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
-			&lt;/svg&gt;
+		&lt;span *ngIf&#x3D;&quot;!isExperimental&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
+			{{itemsPerPageText | async}}
+		&lt;/span&gt;
+		&lt;label *ngIf&#x3D;&quot;isExperimental&quot; class&#x3D;&quot;bx--pagination__text&quot; [for]&#x3D;&quot;itemsPerPageSelectId&quot;&gt;
+			{{itemsPerPageText | async}}
+		&lt;/label&gt;
+		&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--select__item-count&#x27;: isExperimental
+				}&quot;&gt;
+				&lt;label
+					[for]&#x3D;&quot;itemsPerPageSelectId&quot;
+					class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;
+					{{itemsPerPageText | async}}
+				&lt;/label&gt;
+				&lt;select
+					[id]&#x3D;&quot;itemsPerPageSelectId&quot;
+					[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
+					class&#x3D;&quot;bx--select-input&quot;
+					aria-describedby&#x3D;&quot;false&quot;&gt;
+					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;10&quot;&gt;10&lt;/option&gt;
+					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;20&quot;&gt;20&lt;/option&gt;
+					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;30&quot;&gt;30&lt;/option&gt;
+					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;40&quot;&gt;40&lt;/option&gt;
+					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;50&quot;&gt;50&lt;/option&gt;
+				&lt;/select&gt;
+				&lt;!-- old icon --&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;!isExperimental&quot;
+					class&#x3D;&quot;bx--select__arrow&quot;
+					fill-rule&#x3D;&quot;evenodd&quot;
+					height&#x3D;&quot;5&quot;
+					role&#x3D;&quot;img&quot;
+					viewBox&#x3D;&quot;0 0 10 5&quot;
+					width&#x3D;&quot;10&quot;
+					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+					&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
+				&lt;/svg&gt;
+				&lt;!-- new icon --&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;isExperimental&quot;
+					class&#x3D;&quot;bx--select__arrow&quot;
+					focusable&#x3D;&quot;false&quot;
+					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+					height&#x3D;&quot;6&quot;
+					role&#x3D;&quot;img&quot;
+					viewBox&#x3D;&quot;0 0 10 6&quot;
+					width&#x3D;&quot;10&quot;
+					style&#x3D;&quot;will-change: transform;&quot;
+					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+					&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
+				&lt;/svg&gt;
+			&lt;/div&gt;
 		&lt;/div&gt;
 		&lt;span class&#x3D;&quot;bx--pagination__text&quot;&gt;
-			&lt;span&gt;|&amp;nbsp;&lt;/span&gt;
+			&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 			{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
 		&lt;/span&gt;
 	&lt;/div&gt;
@@ -178,7 +189,10 @@ you load the page.</p>
 		&lt;p class&#x3D;&quot;bx--skeleton__text&quot; style&#x3D;&quot;width: 70px&quot;&gt;&lt;/p&gt;
 	&lt;/div&gt;
 
-	&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot; ngClass&#x3D;&quot;{&#x27;bx--pagination--inline&#x27;: isExperimental}&quot;&gt;
+	&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;bx--pagination--inline&#x27;: !isExperimental
+		}&quot;&gt;
 		&lt;!-- old span --&gt;
 		&lt;span
 			*ngIf&#x3D;&quot;!isExperimental&quot;
@@ -190,6 +204,9 @@ you load the page.</p>
 		&lt;button
 			*ngIf&#x3D;&quot;!isExperimental&quot;
 			class&#x3D;&quot;bx--pagination__button bx--pagination__button--backward&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1
+			}&quot;
 			(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
 			[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 ? true : null)&quot;&gt;
 			&lt;svg
@@ -205,54 +222,57 @@ you load the page.</p>
 			&lt;/svg&gt;
 		&lt;/button&gt;
 
-		&lt;div *ngIf&#x3D;&quot;isExperimental&quot; class&#x3D;&quot;bx--select bx--select--inline&quot;&gt;
-			&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText | async}}&lt;/label&gt;
-			&lt;select [id]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--select-input&quot; aria-describedby&#x3D;&quot;false&quot; [(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
-				&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;1&quot;&gt;{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}&lt;/option&gt;
-				&lt;option *ngFor&#x3D;&quot;let i of range(lastPage + 1, 2)&quot; class&#x3D;&quot;bx--select-option&quot; [value]&#x3D;&quot;i&quot;&gt;{{i}}&lt;/option&gt;
-			&lt;/select&gt;
-			&lt;!-- old icon --&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;!isExperimental&quot;
-				class&#x3D;&quot;bx--select__arrow&quot;
-				fill-rule&#x3D;&quot;evenodd&quot;
-				height&#x3D;&quot;5&quot;
-				role&#x3D;&quot;img&quot;
-				viewBox&#x3D;&quot;0 0 10 5&quot;
-				width&#x3D;&quot;10&quot;
-				[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-				&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-				&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
-			&lt;/svg&gt;
-			&lt;!-- new icon --&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;isExperimental&quot;
-				class&#x3D;&quot;bx--select__arrow&quot;
-				focusable&#x3D;&quot;false&quot;
-				preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-				height&#x3D;&quot;6&quot;
-				role&#x3D;&quot;img&quot;
-				viewBox&#x3D;&quot;0 0 10 6&quot;
-				width&#x3D;&quot;10&quot;
-				style&#x3D;&quot;will-change: transform;&quot;
-				[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-				&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-				&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
-			&lt;/svg&gt;
+		&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--select__page-number&#x27; : isExperimental
+			}&quot;&gt;
+				&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText | async}}&lt;/label&gt;
+				&lt;select [id]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--select-input&quot; aria-describedby&#x3D;&quot;false&quot; [(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
+					&lt;option *ngFor&#x3D;&quot;let i of range(lastPage + 1, 1)&quot; class&#x3D;&quot;bx--select-option&quot; [value]&#x3D;&quot;i&quot;&gt;{{i}}&lt;/option&gt;
+				&lt;/select&gt;
+				&lt;!-- old icon --&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;!isExperimental&quot;
+					class&#x3D;&quot;bx--select__arrow&quot;
+					fill-rule&#x3D;&quot;evenodd&quot;
+					height&#x3D;&quot;5&quot;
+					role&#x3D;&quot;img&quot;
+					viewBox&#x3D;&quot;0 0 10 5&quot;
+					width&#x3D;&quot;10&quot;
+					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+					&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
+				&lt;/svg&gt;
+				&lt;!-- new icon --&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;isExperimental&quot;
+					class&#x3D;&quot;bx--select__arrow&quot;
+					focusable&#x3D;&quot;false&quot;
+					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+					height&#x3D;&quot;6&quot;
+					role&#x3D;&quot;img&quot;
+					viewBox&#x3D;&quot;0 0 10 6&quot;
+					width&#x3D;&quot;10&quot;
+					style&#x3D;&quot;will-change: transform;&quot;
+					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+					&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
+				&lt;/svg&gt;
+			&lt;/div&gt;
 		&lt;/div&gt;
 
-		&lt;input
-			type&#x3D;&quot;number&quot;
-			class&#x3D;&quot;bx--text-input&quot;
-			placeholder&#x3D;&quot;0&quot;
-			value&#x3D;&quot;1&quot;
-			*ngIf&#x3D;&quot;!isExperimental&quot;
-			[(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
+		&lt;span *ngIf&#x3D;&quot;isExperimental&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
+			{{ofLastPagesText | i18nReplace: {last: lastPage} | async}}
+		&lt;/span&gt;
 
 		&lt;!-- old button --&gt;
 		&lt;button
 			*ngIf&#x3D;&quot;!isExperimental&quot;
 			class&#x3D;&quot;bx--pagination__button bx--pagination__button--forward&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage
+			}&quot;
 			(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
 			[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage ? true : null)&quot;&gt;
 			&lt;svg
@@ -271,7 +291,10 @@ you load the page.</p>
 		&lt;!-- new butons --&gt;
 		&lt;button
 			*ngIf&#x3D;&quot;isExperimental&quot;
-			class&#x3D;&quot;bx--pagination__button&quot;
+			class&#x3D;&quot;bx--pagination__button bx--pagination__button--backward&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1
+			}&quot;
 			tabindex&#x3D;&quot;0&quot;
 			[attr.aria-label]&#x3D;&quot;backwardText | async&quot;
 			(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
@@ -291,7 +314,10 @@ you load the page.</p>
 
 		&lt;button
 			*ngIf&#x3D;&quot;isExperimental&quot;
-			class&#x3D;&quot;bx--pagination__button&quot;
+			class&#x3D;&quot;bx--pagination__button bx--pagination__button--forward&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage
+			}&quot;
 			tabindex&#x3D;&quot;0&quot;
 			[attr.aria-label]&#x3D;&quot;forwardText | async&quot;
 			(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
@@ -352,6 +378,9 @@ you load the page.</p>
                             </li>
                             <li>
                                 <a href="#itemsPerPageText">itemsPerPageText</a>
+                            </li>
+                            <li>
+                                <a href="#ofLastPagesText">ofLastPagesText</a>
                             </li>
                             <li>
                                 <a href="#optionsListText">optionsListText</a>
@@ -476,7 +505,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="375" class="link-to-prism">src/pagination/pagination.component.ts:375</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/pagination/pagination.component.ts:406</a></div>
                             </td>
                         </tr>
 
@@ -546,7 +575,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/pagination/pagination.component.ts:258</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/pagination/pagination.component.ts:284</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -568,7 +597,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/pagination/pagination.component.ts:251</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/pagination/pagination.component.ts:277</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -588,14 +617,15 @@ you load the page.</p>
      *        &quot;BACKWARD&quot;: &quot;Backward&quot;,
      *        &quot;FORWARD&quot;: &quot;Forward&quot;,
      *        &quot;TOTAL_ITEMS&quot;: &quot;{{start}}-{{end}} of {{total}} items&quot;,
-     *        &quot;TOTAL_PAGES&quot;: &quot;{{current}} of {{last}} pages&quot;
+     *        &quot;TOTAL_PAGES&quot;: &quot;{{current}} of {{last}} pages&quot;,
+     *        &quot;OF_LAST_PAGES&quot;: &quot;of {{last}} pages&quot;
      * }
      *</code></pre></div></div>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/pagination/pagination.component.ts:274</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/pagination/pagination.component.ts:301</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -621,7 +651,7 @@ data is finally loaded.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/pagination/pagination.component.ts:303</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="333" class="link-to-prism">src/pagination/pagination.component.ts:333</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -656,7 +686,7 @@ data is finally loaded.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="391" class="link-to-prism">src/pagination/pagination.component.ts:391</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="422" class="link-to-prism">src/pagination/pagination.component.ts:422</a></div>
                             </td>
                         </tr>
 
@@ -772,7 +802,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/pagination/pagination.component.ts:372</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="402" class="link-to-prism">src/pagination/pagination.component.ts:402</a></div>
                             </td>
                         </tr>
 
@@ -805,7 +835,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/pagination/pagination.component.ts:368</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="398" class="link-to-prism">src/pagination/pagination.component.ts:398</a></div>
                             </td>
                         </tr>
 
@@ -838,7 +868,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="373" class="link-to-prism">src/pagination/pagination.component.ts:373</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="403" class="link-to-prism">src/pagination/pagination.component.ts:403</a></div>
                             </td>
                         </tr>
 
@@ -871,7 +901,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="367" class="link-to-prism">src/pagination/pagination.component.ts:367</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="397" class="link-to-prism">src/pagination/pagination.component.ts:397</a></div>
                             </td>
                         </tr>
 
@@ -904,7 +934,40 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="370" class="link-to-prism">src/pagination/pagination.component.ts:370</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="400" class="link-to-prism">src/pagination/pagination.component.ts:400</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ofLastPagesText"></a>
+                        <span class="name">
+                            <b>
+                            ofLastPagesText
+                            </b>
+                            <a href="#ofLastPagesText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>ofLastPagesText:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(&quot;PAGINATION.OF_LAST_PAGES&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="406" class="link-to-prism">src/pagination/pagination.component.ts:406</a></div>
                             </td>
                         </tr>
 
@@ -937,7 +1000,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="371" class="link-to-prism">src/pagination/pagination.component.ts:371</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="401" class="link-to-prism">src/pagination/pagination.component.ts:401</a></div>
                             </td>
                         </tr>
 
@@ -977,7 +1040,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/pagination/pagination.component.ts:246</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/pagination/pagination.component.ts:272</a></div>
                             </td>
                         </tr>
 
@@ -1010,7 +1073,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="374" class="link-to-prism">src/pagination/pagination.component.ts:374</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="404" class="link-to-prism">src/pagination/pagination.component.ts:404</a></div>
                             </td>
                         </tr>
 
@@ -1043,7 +1106,7 @@ Used to display the correct pagination controls.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="375" class="link-to-prism">src/pagination/pagination.component.ts:375</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="405" class="link-to-prism">src/pagination/pagination.component.ts:405</a></div>
                             </td>
                         </tr>
 
@@ -1073,7 +1136,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/pagination/pagination.component.ts:274</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="301" class="link-to-prism">src/pagination/pagination.component.ts:301</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1085,7 +1148,8 @@ Used to display the correct pagination controls.</p>
      *        &quot;BACKWARD&quot;: &quot;Backward&quot;,
      *        &quot;FORWARD&quot;: &quot;Forward&quot;,
      *        &quot;TOTAL_ITEMS&quot;: &quot;{{start}}-{{end}} of {{total}} items&quot;,
-     *        &quot;TOTAL_PAGES&quot;: &quot;{{current}} of {{last}} pages&quot;
+     *        &quot;TOTAL_PAGES&quot;: &quot;{{current}} of {{last}} pages&quot;,
+     *        &quot;OF_LAST_PAGES&quot;: &quot;of {{last}} pages&quot;
      * }
      *</code></pre></div></div>
 
@@ -1137,7 +1201,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="305" class="link-to-prism">src/pagination/pagination.component.ts:305</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="335" class="link-to-prism">src/pagination/pagination.component.ts:335</a></div>
                                 </td>
                             </tr>
 
@@ -1148,7 +1212,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">src/pagination/pagination.component.ts:308</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/pagination/pagination.component.ts:338</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1202,7 +1266,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/pagination/pagination.component.ts:313</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="343" class="link-to-prism">src/pagination/pagination.component.ts:343</a></div>
                                 </td>
                             </tr>
 
@@ -1213,7 +1277,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="316" class="link-to-prism">src/pagination/pagination.component.ts:316</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/pagination/pagination.component.ts:346</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1267,7 +1331,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="327" class="link-to-prism">src/pagination/pagination.component.ts:327</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="357" class="link-to-prism">src/pagination/pagination.component.ts:357</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1302,7 +1366,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/pagination/pagination.component.ts:332</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="362" class="link-to-prism">src/pagination/pagination.component.ts:362</a></div>
                                 </td>
                             </tr>
 
@@ -1324,7 +1388,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/pagination/pagination.component.ts:336</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/pagination/pagination.component.ts:366</a></div>
                                 </td>
                             </tr>
 
@@ -1346,7 +1410,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="348" class="link-to-prism">src/pagination/pagination.component.ts:348</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/pagination/pagination.component.ts:378</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1381,7 +1445,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">src/pagination/pagination.component.ts:358</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="388" class="link-to-prism">src/pagination/pagination.component.ts:388</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1416,7 +1480,7 @@ Used to display the correct pagination controls.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/pagination/pagination.component.ts:363</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">src/pagination/pagination.component.ts:393</a></div>
                                 </td>
                             </tr>
 
@@ -1469,7 +1533,7 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 	&lt;div
 		class&#x3D;&quot;bx--pagination&quot;
 		[ngClass]&#x3D;&quot;{
-			&#x27;bx--skeleton&#x27; : skeleton
+			&#x27;bx--skeleton&#x27;: skeleton
 		}&quot;&gt;
 		&lt;!-- left skeleton div --&gt;
 		&lt;div *ngIf&#x3D;&quot;skeleton&quot; class&#x3D;&quot;bx--pagination__left&quot;&gt;
@@ -1479,54 +1543,65 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 		&lt;/div&gt;
 
 		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__left&quot;&gt;
-			&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;&gt;
-				&lt;label
-					[for]&#x3D;&quot;itemsPerPageSelectId&quot;
-					class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;
-					{{itemsPerPageText | async}}
-				&lt;/label&gt;
-				&lt;select
-					[id]&#x3D;&quot;itemsPerPageSelectId&quot;
-					[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
-					class&#x3D;&quot;bx--select-input&quot;
-					aria-describedby&#x3D;&quot;false&quot;&gt;
-					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;10&quot;&gt;{{itemsPerPageText | async}} 10&lt;/option&gt;
-					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;20&quot;&gt;20&lt;/option&gt;
-					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;30&quot;&gt;30&lt;/option&gt;
-					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;40&quot;&gt;40&lt;/option&gt;
-					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;50&quot;&gt;50&lt;/option&gt;
-				&lt;/select&gt;
-				&lt;!-- old icon --&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!isExperimental&quot;
-					class&#x3D;&quot;bx--select__arrow&quot;
-					fill-rule&#x3D;&quot;evenodd&quot;
-					height&#x3D;&quot;5&quot;
-					role&#x3D;&quot;img&quot;
-					viewBox&#x3D;&quot;0 0 10 5&quot;
-					width&#x3D;&quot;10&quot;
-					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-					&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-				&lt;!-- new icon --&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;isExperimental&quot;
-					class&#x3D;&quot;bx--select__arrow&quot;
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					height&#x3D;&quot;6&quot;
-					role&#x3D;&quot;img&quot;
-					viewBox&#x3D;&quot;0 0 10 6&quot;
-					width&#x3D;&quot;10&quot;
-					style&#x3D;&quot;will-change: transform;&quot;
-					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-					&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
+			&lt;span *ngIf&#x3D;&quot;!isExperimental&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
+				{{itemsPerPageText | async}}
+			&lt;/span&gt;
+			&lt;label *ngIf&#x3D;&quot;isExperimental&quot; class&#x3D;&quot;bx--pagination__text&quot; [for]&#x3D;&quot;itemsPerPageSelectId&quot;&gt;
+				{{itemsPerPageText | async}}
+			&lt;/label&gt;
+			&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
+				&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
+					[ngClass]&#x3D;&quot;{
+						&#x27;bx--select__item-count&#x27;: isExperimental
+					}&quot;&gt;
+					&lt;label
+						[for]&#x3D;&quot;itemsPerPageSelectId&quot;
+						class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;
+						{{itemsPerPageText | async}}
+					&lt;/label&gt;
+					&lt;select
+						[id]&#x3D;&quot;itemsPerPageSelectId&quot;
+						[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
+						class&#x3D;&quot;bx--select-input&quot;
+						aria-describedby&#x3D;&quot;false&quot;&gt;
+						&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;10&quot;&gt;10&lt;/option&gt;
+						&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;20&quot;&gt;20&lt;/option&gt;
+						&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;30&quot;&gt;30&lt;/option&gt;
+						&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;40&quot;&gt;40&lt;/option&gt;
+						&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;50&quot;&gt;50&lt;/option&gt;
+					&lt;/select&gt;
+					&lt;!-- old icon --&gt;
+					&lt;svg
+						*ngIf&#x3D;&quot;!isExperimental&quot;
+						class&#x3D;&quot;bx--select__arrow&quot;
+						fill-rule&#x3D;&quot;evenodd&quot;
+						height&#x3D;&quot;5&quot;
+						role&#x3D;&quot;img&quot;
+						viewBox&#x3D;&quot;0 0 10 5&quot;
+						width&#x3D;&quot;10&quot;
+						[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+						&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+						&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
+					&lt;/svg&gt;
+					&lt;!-- new icon --&gt;
+					&lt;svg
+						*ngIf&#x3D;&quot;isExperimental&quot;
+						class&#x3D;&quot;bx--select__arrow&quot;
+						focusable&#x3D;&quot;false&quot;
+						preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+						height&#x3D;&quot;6&quot;
+						role&#x3D;&quot;img&quot;
+						viewBox&#x3D;&quot;0 0 10 6&quot;
+						width&#x3D;&quot;10&quot;
+						style&#x3D;&quot;will-change: transform;&quot;
+						[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+						&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+						&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
+					&lt;/svg&gt;
+				&lt;/div&gt;
 			&lt;/div&gt;
 			&lt;span class&#x3D;&quot;bx--pagination__text&quot;&gt;
-				&lt;span&gt;|&amp;nbsp;&lt;/span&gt;
+				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 				{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
 			&lt;/span&gt;
 		&lt;/div&gt;
@@ -1536,7 +1611,10 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 			&lt;p class&#x3D;&quot;bx--skeleton__text&quot; style&#x3D;&quot;width: 70px&quot;&gt;&lt;/p&gt;
 		&lt;/div&gt;
 
-		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot; ngClass&#x3D;&quot;{&#x27;bx--pagination--inline&#x27;: isExperimental}&quot;&gt;
+		&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--pagination__right&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--pagination--inline&#x27;: !isExperimental
+			}&quot;&gt;
 			&lt;!-- old span --&gt;
 			&lt;span
 				*ngIf&#x3D;&quot;!isExperimental&quot;
@@ -1548,6 +1626,9 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 			&lt;button
 				*ngIf&#x3D;&quot;!isExperimental&quot;
 				class&#x3D;&quot;bx--pagination__button bx--pagination__button--backward&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1
+				}&quot;
 				(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
 				[disabled]&#x3D;&quot;(currentPage &lt;&#x3D; 1 ? true : null)&quot;&gt;
 				&lt;svg
@@ -1563,54 +1644,57 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 				&lt;/svg&gt;
 			&lt;/button&gt;
 
-			&lt;div *ngIf&#x3D;&quot;isExperimental&quot; class&#x3D;&quot;bx--select bx--select--inline&quot;&gt;
-				&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText | async}}&lt;/label&gt;
-				&lt;select [id]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--select-input&quot; aria-describedby&#x3D;&quot;false&quot; [(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
-					&lt;option class&#x3D;&quot;bx--select-option&quot; value&#x3D;&quot;1&quot;&gt;{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}&lt;/option&gt;
-					&lt;option *ngFor&#x3D;&quot;let i of range(lastPage + 1, 2)&quot; class&#x3D;&quot;bx--select-option&quot; [value]&#x3D;&quot;i&quot;&gt;{{i}}&lt;/option&gt;
-				&lt;/select&gt;
-				&lt;!-- old icon --&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!isExperimental&quot;
-					class&#x3D;&quot;bx--select__arrow&quot;
-					fill-rule&#x3D;&quot;evenodd&quot;
-					height&#x3D;&quot;5&quot;
-					role&#x3D;&quot;img&quot;
-					viewBox&#x3D;&quot;0 0 10 5&quot;
-					width&#x3D;&quot;10&quot;
-					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-					&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-				&lt;!-- new icon --&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;isExperimental&quot;
-					class&#x3D;&quot;bx--select__arrow&quot;
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					height&#x3D;&quot;6&quot;
-					role&#x3D;&quot;img&quot;
-					viewBox&#x3D;&quot;0 0 10 6&quot;
-					width&#x3D;&quot;10&quot;
-					style&#x3D;&quot;will-change: transform;&quot;
-					[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
-					&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
-					&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
+			&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
+				&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--select__page-number&#x27; : isExperimental
+				}&quot;&gt;
+					&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText | async}}&lt;/label&gt;
+					&lt;select [id]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--select-input&quot; aria-describedby&#x3D;&quot;false&quot; [(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
+						&lt;option *ngFor&#x3D;&quot;let i of range(lastPage + 1, 1)&quot; class&#x3D;&quot;bx--select-option&quot; [value]&#x3D;&quot;i&quot;&gt;{{i}}&lt;/option&gt;
+					&lt;/select&gt;
+					&lt;!-- old icon --&gt;
+					&lt;svg
+						*ngIf&#x3D;&quot;!isExperimental&quot;
+						class&#x3D;&quot;bx--select__arrow&quot;
+						fill-rule&#x3D;&quot;evenodd&quot;
+						height&#x3D;&quot;5&quot;
+						role&#x3D;&quot;img&quot;
+						viewBox&#x3D;&quot;0 0 10 5&quot;
+						width&#x3D;&quot;10&quot;
+						[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+						&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+						&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot;&gt;&lt;/path&gt;
+					&lt;/svg&gt;
+					&lt;!-- new icon --&gt;
+					&lt;svg
+						*ngIf&#x3D;&quot;isExperimental&quot;
+						class&#x3D;&quot;bx--select__arrow&quot;
+						focusable&#x3D;&quot;false&quot;
+						preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+						height&#x3D;&quot;6&quot;
+						role&#x3D;&quot;img&quot;
+						viewBox&#x3D;&quot;0 0 10 6&quot;
+						width&#x3D;&quot;10&quot;
+						style&#x3D;&quot;will-change: transform;&quot;
+						[attr.aria-label]&#x3D;&quot;optionsListText | async&quot;&gt;
+						&lt;title&gt;{{optionsListText | async}}&lt;/title&gt;
+						&lt;path d&#x3D;&quot;M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z&quot;&gt;&lt;/path&gt;
+					&lt;/svg&gt;
+				&lt;/div&gt;
 			&lt;/div&gt;
 
-			&lt;input
-				type&#x3D;&quot;number&quot;
-				class&#x3D;&quot;bx--text-input&quot;
-				placeholder&#x3D;&quot;0&quot;
-				value&#x3D;&quot;1&quot;
-				*ngIf&#x3D;&quot;!isExperimental&quot;
-				[(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;isExperimental&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
+				{{ofLastPagesText | i18nReplace: {last: lastPage} | async}}
+			&lt;/span&gt;
 
 			&lt;!-- old button --&gt;
 			&lt;button
 				*ngIf&#x3D;&quot;!isExperimental&quot;
 				class&#x3D;&quot;bx--pagination__button bx--pagination__button--forward&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage
+				}&quot;
 				(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
 				[disabled]&#x3D;&quot;(currentPage &gt;&#x3D; lastPage ? true : null)&quot;&gt;
 				&lt;svg
@@ -1629,7 +1713,10 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 			&lt;!-- new butons --&gt;
 			&lt;button
 				*ngIf&#x3D;&quot;isExperimental&quot;
-				class&#x3D;&quot;bx--pagination__button&quot;
+				class&#x3D;&quot;bx--pagination__button bx--pagination__button--backward&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--pagination__button--no-index&#x27;: currentPage &lt;&#x3D; 1
+				}&quot;
 				tabindex&#x3D;&quot;0&quot;
 				[attr.aria-label]&#x3D;&quot;backwardText | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(previousPage)&quot;
@@ -1649,7 +1736,10 @@ import { ExperimentalService } from &quot;./../experimental.module&quot;;
 
 			&lt;button
 				*ngIf&#x3D;&quot;isExperimental&quot;
-				class&#x3D;&quot;bx--pagination__button&quot;
+				class&#x3D;&quot;bx--pagination__button bx--pagination__button--forward&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--pagination__button--no-index&#x27;: currentPage &gt;&#x3D; lastPage
+				}&quot;
 				tabindex&#x3D;&quot;0&quot;
 				[attr.aria-label]&#x3D;&quot;forwardText | async&quot;
 				(click)&#x3D;&quot;selectPage.emit(nextPage)&quot;
@@ -1695,7 +1785,8 @@ export class Pagination {
 	 *		&quot;BACKWARD&quot;: &quot;Backward&quot;,
 	 *		&quot;FORWARD&quot;: &quot;Forward&quot;,
 	 *		&quot;TOTAL_ITEMS&quot;: &quot;{{start}}-{{end}} of {{total}} items&quot;,
-	 *		&quot;TOTAL_PAGES&quot;: &quot;{{current}} of {{last}} pages&quot;
+	 *		&quot;TOTAL_PAGES&quot;: &quot;{{current}} of {{last}} pages&quot;,
+	 *		&quot;OF_LAST_PAGES&quot;: &quot;of {{last}} pages&quot;
 	 * }
 	 * &#x60;&#x60;&#x60;
 	 */
@@ -1718,6 +1809,9 @@ export class Pagination {
 		}
 		if (value.TOTAL_PAGES) {
 			this.totalPagesText &#x3D; new BehaviorSubject(value.TOTAL_PAGES);
+		}
+		if (value.OF_LAST_PAGES) {
+			this.ofLastPagesText &#x3D; new BehaviorSubject(value.OF_LAST_PAGES);
 		}
 	}
 
@@ -1802,6 +1896,7 @@ export class Pagination {
 	forwardText &#x3D; this.i18n.get(&quot;PAGINATION.FORWARD&quot;);
 	totalItemsText &#x3D; this.i18n.get(&quot;PAGINATION.TOTAL_ITEMS&quot;);
 	totalPagesText &#x3D; this.i18n.get(&quot;PAGINATION.TOTAL_PAGES&quot;);
+	ofLastPagesText &#x3D; this.i18n.get(&quot;PAGINATION.OF_LAST_PAGES&quot;);
 
 	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
 		Pagination.paginationCounter++;
@@ -1851,7 +1946,7 @@ export class Pagination {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	class="bx--pagination"	[ngClass]="{		\'bx--skeleton\' : skeleton	}">	<!-- left skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__left">		<p class="bx--skeleton__text" style="width: 70px"></p>		<p class="bx--skeleton__text" style="width: 35px"></p>		<p class="bx--skeleton__text" style="width: 105px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__left">		<div class="bx--select bx--select--inline">			<label				[for]="itemsPerPageSelectId"				class="bx--label bx--visually-hidden">				{{itemsPerPageText | async}}			</label>			<select				[id]="itemsPerPageSelectId"				[(ngModel)]="itemsPerPage"				class="bx--select-input"				aria-describedby="false">				<option class="bx--select-option" value="10">{{itemsPerPageText | async}} 10</option>				<option class="bx--select-option" value="20">20</option>				<option class="bx--select-option" value="30">30</option>				<option class="bx--select-option" value="40">40</option>				<option class="bx--select-option" value="50">50</option>			</select>			<!-- old icon -->			<svg				*ngIf="!isExperimental"				class="bx--select__arrow"				fill-rule="evenodd"				height="5"				role="img"				viewBox="0 0 10 5"				width="10"				[attr.aria-label]="optionsListText | async">				<title>{{optionsListText | async}}</title>				<path d="M0 0l5 4.998L10 0z"></path>			</svg>			<!-- new icon -->			<svg				*ngIf="isExperimental"				class="bx--select__arrow"				focusable="false"				preserveAspectRatio="xMidYMid meet"				height="6"				role="img"				viewBox="0 0 10 6"				width="10"				style="will-change: transform;"				[attr.aria-label]="optionsListText | async">				<title>{{optionsListText | async}}</title>				<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>			</svg>		</div>		<span class="bx--pagination__text">			<span>|&nbsp;</span>			{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}		</span>	</div>	<!-- right skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__right bx--pagination--inline">		<p class="bx--skeleton__text" style="width: 70px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__right" ngClass="{\'bx--pagination--inline\': isExperimental}">		<!-- old span -->		<span			*ngIf="!isExperimental"			class="bx--pagination__text">			{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}		</span>		<!-- old button -->		<button			*ngIf="!isExperimental"			class="bx--pagination__button bx--pagination__button--backward"			(click)="selectPage.emit(previousPage)"			[disabled]="(currentPage <= 1 ? true : null)">			<svg				class="bx--pagination__button-icon"				fill-rule="evenodd"				height="12"				role="img"				viewBox="0 0 7 12"				width="7"				[attr.aria-label]="backwardText | async">				<title>{{backwardText |async }}</title>				<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>			</svg>		</button>		<div *ngIf="isExperimental" class="bx--select bx--select--inline">			<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>			<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">				<option class="bx--select-option" value="1">{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}</option>				<option *ngFor="let i of range(lastPage + 1, 2)" class="bx--select-option" [value]="i">{{i}}</option>			</select>			<!-- old icon -->			<svg				*ngIf="!isExperimental"				class="bx--select__arrow"				fill-rule="evenodd"				height="5"				role="img"				viewBox="0 0 10 5"				width="10"				[attr.aria-label]="optionsListText | async">				<title>{{optionsListText | async}}</title>				<path d="M0 0l5 4.998L10 0z"></path>			</svg>			<!-- new icon -->			<svg				*ngIf="isExperimental"				class="bx--select__arrow"				focusable="false"				preserveAspectRatio="xMidYMid meet"				height="6"				role="img"				viewBox="0 0 10 6"				width="10"				style="will-change: transform;"				[attr.aria-label]="optionsListText | async">				<title>{{optionsListText | async}}</title>				<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>			</svg>		</div>		<input			type="number"			class="bx--text-input"			placeholder="0"			value="1"			*ngIf="!isExperimental"			[(ngModel)]="currentPage">		<!-- old button -->		<button			*ngIf="!isExperimental"			class="bx--pagination__button bx--pagination__button--forward"			(click)="selectPage.emit(nextPage)"			[disabled]="(currentPage >= lastPage ? true : null)">			<svg				class="bx--pagination__button-icon"				fill-rule="evenodd"				height="12"				role="img"				viewBox="0 0 7 12"				width="7"				[attr.aria-label]="forwardText | async">				<title>{{forwardText | async}}</title>				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>			</svg>		</button>		<!-- new butons -->		<button			*ngIf="isExperimental"			class="bx--pagination__button"			tabindex="0"			[attr.aria-label]="backwardText | async"			(click)="selectPage.emit(previousPage)"			[disabled]="(currentPage <= 1 ? true : null)">			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				xmlns="http://www.w3.org/2000/svg"				class="bx--pagination__nav-arrow"				width="24" height="24"				viewBox="0 0 32 32"				aria-hidden="true">				<path d="M19 23l-8-7 8-7v14z"></path>			</svg>		</button>		<button			*ngIf="isExperimental"			class="bx--pagination__button"			tabindex="0"			[attr.aria-label]="forwardText | async"			(click)="selectPage.emit(nextPage)"			[disabled]="(currentPage >= lastPage ? true : null)">			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				xmlns="http://www.w3.org/2000/svg"				class="bx--pagination__nav-arrow"				width="24"				height="24"				viewBox="0 0 32 32"				aria-hidden="true">				<path d="M13 9l8 7-8 7V9z"></path>			</svg>		</button>	</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div	class="bx--pagination"	[ngClass]="{		\'bx--skeleton\': skeleton	}">	<!-- left skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__left">		<p class="bx--skeleton__text" style="width: 70px"></p>		<p class="bx--skeleton__text" style="width: 35px"></p>		<p class="bx--skeleton__text" style="width: 105px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__left">		<span *ngIf="!isExperimental" class="bx--pagination__text">			{{itemsPerPageText | async}}		</span>		<label *ngIf="isExperimental" class="bx--pagination__text" [for]="itemsPerPageSelectId">			{{itemsPerPageText | async}}		</label>		<div class="bx--form-item">			<div class="bx--select bx--select--inline"				[ngClass]="{					\'bx--select__item-count\': isExperimental				}">				<label					[for]="itemsPerPageSelectId"					class="bx--label bx--visually-hidden">					{{itemsPerPageText | async}}				</label>				<select					[id]="itemsPerPageSelectId"					[(ngModel)]="itemsPerPage"					class="bx--select-input"					aria-describedby="false">					<option class="bx--select-option" value="10">10</option>					<option class="bx--select-option" value="20">20</option>					<option class="bx--select-option" value="30">30</option>					<option class="bx--select-option" value="40">40</option>					<option class="bx--select-option" value="50">50</option>				</select>				<!-- old icon -->				<svg					*ngIf="!isExperimental"					class="bx--select__arrow"					fill-rule="evenodd"					height="5"					role="img"					viewBox="0 0 10 5"					width="10"					[attr.aria-label]="optionsListText | async">					<title>{{optionsListText | async}}</title>					<path d="M0 0l5 4.998L10 0z"></path>				</svg>				<!-- new icon -->				<svg					*ngIf="isExperimental"					class="bx--select__arrow"					focusable="false"					preserveAspectRatio="xMidYMid meet"					height="6"					role="img"					viewBox="0 0 10 6"					width="10"					style="will-change: transform;"					[attr.aria-label]="optionsListText | async">					<title>{{optionsListText | async}}</title>					<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>				</svg>			</div>		</div>		<span class="bx--pagination__text">			<span *ngIf="!isExperimental">|&nbsp;</span>			{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}		</span>	</div>	<!-- right skeleton div -->	<div *ngIf="skeleton" class="bx--pagination__right bx--pagination--inline">		<p class="bx--skeleton__text" style="width: 70px"></p>	</div>	<div *ngIf="!skeleton" class="bx--pagination__right"		[ngClass]="{			\'bx--pagination--inline\': !isExperimental		}">		<!-- old span -->		<span			*ngIf="!isExperimental"			class="bx--pagination__text">			{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}		</span>		<!-- old button -->		<button			*ngIf="!isExperimental"			class="bx--pagination__button bx--pagination__button--backward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage <= 1			}"			(click)="selectPage.emit(previousPage)"			[disabled]="(currentPage <= 1 ? true : null)">			<svg				class="bx--pagination__button-icon"				fill-rule="evenodd"				height="12"				role="img"				viewBox="0 0 7 12"				width="7"				[attr.aria-label]="backwardText | async">				<title>{{backwardText |async }}</title>				<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>			</svg>		</button>		<div class="bx--form-item">			<div class="bx--select bx--select--inline"			[ngClass]="{				\'bx--select__page-number\' : isExperimental			}">				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>				<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">					<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>				</select>				<!-- old icon -->				<svg					*ngIf="!isExperimental"					class="bx--select__arrow"					fill-rule="evenodd"					height="5"					role="img"					viewBox="0 0 10 5"					width="10"					[attr.aria-label]="optionsListText | async">					<title>{{optionsListText | async}}</title>					<path d="M0 0l5 4.998L10 0z"></path>				</svg>				<!-- new icon -->				<svg					*ngIf="isExperimental"					class="bx--select__arrow"					focusable="false"					preserveAspectRatio="xMidYMid meet"					height="6"					role="img"					viewBox="0 0 10 6"					width="10"					style="will-change: transform;"					[attr.aria-label]="optionsListText | async">					<title>{{optionsListText | async}}</title>					<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>				</svg>			</div>		</div>		<span *ngIf="isExperimental" class="bx--pagination__text">			{{ofLastPagesText | i18nReplace: {last: lastPage} | async}}		</span>		<!-- old button -->		<button			*ngIf="!isExperimental"			class="bx--pagination__button bx--pagination__button--forward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage >= lastPage			}"			(click)="selectPage.emit(nextPage)"			[disabled]="(currentPage >= lastPage ? true : null)">			<svg				class="bx--pagination__button-icon"				fill-rule="evenodd"				height="12"				role="img"				viewBox="0 0 7 12"				width="7"				[attr.aria-label]="forwardText | async">				<title>{{forwardText | async}}</title>				<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>			</svg>		</button>		<!-- new butons -->		<button			*ngIf="isExperimental"			class="bx--pagination__button bx--pagination__button--backward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage <= 1			}"			tabindex="0"			[attr.aria-label]="backwardText | async"			(click)="selectPage.emit(previousPage)"			[disabled]="(currentPage <= 1 ? true : null)">			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				xmlns="http://www.w3.org/2000/svg"				class="bx--pagination__nav-arrow"				width="24" height="24"				viewBox="0 0 32 32"				aria-hidden="true">				<path d="M19 23l-8-7 8-7v14z"></path>			</svg>		</button>		<button			*ngIf="isExperimental"			class="bx--pagination__button bx--pagination__button--forward"			[ngClass]="{				\'bx--pagination__button--no-index\': currentPage >= lastPage			}"			tabindex="0"			[attr.aria-label]="forwardText | async"			(click)="selectPage.emit(nextPage)"			[disabled]="(currentPage >= lastPage ? true : null)">			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				style="will-change: transform;"				xmlns="http://www.w3.org/2000/svg"				class="bx--pagination__nav-arrow"				width="24"				height="24"				viewBox="0 0 32 32"				aria-hidden="true">				<path d="M13 9l8 7-8 7V9z"></path>			</svg>		</button>	</div></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Pagination'};
