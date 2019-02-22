@@ -16,13 +16,14 @@ storiesOf("Tabs", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-tabs [followFocus]="followFocus">
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
-			followFocus: boolean("followFocus", true)
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
 		}
 	}))
 	.add("With template", () => ({
@@ -38,12 +39,16 @@ storiesOf("Tabs", module)
 					</svg>
 				</div>
 			</ng-template>
-			<ibm-tabs>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
 				<ibm-tab [heading]="customTab">foo</ibm-tab>
 			</ibm-tabs>
-		`
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
+		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
