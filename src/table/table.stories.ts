@@ -38,6 +38,7 @@ import { clone } from "../utils/utils";
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
+			[isDataGrid]="isDataGrid"
 			(sort)="simpleSort($event)">
 			<ng-content></ng-content>
 		</ibm-table>
@@ -49,6 +50,7 @@ class TableStory implements OnInit, OnChanges {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() sortable = true;
+	@Input() isDataGrid = false;
 
 	ngOnInit() {
 		this.model.header = [
@@ -93,6 +95,7 @@ class TableStory implements OnInit, OnChanges {
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
+			[isDataGrid]="isDataGrid"
 			(sort)="customSort($event)">
 		</ibm-table>
 	`
@@ -102,6 +105,7 @@ class DynamicTableStory implements OnInit {
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
+	@Input() isDataGrid = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
@@ -164,7 +168,8 @@ class DynamicTableStory implements OnInit {
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
-			(sort)="customSort($event)">
+			(sort)="customSort($event)"
+			[isDataGrid]="isDataGrid">
 		</ibm-table>
 	`
 })
@@ -173,6 +178,7 @@ class ExpansionTableStory implements OnInit {
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
+	@Input() isDataGrid = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
@@ -241,6 +247,7 @@ class ExpansionTableStory implements OnInit {
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
+			[isDataGrid]="isDataGrid"
 			[striped]="striped">
 		</ibm-table>
 	`
@@ -250,6 +257,7 @@ class OverflowTableStory implements OnInit {
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
+	@Input() isDataGrid = false;
 
 	@ViewChild("overflowMenuItemTemplate")
 	protected overflowMenuItemTemplate: TemplateRef<any>;
@@ -470,7 +478,8 @@ storiesOf("Table", module).addDecorator(
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
-				[sortable]="sortable">
+				[sortable]="sortable"
+				[isDataGrid]="isDataGrid">
 			</app-table>
 		</div>
 	`,
@@ -479,7 +488,8 @@ storiesOf("Table", module).addDecorator(
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true),
-			sortable: boolean("sortable", true)
+			sortable: boolean("sortable", true),
+			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
 	.add("with no data", () => ({
@@ -580,16 +590,18 @@ storiesOf("Table", module).addDecorator(
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
-				[sortable]="sortable">
+				[sortable]="sortable"
+				[isDataGrid]="isDataGrid">
 			</app-table>
 		</div>
 	`,
 		props: {
 			model: simpleModel,
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md", "table-size-selection"),
+			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
 			striped: boolean("striped", true),
-			sortable: boolean("sortable", true)
+			sortable: boolean("sortable", true),
+			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
 	.add("with expansion", () => ({
@@ -598,14 +610,16 @@ storiesOf("Table", module).addDecorator(
 				<app-expansion-table
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped">
+					[striped]="striped"
+					[isDataGrid]="isDataGrid">
 				</app-expansion-table>
 			</div>
 		`,
 		props: {
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
-			striped: boolean("striped", true)
+			striped: boolean("striped", true),
+			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
 	.add("with dynamic content", () => ({
@@ -614,14 +628,16 @@ storiesOf("Table", module).addDecorator(
 				<app-custom-table
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped">
+					[striped]="striped"
+					[isDataGrid]="isDataGrid">
 				</app-custom-table>
 			</div>
 		`,
 		props: {
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
-			striped: boolean("striped", true)
+			striped: boolean("striped", true),
+			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
 	.add("with overflow menu", () => ({
@@ -630,14 +646,16 @@ storiesOf("Table", module).addDecorator(
 				<app-overflow-table
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped">
+					[striped]="striped"
+					[isDataGrid]="isDataGrid">
 				</app-overflow-table>
 			</div>
 		`,
 		props: {
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
-			striped: boolean("striped", true)
+			striped: boolean("striped", true),
+			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
 	.add("with pagination", () => ({
