@@ -2,7 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "./table.module";
+import {
+	TableModule,
+	TableModel,
+	TableHeaderItem,
+	TableItem,
+	DataGridFocus
+} from "./table.module";
 import { Table } from "./table.component";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
@@ -42,7 +48,8 @@ describe("Table", () => {
 			],
 			declarations: [
 				Table,
-				TableTest
+				TableTest,
+				DataGridFocus
 			]
 		});
 
