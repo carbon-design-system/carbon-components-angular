@@ -296,7 +296,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 					</th>
 				</ng-container>
-				<th *ngIf="!skeleton" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+				<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 					<!--
 						Scrollbar pushes body to the left so this header column is added to push
 						the title bar the same amount and keep the header and body columns aligned.
@@ -450,7 +450,6 @@ export class Table implements AfterViewInit {
 	 * Size of the table rows.
 	 *
 	 * @type {("sm" | "md" | "lg")}
-	 * @memberof Table
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
@@ -466,7 +465,6 @@ export class Table implements AfterViewInit {
 	 * `TableModel` with data the table is to display.
 	 *
 	 * @type {TableModel}
-	 * @memberof Table
 	 */
 	@Input()
 	set model(m: TableModel) {
@@ -522,7 +520,6 @@ export class Table implements AfterViewInit {
 	 * Controls whether to show the selection checkboxes column or not.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	@Input() showSelectionColumn = true;
 
@@ -530,7 +527,6 @@ export class Table implements AfterViewInit {
 	 * Controls whether to enable multiple or single row selection.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	@Input() enableSingleSelect = false;
 
@@ -539,7 +535,6 @@ export class Table implements AfterViewInit {
 	 * `scrollLoad` event is emitted.
 	 *
 	 * @type {number}
-	 * @memberof Table
 	 */
 	@Input() scrollLoadDistance = 0;
 
@@ -548,7 +543,6 @@ export class Table implements AfterViewInit {
 	 *
 	 * Works for columns with width set in pixels.
 	 *
-	 * @memberof Table
 	 */
 	@Input() columnsResizable = false;
 
@@ -558,7 +552,6 @@ export class Table implements AfterViewInit {
 	 * Changing the column order in table changes table model. Be aware of it when you add additional data
 	 * to the model.
 	 *
-	 * @memberof Table
 	 */
 	@Input() columnsDraggable = false;
 
@@ -625,7 +618,6 @@ export class Table implements AfterViewInit {
 	 * Controls if all checkboxes are viewed as selected.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	selectAllCheckbox = false;
 
@@ -633,7 +625,6 @@ export class Table implements AfterViewInit {
 	 * Controls the indeterminate state of the header checkbox.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	selectAllCheckboxSomeSelected = false;
 
@@ -641,14 +632,17 @@ export class Table implements AfterViewInit {
 	 * Set to `false` to remove table rows (zebra) stripes.
 	 *
 	 * @type {boolean}
-	 * @memberof Table
 	 */
 	@Input() striped = true;
 
 	/**
+	 * Set to `true` to stick the header to the top of the table
+	 */
+	@Input() stickyHeader = false;
+
+	/**
 	 * Emits an index of the column that wants to be sorted.
 	 *
-	 * @memberof Table
 	 */
 	@Output() sort = new EventEmitter<number>();
 
@@ -656,7 +650,6 @@ export class Table implements AfterViewInit {
 	 * Emits if all rows are selected.
 	 *
 	 * @param {TableModel} model
-	 * @memberof Table
 	 */
 	@Output() selectAll = new EventEmitter<Object>();
 
@@ -664,7 +657,6 @@ export class Table implements AfterViewInit {
 	 * Emits if all rows are deselected.
 	 *
 	 * @param {TableModel} model
-	 * @memberof Table
 	 */
 	@Output() deselectAll = new EventEmitter<Object>();
 
@@ -672,7 +664,6 @@ export class Table implements AfterViewInit {
 	 * Emits if a single row is selected.
 	 *
 	 * @param {Object} ({model: this.model, selectedRowIndex: index})
-	 * @memberof Table
 	 */
 	@Output() selectRow = new EventEmitter<Object>();
 
@@ -680,7 +671,6 @@ export class Table implements AfterViewInit {
 	 * Emits if a single row is deselected.
 	 *
 	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
-	 * @memberof Table
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
 
@@ -688,7 +678,6 @@ export class Table implements AfterViewInit {
 	 * Emits when table requires more data to be loaded.
 	 *
 	 * @param {TableModel} model
-	 * @memberof Table
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
 
@@ -719,7 +708,6 @@ export class Table implements AfterViewInit {
 	 * Creates an instance of Table.
 	 *
 	 * @param {ApplicationRef} applicationRef
-	 * @memberof Table
 	 */
 	constructor(protected elementRef: ElementRef, protected applicationRef: ApplicationRef, protected i18n: I18n) {}
 
@@ -779,7 +767,6 @@ export class Table implements AfterViewInit {
 	 * Updates all the checkboxes in the table view.
 	 * Emits the `selectAll` or `deselectAll` event.
 	 *
-	 * @memberof Table
 	 */
 	onSelectAllCheckboxChange() {
 		this.applicationRef.tick(); // give app time to process the click if needed
@@ -807,7 +794,6 @@ export class Table implements AfterViewInit {
 	 *
 	 * @param {number} index
 	 * @returns
-	 * @memberof Table
 	 */
 	onRowCheckboxChange(index: number) {
 		let startValue = this.model.rowsSelected[0];
@@ -838,7 +824,6 @@ export class Table implements AfterViewInit {
 	 * Emits the `scrollLoad` event.
 	 *
 	 * @param {any} event
-	 * @memberof Table
 	 */
 	onScroll(event) {
 		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
@@ -913,7 +898,6 @@ export class Table implements AfterViewInit {
 	 * Emits the `scrollLoad` event.
 	 *
 	 * @param {any} event
-	 * @memberof Table
 	 */
 	scrollToTop(event) {
 		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
