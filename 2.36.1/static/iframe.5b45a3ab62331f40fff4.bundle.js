@@ -5036,11 +5036,9 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_1__["storiesOf"])("DatePicker
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatePicker", function() { return DatePicker; });
-/* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @storybook/addon-knobs/angular */ "./node_modules/@storybook/addon-knobs/angular.js");
-/* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flatpickr/dist/plugins/rangePlugin */ "./node_modules/flatpickr/dist/plugins/rangePlugin.js");
-/* harmony import */ var flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flatpickr/dist/plugins/rangePlugin */ "./node_modules/flatpickr/dist/plugins/rangePlugin.js");
+/* harmony import */ var flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_1__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5050,7 +5048,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 var DatePicker = /** @class */ (function () {
@@ -5067,7 +5064,7 @@ var DatePicker = /** @class */ (function () {
         this.placeholder = "mm/dd/yyyy";
         this.pattern = "\d{1,2}/\d{1,2}/\d{4}";
         this.id = "datepicker-" + DatePicker_1.datePickerCount++;
-        this.valueChange = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.valueChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.flatpickrOptions = {
             dateFormat: this.dateFormat,
             allowInput: true,
@@ -5077,7 +5074,7 @@ var DatePicker = /** @class */ (function () {
         };
         this.flatpickrOptionsRange = {
             dateFormat: this.dateFormat,
-            "plugins": [flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_2___default()({ input: "#" + this.id + "-rangeInput" })],
+            "plugins": [flatpickr_dist_plugins_rangePlugin__WEBPACK_IMPORTED_MODULE_1___default()({ input: "#" + this.id + "-rangeInput" })],
             allowInput: true,
             onChange: function (selectedValue) { _this.doSelect(selectedValue); },
             onOpen: function () { _this.updateClassNames(); },
@@ -5118,43 +5115,43 @@ var DatePicker = /** @class */ (function () {
     var DatePicker_1, _a, _b;
     DatePicker.datePickerCount = 0;
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
     ], DatePicker.prototype, "range", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], DatePicker.prototype, "dateFormat", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], DatePicker.prototype, "label", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], DatePicker.prototype, "rangeLabel", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], DatePicker.prototype, "placeholder", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], DatePicker.prototype, "pattern", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], DatePicker.prototype, "id", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        __metadata("design:type", typeof (_a = typeof _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_0__["array"] !== "undefined" && _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_0__["array"]) === "function" && _a || Object)
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", typeof (_a = typeof Array !== "undefined" && Array) === "function" && _a || Object)
     ], DatePicker.prototype, "value", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        __metadata("design:type", typeof (_b = typeof _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]) === "function" && _b || Object)
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", typeof (_b = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _b || Object)
     ], DatePicker.prototype, "valueChange", void 0);
     DatePicker = DatePicker_1 = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-date-picker",
             template: "\n\t<div class=\"bx--form-item\">\n\t\t<ng2-flatpickr\n\t\t\t[setDate]= \"value\"\n\t\t\t[config]= \"range ? flatpickrOptionsRange : flatpickrOptions\"\n\t\t\t[hideButton]=\"true\">\n\t\t\t<div class=\"bx--form-item\">\n\t\t\t\t<div\n\t\t\t\t\tdata-date-picker\n\t\t\t\t\t[attr.data-date-picker-type]= \"range ? 'range' : 'single'\"\n\t\t\t\t\tclass=\"bx--date-picker\"\n\t\t\t\t\t[ngClass]= \"range ? 'bx--date-picker--range' : 'bx--date-picker--single'\">\n\t\t\t\t\t<div class=\"bx--date-picker-container\">\n\t\t\t\t\t\t<ibm-date-picker-input\n\t\t\t\t\t\t\t[label]= \"label\"\n\t\t\t\t\t\t\t[placeholder]= \"placeholder\"\n\t\t\t\t\t\t\t[pattern]= \"pattern\"\n\t\t\t\t\t\t\t[id]= \"id\"\n\t\t\t\t\t\t\t[type]= \"range ? 'range' : 'single'\"\n\t\t\t\t\t\t\t[hasIcon]= \"range ? false : true\"\n\t\t\t\t\t\t\t(valueChange)=\"valueChange.emit($event)\">\n\t\t\t\t\t\t</ibm-date-picker-input>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"range\" class=\"bx--date-picker-container\">\n\t\t\t\t\t\t<ibm-date-picker-input\n\t\t\t\t\t\t\t[label]= \"rangeLabel\"\n\t\t\t\t\t\t\t[placeholder]= \"placeholder\"\n\t\t\t\t\t\t\t[pattern]= \"pattern\"\n\t\t\t\t\t\t\t[id]= \"id + '-rangeInput'\"\n\t\t\t\t\t\t\t[type]= \"range ? 'range' : 'single'\"\n\t\t\t\t\t\t\t[hasIcon]= \"range ? true : null\"\n\t\t\t\t\t\t\t(valueChange)=\"valueChange.emit($event)\">\n\t\t\t\t\t\t</ibm-date-picker-input>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</ng2-flatpickr>\n\t</div>\n\t"
         })
@@ -23349,4 +23346,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.785c8c2dfcd4e2e2dbed.bundle.js.map
+//# sourceMappingURL=iframe.5b45a3ab62331f40fff4.bundle.js.map
