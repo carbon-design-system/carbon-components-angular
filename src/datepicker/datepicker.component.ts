@@ -1,4 +1,3 @@
-import { array } from "@storybook/addon-knobs/angular";
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
@@ -75,7 +74,7 @@ export class DatePicker {
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: array;
+	@Input() value: Array<any>;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
