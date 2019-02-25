@@ -149,6 +149,8 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() shiftMultiplier = 4;
 	/** Set to `true` for a loading slider */
 	@Input() skeleton = false;
+	/** Set to `true` for a slider without arrow key interactions. */
+	@Input() disableArrowKeys = false;
 	/** Disables the range visually and functionally */
 	@Input() set disabled(v) {
 		this._disabled = v;
@@ -338,6 +340,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown */
 	onKeyDown(event: KeyboardEvent) {
+		if (this.disableArrowKeys) {
+			return;
+		}
 		event.preventDefault();
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;
 		if (event.key === "ArrowLeft" || event.key === "ArrowDown") {

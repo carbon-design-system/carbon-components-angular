@@ -145,5 +145,9 @@
     "webpack-node-externals": "1.6.0",
     "whatwg-fetch": "2.0.3",
     "zone.js": "0.8.26"
+  },
+  "dependencies": {
+    "flatpickr": "4.5.2",
+    "ng2-flatpickr": "7.0.1"
   }
 }
