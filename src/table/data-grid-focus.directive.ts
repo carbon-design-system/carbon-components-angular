@@ -42,8 +42,8 @@ export class DataGridFocus {
 		}
 	}
 
-	@HostListener("keyup", ["$event"])
-	keyUp(event: KeyboardEvent) {
+	@HostListener("keydown", ["$event"])
+	keyDown(event: KeyboardEvent) {
 		if (!this.ibmDataGridFocus) {
 			return;
 		}
@@ -58,6 +58,7 @@ export class DataGridFocus {
 			case "Right": // IE specific value
 			case "ArrowRight":
 				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < headerRow.length - 1) {
+					event.preventDefault();
 					this.columnIndex++;
 					const nextSibling = element.nextElementSibling;
 					Table.setTabIndex(element, -1);
@@ -68,6 +69,7 @@ export class DataGridFocus {
 			case "Left": // IE specific value
 			case "ArrowLeft":
 				if (element.previousElementSibling) {
+					event.preventDefault();
 					this.columnIndex--;
 					const previousSibling = element.previousElementSibling;
 					Table.setTabIndex(element, -1);
@@ -78,6 +80,7 @@ export class DataGridFocus {
 			case "Down": // IE specific value
 			case "ArrowDown":
 				if (rowIndex < rows.length - 1) {
+					event.preventDefault();
 					rowIndex++;
 					const row = rows[rowIndex].querySelectorAll("td");
 					Table.setTabIndex(element, -1);
@@ -95,6 +98,7 @@ export class DataGridFocus {
 				break;
 			case "Up": // IE specific value
 			case "ArrowUp":
+				event.preventDefault();
 				if ((rowIndex === 1 && Array.from(headerRow).every(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length === 0)) ||
 					rowIndex === 0) {
 						return;
@@ -114,6 +118,7 @@ export class DataGridFocus {
 				}
 				break;
 			case "Home":
+				event.preventDefault();
 				this.columnIndex = 0;
 				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
@@ -132,6 +137,7 @@ export class DataGridFocus {
 				}
 				break;
 			case "End":
+				event.preventDefault();
 				const lastRow = rows[rows.length - 1].querySelectorAll("td");
 				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
