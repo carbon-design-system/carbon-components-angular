@@ -57,7 +57,8 @@ export class DataGridFocus {
 		switch (event.key) {
 			case "Right": // IE specific value
 			case "ArrowRight":
-				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < headerRow.length - 1) {
+				const firstBodyRow = rows[1].querySelectorAll("td");
+				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < firstBodyRow.length) {
 					event.preventDefault();
 					this.columnIndex++;
 					const nextSibling = element.nextElementSibling;
