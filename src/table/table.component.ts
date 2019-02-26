@@ -206,7 +206,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)"
-					(click)="setIndex($event, i)">
+					(click)="setIndex(i)">
 						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
@@ -358,7 +358,7 @@ import { I18n } from "./../i18n/i18n.module";
 							[ngStyle]="model.header[j].style"
 							[ibmDataGridFocus]="isDataGrid"
 							[(columnIndex)]="columnIndex"
-							(click)="setIndex($event, j)">
+							(click)="setIndex(j)">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
@@ -939,7 +939,7 @@ export class Table implements AfterViewInit {
 		});
 	}
 
-	setIndex(event, columnIndex) {
+	setIndex(columnIndex) {
 		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
 			this.columnIndex = columnIndex + 2;
 		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
