@@ -105,7 +105,8 @@
 		"BACKWARD": "Backward",
 		"FORWARD": "Forward",
 		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-		"TOTAL_PAGES": "{{current}} of {{last}} pages"
+		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"OF_LAST_PAGES": "of {{last}} pages"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
