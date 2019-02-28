@@ -29,7 +29,7 @@ export class AbstractDropdownView {
 	 * It's recommended that the implementing view include a specific type union of possible blurs
 	 * ex. `@Output() blur = new EventEmitter<"top" | "bottom">();`
 	 */
-	@Output() blur: EventEmitter<any>;
+	@Output() blurIntent: EventEmitter<any>;
 	/**
 	 * Specifies whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.

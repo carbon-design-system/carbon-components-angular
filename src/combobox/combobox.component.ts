@@ -264,7 +264,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 				this.updateSelected();
 			});
 
-			this.view.blur.pipe(filter(v => v === "top")).subscribe(() => {
+			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
 				this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
 			});
 		}

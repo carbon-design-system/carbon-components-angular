@@ -126,8 +126,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * ex.
 	 * ArrowUp -> focus first item
 	 * ArrowUp -> emit event
+	 *
+	 * When this event fires focus should be placed on some element outside of the list - blurring the list as a result
 	 */
-	@Output() blur = new EventEmitter<"top" | "bottom">();
+	@Output() blurIntent = new EventEmitter<"top" | "bottom">();
 	/**
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
@@ -407,13 +409,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				if (this.hasNextElement()) {
 					this.getNextElement().focus();
 				} else {
-					this.blur.emit("bottom");
+					this.blurIntent.emit("bottom");
 				}
 			} else if (event.key === "ArrowUp" || event.key === "Up") {
 				if (this.hasPrevElement()) {
 					this.getPrevElement().focus();
 				} else {
-					this.blur.emit("top");
+					this.blurIntent.emit("top");
 				}
 			}
 		}
