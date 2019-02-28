@@ -21,7 +21,7 @@ export class AbstractDropdownView {
 	@Output() select: EventEmitter<Object>;
 	/**
 	 * Event to suggest a blur on the view.
-	 * Emits _after_ the first/last item has been focussed
+	 * Emits _after_ the first/last item has been focused.
 	 * ex.
 	 * ArrowUp -> focus first item
 	 * ArrowUp -> emit event
