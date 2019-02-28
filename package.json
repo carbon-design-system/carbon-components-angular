@@ -148,6 +148,6 @@
   },
   "dependencies": {
     "flatpickr": "4.5.2",
-    "ng2-flatpickr": "7.0.1"
+    "ng2-flatpickr": "7.0.2"
   }
 }
