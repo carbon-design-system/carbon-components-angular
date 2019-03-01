@@ -88,10 +88,14 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Config object passed to the rendered component
 	 */
 	dialogConfig: DialogConfig;
-
+	/**
+	 * Emits an event when the dialog is closed
+	 */
 	@Output() onClose: EventEmitter<any> = new EventEmitter();
+	/**
+	 * Emits an event when the dialog is opened
+	 */
 	@Output() onOpen: EventEmitter<any> = new EventEmitter();
-
 
 	@HostBinding("attr.role") role = "button";
 	@HostBinding("attr.aria-expanded") expanded = false;
