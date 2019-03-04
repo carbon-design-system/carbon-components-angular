@@ -6,7 +6,6 @@ import position from "./../utils/position";
 
 @Injectable()
 export class DropdownService {
-
 	/**
 	 * reference to the body appended menu
 	 */
