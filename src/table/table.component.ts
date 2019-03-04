@@ -7,7 +7,8 @@ import {
 	ViewChildren,
 	ElementRef,
 	AfterViewInit,
-	HostListener
+	HostListener,
+	TemplateRef
 } from "@angular/core";
 import { Subscription, fromEvent } from "rxjs";
 
@@ -386,6 +387,9 @@ import { I18n } from "./../i18n/i18n.module";
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
+			<ng-template
+				[ngTemplateOutlet]="footerTemplate">
+			</ng-template>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
 					<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
@@ -639,6 +643,11 @@ export class Table implements AfterViewInit {
 	 * Set to `true` to stick the header to the top of the table
 	 */
 	@Input() stickyHeader = false;
+
+	/**
+	 * Set footer template to customize what is displayed in the tfoot section of the table
+	 */
+	@Input() footerTemplate: TemplateRef<any>;
 
 	/**
 	 * Emits an index of the column that wants to be sorted.
