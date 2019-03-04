@@ -61,7 +61,8 @@ export class OverflowMenuOption implements AfterViewInit {
 	@Output() selected: EventEmitter<any> = new EventEmitter();
 
 	public tabIndex = -1;
-
+	// note: title must be a real attribute (i.e. not a getter) as of Angular@6 due to
+	// change after checked errors
 	public title = null;
 
 	constructor(protected elementRef: ElementRef) {}
