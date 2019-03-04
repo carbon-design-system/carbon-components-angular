@@ -108,6 +108,7 @@
                 <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
 &lt;div
 	data-numberinput
+	[attr.data-invalid]&#x3D;&quot;(invalid ? &#x27;&#x27; : null)&quot;
 	class&#x3D;&quot;bx--number&quot;
 	[ngClass]&#x3D;&quot;{
 		&#x27;bx--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
@@ -123,7 +124,8 @@
 		[min]&#x3D;&quot;min&quot;
 		[max]&#x3D;&quot;max&quot;
 		[disabled]&#x3D;&quot;disabled&quot;
-		[required]&#x3D;&quot;required&quot;/&gt;
+		[required]&#x3D;&quot;required&quot;
+		(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
 	&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
 		&lt;button
 			class&#x3D;&quot;bx--number__control-btn up-icon&quot;
@@ -139,6 +141,9 @@
 				&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
 			&lt;/svg&gt;
 		&lt;/button&gt;
+	&lt;/div&gt;
+	&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;
+		{{invalidText}}
 	&lt;/div&gt;
 	&lt;div *ngIf&#x3D;&quot;helperText&quot; class&#x3D;&quot;bx--form__helper-text&quot;&gt;{{helperText}}&lt;/div&gt;
 &lt;/div&gt;
@@ -201,6 +206,9 @@
                                 <a href="#onIncrement">onIncrement</a>
                             </li>
                             <li>
+                                <a href="#onNumberInputChange">onNumberInputChange</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#registerOnChange">registerOnChange</a>
                             </li>
@@ -232,6 +240,12 @@
                             </li>
                             <li>
                                 <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#invalid">invalid</a>
+                            </li>
+                            <li>
+                                <a href="#invalidText">invalidText</a>
                             </li>
                             <li>
                                 <a href="#label">label</a>
@@ -304,7 +318,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/number-input/number.component.ts:130</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/number-input/number.component.ts:143</a></div>
                             </td>
                         </tr>
 
@@ -337,7 +351,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/number-input/number.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/number-input/number.component.ts:99</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -356,7 +370,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/number-input/number.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/number-input/number.component.ts:135</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -378,7 +392,48 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/number-input/number.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/number-input/number.component.ts:111</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="invalid"></a>
+                        <code>invalid</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> for an invalid number component.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/number-input/number.component.ts:107</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="invalidText"></a>
+                        <code>invalidText</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Sets the invalid text.</p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/number-input/number.component.ts:139</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -397,7 +452,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/number-input/number.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/number-input/number.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -416,7 +471,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/number-input/number.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/number-input/number.component.ts:127</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -435,7 +490,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/number-input/number.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/number-input/number.component.ts:123</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -458,7 +513,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/number-input/number.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/number-input/number.component.ts:115</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -480,7 +535,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/number-input/number.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/number-input/number.component.ts:103</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -506,7 +561,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/number-input/number.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/number-input/number.component.ts:95</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -528,7 +583,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/number-input/number.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/number-input/number.component.ts:119</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -552,7 +607,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/number-input/number.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/number-input/number.component.ts:143</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -585,7 +640,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/number-input/number.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/number-input/number.component.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -622,7 +677,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/number-input/number.component.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/number-input/number.component.ts:213</a></div>
                             </td>
                         </tr>
 
@@ -662,7 +717,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/number-input/number.component.ts:190</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/number-input/number.component.ts:203</a></div>
                             </td>
                         </tr>
 
@@ -702,7 +757,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/number-input/number.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/number-input/number.component.ts:193</a></div>
                             </td>
                         </tr>
 
@@ -716,6 +771,71 @@
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onNumberInputChange"></a>
+                        <span class="name">
+                            <b>
+                            onNumberInputChange
+                            </b>
+                            <a href="#onNumberInputChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onNumberInputChange(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/number-input/number.component.ts:221</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -744,7 +864,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/number-input/number.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/number-input/number.component.ts:166</a></div>
                             </td>
                         </tr>
 
@@ -817,7 +937,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/number-input/number.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/number-input/number.component.ts:174</a></div>
                             </td>
                         </tr>
 
@@ -895,7 +1015,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/number-input/number.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/number-input/number.component.ts:157</a></div>
                             </td>
                         </tr>
 
@@ -989,7 +1109,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/number-input/number.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/number-input/number.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -1034,7 +1154,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/number-input/number.component.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/number-input/number.component.ts:182</a></div>
                             </td>
                         </tr>
 
@@ -1073,7 +1193,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/number-input/number.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/number-input/number.component.ts:188</a></div>
                             </td>
                         </tr>
 
@@ -1127,6 +1247,7 @@ export class NumberChange {
 		&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
 		&lt;div
 			data-numberinput
+			[attr.data-invalid]&#x3D;&quot;(invalid ? &#x27;&#x27; : null)&quot;
 			class&#x3D;&quot;bx--number&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
@@ -1142,7 +1263,8 @@ export class NumberChange {
 				[min]&#x3D;&quot;min&quot;
 				[max]&#x3D;&quot;max&quot;
 				[disabled]&#x3D;&quot;disabled&quot;
-				[required]&#x3D;&quot;required&quot;/&gt;
+				[required]&#x3D;&quot;required&quot;
+				(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
 			&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
 				&lt;button
 					class&#x3D;&quot;bx--number__control-btn up-icon&quot;
@@ -1158,6 +1280,9 @@ export class NumberChange {
 						&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
 					&lt;/svg&gt;
 				&lt;/button&gt;
+			&lt;/div&gt;
+			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;
+				{{invalidText}}
 			&lt;/div&gt;
 			&lt;div *ngIf&#x3D;&quot;helperText&quot; class&#x3D;&quot;bx--form__helper-text&quot;&gt;{{helperText}}&lt;/div&gt;
 		&lt;/div&gt;
@@ -1191,6 +1316,10 @@ export class Number implements ControlValueAccessor {
 	 */
 	@Input() skeleton &#x3D; false;
 	/**
+	 * Set to &#x60;true&#x60; for an invalid number component.
+	 */
+	@Input() invalid &#x3D; false;
+	/**
 	 * The unique id for the number component.
 	 */
 	@Input() id &#x3D; &#x60;number-${Number.numberCount}&#x60;;
@@ -1218,6 +1347,10 @@ export class Number implements ControlValueAccessor {
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -1299,6 +1432,10 @@ export class Number implements ControlValueAccessor {
 		this.propagateChange(this.value);
 	}
 
+	onNumberInputChange(event) {
+		this.value &#x3D; event.target.value;
+		this.emitChangeEvent();
+	}
 }
 </code></pre>
     </div>
@@ -1330,7 +1467,7 @@ export class Number implements ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label><div	data-numberinput	class="bx--number"	[ngClass]="{		\'bx--number--light\': theme === \'light\',		\'bx--number--nolabel\': !label,		\'bx--number--helpertext\': helperText,		\'bx--skeleton\' : skeleton	}">	<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>	<input		type="number"		[id]="id"		[value]="value"		[min]="min"		[max]="max"		[disabled]="disabled"		[required]="required"/>	<div *ngIf="!skeleton" class="bx--number__controls">		<button			class="bx--number__control-btn up-icon"			(click)="onIncrement()">			<svg width="10" height="5" viewBox="0 0 10 5">				<path d="M0 5L5 .002 10 5z" fill-rule="evenodd" />			</svg>		</button>		<button			class="bx--number__control-btn down-icon"			(click)="onDecrement()">			<svg width="10" height="5" viewBox="0 0 10 5">				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />			</svg>		</button>	</div>	<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label><div	data-numberinput	[attr.data-invalid]="(invalid ? \'\' : null)"	class="bx--number"	[ngClass]="{		\'bx--number--light\': theme === \'light\',		\'bx--number--nolabel\': !label,		\'bx--number--helpertext\': helperText,		\'bx--skeleton\' : skeleton	}">	<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>	<input		type="number"		[id]="id"		[value]="value"		[min]="min"		[max]="max"		[disabled]="disabled"		[required]="required"		(input)="onNumberInputChange($event)"/>	<div *ngIf="!skeleton" class="bx--number__controls">		<button			class="bx--number__control-btn up-icon"			(click)="onIncrement()">			<svg width="10" height="5" viewBox="0 0 10 5">				<path d="M0 5L5 .002 10 5z" fill-rule="evenodd" />			</svg>		</button>		<button			class="bx--number__control-btn down-icon"			(click)="onDecrement()">			<svg width="10" height="5" viewBox="0 0 10 5">				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />			</svg>		</button>	</div>	<div *ngIf="invalid" class="bx--form-requirement">		{{invalidText}}	</div>	<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Number'};

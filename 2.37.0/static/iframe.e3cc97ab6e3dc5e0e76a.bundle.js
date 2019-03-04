@@ -14003,6 +14003,10 @@ var Number = /** @class */ (function () {
          */
         this.skeleton = false;
         /**
+         * Set to `true` for an invalid number component.
+         */
+        this.invalid = false;
+        /**
          * The unique id for the number component.
          */
         this.id = "number-" + Number_1.numberCount;
@@ -14077,6 +14081,10 @@ var Number = /** @class */ (function () {
         this.change.emit(event);
         this.propagateChange(this.value);
     };
+    Number.prototype.onNumberInputChange = function (event) {
+        this.value = event.target.value;
+        this.emitChangeEvent();
+    };
     var Number_1;
     /**
      * Variable used for creating unique ids for number input components.
@@ -14098,6 +14106,10 @@ var Number = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], Number.prototype, "skeleton", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Number.prototype, "invalid", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -14127,13 +14139,17 @@ var Number = /** @class */ (function () {
         __metadata("design:type", Object)
     ], Number.prototype, "helperText", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], Number.prototype, "invalidText", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
     ], Number.prototype, "change", void 0);
     Number = Number_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-number",
-            template: "\n\t\t<label *ngIf=\"skeleton && label\" class=\"bx--label bx--skeleton\"></label>\n\t\t<div\n\t\t\tdata-numberinput\n\t\t\tclass=\"bx--number\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--number--light': theme === 'light',\n\t\t\t\t'bx--number--nolabel': !label,\n\t\t\t\t'bx--number--helpertext': helperText,\n\t\t\t\t'bx--skeleton' : skeleton\n\t\t\t}\">\n\t\t\t<label *ngIf=\"!skeleton && label\" [for]=\"id\" class=\"bx--label\">{{label}}</label>\n\t\t\t<input\n\t\t\t\ttype=\"number\"\n\t\t\t\t[id]=\"id\"\n\t\t\t\t[value]=\"value\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[required]=\"required\"/>\n\t\t\t<div *ngIf=\"!skeleton\" class=\"bx--number__controls\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn up-icon\"\n\t\t\t\t\t(click)=\"onIncrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 5L5 .002 10 5z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn down-icon\"\n\t\t\t\t\t(click)=\"onDecrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div *ngIf=\"helperText\" class=\"bx--form__helper-text\">{{helperText}}</div>\n\t\t</div>\n\t",
+            template: "\n\t\t<label *ngIf=\"skeleton && label\" class=\"bx--label bx--skeleton\"></label>\n\t\t<div\n\t\t\tdata-numberinput\n\t\t\t[attr.data-invalid]=\"(invalid ? '' : null)\"\n\t\t\tclass=\"bx--number\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t'bx--number--light': theme === 'light',\n\t\t\t\t'bx--number--nolabel': !label,\n\t\t\t\t'bx--number--helpertext': helperText,\n\t\t\t\t'bx--skeleton' : skeleton\n\t\t\t}\">\n\t\t\t<label *ngIf=\"!skeleton && label\" [for]=\"id\" class=\"bx--label\">{{label}}</label>\n\t\t\t<input\n\t\t\t\ttype=\"number\"\n\t\t\t\t[id]=\"id\"\n\t\t\t\t[value]=\"value\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[disabled]=\"disabled\"\n\t\t\t\t[required]=\"required\"\n\t\t\t\t(input)=\"onNumberInputChange($event)\"/>\n\t\t\t<div *ngIf=\"!skeleton\" class=\"bx--number__controls\">\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn up-icon\"\n\t\t\t\t\t(click)=\"onIncrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 5L5 .002 10 5z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t\t<button\n\t\t\t\t\tclass=\"bx--number__control-btn down-icon\"\n\t\t\t\t\t(click)=\"onDecrement()\">\n\t\t\t\t\t<svg width=\"10\" height=\"5\" viewBox=\"0 0 10 5\">\n\t\t\t\t\t\t<path d=\"M0 0l5 4.998L10 0z\" fill-rule=\"evenodd\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div *ngIf=\"invalid\" class=\"bx--form-requirement\">\n\t\t\t\t{{invalidText}}\n\t\t\t</div>\n\t\t\t<div *ngIf=\"helperText\" class=\"bx--form__helper-text\">{{helperText}}</div>\n\t\t</div>\n\t",
             providers: [
                 {
                     provide: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NG_VALUE_ACCESSOR"],
@@ -14222,8 +14238,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ */ "./src/index.ts");
 var withStorySource = __webpack_require__(/*! @storybook/addon-storysource */ "./node_modules/@storybook/addon-storysource/dist/index.js").withStorySource;
-var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number, select, text } from '@storybook/addon-knobs/angular';\n\nimport { NumberModule } from '../';\n\nstoriesOf('Number', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NumberModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-number\n\t\t\t\t[label]=\"label\"\n\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[disabled]=\"disabled\">\n\t\t\t</ibm-number>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n      helperText: text('helper text', 'Optional helper text here'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<ibm-number [label]=\"label\" skeleton=\"true\"></ibm-number>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n    },\n  }));\n";
-var __ADDS_MAP__ = { "Number@Skeleton": { "startLoc": { "col": 7, "line": 33 }, "endLoc": { "col": 4, "line": 40 } }, "Number@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 32 } } };
+var __STORY__ = "import { storiesOf, moduleMetadata } from '@storybook/angular';\nimport { withKnobs, boolean, number, select, text } from '@storybook/addon-knobs/angular';\n\nimport { NumberModule } from '../';\n\nstoriesOf('Number', module)\n  .addDecorator(\n    moduleMetadata({\n      imports: [NumberModule],\n    })\n  )\n  .addDecorator(withKnobs)\n  .add('Basic', () => ({\n    template: `\n\t\t\t<ibm-number\n\t\t\t\t[label]=\"label\"\n\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[invalid]=\"invalid\"\n\t\t\t\t[invalidText]=\"invalidText\"\n\t\t\t\t[disabled]=\"disabled\">\n\t\t\t</ibm-number>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n      helperText: text('helper text', 'Optional helper text here'),\n      invalidText: text('Form validation content', 'Invalid number'),\n      theme: select('theme', ['dark', 'light'], 'dark'),\n      min: number('min', 0),\n      max: number('max', 100),\n      invalid: boolean('Show form validation', false),\n      disabled: boolean('disabled', false),\n    },\n  }))\n  .add('Skeleton', () => ({\n    template: `\n\t\t\t<ibm-number [label]=\"label\" skeleton=\"true\"></ibm-number>\n\t\t`,\n    props: {\n      label: text('label', 'Number Input Label'),\n    },\n  }));\n";
+var __ADDS_MAP__ = { "Number@Skeleton": { "startLoc": { "col": 7, "line": 37 }, "endLoc": { "col": 4, "line": 44 } }, "Number@Basic": { "startLoc": { "col": 7, "line": 13 }, "endLoc": { "col": 4, "line": 36 } } };
 
 
 
@@ -14232,13 +14248,15 @@ Object(_storybook_angular__WEBPACK_IMPORTED_MODULE_0__["storiesOf"])("Number", m
 }))
     .addDecorator(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["withKnobs"])
     .add("Basic", function () { return ({
-    template: "\n\t\t\t<ibm-number\n\t\t\t\t[label]=\"label\"\n\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[disabled]=\"disabled\">\n\t\t\t</ibm-number>\n\t\t",
+    template: "\n\t\t\t<ibm-number\n\t\t\t\t[label]=\"label\"\n\t\t\t\t[helperText]=\"[helperText]\"\n\t\t\t\t[theme]=\"theme\"\n\t\t\t\t[min]=\"min\"\n\t\t\t\t[max]=\"max\"\n\t\t\t\t[invalid]=\"invalid\"\n\t\t\t\t[invalidText]=\"invalidText\"\n\t\t\t\t[disabled]=\"disabled\">\n\t\t\t</ibm-number>\n\t\t",
     props: {
         label: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("label", "Number Input Label"),
         helperText: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("helper text", "Optional helper text here"),
+        invalidText: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["text"])("Form validation content", "Invalid number"),
         theme: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["select"])("theme", ["dark", "light"], "dark"),
         min: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("min", 0),
         max: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["number"])("max", 100),
+        invalid: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("Show form validation", false),
         disabled: Object(_storybook_addon_knobs_angular__WEBPACK_IMPORTED_MODULE_1__["boolean"])("disabled", false)
     }
 }); })
@@ -23350,4 +23368,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.7be5792a97c5e7da684a.bundle.js.map
+//# sourceMappingURL=iframe.e3cc97ab6e3dc5e0e76a.bundle.js.map

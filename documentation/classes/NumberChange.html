@@ -243,6 +243,7 @@ export class NumberChange {
 		&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
 		&lt;div
 			data-numberinput
+			[attr.data-invalid]&#x3D;&quot;(invalid ? &#x27;&#x27; : null)&quot;
 			class&#x3D;&quot;bx--number&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
@@ -258,7 +259,8 @@ export class NumberChange {
 				[min]&#x3D;&quot;min&quot;
 				[max]&#x3D;&quot;max&quot;
 				[disabled]&#x3D;&quot;disabled&quot;
-				[required]&#x3D;&quot;required&quot;/&gt;
+				[required]&#x3D;&quot;required&quot;
+				(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
 			&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
 				&lt;button
 					class&#x3D;&quot;bx--number__control-btn up-icon&quot;
@@ -274,6 +276,9 @@ export class NumberChange {
 						&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
 					&lt;/svg&gt;
 				&lt;/button&gt;
+			&lt;/div&gt;
+			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;
+				{{invalidText}}
 			&lt;/div&gt;
 			&lt;div *ngIf&#x3D;&quot;helperText&quot; class&#x3D;&quot;bx--form__helper-text&quot;&gt;{{helperText}}&lt;/div&gt;
 		&lt;/div&gt;
@@ -307,6 +312,10 @@ export class Number implements ControlValueAccessor {
 	 */
 	@Input() skeleton &#x3D; false;
 	/**
+	 * Set to &#x60;true&#x60; for an invalid number component.
+	 */
+	@Input() invalid &#x3D; false;
+	/**
 	 * The unique id for the number component.
 	 */
 	@Input() id &#x3D; &#x60;number-${Number.numberCount}&#x60;;
@@ -334,6 +343,10 @@ export class Number implements ControlValueAccessor {
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -415,6 +428,10 @@ export class Number implements ControlValueAccessor {
 		this.propagateChange(this.value);
 	}
 
+	onNumberInputChange(event) {
+		this.value &#x3D; event.target.value;
+		this.emitChangeEvent();
+	}
 }
 </code></pre>
     </div>
