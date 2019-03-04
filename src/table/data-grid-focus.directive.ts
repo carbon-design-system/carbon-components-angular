@@ -58,8 +58,8 @@ export class DataGridFocus {
 			case "Right": // IE specific value
 			case "ArrowRight":
 				const firstBodyRow = rows[1].querySelectorAll("td");
+				event.preventDefault();
 				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < firstBodyRow.length) {
-					event.preventDefault();
 					this.columnIndex++;
 					const nextSibling = element.nextElementSibling;
 					Table.setTabIndex(element, -1);
@@ -69,8 +69,8 @@ export class DataGridFocus {
 				break;
 			case "Left": // IE specific value
 			case "ArrowLeft":
+				event.preventDefault();
 				if (element.previousElementSibling) {
-					event.preventDefault();
 					this.columnIndex--;
 					const previousSibling = element.previousElementSibling;
 					Table.setTabIndex(element, -1);
@@ -80,8 +80,8 @@ export class DataGridFocus {
 				break;
 			case "Down": // IE specific value
 			case "ArrowDown":
+				event.preventDefault();
 				if (rowIndex < rows.length - 1) {
-					event.preventDefault();
 					rowIndex++;
 					const row = rows[rowIndex].querySelectorAll("td");
 					Table.setTabIndex(element, -1);
