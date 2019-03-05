@@ -27,7 +27,7 @@ export class AbstractDropdownView {
 	 * ArrowUp -> emit event
 	 *
 	 * It's recommended that the implementing view include a specific type union of possible blurs
-	 * ex. `@Output() blur = new EventEmitter<"top" | "bottom">();`
+	 * ex. `@Output() blurIntent = new EventEmitter<"top" | "bottom">();`
 	 */
 	@Output() blurIntent: EventEmitter<any>;
 	/**
