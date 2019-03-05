@@ -1,47 +1,20 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Storybook</title>
-
-  
-
-  
-
-  
-    <style>
-  html, body {
+<!doctype html><html><head><meta charset="utf-8"><title>Storybook</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>html, body {
     overflow: hidden;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-  }
-</style>
-
-<script>
+  }</style><script>/* globals window */
+  /* eslint-disable no-underscore-dangle */
   try {
     if (window.parent !== window) {
       window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__;
       window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__VUE_DEVTOOLS_GLOBAL_HOOK__;
     }
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.warn('unable to connect to parent frame for connecting dev tools');
-  }
-</script>
-<meta property="og:title" content="Carbon Components Angular">
-<meta property="og:description" content="An Angular implementation of the Carbon Design System for IBM.">
-<meta property="og:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
-<meta property="og:url" content="https://angular.carbondesignsystem.com">
-
-<meta name="twitter:title" content="Carbon Components Angular">
-<meta name="twitter:description" content="An Angular implementation of the Carbon Design System for IBM.">
-<meta name="twitter:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
-<meta name="twitter:card" content="summary_large_image">
-
-<style id="iframestyle">
-.sb-show-main:not(.welcome) {
+  }</script><meta property="og:title" content="Carbon Components Angular"><meta property="og:description" content="An Angular implementation of the Carbon Design System for IBM."><meta property="og:image" content="https://angular.carbondesignsystem.com/carbon.jpg"><meta property="og:url" content="https://angular.carbondesignsystem.com"><meta name="twitter:title" content="Carbon Components Angular"><meta name="twitter:description" content="An Angular implementation of the Carbon Design System for IBM."><meta name="twitter:image" content="https://angular.carbondesignsystem.com/carbon.jpg"><meta name="twitter:card" content="summary_large_image"><style id="iframestyle">.sb-show-main:not(.welcome) {
 	padding: 3em;
 	display: flex;
 	flex-direction: column;
@@ -62,11 +35,7 @@
 .experimental-selected {
 	background: darkcyan;
 	color: white;
-}
-</style>
-
-<script>
-function setExperimental(event) {
+}</style><script>function setExperimental(event) {
 	var frame = document.querySelector("#storybook-preview-iframe");
 	var classList = frame.contentDocument.body.classList;
 	if(event.target.previousElementSibling) {
@@ -113,27 +82,4 @@ var experimentalToggleInterval = setInterval(function() {
 
 	var classList = frame.contentDocument.body.classList;
 	classList.add("carbon");
-}, 100);
-</script>
-
-  
-
-  
-  
-</head>
-<body>
-
-
-
-<div id="root"></div>
-
-
-
-
-  <script src="static/runtime~manager.16a639f5253b2fc5c06a.bundle.js"></script>
-
-  <script src="static/manager.32a970e859d2c9a809ea.bundle.js"></script>
-
-
-</body>
-</html>
+}, 100);</script></head><body><div id="root"></div><script src="runtime~main.bf7f1bbd18bd2f1ec8df.bundle.js"></script><script src="vendors~main.662333e7a7e250e9df09.bundle.js"></script><script src="main.3326dbb72035162b5a22.bundle.js"></script></body></html>
