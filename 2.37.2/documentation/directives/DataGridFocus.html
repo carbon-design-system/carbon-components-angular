@@ -156,7 +156,7 @@
                                 <a href="#click">click</a>
                             </li>
                             <li>
-                                <a href="#keyup">keyup</a>
+                                <a href="#keydown">keydown</a>
                             </li>
                         </ul>
                     </td>
@@ -325,7 +325,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/table/data-grid-focus.directive.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/data-grid-focus.directive.ts:159</a></div>
                             </td>
                         </tr>
 
@@ -336,12 +336,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="keyup"></a>
+                        <a name="keydown"></a>
                         <span class="name">
                             <b>
-                            keyup
+                            keydown
                             </b>
-                            <a href="#keyup"><span class="icon ion-ios-link"></span></a>
+                            <a href="#keydown"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -352,7 +352,7 @@
                     </tr>
                 <tr>
                     <td class="col-md-4">
-<code>keyup(event: KeyboardEvent)</code>
+<code>keydown(event: KeyboardEvent)</code>
                     </td>
                 </tr>
 
@@ -605,8 +605,8 @@ export class DataGridFocus {
 		}
 	}
 
-	@HostListener(&quot;keyup&quot;, [&quot;$event&quot;])
-	keyUp(event: KeyboardEvent) {
+	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
+	keyDown(event: KeyboardEvent) {
 		if (!this.ibmDataGridFocus) {
 			return;
 		}
@@ -620,7 +620,9 @@ export class DataGridFocus {
 		switch (event.key) {
 			case &quot;Right&quot;: // IE specific value
 			case &quot;ArrowRight&quot;:
-				if (element.nextElementSibling &amp;&amp; Array.from(headerRow).indexOf(element.nextElementSibling) &lt; headerRow.length - 1) {
+				const firstBodyRow &#x3D; rows[1].querySelectorAll(&quot;td&quot;);
+				event.preventDefault();
+				if (element.nextElementSibling &amp;&amp; Array.from(headerRow).indexOf(element.nextElementSibling) &lt; firstBodyRow.length) {
 					this.columnIndex++;
 					const nextSibling &#x3D; element.nextElementSibling;
 					Table.setTabIndex(element, -1);
@@ -630,6 +632,7 @@ export class DataGridFocus {
 				break;
 			case &quot;Left&quot;: // IE specific value
 			case &quot;ArrowLeft&quot;:
+				event.preventDefault();
 				if (element.previousElementSibling) {
 					this.columnIndex--;
 					const previousSibling &#x3D; element.previousElementSibling;
@@ -640,6 +643,7 @@ export class DataGridFocus {
 				break;
 			case &quot;Down&quot;: // IE specific value
 			case &quot;ArrowDown&quot;:
+				event.preventDefault();
 				if (rowIndex &lt; rows.length - 1) {
 					rowIndex++;
 					const row &#x3D; rows[rowIndex].querySelectorAll(&quot;td&quot;);
@@ -658,6 +662,7 @@ export class DataGridFocus {
 				break;
 			case &quot;Up&quot;: // IE specific value
 			case &quot;ArrowUp&quot;:
+				event.preventDefault();
 				if ((rowIndex &#x3D;&#x3D;&#x3D; 1 &amp;&amp; Array.from(headerRow).every(th &#x3D;&gt; getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length &#x3D;&#x3D;&#x3D; 0)) ||
 					rowIndex &#x3D;&#x3D;&#x3D; 0) {
 						return;
@@ -677,6 +682,7 @@ export class DataGridFocus {
 				}
 				break;
 			case &quot;Home&quot;:
+				event.preventDefault();
 				this.columnIndex &#x3D; 0;
 				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
@@ -695,6 +701,7 @@ export class DataGridFocus {
 				}
 				break;
 			case &quot;End&quot;:
+				event.preventDefault();
 				const lastRow &#x3D; rows[rows.length - 1].querySelectorAll(&quot;td&quot;);
 				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
