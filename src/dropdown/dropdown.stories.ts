@@ -5,12 +5,14 @@ import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs
 
 import { DropdownModule } from "../";
 import { of } from "rxjs";
+import { PlaceholderModule } from "../placeholder/placeholder.module";
 
 storiesOf("Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DropdownModule
+				DropdownModule,
+				PlaceholderModule
 			]
 		})
 	)
@@ -27,6 +29,7 @@ storiesOf("Dropdown", module)
 				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 			</ibm-dropdown>
 		</div>
+		<ibm-placeholder></ibm-placeholder>
 	`,
 		props: {
 			disabled: boolean("disabled", false),
