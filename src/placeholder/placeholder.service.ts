@@ -53,4 +53,16 @@ export class PlaceholderService {
 	hasPlaceholderRef() {
 		return !!this.viewContainerRef;
 	}
+
+	appendElement(element: HTMLElement): HTMLElement {
+		return this.viewContainerRef.element.nativeElement.appendChild(element);
+	}
+
+	removeElement(element: HTMLElement): HTMLElement {
+		return this.viewContainerRef.element.nativeElement.removeChild(element);
+	}
+
+	hasElement(element: HTMLElement): boolean {
+		return this.viewContainerRef.element.nativeElement.contains(element);
+	}
 }

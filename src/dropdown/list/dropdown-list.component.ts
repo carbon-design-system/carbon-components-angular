@@ -101,7 +101,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
 		if (isObservable(value)) {
-			this._itemsSubscription.unsubscribe();
+			if (this._itemsSubscription) {
+				this._itemsSubscription.unsubscribe();
+			}
 			this._itemsSubscription = value.subscribe(v => this.updateList(v));
 		} else {
 			this.updateList(value);

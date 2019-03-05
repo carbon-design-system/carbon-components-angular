@@ -42,8 +42,8 @@ export class DataGridFocus {
 		}
 	}
 
-	@HostListener("keyup", ["$event"])
-	keyUp(event: KeyboardEvent) {
+	@HostListener("keydown", ["$event"])
+	keyDown(event: KeyboardEvent) {
 		if (!this.ibmDataGridFocus) {
 			return;
 		}
@@ -57,7 +57,9 @@ export class DataGridFocus {
 		switch (event.key) {
 			case "Right": // IE specific value
 			case "ArrowRight":
-				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < headerRow.length - 1) {
+				const firstBodyRow = rows[1].querySelectorAll("td");
+				event.preventDefault();
+				if (element.nextElementSibling && Array.from(headerRow).indexOf(element.nextElementSibling) < firstBodyRow.length) {
 					this.columnIndex++;
 					const nextSibling = element.nextElementSibling;
 					Table.setTabIndex(element, -1);
@@ -67,6 +69,7 @@ export class DataGridFocus {
 				break;
 			case "Left": // IE specific value
 			case "ArrowLeft":
+				event.preventDefault();
 				if (element.previousElementSibling) {
 					this.columnIndex--;
 					const previousSibling = element.previousElementSibling;
@@ -77,6 +80,7 @@ export class DataGridFocus {
 				break;
 			case "Down": // IE specific value
 			case "ArrowDown":
+				event.preventDefault();
 				if (rowIndex < rows.length - 1) {
 					rowIndex++;
 					const row = rows[rowIndex].querySelectorAll("td");
@@ -95,6 +99,7 @@ export class DataGridFocus {
 				break;
 			case "Up": // IE specific value
 			case "ArrowUp":
+				event.preventDefault();
 				if ((rowIndex === 1 && Array.from(headerRow).every(th => getFocusElementList(th, tabbableSelectorIgnoreTabIndex).length === 0)) ||
 					rowIndex === 0) {
 						return;
@@ -114,6 +119,7 @@ export class DataGridFocus {
 				}
 				break;
 			case "Home":
+				event.preventDefault();
 				this.columnIndex = 0;
 				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
@@ -132,6 +138,7 @@ export class DataGridFocus {
 				}
 				break;
 			case "End":
+				event.preventDefault();
 				const lastRow = rows[rows.length - 1].querySelectorAll("td");
 				Table.setTabIndex(element, -1);
 				if (event.ctrlKey) {
