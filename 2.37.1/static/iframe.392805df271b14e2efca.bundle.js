@@ -5754,9 +5754,13 @@ var DialogDirective = /** @class */ (function () {
          */
         this.data = {};
         /**
-         * Config object passed to the rendered component
+         * Emits an event when the dialog is closed
          */
         this.onClose = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        /**
+         * Emits an event when the dialog is opened
+         */
+        this.onOpen = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.role = "button";
         this.expanded = false;
         this.hasPopup = true;
@@ -5867,6 +5871,7 @@ var DialogDirective = /** @class */ (function () {
     DialogDirective.prototype.open = function () {
         this.dialogService.open(this.viewContainerRef, this.dialogConfig);
         this.expanded = true;
+        this.onOpen.emit();
     };
     /**
      * Helper method to call dialogService 'toggle'.
@@ -5875,6 +5880,9 @@ var DialogDirective = /** @class */ (function () {
     DialogDirective.prototype.toggle = function () {
         this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
         this.expanded = this.dialogService.isOpen;
+        if (this.expanded) {
+            this.onOpen.emit();
+        }
     };
     /**
      * Helper method to call dialogService 'close'.
@@ -5890,7 +5898,7 @@ var DialogDirective = /** @class */ (function () {
      * @protected
      */
     DialogDirective.prototype.onDialogInit = function () { };
-    var DialogDirective_1, _a, _b, _c, _d, _e;
+    var DialogDirective_1, _a, _b, _c, _d, _e, _f;
     DialogDirective.dialogCounter = 0;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -5934,6 +5942,10 @@ var DialogDirective = /** @class */ (function () {
         __metadata("design:type", typeof (_b = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _b || Object)
     ], DialogDirective.prototype, "onClose", void 0);
     __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", typeof (_c = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]) === "function" && _c || Object)
+    ], DialogDirective.prototype, "onOpen", void 0);
+    __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("attr.role"),
         __metadata("design:type", Object)
     ], DialogDirective.prototype, "role", void 0);
@@ -5964,7 +5976,7 @@ var DialogDirective = /** @class */ (function () {
                 _dialog_service__WEBPACK_IMPORTED_MODULE_2__["DialogService"]
             ]
         }),
-        __metadata("design:paramtypes", [typeof (_c = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _c || Object, typeof (_d = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]) === "function" && _d || Object, typeof (_e = typeof _dialog_service__WEBPACK_IMPORTED_MODULE_2__["DialogService"] !== "undefined" && _dialog_service__WEBPACK_IMPORTED_MODULE_2__["DialogService"]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [typeof (_d = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _d || Object, typeof (_e = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"]) === "function" && _e || Object, typeof (_f = typeof _dialog_service__WEBPACK_IMPORTED_MODULE_2__["DialogService"] !== "undefined" && _dialog_service__WEBPACK_IMPORTED_MODULE_2__["DialogService"]) === "function" && _f || Object])
     ], DialogDirective);
     return DialogDirective;
 }());
@@ -6316,7 +6328,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
  * <ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
  * ```
  *
- * For content that expands beyod the overflow menu `OverflowMenuOption` automatically adds a title attribute.
+ * For content that expands beyond the overflow menu `OverflowMenuOption` automatically adds a title attribute.
  */
 var OverflowMenuOption = /** @class */ (function () {
     function OverflowMenuOption(elementRef) {
@@ -6333,6 +6345,9 @@ var OverflowMenuOption = /** @class */ (function () {
         this.disabled = false;
         this.selected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.tabIndex = -1;
+        // note: title must be a real attribute (i.e. not a getter) as of Angular@6 due to
+        // change after checked errors
+        this.title = null;
     }
     Object.defineProperty(OverflowMenuOption.prototype, "isDanger", {
         get: function () {
@@ -6351,32 +6366,12 @@ var OverflowMenuOption = /** @class */ (function () {
     OverflowMenuOption.prototype.onClick = function (event) {
         this.selected.emit();
     };
-    Object.defineProperty(OverflowMenuOption.prototype, "titleEnabled", {
-        /**
-         * Returns true if the content string is longer than the width of the containing button
-         *
-         * note: getter ties into the view check cycle so we always get an accurate value
-         */
-        get: function () {
-            var button = this.elementRef.nativeElement.querySelector("button");
-            if (button.scrollWidth > button.offsetWidth) {
-                return true;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(OverflowMenuOption.prototype, "content", {
-        /**
-         * Returns the text content projected into the component
-         */
-        get: function () {
-            return this.elementRef.nativeElement.querySelector("button").textContent;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    OverflowMenuOption.prototype.ngAfterViewInit = function () {
+        var button = this.elementRef.nativeElement.querySelector("button");
+        if (button.scrollWidth > button.offsetWidth) {
+            this.title = this.elementRef.nativeElement.querySelector("button").textContent;
+        }
+    };
     var _a, _b, _c, _d;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])("class"),
@@ -6411,7 +6406,7 @@ var OverflowMenuOption = /** @class */ (function () {
     OverflowMenuOption = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-overflow-menu-option",
-            template: "\n\t\t<button\n\t\t\tclass=\"bx--overflow-menu-options__btn\"\n\t\t\trole=\"menuitem\"\n\t\t\t[tabindex]=\"tabIndex\"\n\t\t\t(focus)=\"tabIndex = 0\"\n\t\t\t(blur)=\"tabIndex = -1\"\n\t\t\t(click)=\"onClick($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[title]=\"(titleEnabled ? content : '')\">\n\t\t\t<ng-content></ng-content>\n\t\t</button>\n\t"
+            template: "\n\t\t<button\n\t\t\tclass=\"bx--overflow-menu-options__btn\"\n\t\t\trole=\"menuitem\"\n\t\t\t[tabindex]=\"tabIndex\"\n\t\t\t(focus)=\"tabIndex = 0\"\n\t\t\t(blur)=\"tabIndex = -1\"\n\t\t\t(click)=\"onClick($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[title]=\"title\">\n\t\t\t<ng-content></ng-content>\n\t\t</button>\n\t"
         }),
         __metadata("design:paramtypes", [typeof (_d = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _d || Object])
     ], OverflowMenuOption);
@@ -6591,6 +6586,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OverflowMenu", function() { return OverflowMenu; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../i18n/i18n.module */ "./src/i18n/i18n.module.ts");
+/* harmony import */ var _overflow_menu_directive__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./overflow-menu.directive */ "./src/dialog/overflow-menu/overflow-menu.directive.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6600,6 +6596,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 /**
@@ -6619,18 +6616,9 @@ var OverflowMenu = /** @class */ (function () {
         this.i18n = i18n;
         this.buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
         this.flip = false;
+        this.open = false;
     }
-    Object.defineProperty(OverflowMenu.prototype, "open", {
-        get: function () {
-            if (this.elementRef.nativeElement.children[0].getAttribute("aria-expanded") === "true") {
-                return true;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    var _a, _b;
+    var _a, _b, _c;
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -6639,14 +6627,18 @@ var OverflowMenu = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], OverflowMenu.prototype, "flip", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ContentChild"])(_overflow_menu_directive__WEBPACK_IMPORTED_MODULE_2__["OverflowMenuDirective"]),
+        __metadata("design:type", typeof (_a = typeof _overflow_menu_directive__WEBPACK_IMPORTED_MODULE_2__["OverflowMenuDirective"] !== "undefined" && _overflow_menu_directive__WEBPACK_IMPORTED_MODULE_2__["OverflowMenuDirective"]) === "function" && _a || Object)
+    ], OverflowMenu.prototype, "overflowMenuDirective", void 0);
     OverflowMenu = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "ibm-overflow-menu",
-            template: "\n\t\t<div\n\t\t\t[ibmOverflowMenu]=\"options\"\n\t\t\t[ngClass]=\"{'bx--overflow-menu--open': open === true}\"\n\t\t\t[attr.aria-label]=\"buttonLabel\"\n\t\t\t[flip]=\"flip\"\n\t\t\trole=\"button\"\n\t\t\taria-haspopup=\"true\"\n\t\t\tclass=\"bx--overflow-menu\"\n\t\t\tplacement=\"bottom\"\n\t\t\ttabindex=\"0\">\n\t\t\t<svg focusable=\"false\" class=\"bx--overflow-menu__icon\" width=\"3\" height=\"15\" viewBox=\"0 0 3 15\">\n\t\t\t\t<g fill-rule=\"evenodd\">\n\t\t\t\t\t<circle cx=\"1.5\" cy=\"1.5\" r=\"1.5\" />\n\t\t\t\t\t<circle cx=\"1.5\" cy=\"7.5\" r=\"1.5\" />\n\t\t\t\t\t<circle cx=\"1.5\" cy=\"13.5\" r=\"1.5\" />\n\t\t\t\t</g>\n\t\t\t</svg>\n\t\t</div>\n\t\t<ng-template #options>\n\t\t\t<ng-content></ng-content>\n\t\t</ng-template>\n\t",
+            template: "\n\t\t<div\n\t\t\t[ibmOverflowMenu]=\"options\"\n\t\t\t[ngClass]=\"{'bx--overflow-menu--open': open}\"\n\t\t\t[attr.aria-label]=\"buttonLabel\"\n\t\t\t[flip]=\"flip\"\n\t\t\t(onOpen)=\"open = true\"\n\t\t\t(onClose)=\"open = false\"\n\t\t\trole=\"button\"\n\t\t\taria-haspopup=\"true\"\n\t\t\tclass=\"bx--overflow-menu\"\n\t\t\tplacement=\"bottom\"\n\t\t\ttabindex=\"0\">\n\t\t\t<svg focusable=\"false\" class=\"bx--overflow-menu__icon\" width=\"3\" height=\"15\" viewBox=\"0 0 3 15\">\n\t\t\t\t<g fill-rule=\"evenodd\">\n\t\t\t\t\t<circle cx=\"1.5\" cy=\"1.5\" r=\"1.5\" />\n\t\t\t\t\t<circle cx=\"1.5\" cy=\"7.5\" r=\"1.5\" />\n\t\t\t\t\t<circle cx=\"1.5\" cy=\"13.5\" r=\"1.5\" />\n\t\t\t\t</g>\n\t\t\t</svg>\n\t\t</div>\n\t\t<ng-template #options>\n\t\t\t<ng-content></ng-content>\n\t\t</ng-template>\n\t",
             styles: ["\n\t\t.bx--overflow-menu--open {\n\t\t\topacity: 1\n\t\t}\n\n\t\t/*\n\t\tRotate the overflow menu container as well as the icon, since\n\t\twe calculate our menu position based on the container, not the icon.\n\t\t*/\n\t\t.bx--data-table-v2 .bx--overflow-menu {\n\t\t\ttransform: rotate(90deg);\n\t\t}\n\n\t\t.bx--data-table-v2 .bx--overflow-menu__icon {\n\t\t\ttransform: rotate(180deg);\n\t\t}\n\t"],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _a || Object, typeof (_b = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"] !== "undefined" && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]) === "function" && _b || Object, typeof (_c = typeof _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"] !== "undefined" && _i18n_i18n_module__WEBPACK_IMPORTED_MODULE_1__["I18n"]) === "function" && _c || Object])
     ], OverflowMenu);
     return OverflowMenu;
 }());
@@ -23368,4 +23360,4 @@ module.exports = __webpack_require__(/*! /home/travis/build/IBM/carbon-component
 /***/ })
 
 },[[0,"runtime~iframe","vendors~iframe"]]]);
-//# sourceMappingURL=iframe.e3cc97ab6e3dc5e0e76a.bundle.js.map
+//# sourceMappingURL=iframe.392805df271b14e2efca.bundle.js.map
