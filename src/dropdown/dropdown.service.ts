@@ -4,8 +4,17 @@ import { fromEvent, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 import position from "./../utils/position";
 
+const defaultOffset = { top: 0, left: 0 };
+
 @Injectable()
 export class DropdownService {
+	public set offset(value: { top?: number, left?: number }) {
+		this._offset = Object.assign({}, defaultOffset, value);
+	}
+
+	public get offset() {
+		return this._offset;
+	}
 	/**
 	 * reference to the body appended menu
 	 */
@@ -16,6 +25,8 @@ export class DropdownService {
 	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
 	 */
 	protected resize: Subscription;
+
+	protected _offset = defaultOffset;
 
 	constructor(protected placeholderService: PlaceholderService) {}
 
@@ -84,8 +95,7 @@ export class DropdownService {
 
 	protected positionDropdown(parentRef, menuRef) {
 		let pos = position.findAbsolute(parentRef, menuRef, "bottom");
-		// add -40 to the top position to account for carbon styles
-		pos = position.addOffset(pos, -40, 0);
+		pos = position.addOffset(pos, this.offset.top, this.offset.left);
 		position.setElement(menuRef, pos);
 	}
 }

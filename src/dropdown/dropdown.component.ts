@@ -91,7 +91,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	@Input() type: "single" | "multi" = "single";
 	/**
 	 * `light` or `dark` dropdown theme
-	 * @memberof Dropdown
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 	/**
@@ -209,6 +208,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (this.view) {
 			this.view.type = this.type;
 		}
+		// add -40 to the top position to account for carbon styles
+		this.dropdownService.offset = { top: -40 };
 	}
 
 	/**
@@ -492,7 +493,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	/**
-	 * Add scroll event listenter if scrollableContainer is provided
+	 * Add scroll event listener if scrollableContainer is provided
 	 */
 	addScrollEventListener() {
 		if (this.scrollableContainer) {
