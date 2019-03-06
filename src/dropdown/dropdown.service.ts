@@ -8,7 +8,6 @@ const defaultOffset = { top: 0, left: 0 };
 
 @Injectable()
 export class DropdownService {
-
 	public set offset(value: { top?: number, left?: number }) {
 		this._offset = Object.assign({}, defaultOffset, value);
 	}
