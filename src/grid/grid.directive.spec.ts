@@ -1,9 +1,15 @@
+import { Component } from "@angular/core";
 import { async, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { TestGridComponent } from "./grid-test.component";
 import { ColumnDirective, GridDirective, RowDirective } from "./grid.directive";
 
-describe("Grid Directive", () => {
+@Component({
+	selector: "ibm-test-grid",
+	template: ""
+})
+class TestGridComponent {}
+
+describe("GridDirective", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -18,7 +24,7 @@ describe("Grid Directive", () => {
 	it("should render a grid", async(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: "<div ibmGrid class='test-directive'></div>"
+				template: "<div ibmGrid></div>"
 			}
 		});
 
@@ -36,7 +42,7 @@ describe("Grid Directive", () => {
 	it("should render a row", async(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: "<div ibmRow class='test-directive'></div>"
+				template: "<div ibmRow></div>"
 			}
 		});
 
@@ -55,7 +61,7 @@ describe("Grid Directive", () => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
-				"<div ibmCol [offsets]='{\"md\": 2}' [columnNumbers]='{\"lg\":3, \"md\": \"nobreak\"}' class='test-directive'></div>"
+				"<div ibmCol [offsets]='{\"md\": 2}' [columnNumbers]='{\"lg\":3, \"md\": \"nobreak\"}' class='custom-class-example'></div>"
 			}
 		});
 
@@ -70,7 +76,7 @@ describe("Grid Directive", () => {
 
 			const directiveInstance = directiveEl.injector.get(ColumnDirective);
 			expect(directiveInstance.columnClasses).toBe(
-				"bx--col-lg-3 bx--col-md bx--offset-md-2 test-directive"
+				"bx--col-lg-3 bx--col-md bx--offset-md-2 custom-class-example"
 			);
 		});
 	}));

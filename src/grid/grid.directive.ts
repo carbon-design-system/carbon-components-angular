@@ -24,30 +24,36 @@ export class ColumnDirective implements OnInit {
 
 	@Input() offsets = {};
 
-	@HostBinding("class") columnClasses: string;
+	protected _columnClasses: string[] = [];
+
+	@HostBinding("class")
+	get columnClasses(): string {
+		return this._columnClasses.join(" ");
+	}
+
+	set(classes: string) {
+		this._columnClasses = classes.split(" ");
+	}
 
 	ngOnInit() {
-		const classNames = [];
 		try {
 			Object.keys(this.columnNumbers).forEach(key => {
 				if (this.columnNumbers[key] === "nobreak") {
-					classNames.push(`bx--col-${key}`);
+					this._columnClasses.push(`bx--col-${key}`);
 				} else {
-					classNames.push(`bx--col-${key}-${this.columnNumbers[key]}`);
+					this._columnClasses.push(`bx--col-${key}-${this.columnNumbers[key]}`);
 				}
 			});
 
 			Object.keys(this.offsets).forEach(key => {
-				classNames.push(`bx--offset-${key}-${this.offsets[key]}`);
+				this._columnClasses.push(`bx--offset-${key}-${this.offsets[key]}`);
 			});
 		} catch (err) {
 			console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);
 		}
 
 		if (this.class !== "") {
-			classNames.push(this.class);
+			this._columnClasses.push(this.class);
 		}
-
-		this.columnClasses = classNames.join(" ");
 	}
 }
