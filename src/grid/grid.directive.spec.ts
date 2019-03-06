@@ -24,7 +24,7 @@ describe("GridDirective", () => {
 	it("should render a grid", async(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: "<div ibmGrid></div>"
+				template: `<div ibmGrid></div>`
 			}
 		});
 
@@ -42,7 +42,7 @@ describe("GridDirective", () => {
 	it("should render a row", async(() => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
-				template: "<div ibmRow></div>"
+				template: `<div ibmRow></div>`
 			}
 		});
 
@@ -61,7 +61,7 @@ describe("GridDirective", () => {
 		TestBed.overrideComponent(TestGridComponent, {
 			set: {
 				template:
-				"<div ibmCol [offsets]='{\"md\": 2}' [columnNumbers]='{\"lg\":3, \"md\": \"nobreak\"}' class='custom-class-example'></div>"
+				`<div ibmCol [offsets]="{'md': 2}" [columnNumbers]="{'lg': 3, 'md': 'nobreak'}" class='custom-class-example'></div>`
 			}
 		});
 
