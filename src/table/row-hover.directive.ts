@@ -4,12 +4,11 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmHoverToggle]"
+	selector: "[ibmRowHover]"
 })
-export class HoverToggle {
+export class RowHover {
 	@HostListener("mouseenter", ["$event"])
 	addHoverClass(event) {
-		console.log(event.target);
 		event.target.previousElementSibling.classList.add("bx--expandable-row--hover-v2");
 	}
 

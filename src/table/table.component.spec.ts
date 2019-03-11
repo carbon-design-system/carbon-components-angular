@@ -8,7 +8,7 @@ import {
 	TableHeaderItem,
 	TableItem,
 	DataGridFocus,
-	HoverToggle
+	RowHover
 } from "./table.module";
 import { Table } from "./table.component";
 import { StaticIconModule } from "./../icon/static-icon.module";
@@ -51,7 +51,7 @@ describe("Table", () => {
 				Table,
 				TableTest,
 				DataGridFocus,
-				HoverToggle
+				RowHover
 			]
 		});
 

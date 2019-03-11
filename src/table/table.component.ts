@@ -370,7 +370,7 @@ import { I18n } from "./../i18n/i18n.module";
 				<tr
 				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
 				class="bx--expandable-row-v2"
-				ibmHoverToggle
+				ibmRowHover
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
 						[ibmDataGridFocus]="isDataGrid"

@@ -11,7 +11,7 @@ import { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
 import { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
 import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 import { DataGridFocus } from "./data-grid-focus.directive";
-import { HoverToggle } from "./hover-toggle.directive";
+import { RowHover } from "./row-hover.directive";
 
 import { IconModule } from "./../icon/icon.module";
 import { StaticIconModule } from "..";
@@ -27,7 +27,7 @@ export { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
 export { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
 export { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 export { DataGridFocus } from "./data-grid-focus.directive";
-export { HoverToggle } from "./hover-toggle.directive";
+export { RowHover } from "./row-hover.directive";
 
 @NgModule({
 	declarations: [
@@ -37,7 +37,7 @@ export { HoverToggle } from "./hover-toggle.directive";
 		TableToolbarSearch,
 		TableToolbarContent,
 		DataGridFocus,
-		HoverToggle
+		RowHover
 	],
 	exports: [
 		Table,
@@ -46,7 +46,7 @@ export { HoverToggle } from "./hover-toggle.directive";
 		TableToolbarSearch,
 		TableToolbarContent,
 		DataGridFocus,
-		HoverToggle
+		RowHover
 	],
 	imports: [
 		CommonModule,
