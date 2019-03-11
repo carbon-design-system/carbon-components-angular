@@ -28,7 +28,10 @@ storiesOf("Tabs", module)
 	}))
 	.add("With template", () => ({
 		template: `
-			<ng-template #customTab>
+			<ng-template #customTabs let-item>
+				{{item ? item.name : "wait for it"}}
+			</ng-template>
+			<ng-template #iconTab>
 				<div style="height: 14px;">
 					Something custom
 					<svg width="16" height="16" viewBox="0 0 16 16"
@@ -40,14 +43,18 @@ storiesOf("Tabs", module)
 				</div>
 			</ng-template>
 			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
-				<ibm-tab heading="one">foo</ibm-tab>
-				<ibm-tab heading="two">bar</ibm-tab>
-				<ibm-tab [heading]="customTab">foo</ibm-tab>
+				<ibm-tab *ngFor="let item of data; let i = index;" [heading]="customTabs" [context]="item">Tab Content {{i + 1}}</ibm-tab>
+				<ibm-tab [heading]="iconTab">Tab Content 4</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
 			followFocus: boolean("followFocus", true),
-			isNavigation: boolean("isNavigation", false)
+			isNavigation: boolean("isNavigation", false),
+			data: [
+				{ name: "one" },
+				{ name: "two" },
+				{ name: "three" }
+			]
 		}
 	}))
 	.add("Skeleton", () => ({
