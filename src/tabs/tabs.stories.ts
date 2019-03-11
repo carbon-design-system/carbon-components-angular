@@ -29,7 +29,7 @@ storiesOf("Tabs", module)
 	.add("With template", () => ({
 		template: `
 			<ng-template #customTabs let-item>
-					{{item ? item.name : "wait for it"}}
+				{{item ? item.name : "wait for it"}}
 			</ng-template>
 			<ng-template #iconTab>
 				<div style="height: 14px;">
