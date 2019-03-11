@@ -77,6 +77,10 @@ export class Tabs implements AfterContentInit {
 	 * Set to `true` to put tabs in a loading state.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` to have the tabIndex of the all tabpanels be -1.
+	 */
+	@Input() isNavigation = false;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
@@ -98,6 +102,10 @@ export class Tabs implements AfterContentInit {
 		if (this.tabHeaders) {
 			this.tabHeaders.cacheActive = this.cacheActive;
 		}
+
+		this.tabs.forEach(tab => {
+			tab.tabIndex = this.isNavigation ? -1 : 0;
+		});
 	}
 
 	/**
