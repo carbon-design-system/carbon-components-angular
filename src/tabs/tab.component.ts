@@ -88,6 +88,10 @@ export class Tab implements OnInit {
 	 */
 	@Input() heading: string | TemplateRef<any>;
 	/**
+	 * Allows the user to pass data to the custom template for the `Tab` heading.
+	 */
+	@Input() context: any;
+	/**
 	 * Indicates whether the `Tab` is active/selected.
 	 * Determines whether it's `TabPanel` is rendered.
 	 */
