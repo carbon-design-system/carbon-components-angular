@@ -370,13 +370,12 @@ import { I18n } from "./../i18n/i18n.module";
 				<tr
 				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
 				class="bx--expandable-row-v2"
+				ibmHoverToggle
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
 						[ibmDataGridFocus]="isDataGrid"
 						[(columnIndex)]="columnIndex"
 						[attr.colspan]="row.length + 2"
-						(mouseenter)="addHoverClass($event)"
-						(mouseleave)="removeHoverClass($event)"
 						(click)="setExpandIndex($event)">
 						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
 						<ng-template
@@ -913,14 +912,6 @@ export class Table implements AfterViewInit {
 	scrollToTop(event) {
 		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
 		this.model.isEnd = false;
-	}
-
-	addHoverClass(event) {
-		event.target.closest("tr").previousElementSibling.classList.add("bx--expandable-row--hover-v2");
-	}
-
-	removeHoverClass(event) {
-		event.target.closest("tr").previousElementSibling.classList.remove("bx--expandable-row--hover-v2");
 	}
 
 	handleTabIndex() {
