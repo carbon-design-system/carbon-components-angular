@@ -75,7 +75,8 @@ import { Tab } from "./tab.component";
 						</ng-container>
 						<ng-template
 							*ngIf="tab.headingIsTemplate"
-							[ngTemplateOutlet]="tab.heading">
+							[ngTemplateOutlet]="tab.heading"
+							[ngTemplateOutletContext]="{$implicit: tab.context}">
 						</ng-template>
 					</a>
 				</li>
