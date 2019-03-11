@@ -4,9 +4,9 @@ import {
 } from "@angular/core";
 
 @Directive({
-	selector: "[ibmRowHover]"
+	selector: "[ibmExpandedRowHover]"
 })
-export class RowHover {
+export class ExpandedRowHover {
 	@HostListener("mouseenter", ["$event"])
 	addHoverClass(event) {
 		event.target.previousElementSibling.classList.add("bx--expandable-row--hover-v2");
