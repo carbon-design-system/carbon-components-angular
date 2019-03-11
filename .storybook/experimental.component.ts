@@ -13,7 +13,6 @@ import { ExperimentalService } from "../src/experimental.module";
 	template: ``
 })
 export class ExperimentalComponenent implements AfterViewInit, OnDestroy {
-
 	@Input() set isExperimental(value: boolean) {
 		this.experimental.isExperimental = value;
 		this.isExperimentalChange.emit(this.experimental.isExperimental);
