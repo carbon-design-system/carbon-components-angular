@@ -30,7 +30,7 @@ import { DropdownService } from "./dropdown.service";
 	selector: "ibm-dropdown",
 	template: `
 	<div
-		class="bx--list-box bx--dropdown-v2"
+		class="bx--list-box bx--dropdown"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
