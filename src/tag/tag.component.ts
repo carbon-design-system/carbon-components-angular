@@ -10,7 +10,7 @@ import {
 export type TagType = "beta" | "community" | "custom" | "dedicated" | "experimental" | "ibm" | "local" | "private" | "third-party";
 
 /**
- * Supported tags types for carbon v10
+ * Supported tag types for carbon v10
  */
 export type TagTypeExperimental = "basic" | "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | "green" | "cool-gray" | "warm-gray";
 
@@ -29,7 +29,7 @@ export class Tag {
 	 */
 	@Input() type: TagType | TagTypeExperimental = "ibm";
 
-	@Input() class: String;
+	@Input() class = "";
 
 	@HostBinding("attr.class") get attrClass() {
 		return `bx--tag bx--tag--${this.type} ${this.class}`;

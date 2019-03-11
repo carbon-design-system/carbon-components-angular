@@ -21,7 +21,7 @@ storiesOf("Tag", module)
 	.add("Basic", () => ({
 		template: `
 			<app-experimental-component [(isExperimental)]="experimental"></app-experimental-component>
-			<ibm-tag [type]="(!experimental ? 'ibm' : 'basic')">{{ !experimental ? "IBM" : "Basic" }}</ibm-tag>
+			<ibm-tag [type]="(!experimental ? 'ibm' : 'basic')" class="foo {{test}}">{{ !experimental ? "IBM" : "Basic" }}</ibm-tag>
 			<br><br>
 			<ibm-tag [type]="(!experimental ? 'beta' : 'red')">{{ !experimental ?  "Beta" : "Red" }}</ibm-tag>
 			<br><br>
