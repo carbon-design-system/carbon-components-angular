@@ -19,7 +19,7 @@ export type TagTypeExperimental = "basic" | "red" | "magenta" | "purple" | "blue
  */
 @Component({
 	selector: "ibm-tag",
-	template: `<span><ng-content></ng-content></span>`
+	template: `<ng-content></ng-content>`
 })
 export class Tag {
 	/**
@@ -27,10 +27,11 @@ export class Tag {
 	 *
 	 * Reference `TagType` for v9 applications, and `TagTypeExperimental` for v10/v9 experimental mode applications
 	 */
-	@Input()
-	type: TagType | TagTypeExperimental = "ibm";
+	@Input() type: TagType | TagTypeExperimental = "ibm";
+
+	@Input() class: String;
 
 	@HostBinding("attr.class") get attrClass() {
-		return `bx--tag bx--tag--${this.type}`;
+		return `bx--tag bx--tag--${this.type} ${this.class}`;
 	}
 }
