@@ -7,7 +7,8 @@ import {
 	ViewChildren,
 	ElementRef,
 	AfterViewInit,
-	HostListener
+	HostListener,
+	TemplateRef
 } from "@angular/core";
 import { Subscription, fromEvent } from "rxjs";
 
@@ -206,7 +207,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)"
-					(click)="setIndex($event, i)">
+					(click)="setIndex(i)">
 						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
@@ -358,7 +359,7 @@ import { I18n } from "./../i18n/i18n.module";
 							[ngStyle]="model.header[j].style"
 							[ibmDataGridFocus]="isDataGrid"
 							[(columnIndex)]="columnIndex"
-							(click)="setIndex($event, j)">
+							(click)="setIndex(j)">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
@@ -369,6 +370,7 @@ import { I18n } from "./../i18n/i18n.module";
 				<tr
 				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
 				class="bx--expandable-row-v2"
+				ibmExpandedRowHover
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
 						[ibmDataGridFocus]="isDataGrid"
@@ -386,6 +388,9 @@ import { I18n } from "./../i18n/i18n.module";
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
+			<ng-template
+				[ngTemplateOutlet]="footerTemplate">
+			</ng-template>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
 					<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
@@ -639,6 +644,11 @@ export class Table implements AfterViewInit {
 	 * Set to `true` to stick the header to the top of the table
 	 */
 	@Input() stickyHeader = false;
+
+	/**
+	 * Set footer template to customize what is displayed in the tfoot section of the table
+	 */
+	@Input() footerTemplate: TemplateRef<any>;
 
 	/**
 	 * Emits an index of the column that wants to be sorted.
@@ -923,7 +933,7 @@ export class Table implements AfterViewInit {
 		});
 	}
 
-	setIndex(event, columnIndex) {
+	setIndex(columnIndex) {
 		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
 			this.columnIndex = columnIndex + 2;
 		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
