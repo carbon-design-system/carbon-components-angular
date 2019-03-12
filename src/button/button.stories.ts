@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
 import { ButtonModule } from "../";
 
@@ -14,31 +14,26 @@ storiesOf("Button", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<button ibmButton>A button</button>
-			<br><br>
-			<button ibmButton="secondary">A secondary button</button>
-			<br><br>
-			<button ibmButton="tertiary">A tertiary button</button>
-			<br><br>
-			<button ibmButton="ghost">A ghost button</button>
-			<br><br>
-			<button ibmButton="danger">A danger button</button>
-			<br><br>
-			<button ibmButton="danger--primary">A primary danger button</button>
-		`
+			<button [ibmButton]="ibmButton" [size]="size">Button</button>
+			&nbsp;
+			<button [ibmButton]="ibmButton" [size]="size" disabled="true">Button</button>
+			&nbsp;
+			<button [ibmButton]="ibmButton" [size]="size">
+				With icon
+				<svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" fill-rule="evenodd" />
+				</svg>
+			</button>
+		`,
+		props: {
+			ibmButton: select("Button kind", ["primary", "secondary", "tertiary", "ghost", "danger", "danger--primary"], "primary"),
+			size: select("Size of the buttons", ["normal", "sm"], "normal")
+		}
 	}))
-	.add("Small", () => ({
+	.add("Skeleton", () => ({
 		template: `
-			<button ibmButton size="sm">A button</button>
-			<br><br>
-			<button ibmButton="secondary" size="sm">A secondary button</button>
-			<br><br>
-			<button ibmButton="tertiary" size="sm">A tertiary button</button>
-			<br><br>
-			<button ibmButton="ghost" size="sm">A ghost button</button>
-			<br><br>
-			<button ibmButton="danger" size="sm">A danger button</button>
-			<br><br>
-			<button ibmButton="danger--primary" size="sm">A primary danger button</button>
+			<button ibmButton skeleton="true"></button>
+			&nbsp;
+			<button ibmButton skeleton="true" size="sm"></button>
 		`
 	}));

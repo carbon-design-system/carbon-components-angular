@@ -12,7 +12,7 @@ import { TabHeaders } from "./tab-headers.component";
 
 
 /**
- * Build out your application's tabs using this neutrino component.
+ * Build out your application's tabs using this component.
  * This is the parent of the `Tab` and `TabHeader` components.
  *
  * `Tabs` expects a set of `n-tab` elements
@@ -41,12 +41,15 @@ import { TabHeaders } from "./tab-headers.component";
 	template: `
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'top'"
+				[skeleton]="skeleton"
 				[tabs]="tabs"
+				[followFocus]="followFocus"
 				[cacheActive]="cacheActive">
 			</ibm-tab-headers>
 			<ng-content></ng-content>
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
+				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[cacheActive]="cacheActive">
 			</ibm-tab-headers>
@@ -65,6 +68,20 @@ export class Tabs implements AfterContentInit {
 	 * @memberof Tabs
 	 */
 	@Input() cacheActive = false;
+	/**
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they recieve focus.
+	 * @memberof Tabs
+	 */
+	@Input() followFocus = true;
+	/**
+	 * Set to `true` to put tabs in a loading state.
+	 */
+	@Input() skeleton = false;
+	/**
+	 * Set to `true` to have the tabIndex of the all tabpanels be -1.
+	 */
+	@Input() isNavigation = false;
+
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
 	 * @type {QueryList<Tab>}
@@ -85,6 +102,10 @@ export class Tabs implements AfterContentInit {
 		if (this.tabHeaders) {
 			this.tabHeaders.cacheActive = this.cacheActive;
 		}
+
+		this.tabs.forEach(tab => {
+			tab.tabIndex = this.isNavigation ? -1 : 0;
+		});
 	}
 
 	/**

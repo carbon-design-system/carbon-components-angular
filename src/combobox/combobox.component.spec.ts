@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -20,7 +19,7 @@ import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 		<ibm-dropdown-list></ibm-dropdown-list>
 	</ibm-combo-box>`
 })
-class ComboboxTestComponent {
+class ComboboxTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -37,18 +36,17 @@ xdescribe("Combo box", () => {
 				PillInput,
 				Pill,
 				DropdownList,
-				ComboboxTestComponent,
+				ComboboxTest,
 				ScrollableList
 			],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
 				StaticIconModule
 			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ComboboxTestComponent);
+		fixture = TestBed.createComponent(ComboboxTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

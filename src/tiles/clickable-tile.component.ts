@@ -22,7 +22,7 @@ import {
 	selector: "ibm-clickable-tile",
 	template: `
 	<a
-		class="bx--link bx--tile bx--tile--clickable"
+		class="bx--tile bx--tile--clickable"
 		[ngClass]="{
 			'bx--tile--is-clicked': clicked
 		}"
@@ -30,6 +30,7 @@ import {
 		(click)="onClick($event)"
 		(keydown)="onKeyDown($event)"
 		[href]="href"
+		[target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
 	</a>`
@@ -41,6 +42,13 @@ export class ClickableTile {
 	 * @memberof ClickableTile
 	 */
 	@Input() href: string;
+
+	/**
+	 * Sets the `target` attribute on the `ibm-clickable-tile` element.
+	 * @type {string}
+	 * @memberof ClickableTile
+	 */
+	@Input() target: string;
 
 	/**
 	 * Set to `true` to disable the clickable tile.

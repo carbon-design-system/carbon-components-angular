@@ -1,24 +1,18 @@
-import { CheckboxComponent } from "../checkbox/checkbox.component";
+import { Checkbox } from "../checkbox/checkbox.component";
 import {
-	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
-	ElementRef,
-	EventEmitter,
-	forwardRef,
 	Input,
-	OnInit,
 	Output,
-	Renderer2,
-	ViewChild
+	EventEmitter
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 
 /**
+ * Deprecated in favour of `ToggleState` (to be removed in v3.0).
  * Defines the set of states for a switch component.
- * @export
- * @enum {number}
+ * @deprecated
  */
 export enum SwitchState {
 	Init,
@@ -28,19 +22,19 @@ export enum SwitchState {
 }
 
 /**
+ * Deprecated in favour of `ToggleChange` (to be removed in v3.0).
  * Used to emit changes performed on switch components.
- * @export
- * @class SwitchChange
+ * @deprecated
  */
 export class SwitchChange {
 	/**
-	 * Contains the `SwitchComponent` that has been changed.
-	 * @type {SwitchComponent}
+	 * Contains the `Switch` that has been changed.
+	 * @type {Switch}
 	 * @memberof SwitchChange
 	 */
-	source: SwitchComponent;
+	source: Switch;
 	/**
-	 * The state of the `SwitchComponent` encompassed in the `SwitchChange` class.
+	 * The state of the `Switch` encompassed in the `SwitchChange` class.
 	 * @type {boolean}
 	 * @memberof SwitchChange
 	 */
@@ -48,91 +42,93 @@ export class SwitchChange {
 }
 
 /**
+ * Deprecated in favour of `Toggle` (to be removed in v3.0).
  * ```html
  * <ibm-switch [(ngModel)]="switchState">Switch</ibm-switch>
  * ```
- * @export
- * @class SwitchComponent
- * @extends {CheckboxComponent}
- * @implements {OnInit}
+ * @deprecated
  */
 @Component({
 	selector: "ibm-switch",
 	template: `
 		<input
 			class="bx--toggle"
-			[id]="id"
 			type="checkbox"
-			(click)="onClick($event)"
+			[ngClass]="{
+				'bx--toggle--small': size === 'sm'
+			}"
+			[id]="id"
+			[value]="value"
+			[name]="name"
+			[required]="required"
+			[checked]="checked"
 			[disabled]="disabled"
-			[attr.aria-checked]="checked">
-		<label class="bx--toggle__label" [for]="id">
+			[attr.aria-checked]="checked"
+			(change)="onChange($event)"
+			(click)="onClick($event)">
+		<label *ngIf="size === 'md'" class="bx--toggle__label" [for]="id">
 			<span class="bx--toggle__text--left">Off</span>
 			<span class="bx--toggle__appearance"></span>
 			<span class="bx--toggle__text--right">On</span>
+		</label>
+		<label *ngIf="size === 'sm'" class="bx--toggle__label" [for]="id">
+			<span class="bx--toggle__appearance">
+				<svg class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
+					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
+				</svg>
+			</span>
 		</label>
 	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: SwitchComponent,
+			useExisting: Switch,
 			multi: true
 		}
 	]
 })
-export class SwitchComponent extends CheckboxComponent implements OnInit {
+export class Switch extends Checkbox {
 	/**
 	 * Variable used for creating unique ids for switch components.
-	 * @type {number}
-	 * @static
-	 * @memberof SwitchComponent
 	 */
 	static switchCount = 0;
 
 	/**
 	 * Size of the switch component.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default")}
-	 * @memberof SwitchComponent
 	 */
-	@Input() size: "sm" | "md" | "default" = "md";
+	@Input() size: "sm" | "md" = "md";
 
 	/**
-	 * The unique id allocated to the `SwitchComponent`.
-	 * @type {string}
-	 * @memberof SwitchComponent
+	 * The unique id allocated to the `Switch`.
 	 */
-	id = "switch-" + SwitchComponent.switchCount;
+	id = "switch-" + Switch.switchCount;
 
 	/**
-	 * Creates an instance of SwitchComponent.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
-	 * @memberof SwitchComponent
+	 * Emits event notifying other classes when a change in state occurs on a switch after a
+	 * click.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+	@Output() change = new EventEmitter<SwitchChange>();
+
+	/**
+	 * Creates an instance of Switch.
+	 */
+	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		super(changeDetectorRef);
-		SwitchComponent.switchCount++;
+		Switch.switchCount++;
+
+		console.warn("`ibm-switch` has been deprecated in favour of `ibm-toggle`");
 	}
 
 	/**
-	 * Builds variant classes and appends them to the switch and label elements.
-	 * @memberof SwitchComponent
+	 * Creates instance of `SwitchChange` used to propagate the change event.
+	 * @memberof To
 	 */
-	ngOnInit() {
-		/* TODO: remove and extend in neutrino
-		// Build variant classes
-		const labelClass = `toggle-label${this.size !== "md" ? `--${this.size}` : ""}`;
-		const buttonClass = `toggle${this.size !== "md" ? `--${this.size}` : ""}`;
+	emitChangeEvent() {
+		let event = new SwitchChange();
+		event.source = this;
+		event.checked = this.checked;
 
-		// Get elements
-		const labelEl = this.elementRef.nativeElement.querySelector("label");
-		const buttonEl = this.elementRef.nativeElement.querySelector("button");
-
-		// Add classes to elements
-		this.renderer.addClass(labelEl, labelClass);
-		this.renderer.addClass(buttonEl, buttonClass);
-		*/
+		this.propagateChange(this.checked);
+		this.change.emit(event);
 	}
 }

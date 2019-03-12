@@ -1,93 +1,95 @@
 import { Input, Output, EventEmitter } from "@angular/core";
 import { ListItem } from "./list-item.interface";
+import { Observable } from "rxjs";
 
 
 /**
  * A component that intends to be used within `Dropdown` must provide an implementation that extends this base class.
  * It also must provide the base class in the `@Component` meta-data.
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
- *
- * @export
- * @class AbstractDropdownView
  */
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.
-	 * @type {Array<ListItem>}
-	 * @memberof AbstractDropdownView
 	 */
-	@Input() items: Array<ListItem>;
+	@Input() set items(value: Array<ListItem> | Observable<Array<ListItem>>) { }
+
+	get items(): Array<ListItem> | Observable<Array<ListItem>> { return; }
 	/**
 	 * Emits selection events to other class.
-	 * @type {EventEmitter<Object>}
-	 * @memberof AbstractDropdownView
 	 */
 	@Output() select: EventEmitter<Object>;
 	/**
+	 * Event to suggest a blur on the view.
+	 * Emits _after_ the first/last item has been focused.
+	 * ex.
+	 * ArrowUp -> focus first item
+	 * ArrowUp -> emit event
+	 *
+	 * It's recommended that the implementing view include a specific type union of possible blurs
+	 * ex. `@Output() blurIntent = new EventEmitter<"top" | "bottom">();`
+	 */
+	@Output() blurIntent: EventEmitter<any>;
+	/**
 	 * Specifies whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.
-	 * @type {("single" | "multi")}
-	 * @memberof AbstractDropdownView
 	 */
 	public type: "single" | "multi" = "single";
 	/**
 	 * Specifies the render size of the items within the `AbstractDropdownView`.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {("sm" | "md" | "default" | "lg")}
-	 * @memberof AbstractDropdownView
 	 */
-	public size: "sm" | "md" | "default" | "lg" = "md";
+	public size: "sm" | "md" | "lg" = "md";
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
-	 * @returns {ListItem}
-	 * @memberof AbstractDropdownView
 	 */
 	getNextItem(): ListItem { return; }
 	/**
+	 * Returns a boolean if the currently selected item is preceded by another
+	 */
+	hasNextElement(): boolean { return; }
+	/**
 	 * Returns the `HTMLElement` for the item that is subsequent to the selected item.
-	 * @returns {HTMLElement}
-	 * @memberof AbstractDropdownView
 	 */
 	getNextElement(): HTMLElement { return; }
 	/**
 	 * Returns the `ListItem` that precedes the selected item within `DropdownList`.
-	 * @returns {ListItem}
-	 * @memberof AbstractDropdownView
 	 */
 	getPrevItem(): ListItem { return; }
 	/**
+	 * Returns a boolean if the currently selected item is followed by another
+	 */
+	hasPrevElement(): boolean { return; }
+	/**
 	 * Returns the `HTMLElement` for the item that precedes the selected item.
-	 * @returns {HTMLElement}
-	 * @memberof AbstractDropdownView
 	 */
 	getPrevElement(): HTMLElement { return; }
 	/**
 	 * Returns the selected leaf level item(s) within the `DropdownList`.
-	 * @returns {ListItem[]}
-	 * @memberof AbstractDropdownView
 	 */
 	getSelected(): ListItem[] { return; }
 	/**
 	 * Returns the `ListItem` that is selected within `DropdownList`.
-	 * @returns {ListItem}
-	 * @memberof AbstractDropdownView
 	 */
 	getCurrentItem(): ListItem { return; }
 	/**
 	 * Returns the `HTMLElement` for the item that is selected within the `DropdownList`.
-	 * @returns {HTMLElement}
-	 * @memberof AbstractDropdownView
 	 */
 	getCurrentElement(): HTMLElement { return; }
 	/**
+	 * Guaranteed to return the current items as an Array.
+	 */
+	getListItems(): Array<ListItem> { return; }
+	/**
 	 * Transforms array input list of items to the correct state by updating the selected item(s).
-	 * @param {Array<ListItem>} value
-	 * @memberof AbstractDropdownView
 	 */
 	propagateSelected(value: Array<ListItem>): void {}
-
 	/**
-	 * Initalizes focus in the list
+	 *
+	 * @param value value to filter the list by
+	 */
+	filterBy(value: string): void {}
+	/**
+	 * Initializes focus in the list
 	 * In most cases this just calls `getCurrentElement().focus()`
 	 */
 	initFocus(): void {}

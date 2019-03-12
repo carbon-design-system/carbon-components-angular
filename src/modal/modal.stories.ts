@@ -1,14 +1,16 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { TranslateModule } from "@ngx-translate/core";
-
 import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Modal, ModalService } from "../";
+import { ModalButton, AlertModalType } from "./alert-modal.interface";
+import { PlaceholderModule } from "./../placeholder/placeholder.module";
+import { BaseModal } from "./base-modal.class";
+import { ExperimentalComponenent } from "../../.storybook/experimental.component";
+import { ExperimentalModule } from "../experimental.module";
 
-@Modal()
 @Component({
 	selector: "app-sample-modal",
 	template: `
@@ -24,11 +26,12 @@ import { Modal, ModalService } from "../";
 		</ibm-modal>
 	`
 })
-class SampleModalComponent {
-	constructor(@Inject("modalText") public modalText) {}
+class SampleModal extends BaseModal {
+	constructor(@Inject("modalText") public modalText) {
+		super();
+	}
 }
 
-@Modal()
 @Component({
 	selector: "app-modal-story",
 	template: `
@@ -39,11 +42,11 @@ class ModalStory {
 
 	@Input() modalText = "Hello, World";
 
-	constructor(private modalService: ModalService) { }
+	constructor(protected modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.create({
-			component: SampleModalComponent,
+			component: SampleModal,
 			inputs: {
 				modalText: this.modalText
 			}
@@ -52,7 +55,6 @@ class ModalStory {
 }
 
 
-@Modal()
 @Component({
 	selector: "app-alert-modal-story",
 	template: `
@@ -60,20 +62,20 @@ class ModalStory {
 	`
 })
 class AlertModalStory {
-	@Input() modalType: string;
+	@Input() modalType: AlertModalType;
 	@Input() modalLabel: string;
 	@Input() modalTitle: string;
 	@Input() modalContent: string;
-	@Input() buttons: any;
+	@Input() buttons: Array<ModalButton>;
 
-	constructor(private modalService: ModalService) { }
+	constructor(protected modalService: ModalService) { }
 
 	openModal() {
 		this.modalService.show({
 			modalType: this.modalType,
-			modalLabel: this.modalLabel,
-			modalTitle: this.modalTitle,
-			modalContent: this.modalContent,
+			label: this.modalLabel,
+			title: this.modalTitle,
+			content: this.modalContent,
 			buttons: this.buttons
 		});
 	}
@@ -84,15 +86,18 @@ storiesOf("Modal", module)
 		moduleMetadata({
 			declarations: [
 				ModalStory,
-				SampleModalComponent
+				SampleModal,
+				AlertModalStory,
+				ExperimentalComponenent
 			],
 			imports: [
 				ModalModule,
+				PlaceholderModule,
 				BrowserAnimationsModule,
-				TranslateModule.forRoot()
+				ExperimentalModule
 			],
 			entryComponents: [
-				SampleModalComponent
+				SampleModal
 			]
 		})
 	)
@@ -100,30 +105,15 @@ storiesOf("Modal", module)
 	.add("Basic", () => ({
 		template: `
 		<app-modal-story [modalText]="modalText"></app-modal-story>
-		<ibm-modal-placeholder></ibm-modal-placeholder>
+		<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			modalText: text("modalText", "Hello, World!")
 		}
 	}))
-	.addDecorator(
-		moduleMetadata({
-			declarations: [
-				AlertModalStory
-			],
-			imports: [
-				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
-			],
-			entryComponents: [
-				SampleModalComponent
-			]
-		})
-	)
-	.addDecorator(withKnobs)
 	.add("Transactional", () => ({
 		template: `
+		<app-experimental-component></app-experimental-component>
 		<app-alert-modal-story
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
@@ -131,7 +121,7 @@ storiesOf("Modal", module)
 			[modalContent]="modalContent"
 			[buttons]="buttons">
 		</app-alert-modal-story>
-		<ibm-modal-placeholder></ibm-modal-placeholder>
+		<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			modalType: select("modalType", ["default", "danger"], "default"),
@@ -148,31 +138,16 @@ storiesOf("Modal", module)
 			}]
 		}
 	}))
-	.addDecorator(
-		moduleMetadata({
-			declarations: [
-				AlertModalStory
-			],
-			imports: [
-				ModalModule,
-				BrowserAnimationsModule,
-				TranslateModule.forRoot()
-			],
-			entryComponents: [
-				SampleModalComponent
-			]
-		})
-	)
-	.addDecorator(withKnobs)
 	.add("Passive", () => ({
 		template: `
+		<app-experimental-component></app-experimental-component>
 		<app-alert-modal-story
 			[modalType]="modalType"
 			[modalLabel]="modalLabel"
 			[modalTitle]="modalTitle"
 			[modalContent]="modalContent">
 		</app-alert-modal-story>
-		<ibm-modal-placeholder></ibm-modal-placeholder>
+		<ibm-placeholder></ibm-placeholder>
 		`,
 		props: {
 			modalType: select("modalType", ["default", "danger"], "default"),

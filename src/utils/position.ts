@@ -1,8 +1,9 @@
 /**
  * Utilites to manipulate the position of elements relative to other elements
  *
- * @export
  */
+
+import { getScrollbarWidth } from "./window-tools";
 
 // possible positions ... this should probably be moved (along with some other types) to some central location
 export type Placement =
@@ -77,7 +78,7 @@ function calculatePosition(referenceOffset: Offset, reference: HTMLElement, targ
 
 export namespace position {
 	export function getRelativeOffset(target: HTMLElement): Offset {
-		// start with the inital element offsets
+		// start with the initial element offsets
 		let offsets = {
 			left: target.offsetLeft,
 			top: target.offsetTop
@@ -92,9 +93,39 @@ export namespace position {
 	}
 
 	export function getAbsoluteOffset(target: HTMLElement): Offset {
+		let currentNode = target;
+		let margins = {
+			top: 0,
+			left: 0
+		};
+
+		// searches for containing elements with additional margins
+		while (currentNode.offsetParent) {
+			const computed = getComputedStyle(currentNode.offsetParent);
+			// find static elements with additional margins
+			// since they tend to throw off our positioning
+			// (usually this is just the body)
+			if (
+				computed.position === "static" &&
+				computed.marginLeft &&
+				computed.marginTop
+			) {
+				if (parseInt(computed.marginTop, 10)) {
+					margins.top += parseInt(computed.marginTop, 10);
+				}
+				if (parseInt(computed.marginLeft, 10)) {
+					margins.left += parseInt(computed.marginLeft, 10);
+				}
+			}
+
+			currentNode = currentNode.offsetParent as HTMLElement;
+		}
+
+		const targetRect = target.getBoundingClientRect();
+		const relativeRect = document.body.getBoundingClientRect();
 		return {
-			top: target.getBoundingClientRect().top,
-			left: target.getBoundingClientRect().left - document.body.getBoundingClientRect().left
+			top: targetRect.top - relativeRect.top + margins.top,
+			left: targetRect.left - relativeRect.left + margins.left
 		};
 	}
 
@@ -117,22 +148,19 @@ export namespace position {
 		return calculatePosition(referenceOffset, reference, target, placement);
 	}
 
-	/** check if the placement is within the window. */
-	export function checkPlacement(target: HTMLElement, position: AbsolutePosition): boolean {
-		const elTop = position.top;
-		const elLeft = position.left;
-		const elBottom = target.offsetHeight + position.top;
-		const elRight = target.offsetWidth + position.left;
-		const windowTop = window.scrollY;
-		const windowLeft = window.scrollX;
-		// remove the target height so we get a reasonably accurate window height reading
-		const windowBottom = (window.innerHeight + window.scrollY) - target.offsetHeight;
-		const windowRight = window.innerWidth + window.scrollX;
+	/**
+	 * Get the dimensions of the dialog from an AbsolutePosition and a reference element
+	 */
+	export function getPlacementBox(target: HTMLElement, position: AbsolutePosition) {
+		const targetBottom = target.offsetHeight + position.top;
+		const targetRight = target.offsetWidth + position.left;
 
-		if (elBottom < windowBottom && elRight < windowRight && elTop > windowTop && elLeft > windowLeft) {
-			return true;
-		}
-		return false;
+		return {
+			top: position.top,
+			bottom: targetBottom,
+			left: position.left,
+			right: targetRight
+		};
 	}
 
 	export function addOffset(position: AbsolutePosition, top = 0, left = 0): AbsolutePosition {

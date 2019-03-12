@@ -2,16 +2,16 @@ import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 import { StaticIconModule } from "./../../icon/static-icon.module";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
 
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
+import { I18nModule } from "../../i18n/i18n.module";
 
 @Component({
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)"></ibm-dropdown-list>`
 })
-class DropdownListTestComponent {
+class DropdownListTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem;
 	onSelect(ev) {
@@ -22,7 +22,7 @@ class DropdownListTestComponent {
 @Component({
 	template: `<ibm-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></ibm-dropdown-list>`
 })
-class TestMultiComponent {
+class MultiTest {
 	items = [{content: "one", selected: false}, {content: "two", selected: false}];
 	selected: ListItem[];
 	onSelect(ev) {
@@ -36,22 +36,18 @@ describe("Dropdown list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownList,
-				DropdownListTestComponent,
+				DropdownListTest,
 				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader, useClass: TranslateFakeLoader
-					}
-				})
+				I18nModule
 			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(DropdownListTestComponent);
+		fixture = TestBed.createComponent(DropdownListTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -74,22 +70,18 @@ describe("Dropdown multi list", () => {
 		TestBed.configureTestingModule({
 			declarations: [
 				DropdownList,
-				TestMultiComponent,
+				MultiTest,
 				ScrollableList
 			],
 			imports: [
 				StaticIconModule,
-				TranslateModule.forRoot({
-					loader: {
-						provide: TranslateLoader, useClass: TranslateFakeLoader
-					}
-				})
+				I18nModule
 			]
 		});
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TestMultiComponent);
+		fixture = TestBed.createComponent(MultiTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 	});

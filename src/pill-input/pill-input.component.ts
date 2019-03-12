@@ -109,10 +109,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@Input() displayValue = "";
 	/** "single" or "multi" for single or multi select lists */
 	@Input() type: "single" | "multi" = "single";
-	/** "sm" | "md" | "default" | "lg"
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 */
-	@Input() size: "sm" | "md" | "default" | "lg" = "md";
+	@Input() size: "sm" | "md" | "lg" = "md";
 	/** is the input disabled. true/false */
 	@Input() disabled = false;
 	/** the direction of the pills */
@@ -141,7 +138,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	@HostBinding("style.width.%") width = "100";
 
 	/** instaniates a pill-input */
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	/**
 	 * Updates the pills, and subscribes to their `remove` events.
@@ -389,7 +386,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	/**
 	 * checks weather the placeholder should be displayed or not.
 	 */
-	private checkPlaceholderVisibility(): void {
+	protected checkPlaceholderVisibility(): void {
 		if (this.type === "single") {
 			setTimeout(() => this.showPlaceholder = !this.displayValue && !this.focusActive && !this.getInputText());
 		} else {
@@ -402,7 +399,7 @@ export class PillInput implements OnChanges, AfterViewInit {
 	 *
 	 * @param target node to set the selection on
 	 */
-	private setSelection(target) {
+	protected setSelection(target) {
 		let selectionRange = document.createRange();
 		let selection = window.getSelection();
 		selectionRange.selectNodeContents(target);

@@ -20,6 +20,14 @@ export class TableHeaderItem {
 	sorted = false;
 
 	/**
+	 * Enables sorting on click by default.
+	 * If false then this column won't show a sorting arrow at all.
+	 *
+	 * @memberof TableHeaderItem
+	 */
+	sortable = true;
+
+	/**
 	 * Number of applied filters.
 	 *
 	 * `filter()` should set it to appropriate number.
@@ -29,13 +37,20 @@ export class TableHeaderItem {
 	filterCount = 0;
 
 	/**
+	 * Attach a class to the column, both the header and column cells.
+	 *
+	 * @memberof TableHeaderItem
+	 */
+	className: string;
+
+	/**
 	 * Style for the column, applied to every element in the column.
 	 *
 	 * ngStyle-like format
 	 *
 	 * @memberof TableHeaderItem
 	 */
-	style = {"width": "150px"};
+	style = {};
 
 	/**
 	 * If true, sort is set to ascending, if false descending will be true.
@@ -70,6 +85,15 @@ export class TableHeaderItem {
 	data: any;
 
 	/**
+	 * Data for the header item for general usage in the controller.
+	 * For example, which `field` is this column related to.
+	 *
+	 * @type {*}
+	 * @memberof TableHeaderItem
+	 */
+	metadata: any;
+
+	/**
 	 * Used to display data in a desired way.
 	 *
 	 * If not provided, displays data as a simple string.
@@ -90,7 +114,7 @@ export class TableHeaderItem {
 	 *
 	 * ```typescript
 	 * (at)ViewChild("customHeaderTemplate")
-	 * private customHeaderTemplate: TemplateRef<any>;
+	 * protected customHeaderTemplate: TemplateRef<any>;
 	 * ```
 	 *
 	 * Set the template to the header item, for example:
@@ -183,10 +207,10 @@ export class TableHeaderItem {
 	/**
 	 * used in `ascending`
 	 *
-	 * @private
+	 * @protected
 	 * @memberof TableHeaderItem
 	 */
-	private _ascending = true;
+	protected _ascending = true;
 
 	/**
 	 * Creates an instance of TableHeaderItem.
@@ -204,14 +228,11 @@ export class TableHeaderItem {
 		};
 		// fill our object with provided props, and fallback to defaults
 		const data = Object.assign({}, defaults, rawData);
-		this.data = data.data;
-		this.visible = data.visible;
-		this.filterCount = data.filterCount;
-		this.template = data.template;
-		this.filterTemplate = data.filterTemplate;
-		this.filterFooter = data.filterFooter;
-		this.filterData = data.filterData;
-		this.style = data.style;
+		for (let property of Object.getOwnPropertyNames(data)) {
+			if (data.hasOwnProperty(property)) {
+				this[property] = data[property];
+			}
+		}
 	}
 
 	/**

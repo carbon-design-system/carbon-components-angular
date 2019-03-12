@@ -12,15 +12,27 @@ storiesOf("Radio", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-radio-group (change)="onChange($event)">
-			<ibm-radio [disabled]="disableOne">one</ibm-radio>
-			<ibm-radio>two</ibm-radio>
-			<ibm-radio>three</ibm-radio>
-			<ibm-radio>four</ibm-radio>
+		<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)">
+			<ibm-radio *ngFor="let radio of manyRadios"
+				[value]="radio.num"
+				[disabled]="radio.disabled">{{radio.num}}
+			</ibm-radio>
 		</ibm-radio-group>
 		`,
 		props: {
-			disableOne: boolean("disableOne", false),
-			onChange: action("Radio changed!")
+			onChange: action("Radio change"),
+			manyRadios: [
+				{ num: "one",  disabled: false },
+				{ num: "two" },
+				{ num: "three" },
+				{ num: "four" }
+			]
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<ibm-radio-group skeleton="true">
+			<ibm-radio></ibm-radio>
+		</ibm-radio-group>
+		`
 	}));

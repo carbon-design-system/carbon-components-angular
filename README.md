@@ -1,5 +1,17 @@
-# Carbon Components Angular [![npm](https://img.shields.io/npm/v/carbon-components-angular.svg)](https://www.npmjs.com/package/carbon-components-angular) [![Travis](https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master)](https://travis-ci.com/IBM/carbon-components-angular)
-An _Angular_ implementation of the Carbon Design System
+<p align="center">
+	<h1 align="center">Carbon Components Angular</h1>
+	<p align="center">
+	An Angular implementation of the Carbon Design System
+		<br /><br />
+		<a href="https://travis-ci.com/IBM/carbon-components-angular">
+			<img src="https://travis-ci.com/IBM/carbon-components-angular.svg?branch=master" />
+		</a>
+		<a href="https://www.npmjs.com/package/carbon-components-angular">
+			<img src="https://img.shields.io/npm/v/carbon-components-angular.svg" />
+		</a>
+		<img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+	</p>
+</p>
 
 ### Getting started
 
@@ -8,7 +20,7 @@ Assuming we're starting with a new @angular/cli project:
 ```shell
 $ npx @angular/cli new my-project --style=scss
 $ cd my-project
-$ npm i --save-dev carbon-components-angular carbon-components @ngx-translate/core
+$ npm i --save carbon-components-angular carbon-components
 ```
 
 Then we need to include carbon-components in `src/styles.scss`:
@@ -17,34 +29,13 @@ Then we need to include carbon-components in `src/styles.scss`:
 @import "~carbon-components/scss/globals/scss/styles.scss";
 ```
 
-> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not polute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
+> *Note:* For offline usage we'll need to set `$font-path: '~carbon-components/src/globals/fonts';` at the very top of our `src/styles.scss`. This will copy the fonts to our `dist` folder upon successful build. If you like the fonts to be a part of your `assets` folder and not pollute the `dist` folder then copy the fonts from `node_modules/carbon-components/src/globals/fonts` into our app's `src/assets/fonts` folder and add `$font-path: '/assets/fonts/';` at the very top of our `src/styles.scss`.
 
-Then set up our translations in `src/app/app.module.ts`:
-
-```ts
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
-
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-	BrowserModule,
-	TranslateModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-
-_Finally_ we can run `npm start` and start building out our application!
+That's it! Now we can run `npm start` and start building out our application!
 
 > *Note:* This isn't the only way to bootstrap a `carbon-components-angular` application, but the combination of `@angular/cli` and the `carbon-components` scss is our recommended setup.
+
+[![Edit Carbon Components Angular](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0129r494ql)
 
 ### Contributing
 
@@ -68,7 +59,7 @@ _Finally_ we can run `npm start` and start building out our application!
   - attach a screenshot (or a gif!) for design reference if needed
   - reference the related issue
   	- "closes #123" or "fixes #123" will close issue #123 once the PR is merged
-  	- "issue #123" just refences the issue. Only use this if you definitly need the issue to remain open.
+  	- "issue #123" just references the issue. Only use this if you definitely need the issue to remain open.
   - @mention any specific other developers that need to be aware of the changes
 - add the "needs review" label along with any other relevant labels
 - [link to code review checklist goes here](#)
@@ -85,11 +76,11 @@ _Finally_ we can run `npm start` and start building out our application!
   - screenshots if needed
   - relevant code snippets
   - links to application source code or running demo ([Codesandbox is awesome for this!](https://codesandbox.io/s/angular)) (including connection/authentication information)
-- add relevant labels (bug, accsibility, design, discussion, feature, etc)
+- add relevant labels (bug, accessibility, design, discussion, feature, etc)
 - if you have a fix to contribute, assign yourself, otherwise leave unassigned
 
 #### npm commands
-To keep our build dependancies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.
+To keep our build dependencies local we use npm scripts to run our webpack, gulp, and general build tasks. You should never install webpack or gulp globally as that will likely conflict with our version. You should never need to modify the build process to add a component or story.
 - `npm run storybook` to run storybook (port 6006)
 - `npm run build` to generate the dist
 - `docs:build` to build documentation

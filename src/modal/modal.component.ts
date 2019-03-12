@@ -18,7 +18,7 @@ import {
 	transition,
 	animate
 } from "@angular/animations";
-import { cycleTabs } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
 
 /**
@@ -44,7 +44,7 @@ import { cycleTabs } from "./../common/tab.service";
  * 			<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * 			<section class="modal-body">
  * 			<h1>Sample modal works.</h1>
- * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendToBody="false">
+ * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
  * 				<ibm-icon icon="info" size="sm"></ibm-icon>
  * 			</button>
  * 			{{modalText}}
@@ -53,10 +53,10 @@ import { cycleTabs } from "./../common/tab.service";
  * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
- * export class SampleModalComponent {
- * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
+ * export class SampleModal extends BaseModal {
  * 	modalText: string;
- * 	constructor(private injector: Injector) {
+ * 	constructor(protected injector: Injector) {
+ * 		super();
  * 		this.modalText = this.injector.get("modalText");
  * 	}
  * }
@@ -73,27 +73,24 @@ import { cycleTabs } from "./../common/tab.service";
  * })
  * export class ModalDemo {
  * 	openModal() {
- * 		this.modalService.create({component: SampleModalComponent, inputs: {modalText: "Hello universe."}});
+ * 		this.modalService.create({component: SampleModal, inputs: {modalText: "Hello universe."}});
  * 	}
  * }
  * ```
  *
- * @export
- * @class ModalComponent
- * @implements {OnInit}
- * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-modal",
 	template: `
-		<ibm-overlay [modalType]="modalType" (overlaySelect)="overlaySelected.emit()">
+		<ibm-overlay [theme]="theme" (overlaySelect)="overlaySelected.emit()">
 			<div
 				class="bx--modal-container"
 				[@modalState]="modalState"
-				role="main"
+				role="dialog"
 				aria-modal="true"
 				tabindex="0"
 				style="z-index:1;"
+				[attr.aria-label]="modalLabel"
 				#modal>
 				<ng-content></ng-content>
 			</div>
@@ -111,60 +108,51 @@ import { cycleTabs } from "./../common/tab.service";
 		])
 	]
 })
-export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
+export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	/**
 	 * Size of the modal to display.
-	 * (size `"default"` is being deprecated as of neutrino v1.2.0, please use `"md"` instead)
-	 * @type {"sm" | "md" | "default" | "lg" | "xl" | "xxl"}
-	 * @memberof ModalComponent
 	 */
-	@Input() size = "default";
+	@Input() size: "sm" | "md" | "lg" | "xl" | "xxl" = "md";
 	/**
 	 * Classification of the modal.
-	 * @type {"default" | "danger"}
-	 * @memberof ModalComponent
 	 */
-	@Input() modalType = "default";
+	@Input() theme: "default" | "danger" = "default";
+
+	/**
+	 * Label for the modal.
+	 */
+	@Input() modalLabel = "default";
+
 	/**
 	 * Emits event when click occurs within `n-overlay` element. This is to track click events occuring outside bounds of the `Modal` object.
-	 * @memberof ModalComponent
 	 */
 	@Output() overlaySelected = new EventEmitter();
 	/**
 	 * To emit the closing event of the modal window.
-	 * @memberof ModalComponent
 	 */
 	@Output() close = new EventEmitter();
 	/**
 	 * Maintains a reference to the view DOM element of the `Modal`.
-	 * @type {ElementRef}
-	 * @memberof ModalComponent
 	 */
 	@ViewChild("modal") modal: ElementRef;
 
 	/**
 	 * Controls the transitions of the `Modal` component.
-	 * @type {"in" | "out"}
-	 * @memberof ModalComponent
 	 */
-	modalState = "out";
+	modalState: "in" | "out" = "out";
 
 	/**
 	 * An element should have 'data-modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
-	 * @memberof ModalComponent
 	 */
 	selectorPrimaryFocus = "[modal-primary-focus]";
 
 	/**
-	 * Creates an instance of `ModalComponent`.
-	 * @param {ModalService} modalService
-	 * @memberof ModalComponent
+	 * Creates an instance of `Modal`.
 	 */
 	constructor(public modalService: ModalService) {}
 
 	/**
 	 * Set modalState on the modal component when it is initialized.
-	 * @memberof ModalComponent
 	 */
 	ngOnInit() {
 		this.modalState = "in";
@@ -172,7 +160,6 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	/**
 	 * Set document focus to be on the modal component after it is initialized.
-	 * @memberof ModalComponent
 	 */
 	ngAfterViewInit() {
 		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
@@ -180,22 +167,22 @@ export class ModalComponent implements AfterViewInit, OnInit, OnDestroy {
 			primaryFocusElement.focus();
 			return;
 		}
-		this.modal.nativeElement.focus();
+		if (getFocusElementList(this.modal.nativeElement).length > 0) {
+			getFocusElementList(this.modal.nativeElement)[0].focus();
+		} else {
+			this.modal.nativeElement.focus();
+		}
 	}
 
 	/**
 	 * Emit the close event when the modal component is destroyed.
-	 * @memberof ModalComponent
 	 */
 	ngOnDestroy() {
 		this.modalState = "out";
-		this.close.emit();
 	}
 
 	/**
 	 * Handle keyboard events to close modal and tab through the content within the modal.
-	 * @param {KeyboardEvent} event
-	 * @memberof ModalComponent
 	 */
 	@HostListener("keydown", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {

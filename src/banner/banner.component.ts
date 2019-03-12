@@ -4,17 +4,21 @@ import {
 	Output,
 	EventEmitter,
 	ComponentRef,
-	ViewChild
+	ViewChild,
+	OnInit
 } from "@angular/core";
 
 import { BannerService } from "./banner.service";
 import { NotificationContent } from "./banner-content.interface";
+import { I18n } from "./../i18n/i18n.module";
 
 /**
+ * Deprecated in favour of `InlineNotification` (to be removed in v3.0).
  * Banner messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
  * @export
  * @class Banner
+ * @deprecated
  */
 @Component({
 	selector: "ibm-banner",
@@ -35,10 +39,10 @@ import { NotificationContent } from "./banner-content.interface";
 		<button
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
+			[attr.aria-label]="bannerObj.closeLabel"
 			type="button">
 			<svg
 				class="bx--inline-notification__close-icon"
-				aria-label="close"
 				width="10"
 				height="10"
 				viewBox="0 0 10 10"
@@ -50,7 +54,7 @@ import { NotificationContent } from "./banner-content.interface";
 	`,
 	providers: [BannerService]
 })
-export class Banner {
+export class Banner implements OnInit {
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -73,7 +77,15 @@ export class Banner {
 
 	@ViewChild("banner") banner;
 
-	constructor(protected bannerService: BannerService) {}
+	constructor(protected bannerService: BannerService, protected i18n: I18n) {
+		console.warn("`ibm-banner` has been deprecated in favour of `ibm-inline-notification`");
+	}
+
+	ngOnInit() {
+		if (!this.bannerObj.closeLabel) {
+			this.bannerObj.closeLabel = this.i18n.get().BANNER.CLOSE_BUTTON;
+		}
+	}
 
 	/**
 	 * Emits close event.

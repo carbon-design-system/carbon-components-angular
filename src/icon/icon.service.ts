@@ -15,17 +15,17 @@ export class IconService {
 	 * Internal variable to track running requests.
 	 * Used to call spriteLoaded when new sprites are available
 	 */
-	private static runningRequests = 0;
+	protected static runningRequests = 0;
 	/**
 	 * map to use for sprite requests
 	 *
 	 * we just cache the whole promise since we can always `.then` out the result
 	 * */
-	private static spriteCache: Map<string, Observable<string>> = new Map<string, Observable<string>>();
+	protected static spriteCache: Map<string, Observable<string>> = new Map<string, Observable<string>>();
 	/** how aggressively to cache sprites. defaults to simple */
-	private static cacheLevel: "none" | "simple" = "simple";
+	protected static cacheLevel: "none" | "simple" = "simple";
 	/** URL to request sprites from */
-	private static baseURL = "https://peretz-icons.mybluemix.net/";
+	protected static baseURL = "https://peretz-icons.mybluemix.net/";
 
 	/**
 	 * Sets the baseURL
@@ -53,7 +53,7 @@ export class IconService {
 	}
 
 	/** get an instance of the Http service */
-	constructor(private http: HttpClient) {}
+	constructor(protected http: HttpClient) {}
 
 	/**
 	 * Responsible for fetching sprites from the `baseURL`

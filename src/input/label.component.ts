@@ -1,5 +1,10 @@
-import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
-
+import {
+	Component,
+	Input,
+	AfterContentInit,
+	ElementRef,
+	HostBinding
+} from "@angular/core";
 
 /**
  * ```html
@@ -20,51 +25,62 @@ import { Component, Input, AfterContentInit, ElementRef } from "@angular/core";
  * ```
  *
  * @export
- * @class LabelComponent
+ * @class Label
  * @implements {AfterContentInit}
  */
 @Component({
 	selector: "ibm-label",
 	template: `
-	<div class="bx--form-item">
-		<label [for]="labelInputID" class="bx--label"><ng-content></ng-content></label>
+		<label
+			[for]="labelInputID"
+			class="bx--label"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}">
+			<ng-content></ng-content>
+		</label>
 		<ng-content select="input,textarea,div"></ng-content>
-	</div>
 	`
 })
-export class LabelComponent implements AfterContentInit {
+export class Label implements AfterContentInit {
 	/**
-	 * Used to build the id of the input item associated with the `LabelComponent`.
+	 * Used to build the id of the input item associated with the `Label`.
 	 * @static
-	 * @memberof LabelComponent
+	 * @memberof Label
 	 */
 	static labelCounter = 0;
 	/**
-	 * The id of the input item associated with the `LabelComponent`. This value is also used to associate the `LabelComponent` with
+	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
-	 * @memberof LabelComponent
+	 * @memberof Label
 	 */
-	labelInputID = "ibm-label-" + LabelComponent.labelCounter;
+	labelInputID = "ibm-label-" + Label.labelCounter;
 
 	/**
-	 * State of the `LabelComponent` will determine the styles applied.
+	 * State of the `Label` will determine the styles applied.
 	 * @type {("success" | "warning" | "error" | "")}
-	 * @memberof LabelComponent
+	 * @memberof Label
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
+	/**
+	 * Set to `true` for a loading label.
+	 */
+	@Input() skeleton = false;
+
+	@HostBinding("class.bx--form-item") labelClass = true;
 
 	/**
-	 * Creates an instance of LabelComponent.
+	 * Creates an instance of Label.
 	 * @param {ElementRef} elementRef
-	 * @memberof LabelComponent
+	 * @memberof Label
 	 */
-	constructor(private elementRef: ElementRef) {
-		LabelComponent.labelCounter++;
+	constructor(protected elementRef: ElementRef) {
+		Label.labelCounter++;
 	}
 
 	/**
-	 * Sets the id on the input item associated with the `LabelComponent`.
-	 * @memberof LabelComponent
+	 * Sets the id on the input item associated with the `Label`.
+	 * @memberof Label
 	 */
 	ngAfterContentInit() {
 		this.elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);

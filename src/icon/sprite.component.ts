@@ -34,9 +34,9 @@ export class Sprite implements AfterViewInit {
 	 * @param {ElementRef} _elementRef
 	 * @param {IconService} icons
 	 */
-	constructor(private http: Http,
-		private _elementRef: ElementRef,
-		private icons: IconService) {}
+	constructor(protected http: Http,
+		protected _elementRef: ElementRef,
+		protected icons: IconService) {}
 
 	/** load the sprite and inject it into the rendered DOM */
 	ngAfterViewInit() {

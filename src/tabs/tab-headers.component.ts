@@ -16,7 +16,7 @@ import { Tab } from "./tab.component";
 
 
 /**
- * The `TabHeaders` neutrino component contains the `Tab` items and controls scroll functionality
+ * The `TabHeaders` component contains the `Tab` items and controls scroll functionality
  * if content has overflow.
  * @export
  * @class TabHeaders
@@ -25,7 +25,12 @@ import { Tab } from "./tab.component";
 @Component({
 	selector: "ibm-tab-headers",
 	template: `
-		<nav class="bx--tabs" role="navigation">
+		<nav
+			class="bx--tabs"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}"
+			role="navigation">
 			<div class="bx--tabs-trigger" tabindex="0" (click)="showTabList()">
 				<a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1">
 					<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
@@ -53,12 +58,12 @@ import { Tab } from "./tab.component";
 						'bx--tabs__nav-item--selected': tab.active
 					}"
 					class="bx--tabs__nav-item"
-					role="presentation">
+					role="presentation"
+					(click)="selectTab(tabref, tab, i)">
 					<a
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
-						(click)="selectTab(tabref, tab, i)"
 						(focus)="onTabFocus(tabref, i)"
 						draggable="false"
 						id="{{tab.id}}-header"
@@ -70,7 +75,8 @@ import { Tab } from "./tab.component";
 						</ng-container>
 						<ng-template
 							*ngIf="tab.headingIsTemplate"
-							[ngTemplateOutlet]="tab.heading">
+							[ngTemplateOutlet]="tab.heading"
+							[ngTemplateOutletContext]="{$implicit: tab.context}">
 						</ng-template>
 					</a>
 				</li>
@@ -97,6 +103,16 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 * @memberof Tabs
 	 */
 	@Input() cacheActive = false;
+	/**
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
+	 * @memberof TabHeaders
+	 */
+	@Input() followFocus: boolean;
+	/**
+	 * Set to `true` to put tabs in a loading state.
+	 */
+	@Input() skeleton = false;
+
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
 	 * @memberof TabHeaders
@@ -135,18 +151,61 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
-		if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+		let tabsArray = Array.from<any>(this.tabs);
+
+		// "Right" is an ie11 specific value
+		if (event.key === "Right" || event.key === "ArrowRight") {
 			if (this.currentSelectedTab < this.allTabHeaders.length - 1) {
 				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[this.currentSelectedTab + 1], this.currentSelectedTab);
+				}
 				this.allTabHeaders[this.currentSelectedTab + 1].focus();
+			} else {
+				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[0], 0);
+				}
+				this.allTabHeaders[0].focus();
 			}
 		}
 
-		if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+		// "Left" is an ie11 specific value
+		if (event.key === "Left" || event.key === "ArrowLeft") {
 			if (this.currentSelectedTab > 0) {
 				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[this.currentSelectedTab - 1], this.currentSelectedTab);
+				}
 				this.allTabHeaders[this.currentSelectedTab - 1].focus();
+			} else {
+				event.preventDefault();
+				if (this.followFocus) {
+					this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
+				}
+				this.allTabHeaders[this.allTabHeaders.length - 1].focus();
 			}
+		}
+
+		if (event.key === "Home") {
+			event.preventDefault();
+			if (this.followFocus) {
+				this.selectTab(event.target, tabsArray[0], 0);
+			}
+			this.allTabHeaders[0].focus();
+		}
+
+		if (event.key === "End") {
+			event.preventDefault();
+			if (this.followFocus) {
+				this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
+			}
+			this.allTabHeaders[this.allTabHeaders.length - 1].focus();
+		}
+
+		// `"Spacebar"` is IE11 specific value
+		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
+			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
 		}
 	}
 
@@ -220,10 +279,10 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Determines which `Tab` is initially selected.
-	 * @private
+	 * @protected
 	 * @memberof Tabs
 	 */
-	private setFirstTab() {
+	protected setFirstTab() {
 		setTimeout(() => {
 			let firstTab = this.tabs.find(tab => tab.active);
 			if (!firstTab && this.tabs.first) {

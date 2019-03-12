@@ -18,7 +18,7 @@ import { SampleInterface } from "./sample.interface";
 @Component({
 	selector: "ibm-sample",
 	template: `
-		<p>Hello, Neutrino!</p>
+		<p>Hello, Carbon-Angular!</p>
 		<span>{{ foo.required }}</span>
 	`
 })
@@ -29,11 +29,11 @@ export class Sample implements OnInit, AfterViewInit, OnDestroy {
 	@Output() bar: EventEmitter<SampleInterface> = new EventEmitter<SampleInterface>();
 
 	/**
-	 * instantiate services as private variables
+	 * instantiate services as protected variables
 	 *
 	 * @param {ElementRef} _elementRef
 	 */
-	constructor(private _elementRef: ElementRef) {}
+	constructor(protected _elementRef: ElementRef) {}
 
 	/** run setup logic that doesnt depend on the DOM and only needs to be run once here */
 	ngOnInit() {

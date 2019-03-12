@@ -1,8 +1,6 @@
 /// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
 
 import { Component } from "@angular/core";
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from "@ngx-translate/core";
-
 import { TestBed } from "@angular/core/testing";
 import { StaticIconModule } from "./../icon/static-icon.module";
 
@@ -14,9 +12,8 @@ import { TabHeaders } from "./tab-headers.component";
 describe("Tabs", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tabs, Tab, TabHeaders, TabsTestComponent],
+			declarations: [Tabs, Tab, TabHeaders, TabsTest],
 			imports: [
-				TranslateModule.forRoot({loader: {provide: TranslateLoader, useClass: TranslateFakeLoader}}),
 				StaticIconModule
 			]
 		});
@@ -97,6 +94,6 @@ describe("Tabs", () => {
 
 
 @Component({selector: "test-cmp", template: ""})
-class TabsTestComponent {
+class TabsTest {
 	changeCallback = (event: any) => {};
 }

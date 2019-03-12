@@ -1,17 +1,8 @@
 import {
 	Component,
-	Injector,
-	ElementRef,
 	Inject
 } from "@angular/core";
-import {
-	trigger,
-	state,
-	style,
-	transition,
-	animate
-} from "@angular/animations";
-import Modal from "./modal.decorator";
+import { BaseModal } from "./base-modal.class";
 
 /**
  * Component to create standard modals for presenting content or asking for user's input.
@@ -52,13 +43,12 @@ import Modal from "./modal.decorator";
  * ```
  *
  * @export
- * @class AlertModalComponent
+ * @class AlertModal
  */
-@Modal()
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [modalType]="modalType">
+		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle">
 			<ibm-modal-header (closeSelect)="closeModal()">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
@@ -80,11 +70,11 @@ import Modal from "./modal.decorator";
 		</ibm-modal>
 	`
 })
-export class AlertModalComponent {
+export class AlertModal extends BaseModal {
 	/**
-	 * Creates an instance of `AlertModalComponent`.
+	 * Creates an instance of `AlertModal`.
 	 * @param {ModalService} modalService
-	 * @memberof AlertModalComponent
+	 * @memberof AlertModal
 	 */
 	constructor(
 		@Inject("modalType") public modalType = "default",
@@ -93,6 +83,7 @@ export class AlertModalComponent {
 		@Inject("modalContent") public modalContent: string,
 		@Inject("buttons") public buttons = []
 	) {
+		super();
 		for (let i = 0; i < this.buttons.length; i++) {
 			const button = this.buttons[i];
 			if (!button.id) {
@@ -111,10 +102,5 @@ export class AlertModalComponent {
 		}
 
 		this.closeModal();
-	}
-
-	closeModal() {
-		// let call the @Modal.destroy() explicitly or otherwise the modal won't close
-		this["destroy"]();
 	}
 }
