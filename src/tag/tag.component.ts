@@ -12,7 +12,7 @@ export type TagType = "beta" | "community" | "custom" | "dedicated" | "experimen
 /**
  * Supported tag types for carbon v10
  */
-export type TagTypeExperimental = "basic" | "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | "green" | "cool-gray" | "warm-gray";
+export type TagTypeExperimental = "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | "green" | "cool-gray" | "warm-gray";
 
 /**
  * Component that represents a tag for labelling/categorizing using keywords

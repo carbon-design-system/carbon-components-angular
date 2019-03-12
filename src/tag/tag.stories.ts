@@ -21,7 +21,7 @@ storiesOf("Tag", module)
 	.add("Basic", () => ({
 		template: `
 			<app-experimental-component [(isExperimental)]="experimental"></app-experimental-component>
-			<ibm-tag [type]="(!experimental ? 'ibm' : 'basic')" class="foo {{test}}">{{ !experimental ? "IBM" : "Basic" }}</ibm-tag>
+			<ibm-tag [type]="(!experimental ? 'ibm' : 'warm-gray')" class="foo {{test}}">{{ !experimental ? "IBM" : "Warm-gray" }}</ibm-tag>
 			<br><br>
 			<ibm-tag [type]="(!experimental ? 'beta' : 'red')">{{ !experimental ?  "Beta" : "Red" }}</ibm-tag>
 			<br><br>
@@ -38,8 +38,6 @@ storiesOf("Tag", module)
 			<ibm-tag [type]="(!experimental ? 'private' : 'green')">{{ !experimental ?  "Private" : "Green" }}</ibm-tag>
 			<br><br>
 			<ibm-tag [type]="(!experimental ? 'third-party' : 'cool-gray')">{{ !experimental ?  "Third-party" : "Cool-gray" }}</ibm-tag>
-			<br><br>
-			<ibm-tag *ngIf="experimental" type="warm-gray">Third-party</ibm-tag>
 		`,
 		props: {
 			experimental: false
