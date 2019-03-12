@@ -7,7 +7,8 @@ import {
 	TableModel,
 	TableHeaderItem,
 	TableItem,
-	DataGridFocus
+	DataGridFocus,
+	ExpandedRowHover
 } from "./table.module";
 import { Table } from "./table.component";
 import { StaticIconModule } from "./../icon/static-icon.module";
@@ -49,7 +50,8 @@ describe("Table", () => {
 			declarations: [
 				Table,
 				TableTest,
-				DataGridFocus
+				DataGridFocus,
+				ExpandedRowHover
 			]
 		});
 
