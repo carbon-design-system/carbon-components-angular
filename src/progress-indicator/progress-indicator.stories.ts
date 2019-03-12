@@ -18,12 +18,13 @@ import { ProgressIndicator } from "./progress-indicator.component";
 @Component({
 	selector: "app-skeleton-progress-indicator",
 	template: `
-		<ibm-progress-indicator [steps]="skeletonSteps" skeleton="true">
+		<ibm-progress-indicator [steps]="skeletonSteps" [orientation]="orientation" skeleton="true">
 		</ibm-progress-indicator>
 	`
 })
 class SkeletonStory implements OnInit {
 	@Input() skeletonSteps = [];
+	@Input() orientation = "horizontal";
 
 	ngOnInit() {
 		// Creates an empty progress indicator with 4 steps
@@ -31,7 +32,7 @@ class SkeletonStory implements OnInit {
 	}
 }
 
-storiesOf("ProgressIndicator", module)
+storiesOf("Progress Indicator", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [ExperimentalComponenent, SkeletonStory],
@@ -110,6 +111,6 @@ storiesOf("ProgressIndicator", module)
 		<app-experimental-component></app-experimental-component>
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		&nbsp;&nbsp;
-		<app-skeleton-progress-indicator [orientation]="'vertical'"></app-skeleton-progress-indicator>
+		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
 		`
 	}));
