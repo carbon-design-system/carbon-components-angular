@@ -15,7 +15,6 @@ storiesOf("Radio", module).addDecorator(
 		<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)">
 			<ibm-radio *ngFor="let radio of manyRadios"
 				[value]="radio.num"
-				[checked]="radio.checked"
 				[disabled]="radio.disabled">
 				{{radio.num}}
 			</ibm-radio>
