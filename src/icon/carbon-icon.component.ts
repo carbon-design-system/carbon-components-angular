@@ -18,13 +18,13 @@ import * as icons from "carbon-icons";
 })
 export class CarbonIcon implements OnInit {
 	/**
-  * This string refers to the name of the icon.
-  */
+	* This string refers to the name of the icon.
+	*/
 	@Input() name: string;
 
 	/**
-  * This string refers to the color of the icon.
-  */
+	* This string refers to the color of the icon.
+	*/
 	@Input() fillColor: string;
 
 	icon: any;
@@ -34,8 +34,8 @@ export class CarbonIcon implements OnInit {
 	}
 
 	/**
-  * This method fetches the icon and its data
-  */
+	* This method fetches the icon and its data
+	*/
 	createIcon() {
 		this.icon = icons.default.find((icon) => {
 			return icon.id === `icon--${this.name}`;
