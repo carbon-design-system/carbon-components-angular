@@ -13,16 +13,16 @@ import { I18n } from "./../i18n/i18n.module";
 	template: `
 		<label
 			class="bx--tile bx--tile--selectable"
-			[attr.aria-label]="i18n.get('TILES.TILE') | async"
 			tabindex="0"
 			[for]="id"
-			[ngClass]="{'bx--tile--is-selected' : selected}">
+			[ngClass]="{'bx--tile--is-selected' : selected}"
+			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<input
 				#input
 				tabindex="-1"
-				[type]="(type === 'single' ? 'radio' : 'checkbox')"
 				class="bx--tile-input"
 				[id]="id"
+				[type]="(type === 'single' ? 'radio' : 'checkbox')"
 				[value]="value"
 				[name]="name"
 				(change)="onChange($event)"/>
@@ -45,7 +45,7 @@ export class SelectionTile {
 	 */
 	@Input() id = `tile-${SelectionTile.tileCount}`;
 	/**
-	 * Updating the state of the radio to match the state of the parameter passed in.
+	 * Updating the state of the input to match the state of the parameter passed in.
 	 * Set to `true` if this tile should be selected.
 	 */
 	@Input() set selected(value: boolean) {
