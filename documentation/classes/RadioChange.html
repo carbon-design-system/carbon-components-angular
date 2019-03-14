@@ -274,7 +274,11 @@ export class RadioChange {
  */
 @Component({
 	selector: &quot;ibm-radio-group&quot;,
-	template: &#x60;&lt;ng-content&gt;&lt;/ng-content&gt;&#x60;,
+	template: &#x60;
+		&lt;div class&#x3D;&quot;bx--radio-button-group&quot; role&#x3D;&quot;radiogroup&quot;&gt;
+			&lt;ng-content&gt;&lt;/ng-content&gt;
+		&lt;/div&gt;
+	&#x60;,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -390,14 +394,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Binds &#x27;radiogroup&#x27; value to the role attribute for &#x60;RadioGroup&#x60;.
+	 * Binds &#x27;bx--form-item&#x27; value to the class for &#x60;RadioGroup&#x60;.
 	 */
-	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;radiogroup&quot;;
-
-	/**
-	 * Binds &#x27;bx--radio-button-group&#x27; value to the class for &#x60;RadioGroup&#x60;.
-	 */
-	@HostBinding(&quot;class.bx--radio-button-group&quot;) radioButtonGroupClass &#x3D; true;
+	@HostBinding(&quot;class.bx--form-item&quot;) radioButtonGroupClass &#x3D; true;
 
 	/**
 	 * To track whether the &#x60;RadioGroup&#x60; has been initialized.
