@@ -31,13 +31,11 @@ export class ToggleChange {
 	/**
 	 * Contains the `Toggle` that has been changed.
 	 * @type {Toggle}
-	 * @memberof ToggleChange
 	 */
 	source: Toggle;
 	/**
 	 * The state of the `Toggle` encompassed in the `ToggleChange` class.
 	 * @type {boolean}
-	 * @memberof ToggleChange
 	 */
 	checked: boolean;
 }
@@ -54,6 +52,7 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
+		<div *ngIf="labelText" class="bx--label" [id]="labelId">{{labelText}}</div>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -67,6 +66,7 @@ export class ToggleChange {
 			[required]="required"
 			[checked]="checked"
 			[disabled]="disabled"
+			[attr.aria-labelledby]="labelId"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
@@ -109,14 +109,12 @@ export class Toggle extends Checkbox {
 	 * Variable used for creating unique ids for toggle components.
 	 * @type {number}
 	 * @static
-	 * @memberof Toggle
 	 */
 	static toggleCount = 0;
 
 	/**
 	 * Text that is set on the left side of the toggle.
 	 * @type {(string)}
-	 * @memberof Toggle
 	 */
 	@Input()
 	set offText(value) {
@@ -130,7 +128,6 @@ export class Toggle extends Checkbox {
 	/**
 	 * Text that is set on the right side of the toggle.
 	 * @type {(string)}
-	 * @memberof Toggle
 	 */
 	@Input()
 	set onText(value) {
@@ -140,27 +137,28 @@ export class Toggle extends Checkbox {
 	get onText() {
 		return this._onText;
 	}
-
-
+	/**
+	 * Text that is set as the label of the toggle.
+	 * @type {(string)}
+	 */
+	@Input() labelText: string;
 	/**
 	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
-	 * @memberof Toggle
 	 */
 	@Input() size: "sm" | "md" = "md";
 	/**
 	 * Set to `true` for a loading toggle.
 	 * @type {(boolean)}
-	 * @memberof Toggle
 	 */
 	@Input() skeleton = false;
 
 	/**
 	 * The unique id allocated to the `Toggle`.
 	 * @type {string}
-	 * @memberof Toggle
 	 */
 	id = "toggle-" + Toggle.toggleCount;
+	labelId = "toggle-" + Toggle.toggleCount + "-label";
 
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a toggle after a
@@ -173,7 +171,6 @@ export class Toggle extends Checkbox {
 	/**
 	 * Creates an instance of Toggle.
 	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof Toggle
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef, protected i18n: I18n) {
 		super(changeDetectorRef);
