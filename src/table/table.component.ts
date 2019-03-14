@@ -168,244 +168,248 @@ import { I18n } from "./../i18n/i18n.module";
 @Component({
 	selector: "ibm-table",
 	template: `
-	<table
-	class="bx--data-table-v2"
-	[ngClass]="{
-		'bx--data-table-v2--compact': size === 'sm',
-		'bx--data-table-v2--tall': size === 'lg',
-		'bx--data-table-v2--zebra': striped,
-		'bx--skeleton': skeleton
-	}">
-		<thead>
-			<tr>
-				<th *ngIf="model.hasExpandableRows()"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					(click)="setExpandIndex($event)">
-				</th>
-				<th *ngIf="!skeleton && showSelectionColumn"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					(click)="setCheckboxIndex()"
-					style="width: 10px;">
-					<ibm-checkbox
-						inline="true"
-						[size]="size !== ('lg' ? 'sm' : 'md')"
-						[(ngModel)]="selectAllCheckbox"
-						[indeterminate]="selectAllCheckboxSomeSelected"
-						[attr.aria-label]="checkboxHeaderLabel | async"
-						(change)="onSelectAllCheckboxChange()">
-					</ibm-checkbox>
-				</th>
-				<ng-container *ngFor="let column of model.header; let i = index">
-					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
-					*ngIf="column.visible"
-					[class]="column.className"
-					[ngStyle]="column.style"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					[draggable]="columnsDraggable"
-					(dragstart)="columnDragStart($event, i)"
-					(dragend)="columnDragEnd($event, i)"
-					(click)="setIndex(i)">
-						<span *ngIf="skeleton"></span>
-						<div
-						*ngIf="columnsResizable"
-						class="column-resize-handle"
-						(mousedown)="columnResizeStart($event, column)">
-						</div>
-						<button
-							class="bx--table-sort-v2"
-							*ngIf="this.sort.observers.length > 0 && column.sortable"
-							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
-							aria-live="polite"
-							[ngClass]="{
-								'bx--table-sort-v2--active': column.sorted,
-								'bx--table-sort-v2--ascending': column.ascending
-							}"
-							(click)="sort.emit(i)">
-							<span
-								*ngIf="!column.template"
-								[title]="column.data"
-								tabindex="-1">
-								{{column.data}}
-							</span>
-							<ng-template
-								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
-							</ng-template>
-							<svg
-							class="bx--table-sort-v2__icon"
-							width="10" height="5" viewBox="0 0 10 5">
-								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
-							</svg>
-						</button>
-						<span
-							class="bx--table-header-label"
-							*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
-							<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
-							<ng-template
-								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
-							</ng-template>
-						</span>
-						<button
-							[ngClass]="{'active': column.filterCount > 0}"
-							*ngIf="column.filterTemplate"
-							type="button"
-							aria-expanded="false"
-							aria-haspopup="true"
-							[ibmTooltip]="column.filterTemplate"
-							trigger="click"
-							[title]="filterTitle | async"
-							placement="bottom,top"
-							[data]="column.filterData">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="icon--sm"
-								width="16"
-								height="16"
-								viewBox="0 0 16 16">
-								<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
-							</svg>
-							<span *ngIf="column.filterCount > 0">
-								{{column.filterCount}}
-							</span>
-						</button>
-						<div
-						*ngIf="columnsDraggable && isColumnDragging"
-						class="drop-area">
-							<div
-							*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'left'"
-							class="drop-indicator-left"></div>
-							<div
-							class="drop-area-left"
-							(dragenter)="columnDragEnter($event, 'left', i)"
-							(dragleave)="columnDragLeave($event, 'left', i)"
-							(dragover)="columnDragover($event, 'left', i)"
-							(drop)="columnDrop($event, 'left', i)">
-							</div>
-
-							<div
-							class="drop-area-right"
-							(dragenter)="columnDragEnter($event, 'right', i)"
-							(dragleave)="columnDragLeave($event, 'right', i)"
-							(dragover)="columnDragover($event, 'right', i)"
-							(drop)="columnDrop($event, 'right', i)">
-							</div>
-							<div
-							*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'right'"
-							class="drop-indicator-right"></div>
-						</div>
-					</th>
-				</ng-container>
-				<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
-					<!--
-						Scrollbar pushes body to the left so this header column is added to push
-						the title bar the same amount and keep the header and body columns aligned.
-					-->
-				</th>
-			</tr>
-		</thead>
-		<tbody
-		*ngIf="!noData; else noDataTemplate"
-		[ngStyle]="{'overflow-y': 'scroll'}"
-		(scroll)="onScroll($event)">
-			<ng-container *ngFor="let row of model.data; let i = index">
-				<tr *ngIf="!model.isRowFiltered(i)"
-					(click)="onRowSelect(i)"
-					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
-					[ngClass]="{
-						'bx--data-table-v2--selected': model.rowsSelected[i],
-						'bx--parent-row-v2': model.isRowExpandable(i),
-						'bx--expandable-row-v2': model.rowsExpanded[i],
-						'tbody_row--selectable': enableSingleSelect,
-						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
-						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
-						'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
-						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
-					}">
-					<td
-					*ngIf="model.hasExpandableRows()"
-					class="bx--table-expand-v2"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
-					(click)="setExpandIndex($event)">
-						<button
-						*ngIf="model.isRowExpandable(i)"
-						class="bx--table-expand-v2__button"
-						[attr.aria-label]="expandButtonAriaLabel | async"
-						(click)="model.expandRow(i, !model.rowsExpanded[i])">
-							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
-								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
-							</svg>
-						</button>
-					</td>
-					<td
-						*ngIf="!skeleton && showSelectionColumn"
+	<div class="bx--data-table-v2-container">
+		<h4 class="bx--data-table-v2-header">{{title}}</h4>
+		<ng-content select="ibm-table-toolbar"></ng-content>
+		<table
+		class="bx--data-table-v2"
+		[ngClass]="{
+			'bx--data-table-v2--compact': size === 'sm',
+			'bx--data-table-v2--tall': size === 'lg',
+			'bx--data-table-v2--zebra': striped,
+			'bx--skeleton': skeleton
+		}">
+			<thead>
+				<tr>
+					<th *ngIf="model.hasExpandableRows()"
 						[ibmDataGridFocus]="isDataGrid"
 						[(columnIndex)]="columnIndex"
-						(click)="setCheckboxIndex()">
+						(click)="setExpandIndex($event)">
+					</th>
+					<th *ngIf="!skeleton && showSelectionColumn"
+						[ibmDataGridFocus]="isDataGrid"
+						[(columnIndex)]="columnIndex"
+						(click)="setCheckboxIndex()"
+						style="width: 10px;">
 						<ibm-checkbox
 							inline="true"
-							[attr.aria-label]="checkboxRowLabel | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
-							[(ngModel)]="model.rowsSelected[i]"
-							(change)="onRowCheckboxChange(i)">
+							[(ngModel)]="selectAllCheckbox"
+							[indeterminate]="selectAllCheckboxSomeSelected"
+							[attr.aria-label]="checkboxHeaderLabel | async"
+							(change)="onSelectAllCheckboxChange()">
 						</ibm-checkbox>
-					</td>
-					<ng-container *ngFor="let item of row; let j = index">
-						<td *ngIf="model.header[j].visible"
-							[class]="model.header[j].className"
-							[ngStyle]="model.header[j].style"
-							[ibmDataGridFocus]="isDataGrid"
-							[(columnIndex)]="columnIndex"
-							(click)="setIndex(j)">
-							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
-							<ng-template
-								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
-							</ng-template>
-						</td>
-					</ng-container>
-				</tr>
-				<tr
-				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
-				class="bx--expandable-row-v2"
-				ibmExpandedRowHover
-				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
-					<td
+					</th>
+					<ng-container *ngFor="let column of model.header; let i = index">
+						<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
+						*ngIf="column.visible"
+						[class]="column.className"
+						[ngStyle]="column.style"
 						[ibmDataGridFocus]="isDataGrid"
 						[(columnIndex)]="columnIndex"
-						[attr.colspan]="row.length + 2"
+						[draggable]="columnsDraggable"
+						(dragstart)="columnDragStart($event, i)"
+						(dragend)="columnDragEnd($event, i)"
+						(click)="setIndex(i)">
+							<span *ngIf="skeleton"></span>
+							<div
+							*ngIf="columnsResizable"
+							class="column-resize-handle"
+							(mousedown)="columnResizeStart($event, column)">
+							</div>
+							<button
+								class="bx--table-sort-v2"
+								*ngIf="this.sort.observers.length > 0 && column.sortable"
+								[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
+								aria-live="polite"
+								[ngClass]="{
+									'bx--table-sort-v2--active': column.sorted,
+									'bx--table-sort-v2--ascending': column.ascending
+								}"
+								(click)="sort.emit(i)">
+								<span
+									*ngIf="!column.template"
+									[title]="column.data"
+									tabindex="-1">
+									{{column.data}}
+								</span>
+								<ng-template
+									[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
+								</ng-template>
+								<svg
+								class="bx--table-sort-v2__icon"
+								width="10" height="5" viewBox="0 0 10 5">
+									<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
+								</svg>
+							</button>
+							<span
+								class="bx--table-header-label"
+								*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
+								<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
+								<ng-template
+									[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
+								</ng-template>
+							</span>
+							<button
+								[ngClass]="{'active': column.filterCount > 0}"
+								*ngIf="column.filterTemplate"
+								type="button"
+								aria-expanded="false"
+								aria-haspopup="true"
+								[ibmTooltip]="column.filterTemplate"
+								trigger="click"
+								[title]="filterTitle | async"
+								placement="bottom,top"
+								[data]="column.filterData">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="icon--sm"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16">
+									<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>
+								</svg>
+								<span *ngIf="column.filterCount > 0">
+									{{column.filterCount}}
+								</span>
+							</button>
+							<div
+							*ngIf="columnsDraggable && isColumnDragging"
+							class="drop-area">
+								<div
+								*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'left'"
+								class="drop-indicator-left"></div>
+								<div
+								class="drop-area-left"
+								(dragenter)="columnDragEnter($event, 'left', i)"
+								(dragleave)="columnDragLeave($event, 'left', i)"
+								(dragover)="columnDragover($event, 'left', i)"
+								(drop)="columnDrop($event, 'left', i)">
+								</div>
+
+								<div
+								class="drop-area-right"
+								(dragenter)="columnDragEnter($event, 'right', i)"
+								(dragleave)="columnDragLeave($event, 'right', i)"
+								(dragover)="columnDragover($event, 'right', i)"
+								(drop)="columnDrop($event, 'right', i)">
+								</div>
+								<div
+								*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == 'right'"
+								class="drop-indicator-right"></div>
+							</div>
+						</th>
+					</ng-container>
+					<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+						<!--
+							Scrollbar pushes body to the left so this header column is added to push
+							the title bar the same amount and keep the header and body columns aligned.
+						-->
+					</th>
+				</tr>
+			</thead>
+			<tbody
+			*ngIf="!noData; else noDataTemplate"
+			[ngStyle]="{'overflow-y': 'scroll'}"
+			(scroll)="onScroll($event)">
+				<ng-container *ngFor="let row of model.data; let i = index">
+					<tr *ngIf="!model.isRowFiltered(i)"
+						(click)="onRowSelect(i)"
+						[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
+						[ngClass]="{
+							'bx--data-table-v2--selected': model.rowsSelected[i],
+							'bx--parent-row-v2': model.isRowExpandable(i),
+							'bx--expandable-row-v2': model.rowsExpanded[i],
+							'tbody_row--selectable': enableSingleSelect,
+							'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
+							'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
+							'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
+							'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
+						}">
+						<td
+						*ngIf="model.hasExpandableRows()"
+						class="bx--table-expand-v2"
+						[ibmDataGridFocus]="isDataGrid"
+						[(columnIndex)]="columnIndex"
+						[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
 						(click)="setExpandIndex($event)">
-						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
-						<ng-template
-							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
-							[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">
-						</ng-template>
+							<button
+							*ngIf="model.isRowExpandable(i)"
+							class="bx--table-expand-v2__button"
+							[attr.aria-label]="expandButtonAriaLabel | async"
+							(click)="model.expandRow(i, !model.rowsExpanded[i])">
+								<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
+									<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
+								</svg>
+							</button>
+						</td>
+						<td
+							*ngIf="!skeleton && showSelectionColumn"
+							[ibmDataGridFocus]="isDataGrid"
+							[(columnIndex)]="columnIndex"
+							(click)="setCheckboxIndex()">
+							<ibm-checkbox
+								inline="true"
+								[attr.aria-label]="checkboxRowLabel | async"
+								[size]="size !== ('lg' ? 'sm' : 'md')"
+								[(ngModel)]="model.rowsSelected[i]"
+								(change)="onRowCheckboxChange(i)">
+							</ibm-checkbox>
+						</td>
+						<ng-container *ngFor="let item of row; let j = index">
+							<td *ngIf="model.header[j].visible"
+								[class]="model.header[j].className"
+								[ngStyle]="model.header[j].style"
+								[ibmDataGridFocus]="isDataGrid"
+								[(columnIndex)]="columnIndex"
+								(click)="setIndex(j)">
+								<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
+								<ng-template
+									[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
+								</ng-template>
+							</td>
+						</ng-container>
+					</tr>
+					<tr
+					*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
+					class="bx--expandable-row-v2"
+					ibmExpandedRowHover
+					[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
+						<td
+							[ibmDataGridFocus]="isDataGrid"
+							[(columnIndex)]="columnIndex"
+							[attr.colspan]="row.length + 2"
+							(click)="setExpandIndex($event)">
+							<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
+							<ng-template
+								[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
+								[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">
+							</ng-template>
+						</td>
+					</tr>
+				</ng-container>
+			</tbody>
+			<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
+			<tfoot>
+				<ng-template
+					[ngTemplateOutlet]="footerTemplate">
+				</ng-template>
+				<tr *ngIf="this.model.isLoading">
+					<td class="table_loading-indicator">
+						<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
 					</td>
 				</tr>
-			</ng-container>
-		</tbody>
-		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
-		<tfoot>
-			<ng-template
-				[ngTemplateOutlet]="footerTemplate">
-			</ng-template>
-			<tr *ngIf="this.model.isLoading">
-				<td class="table_loading-indicator">
-					<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
-				</td>
-			</tr>
-			<tr *ngIf="this.model.isEnd">
-				<td class="table_end-indicator">
-					<h5>{{endOfDataText | async}}</h5>
-					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						{{scrollTopText | async}}
-					</button>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+				<tr *ngIf="this.model.isEnd">
+					<td class="table_end-indicator">
+						<h5>{{endOfDataText | async}}</h5>
+						<button (click)="scrollToTop($event)" class="btn--secondary-sm">
+							{{scrollTopText | async}}
+						</button>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
 	`
 })
 export class Table implements AfterViewInit {
@@ -550,6 +554,11 @@ export class Table implements AfterViewInit {
 	 *
 	 */
 	@Input() columnsResizable = false;
+
+	/**
+	 * Sets the title of the table
+	 */
+	@Input() title: string;
 
 	/**
 	 * Set to `true` to enable users to drag and drop columns.
