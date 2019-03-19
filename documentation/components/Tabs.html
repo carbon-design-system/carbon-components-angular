@@ -241,7 +241,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/tabs/tabs.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/tabs/tabs.component.ts:67</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -254,7 +254,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                         <code>followFocus</code>
                     </td>
                     <td class="col-md-10">
-                        <div><p>Set to &#39;true&#39; to have tabs automatically activated and have their content displayed when they recieve focus.</p>
+                        <div><p>Set to &#39;true&#39; to have tabs automatically activated and have their content displayed when they receive focus.</p>
 </div>
                         <p>
                             <em>Default value : </em><code>true</code>
@@ -263,7 +263,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/tabs/tabs.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/tabs/tabs.component.ts:71</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -285,7 +285,7 @@ This is the parent of the <code>Tab</code> and <code>TabHeader</code> components
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/tabs/tabs.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/tabs/tabs.component.ts:79</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -312,7 +312,7 @@ relative to the <code>TabPanel</code>s.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/tabs/tabs.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/tabs/tabs.component.ts:63</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -334,7 +334,7 @@ relative to the <code>TabPanel</code>s.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/tabs/tabs.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/tabs/tabs.component.ts:75</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -370,7 +370,7 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/tabs/tabs.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/tabs/tabs.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -410,14 +410,14 @@ relative to the <code>TabPanel</code>s.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/tabs/tabs.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tabs/tabs.component.ts:94</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>After content is initialized update <code>Tab</code>s to cache (if turned on) and set the inital
+                            <div class="io-description"><p>After content is initialized update <code>Tab</code>s to cache (if turned on) and set the initial
 selected Tab item.</p>
 </div>
 
@@ -466,7 +466,7 @@ selected Tab item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tabs/tabs.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/tabs/tabs.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -515,7 +515,7 @@ selected Tab item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/tabs/tabs.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/tabs/tabs.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -595,18 +595,14 @@ export class Tabs implements AfterContentInit {
 	/**
 	 * Takes either the string value &#x27;top&#x27; or &#x27;bottom&#x27; to place TabHeader
 	 * relative to the &#x60;TabPanel&#x60;s.
-	 * @type string
-	 * @memberof Tabs
 	 */
 	@Input() position: &quot;top&quot; | &quot;bottom&quot; &#x3D; &quot;top&quot;;
 	/**
 	 * Set to &#x27;true&#x27; to have &#x60;Tab&#x60; items cached and not reloaded on tab switching.
-	 * @memberof Tabs
 	 */
 	@Input() cacheActive &#x3D; false;
 	/**
-	 * Set to &#x27;true&#x27; to have tabs automatically activated and have their content displayed when they recieve focus.
-	 * @memberof Tabs
+	 * Set to &#x27;true&#x27; to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
 	@Input() followFocus &#x3D; true;
 	/**
@@ -620,8 +616,6 @@ export class Tabs implements AfterContentInit {
 
 	/**
 	 * Maintains a &#x60;QueryList&#x60; of the &#x60;Tab&#x60; elements and updates if &#x60;Tab&#x60;s are added or removed.
-	 * @type {QueryList&lt;Tab&gt;}
-	 * @memberof Tabs
 	 */
 	@ContentChildren(Tab, { descendants: false }) tabs: QueryList&lt;Tab&gt;;
 	/**
@@ -630,9 +624,8 @@ export class Tabs implements AfterContentInit {
 	@ContentChild(TabHeaders) tabHeaders;
 
 	/**
-	 * After content is initialized update &#x60;Tab&#x60;s to cache (if turned on) and set the inital
+	 * After content is initialized update &#x60;Tab&#x60;s to cache (if turned on) and set the initial
 	 * selected Tab item.
-	 * @memberof Tabs
 	 */
 	ngAfterContentInit() {
 		if (this.tabHeaders) {
