@@ -31,7 +31,7 @@ import {
 			(blur)="tabIndex = -1"
 			(click)="onClick($event)"
 			[disabled]="disabled"
-			[title]="title">
+			[attr.title]="title">
 			<ng-content></ng-content>
 		</button>
 	`
@@ -63,7 +63,7 @@ export class OverflowMenuOption implements AfterViewInit {
 	public tabIndex = -1;
 	// note: title must be a real attribute (i.e. not a getter) as of Angular@6 due to
 	// change after checked errors
-	public title = "";
+	public title = null;
 
 	constructor(protected elementRef: ElementRef) {}
 
