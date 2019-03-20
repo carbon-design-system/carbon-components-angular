@@ -67,7 +67,7 @@ export class ProgressIndicator {
 		return this.steps.indexOf(step => step.state[0] === "current");
 	}
 	set current(current: number) {
-		if (current === undefined) {
+		if (current === undefined || current < 0) {
 			for (let i = 0; i < this.steps.length; i++) {
 				this.steps[i].state[0] = "incomplete";
 			}
@@ -75,7 +75,10 @@ export class ProgressIndicator {
 		}
 
 		if (current > this.steps.length - 1) {
-			current = this.steps.length - 1;
+			for (let i = 0; i < this.steps.length; i++) {
+				this.steps[i].state[0] = "complete";
+			}
+			return;
 		}
 		this.steps[current].state[0] = "current";
 		for (let i = 0; i < current; i++) {
