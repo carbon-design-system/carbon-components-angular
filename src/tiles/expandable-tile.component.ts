@@ -4,10 +4,7 @@ import {
 	Input,
 	ViewChild,
 	ElementRef,
-	AfterContentInit,
-	DoCheck,
-	AfterViewChecked,
-	AfterViewInit
+	AfterContentInit
 } from "@angular/core";
 import { I18n } from "./../i18n/i18n.module";
 import { BehaviorSubject } from "rxjs";
