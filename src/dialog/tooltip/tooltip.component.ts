@@ -18,7 +18,10 @@ import { Dialog } from "./../dialog.component";
 			#dialog
 			[id]="dialogConfig.compID"
 			[attr.role]="role"
-			class="bx--tooltip bx--tooltip--shown">
+			[ngClass]="{
+				'bx--tooltip bx--tooltip--shown' : type === 'normal',
+				'bx--tooltip--definition__bottom' : type === 'definition'
+			}">
 			<span class="bx--tooltip__caret" aria-hidden="true"></span>
 			<ng-template
 					*ngIf="hasContentTemplate"
@@ -33,6 +36,8 @@ import { Dialog } from "./../dialog.component";
 		`
 })
 export class Tooltip extends Dialog {
+	@Input() type: "normal" | "definition" = "normal";
+
 	@HostBinding("style.display") style = "inline-block";
 	/**
 	 * Value is set to `true` if the `Tooltip` is to display a `TemplateRef` instead of a string.
