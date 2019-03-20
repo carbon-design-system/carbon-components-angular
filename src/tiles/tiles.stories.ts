@@ -44,7 +44,7 @@ storiesOf("Tiles", module)
 	}))
 	.add("Selectable", () => ({
 		template: `
-			<ibm-tile-group (selected)="selected($event)">
+			<ibm-tile-group (tileSelection)="selected($event)">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
@@ -56,7 +56,7 @@ storiesOf("Tiles", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-tile-group (selected)="selected($event)" type="multi">
+			<ibm-tile-group (tileSelection)="selected($event)" [multiple]="true">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
@@ -69,8 +69,8 @@ storiesOf("Tiles", module)
 	.add("Expandable", () => ({
 		template: `
 		<ibm-expandable-tile>
-			<ibm-above-the-fold><div style="height: 200px">Above the fold content here</div></ibm-above-the-fold>
-			<ibm-below-the-fold><div style="height: 400px">Below the fold content here</div></ibm-below-the-fold>
+			<span class="bx--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
+			<span class="bx--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
 		</ibm-expandable-tile>
 		`
 	}));

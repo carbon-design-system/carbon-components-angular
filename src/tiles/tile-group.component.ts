@@ -29,9 +29,9 @@ export class TileGroup implements AfterContentInit {
 	 */
 	@Input() name = `tile-group-${TileGroup.tileGroupCount}`;
 	/**
-	 * Set to `"multi"` to support multiple tile selection
+	 * Set to `true` to support multiple tile selection
 	 */
-	@Input() type: "single" | "multi" = "single";
+	@Input() multiple = false;
 
 	/**
 	 * Emits an event when the tile selection changes.
@@ -45,7 +45,7 @@ export class TileGroup implements AfterContentInit {
 	 * }
 	 * ```
 	 */
-	@Output() selected: EventEmitter<{value: string, selected: boolean, name: string}> = new EventEmitter();
+	@Output() tileSelection: EventEmitter<{value: string, selected: boolean, name: string}> = new EventEmitter();
 
 	@HostBinding("class.bx--tile-group") tileGroupClass = true;
 
@@ -63,14 +63,14 @@ export class TileGroup implements AfterContentInit {
 		this.selectionTiles.forEach(tile => {
 			tile.name = this.name;
 			tile.change.subscribe(() => {
-				this.selected.emit({
+				this.tileSelection.emit({
 					value: tile.value,
 					selected: tile.selected,
 					name: this.name
 				});
 				this.onChange(tile.value);
 			});
-			tile.type = this.type;
+			tile.multiple = this.multiple;
 		});
 	}
 

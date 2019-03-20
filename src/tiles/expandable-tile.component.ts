@@ -4,7 +4,10 @@ import {
 	Input,
 	ViewChild,
 	ElementRef,
-	AfterContentInit
+	AfterContentInit,
+	DoCheck,
+	AfterViewChecked,
+	AfterViewInit
 } from "@angular/core";
 import { I18n } from "./../i18n/i18n.module";
 import { BehaviorSubject } from "rxjs";
@@ -15,7 +18,7 @@ import { BehaviorSubject } from "rxjs";
 		<div
 			class="bx--tile bx--tile--expandable"
 			[ngClass]="{'bx--tile--is-expanded' : expanded}"
-			[ngStyle]="{'max-height': tileStyle + 'px'}"
+			[ngStyle]="{'max-height': expandedHeight + 'px'}"
 			role="button"
 			tabindex="0"
 			(click)="onClick()">
@@ -30,8 +33,8 @@ import { BehaviorSubject } from "rxjs";
 				</svg>
 			</button>
 			<div class="bx--tile-content">
-				<ng-content select="ibm-above-the-fold"></ng-content>
-				<ng-content select="ibm-below-the-fold"></ng-content>
+				<ng-content select=".bx--tile-content__above-the-fold"></ng-content>
+				<ng-content select=".bx--tile-content__below-the-fold"></ng-content>
 			</div>
 		</div>
 	`
@@ -69,8 +72,8 @@ export class ExpandableTile implements AfterContentInit {
 		this.setMaxHeight();
 	}
 
-	get tileStyle() {
-		return this.tileMaxHeight + parseInt(getComputedStyle(this.element.querySelector(".bx--tile")).padding, 10);
+	get expandedHeight() {
+		return this.tileMaxHeight + parseInt(getComputedStyle(this.element.querySelector(".bx--tile")).paddingBottom, 10);
 	}
 
 	setMaxHeight() {
@@ -86,23 +89,3 @@ export class ExpandableTile implements AfterContentInit {
 		this.setMaxHeight();
 	}
 }
-
-@Component({
-	selector: "ibm-above-the-fold",
-	template: `
-		<span class="bx--tile-content__above-the-fold">
-			<ng-content></ng-content>
-		</span>
-	`
-})
-export class AboveTheFold { }
-
-@Component({
-	selector: "ibm-below-the-fold",
-	template: `
-		<span class="bx--tile-content__below-the-fold">
-			<ng-content></ng-content>
-		</span>
-	`
-})
-export class BelowTheFold { }

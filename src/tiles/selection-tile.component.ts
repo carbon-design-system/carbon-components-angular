@@ -22,7 +22,7 @@ import { I18n } from "./../i18n/i18n.module";
 				tabindex="-1"
 				class="bx--tile-input"
 				[id]="id"
-				[type]="(type === 'single' ? 'radio' : 'checkbox')"
+				[type]="(multiple ? 'checkbox': 'radio')"
 				[value]="value"
 				[name]="name"
 				(change)="onChange($event)"/>
@@ -74,7 +74,7 @@ export class SelectionTile {
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
 	 */
-	type: "single" | "multi";
+	multiple: boolean;
 
 	@ViewChild("input") input;
 
