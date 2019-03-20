@@ -347,7 +347,7 @@ import { I18n } from "./../i18n/i18n.module";
 						(click)="setCheckboxIndex()">
 						<ibm-checkbox
 							inline="true"
-							[attr.aria-label]="checkboxRowLabel | async"
+							[aria-label]="checkboxRowLabel | i18nReplace:getSelectionLabelValue(row) | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
@@ -651,6 +651,18 @@ export class Table implements AfterViewInit {
 	@Input() footerTemplate: TemplateRef<any>;
 
 	/**
+	 * Used to populate the row selection checkbox label with a useful value if set.
+	 *
+	 * Example:
+	 * ```
+	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <!-- results in aria-label="Select first column value"
+	 * (where "first column value" is the value of the first column in the row -->
+	 * ```
+	 */
+	@Input() selectionLabelColumn: number;
+
+	/**
 	 * Emits an index of the column that wants to be sorted.
 	 *
 	 */
@@ -951,5 +963,12 @@ export class Table implements AfterViewInit {
 
 	setExpandIndex(event) {
 		this.columnIndex = 0;
+	}
+
+	getSelectionLabelValue(row: TableItem[]) {
+		if (!this.selectionLabelColumn) {
+			return { value: this.i18n.get().TABLE.ROW };
+		}
+		return { value: row[this.selectionLabelColumn].data };
 	}
 }

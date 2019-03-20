@@ -31,7 +31,7 @@ import {
 			(blur)="tabIndex = -1"
 			(click)="onClick($event)"
 			[disabled]="disabled"
-			[title]="title">
+			[attr.title]="title">
 			<ng-content></ng-content>
 		</button>
 	`
