@@ -117,6 +117,13 @@ export class Radio extends Checkbox implements OnInit {
 	 */
 	@HostBinding("attr.role") role = "radio";
 
+	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
+		return false;
+	}
+	@HostBinding("class.bx--form-item") get formItemClass() {
+		return false;
+	}
+
 	/**
 	 * The id for the `Radio`.
 	 * @type {string}
