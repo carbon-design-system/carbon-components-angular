@@ -7,7 +7,6 @@ import {
 	AfterContentInit
 } from "@angular/core";
 import { I18n } from "./../i18n/i18n.module";
-import { BehaviorSubject } from "rxjs";
 
 @Component({
 	selector: "ibm-expandable-tile",
@@ -50,10 +49,10 @@ export class ExpandableTile implements AfterContentInit {
 	@Input()
 	set translations (value) {
 		if (value.EXPAND) {
-			this.expand = new BehaviorSubject(value.EXPAND);
+			this.expand.next(value.EXPAND);
 		}
 		if (value.COLLAPSE) {
-			this.collapse = new BehaviorSubject(value.COLLAPSE);
+			this.collapse.next(value.COLLAPSE);
 		}
 	}
 
