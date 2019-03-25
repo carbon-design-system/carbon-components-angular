@@ -44,7 +44,7 @@ storiesOf("Tabs", module)
 			</ng-template>
 			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab *ngFor="let item of data; let i = index;" [heading]="customTabs" [context]="item">Tab Content {{i + 1}}</ibm-tab>
-				<ibm-tab [heading]="iconTab">Tab Content 4</ibm-tab>
+				<ibm-tab [heading]="iconTab">Tab Content Custom</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
