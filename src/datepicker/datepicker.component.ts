@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { FlatpickrOptions } from "ng2-flatpickr";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
+import { FlatpickrOptions } from "ng2-flatpickr";
 
 @Component({
 	selector: "ibm-date-picker",
@@ -24,7 +25,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[id]= "id"
 							[type]= "range ? 'range' : 'single'"
 							[hasIcon]= "range ? false : true"
-							(valueChange)="valueChange.emit($event)">
+							(valueChange)="onInputValueChange($event)">
 						</ibm-date-picker-input>
 					</div>
 
@@ -36,7 +37,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[id]= "id + '-rangeInput'"
 							[type]= "range ? 'range' : 'single'"
 							[hasIcon]= "range ? true : null"
-							(valueChange)="valueChange.emit($event)">
+							(valueChange)="onInputValueRangeChange($event)">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -70,7 +71,7 @@ export class DatePicker {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
@@ -126,5 +127,33 @@ export class DatePicker {
 				item.classList.remove("no-border");
 			}
 		});
+	}
+
+	onInputValueChange(event: string): void {
+		const d = flatpickr.parseDate(event, this.dateFormat, true);
+		const prev = flatpickr.parseDate(this.value[0], this.dateFormat, true);
+		if (d) {
+			if (!prev || prev.getTime() !== d.getTime()) {
+				this.value = [d, this.value[1]];
+			}
+		} else {
+			if (prev || event) {
+				this.value = [undefined, this.value[1]];
+			}
+		}
+	}
+
+	onInputValueRangeChange(event: string): void {
+		const d = flatpickr.parseDate(event, this.dateFormat, true);
+		const prev = flatpickr.parseDate(this.value[1], this.dateFormat, true);
+		if (d) {
+			if (!prev || prev.getTime() !== d.getTime()) {
+				this.value = [this.value[0], d];
+			}
+		} else {
+			if (prev || event) {
+				this.value = [this.value[0], undefined];
+			}
+		}
 	}
 }
