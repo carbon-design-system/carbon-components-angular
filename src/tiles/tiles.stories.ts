@@ -44,7 +44,7 @@ storiesOf("Tiles", module)
 	}))
 	.add("Selectable", () => ({
 		template: `
-			<ibm-tile-group (tileSelection)="selected($event)">
+			<ibm-tile-group (selected)="selected($event)">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
@@ -56,7 +56,7 @@ storiesOf("Tiles", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-tile-group (tileSelection)="selected($event)" [multiple]="true">
+			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>

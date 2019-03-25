@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 import { SelectionTile } from "./selection-tile.component";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { TileSelection } from "./tile-selection.interface";
 
 @Component({
 	selector: "ibm-tile-group",
@@ -45,7 +46,7 @@ export class TileGroup implements AfterContentInit {
 	 * }
 	 * ```
 	 */
-	@Output() tileSelection: EventEmitter<{value: string, selected: boolean, name: string}> = new EventEmitter();
+	@Output() selected: EventEmitter<TileSelection> = new EventEmitter();
 
 	@HostBinding("class.bx--tile-group") tileGroupClass = true;
 
@@ -63,7 +64,7 @@ export class TileGroup implements AfterContentInit {
 		this.selectionTiles.forEach(tile => {
 			tile.name = this.name;
 			tile.change.subscribe(() => {
-				this.tileSelection.emit({
+				this.selected.emit({
 					value: tile.value,
 					selected: tile.selected,
 					name: this.name
