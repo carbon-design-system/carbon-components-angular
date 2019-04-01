@@ -42,7 +42,7 @@ export class SearchChange {
 			class="bx--search"
 			[ngClass]="{
 				'bx--search--sm': size === 'sm',
-				'bx--search--lg': size === 'lg',
+				'bx--search--xl': size === 'xl',
 				'bx--search--light': theme === 'light',
 				'bx--skeleton': skeleton,
 				'bx--toolbar-search': toolbar,
@@ -72,15 +72,7 @@ export class SearchChange {
 					<ng-template [ngTemplateOutlet]="svg"></ng-template>
 				</button>
 				<ng-template #svg>
-					<svg
-						class="bx--search-magnifier"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16">
-						<path
-							d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
-							fill-rule="nonzero"/>
-					</svg>
+					<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
 				</ng-template>
 			</ng-template>
 
@@ -92,16 +84,7 @@ export class SearchChange {
 				[title]="clearButtonTitle"
 				[attr.aria-label]="clearButtonTitle"
 				(click)="clearSearch()">
-				<svg
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414
-							8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
-						fill-rule="evenodd"/>
-				</svg>
+				<ibm-icon-close16></ibm-icon-close16>
 			</button>
 		</div>
 	`,
@@ -128,7 +111,16 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Size of the search field.
 	 */
-	@Input() size: "sm" | "lg" = "lg";
+	@Input() set size(value: "sm" | "lg" | "xl") {
+		if (value === "lg") {
+			value = "xl";
+		}
+		this._size = value;
+	}
+
+	get size(): "sm" | "lg" | "xl" {
+		return this._size;
+	}
 	/**
 	 * Set to `true` for a disabled search input.
 	 */
@@ -177,6 +169,8 @@ export class Search implements ControlValueAccessor {
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<SearchChange>();
+
+	protected _size: "sm" | "xl" = "xl";
 
 	/**
 	 * Creates an instance of `Search`.
