@@ -1,4 +1,10 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	ViewEncapsulation
+} from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
@@ -43,7 +49,13 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 			</div>
 		</ng2-flatpickr>
 	</div>
-	`
+	`,
+	styles: [
+		`.dayContainer {
+			justify-content: initial;
+		}`
+	],
+	encapsulation: ViewEncapsulation.None
 })
 export class DatePicker {
 	private static datePickerCount = 0;
