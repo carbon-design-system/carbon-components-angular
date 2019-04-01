@@ -66,9 +66,11 @@
     "core-js": "^2.5.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "carbon-components": "^9.70.0"
+    "carbon-components": "^10.0.0",
+    "@carbon/icons-angular": "^10.0.0"
   },
   "devDependencies": {
+    "@carbon/icons-angular": "10.0.0",
     "@angular-devkit/build-angular": "0.7.1",
     "@angular-devkit/core": "0.6.8",
     "@angular/animations": "6.1.0",
@@ -98,7 +100,7 @@
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
     "babel-loader": "8.0.4",
-    "carbon-components": "9.84.14",
+    "carbon-components": "10.0.0",
     "codelyzer": "4.5.0",
     "commitizen": "2.10.1",
     "core-js": "2.5.5",
@@ -147,7 +149,7 @@
     "zone.js": "0.8.26"
   },
   "dependencies": {
-    "flatpickr": "4.5.2",
-    "ng2-flatpickr": "7.0.2"
+    "flatpickr": "4.5.7",
+    "ng2-flatpickr": "7.0.3"
   }
 }

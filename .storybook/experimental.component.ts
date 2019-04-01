@@ -20,7 +20,7 @@ export class ExperimentalComponenent implements AfterViewInit, OnDestroy {
 	@Output() isExperimentalChange = new EventEmitter();
 
 	constructor(protected experimental: ExperimentalService) {
-		experimental.isExperimental = false;
+		experimental.isExperimental = true;
 		this.isExperimentalChange.emit(this.isExperimental);
 	}
 
@@ -42,7 +42,7 @@ export class ExperimentalComponenent implements AfterViewInit, OnDestroy {
 		if (document.body.classList.contains("experimental")) {
 			this.experimental.isExperimental = true;
 		} else {
-			this.experimental.isExperimental = false;
+			this.experimental.isExperimental = true;
 		}
 		this.isExperimentalChange.emit(this.experimental.isExperimental);
 	}
