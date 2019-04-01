@@ -14,7 +14,6 @@ import { DataGridFocus } from "./data-grid-focus.directive";
 import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 import { IconModule } from "./../icon/icon.module";
-import { StaticIconModule } from "..";
 import { I18nModule } from "./../i18n/i18n.module";
 
 export { Table } from "./table.component";
@@ -54,7 +53,6 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 		FormsModule,
 		IconModule,
 		DialogModule,
-		StaticIconModule,
 		I18nModule
 	]
 })

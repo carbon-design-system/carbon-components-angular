@@ -1,8 +1,6 @@
 export * from "./accordion/accordion.module";
-export * from "./banner/banner.module";
 export * from "./breadcrumb/breadcrumb.module";
 export * from "./button/button.module";
-export * from "./calendar/calendar.module";
 export * from "./checkbox/checkbox.module";
 export * from "./code-snippet/code-snippet.module";
 export * from "./combobox/combobox.module";
@@ -15,7 +13,6 @@ export * from "./file-uploader/file-uploader.module";
 export * from "./forms/forms.module";
 export * from "./grid/grid.module";
 export * from "./i18n/i18n.module";
-export * from "./icon/icon.module";
 export * from "./inline-loading/inline-loading.module";
 export * from "./input/input.module";
 export * from "./link/link.module";
