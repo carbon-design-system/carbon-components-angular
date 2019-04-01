@@ -28,7 +28,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
-			<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 			<div
 				[ngClass]="{
 					'bx--select--inline': display === 'inline',
@@ -37,18 +36,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				}"
 				class="bx--select"
 				style="width: 100%">
+				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
-				<select
-					#select
-					[attr.id]="id"
-					[disabled]="disabled"
-					(change)="onChange($event)"
-					class="bx--select-input">
-					<ng-content></ng-content>
-				</select>
-				<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
-				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
-				</svg>
+				<div class="bx--select-input__wrapper">
+					<select
+						#select
+						[attr.id]="id"
+						[disabled]="disabled"
+						(change)="onChange($event)"
+						class="bx--select-input">
+						<ng-content></ng-content>
+					</select>
+					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+				</div>
 			</div>
 		</div>
 	`,
