@@ -169,21 +169,24 @@ import { I18n } from "./../i18n/i18n.module";
 	selector: "ibm-table",
 	template: `
 	<table
-	class="bx--data-table-v2"
+	class="bx--data-table bx--data-table--sort"
 	[ngClass]="{
-		'bx--data-table-v2--compact': size === 'sm',
-		'bx--data-table-v2--tall': size === 'lg',
-		'bx--data-table-v2--zebra': striped,
+		'bx--data-table--compact': size === 'sm',
+		'bx--data-table--tall': size === 'lg',
+		'bx--data-table--zebra': striped,
 		'bx--skeleton': skeleton
 	}">
 		<thead>
 			<tr>
-				<th *ngIf="model.hasExpandableRows()"
+				<th
+					*ngIf="model.hasExpandableRows()"
 					[ibmDataGridFocus]="isDataGrid"
 					[(columnIndex)]="columnIndex"
 					(click)="setExpandIndex($event)">
 				</th>
-				<th *ngIf="!skeleton && showSelectionColumn"
+				<th
+					class="bx--table-column-checkbox"
+					*ngIf="!skeleton && showSelectionColumn"
 					[ibmDataGridFocus]="isDataGrid"
 					[(columnIndex)]="columnIndex"
 					(click)="setCheckboxIndex()"
@@ -198,30 +201,31 @@ import { I18n } from "./../i18n/i18n.module";
 					</ibm-checkbox>
 				</th>
 				<ng-container *ngFor="let column of model.header; let i = index">
-					<th [ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
-					*ngIf="column.visible"
-					[class]="column.className"
-					[ngStyle]="column.style"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					[draggable]="columnsDraggable"
-					(dragstart)="columnDragStart($event, i)"
-					(dragend)="columnDragEnd($event, i)"
-					(click)="setIndex(i)">
+					<th
+						[ngClass]='{"thead_action": column.filterTemplate || this.sort.observers.length > 0}'
+						*ngIf="column.visible"
+						[class]="column.className"
+						[ngStyle]="column.style"
+						[ibmDataGridFocus]="isDataGrid"
+						[(columnIndex)]="columnIndex"
+						[draggable]="columnsDraggable"
+						(dragstart)="columnDragStart($event, i)"
+						(dragend)="columnDragEnd($event, i)"
+						(click)="setIndex(i)">
 						<span *ngIf="skeleton"></span>
 						<div
-						*ngIf="columnsResizable"
-						class="column-resize-handle"
-						(mousedown)="columnResizeStart($event, column)">
+							*ngIf="columnsResizable"
+							class="column-resize-handle"
+							(mousedown)="columnResizeStart($event, column)">
 						</div>
 						<button
-							class="bx--table-sort-v2"
+							class="bx--table-sort"
 							*ngIf="this.sort.observers.length > 0 && column.sortable"
 							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
 							aria-live="polite"
 							[ngClass]="{
-								'bx--table-sort-v2--active': column.sorted,
-								'bx--table-sort-v2--ascending': column.ascending
+								'bx--table-sort--active': column.sorted,
+								'bx--table-sort--ascending': column.ascending
 							}"
 							(click)="sort.emit(i)">
 							<span
@@ -234,7 +238,7 @@ import { I18n } from "./../i18n/i18n.module";
 								[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
 							</ng-template>
 							<svg
-							class="bx--table-sort-v2__icon"
+							class="bx--table-sort__icon"
 							width="10" height="5" viewBox="0 0 10 5">
 								<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 							</svg>
@@ -314,9 +318,9 @@ import { I18n } from "./../i18n/i18n.module";
 					(click)="onRowSelect(i)"
 					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
 					[ngClass]="{
-						'bx--data-table-v2--selected': model.rowsSelected[i],
-						'bx--parent-row-v2': model.isRowExpandable(i),
-						'bx--expandable-row-v2': model.rowsExpanded[i],
+						'bx--data-table--selected': model.rowsSelected[i],
+						'bx--parent-row': model.isRowExpandable(i),
+						'bx--expandable-row': model.rowsExpanded[i],
 						'tbody_row--selectable': enableSingleSelect,
 						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
 						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
@@ -325,19 +329,17 @@ import { I18n } from "./../i18n/i18n.module";
 					}">
 					<td
 					*ngIf="model.hasExpandableRows()"
-					class="bx--table-expand-v2"
+					class="bx--table-expand"
 					[ibmDataGridFocus]="isDataGrid"
 					[(columnIndex)]="columnIndex"
 					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
 					(click)="setExpandIndex($event)">
 						<button
 						*ngIf="model.isRowExpandable(i)"
-						class="bx--table-expand-v2__button"
+						class="bx--table-expand__button"
 						[attr.aria-label]="expandButtonAriaLabel | async"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])">
-							<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">
-								<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
-							</svg>
+							<ibm-icon-chevron-right16 class="bx--table-expand__svg"></ibm-icon-chevron-right16>
 						</button>
 					</td>
 					<td
@@ -369,7 +371,7 @@ import { I18n } from "./../i18n/i18n.module";
 				</tr>
 				<tr
 				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
-				class="bx--expandable-row-v2"
+				class="bx--expandable-row"
 				ibmExpandedRowHover
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
@@ -393,7 +395,7 @@ import { I18n } from "./../i18n/i18n.module";
 			</ng-template>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
-					<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>
+
 				</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">
@@ -442,7 +444,7 @@ export class Table implements AfterViewInit {
 
 	static setTabIndex(element: HTMLElement, index: -1 | 0) {
 		const focusElementList = getFocusElementList(element, tabbableSelectorIgnoreTabIndex);
-		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort-v2")) {
+		if (element.firstElementChild && element.firstElementChild.classList.contains("bx--table-sort")) {
 			focusElementList[1].tabIndex = index;
 		} else if (focusElementList.length > 0) {
 			focusElementList[0].tabIndex = index;
@@ -490,7 +492,7 @@ export class Table implements AfterViewInit {
 			this._model.rowsExpandedChange.subscribe(() => {
 				// Allows the expanded row to have a focus state when it exists in the DOM
 				setTimeout(() => {
-					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row-v2:not(.bx--parent-row-v2)");
+					const expandedRows = this.elementRef.nativeElement.querySelectorAll(".bx--expandable-row:not(.bx--parent-row)");
 					Array.from<any>(expandedRows).forEach(row => {
 						if (row.firstElementChild.tabIndex === undefined || row.firstElementChild.tabIndex !== -1) {
 							row.firstElementChild.tabIndex = -1;

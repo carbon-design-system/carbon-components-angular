@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
 
 import { DialogModule } from "./../dialog/dialog.module";
 import { NFormsModule } from "./../forms/forms.module";
@@ -53,7 +54,8 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 		FormsModule,
 		IconModule,
 		DialogModule,
-		I18nModule
+		I18nModule,
+		ChevronRight16Module
 	]
 })
 export class TableModule {}
