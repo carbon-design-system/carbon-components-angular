@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
 
 import { StaticIconModule } from "./../icon/static-icon.module";
 import { PillInputModule } from "./../pill-input/pill-input.module";
@@ -22,7 +23,8 @@ export { ComboBox } from "./combobox.component";
 		CommonModule,
 		PillInputModule,
 		StaticIconModule,
-		DropdownModule
+		DropdownModule,
+		ChevronDown16Module
 	]
 })
 export class ComboBoxModule {}
