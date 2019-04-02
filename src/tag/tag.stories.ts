@@ -42,4 +42,9 @@ storiesOf("Tag", module)
 		props: {
 			experimental: false
 		}
+	}))
+	.add("Filter", () => ({
+		template: `
+			<ibm-tag-filter>filter</ibm-tag-filter>
+		`
 	}));
