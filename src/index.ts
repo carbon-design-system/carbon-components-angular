@@ -29,7 +29,6 @@ export * from "./search/search.module";
 export * from "./select/select.module";
 export * from "./slider/slider.module";
 export * from "./structured-list/structured-list.module";
-export * from "./switch/switch.module";
 export * from "./table/table.module";
 export * from "./tabs/tabs.module";
 export * from "./tag/tag.module";
