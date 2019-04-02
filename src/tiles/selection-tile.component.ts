@@ -82,7 +82,7 @@ export class SelectionTile {
 		SelectionTile.tileCount++;
 	}
 
-	onChange() {
+	onChange(event) {
 		this.change.emit(event);
 	}
 }
