@@ -30,7 +30,7 @@ import { DropdownService } from "./dropdown.service";
 	selector: "ibm-dropdown",
 	template: `
 	<div
-		class="bx--list-box bx--dropdown"
+		class="bx--list-box"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
@@ -46,10 +46,32 @@ import { DropdownService } from "./dropdown.service";
 			(click)="toggleMenu()"
 			(blur)="onBlur()"
 			[disabled]="disabled">
+			<div
+				(click)="clearSelected()"
+				*ngIf="type === 'multi' && getSelectedCount() > 0"
+				class="bx--list-box__selection--multi"
+				title="Clear all selected items">
+				{{getSelectedCount()}}
+				<svg
+					focusable="false"
+					preserveAspectRatio="xMidYMid meet"
+					style="will-change: transform;"
+					role="img"
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					aria-hidden="true">
+					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+				</svg>
+			</div>
 			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
-			<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" [attr.aria-label]="menuButtonLabel">
-					<title>{{menuButtonLabel}}</title>
+			<div
+				*ngIf="!skeleton"
+				class="bx--list-box__menu-icon"
+				[attr.aria-label]="menuButtonLabel"
+				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10">
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
 			</div>
@@ -208,8 +230,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (this.view) {
 			this.view.type = this.type;
 		}
-		// add -40 to the top position to account for carbon styles
-		this.dropdownService.offset = { top: -40 };
 	}
 
 	/**
@@ -345,7 +365,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return of(`${selected.length} ${this.selectedLabel}`);
+				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
@@ -353,6 +373,18 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			return of(this.displayValue);
 		}
 		return of(this.placeholder);
+	}
+
+	getSelectedCount(): number {
+		if (this.view.getSelected()) {
+			return this.view.getSelected().length;
+		}
+	}
+
+	clearSelected() {
+		for (const item of this.view.getListItems()) {
+			item.selected = false;
+		}
 	}
 
 	/**
