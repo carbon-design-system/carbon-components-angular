@@ -225,9 +225,6 @@ export class Pagination {
 	}
 	/**
 	 * The last page number to display in the pagination view.
-	 *
-	 * @returns {number}
-	 * @memberof Pagination
 	 */
 	get lastPage(): number {
 		const last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
@@ -246,9 +243,6 @@ export class Pagination {
 
 	/**
 	 * The previous page number to navigate to, from the current page.
-	 *
-	 * @returns {number}
-	 * @memberof Pagination
 	 */
 	get previousPage(): number {
 		return this.currentPage <= 1 ? 1 : this.currentPage - 1;
@@ -256,9 +250,6 @@ export class Pagination {
 
 	/**
 	 * The next page number to navigate to, from the current page.
-	 *
-	 * @returns {number}
-	 * @memberof Pagination
 	 */
 	get nextPage(): number {
 		const lastPage = this.lastPage;
