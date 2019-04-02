@@ -32,7 +32,9 @@ import {
 			(click)="onClick($event)"
 			[disabled]="disabled"
 			[attr.title]="title">
-			<ng-content></ng-content>
+			<div class="bx--overflow-menu-options__option-content">
+				<ng-content></ng-content>
+			</div>
 		</button>
 	`
 })
