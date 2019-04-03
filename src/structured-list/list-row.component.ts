@@ -43,7 +43,8 @@ import { ListColumn } from "./list-column.component";
 				[value]="value"
 				[name]="name"
 				[title]="label"
-				(change)="onChange($event)"/>
+				(change)="onChange($event)"
+				[checked]="selected"/>
 			<div class="bx--structured-list-td">
 				<ibm-icon-checkmark-filled16 class="bx--structured-list-svg"></ibm-icon-checkmark-filled16>
 			</div>
@@ -52,16 +53,7 @@ import { ListColumn } from "./list-column.component";
 	`
 })
 export class ListRow implements AfterContentInit {
-	@Input() @HostBinding("class.bx--structured-list-row--selected")
-	set selected(value: boolean) {
-		if (!this.input) { return; }
-		this.input.nativeElement.checked = value ? true : null;
-	}
-
-	get selected() {
-		if (!this.input) { return; }
-		return this.input.nativeElement.checked;
-	}
+	@Input() @HostBinding("class.bx--structured-list-row--selected") selected = false;
 	/**
 	 * Applies an accessible label to the row. Defaults to no label.
 	 */
