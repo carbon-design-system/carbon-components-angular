@@ -123,8 +123,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * ];
 	 * ```
 	 *
-	 * @type {Array<ListItem>}
-	 * @memberof ComboBox
 	 */
 	@Input() items: Array<ListItem> = [];
 	/**
@@ -154,7 +152,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * }
 	 * ```
 	 */
-	@Output() selected: EventEmitter<ListItem> = new EventEmitter<ListItem>();
+	@Output() selected = new EventEmitter<ListItem | ListItem[]>();
 	/**
 	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
 	 *
@@ -205,8 +203,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Creates an instance of ComboBox.
-	 * @param {ElementRef} elementRef
-	 * @memberof ComboBox
 	 */
 	constructor(protected elementRef: ElementRef) {}
 
@@ -214,8 +210,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Lifecycle hook.
 	 * Updates pills if necessary.
 	 *
-	 * @param {any} changes
-	 * @memberof ComboBox
 	 */
 	ngOnChanges(changes) {
 		if (changes.items) {
@@ -285,7 +279,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
-	 * @param {KeyboardEvent} ev
 	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
@@ -379,7 +372,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Sets the list group filter, and manages single select item selection.
-	 * @param {string} searchString
 	 */
 	public onSearch(searchString) {
 		this.view.filterBy(searchString);

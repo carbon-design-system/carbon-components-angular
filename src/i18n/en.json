@@ -118,11 +118,11 @@
 		"END_OF_DATA": "You've reached the end of your content",
 		"SCROLL_TOP": "Scroll to top",
 		"CHECKBOX_HEADER": "Select all rows",
-		"CHECKBOX_ROW": "Select row",
+		"CHECKBOX_ROW": "Select {{value}}",
 		"EXPAND_BUTTON": "Expand row",
 		"SORT_DESCENDING": "Sort rows by this header in descending order",
-		"SORT_ASCENDING": "Sort rows by this header in ascending order"
-
+		"SORT_ASCENDING": "Sort rows by this header in ascending order",
+		"ROW": "row"
 	},
 	"TABLE_TOOLBAR": {
 		"ACTION_BAR": "Table Action Bar"
