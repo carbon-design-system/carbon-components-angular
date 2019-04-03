@@ -4,7 +4,6 @@ import {
 	OnInit
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, number, object } from "@storybook/addon-knobs/angular";
 
