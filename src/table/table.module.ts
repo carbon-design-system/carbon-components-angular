@@ -14,7 +14,6 @@ import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 import { DataGridFocus } from "./data-grid-focus.directive";
 import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
-import { IconModule } from "./../icon/icon.module";
 import { I18nModule } from "./../i18n/i18n.module";
 
 export { Table } from "./table.component";
@@ -52,7 +51,6 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 		CommonModule,
 		NFormsModule,
 		FormsModule,
-		IconModule,
 		DialogModule,
 		I18nModule,
 		ChevronRight16Module

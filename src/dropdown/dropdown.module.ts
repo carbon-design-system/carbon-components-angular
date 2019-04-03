@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
@@ -33,7 +32,6 @@ export { DropdownService } from "./dropdown.service";
 	imports: [
 		CommonModule,
 		FormsModule,
-		StaticIconModule,
 		I18nModule,
 		PlaceholderModule
 	],
