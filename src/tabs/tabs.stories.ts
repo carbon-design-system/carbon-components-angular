@@ -3,8 +3,6 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { TabsModule } from "../";
 
-// NOTE: non-experimental styles include some temporary workarounds in preview.scss
-// these should be removed when experimental becomes non-experimental
 storiesOf("Tabs", module)
 	.addDecorator(
 		moduleMetadata({

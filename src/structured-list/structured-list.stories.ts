@@ -4,8 +4,6 @@ import { withKnobs, boolean } from "@storybook/addon-knobs";
 
 import { StructuredListModule } from "../";
 
-// NOTE: non-experimental styles include some temporary workarounds in preview.scss
-// these should be removed when experimental becomes non-experimental
 storiesOf("Structured List", module).addDecorator(
 	moduleMetadata({
 		imports: [StructuredListModule]
