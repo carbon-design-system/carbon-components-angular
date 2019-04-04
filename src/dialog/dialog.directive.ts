@@ -19,7 +19,7 @@ import { DialogConfig } from "./dialog-config.interface";
 /**
  * A generic directive that can be inherited from to create dialogs (for example, a tooltip or popover)
  *
- * This class contains the relevant intilization code, specific templates, options, and additional inputs
+ * This class contains the relevant initialization code, specific templates, options, and additional inputs
  * should be specified in the derived class.
  *
  * NOTE: All child classes should add `DialogService` as a provider, otherwise they will lose context that
@@ -33,6 +33,7 @@ import { DialogConfig } from "./dialog-config.interface";
 	]
 })
 export class DialogDirective implements OnInit, OnDestroy, OnChanges {
+	static dialogCounter = 0;
 	/**
 	 * Title for the dialog
 	 * @type {string}
@@ -64,7 +65,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	@Input() gap = 0;
 	/**
 	 * Deprecated. Defaults to true. Use appendInline to keep dialogs within page flow
-	 * Value `true` sets Dialog be appened to the body (to break out of containers)
+	 * Value `true` appends Dialog to the body (to break out of containers)
 	 */
 	@Input() set appendToBody(v: boolean) {
 		console.log("`appendToBody` has been deprecated. Dialogs now append to the body by default.");
@@ -86,11 +87,22 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Config object passed to the rendered component
 	 */
-	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	dialogConfig: DialogConfig;
+	/**
+	 * Emits an event when the dialog is closed
+	 */
+	@Output() onClose: EventEmitter<any> = new EventEmitter();
+	/**
+	 * Emits an event when the dialog is opened
+	 */
+	@Output() onOpen: EventEmitter<any> = new EventEmitter();
 
 	@HostBinding("attr.role") role = "button";
 	@HostBinding("attr.aria-expanded") expanded = false;
+	@HostBinding("attr.aria-haspopup") hasPopup = true;
+	@HostBinding("attr.aria-owns") get ariaOwns(): string {
+		return this.expanded ? this.dialogConfig.compID : null;
+	}
 
 	/**
 	 * Creates an instance of DialogDirective.
@@ -135,7 +147,15 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	ngOnInit() {
 		// fix for safari hijacking clicks
-		document.body.firstElementChild.addEventListener("click", () => null, true);
+		this.dialogService.singletonClickListen();
+
+		fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
+			// "Esc" is an IE specific value
+			if (event.target === this.dialogConfig.parentRef.nativeElement && (event.key === "Tab" || event.key === "Tab" && event.shiftKey) ||
+				event.key === "Escape" || event.key === "Esc") {
+				this.close();
+			}
+		});
 
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
@@ -145,6 +165,12 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
 			fromEvent(this.elementRef.nativeElement, "click").subscribe(() => this.toggle());
+			fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
+				// "Spacebar" is an IE specific value
+				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+					this.open();
+				}
+			});
 		}
 
 		// call onClose when the dialog is closed
@@ -155,6 +181,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.expanded = false;
 			}
 		});
+
+		DialogDirective.dialogCounter++;
+		this.dialogConfig.compID = "dialog-" + DialogDirective.dialogCounter;
 
 		// run any code a child class may need
 		this.onDialogInit();
@@ -175,6 +204,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
 		this.expanded = true;
+		this.onOpen.emit();
 	}
 
 	/**
@@ -184,6 +214,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	toggle() {
 		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
 		this.expanded = this.dialogService.isOpen;
+		if (this.expanded) {
+			this.onOpen.emit();
+		}
 	}
 
 	/**

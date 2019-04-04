@@ -9,7 +9,7 @@ import { I18n } from "./../i18n/i18n.module";
 			class="bx--loading">
 			<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
 				<title>{{title}}</title>
-				<circle cx="0" cy="0" r="37.5" />
+				<circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
 			</svg>
 		</div>
 	`
@@ -35,5 +35,5 @@ export class Loading {
 	 */
 	@Input() @HostBinding("class.bx--loading-overlay") overlay = false;
 
-	constructor(private i18n: I18n) {}
+	constructor(protected i18n: I18n) {}
 }

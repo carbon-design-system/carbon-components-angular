@@ -46,14 +46,14 @@ export class Icon implements AfterViewInit {
 		return this.elementRef.nativeElement.classList;
 	}
 
-	private spriteLoadingSubscription: Subscription = null;
+	protected spriteLoadingSubscription: Subscription = null;
 
 	/**
 	 * Initialize the component
 	 *
 	 * @param {ElementRef} elementRef
 	 */
-	constructor(private elementRef: ElementRef, private iconService: IconService) {}
+	constructor(protected elementRef: ElementRef, protected iconService: IconService) {}
 
 	ngAfterViewInit() {
 		const root: HTMLElement = this.elementRef.nativeElement;

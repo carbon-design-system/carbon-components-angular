@@ -70,7 +70,12 @@ export class CheckboxChange {
 			[attr.aria-checked]="(indeterminate ? 'mixed' : checked)"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
-		<label [for]="id" class="bx--checkbox-label">
+		<label
+			[for]="id"
+			class="bx--checkbox-label"
+			[ngClass]="{
+				'bx--skeleton' : skeleton
+			}">
 			<ng-content></ng-content>
 		</label>
 	`,
@@ -89,24 +94,26 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	static checkboxCount = 0;
 
-	@HostBinding("attr.class") class = "bx--checkbox-wrapper";
-
 	/**
 	 * Size of the checkbox.
 	 */
 	@Input() size: "sm" | "md" = "md";
 	/**
-	 * Set to `true` for checkbox to be rendered with inline styles.
-	 */
-	@Input() inline: boolean;
-	/**
 	 * Set to `true` for checkbox to be rendered with nested styles.
 	 */
 	@Input() nested: boolean;
 	/**
+	 * Set to `true` for checkbox to be rendered without any classes on the host element.
+	 */
+	@Input() inline = false;
+	/**
 	 * Set to `true` for a disabled checkbox.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a loading checkbox.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * Sets the name attribute on the `input` element.
 	 */
@@ -137,14 +144,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Reflects whether the checkbox state is indeterminate.
 	 * @readonly
 	 */
-	@Input() get indeterminate() {
+	get indeterminate() {
 		return this._indeterminate;
 	}
 
 	/**
 	 * Set the checkbox's indeterminate state to match the parameter and transition the view to reflect the change.
 	 */
-	set indeterminate(indeterminate: boolean) {
+	@Input() set indeterminate(indeterminate: boolean) {
 		let changed = this._indeterminate !== indeterminate;
 		this._indeterminate = indeterminate;
 
@@ -161,14 +168,14 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Returns value `true` if state is selected for the checkbox.
 	 * @readonly
 	 */
-	@Input() get checked() {
+	get checked() {
 		return this._checked;
 	}
 
 	/**
 	 * Updating the state of a checkbox to match the state of the parameter passed in.
 	 */
-	set checked (checked: boolean) {
+	@Input() set checked (checked: boolean) {
 		if (checked !== this.checked) {
 			if (this._indeterminate) {
 				Promise.resolve().then(() => {
@@ -179,6 +186,13 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 			this._checked = checked;
 			this.changeDetectorRef.markForCheck();
 		}
+	}
+
+	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
+		return !this.inline;
+	}
+	@HostBinding("class.bx--form-item") get formItemClass() {
+		return !this.inline;
 	}
 
 	/**
@@ -215,18 +229,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Checkbox.checkboxCount++;
-	}
-
-	/**
-	 * Creates a class name based on `@Input() size`, `@Input() inline`, and `@Input() nested`.
-	 * @return {string}
-	 */
-	public getVariantClass() {
-		if (this.inline || this.nested) {
-			return `checkbox${this.inline ? "--inline" : ""}${this.nested ? "--nested" : ""}${this.size !== "md" ? `-${this.size}` : ""}`;
-		} else {
-			return `checkbox${this.size !== "md" ? `--${this.size}` : ""}`;
-		}
 	}
 
 	/**

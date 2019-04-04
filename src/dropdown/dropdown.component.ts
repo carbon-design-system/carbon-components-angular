@@ -15,11 +15,12 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
 import { Observable, fromEvent, of, Subscription } from "rxjs";
-import { throttleTime } from "rxjs/operators";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "../utils/position";
 import { I18n } from "./../i18n/i18n.module";
+import { ListItem } from "./list-item.interface";
+import { DropdownService } from "./dropdown.service";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -28,7 +29,13 @@ import { I18n } from "./../i18n/i18n.module";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<div class="bx--list-box">
+	<div
+		class="bx--list-box bx--dropdown"
+		[ngClass]="{
+			'bx--dropdown--light': theme === 'light',
+			'bx--list-box--inline': inline,
+			'bx--skeleton': skeleton
+		}">
 		<button
 			type="button"
 			#dropdownButton
@@ -40,8 +47,8 @@ import { I18n } from "./../i18n/i18n.module";
 			(blur)="onBlur()"
 			[disabled]="disabled">
 			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
-			<div class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" alt="Open menu" [attr.aria-label]="menuButtonLabel">
+			<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" [attr.aria-label]="menuButtonLabel">
 					<title>{{menuButtonLabel}}</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
 				</svg>
@@ -82,11 +89,26 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * item selection.
 	 */
 	@Input() type: "single" | "multi" = "single";
-
+	/**
+	 * `light` or `dark` dropdown theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 	/**
 	 * Set to `true` to disable the dropdown.
 	 */
 	@Input() disabled = false;
+	/**
+	 * Set to `true` for a loading dropdown.
+	 */
+	@Input() skeleton = false;
+	/**
+	 * Set to `true` for an inline dropdown.
+	 */
+	@Input() inline = false;
+	/**
+	 * Set to `true` for a dropdown without arrow key activation.
+	 */
+	@Input() disableArrowKeys = false;
 	/**
 	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
@@ -160,10 +182,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	dropUp = false;
 
-	/**
-	 * Used by the various appendToX methods to keep a reference to our wrapper div
-	 */
-	dropdownWrapper: HTMLElement;
 	// .bind creates a new function, so we declare the methods below
 	// but .bind them up here
 	noop = this._noop.bind(this);
@@ -171,34 +189,36 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 	/**
-	 * Maintains an Event Observable Subscription for tracking window resizes.
-	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
-	 */
-	resize: Subscription;
-	/**
 	 *  Maintians an Event Observable Subscription for tracking scrolling within the open `Dropdown` list.
 	 */
 	scroll: Subscription;
 
-	private onTouchedCallback: () => void = this._noop;
+	protected onTouchedCallback: () => void = this._noop;
 
 	/**
 	 * Creates an instance of Dropdown.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
+	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected dropdownService: DropdownService) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
 	 * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
 	 */
 	ngOnInit() {
-		this.view.type = this.type;
+		if (this.view) {
+			this.view.type = this.type;
+		}
+		// add -40 to the top position to account for carbon styles
+		this.dropdownService.offset = { top: -40 };
 	}
 
 	/**
 	 * Initializes classes and subscribes to events for single or multi selection.
 	 */
 	ngAfterContentInit() {
+		if (!this.view) {
+			return;
+		}
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
@@ -206,7 +226,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 				this.propagateChange(this.view.getSelected());
 			} else {
 				this.closeMenu();
-				this.dropdownButton.nativeElement.focus();
 				if (event.item && event.item.selected) {
 					if (this.value) {
 						this.propagateChange(event.item[this.value]);
@@ -236,7 +255,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	writeValue(value: any) {
 		if (this.type === "single") {
 			if (this.value) {
-				const newValue = Object.assign({}, this.view.items.find(item => item[this.value] === value));
+				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.value] === value));
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
@@ -268,15 +287,20 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Adds keyboard functionality for navigation, selection and closing of the `Dropdown`.
 	 */
 	@HostListener("keydown", ["$event"])
+	// "Esc", "Spacebar", "Down", and "Up" are IE specific values
 	onKeyDown(event: KeyboardEvent) {
-		if (event.key === "Escape" && !this.menuIsClosed) {
+		if ((event.key === "Escape" || event.key === "Esc") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
-		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+		if (event.key === "Escape" || event.key === "Esc") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (event.key === "ArrowDown" && event.altKey) {
+		} else if (this.menuIsClosed && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp" ||
+			event.key === "Spacebar" || event.key === "Down" || event.key === "Up")) {
+			if (this.disableArrowKeys && (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up")) {
+				return;
+			}
 			event.preventDefault();
 			this.openMenu();
 		}
@@ -297,12 +321,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	closedDropdownNavigation(event) {
-		if (event.key === "ArrowDown") {
+		// "Down", and "Up" are IE specific values
+		if (event.key === "ArrowDown" || event.key === "Down") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
-		} else if (event.key === "ArrowUp") {
+		} else if (event.key === "ArrowUp" || event.key === "Up") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
@@ -314,6 +339,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Returns the display value if there is no selection, otherwise the selection will be returned.
 	 */
 	getDisplayValue(): Observable<string> {
+		if (!this.view) {
+			return;
+		}
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
@@ -356,10 +384,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		if (event.key === "Escape" && !this.menuIsClosed) {
+		// "Esc" is an IE specific value
+		if ((event.key === "Escape" || event.key === "Esc") && !this.menuIsClosed) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
-		if (event.key === "Escape" || (event.key === "ArrowUp" && event.altKey)) {
+		if (event.key === "Escape" || event.key === "Esc") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
@@ -376,38 +405,19 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Creates the `Dropdown` list appending it to the dropdown parent object instead of the body.
 	 */
 	_appendToDropdown() {
-		if (document.body.contains(this.dropdownWrapper)) {
-			this.dropdownMenu.nativeElement.style.display = "none";
-			this.elementRef.nativeElement.appendChild(this.dropdownMenu.nativeElement);
-			document.body.removeChild(this.dropdownWrapper);
-			this.resize.unsubscribe();
-			this.dropdownWrapper.removeEventListener("keydown", this.keyboardNav, true);
-		}
+		this.dropdownService.appendToDropdown(this.elementRef.nativeElement);
+		this.dropdownMenu.nativeElement.removeEventListener("keydown", this.keyboardNav, true);
 	}
 
 	/**
 	 * Creates the `Dropdown` list as an element that is appended to the DOM body.
 	 */
 	_appendToBody() {
-		const positionDropdown = () => {
-			let pos = position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom");
-			// add -40 to the top position to account for carbon styles
-			pos = position.addOffset(pos, -40, 0);
-			pos = position.addOffset(pos, window.scrollY, window.scrollX);
-			position.setElement(this.dropdownWrapper, pos);
-		};
-		this.dropdownMenu.nativeElement.style.display = "block";
-		this.dropdownWrapper = document.createElement("div");
-		this.dropdownWrapper.className = `dropdown ${this.elementRef.nativeElement.className}`;
-		this.dropdownWrapper.style.width = this.elementRef.nativeElement.offsetWidth + "px";
-		this.dropdownWrapper.style.position = "absolute";
-		this.dropdownWrapper.appendChild(this.dropdownMenu.nativeElement);
-		document.body.appendChild(this.dropdownWrapper);
-		positionDropdown();
-		this.dropdownWrapper.addEventListener("keydown", this.keyboardNav, true);
-		this.resize = fromEvent(window, "resize")
-			.pipe(throttleTime(100))
-			.subscribe(() => positionDropdown());
+		this.dropdownService.appendToBody(
+			this.dropdownButton.nativeElement,
+			this.dropdownMenu.nativeElement,
+			this.elementRef.nativeElement.className);
+		this.dropdownMenu.nativeElement.addEventListener("keydown", this.keyboardNav, true);
 	}
 
 	/**
@@ -450,16 +460,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		document.body.firstElementChild.addEventListener("keydown", this.noop, true);
 		document.addEventListener("click", this.outsideClick, true);
 		document.addEventListener("keydown", this.outsideKey, true);
-		// setTimeout(() => this.view.initFocus(), 0);
+		setTimeout(() => this.view.initFocus(), 0);
 	}
 
 	/**
 	 * Collapsing the dropdown menu and removing unnecessary `EventListeners`.
 	 */
 	closeMenu() {
+		// return early if the menu is already closed
+		if (this.menuIsClosed) { return; }
 		this.menuIsClosed = true;
 		this.onClose.emit();
 		this.close.emit();
+
+		// focus the trigger button when we close ...
+		this.dropdownButton.nativeElement.focus();
 
 		// remove the conditional once this api is settled and part of abstract-dropdown-view.class
 		if (this.view["disableScroll"]) {
@@ -478,7 +493,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	/**
-	 * Add scroll event listenter if scrollableContainer is provided
+	 * Add scroll event listener if scrollableContainer is provided
 	 */
 	addScrollEventListener() {
 		if (this.scrollableContainer) {
@@ -488,12 +503,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 				this.scroll = fromEvent(container, "scroll")
 				.subscribe(() => {
 					if (this.isVisibleInContainer(this.elementRef.nativeElement, container)) {
-						position.setElement(
-							this.dropdownWrapper,
-							position.addOffset(
-								position.findAbsolute(this.elementRef.nativeElement, this.dropdownWrapper, "bottom")
-							)
-						);
+						this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
 					} else {
 						this.closeMenu();
 					}

@@ -10,7 +10,8 @@ import {
 } from "@angular/core";
 
 import { NotificationContent, ToastContent } from "./notification-content.interface";
-import { Notification, Toast } from "./notification.module";
+import { Notification } from "./notification.component";
+import { Toast } from "./toast.component";
 
 /**
  * Provides a way to use the notification component.
@@ -26,7 +27,6 @@ export class NotificationService implements OnDestroy {
 	 * An array containing `ComponentRef`s to all the notifications this service instance
 	 * is responsible for.
 	 *
-	 * @memberof NotificationService
 	 */
 	public notificationRefs = new Array<ComponentRef<any>>();
 	public onClose: EventEmitter<any> = new EventEmitter();
@@ -37,12 +37,11 @@ export class NotificationService implements OnDestroy {
 	 * @param {Injector} injector
 	 * @param {ComponentFactoryResolver} componentFactoryResolver
 	 * @param {ApplicationRef} applicationRef
-	 * @memberof NotificationService
 	 */
 	constructor(
-		private injector: Injector,
-		private componentFactoryResolver: ComponentFactoryResolver,
-		private applicationRef: ApplicationRef) {
+		protected injector: Injector,
+		protected componentFactoryResolver: ComponentFactoryResolver,
+		protected applicationRef: ApplicationRef) {
 	}
 
 	/**
@@ -74,7 +73,6 @@ export class NotificationService implements OnDestroy {
 	 * ```
 	 *
 	 * @param {any} [notificationComp=Notification] If provided, used to resolve component factory
-	 * @memberof NotificationService
 	 */
 	showNotification(notificationObj: NotificationContent | ToastContent, notificationComp = Notification) {
 		const componentFactory = this.componentFactoryResolver.resolveComponentFactory(notificationComp);
@@ -130,14 +128,13 @@ export class NotificationService implements OnDestroy {
 	}
 
 	showToast(notificationObj: NotificationContent | ToastContent, notificationComp = Toast) {
-		return this.showNotification(notificationObj, notificationComp);
+		return this.showNotification(notificationObj, notificationComp as any);
 	}
 
 	/**
 	 * Programatically closes notification based on `notificationRef`.
 	 *
 	 * @param notificationRef `ComponentRef` of a notification or `Notification` component you wish to close
-	 * @memberof NotificationService
 	 */
 	close(notificationRef: any) {
 		if (notificationRef) {
@@ -160,7 +157,6 @@ export class NotificationService implements OnDestroy {
 	 * In addition to `type` and `message` members, use `duration` member to add
 	 * some extra time (in ms) to timeout if you need to.
 	 * @returns {number} calculated timeout (in ms) for smart notification
-	 * @memberof NotificationService
 	 */
 	getSmartTimeout(notificationObj): number {
 		// calculate timeout
@@ -200,7 +196,6 @@ export class NotificationService implements OnDestroy {
 	 *
 	 * Destroys all living notifications it is responsible for.
 	 *
-	 * @memberof NotificationService
 	 */
 	ngOnDestroy() {
 		if (this.notificationRefs.length > 0) {

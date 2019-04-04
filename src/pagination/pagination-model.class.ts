@@ -18,7 +18,7 @@ export class PaginationModel {
 	/**
 	 * Absolute total number of items needed to paginate.
 	 *
-	 * @private
+	 * @protected
 	 * @type {number}
 	 * @memberof PaginationModel
 	 */

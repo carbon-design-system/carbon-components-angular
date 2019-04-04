@@ -2,7 +2,9 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ProgressIndicator } from "./progress-indicator.component";
+import { ExperimentalModule } from "./../experimental.module";
 
+export { ProgressIndicator } from "./progress-indicator.component";
 
 @NgModule({
 	declarations: [
@@ -11,6 +13,6 @@ import { ProgressIndicator } from "./progress-indicator.component";
 	exports: [
 		ProgressIndicator
 	],
-	imports: [CommonModule]
+	imports: [CommonModule, ExperimentalModule]
 })
 export class ProgressIndicatorModule { }

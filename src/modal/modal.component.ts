@@ -18,7 +18,7 @@ import {
 	transition,
 	animate
 } from "@angular/animations";
-import { cycleTabs } from "./../common/tab.service";
+import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
 
 /**
@@ -53,10 +53,10 @@ import { cycleTabs } from "./../common/tab.service";
  * 		</ibm-modal>`,
  * 	styleUrls: ["./sample-modal.component.scss"]
  * })
- * export class SampleModal {
- * 	closeModal: any; // placeholder for the closeModal method provided by the Modal decorator
+ * export class SampleModal extends BaseModal {
  * 	modalText: string;
- * 	constructor(private injector: Injector) {
+ * 	constructor(protected injector: Injector) {
+ * 		super();
  * 		this.modalText = this.injector.get("modalText");
  * 	}
  * }
@@ -167,7 +167,11 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 			primaryFocusElement.focus();
 			return;
 		}
-		this.modal.nativeElement.focus();
+		if (getFocusElementList(this.modal.nativeElement).length > 0) {
+			getFocusElementList(this.modal.nativeElement)[0].focus();
+		} else {
+			this.modal.nativeElement.focus();
+		}
 	}
 
 	/**

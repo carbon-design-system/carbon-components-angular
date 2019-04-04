@@ -6,6 +6,7 @@ import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 import { Component } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
+import { I18n } from "../i18n/i18n.module";
 
 @Component({
 	selector: "app-notification-story",
@@ -16,7 +17,7 @@ import { NotificationModule, NotificationService } from "./notification.module";
 	providers: [NotificationService]
 })
 class NotificationStory {
-	constructor(private notificationService: NotificationService) { }
+	constructor(protected notificationService: NotificationService) { }
 
 	showNotification() {
 		this.notificationService.showNotification({
@@ -37,7 +38,7 @@ class NotificationStory {
 	providers: [NotificationService]
 })
 class ToastStory {
-	constructor(private notificationService: NotificationService) { }
+	constructor(protected notificationService: NotificationService) { }
 
 	showToast() {
 		this.notificationService.showToast({

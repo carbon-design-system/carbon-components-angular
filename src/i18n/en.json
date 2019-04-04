@@ -71,6 +71,16 @@
 			"RESET_SEARCH": "Reset search"
 		}
 	},
+	"DROPDOWN_LIST": {
+		"LABEL": "Listbox"
+	},
+	"FILE_UPLOADER": {
+		"CHECKMARK": "Checkmark",
+		"CHECKMARK_TITLE": "File uploaded!",
+		"OPEN": "Add file",
+		"REMOVE_BUTTON": "Close button",
+		"REMOVE_TITLE": "Delete File"
+	},
 	"LOADING": {
 		"TITLE": "Loading"
 	},
@@ -83,14 +93,20 @@
 	"OVERFLOW_MENU": {
 		"OVERFLOW": "Overflow"
 	},
-	"SIDENAV": {
-		"NAV_LABEL": "Side navigation"
+	"SEARCH": {
+		"LABEL": "Search",
+		"PLACEHOLDER": "Search",
+		"CLEAR_BUTTON": "Clear search input",
+		"TOOLBAR_SEARCH": "Toolbar search"
 	},
 	"PAGINATION": {
 		"ITEMS_PER_PAGE": "Items per page:",
 		"OPEN_LIST_OF_OPTIONS": "Open list of options",
 		"BACKWARD": "Backward",
-		"FORWARD": "Forward"
+		"FORWARD": "Forward",
+		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
+		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"OF_LAST_PAGES": "of {{last}} pages"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
@@ -100,17 +116,35 @@
 		"NEXT_3": "Scroll to next 3 pages",
 		"FILTER": "Filter",
 		"END_OF_DATA": "You've reached the end of your content",
-		"SCROLL_TOP": "Scroll to top"
+		"SCROLL_TOP": "Scroll to top",
+		"CHECKBOX_HEADER": "Select all rows",
+		"CHECKBOX_ROW": "Select {{value}}",
+		"EXPAND_BUTTON": "Expand row",
+		"SORT_DESCENDING": "Sort rows by this header in descending order",
+		"SORT_ASCENDING": "Sort rows by this header in ascending order",
+		"ROW": "row"
+	},
+	"TABLE_TOOLBAR": {
+		"ACTION_BAR": "Table Action Bar"
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
 	},
-	"TOPNAV": {
-		"SKIP_TO_MAIN": "Skip to main content",
-		"HAMBURGER": {
-			"TOGGLE": "Toggle primary navigation menu",
-			"TITLE": "Primary navigation menu"
+	"TOGGLE": {
+		"OFF": "Off",
+		"ON": "On"
+	},
+	"UI_SHELL": {
+		"SKIP_TO": "Skip to content",
+		"HEADER": {
+			"MENU": "Open menu"
+		},
+		"SIDE_NAV": {
+			"LABEL": "Side navigation",
+			"SWITCHER": "Switcher",
+			"TOGGLE_OPEN": "Open",
+			"TOGGLE_CLOSE": "Close"
 		}
 	}
 }

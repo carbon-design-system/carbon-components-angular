@@ -16,6 +16,7 @@ import {
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { filter } from "rxjs/operators";
 
 /**
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -37,7 +38,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			tabindex="0"
 			type="button"
 			aria-label="close menu"
-			aria-haspopup="true">
+			aria-haspopup="true"
+			(click)="toggleDropdown()">
 			<div
 				*ngIf="type === 'multi' && pills.length > 0"
 				(click)="clearSelected()"
@@ -53,15 +55,13 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					viewBox="0 0 10 10"
 					width="10"
 					focusable="false"
-					aria-label="Clear all selected items"
-					alt="Clear all selected items">
+					aria-label="Clear all selected items">
 					<title>Clear all selected items</title>
 					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
 				</svg>
 			</div>
 			<input
 				[disabled]="disabled"
-				(click)="toggleDropdown()"
 				(keyup)="onSearch($event.target.value)"
 				[value]="selectedValue"
 				class="bx--text-input"
@@ -77,7 +77,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					role="img"
 					viewBox="0 0 10 5"
 					width="10"
-					alt="Close menu"
 					aria-label="Close menu">
 					<title>Close menu</title>
 					<path d="M0 0l5 4.998L10 0z"></path>
@@ -124,8 +123,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * ];
 	 * ```
 	 *
-	 * @type {Array<ListItem>}
-	 * @memberof ComboBox
 	 */
 	@Input() items: Array<ListItem> = [];
 	/**
@@ -155,7 +152,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * }
 	 * ```
 	 */
-	@Output() selected: EventEmitter<ListItem> = new EventEmitter<ListItem>();
+	@Output() selected = new EventEmitter<ListItem | ListItem[]>();
 	/**
 	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
 	 *
@@ -200,27 +197,23 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	/** used to update the displayValue of `n-pill-input` */
 	public selectedValue = "";
 
-	private noop = this._noop.bind(this);
-	private onTouchedCallback: () => void = this._noop;
-	private propagateChangeCallback: (_: any) => void = this._noop;
+	protected noop = this._noop.bind(this);
+	protected onTouchedCallback: () => void = this._noop;
+	protected propagateChangeCallback: (_: any) => void = this._noop;
 
 	/**
 	 * Creates an instance of ComboBox.
-	 * @param {ElementRef} elementRef
-	 * @memberof ComboBox
 	 */
-	constructor(private elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {}
 
 	/**
 	 * Lifecycle hook.
 	 * Updates pills if necessary.
 	 *
-	 * @param {any} changes
-	 * @memberof ComboBox
 	 */
 	ngOnChanges(changes) {
 		if (changes.items) {
-			this.view["updateList"](changes.items.currentValue);
+			this.view.items = changes.items.currentValue;
 			this.updateSelected();
 		}
 	}
@@ -250,19 +243,23 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 						this.selectedValue = "";
 						this.propagateChangeCallback(null);
 					}
-					// not gaurding these since the nativeElement has to be loaded
+					// not guarding these since the nativeElement has to be loaded
 					// for select to even fire
 					this.elementRef.nativeElement.querySelector("input").focus();
 					this.closeDropdown();
 				}
 				this.selected.emit(event);
-				this.view["filterBy"]("");
+				this.view.filterBy("");
 			});
-			this.view["updateList"](this.items);
+			this.view.items = this.items;
 			// update the rest of combobox with any pre-selected items
 			// setTimeout just defers the call to the next check cycle
 			setTimeout(() => {
 				this.updateSelected();
+			});
+
+			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
+				this.elementRef.nativeElement.querySelector(".bx--text-input").focus();
 			});
 		}
 	}
@@ -282,18 +279,16 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Handles `Escape` key closing the dropdown, and arrow up/down focus to/from the dropdown list.
-	 * @param {KeyboardEvent} ev
 	 */
 	@HostListener("keydown", ["$event"])
 	hostkeys(ev: KeyboardEvent) {
 		if (ev.key === "Escape") {
 			this.closeDropdown();
-		} else if (ev.key === "ArrowDown" && !this.dropdownMenu.nativeElement.contains(ev.target)) {
+		} else if ((ev.key === "ArrowDown" || ev.key === "Down") // `"Down"` is IE specific value
+			&& (!this.dropdownMenu || !this.dropdownMenu.nativeElement.contains(ev.target))) {
 			ev.stopPropagation();
 			this.openDropdown();
 			setTimeout(() => this.view.getCurrentElement().focus(), 0);
-		} else if (ev.key === "ArrowUp" && this.dropdownMenu.nativeElement.contains(ev.target) && !this.view["hasPrevElement"]()) {
-			this.elementRef.nativeElement.querySelector(".combobox_input").focus();
 		}
 	}
 
@@ -342,7 +337,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 			}
 			return item;
 		});
-		this.view["updateList"](this.items);
+		this.view.items = this.items;
 		this.updatePills();
 		// clearSelected can only fire on type=multi
 		// so we just emit getSelected() (just in case there's any disabled but selected items)
@@ -351,7 +346,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Closes the dropdown and emits the close event.
-	 * @memberof ComboBox
 	 */
 	public closeDropdown() {
 		this.open = false;
@@ -360,7 +354,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Opens the dropdown.
-	 * @memberof ComboBox
 	 */
 	public openDropdown() {
 		this.open = true;
@@ -368,7 +361,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Toggles the dropdown.
-	 * @memberof ComboBox
 	 */
 	public toggleDropdown() {
 		if (this.open) {
@@ -380,10 +372,9 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/**
 	 * Sets the list group filter, and manages single select item selection.
-	 * @param {string} searchString
 	 */
 	public onSearch(searchString) {
-		this.view["filterBy"](searchString);
+		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
 		} else {
@@ -392,7 +383,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		if (this.type === "single") {
 			// deselect if the input doesn't match the content
 			// of any given item
-			const matches = this.view.items.some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
+			const matches = this.view.getListItems().some(item => item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected = this.view.getSelected();
 				if (selected) {
@@ -401,7 +392,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 					this.view.select.emit({ item: selected[0] });
 					this.propagateChangeCallback(null);
 				} else {
-					this.view["filterBy"]("");
+					this.view.filterBy("");
 				}
 			}
 		}
@@ -423,10 +414,10 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	public onSubmit(ev) {
 		let index = 0;
 		if (ev.after) {
-			index = this.view.items.indexOf(ev.after) + 1;
+			index = this.view.getListItems().indexOf(ev.after) + 1;
 		}
 		this.submit.emit({
-			items: this.view.items,
+			items: this.view.getListItems(),
 			index,
 			value: {
 				content: ev.value,
@@ -435,7 +426,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		});
 	}
 
-	private updateSelected() {
+	protected updateSelected() {
 		const selected = this.view.getSelected();
 		if (selected) {
 			if (this.type === "multi") {

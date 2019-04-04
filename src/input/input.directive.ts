@@ -1,4 +1,4 @@
-import { Directive, HostBinding } from "@angular/core";
+import { Directive, HostBinding, Input } from "@angular/core";
 
 /**
  * A directive for applying styling to an input element.
@@ -15,5 +15,14 @@ import { Directive, HostBinding } from "@angular/core";
 	selector: "[ibmText]"
 })
 export class TextInput {
+	/**
+	 * `light` or `dark` input theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
 	@HostBinding("class.bx--text-input") inputClass = true;
+	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
+	@HostBinding("class.bx--text-input--light") get isLightTheme() {
+		return this.theme === "light";
+	}
 }

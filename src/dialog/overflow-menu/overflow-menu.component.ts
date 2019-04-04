@@ -1,5 +1,12 @@
-import { Component, ElementRef, Input } from "@angular/core";
+import {
+	Component,
+	ElementRef,
+	Input,
+	ViewEncapsulation,
+	ContentChild
+} from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
+import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -17,14 +24,17 @@ import { I18n } from "./../../i18n/i18n.module";
 	template: `
 		<div
 			[ibmOverflowMenu]="options"
-			[ngClass]="{'bx--overflow-menu--open': open === true}"
+			[ngClass]="{'bx--overflow-menu--open': open}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
+			(onOpen)="open = true"
+			(onClose)="open = false"
+			role="button"
+			aria-haspopup="true"
 			class="bx--overflow-menu"
 			placement="bottom"
-			style="display: block;"
 			tabindex="0">
-			<svg class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
+			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
 					<circle cx="1.5" cy="1.5" r="1.5" />
 					<circle cx="1.5" cy="7.5" r="1.5" />
@@ -40,7 +50,20 @@ import { I18n } from "./../../i18n/i18n.module";
 		.bx--overflow-menu--open {
 			opacity: 1
 		}
-	`]
+
+		/*
+		Rotate the overflow menu container as well as the icon, since
+		we calculate our menu position based on the container, not the icon.
+		*/
+		.bx--data-table-v2 .bx--overflow-menu {
+			transform: rotate(90deg);
+		}
+
+		.bx--data-table-v2 .bx--overflow-menu__icon {
+			transform: rotate(180deg);
+		}
+	`],
+	encapsulation: ViewEncapsulation.None
 })
 export class OverflowMenu {
 
@@ -48,12 +71,9 @@ export class OverflowMenu {
 
 	@Input() flip = false;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
+	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
-	get open() {
-		if (this.elementRef.nativeElement.children[0].getAttribute("aria-expanded") === "true") {
-			return true;
-		}
-		return false;
-	}
+	open = false;
+
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 }

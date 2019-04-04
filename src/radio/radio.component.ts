@@ -34,6 +34,7 @@ import { RadioGroup } from "./radio-group.component";
 	selector: "ibm-radio",
 	template: `
 		<input
+			*ngIf="!skeleton"
 			class="bx--radio-button"
 			type="radio"
 			#inputCheckbox
@@ -48,8 +49,12 @@ import { RadioGroup } from "./radio-group.component";
 			(change)="onChange($event)"
 			(click)="onClick($event)"
 			[tabindex]="(checked || needsToBeFocusable ? 0 : -1)">
+		<div *ngIf="skeleton" class="bx--radio-button bx--skeleton"></div>
 		<label
 			class="bx--radio-button__label"
+			[ngClass]="{
+				'bx--skeleton': skeleton
+			}"
 			[for]="id">
 			<span class="bx--radio-button__appearance"></span>
 			<ng-content></ng-content>
@@ -71,6 +76,10 @@ export class Radio extends Checkbox implements OnInit {
 	 */
 	static radioCount = 0;
 
+	/**
+	 * Set to `true` for a loading table.
+	 */
+	@Input() skeleton = false;
 	/**
 	 * Returns the value/state of the `Radio`.
 	 * @readonly
@@ -108,6 +117,13 @@ export class Radio extends Checkbox implements OnInit {
 	 */
 	@HostBinding("attr.role") role = "radio";
 
+	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
+		return false;
+	}
+	@HostBinding("class.bx--form-item") get formItemClass() {
+		return false;
+	}
+
 	/**
 	 * The id for the `Radio`.
 	 * @type {string}
@@ -142,7 +158,7 @@ export class Radio extends Checkbox implements OnInit {
 	 * @memberof Radio
 	 */
 	constructor(@Optional() radioGroup: RadioGroup,
-				public changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+				public changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
 		super(changeDetectorRef);
 		Radio.radioCount++;
 		this.radioGroup = radioGroup;

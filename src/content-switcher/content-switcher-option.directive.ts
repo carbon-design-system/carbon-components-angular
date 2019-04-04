@@ -15,6 +15,7 @@ export class ContentSwitcherOption {
 		this._active = value;
 		this.selectedClass = value;
 		this.ariaSelected = value;
+		this.tabindex = value ? "0" : "-1";
 	}
 
 	get active() {
@@ -29,6 +30,7 @@ export class ContentSwitcherOption {
 	@HostBinding("class.bx--content-switcher--selected") selectedClass = false;
 	@HostBinding("attr.role") role = "tab";
 	@HostBinding("attr.aria-selected") ariaSelected = false;
+	@HostBinding("attr.tabIndex") tabindex = "-1";
 
 	protected _active = false;
 
@@ -36,5 +38,17 @@ export class ContentSwitcherOption {
 	hostClick() {
 		this.active = true;
 		this.selected.emit(true);
+	}
+
+	@HostListener("focus")
+	onFocus() {
+		this.active = true;
+	}
+
+	@HostListener("blur", ["$event"])
+	onBlur(event) {
+		if (event.relatedTarget) {
+			this.active = false;
+		}
 	}
 }

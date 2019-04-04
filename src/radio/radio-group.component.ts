@@ -64,7 +64,11 @@ export class RadioChange {
  */
 @Component({
 	selector: "ibm-radio-group",
-	template: `<ng-content></ng-content>`,
+	template: `
+		<div class="bx--radio-button-group" role="radiogroup">
+			<ng-content></ng-content>
+		</div>
+	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -164,40 +168,55 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Binds 'radiogroup' value to the role attribute for `RadioGroup`.
+	 * Returns the skeleton value in the `RadioGroup` if there is one.
 	 */
-	@HostBinding("attr.role") role = "radiogroup";
+	@Input()
+	get skeleton(): any {
+		return this._skeleton;
+	}
 
 	/**
-	 * Binds 'bx--radio-button-group' value to the class for `RadioGroup`.
+	 * Sets the skeleton value for all `Radio` to the skeleton value of `RadioGroup`.
 	 */
-	@HostBinding("class.bx--radio-button-group") radioButtonGroupClass = true;
+	set skeleton(value: any) {
+		this._skeleton = value;
+		this.updateChildren();
+	}
+
+	/**
+	 * Binds 'bx--form-item' value to the class for `RadioGroup`.
+	 */
+	@HostBinding("class.bx--form-item") radioButtonGroupClass = true;
 
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
 	 */
-	private isInitialized = false;
+	protected isInitialized = false;
 	/**
 	 * Reflects whether or not the input is disabled and cannot be selected.
 	 */
-	private _disabled = false;
+	protected _disabled = false;
+	/**
+	 * Reflects wheather or not the dropdown is loading.
+	 */
+	protected _skeleton = false;
 	/**
 	 * The value of the selected option within the `RadioGroup`.
 	 */
-	private _value: any = null;
+	protected _value: any = null;
 	/**
 	 * The `Radio` within the `RadioGroup` that is selected.
 	 */
-	private _selected: Radio = null;
+	protected _selected: Radio = null;
 	/**
 	 * The name attribute associated with the `RadioGroup`.
 	 */
-	private _name = `radio-group-${RadioGroup.radioGroupCount}`;
+	protected _name = `radio-group-${RadioGroup.radioGroupCount}`;
 
 	/**
 	 * Creates an instance of RadioGroup.
 	 */
-	constructor(private changeDetectorRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+	constructor(protected changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
 		RadioGroup.radioGroupCount++;
 	}
 
@@ -301,6 +320,8 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 			this.radios = updatedRadios;
 			this.updateFocusableRadio();
 		});
+
+		this.updateChildren();
 	}
 
 	updateFocusableRadio() {
@@ -338,4 +359,10 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 * Method set in registerOnChange to propagate changes back to the form.
 	 */
 	propagateChange = (_: any) => {};
+
+	protected updateChildren() {
+		if (this.radios) {
+			this.radios.toArray().forEach(child => child.skeleton = this.skeleton);
+		}
+	}
 }

@@ -15,7 +15,7 @@ export class PlaceholderService {
 	/**
 	 * Maintain a `ViewContainerRef` to an instance of the component.
 	 */
-	private viewContainerRef: ViewContainerRef = null;
+	protected viewContainerRef: ViewContainerRef = null;
 	/**
 	 * Used by `Placeholder` to register view-container reference.
 	 */
@@ -52,5 +52,17 @@ export class PlaceholderService {
 
 	hasPlaceholderRef() {
 		return !!this.viewContainerRef;
+	}
+
+	appendElement(element: HTMLElement): HTMLElement {
+		return this.viewContainerRef.element.nativeElement.appendChild(element);
+	}
+
+	removeElement(element: HTMLElement): HTMLElement {
+		return this.viewContainerRef.element.nativeElement.removeChild(element);
+	}
+
+	hasElement(element: HTMLElement): boolean {
+		return this.viewContainerRef.element.nativeElement.contains(element);
 	}
 }

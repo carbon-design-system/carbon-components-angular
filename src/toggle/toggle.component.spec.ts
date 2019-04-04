@@ -1,23 +1,21 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed, fakeAsync, tick, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { DebugElement } from "@angular/core";
 import { StaticIconModule } from "../icon/static-icon.module";
 
-import { Toggle } from "./toggle.component";
-import { Checkbox } from "../checkbox/checkbox.module";
+import { I18nModule } from "../i18n/i18n.module";
+import { Toggle, ToggleChange } from "./toggle.component";
 
 describe("Toggle", () => {
 	let component: Toggle;
 	let fixture: ComponentFixture<Toggle>;
 	let labelElement: HTMLElement;
 	let buttonElement: HTMLElement;
-	let svgElement: HTMLElement;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Toggle],
-			imports: [BrowserAnimationsModule, StaticIconModule],
+			imports: [BrowserAnimationsModule, StaticIconModule, I18nModule],
 			providers: []
 		});
 
@@ -64,4 +62,17 @@ describe("Toggle", () => {
 		expect(labelElement.innerHTML).toContain("bx--toggle__check");
 	});
 
+	it("should match the input checked value", () => {
+		component.checked = true;
+		fixture.detectChanges();
+		expect(buttonElement.attributes.getNamedItem("aria-checked").value).toEqual("true");
+	});
+
+	it("should emit ToggleChange event", (done: any) => {
+		component.change.subscribe((data: any) => {
+			expect(data instanceof ToggleChange).toEqual(true);
+			done();
+		});
+		component.emitChangeEvent();
+	});
 });

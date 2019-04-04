@@ -78,7 +78,7 @@ function calculatePosition(referenceOffset: Offset, reference: HTMLElement, targ
 
 export namespace position {
 	export function getRelativeOffset(target: HTMLElement): Offset {
-		// start with the inital element offsets
+		// start with the initial element offsets
 		let offsets = {
 			left: target.offsetLeft,
 			top: target.offsetTop
@@ -93,9 +93,39 @@ export namespace position {
 	}
 
 	export function getAbsoluteOffset(target: HTMLElement): Offset {
+		let currentNode = target;
+		let margins = {
+			top: 0,
+			left: 0
+		};
+
+		// searches for containing elements with additional margins
+		while (currentNode.offsetParent) {
+			const computed = getComputedStyle(currentNode.offsetParent);
+			// find static elements with additional margins
+			// since they tend to throw off our positioning
+			// (usually this is just the body)
+			if (
+				computed.position === "static" &&
+				computed.marginLeft &&
+				computed.marginTop
+			) {
+				if (parseInt(computed.marginTop, 10)) {
+					margins.top += parseInt(computed.marginTop, 10);
+				}
+				if (parseInt(computed.marginLeft, 10)) {
+					margins.left += parseInt(computed.marginLeft, 10);
+				}
+			}
+
+			currentNode = currentNode.offsetParent as HTMLElement;
+		}
+
+		const targetRect = target.getBoundingClientRect();
+		const relativeRect = document.body.getBoundingClientRect();
 		return {
-			top: target.getBoundingClientRect().top,
-			left: target.getBoundingClientRect().left - document.body.getBoundingClientRect().left
+			top: targetRect.top - relativeRect.top + margins.top,
+			left: targetRect.left - relativeRect.left + margins.left
 		};
 	}
 

@@ -31,9 +31,18 @@ export enum SnippetType {
 
 		<ng-template #notInline>
 			<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">
-				<pre><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>
+				<ng-container *ngIf="skeleton">
+					<span *ngIf="display === 'single'; else multiSkeleton"></span>
+					<ng-template #multiSkeleton>
+						<span></span>
+						<span></span>
+						<span></span>
+					</ng-template>
+				</ng-container>
+				<pre *ngIf="!skeleton"><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>
 			</div>
 			<button
+				*ngIf="!skeleton"
 				class="bx--snippet-button"
 				[attr.aria-label]="translations.COPY_CODE"
 				(click)="onCopyButtonClicked()"
@@ -97,6 +106,13 @@ export class CodeSnippet {
 	@Input() translations = this.i18n.get().CODE_SNIPPET;
 
 	/**
+	 * Set to `"light"` to apply the light style on the code snippet.
+	 * @type {"light" | "dark"}
+	 * @memberof CodeSnippet
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
+	/**
 	 * Text displayed in the tooltip when user clicks button to copy code.
 	 *
 	 * @memberof CodeSnippet
@@ -111,6 +127,7 @@ export class CodeSnippet {
 	@Input() feedbackTimeout = 2000;
 
 	@HostBinding("class.bx--snippet--expand") @Input() expanded = false;
+	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 
 	@HostBinding("class.bx--snippet") snippetClass = true;
 	@HostBinding("class.bx--snippet--single") get snippetSingleClass() {
@@ -121,6 +138,9 @@ export class CodeSnippet {
 	}
 	@HostBinding("class.bx--snippet--inline") get snippetInlineClass() {
 		return this.display === SnippetType.inline;
+	}
+	@HostBinding("class.bx--snippet--light") get snippetInlineLightClass() {
+		return this.display === SnippetType.inline && this.theme === "light";
 	}
 	@HostBinding("class.bx--btn--copy") get btnCopyClass() {
 		return this.display === SnippetType.inline;
