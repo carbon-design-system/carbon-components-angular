@@ -39,6 +39,10 @@ import { Dialog } from "./../dialog.component";
 			.bx--tooltip--definition__bottom,
 			.bx--tooltip--definition__top {
 				display: block;
+				margin-top: -3rem;
+			}
+
+			.bx--tooltip--definition__bottom {
 				margin-top: 0;
 			}
 		`]
