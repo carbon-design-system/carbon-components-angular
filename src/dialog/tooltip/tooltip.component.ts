@@ -19,8 +19,9 @@ import { Dialog } from "./../dialog.component";
 			[id]="dialogConfig.compID"
 			[attr.role]="role"
 			[ngClass]="{
-				'bx--tooltip bx--tooltip--shown' : type === 'normal',
-				'bx--tooltip--definition__bottom' : type === 'definition'
+				'bx--tooltip bx--tooltip--shown' : !dialogConfig.definition && !dialogConfig.icon,
+				'bx--tooltip--definition__bottom' : dialogConfig.definition && dialogConfig.placement === 'bottom',
+				'bx--tooltip--definition__top' : dialogConfig.definition && dialogConfig.placement === 'top'
 			}">
 			<span class="bx--tooltip__caret" aria-hidden="true"></span>
 			<ng-template
@@ -33,11 +34,16 @@ import { Dialog } from "./../dialog.component";
 				{{dialogConfig.content}}
 			</p>
 		</div>
-		`
+		`,
+		styles: [`
+			.bx--tooltip--definition__bottom,
+			.bx--tooltip--definition__top {
+				display: block;
+				margin-top: 0;
+			}
+		`]
 })
 export class Tooltip extends Dialog {
-	@Input() type: "normal" | "definition" = "normal";
-
 	@HostBinding("style.display") style = "inline-block";
 	/**
 	 * Value is set to `true` if the `Tooltip` is to display a `TemplateRef` instead of a string.

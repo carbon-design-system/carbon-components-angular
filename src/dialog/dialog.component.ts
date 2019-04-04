@@ -218,6 +218,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * Uses the position service to position the `Dialog` in screen space
 	 */
 	placeDialog(): void {
+		if (this.dialogConfig.definition) {
+			return;
+		}
 		// helper to find the position based on the current/given environment
 		const findPosition = (reference, target, placement) => {
 			let pos;

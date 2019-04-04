@@ -48,12 +48,29 @@ export class TooltipDirective extends DialogDirective {
 	 */
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
-
+	/**
+	 * Set to `true` for a definition tooltip
+	 */
+	@Input() definition = false;
+	/**
+	 * Set to `true` for a icon tooltip
+	 */
+	@Input() icon = false;
 
 	@HostBinding("tabindex") tabIndex = 0;
 
+	@HostBinding("class.bx--tooltip__trigger") className = true;
+
 	@HostBinding("attr.aria-describedby") get descriptorId(): string {
 		return this.expanded ? this.dialogConfig.compID : null;
+	}
+
+	@HostBinding(`class.bx--tooltip--icon__bottom`) get tooltipBottom() {
+		return this.icon === true && this.dialogConfig.placement === "bottom";
+	}
+
+	@HostBinding(`class.bx--tooltip--icon__top`) get tooltipTop() {
+		return this.icon === true && this.dialogConfig.placement === "top";
 	}
 
 	/**
@@ -74,5 +91,6 @@ export class TooltipDirective extends DialogDirective {
 	onDialogInit() {
 		this.dialogConfig.content = this.ibmTooltip;
 		this.dialogConfig.type = this.tooltipType;
+		this.dialogConfig.definition = this.definition;
 	}
 }
