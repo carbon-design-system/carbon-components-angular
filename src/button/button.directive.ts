@@ -10,7 +10,7 @@ import {
  *
  * Example:
  *
- * ```hmtl
+ * ```html
  * <button ibmButton>A button</button>
  * <button ibmButton="secondary">A secondary button</button>
  * ```
