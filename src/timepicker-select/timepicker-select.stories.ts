@@ -18,6 +18,19 @@ storiesOf("Time Picker Select", module)
 	.add("Simple", () => ({
 		template: `
 		<app-experimental-component></app-experimental-component>
-		<ibm-date-picker-input label="Date Picker Label"></ibm-date-picker-input>
+		<div class="bx--form-item">
+			<div class="bx--time-picker">
+				<ibm-timepicker-select display="inline">
+					<option value="" disabled selected hidden>AM</option>
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+				</ibm-timepicker-select>
+				<ibm-timepicker-select display="inline">
+					<option value="" disabled selected hidden>Time Zone 1</option>
+					<option value="Time Zone 1">Time Zone 1</option>
+					<option value="Time Zone 2">Time Zone 2</option>
+				</ibm-timepicker-select>
+			</div>
+		</div>
 		`
 	}));
