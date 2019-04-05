@@ -18,7 +18,6 @@ import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
 
 export {
-	// Header
 	Header,
 	HeaderItem,
 	HeaderMenu,
