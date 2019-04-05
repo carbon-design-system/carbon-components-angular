@@ -18,15 +18,14 @@ import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
 
 export {
+	// Header
 	Header,
 	HeaderItem,
 	HeaderMenu,
 	HeaderNavigation,
 	HeaderGlobal,
 	HeaderAction,
-
 	Hamburger,
-
 	SideNav,
 	SideNavHeader,
 	SideNavItem,
@@ -41,9 +40,7 @@ export {
 		HeaderNavigation,
 		HeaderGlobal,
 		HeaderAction,
-
 		Hamburger,
-
 		SideNav,
 		SideNavHeader,
 		SideNavItem,
@@ -57,9 +54,7 @@ export {
 		HeaderNavigation,
 		HeaderGlobal,
 		HeaderAction,
-
 		Hamburger,
-
 		SideNav,
 		SideNavHeader,
 		SideNavItem,
