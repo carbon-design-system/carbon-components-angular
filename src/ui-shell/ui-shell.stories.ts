@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { UIShellModule } from "./ui-shell.module";
 
@@ -53,7 +53,7 @@ storiesOf("UI Shell", module)
 			</ibm-header>
 		`,
 		props: {
-			hasHamburger: select("Show Hamburger", { "Yes": true, "No": false }, true),
+			hasHamburger: boolean("Show Hamburger", true),
 			menuClicked: () => { }
 		}
 	}))
@@ -220,7 +220,7 @@ storiesOf("UI Shell", module)
 			</ibm-sidenav>
 		`,
 		props: {
-			hasHamburger: select("Show Hamburger", { "Yes": true, "No": false }, true),
+			hasHamburger: boolean("Show Hamburger", true),
 			options: [
 				{
 					content: "Option 1",
