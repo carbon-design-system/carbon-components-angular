@@ -4,3 +4,10 @@ $feature-flags: (
 );
 
 @import '~carbon-components/scss/globals/scss/styles';
+
+.sb-show-main:not(.welcome) {
+	padding: 3em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
