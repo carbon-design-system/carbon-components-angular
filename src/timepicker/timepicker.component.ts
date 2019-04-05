@@ -17,14 +17,15 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 						<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
 						<input
 							#timePicker
+							[value]= "value"
 							[placeholder]= "placeholder"
 							[pattern]= "pattern"
-							[attr.id]="id"
-							[disabled]="disabled"
-							maxlength="5"
+							[attr.id]= "id"
+							[disabled]= "disabled"
+							maxlength= "5"
 							(change)="onChange($event)"
+							type="string"
 							class="bx--time-picker__input-field">
-
 					</div>
 				</div>
 				<ng-content></ng-content>
@@ -44,6 +45,7 @@ export class TimePicker {
 	@Input() pattern = "(1[012]|[0-9]):[0-5][0-9]";
 	@Input() id = `timepicker-${TimePicker.timePickerCount++}`;
 	@Input() disabled = false;
+	@Input() value: string;
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
