@@ -130,28 +130,28 @@ export class DatePicker {
 	}
 
 	onInputValueChange(event: string): void {
-		const d = flatpickr.parseDate(event, this.dateFormat, true);
-		const prev = flatpickr.parseDate(this.value[0], this.dateFormat, true);
-		if (d) {
-			if (!prev || prev.getTime() !== d.getTime()) {
-				this.value = [d, this.value[1]];
+		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
+		const previousDate = flatpickr.parseDate(this.value[0], this.dateFormat, true);
+		if (eventDate) {
+			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
+				this.value = [eventDate, this.value[1]];
 			}
 		} else {
-			if (prev || event) {
+			if (previousDate || event) {
 				this.value = [undefined, this.value[1]];
 			}
 		}
 	}
 
 	onInputValueRangeChange(event: string): void {
-		const d = flatpickr.parseDate(event, this.dateFormat, true);
-		const prev = flatpickr.parseDate(this.value[1], this.dateFormat, true);
-		if (d) {
-			if (!prev || prev.getTime() !== d.getTime()) {
-				this.value = [this.value[0], d];
+		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
+		const previousDate = flatpickr.parseDate(this.value[1], this.dateFormat, true);
+		if (eventDate) {
+			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
+				this.value = [this.value[0], eventDate];
 			}
 		} else {
-			if (prev || event) {
+			if (previousDate || event) {
 				this.value = [this.value[0], undefined];
 			}
 		}
