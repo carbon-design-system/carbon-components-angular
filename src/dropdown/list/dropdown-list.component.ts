@@ -51,7 +51,7 @@ import { Observable, isObservable, Subscription } from "rxjs";
 		<ul
 			#list
 			role="listbox"
-			class="bx--list-box__menu"
+			class="bx--list-box__menu bx--multi-select"
 			[attr.aria-label]="ariaLabel">
 			<li
 				#listItem
@@ -71,15 +71,18 @@ import { Observable, isObservable, Subscription } from "rxjs";
 					<div
 						*ngIf="!listTpl && type === 'multi'"
 						class="bx--form-item bx--checkbox-wrapper">
-						<input
-							class="bx--checkbox"
-							type="checkbox"
-							[checked]="item.selected"
-							[disabled]="item.disabled"
-							(click)="doClick($event, item)"
-							tabindex="-1">
-						<label class="bx--checkbox-label">
-							<span>{{item.content}}</span>
+						<label
+							[attr.data-contained-checkbox-state]="item.selected"
+							class="bx--checkbox-label">
+							<input
+								class="bx--checkbox"
+								type="checkbox"
+								[checked]="item.selected"
+								[disabled]="item.disabled"
+								(click)="doClick($event, item)"
+								tabindex="-1">
+							<span class="bx--checkbox-appearance"></span>
+							<span class="bx--checkbox-label-text">{{item.content}}</span>
 						</label>
 					</div>
 					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
