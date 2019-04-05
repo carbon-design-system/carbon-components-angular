@@ -32,6 +32,7 @@ storiesOf("Time Picker", module)
 				<option value="Time Zone 2">Time Zone 2</option>
 			</ibm-timepicker-select>
 		</ibm-timepicker>
+
 		`,
 		props: {
 			disableTime: boolean("disabled time", false),

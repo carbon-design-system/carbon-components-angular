@@ -6,7 +6,6 @@ import { Select } from "../select/select.component";
 	template: `
 		<div
 			[ngClass]="{
-				'bx--select--inline': display === 'inline',
 				'bx--select--light': theme === 'light',
 				'bx--skeleton': skeleton
 			}"
@@ -28,23 +27,5 @@ import { Select } from "../select/select.component";
 	styles: ["select { -webkit-appearance : none ; }"]
 })
 export class TimePickerSelect extends Select {
-
-	@Input() display: "inline" | "default" = "default";
-
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
-	/**
-	 * Set to true to disable component.
-	 */
-	@Input() disabled = false;
-	/**
-	 * Set to true for a loading select.
-	 */
-	@Input() skeleton = false;
-
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
-		super();
-		TimePickerSelect.selectCount++;
-	}
-
-
 }

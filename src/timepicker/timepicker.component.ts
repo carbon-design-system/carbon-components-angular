@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
 	selector: "ibm-timepicker",
@@ -16,7 +16,7 @@ import { Component, Input } from "@angular/core";
 						class="bx--select">
 						<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
 						<input
-							#select
+							#timePicker
 							[placeholder]= "placeholder"
 							[pattern]= "pattern"
 							[attr.id]="id"
@@ -37,11 +37,18 @@ export class TimePicker {
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
-	static selectCount = 0;
+	static timePickerCount = 0;
 
 	@Input() label;
 	@Input() placeholder = "hh:mm";
-	@Input() pattern = "(1[012]|[1-9]):[0-5][0-9](\s)?(?i)";
-	@Input() id = `timepicker-${TimePicker.selectCount++}`;
-	@Input() disabled = true;
+	@Input() pattern = "(1[012]|[0-9]):[0-5][0-9]";
+	@Input() id = `timepicker-${TimePicker.timePickerCount++}`;
+	@Input() disabled = false;
+
+	@Output() valueChange: EventEmitter<string> = new EventEmitter();
+
+
+	onChange(event) {
+		this.valueChange.emit(event.target.value);
+	}
 }
