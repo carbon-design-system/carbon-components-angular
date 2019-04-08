@@ -66,15 +66,12 @@ import { DropdownService } from "./dropdown.service";
 				</svg>
 			</div>
 			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
-			<div
+			<ibm-icon-chevron-down16
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10">
-					<path d="M0 0l5 4.998L10 0z"></path>
-				</svg>
-			</div>
+			</ibm-icon-chevron-down16>
 		</button>
 		<div
 			#dropdownMenu
