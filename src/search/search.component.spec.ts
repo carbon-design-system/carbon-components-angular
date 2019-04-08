@@ -4,6 +4,8 @@ import { By } from "@angular/platform-browser";
 import { Search } from "./search.component";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/i18n.module";
+import { Search16Module } from "@carbon/icons-angular/lib/search/16";
+import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 describe("Search", () => {
 	let component: Search;
@@ -15,7 +17,12 @@ describe("Search", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Search],
-			imports: [FormsModule, I18nModule],
+			imports: [
+				FormsModule,
+				I18nModule,
+				Search16Module,
+				Close16Module
+			],
 			providers: []
 		});
 	});
@@ -54,7 +61,7 @@ describe("Search", () => {
 		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
 		component.size = "lg";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--search--lg")).toEqual(true);
+		expect(containerElement.className.includes("bx--search--xl")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
 		expect(containerElement.className.includes("bx--search--sm")).toEqual(true);

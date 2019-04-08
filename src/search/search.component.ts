@@ -113,6 +113,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() set size(value: "sm" | "lg" | "xl") {
 		if (value === "lg") {
+			console.warn("size `lg` has been deprecated and replaced by `xl`");
 			value = "xl";
 		}
 		this._size = value;

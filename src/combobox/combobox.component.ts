@@ -147,7 +147,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 */
 	@Output() selected = new EventEmitter<ListItem | ListItem[]>();
 	/**
-	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
+	 * Intended to be used to add items to the list.
 	 *
 	 * Emits an event that includes the current item list, the suggested index for the new item, and a simple ListItem
 	 *
@@ -163,7 +163,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 *	}
 	 * ```
 	 *
-	 * @param ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
 	 *
 	 * Example:
 	 * ```javascript
@@ -187,7 +186,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	/** Selected items for multi-select combo-boxes. */
 	public pills = [];
-	/** used to update the displayValue of `n-pill-input` */
+	/** used to update the displayValue */
 	public selectedValue = "";
 
 	protected noop = this._noop.bind(this);

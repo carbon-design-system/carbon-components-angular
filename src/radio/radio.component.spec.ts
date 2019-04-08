@@ -1,15 +1,11 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
 	ComponentFixture,
-	TestBed,
-	fakeAsync,
-	tick,
-	async
+	TestBed
 } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
-import { StaticIconModule } from "../icon/static-icon.module";
 
 import { Radio } from "./radio.component";
 import { RadioGroup } from "./radio-group.component";
@@ -18,7 +14,7 @@ describe("RadioGroup", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Radio, RadioGroup, RadioTest],
-			imports: [BrowserAnimationsModule, FormsModule, StaticIconModule],
+			imports: [BrowserAnimationsModule, FormsModule],
 			providers: []
 		});
 	});
