@@ -5,17 +5,14 @@ import {
 	HostBinding
 } from "@angular/core";
 
-import { NotificationContent, ToastContent } from "./notification-content.interface";
+import { ToastContent } from "./notification-content.interface";
 import { Notification } from "./notification.component";
 import { ExperimentalService } from "./../experimental.module";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "./../i18n/i18n.module";
 
 /**
- * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
- *
- * @export
- * @class Notification
+ * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
  */
 @Component({
 	selector: "ibm-toast",
@@ -61,10 +58,7 @@ export class Toast extends Notification implements OnInit {
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
-	 * `type` can be one of `"info"`, `"warning"`, `"danger"`, `"success"`
-	 *
-	 * `message` is message for notification to display
-	 *
+	 * `type` can be one of `"error"`, `"info"`, `"warning"`, or `"success"`
 	 */
 	@Input() notificationObj: ToastContent;
 
