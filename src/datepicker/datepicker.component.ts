@@ -1,7 +1,14 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	ElementRef,
+	OnDestroy
+} from "@angular/core";
+import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
-import { FlatpickrOptions } from "ng2-flatpickr";
 
 @Component({
 	selector: "ibm-date-picker",
@@ -46,13 +53,11 @@ import { FlatpickrOptions } from "ng2-flatpickr";
 	</div>
 	`
 })
-export class DatePicker {
+export class DatePicker implements OnDestroy {
 	private static datePickerCount = 0;
 
 	/**
 	 * Select calendar range mode
-	 *
-	 * @memberof Datepicker
 	 */
 	@Input() range: boolean;
 
@@ -60,8 +65,6 @@ export class DatePicker {
 	 * Format of date
 	 *
 	 * For reference: https://flatpickr.js.org/formatting/
-	 *
-	 * @memberof Datepicker
 	 */
 	@Input() dateFormat = "m/d/Y";
 
@@ -96,35 +99,52 @@ export class DatePicker {
 		value: this.value
 	};
 
+	constructor(protected elementRef: ElementRef) { }
+
 	doSelect(selectedValue) {
 		this.valueChange.emit(selectedValue);
 	}
 
 	updateClassNames() {
-		const calendarContainer = document.querySelector(".flatpickr-calendar");
-		const monthContainer = document.querySelector(".flatpickr-month");
-		const weekdaysContainer = document.querySelector(".flatpickr-weekdays");
+		const ng2FlatPickrElement = this.elementRef.nativeElement.querySelector(".ng2-flatpickr-input-container");
+		ng2FlatPickrElement._flatpickr._positionCalendar();
+
+		// get all the possible flatpickrs in the document - we need to add classes to (potentially) all of them
+		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
+		const monthContainer = document.querySelectorAll(".flatpickr-month");
+		const weekdaysContainer = document.querySelectorAll(".flatpickr-weekdays");
 		const weekdayContainer = document.querySelectorAll(".flatpickr-weekday");
-		const daysContainer = document.querySelector(".flatpickr-days");
+		const daysContainer = document.querySelectorAll(".flatpickr-days");
 		const dayContainer = document.querySelectorAll(".flatpickr-day");
 
-		calendarContainer.classList.add("bx--date-picker__calendar");
-		monthContainer.classList.add("bx--date-picker__month");
-		weekdaysContainer.classList.add("bx--date-picker__weekdays");
-		daysContainer.classList.add("bx--date-picker__days");
+		// add classes to lists of elements
+		const addClassIfNotExists = (classname: string, elementList: NodeListOf<Element>) => {
+			Array.from(elementList).forEach(element => {
+				if (!element.classList.contains(classname)) {
+					element.classList.add(classname);
+				}
+			});
+		};
 
-		Array.from(weekdayContainer).forEach(item => {
-			const currentItem = item;
-			currentItem.innerHTML = currentItem.innerHTML.replace(/\s+/g, "");
-			currentItem.classList.add("bx--date-picker__weekday");
+		// add classes (but only if they don't exist, small perf win)
+		addClassIfNotExists("bx--date-picker__calendar", calendarContainer);
+		addClassIfNotExists("bx--date-picker__month", monthContainer);
+		addClassIfNotExists("bx--date-picker__weekdays", weekdaysContainer);
+		addClassIfNotExists("bx--date-picker__days", daysContainer);
+
+		// add weekday classes and format the text
+		Array.from(weekdayContainer).forEach(element => {
+			element.innerHTML = element.innerHTML.replace(/\s+/g, "");
+			element.classList.add("bx--date-picker__weekday");
 		});
 
-		Array.from(dayContainer).forEach(item => {
-			item.classList.add("bx--date-picker__day");
-			if (item.classList.contains("today") && this.value.length > 0) {
-				item.classList.add("no-border");
-			} else if (item.classList.contains("today") && this.value.length === 0) {
-				item.classList.remove("no-border");
+		// add day classes and special case the "today" element based on `this.value`
+		Array.from(dayContainer).forEach(element => {
+			element.classList.add("bx--date-picker__day");
+			if (element.classList.contains("today") && this.value.length > 0) {
+				element.classList.add("no-border");
+			} else if (element.classList.contains("today") && this.value.length === 0) {
+				element.classList.remove("no-border");
 			}
 		});
 	}
@@ -155,5 +175,11 @@ export class DatePicker {
 				this.value = [this.value[0], undefined];
 			}
 		}
+  }
+  
+	ngOnDestroy() {
+		// clean up our flatpickr element - needed because the wrapper doesn't handle this
+		const ng2FlatPickrElement = this.elementRef.nativeElement.querySelector(".ng2-flatpickr-input-container");
+		ng2FlatPickrElement._flatpickr.destroy();
 	}
 }

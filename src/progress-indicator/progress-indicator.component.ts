@@ -63,6 +63,32 @@ export class ProgressIndicator {
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
 	@Input() skeleton = false;
 
+	@Input() get current() {
+		return this.steps.indexOf(step => step.state[0] === "current");
+	}
+	set current(current: number) {
+		if (current === undefined || current < 0) {
+			for (let i = 0; i < this.steps.length; i++) {
+				this.steps[i].state[0] = "incomplete";
+			}
+			return;
+		}
+
+		if (current > this.steps.length - 1) {
+			for (let i = 0; i < this.steps.length; i++) {
+				this.steps[i].state[0] = "complete";
+			}
+			return;
+		}
+		this.steps[current].state[0] = "current";
+		for (let i = 0; i < current; i++) {
+			this.steps[i].state[0] = "complete";
+		}
+		for (let i = current + 1; i < this.steps.length; i++) {
+			this.steps[i].state[0] = "incomplete";
+		}
+	}
+
 	get isExperimental() {
 		return this.experimental.isExperimental;
 	}
