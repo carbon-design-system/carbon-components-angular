@@ -17,7 +17,7 @@ storiesOf("Date Picker", module)
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("Basic", () => ({
+	.add("Simple", () => ({
 		template: `
 		<app-experimental-component></app-experimental-component>
 		<ibm-date-picker-input
@@ -66,7 +66,7 @@ storiesOf("Date Picker", module)
 		<app-experimental-component></app-experimental-component>
 		<ibm-date-picker
 			[label]="label"
-			rangeLabel="Date Picker Label2"
+			[rangeLabel]="label"
 			range="true"
 			[placeholder]="placeholder"
 			[theme]="theme"
@@ -85,4 +85,13 @@ storiesOf("Date Picker", module)
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false)
 		}
+	}))
+	.add("Skeleton", () => ({
+		template: `
+		<app-experimental-component></app-experimental-component>
+		<ibm-date-picker
+			range="true"
+			skeleton="true">
+		</ibm-date-picker>
+		`
 	}));
