@@ -5,7 +5,11 @@ import { Component, Input } from "@angular/core";
 	template: `
 	<div class="bx--form-item">
 		<div class="bx--date-picker"
-		[ngClass]= "'bx--date-picker--' + type">
+			[ngClass]="{
+				'bx--date-picker--single' : type === 'single',
+				'bx--date-picker--range' : type === 'range',
+				'bx--date-picker--light' : theme === 'light'
+			}">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
 					{{label}}
@@ -29,7 +33,12 @@ import { Component, Input } from "@angular/core";
 					[placeholder]="placeholder"
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
-					[id]= "id"/>
+					[id]= "id"
+					[attr.disabled]="(disabled ? '' : null)"
+					[attr.data-invalid]="(invalid ? '' : null)"/>
+					<div *ngIf="invalid" class="bx--form-requirement">
+						{{invalidText}}
+					</div>
 			</div>
 
 			<svg *ngIf= "type == 'range' && hasIcon"
@@ -67,4 +76,12 @@ export class DatePickerInput {
 	@Input() placeholder = "mm/dd/yyyy";
 
 	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+
+	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() disabled = false;
+
+	@Input() invalid = false;
+
+	@Input() invalidText: string;
 }
