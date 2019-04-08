@@ -30,7 +30,7 @@ export class PlaceholderService {
 		if (!this.viewContainerRef) {
 			console.error("No view container defined! Likely due to a missing `ibm-placeholder`");
 		}
-		return this.viewContainerRef.createComponent(componentFactory, 0, injector);
+		return this.viewContainerRef.createComponent(componentFactory, null, injector);
 	}
 
 	destroyComponent(component: ComponentRef<any>) {
