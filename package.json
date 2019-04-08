@@ -26,23 +26,6 @@
   "release": {
     "pkgRoot": "dist"
   },
-  "commitlint": {
-    "types": [
-      "feat",
-      "fix",
-      "docs",
-      "style",
-      "refactor",
-      "perf",
-      "test",
-      "chore",
-      "revert"
-    ],
-    "warnOnFail": false,
-    "maxSubjectLength": 100,
-    "subjectPattern": ".+",
-    "subjectPatternErrorMsg": "Subject does not match subject pattern!"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog-components"
