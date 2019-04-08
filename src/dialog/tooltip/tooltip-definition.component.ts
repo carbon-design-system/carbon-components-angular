@@ -31,7 +31,7 @@ export class TooltipDefinition {
 	@Input() content: string;
 	/**
 	 * The placement in which the `TooltipDefinition` appears.
-	 * Set to `"top"` to have it positioned above the icon
+	 * Set to `"top"` to have it positioned above the trigger text
 	 */
 	@Input() placement: "bottom" | "top" = "bottom";
 
