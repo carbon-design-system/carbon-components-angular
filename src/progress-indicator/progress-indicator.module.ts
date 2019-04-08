@@ -6,6 +6,7 @@ import { ErrorOutline16Module } from "@carbon/icons-angular/lib/error--outline/1
 import { ProgressIndicator } from "./progress-indicator.component";
 import { ExperimentalModule } from "./../experimental.module";
 
+export { ProgressIndicator } from "./progress-indicator.component";
 
 @NgModule({
 	declarations: [
