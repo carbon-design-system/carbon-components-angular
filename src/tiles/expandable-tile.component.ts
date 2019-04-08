@@ -65,14 +65,14 @@ export class ExpandableTile implements AfterContentInit {
 	constructor(protected i18n: I18n, protected elementRef: ElementRef) {}
 
 	ngAfterContentInit() {
-		this.setMaxHeight();
+		this.updateMaxHeight();
 	}
 
 	get expandedHeight() {
 		return this.tileMaxHeight + parseInt(getComputedStyle(this.element.querySelector(".bx--tile")).paddingBottom, 10);
 	}
 
-	setMaxHeight() {
+	updateMaxHeight() {
 		if (this.expanded) {
 			this.tileMaxHeight = this.element.querySelector(".bx--tile-content").getBoundingClientRect().height;
 		} else {
@@ -82,6 +82,6 @@ export class ExpandableTile implements AfterContentInit {
 
 	onClick() {
 		this.expanded = !this.expanded;
-		this.setMaxHeight();
+		this.updateMaxHeight();
 	}
 }

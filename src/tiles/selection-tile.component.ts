@@ -69,7 +69,7 @@ export class SelectionTile {
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.
 	 */
-	name = "tile";
+	name: string;
 	/**
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
