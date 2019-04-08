@@ -26,7 +26,8 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 					[ngClass]="{
 						'bx--date-picker--range' : range,
 						'bx--date-picker--single' : !range,
-						'bx--date-picker--light' : theme === 'light'
+						'bx--date-picker--light' : theme === 'light',
+						'bx--skeleton' : skeleton
 					}">
 					<div class="bx--date-picker-container">
 						<ibm-date-picker-input
@@ -39,6 +40,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
+							[skeleton]="skeleton"
 							(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
@@ -54,6 +56,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
+							[skeleton]="skeleton"
 							(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
@@ -97,6 +100,8 @@ export class DatePicker implements OnDestroy {
 	@Input() invalid = false;
 
 	@Input() invalidText: string;
+
+	@Input() skeleton = false;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
