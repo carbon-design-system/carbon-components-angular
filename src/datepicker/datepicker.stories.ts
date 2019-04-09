@@ -25,7 +25,7 @@ storiesOf("Date Picker", module)
 		</ibm-date-picker>
 		`,
 		props: {
-			value: array("value", ["01/01/2011"]),
+			value: array("value", [(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear()]),
 			valueChange: action("Date change fired!")
 		}
 	}))
@@ -42,8 +42,8 @@ storiesOf("Date Picker", module)
 		`,
 		props: {
 			value: array("value", [
-				"01/01/2011",
-				"01/01/2012"
+				(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear(),
+				(new Date().getMonth() + 2) + "/" + new Date().getDate() + "/" + new Date().getFullYear()
 			]),
 			valueChange: action("Date change fired!")
 		}
