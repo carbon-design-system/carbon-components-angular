@@ -175,8 +175,8 @@ export class DatePicker implements OnDestroy {
 				this.value = [this.value[0], undefined];
 			}
 		}
-  }
-  
+	}
+
 	ngOnDestroy() {
 		// clean up our flatpickr element - needed because the wrapper doesn't handle this
 		const ng2FlatPickrElement = this.elementRef.nativeElement.querySelector(".ng2-flatpickr-input-container");
