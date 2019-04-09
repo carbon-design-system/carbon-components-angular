@@ -227,8 +227,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	/**
 	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
 	 */
-	emitChangeEvent(event) {
+	emitChangeEvent(event: RadioChange) {
 		this.change.emit(event);
+		this.propagateChange(event.value);
+		this.onTouched();
 	}
 
 	/**
@@ -249,15 +251,6 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.value = value;
 	}
 
-	/**
-	 * Callback triggered when a `Radio` within the `RadioGroup` is changed.
-	 */
-	touch() {
-		if (this.onTouched) {
-			this.onTouched();
-		}
-	}
-
 	ngAfterContentInit() {
 		this.radios.changes.subscribe(() => {
 			this.updateRadioNames();
@@ -276,10 +269,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 * Used to set method to propagate changes back to the form.
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange = value => {
-			this.value = value;
-			fn(value);
-		};
+		this.propagateChange = fn;
 	}
 
 	/**
