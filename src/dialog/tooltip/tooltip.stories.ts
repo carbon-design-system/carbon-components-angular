@@ -122,9 +122,9 @@ storiesOf("Tooltip", module)
 	.add("Definition tooltip", () => ({
 		template: `
 			<ibm-tooltip-definition
-				[triggerText]="triggerText"
 				[content]="content"
 				[placement]="placement">
+				{{triggerText}}
 			</ibm-tooltip-definition>
 		`,
 		props: {

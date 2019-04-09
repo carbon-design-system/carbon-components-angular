@@ -3,7 +3,9 @@ import { Component, Input, HostBinding } from "@angular/core";
 @Component({
 	selector: "ibm-tooltip-definition",
 	template: `
-		<button class="bx--tooltip__trigger" [attr.aria-describedby]="id">{{triggerText}}</button>
+		<button class="bx--tooltip__trigger" [attr.aria-describedby]="id">
+			<ng-content></ng-content>
+		</button>
 		<div
 			[id]="id"
 			[ngClass]="{
@@ -21,10 +23,6 @@ export class TooltipDefinition {
 	static tooltipItemCount = 0;
 
 	@Input() id = `definition-tooltip-${TooltipDefinition.tooltipItemCount}`;
-	/**
-     * The content to put into the trigger.
-     */
-	@Input() triggerText: string;
 	/**
 	 * Body content for the `TooltipDefinition`.
 	 */
