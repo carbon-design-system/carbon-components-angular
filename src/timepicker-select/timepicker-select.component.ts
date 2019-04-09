@@ -23,8 +23,7 @@ import { Select } from "../select/select.component";
 			<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 			</svg>
 		</div>
-	`,
-	styles: ["select { -webkit-appearance : none ; }"]
+	`
 })
 export class TimePickerSelect extends Select {
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
