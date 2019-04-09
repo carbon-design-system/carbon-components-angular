@@ -243,9 +243,7 @@ export class Search implements ControlValueAccessor {
 
 	openSearch() {
 		this.active = true;
-		setTimeout(() => {
-			this.inputRef.nativeElement.focus();
-		});
+		setTimeout(() => this.inputRef.nativeElement.focus());
 	}
 
 	@HostListener("keydown", ["$event"])
