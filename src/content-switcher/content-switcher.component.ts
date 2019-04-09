@@ -54,9 +54,7 @@ export class ContentSwitcher implements AfterViewInit {
 		const firstActive = this.options.find(option => option.active);
 		// delay setting active until the DOM has settled
 		if (!firstActive) {
-			setTimeout(() => {
-			this.options.first.active = true;
-			});
+			setTimeout(() => this.options.first.active = true);
 		}
 		// subscribe to each item, emit when one is selected, and reset the active states
 		this.options.forEach(option => {
