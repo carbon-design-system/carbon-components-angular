@@ -2,9 +2,11 @@ import {
 	Component,
 	ElementRef,
 	Input,
-	ViewEncapsulation
+	ViewEncapsulation,
+	ContentChild
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
+import { OverflowMenuDirective } from "./overflow-menu.directive";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
@@ -22,9 +24,11 @@ import { I18n } from "./../../i18n/i18n.module";
 	template: `
 		<div
 			[ibmOverflowMenu]="options"
-			[ngClass]="{'bx--overflow-menu--open': open === true}"
+			[ngClass]="{'bx--overflow-menu--open': open}"
 			[attr.aria-label]="buttonLabel"
 			[flip]="flip"
+			(onOpen)="open = true"
+			(onClose)="open = false"
 			role="button"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
@@ -67,12 +71,9 @@ export class OverflowMenu {
 
 	@Input() flip = false;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
+	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
-	get open() {
-		if (this.elementRef.nativeElement.children[0].getAttribute("aria-expanded") === "true") {
-			return true;
-		}
-		return false;
-	}
+	open = false;
+
+	constructor(protected elementRef: ElementRef, protected i18n: I18n) {}
 }

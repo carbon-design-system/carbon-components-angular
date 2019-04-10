@@ -4,7 +4,8 @@ import {
 	Input,
 	ElementRef,
 	Output,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit
 } from "@angular/core";
 
 /**
@@ -17,7 +18,7 @@ import {
  * <ibm-overflow-menu-option type="danger">Danger option</ibm-overflow-menu-option>
  * ```
  *
- * For content that expands beyod the overflow menu `OverflowMenuOption` automatically adds a title attribute.
+ * For content that expands beyond the overflow menu `OverflowMenuOption` automatically adds a title attribute.
  */
 @Component({
 	selector: "ibm-overflow-menu-option",
@@ -31,7 +32,7 @@ import {
 			(blur)="tabIndex = -1"
 			(click)="onClick($event)"
 			[disabled]="disabled"
-			[title]="(titleEnabled ? content : '')">
+			[attr.title]="title">
 			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
 		</button>
 
@@ -45,7 +46,7 @@ import {
 			(click)="onClick($event)"
 			[attr.disabled]="disabled"
 			[href]="href"
-			[title]="(titleEnabled ? content : '')">
+			[attr.title]="title">
 			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
 		</a>
 
@@ -54,7 +55,7 @@ import {
 		</ng-template>
 	`
 })
-export class OverflowMenuOption {
+export class OverflowMenuOption implements AfterViewInit {
 	@HostBinding("class") optionClass = "bx--overflow-menu-options__option";
 	@HostBinding("attr.role") role = "presentation";
 
@@ -81,6 +82,9 @@ export class OverflowMenuOption {
 	@Output() selected: EventEmitter<any> = new EventEmitter();
 
 	public tabIndex = -1;
+	// note: title must be a real attribute (i.e. not a getter) as of Angular@6 due to
+	// change after checked errors
+	public title = null;
 
 	constructor(protected elementRef: ElementRef) {}
 
@@ -88,23 +92,10 @@ export class OverflowMenuOption {
 		this.selected.emit();
 	}
 
-	/**
-	 * Returns true if the content string is longer than the width of the containing button
-	 *
-	 * note: getter ties into the view check cycle so we always get an accurate value
-	 */
-	get titleEnabled() {
+	ngAfterViewInit() {
 		const button = this.elementRef.nativeElement.querySelector("button , a");
 		if (button.scrollWidth > button.offsetWidth) {
-			return true;
+			this.title = this.elementRef.nativeElement.querySelector("button").textContent;
 		}
-		return false;
-	}
-
-	/**
-	 * Returns the text content projected into the component
-	 */
-	get content(): string {
-		return this.elementRef.nativeElement.querySelector("button, a").textContent;
 	}
 }

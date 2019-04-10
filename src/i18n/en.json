@@ -105,7 +105,8 @@
 		"BACKWARD": "Backward",
 		"FORWARD": "Forward",
 		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
-		"TOTAL_PAGES": "{{current}} of {{last}} pages"
+		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"OF_LAST_PAGES": "of {{last}} pages"
 	},
 	"TABLE": {
 		"GO_TO_PAGE": "Go to page",
@@ -117,11 +118,11 @@
 		"END_OF_DATA": "You've reached the end of your content",
 		"SCROLL_TOP": "Scroll to top",
 		"CHECKBOX_HEADER": "Select all rows",
-		"CHECKBOX_ROW": "Select row",
+		"CHECKBOX_ROW": "Select {{value}}",
 		"EXPAND_BUTTON": "Expand row",
 		"SORT_DESCENDING": "Sort rows by this header in descending order",
-		"SORT_ASCENDING": "Sort rows by this header in ascending order"
-
+		"SORT_ASCENDING": "Sort rows by this header in ascending order",
+		"ROW": "row"
 	},
 	"TABLE_TOOLBAR": {
 		"ACTION_BAR": "Table Action Bar"
@@ -129,6 +130,11 @@
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
+	},
+	"TILES": {
+		"TILE": "tile",
+		"EXPAND": "Expand",
+		"COLLAPSE": "Collapse"
 	},
 	"TOGGLE": {
 		"OFF": "Off",

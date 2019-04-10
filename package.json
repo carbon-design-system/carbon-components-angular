@@ -86,19 +86,19 @@
     "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.0.1",
     "@compodoc/compodoc": "1.1.7",
-    "@storybook/addon-actions": "4.0.6",
-    "@storybook/addon-knobs": "4.0.6",
-    "@storybook/addon-links": "4.0.6",
-    "@storybook/addon-notes": "4.0.6",
-    "@storybook/addon-options": "4.1.4",
-    "@storybook/addon-storysource": "4.1.2",
-    "@storybook/addons": "4.0.6",
-    "@storybook/angular": "4.0.6",
+    "@storybook/addon-actions": "5.0.3",
+    "@storybook/addon-knobs": "5.0.3",
+    "@storybook/addon-links": "5.0.3",
+    "@storybook/addon-notes": "5.0.3",
+    "@storybook/addon-options": "5.0.3",
+    "@storybook/addon-storysource": "5.0.3",
+    "@storybook/addons": "5.0.3",
+    "@storybook/angular": "5.0.3",
     "@types/jasmine": "2.8.6",
     "@types/node": "8.5.2",
     "angular2-template-loader": "0.6.2",
     "babel-loader": "8.0.4",
-    "carbon-components": "9.70.3",
+    "carbon-components": "9.84.14",
     "codelyzer": "4.5.0",
     "commitizen": "2.10.1",
     "core-js": "2.5.5",
@@ -145,5 +145,9 @@
     "webpack-node-externals": "1.6.0",
     "whatwg-fetch": "2.0.3",
     "zone.js": "0.8.26"
+  },
+  "dependencies": {
+    "flatpickr": "4.5.2",
+    "ng2-flatpickr": "7.0.2"
   }
 }
