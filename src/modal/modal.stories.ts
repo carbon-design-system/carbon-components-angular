@@ -5,7 +5,7 @@ import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Modal, ModalService } from "../";
-import { ModalButton, AlertModalType } from "./alert-modal.interface";
+import { ModalButton, AlertModalType, ModalButtonType } from "./alert-modal.interface";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { BaseModal } from "./base-modal.class";
 import { ExperimentalComponenent } from "../../.storybook/experimental.component";
@@ -21,14 +21,33 @@ import { ExperimentalModule } from "../experimental.module";
 				<p class="bx--modal-content__text">{{modalText}}</p>
 			</section>
 			<ibm-modal-footer>
+				<button class="bx--btn bx--btn--secondary" (click)="showSecondaryModal()">Show Secondary Modal</button>
 				<button class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">Close</button>
 			</ibm-modal-footer>
 		</ibm-modal>
 	`
 })
 class SampleModal extends BaseModal {
-	constructor(@Inject("modalText") public modalText) {
+	constructor(
+		@Inject("modalText") public modalText,
+		protected modalService: ModalService) {
 		super();
+	}
+
+	showSecondaryModal() {
+		this.modalService.show({
+			modalLabel: "Secondary header label",
+			modalTitle: "Sample secondary modal works.",
+			modalContent: this.modalText,
+			buttons: [{
+				text: "Cancel",
+				type: ModalButtonType.secondary
+			}, {
+				text: "OK",
+				type: ModalButtonType.primary,
+				click: () => alert("OK button clicked")
+			}]
+		});
 	}
 }
 
