@@ -110,6 +110,66 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(source: <a href="../components/Radio.html">Radio</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/radio/radio-group.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>source</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../components/Radio.html" target="_self" >Radio</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>value</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -143,7 +203,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/radio/radio-group.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/radio/radio-group.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -171,19 +231,19 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>value:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <code>value:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/radio/radio-group.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/radio/radio-group.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -221,7 +281,8 @@
 	Output,
 	QueryList,
 	Renderer2,
-	HostBinding
+	HostBinding,
+	AfterViewInit
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 import { Radio } from &quot;./radio.component&quot;;
@@ -234,16 +295,17 @@ import { Radio } from &quot;./radio.component&quot;;
 export class RadioChange {
 	/**
 	 * Contains the &#x60;Radio&#x60; that has been changed.
-	 * @type {(Radio | null)}
-	 * @memberof RadioChange
 	 */
 	source: Radio | null;
 	/**
 	 * The value of the &#x60;Radio&#x60; encompassed in the &#x60;RadioChange&#x60; class.
-	 * @type {any}
-	 * @memberof RadioChange
 	 */
-	value: any;
+	value: string;
+
+	constructor(source: Radio, value: string) {
+		this.source &#x3D; source;
+		this.value &#x3D; value;
+	}
 }
 
 /**
@@ -287,7 +349,7 @@ export class RadioChange {
 		}
 	]
 })
-export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
+export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
 	/**
 	 * Used for creating the &#x60;RadioGroup&#x60; &#x27;name&#x27; property dynamically.
 	 */
@@ -295,7 +357,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Emits event notifying other classes of a change using a &#x60;RadioChange&#x60; class.
-	 * @type {EventEmitter&lt;RadioChange&gt;}
 	 */
 	@Output() change: EventEmitter&lt;RadioChange&gt; &#x3D; new EventEmitter&lt;RadioChange&gt;();
 
@@ -306,21 +367,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	@ContentChildren(forwardRef(() &#x3D;&gt; Radio)) radios: QueryList&lt;Radio&gt;;
 
 	/**
-	 * Determines the render size of the &#x60;Radio&#x60; inputs within the group.
-	 */
-	@Input() size: &quot;sm&quot; | &quot;md&quot; &#x3D; &quot;md&quot;;
-
-	/**
-	 * Returns the &#x60;Radio&#x60; that is selected within the &#x60;RadioGroup&#x60;.
-	 * @readonly
-	 */
-	@Input()
-	get selected() {
-		return this._selected;
-	}
-	/**
 	 * Sets the passed in &#x60;Radio&#x60; item as the selected input within the &#x60;RadioGroup&#x60;.
 	 */
+	@Input()
 	set selected(selected: Radio | null) {
 		this._selected &#x3D; selected;
 		this.value &#x3D; selected ? selected.value : null;
@@ -328,15 +377,16 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Returns the value/state of the selected &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60;.
+	 * Returns the &#x60;Radio&#x60; that is selected within the &#x60;RadioGroup&#x60;.
 	 */
-	@Input()
-	get value() {
-		return this._value;
+	get selected() {
+		return this._selected;
 	}
+
 	/**
 	 * Sets the value/state of the selected &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60; to the passed in value.
 	 */
+	@Input()
 	set value(newValue: any) {
 		if (this._value !&#x3D;&#x3D; newValue) {
 			this._value &#x3D; newValue;
@@ -347,35 +397,31 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Returns the associated name of the &#x60;RadioGroup&#x60;.
+	 * Returns the value/state of the selected &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60;.
 	 */
-	@Input()
-	get name() {
-		return this._name;
+	get value() {
+		return this._value;
 	}
+
 	/**
 	 * Replaces the name associated with the &#x60;RadioGroup&#x60; with the provided parameter.
 	 */
+	@Input()
 	set name(name: string) {
 		this._name &#x3D; name;
 		this.updateRadioNames();
 	}
+	/**
+	 * Returns the associated name of the &#x60;RadioGroup&#x60;.
+	 */
+	get name() {
+		return this._name;
+	}
 
 	/**
-	 * Returns the disabled value in the &#x60;RadioGroup&#x60; if there is one.
+	 * Set to true to disable the whole radio group
 	 */
-	@Input()
-	get disabled() {
-		return this._disabled;
-	}
-	/**
-	 * Updates the disabled value using the provided parameter and marks the radios to be checked for
-	 * changes.
-	 */
-	set disabled(value) {
-		this._disabled &#x3D; value;
-		this.markRadiosForCheck();
-	}
+	@Input() disabled &#x3D; false;
 
 	/**
 	 * Returns the skeleton value in the &#x60;RadioGroup&#x60; if there is one.
@@ -407,7 +453,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	protected _disabled &#x3D; false;
 	/**
-	 * Reflects wheather or not the dropdown is loading.
+	 * Reflects whether or not the dropdown is loading.
 	 */
 	protected _skeleton &#x3D; false;
 	/**
@@ -421,21 +467,14 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * The name attribute associated with the &#x60;RadioGroup&#x60;.
 	 */
-	protected _name &#x3D; &#x60;radio-group-${RadioGroup.radioGroupCount}&#x60;;
-
-	/**
-	 * Creates an instance of RadioGroup.
-	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
-		RadioGroup.radioGroupCount++;
-	}
+	protected _name &#x3D; &#x60;radio-group-${RadioGroup.radioGroupCount++}&#x60;;
 
 	/**
 	 * Updates the selected &#x60;Radio&#x60; to be checked (selected).
 	 */
 	checkSelectedRadio() {
-		if (this._selected &amp;&amp; !this._selected.checked) {
-			this._selected.checked &#x3D; true;
+		if (this.selected &amp;&amp; !this._selected.checked) {
+			this.selected.checked &#x3D; true;
 		}
 	}
 
@@ -445,10 +484,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	updateSelectedRadioFromValue() {
 		let alreadySelected &#x3D; this._selected !&#x3D; null &amp;&amp; this._selected.value &#x3D;&#x3D;&#x3D; this._value;
 
-		if (this.radios !&#x3D; null &amp;&amp; !alreadySelected) {
+		if (this.radios &amp;&amp; !alreadySelected) {
 			this._selected &#x3D; null;
 			this.radios.forEach(radio &#x3D;&gt; {
-				radio.checked &#x3D; this.value &#x3D;&#x3D;&#x3D; radio.value;
 				if (radio.checked) {
 					this._selected &#x3D; radio;
 				}
@@ -459,23 +497,10 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * Creates a class of &#x60;RadioChange&#x60; to emit the change in the &#x60;RadioGroup&#x60;.
 	 */
-	emitChangeEvent() {
-		if (this.isInitialized) {
-			let event &#x3D; new RadioChange();
-			event.source &#x3D; this._selected;
-			event.value &#x3D; this._value;
-			this.change.emit(event);
-		}
-	}
-
-	/**
-	 * Calls the &#x60;markForCheck()&#x60; function within the &#x60;changeDetectorRef&#x60; class
-	 * to trigger Angular&#x27;s change detection on each radio item.
-	 */
-	markRadiosForCheck() {
-		if (this.radios) {
-			this.radios.forEach(radio &#x3D;&gt; radio.markForCheck());
-		}
+	emitChangeEvent(event: RadioChange) {
+		this.change.emit(event);
+		this.propagateChange(event.value);
+		this.onTouched();
 	}
 
 	/**
@@ -483,7 +508,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	updateRadioNames() {
 		if (this.radios) {
-			this.radios.forEach(radio &#x3D;&gt; radio.name &#x3D; this.name);
+			setTimeout(() &#x3D;&gt; {
+				this.radios.forEach(radio &#x3D;&gt; radio.name &#x3D; this.name);
+			});
 		}
 	}
 
@@ -492,64 +519,27 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	writeValue(value: any) {
 		this.value &#x3D; value;
-		this.changeDetectorRef.markForCheck();
 	}
 
-	/**
-	 * Callback triggered when a &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60; is changed.
-	 */
-	touch() {
-		if (this.onTouched) {
-			this.onTouched();
-		}
-	}
-
-	/**
-	 * Builds variant class on the radio items within the &#x60;RadioGroup&#x60;.
-	 */
-	ngOnInit() {
-		// Build variant class
-		const className &#x3D; &#x60;radio${this.size !&#x3D;&#x3D; &quot;md&quot; ? &#x60;--${this.size}&#x60; : &quot;&quot;}&#x60;;
-
-		// Add class to host element
-		this.renderer.addClass(this.elementRef.nativeElement, className);
-	}
-
-	/**
-	 * Marks this component as initialized to avoid the initial value getting set by &#x60;NgModel&#x60; on &#x60;RadioGroup&#x60;.
-	 * This avoids &#x60;NgModel&#x60; setting the initial value before the OnInit of the &#x60;RadioGroup&#x60;.
-	 */
 	ngAfterContentInit() {
-		// Mark this component as initialized in AfterContentInit because the initial value can
-		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
-		// NgModel occurs *after* the OnInit of the RadioGroup.
-		this.isInitialized &#x3D; true;
-		this.updateFocusableRadio();
-
-		this.radios.changes.subscribe(updatedRadios &#x3D;&gt; {
-			this.radios &#x3D; updatedRadios;
-			this.updateFocusableRadio();
+		this.radios.changes.subscribe(() &#x3D;&gt; {
+			this.updateRadioNames();
+			this.updateRadioChangeHandler();
 		});
 
 		this.updateChildren();
+		this.updateRadioChangeHandler();
 	}
 
-	updateFocusableRadio() {
-		if (this.radios &amp;&amp; !this.radios.some(radio &#x3D;&gt; radio.checked)) {
-			this.radios.forEach(radio &#x3D;&gt; radio.needsToBeFocusable &#x3D; false);
-			this.radios.first.needsToBeFocusable &#x3D; true;
-			this.radios.forEach(radio &#x3D;&gt; radio.changeDetectorRef.detectChanges());
-		}
+	ngAfterViewInit() {
+		this.updateRadioNames();
 	}
 
 	/**
 	 * Used to set method to propagate changes back to the form.
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange &#x3D; value &#x3D;&gt; {
-			this.value &#x3D; value;
-			fn(value);
-		};
+		this.propagateChange &#x3D; fn;
 	}
 
 	/**
@@ -572,8 +562,20 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	protected updateChildren() {
 		if (this.radios) {
-			this.radios.toArray().forEach(child &#x3D;&gt; child.skeleton &#x3D; this.skeleton);
+			this.radios.forEach(child &#x3D;&gt; child.skeleton &#x3D; this.skeleton);
 		}
+	}
+
+	protected updateRadioChangeHandler() {
+		this.radios.forEach(radio &#x3D;&gt; {
+			radio.registerRadioChangeHandler((event: RadioChange) &#x3D;&gt; {
+				// update selected and value from the event
+				this._selected &#x3D; event.source;
+				this._value &#x3D; event.value;
+				// bubble the event
+				this.emitChangeEvent(event);
+			});
+		});
 	}
 }
 </code></pre>
