@@ -22,7 +22,7 @@ import { Component, Input, HostBinding } from "@angular/core";
 export class TooltipDefinition {
 	static tooltipItemCount = 0;
 
-	@Input() id = `definition-tooltip-${TooltipDefinition.tooltipItemCount}`;
+	@Input() id = `definition-tooltip-${TooltipDefinition.tooltipItemCount++}`;
 	/**
 	 * Body content for the `TooltipDefinition`.
 	 */
@@ -34,8 +34,4 @@ export class TooltipDefinition {
 	@Input() placement: "bottom" | "top" = "bottom";
 
 	@HostBinding("class.bx--tooltip--definition") className = true;
-
-	constructor() {
-		TooltipDefinition.tooltipItemCount++;
-	}
 }
