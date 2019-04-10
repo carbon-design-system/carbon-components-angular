@@ -52,6 +52,7 @@ storiesOf("Date Picker", module)
 		</ibm-date-picker>
 		`,
 		props: {
+			value: array("value", [(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear()]),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -77,6 +78,10 @@ storiesOf("Date Picker", module)
 		</ibm-date-picker>
 		`,
 		props: {
+			value: array("value", [
+				(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear(),
+				(new Date().getMonth() + 2) + "/" + new Date().getDate() + "/" + new Date().getFullYear()
+			]),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
