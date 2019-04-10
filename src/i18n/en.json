@@ -131,6 +131,11 @@
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",
 		"BUTTON_ARIA_RIGHT": "Go to the next tab"
 	},
+	"TILES": {
+		"TILE": "tile",
+		"EXPAND": "Expand",
+		"COLLAPSE": "Collapse"
+	},
 	"TOGGLE": {
 		"OFF": "Off",
 		"ON": "On"
