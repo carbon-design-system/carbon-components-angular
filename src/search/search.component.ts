@@ -5,36 +5,26 @@ import {
 	Output,
 	HostBinding,
 	ElementRef,
-	HostListener
+	HostListener,
+	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 
 /**
  * Used to emit changes performed on search components.
- * @export
- * @class SearchChange
  */
 export class SearchChange {
 	/**
 	 * Contains the `Search` that has been changed.
-	 * @type {Search}
-	 * @memberof SearchChange
 	 */
 	source: Search;
 	/**
 	 * The value of the `Search` field encompassed in the `SearchChange` class.
-	 * @type {string}
-	 * @memberof SearchChange
 	 */
 	value: string;
 }
 
-/**
- * @export
- * @class Search
- * @implements {ControlValueAccessor}
- */
 @Component({
 	selector: "ibm-search",
 	template: `
@@ -54,6 +44,8 @@ export class SearchChange {
 			<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
 			<ng-template #enableInput>
 				<input
+					#input
+					*ngIf="!toolbar || active"
 					class="bx--search-input"
 					type="text"
 					role="search"
@@ -178,10 +170,11 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() change = new EventEmitter<SearchChange>();
 
+	@ViewChild("input") inputRef: ElementRef;
+
 	/**
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
-	 * @memberof Search
 	 */
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		Search.searchCount++;
@@ -197,8 +190,6 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Search
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange = fn;
@@ -214,13 +205,11 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when search input is blurred. Needed to properly implement `ControlValueAccessor`.
-	 * @memberof Search
 	 */
 	onTouched: () => any = () => {};
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
-	 * @memberof Search
 	 */
 	propagateChange = (_: any) => {};
 
@@ -235,7 +224,6 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when clear button is clicked.
-	 * @memberof Search
 	 */
 	clearSearch(): void {
 		this.value = "";
@@ -253,9 +241,9 @@ export class Search implements ControlValueAccessor {
 		this.propagateChange(this.value);
 	}
 
-	openSearch(event) {
+	openSearch() {
 		this.active = true;
-		this.elementRef.nativeElement.querySelector(".bx--search-input").focus();
+		setTimeout(() => this.inputRef.nativeElement.focus());
 	}
 
 	@HostListener("keydown", ["$event"])
@@ -264,7 +252,7 @@ export class Search implements ControlValueAccessor {
 			if (event.key === "Escape") {
 				this.active = false;
 			} else if (event.key === "Enter") {
-				this.openSearch(event);
+				this.openSearch();
 			}
 		}
 	}
