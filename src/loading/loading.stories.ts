@@ -12,9 +12,10 @@ storiesOf("Loading", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-loading [size]="size" [overlay]="overlay"></ibm-loading>
+		<ibm-loading [isActive]="isActive" [size]="size" [overlay]="overlay"></ibm-loading>
 	`,
 		props: {
+			isActive: boolean("Active", true),
 			overlay: boolean("With overlay", false),
 			size: select("Size of the loading circle", ["normal", "sm"], "normal")
 		}
