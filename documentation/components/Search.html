@@ -67,11 +67,6 @@
                 <code><a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank" >ControlValueAccessor</a></code>
     </p>
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -121,6 +116,8 @@
 	&lt;div *ngIf&#x3D;&quot;skeleton; else enableInput&quot; class&#x3D;&quot;bx--search-input&quot;&gt;&lt;/div&gt;
 	&lt;ng-template #enableInput&gt;
 		&lt;input
+			#input
+			*ngIf&#x3D;&quot;!toolbar || active&quot;
 			class&#x3D;&quot;bx--search-input&quot;
 			type&#x3D;&quot;text&quot;
 			role&#x3D;&quot;search&quot;
@@ -198,6 +195,9 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#inputRef">inputRef</a>
+                            </li>
                             <li>
                                 <a href="#onTouched">onTouched</a>
                             </li>
@@ -362,7 +362,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/search/search.component.ts:179</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/search/search.component.ts:173</a></div>
                             </td>
                         </tr>
 
@@ -440,7 +440,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/search/search.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/search/search.component.ts:139</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -462,7 +462,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/search/search.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/search/search.component.ts:167</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -484,7 +484,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/search/search.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/search/search.component.ts:127</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -506,7 +506,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/search/search.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/search/search.component.ts:147</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -528,7 +528,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/search/search.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/search/search.component.ts:159</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -551,7 +551,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/search/search.component.ts:151</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/search/search.component.ts:143</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -573,7 +573,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/search/search.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/search/search.component.ts:163</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -596,7 +596,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/search/search.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/search/search.component.ts:151</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -622,7 +622,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/search/search.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/search/search.component.ts:123</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -644,7 +644,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/search/search.component.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/search/search.component.ts:135</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -670,7 +670,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/search/search.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/search/search.component.ts:119</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -692,7 +692,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/search/search.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/search/search.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -714,7 +714,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/search/search.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/search/search.component.ts:155</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -738,7 +738,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/search/search.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/search/search.component.ts:171</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -771,7 +771,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/search/search.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/search/search.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -808,7 +808,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/search/search.component.ts:273</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/search/search.component.ts:261</a></div>
                             </td>
                         </tr>
 
@@ -842,7 +842,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/search/search.component.ts:262</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/search/search.component.ts:250</a></div>
                             </td>
                         </tr>
 
@@ -878,7 +878,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/search/search.component.ts:240</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/search/search.component.ts:228</a></div>
                             </td>
                         </tr>
 
@@ -918,7 +918,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/search/search.component.ts:248</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/search/search.component.ts:236</a></div>
                             </td>
                         </tr>
 
@@ -958,7 +958,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/search/search.component.ts:231</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/search/search.component.ts:220</a></div>
                             </td>
                         </tr>
 
@@ -1027,14 +1027,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>openSearch(event)</code>
+<code>openSearch()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/search/search.component.ts:256</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/search/search.component.ts:244</a></div>
                             </td>
                         </tr>
 
@@ -1043,36 +1043,9 @@
                     <td class="col-md-4">
 
                             <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>event</td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
-                                <div class="io-description">
-                                    
-                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -1101,7 +1074,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/search/search.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/search/search.component.ts:194</a></div>
                             </td>
                         </tr>
 
@@ -1174,7 +1147,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/search/search.component.ts:211</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/search/search.component.ts:202</a></div>
                             </td>
                         </tr>
 
@@ -1252,7 +1225,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/search/search.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/search/search.component.ts:187</a></div>
                             </td>
                         </tr>
 
@@ -1317,6 +1290,49 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="inputRef"></a>
+                        <span class="name">
+                            <b>
+                            inputRef
+                            </b>
+                            <a href="#inputRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>inputRef:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;input&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/search/search.component.ts:173</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="onTouched"></a>
                         <span class="name">
                             <b>
@@ -1345,7 +1361,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/search/search.component.ts:219</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/search/search.component.ts:209</a></div>
                             </td>
                         </tr>
 
@@ -1384,7 +1400,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/search/search.component.ts:225</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/search/search.component.ts:214</a></div>
                             </td>
                         </tr>
 
@@ -1430,7 +1446,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/search/search.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/search/search.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -1456,36 +1472,26 @@
 	Output,
 	HostBinding,
 	ElementRef,
-	HostListener
+	HostListener,
+	ViewChild
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 import { I18n } from &quot;../i18n/i18n.module&quot;;
 
 /**
  * Used to emit changes performed on search components.
- * @export
- * @class SearchChange
  */
 export class SearchChange {
 	/**
 	 * Contains the &#x60;Search&#x60; that has been changed.
-	 * @type {Search}
-	 * @memberof SearchChange
 	 */
 	source: Search;
 	/**
 	 * The value of the &#x60;Search&#x60; field encompassed in the &#x60;SearchChange&#x60; class.
-	 * @type {string}
-	 * @memberof SearchChange
 	 */
 	value: string;
 }
 
-/**
- * @export
- * @class Search
- * @implements {ControlValueAccessor}
- */
 @Component({
 	selector: &quot;ibm-search&quot;,
 	template: &#x60;
@@ -1505,6 +1511,8 @@ export class SearchChange {
 			&lt;div *ngIf&#x3D;&quot;skeleton; else enableInput&quot; class&#x3D;&quot;bx--search-input&quot;&gt;&lt;/div&gt;
 			&lt;ng-template #enableInput&gt;
 				&lt;input
+					#input
+					*ngIf&#x3D;&quot;!toolbar || active&quot;
 					class&#x3D;&quot;bx--search-input&quot;
 					type&#x3D;&quot;text&quot;
 					role&#x3D;&quot;search&quot;
@@ -1629,10 +1637,11 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;SearchChange&gt;();
 
+	@ViewChild(&quot;input&quot;) inputRef: ElementRef;
+
 	/**
 	 * Creates an instance of &#x60;Search&#x60;.
 	 * @param i18n The i18n translations.
-	 * @memberof Search
 	 */
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		Search.searchCount++;
@@ -1648,8 +1657,6 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Search
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange &#x3D; fn;
@@ -1665,13 +1672,11 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when search input is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
-	 * @memberof Search
 	 */
 	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
 
 	/**
 	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
-	 * @memberof Search
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
 
@@ -1686,7 +1691,6 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when clear button is clicked.
-	 * @memberof Search
 	 */
 	clearSearch(): void {
 		this.value &#x3D; &quot;&quot;;
@@ -1704,9 +1708,9 @@ export class Search implements ControlValueAccessor {
 		this.propagateChange(this.value);
 	}
 
-	openSearch(event) {
+	openSearch() {
 		this.active &#x3D; true;
-		this.elementRef.nativeElement.querySelector(&quot;.bx--search-input&quot;).focus();
+		setTimeout(() &#x3D;&gt; this.inputRef.nativeElement.focus());
 	}
 
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
@@ -1715,7 +1719,7 @@ export class Search implements ControlValueAccessor {
 			if (event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot;) {
 				this.active &#x3D; false;
 			} else if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot;) {
-				this.openSearch(event);
+				this.openSearch();
 			}
 		}
 	}
@@ -1757,7 +1761,7 @@ export class Search implements ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	class="bx--search"	[ngClass]="{		\'bx--search--sm\': size === \'sm\',		\'bx--search--lg\': size === \'lg\',		\'bx--search--light\': theme === \'light\',		\'bx--skeleton\': skeleton,		\'bx--toolbar-search\': toolbar,		\'bx--toolbar-search--active\': toolbar && active	}"	role="search">	<label class="bx--label" [for]="id">{{label}}</label>	<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>	<ng-template #enableInput>		<input			class="bx--search-input"			type="text"			role="search"			[id]="id"			[value]="value"			[placeholder]="placeholder"			[disabled]="disabled"			[required]="required"			(input)="onSearch($event.target.value)"/>		<button			*ngIf="toolbar; else svg"			class="bx--toolbar-search__btn"			[attr.aria-label]="i18n.get(\'SEARCH.TOOLBAR_SEARCH\') | async"			tabindex="0"			(click)="openSearch($event)">			<ng-template [ngTemplateOutlet]="svg"></ng-template>		</button>		<ng-template #svg>			<svg				class="bx--search-magnifier"				width="16"				height="16"				viewBox="0 0 16 16">				<path					d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"					fill-rule="nonzero"/>			</svg>		</ng-template>	</ng-template>	<button		class="bx--search-close"		[ngClass]="{			\'bx--search-close--hidden\': !value || value.length === 0		}"		[title]="clearButtonTitle"		[attr.aria-label]="clearButtonTitle"		(click)="clearSearch()">		<svg			width="16"			height="16"			viewBox="0 0 16 16"			xmlns="http://www.w3.org/2000/svg">			<path				d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414					8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"				fill-rule="evenodd"/>		</svg>	</button></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div	class="bx--search"	[ngClass]="{		\'bx--search--sm\': size === \'sm\',		\'bx--search--lg\': size === \'lg\',		\'bx--search--light\': theme === \'light\',		\'bx--skeleton\': skeleton,		\'bx--toolbar-search\': toolbar,		\'bx--toolbar-search--active\': toolbar && active	}"	role="search">	<label class="bx--label" [for]="id">{{label}}</label>	<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>	<ng-template #enableInput>		<input			#input			*ngIf="!toolbar || active"			class="bx--search-input"			type="text"			role="search"			[id]="id"			[value]="value"			[placeholder]="placeholder"			[disabled]="disabled"			[required]="required"			(input)="onSearch($event.target.value)"/>		<button			*ngIf="toolbar; else svg"			class="bx--toolbar-search__btn"			[attr.aria-label]="i18n.get(\'SEARCH.TOOLBAR_SEARCH\') | async"			tabindex="0"			(click)="openSearch($event)">			<ng-template [ngTemplateOutlet]="svg"></ng-template>		</button>		<ng-template #svg>			<svg				class="bx--search-magnifier"				width="16"				height="16"				viewBox="0 0 16 16">				<path					d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"					fill-rule="nonzero"/>			</svg>		</ng-template>	</ng-template>	<button		class="bx--search-close"		[ngClass]="{			\'bx--search-close--hidden\': !value || value.length === 0		}"		[title]="clearButtonTitle"		[attr.aria-label]="clearButtonTitle"		(click)="clearSearch()">		<svg			width="16"			height="16"			viewBox="0 0 16 16"			xmlns="http://www.w3.org/2000/svg">			<path				d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414					8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"				fill-rule="evenodd"/>		</svg>	</button></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Search'};

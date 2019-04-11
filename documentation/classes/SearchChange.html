@@ -73,11 +73,6 @@
 
 
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -143,7 +138,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/search/search.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/search/search.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +178,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/search/search.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/search/search.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -215,36 +210,26 @@
 	Output,
 	HostBinding,
 	ElementRef,
-	HostListener
+	HostListener,
+	ViewChild
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 import { I18n } from &quot;../i18n/i18n.module&quot;;
 
 /**
  * Used to emit changes performed on search components.
- * @export
- * @class SearchChange
  */
 export class SearchChange {
 	/**
 	 * Contains the &#x60;Search&#x60; that has been changed.
-	 * @type {Search}
-	 * @memberof SearchChange
 	 */
 	source: Search;
 	/**
 	 * The value of the &#x60;Search&#x60; field encompassed in the &#x60;SearchChange&#x60; class.
-	 * @type {string}
-	 * @memberof SearchChange
 	 */
 	value: string;
 }
 
-/**
- * @export
- * @class Search
- * @implements {ControlValueAccessor}
- */
 @Component({
 	selector: &quot;ibm-search&quot;,
 	template: &#x60;
@@ -264,6 +249,8 @@ export class SearchChange {
 			&lt;div *ngIf&#x3D;&quot;skeleton; else enableInput&quot; class&#x3D;&quot;bx--search-input&quot;&gt;&lt;/div&gt;
 			&lt;ng-template #enableInput&gt;
 				&lt;input
+					#input
+					*ngIf&#x3D;&quot;!toolbar || active&quot;
 					class&#x3D;&quot;bx--search-input&quot;
 					type&#x3D;&quot;text&quot;
 					role&#x3D;&quot;search&quot;
@@ -388,10 +375,11 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;SearchChange&gt;();
 
+	@ViewChild(&quot;input&quot;) inputRef: ElementRef;
+
 	/**
 	 * Creates an instance of &#x60;Search&#x60;.
 	 * @param i18n The i18n translations.
-	 * @memberof Search
 	 */
 	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
 		Search.searchCount++;
@@ -407,8 +395,6 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Search
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange &#x3D; fn;
@@ -424,13 +410,11 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when search input is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
-	 * @memberof Search
 	 */
 	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
 
 	/**
 	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
-	 * @memberof Search
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
 
@@ -445,7 +429,6 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when clear button is clicked.
-	 * @memberof Search
 	 */
 	clearSearch(): void {
 		this.value &#x3D; &quot;&quot;;
@@ -463,9 +446,9 @@ export class Search implements ControlValueAccessor {
 		this.propagateChange(this.value);
 	}
 
-	openSearch(event) {
+	openSearch() {
 		this.active &#x3D; true;
-		this.elementRef.nativeElement.querySelector(&quot;.bx--search-input&quot;).focus();
+		setTimeout(() &#x3D;&gt; this.inputRef.nativeElement.focus());
 	}
 
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
@@ -474,7 +457,7 @@ export class Search implements ControlValueAccessor {
 			if (event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot;) {
 				this.active &#x3D; false;
 			} else if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot;) {
-				this.openSearch(event);
+				this.openSearch();
 			}
 		}
 	}
