@@ -58,6 +58,19 @@
     <code>src/content-switcher/content-switcher.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The content switcher can be used for toggling between distinct options.
+Similar to tabs, but without an associated content panel</p>
+<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-content-switcher (selected)=&quot;selected($event)&quot;&gt;
+ *        &lt;button ibmContentOption&gt;First section&lt;/button&gt;
+ *        &lt;button ibmContentOption&gt;Second section&lt;/button&gt;
+ *        &lt;button ibmContentOption&gt;Third section&lt;/button&gt;
+ *    &lt;/ibm-content-switcher&gt;
+ *</code></pre></div>
+    </p>
 
 
     <p class="comment">
@@ -208,7 +221,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/content-switcher/content-switcher.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/content-switcher/content-switcher.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -256,6 +269,8 @@
                         <code>label</code>
                     </td>
                     <td class="col-md-10">
+                        <div><p>aria-label for the content switcher. Should be set to something descriptive</p>
+</div>
                         <p>
                             <em>Default value : </em><code>&quot;content switcher&quot;</code>
                         </p>
@@ -263,7 +278,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/content-switcher/content-switcher.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/content-switcher/content-switcher.component.ts:42</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -279,13 +294,15 @@
                         <code>selected</code>
                     </td>
                     <td class="col-md-10">
+                        <div><p>Emits the activated <code>ContentSwitcherOption</code></p>
+</div>
                         <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/content-switcher/content-switcher.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/content-switcher/content-switcher.component.ts:47</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -320,7 +337,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/content-switcher/content-switcher.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/content-switcher/content-switcher.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -356,7 +373,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/content-switcher/content-switcher.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/content-switcher/content-switcher.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -415,7 +432,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/content-switcher/content-switcher.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/content-switcher/content-switcher.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -443,8 +460,16 @@ import { ContentSwitcherOption } from &quot;./content-switcher-option.directive&
 import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../common/tab.service&quot;;
 
 /**
+ * The content switcher can be used for toggling between distinct options.
+ * Similar to tabs, but without an associated content panel
  *
- *
+ * &#x60;&#x60;&#x60;html
+ * &lt;ibm-content-switcher (selected)&#x3D;&quot;selected($event)&quot;&gt;
+ *		&lt;button ibmContentOption&gt;First section&lt;/button&gt;
+ *		&lt;button ibmContentOption&gt;Second section&lt;/button&gt;
+ *		&lt;button ibmContentOption&gt;Third section&lt;/button&gt;
+ *	&lt;/ibm-content-switcher&gt;
+ *	&#x60;&#x60;&#x60;
  */
 @Component({
 	selector: &quot;ibm-content-switcher&quot;,
@@ -458,8 +483,14 @@ import { isFocusInLastItem, isFocusInFirstItem } from &quot;./../common/tab.serv
 	&#x60;
 })
 export class ContentSwitcher implements AfterViewInit {
+	/**
+	 * aria-label for the content switcher. Should be set to something descriptive
+	 */
 	@Input() label &#x3D; &quot;content switcher&quot;;
 
+	/**
+	 * Emits the activated &#x60;ContentSwitcherOption&#x60;
+	 */
 	@Output() selected &#x3D; new EventEmitter();
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList&lt;ContentSwitcherOption&gt;;
@@ -467,7 +498,12 @@ export class ContentSwitcher implements AfterViewInit {
 	constructor(protected elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
-		this.options.first.active &#x3D; true;
+		const firstActive &#x3D; this.options.find(option &#x3D;&gt; option.active);
+		// delay setting active until the DOM has settled
+		if (!firstActive) {
+			setTimeout(() &#x3D;&gt; this.options.first.active &#x3D; true);
+		}
+		// subscribe to each item, emit when one is selected, and reset the active states
 		this.options.forEach(option &#x3D;&gt; {
 			option.selected.subscribe(_ &#x3D;&gt; {
 				const active &#x3D; option;
@@ -483,7 +519,7 @@ export class ContentSwitcher implements AfterViewInit {
 
 	@HostListener(&quot;keydown&quot;, [&quot;$event&quot;])
 	hostkeys(event: KeyboardEvent) {
-		const buttonList &#x3D; Array.from&lt;any&gt;(this.elementRef.nativeElement.querySelectorAll(&quot;.bx--content-switcher-btn&quot;));
+		const buttonList &#x3D; Array.from&lt;any&gt;(this.elementRef.nativeElement.querySelectorAll(&quot;[ibmContentOption]&quot;));
 
 		switch (event.key) {
 			case &quot;Right&quot;: // IE specific value
