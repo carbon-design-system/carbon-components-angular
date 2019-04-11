@@ -23,7 +23,12 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 					data-date-picker
 					[attr.data-date-picker-type]= "range ? 'range' : 'single'"
 					class="bx--date-picker"
-					[ngClass]= "range ? 'bx--date-picker--range' : 'bx--date-picker--single'">
+					[ngClass]="{
+						'bx--date-picker--range' : range,
+						'bx--date-picker--single' : !range,
+						'bx--date-picker--light' : theme === 'light',
+						'bx--skeleton' : skeleton
+					}">
 					<div class="bx--date-picker-container">
 						<ibm-date-picker-input
 							[label]= "label"
@@ -32,6 +37,10 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[id]= "id"
 							[type]= "range ? 'range' : 'single'"
 							[hasIcon]= "range ? false : true"
+							[disabled]="disabled"
+							[invalid]="invalid"
+							[invalidText]="invalidText"
+							[skeleton]="skeleton"
 							(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
@@ -44,6 +53,10 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[id]= "id + '-rangeInput'"
 							[type]= "range ? 'range' : 'single'"
 							[hasIcon]= "range ? true : null"
+							[disabled]="disabled"
+							[invalid]="invalid"
+							[invalidText]="invalidText"
+							[skeleton]="skeleton"
 							(valueChange)="valueChange.emit($event)">
 						</ibm-date-picker-input>
 					</div>
@@ -79,6 +92,16 @@ export class DatePicker implements OnDestroy {
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
 	@Input() value: Array<any>;
+
+	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() disabled = false;
+
+	@Input() invalid = false;
+
+	@Input() invalidText: string;
+
+	@Input() skeleton = false;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -141,6 +164,9 @@ export class DatePicker implements OnDestroy {
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
 			element.classList.add("bx--date-picker__day");
+			if (!this.value) {
+				return;
+			}
 			if (element.classList.contains("today") && this.value.length > 0) {
 				element.classList.add("no-border");
 			} else if (element.classList.contains("today") && this.value.length === 0) {
