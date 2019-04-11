@@ -16,9 +16,22 @@ export class AbstractDropdownView {
 
 	get items(): Array<ListItem> | Observable<Array<ListItem>> { return; }
 	/**
-	 * Emits selection events to other class.
+	 * Emits selection events to controlling classes
+	 *
+	 * Deprecated: `Object` as a valid type.
 	 */
-	@Output() select: EventEmitter<Object>;
+	@Output() select: EventEmitter<{item: ListItem } | ListItem[] | Object>;
+	/**
+	 * Event to suggest a blur on the view.
+	 * Emits _after_ the first/last item has been focused.
+	 * ex.
+	 * ArrowUp -> focus first item
+	 * ArrowUp -> emit event
+	 *
+	 * It's recommended that the implementing view include a specific type union of possible blurs
+	 * ex. `@Output() blurIntent = new EventEmitter<"top" | "bottom">();`
+	 */
+	@Output() blurIntent: EventEmitter<any>;
 	/**
 	 * Specifies whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.

@@ -207,7 +207,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[draggable]="columnsDraggable"
 					(dragstart)="columnDragStart($event, i)"
 					(dragend)="columnDragEnd($event, i)"
-					(click)="setIndex($event, i)">
+					(click)="setIndex(i)">
 						<span *ngIf="skeleton"></span>
 						<div
 						*ngIf="columnsResizable"
@@ -347,7 +347,7 @@ import { I18n } from "./../i18n/i18n.module";
 						(click)="setCheckboxIndex()">
 						<ibm-checkbox
 							inline="true"
-							[attr.aria-label]="checkboxRowLabel | async"
+							[aria-label]="checkboxRowLabel | i18nReplace:getSelectionLabelValue(row) | async"
 							[size]="size !== ('lg' ? 'sm' : 'md')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
@@ -359,7 +359,7 @@ import { I18n } from "./../i18n/i18n.module";
 							[ngStyle]="model.header[j].style"
 							[ibmDataGridFocus]="isDataGrid"
 							[(columnIndex)]="columnIndex"
-							(click)="setIndex($event, j)">
+							(click)="setIndex(j)">
 							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
 							<ng-template
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
@@ -370,6 +370,7 @@ import { I18n } from "./../i18n/i18n.module";
 				<tr
 				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
 				class="bx--expandable-row-v2"
+				ibmExpandedRowHover
 				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
 					<td
 						[ibmDataGridFocus]="isDataGrid"
@@ -648,6 +649,18 @@ export class Table implements AfterViewInit {
 	 * Set footer template to customize what is displayed in the tfoot section of the table
 	 */
 	@Input() footerTemplate: TemplateRef<any>;
+
+	/**
+	 * Used to populate the row selection checkbox label with a useful value if set.
+	 *
+	 * Example:
+	 * ```
+	 * <ibm-table [selectionLabelColumn]="0"></ibm-table>
+	 * <!-- results in aria-label="Select first column value"
+	 * (where "first column value" is the value of the first column in the row -->
+	 * ```
+	 */
+	@Input() selectionLabelColumn: number;
 
 	/**
 	 * Emits an index of the column that wants to be sorted.
@@ -932,7 +945,7 @@ export class Table implements AfterViewInit {
 		});
 	}
 
-	setIndex(event, columnIndex) {
+	setIndex(columnIndex) {
 		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
 			this.columnIndex = columnIndex + 2;
 		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
@@ -950,5 +963,12 @@ export class Table implements AfterViewInit {
 
 	setExpandIndex(event) {
 		this.columnIndex = 0;
+	}
+
+	getSelectionLabelValue(row: TableItem[]) {
+		if (!this.selectionLabelColumn) {
+			return { value: this.i18n.get().TABLE.ROW };
+		}
+		return { value: row[this.selectionLabelColumn].data };
 	}
 }

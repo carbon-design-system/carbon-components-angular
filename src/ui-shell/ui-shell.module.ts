@@ -10,6 +10,8 @@ import { HeaderNavigation } from "./header-navigation.component";
 import { HeaderGlobal } from "./header-global.component";
 import { HeaderAction } from "./header-action.component";
 
+import { Hamburger } from "./hamburger.component";
+
 import { SideNav } from "./sidenav.component";
 import { SideNavHeader } from "./sidenav-header.component";
 import { SideNavItem } from "./sidenav-item.component";
@@ -22,7 +24,7 @@ export {
 	HeaderNavigation,
 	HeaderGlobal,
 	HeaderAction,
-
+	Hamburger,
 	SideNav,
 	SideNavHeader,
 	SideNavItem,
@@ -37,13 +39,13 @@ export {
 		HeaderNavigation,
 		HeaderGlobal,
 		HeaderAction,
-
+		Hamburger,
 		SideNav,
 		SideNavHeader,
 		SideNavItem,
 		SideNavMenu
 	],
-	imports: [ CommonModule, I18nModule ],
+	imports: [CommonModule, I18nModule],
 	exports: [
 		Header,
 		HeaderItem,
@@ -51,11 +53,11 @@ export {
 		HeaderNavigation,
 		HeaderGlobal,
 		HeaderAction,
-
+		Hamburger,
 		SideNav,
 		SideNavHeader,
 		SideNavItem,
 		SideNavMenu
 	]
 })
-export class UIShellModule {}
+export class UIShellModule { }

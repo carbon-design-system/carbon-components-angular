@@ -6,7 +6,7 @@ import {
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, number, object } from "@storybook/addon-knobs/angular";
 
 import { ExperimentalComponenent } from "../../.storybook/experimental.component";
 
@@ -18,12 +18,13 @@ import { ProgressIndicator } from "./progress-indicator.component";
 @Component({
 	selector: "app-skeleton-progress-indicator",
 	template: `
-		<ibm-progress-indicator [steps]="skeletonSteps" skeleton="true">
+		<ibm-progress-indicator [steps]="skeletonSteps" [orientation]="orientation" skeleton="true">
 		</ibm-progress-indicator>
 	`
 })
 class SkeletonStory implements OnInit {
 	@Input() skeletonSteps = [];
+	@Input() orientation = "horizontal";
 
 	ngOnInit() {
 		// Creates an empty progress indicator with 4 steps
@@ -31,7 +32,7 @@ class SkeletonStory implements OnInit {
 	}
 }
 
-storiesOf("ProgressIndicator", module)
+storiesOf("Progress Indicator", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [ExperimentalComponenent, SkeletonStory],
@@ -45,75 +46,71 @@ storiesOf("ProgressIndicator", module)
 		template: `
 		<app-experimental-component></app-experimental-component>
 		<div style="display: flex;">
-			<ibm-progress-indicator [steps]="steps"></ibm-progress-indicator>
+			<ibm-progress-indicator [steps]="steps" [current]="current"></ibm-progress-indicator>
 		</div>
 		`,
 		props: {
 			steps : [
 				{
-					text: "1. ONE",
+					text: "First step",
 					state: ["complete"]
 				},
 				{
-					text: "2. TWO",
-					state: ["complete"]
-				},
-				{
-					text: "3. THREE",
+					text: "Second step",
 					state: ["current"]
 				},
 				{
-					text: "4. FOUR",
+					text: "Third step",
 					state: ["incomplete"]
 				},
 				{
-					text: "5. FIVE",
+					text: "Fourth step",
 					state: ["incomplete"]
 				},
 				{
-					text: "6. SIX",
+					text: "Fifth step",
 					state: ["incomplete"]
 				}
-			]
+			],
+			current: number("Current progress", 1)
+		}
+	}))
+	.add("Vertical", () => ({
+		template: `
+		<app-experimental-component></app-experimental-component>
+		<ibm-progress-indicator orientation="vertical" [steps]="steps" [current]="current"></ibm-progress-indicator>
+		`,
+		props: {
+			steps : [
+				{
+					text: "First step",
+					state: ["complete"]
+				},
+				{
+					text: "Second step",
+					state: ["current"]
+				},
+				{
+					text: "Third step",
+					state: ["incomplete"]
+				},
+				{
+					text: "Fourth step",
+					state: ["incomplete"]
+				},
+				{
+					text: "Fifth step",
+					state: ["incomplete"]
+				}
+			],
+			current: number("Current progress", 1)
 		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
 		<app-experimental-component></app-experimental-component>
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
+		&nbsp;&nbsp;
+		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
 		`
-	}))
-	.add("Vertical", () => ({
-		template: `
-		<app-experimental-component></app-experimental-component>
-		<ibm-progress-indicator [orientation]="'vertical'" [steps]="steps"></ibm-progress-indicator>
-		`,
-		props: {
-			steps : [
-				{
-					text: "1. ONE",
-					state: ["complete"]
-				},
-				{
-					text: "2. TWO",
-					state: ["complete"]
-				},
-				{
-					text: "3. THREE",
-					state: ["current"]
-				},
-				{
-					text: "4. FOUR",
-					state: ["incomplete"]
-				},
-				{
-					text: "5. FIVE",
-					state: ["incomplete"]
-				},
-				{
-					text: "6. SIX",
-					state: ["incomplete"]
-				}
-			]
-		}
 	}));
