@@ -66,7 +66,7 @@ import { ScrollableList } from "./../scrollable-list.directive";
 				}">
 				<div
 					*ngIf="!listTpl && type === 'multi'"
-					class="bx--form-item checkbox-wrapper">
+					class="bx--form-item">
 					<input
 						class="bx--checkbox"
 						type="checkbox"
@@ -87,21 +87,6 @@ import { ScrollableList } from "./../scrollable-list.directive";
 				</ng-template>
 			</li>
 		</ul>`,
-	styles: [`.bx--list-box__menu-item:hover {
-					text-decoration: none;
-				}
-				.bx--list-box__menu-item.bx--list-box__menu-item--highlighted {
-					text-decoration: none;
-				}
-				.bx--list-box__menu-item .checkbox-wrapper {
-					white-space: nowrap;
-					overflow: hidden;
-					text-overflow: ellipsis;
-				}
-				.bx--list-box__menu-item .checkbox-wrapper .bx--checkbox-label span.sec-content {
-					color: #888;
-				}
-				`],
 	providers: [
 		{
 			provide: AbstractDropdownView,
@@ -429,8 +414,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 	}
 
 	resetSelected() {
-		this.items.map((item) => {
-			item.selected = false;
+		this.items = this.items.map((item) => {
+			item = Object.assign(item, {selected: false});
+			return item;
 		});
 	}
 }
