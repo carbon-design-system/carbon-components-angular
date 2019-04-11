@@ -24,7 +24,7 @@ import {
 	selector: "ibm-overflow-menu-option",
 	template: `
 		<button
-			*ngIf="href === undefined"
+			*ngIf="!href"
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
@@ -37,7 +37,7 @@ import {
 		</button>
 
 		<a
-			*ngIf="href !== undefined"
+			*ngIf="href"
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
@@ -95,7 +95,7 @@ export class OverflowMenuOption implements AfterViewInit {
 	ngAfterViewInit() {
 		const button = this.elementRef.nativeElement.querySelector("button , a");
 		if (button.scrollWidth > button.offsetWidth) {
-			this.title = this.elementRef.nativeElement.querySelector("button").textContent;
+			this.title = button.textContent;
 		}
 	}
 }
