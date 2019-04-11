@@ -6,11 +6,13 @@ import {
 	OnInit,
 	Optional,
 	Renderer2,
-	HostBinding
+	HostBinding,
+	Output,
+	EventEmitter
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Checkbox } from "../checkbox/checkbox.component";
-import { RadioGroup } from "./radio-group.component";
+import { RadioGroup, RadioChange } from "./radio-group.component";
 
 /**
  * class: Radio (extends Checkbox)
@@ -37,25 +39,22 @@ import { RadioGroup } from "./radio-group.component";
 			*ngIf="!skeleton"
 			class="bx--radio-button"
 			type="radio"
-			#inputCheckbox
 			[checked]="checked"
 			[disabled]="disabled"
 			[name]="name"
 			[id]="id"
 			[required]="required"
 			[value]="value"
-			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby"
-			(change)="onChange($event)"
-			(click)="onClick($event)"
-			[tabindex]="(checked || needsToBeFocusable ? 0 : -1)">
+			(change)="onChange($event)">
 		<div *ngIf="skeleton" class="bx--radio-button bx--skeleton"></div>
 		<label
 			class="bx--radio-button__label"
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}"
-			[for]="id">
+			[for]="id"
+			id="label-{{id}}">
 			<span class="bx--radio-button__appearance"></span>
 			<ng-content></ng-content>
 		</label>
@@ -68,152 +67,77 @@ import { RadioGroup } from "./radio-group.component";
 		}
 	]
 })
-export class Radio extends Checkbox implements OnInit {
+export class Radio {
 	/**
 	 * Used to dynamically create unique ids for the `Radio`.
-	 * @static
-	 * @memberof Radio
 	 */
 	static radioCount = 0;
 
+	@Input() checked = false;
+
+	@Input() name = "";
+
+	@Input() disabled = false;
+
+	@Input() set ariaLabelledby(value: string) {
+		this._labelledby = value;
+	}
+
+	get ariaLabelledby() {
+		if (this._labelledby) {
+			return this._labelledby;
+		}
+		return `label-${this.id}`;
+	}
+	/**
+	 * Sets the HTML required attribute
+	 */
+	@Input() required = false;
+	/**
+	 * The value of the `Radio`.
+	 */
+	@Input() value = "";
 	/**
 	 * Set to `true` for a loading table.
 	 */
 	@Input() skeleton = false;
 	/**
-	 * Returns the value/state of the `Radio`.
-	 * @readonly
-	 * @type {any}
-	 * @returns {any}
-	 * @memberof Radio
+	 * The id for the `Radio`.
 	 */
-	@Input()
-	get value(): any {
-		return this._value;
-	}
-
+	@Input() id = `radio-${Radio.radioCount++}`;
 	/**
-	 * Replaces `@Input value` with the provided parameter supplied from the parent.
-	 * @param {any} value
-	 * @memberof Radio
+	 * emits when the state of the radio changes
 	 */
-	set value(value: any) {
-		if (this._value !== value) {
-			this._value = value;
-			if (this.radioGroup != null) {
-				if (!this.checked) {
-					this.checked = this.radioGroup.value === value;
-				}
-				if (this.checked) {
-					this.radioGroup.selected = this;
-				}
-			}
-		}
-	}
-
+	@Output() change = new EventEmitter<RadioChange>();
 	/**
 	 * Binds 'radio' value to the role attribute for `Radio`.
-	 * @memberof Radio
 	 */
 	@HostBinding("attr.role") role = "radio";
 
-	@HostBinding("class.bx--checkbox-wrapper") get checkboxWrapperClass() {
-		return false;
-	}
-	@HostBinding("class.bx--form-item") get formItemClass() {
-		return false;
-	}
+	protected _labelledby = "";
 
 	/**
-	 * The id for the `Radio`.
-	 * @type {string}
-	 * @memberof Radio
+	 * Handler provided by the `RadioGroup` to bubble events up
 	 */
-	id = `radio-${Radio.radioCount}`;
-	/**
-	 * The radio group that this `Radio` belongs to (if any).
-	 * @type {RadioGroup}
-	 * @memberof Radio
-	 */
-	radioGroup: RadioGroup;
-	/**
-	 * set to true if the `Radio` needs a tabIndex of 0.
-	 * @type {RadioGroup}
-	 * @memberof Radio
-	 */
-	needsToBeFocusable: boolean;
-	/**
-	 * The value of the `Radio`.
-	 * @type {any}
-	 * @memberof Radio
-	 */
-	_value: any = null;
-
-	/**
-	 * Creates an instance of Radio.
-	 * @param {RadioGroup} radioGroup
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
-	 * @memberof Radio
-	 */
-	constructor(@Optional() radioGroup: RadioGroup,
-				public changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
-		super(changeDetectorRef);
-		Radio.radioCount++;
-		this.radioGroup = radioGroup;
-	}
-
-	/**
-	 * If the component has an encompassing `RadioGroup` it synchronizes the name with that
-	 * of the group.
-	 * @memberof Radio
-	 */
-	ngOnInit() {
-		if (this.radioGroup) {
-			// if in group check if it needs checked and use group name
-			this.checked = this.radioGroup.value === this._value;
-			this.name = this.radioGroup.name;
-		}
-	}
-
-	/**
-	 * Handles the event of a mouse click on the `Radio`.
-	 * @param {Event} event
-	 * @memberof Radio
-	 */
-	onClick(event: Event) {
-		event.stopPropagation();
-	}
+	radioChangeHandler = (event: RadioChange) => {};
 
 	/**
 	 * Synchronizes with the `RadioGroup` in the event of a changed `Radio`.
 	 * Emits the changes of both the `RadioGroup` and `Radio`.
-	 * @param {Event} event
-	 * @memberof Radio
 	 */
 	onChange(event: Event) {
 		event.stopPropagation();
-
-		let groupValueChanged = this.radioGroup && this.value !== this.radioGroup.value;
-		this.checked = true;
-		this.emitChangeEvent();
-
-		if (this.radioGroup) {
-			this.radioGroup.propagateChange(this.value);
-			this.radioGroup.touch();
-			if (groupValueChanged) {
-				this.radioGroup.emitChangeEvent();
-			}
-		}
+		this.checked = (event.target as HTMLInputElement).checked;
+		const radioEvent = new RadioChange(this, this.value);
+		this.change.emit(radioEvent);
+		this.radioChangeHandler(radioEvent);
 	}
 
 	/**
-	 * Calls the `markForCheck()` function within the `changeDetectorRef` class
-	 * to make sure that Angular's change detection is triggered for the input.
-	 * @memberof Radio
+	 * Method called by `RadioGroup` with a callback function to bubble `RadioChange` events
+	 * @param fn callback that expects a `RadioChange` as an argument
 	 */
-	markForCheck() {
-		this.changeDetectorRef.markForCheck();
+	registerRadioChangeHandler(fn: (event: RadioChange) => void) {
+		this.radioChangeHandler = fn;
 	}
 }
