@@ -5,28 +5,24 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 	template: `
 		<div class="bx--form-item">
 			<div class="bx--time-picker">
-				<div class="bx--time-picker__input">
-					<div
-						[ngClass]="{
-							'bx--time-picker__select': true,
-							'bx--select--inline': display === 'inline',
-							'bx--select--light': theme === 'light',
-							'bx--skeleton': skeleton
-						}"
-						class="bx--select">
-						<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
-						<input
-							#timePicker
-							[value]= "value"
-							[placeholder]= "placeholder"
-							[pattern]= "pattern"
-							[attr.id]= "id"
-							[disabled]= "disabled"
-							maxlength= "5"
-							(change)="onChange($event)"
-							type="string"
-							class="bx--time-picker__input-field">
-					</div>
+				<div
+					[ngClass]="{
+						'bx--select--light': theme === 'light',
+						'bx--skeleton': skeleton
+					}"
+					class="bx--time-picker__input">
+					<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
+					<input
+						#timePicker
+						[value]= "value"
+						[placeholder]= "placeholder"
+						[pattern]= "pattern"
+						[attr.id]= "id"
+						[disabled]= "disabled"
+						maxlength= "5"
+						(change)="onChange($event)"
+						type="string"
+						class="bx--time-picker__input-field">
 				</div>
 				<ng-content></ng-content>
 			</div>

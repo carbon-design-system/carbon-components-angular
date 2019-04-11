@@ -9,7 +9,7 @@ import { Select } from "../select/select.component";
 				'bx--select--light': theme === 'light',
 				'bx--skeleton': skeleton
 			}"
-			class="bx--select bx--time-picker__select">
+			class="bx--select bx--time-picker__select bx--select--inline">
 			<label *ngIf="!skeleton" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
 			<select
 				#select

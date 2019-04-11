@@ -20,12 +20,12 @@ storiesOf("Time Picker Select", module)
 		<app-experimental-component></app-experimental-component>
 		<div class="bx--form-item">
 			<div class="bx--time-picker">
-				<ibm-timepicker-select display="inline">
+				<ibm-timepicker-select>
 					<option value="" disabled selected hidden>AM</option>
 					<option value="AM">AM</option>
 					<option value="PM">PM</option>
 				</ibm-timepicker-select>
-				<ibm-timepicker-select display="inline">
+				<ibm-timepicker-select>
 					<option value="" disabled selected hidden>Time Zone 1</option>
 					<option value="Time Zone 1">Time Zone 1</option>
 					<option value="Time Zone 2">Time Zone 2</option>
