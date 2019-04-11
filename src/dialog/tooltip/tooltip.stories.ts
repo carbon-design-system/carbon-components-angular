@@ -14,7 +14,7 @@ storiesOf("Tooltip", module)
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("default", () => ({
+	.add("basic", () => ({
 	template: `
 			<div>
 				<ng-template #template let-tooltip="tooltip">
