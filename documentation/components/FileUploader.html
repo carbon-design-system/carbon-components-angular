@@ -677,7 +677,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/file-uploader/file-uploader.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/file-uploader/file-uploader.component.ts:178</a></div>
                             </td>
                         </tr>
 
@@ -748,7 +748,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/file-uploader/file-uploader.component.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/file-uploader/file-uploader.component.ts:172</a></div>
                             </td>
                         </tr>
 
@@ -819,7 +819,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/file-uploader/file-uploader.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/file-uploader/file-uploader.component.ts:163</a></div>
                             </td>
                         </tr>
 
@@ -1342,6 +1342,9 @@ export class FileUploader implements OnInit {
 
 	onFilesAdded() {
 		const files &#x3D; this.fileInput.nativeElement.files;
+		if (!this.multiple) {
+			this.files.clear();
+		}
 		for (let file of files) {
 			const fileItem: FileItem &#x3D; {
 				uploaded: false,
