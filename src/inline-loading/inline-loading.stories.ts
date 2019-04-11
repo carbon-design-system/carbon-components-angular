@@ -20,6 +20,6 @@ storiesOf("Inline Loading", module)
 		props: {
 			onSuccess: action("onSuccess"),
 			loadingText: text("The loading text", "Loading data..."),
-			successText: text("The sucess text", "Data loaded.")
+			successText: text("The success text", "Data loaded.")
 		}
 	}));
