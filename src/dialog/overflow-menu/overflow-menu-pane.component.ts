@@ -119,9 +119,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	}
 
 	protected listItems() {
-		const list = [];
-		const selector = ".bx--overflow-menu-options__option:not([disabled])";
-		this.elementRef.nativeElement.querySelectorAll(selector).forEach(item => list.push(item.firstElementChild));
-		return list;
+		const selector = ".bx--overflow-menu-options__option:not([disabled]) .bx--overflow-menu-options__btn";
+		return Array.from<HTMLElement>(this.elementRef.nativeElement.querySelectorAll(selector));
 	}
 }
