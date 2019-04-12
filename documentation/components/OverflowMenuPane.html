@@ -1495,7 +1495,8 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	}
 
 	protected listItems() {
-		return Array.from&lt;any&gt;(this.elementRef.nativeElement.querySelectorAll(&quot;.bx--overflow-menu-options__btn:not([disabled])&quot;));
+		const selector &#x3D; &quot;.bx--overflow-menu-options__option:not([disabled]) .bx--overflow-menu-options__btn&quot;;
+		return Array.from&lt;HTMLElement&gt;(this.elementRef.nativeElement.querySelectorAll(selector));
 	}
 }
 </code></pre>
