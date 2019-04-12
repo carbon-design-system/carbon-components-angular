@@ -5,12 +5,18 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 	template: `
 	<div class="bx--form-item">
 		<div class="bx--date-picker"
-		[ngClass]= "'bx--date-picker--' + type">
+			[ngClass]="{
+				'bx--date-picker--single' : type === 'single',
+				'bx--date-picker--range' : type === 'range',
+				'bx--date-picker--light' : theme === 'light',
+				'bx--skeleton' : skeleton
+			}">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
 					{{label}}
 				</label>
-				<svg *ngIf="type == 'single'"
+				<div *ngIf="skeleton" class="bx--date-picker__input bx--skeleton"></div>
+				<svg *ngIf="type == 'single' && !skeleton"
 				data-date-picker-icon
 				class="bx--date-picker__icon"
 				width="14" height="16"
@@ -23,6 +29,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 				</svg>
 				<input
 				    #dateInput
+					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
 					class="bx--date-picker__input"
@@ -32,9 +39,14 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
 					(change) = "valueChange.emit(dateInput.value)"/>
+					[attr.disabled]="(disabled ? '' : null)"
+					[attr.data-invalid]="(invalid ? '' : null)"/>
+					<div *ngIf="invalid" class="bx--form-requirement">
+						{{invalidText}}
+					</div>
 			</div>
 
-			<svg *ngIf= "type == 'range' && hasIcon"
+			<svg *ngIf= "type == 'range' && hasIcon && !skeleton"
 			data-date-picker-icon
 			class="bx--date-picker__icon"
 			width="14" height="16"
@@ -72,4 +84,13 @@ export class DatePickerInput {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() disabled = false;
+
+	@Input() invalid = false;
+
+	@Input() invalidText: string;
+
+	@Input() skeleton = false;
 }

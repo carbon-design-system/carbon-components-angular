@@ -35,7 +35,7 @@ class FileUploaderStory {
 	static notificationCount = 0;
 
 	@Input() notificationId = `notification-${FileUploaderStory.notificationCount}`;
-	@Input() files: any;
+	@Input() files = new Set();
 	@Input() title;
 	@Input() description;
 	@Input() buttonText;
