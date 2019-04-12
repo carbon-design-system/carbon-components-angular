@@ -93,7 +93,7 @@ export class OverflowMenuOption implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		const button = this.elementRef.nativeElement.querySelector("button , a");
+		const button = this.elementRef.nativeElement.querySelector("button, a");
 		if (button.scrollWidth > button.offsetWidth) {
 			this.title = button.textContent;
 		}
