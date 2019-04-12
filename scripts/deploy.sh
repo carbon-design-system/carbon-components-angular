@@ -24,11 +24,13 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 
 	git pull "https://git:${GH_TOKEN}@github.com/IBM/carbon-components-angular.git" gh-pages
 
+	mkdir -p documentation
 	cp -R ../dist/docs/documentation/* ./documentation
 	cp -R ../dist/docs/storybook/* ./
 
 	version=$(node -e 'const package = require("./../dist/package.json"); console.log(package.version);')
 	mkdir $version
+	mkdir -p $version/documentation
 	cp -R ../dist/docs/documentation/* $version/documentation
 	cp -R ../dist/docs/storybook/* $version
 
