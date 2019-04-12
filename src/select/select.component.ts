@@ -41,6 +41,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				<select
 					#select
 					[attr.id]="id"
+					[attr.data-invalid]="(invalid ? '' : null)"
 					[disabled]="disabled"
 					(change)="onChange($event)"
 					class="bx--select-input">
@@ -49,9 +50,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
 				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 				</svg>
+				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+				<div *ngIf="invalid" class="bx--form-requirement">{{invalidText}}</div>
 			</div>
 		</div>
 	`,
+	styles: [`
+		[data-invalid] ~ .bx--select__arrow {
+			bottom: 2.25rem;
+		}
+	`],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -75,6 +83,14 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() label = "Select label";
 	/**
+	 * Optional helper text that appears under he label.
+	 */
+	@Input() helperText: string;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText: string;
+	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
 	@Input() id = `select-${Select.selectCount++}`;
@@ -86,6 +102,11 @@ export class Select implements ControlValueAccessor {
 	 * Set to true for a loading select.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` for an invalid select component.
+	 */
+	@Input() invalid = false;
+
 	/**
 	 * `light` or `dark` select theme
 	 */
