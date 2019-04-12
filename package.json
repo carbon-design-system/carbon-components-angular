@@ -24,7 +24,22 @@
     }
   },
   "release": {
-    "pkgRoot": "dist"
+    "pkgRoot": "dist",
+    "branches": [
+      {
+        "name": "master",
+        "channel": "latest"
+      },
+      {
+        "name": "next",
+        "channel": "next"
+      },
+      {
+        "name": "v9",
+        "channel": "carbon-v9",
+        "range": "1.X"
+      }
+    ]
   },
   "commitlint": {
     "types": [
@@ -128,7 +143,7 @@
     "raw-loader": "0.5.1",
     "rxjs": "6.2.2",
     "sass-loader": "7.0.1",
-    "semantic-release": "15.10.6",
+    "semantic-release": "16.0.0-beta.18",
     "style-loader": "0.21.0",
     "stylelint": "8.4.0",
     "stylelint-webpack-plugin": "0.10.4",
