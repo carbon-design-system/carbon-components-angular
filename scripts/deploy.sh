@@ -15,11 +15,35 @@ npm run semantic-release
 # deploy to gh pages
 if [[ $TRAVIS_BRANCH == "master" ]]; then
 	mkdir pages
-	cp -R dist/docs/documentation/ pages/documentation
-	cp -R dist/docs/storybook/* pages
-	version=$(node -e 'const package = require("./dist/package.json"); console.log(package.version);')
-	mkdir pages/$version
-	cp -R dist/docs/documentation/ pages/$version/documentation
-	cp -R dist/docs/storybook/* pages/$version
-	echo "angular.carbondesignsystem.com" > pages/CNAME
+	cd pages
+
+	git init
+
+	git config user.name "carbon-bot"
+	git config user.email "carbon@us.ibm.com"
+
+	git pull "git@github.com:IBM/carbon-components-angular.git" gh-pages
+
+	cp -R ../dist/docs/documentation/* ./documentation
+	cp -R ../dist/docs/storybook/* ./
+
+	version=$(node -e 'const package = require("./../dist/package.json"); console.log(package.version);')
+	mkdir $version
+	cp -R ../dist/docs/documentation/* $version/documentation
+	cp -R ../dist/docs/storybook/* $version
+
+	echo "angular.carbondesignsystem.com" > CNAME
+
+	# in this case we want the script to keep running, so we can actually check the $? (status) var
+	set +e
+	# Commit all the things into the repo
+	git add .
+	git commit -m "Deploy to GitHub Pages"
+
+	# Force push to gh-pages if there was something to commit
+	if [ $? -eq 0 ]; then
+		git push --force "git@github.com:IBM/carbon-components-angular.git" master:gh-pages > /dev/null 2>&1
+	fi
 fi
+# just to be sure we exit cleanly
+exit 0;
