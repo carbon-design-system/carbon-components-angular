@@ -38,9 +38,9 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
-					(change) = "valueChange.emit(dateInput.value)"/>
 					[attr.disabled]="(disabled ? '' : null)"
-					[attr.data-invalid]="(invalid ? '' : null)"/>
+					[attr.data-invalid]="(invalid ? '' : null)"
+					(change) = "valueChange.emit(dateInput.value)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
 						{{invalidText}}
 					</div>

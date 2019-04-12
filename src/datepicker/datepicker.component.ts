@@ -41,7 +41,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[invalid]="invalid"
 							[invalidText]="invalidText"
 							[skeleton]="skeleton"
-							(valueChange)="onInputValueChange($event)">
+							(valueChange)="onInputValueChange($event, 0)">
 						</ibm-date-picker-input>
 					</div>
 
@@ -57,7 +57,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[invalid]="invalid"
 							[invalidText]="invalidText"
 							[skeleton]="skeleton"
-							(valueChange)="onInputValueRangeChange($event)">
+							(valueChange)="onInputValueChange($event, 1)">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -91,7 +91,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: Array<any>;
+	@Input() value: Array<any> = [];
 
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -175,30 +175,18 @@ export class DatePicker implements OnDestroy {
 		});
 	}
 
-	onInputValueChange(event: string): void {
+	onInputValueChange(event: string, index: number): void {
 		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
-		const previousDate = flatpickr.parseDate(this.value[0], this.dateFormat, true);
+		const previousDate = flatpickr.parseDate(this.value[index], this.dateFormat, true);
 		if (eventDate) {
 			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
-				this.value = [eventDate, this.value[1]];
+				this.value = [...this.value];
+				this.value[index] = eventDate;
 			}
 		} else {
 			if (previousDate || event) {
-				this.value = [undefined, this.value[1]];
-			}
-		}
-	}
-
-	onInputValueRangeChange(event: string): void {
-		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
-		const previousDate = flatpickr.parseDate(this.value[1], this.dateFormat, true);
-		if (eventDate) {
-			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
-				this.value = [this.value[0], eventDate];
-			}
-		} else {
-			if (previousDate || event) {
-				this.value = [this.value[0], undefined];
+				this.value = [...this.value];
+				this.value[index] = undefined;
 			}
 		}
 	}
