@@ -24,6 +24,7 @@ import {
 	selector: "ibm-overflow-menu-option",
 	template: `
 		<button
+			*ngIf="!href"
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
@@ -32,8 +33,26 @@ import {
 			(click)="onClick($event)"
 			[disabled]="disabled"
 			[attr.title]="title">
-			<ng-content></ng-content>
+			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
 		</button>
+
+		<a
+			*ngIf="href"
+			class="bx--overflow-menu-options__btn"
+			role="menuitem"
+			[tabindex]="tabIndex"
+			(focus)="tabIndex = 0"
+			(blur)="tabIndex = -1"
+			(click)="onClick($event)"
+			[attr.disabled]="disabled"
+			[href]="href"
+			[attr.title]="title">
+			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+		</a>
+
+		<ng-template #tempOutlet>
+			<ng-content></ng-content>
+		</ng-template>
 	`
 })
 export class OverflowMenuOption implements AfterViewInit {
@@ -58,6 +77,8 @@ export class OverflowMenuOption implements AfterViewInit {
 	 */
 	@Input() disabled = false;
 
+	@Input() href: string;
+
 	@Output() selected: EventEmitter<any> = new EventEmitter();
 
 	public tabIndex = -1;
@@ -72,9 +93,9 @@ export class OverflowMenuOption implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		const button = this.elementRef.nativeElement.querySelector("button");
+		const button = this.elementRef.nativeElement.querySelector("button, a");
 		if (button.scrollWidth > button.offsetWidth) {
-			this.title = this.elementRef.nativeElement.querySelector("button").textContent;
+			this.title = button.textContent;
 		}
 	}
 }
