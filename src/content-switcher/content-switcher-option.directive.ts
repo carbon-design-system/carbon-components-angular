@@ -11,6 +11,9 @@ import {
 	selector: "[ibmContentOption]"
 })
 export class ContentSwitcherOption {
+	/**
+	 * Used to activate the option. Only one option may be `active` at a time
+	 */
 	@Input() set active (value: boolean) {
 		this._active = value;
 		this.selectedClass = value;
@@ -22,8 +25,16 @@ export class ContentSwitcherOption {
 		return this._active;
 	}
 
+	/**
+	 * Internal name for the option.
+	 * Should be something that identifies the option to the application.
+	 * Accessible from the `ContentSwitcher` `selected` emitter
+	 */
 	@Input() name = "option";
 
+	/**
+	 * Emits when the option is selected.
+	 */
 	@Output() selected = new EventEmitter();
 
 	@HostBinding("class") switcherClass = "bx--content-switcher-btn";

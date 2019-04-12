@@ -10,6 +10,8 @@ import { DialogDirective } from "./dialog.directive";
 import { DialogPlaceholder } from "./dialog-placeholder.component";
 
 import { Tooltip } from "./tooltip/tooltip.component";
+import { TooltipDefinition } from "./tooltip/tooltip-definition.component";
+import { TooltipIcon } from "./tooltip/tooltip-icon.component";
 import { TooltipDirective } from "./tooltip/tooltip.directive";
 import { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
@@ -28,6 +30,8 @@ export { DialogDirective } from "./dialog.directive";
 export { DialogPlaceholder } from "./dialog-placeholder.component";
 
 export { Tooltip } from "./tooltip/tooltip.component";
+export { TooltipDefinition } from "./tooltip/tooltip-definition.component";
+export { TooltipIcon } from "./tooltip/tooltip-icon.component";
 export { TooltipDirective } from "./tooltip/tooltip.directive";
 export { EllipsisTooltip } from "./tooltip/ellipsis-tooltip.directive";
 
@@ -40,6 +44,8 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 	declarations: [
 		Dialog,
 		Tooltip,
+		TooltipDefinition,
+		TooltipIcon,
 		OverflowMenu,
 		OverflowMenuPane,
 		DialogDirective,
@@ -52,6 +58,8 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 	exports: [
 		Dialog,
 		Tooltip,
+		TooltipDefinition,
+		TooltipIcon,
 		OverflowMenu,
 		OverflowMenuPane,
 		DialogDirective,
