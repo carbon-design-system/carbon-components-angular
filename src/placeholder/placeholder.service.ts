@@ -30,7 +30,7 @@ export class PlaceholderService {
 		if (!this.viewContainerRef) {
 			console.error("No view container defined! Likely due to a missing `ibm-placeholder`");
 		}
-		return this.viewContainerRef.createComponent(componentFactory, 0, injector);
+		return this.viewContainerRef.createComponent(componentFactory, null, injector);
 	}
 
 	destroyComponent(component: ComponentRef<any>) {
@@ -52,5 +52,17 @@ export class PlaceholderService {
 
 	hasPlaceholderRef() {
 		return !!this.viewContainerRef;
+	}
+
+	appendElement(element: HTMLElement): HTMLElement {
+		return this.viewContainerRef.element.nativeElement.appendChild(element);
+	}
+
+	removeElement(element: HTMLElement): HTMLElement {
+		return this.viewContainerRef.element.nativeElement.removeChild(element);
+	}
+
+	hasElement(element: HTMLElement): boolean {
+		return this.viewContainerRef.element.nativeElement.contains(element);
 	}
 }

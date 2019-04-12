@@ -4,13 +4,11 @@ import {
 	Input,
 	HostListener,
 	ViewChild,
-	AfterViewInit,
 	ContentChildren,
-	AfterContentInit
+	AfterContentInit,
+	ViewChildren,
+	ElementRef
 } from "@angular/core";
-
-import { fromEvent } from "rxjs";
-import { throttleTime } from "rxjs/operators";
 
 import { Tab } from "./tab.component";
 
@@ -61,6 +59,7 @@ import { Tab } from "./tab.component";
 					role="presentation"
 					(click)="selectTab(tabref, tab, i)">
 					<a
+						#tabItem
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
@@ -75,7 +74,8 @@ import { Tab } from "./tab.component";
 						</ng-container>
 						<ng-template
 							*ngIf="tab.headingIsTemplate"
-							[ngTemplateOutlet]="tab.heading">
+							[ngTemplateOutlet]="tab.heading"
+							[ngTemplateOutletContext]="{$implicit: tab.context}">
 						</ng-template>
 					</a>
 				</li>
@@ -87,11 +87,9 @@ import { Tab } from "./tab.component";
 	 `
 })
 
-export class TabHeaders implements AfterViewInit, AfterContentInit {
+export class TabHeaders implements AfterContentInit {
 	/**
 	 * List of `Tab` components.
-	 * @type {QueryList<Tab>}
-	 * @memberof TabHeaders
 	 */
 	// disable the next line because we need to rename the input
 	// tslint:disable-next-line
@@ -99,12 +97,10 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	/**
 	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
 	 * Duplicate from `n-tabs` to support standalone headers
-	 * @memberof Tabs
 	 */
 	@Input() cacheActive = false;
 	/**
 	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
-	 * @memberof TabHeaders
 	 */
 	@Input() followFocus: boolean;
 	/**
@@ -114,7 +110,6 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
-	 * @memberof TabHeaders
 	 */
 	@ViewChild("tabList") headerContainer;
 	/**
@@ -127,17 +122,14 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	public tabs: QueryList<Tab>;
 	/**
 	 * The index of the first visible tab.
-	 * @memberof TabHeaders
 	 */
 	public firstVisibleTab = 0;
 	/**
 	 * The DOM element containing the `Tab` headings displayed.
-	 * @memberof TabHeaders
 	 */
-	public allTabHeaders;
+	@ViewChildren("tabItem") allTabHeaders: QueryList<ElementRef>;
 	/**
 	 * Controls the manual focusing done by tabbing through headings.
-	 * @memberof TabHeaders
 	 */
 	public currentSelectedTab: number;
 	public tabListVisible = false;
@@ -145,8 +137,6 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 	// keyboard accessibility
 	/**
 	 * Controls the keydown events used for tabbing through the headings.
-	 * @param {any} event
-	 * @memberof TabHeaders
 	 */
 	@HostListener("keydown", ["$event"])
 	keyboardInput(event) {
@@ -159,13 +149,13 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 				if (this.followFocus) {
 					this.selectTab(event.target, tabsArray[this.currentSelectedTab + 1], this.currentSelectedTab);
 				}
-				this.allTabHeaders[this.currentSelectedTab + 1].focus();
+				this.allTabHeaders.toArray()[this.currentSelectedTab + 1].nativeElement.focus();
 			} else {
 				event.preventDefault();
 				if (this.followFocus) {
 					this.selectTab(event.target, tabsArray[0], 0);
 				}
-				this.allTabHeaders[0].focus();
+				this.allTabHeaders.first.nativeElement.focus();
 			}
 		}
 
@@ -176,13 +166,13 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 				if (this.followFocus) {
 					this.selectTab(event.target, tabsArray[this.currentSelectedTab - 1], this.currentSelectedTab);
 				}
-				this.allTabHeaders[this.currentSelectedTab - 1].focus();
+				this.allTabHeaders.toArray()[this.currentSelectedTab - 1].nativeElement.focus();
 			} else {
 				event.preventDefault();
 				if (this.followFocus) {
 					this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
 				}
-				this.allTabHeaders[this.allTabHeaders.length - 1].focus();
+				this.allTabHeaders.toArray()[this.allTabHeaders.length - 1].nativeElement.focus();
 			}
 		}
 
@@ -191,7 +181,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			if (this.followFocus) {
 				this.selectTab(event.target, tabsArray[0], 0);
 			}
-			this.allTabHeaders[0].focus();
+			this.allTabHeaders.toArray()[0].nativeElement.focus();
 		}
 
 		if (event.key === "End") {
@@ -199,7 +189,7 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 			if (this.followFocus) {
 				this.selectTab(event.target, tabsArray[this.allTabHeaders.length - 1], this.allTabHeaders.length);
 			}
-			this.allTabHeaders[this.allTabHeaders.length - 1].focus();
+			this.allTabHeaders.toArray()[this.allTabHeaders.length - 1].nativeElement.focus();
 		}
 
 		// `"Spacebar"` is IE11 specific value
@@ -218,25 +208,12 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 		this.tabs.forEach(tab => tab.cacheActive = this.cacheActive);
 		this.tabs.changes.subscribe(() => {
 			this.setFirstTab();
-			// also update the tab headers list
-			this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
 		});
 		this.setFirstTab();
 	}
 
 	/**
-	 * Performs check to see if there is overflow and needs scrolling.
-	 * @memberof TabHeaders
-	 */
-	ngAfterViewInit() {
-		this.allTabHeaders = this.headerContainer.nativeElement.querySelectorAll("li a");
-	}
-
-	/**
 	 * Controls manually focusing tabs.
-	 * @param {HTMLElement} ref
-	 * @param {number} index
-	 * @memberof TabHeaders
 	 */
 	public onTabFocus(ref: HTMLElement, index: number) {
 		this.currentSelectedTab = index;
@@ -258,10 +235,6 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Selects `Tab` 'tab' and moves it into view on the view DOM if it is not already.
-	 * @param ref
-	 * @param tab
-	 * @param tabIndex
-	 * @memberof TabHeaders
 	 */
 	public selectTab(ref: HTMLElement, tab: Tab, tabIndex: number) {
 		if (tab.disabled) {
@@ -278,8 +251,6 @@ export class TabHeaders implements AfterViewInit, AfterContentInit {
 
 	/**
 	 * Determines which `Tab` is initially selected.
-	 * @protected
-	 * @memberof Tabs
 	 */
 	protected setFirstTab() {
 		setTimeout(() => {

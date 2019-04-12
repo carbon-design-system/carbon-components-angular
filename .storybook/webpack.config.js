@@ -1,7 +1,7 @@
 const path = require('path');
 
-module.exports = (baseConfig, env, defaultConfig) => {
-	defaultConfig.module.rules.push({
+module.exports = ({config, mode}) => {
+	config.module.rules.push({
 		test: [/\.stories\.tsx?$/, /index\.ts$/],
 		loaders: [
 		  {
@@ -15,7 +15,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
 		enforce: 'pre',
 	});
 
-	defaultConfig.mode = "development";
-	defaultConfig.devtool = "source-map";
-	return defaultConfig;
+	config.mode = "development";
+	config.devtool = "source-map";
+	return config;
 };

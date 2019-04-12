@@ -59,29 +59,27 @@ export class Tabs implements AfterContentInit {
 	/**
 	 * Takes either the string value 'top' or 'bottom' to place TabHeader
 	 * relative to the `TabPanel`s.
-	 * @type string
-	 * @memberof Tabs
 	 */
 	@Input() position: "top" | "bottom" = "top";
 	/**
 	 * Set to 'true' to have `Tab` items cached and not reloaded on tab switching.
-	 * @memberof Tabs
 	 */
 	@Input() cacheActive = false;
 	/**
-	 * Set to 'true' to have tabs automatically activated and have their content displayed when they recieve focus.
-	 * @memberof Tabs
+	 * Set to 'true' to have tabs automatically activated and have their content displayed when they receive focus.
 	 */
 	@Input() followFocus = true;
 	/**
 	 * Set to `true` to put tabs in a loading state.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` to have the tabIndex of the all tabpanels be -1.
+	 */
+	@Input() isNavigation = false;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
-	 * @type {QueryList<Tab>}
-	 * @memberof Tabs
 	 */
 	@ContentChildren(Tab, { descendants: false }) tabs: QueryList<Tab>;
 	/**
@@ -90,14 +88,17 @@ export class Tabs implements AfterContentInit {
 	@ContentChild(TabHeaders) tabHeaders;
 
 	/**
-	 * After content is initialized update `Tab`s to cache (if turned on) and set the inital
+	 * After content is initialized update `Tab`s to cache (if turned on) and set the initial
 	 * selected Tab item.
-	 * @memberof Tabs
 	 */
 	ngAfterContentInit() {
 		if (this.tabHeaders) {
 			this.tabHeaders.cacheActive = this.cacheActive;
 		}
+
+		this.tabs.forEach(tab => {
+			tab.tabIndex = this.isNavigation ? -1 : 0;
+		});
 	}
 
 	/**
