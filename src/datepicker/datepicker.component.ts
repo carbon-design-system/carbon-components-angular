@@ -7,8 +7,8 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
+import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
-
 
 @Component({
 	selector: "ibm-date-picker",
@@ -41,7 +41,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[invalid]="invalid"
 							[invalidText]="invalidText"
 							[skeleton]="skeleton"
-							(valueChange)="valueChange.emit($event)">
+							(valueChange)="onInputValueChange($event, 0)">
 						</ibm-date-picker-input>
 					</div>
 
@@ -57,7 +57,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[invalid]="invalid"
 							[invalidText]="invalidText"
 							[skeleton]="skeleton"
-							(valueChange)="valueChange.emit($event)">
+							(valueChange)="onInputValueChange($event, 1)">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -87,11 +87,11 @@ export class DatePicker implements OnDestroy {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: Array<any>;
+	@Input() value: Array<any> = [];
 
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -173,6 +173,22 @@ export class DatePicker implements OnDestroy {
 				element.classList.remove("no-border");
 			}
 		});
+	}
+
+	onInputValueChange(event: string, index: number): void {
+		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
+		const previousDate = flatpickr.parseDate(this.value[index], this.dateFormat, true);
+		if (eventDate) {
+			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
+				this.value = [...this.value];
+				this.value[index] = eventDate;
+			}
+		} else {
+			if (previousDate || event) {
+				this.value = [...this.value];
+				this.value[index] = undefined;
+			}
+		}
 	}
 
 	ngOnDestroy() {

@@ -1,4 +1,9 @@
-import { Component, Input } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
 
 @Component({
 	selector: "ibm-date-picker-input",
@@ -28,6 +33,7 @@ import { Component, Input } from "@angular/core";
 						fill-rule="nonzero"/>
 				</svg>
 				<input
+				    #dateInput
 					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
@@ -38,7 +44,8 @@ import { Component, Input } from "@angular/core";
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
 					[attr.disabled]="(disabled ? '' : null)"
-					[attr.data-invalid]="(invalid ? '' : null)"/>
+					[attr.data-invalid]="(invalid ? '' : null)"
+					(change) = "valueChange.emit(dateInput.value)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
 						{{invalidText}}
 					</div>
@@ -78,7 +85,9 @@ export class DatePickerInput {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+
+	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
 	@Input() theme: "light" | "dark" = "dark";
 
