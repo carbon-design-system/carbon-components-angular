@@ -57,8 +57,46 @@ storiesOf("Dropdown", module)
 			disabled: boolean("disabled", false),
 			items: object("items", [
 				{ content: "one" },
-				{ content: "two", sec_content: "Some secondary Content" },
+				{ content: "two" },
 				{ content: "three" },
+				{ content: "four" }
+			]),
+			selected: action("Selected fired for multi-select dropdown"),
+			onClose: action("Multi-select dropdown closed")
+		}
+	})))
+	.add("Multi-select with custom template", withNotes({ text: "Notes on multi select" })(() => ({
+		template: `
+		<div style="width: 300px">
+			<ng-template #customListItem let-item>
+				<input
+				class="bx--checkbox"
+				type="checkbox"
+				[checked]="item.selected"
+				[disabled]="item.disabled"
+				(click)="doClick($event, item)"
+				tabindex="-1">
+				<label class="bx--checkbox-label">
+					<span>{{item.content}}</span>
+					&nbsp;<span [hidden]="!item.other_content" class="sec-content">({{item.other_content}})</span>
+				</label>
+			</ng-template>
+			<ibm-dropdown
+				type="multi"
+				placeholder="Multi-select"
+				[disabled]="disabled"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+				<ibm-dropdown-list [items]="items" [listTpl]="customListItem"></ibm-dropdown-list>
+			</ibm-dropdown>
+		</div>
+	`,
+		props: {
+			disabled: boolean("disabled", false),
+			items: object("items", [
+				{ content: "one" },
+				{ content: "two", other_content: "Some secondary Content" },
+				{ content: "three", other_content: "Some more content" },
 				{ content: "four" }
 			]),
 			selected: action("Selected fired for multi-select dropdown"),

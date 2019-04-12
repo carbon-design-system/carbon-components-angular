@@ -76,13 +76,12 @@ import { ScrollableList } from "./../scrollable-list.directive";
 						tabindex="-1">
 						<label class="bx--checkbox-label">
 							<span>{{item.content}}</span>
-							&nbsp;<span [hidden]="!item.sec_content" class="sec-content">({{item.sec_content}})</span>
 						</label>
 				</div>
 				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
-					[ngTemplateOutletContext]="{item: item}"
+					[ngTemplateOutletContext]="{$implicit: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
@@ -415,8 +414,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnChan
 
 	resetSelected() {
 		this.items = this.items.map((item) => {
-			item = Object.assign(item, {selected: false});
-			return item;
+			return Object.assign(item, {selected: false});
 		});
 	}
 }

@@ -27,12 +27,6 @@ export interface ListItem {
 	content: string;
 
 	/**
-	 * Secondary Content to be displayed in the list.
-	 * @type {string}
-	 * @memberof ListItem
-	 */
-	sec_content?: string;
-	/**
 	 * Flag for the selected state of the item.
 	 * @type {boolean}
 	 * @memberof ListItem

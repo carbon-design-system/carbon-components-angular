@@ -34,35 +34,35 @@ import { I18n } from "./../i18n/i18n.module";
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton
-        }">
+		}">
 		<div
 			#dropdownButton
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed, 'no-selections': type === 'single' || ( !view.getSelected() || !view.getSelected().length )}"
 			[attr.aria-expanded]="!menuIsClosed"
-            [attr.aria-disabled]="disabled"
+			[attr.aria-disabled]="disabled"
 			(blur)="onBlur()"
-            >
+			>
 			<span (click)="clearSelected()" *ngIf="type === 'multi' && view.getSelected() && view.getSelected().length"
-			 class="bx--tag bx--tag--ibm">
-                {{view.getSelected().length}}
-                &nbsp;
-                <svg class="close-tag" width="8" height="8" viewBox="0 0 10 10">
-                    <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
-                </svg>
-            </span>
-            <div class="click-container" [class.left-padded]="view.getSelected() && view.getSelected().length" (click)="toggleMenu()">
-                <span class="bx--list-box__label" [class.selected]="view.getSelected() && view.getSelected().length">
-                    {{getDisplayValue() | async}}
-                </span>
-                <div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-                    <svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10"
-                    alt="Open menu" [attr.aria-label]="menuButtonLabel">
-                        <title>{{menuButtonLabel}}</title>
-                        <path d="M0 0l5 4.998L10 0z"></path>
-                    </svg>
-                </div>
-            </div>
+				class="bx--tag bx--tag--ibm">
+				{{view.getSelected().length}}
+				&nbsp;
+				<svg class="close-tag" width="8" height="8" viewBox="0 0 10 10">
+					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
+				</svg>
+			</span>
+			<div class="click-container" (click)="toggleMenu()" style="width: 50%;">
+				<span class="bx--list-box__label">
+					{{getDisplayValue() | async}}
+				</span>
+				<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+					<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10"
+					alt="Open menu" [attr.aria-label]="menuButtonLabel">
+						<title>{{menuButtonLabel}}</title>
+						<path d="M0 0l5 4.998L10 0z"></path>
+					</svg>
+				</div>
+			</div>
 		</div>
 		<div
 			#dropdownMenu
