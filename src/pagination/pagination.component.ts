@@ -23,7 +23,7 @@ import { ExperimentalService } from "./../experimental.module";
  *
  * ```typescript
  * selectPage(page) {
- * 	// ... your code to laod the page goes here
+ * 	// ... your code to load the page goes here
  *
  * 	this.model.currentPage = page;
  *
@@ -279,7 +279,6 @@ export class Pagination {
 	 * `PaginationModel` with the information about pages you're controlling.
 	 *
 	 * @type {Model}
-	 * @memberof Pagination
 	 */
 	@Input() model: PaginationModel;
 
@@ -327,8 +326,6 @@ export class Pagination {
 	 *
 	 * You should tie into this and update `model.currentPage` once the fresh
 	 * data is finally loaded.
-	 *
-	 * @memberof Pagination
 	 */
 	@Output() selectPage = new EventEmitter<number>();
 
@@ -336,7 +333,7 @@ export class Pagination {
 		return this.model.pageLength;
 	}
 	set itemsPerPage(value) {
-		this.model.pageLength = value;
+		this.model.pageLength = Number(value);
 		this.currentPage = 1; // reset page
 	}
 
@@ -344,15 +341,13 @@ export class Pagination {
 		return this.model.currentPage;
 	}
 	set currentPage(value) {
+		value = Number(value);
 		// emits the value to allow the user to update current page
 		// in the model once the page is loaded
 		this.selectPage.emit(value);
 	}
 	/**
 	 * The last page number to display in the pagination view.
-	 *
-	 * @returns {number}
-	 * @memberof Pagination
 	 */
 	get lastPage(): number {
 		const last = Math.ceil(this.model.totalDataLength / this.model.pageLength);
@@ -371,9 +366,6 @@ export class Pagination {
 
 	/**
 	 * The previous page number to navigate to, from the current page.
-	 *
-	 * @returns {number}
-	 * @memberof Pagination
 	 */
 	get previousPage(): number {
 		return this.currentPage <= 1 ? 1 : this.currentPage - 1;
@@ -381,9 +373,6 @@ export class Pagination {
 
 	/**
 	 * The next page number to navigate to, from the current page.
-	 *
-	 * @returns {number}
-	 * @memberof Pagination
 	 */
 	get nextPage(): number {
 		const lastPage = this.lastPage;
@@ -412,12 +401,7 @@ export class Pagination {
 	/**
 	 * Generates a list of numbers. (Python function)
 	 * Used to display the correct pagination controls.
-	 *
-	 * @param {number} stop
-	 * @param {number} [start=0]
-	 * @param {number} [step=1]
 	 * @returns {array}
-	 * @memberof Pagination
 	 */
 	range(stop: number, start = 0, step = 1) {
 		return range(stop, start, step);

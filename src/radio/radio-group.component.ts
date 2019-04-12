@@ -11,7 +11,8 @@ import {
 	Output,
 	QueryList,
 	Renderer2,
-	HostBinding
+	HostBinding,
+	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
@@ -24,16 +25,17 @@ import { Radio } from "./radio.component";
 export class RadioChange {
 	/**
 	 * Contains the `Radio` that has been changed.
-	 * @type {(Radio | null)}
-	 * @memberof RadioChange
 	 */
 	source: Radio | null;
 	/**
 	 * The value of the `Radio` encompassed in the `RadioChange` class.
-	 * @type {any}
-	 * @memberof RadioChange
 	 */
-	value: any;
+	value: string;
+
+	constructor(source: Radio, value: string) {
+		this.source = source;
+		this.value = value;
+	}
 }
 
 /**
@@ -64,7 +66,11 @@ export class RadioChange {
  */
 @Component({
 	selector: "ibm-radio-group",
-	template: `<ng-content></ng-content>`,
+	template: `
+		<div class="bx--radio-button-group" role="radiogroup">
+			<ng-content></ng-content>
+		</div>
+	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -73,7 +79,7 @@ export class RadioChange {
 		}
 	]
 })
-export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccessor {
+export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
 	/**
 	 * Used for creating the `RadioGroup` 'name' property dynamically.
 	 */
@@ -81,7 +87,6 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
-	 * @type {EventEmitter<RadioChange>}
 	 */
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
@@ -92,21 +97,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	@ContentChildren(forwardRef(() => Radio)) radios: QueryList<Radio>;
 
 	/**
-	 * Determines the render size of the `Radio` inputs within the group.
-	 */
-	@Input() size: "sm" | "md" = "md";
-
-	/**
-	 * Returns the `Radio` that is selected within the `RadioGroup`.
-	 * @readonly
-	 */
-	@Input()
-	get selected() {
-		return this._selected;
-	}
-	/**
 	 * Sets the passed in `Radio` item as the selected input within the `RadioGroup`.
 	 */
+	@Input()
 	set selected(selected: Radio | null) {
 		this._selected = selected;
 		this.value = selected ? selected.value : null;
@@ -114,15 +107,16 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Returns the value/state of the selected `Radio` within the `RadioGroup`.
+	 * Returns the `Radio` that is selected within the `RadioGroup`.
 	 */
-	@Input()
-	get value() {
-		return this._value;
+	get selected() {
+		return this._selected;
 	}
+
 	/**
 	 * Sets the value/state of the selected `Radio` within the `RadioGroup` to the passed in value.
 	 */
+	@Input()
 	set value(newValue: any) {
 		if (this._value !== newValue) {
 			this._value = newValue;
@@ -133,35 +127,31 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Returns the associated name of the `RadioGroup`.
+	 * Returns the value/state of the selected `Radio` within the `RadioGroup`.
 	 */
-	@Input()
-	get name() {
-		return this._name;
+	get value() {
+		return this._value;
 	}
+
 	/**
 	 * Replaces the name associated with the `RadioGroup` with the provided parameter.
 	 */
+	@Input()
 	set name(name: string) {
 		this._name = name;
 		this.updateRadioNames();
 	}
+	/**
+	 * Returns the associated name of the `RadioGroup`.
+	 */
+	get name() {
+		return this._name;
+	}
 
 	/**
-	 * Returns the disabled value in the `RadioGroup` if there is one.
+	 * Set to true to disable the whole radio group
 	 */
-	@Input()
-	get disabled() {
-		return this._disabled;
-	}
-	/**
-	 * Updates the disabled value using the provided parameter and marks the radios to be checked for
-	 * changes.
-	 */
-	set disabled(value) {
-		this._disabled = value;
-		this.markRadiosForCheck();
-	}
+	@Input() disabled = false;
 
 	/**
 	 * Returns the skeleton value in the `RadioGroup` if there is one.
@@ -180,14 +170,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	}
 
 	/**
-	 * Binds 'radiogroup' value to the role attribute for `RadioGroup`.
+	 * Binds 'bx--form-item' value to the class for `RadioGroup`.
 	 */
-	@HostBinding("attr.role") role = "radiogroup";
-
-	/**
-	 * Binds 'bx--radio-button-group' value to the class for `RadioGroup`.
-	 */
-	@HostBinding("class.bx--radio-button-group") radioButtonGroupClass = true;
+	@HostBinding("class.bx--form-item") radioButtonGroupClass = true;
 
 	/**
 	 * To track whether the `RadioGroup` has been initialized.
@@ -198,7 +183,7 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	protected _disabled = false;
 	/**
-	 * Reflects wheather or not the dropdown is loading.
+	 * Reflects whether or not the dropdown is loading.
 	 */
 	protected _skeleton = false;
 	/**
@@ -212,21 +197,14 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * The name attribute associated with the `RadioGroup`.
 	 */
-	protected _name = `radio-group-${RadioGroup.radioGroupCount}`;
-
-	/**
-	 * Creates an instance of RadioGroup.
-	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef, protected elementRef: ElementRef, protected renderer: Renderer2) {
-		RadioGroup.radioGroupCount++;
-	}
+	protected _name = `radio-group-${RadioGroup.radioGroupCount++}`;
 
 	/**
 	 * Updates the selected `Radio` to be checked (selected).
 	 */
 	checkSelectedRadio() {
-		if (this._selected && !this._selected.checked) {
-			this._selected.checked = true;
+		if (this.selected && !this._selected.checked) {
+			this.selected.checked = true;
 		}
 	}
 
@@ -236,10 +214,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	updateSelectedRadioFromValue() {
 		let alreadySelected = this._selected != null && this._selected.value === this._value;
 
-		if (this.radios != null && !alreadySelected) {
+		if (this.radios && !alreadySelected) {
 			this._selected = null;
 			this.radios.forEach(radio => {
-				radio.checked = this.value === radio.value;
 				if (radio.checked) {
 					this._selected = radio;
 				}
@@ -250,23 +227,10 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	/**
 	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
 	 */
-	emitChangeEvent() {
-		if (this.isInitialized) {
-			let event = new RadioChange();
-			event.source = this._selected;
-			event.value = this._value;
-			this.change.emit(event);
-		}
-	}
-
-	/**
-	 * Calls the `markForCheck()` function within the `changeDetectorRef` class
-	 * to trigger Angular's change detection on each radio item.
-	 */
-	markRadiosForCheck() {
-		if (this.radios) {
-			this.radios.forEach(radio => radio.markForCheck());
-		}
+	emitChangeEvent(event: RadioChange) {
+		this.change.emit(event);
+		this.propagateChange(event.value);
+		this.onTouched();
 	}
 
 	/**
@@ -274,7 +238,9 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	updateRadioNames() {
 		if (this.radios) {
-			this.radios.forEach(radio => radio.name = this.name);
+			setTimeout(() => {
+				this.radios.forEach(radio => radio.name = this.name);
+			});
 		}
 	}
 
@@ -283,64 +249,27 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 	 */
 	writeValue(value: any) {
 		this.value = value;
-		this.changeDetectorRef.markForCheck();
 	}
 
-	/**
-	 * Callback triggered when a `Radio` within the `RadioGroup` is changed.
-	 */
-	touch() {
-		if (this.onTouched) {
-			this.onTouched();
-		}
-	}
-
-	/**
-	 * Builds variant class on the radio items within the `RadioGroup`.
-	 */
-	ngOnInit() {
-		// Build variant class
-		const className = `radio${this.size !== "md" ? `--${this.size}` : ""}`;
-
-		// Add class to host element
-		this.renderer.addClass(this.elementRef.nativeElement, className);
-	}
-
-	/**
-	 * Marks this component as initialized to avoid the initial value getting set by `NgModel` on `RadioGroup`.
-	 * This avoids `NgModel` setting the initial value before the OnInit of the `RadioGroup`.
-	 */
 	ngAfterContentInit() {
-		// Mark this component as initialized in AfterContentInit because the initial value can
-		// possibly be set by NgModel on RadioGroup, and it is possible that the OnInit of the
-		// NgModel occurs *after* the OnInit of the RadioGroup.
-		this.isInitialized = true;
-		this.updateFocusableRadio();
-
-		this.radios.changes.subscribe(updatedRadios => {
-			this.radios = updatedRadios;
-			this.updateFocusableRadio();
+		this.radios.changes.subscribe(() => {
+			this.updateRadioNames();
+			this.updateRadioChangeHandler();
 		});
 
 		this.updateChildren();
+		this.updateRadioChangeHandler();
 	}
 
-	updateFocusableRadio() {
-		if (this.radios && !this.radios.some(radio => radio.checked)) {
-			this.radios.forEach(radio => radio.needsToBeFocusable = false);
-			this.radios.first.needsToBeFocusable = true;
-			this.radios.forEach(radio => radio.changeDetectorRef.detectChanges());
-		}
+	ngAfterViewInit() {
+		this.updateRadioNames();
 	}
 
 	/**
 	 * Used to set method to propagate changes back to the form.
 	 */
 	public registerOnChange(fn: any) {
-		this.propagateChange = value => {
-			this.value = value;
-			fn(value);
-		};
+		this.propagateChange = fn;
 	}
 
 	/**
@@ -363,7 +292,19 @@ export class RadioGroup implements OnInit, AfterContentInit, ControlValueAccesso
 
 	protected updateChildren() {
 		if (this.radios) {
-			this.radios.toArray().forEach(child => child.skeleton = this.skeleton);
+			this.radios.forEach(child => child.skeleton = this.skeleton);
 		}
+	}
+
+	protected updateRadioChangeHandler() {
+		this.radios.forEach(radio => {
+			radio.registerRadioChangeHandler((event: RadioChange) => {
+				// update selected and value from the event
+				this._selected = event.source;
+				this._value = event.value;
+				// bubble the event
+				this.emitChangeEvent(event);
+			});
+		});
 	}
 }
