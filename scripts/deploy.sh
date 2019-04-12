@@ -22,7 +22,7 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 	git config user.name "carbon-bot"
 	git config user.email "carbon@us.ibm.com"
 
-	git pull "https://git:${GH_TOKEN}@github.com:IBM/carbon-components-angular.git" gh-pages
+	git pull "https://git:${GH_TOKEN}@github.com/IBM/carbon-components-angular.git" gh-pages
 
 	cp -R ../dist/docs/documentation/* ./documentation
 	cp -R ../dist/docs/storybook/* ./
@@ -42,7 +42,7 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 
 	# Force push to gh-pages if there was something to commit
 	if [ $? -eq 0 ]; then
-		git push --force "https://git:${GH_TOKEN}@github.com:IBM/carbon-components-angular.git" master:gh-pages > /dev/null 2>&1
+		git push --force "https://git:${GH_TOKEN}@github.com/IBM/carbon-components-angular.git" master:gh-pages > /dev/null 2>&1
 	fi
 fi
 # just to be sure we exit cleanly
