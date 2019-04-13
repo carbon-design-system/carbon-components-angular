@@ -66,7 +66,7 @@ let nextId = 0;
 	selector: "ibm-tab",
 	template: `
 		<div
-			tabIndex="0"
+			[tabindex]="tabIndex"
 			role="tabpanel"
 			*ngIf="shouldRender()"
 			[ngStyle]="{'display': active ? null : 'none'}"
@@ -79,55 +79,52 @@ export class Tab implements OnInit {
 	/**
 	 * Boolean value reflects if the `Tab` is using a custom template for the heading.
 	 * Default value is false.
-	 * @memberof Tab
 	 */
 	public headingIsTemplate = false;
 
 	/**
 	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
 	 * @type {(string | TemplateRef<any>)}
-	 * @memberof Tab
 	 */
 	@Input() heading: string | TemplateRef<any>;
 	/**
+	 * Allows the user to pass data to the custom template for the `Tab` heading.
+	 */
+	@Input() context: any;
+	/**
 	 * Indicates whether the `Tab` is active/selected.
 	 * Determines whether it's `TabPanel` is rendered.
-	 * @memberof Tab
 	 */
 	@Input() active = false;
 	/**
 	 * Indicates whether or not the `Tab` item is disabled.
-	 * @memberof Tab
 	 */
 	@Input() disabled = false;
+
+	@Input() tabIndex = 0;
 	// do we need id's?
 	/**
 	 * Sets the id of the `Tab`. Will be uniquely generated if not provided.
-	 * @memberof Tab
 	 */
 	@Input() id = `n-tab-${nextId++}`;
 	/**
 	 * Set to true to have Tab items cached and not reloaded on tab switching.
-	 * @memberof Tab
 	 */
 	@Input() cacheActive = false;
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 * @type {EventEmitter<void>}
-	 * @memberof Tab
 	 */
 	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
 
 	/**
 	 * Used to set the id property on the element.
-	 * @memberof Tab
 	 */
 	@HostBinding("attr.id") attrClass = this.id;
 
 	/**
 	 * Checks for custom heading template on initialization and updates the value
 	 * of the boolean 'headingIsTemplate'.
-	 * @memberof Tab
 	 */
 	ngOnInit() {
 		if (this.heading instanceof TemplateRef) {
@@ -137,7 +134,6 @@ export class Tab implements OnInit {
 
 	/**
 	 * Emit the status of the `Tab`, specifically 'select' and 'selected' properties.
-	 * @memberof Tab
 	 */
 	doSelect() {
 		this.selected.emit();
@@ -146,7 +142,6 @@ export class Tab implements OnInit {
 	/**
  	* Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
  	* @returns boolean
- 	* @memberof Tab
  	*/
 	shouldRender() {
 		return this.active || this.cacheActive;

@@ -8,6 +8,8 @@ import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
 import { ScrollableList } from "./scrollable-list.directive";
 import { I18nModule } from "../i18n/i18n.module";
+import { DropdownService } from "./dropdown.service";
+import { PlaceholderModule } from "./../placeholder/placeholder.module";
 
 @Component({
 	template: `
@@ -38,8 +40,10 @@ describe("Dropdown", () => {
 			],
 			imports: [
 				StaticIconModule,
-				I18nModule
-			]
+				I18nModule,
+				PlaceholderModule
+			],
+			providers: [ DropdownService ]
 		});
 	});
 
