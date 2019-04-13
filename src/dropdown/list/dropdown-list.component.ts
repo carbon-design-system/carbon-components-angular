@@ -461,8 +461,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	}
 
 	resetSelected() {
-		this.items = this.items.map((item) => {
-			return Object.assign(item, {selected: false});
-		});
+		const clearedItems = this.getListItems().map(item => Object.assign({}, item, {selected: false}));
+		this.updateList(clearedItems);
 	}
 }
