@@ -52,7 +52,7 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<div *ngIf="labelText" class="bx--label" [id]="labelId">{{labelText}}</div>
+		<div *ngIf="label" class="bx--label" [id]="ariaLabelledby">{{label}}</div>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -66,7 +66,7 @@ export class ToggleChange {
 			[required]="required"
 			[checked]="checked"
 			[disabled]="disabled"
-			[attr.aria-labelledby]="labelId"
+			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
@@ -141,7 +141,7 @@ export class Toggle extends Checkbox {
 	 * Text that is set as the label of the toggle.
 	 * @type {(string)}
 	 */
-	@Input() labelText: string;
+	@Input() label: string;
 	/**
 	 * Size of the toggle component.
 	 * @type {("sm" | "md" | "default")}
@@ -158,7 +158,6 @@ export class Toggle extends Checkbox {
 	 * @type {string}
 	 */
 	id = "toggle-" + Toggle.toggleCount;
-	labelId = "toggle-" + Toggle.toggleCount + "-label";
 
 	/**
 	 * Emits event notifying other classes when a change in state occurs on a toggle after a

@@ -12,7 +12,7 @@ storiesOf("Toggle", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 			<ibm-toggle
-				[labelText]="labelText"
+				[label]="labelText"
 				[onText]="onText"
 				[offText]="offText"
 				[disabled]="disabled"
