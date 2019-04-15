@@ -15,22 +15,10 @@ before_script:
   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 script: "npm run lint && npm test"
 deploy:
-  -
-    provider: script
-    script: "bash ./scripts/deploy.sh"
-    skip_cleanup: true
-    true:
-      branch: master
-  -
-    allow-empty-commit: true
-    email: carbon@us.ibm.com
-    github-token: $GH_TOKEN
-    keep-history: true
-    local-dir: pages
-    name: carbon-bot
-    provider: pages
-    skip_cleanup: true
-    true:
-      branch: master
+  provider: script
+  script: "bash ./scripts/deploy.sh"
+  skip_cleanup: true
+  on:
+    all_branches: true
 notifications:
   email: false

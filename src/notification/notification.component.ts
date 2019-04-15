@@ -15,9 +15,6 @@ import { of } from "rxjs";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
- *
- * @export
- * @class Notification
  */
 @Component({
 	selector: "ibm-notification",
@@ -65,10 +62,9 @@ export class Notification {
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
-	 * `type` can be one of `"info"`, `"warning"`, `"danger"`, `"success"`
+	 * `type` can be one of `"info"`, `"warning"`, `"error"`, `"success"`
 	 *
-	 * `message` is message for notification to display
-	 *
+	 * `message` is the message to display
 	 */
 	@Input() get notificationObj(): NotificationContent {
 		return this._notificationObj;
@@ -82,9 +78,6 @@ export class Notification {
 
 	/**
 	 * Emits on close.
-	 *
-	 * @type {EventEmitter<any>}
-	 * @memberof Notification
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 
@@ -113,8 +106,6 @@ export class Notification {
 
 	/**
 	 * Emits close event.
-	 *
-	 * @memberof Notification
 	 */
 	onClose() {
 		this.close.emit();

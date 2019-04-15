@@ -49,7 +49,28 @@ storiesOf("Overflow Menu", module)
 		props: {
 			click: () => console.log("click"),
 			selected: () => console.log("selected"),
-			flip: boolean("Flip overflow to open on the left", false)
+			flip: boolean("Flipped", false)
+		}
+	}))
+	.add("With links", () => ({
+		template: `
+			<app-experimental-component></app-experimental-component>
+			<ibm-overflow-menu [flip]="flip" >
+				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
+					An example option that is really long to show what should be done to handle long text
+				</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 2</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+			</ibm-overflow-menu>
+			<ibm-placeholder></ibm-placeholder>
+		`,
+		props: {
+			click: () => console.log("click"),
+			selected: () => console.log("selected"),
+			flip: boolean("Flipped", false)
 		}
 	}))
 	.add("Dynamic", () => ({
