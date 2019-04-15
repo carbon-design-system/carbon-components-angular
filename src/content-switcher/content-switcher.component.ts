@@ -13,8 +13,16 @@ import { ContentSwitcherOption } from "./content-switcher-option.directive";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 
 /**
+ * The content switcher can be used for toggling between distinct options.
+ * Similar to tabs, but without an associated content panel
  *
- *
+ * ```html
+ * <ibm-content-switcher (selected)="selected($event)">
+ *		<button ibmContentOption>First section</button>
+ *		<button ibmContentOption>Second section</button>
+ *		<button ibmContentOption>Third section</button>
+ *	</ibm-content-switcher>
+ *	```
  */
 @Component({
 	selector: "ibm-content-switcher",
@@ -28,8 +36,14 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 	`
 })
 export class ContentSwitcher implements AfterViewInit {
+	/**
+	 * aria-label for the content switcher. Should be set to something descriptive
+	 */
 	@Input() label = "content switcher";
 
+	/**
+	 * Emits the activated `ContentSwitcherOption`
+	 */
 	@Output() selected = new EventEmitter();
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList<ContentSwitcherOption>;
@@ -37,7 +51,12 @@ export class ContentSwitcher implements AfterViewInit {
 	constructor(protected elementRef: ElementRef) {}
 
 	ngAfterViewInit() {
-		this.options.first.active = true;
+		const firstActive = this.options.find(option => option.active);
+		// delay setting active until the DOM has settled
+		if (!firstActive) {
+			setTimeout(() => this.options.first.active = true);
+		}
+		// subscribe to each item, emit when one is selected, and reset the active states
 		this.options.forEach(option => {
 			option.selected.subscribe(_ => {
 				const active = option;
@@ -53,7 +72,7 @@ export class ContentSwitcher implements AfterViewInit {
 
 	@HostListener("keydown", ["$event"])
 	hostkeys(event: KeyboardEvent) {
-		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll(".bx--content-switcher-btn"));
+		const buttonList = Array.from<any>(this.elementRef.nativeElement.querySelectorAll("[ibmContentOption]"));
 
 		switch (event.key) {
 			case "Right": // IE specific value

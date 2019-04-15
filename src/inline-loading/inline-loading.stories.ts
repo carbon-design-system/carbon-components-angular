@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, object } from "@storybook/addon-knobs/angular";
 
 import { InlineLoadingModule, ButtonModule } from "../";
 
@@ -18,7 +18,7 @@ storiesOf("Inline Loading", module)
 		`,
 		props: {
 			onSuccess: action("onSuccess"),
-			loadingText: "Loading data...",
-			successText: "Data loaded."
+			loadingText: text("The loading text", "Loading data..."),
+			successText: text("The success text", "Data loaded.")
 		}
 	}));

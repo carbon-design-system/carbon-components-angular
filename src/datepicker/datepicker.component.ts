@@ -8,8 +8,8 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
+import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
-
 
 @Component({
 	selector: "ibm-date-picker",
@@ -24,7 +24,12 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 					data-date-picker
 					[attr.data-date-picker-type]= "range ? 'range' : 'single'"
 					class="bx--date-picker"
-					[ngClass]= "range ? 'bx--date-picker--range' : 'bx--date-picker--single'">
+					[ngClass]="{
+						'bx--date-picker--range' : range,
+						'bx--date-picker--single' : !range,
+						'bx--date-picker--light' : theme === 'light',
+						'bx--skeleton' : skeleton
+					}">
 					<div class="bx--date-picker-container">
 						<ibm-date-picker-input
 							[label]= "label"
@@ -33,7 +38,11 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[id]= "id"
 							[type]= "range ? 'range' : 'single'"
 							[hasIcon]= "range ? false : true"
-							(valueChange)="valueChange.emit($event)">
+							[disabled]="disabled"
+							[invalid]="invalid"
+							[invalidText]="invalidText"
+							[skeleton]="skeleton"
+							(valueChange)="onInputValueChange($event, 0)">
 						</ibm-date-picker-input>
 					</div>
 
@@ -45,7 +54,11 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[id]= "id + '-rangeInput'"
 							[type]= "range ? 'range' : 'single'"
 							[hasIcon]= "range ? true : null"
-							(valueChange)="valueChange.emit($event)">
+							[disabled]="disabled"
+							[invalid]="invalid"
+							[invalidText]="invalidText"
+							[skeleton]="skeleton"
+							(valueChange)="onInputValueChange($event, 1)">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -81,11 +94,21 @@ export class DatePicker implements OnDestroy {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: Array<any>;
+	@Input() value: Array<any> = [];
+
+	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() disabled = false;
+
+	@Input() invalid = false;
+
+	@Input() invalidText: string;
+
+	@Input() skeleton = false;
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -148,12 +171,31 @@ export class DatePicker implements OnDestroy {
 		// add day classes and special case the "today" element based on `this.value`
 		Array.from(dayContainer).forEach(element => {
 			element.classList.add("bx--date-picker__day");
+			if (!this.value) {
+				return;
+			}
 			if (element.classList.contains("today") && this.value.length > 0) {
 				element.classList.add("no-border");
 			} else if (element.classList.contains("today") && this.value.length === 0) {
 				element.classList.remove("no-border");
 			}
 		});
+	}
+
+	onInputValueChange(event: string, index: number): void {
+		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
+		const previousDate = flatpickr.parseDate(this.value[index], this.dateFormat, true);
+		if (eventDate) {
+			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
+				this.value = [...this.value];
+				this.value[index] = eventDate;
+			}
+		} else {
+			if (previousDate || event) {
+				this.value = [...this.value];
+				this.value[index] = undefined;
+			}
+		}
 	}
 
 	ngOnDestroy() {

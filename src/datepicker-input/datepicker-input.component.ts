@@ -1,11 +1,21 @@
-import { Component, Input } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
 
 @Component({
 	selector: "ibm-date-picker-input",
 	template: `
 	<div class="bx--form-item">
 		<div class="bx--date-picker"
-		[ngClass]= "'bx--date-picker--' + type">
+			[ngClass]="{
+				'bx--date-picker--single' : type === 'single',
+				'bx--date-picker--range' : type === 'range',
+				'bx--date-picker--light' : theme === 'light',
+				'bx--skeleton' : skeleton
+			}">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
 					{{label}}
@@ -17,6 +27,8 @@ import { Component, Input } from "@angular/core";
 					data-open>
 				</ibm-icon-calendar16>
 				<input
+				    #dateInput
+					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
 					class="bx--date-picker__input"
@@ -24,10 +36,14 @@ import { Component, Input } from "@angular/core";
 					[placeholder]="placeholder"
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
-					[id]= "id"/>
+					[id]= "id"
+					[attr.disabled]="(disabled ? '' : null)"
+					[attr.data-invalid]="(invalid ? '' : null)"
+					(change) = "valueChange.emit(dateInput.value)"/>
+					<div *ngIf="invalid" class="bx--form-requirement">
+						{{invalidText}}
+					</div>
 			</div>
-
-
 			<ibm-icon-calendar16
 				*ngIf= "type == 'range' && hasIcon"
 				data-date-picker-icon
@@ -44,9 +60,6 @@ export class DatePickerInput {
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.
-	 *
-	 * @type {("simple" | "single" | "range")}
-	 * @memberof Datepicker
 	 */
 	@Input() type: "simple" | "single" | "range" = "simple";
 
@@ -58,5 +71,17 @@ export class DatePickerInput {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+
+	@Output() valueChange: EventEmitter<string> = new EventEmitter();
+
+	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() disabled = false;
+
+	@Input() invalid = false;
+
+	@Input() invalidText: string;
+
+	@Input() skeleton = false;
 }

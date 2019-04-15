@@ -12,7 +12,10 @@ import {
 		<div class="bx--inline-loading__animation">
 			<div
 				*ngIf="success === false"
-				class="bx--loading bx--loading--small">
+				class="bx--loading bx--loading--small"
+				[ngClass]="{
+					'bx--loading--stop': !isActive
+				}">
 				<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
 					<circle class="bx--loading__background" cx="0" cy="0" r="30" />
 					<circle class="bx--loading__stroke" cx="0" cy="0" r="30" />
@@ -33,19 +36,20 @@ import {
 export class InlineLoading {
 	/**
 	 * Specify the text description for the loading state.
-	 *
 	 */
 	@Input() loadingText;
 	/**
 	 * Specify the text description for the success state.
-	 *
 	 */
 	@Input() successText;
 	/**
 	 * Provide a delay for the `setTimeout` for success.
-	 *
 	 */
 	@Input() successDelay = 1500;
+	/**
+	 * set to `false` to stop the loading animation
+	 */
+	@Input() isActive = true;
 
 	/**
 	 * Returns value `true` if the component is in the success state.
@@ -76,7 +80,6 @@ export class InlineLoading {
 
 	/**
 	 * Set to `true` if the action is completed successfully.
-	 *
 	 */
 	protected _success = false;
 }
