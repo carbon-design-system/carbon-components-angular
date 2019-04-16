@@ -37,26 +37,9 @@
       {
         "name": "v9",
         "channel": "carbon-v9",
-        "range": "1.X"
+        "range": "2.X"
       }
     ]
-  },
-  "commitlint": {
-    "types": [
-      "feat",
-      "fix",
-      "docs",
-      "style",
-      "refactor",
-      "perf",
-      "test",
-      "chore",
-      "revert"
-    ],
-    "warnOnFail": false,
-    "maxSubjectLength": 100,
-    "subjectPattern": ".+",
-    "subjectPatternErrorMsg": "Subject does not match subject pattern!"
   },
   "config": {
     "commitizen": {
