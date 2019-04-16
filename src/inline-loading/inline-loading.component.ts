@@ -17,12 +17,15 @@ import {
 					'bx--loading--stop': !isActive
 				}">
 				<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
-					<circle cx="0" cy="0" r="37.5"></circle>
+					<circle class="bx--loading__background" cx="0" cy="0" r="30" />
+					<circle class="bx--loading__stroke" cx="0" cy="0" r="30" />
 				</svg>
 			</div>
 			<svg
 				*ngIf="success === true"
-				class="bx--inline-loading__checkmark-container bx--inline-loading__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">
+				class="bx--inline-loading__checkmark-container bx--inline-loading__svg"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 10 10">
 				<polyline class="bx--inline-loading__checkmark" points="0.74 3.4 3.67 6.34 9.24 0.74"></polyline>
 			</svg>
 		</div>

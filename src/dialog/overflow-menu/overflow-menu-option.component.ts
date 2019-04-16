@@ -51,7 +51,9 @@ import {
 		</a>
 
 		<ng-template #tempOutlet>
-			<ng-content></ng-content>
+			<div class="bx--overflow-menu-options__option-content">
+				<ng-content></ng-content>
+			</div>
 		</ng-template>
 	`
 })

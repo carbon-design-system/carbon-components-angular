@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs/angular";
 
@@ -44,7 +43,7 @@ storiesOf("Dropdown", module)
 			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
-	.add("Multi-select", withNotes({ text: "Notes on multi select" })(() => ({
+	.add("Multi-select", () => ({
 		template: `
 		<div style="width: 300px">
 			<ibm-dropdown
@@ -68,7 +67,7 @@ storiesOf("Dropdown", module)
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
 		}
-	})))
+	}))
 	.add("With ngModel", () => ({
 		template: `
 		<div style="width: 300px">

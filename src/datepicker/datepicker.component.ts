@@ -3,6 +3,7 @@ import {
 	Input,
 	Output,
 	EventEmitter,
+	ViewEncapsulation,
 	ElementRef,
 	OnDestroy
 } from "@angular/core";
@@ -64,7 +65,13 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 			</div>
 		</ng2-flatpickr>
 	</div>
-	`
+	`,
+	styles: [
+		`.dayContainer {
+			justify-content: initial;
+		}`
+	],
+	encapsulation: ViewEncapsulation.None
 })
 export class DatePicker implements OnDestroy {
 	private static datePickerCount = 0;
