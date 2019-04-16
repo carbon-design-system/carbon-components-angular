@@ -2,7 +2,6 @@
 
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
@@ -12,10 +11,7 @@ import { TabHeaders } from "./tab-headers.component";
 describe("Tabs", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tabs, Tab, TabHeaders, TabsTest],
-			imports: [
-				StaticIconModule
-			]
+			declarations: [Tabs, Tab, TabHeaders, TabsTest]
 		});
 	});
 

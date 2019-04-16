@@ -50,10 +50,7 @@ import { ExperimentalService } from "./../experimental.module";
 		</div>
 
 		<div *ngIf="!skeleton" class="bx--pagination__left">
-			<span *ngIf="!isExperimental" class="bx--pagination__text">
-				{{itemsPerPageText | async}}
-			</span>
-			<label *ngIf="isExperimental" class="bx--pagination__text" [for]="itemsPerPageSelectId">
+			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
 				{{itemsPerPageText | async}}
 			</label>
 			<div class="bx--form-item">
@@ -77,36 +74,14 @@ import { ExperimentalService } from "./../experimental.module";
 						<option class="bx--select-option" value="40">40</option>
 						<option class="bx--select-option" value="50">50</option>
 					</select>
-					<!-- old icon -->
-					<svg
-						*ngIf="!isExperimental"
-						class="bx--select__arrow"
-						fill-rule="evenodd"
-						height="5"
-						role="img"
-						viewBox="0 0 10 5"
-						width="10"
-						[attr.aria-label]="optionsListText | async">
-						<title>{{optionsListText | async}}</title>
-						<path d="M0 0l5 4.998L10 0z"></path>
-					</svg>
-					<!-- new icon -->
-					<svg
-						*ngIf="isExperimental"
-						class="bx--select__arrow"
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						height="6"
-						role="img"
-						viewBox="0 0 10 6"
-						width="10"
-						style="will-change: transform;"
-						[attr.aria-label]="optionsListText | async">
-						<title>{{optionsListText | async}}</title>
-						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
-					</svg>
+					<ibm-icon-chevron-down16
+						style="display: inherit;"
+						innerClass="bx--select__arrow"
+						[ariaLabel]="optionsListText | async">
+					</ibm-icon-chevron-down16>
 				</div>
 			</div>
+
 			<span class="bx--pagination__text">
 				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
@@ -122,34 +97,6 @@ import { ExperimentalService } from "./../experimental.module";
 			[ngClass]="{
 				'bx--pagination--inline': !isExperimental
 			}">
-			<!-- old span -->
-			<span
-				*ngIf="!isExperimental"
-				class="bx--pagination__text">
-				{{totalPagesText | i18nReplace:{current: currentPage, last: lastPage} | async}}
-			</span>
-
-			<!-- old button -->
-			<button
-				*ngIf="!isExperimental"
-				class="bx--pagination__button bx--pagination__button--backward"
-				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage <= 1
-				}"
-				(click)="selectPage.emit(previousPage)"
-				[disabled]="(currentPage <= 1 ? true : null)">
-				<svg
-					class="bx--pagination__button-icon"
-					fill-rule="evenodd"
-					height="12"
-					role="img"
-					viewBox="0 0 7 12"
-					width="7"
-					[attr.aria-label]="backwardText | async">
-					<title>{{backwardText |async }}</title>
-					<path d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"></path>
-				</svg>
-			</button>
 
 			<div class="bx--form-item">
 				<div class="bx--select bx--select--inline"
@@ -160,66 +107,18 @@ import { ExperimentalService } from "./../experimental.module";
 					<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">
 						<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
 					</select>
-					<!-- old icon -->
-					<svg
-						*ngIf="!isExperimental"
-						class="bx--select__arrow"
-						fill-rule="evenodd"
-						height="5"
-						role="img"
-						viewBox="0 0 10 5"
-						width="10"
-						[attr.aria-label]="optionsListText | async">
-						<title>{{optionsListText | async}}</title>
-						<path d="M0 0l5 4.998L10 0z"></path>
-					</svg>
-					<!-- new icon -->
-					<svg
-						*ngIf="isExperimental"
-						class="bx--select__arrow"
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						height="6"
-						role="img"
-						viewBox="0 0 10 6"
-						width="10"
-						style="will-change: transform;"
-						[attr.aria-label]="optionsListText | async">
-						<title>{{optionsListText | async}}</title>
-						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
-					</svg>
+					<ibm-icon-chevron-down16
+						style="display: inherit;"
+						innerClass="bx--select__arrow"
+						[ariaLabel]="optionsListText | async">
+					</ibm-icon-chevron-down16>
 				</div>
 			</div>
 
-			<span *ngIf="isExperimental" class="bx--pagination__text">
+			<span class="bx--pagination__text">
 				{{ofLastPagesText | i18nReplace: {last: lastPage} | async}}
 			</span>
-
-			<!-- old button -->
 			<button
-				*ngIf="!isExperimental"
-				class="bx--pagination__button bx--pagination__button--forward"
-				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage >= lastPage
-				}"
-				(click)="selectPage.emit(nextPage)"
-				[disabled]="(currentPage >= lastPage ? true : null)">
-				<svg
-					class="bx--pagination__button-icon"
-					fill-rule="evenodd"
-					height="12"
-					role="img"
-					viewBox="0 0 7 12"
-					width="7"
-					[attr.aria-label]="forwardText | async">
-					<title>{{forwardText | async}}</title>
-					<path d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"></path>
-				</svg>
-			</button>
-
-			<!-- new butons -->
-			<button
-				*ngIf="isExperimental"
 				class="bx--pagination__button bx--pagination__button--backward"
 				[ngClass]="{
 					'bx--pagination__button--no-index': currentPage <= 1
@@ -228,21 +127,10 @@ import { ExperimentalService } from "./../experimental.module";
 				[attr.aria-label]="backwardText | async"
 				(click)="selectPage.emit(previousPage)"
 				[disabled]="(currentPage <= 1 ? true : null)">
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					style="will-change: transform;"
-					xmlns="http://www.w3.org/2000/svg"
-					class="bx--pagination__nav-arrow"
-					width="24" height="24"
-					viewBox="0 0 32 32"
-					aria-hidden="true">
-					<path d="M19 23l-8-7 8-7v14z"></path>
-				</svg>
+				<ibm-icon-caret-left16></ibm-icon-caret-left16>
 			</button>
 
 			<button
-				*ngIf="isExperimental"
 				class="bx--pagination__button bx--pagination__button--forward"
 				[ngClass]="{
 					'bx--pagination__button--no-index': currentPage >= lastPage
@@ -251,18 +139,7 @@ import { ExperimentalService } from "./../experimental.module";
 				[attr.aria-label]="forwardText | async"
 				(click)="selectPage.emit(nextPage)"
 				[disabled]="(currentPage >= lastPage ? true : null)">
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					style="will-change: transform;"
-					xmlns="http://www.w3.org/2000/svg"
-					class="bx--pagination__nav-arrow"
-					width="24"
-					height="24"
-					viewBox="0 0 32 32"
-					aria-hidden="true">
-					<path d="M13 9l8 7-8 7V9z"></path>
-				</svg>
+				<ibm-icon-caret-right16></ibm-icon-caret-right16>
 			</button>
 		</div>
 	</div>

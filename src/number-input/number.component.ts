@@ -31,6 +31,8 @@ export class NumberChange {
 	selector: "ibm-number",
 	template: `
 		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
+		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
+		<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? '' : null)"
@@ -41,7 +43,6 @@ export class NumberChange {
 				'bx--number--helpertext': helperText,
 				'bx--skeleton' : skeleton
 			}">
-			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
 			<input
 				type="number"
 				[id]="id"
@@ -54,23 +55,22 @@ export class NumberChange {
 			<div *ngIf="!skeleton" class="bx--number__controls">
 				<button
 					class="bx--number__control-btn up-icon"
+					aria-live="polite"
+					aria-atomic="true"
 					(click)="onIncrement()">
-					<svg width="10" height="5" viewBox="0 0 10 5">
-						<path d="M0 5L5 .002 10 5z" fill-rule="evenodd" />
-					</svg>
+					<ibm-icon-caret-up16></ibm-icon-caret-up16>
 				</button>
 				<button
 					class="bx--number__control-btn down-icon"
+					aria-live="polite"
+					aria-atomic="true"
 					(click)="onDecrement()">
-					<svg width="10" height="5" viewBox="0 0 10 5">
-						<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
-					</svg>
+					<ibm-icon-caret-down16></ibm-icon-caret-down16>
 				</button>
 			</div>
 			<div *ngIf="invalid" class="bx--form-requirement">
 				{{invalidText}}
 			</div>
-			<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 		</div>
 	`,
 	providers: [

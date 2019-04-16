@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
 
 import { Accordion } from "./accordion.component";
 import { AccordionItem } from "./accordion-item.component";
@@ -16,6 +17,9 @@ export { AccordionItem } from "./accordion-item.component";
 		Accordion,
 		AccordionItem
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ChevronRight16Module
+	]
 })
 export class AccordionModule { }

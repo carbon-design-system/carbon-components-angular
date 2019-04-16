@@ -51,7 +51,7 @@ import { Observable, isObservable, Subscription } from "rxjs";
 		<ul
 			#list
 			role="listbox"
-			class="bx--list-box__menu"
+			class="bx--list-box__menu bx--multi-select"
 			[attr.aria-label]="ariaLabel">
 			<li
 				#listItem
@@ -64,27 +64,34 @@ import { Observable, isObservable, Subscription } from "rxjs";
 				(blur)="onItemBlur(i)"
 				class="bx--list-box__menu-item"
 				[ngClass]="{
-					selected: item.selected,
+					'bx--list-box__menu-item--active': item.selected,
 					disabled: item.disabled
 				}">
-				<div
-					*ngIf="!listTpl && type === 'multi'"
-					class="bx--form-item bx--checkbox-wrapper">
-					<input
-						class="bx--checkbox"
-						type="checkbox"
-						[checked]="item.selected"
-						[disabled]="item.disabled"
-						(click)="doClick($event, item)"
-						tabindex="-1">
-					<label class="bx--checkbox-label">{{item.content}}</label>
+				<div class="bx--list-box__menu-item__option">
+					<div
+						*ngIf="!listTpl && type === 'multi'"
+						class="bx--form-item bx--checkbox-wrapper">
+						<label
+							[attr.data-contained-checkbox-state]="item.selected"
+							class="bx--checkbox-label">
+							<input
+								class="bx--checkbox"
+								type="checkbox"
+								[checked]="item.selected"
+								[disabled]="item.disabled"
+								(click)="doClick($event, item)"
+								tabindex="-1">
+							<span class="bx--checkbox-appearance"></span>
+							<span class="bx--checkbox-label-text">{{item.content}}</span>
+						</label>
+					</div>
+					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
+					<ng-template
+						*ngIf="listTpl"
+						[ngTemplateOutletContext]="{item: item}"
+						[ngTemplateOutlet]="listTpl">
+					</ng-template>
 				</div>
-				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
-				<ng-template
-					*ngIf="listTpl"
-					[ngTemplateOutletContext]="{item: item}"
-					[ngTemplateOutlet]="listTpl">
-				</ng-template>
 			</li>
 		</ul>`,
 	providers: [
@@ -136,10 +143,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
 	@ViewChild("list") list: ElementRef;
-	/**
-	 * Keeps a reference to the "clear selection" element
-	 */
-	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.

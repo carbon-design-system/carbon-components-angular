@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
-import { StaticIconModule } from "./../../icon/static-icon.module";
 
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
@@ -40,7 +39,6 @@ describe("Dropdown list", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule,
 				I18nModule
 			]
 		});
@@ -74,7 +72,6 @@ describe("Dropdown multi list", () => {
 				ScrollableList
 			],
 			imports: [
-				StaticIconModule,
 				I18nModule
 			]
 		});
