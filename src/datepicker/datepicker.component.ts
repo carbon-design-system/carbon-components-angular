@@ -203,8 +203,4 @@ export class DatePicker implements OnDestroy {
 		const ng2FlatPickrElement = this.elementRef.nativeElement.querySelector(".ng2-flatpickr-input-container");
 		ng2FlatPickrElement._flatpickr.destroy();
 	}
-
-	test(event) {
-		console.log(this.value);
-	}
 }

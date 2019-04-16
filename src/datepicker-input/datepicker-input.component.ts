@@ -84,10 +84,4 @@ export class DatePickerInput {
 	@Input() invalidText: string;
 
 	@Input() skeleton = false;
-
-	@Output() focusOutValue: EventEmitter<string> = new EventEmitter();
-
-	onFocusOut(event) {
-		this.focusOutValue.emit(event.target.value);
-	}
 }
