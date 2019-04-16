@@ -414,7 +414,11 @@ import { I18n } from "./../i18n/i18n.module";
 			</ng-template>
 			<tr *ngIf="this.model.isLoading">
 				<td class="table_loading-indicator">
-
+					<div class="bx--loading bx--loading--small">
+						<svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+							<circle class="bx--loading__stroke" cx="0" cy="0" r="37.5" />
+						</svg>
+					</div>
 				</td>
 			</tr>
 			<tr *ngIf="this.model.isEnd">

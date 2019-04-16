@@ -12,39 +12,30 @@ export interface Experiment {
 export class ExperimentalService {
 	/**
 	 * Tracks if the v10 experimental mode is enabled
-	 * @deprecated
+	 * @deprecated since v3
 	 */
 	static experimentalEnabled = true;
 
 	/**
 	 * Sets the v10 experimental mode
-	 * @deprecated
+	 * @deprecated since v3
 	 */
 	set isExperimental(v: boolean) {
 		ExperimentalService.experimentalEnabled = v;
-		if (!v) {
-			this.disableExperiment("v10");
-		} else {
-			this.enableExperiment("v10");
-		}
 	}
 
 	/**
 	 * Gets the state of the v10 experimental mode
-	 * @deprecated
+	 * @deprecated since v3
 	 */
 	get isExperimental() {
-		return this.getExperiment("v10").enabled;
+		return ExperimentalService.experimentalEnabled;
 	}
 
 	/**
 	 * Map to hold all our experiments
 	 */
 	private experiments = new Map<string, Experiment>();
-
-	constructor() {
-		this.experiments.set("v10", {enabled: true});
-	}
 
 	/**
 	 * Adds an experiment if it doesn't exist.
