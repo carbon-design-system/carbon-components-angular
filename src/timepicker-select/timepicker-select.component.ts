@@ -14,7 +14,6 @@ import { Select } from "../select/select.component";
 				<ng-content></ng-content>
 			</select>
 			<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
-
 	`
 })
 export class TimePickerSelect extends Select {

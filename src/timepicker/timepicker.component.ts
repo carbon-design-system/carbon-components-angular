@@ -17,7 +17,6 @@ import {
 				class="bx--time-picker__input">
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
 				<input
-					#timePicker
 					[value]="value"
 					[placeholder]="placeholder"
 					[pattern]="pattern"
@@ -25,7 +24,7 @@ import {
 					[disabled]="disabled"
 					maxlength="5"
 					(change)="onChange($event)"
-					type="string"
+					type="text"
 					class="bx--time-picker__input-field bx--text-input">
 			</div>
 			<ng-content></ng-content>
