@@ -1,6 +1,11 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	select,
+	boolean,
+	text
+} from "@storybook/addon-knobs/angular";
 
 import { SelectModule } from "../";
 
@@ -12,8 +17,13 @@ storiesOf("Select", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<div style="width: 165px">
-			<ibm-select [theme]="theme" [display]="display">
+			<ibm-select
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[helperText]="helperText"
+				[theme]="theme"
+				[display]="display">
 				<option value="" disabled selected hidden>Choose an option</option>
 				<option value="solong">A much longer option that is worth having around to check how text flows</option>
 				<optgroup label="Category 1">
@@ -25,9 +35,12 @@ storiesOf("Select", module).addDecorator(
 					<option value="option2">Option 2</option>
 				</optgroup>
 			</ibm-select>
-		</div>
 	`,
 		props: {
+			disabled: boolean("Disabled", false),
+			invalid: boolean("Show form validation", false),
+			invalidText: text("Form validation content", "Please select an option."),
+			helperText: text("Helper text", "Optional helper text."),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			display: select("Display", ["default", "inline"], "default")
 		}
