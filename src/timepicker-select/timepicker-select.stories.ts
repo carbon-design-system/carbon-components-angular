@@ -15,7 +15,6 @@ storiesOf("Time Picker Select", module)
 	.addDecorator(withKnobs)
 	.add("Simple", () => ({
 		template: `
-		<app-experimental-component></app-experimental-component>
 		<div class="bx--form-item">
 			<div class="bx--time-picker">
 				<ibm-timepicker-select>

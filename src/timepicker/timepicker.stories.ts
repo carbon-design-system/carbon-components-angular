@@ -18,7 +18,6 @@ storiesOf("Time Picker", module)
 	.addDecorator(withKnobs)
 	.add("Simple", () => ({
 		template: `
-		<app-experimental-component></app-experimental-component>
 		<ibm-timepicker (valueChange)="timePickerChange($event)" [value]="value" [disabled]="disableTime" label="Select a time">
 			<ibm-timepicker-select (valueChange)="timePickerSelectChange($event)" [disabled]="disabledSelect" display="inline">
 				<option selected value="AM">AM</option>

@@ -26,7 +26,7 @@ import {
 					maxlength="5"
 					(change)="onChange($event)"
 					type="string"
-					class="bx--time-picker__input-field">
+					class="bx--time-picker__input-field bx--text-input">
 			</div>
 			<ng-content></ng-content>
 	`
