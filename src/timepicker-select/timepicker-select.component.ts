@@ -1,15 +1,9 @@
-import { Component, Input, ChangeDetectorRef, Output, EventEmitter } from "@angular/core";
+import { Component, Input, ChangeDetectorRef, Output, EventEmitter, HostBinding } from "@angular/core";
 import { Select } from "../select/select.component";
 
 @Component({
 	selector: "ibm-timepicker-select",
 	template: `
-		<div
-			[ngClass]="{
-				'bx--select--light': theme === 'light',
-				'bx--skeleton': skeleton
-			}"
-			class="bx--select bx--time-picker__select">
 			<label *ngIf="!skeleton" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
 			<select
 				#select
@@ -19,18 +13,23 @@ import { Select } from "../select/select.component";
 				class="bx--select-input">
 				<ng-content></ng-content>
 			</select>
-			<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
-				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
-			</svg>
-		</div>
+			<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+
 	`
 })
 export class TimePickerSelect extends Select {
+	@HostBinding("class.bx--select") timeSelect = true;
+	@HostBinding("class.bx--time-picker__select") timePickerSelect = true;
+
+	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
+	@HostBinding("class.bx--select--light") timePickerSelectLight = (true ? this.theme === "light" : false);
+
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
+		console.log(this.theme);
 	}
 }
