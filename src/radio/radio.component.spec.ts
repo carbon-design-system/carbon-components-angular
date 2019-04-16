@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
-import { StaticIconModule } from "../icon/static-icon.module";
 
 import { Radio } from "./radio.component";
 import { RadioGroup } from "./radio-group.component";
@@ -25,7 +24,7 @@ describe("RadioGroup", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Radio, RadioGroup, RadioTest],
-			imports: [FormsModule, StaticIconModule]
+			imports: [FormsModule]
 		});
 	});
 

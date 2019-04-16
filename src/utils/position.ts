@@ -1,9 +1,7 @@
 /**
- * Utilites to manipulate the position of elements relative to other elements
+ * Utilities to manipulate the position of elements relative to other elements
  *
  */
-
-import { getScrollbarWidth } from "./window-tools";
 
 // possible positions ... this should probably be moved (along with some other types) to some central location
 export type Placement =

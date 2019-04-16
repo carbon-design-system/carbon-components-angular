@@ -24,8 +24,8 @@ import { ListColumn } from "./list-column.component";
 	selector: "ibm-list-header",
 	template: `
 		<div class="bx--structured-list-row bx--structured-list-row--header-row">
-			<div *ngIf="selection" class="bx--structured-list-th"></div>
 			<ng-content></ng-content>
+			<div *ngIf="selection" class="bx--structured-list-th"></div>
 		</div>
 	`
 })

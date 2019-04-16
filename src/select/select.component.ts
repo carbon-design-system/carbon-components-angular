@@ -28,7 +28,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
-			<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 			<div
 				[ngClass]="{
 					'bx--select--inline': display === 'inline',
@@ -37,21 +36,29 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				}"
 				class="bx--select"
 				style="width: 100%">
+				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
-				<select
-					#select
-					[attr.id]="id"
-					[disabled]="disabled"
-					(change)="onChange($event)"
-					class="bx--select-input">
-					<ng-content></ng-content>
-				</select>
-				<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
-				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
-				</svg>
+				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+				<div class="bx--select-input__wrapper">
+					<select
+						#select
+						[attr.id]="id"
+						[disabled]="disabled"
+						(change)="onChange($event)"
+						class="bx--select-input">
+						<ng-content></ng-content>
+					</select>
+					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+				</div>
+				<div *ngIf="invalid" class="bx--form-requirement">{{invalidText}}</div>
 			</div>
 		</div>
 	`,
+	styles: [`
+		[data-invalid] ~ .bx--select__arrow {
+			bottom: 2.25rem;
+		}
+	`],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -75,6 +82,14 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() label = "Select label";
 	/**
+	 * Optional helper text that appears under he label.
+	 */
+	@Input() helperText: string;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText: string;
+	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
 	@Input() id = `select-${Select.selectCount++}`;
@@ -86,6 +101,11 @@ export class Select implements ControlValueAccessor {
 	 * Set to true for a loading select.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` for an invalid select component.
+	 */
+	@Input() invalid = false;
+
 	/**
 	 * `light` or `dark` select theme
 	 */
