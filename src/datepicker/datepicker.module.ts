@@ -4,13 +4,13 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { DatePicker } from "./datepicker.component";
 
-
 @NgModule({
 	declarations: [
 		DatePicker
 	],
 	exports: [
-		DatePicker
+		DatePicker,
+		DatePickerInputModule
 	],
 	imports: [
 		CommonModule,

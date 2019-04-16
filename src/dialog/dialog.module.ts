@@ -1,7 +1,6 @@
 // modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { StaticIconModule } from "./../icon/static-icon.module";
 
 // imports
 import { DialogService } from "./dialog.service";
@@ -77,7 +76,6 @@ export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.compone
 	],
 	imports: [
 		CommonModule,
-		StaticIconModule,
 		I18nModule,
 		PlaceholderModule,
 		ExperimentalModule

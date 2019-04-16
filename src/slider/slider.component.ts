@@ -48,6 +48,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
+			<label [id]="bottomRangeId" class="bx--slider__range-label">
+				<ng-content select="[minLabel]"></ng-content>
+			</label>
 			<div
 				class="bx--slider"
 				[ngClass]="{'bx--slider--disabled': disabled}">
@@ -78,9 +81,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[max]="max"
 					[value]="value">
 			</div>
-			<label [id]="bottomRangeId" class="bx--slider__range-label">
-				<ng-content select="[minLabel]"></ng-content>
-			</label>
 			<label [id]="topRangeId" class="bx--slider__range-label">
 				<ng-content select="[maxLabel]"></ng-content>
 			</label>

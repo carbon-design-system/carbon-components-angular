@@ -7,7 +7,6 @@ import { TestBed } from "@angular/core/testing";
 import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
-import { StaticIconModule } from "./../../icon/static-icon.module";
 import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 @Component({
@@ -22,7 +21,6 @@ describe("Tooltip directive", () => {
 		TestBed.configureTestingModule({
 			declarations: [TooltipDirective, Tooltip, TooltipTest],
 			imports: [
-				StaticIconModule,
 				PlaceholderModule
 			]
 		});

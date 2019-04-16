@@ -3,6 +3,8 @@ import { By } from "@angular/platform-browser";
 
 import { Number } from "./number.component";
 import { FormsModule } from "@angular/forms";
+import { CaretUp16Module } from "@carbon/icons-angular/lib/caret--up/16";
+import { CaretDown16Module } from "@carbon/icons-angular/lib/caret--down/16";
 
 describe("Number", () => {
 	let component: Number;
@@ -17,7 +19,11 @@ describe("Number", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [Number],
-			imports: [FormsModule],
+			imports: [
+				FormsModule,
+				CaretUp16Module,
+				CaretDown16Module
+			],
 			providers: []
 		});
 	});
