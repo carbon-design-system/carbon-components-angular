@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, Input, ChangeDetectorRef, Output, EventEmitter } from "@angular/core";
 import { Select } from "../select/select.component";
 
 @Component({
@@ -20,11 +20,17 @@ import { Select } from "../select/select.component";
 				<ng-content></ng-content>
 			</select>
 			<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
-			<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
+				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
 			</svg>
 		</div>
 	`
 })
 export class TimePickerSelect extends Select {
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
+
+	@Output() valueChange: EventEmitter<string> = new EventEmitter();
+
+	onChange(event) {
+		this.valueChange.emit(event.target.value);
+	}
 }

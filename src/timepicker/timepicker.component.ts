@@ -1,4 +1,9 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
 
 @Component({
 	selector: "ibm-timepicker",
@@ -30,7 +35,6 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 	`
 })
 export class TimePicker {
-
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
@@ -44,7 +48,6 @@ export class TimePicker {
 	@Input() value: string;
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
-
 
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
