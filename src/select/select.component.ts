@@ -38,6 +38,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				style="width: 100%">
 				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
+				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 				<div class="bx--select-input__wrapper">
 					<select
 						#select
@@ -49,7 +50,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</select>
 					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
 				</div>
-				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 				<div *ngIf="invalid" class="bx--form-requirement">{{invalidText}}</div>
 			</div>
 		</div>

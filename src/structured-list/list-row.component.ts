@@ -34,6 +34,7 @@ import { ListColumn } from "./list-column.component";
 @Component({
 	selector: "ibm-list-row",
 	template: `
+		<ng-content></ng-content>
 		<ng-container *ngIf="selection">
 			<input
 				#input
@@ -49,7 +50,6 @@ import { ListColumn } from "./list-column.component";
 				<ibm-icon-checkmark-filled16 class="bx--structured-list-svg"></ibm-icon-checkmark-filled16>
 			</div>
 		</ng-container>
-		<ng-content></ng-content>
 	`
 })
 export class ListRow implements AfterContentInit {

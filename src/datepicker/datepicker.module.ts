@@ -9,7 +9,8 @@ import { DatePicker } from "./datepicker.component";
 		DatePicker
 	],
 	exports: [
-		DatePicker
+		DatePicker,
+		DatePickerInputModule
 	],
 	imports: [
 		CommonModule,

@@ -75,7 +75,8 @@ import { ExperimentalService } from "./../experimental.module";
 						<option class="bx--select-option" value="50">50</option>
 					</select>
 					<ibm-icon-chevron-down16
-						class="bx--select__arrow"
+						style="display: inherit;"
+						innerClass="bx--select__arrow"
 						[ariaLabel]="optionsListText | async">
 					</ibm-icon-chevron-down16>
 				</div>
@@ -107,7 +108,8 @@ import { ExperimentalService } from "./../experimental.module";
 						<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
 					</select>
 					<ibm-icon-chevron-down16
-						class="bx--select__arrow"
+						style="display: inherit;"
+						innerClass="bx--select__arrow"
 						[ariaLabel]="optionsListText | async">
 					</ibm-icon-chevron-down16>
 				</div>

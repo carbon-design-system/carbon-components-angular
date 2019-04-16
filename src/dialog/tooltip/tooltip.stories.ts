@@ -2,13 +2,16 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
+import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
 import { DialogModule, PlaceholderModule } from "../../";
 
 storiesOf("Tooltip", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DialogModule, PlaceholderModule
+				DialogModule,
+				PlaceholderModule,
+				InformationFilled16Module
 			]
 		})
 	)
@@ -32,10 +35,7 @@ storiesOf("Tooltip", module)
 						trigger="click"
 						[placement]="placement">
 						<div role="button">
-							<svg style="vertical-align: middle;" fill-rule="evenodd" height="16" role="img" viewBox="0 0 16 16" width="16" aria-label="tooltip">
-								<path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 4c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1
-									.4-1 1-1zm2 8H6v-1h1V8H6V7h3v4h1v1z"></path>
-							</svg>
+							<ibm-icon-information-filled16></ibm-icon-information-filled16>
 						</div>
 					</span>
 				</div>

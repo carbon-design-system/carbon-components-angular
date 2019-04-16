@@ -24,16 +24,15 @@ export class Link {
 
 	/**
 	 * Automatically set to `-1` when link is disabled.
-	 * @memberof Link
 	 */
 	@HostBinding("attr.tabindex") tabindex;
 
 	/**
 	 * Set to true to disable link.
-	 * @memberof Link
 	 */
 	@Input()
 	@HostBinding("attr.aria-disabled")
+	@HostBinding("class.bx--link--disabled")
 	set disabled(disabled: boolean) {
 		this._disabled = disabled;
 		this.tabindex = this.disabled ? -1 : null;

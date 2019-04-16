@@ -1,6 +1,12 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, array } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	array,
+	select,
+	text,
+	boolean
+} from "@storybook/addon-knobs/angular";
 import { DatePickerModule } from "../";
 
 storiesOf("Date Picker", module)
@@ -14,7 +20,6 @@ storiesOf("Date Picker", module)
 	.addDecorator(withKnobs)
 	.add("Simple", () => ({
 		template: `
-		<app-experimental-component></app-experimental-component>
 		<ibm-date-picker-input
 			[theme]="theme"
 			[label]="label"
@@ -86,7 +91,6 @@ storiesOf("Date Picker", module)
 	}))
 	.add("Skeleton", () => ({
 		template: `
-		<app-experimental-component></app-experimental-component>
 		<ibm-date-picker
 			range="true"
 			skeleton="true">
