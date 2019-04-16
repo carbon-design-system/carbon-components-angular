@@ -1,13 +1,11 @@
 import { TimePickerSelectModule } from "./timepicker-select.module";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
-import { ExperimentalComponenent } from "../../.storybook/experimental.component";
 import { ExperimentalModule } from "..";
 
 storiesOf("Time Picker Select", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ExperimentalComponenent],
 			imports: [
 				TimePickerSelectModule,
 				ExperimentalModule
