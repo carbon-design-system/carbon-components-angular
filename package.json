@@ -37,7 +37,7 @@
       {
         "name": "v9",
         "channel": "carbon-v9",
-        "range": "1.X"
+        "range": "2.X"
       }
     ]
   },
