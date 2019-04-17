@@ -3,8 +3,7 @@ import { Component, HostBinding } from "@angular/core";
 @Component({
 	selector: "ibm-table-header",
 	template: `
-		<ng-content selector="ibmTableHeaderTitle"></ng-content>
-		<ng-content selector="ibmTableHeaderDescription"></ng-content>
+		<ng-content></ng-content>
 	`
 })
 export class TableHeader {

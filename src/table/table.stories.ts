@@ -35,7 +35,6 @@ import { clone } from "../utils/utils";
 	selector: "app-table",
 	template: `
 		<ibm-table
-			[title]="title"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -157,7 +156,6 @@ class TableStory implements OnInit, OnChanges {
 		</ng-template>
 
 		<ibm-table
-			[title]="title"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -236,7 +234,6 @@ class DynamicTableStory implements OnInit {
 		</ng-template>
 
 		<ibm-table
-			[title]="title"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -318,7 +315,6 @@ class ExpansionTableStory implements OnInit {
 		</ng-template>
 
 		<ibm-table
-			[title]="title"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -370,7 +366,7 @@ class OverflowTableStory implements OnInit {
 			</ibm-label>
 		</ng-template>
 
-		<ibm-table [title]="title" [model]="model" (sort)="paginationSort($event)"></ibm-table>
+		<ibm-table [model]="model" (sort)="paginationSort($event)"></ibm-table>
 		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
 	`
 })
@@ -586,7 +582,6 @@ storiesOf("Table", module).addDecorator(
 			</ibm-table-header>
 			<div style="width: 650px">
 				<app-table
-					[title]="title"
 					[model]="model"
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
@@ -715,7 +710,6 @@ storiesOf("Table", module).addDecorator(
 			</ibm-table-header>
 			<div style="width: 650px">
 				<app-expansion-table
-					[title]="title"
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
 					[striped]="striped"
@@ -742,7 +736,6 @@ storiesOf("Table", module).addDecorator(
 			</ibm-table-header>
 			<div style="width: 650px">
 				<app-custom-table
-					[title]="title"
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
 					[striped]="striped"
@@ -769,7 +762,6 @@ storiesOf("Table", module).addDecorator(
 			</ibm-table-header>
 			<div style="width: 650px">
 				<app-overflow-table
-					[title]="title"
 					[size]="size"
 					[showSelectionColumn]="showSelectionColumn"
 					[striped]="striped"
