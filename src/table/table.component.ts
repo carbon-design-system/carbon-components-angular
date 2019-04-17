@@ -306,6 +306,7 @@ import { I18n } from "./../i18n/i18n.module";
 							(dragover)="columnDragover($event, 'left', i)"
 							(drop)="columnDrop($event, 'left', i)">
 							</div>
+
 							<div
 							class="drop-area-right"
 							(dragenter)="columnDragEnter($event, 'right', i)"
