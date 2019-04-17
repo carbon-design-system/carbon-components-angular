@@ -8,6 +8,10 @@ import { NFormsModule } from "./../forms/forms.module";
 
 import { Table } from "./table.component";
 import { TableToolbar } from "./toolbar/table-toolbar.component";
+import { TableContainer } from "./table-container.component";
+import { TableHeader } from "./header/table-header.component";
+import { TableHeaderTitle } from "./header/table-header-title.directive";
+import { TableHeaderDescription } from "./header/table-header-description.directive";
 import { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
 import { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
 import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
@@ -22,6 +26,10 @@ export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
 
 export { TableToolbar } from "./toolbar/table-toolbar.component";
+export { TableContainer } from "./table-container.component";
+export { TableHeader } from "./header/table-header.component";
+export { TableHeaderTitle } from "./header/table-header-title.directive";
+export { TableHeaderDescription } from "./header/table-header-description.directive";
 export { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
 export { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
 export { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
@@ -32,6 +40,10 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 	declarations: [
 		Table,
 		TableToolbar,
+		TableContainer,
+		TableHeader,
+		TableHeaderTitle,
+		TableHeaderDescription,
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
@@ -41,6 +53,10 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 	exports: [
 		Table,
 		TableToolbar,
+		TableContainer,
+		TableHeader,
+		TableHeaderTitle,
+		TableHeaderDescription,
 		TableToolbarActions,
 		TableToolbarSearch,
 		TableToolbarContent,
