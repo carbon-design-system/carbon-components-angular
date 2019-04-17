@@ -88,7 +88,7 @@ import { I18n } from "./../i18n/i18n.module";
  * 		return true;
  * 	}
  *
- * 	set filterCount(n) {}
+ * 	set filterCount(n) {}
  * 	get filterCount() {
  * 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
  * 	}
@@ -306,7 +306,6 @@ import { I18n } from "./../i18n/i18n.module";
 							(dragover)="columnDragover($event, 'left', i)"
 							(drop)="columnDrop($event, 'left', i)">
 							</div>
-
 							<div
 							class="drop-area-right"
 							(dragenter)="columnDragEnter($event, 'right', i)"
