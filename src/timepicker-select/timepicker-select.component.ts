@@ -20,10 +20,27 @@ export class TimePickerSelect extends Select {
 	@HostBinding("class.bx--select") timeSelect = true;
 	@HostBinding("class.bx--time-picker__select") timePickerSelect = true;
 
-	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
-	@HostBinding("class.bx--select--light") timePickerSelectLight = (true ? this.theme === "light" : false);
-
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
+
+	/**
+	 * Set to true for a loading select.
+	 */
+	@Input() skeleton = false;
+	/**
+	 * Set to `true` for an invalid select component.
+	 */
+	@Input() invalid = false;
+
+	/**
+	 * `light` or `dark` select theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
+	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
+
+	@HostBinding("class.bx--select--light") get timePickerSelectLight() {
+		return (true ? this.theme === "light" : false);
+	}
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 

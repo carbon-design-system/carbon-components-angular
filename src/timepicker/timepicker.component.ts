@@ -9,14 +9,13 @@ import {
 @Component({
 	selector: "ibm-timepicker",
 	template: `
-			<div
-				[ngClass]="{
-					'bx--select--light': theme === 'light',
-					'bx--skeleton': skeleton
-				}"
-				class="bx--time-picker__input">
+			<div class="bx--time-picker__input">
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
 				<input
+					[ngClass]="{
+						'bx--text-input--light': theme === 'light',
+						'bx--skeleton': skeleton
+					}"
 					[value]="value"
 					[placeholder]="placeholder"
 					[pattern]="pattern"
@@ -44,6 +43,16 @@ export class TimePicker {
 	@Input() id = `timepicker-${TimePicker.timePickerCount++}`;
 	@Input() disabled = false;
 	@Input() value: string;
+
+	/**
+	 * Set to true for a loading select.
+	 */
+	@Input() skeleton = false;
+
+	/**
+	 * `light` or `dark` select theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
