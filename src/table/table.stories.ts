@@ -45,7 +45,6 @@ import { clone } from "../utils/utils";
 	`
 })
 class TableStory implements OnInit, OnChanges {
-	@Input() title = "Table title";
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -104,7 +103,6 @@ class TableStory implements OnInit, OnChanges {
 	`
 })
 class DynamicTableStory implements OnInit {
-	@Input() title = "Table title";
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -178,7 +176,6 @@ class DynamicTableStory implements OnInit {
 	`
 })
 class ExpansionTableStory implements OnInit {
-	@Input() title = "Table title";
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -258,7 +255,6 @@ class ExpansionTableStory implements OnInit {
 	`
 })
 class OverflowTableStory implements OnInit {
-	@Input() title = "Table title";
 	@Input() model = new TableModel();
 	@Input() size = "md";
 	@Input() showSelectionColumn = true;
@@ -305,7 +301,6 @@ class OverflowTableStory implements OnInit {
 	`
 })
 class PaginationTableStory implements OnInit {
-	@Input() title = "Table title";
 	@Input() model = new TableModel();
 
 	@Input() get totalDataLength() {
