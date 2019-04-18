@@ -81,6 +81,11 @@ class TableStory implements OnInit, OnChanges {
 @Component({
 	selector: "app-custom-table",
 	template: `
+		<ibm-table-toolbar [model]="model">
+			<button class="bx--btn bx--btn--sm bx--btn--primary" (click)="addRow()">Add row</button>
+			<button class="bx--btn bx--btn--sm bx--btn--primary" (click)="addColumn()">Add column</button>
+		</ibm-table-toolbar>
+
 		<ng-template #customTableItemTemplate let-data="data">
 			<a [attr.href]="data.link">{{data.name}} {{data.surname}}</a>
 		</ng-template>
@@ -95,10 +100,6 @@ class TableStory implements OnInit, OnChanges {
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
 			(sort)="customSort($event)">
-			<ibm-table-toolbar [model]="model">
-				<button class="bx--btn bx--btn--sm bx--btn--primary" (click)="addRow()">Add row</button>
-				<button class="bx--btn bx--btn--sm bx--btn--primary" (click)="addColumn()">Add column</button>
-			</ibm-table-toolbar>
 		</ibm-table>
 	`
 })
