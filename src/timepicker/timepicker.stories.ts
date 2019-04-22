@@ -2,7 +2,12 @@ import { action } from "@storybook/addon-actions";
 import { TimePickerSelectModule } from "../timepicker-select/timepicker-select.module";
 import { TimePickerModule } from "./timepicker.module";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, text, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	boolean,
+	text,
+	select
+} from "@storybook/addon-knobs/angular";
 import { ExperimentalModule } from "..";
 
 storiesOf("Time Picker", module)
