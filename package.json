@@ -146,6 +146,7 @@
     "zone.js": "0.9.0"
   },
   "dependencies": {
+    "@carbon/utils-position": "1.0.0",
     "flatpickr": "4.5.7",
     "ng2-flatpickr": "7.0.3"
   }
