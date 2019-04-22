@@ -1,6 +1,6 @@
 import { Component, HostListener, ElementRef, AfterViewInit } from "@angular/core";
 import { Dialog } from "../dialog.component";
-import { position } from "../../utils/position";
+import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 import { ExperimentalService } from "./../../experimental.module";
