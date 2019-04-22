@@ -1,4 +1,10 @@
-import { Component, Input, ChangeDetectorRef, Output, EventEmitter, HostBinding } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	HostBinding
+} from "@angular/core";
 import { Select } from "../select/select.component";
 
 @Component({
@@ -26,10 +32,6 @@ export class TimePickerSelect extends Select {
 	 * Set to true for a loading select.
 	 */
 	@Input() skeleton = false;
-	/**
-	 * Set to `true` for an invalid select component.
-	 */
-	@Input() invalid = false;
 
 	/**
 	 * `light` or `dark` select theme
@@ -46,6 +48,5 @@ export class TimePickerSelect extends Select {
 
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
-		console.log(this.theme);
 	}
 }
