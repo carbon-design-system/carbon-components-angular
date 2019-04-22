@@ -1,4 +1,10 @@
-import { Component, Input, ChangeDetectorRef, Output, EventEmitter, HostBinding } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	HostBinding
+} from "@angular/core";
 import { Select } from "../select/select.component";
 
 @Component({
@@ -20,15 +26,27 @@ export class TimePickerSelect extends Select {
 	@HostBinding("class.bx--select") timeSelect = true;
 	@HostBinding("class.bx--time-picker__select") timePickerSelect = true;
 
-	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
-	@HostBinding("class.bx--select--light") timePickerSelectLight = (true ? this.theme === "light" : false);
-
 	@Input() id = `timepicker-select-${TimePickerSelect.selectCount++}`;
+
+	/**
+	 * Set to true for a loading select.
+	 */
+	@Input() skeleton = false;
+
+	/**
+	 * `light` or `dark` select theme
+	 */
+	@Input() theme: "light" | "dark" = "dark";
+
+	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
+
+	@HostBinding("class.bx--select--light") get timePickerSelectLight() {
+		return this.theme === "light";
+	}
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
-		console.log(this.theme);
 	}
 }
