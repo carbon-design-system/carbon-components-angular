@@ -2,7 +2,7 @@ import { Injectable, ElementRef } from "@angular/core";
 import { PlaceholderService } from "./../placeholder/placeholder.module";
 import { fromEvent, Subscription } from "rxjs";
 import { throttleTime } from "rxjs/operators";
-import position from "./../utils/position";
+import { position } from "@carbon/utils-position";
 
 const defaultOffset = { top: 0, left: 0 };
 
