@@ -17,7 +17,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Observable, fromEvent, of, Subscription } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { position } from "../utils/position";
+import { position } from "@carbon/utils-position";
 import { I18n } from "./../i18n/i18n.module";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
