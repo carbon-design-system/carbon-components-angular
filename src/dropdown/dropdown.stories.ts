@@ -20,6 +20,8 @@ storiesOf("Dropdown", module)
 		template: `
 		<div style="width: 300px">
 			<ibm-dropdown
+				[label]="label"
+				[helperText]="helperText"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -32,6 +34,8 @@ storiesOf("Dropdown", module)
 	`,
 		props: {
 			disabled: boolean("disabled", false),
+			label: text("Label", "Dropdown label"),
+			helperText: text("Helper text", "Optional helper text."),
 			items: object("items", [
 				{ content: "one" },
 				{ content: "two" },
@@ -47,6 +51,8 @@ storiesOf("Dropdown", module)
 		template: `
 		<div style="width: 300px">
 			<ibm-dropdown
+				[label]="label"
+				[helperText]="helperText"
 				type="multi"
 				placeholder="Multi-select"
 				[disabled]="disabled"
@@ -58,6 +64,8 @@ storiesOf("Dropdown", module)
 	`,
 		props: {
 			disabled: boolean("disabled", false),
+			label: text("Label", "Dropdown label"),
+			helperText: text("Helper text", "Optional helper text."),
 			items: object("items", [
 				{ content: "one" },
 				{ content: "two" },
@@ -72,6 +80,8 @@ storiesOf("Dropdown", module)
 		template: `
 		<div style="width: 300px">
 			<ibm-dropdown
+				[label]="label"
+				[helperText]="helperText"
 				placeholder="Select"
 				[disabled]="disabled"
 				[(ngModel)]="model"
@@ -83,6 +93,8 @@ storiesOf("Dropdown", module)
 		`,
 		props: {
 			disabled: boolean("disabled", false),
+			label: text("Label", "Dropdown label"),
+			helperText: text("Helper text", "Optional helper text."),
 			items: [
 				{ content: "one" },
 				{ content: "two" },
@@ -96,6 +108,8 @@ storiesOf("Dropdown", module)
 		template: `
 		<div style="width: 300px">
 			<ibm-dropdown
+				[label]="label"
+				[helperText]="helperText"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -107,6 +121,8 @@ storiesOf("Dropdown", module)
 	`,
 		props: {
 			disabled: boolean("disabled", false),
+			label: text("Label", "Dropdown label"),
+			helperText: text("Helper text", "Optional helper text."),
 			items: of([
 				{ content: "one" },
 				{ content: "two" },
