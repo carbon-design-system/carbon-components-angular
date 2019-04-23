@@ -10,8 +10,7 @@ import {
 	EventEmitter,
 	AfterViewInit,
 	AfterContentInit,
-	HostBinding,
-	OnInit
+	HostBinding
 } from "@angular/core";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -31,55 +30,60 @@ import { filter } from "rxjs/operators";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<div
-			[attr.aria-expanded]="open"
-			role="button"
-			class="bx--list-box__field"
-			tabindex="0"
-			type="button"
-			aria-label="close menu"
-			aria-haspopup="true"
-			(click)="toggleDropdown()">
+		<label [for]="id" class="bx--label">{{label}}</label>
+		<div class="bx--form__helper-text">{{helperText}}</div>
+		<div class="bx--combo-box bx--list-box" [ngClass]="{'bx--multi-select' : type === 'multi'}">
 			<div
-				*ngIf="type === 'multi' && pills.length > 0"
-				(click)="clearSelected()"
+				[attr.aria-expanded]="open"
 				role="button"
-				class="bx--list-box__selection bx--list-box__selection--multi"
+				class="bx--list-box__field"
 				tabindex="0"
-				title="Clear all selected items">
-				{{ pills.length }}
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					style="will-change: transform;"
-					role="img"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					aria-hidden="true">
-					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-				</svg>
+				type="button"
+				aria-label="close menu"
+				aria-haspopup="true"
+				(click)="toggleDropdown()">
+				<div
+					*ngIf="type === 'multi' && pills.length > 0"
+					(click)="clearSelected()"
+					role="button"
+					class="bx--list-box__selection bx--list-box__selection--multi"
+					tabindex="0"
+					title="Clear all selected items">
+					{{ pills.length }}
+					<svg
+						focusable="false"
+						preserveAspectRatio="xMidYMid meet"
+						style="will-change: transform;"
+						role="img"
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 16 16"
+						aria-hidden="true">
+						<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+					</svg>
+				</div>
+				<input
+					[id]="id"
+					[disabled]="disabled"
+					(keyup)="onSearch($event.target.value)"
+					[value]="selectedValue"
+					class="bx--text-input"
+					role="combobox"
+					aria-label="ListBox input field"
+					autocomplete="off"
+					[placeholder]="placeholder"/>
+					<ibm-icon-chevron-down16
+						[ngClass]="{'bx--list-box__menu-icon--open': open}"
+						class="bx--list-box__menu-icon"
+						ariaLabel="Close menu">
+					</ibm-icon-chevron-down16>
 			</div>
-			<input
-				[disabled]="disabled"
-				(keyup)="onSearch($event.target.value)"
-				[value]="selectedValue"
-				class="bx--text-input"
-				role="combobox"
-				aria-label="ListBox input field"
-				autocomplete="off"
-				[placeholder]="placeholder"/>
-				<ibm-icon-chevron-down16
-					[ngClass]="{'bx--list-box__menu-icon--open': open}"
-					class="bx--list-box__menu-icon"
-					ariaLabel="Close menu">
-				</ibm-icon-chevron-down16>
-		</div>
-		<div
-			#dropdownMenu
-			*ngIf="open">
-			<ng-content></ng-content>
+			<div
+				#dropdownMenu
+				*ngIf="open">
+				<ng-content></ng-content>
+			</div>
 		</div>
 	`,
 	providers: [
@@ -90,7 +94,9 @@ import { filter } from "rxjs/operators";
 		}
 	]
 })
-export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentInit {
+export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
+	static comboBoxCount = 0;
+	@Input() id = `dropdown-${ComboBox.comboBoxCount++}`;
 	/**
 	 * List of items to fill the content with.
 	 *
@@ -130,6 +136,14 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	 * Combo box render size.
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
+	/**
+	 * Label for the dropdown.
+	 */
+	@Input() label: string;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -178,7 +192,7 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
-	@HostBinding("class") class = "bx--combo-box bx--list-box";
+	@HostBinding("class.bx--list-box__wrapper") hostClass = true;
 	@HostBinding("attr.role") role = "combobox";
 	@HostBinding("style.display") display = "block";
 
@@ -207,12 +221,6 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
 			this.updateSelected();
-		}
-	}
-
-	ngOnInit() {
-		if (this.type === "multi") {
-			this.class = "bx--multi-select bx--combo-box bx--list-box";
 		}
 	}
 

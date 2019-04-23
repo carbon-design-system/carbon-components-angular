@@ -1,6 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { withKnobs, object, text } from "@storybook/addon-knobs/angular";
 
 import { ComboBoxModule } from "../";
 
@@ -15,11 +15,13 @@ storiesOf("Combobox", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-combo-box [items]="items" (selected)="selected($event)">
+			<ibm-combo-box [label]="label" [helperText]="helperText" [items]="items" (selected)="selected($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 		`,
 		props: {
+			label: text("Label", "ComboBox label"),
+			helperText: text("Helper text", "Optional helper text."),
 			items: [
 				{
 					content: "one"
@@ -39,11 +41,13 @@ storiesOf("Combobox", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-combo-box [items]="items" type="multi" (selected)="selected($event)">
+			<ibm-combo-box [label]="label" [helperText]="helperText" [items]="items" type="multi" (selected)="selected($event)">
 				<ibm-dropdown-list></ibm-dropdown-list>
 			</ibm-combo-box>
 		`,
 		props: {
+			label: text("Label", "ComboBox label"),
+			helperText: text("Helper text", "Optional helper text."),
 			items: [
 				{
 					content: "one"
