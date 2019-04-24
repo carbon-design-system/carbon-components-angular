@@ -1,5 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, select, text } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	boolean,
+	select,
+	text
+} from "@storybook/addon-knobs/angular";
 
 import { ToggleModule } from "../";
 
