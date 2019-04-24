@@ -36,8 +36,39 @@ storiesOf("Breadcrumb", module)
 		<ibm-breadcrumb-item href="#3">
 			Breadcrumb 3
 		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item href="#4">
-			Breadcrumb 4
+	</ibm-breadcrumb>`,
+	props: {
+		noTrailingSlash: boolean("noTrailingSlash", true)
+	}
+}))
+.add("Current page", () => ({
+	template: `
+	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
+		<ibm-breadcrumb-item href="#1">
+			Breadcrumb 1
+		</ibm-breadcrumb-item>
+		<ibm-breadcrumb-item href="#2">
+			Breadcrumb 2
+		</ibm-breadcrumb-item>
+		<ibm-breadcrumb-item current="true" href="#3">
+			Breadcrumb 3
+		</ibm-breadcrumb-item>
+	</ibm-breadcrumb>`,
+	props: {
+		noTrailingSlash: boolean("noTrailingSlash", true)
+	}
+}))
+.add("Current page with aria-current", () => ({
+	template: `
+	<ibm-breadcrumb [noTrailingSlash]="noTrailingSlash">
+		<ibm-breadcrumb-item href="#1">
+			Breadcrumb 1
+		</ibm-breadcrumb-item>
+		<ibm-breadcrumb-item href="#2">
+			Breadcrumb 2
+		</ibm-breadcrumb-item>
+		<ibm-breadcrumb-item ariaCurrent="true" href="#3">
+			Breadcrumb 3
 		</ibm-breadcrumb-item>
 	</ibm-breadcrumb>`,
 	props: {
