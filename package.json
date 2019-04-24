@@ -85,7 +85,7 @@
     "@carbon/icons-angular": "10.1.0",
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
-    "@compodoc/compodoc": "1.1.9",
+    "@compodoc/compodoc": "1.1.7",
     "@storybook/addon-actions": "5.0.6",
     "@storybook/addon-knobs": "5.0.6",
     "@storybook/addon-links": "5.0.6",
@@ -146,6 +146,7 @@
     "zone.js": "0.9.0"
   },
   "dependencies": {
+    "@carbon/utils-position": "1.0.0",
     "flatpickr": "4.5.7",
     "ng2-flatpickr": "7.0.3"
   }
