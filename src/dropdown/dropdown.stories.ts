@@ -88,6 +88,7 @@ storiesOf("Dropdown", module)
 			<ibm-dropdown
 				type="multi"
 				placeholder="Multi-select"
+				displayValue="Selections"
 				[disabled]="disabled"
 				(selected)="selected($event)"
 				(onClose)="onClose($event)">

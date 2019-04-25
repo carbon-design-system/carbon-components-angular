@@ -350,8 +350,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	/**
-	 * Returns the display value if there is no selection, otherwise the selection will be returned.
-	 */
+     * Returns the display value if there is a selection and displayValue is set,
+     * if there is just a selection the ListItem content property will be returned,
+     * otherwise the placeholder will be returned.
+     */
 	getDisplayValue(): Observable<string> {
 		if (!this.view) {
 			return;
@@ -359,7 +361,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return of(`${this.selectedLabel}`);
+				return of(`${this.placeholder}`);
 			} else {
 				return of(selected[0].content);
 			}
