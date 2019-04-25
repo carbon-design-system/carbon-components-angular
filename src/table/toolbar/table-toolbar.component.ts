@@ -12,15 +12,16 @@ import { I18n } from "../../i18n/i18n.module";
 				'bx--batch-actions--active': selected
 			}"
 			[attr.aria-label]="actionBarLabel | async">
-			<ng-content select="ibm-table-toolbar-actions"></ng-content>
+			<div class="bx--action-list">
+				<ng-content select="ibm-table-toolbar-actions"></ng-content>
+				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="cancel()">Cancel</button>
+			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para">
 					<span>{{count}}</span> items selected
 				</p>
-				<button class="bx--batch-summary__cancel" (click)="cancel()">Cancel</button>
 			</div>
 		</div>
-		<ng-content select="ibm-table-toolbar-search"></ng-content>
 		<ng-content></ng-content>
 	</section>
 	`
