@@ -44,8 +44,7 @@ import { DropdownService } from "./dropdown.service";
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			(blur)="onBlur()"
-			[disabled]="disabled"
-		>
+			[disabled]="disabled">
 			<span (click)="clearSelected()" *ngIf="type === 'multi' && view.getSelected() && view.getSelected().length"
 				class="bx--list-box__selection bx--list-box__selection--multi">
 				{{view.getSelected().length}}
