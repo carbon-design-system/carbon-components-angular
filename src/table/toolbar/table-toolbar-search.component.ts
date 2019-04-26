@@ -3,7 +3,7 @@ import { Component, HostBinding, Input, OnInit } from "@angular/core";
 
 @Component({
 	selector: "ibm-table-toolbar-search",
-	template: require("./../../search/search.component.html").default
+	templateUrl: "../../search/search.component.html"
 })
 export class TableToolbarSearch extends Search implements OnInit {
 	@HostBinding("class.bx--toolbar-search-container-expandable") @Input() expandable = false;

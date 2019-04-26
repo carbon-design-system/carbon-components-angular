@@ -124,7 +124,7 @@
     "karma-webpack": "3.0.5",
     "node-sass": "4.11.0",
     "postcss-loader": "3.0.0",
-    "raw-loader": "2.0.0",
+    "raw-loader": "1.0.0",
     "rxjs": "6.4.0",
     "sass-loader": "7.1.0",
     "semantic-release": "16.0.0-beta.18",

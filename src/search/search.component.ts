@@ -27,7 +27,7 @@ export class SearchChange {
 
 @Component({
 	selector: "ibm-search",
-	template: require("./search.component.html").default,
+	templateUrl: "search.component.html",
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
