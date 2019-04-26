@@ -22,9 +22,9 @@ storiesOf("Search", module).addDecorator(
 	}))
 	.add("Toolbar search", () => ({
 		template: `
-			<div class="bx--toolbar">
-				<ibm-search placeholder="search" size="sm" toolbar="true"></ibm-search>
-			</div>
+		<div class="bx--toolbar">
+			<ibm-search placeholder="search" size="sm" toolbar="true"></ibm-search>
+		</div>
 		`
 	}))
 	.add("Skeleton", () => ({
