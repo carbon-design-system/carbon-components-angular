@@ -17,7 +17,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { Observable, fromEvent, of, Subscription } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
-import { position } from "../utils/position";
+import { position } from "@carbon/utils-position";
 import { I18n } from "./../i18n/i18n.module";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
@@ -30,11 +30,12 @@ import { DropdownService } from "./dropdown.service";
 	selector: "ibm-dropdown",
 	template: `
 	<div
-		class="bx--list-box"
+		class="bx--dropdown bx--list-box"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
-			'bx--skeleton': skeleton
+			'bx--skeleton': skeleton,
+			'bx--dropdown--disabled bx--list-box--disabled': disabled
 		}">
 		<button
 			type="button"

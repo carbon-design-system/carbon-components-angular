@@ -18,7 +18,7 @@ import {
 } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 // the AbsolutePosition is required to import the declaration correctly
-import position, { AbsolutePosition } from "./../utils/position";
+import { position, AbsolutePosition } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
@@ -40,63 +40,46 @@ import { DialogConfig } from "./dialog-config.interface";
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * One static event observable to handle window resizing.
-	 * @protected
-	 * @static
-	 * @type {Observable<any>}
-	 * @memberof Dialog
 	 */
 	protected static resizeObservable: Observable<any> = fromEvent(window, "resize").pipe(throttleTime(100));
 	/**
 	 * Emits event that handles the closing of a `Dialog` object.
-	 * @type {EventEmitter<any>}
-	 * @memberof Dialog
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
 	/**
 	 * Receives `DialogConfig` interface object with properties of `Dialog`
-	 * explictly defined.
-	 * @type {DialogConfig}
-	 * @memberof Dialog
+	 * explicitly defined.
 	 */
 	@Input() dialogConfig: DialogConfig;
 	/**
 	 * Maintains a reference to the view DOM element of the `Dialog`.
-	 * @type {ElementRef}
-	 * @memberof Dialog
 	 */
 	@ViewChild("dialog") dialog: ElementRef;
 
 	/**
 	 * Stores the data received from `dialogConfig`.
-	 * @memberof Dialog
 	 */
 	public data = {};
 
 	/**
-	 * The placement of the `Dialog` is recieved from the `Position` service.
-	 * @type {Placement}
-	 * @memberof Dialog
+	 * The placement of the `Dialog` is received from the `Position` service.
 	 */
 	public placement: string;
 
 	/**
 	 * `Subscription` used to update placement in the event of a window resize.
-	 * @protected
-	 * @type {Subscription}
-	 * @memberof Dialog
 	 */
 	protected resizeSubscription: Subscription;
 	/**
 	 * Subscription to all the scrollable parents `scroll` event
 	 */
-	// add a new subscription temprarily so that contexts (such as tests)
+	// add a new subscription temporarily so that contexts (such as tests)
 	// that don't run ngAfterViewInit have something to unsubscribe in ngOnDestroy
 	protected scrollSubscription: Subscription = new Subscription();
 	/**
 	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
 	 * @protected
-	 * @memberof Dialog
 	 */
 	protected addGap = {
 		"left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
@@ -110,13 +93,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Creates an instance of `Dialog`.
 	 * @param {ElementRef} elementRef
-	 * @memberof Dialog
 	 */
-	constructor(protected elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) {	}
 
 	/**
-	 * Initilize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
-	 * @memberof Dialog
+	 * Initialize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
 	 */
 	ngOnInit() {
 		this.placement = this.dialogConfig.placement.split(",")[0];
@@ -126,14 +107,13 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			this.placeDialog();
 		});
 
-		// run any additional initlization code that consuming classes may have
+		// run any additional initialization code that consuming classes may have
 		this.onDialogInit();
 	}
 
 	/**
 	 * After the DOM is ready, focus is set and dialog is placed
 	 * in respect to the parent element.
-	 * @memberof Dialog
 	 */
 	ngAfterViewInit() {
 		const dialogElement = this.dialog.nativeElement;
@@ -236,30 +216,9 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		// split always returns an array, so we can just use the auto position logic
 		// for single positions too
 		const placements = this.dialogConfig.placement.split(",");
-		const weightedPlacements = placements.map(placement => {
-			const pos = findPosition(parentEl, el, placement);
-			let box = position.getPlacementBox(el, pos);
-			let hiddenHeight = box.bottom - window.innerHeight - window.scrollY;
-			let hiddenWidth = box.right - window.innerWidth - window.scrollX;
-			// if the hiddenHeight or hiddenWidth is negative, reset to offsetHeight or offsetWidth
-			hiddenHeight = hiddenHeight < 0 ? el.offsetHeight : hiddenHeight;
-			hiddenWidth = hiddenWidth < 0 ? el.offsetWidth : hiddenWidth;
-			const area = el.offsetHeight * el.offsetWidth;
-			const hiddenArea = hiddenHeight * hiddenWidth;
-			let visibleArea = area - hiddenArea;
-			// if the visibleArea is 0 set it back to area (to calculate the percentage in a useful way)
-			visibleArea = visibleArea === 0 ? area : visibleArea;
-			const visiblePercent = visibleArea / area;
-			return {
-				placement,
-				weight: visiblePercent
-			};
-		});
 
-		// sort the placements from best to worst
-		weightedPlacements.sort((a, b) => b.weight - a.weight);
-		// pick the best!
-		dialogPlacement = weightedPlacements[0].placement;
+		// find the best placement
+		dialogPlacement = position.findBestPlacement(parentEl, el, placements);
 
 		// calculate the final position
 		const pos = findPosition(parentEl, el, dialogPlacement);
@@ -293,7 +252,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * Sets up a event Listener to close `Dialog` if click event occurs outside
 	 * `Dialog` object.
 	 * @param {any} event
-	 * @memberof Dialog
 	 */
 	@HostListener("document:click", ["$event"])
 	clickClose(event) {
@@ -305,7 +263,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * Closes `Dialog` object by emitting the close event upwards to parents.
-	 * @memberof Dialog
 	 */
 	public doClose() {
 		this.close.emit();
@@ -313,7 +270,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * At destruction of component, `Dialog` unsubscribes from handling window resizing changes.
-	 * @memberof Dialog
 	 */
 	ngOnDestroy() {
 		this.resizeSubscription.unsubscribe();

@@ -42,6 +42,7 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
+		<div *ngIf="label" class="bx--label" [id]="ariaLabelledby">{{label}}</div>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -55,6 +56,7 @@ export class ToggleChange {
 			[required]="required"
 			[checked]="checked"
 			[disabled]="disabled"
+			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
@@ -110,8 +112,11 @@ export class Toggle extends Checkbox {
 	get onText() {
 		return this._onText;
 	}
-
-
+	/**
+	 * Text that is set as the label of the toggle.
+	 * @type {(string)}
+	 */
+	@Input() label: string;
 	/**
 	 * Size of the toggle component.
 	 */
