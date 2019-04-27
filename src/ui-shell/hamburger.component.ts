@@ -10,6 +10,7 @@ import { I18n } from "../i18n/i18n.module";
 	selector: "ibm-hamburger",
 	template: `
 		<button
+			(click)="onClick($event)"
 			class="bx--header__menu-trigger bx--header__action"
 			[attr.aria-label]="i18n.get('UI_SHELL.HEADER.MENU') | async"
 			[attr.title]="i18n.get('UI_SHELL.HEADER.MENU') | async">
@@ -21,4 +22,9 @@ import { I18n } from "../i18n/i18n.module";
 })
 export class Hamburger {
 	constructor(public i18n: I18n) { }
+
+
+	onClick(event) {
+		console.log(event);
+	}
 }
