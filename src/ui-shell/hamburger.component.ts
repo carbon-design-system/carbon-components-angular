@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { I18n } from "../i18n/i18n.module";
 
 /**
@@ -21,10 +21,11 @@ import { I18n } from "../i18n/i18n.module";
 	`
 })
 export class Hamburger {
+	@Output() selected: EventEmitter<any> = new EventEmitter();
+
 	constructor(public i18n: I18n) { }
 
-
 	onClick(event) {
-		console.log(event);
+		this.selected.emit();
 	}
 }
