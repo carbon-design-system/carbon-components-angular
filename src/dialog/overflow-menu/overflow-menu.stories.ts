@@ -63,7 +63,9 @@ storiesOf("Overflow Menu", module)
 				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</ibm-overflow-menu-option>
 				<ibm-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</ibm-overflow-menu-option>
-				<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
+				<ibm-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
+					Danger option
+				</ibm-overflow-menu-option>
 			</ibm-overflow-menu>
 			<ibm-placeholder></ibm-placeholder>
 		`,

@@ -43,15 +43,27 @@ import { DropdownService } from "./dropdown.service";
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			(click)="toggleMenu()"
 			(blur)="onBlur()"
 			[disabled]="disabled">
-			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
-			<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
-				<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10" [attr.aria-label]="menuButtonLabel">
-					<title>{{menuButtonLabel}}</title>
-					<path d="M0 0l5 4.998L10 0z"></path>
+			<span (click)="clearSelected()" *ngIf="type === 'multi' && view.getSelected() && view.getSelected().length"
+				class="bx--list-box__selection bx--list-box__selection--multi">
+				{{view.getSelected().length}}
+				&nbsp;
+				<svg class="close-tag" width="8" height="8" viewBox="0 0 10 10">
+					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
 				</svg>
+			</span>
+			<div class="click-container" (click)="toggleMenu()" style="width: 100%; text-align: left;">
+				<span class="bx--list-box__label">
+					{{getDisplayValue() | async}}
+				</span>
+				<div *ngIf="!skeleton" class="bx--list-box__menu-icon" [ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
+					<svg fill-rule="evenodd" height="5" role="img" viewBox="0 0 10 5" width="10"
+					alt="Open menu" [attr.aria-label]="menuButtonLabel">
+						<title>{{menuButtonLabel}}</title>
+						<path d="M0 0l5 4.998L10 0z"></path>
+					</svg>
+				</div>
 			</div>
 		</button>
 		<div
@@ -226,6 +238,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 				this.propagateChange(this.view.getSelected());
 			} else {
 				this.closeMenu();
+				this.dropdownButton.nativeElement.focus();
 				if (event.item && event.item.selected) {
 					if (this.value) {
 						this.propagateChange(event.item[this.value]);
@@ -336,8 +349,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	/**
-	 * Returns the display value if there is no selection, otherwise the selection will be returned.
-	 */
+     * Returns the display value if there is a selection and displayValue is set,
+     * if there is just a selection the ListItem content property will be returned,
+     * otherwise the placeholder will be returned.
+     */
 	getDisplayValue(): Observable<string> {
 		if (!this.view) {
 			return;
@@ -345,7 +360,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		let selected = this.view.getSelected();
 		if (selected && !this.displayValue) {
 			if (this.type === "multi") {
-				return of(`${selected.length} ${this.selectedLabel}`);
+				return of(`${this.placeholder}`);
 			} else {
 				return of(selected[0].content);
 			}
@@ -546,5 +561,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		}
 
 		return false;
+	}
+
+	clearSelected() {
+		this.view.resetSelected();
+		this.selected.emit([]);
+		this.propagateChange([]);
 	}
 }

@@ -69,7 +69,7 @@ import { Observable, isObservable, Subscription } from "rxjs";
 				}">
 				<div
 					*ngIf="!listTpl && type === 'multi'"
-					class="bx--form-item bx--checkbox-wrapper">
+					class="bx--form-item">
 					<input
 						class="bx--checkbox"
 						type="checkbox"
@@ -77,12 +77,14 @@ import { Observable, isObservable, Subscription } from "rxjs";
 						[disabled]="item.disabled"
 						(click)="doClick($event, item)"
 						tabindex="-1">
-					<label class="bx--checkbox-label">{{item.content}}</label>
+						<label class="bx--checkbox-label">
+							<span>{{item.content}}</span>
+						</label>
 				</div>
 				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="listTpl"
-					[ngTemplateOutletContext]="{item: item}"
+					[ngTemplateOutletContext]="{$implicit: item}"
 					[ngTemplateOutlet]="listTpl">
 				</ng-template>
 			</li>
@@ -456,5 +458,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		const element = this.listElementList.toArray()[index].nativeElement;
 		element.classList.remove("bx--list-box__menu-item--highlighted");
 		element.tabIndex = -1;
+	}
+
+	resetSelected() {
+		const clearedItems = this.getListItems().map(item => Object.assign({}, item, {selected: false}));
+		this.updateList(clearedItems);
 	}
 }

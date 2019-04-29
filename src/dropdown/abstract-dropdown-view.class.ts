@@ -95,4 +95,9 @@ export class AbstractDropdownView {
 	 * In most cases this just calls `getCurrentElement().focus()`
 	 */
 	initFocus(): void {}
+
+	/**
+	 * Resets all selected items
+	 */
+	resetSelected(): void {}
 }
