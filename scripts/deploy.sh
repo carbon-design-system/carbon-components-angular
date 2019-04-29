@@ -13,7 +13,7 @@ npm run build
 npm run semantic-release
 
 # deploy to gh pages
-if [[ $TRAVIS_BRANCH == "master" ]]; then
+if [[ $TRAVIS_BRANCH == "v9" ]]; then
 	mkdir pages
 	cd pages
 
