@@ -179,6 +179,7 @@ import { I18n } from "./../i18n/i18n.module";
 		<thead>
 			<tr>
 				<th
+					class="bx--table-expand"
 					*ngIf="model.hasExpandableRows()"
 					[ibmDataGridFocus]="isDataGrid"
 					[(columnIndex)]="columnIndex"
@@ -358,7 +359,7 @@ import { I18n } from "./../i18n/i18n.module";
 						class="bx--table-expand__button"
 						[attr.aria-label]="expandButtonAriaLabel | async"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])">
-							<ibm-icon-chevron-right16 class="bx--table-expand__svg"></ibm-icon-chevron-right16>
+							<ibm-icon-chevron-right16 innerClass="bx--table-expand__svg"></ibm-icon-chevron-right16>
 						</button>
 					</td>
 					<td
