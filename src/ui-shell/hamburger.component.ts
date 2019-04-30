@@ -16,7 +16,6 @@ import { I18n } from "../i18n/i18n.module";
 			[attr.aria-label]="i18n.get('UI_SHELL.HEADER.MENU') | async"
 			[attr.title]="i18n.get('UI_SHELL.HEADER.MENU') | async">
 
-
 			<svg *ngIf="!selected" aria-hidden="true" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
 				<path d="M4 6h24v2H4zm0 18h24v2H4zm0-9h24v2H4z" />
 			</svg>
