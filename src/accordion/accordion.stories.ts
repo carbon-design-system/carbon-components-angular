@@ -51,7 +51,9 @@ storiesOf("Accordion", module)
 			],
 			selected: action("item expanded")
 		}
-	}))
+	}),
+		{ notes: "https://angular.carbondesignsystem.com/documentation/components/Accordion.html#info"}
+	)
 	.add("Skeleton", () => ({
 		template: `
 			<div style="width: 500px">
