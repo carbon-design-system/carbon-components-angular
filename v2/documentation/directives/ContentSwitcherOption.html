@@ -716,7 +716,7 @@ export class ContentSwitcherOption {
 
 	@HostListener(&quot;blur&quot;, [&quot;$event&quot;])
 	onBlur(event) {
-		if (event.relatedTarget) {
+		if (event.relatedTarget &amp;&amp; event.relatedTarget.classList.contains(&quot;bx--content-switcher-btn&quot;)) {
 			this.active &#x3D; false;
 		}
 	}
