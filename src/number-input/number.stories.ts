@@ -24,7 +24,7 @@ storiesOf("Number", module).addDecorator(
 		`,
 		props: {
 			label: text("label", "Number Input Label"),
-			helperText: text("helper text", "Optional helper text here"),
+			helperText: text("helper text", "Optional helper text."),
 			invalidText: text("Form validation content", "Invalid number"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			min: number("min", 0),
