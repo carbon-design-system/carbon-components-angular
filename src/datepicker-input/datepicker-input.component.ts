@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ViewChild
 } from "@angular/core";
 
 @Component({
@@ -27,7 +28,8 @@ import {
 					data-open>
 				</ibm-icon-calendar16>
 				<input
-				    #dateInput
+					#dateInput
+					maxlength="10"
 					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
@@ -38,9 +40,10 @@ import {
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
 					[attr.disabled]="(disabled ? '' : null)"
-					[attr.data-invalid]="(invalid ? '' : null)"
-					(change) = "valueChange.emit(dateInput.value)"/>
-					<div *ngIf="invalid" class="bx--form-requirement">
+					[attr.data-invalid]="(validate ? '' : null)"
+					(keydown)="denyChar($event)"
+					(change) = "onChange()"/>
+					<div *ngIf="validate" class="bx--form-requirement">
 						{{invalidText}}
 					</div>
 			</div>
@@ -57,6 +60,8 @@ import {
 export class DatePickerInput {
 	private static datePickerCount = 0;
 
+	@ViewChild("dateInput") dateInput;
+
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.
@@ -71,7 +76,7 @@ export class DatePickerInput {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+	@Input() pattern = new RegExp("^\\d{1,2}/\\d{1,2}/\\d{4}$");
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
@@ -84,4 +89,24 @@ export class DatePickerInput {
 	@Input() invalidText: string;
 
 	@Input() skeleton = false;
+
+	get validate() {
+		if (this.dateInput && this.dateInput.nativeElement.value === "") { this.invalid = false; }
+		return this.invalid;
+	}
+
+	onChange() {
+		if (this.dateInput) {
+			this.valueChange.emit(this.dateInput.nativeElement.value);
+			this.invalid = !this.pattern.test(this.dateInput.nativeElement.value);
+		}
+	}
+
+	denyChar(event) {
+		let char = new RegExp("[A-Za-z]");
+		let keyChar = String.fromCharCode(event.which || event.keyCode);
+		if (char.test(keyChar)) {
+			event.preventDefault();
+		}
+	}
 }

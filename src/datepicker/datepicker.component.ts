@@ -5,7 +5,8 @@ import {
 	EventEmitter,
 	ViewEncapsulation,
 	ElementRef,
-	OnDestroy
+	OnDestroy,
+	ViewChild
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
@@ -94,7 +95,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+	@Input() pattern = new RegExp("^\\d{1,2}/\\d{1,2}/\\d{4}$");
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
