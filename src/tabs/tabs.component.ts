@@ -44,9 +44,17 @@ import { TabHeaders } from "./tab-headers.component";
 				[skeleton]="skeleton"
 				[tabs]="tabs"
 				[followFocus]="followFocus"
-				[cacheActive]="cacheActive">
+				[cacheActive]="cacheActive"
+				[contentBefore]="before"
+				[contentAfter]="after">
 			</ibm-tab-headers>
 			<ng-content></ng-content>
+			<ng-template #before>
+				<ng-content select="[before]"></ng-content>
+			</ng-template>
+			<ng-template #after>
+				<ng-content select="[after]"></ng-content>
+			</ng-template>
 			<ibm-tab-headers
 				*ngIf="hasTabHeaders() && position === 'bottom'"
 				[skeleton]="skeleton"
