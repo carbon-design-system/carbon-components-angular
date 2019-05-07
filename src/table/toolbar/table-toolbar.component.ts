@@ -14,7 +14,7 @@ import { I18n } from "../../i18n/i18n.module";
 			[attr.aria-label]="actionBarLabel | async">
 			<div class="bx--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
-				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="cancel()">Cancel</button>
+				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{cancelText | async}}</button>
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para">
@@ -32,7 +32,11 @@ export class TableToolbar {
 	@Input() set ariaLabel (value) {
 		this.actionBarLabel.next(value.ACTION_BAR);
 	}
+	@Input() set cancel (value) {
+		this.cancelText.next(value.CANCEL);
+	}
 	actionBarLabel = this.i18n.get("TABLE_TOOLBAR.ACTION_BAR");
+	cancelText = this.i18n.get("TABLE_TOOLBAR.CANCEL");
 
 	constructor(protected i18n: I18n) {}
 
@@ -43,7 +47,7 @@ export class TableToolbar {
 		return this.model.totalDataLength > 0 ? this.model.rowsSelected.some(item => item) : false;
 	}
 
-	cancel() {
+	onCancel() {
 		for (let i = 0; i < this.model.rowsSelected.length; i++) {
 			this.model.selectRow(i, false);
 		}
