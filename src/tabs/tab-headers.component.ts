@@ -50,6 +50,9 @@ import { Tab } from "./tab.component";
 				}"
 				class="bx--tabs__nav"
 				role="tablist">
+				<li role="presentation">
+					<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
+				</li>
 				<li
 					*ngFor="let tab of tabs; let i = index;"
 					[ngClass]="{
@@ -79,11 +82,11 @@ import { Tab } from "./tab.component";
 						</ng-template>
 					</a>
 				</li>
+				<li role="presentation">
+					<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
+				</li>
 			</ul>
 		</nav>
-		<div>
-			<ng-content select="ibm-tab"></ng-content>
-		</div>
 	 `
 })
 
@@ -107,6 +110,9 @@ export class TabHeaders implements AfterContentInit {
 	 * Set to `true` to put tabs in a loading state.
 	 */
 	@Input() skeleton = false;
+
+	@Input() contentBefore;
+	@Input() contentAfter;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
