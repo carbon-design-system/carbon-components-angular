@@ -3,6 +3,7 @@ import { withKnobs, boolean, number } from "@storybook/addon-knobs/angular";
 
 import { BreadcrumbModule, DialogModule } from "../";
 import { BreadcrumbItem } from "../breadcrumb/breadcrumb-item.interface";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 let breadcrumbItems;
 
@@ -19,7 +20,8 @@ storiesOf("Breadcrumb", module)
 	moduleMetadata({
 		imports: [
 			BreadcrumbModule,
-			DialogModule
+			DialogModule,
+			DocumentationModule
 		]
 	})
 )
@@ -69,4 +71,9 @@ storiesOf("Breadcrumb", module)
 	props: {
 		noTrailingSlash: boolean("noTrailingSlash", true)
 	}
+}))
+.add("Documentation", () => ({
+	template: `
+		<ibm-documentation src="documentation/components/Breadcrumb.html"></ibm-documentation>
+	`
 }));

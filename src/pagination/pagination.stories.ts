@@ -12,6 +12,7 @@ import {
 import { NFormsModule } from "..";
 import { PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-pagination",
@@ -50,7 +51,8 @@ storiesOf("Pagination", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,
-				PaginationModule
+				PaginationModule,
+				DocumentationModule
 			],
 			declarations: [
 				PaginationStory
@@ -77,5 +79,10 @@ storiesOf("Pagination", module).addDecorator(
 		props: {
 			totalDataLength: number("totalDataLength", 105)
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Pagination.html"></ibm-documentation>
+		`
 	}));
 

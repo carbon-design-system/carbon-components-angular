@@ -3,13 +3,14 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 
 import { ContentSwitcherModule } from "../";
-
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Content Switcher", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				ContentSwitcherModule
+				ContentSwitcherModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -25,4 +26,9 @@ storiesOf("Content Switcher", module)
 		props: {
 			selected: action("selection changed")
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/ContentSwitcher.html"></ibm-documentation>
+		`
 	}));

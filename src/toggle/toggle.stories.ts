@@ -7,10 +7,11 @@ import {
 } from "@storybook/addon-knobs/angular";
 
 import { ToggleModule } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Toggle", module).addDecorator(
 	moduleMetadata({
-		imports: [ToggleModule]
+		imports: [ToggleModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -39,5 +40,10 @@ storiesOf("Toggle", module).addDecorator(
 			<ibm-toggle skeleton="true"></ibm-toggle>
 			&nbsp;
 			<ibm-toggle skeleton="true" size="sm"></ibm-toggle>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Toggle.html"></ibm-documentation>
 		`
 	}));

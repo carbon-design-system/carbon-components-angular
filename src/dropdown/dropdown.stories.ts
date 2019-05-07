@@ -5,13 +5,15 @@ import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs
 import { DropdownModule } from "../";
 import { of } from "rxjs";
 import { PlaceholderModule } from "../placeholder/placeholder.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
 				DropdownModule,
-				PlaceholderModule
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -138,4 +140,9 @@ storiesOf("Dropdown", module)
 				{ content: "four" }
 			]
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Dropdown.html"></ibm-documentation>
+		`
 	}));

@@ -3,11 +3,12 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
 import { ButtonModule } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Button", module)
 	.addDecorator(
 		moduleMetadata({
-			imports: [ButtonModule]
+			imports: [ButtonModule, DocumentationModule]
 		})
 	)
 	.addDecorator(withKnobs)
@@ -34,5 +35,10 @@ storiesOf("Button", module)
 			<button ibmButton skeleton="true"></button>
 			&nbsp;
 			<button ibmButton skeleton="true" size="sm"></button>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/directives/Button.html"></ibm-documentation>
 		`
 	}));

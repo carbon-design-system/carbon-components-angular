@@ -3,12 +3,14 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
 import { AccordionModule } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Accordion", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				AccordionModule
+				AccordionModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -51,9 +53,7 @@ storiesOf("Accordion", module)
 			],
 			selected: action("item expanded")
 		}
-	}),
-		{ notes: "https://angular.carbondesignsystem.com/documentation/components/Accordion.html#info"}
-	)
+	}))
 	.add("Skeleton", () => ({
 		template: `
 			<div style="width: 500px">
@@ -64,5 +64,10 @@ storiesOf("Accordion", module)
 					<ibm-accordion-item></ibm-accordion-item>
 				</ibm-accordion>
 			</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Accordion.html"></ibm-documentation>
 		`
 	}));

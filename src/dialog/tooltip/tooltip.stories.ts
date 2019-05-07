@@ -4,6 +4,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
 import { DialogModule, PlaceholderModule } from "../../";
+import { DocumentationModule } from "./../../documentation-component/documentation.module";
 
 storiesOf("Tooltip", module)
 	.addDecorator(
@@ -11,7 +12,8 @@ storiesOf("Tooltip", module)
 			imports: [
 				DialogModule,
 				PlaceholderModule,
-				InformationFilled16Module
+				InformationFilled16Module,
+				DocumentationModule
 			]
 		})
 	)
@@ -131,4 +133,9 @@ storiesOf("Tooltip", module)
 			triggerText: text("Tooltip text", "Definition Tooltip"),
 			content: text("Tooltip content", "Brief description of the dotted, underlined word above.")
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tooltip.html"></ibm-documentation>
+		`
 	}));

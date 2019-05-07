@@ -11,6 +11,7 @@ import {
 
 import { FileUploaderModule, NotificationModule, ButtonModule } from "../";
 import { NotificationService } from "../notification/notification.service";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-file-uploader",
@@ -143,7 +144,7 @@ class NgModelFileUploaderStory {
 storiesOf("File Uploader", module)
 	.addDecorator(
 		moduleMetadata({
-			imports: [FileUploaderModule, NotificationModule, ButtonModule],
+			imports: [FileUploaderModule, NotificationModule, ButtonModule, DocumentationModule],
 			declarations: [FileUploaderStory, NgModelFileUploaderStory]
 		})
 	)
@@ -187,5 +188,10 @@ storiesOf("File Uploader", module)
 	.add("Skeleton", () => ({
 		template: `
 			<app-file-uploader skeleton="true"></app-file-uploader>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/FileUploader.html"></ibm-documentation>
 		`
 	}));

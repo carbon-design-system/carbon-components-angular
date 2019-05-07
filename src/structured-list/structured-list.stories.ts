@@ -3,10 +3,11 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 
 import { StructuredListModule } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Structured List", module).addDecorator(
 	moduleMetadata({
-		imports: [StructuredListModule]
+		imports: [StructuredListModule, DocumentationModule]
 	}))
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
@@ -174,6 +175,11 @@ storiesOf("Structured List", module).addDecorator(
 				</ibm-list-row>
 			</ibm-structured-list>
 		</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/StructuredList.html"></ibm-documentation>
 		`
 	}));
 

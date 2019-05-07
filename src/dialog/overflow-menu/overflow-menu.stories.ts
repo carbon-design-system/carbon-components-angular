@@ -3,6 +3,7 @@ import { withKnobs, number, boolean } from "@storybook/addon-knobs";
 
 import { DialogModule } from "../../";
 import { PlaceholderModule } from "../../placeholder/placeholder.module";
+import { DocumentationModule } from "./../../documentation-component/documentation.module";
 
 let options;
 
@@ -19,7 +20,8 @@ storiesOf("Overflow Menu", module)
 		moduleMetadata({
 			imports: [
 				DialogModule,
-				PlaceholderModule
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -85,4 +87,9 @@ storiesOf("Overflow Menu", module)
 			optionCount: number("optionCount", 10),
 			options: createOptions
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/OverflowMenu.html"></ibm-documentation>
+		`
 	}));

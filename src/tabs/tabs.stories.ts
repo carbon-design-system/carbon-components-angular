@@ -2,12 +2,14 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { TabsModule } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TabsModule
+				TabsModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -61,5 +63,10 @@ storiesOf("Tabs", module)
 				<ibm-tab></ibm-tab>
 				<ibm-tab></ibm-tab>
 			</ibm-tabs>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tabs.html"></ibm-documentation>
 		`
 	}));

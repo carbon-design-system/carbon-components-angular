@@ -29,6 +29,7 @@ import {
 } from "../";
 
 import { clone } from "../utils/utils";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-table",
@@ -457,7 +458,8 @@ storiesOf("Table", module).addDecorator(
 				DialogModule,
 				PaginationModule,
 				SearchModule,
-				ButtonModule
+				ButtonModule,
+				DocumentationModule
 			],
 			declarations: [
 				TableStory,
@@ -683,5 +685,10 @@ storiesOf("Table", module).addDecorator(
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			striped: boolean("striped", false)
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Table.html"></ibm-documentation>
+		`
 	}));
 

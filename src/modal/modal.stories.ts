@@ -8,6 +8,7 @@ import { Modal, ModalService } from "../";
 import { ModalButton, AlertModalType, ModalButtonType } from "./alert-modal.interface";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { BaseModal } from "./base-modal.class";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-sample-modal",
@@ -109,7 +110,8 @@ storiesOf("Modal", module)
 			imports: [
 				ModalModule,
 				PlaceholderModule,
-				BrowserAnimationsModule
+				BrowserAnimationsModule,
+				DocumentationModule
 			],
 			entryComponents: [
 				SampleModal
@@ -170,4 +172,8 @@ storiesOf("Modal", module)
 				"the user needs to address immediately. Passive modal notifications are persistent on screen")
 		}
 	}))
-;
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Modal.html"></ibm-documentation>
+		`
+	}));

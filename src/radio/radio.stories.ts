@@ -3,10 +3,11 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { RadioModule } from "../";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Radio", module).addDecorator(
 	moduleMetadata({
-		imports: [RadioModule]
+		imports: [RadioModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -40,5 +41,10 @@ storiesOf("Radio", module).addDecorator(
 		<ibm-radio-group skeleton="true">
 			<ibm-radio></ibm-radio>
 		</ibm-radio-group>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Radio.html"></ibm-documentation>
 		`
 	}));
