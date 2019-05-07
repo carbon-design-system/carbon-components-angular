@@ -14,7 +14,10 @@ storiesOf("Radio", module).addDecorator(
 		template: `
 		<fieldset class="bx--fieldset">
 			<legend class="bx--label">{{label}}</legend>
-			<ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)">
+			<ibm-radio-group
+				aria-label="radiogroup"
+				[(ngModel)]="radio"
+				(change)="onChange($event)">
 				<ibm-radio
 					value="radio"
 					[checked]="true">

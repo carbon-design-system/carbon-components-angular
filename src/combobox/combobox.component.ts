@@ -32,7 +32,9 @@ import { filter } from "rxjs/operators";
 	template: `
 		<label [for]="id" class="bx--label">{{label}}</label>
 		<div class="bx--form__helper-text">{{helperText}}</div>
-		<div class="bx--combo-box bx--list-box" [ngClass]="{'bx--multi-select' : type === 'multi'}">
+		<div
+			class="bx--combo-box bx--list-box"
+			[ngClass]="{'bx--multi-select' : type === 'multi'}">
 			<div
 				[attr.aria-expanded]="open"
 				role="button"
