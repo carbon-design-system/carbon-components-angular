@@ -55,15 +55,19 @@ storiesOf("Progress Indicator", module)
 				{
 					text: "Second step",
 					state: ["current"],
-					tooltip: ["Overflow tooltip content.", "click", "bottom"]
+					tooltip: { content: "Overflow tooltip content.", trigger: "click", placement: "bottom" }
 				},
 				{
 					text: "Third step",
 					state: ["incomplete"],
-					tooltip: [`Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-						Animi consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
-						blanditiis cumque maxime tenetur veniam est illo deserunt sint quae pariatur.
-						Laboriosam, consequatur.`, "click", "bottom"]
+					tooltip: {
+						content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+							Animi consequuntur hic ratione aliquid cupiditate, nesciunt saepe iste
+							blanditiis cumque maxime tenetur veniam est illo deserunt sint quae pariatur.
+							Laboriosam, consequatur.`,
+						trigger: "click",
+						placement: "bottom"
+					}
 				},
 				{
 					text: "Fourth step",
@@ -98,11 +102,12 @@ storiesOf("Progress Indicator", module)
 				},
 				{
 					text: "Fourth step",
-					state: ["incomplete"]
+					state: ["incomplete", "error"]
 				},
 				{
 					text: "Fifth step",
-					state: ["incomplete"]
+					state: ["incomplete"],
+					disabled: true
 				}
 			],
 			current: number("Current progress", 1)
