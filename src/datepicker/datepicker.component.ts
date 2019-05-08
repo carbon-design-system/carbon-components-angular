@@ -5,8 +5,7 @@ import {
 	EventEmitter,
 	ViewEncapsulation,
 	ElementRef,
-	OnDestroy,
-	ViewChild
+	OnDestroy
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
