@@ -192,7 +192,7 @@ export class DatePicker implements OnDestroy {
 				this.value[index] = eventDate;
 			}
 		} else {
-			if (previousDate || event) {
+			if (previousDate) {
 				this.value = [...this.value];
 				this.value[index] = undefined;
 			}

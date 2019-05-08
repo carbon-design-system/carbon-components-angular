@@ -40,10 +40,9 @@ import {
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
 					[attr.disabled]="(disabled ? '' : null)"
-					[attr.data-invalid]="(validate ? '' : null)"
-					(keydown)="denyChar($event)"
+					[attr.data-invalid]="(invalid ? '' : null)"
 					(change) = "onChange()"/>
-					<div *ngIf="validate" class="bx--form-requirement">
+					<div *ngIf="invalid" class="bx--form-requirement">
 						{{invalidText}}
 					</div>
 			</div>
@@ -90,23 +89,12 @@ export class DatePickerInput {
 
 	@Input() skeleton = false;
 
-	get validate() {
-		if (this.dateInput && this.dateInput.nativeElement.value === "") { this.invalid = false; }
-		return this.invalid;
-	}
-
 	onChange() {
-		if (this.dateInput) {
-			this.valueChange.emit(this.dateInput.nativeElement.value);
+		this.valueChange.emit(this.dateInput.nativeElement.value);
+		if (this.dateInput && this.dateInput.nativeElement.value === "") {
+			this.invalid = false;
+		} else {
 			this.invalid = !this.pattern.test(this.dateInput.nativeElement.value);
-		}
-	}
-
-	denyChar(event) {
-		let char = new RegExp("[A-Za-z]");
-		let keyChar = String.fromCharCode(event.which || event.keyCode);
-		if (char.test(keyChar)) {
-			event.preventDefault();
 		}
 	}
 }
