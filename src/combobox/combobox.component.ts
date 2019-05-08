@@ -139,7 +139,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
-	 * Label for the dropdown.
+	 * Label for the combobox.
 	 */
 	@Input() label: string;
 	/**
