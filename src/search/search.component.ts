@@ -39,7 +39,7 @@ export class SearchChange {
 				'bx--toolbar-search--active': toolbar && active
 			}"
 			role="search">
-			<label class="bx--label" [for]="id">{{label}}</label>
+			<label class="bx--label" [for]="id" [innerHtml]="label"></label>
 
 			<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
 			<ng-template #enableInput>

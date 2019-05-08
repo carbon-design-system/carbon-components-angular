@@ -1,6 +1,12 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, number, text, boolean, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	number,
+	text,
+	boolean,
+	select
+} from "@storybook/addon-knobs/angular";
 
 import { SliderModule } from "./slider.module";
 

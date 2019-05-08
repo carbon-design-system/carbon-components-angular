@@ -42,7 +42,7 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<div *ngIf="label" class="bx--label" [id]="ariaLabelledby">{{label}}</div>
+		<div *ngIf="label" class="bx--label" [id]="ariaLabelledby" [innerHtml]="label"></div>
 		<input
 			class="bx--toggle"
 			type="checkbox"

@@ -31,8 +31,13 @@ export class NumberChange {
 	selector: "ibm-number",
 	template: `
 		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+		<label
+			*ngIf="!skeleton && label"
+			[for]="id"
+			class="bx--label"
+			[innerHtml]="label">
+		</label>
+		<div *ngIf="helperText" class="bx--form__helper-text" [innerHtml]="helperText"></div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? '' : null)"

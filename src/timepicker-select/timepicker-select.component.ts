@@ -10,7 +10,7 @@ import { Select } from "../select/select.component";
 @Component({
 	selector: "ibm-timepicker-select",
 	template: `
-			<label *ngIf="!skeleton" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
+			<label *ngIf="!skeleton" [attr.for]="id" class="bx--label bx--visually-hidden" [innerHtml]="label"></label>
 			<select
 				#select
 				[attr.id]="id"
@@ -37,6 +37,8 @@ export class TimePickerSelect extends Select {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() label: string;
 
 	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
 

@@ -10,7 +10,7 @@ import {
 	selector: "ibm-timepicker",
 	template: `
 			<div class="bx--time-picker__input">
-				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
+				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label" [innerHtml]="label"></label>
 				<input
 					[ngClass]="{
 						'bx--text-input--light': theme === 'light',

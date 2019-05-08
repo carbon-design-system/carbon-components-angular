@@ -17,9 +17,7 @@ import {
 				'bx--skeleton' : skeleton
 			}">
 			<div class="bx--date-picker-container">
-				<label [for]="id" class="bx--label">
-					{{label}}
-				</label>
+				<label [for]="id" class="bx--label" [innerHtml]="label"></label>
 				<ibm-icon-calendar16
 					*ngIf="type == 'single'"
 					data-date-picker-icon

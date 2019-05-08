@@ -13,7 +13,7 @@ storiesOf("Checkbox", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 		<fieldset class="bx--fieldset">
-			<legend class="bx--label">{{labelText}}</legend>
+			<legend class="bx--label" [innerHtml]="label"></legend>
 			<ibm-checkbox
 				checked="true"
 				[hideLabel]="hideLabel"
@@ -39,7 +39,7 @@ storiesOf("Checkbox", module).addDecorator(
 		props: {
 			onChange: action("Change fired!"),
 			onIndeterminateChange: action("Indeterminate change fired!"),
-			labelText: text("Label text", "Checkbox"),
+			label: text("Label text", "Checkbox"),
 			hideLabel: boolean("Hide labels", false)
 		}
 	}))

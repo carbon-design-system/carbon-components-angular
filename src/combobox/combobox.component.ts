@@ -30,8 +30,8 @@ import { filter } from "rxjs/operators";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label [for]="id" class="bx--label">{{label}}</label>
-		<div class="bx--form__helper-text">{{helperText}}</div>
+		<label [for]="id" class="bx--label" [innerHtml]="label"></label>
+		<div class="bx--form__helper-text" [innerHtml]="helperText"></div>
 		<div
 			class="bx--combo-box bx--list-box"
 			[ngClass]="{'bx--multi-select' : type === 'multi'}">

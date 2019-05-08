@@ -30,8 +30,8 @@ import { DropdownService } from "./dropdown.service";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<label [for]="id" class="bx--label">{{label}}</label>
-	<div class="bx--form__helper-text">{{helperText}}</div>
+	<label [for]="id" class="bx--label" [innerHtml]="label"></label>
+	<div class="bx--form__helper-text" [innerHtml]="helperText"></div>
 	<div
 		[id]="id"
 		class="bx--dropdown bx--list-box"
