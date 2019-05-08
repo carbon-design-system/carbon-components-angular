@@ -32,11 +32,14 @@ export class TableToolbar {
 	@Input() set ariaLabel (value) {
 		this.actionBarLabel.next(value.ACTION_BAR);
 	}
-	@Input() set cancel (value) {
-		this.cancelText.next(value.CANCEL);
+	@Input() set cancelText(value) {
+		this._cancelText.next(value.CANCEL);
+	}
+	get cancelText() {
+		return this._cancelText;
 	}
 	actionBarLabel = this.i18n.get("TABLE_TOOLBAR.ACTION_BAR");
-	cancelText = this.i18n.get("TABLE_TOOLBAR.CANCEL");
+	_cancelText = this.i18n.get("TABLE_TOOLBAR.CANCEL");
 
 	constructor(protected i18n: I18n) {}
 
