@@ -34,7 +34,11 @@ import { Step } from "./progress-indicator.interface";
 					*ngIf="step.tooltip"
 					[ibmTooltip]="step.tooltip.content"
 					[trigger]="step.tooltip.trigger"
-					[placement]="step.tooltip.placement">
+					[placement]="step.tooltip.placement"
+					[title]="step.tooltip.title"
+					[gap]="step.tooltip.gap"
+					[appendInline]="step.tooltip.appendInline"
+					[data]="step.tooltip.data">
 					{{step.text}}
 				</p>
 				<p class="bx--progress-label" *ngIf="!step.tooltip">{{step.text}}</p>

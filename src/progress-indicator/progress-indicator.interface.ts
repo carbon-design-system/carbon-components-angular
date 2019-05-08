@@ -1,4 +1,5 @@
 import { TemplateRef } from "@angular/core";
+import { DialogConfig } from "./../dialog/dialog-config.interface";
 
 export interface Step {
 	/**
@@ -12,24 +13,9 @@ export interface Step {
 	/**
 	 * Defines the tooltip
 	 */
-	tooltip?: Tooltip;
+	tooltip?: DialogConfig;
 	/**
 	 * Determines whether the step is disabled or not
 	 */
 	disabled?: boolean;
-}
-
-export interface Tooltip {
-	/**
-	 * Body content for the `Tooltip`.
-	 */
-	content: string | TemplateRef<any>;
-	/**
-	 * Parameter for triggering `Tooltip` display.
-	 */
-	trigger: "click" | "hover";
-	/**
-	 * Parameter defining the placement in which the `Tooltip` appears.
-	 */
-	placement: string;
 }
