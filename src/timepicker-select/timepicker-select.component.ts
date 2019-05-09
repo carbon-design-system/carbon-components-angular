@@ -39,7 +39,7 @@ export class TimePickerSelect extends Select {
 	 */
 	@Input() theme: "light" | "dark" = "dark";
 
-	@Input() label: string  | TemplateRef<any>;
+	@Input() label: string;
 
 	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
 

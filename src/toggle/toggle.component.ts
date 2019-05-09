@@ -43,7 +43,10 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<div *ngIf="label" class="bx--label" [id]="ariaLabelledby">{{label}}</div>
+		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -158,5 +161,9 @@ export class Toggle extends Checkbox {
 
 		this.propagateChange(this.checked);
 		this.change.emit(event);
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

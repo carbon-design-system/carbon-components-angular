@@ -37,9 +37,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				}"
 				class="bx--select"
 				style="width: 100%">
-				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
-				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
-				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+				<label *ngIf="skeleton" [for]="id" class="bx--label bx--skeleton"></label>
+				<label *ngIf="!skeleton" [for]="id" class="bx--label">
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+				</label>
+				<div *ngIf="helperText" class="bx--form__helper-text">
+					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+				</div>
 				<div class="bx--select-input__wrapper">
 					<select
 						#select
@@ -175,5 +181,9 @@ export class Select implements ControlValueAccessor {
 	@HostListener("blur")
 	protected blur() {
 		this.onTouchedHandler();
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

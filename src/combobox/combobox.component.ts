@@ -31,8 +31,14 @@ import { filter } from "rxjs/operators";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label [for]="id" class="bx--label">{{label}}</label>
-		<div class="bx--form__helper-text">{{helperText}}</div>
+		<label [for]="id" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
+		<div *ngIf="helperText" class="bx--form__helper-text">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+		</div>
 		<div
 			class="bx--combo-box bx--list-box"
 			[ngClass]="{'bx--multi-select' : type === 'multi'}">
@@ -427,6 +433,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 				selected: false
 			}
 		});
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 
 	protected updateSelected() {

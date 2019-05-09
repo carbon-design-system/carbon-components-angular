@@ -11,7 +11,10 @@ import {
 	selector: "ibm-timepicker",
 	template: `
 			<div class="bx--time-picker__input">
-				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
+				<label *ngIf="!skeleton" [for]="id" class="bx--label">
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+				</label>
 				<input
 					[ngClass]="{
 						'bx--text-input--light': theme === 'light',
@@ -59,5 +62,9 @@ export class TimePicker {
 
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

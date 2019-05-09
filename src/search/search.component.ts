@@ -150,7 +150,7 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
-	@Input() label: string | TemplateRef<any> = this.i18n.get().SEARCH.LABEL;
+	@Input() label = this.i18n.get().SEARCH.LABEL;
 	/**
 	 * Sets the placeholder attribute on the `input` element.
 	 */
