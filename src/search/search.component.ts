@@ -6,8 +6,7 @@ import {
 	HostBinding,
 	ElementRef,
 	HostListener,
-	ViewChild,
-	TemplateRef
+	ViewChild
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
