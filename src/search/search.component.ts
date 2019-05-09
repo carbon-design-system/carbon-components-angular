@@ -6,7 +6,8 @@ import {
 	HostBinding,
 	ElementRef,
 	HostListener,
-	ViewChild
+	ViewChild,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
@@ -39,7 +40,7 @@ export class SearchChange {
 				'bx--toolbar-search--active': toolbar && active
 			}"
 			role="search">
-			<label class="bx--label" [for]="id" [innerHtml]="label"></label>
+			<label class="bx--label" [for]="id">{{label}}</label>
 
 			<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
 			<ng-template #enableInput>
@@ -149,7 +150,7 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
-	@Input() label = this.i18n.get().SEARCH.LABEL;
+	@Input() label: string | TemplateRef<any> = this.i18n.get().SEARCH.LABEL;
 	/**
 	 * Sets the placeholder attribute on the `input` element.
 	 */

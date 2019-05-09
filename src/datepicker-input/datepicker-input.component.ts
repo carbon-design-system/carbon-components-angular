@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 
 @Component({
@@ -17,7 +18,7 @@ import {
 				'bx--skeleton' : skeleton
 			}">
 			<div class="bx--date-picker-container">
-				<label [for]="id" class="bx--label" [innerHtml]="label"></label>
+				<label [for]="id" class="bx--label">{{label}}</label>
 				<ibm-icon-calendar16
 					*ngIf="type == 'single'"
 					data-date-picker-icon
@@ -65,7 +66,7 @@ export class DatePickerInput {
 
 	@Input() hasIcon = false;
 
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 
 	@Input() placeholder = "mm/dd/yyyy";
 

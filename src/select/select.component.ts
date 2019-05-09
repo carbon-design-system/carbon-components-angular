@@ -5,7 +5,8 @@ import {
 	ViewChild,
 	ElementRef,
 	HostListener,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -37,8 +38,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				class="bx--select"
 				style="width: 100%">
 				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
-				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label" [innerHtml]="label"></label>
-				<div *ngIf="helperText" class="bx--form__helper-text" [innerHtml]="helperText"></div>
+				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
+				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 				<div class="bx--select-input__wrapper">
 					<select
 						#select
@@ -80,11 +81,11 @@ export class Select implements ControlValueAccessor {
 	/**
 	 * Label for the select. Appears above the input.
 	 */
-	@Input() label = "Select label";
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Optional helper text that appears under he label.
 	 */
-	@Input() helperText: string;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Sets the invalid text.
 	 */

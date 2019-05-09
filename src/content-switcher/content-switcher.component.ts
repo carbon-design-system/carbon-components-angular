@@ -28,7 +28,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
 	selector: "ibm-content-switcher",
 	template: `
 		<div
-			[attr.aria-label]="label"
+			[attr.aria-label]="ariaLabel"
 			class="bx--content-switcher"
 			role="tablist">
 			<ng-content></ng-content>
@@ -39,7 +39,7 @@ export class ContentSwitcher implements AfterViewInit {
 	/**
 	 * aria-label for the content switcher. Should be set to something descriptive
 	 */
-	@Input() label = "content switcher";
+	@Input() ariaLabel = "content switcher";
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`

@@ -13,7 +13,7 @@ storiesOf("Checkbox", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 		<fieldset class="bx--fieldset">
-			<legend class="bx--label" [innerHtml]="label"></legend>
+			<legend class="bx--label">{{label}}</legend>
 			<ibm-checkbox
 				checked="true"
 				[hideLabel]="hideLabel"

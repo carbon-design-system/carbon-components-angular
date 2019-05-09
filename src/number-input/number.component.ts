@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, EventEmitter, Output } from "@angular/core";
+import { Component, Input, HostBinding, EventEmitter, Output, TemplateRef } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { isNullOrUndefined } from "util";
 
@@ -31,13 +31,8 @@ export class NumberChange {
 	selector: "ibm-number",
 	template: `
 		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-		<label
-			*ngIf="!skeleton && label"
-			[for]="id"
-			class="bx--label"
-			[innerHtml]="label">
-		</label>
-		<div *ngIf="helperText" class="bx--form__helper-text" [innerHtml]="helperText"></div>
+		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
+		<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? '' : null)"
@@ -135,11 +130,11 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
-	@Input() label;
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Sets the optional helper text.
 	 */
-	@Input() helperText;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Sets the invalid text.
 	 */

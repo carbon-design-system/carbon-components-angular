@@ -10,7 +10,8 @@ import {
 	AfterContentInit,
 	HostListener,
 	OnDestroy,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -30,8 +31,8 @@ import { DropdownService } from "./dropdown.service";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
-	<label [for]="id" class="bx--label" [innerHtml]="label"></label>
-	<div class="bx--form__helper-text" [innerHtml]="helperText"></div>
+	<label [for]="id" class="bx--label">{{label}}</label>
+	<div class="bx--form__helper-text">{{helperText}}</div>
 	<div
 		[id]="id"
 		class="bx--dropdown bx--list-box"
@@ -101,11 +102,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	/**
 	 * Label for the dropdown.
 	 */
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Sets the optional helper text.
 	 */
-	@Input() helperText: string;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Value displayed if no item is selected.
 	 */

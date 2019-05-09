@@ -7,7 +7,8 @@ import {
 	AfterViewInit,
 	OnDestroy,
 	ViewChild,
-	ElementRef
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -48,7 +49,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label for="slider" class="bx--label" [innerHtml]="label"></label>
+			<label for="slider" class="bx--label">{{label}}</label>
 			<div class="bx--slider-container">
 				<label [id]="bottomRangeId" class="bx--slider__range-label">
 					<ng-content select="[minLabel]"></ng-content>
@@ -151,7 +152,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Set to `true` for a loading slider */
 	@Input() skeleton = false;
 	/** Sets the text inside the `label` tag */
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 	/** Set to `true` for a slider without arrow key interactions. */
 	@Input() disableArrowKeys = false;
 	/** Disables the range visually and functionally */

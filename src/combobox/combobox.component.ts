@@ -10,7 +10,8 @@ import {
 	EventEmitter,
 	AfterViewInit,
 	AfterContentInit,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 import { AbstractDropdownView } from "./../dropdown/abstract-dropdown-view.class";
 import { ListItem } from "./../dropdown/list-item.interface";
@@ -30,8 +31,8 @@ import { filter } from "rxjs/operators";
 @Component({
 	selector: "ibm-combo-box",
 	template: `
-		<label [for]="id" class="bx--label" [innerHtml]="label"></label>
-		<div class="bx--form__helper-text" [innerHtml]="helperText"></div>
+		<label [for]="id" class="bx--label">{{label}}</label>
+		<div class="bx--form__helper-text">{{helperText}}</div>
 		<div
 			class="bx--combo-box bx--list-box"
 			[ngClass]="{'bx--multi-select' : type === 'multi'}">
@@ -141,11 +142,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Label for the combobox.
 	 */
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Sets the optional helper text.
 	 */
-	@Input() helperText: string;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
