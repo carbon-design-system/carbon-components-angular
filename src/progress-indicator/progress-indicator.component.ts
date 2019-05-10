@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { ExperimentalService } from "./../experimental.module";
-import { Step } from "./progress-indicator.interface";
+import { Step } from "./progress-indicator-step.interface";
 
 @Component({
 	selector: "ibm-progress-indicator",
