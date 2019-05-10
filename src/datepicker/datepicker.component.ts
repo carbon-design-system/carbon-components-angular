@@ -94,7 +94,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = new RegExp("^\\d{1,2}/\\d{1,2}/\\d{4}$");
+	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 

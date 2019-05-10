@@ -28,7 +28,6 @@ import {
 					data-open>
 				</ibm-icon-calendar16>
 				<input
-					#dateInput
 					maxlength="10"
 					*ngIf="!skeleton"
 					autocomplete="off"
@@ -41,7 +40,7 @@ import {
 					[id]= "id"
 					[attr.disabled]="(disabled ? '' : null)"
 					[attr.data-invalid]="(invalid ? '' : null)"
-					(change) = "onChange()"/>
+					(change) = "onChange($event)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
 						{{invalidText}}
 					</div>
@@ -59,8 +58,6 @@ import {
 export class DatePickerInput {
 	private static datePickerCount = 0;
 
-	@ViewChild("dateInput") dateInput;
-
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.
@@ -75,7 +72,7 @@ export class DatePickerInput {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = new RegExp("^\\d{1,2}/\\d{1,2}/\\d{4}$");
+	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
@@ -89,12 +86,12 @@ export class DatePickerInput {
 
 	@Input() skeleton = false;
 
-	onChange() {
-		this.valueChange.emit(this.dateInput.nativeElement.value);
-		if (this.dateInput && this.dateInput.nativeElement.value === "") {
+	onChange(event) {
+		this.valueChange.emit(event.target.value);
+		if (event.target && event.target.value === "") {
 			this.invalid = false;
 		} else {
-			this.invalid = !this.pattern.test(this.dateInput.nativeElement.value);
+			this.invalid = !new RegExp(this.pattern).test(event.target.value);
 		}
 	}
 }
