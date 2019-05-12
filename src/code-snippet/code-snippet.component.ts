@@ -15,13 +15,13 @@ export enum SnippetType {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/codesnippet--basic](../../?path=/story/codesnippet--basic)
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/code-snippet--basic](../../?path=/story/code-snippet--basic)
  *
  * ```html
  * <ibm-code-snippet>Code</ibm-code-snippet>
  * ```
  *
- * <example-url>../../iframe.html?id=codesnippet--basic</example-url>
+ * <example-url>../../iframe.html?id=code-snippet--basic</example-url>
  *
  * @export
  * @class CodeSnippet

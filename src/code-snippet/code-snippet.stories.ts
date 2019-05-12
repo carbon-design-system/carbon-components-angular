@@ -36,7 +36,7 @@ storiesOf("Code Snippet", module).addDecorator(
 
 const inlineCode = "<inline code>";
 
-storiesOf("CodeSnippet", module).addDecorator(
+storiesOf("Code Snippet", module).addDecorator(
 	moduleMetadata({
 		imports: [CodeSnippetModule, DocumentationModule]
 	})
