@@ -11,6 +11,13 @@ export type TagType = "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | 
 
 /**
  * Component that represents a tag for labelling/categorizing using keywords
+ *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/tag--basic](../../?path=/story/tag--basic)
+ *
+ * <example-url>../../iframe.html?id=tag--basic</example-url>
+ *
+ * @export
+ * @class Tag
  */
 @Component({
 	selector: "ibm-tag",

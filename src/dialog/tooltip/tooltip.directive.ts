@@ -16,6 +16,8 @@ import { DialogService } from "./../dialog.service";
 /**
  * Directive for extending `Dialog` to create tooltips.
  *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/tooltip--basic](../../?path=/story/tooltip--basic)
+ *
  * class: TooltipDirective (extends PopoverDirective)
  *
  *
@@ -26,6 +28,8 @@ import { DialogService } from "./../dialog.service";
  * <button nTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="danger">Tooltip Right</button>
  * <button nTooltip="I am a tooltip" type="warning">Tooltip Top warning on click</button>
  * ```
+ *
+ * <example-url>../../iframe.html?id=tooltip--basic</example-url>
  *
  * @export
  * @class TooltipDirective

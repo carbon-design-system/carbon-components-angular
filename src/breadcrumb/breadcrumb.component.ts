@@ -11,6 +11,15 @@ import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
+/**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/breadcrumb--basic](../../?path=/story/breadcrumb--basic)
+ *
+ * <example-url>../../iframe.html?id=breadcrumb--basic</example-url>
+ *
+ * @export
+ * @class Breadcrumb
+ * @implements {AfterContentInit}
+ */
 @Component({
 	selector: "ibm-breadcrumb",
 	template: `

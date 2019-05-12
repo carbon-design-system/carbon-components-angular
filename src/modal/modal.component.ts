@@ -20,9 +20,10 @@ import {
 } from "@angular/animations";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
-
 /**
  * Component to create modals for presenting content.
+ *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/modal--basic](../../?path=/story/modal--basic)
  *
  * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
@@ -77,7 +78,13 @@ export class ModalDemo {
 }
 ```
  *
- * <example-url>https://angular.carbondesignsystem.com/iframe.html?id=modal--basic</example-url>
+ * <example-url>../../iframe.html?id=modal--basic</example-url>
+ *
+ * @export
+ * @class Modal
+ * @implements {AfterViewInit}
+ * @implements {OnInit}
+ * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-modal",

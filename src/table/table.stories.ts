@@ -472,7 +472,7 @@ storiesOf("Table", module).addDecorator(
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("default", () => ({
+	.add("basic", () => ({
 		template: `
 		<div style="width: 650px">
 			<app-table

@@ -39,6 +39,8 @@ export class RadioChange {
 }
 
 /**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/radio--basic](../../?path=/story/radio--basic)
+ *
  * class: RadioGroup
  *
  * selector: `ibm-radio-group`
@@ -63,6 +65,7 @@ export class RadioChange {
  *
  * Also see: [`Radio`](#ibm-radio)
  *
+ * <example-url>../../iframe.html?id=radio--basic</example-url>
  */
 @Component({
 	selector: "ibm-radio-group",

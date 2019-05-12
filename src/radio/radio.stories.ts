@@ -45,6 +45,6 @@ storiesOf("Radio", module).addDecorator(
 	}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/components/Radio.html"></ibm-documentation>
+			<ibm-documentation src="documentation/components/RadioGroup.html"></ibm-documentation>
 		`
 	}));

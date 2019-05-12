@@ -102,4 +102,9 @@ storiesOf("Notification", module)
 		template: `
 			<ibm-documentation src="documentation/components/Notification.html"></ibm-documentation>
 		`
+	}))
+	.add("Toast Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Toast.html"></ibm-documentation>
+		`
 	}));

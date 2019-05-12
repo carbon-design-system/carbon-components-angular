@@ -14,6 +14,8 @@ import { ExperimentalService } from "./../experimental.module";
 /**
  * Use pagination when you have multiple pages of data to handle.
  *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/pagination--basic](../../?path=/story/pagination--basic)
+ *
  * ```html
  * <ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
  * ```
@@ -30,6 +32,8 @@ import { ExperimentalService } from "./../experimental.module";
  * 	// ... anything you want to do after page selection changes goes here
  * }
  * ```
+ *
+ * <example-url>../../iframe.html?id=pagination--basic</example-url>
  *
  * @export
  * @class Pagination

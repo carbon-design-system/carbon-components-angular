@@ -15,6 +15,13 @@ import { of } from "rxjs";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
+ *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/notification--basic](../../?path=/story/notification--basic)
+ *
+ * <example-url>../../iframe.html?id=notification--basic</example-url>
+ *
+ * @export
+ * @class Notification
  */
 @Component({
 	selector: "ibm-notification",

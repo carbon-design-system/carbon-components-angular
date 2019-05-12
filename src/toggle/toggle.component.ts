@@ -35,9 +35,17 @@ export class ToggleChange {
 }
 
 /**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/toggle--basic](../../?path=/story/toggle--basic)
+ *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
+ *
+ * <example-url>../../iframe.html?id=toggle--basic</example-url>
+ *
+ * @export
+ * @class Toggle
+ * @extends {Checkbox}
  */
 @Component({
 	selector: "ibm-toggle",

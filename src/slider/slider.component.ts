@@ -15,6 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/slider--advanced](../../?path=/story/slider--advanced)
+ *
  * The simplest possible slider usage looks something like:
  * ```html
  * <ibm-slider></ibm-slider>
@@ -43,6 +45,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
+ *
+ * <example-url>../../iframe.html?id=slider--advanced</example-url>
+ *
+ * @export
+ * @class Slider
+ * @implements {AfterViewInit}
+ * @implements {OnDestroy}
+ * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-slider",

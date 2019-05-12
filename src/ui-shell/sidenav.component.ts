@@ -6,6 +6,14 @@ import {
 } from "@angular/core";
 import { I18n } from "./../i18n/i18n.module";
 
+/**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/ui-shell--side-navigation](../../?path=/story/ui-shell--side-navigation)
+ *
+ * <example-url>../../iframe.html?id=ui-shell--side-navigation</example-url>
+ *
+ * @export
+ * @class SideNav
+ */
 @Component({
 	selector: "ibm-sidenav",
 	template: `

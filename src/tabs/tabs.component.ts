@@ -15,6 +15,8 @@ import { TabHeaders } from "./tab-headers.component";
  * Build out your application's tabs using this component.
  * This is the parent of the `Tab` and `TabHeader` components.
  *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/tabs--basic](../../?path=/story/tabs--basic)
+ *
  * `Tabs` expects a set of `n-tab` elements
  *
  * ```html
@@ -31,6 +33,8 @@ import { TabHeaders } from "./tab-headers.component";
  * 	</ibm-tab>
  * </ibm-tabs>
  * ```
+ *
+ * <example-url>../../iframe.html?id=tabs--basic</example-url>
  *
  * @export
  * @class Tabs

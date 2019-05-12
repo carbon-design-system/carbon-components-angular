@@ -8,6 +8,8 @@ import {
 /**
  * A convinence directive for applying styling to a button.
  *
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/button--basic](../../?path=/story/button--basic)
+ *
  * Example:
  *
  * ```html
@@ -16,6 +18,9 @@ import {
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/button/code) for more detail.
+ *
+ * <example-url>../../iframe.html?id=button--basic</example-url>
+ *
  */
 @Directive({
 	selector: "[ibmButton]"

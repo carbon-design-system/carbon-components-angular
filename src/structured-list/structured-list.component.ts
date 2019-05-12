@@ -14,7 +14,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
  *
- * See (structured-list/usage)[https://www.carbondesignsystem.com/components/structured-list/usage] for usage guidance.
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/structured-list--basic](../../?path=/story/structured-list--basic)
+ *
+ * See [structured-list/usage](https://www.carbondesignsystem.com/components/structured-list/usage) for usage guidance.
  *
  * A basic structued list looks something like:
  * ```html
@@ -48,6 +50,13 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
  *		</ibm-list-row>
  *	</ibm-structured-list>
  * ```
+ *
+ * <example-url>../../iframe.html?id=structured-list--basic</example-url>
+ *
+ * @export
+ * @class StructuredList
+ * @implements {AfterContentInit}
+ * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-structured-list",

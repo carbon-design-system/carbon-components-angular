@@ -13,6 +13,15 @@ import { FileItem } from "./file-item.interface";
 
 const noop = () => {};
 
+/**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/file-uploader--basic](../../?path=/story/file-uploader--basic)
+ *
+ * <example-url>../../iframe.html?id=file-uploader--basic</example-url>
+ *
+ * @export
+ * @class FileUploader
+ * @implements {OnInit}
+ */
 @Component({
 	selector: "ibm-file-uploader",
 	template: `

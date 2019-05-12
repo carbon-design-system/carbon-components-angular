@@ -7,6 +7,8 @@ import {
 } from "@angular/core";
 
 /**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/input--label](../../?path=/story/input--label)
+ *
  * ```html
  * <ibm-label labelState="success">
  * 	<label label>Field with success</label>
@@ -23,6 +25,8 @@ import {
  * 	<input type="text" class="input-field">
  * </ibm-label>
  * ```
+ *
+ * <example-url>../../iframe.html?id=input--label</example-url>
  *
  * @export
  * @class Label

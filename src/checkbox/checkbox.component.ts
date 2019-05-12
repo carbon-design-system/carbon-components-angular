@@ -46,6 +46,10 @@ export class CheckboxChange {
 }
 
 /**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/checkbox--basic](../../?path=/story/checkbox--basic)
+ *
+ * <example-url>../../iframe.html?id=checkbox--basic</example-url>
+ *
  * @export
  * @class Checkbox
  * @implements {ControlValueAccessor}

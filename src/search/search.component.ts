@@ -25,6 +25,15 @@ export class SearchChange {
 	value: string;
 }
 
+/**
+ * demo: [https://angular.carbondesignsystem.com/?path=/story/search--basic](../../?path=/story/search--basic)
+ *
+ * <example-url>../../iframe.html?id=search--basic</example-url>
+ *
+ * @export
+ * @class Search
+ * @implements {ControlValueAccessor}
+ */
 @Component({
 	selector: "ibm-search",
 	template: `
