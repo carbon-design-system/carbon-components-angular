@@ -369,14 +369,14 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			return;
 		}
 		let selected = this.view.getSelected();
-		if (selected && (!this.displayValue || typeof this.displayValue !== "string")) {
+		if (selected && (!this.displayValue || !this.isRenderString())) {
 			if (this.type === "multi") {
 				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
-		} else if (selected && typeof this.displayValue === "string") {
-			return of(this.displayValue);
+		} else if (selected && this.isRenderString()) {
+			return of(this.displayValue as string);
 		}
 		return of(this.placeholder);
 	}
