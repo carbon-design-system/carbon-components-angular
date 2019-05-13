@@ -62,16 +62,10 @@ import { ExperimentalService } from "./../experimental.module";
 					[ngClass]="{
 						'bx--select__item-count': isExperimental
 					}">
-					<label
-						[for]="itemsPerPageSelectId"
-						class="bx--label bx--visually-hidden">
-						{{itemsPerPageText | async}}
-					</label>
 					<select
 						[id]="itemsPerPageSelectId"
 						[(ngModel)]="itemsPerPage"
-						class="bx--select-input"
-						aria-describedby="false">
+						class="bx--select-input">
 						<option class="bx--select-option" value="10">10</option>
 						<option class="bx--select-option" value="20">20</option>
 						<option class="bx--select-option" value="30">30</option>
@@ -108,7 +102,7 @@ import { ExperimentalService } from "./../experimental.module";
 					'bx--select__page-number' : isExperimental
 				}">
 					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>
-					<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">
+					<select [id]="currentPageSelectId" class="bx--select-input" [(ngModel)]="currentPage">
 						<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
 					</select>
 					<ibm-icon-chevron-down16

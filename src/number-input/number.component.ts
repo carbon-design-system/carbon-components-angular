@@ -59,6 +59,7 @@ export class NumberChange {
 			<div *ngIf="!skeleton" class="bx--number__controls">
 				<button
 					class="bx--number__control-btn up-icon"
+					type="button"
 					aria-live="polite"
 					aria-atomic="true"
 					(click)="onIncrement()">
@@ -66,6 +67,7 @@ export class NumberChange {
 				</button>
 				<button
 					class="bx--number__control-btn down-icon"
+					type="button"
 					aria-live="polite"
 					aria-atomic="true"
 					(click)="onDecrement()">
