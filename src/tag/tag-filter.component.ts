@@ -28,7 +28,6 @@ import { Tag } from "./tag.component";
 export class TagFilter extends Tag {
 	/**
 	 * Function for close/delete the tag
-	 *
 	 */
 	@Output() close = new EventEmitter<any>();
 
