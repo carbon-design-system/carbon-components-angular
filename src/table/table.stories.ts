@@ -41,6 +41,7 @@ import { clone } from "../utils/utils";
 	selector: "app-table",
 	template: `
 		<ibm-table
+			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -99,6 +100,7 @@ class TableStory implements OnInit, OnChanges {
 		</ng-template>
 
 		<ibm-table
+			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -172,6 +174,7 @@ class DynamicTableStory implements OnInit {
 		</ng-template>
 
 		<ibm-table
+			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -252,6 +255,7 @@ class ExpansionTableStory implements OnInit {
 		</ng-template>
 
 		<ibm-table
+			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
@@ -302,7 +306,7 @@ class OverflowTableStory implements OnInit {
 			</ibm-label>
 		</ng-template>
 
-		<ibm-table [model]="model" (sort)="paginationSort($event)"></ibm-table>
+		<ibm-table style="display: block; width: 650px;" [model]="model" (sort)="paginationSort($event)"></ibm-table>
 		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
 	`
 })
@@ -437,6 +441,7 @@ function sort(model, index: number) {
 	selector: "app-skeleton-table",
 	template: `
 		<ibm-table
+			style="display: block; width: 800px;"
 			[model]="skeletonModel"
 			[skeleton]="skeleton"
 			[size]="size"
@@ -490,16 +495,14 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<div style="width: 650px">
-				<app-table
-					[model]="model"
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped"
-					[sortable]="sortable"
-					[isDataGrid]="isDataGrid">
-				</app-table>
-			</div>
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[sortable]="sortable"
+				[isDataGrid]="isDataGrid">
+			</app-table>
 		</ibm-table-container>
 	`,
 		props: {
@@ -520,15 +523,13 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<div style="width: 650px">
-				<app-table
-					[model]="model"
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped">
-					<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
-				</app-table>
-			</div>
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped">
+				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
+			</app-table>
 		</ibm-table-container>
 		`,
 		styles: [`
@@ -581,16 +582,14 @@ storiesOf("Table", module).addDecorator(
 				</ibm-table-toolbar-content>
 			</ibm-table-toolbar>
 
-			<div style="width: 650px">
-				<app-table
-					[model]="model"
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped"
-					[sortable]="sortable"
-					[isDataGrid]="isDataGrid">
-				</app-table>
-			</div>
+			<app-table
+				[model]="model"
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[sortable]="sortable"
+				[isDataGrid]="isDataGrid">
+			</app-table>
 		</ibm-table-container>
 	`,
 		props: {
@@ -611,14 +610,12 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<div style="width: 650px">
-				<app-expansion-table
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped"
-					[isDataGrid]="isDataGrid">
-				</app-expansion-table>
-			</div>
+			<app-expansion-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[isDataGrid]="isDataGrid">
+			</app-expansion-table>
 		</ibm-table-container>
 		`,
 		props: {
@@ -637,14 +634,12 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<div style="width: 650px">
-				<app-custom-table
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped"
-					[isDataGrid]="isDataGrid">
-				</app-custom-table>
-			</div>
+			<app-custom-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[isDataGrid]="isDataGrid">
+			</app-custom-table>
 		</ibm-table-container>
 		`,
 		props: {
@@ -663,14 +658,12 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<div style="width: 650px">
-				<app-overflow-table
-					[size]="size"
-					[showSelectionColumn]="showSelectionColumn"
-					[striped]="striped"
-					[isDataGrid]="isDataGrid">
-				</app-overflow-table>
-			</div>
+			<app-overflow-table
+				[size]="size"
+				[showSelectionColumn]="showSelectionColumn"
+				[striped]="striped"
+				[isDataGrid]="isDataGrid">
+			</app-overflow-table>
 		</ibm-table-container>
 		`,
 		props: {
@@ -689,9 +682,7 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<div style="width: 650px">
-				<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
-			</div>
+			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
 		</ibm-table-container>
 		`,
 		props: {
@@ -703,13 +694,11 @@ storiesOf("Table", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `
-		<div style="width: 800px">
 			<app-skeleton-table
 				[skeletonModel]="skeletonModel"
 				[size]="size"
 				[striped]="striped">
 			</app-skeleton-table>
-		</div>
 	`,
 		props: {
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
