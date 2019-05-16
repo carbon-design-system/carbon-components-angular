@@ -57,6 +57,33 @@ storiesOf("Tabs", module)
 			]
 		}
 	}))
+	.add("Width before and after content", () => ({
+		template: `
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">after</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span after>content after</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">both</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+				<span after>content after</span>
+			</ibm-tabs>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `
 			<ibm-tabs skeleton="true">

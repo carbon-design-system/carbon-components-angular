@@ -62,21 +62,16 @@ import { ExperimentalService } from "./../experimental.module";
 					[ngClass]="{
 						'bx--select__item-count': isExperimental
 					}">
-					<label
-						[for]="itemsPerPageSelectId"
-						class="bx--label bx--visually-hidden">
-						{{itemsPerPageText | async}}
-					</label>
 					<select
 						[id]="itemsPerPageSelectId"
 						[(ngModel)]="itemsPerPage"
-						class="bx--select-input"
-						aria-describedby="false">
-						<option class="bx--select-option" value="10">10</option>
-						<option class="bx--select-option" value="20">20</option>
-						<option class="bx--select-option" value="30">30</option>
-						<option class="bx--select-option" value="40">40</option>
-						<option class="bx--select-option" value="50">50</option>
+						class="bx--select-input">
+						<option
+							class="bx--select-option"
+							*ngFor="let option of itemsPerPageOptions"
+							[value]="option">
+								{{ option }}
+						</option>
 					</select>
 					<ibm-icon-chevron-down16
 						style="display: inherit;"
@@ -108,7 +103,7 @@ import { ExperimentalService } from "./../experimental.module";
 					'bx--select__page-number' : isExperimental
 				}">
 					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>
-					<select [id]="currentPageSelectId" class="bx--select-input" aria-describedby="false" [(ngModel)]="currentPage">
+					<select [id]="currentPageSelectId" class="bx--select-input" [(ngModel)]="currentPage">
 						<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
 					</select>
 					<ibm-icon-chevron-down16
@@ -201,6 +196,13 @@ export class Pagination {
 			this.ofLastPagesText = new BehaviorSubject(value.OF_LAST_PAGES);
 		}
 	}
+
+	/**
+	 * Options for items per page select
+	 *
+	 * A default array of options will be defined: [10, 20, 30, 40, 50]
+	 */
+	@Input() itemsPerPageOptions: number[] = [10, 20, 30, 40, 50];
 
 	/**
 	 * Emits the new page number.
