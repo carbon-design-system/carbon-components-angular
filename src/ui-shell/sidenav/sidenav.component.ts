@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "../../i18n/i18n.module";
 
 @Component({
 	selector: "ibm-sidenav",
