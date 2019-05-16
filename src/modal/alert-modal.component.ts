@@ -81,7 +81,7 @@ export class AlertModal extends BaseModal {
 		@Inject("modalLabel") public modalLabel: string,
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
-		@Inject("buttons") public buttons = []
+		@Inject("buttons") public buttons = [],
 		@Inject("close") public onClose: Function
 	) {
 		super();
