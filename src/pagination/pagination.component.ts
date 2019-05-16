@@ -62,11 +62,12 @@ import { ExperimentalService } from "./../experimental.module";
 						[id]="itemsPerPageSelectId"
 						[(ngModel)]="itemsPerPage"
 						class="bx--select-input">
-						<option class="bx--select-option" value="10">10</option>
-						<option class="bx--select-option" value="20">20</option>
-						<option class="bx--select-option" value="30">30</option>
-						<option class="bx--select-option" value="40">40</option>
-						<option class="bx--select-option" value="50">50</option>
+						<option
+							class="bx--select-option"
+							*ngFor="let option of itemsPerPageOptions"
+							[value]="option">
+								{{ option }}
+						</option>
 					</select>
 					<ibm-icon-chevron-down16
 						style="display: inherit;"
@@ -191,6 +192,13 @@ export class Pagination {
 			this.ofLastPagesText = new BehaviorSubject(value.OF_LAST_PAGES);
 		}
 	}
+
+	/**
+	 * Options for items per page select
+	 *
+	 * A default array of options will be defined: [10, 20, 30, 40, 50]
+	 */
+	@Input() itemsPerPageOptions: number[] = [10, 20, 30, 40, 50];
 
 	/**
 	 * Emits the new page number.
