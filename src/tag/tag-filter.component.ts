@@ -1,4 +1,9 @@
-import { Component, HostBinding } from "@angular/core";
+import {
+	Component,
+	Output,
+	EventEmitter,
+	HostBinding
+} from "@angular/core";
 import { Tag } from "./tag.component";
 
 @Component({
@@ -6,6 +11,7 @@ import { Tag } from "./tag.component";
 	template: `
 		<ng-content></ng-content>
 		<svg
+			(click)="close.emit()"
 			focusable="false"
 			preserveAspectRatio="xMidYMid meet"
 			style="will-change: transform;"
@@ -20,6 +26,11 @@ import { Tag } from "./tag.component";
 	`
 })
 export class TagFilter extends Tag {
+	/**
+	 * Function for close/delete the tag
+	 */
+	@Output() close = new EventEmitter<any>();
+
 	@HostBinding("attr.class") get attrClass() {
 		return `bx--tag bx--tag--filter bx--tag--${this.type} ${this.class}`;
 	}
