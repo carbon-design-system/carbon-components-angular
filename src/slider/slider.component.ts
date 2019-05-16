@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/slider--advanced](../../?path=/story/slider--advanced)
+ * [See demo](../../?path=/story/slider--advanced)
  *
  * The simplest possible slider usage looks something like:
  * ```html

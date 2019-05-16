@@ -11,7 +11,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/overflow-menu--basic](../../?path=/story/overflow-menu--basic)
+ * [See demo](../../?path=/story/overflow-menu--basic)
  *
  * html:
  * ```

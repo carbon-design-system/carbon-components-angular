@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/time-picker--simple](../../?path=/story/time-picker--simple)
+ * [See demo](../../?path=/story/time-picker--simple)
  *
  * <example-url>../../iframe.html?id=time-picker--simple</example-url>
  *

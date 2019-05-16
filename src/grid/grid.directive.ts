@@ -1,7 +1,7 @@
 import { Directive, HostBinding, Input, OnInit } from "@angular/core";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/grid--basic](../../?path=/story/grid--basic)
+ * [See demo](../../?path=/story/grid--basic)
  *
  * <example-url>../../iframe.html?id=grid--basic</example-url>
  *

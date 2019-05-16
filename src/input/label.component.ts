@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/input--label](../../?path=/story/input--label)
+ * [See demo](../../?path=/story/input--label)
  *
  * ```html
  * <ibm-label labelState="success">

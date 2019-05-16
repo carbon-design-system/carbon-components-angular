@@ -46,7 +46,7 @@ export class CheckboxChange {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/checkbox--basic](../../?path=/story/checkbox--basic)
+ * [See demo](../../?path=/story/checkbox--basic)
  *
  * <example-url>../../iframe.html?id=checkbox--basic</example-url>
  *

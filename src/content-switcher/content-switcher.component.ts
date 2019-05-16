@@ -16,7 +16,7 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
  * The content switcher can be used for toggling between distinct options.
  * Similar to tabs, but without an associated content panel
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/content-switcher--basic](../../?path=/story/content-switcher--basic)
+ * [See demo](../../?path=/story/content-switcher--basic)
  *
  * ```html
  * <ibm-content-switcher (selected)="selected($event)">

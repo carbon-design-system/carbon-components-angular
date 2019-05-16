@@ -7,7 +7,7 @@ import {
 /**
  * A convinence directive for applying styling to a link.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/link--basic](../../?path=/story/link--basic)
+ * [See demo](../../?path=/story/link--basic)
  *
  * Example:
  *

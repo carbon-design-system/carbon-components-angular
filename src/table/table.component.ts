@@ -22,7 +22,7 @@ import { I18n } from "./../i18n/i18n.module";
 /**
  * Build your table with this component by extending things that differ from default.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/table--basic](../../?path=/story/table--basic)
+ * [See demo](../../?path=/story/table--basic)
  *
  * Instead of the usual write-your-own-html approach you had with `<table>`,
  * carbon table uses model-view-controller approach.

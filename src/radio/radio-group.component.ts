@@ -39,7 +39,7 @@ export class RadioChange {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/radio--basic](../../?path=/story/radio--basic)
+ * [See demo](../../?path=/story/radio--basic)
  *
  * class: RadioGroup
  *

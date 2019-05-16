@@ -16,7 +16,7 @@ import { DialogService } from "./../dialog.service";
 /**
  * Directive for extending `Dialog` to create tooltips.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/tooltip--basic](../../?path=/story/tooltip--basic)
+ * [See demo](../../?path=/story/tooltip--basic)
  *
  * class: TooltipDirective (extends PopoverDirective)
  *

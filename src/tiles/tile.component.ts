@@ -6,7 +6,7 @@ import {
 /**
  * Build application's tiles using this component.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/tiles--basic](../../?path=/story/tiles--basic)
+ * [See demo](../../?path=/story/tiles--basic)
  *
  * ## Basic usage
  *

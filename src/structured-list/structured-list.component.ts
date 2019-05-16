@@ -14,7 +14,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 /**
  * Structured Lists represent related tabular data. For larger datasets consider a full `Table`.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/structured-list--basic](../../?path=/story/structured-list--basic)
+ * [See demo](../../?path=/story/structured-list--basic)
  *
  * See [structured-list/usage](https://www.carbondesignsystem.com/components/structured-list/usage) for usage guidance.
  *

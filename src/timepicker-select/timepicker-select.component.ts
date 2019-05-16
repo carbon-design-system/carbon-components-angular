@@ -8,7 +8,7 @@ import {
 import { Select } from "../select/select.component";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/time-picker-select--simple](../../?path=/story/time-picker-select--simple)
+ * [See demo](../../?path=/story/time-picker-select--simple)
  *
  * <example-url>../../iframe.html?id=time-picker-select--simple</example-url>
  *

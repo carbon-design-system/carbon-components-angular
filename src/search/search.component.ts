@@ -26,7 +26,7 @@ export class SearchChange {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/search--basic](../../?path=/story/search--basic)
+ * [See demo](../../?path=/story/search--basic)
  *
  * <example-url>../../iframe.html?id=search--basic</example-url>
  *

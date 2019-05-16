@@ -35,7 +35,7 @@ export class ToggleChange {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/toggle--basic](../../?path=/story/toggle--basic)
+ * [See demo](../../?path=/story/toggle--basic)
  *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>

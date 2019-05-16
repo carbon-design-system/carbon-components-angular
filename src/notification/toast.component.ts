@@ -14,7 +14,7 @@ import { I18n } from "./../i18n/i18n.module";
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/notification--toast](../../?path=/story/notification--toast)
+ * [See demo](../../?path=/story/notification--toast)
  *
  * <example-url>../../iframe.html?id=notification--toast</example-url>
  *

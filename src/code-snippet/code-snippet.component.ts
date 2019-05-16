@@ -15,7 +15,7 @@ export enum SnippetType {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/code-snippet--basic](../../?path=/story/code-snippet--basic)
+ * [See demo](../../?path=/story/code-snippet--basic)
  *
  * ```html
  * <ibm-code-snippet>Code</ibm-code-snippet>

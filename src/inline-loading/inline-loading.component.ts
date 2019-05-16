@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/inline-loading--basic](../../?path=/story/inline-loading--basic)
+ * [See demo](../../?path=/story/inline-loading--basic)
  *
  * <example-url>../../iframe.html?id=inline-loading--basic</example-url>
  *

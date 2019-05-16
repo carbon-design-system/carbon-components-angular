@@ -23,7 +23,7 @@ export class NumberChange {
 }
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/number--basic](../../?path=/story/number--basic)
+ * [See demo](../../?path=/story/number--basic)
  *
  * <example-url>../../iframe.html?id=number--basic</example-url>
  *

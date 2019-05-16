@@ -12,7 +12,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * `ibm-select` provides a styled `select` component.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/select--basic](../../?path=/story/select--basic)
+ * [See demo](../../?path=/story/select--basic)
  *
  * Example:
  *

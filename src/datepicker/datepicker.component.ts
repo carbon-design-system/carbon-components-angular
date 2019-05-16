@@ -12,7 +12,7 @@ import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/date-picker--single](../../?path=/story/date-picker--single)
+ * [See demo](../../?path=/story/date-picker--single)
  *
  * <example-url>../../iframe.html?id=date-picker--single</example-url>
  *

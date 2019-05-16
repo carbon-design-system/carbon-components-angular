@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { ExperimentalService } from "./../experimental.module";
 
 /**
- * demo: [https://angular.carbondesignsystem.com/?path=/story/progress-indicator--basic](../../?path=/story/progress-indicator--basic)
+ * [See demo](../../?path=/story/progress-indicator--basic)
  *
  * <example-url>../../iframe.html?id=progress-indicator--basic</example-url>
  *

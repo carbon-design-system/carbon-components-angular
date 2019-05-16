@@ -22,7 +22,7 @@ import { filter } from "rxjs/operators";
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
  * Multi-select comboboxes also provide "pills" of selected items.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/combobox--basic](../../?path=/story/combobox--basic)
+ * [See demo](../../?path=/story/combobox--basic)
  *
  * <example-url>../../iframe.html?id=combobox--basic</example-url>
  *

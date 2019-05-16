@@ -25,7 +25,7 @@ import { DropdownService } from "./dropdown.service";
 /**
  * Drop-down lists enable users to select one or more items from a list.
  *
- * demo: [https://angular.carbondesignsystem.com/?path=/story/dropdown--basic](../../?path=/story/dropdown--basic)
+ * [See demo](../../?path=/story/dropdown--basic)
  *
  * <example-url>../../iframe.html?id=dropdown--basic</example-url>
  *
