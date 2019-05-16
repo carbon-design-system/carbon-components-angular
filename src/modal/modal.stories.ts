@@ -14,7 +14,7 @@ import { ExperimentalModule } from "../experimental.module";
 @Component({
 	selector: "app-sample-modal",
 	template: `
-		<ibm-modal>
+		<ibm-modal (overlaySelected)="closeModal()">
 			<ibm-modal-header (closeSelect)="closeModal()">Header label</ibm-modal-header>
 			<section class="bx--modal-content">
 				<h1>Sample modal works.</h1>
