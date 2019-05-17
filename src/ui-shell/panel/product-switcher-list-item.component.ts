@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 	selector: "ibm-product-switcher-list-item",
 	template: `
 		<li class="bx--product-list__item">
-			<a class="bx--product-link" tabindx="0" [href]="href">
+			<a class="bx--product-link" tabindex="0" [href]="href">
 				<div class="bx--product-switcher__icon">
 					<ng-content select="svg"></ng-content>
 				</div>
