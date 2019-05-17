@@ -5,11 +5,13 @@ import {
 	EventEmitter,
 	ViewEncapsulation,
 	ElementRef,
-	OnDestroy
+	OnDestroy,
+	HostListener
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
 	selector: "ibm-date-picker",
@@ -41,8 +43,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
-							[skeleton]="skeleton"
-							(valueChange)="onInputValueChange($event, 0)">
+							[skeleton]="skeleton">
 						</ibm-date-picker-input>
 					</div>
 
@@ -57,8 +58,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
-							[skeleton]="skeleton"
-							(valueChange)="onInputValueChange($event, 1)">
+							[skeleton]="skeleton">
 						</ibm-date-picker-input>
 					</div>
 				</div>
@@ -70,6 +70,13 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 		`.dayContainer {
 			justify-content: initial;
 		}`
+	],
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePicker,
+			multi: true
+		}
 	],
 	encapsulation: ViewEncapsulation.None
 })
@@ -86,7 +93,14 @@ export class DatePicker implements OnDestroy {
 	 *
 	 * For reference: https://flatpickr.js.org/formatting/
 	 */
-	@Input() dateFormat = "m/d/Y";
+	@Input()
+	set dateFormat(dateFormat: string) {
+		this.flatpickrOptions = Object.assign({}, this.flatpickrOptions, {dateFormat});
+		this.flatpickrOptionsRange = Object.assign({}, this.flatpickrOptionsRange, {dateFormat});
+	}
+	get dateFormat() {
+		return this.flatpickrOptions.dateFormat;
+	}
 
 	@Input() label: string;
 
@@ -113,7 +127,7 @@ export class DatePicker implements OnDestroy {
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
 	flatpickrOptions: FlatpickrOptions = {
-		dateFormat: this.dateFormat,
+		dateFormat: "m/d/Y",
 		allowInput: true,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); },
@@ -121,7 +135,7 @@ export class DatePicker implements OnDestroy {
 	};
 
 	flatpickrOptionsRange: FlatpickrOptions = {
-		dateFormat: this.dateFormat,
+		dateFormat: "m/d/Y",
 		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
 		allowInput: true,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
@@ -131,8 +145,15 @@ export class DatePicker implements OnDestroy {
 
 	constructor(protected elementRef: ElementRef) { }
 
+	@HostListener("focusin")
+	onFocus() {
+		console.log(this.flatpickrOptions);
+		this.onTouched();
+	}
+
 	doSelect(selectedValue) {
 		this.valueChange.emit(selectedValue);
+		this.propagateChange(selectedValue);
 	}
 
 	updateClassNames() {
@@ -182,21 +203,21 @@ export class DatePicker implements OnDestroy {
 		});
 	}
 
-	onInputValueChange(event: string, index: number): void {
-		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
-		const previousDate = flatpickr.parseDate(this.value[index], this.dateFormat, true);
-		if (eventDate) {
-			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
-				this.value = [...this.value];
-				this.value[index] = eventDate;
-			}
-		} else {
-			if (previousDate) {
-				this.value = [...this.value];
-				this.value[index] = undefined;
-			}
-		}
+	public writeValue(value: any) {
+		this.value = value;
 	}
+
+	public registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	onTouched: () => any = () => {};
+
+	propagateChange = (_: any) => {};
 
 	ngOnDestroy() {
 		// clean up our flatpickr element - needed because the wrapper doesn't handle this

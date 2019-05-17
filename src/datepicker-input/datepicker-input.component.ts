@@ -3,8 +3,10 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ViewChild
+	ViewChild,
+	ElementRef
 } from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
 	selector: "ibm-date-picker-input",
@@ -53,7 +55,14 @@ import {
 			</ibm-icon-calendar16>
 		</div>
 	</div>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePickerInput,
+			multi: true
+		}
+	]
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;
@@ -86,12 +95,29 @@ export class DatePickerInput {
 
 	@Input() skeleton = false;
 
+	constructor(protected elementRef: ElementRef) {}
+
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
-		if (event.target && event.target.value === "") {
-			this.invalid = false;
-		} else {
-			this.invalid = !new RegExp(this.pattern).test(event.target.value);
+		this.propagateChange(event.target.value);
+		this.onTouched();
+	}
+
+	public writeValue(value: any) {
+		if (this.elementRef.nativeElement.querySelector("input")) {
+			this.elementRef.nativeElement.querySelector("input").value = value;
 		}
 	}
+
+	public registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	onTouched: () => any = () => {};
+
+	propagateChange = (_: any) => {};
 }

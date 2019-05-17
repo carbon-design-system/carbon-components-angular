@@ -7,13 +7,86 @@ import {
 	text,
 	boolean
 } from "@storybook/addon-knobs/angular";
+import {
+	FormBuilder,
+	FormGroup,
+	Validators,
+	FormsModule,
+	ReactiveFormsModule
+} from "@angular/forms";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
 import { DatePickerModule } from "../";
+
+
+@Component({
+	selector: "app-date-picker",
+	template: `
+		<form [formGroup]="rForm">
+			<ibm-date-picker
+				formControlName="single"
+				label="Date Picker Label"
+				invalidText="Invalid date format"
+				[invalid]="invalidSingle"
+				(valueChange)="valueChange.emit($event)">
+			</ibm-date-picker><br>
+			<ibm-date-picker
+				range="true"
+				formControlName="range"
+				label="Date Picker Label"
+				rangeLabel="Date Picker Label"
+				invalidText="Invalid date format"
+				[pattern]="pattern"
+				[invalid]="invalidRange"
+				(valueChange)="valueChange.emit($event)">
+			</ibm-date-picker>
+		</form>
+	`
+})
+class DatePickerStory {
+	@Output() valueChange = new EventEmitter();
+
+	get invalidSingle() {
+		return this.rForm.controls["single"].invalid && this.rForm.controls["single"].touched;
+	}
+
+	get invalidRange() {
+		return this.rForm.controls["range"].invalid && this.rForm.controls["range"].touched;
+	}
+
+	rForm: FormGroup;
+
+	constructor(protected formBuilder: FormBuilder) {
+		this.rForm = this.formBuilder.group({
+			single: [
+				[(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear()],
+				Validators.required
+			],
+			range: [
+				[
+					(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear(),
+					(new Date().getMonth() + 2) + "/" + new Date().getDate() + "/" + new Date().getFullYear()
+				],
+				Validators.required
+			]
+		});
+	}
+}
 
 storiesOf("Date Picker", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DatePickerModule
+				DatePickerModule,
+				FormsModule,
+				ReactiveFormsModule
+			],
+			declarations: [
+				DatePickerStory
 			]
 		})
 	)
@@ -40,18 +113,17 @@ storiesOf("Date Picker", module)
 	}))
 	.add("Single", () => ({
 		template: `
-		<ibm-date-picker
-			[label]="label"
-			[placeholder]="placeholder"
-			[theme]="theme"
-			[disabled]="disabled"
-			[invalid]="invalid"
-			[invalidText]="invalidText"
-			(valueChange)="valueChange($event)">
-		</ibm-date-picker>
+			<ibm-date-picker
+				[label]="label"
+				[placeholder]="placeholder"
+				[theme]="theme"
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
 		`,
 		props: {
-			value: array("value", [(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear()]),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -76,10 +148,6 @@ storiesOf("Date Picker", module)
 		</ibm-date-picker>
 		`,
 		props: {
-			value: array("value", [
-				(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear(),
-				(new Date().getMonth() + 2) + "/" + new Date().getDate() + "/" + new Date().getFullYear()
-			]),
 			valueChange: action("Date change fired!"),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			label: text("Label text", "Date Picker Label"),
@@ -87,6 +155,16 @@ storiesOf("Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false)
+		}
+	}))
+	.add("With reactive forms", () => ({
+		template: `
+		<app-date-picker
+			(valueChange)="valueChange($event)">
+		</app-date-picker>
+		`,
+		props: {
+			valueChange: action("Date change fired!")
 		}
 	}))
 	.add("Skeleton", () => ({
