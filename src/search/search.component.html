@@ -17,7 +17,7 @@
 			#input
 			*ngIf="!toolbar || active || value !== ''"
 			class="bx--search-input"
-			[type]="tableSearch ? 'text' : 'search'"
+			[type]="tableSearch || !toolbar ? 'text' : 'search'"
 			role="search"
 			[id]="id"
 			[value]="value"
@@ -25,14 +25,14 @@
 			[disabled]="disabled"
 			[required]="required"
 			(input)="onSearch($event.target.value)"/>
-		<button *ngIf="!tableSearch" class="bx--toolbar-search__btn" (click)="openSearch()">
+		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
 			<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
 		</button>
-		<ibm-icon-search16 *ngIf="tableSearch" (click)="openSearch()" class="bx--search-magnifier"></ibm-icon-search16>
+		<ibm-icon-search16 *ngIf="tableSearch || !toolbar" (click)="openSearch()" class="bx--search-magnifier"></ibm-icon-search16>
 	</ng-template>
 
 	<button
-		*ngIf="tableSearch"
+		*ngIf="tableSearch || !toolbar"
 		class="bx--search-close"
 		[ngClass]="{
 			'bx--search-close--hidden': !value || value.length === 0
