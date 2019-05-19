@@ -48,6 +48,7 @@ import { clone } from "../utils/utils";
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
 			(sort)="simpleSort($event)">
+			<ng-content></ng-content>
 		</ibm-table>
 	`
 })

@@ -79,6 +79,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() active = false;
 	/**
+	 * Specifies whether the search component is used in the table toolbar.
+	 */
+	@Input() tableSearch = false;
+	/**
 	 * Sets the name attribute on the `input` element.
 	 */
 	@Input() name: string;
@@ -202,7 +206,9 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
-		if (this.toolbar && event.relatedTarget === null) {
+		if (this.toolbar &&
+			this.inputRef.nativeElement.value === "" &&
+			event.relatedTarget === null) {
 			this.active = false;
 		}
 	}
