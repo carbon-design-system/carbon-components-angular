@@ -33,7 +33,9 @@ import { DatePickerModule } from "../";
 				invalidText="Invalid date format"
 				[invalid]="invalidSingle"
 				(valueChange)="valueChange.emit($event)">
-			</ibm-date-picker><br>
+			</ibm-date-picker>
+			<code>{{rForm.controls["single"].value | json}}</code>
+			<br><br>
 			<ibm-date-picker
 				range="true"
 				formControlName="range"
@@ -44,6 +46,7 @@ import { DatePickerModule } from "../";
 				[invalid]="invalidRange"
 				(valueChange)="valueChange.emit($event)">
 			</ibm-date-picker>
+			<code>{{rForm.controls["range"].value | json}}</code>
 		</form>
 	`
 })
@@ -63,13 +66,13 @@ class DatePickerStory {
 	constructor(protected formBuilder: FormBuilder) {
 		this.rForm = this.formBuilder.group({
 			single: [
-				[(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear()],
+				[new Date()],
 				Validators.required
 			],
 			range: [
 				[
-					(new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear(),
-					(new Date().getMonth() + 2) + "/" + new Date().getDate() + "/" + new Date().getFullYear()
+					new Date(),
+					new Date().setMonth(new Date().getMonth() + 1)
 				],
 				Validators.required
 			]
