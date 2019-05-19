@@ -6,8 +6,7 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { ToggleModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { ToggleModule, DocumentationModule } from "../";
 
 storiesOf("Toggle", module).addDecorator(
 	moduleMetadata({

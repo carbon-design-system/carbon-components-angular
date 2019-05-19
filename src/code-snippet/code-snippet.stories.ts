@@ -1,8 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
-import { CodeSnippetModule } from "..";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { CodeSnippetModule, DocumentationModule} from "..";
 
 const code = `import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";

@@ -1,9 +1,8 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, number } from "@storybook/addon-knobs/angular";
 
-import { BreadcrumbModule, DialogModule } from "../";
+import { BreadcrumbModule, DialogModule, DocumentationModule } from "../";
 import { BreadcrumbItem } from "../breadcrumb/breadcrumb-item.interface";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 let breadcrumbItems;
 

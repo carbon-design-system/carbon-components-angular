@@ -2,8 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs/angular";
 
-import { LoadingModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { LoadingModule, DocumentationModule } from "../";
 
 storiesOf("Loading", module).addDecorator(
 	moduleMetadata({

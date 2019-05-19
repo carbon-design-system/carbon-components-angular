@@ -2,8 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { CheckboxModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { CheckboxModule, DocumentationModule } from "../";
 
 storiesOf("Checkbox", module).addDecorator(
 	moduleMetadata({

@@ -1,8 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
-import { DialogModule, PlaceholderModule } from "../../";
-import { DocumentationModule } from "./../../documentation-component/documentation.module";
+import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
 
 storiesOf("Tooltip Icon", module)
 	.addDecorator(

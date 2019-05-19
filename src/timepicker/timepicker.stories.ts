@@ -8,8 +8,7 @@ import {
 	text,
 	select
 } from "@storybook/addon-knobs/angular";
-import { ExperimentalModule } from "..";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { ExperimentalModule, DocumentationModule } from "../";
 
 storiesOf("Time Picker", module)
 	.addDecorator(

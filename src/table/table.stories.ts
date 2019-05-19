@@ -25,11 +25,11 @@ import {
 	NFormsModule,
 	DialogModule,
 	SearchModule,
-	ButtonModule
+	ButtonModule,
+	DocumentationModule
 } from "../";
 
 import { clone } from "../utils/utils";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-table",
@@ -472,7 +472,7 @@ storiesOf("Table", module).addDecorator(
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("basic", () => ({
+	.add("Basic", () => ({
 		template: `
 		<div style="width: 650px">
 			<app-table
@@ -494,7 +494,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with no data", () => ({
+	.add("With no data", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-table
@@ -520,7 +520,7 @@ storiesOf("Table", module).addDecorator(
 			striped: boolean("striped", true)
 		}
 	}))
-	.add("with toolbar", () => ({
+	.add("With toolbar", () => ({
 		template: `
 		<ibm-table-toolbar [model]="model">
 			<ibm-table-toolbar-actions>
@@ -606,7 +606,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with expansion", () => ({
+	.add("With expansion", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-expansion-table
@@ -624,7 +624,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with dynamic content", () => ({
+	.add("With dynamic content", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-custom-table
@@ -642,7 +642,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with overflow menu", () => ({
+	.add("With overflow menu", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-overflow-table
@@ -660,7 +660,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with pagination", () => ({
+	.add("With pagination", () => ({
 		template: `
 		<div style="width: 650px">
 			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>

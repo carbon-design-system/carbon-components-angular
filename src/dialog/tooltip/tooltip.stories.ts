@@ -3,8 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
-import { DialogModule, PlaceholderModule } from "../../";
-import { DocumentationModule } from "./../../documentation-component/documentation.module";
+import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
 
 storiesOf("Tooltip", module)
 	.addDecorator(
@@ -49,7 +48,7 @@ storiesOf("Tooltip", module)
 			triggerText: text("Trigger text", "Tooltip label")
 		}
 	}))
-	.add("no icon", () => ({
+	.add("No icon", () => ({
 		template: `
 				<div>
 					<ng-template #template let-tooltip="tooltip">
@@ -75,7 +74,7 @@ storiesOf("Tooltip", module)
 				triggerText: text("Trigger text", "Tooltip label")
 			}
 		}))
-		.add("only icon", () => ({
+		.add("Only icon", () => ({
 			template: `
 					<div>
 						<ng-template #template let-tooltip="tooltip">

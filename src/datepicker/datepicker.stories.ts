@@ -7,8 +7,7 @@ import {
 	text,
 	boolean
 } from "@storybook/addon-knobs/angular";
-import { DatePickerModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { DatePickerModule, DocumentationModule } from "../";
 
 storiesOf("Date Picker", module)
 	.addDecorator(

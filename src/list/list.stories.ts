@@ -1,7 +1,6 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 
-import { ListModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { ListModule, DocumentationModule } from "../";
 
 storiesOf("List", module).addDecorator(
 	moduleMetadata({

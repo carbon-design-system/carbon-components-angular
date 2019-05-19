@@ -2,8 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
-import { ComboBoxModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { ComboBoxModule, DocumentationModule } from "../";
 
 storiesOf("Combobox", module)
 	.addDecorator(

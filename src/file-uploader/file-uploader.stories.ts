@@ -9,9 +9,13 @@ import {
 	array
 } from "@storybook/addon-knobs";
 
-import { FileUploaderModule, NotificationModule, ButtonModule } from "../";
+import {
+	FileUploaderModule,
+	NotificationModule,
+	ButtonModule,
+	DocumentationModule
+} from "../";
 import { NotificationService } from "../notification/notification.service";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-file-uploader",

@@ -7,8 +7,7 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { SelectModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { SelectModule, DocumentationModule } from "../";
 
 storiesOf("Select", module).addDecorator(
 	moduleMetadata({

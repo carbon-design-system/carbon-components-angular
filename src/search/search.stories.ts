@@ -1,8 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select, text } from "@storybook/addon-knobs/angular";
 
-import { SearchModule } from "../";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { SearchModule, DocumentationModule } from "../";
 
 storiesOf("Search", module).addDecorator(
 	moduleMetadata({

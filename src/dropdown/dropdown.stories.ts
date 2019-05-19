@@ -2,10 +2,9 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs/angular";
 
-import { DropdownModule } from "../";
+import { DropdownModule, DocumentationModule } from "../";
 import { of } from "rxjs";
 import { PlaceholderModule } from "../placeholder/placeholder.module";
-import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Dropdown", module)
 	.addDecorator(

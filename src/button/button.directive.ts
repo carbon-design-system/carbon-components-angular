@@ -20,7 +20,6 @@ import {
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/button/code) for more detail.
  *
  * <example-url>../../iframe.html?id=button--basic</example-url>
- *
  */
 @Directive({
 	selector: "[ibmButton]"

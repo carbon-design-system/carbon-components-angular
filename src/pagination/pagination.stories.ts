@@ -60,7 +60,7 @@ storiesOf("Pagination", module).addDecorator(
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("basic", () => ({
+	.add("Basic", () => ({
 		template: `
 			<div style="width: 800px">
 				<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
