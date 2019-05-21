@@ -86,7 +86,7 @@ storiesOf("Date Picker", module)
 				DatePickerModule,
 				FormsModule,
 				ReactiveFormsModule,
-        DocumentationModule
+				DocumentationModule
 			],
 			declarations: [
 				DatePickerStory
