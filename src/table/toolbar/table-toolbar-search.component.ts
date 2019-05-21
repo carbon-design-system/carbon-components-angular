@@ -18,7 +18,7 @@ export class TableToolbarSearch extends Search implements OnInit {
 	@HostBinding("class.bx--toolbar-search-container-persistent") get persistentClass() { return !this.expandable; }
 
 	@HostBinding("class.bx--toolbar-search-container-active") get activeClass() {
-		return this.active && (this.value !== null || this.value) !== "";
+		return this.active && (this.value !== null || this.value !== "");
 	}
 
 	ngOnInit() {
