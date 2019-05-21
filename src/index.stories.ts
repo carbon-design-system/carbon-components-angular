@@ -93,8 +93,13 @@ import { ButtonModule } from "./";
 
 			<h1 class="banner__title"><span class="banner__logo--bold">Carbon</span> Components Angular</h1>
 			<h2 class="banner__subtitle">An Angular implementation of the Carbon Design System</h2>
-			<a style="z-index: 2" href="https://angular.carbondesignsystem.com/documentation/">
-				<button class="banner__btn" ibmButton="secondary">Documentation</button>
+			<a
+				ibmButton="secondary"
+				class="banner__btn"
+				style="z-index: 2"
+				href="documentation/index.html"
+				target="_blank">
+				Documentation
 			</a>
 		</section>
 	`,
@@ -144,10 +149,10 @@ import { ButtonModule } from "./";
 })
 class WelcomeStory implements OnInit, OnDestroy {
 	ngOnInit() {
-		document.querySelector(".sb-show-main").classList.add("welcome");
+		document.querySelector(".sb-show-main").classList.add("full-page");
 	}
 	ngOnDestroy() {
-		document.querySelector(".sb-show-main").classList.remove("welcome");
+		document.querySelector(".sb-show-main").classList.remove("full-page");
 	}
 }
 

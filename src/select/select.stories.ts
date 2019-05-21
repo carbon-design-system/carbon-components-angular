@@ -7,11 +7,11 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { SelectModule } from "../";
+import { SelectModule, DocumentationModule } from "../";
 
 storiesOf("Select", module).addDecorator(
 	moduleMetadata({
-		imports: [SelectModule]
+		imports: [SelectModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -69,5 +69,10 @@ storiesOf("Select", module).addDecorator(
 		<div style="width: 300px">
 			<ibm-select skeleton="true"></ibm-select>
 		</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Select.html"></ibm-documentation>
 		`
 	}));

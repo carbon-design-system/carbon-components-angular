@@ -4,6 +4,4 @@ import { Component, HostBinding } from "@angular/core";
 	selector: "ibm-table-toolbar-actions",
 	template: `<ng-content></ng-content>`
 })
-export class TableToolbarActions {
-	@HostBinding("class.bx--action-list") class = true;
-}
+export class TableToolbarActions {}

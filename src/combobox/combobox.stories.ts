@@ -2,13 +2,14 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, object, text } from "@storybook/addon-knobs/angular";
 
-import { ComboBoxModule } from "../";
+import { ComboBoxModule, DocumentationModule } from "../";
 
 storiesOf("Combobox", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				ComboBoxModule
+				ComboBoxModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -73,4 +74,9 @@ storiesOf("Combobox", module)
 			],
 			selected: action("selection changed")
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/ComboBox.html"></ibm-documentation>
+		`
 	}));

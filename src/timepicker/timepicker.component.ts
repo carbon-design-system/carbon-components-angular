@@ -7,6 +7,14 @@ import {
 	TemplateRef
 } from "@angular/core";
 
+/**
+ * [See demo](../../?path=/story/time-picker--simple)
+ *
+ * <example-url>../../iframe.html?id=time-picker--simple</example-url>
+ *
+ * @export
+ * @class TimePicker
+ */
 @Component({
 	selector: "ibm-timepicker",
 	template: `

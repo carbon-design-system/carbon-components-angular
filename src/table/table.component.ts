@@ -22,7 +22,7 @@ import { I18n } from "./../i18n/i18n.module";
 /**
  * Build your table with this component by extending things that differ from default.
  *
- * demo: [https://angular.carbondesignsystem.com/?selectedKind=Table](https://angular.carbondesignsystem.com/?selectedKind=Table)
+ * [See demo](../../?path=/story/table--basic)
  *
  * Instead of the usual write-your-own-html approach you had with `<table>`,
  * carbon table uses model-view-controller approach.
@@ -88,7 +88,7 @@ import { I18n } from "./../i18n/i18n.module";
  * 		return true;
  * 	}
  *
- * 	set filterCount(n) {}
+ * 	set filterCount(n) {}
  * 	get filterCount() {
  * 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
  * 	}
@@ -160,6 +160,8 @@ import { I18n } from "./../i18n/i18n.module";
  * 	return newData;
  * }
  * ```
+ *
+ * <example-url>../../iframe.html?id=table--basic</example-url>
  *
  * @export
  * @class Table
