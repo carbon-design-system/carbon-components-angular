@@ -50,6 +50,15 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
 	/**
+	 * Defines how the Dialog close event is triggered.
+	 *
+	 * [See here](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event)
+	 * for more on the difference between `mouseleave` and `mouseout`.
+	 *
+	 * Defaults to `click` when `trigger` is set to `click`.
+	 */
+	@Input() closeTrigger: "mouseout" | "mouseleave" = "mouseleave";
+	/**
 	 * Placement of the dialog, usually relative to the element the directive is on.
 	 */
 	@Input() placement = "left";
@@ -135,6 +144,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			parentRef: this.elementRef,
 			gap: this.gap,
 			trigger: this.trigger,
+			closeTrigger: this.closeTrigger,
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
 			data: this.data
@@ -160,7 +170,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
 			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
-			fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.close());
+			fromEvent(this.elementRef.nativeElement, this.closeTrigger).subscribe(() => this.close());
 			fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
 			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
