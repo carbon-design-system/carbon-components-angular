@@ -6,6 +6,14 @@ import {
 	HostBinding
 } from "@angular/core";
 
+/**
+ * [See demo](../../?path=/story/inline-loading--basic)
+ *
+ * <example-url>../../iframe.html?id=inline-loading--basic</example-url>
+ *
+ * @export
+ * @class InlineLoading
+ */
 @Component({
 	selector: "ibm-inline-loading",
 	template: `

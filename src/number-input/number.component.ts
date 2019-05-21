@@ -23,6 +23,10 @@ export class NumberChange {
 }
 
 /**
+ * [See demo](../../?path=/story/number--basic)
+ *
+ * <example-url>../../iframe.html?id=number--basic</example-url>
+ *
  * @export
  * @class Number
  * @implements {ControlValueAccessor}

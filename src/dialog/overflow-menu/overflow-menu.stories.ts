@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, number, boolean } from "@storybook/addon-knobs";
 
-import { DialogModule } from "../../";
+import { DialogModule, DocumentationModule } from "../../";
 import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 let options;
@@ -19,7 +19,8 @@ storiesOf("Overflow Menu", module)
 		moduleMetadata({
 			imports: [
 				DialogModule,
-				PlaceholderModule
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -85,4 +86,9 @@ storiesOf("Overflow Menu", module)
 			optionCount: number("optionCount", 10),
 			options: createOptions
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/OverflowMenu.html"></ibm-documentation>
+		`
 	}));

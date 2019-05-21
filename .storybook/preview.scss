@@ -4,7 +4,7 @@ $feature-flags: (
 
 @import '~carbon-components/scss/globals/scss/styles';
 
-.sb-show-main:not(.welcome) {
+.sb-show-main:not(.full-page) {
 	padding: 3em;
 	display: flex;
 	flex-direction: column;

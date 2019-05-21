@@ -20,8 +20,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { DatePickerModule } from "../";
-
+import { DatePickerModule, DocumentationModule } from "../";
 
 @Component({
 	selector: "app-date-picker",
@@ -86,7 +85,8 @@ storiesOf("Date Picker", module)
 			imports: [
 				DatePickerModule,
 				FormsModule,
-				ReactiveFormsModule
+				ReactiveFormsModule,
+        DocumentationModule
 			],
 			declarations: [
 				DatePickerStory
@@ -176,5 +176,10 @@ storiesOf("Date Picker", module)
 			range="true"
 			skeleton="true">
 		</ibm-date-picker>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/DatePicker.html"></ibm-documentation>
 		`
 	}));
