@@ -47,6 +47,16 @@ export class ContentSwitcher implements AfterViewInit {
 	/**
 	 * aria-label for the content switcher. Should be set to something descriptive
 	 */
+	@Input() set label(value: string) {
+		console.warn("`label` is deprecated (to be removed in next major version). Use `ariaLabel` instead.");
+		this.ariaLabel = value;
+	}
+
+	get label(): string {
+		console.warn("`label` is deprecated (to be removed in next major version). Use `ariaLabel` instead.");
+		return this.ariaLabel;
+	}
+
 	@Input() ariaLabel = "content switcher";
 
 	/**
