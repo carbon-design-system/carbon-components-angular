@@ -18,6 +18,10 @@ export interface DialogConfig {
 	 */
 	trigger: "click" | "hover" | "mouseenter";
 	/**
+	 * Parameter for triggering the `Dialog` close event.
+	 */
+	closeTrigger: "mouseout" | "mouseleave";
+	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
 	 * @type {Placement}
 	 */
