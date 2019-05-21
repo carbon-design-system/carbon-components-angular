@@ -46,6 +46,7 @@ export class Button implements OnInit {
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--btn--sm") smallSize = false;
 	@HostBinding("class.bx--toolbar-action") toolbarAction = false;
+	@HostBinding("class.bx--overflow-menu") overflowMenu = false;
 
 	ngOnInit() {
 		if (this.size === "sm") {
@@ -59,7 +60,10 @@ export class Button implements OnInit {
 			case "ghost": this.ghost = true; break;
 			case "danger": this.danger = true; break;
 			case "danger--primary": this.dangerPrimary = true; break;
-			case "toolbar-action": this.toolbarAction = true; break;
+			case "toolbar-action":
+				this.toolbarAction = true;
+				this.overflowMenu = true;
+				break;
 			default: this.primary = true; break;
 		}
 	}

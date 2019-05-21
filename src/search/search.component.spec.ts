@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Search } from "./search.component";
@@ -14,7 +14,7 @@ describe("Search", () => {
 	let containerElement: HTMLElement;
 	let clearButtonElement: HTMLButtonElement;
 
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [Search],
 			imports: [
@@ -24,8 +24,17 @@ describe("Search", () => {
 				Close16Module
 			],
 			providers: []
-		});
-	});
+		})
+		.overrideComponent(Search, {
+			remove: {
+				templateUrl: "search.component.html"
+			},
+			add: {
+				template: require("./search.component.html")
+			}
+		})
+		.compileComponents();
+	}));
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(Search);

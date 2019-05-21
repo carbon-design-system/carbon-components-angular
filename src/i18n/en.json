@@ -125,7 +125,8 @@
 		"ROW": "row"
 	},
 	"TABLE_TOOLBAR": {
-		"ACTION_BAR": "Table Action Bar"
+		"ACTION_BAR": "Table Action Bar",
+		"CANCEL": "Cancel"
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",

@@ -88,7 +88,7 @@ import { I18n } from "./../i18n/i18n.module";
  * 		return true;
  * 	}
  *
- * 	set filterCount(n) {}
+ * 	set filterCount(n) {}
  * 	get filterCount() {
  * 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
  * 	}
