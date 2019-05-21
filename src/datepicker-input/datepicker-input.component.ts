@@ -95,18 +95,19 @@ export class DatePickerInput {
 
 	@Input() skeleton = false;
 
+	@Input() value: string;
+
 	constructor(protected elementRef: ElementRef) {}
 
 	onChange(event) {
-		this.valueChange.emit(event.target.value);
-		this.propagateChange(event.target.value);
+		this.value = event.target.value;
+		this.valueChange.emit(this.value);
+		this.propagateChange(this.value);
 		this.onTouched();
 	}
 
 	public writeValue(value: any) {
-		if (this.elementRef.nativeElement.querySelector("input")) {
-			this.elementRef.nativeElement.querySelector("input").value = value;
-		}
+		this.value = value;
 	}
 
 	public registerOnChange(fn: any) {
