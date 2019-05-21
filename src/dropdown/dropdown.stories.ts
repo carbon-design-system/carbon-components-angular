@@ -119,6 +119,43 @@ storiesOf("Dropdown", module)
 			theme: select("theme", ["dark", "light"], "dark")
 		}
 	}))
+	.add("With Template", () => ({
+		template: `
+		<div style="width: 300px;">
+			<ibm-dropdown
+				[theme]="theme"
+				placeholder="Select"
+				[displayValue]="dropdownRenderer"
+				[disabled]="disabled"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+				<ibm-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></ibm-dropdown-list>
+			</ibm-dropdown>
+			<ng-template #dropdownRenderer let-item="item">
+				<div *ngIf="item && item.content" style="font-size: 14px;">
+					<svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+							width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="will-change: transform;">
+						<path d="M9.3 3.7l3.8 3.8H1v1h12.1l-3.8 3.8.7.7 5-5-5-5z"></path>
+					</svg>
+					&nbsp;{{item.content}}
+				</div>
+			</ng-template>
+		</div>
+	`,
+		props: {
+			disabled: boolean("disabled", false),
+			items: object("items", [
+				{ content: "one", selected: true },
+				{ content: "two" },
+				{ content: "three" },
+				{ content: "four" }
+			]),
+			selected: action("Selected fired for dropdown"),
+			onClose: action("Dropdown closed"),
+			theme: select("theme", ["dark", "light"], "dark")
+		}
+
+	}))
 	.add("Skeleton", () => ({
 		template: `
 		<div style="width: 300px">

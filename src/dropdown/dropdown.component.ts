@@ -9,7 +9,8 @@ import {
 	ViewChild,
 	AfterContentInit,
 	HostListener,
-	OnDestroy
+	OnDestroy,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -75,7 +76,12 @@ import { DropdownService } from "./dropdown.service";
 					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
 				</svg>
 			</div>
-			<span class="bx--list-box__label">{{getDisplayValue() | async}}</span>
+			<span *ngIf="isRenderString()" class="bx--list-box__label">{{getDisplayStringValue() | async}}</span>
+			<ng-template
+				*ngIf="!isRenderString()"
+				[ngTemplateOutletContext]="getRenderTemplateContext()"
+				[ngTemplateOutlet]="displayValue">
+			</ng-template>
 			<ibm-icon-chevron-down16
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
@@ -106,9 +112,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() placeholder = "";
 	/**
-	 * The selected value from the `Dropdown`.
+	 * The selected value from the `Dropdown`. Can be a string or template.
 	 */
-	@Input() displayValue = "";
+	@Input() displayValue: string | TemplateRef<any> = "";
 	/**
 	 * Size to render the dropdown field.
 	 */
@@ -367,21 +373,39 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * if there is just a selection the ListItem content property will be returned,
 	 * otherwise the placeholder will be returned.
 	 */
-	getDisplayValue(): Observable<string> {
+	getDisplayStringValue(): Observable<string> {
 		if (!this.view) {
 			return;
 		}
 		let selected = this.view.getSelected();
-		if (selected && !this.displayValue) {
+		if (selected && (!this.displayValue || !this.isRenderString())) {
 			if (this.type === "multi") {
 				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
-		} else if (selected) {
-			return of(this.displayValue);
+		} else if (selected && this.isRenderString()) {
+			return of(this.displayValue as string);
 		}
 		return of(this.placeholder);
+	}
+
+	isRenderString(): boolean {
+		return typeof this.displayValue === "string";
+	}
+
+	getRenderTemplateContext() {
+		if (!this.view) {
+			return;
+		}
+		let selected = this.view.getSelected();
+		if (this.type === "multi") {
+			return {items: selected};
+		} else if (selected && selected.length > 0) {
+			return {item: selected[0]}; // this is to be compatible with the dropdown-list template
+		} else {
+			return {};
+		}
 	}
 
 	getSelectedCount(): number {
