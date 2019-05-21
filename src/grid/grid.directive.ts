@@ -1,5 +1,13 @@
 import { Directive, HostBinding, Input, OnInit } from "@angular/core";
 
+/**
+ * [See demo](../../?path=/story/grid--basic)
+ *
+ * <example-url>../../iframe.html?id=grid--basic</example-url>
+ *
+ * @export
+ * @class GridDirective
+ */
 @Directive({
 	selector: "[ibmGrid]"
 })

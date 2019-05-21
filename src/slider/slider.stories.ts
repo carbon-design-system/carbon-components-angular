@@ -3,9 +3,10 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, number, text, boolean } from "@storybook/addon-knobs/angular";
 
 import { SliderModule } from "./slider.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Slider", module).addDecorator(moduleMetadata({
-	imports: [SliderModule]
+	imports: [SliderModule, DocumentationModule]
 }))
 .addDecorator(withKnobs)
 .add("Basic", () => ({
@@ -55,5 +56,10 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 .add("Skeleton", () => ({
 	template: `
 		<ibm-slider skeleton="true"></ibm-slider>
+	`
+}))
+.add("Documentation", () => ({
+	template: `
+		<ibm-documentation src="documentation/components/Slider.html"></ibm-documentation>
 	`
 }));

@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs/angular";
 
-import { DropdownModule } from "../";
+import { DropdownModule, DocumentationModule } from "../";
 import { of } from "rxjs";
 import { PlaceholderModule } from "../placeholder/placeholder.module";
 
@@ -11,7 +11,8 @@ storiesOf("Dropdown", module)
 		moduleMetadata({
 			imports: [
 				DropdownModule,
-				PlaceholderModule
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -175,4 +176,9 @@ storiesOf("Dropdown", module)
 				{ content: "four" }
 			]
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Dropdown.html"></ibm-documentation>
+		`
 	}));

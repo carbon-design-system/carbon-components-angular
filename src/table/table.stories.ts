@@ -25,7 +25,8 @@ import {
 	NFormsModule,
 	DialogModule,
 	SearchModule,
-	ButtonModule
+	ButtonModule,
+	DocumentationModule
 } from "../";
 
 import { clone } from "../utils/utils";
@@ -457,7 +458,8 @@ storiesOf("Table", module).addDecorator(
 				DialogModule,
 				PaginationModule,
 				SearchModule,
-				ButtonModule
+				ButtonModule,
+				DocumentationModule
 			],
 			declarations: [
 				TableStory,
@@ -470,7 +472,7 @@ storiesOf("Table", module).addDecorator(
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("default", () => ({
+	.add("Basic", () => ({
 		template: `
 		<div style="width: 650px">
 			<app-table
@@ -492,7 +494,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with no data", () => ({
+	.add("With no data", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-table
@@ -518,7 +520,7 @@ storiesOf("Table", module).addDecorator(
 			striped: boolean("striped", true)
 		}
 	}))
-	.add("with toolbar", () => ({
+	.add("With toolbar", () => ({
 		template: `
 		<ibm-table-toolbar [model]="model">
 			<ibm-table-toolbar-actions>
@@ -604,7 +606,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with expansion", () => ({
+	.add("With expansion", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-expansion-table
@@ -622,7 +624,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with dynamic content", () => ({
+	.add("With dynamic content", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-custom-table
@@ -640,7 +642,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with overflow menu", () => ({
+	.add("With overflow menu", () => ({
 		template: `
 			<div style="width: 650px">
 				<app-overflow-table
@@ -658,7 +660,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with pagination", () => ({
+	.add("With pagination", () => ({
 		template: `
 		<div style="width: 650px">
 			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
@@ -683,5 +685,10 @@ storiesOf("Table", module).addDecorator(
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			striped: boolean("striped", false)
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Table.html"></ibm-documentation>
+		`
 	}));
 
