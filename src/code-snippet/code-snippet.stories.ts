@@ -1,7 +1,7 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
-import { CodeSnippetModule } from "..";
+import { CodeSnippetModule, DocumentationModule } from "..";
 
 const code = `import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
@@ -35,9 +35,9 @@ storiesOf("Code Snippet", module).addDecorator(
 
 const inlineCode = "<inline code>";
 
-storiesOf("CodeSnippet", module).addDecorator(
+storiesOf("Code Snippet", module).addDecorator(
 	moduleMetadata({
-		imports: [CodeSnippetModule]
+		imports: [CodeSnippetModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -74,5 +74,10 @@ storiesOf("CodeSnippet", module).addDecorator(
 				<br>
 				<ibm-code-snippet display="multi" skeleton="true"></ibm-code-snippet>
 			</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/CodeSnippet.html"></ibm-documentation>
 		`
 	}));

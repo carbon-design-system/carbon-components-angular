@@ -7,7 +7,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, number, object } from "@storybook/addon-knobs/angular";
 
-import { ProgressIndicatorModule, PlaceholderModule } from "../";
+import { ProgressIndicatorModule, PlaceholderModule, DocumentationModule } from "../";
 import { ProgressIndicator } from "./progress-indicator.component";
 
 @Component({
@@ -33,7 +33,8 @@ storiesOf("Progress Indicator", module)
 			declarations: [SkeletonStory],
 			imports: [
 				ProgressIndicatorModule,
-				PlaceholderModule
+				PlaceholderModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -118,5 +119,10 @@ storiesOf("Progress Indicator", module)
 		<app-skeleton-progress-indicator></app-skeleton-progress-indicator>
 		&nbsp;&nbsp;
 		<app-skeleton-progress-indicator orientation="vertical"></app-skeleton-progress-indicator>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/ProgressIndicator.html"></ibm-documentation>
 		`
 	}));

@@ -11,6 +11,8 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component
  *
+ * [See demo](../../?path=/story/overflow-menu--basic)
+ *
  * html:
  * ```
  * <ibm-overflow-menu>
@@ -18,6 +20,11 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  *	<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
  * </ibm-overflow-menu>
  * ```
+ *
+ * <example-url>../../iframe.html?id=overflow-menu--basic</example-url>
+ *
+ * @export
+ * @class OverflowMenu
  */
 @Component({
 	selector: "ibm-overflow-menu",
