@@ -2,9 +2,9 @@ import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../i18n/i18n.module";
+import { I18nModule } from "../../i18n/i18n.module";
 import { Header } from "./header.component";
-import { Hamburger } from "./ui-shell.module";
+import { Hamburger } from "../ui-shell.module";
 
 /**
  * Testing component for projecting an ibm-hamburger component
