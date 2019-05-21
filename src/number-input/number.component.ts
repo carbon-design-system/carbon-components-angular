@@ -1,4 +1,11 @@
-import { Component, Input, HostBinding, EventEmitter, Output, TemplateRef } from "@angular/core";
+import { 
+	Component, 
+	Input, 
+	HostBinding, 
+	EventEmitter, 
+	Output, 
+	TemplateRef 
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { isNullOrUndefined } from "util";
 
