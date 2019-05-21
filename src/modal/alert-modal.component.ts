@@ -48,8 +48,8 @@ import { BaseModal } from "./base-modal.class";
 @Component({
 	selector: "ibm-alert-modal",
 	template: `
-		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle">
-			<ibm-modal-header (closeSelect)="closeModal()">
+		<ibm-modal [theme]="modalType" [modalLabel]="modalTitle" (overlaySelected)="dismissModal()">
+			<ibm-modal-header (closeSelect)="dismissModal()">
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
@@ -81,7 +81,8 @@ export class AlertModal extends BaseModal {
 		@Inject("modalLabel") public modalLabel: string,
 		@Inject("modalTitle") public modalTitle: string,
 		@Inject("modalContent") public modalContent: string,
-		@Inject("buttons") public buttons = []
+		@Inject("buttons") public buttons = [],
+		@Inject("close") public onClose: Function
 	) {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
@@ -101,6 +102,13 @@ export class AlertModal extends BaseModal {
 			button.click();
 		}
 
+		this.closeModal();
+	}
+
+	dismissModal() {
+		if (this.onClose && this.onClose() === false) {
+			return;
+		}
 		this.closeModal();
 	}
 }
