@@ -30,11 +30,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					data-open>
 				</ibm-icon-calendar16>
 				<input
-					maxlength="10"
 					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
 					class="bx--date-picker__input"
+					[value]="value"
 					[pattern]="pattern"
 					[placeholder]="placeholder"
 					data-date-picker-input
@@ -95,7 +95,7 @@ export class DatePickerInput {
 
 	@Input() skeleton = false;
 
-	@Input() value: string;
+	@Input() value = "";
 
 	constructor(protected elementRef: ElementRef) {}
 
