@@ -1,6 +1,14 @@
 import { Component, Input } from "@angular/core";
 import { ExperimentalService } from "./../experimental.module";
 
+/**
+ * [See demo](../../?path=/story/progress-indicator--basic)
+ *
+ * <example-url>../../iframe.html?id=progress-indicator--basic</example-url>
+ *
+ * @export
+ * @class ProgressIndicator
+ */
 @Component({
 	selector: "ibm-progress-indicator",
 	template: `

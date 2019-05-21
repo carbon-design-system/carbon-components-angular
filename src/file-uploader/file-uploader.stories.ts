@@ -9,7 +9,12 @@ import {
 	array
 } from "@storybook/addon-knobs";
 
-import { FileUploaderModule, NotificationModule, ButtonModule } from "../";
+import {
+	FileUploaderModule,
+	NotificationModule,
+	ButtonModule,
+	DocumentationModule
+} from "../";
 import { NotificationService } from "../notification/notification.service";
 
 @Component({
@@ -143,7 +148,7 @@ class NgModelFileUploaderStory {
 storiesOf("File Uploader", module)
 	.addDecorator(
 		moduleMetadata({
-			imports: [FileUploaderModule, NotificationModule, ButtonModule],
+			imports: [FileUploaderModule, NotificationModule, ButtonModule, DocumentationModule],
 			declarations: [FileUploaderStory, NgModelFileUploaderStory]
 		})
 	)
@@ -187,5 +192,10 @@ storiesOf("File Uploader", module)
 	.add("Skeleton", () => ({
 		template: `
 			<app-file-uploader skeleton="true"></app-file-uploader>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/FileUploader.html"></ibm-documentation>
 		`
 	}));

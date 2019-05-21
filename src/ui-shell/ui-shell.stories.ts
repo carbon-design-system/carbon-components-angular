@@ -4,6 +4,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 import { UIShellModule } from "./ui-shell.module";
 import { SearchModule } from "./../search/search.module";
 import { DialogModule } from "./../dialog/dialog.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("UI Shell", module)
 	.addDecorator(
@@ -11,7 +12,8 @@ storiesOf("UI Shell", module)
 			imports: [
 				UIShellModule,
 				SearchModule,
-				DialogModule
+				DialogModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -271,4 +273,14 @@ storiesOf("UI Shell", module)
 				}
 			]
 		}
+	}))
+	.add("Header Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Header.html"></ibm-documentation>
+		`
+	}))
+	.add("Side Nav Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/SideNav.html"></ibm-documentation>
+		`
 	}));

@@ -46,6 +46,10 @@ export class CheckboxChange {
 }
 
 /**
+ * [See demo](../../?path=/story/checkbox--basic)
+ *
+ * <example-url>../../iframe.html?id=checkbox--basic</example-url>
+ *
  * @export
  * @class Checkbox
  * @implements {ControlValueAccessor}
