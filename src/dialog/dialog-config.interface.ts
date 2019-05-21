@@ -14,9 +14,12 @@ export interface DialogConfig {
 	content: string | TemplateRef<any>;
 	/**
 	 * Parameter for triggering `Dialog` display.
-	 * With the release of v2.0 the type will just be "click" or "hover".
 	 */
 	trigger: "click" | "hover" | "mouseenter";
+	/**
+	 * Parameter for triggering the `Dialog` close event.
+	 */
+	closeTrigger: "mouseout" | "mouseleave";
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
 	 * @type {Placement}
