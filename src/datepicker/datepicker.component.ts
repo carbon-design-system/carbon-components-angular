@@ -11,6 +11,15 @@ import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 
+/**
+ * [See demo](../../?path=/story/date-picker--single)
+ *
+ * <example-url>../../iframe.html?id=date-picker--single</example-url>
+ *
+ * @export
+ * @class DatePicker
+ * @implements {OnDestroy}
+ */
 @Component({
 	selector: "ibm-date-picker",
 	template: `

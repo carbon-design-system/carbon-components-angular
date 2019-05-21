@@ -7,13 +7,14 @@ import {
 	text,
 	boolean
 } from "@storybook/addon-knobs/angular";
-import { DatePickerModule } from "../";
+import { DatePickerModule, DocumentationModule } from "../";
 
 storiesOf("Date Picker", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				DatePickerModule
+				DatePickerModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -95,5 +96,10 @@ storiesOf("Date Picker", module)
 			range="true"
 			skeleton="true">
 		</ibm-date-picker>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/DatePicker.html"></ibm-documentation>
 		`
 	}));

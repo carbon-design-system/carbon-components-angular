@@ -26,7 +26,8 @@ import {
 	NFormsModule,
 	DialogModule,
 	SearchModule,
-	ButtonModule
+	ButtonModule,
+	DocumentationModule
 } from "../";
 
 import { Settings16Module } from "@carbon/icons-angular/lib/settings/16";
@@ -476,7 +477,8 @@ storiesOf("Table", module).addDecorator(
 				Delete16Module,
 				Save16Module,
 				Download16Module,
-				Add20Module
+				Add20Module,
+				DocumentationModule
 			],
 			declarations: [
 				TableStory,
@@ -489,7 +491,7 @@ storiesOf("Table", module).addDecorator(
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("default", () => ({
+	.add("Basic", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -517,7 +519,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with no data", () => ({
+	.add("With no data", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -549,7 +551,7 @@ storiesOf("Table", module).addDecorator(
 			striped: boolean("striped", false)
 		}
 	}))
-	.add("with toolbar", () => ({
+	.add("With toolbar", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -604,7 +606,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with expansion", () => ({
+	.add("With expansion", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -628,7 +630,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with dynamic content", () => ({
+	.add("With dynamic content", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -652,7 +654,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with overflow menu", () => ({
+	.add("With overflow menu", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -676,7 +678,7 @@ storiesOf("Table", module).addDecorator(
 			isDataGrid: boolean("Data grid keyboard interactions", false)
 		}
 	}))
-	.add("with pagination", () => ({
+	.add("With pagination", () => ({
 		template: `
 		<ibm-table-container>
 			<ibm-table-header>
@@ -705,5 +707,10 @@ storiesOf("Table", module).addDecorator(
 			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
 			striped: boolean("striped", false)
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Table.html"></ibm-documentation>
+		`
 	}));
 

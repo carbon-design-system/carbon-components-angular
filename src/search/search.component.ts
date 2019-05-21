@@ -25,6 +25,15 @@ export class SearchChange {
 	value: string;
 }
 
+/**
+ * [See demo](../../?path=/story/search--basic)
+ *
+ * <example-url>../../iframe.html?id=search--basic</example-url>
+ *
+ * @export
+ * @class Search
+ * @implements {ControlValueAccessor}
+ */
 @Component({
 	selector: "ibm-search",
 	templateUrl: "search.component.html",
