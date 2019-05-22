@@ -76,7 +76,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[step]="step"
 					[min]="min"
 					[max]="max"
-					[value]="value">
+					[value]="value.toString()">
 			</div>
 			<label [id]="bottomRangeId" class="bx--slider__range-label">
 				<ng-content select="[minLabel]"></ng-content>
@@ -179,7 +179,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected slidAmount = 0;
 	protected input: HTMLInputElement;
-	protected _value = 0;
+	protected _value = this.min;
 	protected _disabled = false;
 
 	constructor(protected elementRef: ElementRef) {}
@@ -189,7 +189,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.eventSubscriptions.push(fromEvent(document, "mousemove").subscribe(this.onMouseMove.bind(this)));
 		this.eventSubscriptions.push(fromEvent(document, "mouseup").subscribe(this.onMouseUp.bind(this)));
 
-		// ODO: ontouchstart/ontouchmove/ontouchend
+		// apply any values we got from before the view initialized
+		this.value = this.value;
+
+		// TODO: ontouchstart/ontouchmove/ontouchend
 
 		// set up the optional input
 		this.input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
