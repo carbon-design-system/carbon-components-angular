@@ -21,6 +21,8 @@ import { FileItem } from "./file-item.interface";
 			*ngIf="fileItem.state === 'edit'"
 			class="bx--file__state-container"
 			(click)="remove.emit()"
+			(keyup.enter)="remove.emit()"
+			(keyup.space)="remove.emit()"
 			tabindex="0">
 			<ibm-icon-close16
 				class="bx--file-close"
