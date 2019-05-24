@@ -5,12 +5,15 @@ import {
 	ViewChild,
 	ElementRef,
 	HostListener,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
  * `ibm-select` provides a styled `select` component.
+ *
+ * [See demo](../../?path=/story/select--basic)
  *
  * Example:
  *
@@ -22,13 +25,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * 	<option value="option3">Option 3</option>
  * </ibm-select>
  *	```
-
+ *
+ * <example-url>../../iframe.html?id=select--basic</example-url>
+ *
+ * @export
+ * @class Select
+ * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-select",
 	template: `
 		<div class="bx--form-item">
-			<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 			<div
 				[ngClass]="{
 					'bx--select--inline': display === 'inline',
@@ -37,21 +44,37 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				}"
 				class="bx--select"
 				style="width: 100%">
+				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
-				<select
-					#select
-					[attr.id]="id"
-					[disabled]="disabled"
-					(change)="onChange($event)"
-					class="bx--select-input">
-					<ng-content></ng-content>
-				</select>
-				<svg *ngIf="!skeleton" class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
-				<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
-				</svg>
+				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
+					<select
+						#select
+						[attr.id]="id"
+						[disabled]="disabled"
+						(change)="onChange($event)"
+						class="bx--select-input">
+						<ng-content></ng-content>
+					</select>
+					<ibm-icon-warning-filled16
+						*ngIf="!skeleton && invalid"
+						class="bx--select__invalid-icon"
+						style="display: inherit;">
+					</ibm-icon-warning-filled16>
+					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow" style="display: inherit;"></ibm-icon-chevron-down16>
+				</div>
+				<div *ngIf="invalid" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
 			</div>
 		</div>
 	`,
+	styles: [`
+		[data-invalid] ~ .bx--select__arrow {
+			bottom: 2.25rem;
+		}
+	`],
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -75,6 +98,14 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() label = "Select label";
 	/**
+	 * Optional helper text that appears under the label.
+	 */
+	@Input() helperText: string;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
+	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
 	@Input() id = `select-${Select.selectCount++}`;
@@ -86,6 +117,11 @@ export class Select implements ControlValueAccessor {
 	 * Set to true for a loading select.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` for an invalid select component.
+	 */
+	@Input() invalid = false;
+
 	/**
 	 * `light` or `dark` select theme
 	 */
@@ -154,5 +190,9 @@ export class Select implements ControlValueAccessor {
 	@HostListener("blur")
 	protected blur() {
 		this.onTouchedHandler();
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

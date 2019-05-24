@@ -1,33 +1,38 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { TabsModule } from "../";
+import { TabsModule, DocumentationModule } from "../";
 
-// NOTE: non-experimental styles include some temporary workarounds in preview.scss
-// these should be removed when experimental becomes non-experimental
 storiesOf("Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TabsModule
+				TabsModule,
+				DocumentationModule
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-tabs [followFocus]="followFocus">
-				<ibm-tab heading="one">foo</ibm-tab>
-				<ibm-tab heading="two">bar</ibm-tab>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
-			followFocus: boolean("followFocus", true)
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
 		}
 	}))
 	.add("With template", () => ({
 		template: `
-			<ng-template #customTab>
+			<ng-template #customTabs let-item>
+				{{item ? item.name : "wait for it"}}
+			</ng-template>
+			<ng-template #iconTab>
 				<div style="height: 14px;">
 					Something custom
 					<svg width="16" height="16" viewBox="0 0 16 16"
@@ -38,12 +43,47 @@ storiesOf("Tabs", module)
 					</svg>
 				</div>
 			</ng-template>
-			<ibm-tabs>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab *ngFor="let item of data; let i = index;" [heading]="customTabs" [context]="item">Tab Content {{i + 1}}</ibm-tab>
+				<ibm-tab [heading]="iconTab">Tab Content Custom</ibm-tab>
+			</ibm-tabs>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false),
+			data: [
+				{ name: "one" },
+				{ name: "two" },
+				{ name: "three" }
+			]
+		}
+	}))
+	.add("Width before and after content", () => ({
+		template: `
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
 				<ibm-tab heading="one">foo</ibm-tab>
 				<ibm-tab heading="two">bar</ibm-tab>
-				<ibm-tab [heading]="customTab">foo</ibm-tab>
+				<span before>content before</span>
 			</ibm-tabs>
-		`
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">after</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span after>content after</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">both</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+				<span after>content after</span>
+			</ibm-tabs>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
+		}
 	}))
 	.add("Skeleton", () => ({
 		template: `
@@ -51,5 +91,10 @@ storiesOf("Tabs", module)
 				<ibm-tab></ibm-tab>
 				<ibm-tab></ibm-tab>
 			</ibm-tabs>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tabs.html"></ibm-documentation>
 		`
 	}));

@@ -15,6 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
+ * [See demo](../../?path=/story/slider--advanced)
+ *
  * The simplest possible slider usage looks something like:
  * ```html
  * <ibm-slider></ibm-slider>
@@ -43,11 +45,22 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
+ *
+ * <example-url>../../iframe.html?id=slider--advanced</example-url>
+ *
+ * @export
+ * @class Slider
+ * @implements {AfterViewInit}
+ * @implements {OnDestroy}
+ * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
+			<label [id]="bottomRangeId" class="bx--slider__range-label">
+				<ng-content select="[minLabel]"></ng-content>
+			</label>
 			<div
 				class="bx--slider"
 				[ngClass]="{'bx--slider--disabled': disabled}">
@@ -76,11 +89,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					[step]="step"
 					[min]="min"
 					[max]="max"
-					[value]="value">
+					[value]="value.toString()">
 			</div>
-			<label [id]="bottomRangeId" class="bx--slider__range-label">
-				<ng-content select="[minLabel]"></ng-content>
-			</label>
 			<label [id]="topRangeId" class="bx--slider__range-label">
 				<ng-content select="[maxLabel]"></ng-content>
 			</label>
@@ -149,6 +159,8 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() shiftMultiplier = 4;
 	/** Set to `true` for a loading slider */
 	@Input() skeleton = false;
+	/** Set to `true` for a slider without arrow key interactions. */
+	@Input() disableArrowKeys = false;
 	/** Disables the range visually and functionally */
 	@Input() set disabled(v) {
 		this._disabled = v;
@@ -177,7 +189,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected slidAmount = 0;
 	protected input: HTMLInputElement;
-	protected _value = 0;
+	protected _value = this.min;
 	protected _disabled = false;
 
 	constructor(protected elementRef: ElementRef) {}
@@ -187,7 +199,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.eventSubscriptions.push(fromEvent(document, "mousemove").subscribe(this.onMouseMove.bind(this)));
 		this.eventSubscriptions.push(fromEvent(document, "mouseup").subscribe(this.onMouseUp.bind(this)));
 
-		// ODO: ontouchstart/ontouchmove/ontouchend
+		// apply any values we got from before the view initialized
+		this.value = this.value;
+
+		// TODO: ontouchstart/ontouchmove/ontouchend
 
 		// set up the optional input
 		this.input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
@@ -338,6 +353,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	/** Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown */
 	onKeyDown(event: KeyboardEvent) {
+		if (this.disableArrowKeys) {
+			return;
+		}
 		event.preventDefault();
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;
 		if (event.key === "ArrowLeft" || event.key === "ArrowDown") {

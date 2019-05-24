@@ -36,31 +36,35 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	static dialogCounter = 0;
 	/**
 	 * Title for the dialog
-	 * @type {string}
 	 */
 	@Input() title = "";
 	/**
 	 * Dialog body content.
-	 * @type {(string | TemplateRef<any>)}
 	 */
 	@Input() ibmDialog: string | TemplateRef<any>;
 	/**
 	 * Defines how the Dialog is triggered.(Hover and click behave the same on mobile - both respond to a single tap)
-	 * @type {("click" | "hover" | "mouseenter")}
 	 */
 	@Input() trigger: "click" | "hover" | "mouseenter" = "click";
+	/**
+	 * Defines how the Dialog close event is triggered.
+	 *
+	 * [See here](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event)
+	 * for more on the difference between `mouseleave` and `mouseout`.
+	 *
+	 * Defaults to `click` when `trigger` is set to `click`.
+	 */
+	@Input() closeTrigger: "mouseout" | "mouseleave" = "mouseleave";
 	/**
 	 * Placement of the dialog, usually relative to the element the directive is on.
 	 */
 	@Input() placement = "left";
 	/**
 	 * Class to add to the dialog container
-	 * @type {string}
 	 */
 	@Input() wrapperClass: string;
 	/**
 	 * Spacing between the dialog and it's triggering element
-	 * @type {number}
 	 */
 	@Input() gap = 0;
 	/**
@@ -87,8 +91,15 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Config object passed to the rendered component
 	 */
-	@Output() onClose: EventEmitter<any> = new EventEmitter<any>();
 	dialogConfig: DialogConfig;
+	/**
+	 * Emits an event when the dialog is closed
+	 */
+	@Output() onClose: EventEmitter<any> = new EventEmitter();
+	/**
+	 * Emits an event when the dialog is opened
+	 */
+	@Output() onOpen: EventEmitter<any> = new EventEmitter();
 
 	@HostBinding("attr.role") role = "button";
 	@HostBinding("attr.aria-expanded") expanded = false;
@@ -110,7 +121,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 	/**
 	 * Overrides 'touchstart' event to trigger a toggle on the Dialog.
-	 * @param {any} evt
 	 */
 	@HostListener("touchstart", ["$event"])
 	onTouchStart(evt) {
@@ -128,6 +138,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			parentRef: this.elementRef,
 			gap: this.gap,
 			trigger: this.trigger,
+			closeTrigger: this.closeTrigger,
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
 			data: this.data
@@ -153,7 +164,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// bind events for hovering or clicking the host
 		if (this.trigger === "hover" || this.trigger === "mouseenter") {
 			fromEvent(this.elementRef.nativeElement, "mouseenter").subscribe(() => this.toggle());
-			fromEvent(this.elementRef.nativeElement, "mouseout").subscribe(() => this.close());
+			fromEvent(this.elementRef.nativeElement, this.closeTrigger).subscribe(() => this.close());
 			fromEvent(this.elementRef.nativeElement, "focus").subscribe(() => this.open());
 			fromEvent(this.elementRef.nativeElement, "blur").subscribe(() => this.close());
 		} else {
@@ -197,6 +208,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	open() {
 		this.dialogService.open(this.viewContainerRef, this.dialogConfig);
 		this.expanded = true;
+		this.onOpen.emit();
 	}
 
 	/**
@@ -206,6 +218,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	toggle() {
 		this.dialogService.toggle(this.viewContainerRef, this.dialogConfig);
 		this.expanded = this.dialogService.isOpen;
+		if (this.expanded) {
+			this.onOpen.emit();
+		}
 	}
 
 	/**
@@ -220,7 +235,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	/**
 	 * Empty method for child classes to override and specify additional init steps.
 	 * Run after DialogDirective completes it's ngOnInit.
-	 * @protected
 	 */
 	protected onDialogInit() {}
 }

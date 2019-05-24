@@ -8,7 +8,7 @@ export const merge = (target, ...objects) => {
 					if (!target[key]) {
 						target[key] = {};
 					}
-					// recursivly merge into the target
+					// recursively merge into the target
 					// most translations only run 3 or 4 levels deep, so no stack explosions
 					target[key] = merge(target[key], object[key]);
 				} else {

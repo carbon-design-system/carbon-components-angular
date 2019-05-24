@@ -1,11 +1,11 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select, text } from "@storybook/addon-knobs/angular";
 
-import { SearchModule } from "../";
+import { SearchModule, DocumentationModule } from "../";
 
 storiesOf("Search", module).addDecorator(
 	moduleMetadata({
-		imports: [SearchModule]
+		imports: [SearchModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -34,5 +34,10 @@ storiesOf("Search", module).addDecorator(
 			&nbsp;
 			<ibm-search skeleton="true" size="sm"></ibm-search>
 		</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Search.html"></ibm-documentation>
 		`
 	}));

@@ -7,7 +7,9 @@ import {
 	TemplateRef,
 	AfterViewInit,
 	ViewChild,
-	ElementRef
+	ElementRef,
+	ViewChildren,
+	QueryList
 } from "@angular/core";
 
 import { I18n } from "../../i18n/i18n.module";
@@ -49,9 +51,11 @@ import { Observable, isObservable, Subscription } from "rxjs";
 		<ul
 			#list
 			role="listbox"
-			class="bx--list-box__menu"
+			class="bx--list-box__menu bx--multi-select"
 			[attr.aria-label]="ariaLabel">
-			<li tabindex="-1"
+			<li
+				#listItem
+				tabindex="-1"
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
@@ -60,27 +64,34 @@ import { Observable, isObservable, Subscription } from "rxjs";
 				(blur)="onItemBlur(i)"
 				class="bx--list-box__menu-item"
 				[ngClass]="{
-					selected: item.selected,
+					'bx--list-box__menu-item--active': item.selected,
 					disabled: item.disabled
 				}">
-				<div
-					*ngIf="!listTpl && type === 'multi'"
-					class="bx--form-item bx--checkbox-wrapper">
-					<input
-						class="bx--checkbox"
-						type="checkbox"
-						[checked]="item.selected"
-						[disabled]="item.disabled"
-						(click)="doClick($event, item)"
-						tabindex="-1">
-					<label class="bx--checkbox-label">{{item.content}}</label>
+				<div class="bx--list-box__menu-item__option">
+					<div
+						*ngIf="!listTpl && type === 'multi'"
+						class="bx--form-item bx--checkbox-wrapper">
+						<label
+							[attr.data-contained-checkbox-state]="item.selected"
+							class="bx--checkbox-label">
+							<input
+								class="bx--checkbox"
+								type="checkbox"
+								[checked]="item.selected"
+								[disabled]="item.disabled"
+								(click)="doClick($event, item)"
+								tabindex="-1">
+							<span class="bx--checkbox-appearance"></span>
+							<span class="bx--checkbox-label-text">{{item.content}}</span>
+						</label>
+					</div>
+					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
+					<ng-template
+						*ngIf="listTpl"
+						[ngTemplateOutletContext]="{item: item}"
+						[ngTemplateOutlet]="listTpl">
+					</ng-template>
 				</div>
-				<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
-				<ng-template
-					*ngIf="listTpl"
-					[ngTemplateOutletContext]="{item: item}"
-					[ngTemplateOutlet]="listTpl">
-				</ng-template>
 			</li>
 		</ul>`,
 	providers: [
@@ -97,7 +108,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
 		if (isObservable(value)) {
-			this._itemsSubscription.unsubscribe();
+			if (this._itemsSubscription) {
+				this._itemsSubscription.unsubscribe();
+			}
 			this._itemsSubscription = value.subscribe(v => this.updateList(v));
 		} else {
 			this.updateList(value);
@@ -117,13 +130,19 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	@Output() select: EventEmitter<Object> = new EventEmitter<Object>();
 	/**
+	 * Event to suggest a blur on the view.
+	 * Emits _after_ the first/last item has been focused.
+	 * ex.
+	 * ArrowUp -> focus first item
+	 * ArrowUp -> emit event
+	 *
+	 * When this event fires focus should be placed on some element outside of the list - blurring the list as a result
+	 */
+	@Output() blurIntent = new EventEmitter<"top" | "bottom">();
+	/**
 	 * Maintains a reference to the view DOM element for the unordered list of items within the `DropdownList`.
 	 */
 	@ViewChild("list") list: ElementRef;
-	/**
-	 * Keeps a reference to the "clear selection" element
-	 */
-	@ViewChild("clearSelected") clearSelected: ElementRef;
 	/**
 	 * Defines whether or not the `DropdownList` supports selecting multiple items as opposed to single
 	 * item selection.
@@ -146,7 +165,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * An array holding the HTML list elements in the view.
 	 */
-	protected listElementList: HTMLElement[];
+	@ViewChildren("listItem") protected listElementList: QueryList<ElementRef>;
 	/**
 	 * Observable bound to keydown events to control filtering.
 	 */
@@ -174,7 +193,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Additionally, any Observables for the `DropdownList` are initialized.
 	 */
 	ngAfterViewInit() {
-		this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
 		this.index = this.getListItems().findIndex(item => item.selected);
 		this.setupFocusObservable();
 	}
@@ -194,12 +212,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	updateList(items) {
 		this._items = items.map(item => Object.assign({}, item));
 		this.displayItems = this._items;
-		setTimeout(() => {
-			this.listElementList = Array.from(this.list.nativeElement.querySelectorAll("li")) as HTMLElement[];
-		}, 0);
 		this.index = this._items.findIndex(item => item.selected);
 		this.setupFocusObservable();
 		setTimeout(() => {
+			if (!this.getSelected()) { return; }
 			if (this.type === "single") {
 				this.select.emit({ item: this._items.find(item => item.selected) });
 			} else {
@@ -217,6 +233,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		} else {
 			this.displayItems = this.getListItems();
 		}
+		// reset the index since the list has changed visually
+		this.index = 0;
 	}
 
 	/**
@@ -238,10 +256,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */
 	getNextItem(): ListItem {
-		if (this.index < this.getListItems().length - 1) {
+		if (this.index < this.displayItems.length - 1) {
 			this.index++;
 		}
-		return this.getListItems()[this.index];
+		return this.displayItems[this.index];
 	}
 
 	/**
@@ -249,7 +267,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * TODO: standardize
 	 */
 	hasNextElement(): boolean {
-		if (this.index < this.getListItems().length - 1) {
+		if (this.index < this.displayItems.length - 1) {
 			return true;
 		}
 		return false;
@@ -259,11 +277,11 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Returns the `HTMLElement` for the item that is subsequent to the selected item.
 	 */
 	getNextElement(): HTMLElement {
-		if (this.index < this.getListItems().length - 1) {
+		if (this.index < this.displayItems.length - 1) {
 			this.index++;
 		}
-		let elem = this.listElementList[this.index];
-		let item = this.getListItems()[this.index];
+		let elem = this.listElementList.toArray()[this.index].nativeElement;
+		let item = this.displayItems[this.index];
 		if (item.disabled) {
 			return this.getNextElement();
 		}
@@ -277,7 +295,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index > 0) {
 			this.index--;
 		}
-		return this.getListItems()[this.index];
+		return this.displayItems[this.index];
 	}
 
 	/**
@@ -298,8 +316,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index > 0) {
 			this.index--;
 		}
-		let elem = this.listElementList[this.index];
-		let item = this.getListItems()[this.index];
+		let elem = this.listElementList.toArray()[this.index].nativeElement;
+		let item = this.displayItems[this.index];
 		if (item.disabled) {
 			return this.getPrevElement();
 		}
@@ -311,9 +329,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	getCurrentItem(): ListItem {
 		if (this.index < 0) {
-			return this.getListItems()[0];
+			return this.displayItems[0];
 		}
-		return this.getListItems()[this.index];
+		return this.displayItems[this.index];
 	}
 
 	/**
@@ -321,9 +339,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	getCurrentElement(): HTMLElement {
 		if (this.index < 0) {
-			return this.listElementList[0];
+			return this.listElementList.first.nativeElement;
 		}
-		return this.listElementList[this.index];
+		return this.listElementList.toArray()[this.index].nativeElement;
 	}
 
 	/**
@@ -374,6 +392,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Initializes focus in the list, effectively a wrapper for `getCurrentElement().focus()`
 	 */
 	initFocus() {
+		// ensure we start at this first item if nothing is already selected
+		if (this.index < 0) {
+			this.index = 0;
+		}
 		this.getCurrentElement().focus();
 	}
 
@@ -389,14 +411,17 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			}
 		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
 			event.preventDefault();
-			// this.checkScrollArrows();
-			if ((event.key === "ArrowDown" || event.key === "Down") && this.hasNextElement()) {
-				this.getNextElement().focus();
+			if (event.key === "ArrowDown" || event.key === "Down") {
+				if (this.hasNextElement()) {
+					this.getNextElement().focus();
+				} else {
+					this.blurIntent.emit("bottom");
+				}
 			} else if (event.key === "ArrowUp" || event.key === "Up") {
 				if (this.hasPrevElement()) {
 					this.getPrevElement().focus();
-				} else if (this.getSelected()) {
-					this.clearSelected.nativeElement.focus();
+				} else {
+					this.blurIntent.emit("top");
 				}
 			}
 		}
@@ -425,12 +450,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	}
 
 	onItemFocus(index) {
-		this.listElementList[index].classList.add("bx--list-box__menu-item--highlighted");
-		this.listElementList[index].tabIndex = 0;
+		const element = this.listElementList.toArray()[index].nativeElement;
+		element.classList.add("bx--list-box__menu-item--highlighted");
+		element.tabIndex = 0;
 	}
 
 	onItemBlur(index) {
-		this.listElementList[index].classList.remove("bx--list-box__menu-item--highlighted");
-		this.listElementList[index].tabIndex = -1;
+		const element = this.listElementList.toArray()[index].nativeElement;
+		element.classList.remove("bx--list-box__menu-item--highlighted");
+		element.tabIndex = -1;
 	}
 }

@@ -7,6 +7,8 @@ import {
 /**
  * A convinence directive for applying styling to a link.
  *
+ * [See demo](../../?path=/story/link--basic)
+ *
  * Example:
  *
  * ```hmtl
@@ -14,26 +16,31 @@ import {
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
+ *
+ * <example-url>../../iframe.html?id=link--basic</example-url>
+ *
+ * @export
+ * @class Link
  */
 @Directive({
 	selector: "[ibmLink]"
 })
+
 
 export class Link {
 	@HostBinding("class.bx--link") baseClass = true;
 
 	/**
 	 * Automatically set to `-1` when link is disabled.
-	 * @memberof Link
 	 */
 	@HostBinding("attr.tabindex") tabindex;
 
 	/**
 	 * Set to true to disable link.
-	 * @memberof Link
 	 */
 	@Input()
 	@HostBinding("attr.aria-disabled")
+	@HostBinding("class.bx--link--disabled")
 	set disabled(disabled: boolean) {
 		this._disabled = disabled;
 		this.tabindex = this.disabled ? -1 : null;

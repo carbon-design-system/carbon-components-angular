@@ -13,15 +13,24 @@ import { FileItem } from "./file-item.interface";
 
 const noop = () => {};
 
+/**
+ * [See demo](../../?path=/story/file-uploader--basic)
+ *
+ * <example-url>../../iframe.html?id=file-uploader--basic</example-url>
+ *
+ * @export
+ * @class FileUploader
+ * @implements {OnInit}
+ */
 @Component({
 	selector: "ibm-file-uploader",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<strong class="bx--label">{{title}}</strong>
+			<strong class="bx--file--label">{{title}}</strong>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
 				<button
-					ibmButton="secondary"
+					ibmButton="primary"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId">
 					{{buttonText}}
@@ -144,6 +153,9 @@ export class FileUploader implements OnInit {
 
 	onFilesAdded() {
 		const files = this.fileInput.nativeElement.files;
+		if (!this.multiple) {
+			this.files.clear();
+		}
 		for (let file of files) {
 			const fileItem: FileItem = {
 				uploaded: false,

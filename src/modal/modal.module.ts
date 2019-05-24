@@ -1,11 +1,7 @@
 // modules
-import {
-	NgModule,
-	Optional,
-	SkipSelf
-} from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { StaticIconModule } from "./../icon/static-icon.module";
+import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 // imports
 import { ModalPlaceholder } from "./modal-placeholder.component";
@@ -52,10 +48,10 @@ export * from "./base-modal.class";
 	imports: [
 		CommonModule,
 		ButtonModule,
-		StaticIconModule,
 		I18nModule,
 		PlaceholderModule,
-		ExperimentalModule
+		ExperimentalModule,
+		Close16Module
 	]
 })
 export class ModalModule { }

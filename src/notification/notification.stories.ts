@@ -1,5 +1,4 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withNotes } from "@storybook/addon-notes";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
@@ -7,6 +6,7 @@ import { Component } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
 import { I18n } from "../i18n/i18n.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-notification-story",
@@ -60,7 +60,8 @@ storiesOf("Notification", module)
 				ToastStory
 			],
 			imports: [
-				NotificationModule
+				NotificationModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -95,5 +96,15 @@ storiesOf("Notification", module)
 	.add("Dynamic toast", () => ({
 		template: `
 			<app-toast-story></app-toast-story>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Notification.html"></ibm-documentation>
+		`
+	}))
+	.add("Toast Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Toast.html"></ibm-documentation>
 		`
 	}));

@@ -2,14 +2,20 @@ import { Component, OnInit } from "@angular/core";
 import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "./table.module";
+import {
+	TableModel,
+	TableHeaderItem,
+	TableItem,
+	DataGridFocus,
+	ExpandedRowHover
+} from "./table.module";
 import { Table } from "./table.component";
-import { StaticIconModule } from "./../icon/static-icon.module";
 
 import { By } from "@angular/platform-browser";
 
 import { NFormsModule } from "./../forms/forms.module";
 import { I18nModule } from "../i18n/i18n.module";
+import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
 
 @Component({
 	template: `<ibm-table [model]="tableModel"></ibm-table>`
@@ -37,12 +43,14 @@ describe("Table", () => {
 				FormsModule,
 				NFormsModule,
 				DialogModule,
-				StaticIconModule,
-				I18nModule
+				I18nModule,
+				ChevronRight16Module
 			],
 			declarations: [
 				Table,
-				TableTest
+				TableTest,
+				DataGridFocus,
+				ExpandedRowHover
 			]
 		});
 

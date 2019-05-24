@@ -16,6 +16,8 @@ import { DialogService } from "./../dialog.service";
 /**
  * Directive for extending `Dialog` to create tooltips.
  *
+ * [See demo](../../?path=/story/tooltip--basic)
+ *
  * class: TooltipDirective (extends PopoverDirective)
  *
  *
@@ -26,6 +28,8 @@ import { DialogService } from "./../dialog.service";
  * <button nTooltip="I am a tooltip" placement="right" trigger="mouseenter" type="danger">Tooltip Right</button>
  * <button nTooltip="I am a tooltip" type="warning">Tooltip Top warning on click</button>
  * ```
+ *
+ * <example-url>../../iframe.html?id=tooltip--basic</example-url>
  *
  * @export
  * @class TooltipDirective
@@ -49,8 +53,9 @@ export class TooltipDirective extends DialogDirective {
 	// tslint:disable-next-line:no-input-rename
 	@Input("tooltip-type") tooltipType: "warning" | "error" | "" = "";
 
-
 	@HostBinding("tabindex") tabIndex = 0;
+
+	@HostBinding("class.bx--tooltip__trigger") className = true;
 
 	@HostBinding("attr.aria-describedby") get descriptorId(): string {
 		return this.expanded ? this.dialogConfig.compID : null;

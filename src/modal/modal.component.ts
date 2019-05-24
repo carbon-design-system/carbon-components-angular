@@ -20,64 +20,71 @@ import {
 } from "@angular/animations";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 
-
 /**
  * Component to create modals for presenting content.
  *
- * Using a modal in your application requires `ibm-modal-placeholder` which would generally be
+ * [See demo](../../?path=/story/modal--basic)
+ *
+ * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
- * ```html
- * <ibm-modal-placeholder></ibm-modal-placeholder>
- * ```
+```html
+<ibm-modal-placeholder></ibm-modal-placeholder>
+```
  *
  * A more complete example for `Modal` is given as follows:
  *
  * Example modal definition:
  *
- * ```typescript
- * \@Modal()
- * \@Component({
- * 	selector: "app-sample-modal",
- * 	template: `
- *		<ibm-modal size="xl">
- * 			<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
- * 			<section class="modal-body">
- * 			<h1>Sample modal works.</h1>
- * 			<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
- * 				<ibm-icon icon="info" size="sm"></ibm-icon>
- * 			</button>
- * 			{{modalText}}
- * 			</section>
- * 			<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
- * 		</ibm-modal>`,
- * 	styleUrls: ["./sample-modal.component.scss"]
- * })
- * export class SampleModal extends BaseModal {
- * 	modalText: string;
- * 	constructor(protected injector: Injector) {
- * 		super();
- * 		this.modalText = this.injector.get("modalText");
- * 	}
- * }
- * ```
+```typescript
+@Component({
+	selector: "app-sample-modal",
+	template: `
+				<ibm-modal size="xl" (overlaySelected)="closeModal()">
+					<ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
+						<section class="modal-body">
+							<h1>Sample modal works.</h1>
+							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
+								<ibm-icon icon="info" size="sm"></ibm-icon>
+							</button>
+							{{modalText}}
+						</section>
+					<ibm-modal-footer><button ibmButton="primary" (click)="closeModal()">Close</button></ibm-modal-footer>
+				</ibm-modal>`,
+	styleUrls: ["./sample-modal.component.scss"]
+})
+export class SampleModal extends BaseModal {
+	modalText: string;
+	constructor(protected injector: Injector) {
+		super();
+		this.modalText = this.injector.get("modalText");
+	}
+}
+```
  *
  * Example of opening the modal:
  *
- * ```typescript
- * \@Component({
- *  selector: "app-modal-demo",
- *  template: `
- *   <button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
- *   <ibm-modal-placeholder></ibm-modal-placeholder>`
- * })
- * export class ModalDemo {
- * 	openModal() {
- * 		this.modalService.create({component: SampleModal, inputs: {modalText: "Hello universe."}});
- * 	}
- * }
- * ```
+```typescript
+@Component({
+	selector: "app-modal-demo",
+	template: `
+				<button ibmButton="primary" (click)="openModal('drill')">Drill-down modal</button>
+				<ibm-placeholder></ibm-placeholder>`
+})
+export class ModalDemo {
+	openModal() {
+		this.modalService.create({component: SampleModal, inputs: {modalText: "Hello universe."}});
+	}
+}
+```
  *
+ * <example-url>../../iframe.html?id=modal--basic</example-url>
+ *
+ * @export
+ * @class Modal
+ * @implements {AfterViewInit}
+ * @implements {OnInit}
+ * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-modal",
@@ -124,7 +131,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	@Input() modalLabel = "default";
 
 	/**
-	 * Emits event when click occurs within `n-overlay` element. This is to track click events occuring outside bounds of the `Modal` object.
+	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
 	 */
 	@Output() overlaySelected = new EventEmitter();
 	/**
@@ -142,7 +149,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	modalState: "in" | "out" = "out";
 
 	/**
-	 * An element should have 'data-modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
+	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
 	 */
 	selectorPrimaryFocus = "[modal-primary-focus]";
 

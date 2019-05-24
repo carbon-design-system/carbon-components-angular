@@ -1,9 +1,11 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { Search } from "./search.component";
 import { FormsModule } from "@angular/forms";
 import { I18nModule } from "../i18n/i18n.module";
+import { Search16Module } from "@carbon/icons-angular/lib/search/16";
+import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 describe("Search", () => {
 	let component: Search;
@@ -12,13 +14,27 @@ describe("Search", () => {
 	let containerElement: HTMLElement;
 	let clearButtonElement: HTMLButtonElement;
 
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [Search],
-			imports: [FormsModule, I18nModule],
+			imports: [
+				FormsModule,
+				I18nModule,
+				Search16Module,
+				Close16Module
+			],
 			providers: []
-		});
-	});
+		})
+		.overrideComponent(Search, {
+			remove: {
+				templateUrl: "search.component.html"
+			},
+			add: {
+				template: require("./search.component.html")
+			}
+		})
+		.compileComponents();
+	}));
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(Search);
@@ -54,7 +70,7 @@ describe("Search", () => {
 		containerElement = fixture.debugElement.query(By.css(".bx--search")).nativeElement;
 		component.size = "lg";
 		fixture.detectChanges();
-		expect(containerElement.className.includes("bx--search--lg")).toEqual(true);
+		expect(containerElement.className.includes("bx--search--xl")).toEqual(true);
 		component.size = "sm";
 		fixture.detectChanges();
 		expect(containerElement.className.includes("bx--search--sm")).toEqual(true);

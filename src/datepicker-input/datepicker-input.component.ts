@@ -1,27 +1,35 @@
-import { Component, Input } from "@angular/core";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	TemplateRef
+} from "@angular/core";
 
 @Component({
 	selector: "ibm-date-picker-input",
 	template: `
 	<div class="bx--form-item">
 		<div class="bx--date-picker"
-		[ngClass]= "'bx--date-picker--' + type">
+			[ngClass]="{
+				'bx--date-picker--single' : type === 'single',
+				'bx--date-picker--range' : type === 'range',
+				'bx--date-picker--light' : theme === 'light',
+				'bx--skeleton' : skeleton
+			}">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
 					{{label}}
 				</label>
-				<svg *ngIf="type == 'single'"
-				data-date-picker-icon
-				class="bx--date-picker__icon"
-				width="14" height="16"
-				viewBox="0 0 14 16"
-				data-open>
-					<path d="M0 5h14v1H0V5zm3-5h1v4H3V0zm7 0h1v4h-1V0zM0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5
-						1.5h-11A1.5 1.5 0 0 1 0 14.5v-12zm1 0v12a.5.5 0 0 0
-						.5.5h11a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5z"
-						fill-rule="nonzero"/>
-				</svg>
+				<ibm-icon-calendar16
+					*ngIf="type == 'single'"
+					data-date-picker-icon
+					class="bx--date-picker__icon"
+					data-open>
+				</ibm-icon-calendar16>
 				<input
+				    #dateInput
+					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
 					class="bx--date-picker__input"
@@ -29,19 +37,21 @@ import { Component, Input } from "@angular/core";
 					[placeholder]="placeholder"
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
-					[id]= "id"/>
+					[id]= "id"
+					[disabled]="disabled"
+					[attr.data-invalid]="(invalid ? true : null)"
+					(change) = "valueChange.emit(dateInput.value)"/>
+					<div *ngIf="invalid" class="bx--form-requirement">
+						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+					</div>
 			</div>
-
-			<svg *ngIf= "type == 'range' && hasIcon"
-			data-date-picker-icon
-			class="bx--date-picker__icon"
-			width="14" height="16"
-			viewBox="0 0 14 16"
-			data-open>
-				<path d="M0 5h14v1H0V5zm3-5h1v4H3V0zm7 0h1v4h-1V0zM0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5
-				1.5h-11A1.5 1.5 0 0 1 0 14.5v-12zm1 0v12a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5z"
-					fill-rule="nonzero"/>
-			</svg>
+			<ibm-icon-calendar16
+				*ngIf= "type == 'range' && hasIcon"
+				data-date-picker-icon
+				class="bx--date-picker__icon"
+				data-open>
+			</ibm-icon-calendar16>
 		</div>
 	</div>
 	`
@@ -52,9 +62,6 @@ export class DatePickerInput {
 	/**
 	 * Select a calendar type for the `model`.
 	 * Internal purposes only.
-	 *
-	 * @type {("simple" | "single" | "range")}
-	 * @memberof Datepicker
 	 */
 	@Input() type: "simple" | "single" | "range" = "simple";
 
@@ -66,5 +73,21 @@ export class DatePickerInput {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\d{1,2}/\d{1,2}/\d{4}";
+	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+
+	@Output() valueChange: EventEmitter<string> = new EventEmitter();
+
+	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() disabled = false;
+
+	@Input() invalid = false;
+
+	@Input() invalidText: string | TemplateRef<any>;
+
+	@Input() skeleton = false;
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
 }
