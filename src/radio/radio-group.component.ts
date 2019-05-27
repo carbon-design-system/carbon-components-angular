@@ -70,7 +70,12 @@ export class RadioChange {
 @Component({
 	selector: "ibm-radio-group",
 	template: `
-		<div class="bx--radio-button-group" role="radiogroup">
+		<div
+			class="bx--radio-button-group"
+			[ngClass]="{
+				'bx--radio-button-group--vertical': (orientation === 'vertical')
+			}"
+			role="radiogroup">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -87,6 +92,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 * Used for creating the `RadioGroup` 'name' property dynamically.
 	 */
 	static radioGroupCount = 0;
+
+	@Input() orientation: "horizontal" | "vertical" = "horizontal";
+
+	@Input() placement: "left" | "right" =  "left";
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
@@ -142,7 +151,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input()
 	set name(name: string) {
 		this._name = name;
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 	/**
 	 * Returns the associated name of the `RadioGroup`.
@@ -239,10 +248,13 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	/**
 	 * Synchronizes the names of the radio items with the name of the `RadioGroup`.
 	 */
-	updateRadioNames() {
+	updateRadios() {
 		if (this.radios) {
 			setTimeout(() => {
 				this.radios.forEach(radio => radio.name = this.name);
+				if (this.placement === "left") {
+					this.radios.forEach(radio => radio.labelLeft = true);
+				}
 			});
 		}
 	}
@@ -256,7 +268,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 
 	ngAfterContentInit() {
 		this.radios.changes.subscribe(() => {
-			this.updateRadioNames();
+			this.updateRadios();
 			this.updateRadioChangeHandler();
 		});
 
@@ -265,7 +277,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	ngAfterViewInit() {
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 
 	/**

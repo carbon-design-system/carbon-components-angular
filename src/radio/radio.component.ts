@@ -114,6 +114,10 @@ export class Radio {
 	 */
 	@HostBinding("attr.role") role = "radio";
 
+	@HostBinding("class.bx--radio-button-wrapper") hostClass = true;
+
+	@HostBinding("class.bx--radio-button-wrapper--label-left") @Input() labelLeft = false;
+
 	protected _labelledby = "";
 
 	/**
