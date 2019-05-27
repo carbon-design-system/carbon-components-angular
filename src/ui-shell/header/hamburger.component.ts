@@ -47,11 +47,8 @@ export class Hamburger {
 	 * Emit the Hamburger click event upwards.
 	 * @memberof Hamburger
 	 */
-	public clickFn() {
-		let hamburgerClick = {};
-			this.onClick.emit({
-				hamburgerClick
-			});
+	public doClick() {
+		this.onClick.emit(this.selected);
 	}
 
 }

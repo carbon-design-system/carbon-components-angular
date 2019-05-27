@@ -61,7 +61,6 @@ storiesOf("UI Shell", module)
 		`,
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
-			menuClicked: () => { },
 			expanded: action("Menu clicked")
 		}
 	}))
