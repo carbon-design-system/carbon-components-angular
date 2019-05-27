@@ -2,11 +2,11 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, select } from "@storybook/addon-knobs/angular";
 
-import { InputModule } from "../";
+import { InputModule, DocumentationModule } from "../";
 
 storiesOf("Input", module).addDecorator(
 	moduleMetadata({
-		imports: [InputModule]
+		imports: [InputModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -45,5 +45,10 @@ storiesOf("Input", module).addDecorator(
 		<ibm-label skeleton="true">
 			<div ibmTextArea skeleton="true"></div>
 		</ibm-label>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Label.html"></ibm-documentation>
 		`
 	}));

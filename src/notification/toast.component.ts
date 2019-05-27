@@ -13,6 +13,15 @@ import { I18n } from "./../i18n/i18n.module";
 
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
+ *
+ * [See demo](../../?path=/story/notification--toast)
+ *
+ * <example-url>../../iframe.html?id=notification--toast</example-url>
+ *
+ * @export
+ * @class Toast
+ * @extends {Notification}
+ * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-toast",

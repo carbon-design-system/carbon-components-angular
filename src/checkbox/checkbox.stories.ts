@@ -2,11 +2,11 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { CheckboxModule } from "../";
+import { CheckboxModule, DocumentationModule } from "../";
 
 storiesOf("Checkbox", module).addDecorator(
 	moduleMetadata({
-		imports: [CheckboxModule]
+		imports: [CheckboxModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -40,4 +40,9 @@ storiesOf("Checkbox", module).addDecorator(
 	}))
 	.add("Skeleton", () => ({
 		template: `<ibm-checkbox skeleton="true"></ibm-checkbox>`
+}))
+.add("Documentation", () => ({
+	template: `
+		<ibm-documentation src="documentation/components/Checkbox.html"></ibm-documentation>
+	`
 }));

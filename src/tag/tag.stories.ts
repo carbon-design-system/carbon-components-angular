@@ -2,12 +2,14 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 
 import { TagModule } from "../tag/tag.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Tag", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TagModule
+				TagModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -36,5 +38,10 @@ storiesOf("Tag", module)
 	.add("Filter", () => ({
 		template: `
 			<ibm-tag-filter>filter</ibm-tag-filter>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tag.html"></ibm-documentation>
 		`
 	}));

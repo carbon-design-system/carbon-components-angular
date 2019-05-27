@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from "@angular/core";
-import { I18n } from "../i18n/i18n.module";
+import { I18n } from "../../i18n/i18n.module";
 
 /**
  * A slide-out hamburger menu
