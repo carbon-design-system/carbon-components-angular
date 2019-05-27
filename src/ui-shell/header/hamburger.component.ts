@@ -10,7 +10,7 @@ import { I18n } from "../../i18n/i18n.module";
 	selector: "ibm-hamburger",
 	template: `
 		<button
-			(click)="clickFn($event)"
+			(click)="doClick($event)"
 			[ngClass]="{'bx--header__action--active': selected}"
 			class="bx--header__menu-trigger bx--header__action"
 			[attr.aria-label]="i18n.get('UI_SHELL.HEADER.MENU') | async"
