@@ -1,15 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+
+// icons
 import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
 import { Search16Module } from "@carbon/icons-angular/lib/search/16";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
+// internal module imports
 import { DialogModule } from "./../dialog/dialog.module";
 import { NFormsModule } from "./../forms/forms.module";
 import { ButtonModule, SearchModule } from "../";
+import { I18nModule } from "./../i18n/i18n.module";
 
-import { Table } from "./table.component";
+// table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";
 import { TableContainer } from "./table-container.component";
 import { TableHeader } from "./header/table-header.component";
@@ -21,27 +25,35 @@ import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
 import { DataGridFocus } from "./data-grid-focus.directive";
 import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
-import { I18nModule } from "./../i18n/i18n.module";
+// core table imports
+import { Table } from "./table.component";
+import { TableBody } from "./body/table-body.component";
+import { TableRow } from "./body/table-row.component";
 
-export { Table } from "./table.component";
+// model exports
 export { TableModel } from "./table-model.class";
 export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
 
-export { TableToolbar } from "./toolbar/table-toolbar.component";
-export { TableContainer } from "./table-container.component";
-export { TableHeader } from "./header/table-header.component";
-export { TableHeaderTitle } from "./header/table-header-title.directive";
-export { TableHeaderDescription } from "./header/table-header-description.directive";
-export { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
-export { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
-export { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
-export { DataGridFocus } from "./data-grid-focus.directive";
-export { ExpandedRowHover } from "./expanded-row-hover.directive";
+export {
+	TableToolbar,
+	TableContainer,
+	TableHeader,
+	TableHeaderTitle,
+	TableHeaderDescription,
+	TableToolbarActions,
+	TableToolbarSearch,
+	TableToolbarContent,
+	DataGridFocus,
+	ExpandedRowHover,
+	Table,
+	TableBody,
+	TableRow
+};
 
 @NgModule({
 	declarations: [
-		Table,
+		// toolbar and utility components
 		TableToolbar,
 		TableContainer,
 		TableHeader,
@@ -51,10 +63,14 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 		TableToolbarSearch,
 		TableToolbarContent,
 		DataGridFocus,
-		ExpandedRowHover
+		ExpandedRowHover,
+		// core table components
+		Table,
+		TableBody,
+		TableRow
 	],
 	exports: [
-		Table,
+		// toolbar and utility components
 		TableToolbar,
 		TableContainer,
 		TableHeader,
@@ -64,7 +80,11 @@ export { ExpandedRowHover } from "./expanded-row-hover.directive";
 		TableToolbarSearch,
 		TableToolbarContent,
 		DataGridFocus,
-		ExpandedRowHover
+		ExpandedRowHover,
+		// core table components
+		Table,
+		TableBody,
+		TableRow
 	],
 	imports: [
 		CommonModule,

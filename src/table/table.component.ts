@@ -15,7 +15,7 @@ import { Subscription, fromEvent } from "rxjs";
 import { TableModel } from "./table.module";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
-import { getScrollbarWidth } from "../common/utils";
+
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
 import { I18n } from "./../i18n/i18n.module";
 
@@ -185,7 +185,7 @@ import { I18n } from "./../i18n/i18n.module";
 					*ngIf="model.hasExpandableRows()"
 					[ibmDataGridFocus]="isDataGrid"
 					[(columnIndex)]="columnIndex"
-					(click)="setExpandIndex($event)">
+					(click)="setExpandIndex()">
 				</th>
 				<th
 					class="bx--table-column-checkbox"
@@ -332,83 +332,21 @@ import { I18n } from "./../i18n/i18n.module";
 			</tr>
 		</thead>
 		<tbody
-		*ngIf="!noData; else noDataTemplate"
-		[ngStyle]="{'overflow-y': 'scroll'}"
-		(scroll)="onScroll($event)">
-			<ng-container *ngFor="let row of model.data; let i = index">
-				<tr *ngIf="!model.isRowFiltered(i)"
-					(click)="onRowSelect(i)"
-					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
-					[ngClass]="{
-						'bx--data-table--selected': model.rowsSelected[i],
-						'bx--parent-row': model.isRowExpandable(i),
-						'bx--expandable-row': model.rowsExpanded[i],
-						'tbody_row--selectable': enableSingleSelect,
-						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
-						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
-						'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
-						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
-					}">
-					<td
-					*ngIf="model.hasExpandableRows()"
-					class="bx--table-expand"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
-					(click)="setExpandIndex($event)">
-						<button
-						*ngIf="model.isRowExpandable(i)"
-						class="bx--table-expand__button"
-						[attr.aria-label]="expandButtonAriaLabel | async"
-						(click)="model.expandRow(i, !model.rowsExpanded[i])">
-							<ibm-icon-chevron-right16 innerClass="bx--table-expand__svg"></ibm-icon-chevron-right16>
-						</button>
-					</td>
-					<td
-						*ngIf="!skeleton && showSelectionColumn"
-						[ibmDataGridFocus]="isDataGrid"
-						[(columnIndex)]="columnIndex"
-						(click)="setCheckboxIndex()">
-						<ibm-checkbox
-							inline="true"
-							[aria-label]="checkboxRowLabel | i18nReplace:getSelectionLabelValue(row) | async"
-							[size]="size !== ('lg' ? 'sm' : 'md')"
-							[(ngModel)]="model.rowsSelected[i]"
-							(change)="onRowCheckboxChange(i)">
-						</ibm-checkbox>
-					</td>
-					<ng-container *ngFor="let item of row; let j = index">
-						<td *ngIf="model.header[j].visible"
-							[class]="model.header[j].className"
-							[ngStyle]="model.header[j].style"
-							[ibmDataGridFocus]="isDataGrid"
-							[(columnIndex)]="columnIndex"
-							(click)="setIndex(j)">
-							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
-							<ng-template
-								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
-							</ng-template>
-						</td>
-					</ng-container>
-				</tr>
-				<tr
-				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
-				class="bx--expandable-row"
-				ibmExpandedRowHover
-				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
-					<td
-						[ibmDataGridFocus]="isDataGrid"
-						[(columnIndex)]="columnIndex"
-						[attr.colspan]="row.length + 2"
-						(click)="setExpandIndex($event)">
-						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
-						<ng-template
-							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
-							[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">
-						</ng-template>
-					</td>
-				</tr>
-			</ng-container>
+			ibmTableBody
+			[model]="model"
+			[size]="size"
+			[checkboxRowLabel]="checkboxRowLabel"
+			[selectionLabelColumn]="selectionLabelColumn"
+			[showSelectionColumn]="showSelectionColumn"
+			[isDataGrid]="isDataGrid"
+			[checkboxRowLabel]="checkboxRowLabel"
+			[expandButtonAriaLabel]="expandButtonAriaLabel"
+			[enableSingleSelect]="enableSingleSelect"
+			*ngIf="!noData; else noDataTemplate"
+			[ngStyle]="{'overflow-y': 'scroll'}"
+			(scroll)="onScroll($event)"
+			(selectRow)="onSelectRow($event)"
+			(deselectRow)="onSelectRow($event)">
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
@@ -445,9 +383,6 @@ export class Table implements AfterViewInit {
 	 * ```typescript
 	 * this.model = Table.skeletonModel(5, 5);
 	 * ```
-	 *
-	 * @param {number} rowCount
-	 * @param {number} columnCount
 	 */
 	static skeletonModel(rowCount: number, columnCount: number) {
 		const model = new TableModel();
@@ -481,8 +416,6 @@ export class Table implements AfterViewInit {
 
 	/**
 	 * Size of the table rows.
-	 *
-	 * @type {("sm" | "md" | "lg")}
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 	/**
@@ -496,8 +429,6 @@ export class Table implements AfterViewInit {
 
 	/**
 	 * `TableModel` with data the table is to display.
-	 *
-	 * @type {TableModel}
 	 */
 	@Input()
 	set model(m: TableModel) {
@@ -551,23 +482,17 @@ export class Table implements AfterViewInit {
 
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
-	 *
-	 * @type {boolean}
 	 */
 	@Input() showSelectionColumn = true;
 
 	/**
 	 * Controls whether to enable multiple or single row selection.
-	 *
-	 * @type {boolean}
 	 */
 	@Input() enableSingleSelect = false;
 
 	/**
 	 * Distance (in px) from the bottom that view has to reach before
 	 * `scrollLoad` event is emitted.
-	 *
-	 * @type {number}
 	 */
 	@Input() scrollLoadDistance = 0;
 
@@ -588,13 +513,7 @@ export class Table implements AfterViewInit {
 	 */
 	@Input() columnsDraggable = false;
 
-	@Input()
-	set expandButtonAriaLabel(value) {
-		this._expandButtonAriaLabel.next(value);
-	}
-	get expandButtonAriaLabel() {
-		return this._expandButtonAriaLabel;
-	}
+	@Input() expandButtonAriaLabel;
 	@Input()
 	set sortDescendingLabel(value) {
 		this._sortDescendingLabel.next(value);
@@ -637,34 +556,29 @@ export class Table implements AfterViewInit {
 			this.checkboxHeaderLabel.next(value.CHECKBOX_HEADER);
 		}
 		if (value.CHECKBOX_ROW) {
-			this.checkboxRowLabel.next(value.CHECKBOX_ROW);
+			this.checkboxRowLabel = value.CHECKBOX_ROW ;
 		}
 	}
 
 	checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
-	checkboxRowLabel = this.i18n.get("TABLE.CHECKBOX_ROW");
+	// just get an initial value
+	checkboxRowLabel = this.i18n.get().TABLE.CHECKBOX_ROW;
 	endOfDataText = this.i18n.get("TABLE.END_OF_DATA");
 	scrollTopText = this.i18n.get("TABLE.SCROLL_TOP");
 	filterTitle = this.i18n.get("TABLE.FILTER");
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
-	 *
-	 * @type {boolean}
 	 */
 	selectAllCheckbox = false;
 
 	/**
 	 * Controls the indeterminate state of the header checkbox.
-	 *
-	 * @type {boolean}
 	 */
 	selectAllCheckboxSomeSelected = false;
 
 	/**
 	 * Set to `false` to remove table rows (zebra) stripes.
-	 *
-	 * @type {boolean}
 	 */
 	@Input() striped = true;
 
@@ -726,8 +640,6 @@ export class Table implements AfterViewInit {
 
 	/**
 	 * Emits when table requires more data to be loaded.
-	 *
-	 * @param {TableModel} model
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
 
@@ -741,7 +653,6 @@ export class Table implements AfterViewInit {
 
 	protected _model: TableModel;
 
-	protected _expandButtonAriaLabel  = this.i18n.get("TABLE.EXPAND_BUTTON");
 	protected _sortDescendingLabel = this.i18n.get("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.get("TABLE.SORT_ASCENDING");
 
@@ -756,10 +667,12 @@ export class Table implements AfterViewInit {
 
 	/**
 	 * Creates an instance of Table.
-	 *
-	 * @param {ApplicationRef} applicationRef
 	 */
-	constructor(protected elementRef: ElementRef, protected applicationRef: ApplicationRef, protected i18n: I18n) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected applicationRef: ApplicationRef,
+		protected i18n: I18n
+	) {}
 
 	ngAfterViewInit() {
 		if (this.isDataGrid) {
@@ -790,16 +703,6 @@ export class Table implements AfterViewInit {
 		this.mouseUpSubscription.unsubscribe();
 	}
 
-	onRowSelect(index: number) {
-		if (!this.showSelectionColumn && this.enableSingleSelect) {
-			this.model.rowsSelected.forEach((element, index) => {
-				this.model.selectRow(index, false);
-			});
-			this.model.selectRow(index, !this.model.rowsSelected[index]);
-			this.onRowCheckboxChange(index);
-		}
-	}
-
 	updateSelectAllCheckbox() {
 		const selectedRowsCount = this.model.selectedRowsCount();
 
@@ -816,7 +719,6 @@ export class Table implements AfterViewInit {
 	 * Triggered whenever the header checkbox is clicked.
 	 * Updates all the checkboxes in the table view.
 	 * Emits the `selectAll` or `deselectAll` event.
-	 *
 	 */
 	onSelectAllCheckboxChange() {
 		this.applicationRef.tick(); // give app time to process the click if needed
@@ -838,42 +740,8 @@ export class Table implements AfterViewInit {
 	}
 
 	/**
-	 * Triggered when a single row is clicked.
-	 * Updates the header checkbox state.
-	 * Emits the `selectRow` or `deselectRow` event.
-	 *
-	 * @param {number} index
-	 * @returns
-	 */
-	onRowCheckboxChange(index: number) {
-		let startValue = this.model.rowsSelected[0];
-
-		if (this.model.rowsSelected[index]) {
-			this.selectRow.emit({model: this.model, selectedRowIndex: index});
-		} else {
-			this.deselectRow.emit({model: this.model, deselectedRowIndex: index});
-		}
-
-		for (let i = 1; i < this.model.rowsSelected.length; i++) {
-			let one = this.model.rowsSelected[i];
-
-			if (!!one !== !!startValue) {  // !! essentially converts to boolean and we want undefined to be false
-				// set indeterminate
-				this.selectAllCheckbox = false;
-				this.selectAllCheckboxSomeSelected = true;
-				return;
-			}
-		}
-
-		this.selectAllCheckboxSomeSelected = false;
-		this.selectAllCheckbox = startValue;
-	}
-
-	/**
 	 * Triggered when the user scrolls on the `<tbody>` element.
 	 * Emits the `scrollLoad` event.
-	 *
-	 * @param {any} event
 	 */
 	onScroll(event) {
 		const distanceFromBottom = event.target.scrollHeight - event.target.clientHeight - event.target.scrollTop;
@@ -924,30 +792,9 @@ export class Table implements AfterViewInit {
 		);
 	}
 
-	get scrollbarWidth() {
-		return getScrollbarWidth();
-	}
-
-	firstExpandedDataInRow(row) {
-		const found = row.find(d => d.expandedData);
-		if (found) {
-			return found.expandedData;
-		}
-		return found;
-	}
-
-	firstExpandedTemplateInRow(row) {
-		const found = row.find(d => d.expandedTemplate);
-		if (found) {
-			return found.expandedTemplate;
-		}
-		return found;
-	}
 	/**
 	 * Triggered when the user scrolls on the `<tbody>` element.
 	 * Emits the `scrollLoad` event.
-	 *
-	 * @param {any} event
 	 */
 	scrollToTop(event) {
 		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
@@ -973,14 +820,6 @@ export class Table implements AfterViewInit {
 		});
 	}
 
-	setIndex(columnIndex) {
-		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
-			this.columnIndex = columnIndex + 2;
-		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
-			this.columnIndex = columnIndex + 1;
-		}
-	}
-
 	setCheckboxIndex() {
 		if (this.model.hasExpandableRows()) {
 			this.columnIndex = 1;
@@ -989,14 +828,39 @@ export class Table implements AfterViewInit {
 		}
 	}
 
-	setExpandIndex(event) {
+	setExpandIndex() {
 		this.columnIndex = 0;
 	}
 
-	getSelectionLabelValue(row: TableItem[]) {
-		if (!this.selectionLabelColumn) {
-			return { value: this.i18n.get().TABLE.ROW };
+	setIndex(columnIndex) {
+		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
+			this.columnIndex = columnIndex + 2;
+		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
+			this.columnIndex = columnIndex + 1;
 		}
-		return { value: row[this.selectionLabelColumn].data };
+	}
+
+	onSelectRow(event) {
+		let startValue = this.model.rowsSelected[0];
+
+		if (event.selectedRowIndex) {
+			this.selectRow.emit(event);
+		} else {
+			this.deselectRow.emit(event);
+		}
+
+		for (let i = 1; i < this.model.rowsSelected.length; i++) {
+			let one = this.model.rowsSelected[i];
+
+			if (!!one !== !!startValue) {  // !! essentially converts to boolean and we want undefined to be false
+				// set indeterminate
+				this.selectAllCheckbox = false;
+				this.selectAllCheckboxSomeSelected = true;
+				return;
+			}
+		}
+
+		this.selectAllCheckboxSomeSelected = false;
+		this.selectAllCheckbox = startValue;
 	}
 }
