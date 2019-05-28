@@ -40,7 +40,12 @@ storiesOf("Radio", module).addDecorator(
 		<fieldset class="bx--fieldset">
 			<legend class="bx--label">Radio button label</legend>
 
-			<ibm-radio-group aria-label="radiogroup" orientation="vertical" [placement]="placement" [(ngModel)]="radio" (change)="onChange($event)">
+			<ibm-radio-group
+				aria-label="radiogroup"
+				orientation="vertical"
+				[labelPlacement]="labelPlacement"
+				[(ngModel)]="radio"
+				(change)="onChange($event)">
 				<ibm-radio
 					value="radio"
 					[checked]="true">
@@ -56,7 +61,7 @@ storiesOf("Radio", module).addDecorator(
 		`,
 		props: {
 			onChange: action("Radio change"),
-			placement: select("Label placement", ["right", "left"], "right"),
+			labelPlacement: select("Label placement", ["right", "left"], "right"),
 			manyRadios: [
 				{ num: "one" },
 				{ num: "two" },

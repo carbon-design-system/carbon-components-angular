@@ -95,7 +95,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 
 	@Input() orientation: "horizontal" | "vertical" = "horizontal";
 
-	@Input() placement: "left" | "right" =  "left";
+	@Input() labelPlacement: "right" | "left" =  "right";
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
@@ -252,8 +252,8 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		if (this.radios) {
 			setTimeout(() => {
 				this.radios.forEach(radio => radio.name = this.name);
-				if (this.placement === "left") {
-					this.radios.forEach(radio => radio.labelLeft = true);
+				if (this.labelPlacement === "left") {
+					this.radios.forEach(radio => radio.labelPlacement = "left");
 				}
 			});
 		}
