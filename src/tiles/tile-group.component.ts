@@ -6,11 +6,14 @@ import {
 	EventEmitter,
 	HostBinding,
 	ContentChildren,
-	QueryList
+	QueryList,
+	OnDestroy
 } from "@angular/core";
 import { SelectionTile } from "./selection-tile.component";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { TileSelection } from "./tile-selection.interface";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
 	selector: "ibm-tile-group",
@@ -23,7 +26,7 @@ import { TileSelection } from "./tile-selection.interface";
 		}
 	]
 })
-export class TileGroup implements AfterContentInit {
+export class TileGroup implements AfterContentInit, OnDestroy {
 	static tileGroupCount = 0;
 	/**
 	 * The tile group `name`
@@ -52,6 +55,9 @@ export class TileGroup implements AfterContentInit {
 
 	@ContentChildren(SelectionTile) selectionTiles: QueryList<SelectionTile>;
 
+	protected unsubscribe$ = new Subject<void>();
+	protected unsubscribeTiles$ = new Subject<void>();
+
 	constructor() {
 		TileGroup.tileGroupCount++;
 	}
@@ -61,18 +67,40 @@ export class TileGroup implements AfterContentInit {
 	onTouched = () => { };
 
 	ngAfterContentInit() {
-		this.selectionTiles.forEach(tile => {
-			tile.name = this.name;
-			tile.change.subscribe(() => {
-				this.selected.emit({
-					value: tile.value,
-					selected: tile.selected,
-					name: this.name
-				});
-				this.onChange(tile.value);
+		const updateTiles = () => {
+			// remove old subscriptions
+			this.unsubscribeTiles$.next();
+
+			// react to changes
+			this.selectionTiles.forEach(tile => {
+				tile.name = this.name;
+				tile.change
+					.pipe(takeUntil(this.unsubscribeTiles$))
+					.subscribe(() => {
+						this.selected.emit({
+							value: tile.value,
+							selected: tile.selected,
+							name: this.name
+						});
+						this.onChange(tile.value);
+					});
+				tile.multiple = this.multiple;
 			});
-			tile.multiple = this.multiple;
-		});
+		};
+		updateTiles();
+
+		this.selectionTiles.changes
+			.pipe(takeUntil(this.unsubscribe$))
+			.subscribe(_ => updateTiles());
+	}
+
+	ngOnDestroy() {
+		this.unsubscribe$.next();
+		this.unsubscribe$.complete();
+
+		// takes care of tile subscriptions when tile-group dies
+		this.unsubscribeTiles$.next();
+		this.unsubscribeTiles$.complete();
 	}
 
 	writeValue(value: any) {
