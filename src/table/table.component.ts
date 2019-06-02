@@ -215,7 +215,6 @@ import { I18n } from "./../i18n/i18n.module";
 						(dragstart)="columnDragStart($event, i)"
 						(dragend)="columnDragEnd($event, i)"
 						(click)="setIndex(i)">
-						<span *ngIf="skeleton"></span>
 						<div
 							*ngIf="columnsResizable"
 							class="column-resize-handle"
@@ -223,7 +222,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 						<button
 							class="bx--table-sort"
-							*ngIf="this.sort.observers.length > 0 && column.sortable"
+							*ngIf="!skeleton && this.sort.observers.length > 0 && column.sortable"
 							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
 							aria-live="polite"
 							[ngClass]="{
@@ -357,7 +356,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
 					(click)="setExpandIndex($event)">
 						<button
-						*ngIf="model.isRowExpandable(i)"
+						*ngIf="!skeleton && model.isRowExpandable(i)"
 						class="bx--table-expand__button"
 						[attr.aria-label]="expandButtonAriaLabel | async"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])">
@@ -384,8 +383,10 @@ import { I18n } from "./../i18n/i18n.module";
 							[ibmDataGridFocus]="isDataGrid"
 							[(columnIndex)]="columnIndex"
 							(click)="setIndex(j)">
-							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
+							<span *ngIf="skeleton && i === 0"></span>
+							<ng-container *ngIf="!skeleton && !item.template">{{item.data}}</ng-container>
 							<ng-template
+								*ngIf="!skeleton"
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 							</ng-template>
 						</td>
