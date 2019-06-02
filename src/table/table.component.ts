@@ -143,21 +143,30 @@ import { I18n } from "./../i18n/i18n.module";
  * }
  *
  * protected prepareData(data: Array<Array<any>>) {
- * 	// create new data from the service data
- * 	let newData = [];
- * 	data.forEach(dataRow => {
- * 		let row = [];
- * 		dataRow.forEach(dataElement => {
- * 			row.push(new TableItem({
- * 				data: dataElement,
- * 				template: typeof dataElement === "string" ? undefined : this.paginationTableItemTemplate
- * 				// your template can handle all the data types so you don't have to conditionally set it
- * 				// you can also set different templates for different columns based on index
- * 			}));
- * 		});
- * 		newData.push(row);
- * 	});
- * 	return newData;
+ *	// create new data from the service data
+ *	const newData: Array<Array<TableItem>> = [];
+ *	data.forEach(dataRow => {
+ *		const row: Array<TableItem> = [];
+ *		dataRow.forEach(dataElement => {
+ *			let template;
+ *			if (dataElement.template) {
+ *				template = dataElement.template;
+ *			} else if (typeof dataElement === 'string') {
+ *				template = undefined;
+ *			} else {
+ *				template = this.paginationTableItemTemplate;
+ *			}
+ *
+ *			row.push(
+ *				new TableItem({
+ *					data: dataElement.data,
+ *					template: template
+ *				})
+ *			);
+ *		});
+ *		newData.push(row);
+ *	});
+ *	return newData;
  * }
  * ```
  *
