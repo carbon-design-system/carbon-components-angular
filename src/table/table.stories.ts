@@ -695,6 +695,41 @@ storiesOf("Table", module).addDecorator(
 			description: text("Description", "With pagination")
 		}
 	}))
+	.add("From components", () => ({
+		template: `
+			<table ibmTable [sortable]="false" style="width: 650px;">
+				<thead>
+					<tr>
+						<th
+							*ngFor="let column of model.header"
+							[class]="column.className"
+							[ngStyle]="column.style">
+							<span class="bx--table-header-label">
+								<span [title]="column.data">{{column.data}}</span>
+							</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody ibmTableBody>
+					<tr
+						*ngFor="let row of model.data"
+						ibmTableRow
+						[row]="row">
+						<td
+							*ngFor="let item of row; let j = index"
+							ibmTableData
+							[item]="item"
+							[class]="model.header[j].className"
+							[ngStyle]="model.header[j].style">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		`,
+		props: {
+			model: simpleModel
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `
 			<app-skeleton-table
@@ -713,4 +748,3 @@ storiesOf("Table", module).addDecorator(
 			<ibm-documentation src="documentation/components/Table.html"></ibm-documentation>
 		`
 	}));
-
