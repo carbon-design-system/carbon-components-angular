@@ -36,8 +36,6 @@ import { I18n } from "../../i18n/i18n.module";
  *	</ibm-table-toolbar>
  * ```
  *
- * @export
- * @class TableToolbar
  */
 @Component({
 	selector: "ibm-table-toolbar",

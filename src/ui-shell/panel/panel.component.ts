@@ -13,8 +13,6 @@ import { Component, Input } from "@angular/core";
  * @import 'carbon-components/src/globals/scss/styles';
  * ```
  *
- * @export
- * @class Panel
  */
 @Component({
 	selector: "ibm-panel",
