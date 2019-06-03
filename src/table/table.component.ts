@@ -171,13 +171,11 @@ import { I18n } from "./../i18n/i18n.module";
 	selector: "ibm-table",
 	template: `
 	<table
-	class="bx--data-table bx--data-table--sort"
-	[ngClass]="{
-		'bx--data-table--compact': size === 'sm',
-		'bx--data-table--tall': size === 'lg',
-		'bx--data-table--zebra': striped,
-		'bx--skeleton': skeleton
-	}">
+		ibmTable
+		sortable="true"
+		[size]="size"
+		[striped]="striped"
+		[skeleton]="skeleton">
 		<thead>
 			<tr>
 				<th
@@ -334,7 +332,6 @@ import { I18n } from "./../i18n/i18n.module";
 		<tbody
 			ibmTableBody
 			[model]="model"
-			[size]="size"
 			[checkboxRowLabel]="checkboxRowLabel"
 			[selectionLabelColumn]="selectionLabelColumn"
 			[showSelectionColumn]="showSelectionColumn"
@@ -342,11 +339,13 @@ import { I18n } from "./../i18n/i18n.module";
 			[checkboxRowLabel]="checkboxRowLabel"
 			[expandButtonAriaLabel]="expandButtonAriaLabel"
 			[enableSingleSelect]="enableSingleSelect"
+			[skeleton]="skeleton"
 			*ngIf="!noData; else noDataTemplate"
 			[ngStyle]="{'overflow-y': 'scroll'}"
 			(scroll)="onScroll($event)"
 			(selectRow)="onSelectRow($event)"
-			(deselectRow)="onSelectRow($event)">
+			(deselectRow)="onSelectRow($event)"
+			[(columnIndex)]="columnIndex">
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
@@ -561,11 +560,11 @@ export class Table implements AfterViewInit {
 	}
 
 	checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
-	// just get an initial value
-	checkboxRowLabel = this.i18n.get().TABLE.CHECKBOX_ROW;
 	endOfDataText = this.i18n.get("TABLE.END_OF_DATA");
 	scrollTopText = this.i18n.get("TABLE.SCROLL_TOP");
 	filterTitle = this.i18n.get("TABLE.FILTER");
+	// just get an initial value, the internal component will handle the rest
+	checkboxRowLabel = this.i18n.get().TABLE.CHECKBOX_ROW;
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
@@ -734,9 +733,7 @@ export class Table implements AfterViewInit {
 
 		this.selectAllCheckboxSomeSelected = false;
 
-		for (let i = 0; i < this.model.rowsSelected.length; i++) {
-			this.model.rowsSelected[i] = this.selectAllCheckbox;
-		}
+		this.model.selectAll(this.selectAllCheckbox);
 	}
 
 	/**
@@ -841,26 +838,12 @@ export class Table implements AfterViewInit {
 	}
 
 	onSelectRow(event) {
-		let startValue = this.model.rowsSelected[0];
-
-		if (event.selectedRowIndex) {
+		if (Object.keys(event).includes("selectedRowIndex")) {
+			this.model.selectRow(event.selectedRowIndex, true);
 			this.selectRow.emit(event);
 		} else {
+			this.model.selectRow(event.deselectedRowIndex, false);
 			this.deselectRow.emit(event);
 		}
-
-		for (let i = 1; i < this.model.rowsSelected.length; i++) {
-			let one = this.model.rowsSelected[i];
-
-			if (!!one !== !!startValue) {  // !! essentially converts to boolean and we want undefined to be false
-				// set indeterminate
-				this.selectAllCheckbox = false;
-				this.selectAllCheckboxSomeSelected = true;
-				return;
-			}
-		}
-
-		this.selectAllCheckboxSomeSelected = false;
-		this.selectAllCheckbox = startValue;
 	}
 }
