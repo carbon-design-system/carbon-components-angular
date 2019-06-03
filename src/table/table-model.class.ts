@@ -11,10 +11,8 @@ export class TableModel implements PaginationModel {
 	 * Sets data of the table.
 	 *
 	 * Make sure all rows are the same length to keep the column count accurate.
-	 *
-	 * @memberof TableModel
 	 */
-	set data(newData: Array<Array<TableItem>>) {
+	set data(newData: TableItem[][]) {
 		if (!newData || (Array.isArray(newData) && newData.length === 0) ) {
 			newData = [[]];
 		}
@@ -22,8 +20,8 @@ export class TableModel implements PaginationModel {
 		this._data = newData;
 
 		// init rowsSelected
-		this.rowsSelected = new Array<boolean>(this._data.length);
-		this.rowsExpanded = new Array<boolean>(this._data.length);
+		this.rowsSelected = new Array<boolean>(this._data.length).fill(false);
+		this.rowsExpanded = new Array<boolean>(this._data.length).fill(false);
 
 		// init rowsContext
 		this.rowsContext = new Array<string>(this._data.length);
@@ -49,9 +47,6 @@ export class TableModel implements PaginationModel {
 	 *
 	 * You can use it to alter individual `TableItem`s but if you need to change
 	 * table structure, use `addRow()` and/or `addColumn()`
-	 *
-	 * @readonly
-	 * @memberof TableModel
 	 */
 	get data() {
 		return this._data;
@@ -59,17 +54,11 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Contains information about selection state of rows in the table.
-	 *
-	 * @type {Array<boolean>}
-	 * @memberof TableModel
 	 */
 	rowsSelected: Array<boolean>;
 
 	/**
 	 * Contains information about expanded state of rows in the table.
-	 *
-	 * @type {Array<boolean>}
-	 * @memberof TableModel
 	 */
 	rowsExpanded: Array<boolean>;
 
@@ -80,58 +69,36 @@ export class TableModel implements PaginationModel {
 	 *
 	 * string can be one of `"success" | "warning" | "info" | "error" | ""` and it's
 	 * empty or undefined by default
-	 *
-	 * @type {Array<string>}
-	 * @memberof TableModel
 	 */
 	rowsContext: Array<string>;
 
 	/**
 	 * Contains information about the header cells of the table.
-	 *
-	 * @type {Array<TableHeaderItem>}
-	 * @memberof TableModel
 	 */
-	header: Array<TableHeaderItem>;
+	header: TableHeaderItem[];
 
 	/**
 	 * Tracks the current page of the table.
-	 *
-	 * @type {number}
-	 * @memberof TableModel
 	 */
 	currentPage: number;
 
 	/**
 	 * Length of page of the table.
-	 *
-	 * @type {number}
-	 * @memberof TableModel
 	 */
 	pageLength: number;
 
 	/**
 	 * Set to true when there is no more data to load in the table
-	 *
-	 * @type {boolean}
-	 * @memberof TableModel
 	 */
 	isEnd = false;
 
 	/**
 	 * Set to true when lazy loading to show loading indicator
-	 *
-	 * @type {boolean}
-	 * @memberof TableModel
 	 */
 	isLoading = false;
 
 	/**
 	 * Absolute total number of rows of the table.
-	 *
-	 * @protected
-	 * @type {number}
-	 * @memberof TableModel
 	 */
 	protected _totalDataLength: number;
 
@@ -143,8 +110,6 @@ export class TableModel implements PaginationModel {
 	 * but you're loading one at a time.
 	 *
 	 * Set to `null` to reset to default behaviour.
-	 *
-	 * @memberof TableModel
 	 */
 	set totalDataLength(length: number) {
 		this._totalDataLength = length;
@@ -152,8 +117,6 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Total length of data that table has access to, or the amount manually set
-	 *
-	 * @memberof TableModel
 	 */
 	get totalDataLength() {
 		// if manually set data length
@@ -171,18 +134,11 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Used in `data`
-	 *
-	 * @protected
-	 * @type {Array<Array<TableItem>>}
-	 * @memberof TableModel
 	 */
-	protected _data: Array<Array<TableItem>> = [[]];
+	protected _data: TableItem[][] = [];
 
 	/**
 	 * Returns how many rows is currently selected
-	 *
-	 * @returns {number}
-	 * @memberof TableModel
 	 */
 	selectedRowsCount(): number {
 		let count = 0;
@@ -198,9 +154,6 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Returns how many rows is currently expanded
-	 *
-	 * @returns {number}
-	 * @memberof TableModel
 	 */
 	expandedRowsCount(): number {
 		let count = 0;
@@ -219,11 +172,9 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Negative index starts from the end. -1 being the last element.
 	 *
-	 * @param {number} index
-	 * @returns {Array<TableItem>}
-	 * @memberof TableModel
+	 * @param index
 	 */
-	row(index: number): Array<TableItem> {
+	row(index: number): TableItem[] {
 		return this.data[this.realRowIndex(index)];
 	}
 
@@ -239,11 +190,10 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Negative index starts from the end. -1 being the last element.
 	 *
-	 * @param {Array<TableItem>} row
-	 * @param {number} [index]
-	 * @memberof TableModel
+	 * @param [row]
+	 * @param [index]
 	 */
-	addRow(row?: Array<TableItem>, index?: number) {
+	addRow(row?: TableItem[], index?: number) {
 		// if table empty create table with row
 		if (!this.data || this.data.length === 0 || this.data[0].length === 0) {
 			let newData = new Array<Array<TableItem>>();
@@ -318,8 +268,7 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Negative index starts from the end. -1 being the last element.
 	 *
-	 * @param {number} index
-	 * @memberof TableModel
+	 * @param index
 	 */
 	deleteRow(index: number) {
 		const rri = this.realRowIndex(index);
@@ -339,16 +288,22 @@ export class TableModel implements PaginationModel {
 		return this.data[index].some(d => d.expandedData);
 	}
 
+	isRowExpanded(index: number) {
+		return this.rowsExpanded[index];
+	}
+
+	getRowContext(index: number) {
+		return this.rowsContext[index];
+	}
+
 	/**
 	 * Returns `index`th column of the table.
 	 *
 	 * Negative index starts from the end. -1 being the last element.
 	 *
-	 * @param {number} index
-	 * @returns {Array<TableItem>}
-	 * @memberof TableModel
+	 * @param index
 	 */
-	column(index: number): Array<TableItem> {
+	column(index: number): TableItem[] {
 		let column = new Array<TableItem>();
 		const ri = this.realColumnIndex(index);
 		const rc = this.data.length;
@@ -373,11 +328,10 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Negative index starts from the end. -1 being the last element.
 	 *
-	 * @param {Array<TableItem>} column
-	 * @param {number} [index]
-	 * @memberof TableModel
+	 * @param [column]
+	 * @param [index]
 	 */
-	addColumn(column?: Array<TableItem>, index?: number) {
+	addColumn(column?: TableItem[], index?: number) {
 		// if table empty create table with row
 		if (!this.data || this.data.length === 0 || this.data[0].length === 0) {
 			let newData = new Array<Array<TableItem>>();
@@ -436,8 +390,7 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Negative index starts from the end. -1 being the last element.
 	 *
-	 * @param {number} index
-	 * @memberof TableModel
+	 * @param index
 	 */
 	deleteColumn(index: number) {
 		const rci = this.realColumnIndex(index);
@@ -468,8 +421,7 @@ export class TableModel implements PaginationModel {
 	 * Direction is set by `ascending` and `descending` properties of `TableHeaderItem`
 	 * in `index`th column.
 	 *
-	 * @param {number} index The column based on which it's sorting
-	 * @memberof TableModel
+	 * @param index The column based on which it's sorting
 	 */
 	sort(index: number) {
 		this.pushRowStateToModelData();
@@ -487,8 +439,6 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Call `popRowSelectionFromModelData()` after sorting to make everything
 	 * right with the world again.
-	 *
-	 * @memberof TableModel
 	 */
 	pushRowStateToModelData() {
 		for (let i = 0; i < this.data.length; i++) {
@@ -511,8 +461,6 @@ export class TableModel implements PaginationModel {
 	 *
 	 * Call after sorting data (if you previously pushed to maintain selection order)
 	 * to make everything right with the world again.
-	 *
-	 * @memberof TableModel
 	 */
 	popRowStateFromModelData() {
 		for (let i = 0; i < this.data.length; i++) {
@@ -525,33 +473,47 @@ export class TableModel implements PaginationModel {
 	/**
 	 * Checks if row is filtered out.
 	 *
-	 * @param {number} index
-	 * @returns {boolean} true if any of the filters in header filters out the `index`th row
-	 * @memberof TableModel
+	 * @param index
+	 * @returns true if any of the filters in header filters out the `index`th row
 	 */
-	isRowFiltered(index: number) {
-		const ind = this.realRowIndex(index);
-		return this.header.some((item, i) => item.filter(this.row(ind)[i]));
+	isRowFiltered(index: number): boolean {
+		const realIndex = this.realRowIndex(index);
+		return this.header.some((item, i) => item.filter(this.row(realIndex)[i]));
 	}
 
 	/**
 	 * Select/deselect `index`th row based on value
 	 *
-	 * @param index
-	 * @param value
+	 * @param index index of the row to select
+	 * @param value state to set the row to. Defaults to `true`
 	 */
-	selectRow(index, value = true) {
+	selectRow(index: number, value = true) {
 		this.rowsSelected[index] = value;
 		this.rowsSelectedChange.emit(index);
 	}
 
 	/**
+	 * Selects or deselects all rows in the model
+	 *
+	 * @param value state to set all rows to. Defaults to `true`
+	 */
+	selectAll(value = true) {
+		for (let i = 0; i < this.rowsSelected.length; i++) {
+			this.rowsSelected[i] = value;
+		}
+	}
+
+	isRowSelected(index: number) {
+		return this.rowsSelected[index];
+	}
+
+	/**
 	 * Expands/Collapses `index`th row based on value
 	 *
-	 * @param index
-	 * @param value
+	 * @param index index of the row to expand or collapse
+	 * @param value expanded state of the row. `true` is expanded and `false` is collapsed
 	 */
-	expandRow(index, value = true) {
+	expandRow(index: number, value = true) {
 		this.rowsExpanded[index] = value;
 		this.rowsExpandedChange.emit(index);
 	}
@@ -561,10 +523,7 @@ export class TableModel implements PaginationModel {
 	 * Like in Python, positive numbers start from the top and
 	 * negative numbers start from the bottom.
 	 *
-	 * @protected
-	 * @param {number} index
-	 * @returns {number}
-	 * @memberof TableModel
+	 * @param index
 	 */
 	protected realRowIndex(index: number): number {
 		return this.realIndex(index, this.data.length);
@@ -575,10 +534,7 @@ export class TableModel implements PaginationModel {
 	 * Like in Python, positive numbers start from the top and
 	 * negative numbers start from the bottom.
 	 *
-	 * @protected
-	 * @param {number} index
-	 * @returns {number}
-	 * @memberof TableModel
+	 * @param index
 	 */
 	protected realColumnIndex(index: number): number {
 		return this.realIndex(index, this.data[0].length);
@@ -588,11 +544,8 @@ export class TableModel implements PaginationModel {
 	 * Generic function to calculate the real index of something.
 	 * Used by `realRowIndex()` and `realColumnIndex()`
 	 *
-	 * @protected
-	 * @param {number} index
-	 * @param {number} length
-	 * @returns {number}
-	 * @memberof TableModel
+	 * @param index
+	 * @param length
 	 */
 	protected realIndex(index: number, length: number): number {
 		if (index == null) {
