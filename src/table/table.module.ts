@@ -27,15 +27,22 @@ import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 // core table imports
 import { Table } from "./table.component";
+import { TableDirective } from "./table.directive";
 import { TableBody } from "./body/table-body.component";
-import { TableRow } from "./body/table-row.component";
+import { TableRowComponent } from "./body/table-row.component";
+import { TableExpandedRow } from "./body/table-expanded-row.component";
+import { TableData } from "./cell/table-data.component";
+import { TableCheckbox } from "./cell/table-checkbox.component";
+import { TableExpandButton } from "./cell/table-expand-button.component";
 
 // model exports
 export { TableModel } from "./table-model.class";
+export { TableRow } from "./table-row.class";
 export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
 
 export {
+	// toolbar and utility components
 	TableToolbar,
 	TableContainer,
 	TableHeader,
@@ -46,9 +53,15 @@ export {
 	TableToolbarContent,
 	DataGridFocus,
 	ExpandedRowHover,
+	// core table components
 	Table,
+	TableDirective,
 	TableBody,
-	TableRow
+	TableRowComponent,
+	TableExpandedRow,
+	TableData,
+	TableCheckbox,
+	TableExpandButton
 };
 
 @NgModule({
@@ -66,8 +79,13 @@ export {
 		ExpandedRowHover,
 		// core table components
 		Table,
+		TableDirective,
 		TableBody,
-		TableRow
+		TableRowComponent,
+		TableExpandedRow,
+		TableData,
+		TableCheckbox,
+		TableExpandButton
 	],
 	exports: [
 		// toolbar and utility components
@@ -83,8 +101,13 @@ export {
 		ExpandedRowHover,
 		// core table components
 		Table,
+		TableDirective,
 		TableBody,
-		TableRow
+		TableRowComponent,
+		TableExpandedRow,
+		TableData,
+		TableCheckbox,
+		TableExpandButton
 	],
 	imports: [
 		CommonModule,
