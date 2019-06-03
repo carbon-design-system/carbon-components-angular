@@ -7,7 +7,14 @@ import {
 	TableHeaderItem,
 	TableItem,
 	DataGridFocus,
-	ExpandedRowHover
+	ExpandedRowHover,
+	TableDirective,
+	TableBody,
+	TableRowComponent,
+	TableExpandedRow,
+	TableData,
+	TableCheckbox,
+	TableExpandButton
 } from "./table.module";
 import { Table } from "./table.component";
 
@@ -48,6 +55,13 @@ describe("Table", () => {
 			],
 			declarations: [
 				Table,
+				TableDirective,
+				TableBody,
+				TableRowComponent,
+				TableExpandedRow,
+				TableData,
+				TableCheckbox,
+				TableExpandButton,
 				TableTest,
 				DataGridFocus,
 				ExpandedRowHover
