@@ -3,7 +3,8 @@ import {
 	Input,
 	AfterContentInit,
 	ElementRef,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 
 /**
@@ -43,7 +44,18 @@ import {
 			}">
 			<ng-content></ng-content>
 		</label>
-		<ng-content select="input,textarea,div"></ng-content>
+		<div *ngIf="!skeleton" class="bx--form__helper-text">{{helperText}}</div>
+		<div class="bx--text-input__field-wrapper" [attr.data-invalid]="(invalid ? true : null)">
+			<ibm-icon-warning-filled16
+				*ngIf="invalid"
+				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
+			</ibm-icon-warning-filled16>
+			<ng-content select="input,textarea,div"></ng-content>
+		</div>
+		<div *ngIf="invalid" class="bx--form-requirement">
+			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+		</div>
 	`
 })
 export class Label implements AfterContentInit {
@@ -70,6 +82,18 @@ export class Label implements AfterContentInit {
 	 * Set to `true` for a loading label.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Optional helper text that appears under the label.
+	 */
+	@Input() helperText: string;
+	/**
+	 * Sets the invalid text.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
+	/**
+	 * Set to `true` for an invalid label component.
+	 */
+	@Input() invalid = false;
 
 	@HostBinding("class.bx--form-item") labelClass = true;
 
@@ -88,5 +112,9 @@ export class Label implements AfterContentInit {
 	 */
 	ngAfterContentInit() {
 		this.elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

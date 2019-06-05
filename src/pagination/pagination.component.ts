@@ -8,7 +8,6 @@ import {
 
 import { range } from "../common/utils";
 import { I18n } from "./../i18n/i18n.module";
-import { BehaviorSubject } from "rxjs";
 import { ExperimentalService } from "./../experimental.module";
 
 /**
@@ -81,14 +80,18 @@ import { ExperimentalService } from "./../experimental.module";
 				</div>
 			</div>
 
-			<span class="bx--pagination__text">
+			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
 				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsText | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
+			</span>
+			<span *ngIf="pagesUnknown" class="bx--pagination__text">
+				<span *ngIf="!isExperimental">|&nbsp;</span>
+				{{totalItemsUnknownText | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
 			</span>
 		</div>
 
 		<!-- right skeleton div -->
-		<div *ngIf="skeleton" class="bx--pagination__right bx--pagination--inline">
+		<div *ngIf="skeleton" class="bx--pagination__right">
 			<p class="bx--skeleton__text" style="width: 70px"></p>
 		</div>
 
@@ -97,7 +100,7 @@ import { ExperimentalService } from "./../experimental.module";
 				'bx--pagination--inline': !isExperimental
 			}">
 
-			<div class="bx--form-item">
+			<div *ngIf="!pageInputDisabled" class="bx--form-item">
 				<div class="bx--select bx--select--inline"
 				[ngClass]="{
 					'bx--select__page-number' : isExperimental
@@ -114,30 +117,33 @@ import { ExperimentalService } from "./../experimental.module";
 				</div>
 			</div>
 
-			<span class="bx--pagination__text">
+			<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">
 				{{ofLastPagesText | i18nReplace: {last: lastPage} | async}}
+			</span>
+			<span *ngIf="!pageInputDisabled && pagesUnknown" class="bx--pagination__text">
+				{{pageText | async}} {{currentPage}}
 			</span>
 			<button
 				class="bx--pagination__button bx--pagination__button--backward"
 				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage <= 1
+					'bx--pagination__button--no-index': currentPage <= 1 || disabled
 				}"
 				tabindex="0"
 				[attr.aria-label]="backwardText | async"
 				(click)="selectPage.emit(previousPage)"
-				[disabled]="(currentPage <= 1 ? true : null)">
+				[disabled]="(currentPage <= 1 || disabled ? true : null)">
 				<ibm-icon-caret-left16></ibm-icon-caret-left16>
 			</button>
 
 			<button
 				class="bx--pagination__button bx--pagination__button--forward"
 				[ngClass]="{
-					'bx--pagination__button--no-index': currentPage >= lastPage
+					'bx--pagination__button--no-index': currentPage >= lastPage || disabled
 				}"
 				tabindex="0"
 				[attr.aria-label]="forwardText | async"
 				(click)="selectPage.emit(nextPage)"
-				[disabled]="(currentPage >= lastPage ? true : null)">
+				[disabled]="(currentPage >= lastPage || disabled ? true : null)">
 				<ibm-icon-caret-right16></ibm-icon-caret-right16>
 			</button>
 		</div>
@@ -157,6 +163,18 @@ export class Pagination {
 	 * @type {Model}
 	 */
 	@Input() model: PaginationModel;
+	/**
+ 	 * Set to `true` to disable the backward/forward buttons.
+	 */
+	@Input() disabled = false;
+	/**
+	 * Set to `true` to disable the select box that changes the page.
+	 */
+	@Input() pageInputDisabled = false;
+	/**
+	 * Set to `true` if the total number of items is unknown.
+	 */
+	@Input() pagesUnknown = false;
 
 	/**
 	 * Expects an object that contains some or all of:
@@ -175,25 +193,31 @@ export class Pagination {
 	@Input()
 	set translations (value) {
 		if (value.ITEMS_PER_PAGE) {
-			this.itemsPerPageText = new BehaviorSubject(value.ITEMS_PER_PAGE);
+			this.itemsPerPageText.next(value.ITEMS_PER_PAGE);
 		}
 		if (value.OPEN_LIST_OF_OPTIONS) {
-			this.optionsListText = new BehaviorSubject(value.OPEN_LIST_OF_OPTIONS);
+			this.optionsListText.next(value.OPEN_LIST_OF_OPTIONS);
 		}
 		if (value.BACKWARD) {
-			this.backwardText = new BehaviorSubject(value.BACKWARD);
+			this.backwardText.next(value.BACKWARD);
 		}
 		if (value.FORWARD) {
-			this.forwardText = new BehaviorSubject(value.FORWARD);
+			this.forwardText.next(value.FORWARD);
 		}
 		if (value.TOTAL_ITEMS) {
-			this.totalItemsText = new BehaviorSubject(value.TOTAL_ITEMS);
+			this.totalItemsText.next(value.TOTAL_ITEMS);
+		}
+		if (value.TOTAL_ITEMS_UNKNOWN) {
+			this.totalItemsUnknownText.next(value.TOTAL_ITEMS_UNKNOWN);
 		}
 		if (value.TOTAL_PAGES) {
-			this.totalPagesText = new BehaviorSubject(value.TOTAL_PAGES);
+			this.totalPagesText.next(value.TOTAL_PAGES);
+		}
+		if (value.PAGE) {
+			this.pageText.next(value.PAGE);
 		}
 		if (value.OF_LAST_PAGES) {
-			this.ofLastPagesText = new BehaviorSubject(value.OF_LAST_PAGES);
+			this.ofLastPagesText.next(value.OF_LAST_PAGES);
 		}
 	}
 
@@ -274,7 +298,9 @@ export class Pagination {
 	backwardText = this.i18n.get("PAGINATION.BACKWARD");
 	forwardText = this.i18n.get("PAGINATION.FORWARD");
 	totalItemsText = this.i18n.get("PAGINATION.TOTAL_ITEMS");
+	totalItemsUnknownText = this.i18n.get("PAGINATION.TOTAL_ITEMS_UNKNOWN");
 	totalPagesText = this.i18n.get("PAGINATION.TOTAL_PAGES");
+	pageText = this.i18n.get("PAGINATION.PAGE");
 	ofLastPagesText = this.i18n.get("PAGINATION.OF_LAST_PAGES");
 
 	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
