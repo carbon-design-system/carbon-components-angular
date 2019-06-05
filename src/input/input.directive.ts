@@ -21,6 +21,7 @@ export class TextInput {
 	@Input() theme: "light" | "dark" = "dark";
 
 	@HostBinding("class.bx--text-input") inputClass = true;
+	@HostBinding("class.bx--text-input--invalid") @Input() invalid = false;
 	@HostBinding("class.bx--skeleton") @Input() skeleton = false;
 	@HostBinding("class.bx--text-input--light") get isLightTheme() {
 		return this.theme === "light";

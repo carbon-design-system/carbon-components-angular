@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 
 @Component({
@@ -37,11 +38,12 @@ import {
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
-					[attr.disabled]="(disabled ? '' : null)"
-					[attr.data-invalid]="(invalid ? '' : null)"
+					[disabled]="disabled"
+					[attr.data-invalid]="(invalid ? true : null)"
 					(change) = "valueChange.emit(dateInput.value)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
-						{{invalidText}}
+						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 					</div>
 			</div>
 			<ibm-icon-calendar16
@@ -81,7 +83,11 @@ export class DatePickerInput {
 
 	@Input() invalid = false;
 
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
 }
