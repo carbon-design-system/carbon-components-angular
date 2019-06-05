@@ -134,7 +134,7 @@ class DynamicTableStory implements OnInit {
 		this.model.header = [
 			new TableHeaderItem({data: "Very long title indeed"}),
 			new CustomHeaderItem({
-				data: {name: "Custom header", link: "/table"},
+				data: {name: "Custom header", link: "#"},
 				template: this.customHeaderTemplate,
 				style: {"width": "auto"}
 			})
