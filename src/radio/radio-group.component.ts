@@ -73,7 +73,8 @@ export class RadioChange {
 		<div
 			class="bx--radio-button-group"
 			[ngClass]="{
-				'bx--radio-button-group--vertical': (orientation === 'vertical')
+				'bx--radio-button-group--vertical': orientation === 'vertical',
+				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
 			}"
 			role="radiogroup">
 			<ng-content></ng-content>
