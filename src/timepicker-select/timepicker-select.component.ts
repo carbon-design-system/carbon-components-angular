@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 import { Select } from "../select/select.component";
 
@@ -46,6 +47,8 @@ export class TimePickerSelect extends Select {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() label: string;
 
 	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
 

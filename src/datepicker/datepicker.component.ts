@@ -112,7 +112,7 @@ export class DatePicker implements OnDestroy {
 		return this.flatpickrOptions.dateFormat;
 	}
 
-	@Input() label: string;
+	@Input() label: string  | TemplateRef<any>;
 
 	@Input() rangeLabel: string;
 

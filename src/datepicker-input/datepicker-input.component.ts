@@ -20,7 +20,8 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			}">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
-					{{label}}
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
 				<ibm-icon-calendar16
 					*ngIf="type == 'single'"
@@ -77,7 +78,7 @@ export class DatePickerInput {
 
 	@Input() hasIcon = false;
 
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 
 	@Input() placeholder = "mm/dd/yyyy";
 
