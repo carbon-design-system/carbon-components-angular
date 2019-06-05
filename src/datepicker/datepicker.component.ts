@@ -6,7 +6,8 @@ import {
 	ViewEncapsulation,
 	ElementRef,
 	OnDestroy,
-	HostListener
+	HostListener,
+	TemplateRef
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
@@ -129,7 +130,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() invalid = false;
 
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 

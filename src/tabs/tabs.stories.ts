@@ -16,8 +16,10 @@ storiesOf("Tabs", module)
 	.add("Basic", () => ({
 		template: `
 			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
-				<ibm-tab heading="one">foo</ibm-tab>
-				<ibm-tab heading="two">bar</ibm-tab>
+				<ibm-tab heading="one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {

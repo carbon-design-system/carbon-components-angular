@@ -5,7 +5,8 @@ import {
 	ViewChild,
 	ElementRef,
 	HostListener,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -46,7 +47,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 				<label *ngIf="skeleton" [attr.for]="id" class="bx--label bx--skeleton"></label>
 				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
 				<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
-				<div class="bx--select-input__wrapper">
+				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 					<select
 						#select
 						[attr.id]="id"
@@ -55,9 +56,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="bx--select-input">
 						<ng-content></ng-content>
 					</select>
-					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+					<ibm-icon-warning-filled16
+						*ngIf="!skeleton && invalid"
+						class="bx--select__invalid-icon"
+						style="display: inherit;">
+					</ibm-icon-warning-filled16>
+					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow" style="display: inherit;"></ibm-icon-chevron-down16>
 				</div>
-				<div *ngIf="invalid" class="bx--form-requirement">{{invalidText}}</div>
+				<div *ngIf="invalid" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
 			</div>
 		</div>
 	`,
@@ -89,13 +98,13 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() label = "Select label";
 	/**
-	 * Optional helper text that appears under he label.
+	 * Optional helper text that appears under the label.
 	 */
 	@Input() helperText: string;
 	/**
 	 * Sets the invalid text.
 	 */
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
@@ -181,5 +190,9 @@ export class Select implements ControlValueAccessor {
 	@HostListener("blur")
 	protected blur() {
 		this.onTouchedHandler();
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
