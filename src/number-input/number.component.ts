@@ -52,7 +52,7 @@ export class NumberChange {
 		</div>
 		<div
 			data-numberinput
-			[attr.data-invalid]="(invalid ? '' : null)"
+			[attr.data-invalid]="(invalid ? true : null)"
 			class="bx--number"
 			[ngClass]="{
 				'bx--number--light': theme === 'light',
@@ -60,35 +60,43 @@ export class NumberChange {
 				'bx--number--helpertext': helperText,
 				'bx--skeleton' : skeleton
 			}">
-			<input
-				type="number"
-				[id]="id"
-				[value]="value"
-				[min]="min"
-				[max]="max"
-				[disabled]="disabled"
-				[required]="required"
-				(input)="onNumberInputChange($event)"/>
-			<div *ngIf="!skeleton" class="bx--number__controls">
-				<button
-					class="bx--number__control-btn up-icon"
-					type="button"
-					aria-live="polite"
-					aria-atomic="true"
-					(click)="onIncrement()">
-					<ibm-icon-caret-up16></ibm-icon-caret-up16>
-				</button>
-				<button
-					class="bx--number__control-btn down-icon"
-					type="button"
-					aria-live="polite"
-					aria-atomic="true"
-					(click)="onDecrement()">
-					<ibm-icon-caret-down16></ibm-icon-caret-down16>
-				</button>
+			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
+			<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+			<div class="bx--number__input-wrapper">
+				<input
+					type="number"
+					[id]="id"
+					[value]="value"
+					[min]="min"
+					[max]="max"
+					[disabled]="disabled"
+					[required]="required"
+					(input)="onNumberInputChange($event)"/>
+				<ibm-icon-warning-filled16
+					*ngIf="!skeleton && invalid"
+					class="bx--number__invalid"
+					style="display: inherit;">
+				</ibm-icon-warning-filled16>
+				<div *ngIf="!skeleton" class="bx--number__controls">
+					<button
+						class="bx--number__control-btn up-icon"
+						aria-live="polite"
+						aria-atomic="true"
+						(click)="onIncrement()">
+						<ibm-icon-caret-up16></ibm-icon-caret-up16>
+					</button>
+					<button
+						class="bx--number__control-btn down-icon"
+						aria-live="polite"
+						aria-atomic="true"
+						(click)="onDecrement()">
+						<ibm-icon-caret-down16></ibm-icon-caret-down16>
+					</button>
+				</div>
 			</div>
 			<div *ngIf="invalid" class="bx--form-requirement">
-				{{invalidText}}
+				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 			</div>
 		</div>
 	`,
@@ -155,7 +163,7 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the invalid text.
 	 */
-	@Input() invalidText;
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
@@ -192,6 +200,13 @@ export class Number implements ControlValueAccessor {
 	 */
 	public registerOnTouched(fn: any) {
 		this.onTouched = fn;
+	}
+
+	/**
+	 * Sets the disabled state through the model
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
 	}
 
 	/**

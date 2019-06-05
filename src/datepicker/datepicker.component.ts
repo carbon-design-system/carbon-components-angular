@@ -116,7 +116,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() invalid = false;
 
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 

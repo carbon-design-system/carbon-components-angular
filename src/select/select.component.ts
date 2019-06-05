@@ -53,7 +53,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
 					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 				</div>
-				<div class="bx--select-input__wrapper">
+				<div class="bx--select-input__wrapper" [attr.data-invalid]="(invalid ? true : null)">
 					<select
 						#select
 						[attr.id]="id"
@@ -62,9 +62,17 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="bx--select-input">
 						<ng-content></ng-content>
 					</select>
-					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
+					<ibm-icon-warning-filled16
+						*ngIf="!skeleton && invalid"
+						class="bx--select__invalid-icon"
+						style="display: inherit;">
+					</ibm-icon-warning-filled16>
+					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow" style="display: inherit;"></ibm-icon-chevron-down16>
 				</div>
-				<div *ngIf="invalid" class="bx--form-requirement">{{invalidText}}</div>
+				<div *ngIf="invalid" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
 			</div>
 		</div>
 	`,
@@ -96,13 +104,13 @@ export class Select implements ControlValueAccessor {
 	 */
 	@Input() label: string | TemplateRef<any>;
 	/**
-	 * Optional helper text that appears under he label.
+	 * Optional helper text that appears under the label.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Sets the invalid text.
 	 */
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Sets the unique ID. Defaults to `select-${total count of selects instantiated}`
 	 */
