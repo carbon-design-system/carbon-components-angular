@@ -1,6 +1,12 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, select } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	text,
+	boolean,
+	select,
+	number
+} from "@storybook/addon-knobs/angular";
 
 import { InputModule, DocumentationModule } from "../";
 
@@ -12,26 +18,57 @@ storiesOf("Input", module).addDecorator(
 	.addDecorator(withKnobs)
 	.add("Label", () => ({
 		template: `
-		<ibm-label>
-			Some Title
-			<input ibmText placeholder="Optional placeholder text">
+		<ibm-label
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText">
+			{{label}}
+			<input
+				ibmText
+				[invalid]="invalid"
+				[disabled]="disabled"
+				[theme]="theme"
+				[placeholder]="placeholder">
 		</ibm-label>
-	`
-	}))
-	.add("Input", () => ({
-		template: `
-		<input ibmText [theme]="theme" aria-label="input" placeholder="Optional placeholder text"/>
 	`,
 		props: {
-			theme: select("Theme", ["dark", "light"], "dark")
+			theme: select("Theme", ["dark", "light"], "dark"),
+			disabled: boolean("Disabled", false),
+			invalid: boolean("Show form validation", false),
+			invalidText: text("Form validation content", "Validation message here"),
+			label: text("Label", "Text Input label"),
+			helperText: text("Helper text", "Optional helper text."),
+			placeholder: text("Placeholder text", "Placeholder text")
 		}
 	}))
 	.add("TextArea", () => ({
 		template: `
-		<textarea ibmTextArea [theme]="theme" aria-label="textarea" placeholder="Optional placeholder text" rows="4" cols="50"></textarea>
+		<ibm-label
+			[helperText]="helperText"
+			[invalid]="invalid"
+			[invalidText]="invalidText">
+			{{label}}
+			<textarea
+				ibmTextArea
+				[placeholder]="placeholder"
+				[invalid]="invalid"
+				[disabled]="disabled"
+				[theme]="theme"
+				[rows]="rows"
+				[cols]="cols"
+				aria-label="textarea"></textarea>
+		</ibm-label>
 	`,
 		props: {
-			theme: select("Theme", ["dark", "light"], "dark")
+			theme: select("Theme", ["dark", "light"], "dark"),
+			disabled: boolean("Disabled", false),
+			invalid: boolean("Show form validation", false),
+			invalidText: text("Form validation content", "Validation message here"),
+			label: text("Label", "Text area label"),
+			helperText: text("Helper text", "Optional helper text."),
+			placeholder: text("Placeholder text", "Placeholder text"),
+			cols: number("cols", 50),
+			rows: number("rows", 4)
 		}
 	}))
 	.add("Skeleton", () => ({
