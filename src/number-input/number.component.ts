@@ -257,7 +257,7 @@ export class Number implements ControlValueAccessor {
 		this.emitChangeEvent();
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }

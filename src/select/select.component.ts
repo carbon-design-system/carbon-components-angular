@@ -184,6 +184,10 @@ export class Select implements ControlValueAccessor {
 		this.selected.emit(event.target.value);
 	}
 
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
+
 	/**
 	 * placeholder declarations. Replaced by the functions provided to `registerOnChange` and `registerOnTouched`
 	 */
@@ -196,9 +200,5 @@ export class Select implements ControlValueAccessor {
 	@HostListener("blur")
 	protected blur() {
 		this.onTouchedHandler();
-	}
-
-	protected isTemplate(value) {
-		return value instanceof TemplateRef;
 	}
 }

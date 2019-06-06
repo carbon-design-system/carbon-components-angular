@@ -105,6 +105,6 @@ storiesOf("Tooltip", module)
 			}))
 	.add("Documentation", () => ({
 		template: `
-			<ibm-documentation src="documentation/directives/Tooltip.html"></ibm-documentation>
+			<ibm-documentation src="documentation/directives/TooltipDirective.html"></ibm-documentation>
 		`
 	}));

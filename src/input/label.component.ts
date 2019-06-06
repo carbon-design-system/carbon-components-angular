@@ -114,7 +114,7 @@ export class Label implements AfterContentInit {
 		this.elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }
