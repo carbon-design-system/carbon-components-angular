@@ -157,7 +157,6 @@ export class DatePicker implements OnDestroy {
 
 	@HostListener("focusin")
 	onFocus() {
-		console.log(this.flatpickrOptions);
 		this.onTouched();
 	}
 
