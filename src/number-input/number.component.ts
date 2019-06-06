@@ -60,8 +60,6 @@ export class NumberChange {
 				'bx--number--helpertext': helperText,
 				'bx--skeleton' : skeleton
 			}">
-			<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
-			<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
 			<div class="bx--number__input-wrapper">
 				<input
 					type="number"
