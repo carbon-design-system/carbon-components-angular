@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 
 /**
@@ -18,7 +19,10 @@ import {
 	selector: "ibm-timepicker",
 	template: `
 			<div class="bx--time-picker__input">
-				<label *ngIf="!skeleton" [attr.for]="id" class="bx--label">{{label}}</label>
+				<label *ngIf="!skeleton" [for]="id" class="bx--label">
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+				</label>
 				<input
 					[ngClass]="{
 						'bx--text-input--light': theme === 'light',
@@ -45,7 +49,7 @@ export class TimePicker {
 
 	@HostBinding("class.bx--time-picker") timePicker = true;
 
-	@Input() label;
+	@Input() label: string | TemplateRef<any>;
 	@Input() placeholder = "hh:mm";
 	@Input() pattern = "(1[012]|[0-9]):[0-5][0-9]";
 	@Input() id = `timepicker-${TimePicker.timePickerCount++}`;
@@ -66,5 +70,9 @@ export class TimePicker {
 
 	onChange(event) {
 		this.valueChange.emit(event.target.value);
+	}
+
+	protected isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
