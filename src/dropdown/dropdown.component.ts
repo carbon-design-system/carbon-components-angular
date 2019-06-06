@@ -634,7 +634,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		return false;
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }
