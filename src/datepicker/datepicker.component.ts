@@ -133,12 +133,13 @@ export class DatePicker implements OnDestroy {
 		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {plugins});
 	}
 
-	@Input()
 	set flatpickrOptionsRange (options: FlatpickrOptions) {
+		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
 		this.range = true;
 		options = this.flatpickrOptions;
 	}
 	get flatpickrOptionsRange () {
+		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
 		return this.flatpickrOptions;
 	}
 
