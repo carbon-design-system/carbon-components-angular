@@ -374,7 +374,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		}
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }

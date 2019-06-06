@@ -88,7 +88,7 @@ export class DatePickerInput {
 
 	@Input() skeleton = false;
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }
