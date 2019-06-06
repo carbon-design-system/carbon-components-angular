@@ -72,7 +72,7 @@ export class TimePicker {
 		this.valueChange.emit(event.target.value);
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }
