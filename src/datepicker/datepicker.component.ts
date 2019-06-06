@@ -98,7 +98,7 @@ export class DatePicker implements OnDestroy {
 	 */
 	@Input() dateFormat = "m/d/Y";
 
-	@Input() label: string;
+	@Input() label: string  | TemplateRef<any>;
 
 	@Input() rangeLabel: string;
 
