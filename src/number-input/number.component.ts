@@ -42,8 +42,14 @@ export class NumberChange {
 	selector: "ibm-number",
 	template: `
 		<label *ngIf="skeleton && label" class="bx--label bx--skeleton"></label>
-		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">{{label}}</label>
-		<div *ngIf="helperText" class="bx--form__helper-text">{{helperText}}</div>
+		<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
+		<div *ngIf="helperText" class="bx--form__helper-text">
+			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+		</div>
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -149,11 +155,11 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
-	@Input() label;
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Sets the optional helper text.
 	 */
-	@Input() helperText;
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Sets the invalid text.
 	 */

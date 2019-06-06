@@ -17,7 +17,7 @@ storiesOf("Toggle", module).addDecorator(
 	.add("Basic", () => ({
 		template: `
 			<ibm-toggle
-				[label]="labelText"
+				[label]="label"
 				[onText]="onText"
 				[offText]="offText"
 				[disabled]="disabled"
@@ -29,7 +29,7 @@ storiesOf("Toggle", module).addDecorator(
 			disabled: boolean("Disabled", false),
 			checked: boolean("Checked", false),
 			size: select("Size", ["md", "sm"], "md"),
-			labelText: text("Label text", ""),
+			label: text("Label text", ""),
 			onText: text("On text", "On"),
 			offText: text("Off text", "Off")
 		}
