@@ -24,7 +24,7 @@ import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 /**
  * Component to create modals for presenting content.
  *
- * Using a modal in your application requires `ibm-modal-placeholder` which would generally be
+ * Using a modal in your application requires `ibm-placeholder` which would generally be
  * placed near the end of your app component template (app.component.ts or app.component.html) as:
  *
  * ```html

@@ -108,7 +108,8 @@ export class ModalService {
 				modalLabel: data.label || data.modalLabel,
 				modalTitle: data.title || data.modalTitle,
 				modalContent: data.content || data.modalContent,
-				buttons: data.buttons || []
+				buttons: data.buttons || [],
+				close: data.close || (() => {})
 			}
 		});
 	}
