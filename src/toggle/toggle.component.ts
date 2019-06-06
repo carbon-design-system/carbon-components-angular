@@ -171,7 +171,7 @@ export class Toggle extends Checkbox {
 		this.change.emit(event);
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }

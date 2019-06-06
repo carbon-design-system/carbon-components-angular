@@ -11,5 +11,5 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class HeaderItem {
-	@Input() href = "#";
+	@Input() href = "javascript:void(0)";
 }

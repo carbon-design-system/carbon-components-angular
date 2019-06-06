@@ -123,7 +123,7 @@ export class DatePickerInput {
 
 	propagateChange = (_: any) => {};
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 }

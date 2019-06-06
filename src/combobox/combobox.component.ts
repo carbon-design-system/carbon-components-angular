@@ -439,7 +439,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		});
 	}
 
-	protected isTemplate(value) {
+	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
 
