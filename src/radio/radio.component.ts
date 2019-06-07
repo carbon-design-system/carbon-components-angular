@@ -79,6 +79,8 @@ export class Radio {
 
 	@Input() disabled = false;
 
+	@Input() labelPlacement: "right" | "left" =  "right";
+
 	@Input() set ariaLabelledby(value: string) {
 		this._labelledby = value;
 	}
@@ -113,6 +115,12 @@ export class Radio {
 	 * Binds 'radio' value to the role attribute for `Radio`.
 	 */
 	@HostBinding("attr.role") role = "radio";
+
+	@HostBinding("class.bx--radio-button-wrapper") hostClass = true;
+
+	@HostBinding("class.bx--radio-button-wrapper--label-left") get labelLeft() {
+		return this.labelPlacement === "left";
+	}
 
 	protected _labelledby = "";
 
