@@ -6,7 +6,8 @@ import {
 	ViewEncapsulation,
 	ElementRef,
 	OnDestroy,
-	HostListener
+	HostListener,
+	TemplateRef
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
@@ -27,13 +28,13 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 	template: `
 	<div class="bx--form-item">
 		<ng2-flatpickr
-			[setDate]= "value"
-			[config]= "range ? flatpickrOptionsRange : flatpickrOptions"
+			[setDate]="value"
+			[config]="flatpickrOptions"
 			[hideButton]="true">
 			<div class="bx--form-item">
 				<div
 					data-date-picker
-					[attr.data-date-picker-type]= "range ? 'range' : 'single'"
+					[attr.data-date-picker-type]="(range ? 'range' : 'single')"
 					class="bx--date-picker"
 					[ngClass]="{
 						'bx--date-picker--range' : range,
@@ -44,11 +45,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<div class="bx--date-picker-container">
 						<ibm-date-picker-input
 							[label]= "label"
-							[placeholder]= "placeholder"
-							[pattern]= "pattern"
-							[id]= "id"
-							[type]= "range ? 'range' : 'single'"
-							[hasIcon]= "range ? false : true"
+							[placeholder]="placeholder"
+							[pattern]="pattern"
+							[id]="id"
+							[type]="(range ? 'range' : 'single')"
+							[hasIcon]="(range ? false : true)"
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
@@ -58,12 +59,12 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 					<div *ngIf="range" class="bx--date-picker-container">
 						<ibm-date-picker-input
-							[label]= "rangeLabel"
-							[placeholder]= "placeholder"
-							[pattern]= "pattern"
-							[id]= "id + '-rangeInput'"
-							[type]= "range ? 'range' : 'single'"
-							[hasIcon]= "range ? true : null"
+							[label]="rangeLabel"
+							[placeholder]="placeholder"
+							[pattern]="pattern"
+							[id]="id + '-rangeInput'"
+							[type]="(range ? 'range' : 'single')"
+							[hasIcon]="(range ? true : null)"
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
@@ -95,7 +96,7 @@ export class DatePicker implements OnDestroy {
 	/**
 	 * Select calendar range mode
 	 */
-	@Input() range: boolean;
+	@Input() range = false;
 
 	/**
 	 * Format of date
@@ -105,13 +106,12 @@ export class DatePicker implements OnDestroy {
 	@Input()
 	set dateFormat(dateFormat: string) {
 		this.flatpickrOptions = Object.assign({}, this.flatpickrOptions, {dateFormat});
-		this.flatpickrOptionsRange = Object.assign({}, this.flatpickrOptionsRange, {dateFormat});
 	}
 	get dateFormat() {
 		return this.flatpickrOptions.dateFormat;
 	}
 
-	@Input() label: string;
+	@Input() label: string  | TemplateRef<any>;
 
 	@Input() rangeLabel: string;
 
@@ -129,24 +129,43 @@ export class DatePicker implements OnDestroy {
 
 	@Input() invalid = false;
 
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
 
+	@Input() plugins = [];
+
+	@Input()
+	set flatpickrOptions(options: FlatpickrOptions) {
+		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
+	}
+	get flatpickrOptions(): FlatpickrOptions {
+		const plugins = [...this.plugins];
+		if (this.range) {
+			plugins.push(rangePlugin({ input: "#" + this.id + "-rangeInput"}));
+		}
+		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {plugins});
+	}
+
+	set flatpickrOptionsRange (options: FlatpickrOptions) {
+		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
+		this.range = true;
+		options = this.flatpickrOptions;
+	}
+	get flatpickrOptionsRange () {
+		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
+		return this.flatpickrOptions;
+	}
+
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
-	flatpickrOptions: FlatpickrOptions = {
-		dateFormat: "m/d/Y",
-		allowInput: true,
-		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
-		onOpen: () => { this.updateClassNames(); },
-		value: this.value
+	protected _flatpickrOptions: FlatpickrOptions = {
+		allowInput: true
 	};
 
-	flatpickrOptionsRange: FlatpickrOptions = {
+	protected flatpickrBaseOptions: FlatpickrOptions = {
 		dateFormat: "m/d/Y",
-		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
-		allowInput: true,
+		plugins: this.plugins,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); },
 		value: this.value

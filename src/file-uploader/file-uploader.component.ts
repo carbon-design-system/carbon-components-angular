@@ -42,6 +42,7 @@ const noop = () => {};
 					[accept]="accept"
 					[id]="fileUploaderId"
 					[multiple]="multiple"
+					tabindex="-1"
 					(change)="onFilesAdded()"/>
 				<div class="bx--file-container">
 					<ibm-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>

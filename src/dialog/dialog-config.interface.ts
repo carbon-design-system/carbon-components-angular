@@ -7,7 +7,7 @@ export interface DialogConfig {
 	/**
 	 * Title for the `Dialog` header.
 	 */
-	title: string;
+	title?: string;
 	/**
 	 * Body content for the `Dialog`.
 	 */
@@ -15,7 +15,7 @@ export interface DialogConfig {
 	/**
 	 * Parameter for triggering `Dialog` display.
 	 */
-	trigger: "click" | "hover" | "mouseenter";
+	trigger?: "click" | "hover" | "mouseenter";
 	/**
 	 * Parameter for triggering the `Dialog` close event.
 	 */
@@ -24,23 +24,23 @@ export interface DialogConfig {
 	 * Parameter defining the placement in which the `Dialog` appears.
 	 * @type {Placement}
 	 */
-	placement: string;
+	placement?: string;
 	/**
 	 * Used to set the offset of the `Dialog` relative to the content it
 	 * is associated to.
 	 */
-	gap: number;
+	gap?: number;
 	/**
 	 * Reference to the Parent element that links the `Dialog`.
 	 */
-	parentRef: ElementRef;
+	parentRef?: ElementRef;
 	/**
 	 * Set to `true` to open the dialog next to the triggering component
 	 */
-	appendInline: boolean;
+	appendInline?: boolean;
 	/**
 	 * Config object passed to the rendered component. (Optional)
 	 */
-	data: Object;
+	data?: Object;
 	[propName: string]: any;
 }
