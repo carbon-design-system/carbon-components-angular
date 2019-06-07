@@ -25,7 +25,7 @@ import { DatePickerModule, DocumentationModule } from "../";
 @Component({
 	selector: "app-date-picker",
 	template: `
-		<form [formGroup]="rForm">
+		<form [formGroup]="formGroup">
 			<ibm-date-picker
 				formControlName="single"
 				label="Date Picker Label"
@@ -33,7 +33,7 @@ import { DatePickerModule, DocumentationModule } from "../";
 				[invalid]="invalidSingle"
 				(valueChange)="valueChange.emit($event)">
 			</ibm-date-picker>
-			<code>{{rForm.controls["single"].value | json}}</code>
+			<code>{{formGroup.controls["single"].value | json}}</code>
 			<br><br>
 			<ibm-date-picker
 				range="true"
@@ -45,7 +45,7 @@ import { DatePickerModule, DocumentationModule } from "../";
 				[invalid]="invalidRange"
 				(valueChange)="valueChange.emit($event)">
 			</ibm-date-picker>
-			<code>{{rForm.controls["range"].value | json}}</code>
+			<code>{{formGroup.controls["range"].value | json}}</code>
 		</form>
 	`
 })
@@ -53,17 +53,17 @@ class DatePickerStory {
 	@Output() valueChange = new EventEmitter();
 
 	get invalidSingle() {
-		return this.rForm.controls["single"].invalid && this.rForm.controls["single"].touched;
+		return this.formGroup.controls["single"].invalid && this.formGroup.controls["single"].touched;
 	}
 
 	get invalidRange() {
-		return this.rForm.controls["range"].invalid && this.rForm.controls["range"].touched;
+		return this.formGroup.controls["range"].invalid && this.formGroup.controls["range"].touched;
 	}
 
-	rForm: FormGroup;
+	formGroup: FormGroup;
 
 	constructor(protected formBuilder: FormBuilder) {
-		this.rForm = this.formBuilder.group({
+		this.formGroup = this.formBuilder.group({
 			single: [
 				[new Date()],
 				Validators.required
