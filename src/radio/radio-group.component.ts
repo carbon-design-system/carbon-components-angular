@@ -252,7 +252,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	/**
-	 * Synchronizes the names of the radio items with the name of the `RadioGroup`.
+	 * Synchronizes radio properties.
 	 */
 	updateRadios() {
 		if (this.radios) {
