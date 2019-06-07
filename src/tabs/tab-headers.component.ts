@@ -56,7 +56,8 @@ import { Tab } from "./tab.component";
 				<li
 					*ngFor="let tab of tabs; let i = index;"
 					[ngClass]="{
-						'bx--tabs__nav-item--selected': tab.active
+						'bx--tabs__nav-item--selected': tab.active,
+						'bx--tabs__nav-item--disabled': tab.disabled
 					}"
 					class="bx--tabs__nav-item"
 					role="presentation"

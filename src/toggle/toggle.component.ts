@@ -4,7 +4,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -50,7 +51,10 @@ export class ToggleChange {
 @Component({
 	selector: "ibm-toggle",
 	template: `
-		<div *ngIf="label" class="bx--label" [id]="ariaLabelledby">{{label}}</div>
+		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -124,7 +128,7 @@ export class Toggle extends Checkbox {
 	 * Text that is set as the label of the toggle.
 	 * @type {(string)}
 	 */
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Size of the toggle component.
 	 */
@@ -165,5 +169,9 @@ export class Toggle extends Checkbox {
 
 		this.propagateChange(this.checked);
 		this.change.emit(event);
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }
