@@ -41,7 +41,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
-					[attr.disabled]="disabled"
+					[disabled]="disabled"
 					[attr.data-invalid]="(invalid ? true : null)"
 					(change) = "onChange($event)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
@@ -123,6 +123,7 @@ export class DatePickerInput {
 	onTouched: () => any = () => {};
 
 	propagateChange = (_: any) => {};
+
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
