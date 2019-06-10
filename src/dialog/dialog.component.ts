@@ -18,7 +18,7 @@ import {
 } from "rxjs";
 import { throttleTime } from "rxjs/operators";
 // the AbsolutePosition is required to import the declaration correctly
-import { position, AbsolutePosition } from "@carbon/utils-position";
+import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "./../common/tab.service";
 import { DialogConfig } from "./dialog-config.interface";
 
@@ -79,7 +79,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Handles offsetting the `Dialog` item based on the defined position
 	 * to not obscure the content beneath.
-	 * @protected
 	 */
 	protected addGap = {
 		"left": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
@@ -89,6 +88,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		"left-bottom": pos => position.addOffset(pos, 0, -this.dialogConfig.gap),
 		"right-bottom": pos => position.addOffset(pos, 0, this.dialogConfig.gap)
 	};
+
+	/**
+	 * Extra placements. Child classes can add to this for use in `placeDialog`.
+	 */
+	protected placements: Positions = {};
 
 	/**
 	 * Creates an instance of `Dialog`.
@@ -198,13 +202,14 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 * Uses the position service to position the `Dialog` in screen space
 	 */
 	placeDialog(): void {
+		const positionService = new Position(this.placements);
 		// helper to find the position based on the current/given environment
 		const findPosition = (reference, target, placement) => {
 			let pos;
 			if (this.dialogConfig.appendInline) {
-				pos = this.addGap[placement](position.findRelative(reference, target, placement));
+				pos = this.addGap[placement](positionService.findRelative(reference, target, placement));
 			} else {
-				pos = this.addGap[placement](position.findAbsolute(reference, target, placement));
+				pos = this.addGap[placement](positionService.findAbsolute(reference, target, placement));
 			}
 			return pos;
 		};
@@ -218,13 +223,13 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		const placements = this.dialogConfig.placement.split(",");
 
 		// find the best placement
-		dialogPlacement = position.findBestPlacement(parentEl, el, placements);
+		dialogPlacement = positionService.findBestPlacement(parentEl, el, placements);
 
 		// calculate the final position
 		const pos = findPosition(parentEl, el, dialogPlacement);
 
 		// update the element
-		position.setElement(el, pos);
+		positionService.setElement(el, pos);
 		setTimeout(() => { this.placement = dialogPlacement; });
 	}
 
