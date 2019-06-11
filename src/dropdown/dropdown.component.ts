@@ -10,6 +10,7 @@ import {
 	AfterContentInit,
 	HostListener,
 	OnDestroy,
+	HostBinding,
 	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -39,7 +40,16 @@ import { DropdownService } from "./dropdown.service";
 @Component({
 	selector: "ibm-dropdown",
 	template: `
+	<label [for]="id" class="bx--label">
+		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+	</label>
+	<div *ngIf="helperText" class="bx--form__helper-text">
+		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
+		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
+	</div>
 	<div
+		[id]="id"
 		class="bx--dropdown bx--list-box"
 		[ngClass]="{
 			'bx--dropdown--light': theme === 'light',
@@ -107,6 +117,16 @@ import { DropdownService } from "./dropdown.service";
 	]
 })
 export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
+	static dropdownCount = 0;
+	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
+	/**
+	 * Label for the dropdown.
+	 */
+	@Input() label: string | TemplateRef<any>;
+	/**
+	 * Sets the optional helper text.
+	 */
+	@Input() helperText: string | TemplateRef<any>;
 	/**
 	 * Value displayed if no item is selected.
 	 */
@@ -207,6 +227,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@ViewChild("dropdownMenu") dropdownMenu;
 
+	@HostBinding("class.bx--dropdown__wrapper") hostClass = true;
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
@@ -611,5 +632,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		}
 
 		return false;
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

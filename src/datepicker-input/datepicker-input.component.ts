@@ -2,8 +2,11 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
 	selector: "ibm-date-picker-input",
@@ -18,7 +21,8 @@ import {
 			}">
 			<div class="bx--date-picker-container">
 				<label [for]="id" class="bx--label">
-					{{label}}
+					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
 				<ibm-icon-calendar16
 					*ngIf="type == 'single'"
@@ -27,21 +31,22 @@ import {
 					data-open>
 				</ibm-icon-calendar16>
 				<input
-				    #dateInput
 					*ngIf="!skeleton"
 					autocomplete="off"
 					type="text"
 					class="bx--date-picker__input"
+					[value]="value"
 					[pattern]="pattern"
 					[placeholder]="placeholder"
 					data-date-picker-input
 					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
 					[id]= "id"
-					[attr.disabled]="(disabled ? '' : null)"
-					[attr.data-invalid]="(invalid ? '' : null)"
-					(change) = "valueChange.emit(dateInput.value)"/>
+					[disabled]="disabled"
+					[attr.data-invalid]="(invalid ? true : null)"
+					(change) = "onChange($event)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
-						{{invalidText}}
+						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
 					</div>
 			</div>
 			<ibm-icon-calendar16
@@ -52,7 +57,14 @@ import {
 			</ibm-icon-calendar16>
 		</div>
 	</div>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePickerInput,
+			multi: true
+		}
+	]
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;
@@ -67,11 +79,11 @@ export class DatePickerInput {
 
 	@Input() hasIcon = false;
 
-	@Input() label: string;
+	@Input() label: string | TemplateRef<any>;
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
@@ -81,7 +93,38 @@ export class DatePickerInput {
 
 	@Input() invalid = false;
 
-	@Input() invalidText: string;
+	@Input() invalidText: string | TemplateRef<any>;
 
 	@Input() skeleton = false;
+
+	@Input() value = "";
+
+	constructor(protected elementRef: ElementRef) {}
+
+	onChange(event) {
+		this.value = event.target.value;
+		this.valueChange.emit(this.value);
+		this.propagateChange(this.value);
+		this.onTouched();
+	}
+
+	public writeValue(value: any) {
+		this.value = value;
+	}
+
+	public registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	onTouched: () => any = () => {};
+
+	propagateChange = (_: any) => {};
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
 }

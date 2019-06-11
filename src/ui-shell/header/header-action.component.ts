@@ -22,7 +22,7 @@ import {
 	`
 })
 export class HeaderAction {
-	@Input() title;
+	@Input() title = "";
 	@Input() active = false;
 	@Output() selected = new EventEmitter<boolean>();
 
