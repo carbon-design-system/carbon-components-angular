@@ -71,7 +71,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			useExisting: DatePicker,
 			multi: true
 		}
-	],
+	]
 })
 export class DatePicker implements OnDestroy {
 	private static datePickerCount = 0;
