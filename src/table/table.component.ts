@@ -329,7 +329,6 @@ import { I18n } from "./../i18n/i18n.module";
 			</tr>
 		</thead>
 		<tbody
-<<<<<<< HEAD
 			ibmTableBody
 			[model]="model"
 			[checkboxRowLabel]="checkboxRowLabel"
@@ -346,87 +345,6 @@ import { I18n } from "./../i18n/i18n.module";
 			(selectRow)="onSelectRow($event)"
 			(deselectRow)="onSelectRow($event)"
 			[(columnIndex)]="columnIndex">
-=======
-		*ngIf="!noData; else noDataTemplate"
-		[ngStyle]="{'overflow-y': 'scroll'}"
-		(scroll)="onScroll($event)">
-			<ng-container *ngFor="let row of model.data; let i = index">
-				<tr *ngIf="!model.isRowFiltered(i)"
-					(click)="onRowSelect(i)"
-					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
-					[ngClass]="{
-						'bx--data-table--selected': model.rowsSelected[i],
-						'bx--parent-row': model.isRowExpandable(i),
-						'bx--expandable-row': model.rowsExpanded[i],
-						'tbody_row--selectable': enableSingleSelect,
-						'tbody_row--success': !model.rowsSelected[i] && model.rowsContext[i] === 'success',
-						'tbody_row--warning': !model.rowsSelected[i] && model.rowsContext[i] === 'warning',
-						'tbody_row--info': !model.rowsSelected[i] && model.rowsContext[i] === 'info',
-						'tbody_row--error': !model.rowsSelected[i] && model.rowsContext[i] === 'error'
-					}">
-					<td
-					*ngIf="model.hasExpandableRows()"
-					class="bx--table-expand"
-					[ibmDataGridFocus]="isDataGrid"
-					[(columnIndex)]="columnIndex"
-					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
-					(click)="setExpandIndex($event)">
-						<button
-						*ngIf="!skeleton && model.isRowExpandable(i)"
-						class="bx--table-expand__button"
-						[attr.aria-label]="expandButtonAriaLabel | async"
-						(click)="model.expandRow(i, !model.rowsExpanded[i])">
-							<ibm-icon-chevron-right16 innerClass="bx--table-expand__svg"></ibm-icon-chevron-right16>
-						</button>
-					</td>
-					<td
-						*ngIf="!skeleton && showSelectionColumn"
-						[ibmDataGridFocus]="isDataGrid"
-						[(columnIndex)]="columnIndex"
-						(click)="setCheckboxIndex()">
-						<ibm-checkbox
-							inline="true"
-							[aria-label]="checkboxRowLabel | i18nReplace:getSelectionLabelValue(row) | async"
-							[size]="size !== ('lg' ? 'sm' : 'md')"
-							[(ngModel)]="model.rowsSelected[i]"
-							(change)="onRowCheckboxChange(i)">
-						</ibm-checkbox>
-					</td>
-					<ng-container *ngFor="let item of row; let j = index">
-						<td *ngIf="model.header[j].visible"
-							[class]="model.header[j].className"
-							[ngStyle]="model.header[j].style"
-							[ibmDataGridFocus]="isDataGrid"
-							[(columnIndex)]="columnIndex"
-							(click)="setIndex(j)">
-							<span *ngIf="skeleton && i === 0"></span>
-							<ng-container *ngIf="!skeleton && !item.template">{{item.data}}</ng-container>
-							<ng-template
-								*ngIf="!skeleton"
-								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
-							</ng-template>
-						</td>
-					</ng-container>
-				</tr>
-				<tr
-				*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"
-				class="bx--expandable-row"
-				ibmExpandedRowHover
-				[attr.data-child-row]="(model.rowsExpanded[i] ? 'true' : null)">
-					<td
-						[ibmDataGridFocus]="isDataGrid"
-						[(columnIndex)]="columnIndex"
-						[attr.colspan]="row.length + 2"
-						(click)="setExpandIndex($event)">
-						<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>
-						<ng-template
-							[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
-							[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">
-						</ng-template>
-					</td>
-				</tr>
-			</ng-container>
->>>>>>> 21f5137b8c53825c8dc5b25f28dd9a9d03a8340b
 		</tbody>
 		<ng-template #noDataTemplate><ng-content></ng-content></ng-template>
 		<tfoot>
