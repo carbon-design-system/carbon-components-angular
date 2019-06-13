@@ -55,6 +55,7 @@ export class NumberChange {
 			<div *ngIf="!skeleton" class="bx--number__controls">
 				<button
 					class="bx--number__control-btn up-icon"
+					type="button"
 					aria-live="polite"
 					aria-atomic="true"
 					(click)="onIncrement()">
@@ -62,6 +63,7 @@ export class NumberChange {
 				</button>
 				<button
 					class="bx--number__control-btn down-icon"
+					type="button"
 					aria-live="polite"
 					aria-atomic="true"
 					(click)="onDecrement()">
@@ -179,13 +181,13 @@ export class Number implements ControlValueAccessor {
 	 * Called when number input is blurred. Needed to properly implement `ControlValueAccessor`.
 	 * @memberof Number
 	 */
-	onTouched: () => any = () => {};
+	onTouched: () => any = () => { };
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
 	 * @memberof Number
 	 */
-	propagateChange = (_: any) => {};
+	propagateChange = (_: any) => { };
 
 	/**
 	 * Adds 1 to the current `value`.
