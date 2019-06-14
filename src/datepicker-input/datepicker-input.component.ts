@@ -2,8 +2,10 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	ElementRef
 } from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
 	selector: "ibm-date-picker-input",
@@ -45,7 +47,8 @@ import {
 					[id]= "id"
 					[attr.disabled]="(disabled ? '' : null)"
 					[attr.data-invalid]="(invalid ? '' : null)"
-					(change) = "valueChange.emit(dateInput.value)"/>
+					[value]="value"
+					(change)="onChange($event)"/>
 					<div *ngIf="invalid" class="bx--form-requirement">
 						{{invalidText}}
 					</div>
@@ -63,7 +66,14 @@ import {
 			</svg>
 		</div>
 	</div>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePickerInput,
+			multi: true
+		}
+	]
 })
 export class DatePickerInput {
 	private static datePickerCount = 0;
@@ -85,7 +95,9 @@ export class DatePickerInput {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
+
+	@Input() value = "";
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
@@ -98,4 +110,29 @@ export class DatePickerInput {
 	@Input() invalidText: string;
 
 	@Input() skeleton = false;
+
+	constructor(protected elementRef: ElementRef) {}
+
+	onChange(event) {
+		this.value = event.target.value;
+		this.valueChange.emit(this.value);
+		this.propagateChange(this.value);
+		this.onTouched();
+	}
+
+	public writeValue(value: any) {
+		this.value = value;
+	}
+
+	public registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	onTouched: () => any = () => {};
+
+	propagateChange = (_: any) => {};
 }

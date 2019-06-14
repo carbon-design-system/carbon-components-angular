@@ -17,7 +17,12 @@ import { FileItem } from "./file-item.interface";
 	selector: "ibm-file",
 	template: `
 		<p class="bx--file-filename">{{fileItem.file.name}}</p>
-		<span *ngIf="fileItem.state === 'edit'" class="bx--file__state-container" (click)="remove.emit()">
+		<span
+			*ngIf="fileItem.state === 'edit'"
+			class="bx--file__state-container"
+			(click)="remove.emit()"
+			(keyup.enter)="remove.emit()"
+			(keyup.space)="remove.emit()">
 			<svg class="bx--file-close" fill-rule="evenodd" role="img" width="16" height="16" viewBox="0 0 16 16" tabindex="0"
 				[attr.aria-label]="translations.REMOVE_BUTTON">
 				<title>{{translations.REMOVE_TITLE}}</title>

@@ -4,11 +4,13 @@ import {
 	Output,
 	EventEmitter,
 	ElementRef,
-	OnDestroy
+	OnDestroy,
+	HostListener
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
 import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
 	selector: "ibm-date-picker",
@@ -40,8 +42,7 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
-							[skeleton]="skeleton"
-							(valueChange)="onInputValueChange($event, 0)">
+							[skeleton]="skeleton">
 						</ibm-date-picker-input>
 					</div>
 
@@ -56,15 +57,21 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 							[disabled]="disabled"
 							[invalid]="invalid"
 							[invalidText]="invalidText"
-							[skeleton]="skeleton"
-							(valueChange)="onInputValueChange($event, 1)">
+							[skeleton]="skeleton">
 						</ibm-date-picker-input>
 					</div>
 				</div>
 			</div>
 		</ng2-flatpickr>
 	</div>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePicker,
+			multi: true
+		}
+	]
 })
 export class DatePicker implements OnDestroy {
 	private static datePickerCount = 0;
@@ -87,7 +94,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() placeholder = "mm/dd/yyyy";
 
-	@Input() pattern = "\\d{1,2}/\\d{1,2}/\\d{4}";
+	@Input() pattern = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
@@ -103,20 +110,41 @@ export class DatePicker implements OnDestroy {
 
 	@Input() skeleton = false;
 
+	@Input() plugins = [];
+
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
-	flatpickrOptions: FlatpickrOptions = {
-		dateFormat: this.dateFormat,
-		allowInput: true,
-		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
-		onOpen: () => { this.updateClassNames(); },
-		value: this.value
+	@Input()
+	set flatpickrOptions(options: FlatpickrOptions) {
+		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
+	}
+	get flatpickrOptions(): FlatpickrOptions {
+		const plugins = [...this.plugins];
+		if (this.range) {
+			plugins.push(rangePlugin({ input: "#" + this.id + "-rangeInput" }));
+		}
+		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
+			plugins,
+			dateFormat: this.dateFormat
+		});
+	}
+	set flatpickrOptionsRange(options: FlatpickrOptions) {
+		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
+		this.range = true;
+		options = this.flatpickrOptions;
+	}
+	get flatpickrOptionsRange() {
+		console.warn("flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead");
+		return this.flatpickrOptions;
+	}
+
+	protected _flatpickrOptions: FlatpickrOptions = {
+		allowInput: true
 	};
 
-	flatpickrOptionsRange: FlatpickrOptions = {
-		dateFormat: this.dateFormat,
-		"plugins": [rangePlugin({ input: "#" + this.id + "-rangeInput"})],
-		allowInput: true,
+	protected flatpickrBaseOptions: FlatpickrOptions = {
+		dateFormat: "m/d/Y",
+		plugins: this.plugins,
 		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); },
 		value: this.value
@@ -124,8 +152,14 @@ export class DatePicker implements OnDestroy {
 
 	constructor(protected elementRef: ElementRef) { }
 
+	@HostListener("focusin")
+	onFocus() {
+		this.onTouched();
+	}
+
 	doSelect(selectedValue) {
 		this.valueChange.emit(selectedValue);
+		this.propagateChange(selectedValue);
 	}
 
 	updateClassNames() {
@@ -175,21 +209,21 @@ export class DatePicker implements OnDestroy {
 		});
 	}
 
-	onInputValueChange(event: string, index: number): void {
-		const eventDate = flatpickr.parseDate(event, this.dateFormat, true);
-		const previousDate = flatpickr.parseDate(this.value[index], this.dateFormat, true);
-		if (eventDate) {
-			if (!previousDate || previousDate.getTime() !== eventDate.getTime()) {
-				this.value = [...this.value];
-				this.value[index] = eventDate;
-			}
-		} else {
-			if (previousDate || event) {
-				this.value = [...this.value];
-				this.value[index] = undefined;
-			}
-		}
+	public writeValue(value: any) {
+		this.value = value;
 	}
+
+	public registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	onTouched: () => any = () => {};
+
+	propagateChange = (_: any) => {};
 
 	ngOnDestroy() {
 		// clean up our flatpickr element - needed because the wrapper doesn't handle this

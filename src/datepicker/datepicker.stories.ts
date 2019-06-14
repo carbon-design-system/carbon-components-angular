@@ -4,14 +4,89 @@ import { withKnobs, array, select, text, boolean } from "@storybook/addon-knobs/
 import { DatePickerModule, ExperimentalModule } from "../";
 import { DatePickerInputModule } from "./../datepicker-input/datepicker-input.module";
 import { ExperimentalComponenent } from "../../.storybook/experimental.component";
+import {
+	FormBuilder,
+	FormGroup,
+	Validators,
+	FormsModule,
+	ReactiveFormsModule
+} from "@angular/forms";
+import {
+	Component,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
+
+@Component({
+	selector: "app-date-picker",
+	template: `
+		<form [formGroup]="formGroup">
+			<ibm-date-picker
+				formControlName="single"
+				label="Date Picker Label"
+				invalidText="Invalid date format"
+				[invalid]="invalidSingle"
+				(valueChange)="valueChange.emit($event)">
+			</ibm-date-picker>
+			<code>{{formGroup.controls["single"].value | json}}</code>
+			<br><br>
+			<ibm-date-picker
+				range="true"
+				formControlName="range"
+				label="Date Picker Label"
+				rangeLabel="Date Picker Label"
+				invalidText="Invalid date format"
+				[pattern]="pattern"
+				[invalid]="invalidRange"
+				(valueChange)="valueChange.emit($event)">
+			</ibm-date-picker>
+			<code>{{formGroup.controls["range"].value | json}}</code>
+		</form>
+	`
+})
+class DatePickerStory {
+	@Output() valueChange = new EventEmitter();
+
+	get invalidSingle() {
+		return this.formGroup.controls["single"].invalid && this.formGroup.controls["single"].touched;
+	}
+
+	get invalidRange() {
+		return this.formGroup.controls["range"].invalid && this.formGroup.controls["range"].touched;
+	}
+
+	formGroup: FormGroup;
+
+	constructor(protected formBuilder: FormBuilder) {
+		this.formGroup = this.formBuilder.group({
+			single: [
+				[new Date()],
+				Validators.required
+			],
+			range: [
+				[
+					new Date(),
+					new Date().setMonth(new Date().getMonth() + 1)
+				],
+				Validators.required
+			]
+		});
+	}
+}
 
 storiesOf("Date Picker", module)
 	.addDecorator(
 		moduleMetadata({
-			declarations: [ExperimentalComponenent],
+			declarations: [
+				ExperimentalComponenent,
+				DatePickerStory
+			],
 			imports: [
 				DatePickerModule,
 				DatePickerInputModule,
+				FormsModule,
+				ReactiveFormsModule,
 				ExperimentalModule
 			]
 		})
@@ -48,6 +123,7 @@ storiesOf("Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker>
 		`,
@@ -59,7 +135,8 @@ storiesOf("Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("Disabled", false)
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y")
 		}
 	}))
 	.add("Range", () => ({
@@ -89,6 +166,16 @@ storiesOf("Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false)
+		}
+	}))
+	.add("With reactive forms", () => ({
+		template: `
+		<app-date-picker
+			(valueChange)="valueChange($event)">
+		</app-date-picker>
+		`,
+		props: {
+			valueChange: action("Date change fired!")
 		}
 	}))
 	.add("Skeleton", () => ({

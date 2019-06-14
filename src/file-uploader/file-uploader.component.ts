@@ -30,6 +30,7 @@ const noop = () => {};
 					#fileInput
 					type="file"
 					class="bx--file-input"
+					tabindex="-1"
 					[accept]="accept"
 					[id]="fileUploaderId"
 					[multiple]="multiple"
