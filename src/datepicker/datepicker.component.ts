@@ -10,7 +10,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { FlatpickrOptions } from "ng2-flatpickr";
-import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -103,13 +102,7 @@ export class DatePicker implements OnDestroy {
 	 *
 	 * For reference: https://flatpickr.js.org/formatting/
 	 */
-	@Input()
-	set dateFormat(dateFormat: string) {
-		this.flatpickrOptions = Object.assign({}, this.flatpickrOptions, {dateFormat});
-	}
-	get dateFormat() {
-		return this.flatpickrOptions.dateFormat;
-	}
+	@Input() dateFormat = "m/d/Y";
 
 	@Input() label: string  | TemplateRef<any>;
 
@@ -144,7 +137,11 @@ export class DatePicker implements OnDestroy {
 		if (this.range) {
 			plugins.push(rangePlugin({ input: "#" + this.id + "-rangeInput"}));
 		}
-		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {plugins});
+		console.log(this.dateFormat);
+		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
+			plugins,
+			dateFormat: this.dateFormat
+		});
 	}
 
 	set flatpickrOptionsRange (options: FlatpickrOptions) {

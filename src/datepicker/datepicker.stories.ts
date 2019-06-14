@@ -123,6 +123,7 @@ storiesOf("Date Picker", module)
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
 		`,
@@ -133,7 +134,8 @@ storiesOf("Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("Disabled", false)
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y")
 		}
 	}))
 	.add("Range", () => ({
@@ -147,6 +149,7 @@ storiesOf("Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker>
 		`,
@@ -157,7 +160,8 @@ storiesOf("Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("Disabled", false)
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y")
 		}
 	}))
 	.add("With reactive forms", () => ({
