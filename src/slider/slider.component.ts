@@ -7,13 +7,16 @@ import {
 	AfterViewInit,
 	OnDestroy,
 	ViewChild,
-	ElementRef
+	ElementRef,
+	TemplateRef
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
+ *
+ * [See demo](../../?path=/story/slider--advanced)
  *
  * The simplest possible slider usage looks something like:
  * ```html
@@ -43,62 +46,74 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * ```
  *
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
+ *
+ * <example-url>../../iframe.html?id=slider--advanced</example-url>
+ *
+ * @export
+ * @class Slider
+ * @implements {AfterViewInit}
+ * @implements {OnDestroy}
+ * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label [id]="bottomRangeId" class="bx--slider__range-label">
-				<ng-content select="[minLabel]"></ng-content>
+			<label for="slider" class="bx--label">
+				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
-			<div
-				class="bx--slider"
-				[ngClass]="{'bx--slider--disabled': disabled}">
+			<div class="bx--slider-container">
+				<label [id]="bottomRangeId" class="bx--slider__range-label">
+					<ng-content select="[minLabel]"></ng-content>
+				</label>
 				<div
-					#thumb
-					class="bx--slider__thumb"
-					tabindex="0"
-					[ngStyle]="{'left.%': getFractionComplete() * 100}"
-					(mousedown)="onMouseDown($event)"
-					(keydown)="onKeyDown($event)">
+					class="bx--slider"
+					[ngClass]="{'bx--slider--disabled': disabled}">
+					<div
+						#thumb
+						class="bx--slider__thumb"
+						tabindex="0"
+						[ngStyle]="{'left.%': getFractionComplete() * 100}"
+						(mousedown)="onMouseDown($event)"
+						(keydown)="onKeyDown($event)">
+					</div>
+					<div
+						#track
+						class="bx--slider__track"
+						(click)="onClick($event)">
+					</div>
+					<div
+						class="bx--slider__filled-track"
+						[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
+					</div>
+					<input
+						#range
+						aria-label="slider"
+						class="bx--slider__input"
+						type="range"
+						[step]="step"
+						[min]="min"
+						[max]="max"
+						[value]="value.toString()">
 				</div>
-				<div
-					#track
-					class="bx--slider__track"
-					(click)="onClick($event)">
-				</div>
-				<div
-					class="bx--slider__filled-track"
-					[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
-				</div>
-				<input
-					#range
-					aria-label="slider"
-					class="bx--slider__input"
-					type="range"
-					[step]="step"
-					[min]="min"
-					[max]="max"
-					[value]="value">
+				<label [id]="topRangeId" class="bx--slider__range-label">
+					<ng-content select="[maxLabel]"></ng-content>
+				</label>
+				<ng-content select="input"></ng-content>
 			</div>
-			<label [id]="topRangeId" class="bx--slider__range-label">
-				<ng-content select="[maxLabel]"></ng-content>
-			</label>
-			<ng-content select="input"></ng-content>
 		</ng-container>
 
 		<ng-template #skeletonTemplate>
-			<div class="bx--form-item">
-				<label class="bx--label bx--skeleton"></label>
-				<div class="bx--slider-container bx--skeleton">
-					<span class="bx--slider__range-label"></span>
-					<div class="bx--slider">
-						<div class="bx--slider__thumb"></div>
-						<div class="bx--slider__track"></div>
-						<div class="bx--slider__filled-track"></div>
-					</div>
-					<span class="bx--slider__range-label"></span>
+			<label class="bx--label bx--skeleton"></label>
+			<div class="bx--slider-container bx--skeleton">
+				<span class="bx--slider__range-label"></span>
+				<div class="bx--slider">
+					<div class="bx--slider__thumb"></div>
+					<div class="bx--slider__track"></div>
+					<div class="bx--slider__filled-track"></div>
 				</div>
+				<span class="bx--slider__range-label"></span>
 			</div>
 		</ng-template>
 	`,
@@ -149,6 +164,8 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() shiftMultiplier = 4;
 	/** Set to `true` for a loading slider */
 	@Input() skeleton = false;
+	/** Sets the text inside the `label` tag */
+	@Input() label: string | TemplateRef<any>;
 	/** Set to `true` for a slider without arrow key interactions. */
 	@Input() disableArrowKeys = false;
 	/** Disables the range visually and functionally */
@@ -166,7 +183,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	}
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number> = new EventEmitter();
-	@HostBinding("class.bx--slider-container") hostClass = true;
+	@HostBinding("class.bx--form-item") hostClass = true;
 	@ViewChild("thumb") thumb: ElementRef;
 	@ViewChild("track") track: ElementRef;
 	@ViewChild("range") range: ElementRef;
@@ -179,7 +196,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected slidAmount = 0;
 	protected input: HTMLInputElement;
-	protected _value = 0;
+	protected _value = this.min;
 	protected _disabled = false;
 
 	constructor(protected elementRef: ElementRef) {}
@@ -189,7 +206,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.eventSubscriptions.push(fromEvent(document, "mousemove").subscribe(this.onMouseMove.bind(this)));
 		this.eventSubscriptions.push(fromEvent(document, "mouseup").subscribe(this.onMouseUp.bind(this)));
 
-		// ODO: ontouchstart/ontouchmove/ontouchend
+		// apply any values we got from before the view initialized
+		this.value = this.value;
+
+		// TODO: ontouchstart/ontouchmove/ontouchend
 
 		// set up the optional input
 		this.input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
@@ -352,5 +372,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		if (event.key === "ArrowRight" || event.key === "ArrowUp") {
 			this.incrementValue(multiplier);
 		}
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

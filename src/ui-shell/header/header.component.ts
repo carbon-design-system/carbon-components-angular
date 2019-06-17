@@ -1,6 +1,26 @@
 import { Component, Input, HostBinding } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "../../i18n/i18n.module";
 
+/**
+ * Carbon uses feature-flags to toggle the new ui-shell feature.
+ *
+ * To turn on this feature flag, include the feature-flag variable into your SCSS file before importing carbon-components,
+ * then set ui-shell to true.
+ *
+ * ```scss
+ * $feature-flags: (
+ * 	ui-shell: true
+ * );
+ * @import 'carbon-components/src/globals/scss/styles';
+ * ```
+ *
+ * [See demo](../../?path=/story/ui-shell--header)
+ *
+ * <example-url>../../iframe.html?id=ui-shell--header</example-url>
+ *
+ * @export
+ * @class Header
+ */
 @Component({
 	selector: "ibm-header",
 	template: `

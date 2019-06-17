@@ -104,8 +104,10 @@
 		"OPEN_LIST_OF_OPTIONS": "Open list of options",
 		"BACKWARD": "Backward",
 		"FORWARD": "Forward",
+		"TOTAL_ITEMS_UNKNOWN": "{{start}}-{{end}} items",
 		"TOTAL_ITEMS": "{{start}}-{{end}} of {{total}} items",
 		"TOTAL_PAGES": "{{current}} of {{last}} pages",
+		"PAGE": "page",
 		"OF_LAST_PAGES": "of {{last}} pages"
 	},
 	"TABLE": {
@@ -125,7 +127,8 @@
 		"ROW": "row"
 	},
 	"TABLE_TOOLBAR": {
-		"ACTION_BAR": "Table Action Bar"
+		"ACTION_BAR": "Table Action Bar",
+		"CANCEL": "Cancel"
 	},
 	"TABS": {
 		"BUTTON_ARIA_LEFT": "Go to the previous tab",

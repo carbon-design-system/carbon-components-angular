@@ -2,13 +2,14 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
-import { TilesModule } from "../";
+import { TilesModule, DocumentationModule } from "../";
 
 storiesOf("Tiles", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TilesModule
+				TilesModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -72,5 +73,10 @@ storiesOf("Tiles", module)
 			<span class="bx--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
 			<span class="bx--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
 		</ibm-expandable-tile>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tiles.html"></ibm-documentation>
 		`
 	}));

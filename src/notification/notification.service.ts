@@ -144,6 +144,10 @@ export class NotificationService implements OnDestroy {
 				setTimeout( () => {
 					this.applicationRef.detachView(notificationRef.hostView);
 					notificationRef.destroy();
+					const index = this.notificationRefs.indexOf(notificationRef);
+					if (index !== -1) {
+						this.notificationRefs.splice(index, 1);
+					}
 				}, 200);
 			}
 		}

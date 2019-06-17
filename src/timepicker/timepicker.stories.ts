@@ -8,7 +8,7 @@ import {
 	text,
 	select
 } from "@storybook/addon-knobs/angular";
-import { ExperimentalModule } from "..";
+import { ExperimentalModule, DocumentationModule } from "../";
 
 storiesOf("Time Picker", module)
 	.addDecorator(
@@ -16,7 +16,8 @@ storiesOf("Time Picker", module)
 			imports: [
 				TimePickerModule,
 				ExperimentalModule,
-				TimePickerSelectModule
+				TimePickerSelectModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -43,4 +44,9 @@ storiesOf("Time Picker", module)
 			disabledSelect: boolean("disabled selects", false),
 			theme: select("Theme", ["dark", "light"], "dark")
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/TimePicker.html"></ibm-documentation>
+		`
 	}));

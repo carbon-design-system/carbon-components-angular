@@ -1,11 +1,18 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, number, text, boolean } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	number,
+	text,
+	boolean,
+	select
+} from "@storybook/addon-knobs/angular";
 
 import { SliderModule } from "./slider.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Slider", module).addDecorator(moduleMetadata({
-	imports: [SliderModule]
+	imports: [SliderModule, DocumentationModule]
 }))
 .addDecorator(withKnobs)
 .add("Basic", () => ({
@@ -17,6 +24,7 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 .add("Advanced", () => ({
 	template: `
 		<ibm-slider
+			[label]="label"
 			[min]="min"
 			[max]="max"
 			[step]="step"
@@ -26,7 +34,7 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 			(valueChange)="valueChange($event)">
 			<span minLabel>{{minLabel}}</span>
 			<span maxLabel>{{maxLabel}}</span>
-			<input/>
+			<input [ngClass]="{'bx--text-input--light': theme === 'light'}"/>
 		</ibm-slider>
 	`,
 	props: {
@@ -34,8 +42,10 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 		max: number("max", 100),
 		step: number("step", 1),
 		value: number("value", 0),
+		label: text("Label text", "Slider Label"),
 		minLabel: text("minLabel", "0"),
 		maxLabel: text("maxLabel", "100"),
+		theme: select("Theme", ["dark", "light"], "dark"),
 		disabled: boolean("disabled", false),
 		shiftMultiplier: number("shiftMultiplier", 4),
 		valueChange: action("Value changed")
@@ -55,5 +65,10 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 .add("Skeleton", () => ({
 	template: `
 		<ibm-slider skeleton="true"></ibm-slider>
+	`
+}))
+.add("Documentation", () => ({
+	template: `
+		<ibm-documentation src="documentation/components/Slider.html"></ibm-documentation>
 	`
 }));

@@ -5,7 +5,7 @@ import {
 	Input,
 	QueryList
 } from "@angular/core";
-import { SideNavItem } from "./ui-shell.module";
+import { SideNavItem } from "./sidenav-item.component";
 
 @Component({
 	selector: "ibm-sidenav-menu",

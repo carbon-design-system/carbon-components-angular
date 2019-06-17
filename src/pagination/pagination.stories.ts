@@ -4,20 +4,21 @@ import {
 	Input
 } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import {
-	withKnobs,
-	number
-} from "@storybook/addon-knobs/angular";
+import { withKnobs, number, boolean } from "@storybook/addon-knobs/angular";
 
 import { NFormsModule } from "..";
 import { PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 @Component({
 	selector: "app-pagination",
 	template: `
 		<ibm-pagination
 			[model]="model"
+			[disabled]="disabled"
+			[pageInputDisabled]="pageInputDisabled"
+			[pagesUnknown]="pagesUnknown"
 			[skeleton]="skeleton"
 			(selectPage)="selectPage($event)">
 		</ibm-pagination>
@@ -26,6 +27,9 @@ import { PaginationModel } from "./pagination-model.class";
 class PaginationStory implements OnInit {
 	@Input() model = new PaginationModel();
 	@Input() skeleton = false;
+	@Input() disabled = false;
+	@Input() pageInputDisabled = false;
+	@Input() pagesUnknown = false;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;
@@ -50,7 +54,8 @@ storiesOf("Pagination", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,
-				PaginationModule
+				PaginationModule,
+				DocumentationModule
 			],
 			declarations: [
 				PaginationStory
@@ -58,14 +63,22 @@ storiesOf("Pagination", module).addDecorator(
 		})
 	)
 	.addDecorator(withKnobs)
-	.add("default", () => ({
+	.add("Basic", () => ({
 		template: `
 			<div style="width: 800px">
-				<app-pagination [totalDataLength]="totalDataLength"></app-pagination>
+				<app-pagination
+					[disabled]="disabled"
+					[pageInputDisabled]="pageInputDisabled"
+					[pagesUnknown]="pagesUnknown"
+					[totalDataLength]="totalDataLength">
+				</app-pagination>
 			</div>
 		`,
 		props: {
-			totalDataLength: number("totalDataLength", 105)
+			disabled: boolean("Disabeld buttons", false),
+			pageInputDisabled: boolean("Disable page input", false),
+			pagesUnknown: boolean("Total number of items unknown ", false),
+			totalDataLength: number("Total number of items", 105)
 		}
 	}))
 	.add("Skeleton", () => ({
@@ -77,5 +90,10 @@ storiesOf("Pagination", module).addDecorator(
 		props: {
 			totalDataLength: number("totalDataLength", 105)
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Pagination.html"></ibm-documentation>
+		`
 	}));
 
