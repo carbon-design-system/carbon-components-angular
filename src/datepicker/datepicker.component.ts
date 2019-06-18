@@ -12,6 +12,7 @@ import {
 import { FlatpickrOptions } from "ng2-flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -133,7 +134,7 @@ export class DatePicker implements OnDestroy {
 		this._flatpickrOptions = Object.assign({}, this._flatpickrOptions, options);
 	}
 	get flatpickrOptions(): FlatpickrOptions {
-		const plugins = [...this.plugins];
+		const plugins = [...this.plugins, carbonFlatpickrMonthSelectPlugin];
 		if (this.range) {
 			plugins.push(rangePlugin({ input: "#" + this.id + "-rangeInput"}));
 		}
@@ -181,6 +182,7 @@ export class DatePicker implements OnDestroy {
 	}
 
 	updateClassNames() {
+		if (!this.elementRef) { return; }
 		const ng2FlatPickrElement = this.elementRef.nativeElement.querySelector(".ng2-flatpickr-input-container");
 		ng2FlatPickrElement._flatpickr._positionCalendar();
 
@@ -244,6 +246,7 @@ export class DatePicker implements OnDestroy {
 	propagateChange = (_: any) => {};
 
 	ngOnDestroy() {
+		if (!this.elementRef) { return; }
 		// clean up our flatpickr element - needed because the wrapper doesn't handle this
 		const ng2FlatPickrElement = this.elementRef.nativeElement.querySelector(".ng2-flatpickr-input-container");
 		ng2FlatPickrElement._flatpickr.destroy();
