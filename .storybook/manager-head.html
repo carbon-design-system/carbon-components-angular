@@ -71,19 +71,15 @@ var experimentalToggleInterval = setInterval(function() {
 	clearInterval(experimentalToggleInterval);
 	frame.contentDocument.body.insertAdjacentHTML(
 		"beforeend",
-		`<div style="position: fixed; right: 15px; bottom: 15px">
-			<button
-				class="toggle-btn experimental-selected"
-				onclick="setExperimental(event)">
-				Standard
-			</button>
-			<button
-				class="toggle-btn"
-				onclick="setExperimental(event)">
-				Experimental
-			</button>
-		</div>
-	`);
+		'<div style="position: fixed; right: 15px; bottom: 15px">' +
+			'<button class="toggle-btn experimental-selected" onclick="setExperimental(event)">' +
+				'Standard' +
+			'</button>' +
+			'<button class="toggle-btn" onclick="setExperimental(event)">' +
+				'Experimental' +
+			'</button>' +
+		'</div>'
+	);
 	frame.contentWindow.setExperimental = setExperimental;
 
 	var classList = frame.contentDocument.body.classList;

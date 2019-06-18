@@ -44,6 +44,7 @@ import { DropdownService } from "./dropdown.service";
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			(blur)="onBlur()"
+			(click)="toggleMenu()"
 			[disabled]="disabled">
 			<span (click)="clearSelected()" *ngIf="type === 'multi' && view.getSelected() && view.getSelected().length"
 				class="bx--list-box__selection bx--list-box__selection--multi">
@@ -53,7 +54,7 @@ import { DropdownService } from "./dropdown.service";
 					<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>
 				</svg>
 			</span>
-			<div class="click-container" (click)="toggleMenu()" style="width: 100%; text-align: left;">
+			<div class="click-container" style="width: 100%; text-align: left;">
 				<span class="bx--list-box__label">
 					{{getDisplayValue() | async}}
 				</span>
