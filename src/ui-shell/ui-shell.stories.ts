@@ -34,7 +34,7 @@ storiesOf("UI Shell", module)
 					</ibm-header-menu>
 				</ibm-header-navigation>
 				<ibm-header-global>
-					<ibm-header-action>
+					<ibm-header-action title="action">
 						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 							<path
 								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
@@ -45,7 +45,7 @@ storiesOf("UI Shell", module)
 								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
 						</svg>
 					</ibm-header-action>
-					<ibm-header-action>
+					<ibm-header-action title="action">
 						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 							<path
 								d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
@@ -150,7 +150,7 @@ storiesOf("UI Shell", module)
 					</ibm-header-menu>
 				</ibm-header-navigation>
 				<ibm-header-global>
-					<ibm-header-action #firstAction>
+					<ibm-header-action #firstAction title="action">
 						<svg class="bx--navigation-menu-panel-expand-icon"
 							width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 							<path
@@ -162,7 +162,7 @@ storiesOf("UI Shell", module)
 								10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
 						</svg>
 					</ibm-header-action>
-					<ibm-header-action #secondAction>
+					<ibm-header-action #secondAction title="action">
 						<svg
 							class="bx--navigation-menu-panel-expand-icon"
 							width="20"
