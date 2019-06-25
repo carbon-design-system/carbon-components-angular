@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
@@ -21,7 +22,7 @@ storiesOf("UI Shell", module)
 	.add("Header", () => ({
 		template: `
 			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger"></ibm-hamburger>
+				<ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
 				<ibm-header-navigation>
 					<ibm-header-item>Catalog</ibm-header-item>
 					<ibm-header-item>Docs</ibm-header-item>
@@ -60,7 +61,7 @@ storiesOf("UI Shell", module)
 		`,
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
-			menuClicked: () => { }
+			expanded: action("Menu clicked")
 		}
 	}))
 	.add("Side Navigation", () => ({
