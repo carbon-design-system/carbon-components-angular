@@ -67,7 +67,7 @@ import { Observable, isObservable, Subscription } from "rxjs";
 				}">
 				<div
 					#listItem
-					tabindex="0"
+					tabindex="-1"
 					class="bx--list-box__menu-item__option">
 					<div
 						*ngIf="!listTpl && type === 'multi'"
