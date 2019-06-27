@@ -24,37 +24,27 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>
-				<ibm-icon-calendar16
-					*ngIf="type == 'single'"
-					data-date-picker-icon
-					class="bx--date-picker__icon"
-					data-open>
-				</ibm-icon-calendar16>
-				<input
-					*ngIf="!skeleton"
-					autocomplete="off"
-					type="text"
-					class="bx--date-picker__input"
-					[value]="value"
-					[pattern]="pattern"
-					[placeholder]="placeholder"
-					data-date-picker-input
-					[attr.data-input] = "type == 'single' || type == 'range' ?  '' : null"
-					[id]= "id"
-					[disabled]="disabled"
-					[attr.data-invalid]="(invalid ? true : null)"
-					(change) = "onChange($event)"/>
-					<div *ngIf="invalid" class="bx--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-					</div>
+				<div class="bx--date-picker-input__wrapper">
+					<input
+						*ngIf="!skeleton"
+						autocomplete="off"
+						type="text"
+						class="bx--date-picker__input"
+						[value]="value"
+						[pattern]="pattern"
+						[placeholder]="placeholder"
+						[id]= "id"
+						[disabled]="disabled"
+						(change) = "onChange($event)"/>
+						<ibm-icon-calendar16
+							class="bx--date-picker__icon">
+						</ibm-icon-calendar16>
+				</div>
+				<div *ngIf="invalid" class="bx--form-requirement">
+					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
+					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+				</div>
 			</div>
-			<ibm-icon-calendar16
-				*ngIf= "type == 'range' && hasIcon"
-				data-date-picker-icon
-				class="bx--date-picker__icon"
-				data-open>
-			</ibm-icon-calendar16>
 		</div>
 	</div>
 	`,
