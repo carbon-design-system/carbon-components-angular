@@ -4,7 +4,8 @@ import {
 	AfterContentInit,
 	ElementRef,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	ViewChild
 } from "@angular/core";
 
 /**
@@ -45,7 +46,7 @@ import {
 			<ng-content></ng-content>
 		</label>
 		<div *ngIf="!skeleton" class="bx--form__helper-text">{{helperText}}</div>
-		<div class="bx--text-input__field-wrapper" [attr.data-invalid]="(invalid ? true : null)">
+		<div class="bx--text-input__field-wrapper" [attr.data-invalid]="(invalid ? true : null)" #wrapper>
 			<ibm-icon-warning-filled16
 				*ngIf="invalid"
 				class="bx--text-input__invalid-icon bx--text-area__invalid-icon">
@@ -95,14 +96,15 @@ export class Label implements AfterContentInit {
 	 */
 	@Input() invalid = false;
 
+	@ViewChild("wrapper") wrapper: ElementRef<HTMLDivElement>;
+
 	@HostBinding("class.bx--form-item") labelClass = true;
 
 	/**
 	 * Creates an instance of Label.
-	 * @param {ElementRef} elementRef
 	 * @memberof Label
 	 */
-	constructor(protected elementRef: ElementRef) {
+	constructor() {
 		Label.labelCounter++;
 	}
 
@@ -111,7 +113,7 @@ export class Label implements AfterContentInit {
 	 * @memberof Label
 	 */
 	ngAfterContentInit() {
-		this.elementRef.nativeElement.querySelector(".bx--text-input__field-wrapper>input,.bx--text-input__field-wrapper>textarea,.bx--text-input__field-wrapper>div").setAttribute("id", this.labelInputID);
+		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
 	}
 
 	public isTemplate(value) {
