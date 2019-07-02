@@ -111,7 +111,7 @@ export class Label implements AfterContentInit {
 	 * @memberof Label
 	 */
 	ngAfterContentInit() {
-		this.elementRef.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
+		this.elementRef.nativeElement.querySelector(".bx--text-input__field-wrapper>input,.bx--text-input__field-wrapper>textarea,.bx--text-input__field-wrapper>div").setAttribute("id", this.labelInputID);
 	}
 
 	public isTemplate(value) {
