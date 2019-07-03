@@ -55,12 +55,8 @@
   "peerDependencies": {
     "@angular/animations": "^6.1.0 || ^7.0.0 || ^8.0.0",
     "@angular/common": "^6.1.0 || ^7.0.0 || ^8.0.0",
-    "@angular/compiler": "^6.1.0 || ^7.0.0 || ^8.0.0",
     "@angular/core": "^6.1.0 || ^7.0.0 || ^8.0.0",
     "@angular/forms": "^6.1.0 || ^7.0.0 || ^8.0.0",
-    "@angular/http": "^6.1.0 || ^7.0.0 || ^8.0.0",
-    "@angular/platform-browser": "^6.1.0 || ^7.0.0 || ^8.0.0",
-    "@angular/platform-browser-dynamic": "^6.1.0 || ^7.0.0 || ^8.0.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26 || ^0.9.0",
     "carbon-components": "^10.0.0",
