@@ -54,8 +54,6 @@ import { Observable, isObservable, Subscription } from "rxjs";
 			class="bx--list-box__menu bx--multi-select"
 			[attr.aria-label]="ariaLabel">
 			<li
-				#listItem
-				tabindex="-1"
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
@@ -67,7 +65,10 @@ import { Observable, isObservable, Subscription } from "rxjs";
 					'bx--list-box__menu-item--active': item.selected,
 					disabled: item.disabled
 				}">
-				<div class="bx--list-box__menu-item__option">
+				<div
+					#listItem
+					tabindex="-1"
+					class="bx--list-box__menu-item__option">
 					<div
 						*ngIf="!listTpl && type === 'multi'"
 						class="bx--form-item bx--checkbox-wrapper">
@@ -409,10 +410,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// "Spacebar", "Down", and "Up" are IE specific values
 		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-			event.preventDefault();
-			if (event.key === "Enter") {
-				this.doClick(event, item);
-			}
+				if (this.listElementList.some(option => option.nativeElement === event.target)) {
+					event.preventDefault();
+				}
+				if (event.key === "Enter") {
+					this.doClick(event, item);
+				}
 		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
 			event.preventDefault();
 			if (event.key === "ArrowDown" || event.key === "Down") {
