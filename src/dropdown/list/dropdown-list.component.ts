@@ -367,6 +367,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Transforms array input list of items to the correct state by updating the selected item(s).
 	 */
 	propagateSelected(value: Array<ListItem>): void {
+		// if we get a non-array, log out an error (since it is one)
+		if (!Array.isArray(value)) {
+			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
+		}
 		for (let newItem of value) {
 			// copy the item
 			let tempNewItem: string | ListItem = Object.assign({}, newItem);

@@ -277,7 +277,14 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
 			if (this.type === "multi") {
-				this.propagateChange(this.view.getSelected());
+				// if we have a `value` selector and selected items map them approperiatly
+				if (this.value && this.view.getSelected()) {
+					const values = this.view.getSelected().map(item => item[this.value]);
+					this.propagateChange(values);
+				// otherwise just pass up the values from `getSelected`
+				} else {
+					this.propagateChange(this.view.getSelected());
+				}
 			} else {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
@@ -307,16 +314,36 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Propagates the injected `value`.
 	 */
 	writeValue(value: any) {
-		if (this.type === "single") {
+		// propagate null/falsey as an array (deselect everything)
+		if (!value) {
+			this.view.propagateSelected([value]);
+		} else if (this.type === "single") {
 			if (this.value) {
+				// clone the specified item and update its state
 				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.value] === value));
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
 			} else {
+				// pass the singular value as an array of ListItem
 				this.view.propagateSelected([value]);
 			}
 		} else {
-			this.view.propagateSelected(value);
+			if (this.value) {
+				// clone the items and update their state based on the received value array
+				// this way we don't lose any additional metadata that may be passed in view the `items` Input
+				const newValues = Array.from(this.view.getListItems(), item => Object.assign({}, item));
+				for (const v of value) {
+					for (const newValue of newValues) {
+						if (newValue[this.value] === v) {
+							newValue.selected = true;
+						}
+					}
+				}
+				this.view.propagateSelected(newValues);
+			} else {
+				// we can safely assume we're passing an array of `ListItem`s
+				this.view.propagateSelected(value);
+			}
 		}
 	}
 
