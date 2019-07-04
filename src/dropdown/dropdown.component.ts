@@ -319,7 +319,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			this.view.propagateSelected([value]);
 		} else if (this.type === "single") {
 			if (this.value) {
-				// clone the specified item and update it's state
+				// clone the specified item and update its state
 				const newValue = Object.assign({}, this.view.getListItems().find(item => item[this.value] === value));
 				newValue.selected = true;
 				this.view.propagateSelected([newValue]);
