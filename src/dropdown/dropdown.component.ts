@@ -329,7 +329,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 			}
 		} else {
 			if (this.value) {
-				// clone the items and update their state based on the recived value array
+				// clone the items and update their state based on the received value array
 				// this way we don't lose any additional metadata that may be passed in view the `items` Input
 				const newValues = Array.from(this.view.getListItems(), item => Object.assign({}, item));
 				for (const v of value) {
