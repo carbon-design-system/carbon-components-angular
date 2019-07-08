@@ -313,6 +313,7 @@ import { I18n } from "./../i18n/i18n.module";
 				<tr *ngIf="!model.isRowFiltered(i)"
 					(click)="onRowSelect(i)"
 					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
+					[class]="model.rowsClass[i] ? model.rowsClass[i] : null"
 					[ngClass]="{
 						'bx--data-table-v2--selected': model.rowsSelected[i],
 						'bx--parent-row-v2': model.isRowExpandable(i),
