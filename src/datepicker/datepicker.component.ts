@@ -9,7 +9,8 @@ import {
 	HostListener,
 	TemplateRef,
 	AfterViewInit,
-	OnChanges
+	OnChanges,
+	SimpleChanges
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -110,7 +111,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: Array<any> = [];
+	@Input() value: (Date | string)[] = [];
 
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -170,22 +171,24 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	constructor(protected elementRef: ElementRef) { }
 
-	ngOnChanges() {
+	ngOnChanges(changes: SimpleChanges) {
 		if (this.flatpickrInstance) {
-			const dates = this.flatpickrInstance.selectedDates;
-			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
-			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
+			let dates = this.flatpickrInstance.selectedDates;
+			if (changes.value && this.didDateValueChange(changes.value.currentValue, changes.value.previousValue)) {
+				dates = changes.value.currentValue;
+			}
 			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
 			this.flatpickrInstance.setDate(dates);
-			singleInput.value = this.flatpickrInstance.formatDate(dates[0], this.dateFormat);
-			if (rangeInput) {
-				rangeInput.value = this.flatpickrInstance.formatDate(dates[1], this.dateFormat);
-			}
+			this.setDateValues(dates);
 		}
 	}
 
 	ngAfterViewInit() {
 		this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+		if (this.value.length > 0) {
+			this.flatpickrInstance.setDate(this.value);
+			this.setDateValues(this.value);
+		}
 	}
 
 	@HostListener("focusin")
@@ -263,5 +266,20 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 	ngOnDestroy() {
 		if (!this.flatpickrInstance) { return; }
 		this.flatpickrInstance.destroy();
+	}
+
+	protected setDateValues(dates: (Date | string)[]) {
+		const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
+		const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
+		const singleDate = this.flatpickrInstance.parseDate(dates[0], this.dateFormat);
+		singleInput.value = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
+		if (rangeInput) {
+			const rangeDate = this.flatpickrInstance.parseDate(dates[1], this.dateFormat);
+			rangeInput.value = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
+		}
+	}
+
+	protected didDateValueChange(currentValue, previousValue) {
+		return currentValue[0] !== previousValue[0] || currentValue[1] !== previousValue[1];
 	}
 }
