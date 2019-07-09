@@ -64,8 +64,8 @@ export class NumberChange {
 					type="number"
 					[id]="id"
 					[value]="value"
-					[min]="min"
-					[max]="max"
+					[attr.min]="min"
+					[attr.max]="max"
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onNumberInputChange($event)"/>
@@ -224,7 +224,7 @@ export class Number implements ControlValueAccessor {
 	 * Adds 1 to the current `value`.
 	 */
 	onIncrement(): void {
-		if (!this.max || this.value < this.max) {
+		if (this.max === null || this.value < this.max) {
 			this.value++;
 			this.emitChangeEvent();
 		}
@@ -234,7 +234,7 @@ export class Number implements ControlValueAccessor {
 	 * Subtracts 1 to the current `value`.
 	 */
 	onDecrement(): void {
-		if (!this.min || this.value > this.min) {
+		if (this.min === null || this.value > this.min) {
 			this.value--;
 			this.emitChangeEvent();
 		}
