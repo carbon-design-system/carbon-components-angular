@@ -4,6 +4,7 @@ import { Component, Input, HostBinding } from "@angular/core";
 	selector: "ibm-tooltip-icon",
 	template: `
 		<button
+			type="button"
 			class="bx--tooltip__trigger"
 			[ngClass]="{
 				'bx--tooltip--icon__bottom' : placement === 'bottom',
