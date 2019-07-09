@@ -119,7 +119,7 @@ import { ExperimentalService } from "./../experimental.module";
 						[id]="currentPageSelectId"
 						class="bx--select-input"
 						[(ngModel)]="currentPage">
-						<option *ngFor="let _ of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
+						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<ibm-icon-chevron-down16
 						*ngIf="pageOptions.length <= 1000"
