@@ -74,7 +74,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						#thumb
 						class="bx--slider__thumb"
 						tabindex="0"
-						[ngStyle]="{'left.%': getFractionComplete() * 100}"
+						[ngStyle]="{'left.%': fractionComplete * 100}"
 						(mousedown)="onMouseDown($event)"
 						(keydown)="onKeyDown($event)">
 					</div>
@@ -85,7 +85,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</div>
 					<div
 						class="bx--slider__filled-track"
-						[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
+						[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(fractionComplete)}">
 					</div>
 					<input
 						#range
@@ -146,6 +146,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 		this._value = v;
 		this.slidAmount = this.convertToPx(v);
+		setTimeout(() => {
+			this.fractionComplete = this.getFractionComplete();
+		});
 
 		if (this.input) {
 			this.input.value = v.toString();
@@ -190,6 +193,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;
+	public fractionComplete = 0;
 
 	protected isMouseDown = false;
 	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
