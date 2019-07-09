@@ -3,7 +3,7 @@ import { Component, Input, HostBinding } from "@angular/core";
 @Component({
 	selector: "ibm-tooltip-definition",
 	template: `
-		<button class="bx--tooltip__trigger" [attr.aria-describedby]="id">
+		<button type="button" class="bx--tooltip__trigger" [attr.aria-describedby]="id">
 			<ng-content></ng-content>
 		</button>
 		<div
