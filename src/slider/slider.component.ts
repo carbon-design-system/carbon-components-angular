@@ -146,9 +146,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 
 		this._value = v;
 		this.slidAmount = this.convertToPx(v);
-		setTimeout(() => {
-			this.fractionComplete = this.getFractionComplete();
-		});
+		setTimeout(() => this.fractionComplete = this.getFractionComplete());
 
 		if (this.input) {
 			this.input.value = v.toString();
