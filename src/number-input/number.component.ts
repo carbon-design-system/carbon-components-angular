@@ -7,7 +7,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { isNullOrUndefined } from "util";
 
 /**
  * Used to emit changes performed on number input components.
@@ -147,11 +146,11 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the min attribute on the `input` element.
 	 */
-	@Input() min;
+	@Input() min = null;
 	/**
 	 * Sets the max attribute on the `input` element.
 	 */
-	@Input() max;
+	@Input() max = null;
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
@@ -225,7 +224,7 @@ export class Number implements ControlValueAccessor {
 	 * Adds 1 to the current `value`.
 	 */
 	onIncrement(): void {
-		if (isNullOrUndefined(this.max) || this.value < this.max) {
+		if (!this.max || this.value < this.max) {
 			this.value++;
 			this.emitChangeEvent();
 		}
@@ -235,7 +234,7 @@ export class Number implements ControlValueAccessor {
 	 * Subtracts 1 to the current `value`.
 	 */
 	onDecrement(): void {
-		if (isNullOrUndefined(this.min) || this.value > this.min) {
+		if (!this.min || this.value > this.min) {
 			this.value--;
 			this.emitChangeEvent();
 		}
