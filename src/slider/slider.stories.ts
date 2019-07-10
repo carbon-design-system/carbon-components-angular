@@ -16,10 +16,9 @@ storiesOf("Slider", module).addDecorator(moduleMetadata({
 }))
 .addDecorator(withKnobs)
 .add("Basic", () => ({
-	template: `<ibm-slider [disabled]="disabled" [value]="value"></ibm-slider>`,
+	template: `<ibm-slider [disabled]="disabled"></ibm-slider>`,
 	props: {
-		disabled: boolean("disabled", false),
-		value: 15
+		disabled: boolean("disabled", false)
 	}
 }))
 .add("Advanced", () => ({

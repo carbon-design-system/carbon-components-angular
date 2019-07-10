@@ -48,12 +48,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
  *
  * <example-url>../../iframe.html?id=slider--advanced</example-url>
- *
- * @export
- * @class Slider
- * @implements {AfterViewInit}
- * @implements {OnDestroy}
- * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-slider",
@@ -74,7 +68,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						#thumb
 						class="bx--slider__thumb"
 						tabindex="0"
-						[ngStyle]="{'left.%': fractionComplete * 100}"
+
 						(mousedown)="onMouseDown($event)"
 						(keydown)="onKeyDown($event)">
 					</div>
@@ -84,8 +78,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						(click)="onClick($event)">
 					</div>
 					<div
+						#filledTrack
 						class="bx--slider__filled-track"
-						[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(fractionComplete)}">
+						>
 					</div>
 					<input
 						#range
@@ -145,8 +140,16 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		}
 
 		this._value = v;
+
+		if (this.thumb) {
+			this.thumb.nativeElement.style.left = `${this.getFractionComplete() * 100}%`;
+		}
+
+		if (this.filledTrack) {
+			this.filledTrack.nativeElement.style.transform = `translate(0%, -50%) ${this.scaleX(this.getFractionComplete())}`;
+		}
+
 		this.slidAmount = this.convertToPx(v);
-		setTimeout(() => this.fractionComplete = this.getFractionComplete());
 
 		if (this.input) {
 			this.input.value = v.toString();
@@ -187,6 +190,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@HostBinding("class.bx--form-item") hostClass = true;
 	@ViewChild("thumb") thumb: ElementRef;
 	@ViewChild("track") track: ElementRef;
+	@ViewChild("filledTrack") filledTrack: ElementRef;
 	@ViewChild("range") range: ElementRef;
 
 	public bottomRangeId = `${this.id}-bottom-range`;
@@ -343,8 +347,20 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			&& event.clientX - track.left >= 0
 		) {
 			this.slidAmount = event.clientX - track.left;
+			this.value = this.convertToValue(this.slidAmount);
 		}
-		this.value = this.convertToValue(this.slidAmount);
+
+		// if the mouse is beyond the max, set the value to `max`
+		if (event.clientX - track.left > track.width) {
+			this.slidAmount = track.width;
+			this.value = this.max;
+		}
+
+		// if the mouse is below the min, set the value to `min`
+		if (event.clientX - track.left < 0) {
+			this.slidAmount = 0;
+			this.value = this.min;
+		}
 	}
 
 	/** Enables the `onMouseMove` handler */
