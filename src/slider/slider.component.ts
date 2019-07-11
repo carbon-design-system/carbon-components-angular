@@ -68,7 +68,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						#thumb
 						class="bx--slider__thumb"
 						tabindex="0"
-
 						(mousedown)="onMouseDown($event)"
 						(keydown)="onKeyDown($event)">
 					</div>
@@ -79,8 +78,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 					</div>
 					<div
 						#filledTrack
-						class="bx--slider__filled-track"
-						>
+						class="bx--slider__filled-track">
 					</div>
 					<input
 						#range
