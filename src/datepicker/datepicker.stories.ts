@@ -116,6 +116,19 @@ storiesOf("Date Picker", module)
 	}))
 	.add("Single", () => ({
 		template: `
+			<p>With initial value</p>
+			<ibm-date-picker
+				[label]="label"
+				[placeholder]="placeholder"
+				[theme]="theme"
+				[value]="value"
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[dateFormat]="dateFormat"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
+			<p style="margin-top: 20px;">Without initial value</p>
 			<ibm-date-picker
 				[label]="label"
 				[placeholder]="placeholder"
@@ -135,11 +148,27 @@ storiesOf("Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
-			dateFormat: text("Date format", "m/d/Y")
+			dateFormat: text("Date format", "m/d/Y"),
+			value: array("Value", ["10/19/2019"])
 		}
 	}))
 	.add("Range", () => ({
 		template: `
+		<p>With initial value</p>
+		<ibm-date-picker
+			[label]="label"
+			[rangeLabel]="label"
+			range="true"
+			[placeholder]="placeholder"
+			[theme]="theme"
+			[disabled]="disabled"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[dateFormat]="dateFormat"
+			[value]="value"
+			(valueChange)="valueChange($event)">
+		</ibm-date-picker>
+		<p style="margin-top: 20px;">Without initial value</p>
 		<ibm-date-picker
 			[label]="label"
 			[rangeLabel]="label"
@@ -161,7 +190,8 @@ storiesOf("Date Picker", module)
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
 			disabled: boolean("Disabled", false),
-			dateFormat: text("Date format", "m/d/Y")
+			dateFormat: text("Date format", "m/d/Y"),
+			value: array("Value", ["09/19/2019", "10/19/2019"])
 		}
 	}))
 	.add("With reactive forms", () => ({
