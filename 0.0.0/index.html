@@ -65,21 +65,17 @@ var experimentalToggleInterval = setInterval(function() {
 	clearInterval(experimentalToggleInterval);
 	frame.contentDocument.body.insertAdjacentHTML(
 		"beforeend",
-		`<div style="position: fixed; right: 15px; bottom: 15px">
-			<button
-				class="toggle-btn experimental-selected"
-				onclick="setExperimental(event)">
-				Standard
-			</button>
-			<button
-				class="toggle-btn"
-				onclick="setExperimental(event)">
-				Experimental
-			</button>
-		</div>
-	`);
+		'<div style="position: fixed; right: 15px; bottom: 15px">' +
+			'<button class="toggle-btn experimental-selected" onclick="setExperimental(event)">' +
+				'Standard' +
+			'</button>' +
+			'<button class="toggle-btn" onclick="setExperimental(event)">' +
+				'Experimental' +
+			'</button>' +
+		'</div>'
+	);
 	frame.contentWindow.setExperimental = setExperimental;
 
 	var classList = frame.contentDocument.body.classList;
 	classList.add("carbon");
-}, 100);</script></head><body><div id="root"></div><script src="runtime~main.6ac4c33d73ae9704bbb9.bundle.js"></script><script src="vendors~main.c1c00022f5ea893f7a70.bundle.js"></script><script src="main.6f5bd41285fbb74d343b.bundle.js"></script></body></html>
+}, 100);</script></head><body><div id="root"></div><script src="runtime~main.4ac396420dd14c580a84.bundle.js"></script><script src="vendors~main.52fbe4951f3f956a1a8b.bundle.js"></script><script src="main.2c9cece90caf828a2aa8.bundle.js"></script></body></html>

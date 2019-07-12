@@ -252,7 +252,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 					&lt;/div&gt;
 					&lt;button
 						class&#x3D;&quot;bx--table-sort-v2&quot;
-						*ngIf&#x3D;&quot;this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
+						*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
 						[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? sortDescendingLabel : sortAscendingLabel) | async&quot;
 						aria-live&#x3D;&quot;polite&quot;
 						[ngClass]&#x3D;&quot;{
@@ -349,6 +349,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 			&lt;tr *ngIf&#x3D;&quot;!model.isRowFiltered(i)&quot;
 				(click)&#x3D;&quot;onRowSelect(i)&quot;
 				[attr.data-parent-row]&#x3D;&quot;(model.isRowExpandable(i) ? &#x27;true&#x27; : null)&quot;
+				[class]&#x3D;&quot;model.rowsClass[i] ? model.rowsClass[i] : null&quot;
 				[ngClass]&#x3D;&quot;{
 					&#x27;bx--data-table-v2--selected&#x27;: model.rowsSelected[i],
 					&#x27;bx--parent-row-v2&#x27;: model.isRowExpandable(i),
@@ -367,7 +368,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 				[attr.data-previous-value]&#x3D;&quot;(model.rowsExpanded[i] ? &#x27;collapsed&#x27; : null)&quot;
 				(click)&#x3D;&quot;setExpandIndex($event)&quot;&gt;
 					&lt;button
-					*ngIf&#x3D;&quot;model.isRowExpandable(i)&quot;
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; model.isRowExpandable(i)&quot;
 					class&#x3D;&quot;bx--table-expand-v2__button&quot;
 					[attr.aria-label]&#x3D;&quot;expandButtonAriaLabel | async&quot;
 					(click)&#x3D;&quot;model.expandRow(i, !model.rowsExpanded[i])&quot;&gt;
@@ -396,8 +397,9 @@ class&#x3D;&quot;bx--data-table-v2&quot;
 						[ibmDataGridFocus]&#x3D;&quot;isDataGrid&quot;
 						[(columnIndex)]&#x3D;&quot;columnIndex&quot;
 						(click)&#x3D;&quot;setIndex(j)&quot;&gt;
-						&lt;ng-container *ngIf&#x3D;&quot;!item.template&quot;&gt;{{item.data}}&lt;/ng-container&gt;
+						&lt;ng-container *ngIf&#x3D;&quot;!skeleton &amp;&amp; !item.template&quot;&gt;{{item.data}}&lt;/ng-container&gt;
 						&lt;ng-template
+							*ngIf&#x3D;&quot;!skeleton&quot;
 							[ngTemplateOutlet]&#x3D;&quot;item.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: item.data}&quot;&gt;
 						&lt;/ng-template&gt;
 					&lt;/td&gt;
@@ -778,7 +780,7 @@ class&#x3D;&quot;bx--data-table-v2&quot;
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="727" class="link-to-prism">src/table/table.component.ts:727</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="729" class="link-to-prism">src/table/table.component.ts:729</a></div>
                             </td>
                         </tr>
 
@@ -863,7 +865,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="561" class="link-to-prism">src/table/table.component.ts:561</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="563" class="link-to-prism">src/table/table.component.ts:563</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -886,7 +888,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="552" class="link-to-prism">src/table/table.component.ts:552</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="554" class="link-to-prism">src/table/table.component.ts:554</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -909,7 +911,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="516" class="link-to-prism">src/table/table.component.ts:516</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/table/table.component.ts:518</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -931,7 +933,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="536" class="link-to-prism">src/table/table.component.ts:536</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="538" class="link-to-prism">src/table/table.component.ts:538</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -948,7 +950,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="564" class="link-to-prism">src/table/table.component.ts:564</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="566" class="link-to-prism">src/table/table.component.ts:566</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -971,7 +973,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="651" class="link-to-prism">src/table/table.component.ts:651</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="653" class="link-to-prism">src/table/table.component.ts:653</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -993,7 +995,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="467" class="link-to-prism">src/table/table.component.ts:467</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="469" class="link-to-prism">src/table/table.component.ts:469</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1012,7 +1014,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="475" class="link-to-prism">src/table/table.component.ts:475</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="477" class="link-to-prism">src/table/table.component.ts:477</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1035,7 +1037,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="544" class="link-to-prism">src/table/table.component.ts:544</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="546" class="link-to-prism">src/table/table.component.ts:546</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1062,7 +1064,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="663" class="link-to-prism">src/table/table.component.ts:663</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="665" class="link-to-prism">src/table/table.component.ts:665</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1084,7 +1086,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="529" class="link-to-prism">src/table/table.component.ts:529</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="531" class="link-to-prism">src/table/table.component.ts:531</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1110,7 +1112,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="459" class="link-to-prism">src/table/table.component.ts:459</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="461" class="link-to-prism">src/table/table.component.ts:461</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1132,7 +1134,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="463" class="link-to-prism">src/table/table.component.ts:463</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="465" class="link-to-prism">src/table/table.component.ts:465</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1149,7 +1151,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="578" class="link-to-prism">src/table/table.component.ts:578</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="580" class="link-to-prism">src/table/table.component.ts:580</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1166,7 +1168,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="571" class="link-to-prism">src/table/table.component.ts:571</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="573" class="link-to-prism">src/table/table.component.ts:573</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1188,7 +1190,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="646" class="link-to-prism">src/table/table.component.ts:646</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="648" class="link-to-prism">src/table/table.component.ts:648</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1210,7 +1212,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="641" class="link-to-prism">src/table/table.component.ts:641</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="643" class="link-to-prism">src/table/table.component.ts:643</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1236,7 +1238,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="598" class="link-to-prism">src/table/table.component.ts:598</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="600" class="link-to-prism">src/table/table.component.ts:600</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1260,7 +1262,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="683" class="link-to-prism">src/table/table.component.ts:683</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="685" class="link-to-prism">src/table/table.component.ts:685</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1281,7 +1283,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="697" class="link-to-prism">src/table/table.component.ts:697</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="699" class="link-to-prism">src/table/table.component.ts:699</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1302,7 +1304,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="704" class="link-to-prism">src/table/table.component.ts:704</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="706" class="link-to-prism">src/table/table.component.ts:706</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1323,7 +1325,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="676" class="link-to-prism">src/table/table.component.ts:676</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="678" class="link-to-prism">src/table/table.component.ts:678</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1344,7 +1346,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="690" class="link-to-prism">src/table/table.component.ts:690</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="692" class="link-to-prism">src/table/table.component.ts:692</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1365,7 +1367,7 @@ to the model.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="669" class="link-to-prism">src/table/table.component.ts:669</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="671" class="link-to-prism">src/table/table.component.ts:671</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1400,7 +1402,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="866" class="link-to-prism">src/table/table.component.ts:866</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="868" class="link-to-prism">src/table/table.component.ts:868</a></div>
                             </td>
                         </tr>
 
@@ -1474,7 +1476,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="871" class="link-to-prism">src/table/table.component.ts:871</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="873" class="link-to-prism">src/table/table.component.ts:873</a></div>
                             </td>
                         </tr>
 
@@ -1557,7 +1559,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="876" class="link-to-prism">src/table/table.component.ts:876</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="878" class="link-to-prism">src/table/table.component.ts:878</a></div>
                             </td>
                         </tr>
 
@@ -1640,7 +1642,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="880" class="link-to-prism">src/table/table.component.ts:880</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="882" class="link-to-prism">src/table/table.component.ts:882</a></div>
                             </td>
                         </tr>
 
@@ -1723,7 +1725,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="860" class="link-to-prism">src/table/table.component.ts:860</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="862" class="link-to-prism">src/table/table.component.ts:862</a></div>
                             </td>
                         </tr>
 
@@ -1797,7 +1799,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="888" class="link-to-prism">src/table/table.component.ts:888</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="890" class="link-to-prism">src/table/table.component.ts:890</a></div>
                             </td>
                         </tr>
 
@@ -1880,7 +1882,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="760" class="link-to-prism">src/table/table.component.ts:760</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="762" class="link-to-prism">src/table/table.component.ts:762</a></div>
                             </td>
                         </tr>
 
@@ -1954,7 +1956,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="755" class="link-to-prism">src/table/table.component.ts:755</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="757" class="link-to-prism">src/table/table.component.ts:757</a></div>
                             </td>
                         </tr>
 
@@ -2028,7 +2030,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="742" class="link-to-prism">src/table/table.component.ts:742</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="744" class="link-to-prism">src/table/table.component.ts:744</a></div>
                             </td>
                         </tr>
 
@@ -2102,7 +2104,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="903" class="link-to-prism">src/table/table.component.ts:903</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="905" class="link-to-prism">src/table/table.component.ts:905</a></div>
                             </td>
                         </tr>
 
@@ -2167,7 +2169,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="911" class="link-to-prism">src/table/table.component.ts:911</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="913" class="link-to-prism">src/table/table.component.ts:913</a></div>
                             </td>
                         </tr>
 
@@ -2232,7 +2234,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="968" class="link-to-prism">src/table/table.component.ts:968</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="970" class="link-to-prism">src/table/table.component.ts:970</a></div>
                             </td>
                         </tr>
 
@@ -2301,7 +2303,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="929" class="link-to-prism">src/table/table.component.ts:929</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="931" class="link-to-prism">src/table/table.component.ts:931</a></div>
                             </td>
                         </tr>
 
@@ -2339,7 +2341,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="736" class="link-to-prism">src/table/table.component.ts:736</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="738" class="link-to-prism">src/table/table.component.ts:738</a></div>
                             </td>
                         </tr>
 
@@ -2377,7 +2379,7 @@ to the model.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="820" class="link-to-prism">src/table/table.component.ts:820</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="822" class="link-to-prism">src/table/table.component.ts:822</a></div>
                             </td>
                         </tr>
 
@@ -2450,7 +2452,7 @@ Emits the <code>selectRow</code> or <code>deselectRow</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="765" class="link-to-prism">src/table/table.component.ts:765</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="767" class="link-to-prism">src/table/table.component.ts:767</a></div>
                             </td>
                         </tr>
 
@@ -2519,7 +2521,7 @@ Emits the <code>selectRow</code> or <code>deselectRow</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="850" class="link-to-prism">src/table/table.component.ts:850</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="852" class="link-to-prism">src/table/table.component.ts:852</a></div>
                             </td>
                         </tr>
 
@@ -2587,7 +2589,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="793" class="link-to-prism">src/table/table.component.ts:793</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="795" class="link-to-prism">src/table/table.component.ts:795</a></div>
                             </td>
                         </tr>
 
@@ -2629,7 +2631,7 @@ Emits the <code>selectAll</code> or <code>deselectAll</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="924" class="link-to-prism">src/table/table.component.ts:924</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="926" class="link-to-prism">src/table/table.component.ts:926</a></div>
                             </td>
                         </tr>
 
@@ -2697,7 +2699,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="956" class="link-to-prism">src/table/table.component.ts:956</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="958" class="link-to-prism">src/table/table.component.ts:958</a></div>
                             </td>
                         </tr>
 
@@ -2735,7 +2737,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="964" class="link-to-prism">src/table/table.component.ts:964</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="966" class="link-to-prism">src/table/table.component.ts:966</a></div>
                             </td>
                         </tr>
 
@@ -2800,7 +2802,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="948" class="link-to-prism">src/table/table.component.ts:948</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="950" class="link-to-prism">src/table/table.component.ts:950</a></div>
                             </td>
                         </tr>
 
@@ -2867,7 +2869,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="443" class="link-to-prism">src/table/table.component.ts:443</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="445" class="link-to-prism">src/table/table.component.ts:445</a></div>
                             </td>
                         </tr>
 
@@ -2950,7 +2952,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="424" class="link-to-prism">src/table/table.component.ts:424</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="426" class="link-to-prism">src/table/table.component.ts:426</a></div>
                             </td>
                         </tr>
 
@@ -3035,7 +3037,7 @@ Emits the <code>scrollLoad</code> event.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="775" class="link-to-prism">src/table/table.component.ts:775</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="777" class="link-to-prism">src/table/table.component.ts:777</a></div>
                             </td>
                         </tr>
 
@@ -3085,7 +3087,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="716" class="link-to-prism">src/table/table.component.ts:716</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="718" class="link-to-prism">src/table/table.component.ts:718</a></div>
                             </td>
                         </tr>
 
@@ -3120,7 +3122,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="714" class="link-to-prism">src/table/table.component.ts:714</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="716" class="link-to-prism">src/table/table.component.ts:716</a></div>
                             </td>
                         </tr>
 
@@ -3154,7 +3156,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="718" class="link-to-prism">src/table/table.component.ts:718</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="720" class="link-to-prism">src/table/table.component.ts:720</a></div>
                             </td>
                         </tr>
 
@@ -3188,7 +3190,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="717" class="link-to-prism">src/table/table.component.ts:717</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="719" class="link-to-prism">src/table/table.component.ts:719</a></div>
                             </td>
                         </tr>
 
@@ -3221,7 +3223,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="616" class="link-to-prism">src/table/table.component.ts:616</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="618" class="link-to-prism">src/table/table.component.ts:618</a></div>
                             </td>
                         </tr>
 
@@ -3254,7 +3256,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="617" class="link-to-prism">src/table/table.component.ts:617</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="619" class="link-to-prism">src/table/table.component.ts:619</a></div>
                             </td>
                         </tr>
 
@@ -3288,7 +3290,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="726" class="link-to-prism">src/table/table.component.ts:726</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="728" class="link-to-prism">src/table/table.component.ts:728</a></div>
                             </td>
                         </tr>
 
@@ -3328,7 +3330,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="727" class="link-to-prism">src/table/table.component.ts:727</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="729" class="link-to-prism">src/table/table.component.ts:729</a></div>
                             </td>
                         </tr>
 
@@ -3367,7 +3369,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="712" class="link-to-prism">src/table/table.component.ts:712</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="714" class="link-to-prism">src/table/table.component.ts:714</a></div>
                             </td>
                         </tr>
 
@@ -3402,7 +3404,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="721" class="link-to-prism">src/table/table.component.ts:721</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="723" class="link-to-prism">src/table/table.component.ts:723</a></div>
                             </td>
                         </tr>
 
@@ -3437,7 +3439,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="720" class="link-to-prism">src/table/table.component.ts:720</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="722" class="link-to-prism">src/table/table.component.ts:722</a></div>
                             </td>
                         </tr>
 
@@ -3470,7 +3472,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="618" class="link-to-prism">src/table/table.component.ts:618</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="620" class="link-to-prism">src/table/table.component.ts:620</a></div>
                             </td>
                         </tr>
 
@@ -3503,7 +3505,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="620" class="link-to-prism">src/table/table.component.ts:620</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="622" class="link-to-prism">src/table/table.component.ts:622</a></div>
                             </td>
                         </tr>
 
@@ -3537,7 +3539,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="725" class="link-to-prism">src/table/table.component.ts:725</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="727" class="link-to-prism">src/table/table.component.ts:727</a></div>
                             </td>
                         </tr>
 
@@ -3572,7 +3574,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="722" class="link-to-prism">src/table/table.component.ts:722</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="724" class="link-to-prism">src/table/table.component.ts:724</a></div>
                             </td>
                         </tr>
 
@@ -3607,7 +3609,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="723" class="link-to-prism">src/table/table.component.ts:723</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="725" class="link-to-prism">src/table/table.component.ts:725</a></div>
                             </td>
                         </tr>
 
@@ -3640,7 +3642,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="619" class="link-to-prism">src/table/table.component.ts:619</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="621" class="link-to-prism">src/table/table.component.ts:621</a></div>
                             </td>
                         </tr>
 
@@ -3673,7 +3675,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="627" class="link-to-prism">src/table/table.component.ts:627</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="629" class="link-to-prism">src/table/table.component.ts:629</a></div>
                             </td>
                         </tr>
 
@@ -3712,7 +3714,7 @@ Emits the <code>scrollLoad</code> event.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="634" class="link-to-prism">src/table/table.component.ts:634</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="636" class="link-to-prism">src/table/table.component.ts:636</a></div>
                             </td>
                         </tr>
 
@@ -3747,7 +3749,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="504" class="link-to-prism">src/table/table.component.ts:504</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="506" class="link-to-prism">src/table/table.component.ts:506</a></div>
                                 </td>
                             </tr>
 
@@ -3758,7 +3760,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="475" class="link-to-prism">src/table/table.component.ts:475</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="477" class="link-to-prism">src/table/table.component.ts:477</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3814,7 +3816,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="520" class="link-to-prism">src/table/table.component.ts:520</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="522" class="link-to-prism">src/table/table.component.ts:522</a></div>
                                 </td>
                             </tr>
 
@@ -3825,7 +3827,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="516" class="link-to-prism">src/table/table.component.ts:516</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/table/table.component.ts:518</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3885,7 +3887,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="567" class="link-to-prism">src/table/table.component.ts:567</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="569" class="link-to-prism">src/table/table.component.ts:569</a></div>
                                 </td>
                             </tr>
 
@@ -3896,7 +3898,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="564" class="link-to-prism">src/table/table.component.ts:564</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="566" class="link-to-prism">src/table/table.component.ts:566</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3950,7 +3952,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="574" class="link-to-prism">src/table/table.component.ts:574</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="576" class="link-to-prism">src/table/table.component.ts:576</a></div>
                                 </td>
                             </tr>
 
@@ -3961,7 +3963,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="571" class="link-to-prism">src/table/table.component.ts:571</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="573" class="link-to-prism">src/table/table.component.ts:573</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -4015,7 +4017,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="581" class="link-to-prism">src/table/table.component.ts:581</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="583" class="link-to-prism">src/table/table.component.ts:583</a></div>
                                 </td>
                             </tr>
 
@@ -4026,7 +4028,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="578" class="link-to-prism">src/table/table.component.ts:578</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="580" class="link-to-prism">src/table/table.component.ts:580</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -4081,7 +4083,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="598" class="link-to-prism">src/table/table.component.ts:598</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="600" class="link-to-prism">src/table/table.component.ts:600</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -4144,7 +4146,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="706" class="link-to-prism">src/table/table.component.ts:706</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="708" class="link-to-prism">src/table/table.component.ts:708</a></div>
                                 </td>
                             </tr>
 
@@ -4166,7 +4168,7 @@ Emits the <code>scrollLoad</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="899" class="link-to-prism">src/table/table.component.ts:899</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="901" class="link-to-prism">src/table/table.component.ts:901</a></div>
                                 </td>
                             </tr>
 
@@ -4395,7 +4397,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 						&lt;/div&gt;
 						&lt;button
 							class&#x3D;&quot;bx--table-sort-v2&quot;
-							*ngIf&#x3D;&quot;this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
+							*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
 							[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? sortDescendingLabel : sortAscendingLabel) | async&quot;
 							aria-live&#x3D;&quot;polite&quot;
 							[ngClass]&#x3D;&quot;{
@@ -4492,6 +4494,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 				&lt;tr *ngIf&#x3D;&quot;!model.isRowFiltered(i)&quot;
 					(click)&#x3D;&quot;onRowSelect(i)&quot;
 					[attr.data-parent-row]&#x3D;&quot;(model.isRowExpandable(i) ? &#x27;true&#x27; : null)&quot;
+					[class]&#x3D;&quot;model.rowsClass[i] ? model.rowsClass[i] : null&quot;
 					[ngClass]&#x3D;&quot;{
 						&#x27;bx--data-table-v2--selected&#x27;: model.rowsSelected[i],
 						&#x27;bx--parent-row-v2&#x27;: model.isRowExpandable(i),
@@ -4510,7 +4513,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 					[attr.data-previous-value]&#x3D;&quot;(model.rowsExpanded[i] ? &#x27;collapsed&#x27; : null)&quot;
 					(click)&#x3D;&quot;setExpandIndex($event)&quot;&gt;
 						&lt;button
-						*ngIf&#x3D;&quot;model.isRowExpandable(i)&quot;
+						*ngIf&#x3D;&quot;!skeleton &amp;&amp; model.isRowExpandable(i)&quot;
 						class&#x3D;&quot;bx--table-expand-v2__button&quot;
 						[attr.aria-label]&#x3D;&quot;expandButtonAriaLabel | async&quot;
 						(click)&#x3D;&quot;model.expandRow(i, !model.rowsExpanded[i])&quot;&gt;
@@ -4539,8 +4542,9 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 							[ibmDataGridFocus]&#x3D;&quot;isDataGrid&quot;
 							[(columnIndex)]&#x3D;&quot;columnIndex&quot;
 							(click)&#x3D;&quot;setIndex(j)&quot;&gt;
-							&lt;ng-container *ngIf&#x3D;&quot;!item.template&quot;&gt;{{item.data}}&lt;/ng-container&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;!skeleton &amp;&amp; !item.template&quot;&gt;{{item.data}}&lt;/ng-container&gt;
 							&lt;ng-template
+								*ngIf&#x3D;&quot;!skeleton&quot;
 								[ngTemplateOutlet]&#x3D;&quot;item.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: item.data}&quot;&gt;
 							&lt;/ng-template&gt;
 						&lt;/td&gt;
@@ -5181,7 +5185,7 @@ export class Table implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><tableclass="bx--data-table-v2"[ngClass]="{	\'bx--data-table-v2--compact\': size === \'sm\',	\'bx--data-table-v2--tall\': size === \'lg\',	\'bx--data-table-v2--zebra\': striped,	\'bx--skeleton\': skeleton}">	<thead>		<tr>			<th *ngIf="model.hasExpandableRows()"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				(click)="setExpandIndex($event)">			</th>			<th *ngIf="!skeleton && showSelectionColumn"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				(click)="setCheckboxIndex()"				style="width: 10px;">				<ibm-checkbox					inline="true"					[size]="size !== (\'lg\' ? \'sm\' : \'md\')"					[(ngModel)]="selectAllCheckbox"					[indeterminate]="selectAllCheckboxSomeSelected"					[attr.aria-label]="checkboxHeaderLabel | async"					(change)="onSelectAllCheckboxChange()">				</ibm-checkbox>			</th>			<ng-container *ngFor="let column of model.header; let i = index">				<th [ngClass]=\'{"thead_action": column.filterTemplate || this.sort.observers.length > 0}\'				*ngIf="column.visible"				[class]="column.className"				[ngStyle]="column.style"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				[draggable]="columnsDraggable"				(dragstart)="columnDragStart($event, i)"				(dragend)="columnDragEnd($event, i)"				(click)="setIndex(i)">					<span *ngIf="skeleton"></span>					<div					*ngIf="columnsResizable"					class="column-resize-handle"					(mousedown)="columnResizeStart($event, column)">					</div>					<button						class="bx--table-sort-v2"						*ngIf="this.sort.observers.length > 0 && column.sortable"						[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"						aria-live="polite"						[ngClass]="{							\'bx--table-sort-v2--active\': column.sorted,							\'bx--table-sort-v2--ascending\': column.ascending						}"						(click)="sort.emit(i)">						<span							*ngIf="!column.template"							[title]="column.data"							tabindex="-1">							{{column.data}}						</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>						<svg						class="bx--table-sort-v2__icon"						width="10" height="5" viewBox="0 0 10 5">							<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />						</svg>					</button>					<span						class="bx--table-header-label"						*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">						<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>					</span>					<button						[ngClass]="{\'active\': column.filterCount > 0}"						*ngIf="column.filterTemplate"						type="button"						aria-expanded="false"						aria-haspopup="true"						[ibmTooltip]="column.filterTemplate"						trigger="click"						[title]="filterTitle | async"						placement="bottom,top"						[data]="column.filterData">						<svg							xmlns="http://www.w3.org/2000/svg"							class="icon--sm"							width="16"							height="16"							viewBox="0 0 16 16">							<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>						</svg>						<span *ngIf="column.filterCount > 0">							{{column.filterCount}}						</span>					</button>					<div					*ngIf="columnsDraggable && isColumnDragging"					class="drop-area">						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'left\'"						class="drop-indicator-left"></div>						<div						class="drop-area-left"						(dragenter)="columnDragEnter($event, \'left\', i)"						(dragleave)="columnDragLeave($event, \'left\', i)"						(dragover)="columnDragover($event, \'left\', i)"						(drop)="columnDrop($event, \'left\', i)">						</div>						<div						class="drop-area-right"						(dragenter)="columnDragEnter($event, \'right\', i)"						(dragleave)="columnDragLeave($event, \'right\', i)"						(dragover)="columnDragover($event, \'right\', i)"						(drop)="columnDrop($event, \'right\', i)">						</div>						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'right\'"						class="drop-indicator-right"></div>					</div>				</th>			</ng-container>			<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">				<!--					Scrollbar pushes body to the left so this header column is added to push					the title bar the same amount and keep the header and body columns aligned.				-->			</th>		</tr>	</thead>	<tbody	*ngIf="!noData; else noDataTemplate"	[ngStyle]="{\'overflow-y\': \'scroll\'}"	(scroll)="onScroll($event)">		<ng-container *ngFor="let row of model.data; let i = index">			<tr *ngIf="!model.isRowFiltered(i)"				(click)="onRowSelect(i)"				[attr.data-parent-row]="(model.isRowExpandable(i) ? \'true\' : null)"				[ngClass]="{					\'bx--data-table-v2--selected\': model.rowsSelected[i],					\'bx--parent-row-v2\': model.isRowExpandable(i),					\'bx--expandable-row-v2\': model.rowsExpanded[i],					\'tbody_row--selectable\': enableSingleSelect,					\'tbody_row--success\': !model.rowsSelected[i] && model.rowsContext[i] === \'success\',					\'tbody_row--warning\': !model.rowsSelected[i] && model.rowsContext[i] === \'warning\',					\'tbody_row--info\': !model.rowsSelected[i] && model.rowsContext[i] === \'info\',					\'tbody_row--error\': !model.rowsSelected[i] && model.rowsContext[i] === \'error\'				}">				<td				*ngIf="model.hasExpandableRows()"				class="bx--table-expand-v2"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				[attr.data-previous-value]="(model.rowsExpanded[i] ? \'collapsed\' : null)"				(click)="setExpandIndex($event)">					<button					*ngIf="model.isRowExpandable(i)"					class="bx--table-expand-v2__button"					[attr.aria-label]="expandButtonAriaLabel | async"					(click)="model.expandRow(i, !model.rowsExpanded[i])">						<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">							<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />						</svg>					</button>				</td>				<td					*ngIf="!skeleton && showSelectionColumn"					[ibmDataGridFocus]="isDataGrid"					[(columnIndex)]="columnIndex"					(click)="setCheckboxIndex()">					<ibm-checkbox						inline="true"						[aria-label]="checkboxRowLabel | i18nReplace:getSelectionLabelValue(row) | async"						[size]="size !== (\'lg\' ? \'sm\' : \'md\')"						[(ngModel)]="model.rowsSelected[i]"						(change)="onRowCheckboxChange(i)">					</ibm-checkbox>				</td>				<ng-container *ngFor="let item of row; let j = index">					<td *ngIf="model.header[j].visible"						[class]="model.header[j].className"						[ngStyle]="model.header[j].style"						[ibmDataGridFocus]="isDataGrid"						[(columnIndex)]="columnIndex"						(click)="setIndex(j)">						<ng-container *ngIf="!item.template">{{item.data}}</ng-container>						<ng-template							[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">						</ng-template>					</td>				</ng-container>			</tr>			<tr			*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"			class="bx--expandable-row-v2"			ibmExpandedRowHover			[attr.data-child-row]="(model.rowsExpanded[i] ? \'true\' : null)">				<td					[ibmDataGridFocus]="isDataGrid"					[(columnIndex)]="columnIndex"					[attr.colspan]="row.length + 2"					(click)="setExpandIndex($event)">					<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>					<ng-template						[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"						[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">					</ng-template>				</td>			</tr>		</ng-container>	</tbody>	<ng-template #noDataTemplate><ng-content></ng-content></ng-template>	<tfoot>		<ng-template			[ngTemplateOutlet]="footerTemplate">		</ng-template>		<tr *ngIf="this.model.isLoading">			<td class="table_loading-indicator">				<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>			</td>		</tr>		<tr *ngIf="this.model.isEnd">			<td class="table_end-indicator">				<h5>{{endOfDataText | async}}</h5>				<button (click)="scrollToTop($event)" class="btn--secondary-sm">					{{scrollTopText | async}}				</button>			</td>		</tr>	</tfoot></table></div>'
+        var COMPONENT_TEMPLATE = '<div><tableclass="bx--data-table-v2"[ngClass]="{	\'bx--data-table-v2--compact\': size === \'sm\',	\'bx--data-table-v2--tall\': size === \'lg\',	\'bx--data-table-v2--zebra\': striped,	\'bx--skeleton\': skeleton}">	<thead>		<tr>			<th *ngIf="model.hasExpandableRows()"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				(click)="setExpandIndex($event)">			</th>			<th *ngIf="!skeleton && showSelectionColumn"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				(click)="setCheckboxIndex()"				style="width: 10px;">				<ibm-checkbox					inline="true"					[size]="size !== (\'lg\' ? \'sm\' : \'md\')"					[(ngModel)]="selectAllCheckbox"					[indeterminate]="selectAllCheckboxSomeSelected"					[attr.aria-label]="checkboxHeaderLabel | async"					(change)="onSelectAllCheckboxChange()">				</ibm-checkbox>			</th>			<ng-container *ngFor="let column of model.header; let i = index">				<th [ngClass]=\'{"thead_action": column.filterTemplate || this.sort.observers.length > 0}\'				*ngIf="column.visible"				[class]="column.className"				[ngStyle]="column.style"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				[draggable]="columnsDraggable"				(dragstart)="columnDragStart($event, i)"				(dragend)="columnDragEnd($event, i)"				(click)="setIndex(i)">					<span *ngIf="skeleton"></span>					<div					*ngIf="columnsResizable"					class="column-resize-handle"					(mousedown)="columnResizeStart($event, column)">					</div>					<button						class="bx--table-sort-v2"						*ngIf="!skeleton && this.sort.observers.length > 0 && column.sortable"						[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"						aria-live="polite"						[ngClass]="{							\'bx--table-sort-v2--active\': column.sorted,							\'bx--table-sort-v2--ascending\': column.ascending						}"						(click)="sort.emit(i)">						<span							*ngIf="!column.template"							[title]="column.data"							tabindex="-1">							{{column.data}}						</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>						<svg						class="bx--table-sort-v2__icon"						width="10" height="5" viewBox="0 0 10 5">							<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />						</svg>					</button>					<span						class="bx--table-header-label"						*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">						<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>						<ng-template							[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">						</ng-template>					</span>					<button						[ngClass]="{\'active\': column.filterCount > 0}"						*ngIf="column.filterTemplate"						type="button"						aria-expanded="false"						aria-haspopup="true"						[ibmTooltip]="column.filterTemplate"						trigger="click"						[title]="filterTitle | async"						placement="bottom,top"						[data]="column.filterData">						<svg							xmlns="http://www.w3.org/2000/svg"							class="icon--sm"							width="16"							height="16"							viewBox="0 0 16 16">							<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>						</svg>						<span *ngIf="column.filterCount > 0">							{{column.filterCount}}						</span>					</button>					<div					*ngIf="columnsDraggable && isColumnDragging"					class="drop-area">						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'left\'"						class="drop-indicator-left"></div>						<div						class="drop-area-left"						(dragenter)="columnDragEnter($event, \'left\', i)"						(dragleave)="columnDragLeave($event, \'left\', i)"						(dragover)="columnDragover($event, \'left\', i)"						(drop)="columnDrop($event, \'left\', i)">						</div>						<div						class="drop-area-right"						(dragenter)="columnDragEnter($event, \'right\', i)"						(dragleave)="columnDragLeave($event, \'right\', i)"						(dragover)="columnDragover($event, \'right\', i)"						(drop)="columnDrop($event, \'right\', i)">						</div>						<div						*ngIf="columnDraggedHoverIndex == i && columnDraggedPosition == \'right\'"						class="drop-indicator-right"></div>					</div>				</th>			</ng-container>			<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">				<!--					Scrollbar pushes body to the left so this header column is added to push					the title bar the same amount and keep the header and body columns aligned.				-->			</th>		</tr>	</thead>	<tbody	*ngIf="!noData; else noDataTemplate"	[ngStyle]="{\'overflow-y\': \'scroll\'}"	(scroll)="onScroll($event)">		<ng-container *ngFor="let row of model.data; let i = index">			<tr *ngIf="!model.isRowFiltered(i)"				(click)="onRowSelect(i)"				[attr.data-parent-row]="(model.isRowExpandable(i) ? \'true\' : null)"				[class]="model.rowsClass[i] ? model.rowsClass[i] : null"				[ngClass]="{					\'bx--data-table-v2--selected\': model.rowsSelected[i],					\'bx--parent-row-v2\': model.isRowExpandable(i),					\'bx--expandable-row-v2\': model.rowsExpanded[i],					\'tbody_row--selectable\': enableSingleSelect,					\'tbody_row--success\': !model.rowsSelected[i] && model.rowsContext[i] === \'success\',					\'tbody_row--warning\': !model.rowsSelected[i] && model.rowsContext[i] === \'warning\',					\'tbody_row--info\': !model.rowsSelected[i] && model.rowsContext[i] === \'info\',					\'tbody_row--error\': !model.rowsSelected[i] && model.rowsContext[i] === \'error\'				}">				<td				*ngIf="model.hasExpandableRows()"				class="bx--table-expand-v2"				[ibmDataGridFocus]="isDataGrid"				[(columnIndex)]="columnIndex"				[attr.data-previous-value]="(model.rowsExpanded[i] ? \'collapsed\' : null)"				(click)="setExpandIndex($event)">					<button					*ngIf="!skeleton && model.isRowExpandable(i)"					class="bx--table-expand-v2__button"					[attr.aria-label]="expandButtonAriaLabel | async"					(click)="model.expandRow(i, !model.rowsExpanded[i])">						<svg class="bx--table-expand-v2__svg" width="7" height="12" viewBox="0 0 7 12">							<path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />						</svg>					</button>				</td>				<td					*ngIf="!skeleton && showSelectionColumn"					[ibmDataGridFocus]="isDataGrid"					[(columnIndex)]="columnIndex"					(click)="setCheckboxIndex()">					<ibm-checkbox						inline="true"						[aria-label]="checkboxRowLabel | i18nReplace:getSelectionLabelValue(row) | async"						[size]="size !== (\'lg\' ? \'sm\' : \'md\')"						[(ngModel)]="model.rowsSelected[i]"						(change)="onRowCheckboxChange(i)">					</ibm-checkbox>				</td>				<ng-container *ngFor="let item of row; let j = index">					<td *ngIf="model.header[j].visible"						[class]="model.header[j].className"						[ngStyle]="model.header[j].style"						[ibmDataGridFocus]="isDataGrid"						[(columnIndex)]="columnIndex"						(click)="setIndex(j)">						<ng-container *ngIf="!skeleton && !item.template">{{item.data}}</ng-container>						<ng-template							*ngIf="!skeleton"							[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">						</ng-template>					</td>				</ng-container>			</tr>			<tr			*ngIf="model.rowsExpanded[i] && !model.isRowFiltered(i)"			class="bx--expandable-row-v2"			ibmExpandedRowHover			[attr.data-child-row]="(model.rowsExpanded[i] ? \'true\' : null)">				<td					[ibmDataGridFocus]="isDataGrid"					[(columnIndex)]="columnIndex"					[attr.colspan]="row.length + 2"					(click)="setExpandIndex($event)">					<ng-container *ngIf="!firstExpandedTemplateInRow(row)">{{firstExpandedDataInRow(row)}}</ng-container>					<ng-template						[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"						[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">					</ng-template>				</td>			</tr>		</ng-container>	</tbody>	<ng-template #noDataTemplate><ng-content></ng-content></ng-template>	<tfoot>		<ng-template			[ngTemplateOutlet]="footerTemplate">		</ng-template>		<tr *ngIf="this.model.isLoading">			<td class="table_loading-indicator">				<ibm-static-icon icon="loading_rows" size="lg"></ibm-static-icon>			</td>		</tr>		<tr *ngIf="this.model.isEnd">			<td class="table_end-indicator">				<h5>{{endOfDataText | async}}</h5>				<button (click)="scrollToTop($event)" class="btn--secondary-sm">					{{scrollTopText | async}}				</button>			</td>		</tr>	</tfoot></table></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Table'};

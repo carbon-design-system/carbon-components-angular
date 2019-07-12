@@ -81,6 +81,14 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code><a href="../components/DatePicker.html" target="_self" >{
+    provide: NG_VALUE_ACCESSOR, useExisting: DatePicker, multi: true
+}</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -119,8 +127,7 @@
 						[disabled]&#x3D;&quot;disabled&quot;
 						[invalid]&#x3D;&quot;invalid&quot;
 						[invalidText]&#x3D;&quot;invalidText&quot;
-						[skeleton]&#x3D;&quot;skeleton&quot;
-						(valueChange)&#x3D;&quot;onInputValueChange($event, 0)&quot;&gt;
+						[skeleton]&#x3D;&quot;skeleton&quot;&gt;
 					&lt;/ibm-date-picker-input&gt;
 				&lt;/div&gt;
 
@@ -135,8 +142,7 @@
 						[disabled]&#x3D;&quot;disabled&quot;
 						[invalid]&#x3D;&quot;invalid&quot;
 						[invalidText]&#x3D;&quot;invalidText&quot;
-						[skeleton]&#x3D;&quot;skeleton&quot;
-						(valueChange)&#x3D;&quot;onInputValueChange($event, 1)&quot;&gt;
+						[skeleton]&#x3D;&quot;skeleton&quot;&gt;
 					&lt;/ibm-date-picker-input&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
@@ -171,15 +177,23 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_flatpickrOptions">_flatpickrOptions</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Static</span>
                                 <a href="#datePickerCount">datePickerCount</a>
                             </li>
                             <li>
-                                <a href="#flatpickrOptions">flatpickrOptions</a>
+                                    <span class="modifier">Protected</span>
+                                <a href="#flatpickrBaseOptions">flatpickrBaseOptions</a>
                             </li>
                             <li>
-                                <a href="#flatpickrOptionsRange">flatpickrOptionsRange</a>
+                                <a href="#onTouched">onTouched</a>
+                            </li>
+                            <li>
+                                <a href="#propagateChange">propagateChange</a>
                             </li>
                         </ul>
                     </td>
@@ -200,10 +214,19 @@
                                 <a href="#ngOnDestroy">ngOnDestroy</a>
                             </li>
                             <li>
-                                <a href="#onInputValueChange">onInputValueChange</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#registerOnChange">registerOnChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#registerOnTouched">registerOnTouched</a>
                             </li>
                             <li>
                                 <a href="#updateClassNames">updateClassNames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#writeValue">writeValue</a>
                             </li>
                         </ul>
                     </td>
@@ -224,6 +247,9 @@
                                 <a href="#disabled">disabled</a>
                             </li>
                             <li>
+                                <a href="#flatpickrOptions">flatpickrOptions</a>
+                            </li>
+                            <li>
                                 <a href="#id">id</a>
                             </li>
                             <li>
@@ -240,6 +266,9 @@
                             </li>
                             <li>
                                 <a href="#placeholder">placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#plugins">plugins</a>
                             </li>
                             <li>
                                 <a href="#range">range</a>
@@ -276,7 +305,38 @@
                 </tr>
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#focusin">focusin</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#flatpickrOptions">flatpickrOptions</a>
+                                </li>
+                                <li>
+                                    <a href="#flatpickrOptionsRange">flatpickrOptionsRange</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -292,7 +352,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/datepicker/datepicker.component.ts:123</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/datepicker/datepicker.component.ts:151</a></div>
                             </td>
                         </tr>
 
@@ -350,7 +410,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/datepicker/datepicker.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/datepicker/datepicker.component.ts:89</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -370,7 +430,24 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/datepicker/datepicker.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/datepicker/datepicker.component.ts:105</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="flatpickrOptions"></a>
+                        <code>flatpickrOptions</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/datepicker/datepicker.component.ts:118</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -390,7 +467,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/datepicker/datepicker.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/datepicker/datepicker.component.ts:99</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -410,7 +487,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/datepicker/datepicker.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/datepicker/datepicker.component.ts:107</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -431,7 +508,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/datepicker/datepicker.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/datepicker/datepicker.component.ts:109</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -452,7 +529,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/datepicker/datepicker.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/datepicker/datepicker.component.ts:91</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -466,13 +543,13 @@
                     </td>
                     <td class="col-md-10">
                         <p>
-                            <em>Default value : </em><code>&quot;\\d{1,2}/\\d{1,2}/\\d{4}&quot;</code>
+                            <em>Default value : </em><code>&quot;^\\d{1,2}/\\d{1,2}/\\d{4}$&quot;</code>
                         </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/datepicker/datepicker.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/datepicker/datepicker.component.ts:97</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -492,7 +569,27 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/datepicker/datepicker.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/datepicker/datepicker.component.ts:95</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="plugins"></a>
+                        <code>plugins</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>[]</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/datepicker/datepicker.component.ts:113</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -515,7 +612,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/datepicker/datepicker.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/datepicker/datepicker.component.ts:82</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -536,7 +633,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/datepicker/datepicker.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/datepicker/datepicker.component.ts:93</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -556,7 +653,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/datepicker/datepicker.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/datepicker/datepicker.component.ts:111</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -580,7 +677,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/datepicker/datepicker.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/datepicker/datepicker.component.ts:103</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -604,7 +701,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/datepicker/datepicker.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/datepicker/datepicker.component.ts:101</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -626,13 +723,44 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/datepicker/datepicker.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/datepicker/datepicker.component.ts:115</a></div>
                             </td>
                         </tr>
             </tbody>
         </table>
 </section>
 
+    <section>
+    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="focusin"></a>
+                        <span class="name">
+                            <b>
+                            focusin
+                            </b>
+                            <a href="#focusin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>focusin()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/datepicker/datepicker.component.ts:156</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
     <section>
     
@@ -661,7 +789,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/datepicker/datepicker.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/datepicker/datepicker.component.ts:160</a></div>
                             </td>
                         </tr>
 
@@ -726,7 +854,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/datepicker/datepicker.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/datepicker/datepicker.component.ts:228</a></div>
                             </td>
                         </tr>
 
@@ -746,25 +874,27 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="onInputValueChange"></a>
+                        <a name="registerOnChange"></a>
                         <span class="name">
                             <b>
-                            onInputValueChange
+                                <span class="modifier">Public</span>
+                            registerOnChange
                             </b>
-                            <a href="#onInputValueChange"><span class="icon ion-ios-link"></span></a>
+                            <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>onInputValueChange(event: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/datepicker/datepicker.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/datepicker/datepicker.component.ts:216</a></div>
                             </td>
                         </tr>
 
@@ -784,9 +914,9 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>event</td>
+                                                        <td>fn</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
                                                     
                                                     <td>
@@ -795,10 +925,69 @@
                                                     
 
                                                 </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="registerOnTouched"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            registerOnTouched
+                            </b>
+                            <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/datepicker/datepicker.component.ts:220</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                                 <tr>
-                                                        <td>index</td>
+                                                        <td>fn</td>
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                                         </td>
                                                     
                                                     <td>
@@ -845,7 +1034,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/datepicker/datepicker.component.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/datepicker/datepicker.component.ts:165</a></div>
                             </td>
                         </tr>
 
@@ -861,6 +1050,77 @@
                 </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="writeValue"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            writeValue
+                            </b>
+                            <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>writeValue(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/datepicker/datepicker.component.ts:212</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 </section>
 
     <section>
@@ -868,6 +1128,48 @@
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_flatpickrOptions"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _flatpickrOptions
+                            </b>
+                            <a href="#_flatpickrOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_flatpickrOptions:     <code>FlatpickrOptions</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>FlatpickrOptions</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+		allowInput: true
+	}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/datepicker/datepicker.component.ts:141</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -902,7 +1204,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/datepicker/datepicker.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/datepicker/datepicker.component.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -913,18 +1215,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="flatpickrOptions"></a>
+                        <a name="flatpickrBaseOptions"></a>
                         <span class="name">
                             <b>
-                            flatpickrOptions
+                                <span class="modifier">Protected</span>
+                            flatpickrBaseOptions
                             </b>
-                            <a href="#flatpickrOptions"><span class="icon ion-ios-link"></span></a>
+                            <a href="#flatpickrBaseOptions"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>flatpickrOptions:     <code>FlatpickrOptions</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>flatpickrBaseOptions:     <code>FlatpickrOptions</code>
 </code>
                     </td>
                 </tr>
@@ -937,8 +1240,8 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-		dateFormat: this.dateFormat,
-		allowInput: true,
+		dateFormat: &quot;m/d/Y&quot;,
+		plugins: this.plugins,
 		onChange: (selectedValue: any) &#x3D;&gt; { this.doSelect(selectedValue); },
 		onOpen: () &#x3D;&gt; { this.updateClassNames(); },
 		value: this.value
@@ -947,7 +1250,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/datepicker/datepicker.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/datepicker/datepicker.component.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -958,42 +1261,68 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="flatpickrOptionsRange"></a>
+                        <a name="onTouched"></a>
                         <span class="name">
                             <b>
-                            flatpickrOptionsRange
+                            onTouched
                             </b>
-                            <a href="#flatpickrOptionsRange"><span class="icon ion-ios-link"></span></a>
+                            <a href="#onTouched"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>flatpickrOptionsRange:     <code>FlatpickrOptions</code>
+                        <code>onTouched:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>FlatpickrOptions</code>
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>{
-		dateFormat: this.dateFormat,
-		&quot;plugins&quot;: [rangePlugin({ input: &quot;#&quot; + this.id + &quot;-rangeInput&quot;})],
-		allowInput: true,
-		onChange: (selectedValue: any) &#x3D;&gt; { this.doSelect(selectedValue); },
-		onOpen: () &#x3D;&gt; { this.updateClassNames(); },
-		value: this.value
-	}</code>
+                            <i>Default value : </i><code>() &#x3D;&gt; {}</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/datepicker/datepicker.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/datepicker/datepicker.component.ts:224</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="propagateChange"></a>
+                        <span class="name">
+                            <b>
+                            propagateChange
+                            </b>
+                            <a href="#propagateChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>propagateChange:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(_: any) &#x3D;&gt; {}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/datepicker/datepicker.component.ts:226</a></div>
                             </td>
                         </tr>
 
@@ -1002,6 +1331,141 @@
         </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="flatpickrOptions"></a>
+                        <span class="name"><b>flatpickrOptions</b><a href="#flatpickrOptions"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>flatpickrOptions()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/datepicker/datepicker.component.ts:121</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>flatpickrOptions(options)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/datepicker/datepicker.component.ts:118</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>options</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="flatpickrOptionsRange"></a>
+                        <span class="name"><b>flatpickrOptionsRange</b><a href="#flatpickrOptionsRange"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>flatpickrOptionsRange()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/datepicker/datepicker.component.ts:136</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>flatpickrOptionsRange(options)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/datepicker/datepicker.component.ts:131</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>options</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -1012,11 +1476,13 @@
 	Output,
 	EventEmitter,
 	ElementRef,
-	OnDestroy
+	OnDestroy,
+	HostListener
 } from &quot;@angular/core&quot;;
 import { FlatpickrOptions } from &quot;ng2-flatpickr&quot;;
 import flatpickr from &quot;flatpickr&quot;;
 import rangePlugin from &quot;flatpickr/dist/plugins/rangePlugin&quot;;
+import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
 @Component({
 	selector: &quot;ibm-date-picker&quot;,
@@ -1048,8 +1514,7 @@ import rangePlugin from &quot;flatpickr/dist/plugins/rangePlugin&quot;;
 							[disabled]&#x3D;&quot;disabled&quot;
 							[invalid]&#x3D;&quot;invalid&quot;
 							[invalidText]&#x3D;&quot;invalidText&quot;
-							[skeleton]&#x3D;&quot;skeleton&quot;
-							(valueChange)&#x3D;&quot;onInputValueChange($event, 0)&quot;&gt;
+							[skeleton]&#x3D;&quot;skeleton&quot;&gt;
 						&lt;/ibm-date-picker-input&gt;
 					&lt;/div&gt;
 
@@ -1064,15 +1529,21 @@ import rangePlugin from &quot;flatpickr/dist/plugins/rangePlugin&quot;;
 							[disabled]&#x3D;&quot;disabled&quot;
 							[invalid]&#x3D;&quot;invalid&quot;
 							[invalidText]&#x3D;&quot;invalidText&quot;
-							[skeleton]&#x3D;&quot;skeleton&quot;
-							(valueChange)&#x3D;&quot;onInputValueChange($event, 1)&quot;&gt;
+							[skeleton]&#x3D;&quot;skeleton&quot;&gt;
 						&lt;/ibm-date-picker-input&gt;
 					&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/ng2-flatpickr&gt;
 	&lt;/div&gt;
-	&#x60;
+	&#x60;,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: DatePicker,
+			multi: true
+		}
+	]
 })
 export class DatePicker implements OnDestroy {
 	private static datePickerCount &#x3D; 0;
@@ -1095,7 +1566,7 @@ export class DatePicker implements OnDestroy {
 
 	@Input() placeholder &#x3D; &quot;mm/dd/yyyy&quot;;
 
-	@Input() pattern &#x3D; &quot;\\d{1,2}/\\d{1,2}/\\d{4}&quot;;
+	@Input() pattern &#x3D; &quot;^\\d{1,2}/\\d{1,2}/\\d{4}$&quot;;
 
 	@Input() id &#x3D; &#x60;datepicker-${DatePicker.datePickerCount++}&#x60;;
 
@@ -1111,20 +1582,41 @@ export class DatePicker implements OnDestroy {
 
 	@Input() skeleton &#x3D; false;
 
+	@Input() plugins &#x3D; [];
+
 	@Output() valueChange: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
 
-	flatpickrOptions: FlatpickrOptions &#x3D; {
-		dateFormat: this.dateFormat,
-		allowInput: true,
-		onChange: (selectedValue: any) &#x3D;&gt; { this.doSelect(selectedValue); },
-		onOpen: () &#x3D;&gt; { this.updateClassNames(); },
-		value: this.value
+	@Input()
+	set flatpickrOptions(options: FlatpickrOptions) {
+		this._flatpickrOptions &#x3D; Object.assign({}, this._flatpickrOptions, options);
+	}
+	get flatpickrOptions(): FlatpickrOptions {
+		const plugins &#x3D; [...this.plugins];
+		if (this.range) {
+			plugins.push(rangePlugin({ input: &quot;#&quot; + this.id + &quot;-rangeInput&quot; }));
+		}
+		return Object.assign({}, this._flatpickrOptions, this.flatpickrBaseOptions, {
+			plugins,
+			dateFormat: this.dateFormat
+		});
+	}
+	set flatpickrOptionsRange(options: FlatpickrOptions) {
+		console.warn(&quot;flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead&quot;);
+		this.range &#x3D; true;
+		options &#x3D; this.flatpickrOptions;
+	}
+	get flatpickrOptionsRange() {
+		console.warn(&quot;flatpickrOptionsRange is deprecated, use flatpickrOptions and set the range to true instead&quot;);
+		return this.flatpickrOptions;
+	}
+
+	protected _flatpickrOptions: FlatpickrOptions &#x3D; {
+		allowInput: true
 	};
 
-	flatpickrOptionsRange: FlatpickrOptions &#x3D; {
-		dateFormat: this.dateFormat,
-		&quot;plugins&quot;: [rangePlugin({ input: &quot;#&quot; + this.id + &quot;-rangeInput&quot;})],
-		allowInput: true,
+	protected flatpickrBaseOptions: FlatpickrOptions &#x3D; {
+		dateFormat: &quot;m/d/Y&quot;,
+		plugins: this.plugins,
 		onChange: (selectedValue: any) &#x3D;&gt; { this.doSelect(selectedValue); },
 		onOpen: () &#x3D;&gt; { this.updateClassNames(); },
 		value: this.value
@@ -1132,8 +1624,14 @@ export class DatePicker implements OnDestroy {
 
 	constructor(protected elementRef: ElementRef) { }
 
+	@HostListener(&quot;focusin&quot;)
+	onFocus() {
+		this.onTouched();
+	}
+
 	doSelect(selectedValue) {
 		this.valueChange.emit(selectedValue);
+		this.propagateChange(selectedValue);
 	}
 
 	updateClassNames() {
@@ -1183,21 +1681,21 @@ export class DatePicker implements OnDestroy {
 		});
 	}
 
-	onInputValueChange(event: string, index: number): void {
-		const eventDate &#x3D; flatpickr.parseDate(event, this.dateFormat, true);
-		const previousDate &#x3D; flatpickr.parseDate(this.value[index], this.dateFormat, true);
-		if (eventDate) {
-			if (!previousDate || previousDate.getTime() !&#x3D;&#x3D; eventDate.getTime()) {
-				this.value &#x3D; [...this.value];
-				this.value[index] &#x3D; eventDate;
-			}
-		} else {
-			if (previousDate || event) {
-				this.value &#x3D; [...this.value];
-				this.value[index] &#x3D; undefined;
-			}
-		}
+	public writeValue(value: any) {
+		this.value &#x3D; value;
 	}
+
+	public registerOnChange(fn: any) {
+		this.propagateChange &#x3D; fn;
+	}
+
+	public registerOnTouched(fn: any) {
+		this.onTouched &#x3D; fn;
+	}
+
+	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
+
+	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
 
 	ngOnDestroy() {
 		// clean up our flatpickr element - needed because the wrapper doesn&#x27;t handle this
@@ -1235,7 +1733,7 @@ export class DatePicker implements OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="bx--form-item">	<ng2-flatpickr		[setDate]= "value"		[config]= "range ? flatpickrOptionsRange : flatpickrOptions"		[hideButton]="true">		<div class="bx--form-item">			<div				data-date-picker				[attr.data-date-picker-type]= "range ? \'range\' : \'single\'"				class="bx--date-picker"				[ngClass]="{					\'bx--date-picker--range\' : range,					\'bx--date-picker--single\' : !range,					\'bx--date-picker--light\' : theme === \'light\',					\'bx--skeleton\' : skeleton				}">				<div class="bx--date-picker-container">					<ibm-date-picker-input						[label]= "label"						[placeholder]= "placeholder"						[pattern]= "pattern"						[id]= "id"						[type]= "range ? \'range\' : \'single\'"						[hasIcon]= "range ? false : true"						[disabled]="disabled"						[invalid]="invalid"						[invalidText]="invalidText"						[skeleton]="skeleton"						(valueChange)="onInputValueChange($event, 0)">					</ibm-date-picker-input>				</div>				<div *ngIf="range" class="bx--date-picker-container">					<ibm-date-picker-input						[label]= "rangeLabel"						[placeholder]= "placeholder"						[pattern]= "pattern"						[id]= "id + \'-rangeInput\'"						[type]= "range ? \'range\' : \'single\'"						[hasIcon]= "range ? true : null"						[disabled]="disabled"						[invalid]="invalid"						[invalidText]="invalidText"						[skeleton]="skeleton"						(valueChange)="onInputValueChange($event, 1)">					</ibm-date-picker-input>				</div>			</div>		</div>	</ng2-flatpickr></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="bx--form-item">	<ng2-flatpickr		[setDate]= "value"		[config]= "range ? flatpickrOptionsRange : flatpickrOptions"		[hideButton]="true">		<div class="bx--form-item">			<div				data-date-picker				[attr.data-date-picker-type]= "range ? \'range\' : \'single\'"				class="bx--date-picker"				[ngClass]="{					\'bx--date-picker--range\' : range,					\'bx--date-picker--single\' : !range,					\'bx--date-picker--light\' : theme === \'light\',					\'bx--skeleton\' : skeleton				}">				<div class="bx--date-picker-container">					<ibm-date-picker-input						[label]= "label"						[placeholder]= "placeholder"						[pattern]= "pattern"						[id]= "id"						[type]= "range ? \'range\' : \'single\'"						[hasIcon]= "range ? false : true"						[disabled]="disabled"						[invalid]="invalid"						[invalidText]="invalidText"						[skeleton]="skeleton">					</ibm-date-picker-input>				</div>				<div *ngIf="range" class="bx--date-picker-container">					<ibm-date-picker-input						[label]= "rangeLabel"						[placeholder]= "placeholder"						[pattern]= "pattern"						[id]= "id + \'-rangeInput\'"						[type]= "range ? \'range\' : \'single\'"						[hasIcon]= "range ? true : null"						[disabled]="disabled"						[invalid]="invalid"						[invalidText]="invalidText"						[skeleton]="skeleton">					</ibm-date-picker-input>				</div>			</div>		</div>	</ng2-flatpickr></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'DatePicker'};

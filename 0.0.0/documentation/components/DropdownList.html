@@ -617,7 +617,7 @@ ArrowUp -&gt; emit event</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="432" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:432</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="433" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:433</a></div>
                             </td>
                         </tr>
 
@@ -1374,7 +1374,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="457" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:457</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="458" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:458</a></div>
                             </td>
                         </tr>
 
@@ -1439,7 +1439,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="451" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:451</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="452" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:452</a></div>
                             </td>
                         </tr>
 
@@ -1575,7 +1575,7 @@ Additionally, any Observables for the <code>DropdownList</code> are initialized.
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="463" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:463</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="464" class="link-to-prism">src/dropdown/list/dropdown-list.component.ts:464</a></div>
                             </td>
                         </tr>
 
@@ -2670,8 +2670,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// &quot;Spacebar&quot;, &quot;Down&quot;, and &quot;Up&quot; are IE specific values
 		if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) {
-			event.preventDefault();
-			if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot;) {
+			if (this.listElementList.some(option &#x3D;&gt; option.nativeElement &#x3D;&#x3D;&#x3D; event.target)) {
+				event.preventDefault();
+			} else if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot;) {
 				this.doClick(event, item);
 			}
 		} else if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;ArrowUp&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Down&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Up&quot;) {

@@ -306,6 +306,10 @@ export interface AlertModalData {
 	 * Array of &#x60;ModalButton&#x60;s
 	 */
 	buttons?: Array&lt;ModalButton&gt;;
+	/**
+	 * Callback for non-specific close events. &#x60;return false;&#x60; to prevent the modal from closing
+	 */
+	close?: Function;
 }
 
 export enum ModalButtonType {

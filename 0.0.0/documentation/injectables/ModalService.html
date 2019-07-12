@@ -307,7 +307,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/modal/modal.service.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/modal/modal.service.ts:125</a></div>
                             </td>
                         </tr>
 
@@ -677,7 +677,8 @@ export class ModalService {
 				modalLabel: data.label || data.modalLabel,
 				modalTitle: data.title || data.modalTitle,
 				modalContent: data.content || data.modalContent,
-				buttons: data.buttons || []
+				buttons: data.buttons || [],
+				close: data.close || (() &#x3D;&gt; {})
 			}
 		});
 	}
