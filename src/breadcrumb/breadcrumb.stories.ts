@@ -14,6 +14,8 @@ const createBreadcrumbItems = (count: number): Array<BreadcrumbItem> => {
 	return breadcrumbItems;
 };
 
+const withTemplate = (templateRef, items) => items.map(item => Object.assign(item, { template: templateRef }));
+
 storiesOf("Breadcrumb", module)
 .addDecorator(
 	moduleMetadata({
@@ -57,6 +59,25 @@ storiesOf("Breadcrumb", module)
 		itemCount: number("itemCount", 10),
 		threshold: number("threshold", 4),
 		items: createBreadcrumbItems
+	}
+}))
+.add("Model with templates", () => ({
+	template: `
+	<ng-template #breadcrumbTemplate let-item>
+		Hello {{ item.content }}
+	</ng-template>
+	<ibm-breadcrumb
+		[noTrailingSlash]="noTrailingSlash"
+		[threshold]="threshold"
+		[items]="withTemplate(breadcrumbTemplate, createBreadcrumbItems(itemCount))">
+	</ibm-breadcrumb>
+	`,
+	props: {
+		noTrailingSlash: boolean("noTrailingSlash", true),
+		itemCount: number("itemCount", 10),
+		threshold: number("threshold", 4),
+		createBreadcrumbItems,
+		withTemplate
 	}
 }))
 .add("Skeleton", () => ({
