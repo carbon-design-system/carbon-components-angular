@@ -108,6 +108,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() value = "";
 	/**
+	 * Sets the autocomplete attribute on the `input` element.
+	 */
+	@Input() autocomplete = "on";
+	/**
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = this.i18n.get().SEARCH.LABEL;
