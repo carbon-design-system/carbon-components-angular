@@ -466,6 +466,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
+		this.selected.emit([]);
+		this.propagateChange([]);
 	}
 
 	/**
