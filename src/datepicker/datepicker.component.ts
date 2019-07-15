@@ -113,7 +113,16 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: (Date | string)[] = [];
+	@Input() set value(v: (Date | string)[]) {
+		if (!v) {
+			v = [];
+		}
+		this._value = v;
+	}
+
+	get value() {
+		return this._value;
+	}
 
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -155,6 +164,8 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+	protected _value = [];
+
 	protected _flatpickrOptions = {
 		allowInput: true
 	};
@@ -185,9 +196,6 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	ngAfterViewInit() {
 		this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
-		if (this.value === null) {
-			this.value = [];
-		}
 
 		if (this.value.length > 0) {
 			this.setDateValues(this.value);
@@ -204,9 +212,6 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 	 * @param value value recived from the model
 	 */
 	writeValue(value: (Date | string)[]) {
-		if (!value) {
-			value = [];
-		}
 		this.value = value;
 		this.setDateValues(this.value);
 	}
