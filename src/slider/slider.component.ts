@@ -124,6 +124,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** The lower bound of our range */
 	@Input() set min(v) {
 		this._min = v;
+		// force the component to update
 		this.value = this.value;
 	}
 	get min() {
@@ -132,6 +133,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** The upper bound of our range */
 	@Input() set max(v) {
 		this._max = v;
+		// force the component to update
 		this.value = this.value;
 	}
 
