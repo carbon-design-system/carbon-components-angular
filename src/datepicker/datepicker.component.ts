@@ -50,7 +50,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[disabled]="disabled"
 						[invalid]="invalid"
 						[invalidText]="invalidText"
-						[skeleton]="skeleton">
+						[skeleton]="skeleton"
+						(valueChange)="onValueChange($event)">
 					</ibm-date-picker-input>
 				</div>
 
@@ -65,7 +66,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[disabled]="disabled"
 						[invalid]="invalid"
 						[invalidText]="invalidText"
-						[skeleton]="skeleton">
+						[skeleton]="skeleton"
+						(valueChange)="onRangeValueChange($event)">
 					</ibm-date-picker-input>
 				</div>
 			</div>
@@ -111,7 +113,16 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	@Input() id = `datepicker-${DatePicker.datePickerCount++}`;
 
-	@Input() value: (Date | string)[] = [];
+	@Input() set value(v: (Date | string)[]) {
+		if (!v) {
+			v = [];
+		}
+		this._value = v;
+	}
+
+	get value() {
+		return this._value;
+	}
 
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -153,6 +164,8 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	@Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+	protected _value = [];
+
 	protected _flatpickrOptions = {
 		allowInput: true
 	};
@@ -161,9 +174,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 		mode: "single",
 		dateFormat: "m/d/Y",
 		plugins: this.plugins,
-		onChange: (selectedValue: any) => { this.doSelect(selectedValue); },
 		onOpen: () => { this.updateClassNames(); },
-		onValueUpdate: (event) => { this.doSelect(event); },
 		value: this.value
 	};
 
@@ -177,16 +188,16 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 			if (changes.value && this.didDateValueChange(changes.value.currentValue, changes.value.previousValue)) {
 				dates = changes.value.currentValue;
 			}
+			// only reset the flatpickr instance on Input changes
 			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
-			this.flatpickrInstance.setDate(dates);
 			this.setDateValues(dates);
 		}
 	}
 
 	ngAfterViewInit() {
 		this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+
 		if (this.value.length > 0) {
-			this.flatpickrInstance.setDate(this.value);
 			this.setDateValues(this.value);
 		}
 	}
@@ -196,12 +207,65 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 		this.onTouched();
 	}
 
-	doSelect(selectedValue) {
-		this.valueChange.emit(selectedValue);
-		this.propagateChange(selectedValue);
+	/**
+	 * Writes a value from the model to the component. Expects the value to be `null` or `(Date | string)[]`
+	 * @param value value recived from the model
+	 */
+	writeValue(value: (Date | string)[]) {
+		this.value = value;
+		this.setDateValues(this.value);
 	}
 
-	updateClassNames() {
+	registerOnChange(fn: any) {
+		this.propagateChange = fn;
+	}
+
+	registerOnTouched(fn: any) {
+		this.onTouched = fn;
+	}
+
+	onTouched: () => any = () => {};
+
+	propagateChange = (_: any) => {};
+
+	/**
+	 * Cleans up our flatpickr instance
+	 */
+	ngOnDestroy() {
+		if (!this.flatpickrInstance) { return; }
+		this.flatpickrInstance.destroy();
+	}
+
+	/**
+	 * Handles the `valueChange` event from the primary/single input
+	 */
+	onValueChange(event: string) {
+		if (this.flatpickrInstance) {
+			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
+			if (this.range) {
+				this.setDateValues([date, this.flatpickrInstance.selectedDates[1]]);
+			} else {
+				this.setDateValues([date]);
+			}
+			this.doSelect(this.flatpickrInstance.selectedDates);
+		}
+	}
+
+	/**
+	 * Handles the `valueChange` event from the range input
+	 */
+	onRangeValueChange(event: string) {
+		if (this.flatpickrInstance) {
+			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
+			this.setDateValues([this.flatpickrInstance.selectedDates[0], date]);
+			this.doSelect(this.flatpickrInstance.selectedDates);
+		}
+	}
+
+	/**
+	 * Carbon uses a number of specific classnames for parts of the flatpickr - this idempotent method applies them if needed.
+	 */
+	protected updateClassNames() {
 		if (!this.elementRef) { return; }
 
 		// get all the possible flatpickrs in the document - we need to add classes to (potentially) all of them
@@ -247,36 +311,51 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 		});
 	}
 
-	public writeValue(value: any) {
-		this.value = value;
-	}
-
-	public registerOnChange(fn: any) {
-		this.propagateChange = fn;
-	}
-
-	public registerOnTouched(fn: any) {
-		this.onTouched = fn;
-	}
-
-	onTouched: () => any = () => {};
-
-	propagateChange = (_: any) => {};
-
-	ngOnDestroy() {
-		if (!this.flatpickrInstance) { return; }
-		this.flatpickrInstance.destroy();
-	}
-
+	/**
+	 * Applies the given date value array to both the flatpickr instance and the `input`(s)
+	 * @param dates the date values to apply
+	 */
 	protected setDateValues(dates: (Date | string)[]) {
-		const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
-		const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
-		const singleDate = this.flatpickrInstance.parseDate(dates[0], this.dateFormat);
-		singleInput.value = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
-		if (rangeInput) {
-			const rangeDate = this.flatpickrInstance.parseDate(dates[1], this.dateFormat);
-			rangeInput.value = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
+		if (this.flatpickrInstance) {
+			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
+			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
+
+			// set the date on the instance
+			this.flatpickrInstance.setDate(dates);
+
+			// we can either set a date value or an empty string, so we start with an empty string
+			let singleDate = "";
+			// if date is a string, parse and format
+			if (typeof dates[0] === "string") {
+				singleDate = this.flatpickrInstance.parseDate(dates[0], this.dateFormat);
+				singleDate = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
+			// if date is not a string we can assume it's a Date and we should format
+			} else if (!!dates[0]) {
+				singleDate = this.flatpickrInstance.formatDate(dates[0], this.dateFormat);
+			}
+			// apply the value
+			singleInput.value = singleDate;
+
+			if (rangeInput) {
+				// we can either set a date value or an empty string, so we start with an empty string
+				let rangeDate = "";
+				// if date is a string, parse and format
+				if (typeof dates[1] === "string") {
+					rangeDate = this.flatpickrInstance.parseDate(dates[1].toString(), this.dateFormat);
+					rangeDate = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
+				// if date is not a string we can assume it's a Date and we should format
+				} else if (!!dates[1]) {
+					rangeDate = this.flatpickrInstance.formatDate(dates[1], this.dateFormat);
+				}
+				// apply the value
+				rangeInput.value = rangeDate;
+			}
 		}
+	}
+
+	protected doSelect(selectedValue: (Date | string)[]) {
+		this.valueChange.emit(selectedValue);
+		this.propagateChange(selectedValue);
 	}
 
 	protected didDateValueChange(currentValue, previousValue) {

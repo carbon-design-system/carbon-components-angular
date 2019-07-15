@@ -48,12 +48,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  * Slider supports `NgModel` by default, as well as two way binding to the `value` input.
  *
  * <example-url>../../iframe.html?id=slider--advanced</example-url>
- *
- * @export
- * @class Slider
- * @implements {AfterViewInit}
- * @implements {OnDestroy}
- * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-slider",
@@ -74,7 +68,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						#thumb
 						class="bx--slider__thumb"
 						tabindex="0"
-						[ngStyle]="{'left.%': getFractionComplete() * 100}"
 						(mousedown)="onMouseDown($event)"
 						(keydown)="onKeyDown($event)">
 					</div>
@@ -84,8 +77,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						(click)="onClick($event)">
 					</div>
 					<div
-						class="bx--slider__filled-track"
-						[ngStyle]="{transform: 'translate(0%, -50%)' + scaleX(getFractionComplete())}">
+						#filledTrack
+						class="bx--slider__filled-track">
 					</div>
 					<input
 						#range
@@ -129,13 +122,32 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Used to generate unique IDs */
 	private static count = 0;
 	/** The lower bound of our range */
-	@Input() min = 0;
+	@Input() set min(v) {
+		this._min = v;
+		// force the component to update
+		this.value = this.value;
+	}
+	get min() {
+		return this._min;
+	}
 	/** The upper bound of our range */
-	@Input() max = 100;
+	@Input() set max(v) {
+		this._max = v;
+		// force the component to update
+		this.value = this.value;
+	}
+
+	get max() {
+		return this._max;
+	}
 	/** The interval for our range */
 	@Input() step = 1;
 	/** Set the initial value. Available for two way binding */
 	@Input() set value(v) {
+		if (!v) {
+			v = this.min;
+		}
+
 		if (v > this.max) {
 			v = this.max;
 		}
@@ -145,7 +157,14 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		}
 
 		this._value = v;
-		this.slidAmount = this.convertToPx(v);
+
+		if (this.thumb) {
+			this.thumb.nativeElement.style.left = `${this.getFractionComplete(v) * 100}%`;
+		}
+
+		if (this.filledTrack) {
+			this.filledTrack.nativeElement.style.transform = `translate(0%, -50%) ${this.scaleX(this.getFractionComplete(v))}`;
+		}
 
 		if (this.input) {
 			this.input.value = v.toString();
@@ -186,17 +205,20 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@HostBinding("class.bx--form-item") hostClass = true;
 	@ViewChild("thumb") thumb: ElementRef;
 	@ViewChild("track") track: ElementRef;
+	@ViewChild("filledTrack") filledTrack: ElementRef;
 	@ViewChild("range") range: ElementRef;
 
 	public bottomRangeId = `${this.id}-bottom-range`;
 	public topRangeId = `${this.id}-top-range`;
+	public fractionComplete = 0;
 
 	protected isMouseDown = false;
 	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
 	protected eventSubscriptions: Array<Subscription> = [];
-	protected slidAmount = 0;
 	protected input: HTMLInputElement;
 	protected _value = this.min;
+	protected _min = 0;
+	protected _max = 100;
 	protected _disabled = false;
 
 	constructor(protected elementRef: ElementRef) {}
@@ -253,14 +275,16 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.value = v;
 	}
 
-	/** Returns the amount of "completeness" as a fraction of the total track width */
-	getFractionComplete() {
+	/**
+	 * Returns the amount of "completeness" of a value as a fraction of the total track width
+	 */
+	getFractionComplete(value: number) {
 		if (!this.track) {
 			return 0;
 		}
 
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;
-		return this.slidAmount / trackWidth;
+		return this.convertToPx(value) / trackWidth;
 	}
 
 	/** Helper function to return the CSS transform `scaleX` function */
@@ -294,7 +318,8 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			return 0;
 		}
 
-		return Math.round(trackWidth * (value / this.max));
+		// account for value shifting by subtracting min from value and max
+		return Math.round(trackWidth * ((value - this.min) / (this.max - this.min)));
 	}
 
 	/**
@@ -340,9 +365,18 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			event.clientX - track.left <= track.width
 			&& event.clientX - track.left >= 0
 		) {
-			this.slidAmount = event.clientX - track.left;
+			this.value = this.convertToValue(event.clientX - track.left);
 		}
-		this.value = this.convertToValue(this.slidAmount);
+
+		// if the mouse is beyond the max, set the value to `max`
+		if (event.clientX - track.left > track.width) {
+			this.value = this.max;
+		}
+
+		// if the mouse is below the min, set the value to `min`
+		if (event.clientX - track.left < 0) {
+			this.value = this.min;
+		}
 	}
 
 	/** Enables the `onMouseMove` handler */
