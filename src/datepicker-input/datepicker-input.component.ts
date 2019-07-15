@@ -35,7 +35,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[placeholder]="placeholder"
 						[id]= "id"
 						[disabled]="disabled"
-						(change) = "onChange($event)"/>
+						(change)="onChange($event)"/>
 						<ibm-icon-calendar16
 							class="bx--date-picker__icon">
 						</ibm-icon-calendar16>
