@@ -13,7 +13,7 @@ export interface BreadcrumbItem {
 	 */
 	href: string;
 	/**
-	 * Optional `TemplateRef` for the breadcrumb item. Recvices the content as an `$implicit` template variable
+	 * Optional `TemplateRef` for the breadcrumb item. Receives the content as an `$implicit` template variable
 	 */
 	template?: TemplateRef<any>;
 }
