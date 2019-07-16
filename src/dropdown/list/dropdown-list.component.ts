@@ -80,7 +80,6 @@ import { Observable, isObservable, Subscription } from "rxjs";
 								type="checkbox"
 								[checked]="item.selected"
 								[disabled]="item.disabled"
-								(click)="doClick($event, item)"
 								tabindex="-1">
 							<span class="bx--checkbox-appearance"></span>
 							<span class="bx--checkbox-label-text">{{item.content}}</span>
@@ -438,6 +437,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Emits the selected item or items after a mouse click event has occurred.
 	 */
 	doClick(event, item) {
+		event.preventDefault();
 		if (!item.disabled) {
 			if (this.type === "single") {
 				item.selected = true;
