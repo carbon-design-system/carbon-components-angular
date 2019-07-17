@@ -260,7 +260,7 @@ storiesOf("Date Picker", module)
 			date: new Date(new Date().getFullYear(), 5, 15),
 			rangeDates: [
 				new Date(new Date().getFullYear(), 5, 15),
-				new Date(new Date().getFullYear(), 9, 19)
+				new Date(new Date().getFullYear(), 8, 19)
 			]
 		}
 	}))
