@@ -123,6 +123,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	private static count = 0;
 	/** The lower bound of our range */
 	@Input() set min(v) {
+		if (!v) { return; }
 		this._min = v;
 		// force the component to update
 		this.value = this.value;
@@ -132,6 +133,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	}
 	/** The upper bound of our range */
 	@Input() set max(v) {
+		if (!v) { return; }
 		this._max = v;
 		// force the component to update
 		this.value = this.value;
@@ -216,9 +218,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected input: HTMLInputElement;
-	protected _value = this.min;
 	protected _min = 0;
 	protected _max = 100;
+	protected _value = this.min;
 	protected _disabled = false;
 
 	constructor(protected elementRef: ElementRef) {}
