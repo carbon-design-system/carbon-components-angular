@@ -28,7 +28,8 @@ storiesOf("Input", module).addDecorator(
 				[invalid]="invalid"
 				[disabled]="disabled"
 				[theme]="theme"
-				[placeholder]="placeholder">
+				[placeholder]="placeholder"
+				[autocomplete]="autocomplete">
 		</ibm-label>
 	`,
 		props: {
@@ -38,7 +39,8 @@ storiesOf("Input", module).addDecorator(
 			invalidText: text("Form validation content", "Validation message here"),
 			label: text("Label", "Text Input label"),
 			helperText: text("Helper text", "Optional helper text."),
-			placeholder: text("Placeholder text", "Placeholder text")
+			placeholder: text("Placeholder text", "Placeholder text"),
+			autocomplete: text("autocomplete", "on")
 		}
 	}))
 	.add("TextArea", () => ({

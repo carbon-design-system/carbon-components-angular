@@ -108,6 +108,11 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() value = "";
 	/**
+	 * Sets the autocomplete attribute on the `input` element.
+	 * For refernece: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+	 */
+	@Input() autocomplete = "on";
+	/**
 	 * Sets the text inside the `label` tag.
 	 */
 	@Input() label = this.i18n.get().SEARCH.LABEL;
