@@ -12,20 +12,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 
 /**
- * Used to emit changes performed on search components.
- */
-export class SearchChange {
-	/**
-	 * Contains the `Search` that has been changed.
-	 */
-	source: Search;
-	/**
-	 * The value of the `Search` field encompassed in the `SearchChange` class.
-	 */
-	value: string;
-}
-
-/**
  * [See demo](../../?path=/story/search--basic)
  *
  * <example-url>../../iframe.html?id=search--basic</example-url>
@@ -127,7 +113,9 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
-	@Output() change = new EventEmitter<SearchChange>();
+	@Output() valueChange = new EventEmitter<any>();
+
+	@Output() clear = new EventEmitter();
 
 	@ViewChild("input") inputRef: ElementRef;
 
@@ -180,7 +168,8 @@ export class Search implements ControlValueAccessor {
 	 */
 	onSearch(search: string) {
 		this.value = search;
-		this.emitChangeEvent();
+		this.valueChange.emit(this.value);
+		this.propagateChange(this.value);
 	}
 
 	/**
@@ -188,17 +177,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
-		this.emitChangeEvent();
-	}
-
-	/**
-	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
-	 */
-	emitChangeEvent() {
-		let event = new SearchChange();
-		event.source = this;
-		event.value = this.value;
-		this.change.emit(event);
+		this.clear.emit();
 		this.propagateChange(this.value);
 	}
 
