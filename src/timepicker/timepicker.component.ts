@@ -19,7 +19,7 @@ import {
 	selector: "ibm-timepicker",
 	template: `
 			<div class="bx--time-picker__input">
-				<label *ngIf="!skeleton" [for]="id" class="bx--label">
+				<label *ngIf="!skeleton && label" [for]="id" class="bx--label">
 					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 				</label>

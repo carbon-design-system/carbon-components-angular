@@ -53,7 +53,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 	selector: "ibm-slider",
 	template: `
 		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label for="slider" class="bx--label">
+			<label *ngIf="label" for="slider" class="bx--label">
 				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
 				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
 			</label>
@@ -98,7 +98,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 		</ng-container>
 
 		<ng-template #skeletonTemplate>
-			<label class="bx--label bx--skeleton"></label>
+			<label *ngIf="label" class="bx--label bx--skeleton"></label>
 			<div class="bx--slider-container bx--skeleton">
 				<span class="bx--slider__range-label"></span>
 				<div class="bx--slider">
