@@ -111,10 +111,12 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
 	/**
-	 * Emits event notifying other classes when a change in state occurs in the input.
+	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange = new EventEmitter<any>();
-
+	/**
+	 * Emits an event when the clear button is clicked.
+	 */
 	@Output() clear = new EventEmitter();
 
 	@ViewChild("input") inputRef: ElementRef;
