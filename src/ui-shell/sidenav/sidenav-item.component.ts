@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Sanitizer } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
 	selector: "ibm-sidenav-item",
@@ -10,7 +11,7 @@ import { Component, Input } from "@angular/core";
 		[attr.role]="(isSubMenu ? 'none' : null)">
 			<a
 				class="bx--side-nav__link"
-				href="javascript:void(0)"
+				[href]="getHref()"
 				[attr.role]="(isSubMenu ? 'menuitem' : null)"
 				[attr.aria-current]="(active ? 'page' : null)">
 				<div *ngIf="!isSubMenu" class="bx--side-nav__icon">
@@ -24,6 +25,19 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class SideNavItem {
+	/**
+	 * Link for the item. NOTE: *do not* pass unsafe or untrusted values, this has the potential to open you up to XSS attacks
+	 */
+	@Input() href = "javascript:void(0)";
+	/**
+	 * Toggles the active (current page) state for the link.
+	 */
 	@Input() active = false;
 	isSubMenu = false;
+
+	constructor(protected domSanitizer: DomSanitizer) {}
+
+	getHref() {
+		return this.domSanitizer.bypassSecurityTrustUrl(this.href);
+	}
 }

@@ -14,9 +14,10 @@ import { I18n } from "../../i18n/i18n.module";
 	selector: "ibm-hamburger",
 	template: `
 		<button
+			type="button"
 			(click)="doClick()"
 			[ngClass]="{'bx--header__action--active': active}"
-			class="bx--header__menu-trigger bx--header__action"
+			class="bx--header__menu-trigger bx--header__action bx--header__menu-toggle"
 			[attr.aria-label]="i18n.get('UI_SHELL.HEADER.MENU') | async"
 			[attr.title]="i18n.get('UI_SHELL.HEADER.MENU') | async">
 

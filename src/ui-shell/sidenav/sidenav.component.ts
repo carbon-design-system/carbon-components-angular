@@ -39,6 +39,7 @@ import { I18n } from "../../i18n/i18n.module";
 			</ul>
 			<footer class="bx--side-nav__footer">
 				<button
+					*ngIf="allowExpansion"
 					class="bx--side-nav__toggle"
 					type="button"
 					[title]="(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async"
@@ -81,7 +82,10 @@ import { I18n } from "../../i18n/i18n.module";
 export class SideNav {
 	@HostBinding("attr.role") role = "complementary";
 	@HostBinding("class.bx--side-nav") hostClass = true;
-	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = false;
+	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = true;
+	@HostBinding("class.bx--side-nav--hidden") @Input() hidden = false;
+	@HostBinding("class.bx--side-nav--ux") ux = true;
+	@Input() allowExpansion = false;
 
 	constructor(public i18n: I18n) { }
 

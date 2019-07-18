@@ -10,7 +10,7 @@ import { SideNavItem } from "./sidenav-item.component";
 @Component({
 	selector: "ibm-sidenav-menu",
 	template: `
-		<li class="bx--side-nav__item">
+		<li class="bx--side-nav__item bx--side-nav__item--icon">
 			<button
 				(click)="toggle()"
 				class="bx--side-nav__submenu"
@@ -42,7 +42,7 @@ import { SideNavItem } from "./sidenav-item.component";
 	`
 })
 export class SideNavMenu implements AfterContentInit {
-	@Input() title;
+	@Input() title: string;
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 

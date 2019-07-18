@@ -48,7 +48,5 @@ export class Header {
 	@Input() name: string;
 	@Input() brand = "IBM";
 
-	@HostBinding("class.bx--header") hostClass = true;
-
 	constructor(public i18n: I18n) { }
 }
