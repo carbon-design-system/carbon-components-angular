@@ -12,6 +12,21 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 
 /**
+ * @deprecated in the next major carbon-components-angular version in favour of `valueChange`
+ * Used to emit changes performed on search components.
+ */
+export class SearchChange {
+	/**
+	 * Contains the `Search` that has been changed.
+	 */
+	source: Search;
+	/**
+	 * The value of the `Search` field encompassed in the `SearchChange` class.
+	 */
+	value: string;
+}
+
+/**
  * [See demo](../../?path=/story/search--basic)
  *
  * <example-url>../../iframe.html?id=search--basic</example-url>
@@ -110,6 +125,11 @@ export class Search implements ControlValueAccessor {
 	 * Used to set the `title` attribute of the clear button.
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
+	/**
+	 * @deprecated in the next major carbon-components-angular version in favour of `valueChange`
+	 * Emits event notifying other classes when a change in state occurs in the input.
+	 */
+	@Output() change = new EventEmitter<SearchChange>();
 	/**
 	 * Emits an event when value is changed.
 	 */
