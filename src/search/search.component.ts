@@ -190,8 +190,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	onSearch(search: string) {
 		this.value = search;
-		this.valueChange.emit(this.value);
-		this.propagateChange(this.value);
+		this.doValueChange();
 	}
 
 	/**
@@ -200,6 +199,15 @@ export class Search implements ControlValueAccessor {
 	clearSearch(): void {
 		this.value = "";
 		this.clear.emit();
+		this.propagateChange(this.value);
+	}
+
+	doValueChange() {
+		let event = new SearchChange();
+		event.source = this;
+		event.value = this.value;
+		this.change.emit(event);
+		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
 	}
 
