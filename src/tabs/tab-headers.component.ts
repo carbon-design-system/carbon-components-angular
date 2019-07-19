@@ -210,6 +210,13 @@ export class TabHeaders implements AfterContentInit {
 		}
 	}
 
+	@HostListener("focusout", ["$event"])
+	focusOut(event) {
+		if (this.tabListVisible && event.relatedTarget === null) {
+			this.tabListVisible = false;
+		}
+	}
+
 	ngAfterContentInit() {
 		if (!this.tabInput) {
 			this.tabs = this.tabQuery;
