@@ -17,9 +17,9 @@ storiesOf("Content Switcher", module)
 	.add("Basic", () => ({
 		template: `
 			<ibm-content-switcher (selected)="selected($event)">
-				<button ibmContentOption>First section</button>
-				<button ibmContentOption>Second section</button>
-				<button ibmContentOption>Third section</button>
+				<button ibmContentOption name="First">First section</button>
+				<button ibmContentOption name="Second">Second section</button>
+				<button ibmContentOption name="Third">Third section</button>
 			</ibm-content-switcher>
 		`,
 		props: {
