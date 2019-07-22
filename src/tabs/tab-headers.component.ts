@@ -29,7 +29,8 @@ import { Tab } from "./tab.component";
 				'bx--skeleton': skeleton
 			}"
 			role="navigation"
-			[attr.aria-label]="ariaLabel">
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby">
 			<div class="bx--tabs-trigger" tabindex="0" (click)="showTabList()">
 				<a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1">
 					<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
@@ -116,6 +117,10 @@ export class TabHeaders implements AfterContentInit {
 	 * Sets the aria label on the nav element.
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Sets the aria labelledby on the nav element.
+	 */
+	@Input() ariaLabelledby: string;
 
 	@Input() contentBefore;
 	@Input() contentAfter;

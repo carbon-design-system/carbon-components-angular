@@ -51,7 +51,8 @@ import { TabHeaders } from "./tab-headers.component";
 				[cacheActive]="cacheActive"
 				[contentBefore]="before"
 				[contentAfter]="after"
-				[ariaLabel]="ariaLabel">
+				[ariaLabel]="ariaLabel"
+				[ariaLabelledby]="ariaLabelledby">
 			</ibm-tab-headers>
 			<ng-content></ng-content>
 			<ng-template #before>
@@ -94,6 +95,10 @@ export class Tabs implements AfterContentInit {
 	 * Sets the aria label on the `TableHeader`'s nav element.
 	 */
 	@Input() ariaLabel: string;
+	/**
+	 * Sets the aria labelledby on the `TableHeader`'s the nav element.
+	 */
+	@Input() ariaLabelledby: string;
 
 	/**
 	 * Maintains a `QueryList` of the `Tab` elements and updates if `Tab`s are added or removed.
