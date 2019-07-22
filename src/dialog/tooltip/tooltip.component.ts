@@ -18,7 +18,9 @@ import { Dialog } from "./../dialog.component";
 			#dialog
 			[id]="dialogConfig.compID"
 			[attr.role]="role"
-			class="bx--tooltip bx--tooltip--shown">
+			[attr.data-floating-menu-direction]="placement"
+			class="bx--tooltip bx--tooltip--shown"
+			style="margin: 0">
 			<span class="bx--tooltip__caret" aria-hidden="true"></span>
 			<ng-template
 					*ngIf="hasContentTemplate"
