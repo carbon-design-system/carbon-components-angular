@@ -133,7 +133,7 @@ export class Search implements ControlValueAccessor {
 	/**
 	 * Emits an event when value is changed.
 	 */
-	@Output() valueChange = new EventEmitter<any>();
+	@Output() valueChange = new EventEmitter<string>();
 	/**
 	 * Emits an event when the clear button is clicked.
 	 */
