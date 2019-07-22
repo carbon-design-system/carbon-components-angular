@@ -217,9 +217,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		setTimeout(() => {
 			if (!this.getSelected()) { return; }
 			if (this.type === "single") {
-				this.select.emit({ item: this._items.find(item => item.selected) });
+				this.select.emit({ item: this._items.find(item => item.selected), isUpdate: true });
 			} else {
-				this.select.emit(this.getSelected() || []);
+				// abuse javascripts object mutability until we can break the API and switch to
+				// { items: [], isUpdate: true }
+				const selected = this.getSelected() || [];
+				selected["isUpdate"] = true;
+				this.select.emit(selected);
 			}
 		});
 	}
