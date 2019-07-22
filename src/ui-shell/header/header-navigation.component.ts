@@ -1,5 +1,8 @@
 import { Component, HostBinding } from "@angular/core";
 
+/**
+ * Container for header navigation items
+ */
 @Component({
 	selector: "ibm-header-navigation",
 	template: `

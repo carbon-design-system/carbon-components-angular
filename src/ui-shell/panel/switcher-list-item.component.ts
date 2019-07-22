@@ -1,8 +1,13 @@
 import { Component, Input } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
+/**
+ * Represents an item in a switcher list.
+ *
+ * **Note:** `ibm-product-x` selectors and components are deprecated and will be removed in the next major version
+ */
 @Component({
-	selector: "ibm-switcher-list-item, ibm-product-switcher-list-item",
+	selector: "ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item",
 	template: `
 		<a
 			class="bx--switcher__item-link"
@@ -15,19 +20,23 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 	`
 })
 export class SwitcherListItem {
+	/**
+	 * Enables the "active" state for an item. Commonly used to indicate the current page or selection.
+	 */
 	@Input() active = false;
 
+	/**
+	 * Optional link for the underlying anchor.
+	 */
 	@Input() set href(value: string) {
-		this._href = this.domSanitizer.bypassSecurityTrustUrl(value);
+		this._href = value;
 	}
 
 	get href() {
-		return this._href as string;
+		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
 	}
 
-	protected _href: SafeUrl;
+	protected _href = "javascript:void(0)";
 
-	constructor(protected domSanitizer: DomSanitizer) {
-		this.href = "javascript:void(0)";
-	}
+	constructor(protected domSanitizer: DomSanitizer) { }
 }

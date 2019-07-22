@@ -1,6 +1,14 @@
-import { Component, Input, HostListener, ElementRef } from "@angular/core";
+import {
+	Component,
+	Input,
+	HostListener,
+	ElementRef
+} from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 
+/**
+ * Dropdown menu container for navigation items.
+ */
 @Component({
 	selector: "ibm-header-menu",
 	template: `
@@ -9,7 +17,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 			style="height: 100%">
 			<a
 				class="bx--header__menu-item bx--header__menu-title"
-				[href]="getHref()"
+				[href]="href"
 				role="menuitem"
 				tabindex="0"
 				aria-haspopup="true"
@@ -27,10 +35,18 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class HeaderMenu {
 	@Input() title: string;
-	@Input() href = "javascript:void(0)";
+	@Input() set href(v: string) {
+		this._href = v;
+	}
+
+	get href() {
+		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
+	}
 	@Input() trigger: "click" | "mouseover" = "click";
 
 	public expanded = false;
+
+	protected _href = "javascript:void(0)";
 
 	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) { }
 
@@ -60,9 +76,5 @@ export class HeaderMenu {
 		if (!this.elementRef.nativeElement.contains(event.relatedTarget)) {
 			this.expanded = false;
 		}
-	}
-
-	getHref() {
-		return this.domSanitizer.bypassSecurityTrustUrl(this.href);
 	}
 }

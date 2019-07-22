@@ -1,4 +1,5 @@
-import { Component,
+import {
+	Component,
 	Output,
 	EventEmitter,
 	Input
@@ -6,9 +7,7 @@ import { Component,
 import { I18n } from "../../i18n/i18n.module";
 
 /**
- * A slide-out hamburger menu
- *
- * TODO: This is a stub component, and needs to be implemented.
+ * A toggle for the side navigation
  */
 @Component({
 	selector: "ibm-hamburger",
@@ -34,15 +33,11 @@ import { I18n } from "../../i18n/i18n.module";
 export class Hamburger {
 	/**
 	 * Controls the active/selected state for the `Hamburger` menu.
-	 * @type {boolean}
-	 * @memberof Hamburger
 	 */
 	@Input() active = false;
 
 	/**
 	 * `EventEmitter` to notify parent components of menu click events.
-	 * @type {EventEmitter<Object>}
-	 * @memberof Hamburger
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 
@@ -50,10 +45,8 @@ export class Hamburger {
 
 	/**
 	 * Emit the Hamburger click event upwards.
-	 * @memberof Hamburger
 	 */
 	public doClick() {
 		this.selected.emit(this.active);
 	}
-
 }

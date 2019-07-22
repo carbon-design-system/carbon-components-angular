@@ -1,18 +1,10 @@
-import { Component, Input, HostBinding } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { I18n } from "../../i18n/i18n.module";
 
 /**
- * Carbon uses feature-flags to toggle the new ui-shell feature.
- *
- * To turn on this feature flag, include the feature-flag variable into your SCSS file before importing carbon-components,
- * then set ui-shell to true.
- *
- * ```scss
- * $feature-flags: (
- * 	ui-shell: true
- * );
- * @import 'carbon-components/src/globals/scss/styles';
- * ```
+ * A fixed header and navigation.
+ * Header may contain a Hamburger menu to toggle the side navigation, navigation actions,
+ * and global actions (generally in the form of `Panel`s).
  *
  * [See demo](../../?path=/story/ui-shell--header)
  *
@@ -44,8 +36,17 @@ import { I18n } from "../../i18n/i18n.module";
 	`
 })
 export class Header {
+	/**
+	 * ID in the main body content to jump to. Used by keyboard and screen reader users to skip the header content.
+	 */
 	@Input() skipTo: string;
+	/**
+	 * Label that shows to the right of the `brand` text. Generally a product name.
+	 */
 	@Input() name: string;
+	/**
+	 * Top level branding. Defaults to "IBM"
+	 */
 	@Input() brand = "IBM";
 
 	constructor(public i18n: I18n) { }
