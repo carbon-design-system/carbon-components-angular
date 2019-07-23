@@ -16,6 +16,8 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
  * The content switcher can be used for toggling between distinct options.
  * Similar to tabs, but without an associated content panel
  *
+ * [See demo](../../?path=/story/content-switcher--basic)
+ *
  * ```html
  * <ibm-content-switcher (selected)="selected($event)">
  *		<button ibmContentOption>First section</button>
@@ -23,12 +25,18 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
  *		<button ibmContentOption>Third section</button>
  *	</ibm-content-switcher>
  *	```
+ *
+ * <example-url>../../iframe.html?id=content-switcher--basic</example-url>
+ *
+ * @export
+ * @class ContentSwitcher
+ * @implements {AfterViewInit}
  */
 @Component({
 	selector: "ibm-content-switcher",
 	template: `
 		<div
-			[attr.aria-label]="label"
+			[attr.aria-label]="ariaLabel"
 			class="bx--content-switcher"
 			role="tablist">
 			<ng-content></ng-content>
@@ -39,7 +47,17 @@ export class ContentSwitcher implements AfterViewInit {
 	/**
 	 * aria-label for the content switcher. Should be set to something descriptive
 	 */
-	@Input() label = "content switcher";
+	@Input() set label(value: string) {
+		console.warn("`label` is deprecated (to be removed in next major version). Use `ariaLabel` instead.");
+		this.ariaLabel = value;
+	}
+
+	get label(): string {
+		console.warn("`label` is deprecated (to be removed in next major version). Use `ariaLabel` instead.");
+		return this.ariaLabel;
+	}
+
+	@Input() ariaLabel = "content switcher";
 
 	/**
 	 * Emits the activated `ContentSwitcherOption`

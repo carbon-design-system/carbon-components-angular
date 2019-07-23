@@ -1,6 +1,14 @@
 import { Component, Input, HostBinding } from "@angular/core";
 import { I18n } from "./../i18n/i18n.module";
 
+/**
+ * [See demo](../../?path=/story/loading--basic)
+ *
+ * <example-url>../../iframe.html?id=loading--basic</example-url>
+ *
+ * @export
+ * @class Loading
+ */
 @Component({
 	selector: "ibm-loading",
 	template: `

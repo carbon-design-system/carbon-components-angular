@@ -13,6 +13,15 @@ import { FileItem } from "./file-item.interface";
 
 const noop = () => {};
 
+/**
+ * [See demo](../../?path=/story/file-uploader--basic)
+ *
+ * <example-url>../../iframe.html?id=file-uploader--basic</example-url>
+ *
+ * @export
+ * @class FileUploader
+ * @implements {OnInit}
+ */
 @Component({
 	selector: "ibm-file-uploader",
 	template: `
@@ -33,6 +42,7 @@ const noop = () => {};
 					[accept]="accept"
 					[id]="fileUploaderId"
 					[multiple]="multiple"
+					tabindex="-1"
 					(change)="onFilesAdded()"/>
 				<div class="bx--file-container">
 					<ibm-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>

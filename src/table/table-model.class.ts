@@ -28,6 +28,9 @@ export class TableModel implements PaginationModel {
 		// init rowsContext
 		this.rowsContext = new Array<string>(this._data.length);
 
+		// init rowsClass
+		this.rowsClass = new Array<string>(this._data.length);
+
 		// only create a fresh header if necessary (header doesn't exist or differs in length)
 		if (this.header == null || (this.header.length !== this._data[0].length && this._data[0].length > 0)) {
 			let header = new Array<TableHeaderItem>();
@@ -85,6 +88,18 @@ export class TableModel implements PaginationModel {
 	 * @memberof TableModel
 	 */
 	rowsContext: Array<string>;
+
+	/**
+	 * Contains class name(s) of the row.
+	 *
+	 * It affects styling of the row to reflect the appended class name(s).
+	 *
+	 * It's empty or undefined by default
+	 *
+	 * @type {Array<string>}
+	 * @memberof TableModel
+	 */
+	rowsClass: Array<string>;
 
 	/**
 	 * Contains information about the header cells of the table.
@@ -296,6 +311,9 @@ export class TableModel implements PaginationModel {
 
 			// update rowsContext property for length
 			this.rowsContext.push(undefined);
+
+			// update rowsClass property for length
+			this.rowsClass.push(undefined);
 		} else {
 			const ri = this.realRowIndex(index);
 			this.data.splice(ri, 0, realRow);
@@ -308,6 +326,9 @@ export class TableModel implements PaginationModel {
 
 			// update rowsContext property for length
 			this.rowsContext.splice(ri, 0, undefined);
+
+			// update rowsClass property for length
+			this.rowsClass.splice(ri, 0, undefined);
 		}
 
 		this.dataChange.emit();
@@ -327,6 +348,7 @@ export class TableModel implements PaginationModel {
 		this.rowsSelected.splice(rri, 1);
 		this.rowsExpanded.splice(rri, 1);
 		this.rowsContext.splice(rri, 1);
+		this.rowsClass.splice(rri, 1);
 
 		this.dataChange.emit();
 	}
@@ -503,6 +525,10 @@ export class TableModel implements PaginationModel {
 			const rowContext = new TableItem();
 			rowContext.data = this.rowsContext[i];
 			this.data[i].push(rowContext);
+
+			const rowClass = new TableItem();
+			rowClass.data = this.rowsClass[i];
+			this.data[i].push(rowClass);
 		}
 	}
 
@@ -516,6 +542,7 @@ export class TableModel implements PaginationModel {
 	 */
 	popRowStateFromModelData() {
 		for (let i = 0; i < this.data.length; i++) {
+			this.rowsClass[i] = this.data[i].pop().data;
 			this.rowsContext[i] = this.data[i].pop().data;
 			this.rowsExpanded[i] = !!this.data[i].pop().data;
 			this.rowsSelected[i] = !!this.data[i].pop().data;

@@ -1,10 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 
-import { ListModule } from "../";
+import { ListModule, DocumentationModule } from "../";
 
 storiesOf("List", module).addDecorator(
 	moduleMetadata({
-		imports: [ListModule]
+		imports: [ListModule, DocumentationModule]
 	}))
 	.add("Basic", () => ({
 		template: `
@@ -50,5 +50,10 @@ storiesOf("List", module).addDecorator(
 				<li ibmListItem>Two</li>
 				<li ibmListItem>Three</li>
 			</ul>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/directives/List.html"></ibm-documentation>
 		`
 	}));

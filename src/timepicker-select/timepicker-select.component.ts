@@ -3,14 +3,24 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	TemplateRef
 } from "@angular/core";
 import { Select } from "../select/select.component";
 
+/**
+ * [See demo](../../?path=/story/time-picker-select--simple)
+ *
+ * <example-url>../../iframe.html?id=time-picker-select--simple</example-url>
+ *
+ * @export
+ * @class TimePickerSelect
+ * @extends {Select}
+ */
 @Component({
 	selector: "ibm-timepicker-select",
 	template: `
-			<label *ngIf="!skeleton" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
+			<label *ngIf="!skeleton && label" [attr.for]="id" class="bx--label bx--visually-hidden">{{label}}</label>
 			<select
 				#select
 				[attr.id]="id"
@@ -37,6 +47,8 @@ export class TimePickerSelect extends Select {
 	 * `light` or `dark` select theme
 	 */
 	@Input() theme: "light" | "dark" = "dark";
+
+	@Input() label: string;
 
 	@HostBinding("class.bx--skeleton") timePickerSelectSkeleton = this.skeleton;
 

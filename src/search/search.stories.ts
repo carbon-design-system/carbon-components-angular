@@ -1,22 +1,29 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean, select, text } from "@storybook/addon-knobs/angular";
 
-import { SearchModule } from "../";
+import { SearchModule, DocumentationModule } from "../";
 
 storiesOf("Search", module).addDecorator(
 	moduleMetadata({
-		imports: [SearchModule]
+		imports: [SearchModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-search [theme]="theme" [placeholder]="placeholder" [disabled]="disabled" [size]="size"></ibm-search>
+			<ibm-search
+				[theme]="theme"
+				[placeholder]="placeholder"
+				[autocomplete]="autocomplete"
+				[disabled]="disabled"
+				[size]="size">
+			</ibm-search>
 		`,
 		props: {
 			size: select("size", ["lg", "sm"], "lg"),
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
+			autocomplete: text("autocomplete", "on"),
 			placeholder: text("placeholder", "Search")
 		}
 	}))
@@ -34,5 +41,10 @@ storiesOf("Search", module).addDecorator(
 			&nbsp;
 			<ibm-search skeleton="true" size="sm"></ibm-search>
 		</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Search.html"></ibm-documentation>
 		`
 	}));

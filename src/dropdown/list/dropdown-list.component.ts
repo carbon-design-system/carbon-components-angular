@@ -54,8 +54,6 @@ import { Observable, isObservable, Subscription } from "rxjs";
 			class="bx--list-box__menu bx--multi-select"
 			[attr.aria-label]="ariaLabel">
 			<li
-				#listItem
-				tabindex="-1"
 				role="option"
 				*ngFor="let item of displayItems; let i = index"
 				(click)="doClick($event, item)"
@@ -67,7 +65,10 @@ import { Observable, isObservable, Subscription } from "rxjs";
 					'bx--list-box__menu-item--active': item.selected,
 					disabled: item.disabled
 				}">
-				<div class="bx--list-box__menu-item__option">
+				<div
+					#listItem
+					tabindex="-1"
+					class="bx--list-box__menu-item__option">
 					<div
 						*ngIf="!listTpl && type === 'multi'"
 						class="bx--form-item bx--checkbox-wrapper">
@@ -79,7 +80,6 @@ import { Observable, isObservable, Subscription } from "rxjs";
 								type="checkbox"
 								[checked]="item.selected"
 								[disabled]="item.disabled"
-								(click)="doClick($event, item)"
 								tabindex="-1">
 							<span class="bx--checkbox-appearance"></span>
 							<span class="bx--checkbox-label-text">{{item.content}}</span>
@@ -366,6 +366,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Transforms array input list of items to the correct state by updating the selected item(s).
 	 */
 	propagateSelected(value: Array<ListItem>): void {
+		// if we get a non-array, log out an error (since it is one)
+		if (!Array.isArray(value)) {
+			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
+		}
 		for (let newItem of value) {
 			// copy the item
 			let tempNewItem: string | ListItem = Object.assign({}, newItem);
@@ -405,10 +409,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	doKeyDown(event: KeyboardEvent, item: ListItem) {
 		// "Spacebar", "Down", and "Up" are IE specific values
 		if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-			event.preventDefault();
-			if (event.key === "Enter") {
-				this.doClick(event, item);
-			}
+				if (this.listElementList.some(option => option.nativeElement === event.target)) {
+					event.preventDefault();
+				}
+				if (event.key === "Enter") {
+					this.doClick(event, item);
+				}
 		} else if (event.key === "ArrowDown" || event.key === "ArrowUp" || event.key === "Down" || event.key === "Up") {
 			event.preventDefault();
 			if (event.key === "ArrowDown" || event.key === "Down") {
@@ -431,6 +437,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Emits the selected item or items after a mouse click event has occurred.
 	 */
 	doClick(event, item) {
+		event.preventDefault();
 		if (!item.disabled) {
 			if (this.type === "single") {
 				item.selected = true;

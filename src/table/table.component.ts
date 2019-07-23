@@ -22,7 +22,7 @@ import { I18n } from "./../i18n/i18n.module";
 /**
  * Build your table with this component by extending things that differ from default.
  *
- * demo: [https://angular.carbondesignsystem.com/?selectedKind=Table](https://angular.carbondesignsystem.com/?selectedKind=Table)
+ * [See demo](../../?path=/story/table--basic)
  *
  * Instead of the usual write-your-own-html approach you had with `<table>`,
  * carbon table uses model-view-controller approach.
@@ -88,7 +88,7 @@ import { I18n } from "./../i18n/i18n.module";
  * 		return true;
  * 	}
  *
- * 	set filterCount(n) {}
+ * 	set filterCount(n) {}
  * 	get filterCount() {
  * 		return (this.filterData && this.filterData.data && this.filterData.data.length > 0) ? 1 : 0;
  * 	}
@@ -161,6 +161,8 @@ import { I18n } from "./../i18n/i18n.module";
  * }
  * ```
  *
+ * <example-url>../../iframe.html?id=table--basic</example-url>
+ *
  * @export
  * @class Table
  * @implements {AfterContentChecked}
@@ -213,7 +215,6 @@ import { I18n } from "./../i18n/i18n.module";
 						(dragstart)="columnDragStart($event, i)"
 						(dragend)="columnDragEnd($event, i)"
 						(click)="setIndex(i)">
-						<span *ngIf="skeleton"></span>
 						<div
 							*ngIf="columnsResizable"
 							class="column-resize-handle"
@@ -221,7 +222,7 @@ import { I18n } from "./../i18n/i18n.module";
 						</div>
 						<button
 							class="bx--table-sort"
-							*ngIf="this.sort.observers.length > 0 && column.sortable"
+							*ngIf="!skeleton && this.sort.observers.length > 0 && column.sortable"
 							[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
 							aria-live="polite"
 							[ngClass]="{
@@ -337,6 +338,7 @@ import { I18n } from "./../i18n/i18n.module";
 				<tr *ngIf="!model.isRowFiltered(i)"
 					(click)="onRowSelect(i)"
 					[attr.data-parent-row]="(model.isRowExpandable(i) ? 'true' : null)"
+					[class]="model.rowsClass[i] ? model.rowsClass[i] : null"
 					[ngClass]="{
 						'bx--data-table--selected': model.rowsSelected[i],
 						'bx--parent-row': model.isRowExpandable(i),
@@ -355,7 +357,7 @@ import { I18n } from "./../i18n/i18n.module";
 					[attr.data-previous-value]="(model.rowsExpanded[i] ? 'collapsed' : null)"
 					(click)="setExpandIndex($event)">
 						<button
-						*ngIf="model.isRowExpandable(i)"
+						*ngIf="!skeleton && model.isRowExpandable(i)"
 						class="bx--table-expand__button"
 						[attr.aria-label]="expandButtonAriaLabel | async"
 						(click)="model.expandRow(i, !model.rowsExpanded[i])">
@@ -382,8 +384,10 @@ import { I18n } from "./../i18n/i18n.module";
 							[ibmDataGridFocus]="isDataGrid"
 							[(columnIndex)]="columnIndex"
 							(click)="setIndex(j)">
-							<ng-container *ngIf="!item.template">{{item.data}}</ng-container>
+							<span *ngIf="skeleton && i === 0"></span>
+							<ng-container *ngIf="!skeleton && !item.template">{{item.data}}</ng-container>
 							<ng-template
+								*ngIf="!skeleton"
 								[ngTemplateOutlet]="item.template" [ngTemplateOutletContext]="{data: item.data}">
 							</ng-template>
 						</td>

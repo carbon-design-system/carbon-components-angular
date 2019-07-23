@@ -25,61 +25,18 @@ export class SearchChange {
 	value: string;
 }
 
+/**
+ * [See demo](../../?path=/story/search--basic)
+ *
+ * <example-url>../../iframe.html?id=search--basic</example-url>
+ *
+ * @export
+ * @class Search
+ * @implements {ControlValueAccessor}
+ */
 @Component({
 	selector: "ibm-search",
-	template: `
-		<div
-			class="bx--search"
-			[ngClass]="{
-				'bx--search--sm': size === 'sm',
-				'bx--search--xl': size === 'xl',
-				'bx--search--light': theme === 'light',
-				'bx--skeleton': skeleton,
-				'bx--toolbar-search': toolbar,
-				'bx--toolbar-search--active': toolbar && active
-			}"
-			role="search">
-			<label class="bx--label" [for]="id">{{label}}</label>
-
-			<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
-			<ng-template #enableInput>
-				<input
-					#input
-					*ngIf="!toolbar || active"
-					class="bx--search-input"
-					type="text"
-					role="search"
-					[id]="id"
-					[value]="value"
-					[placeholder]="placeholder"
-					[disabled]="disabled"
-					[required]="required"
-					(input)="onSearch($event.target.value)"/>
-				<button
-					*ngIf="toolbar; else svg"
-					class="bx--toolbar-search__btn"
-					[attr.aria-label]="i18n.get('SEARCH.TOOLBAR_SEARCH') | async"
-					tabindex="0"
-					(click)="openSearch($event)">
-					<ng-template [ngTemplateOutlet]="svg"></ng-template>
-				</button>
-				<ng-template #svg>
-					<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
-				</ng-template>
-			</ng-template>
-
-			<button
-				class="bx--search-close"
-				[ngClass]="{
-					'bx--search-close--hidden': !value || value.length === 0
-				}"
-				[title]="clearButtonTitle"
-				[attr.aria-label]="clearButtonTitle"
-				(click)="clearSearch()">
-				<ibm-icon-close16></ibm-icon-close16>
-			</button>
-		</div>
-	`,
+	templateUrl: "search.component.html",
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
@@ -94,7 +51,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	static searchCount = 0;
 
-	@HostBinding("class.bx--form-item") containerClass = true;
+	@HostBinding("class.bx--form-item") get containerClass() { return !this.toolbar; }
 
 	/**
 	 * `light` or `dark` search theme.
@@ -131,6 +88,10 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() active = false;
 	/**
+	 * Specifies whether the search component is used in the table toolbar.
+	 */
+	@Input() tableSearch = false;
+	/**
 	 * Sets the name attribute on the `input` element.
 	 */
 	@Input() name: string;
@@ -146,6 +107,11 @@ export class Search implements ControlValueAccessor {
 	 * Sets the value attribute on the `input` element.
 	 */
 	@Input() value = "";
+	/**
+	 * Sets the autocomplete attribute on the `input` element.
+	 * For refernece: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+	 */
+	@Input() autocomplete = "on";
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
@@ -254,7 +220,9 @@ export class Search implements ControlValueAccessor {
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
-		if (this.toolbar && event.relatedTarget === null) {
+		if (this.toolbar &&
+			this.inputRef.nativeElement.value === "" &&
+			event.relatedTarget === null) {
 			this.active = false;
 		}
 	}
