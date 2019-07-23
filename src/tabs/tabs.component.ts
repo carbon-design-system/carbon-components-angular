@@ -92,11 +92,11 @@ export class Tabs implements AfterContentInit {
 	 */
 	@Input() isNavigation = false;
 	/**
-	 * Sets the aria label on the `TableHeader`'s nav element.
+	 * Sets the aria label on the `TabHeader`s nav element.
 	 */
 	@Input() ariaLabel: string;
 	/**
-	 * Sets the aria labelledby on the `TableHeader`'s the nav element.
+	 * Sets the aria labelledby on the `TabHeader`s nav element.
 	 */
 	@Input() ariaLabelledby: string;
 
