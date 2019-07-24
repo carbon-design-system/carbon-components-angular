@@ -73,7 +73,7 @@ storiesOf("Breadcrumb", module)
 		<ibm-breadcrumb-item href="#2">
 			Breadcrumb 2
 		</ibm-breadcrumb-item>
-		<ibm-breadcrumb-item ariaCurrent="true" href="#3">
+		<ibm-breadcrumb-item ariaCurrent="page" href="#3">
 			Breadcrumb 3
 		</ibm-breadcrumb-item>
 	</ibm-breadcrumb>`,
