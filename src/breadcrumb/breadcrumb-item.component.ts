@@ -10,7 +10,7 @@ import {
 	<a
 		class="bx--link"
 		href="{{skeleton ? '/#' : href}}"
-		[attr.aria-current]="ariaCurrent"
+		[attr.aria-current]="(current ? ariaCurrent : null)"
 		*ngIf="skeleton || href; else content">
 		<ng-container *ngTemplateOutlet="content"></ng-container>
 	</a>
@@ -23,7 +23,7 @@ export class BreadcrumbItemComponent {
 
 	@Input() skeleton = false;
 
-	@Input() ariaCurrent = "";
+	@Input() ariaCurrent = "page";
 
 	@HostBinding("class.bx--breadcrumb-item--current") @Input() current = false;
 
