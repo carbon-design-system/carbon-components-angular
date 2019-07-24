@@ -7,6 +7,7 @@ export * from "./combobox/combobox.module";
 export * from "./content-switcher/content-switcher.module";
 export * from "./datepicker/datepicker.module";
 export * from "./dialog/dialog.module";
+export * from "./documentation-component/documentation.module";
 export * from "./dropdown/dropdown.module";
 export * from "./experimental.module";
 export * from "./file-uploader/file-uploader.module";

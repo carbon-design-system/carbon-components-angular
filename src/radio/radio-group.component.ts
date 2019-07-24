@@ -39,6 +39,8 @@ export class RadioChange {
 }
 
 /**
+ * [See demo](../../?path=/story/radio--basic)
+ *
  * class: RadioGroup
  *
  * selector: `ibm-radio-group`
@@ -63,11 +65,18 @@ export class RadioChange {
  *
  * Also see: [`Radio`](#ibm-radio)
  *
+ * <example-url>../../iframe.html?id=radio--basic</example-url>
  */
 @Component({
 	selector: "ibm-radio-group",
 	template: `
-		<div class="bx--radio-button-group" role="radiogroup">
+		<div
+			class="bx--radio-button-group"
+			[ngClass]="{
+				'bx--radio-button-group--vertical': orientation === 'vertical',
+				'bx--radio-button-group--label-left': orientation === 'vertical' && labelPlacement === 'left'
+			}"
+			role="radiogroup">
 			<ng-content></ng-content>
 		</div>
 	`,
@@ -84,6 +93,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 * Used for creating the `RadioGroup` 'name' property dynamically.
 	 */
 	static radioGroupCount = 0;
+
+	@Input() orientation: "horizontal" | "vertical" = "horizontal";
+
+	@Input() labelPlacement: "right" | "left" =  "right";
 
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
@@ -139,7 +152,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input()
 	set name(name: string) {
 		this._name = name;
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 	/**
 	 * Returns the associated name of the `RadioGroup`.
@@ -233,13 +246,21 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.onTouched();
 	}
 
-	/**
-	 * Synchronizes the names of the radio items with the name of the `RadioGroup`.
-	 */
 	updateRadioNames() {
+		console.warn("updateRadioNames had been deprecated. Use updateRadios instead");
+		this.updateRadios();
+	}
+
+	/**
+	 * Synchronizes radio properties.
+	 */
+	updateRadios() {
 		if (this.radios) {
 			setTimeout(() => {
 				this.radios.forEach(radio => radio.name = this.name);
+				if (this.labelPlacement === "left") {
+					this.radios.forEach(radio => radio.labelPlacement = "left");
+				}
 			});
 		}
 	}
@@ -253,7 +274,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 
 	ngAfterContentInit() {
 		this.radios.changes.subscribe(() => {
-			this.updateRadioNames();
+			this.updateRadios();
 			this.updateRadioChangeHandler();
 		});
 
@@ -262,7 +283,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	ngAfterViewInit() {
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 
 	/**

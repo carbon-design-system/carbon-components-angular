@@ -7,11 +7,11 @@ import {
 	text
 } from "@storybook/addon-knobs/angular";
 
-import { SelectModule } from "../";
+import { SelectModule, DocumentationModule } from "../";
 
 storiesOf("Select", module).addDecorator(
 	moduleMetadata({
-		imports: [SelectModule]
+		imports: [SelectModule, DocumentationModule]
 	})
 )
 	.addDecorator(withKnobs)
@@ -21,6 +21,7 @@ storiesOf("Select", module).addDecorator(
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[label]="label"
 				[helperText]="helperText"
 				[theme]="theme"
 				[display]="display">
@@ -40,6 +41,7 @@ storiesOf("Select", module).addDecorator(
 			disabled: boolean("Disabled", false),
 			invalid: boolean("Show form validation", false),
 			invalidText: text("Form validation content", "Please select an option."),
+			label: text("Label text", "Select Label"),
 			helperText: text("Helper text", "Optional helper text."),
 			theme: select("Theme", ["dark", "light"], "dark"),
 			display: select("Display", ["default", "inline"], "default")
@@ -67,5 +69,10 @@ storiesOf("Select", module).addDecorator(
 		<div style="width: 300px">
 			<ibm-select skeleton="true"></ibm-select>
 		</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Select.html"></ibm-documentation>
 		`
 	}));

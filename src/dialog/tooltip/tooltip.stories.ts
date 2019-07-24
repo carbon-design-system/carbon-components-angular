@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
-import { DialogModule, PlaceholderModule } from "../../";
+import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
 
 storiesOf("Tooltip", module)
 	.addDecorator(
@@ -11,7 +11,8 @@ storiesOf("Tooltip", module)
 			imports: [
 				DialogModule,
 				PlaceholderModule,
-				InformationFilled16Module
+				InformationFilled16Module,
+				DocumentationModule
 			]
 		})
 	)
@@ -47,7 +48,7 @@ storiesOf("Tooltip", module)
 			triggerText: text("Trigger text", "Tooltip label")
 		}
 	}))
-	.add("no icon", () => ({
+	.add("No icon", () => ({
 		template: `
 				<div>
 					<ng-template #template let-tooltip="tooltip">
@@ -73,7 +74,7 @@ storiesOf("Tooltip", module)
 				triggerText: text("Trigger text", "Tooltip label")
 			}
 		}))
-		.add("only icon", () => ({
+		.add("Only icon", () => ({
 			template: `
 					<div>
 						<ng-template #template let-tooltip="tooltip">
@@ -102,33 +103,8 @@ storiesOf("Tooltip", module)
 					placement: select("Tooltip direction", ["bottom", "top", "left", "right"], "bottom")
 				}
 			}))
-	.add("Icon tooltip", () => ({
+	.add("Documentation", () => ({
 		template: `
-			<ibm-tooltip-icon [placement]="placement" [content]="content">
-				<svg width="16" height="12" viewBox="0 0 16 12">
-					<g fill-rule="nonzero">
-						<path d="M8.05 2a2.5 2.5 0 0 1 4.9 0H16v1h-3.05a2.5 2.5 0 0 1-4.9 0H0V2h8.05zm2.45 2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM3.05
-						 9a2.5 2.5 0 0 1 4.9 0H16v1H7.95a2.5 2.5 0 0 1-4.9 0H0V9h3.05zm2.45 2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
-					</g>
-				</svg>
-			</ibm-tooltip-icon>
-		`,
-		props: {
-			placement: select("Tooltip direction", ["bottom", "top"], "bottom"),
-			content: text("Tooltip content", "Filter")
-		}
-	}))
-	.add("Definition tooltip", () => ({
-		template: `
-			<ibm-tooltip-definition
-				[content]="content"
-				[placement]="placement">
-				{{triggerText}}
-			</ibm-tooltip-definition>
-		`,
-		props: {
-			placement: select("Tooltip direction", ["bottom", "top"], "bottom"),
-			triggerText: text("Tooltip text", "Definition Tooltip"),
-			content: text("Tooltip content", "Brief description of the dotted, underlined word above.")
-		}
+			<ibm-documentation src="documentation/directives/TooltipDirective.html"></ibm-documentation>
+		`
 	}));

@@ -4,8 +4,28 @@ import {
 	Input,
 	ViewEncapsulation
 } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n } from "../../i18n/i18n.module";
 
+/**
+ * Carbon uses feature-flags to toggle the new ui-shell feature.
+ *
+ * To turn on this feature flag, include the feature-flag variable into your SCSS file before importing carbon-components,
+ * then set ui-shell to true.
+ *
+ * ```scss
+ * $feature-flags: (
+ * 	ui-shell: true
+ * );
+ * @import 'carbon-components/src/globals/scss/styles';
+ * ```
+ *
+ * [See demo](../../?path=/story/ui-shell--side-navigation)
+ *
+ * <example-url>../../iframe.html?id=ui-shell--side-navigation</example-url>
+ *
+ * @export
+ * @class SideNav
+ */
 @Component({
 	selector: "ibm-sidenav",
 	template: `

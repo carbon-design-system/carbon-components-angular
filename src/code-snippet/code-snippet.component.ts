@@ -15,9 +15,14 @@ export enum SnippetType {
 }
 
 /**
+ * [See demo](../../?path=/story/code-snippet--basic)
+ *
  * ```html
  * <ibm-code-snippet>Code</ibm-code-snippet>
  * ```
+ *
+ * <example-url>../../iframe.html?id=code-snippet--basic</example-url>
+ *
  * @export
  * @class CodeSnippet
  */

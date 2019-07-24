@@ -28,7 +28,9 @@ import { Tab } from "./tab.component";
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}"
-			role="navigation">
+			role="navigation"
+			[attr.aria-label]="ariaLabel"
+			[attr.aria-labelledby]="ariaLabelledby">
 			<div class="bx--tabs-trigger" tabindex="0" (click)="showTabList()">
 				<a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1">
 					<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
@@ -50,10 +52,14 @@ import { Tab } from "./tab.component";
 				}"
 				class="bx--tabs__nav"
 				role="tablist">
+				<li role="presentation">
+					<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>
+				</li>
 				<li
 					*ngFor="let tab of tabs; let i = index;"
 					[ngClass]="{
-						'bx--tabs__nav-item--selected': tab.active
+						'bx--tabs__nav-item--selected': tab.active,
+						'bx--tabs__nav-item--disabled': tab.disabled
 					}"
 					class="bx--tabs__nav-item"
 					role="presentation"
@@ -79,11 +85,11 @@ import { Tab } from "./tab.component";
 						</ng-template>
 					</a>
 				</li>
+				<li role="presentation">
+					<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>
+				</li>
 			</ul>
 		</nav>
-		<div>
-			<ng-content select="ibm-tab"></ng-content>
-		</div>
 	 `
 })
 
@@ -107,6 +113,17 @@ export class TabHeaders implements AfterContentInit {
 	 * Set to `true` to put tabs in a loading state.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Sets the aria label on the nav element.
+	 */
+	@Input() ariaLabel: string;
+	/**
+	 * Sets the aria labelledby on the nav element.
+	 */
+	@Input() ariaLabelledby: string;
+
+	@Input() contentBefore;
+	@Input() contentAfter;
 
 	/**
 	 * Gets the Unordered List element that holds the `Tab` headings from the view DOM.
@@ -195,6 +212,13 @@ export class TabHeaders implements AfterContentInit {
 		// `"Spacebar"` is IE11 specific value
 		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
 			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
+		}
+	}
+
+	@HostListener("focusout", ["$event"])
+	focusOut(event) {
+		if (this.tabListVisible && event.relatedTarget === null) {
+			this.tabListVisible = false;
 		}
 	}
 

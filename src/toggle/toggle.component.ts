@@ -4,7 +4,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -35,13 +36,25 @@ export class ToggleChange {
 }
 
 /**
+ * [See demo](../../?path=/story/toggle--basic)
+ *
  * ```html
  * <ibm-toggle [(ngModel)]="toggleState">Toggle</ibm-toggle>
  * ```
+ *
+ * <example-url>../../iframe.html?id=toggle--basic</example-url>
+ *
+ * @export
+ * @class Toggle
+ * @extends {Checkbox}
  */
 @Component({
 	selector: "ibm-toggle",
 	template: `
+		<label *ngIf="label" [id]="ariaLabelledby" class="bx--label">
+			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
+			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+		</label>
 		<input
 			class="bx--toggle"
 			type="checkbox"
@@ -55,6 +68,7 @@ export class ToggleChange {
 			[required]="required"
 			[checked]="checked"
 			[disabled]="disabled"
+			[attr.aria-labelledby]="ariaLabelledby"
 			[attr.aria-checked]="checked"
 			(change)="onChange($event)"
 			(click)="onClick($event)">
@@ -110,8 +124,11 @@ export class Toggle extends Checkbox {
 	get onText() {
 		return this._onText;
 	}
-
-
+	/**
+	 * Text that is set as the label of the toggle.
+	 * @type {(string)}
+	 */
+	@Input() label: string | TemplateRef<any>;
 	/**
 	 * Size of the toggle component.
 	 */
@@ -152,5 +169,9 @@ export class Toggle extends Checkbox {
 
 		this.propagateChange(this.checked);
 		this.change.emit(event);
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 }

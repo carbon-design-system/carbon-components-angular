@@ -1,0 +1,46 @@
+<div
+	class="bx--search"
+	[ngClass]="{
+		'bx--search--sm': size === 'sm',
+		'bx--search--xl': size === 'xl',
+		'bx--search--light': theme === 'light',
+		'bx--skeleton': skeleton,
+		'bx--toolbar-search': toolbar,
+		'bx--toolbar-search--active': toolbar && active
+	}"
+	role="search">
+	<label class="bx--label" [for]="id">{{label}}</label>
+
+	<div *ngIf="skeleton; else enableInput" class="bx--search-input"></div>
+	<ng-template #enableInput>
+		<input
+			#input
+			*ngIf="!toolbar || active || value !== ''"
+			class="bx--search-input"
+			[type]="tableSearch || !toolbar ? 'text' : 'search'"
+			role="search"
+			[id]="id"
+			[value]="value"
+			[autocomplete]="autocomplete"
+			[placeholder]="placeholder"
+			[disabled]="disabled"
+			[required]="required"
+			(input)="onSearch($event.target.value)"/>
+		<button *ngIf="!tableSearch && toolbar" class="bx--toolbar-search__btn" (click)="openSearch()">
+			<ibm-icon-search16 class="bx--search-magnifier"></ibm-icon-search16>
+		</button>
+		<ibm-icon-search16 *ngIf="tableSearch || !toolbar" (click)="openSearch()" class="bx--search-magnifier"></ibm-icon-search16>
+	</ng-template>
+
+	<button
+		*ngIf="tableSearch || !toolbar"
+		class="bx--search-close"
+		[ngClass]="{
+			'bx--search-close--hidden': !value || value.length === 0
+		}"
+		[title]="clearButtonTitle"
+		[attr.aria-label]="clearButtonTitle"
+		(click)="clearSearch()">
+		<ibm-icon-close16></ibm-icon-close16>
+	</button>
+</div>

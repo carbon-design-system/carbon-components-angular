@@ -1,13 +1,14 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { TabsModule } from "../";
+import { TabsModule, DocumentationModule } from "../";
 
 storiesOf("Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				TabsModule
+				TabsModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -15,8 +16,10 @@ storiesOf("Tabs", module)
 	.add("Basic", () => ({
 		template: `
 			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
-				<ibm-tab heading="one">foo</ibm-tab>
-				<ibm-tab heading="two">bar</ibm-tab>
+				<ibm-tab heading="one">Tab Content 1</ibm-tab>
+				<ibm-tab heading="two">Tab Content 2</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
+				<ibm-tab heading="four" disabled="true">Tab Content 4</ibm-tab>
 			</ibm-tabs>
 		`,
 		props: {
@@ -55,11 +58,43 @@ storiesOf("Tabs", module)
 			]
 		}
 	}))
+	.add("Width before and after content", () => ({
+		template: `
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">before</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">after</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span after>content after</span>
+			</ibm-tabs>
+			<div style="font-weight: 600; padding-bottom: 10px; padding-top: 20px;">both</div>
+			<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+				<ibm-tab heading="one">foo</ibm-tab>
+				<ibm-tab heading="two">bar</ibm-tab>
+				<span before>content before</span>
+				<span after>content after</span>
+			</ibm-tabs>
+		`,
+		props: {
+			followFocus: boolean("followFocus", true),
+			isNavigation: boolean("isNavigation", false)
+		}
+	}))
 	.add("Skeleton", () => ({
 		template: `
 			<ibm-tabs skeleton="true">
 				<ibm-tab></ibm-tab>
 				<ibm-tab></ibm-tab>
 			</ibm-tabs>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Tabs.html"></ibm-documentation>
 		`
 	}));

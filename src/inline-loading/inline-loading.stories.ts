@@ -2,12 +2,12 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, object } from "@storybook/addon-knobs/angular";
 
-import { InlineLoadingModule, ButtonModule } from "../";
+import { InlineLoadingModule, ButtonModule, DocumentationModule } from "../";
 
 storiesOf("Inline Loading", module)
 	.addDecorator(
 		moduleMetadata({
-			imports: [InlineLoadingModule, ButtonModule]
+			imports: [InlineLoadingModule, ButtonModule, DocumentationModule]
 		})
 	)
 	.addDecorator(withKnobs)
@@ -21,4 +21,9 @@ storiesOf("Inline Loading", module)
 			loadingText: text("The loading text", "Loading data..."),
 			successText: text("The success text", "Data loaded.")
 		}
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/InlineLoading.html"></ibm-documentation>
+		`
 	}));

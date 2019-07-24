@@ -2,13 +2,14 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
-import { AccordionModule } from "../";
+import { AccordionModule, DocumentationModule } from "../";
 
 storiesOf("Accordion", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
-				AccordionModule
+				AccordionModule,
+				DocumentationModule
 			]
 		})
 	)
@@ -62,5 +63,10 @@ storiesOf("Accordion", module)
 					<ibm-accordion-item></ibm-accordion-item>
 				</ibm-accordion>
 			</div>
+		`
+	}))
+	.add("Documentation", () => ({
+		template: `
+			<ibm-documentation src="documentation/components/Accordion.html"></ibm-documentation>
 		`
 	}));

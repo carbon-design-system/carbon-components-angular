@@ -7,6 +7,8 @@ import {
 /**
  * A convinence directive for applying styling to a link.
  *
+ * [See demo](../../?path=/story/link--basic)
+ *
  * Example:
  *
  * ```hmtl
@@ -14,10 +16,16 @@ import {
  * ```
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
+ *
+ * <example-url>../../iframe.html?id=link--basic</example-url>
+ *
+ * @export
+ * @class Link
  */
 @Directive({
 	selector: "[ibmLink]"
 })
+
 
 export class Link {
 	@HostBinding("class.bx--link") baseClass = true;

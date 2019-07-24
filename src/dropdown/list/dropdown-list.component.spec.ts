@@ -57,7 +57,9 @@ describe("Dropdown list", () => {
 
 	it("should select an item", () => {
 		let itemEl = fixture.debugElement.query(By.css("[role='option']"));
-		itemEl.triggerEventHandler("click", null);
+		itemEl.triggerEventHandler("click", {
+			preventDefault: () => {}
+		});
 		expect(wrapper.selected.content).toBe("one");
 	});
 });
@@ -91,9 +93,13 @@ describe("Dropdown multi list", () => {
 
 	it("should multi select", () => {
 		let itemEl = fixture.debugElement.query(By.css("[role='option']:nth-child(1)"));
-		itemEl.triggerEventHandler("click", null);
+		itemEl.triggerEventHandler("click", {
+			preventDefault: () => {}
+		});
 		itemEl = fixture.debugElement.query(By.css("[role='option']:nth-child(2)"));
-		itemEl.triggerEventHandler("click", null);
+		itemEl.triggerEventHandler("click", {
+			preventDefault: () => {}
+		});
 		expect(wrapper.selected.length).toBe(2);
 		expect(wrapper.selected[0].content).toBe("one");
 		expect(wrapper.selected[1].content).toBe("two");

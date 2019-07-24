@@ -46,6 +46,10 @@ export class CheckboxChange {
 }
 
 /**
+ * [See demo](../../?path=/story/checkbox--basic)
+ *
+ * <example-url>../../iframe.html?id=checkbox--basic</example-url>
+ *
  * @export
  * @class Checkbox
  * @implements {ControlValueAccessor}
@@ -76,7 +80,9 @@ export class CheckboxChange {
 			[ngClass]="{
 				'bx--skeleton' : skeleton
 			}">
-			<ng-content></ng-content>
+			<span [ngClass]="{'bx--visually-hidden' : hideLabel}">
+				<ng-content></ng-content>
+			</span>
 		</label>
 	`,
 	providers: [
@@ -114,6 +120,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Set to `true` for a loading checkbox.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Set to `true` to hide the checkbox labels.
+	 */
+	@Input() hideLabel = false;
 	/**
 	 * Sets the name attribute on the `input` element.
 	 */

@@ -3,7 +3,8 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	TemplateRef
 } from "@angular/core";
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
@@ -11,6 +12,15 @@ import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
+/**
+ *  [See demo](../../?path=/story/breadcrumb--basic)
+ *
+ * <example-url>../../iframe.html?id=breadcrumb--basic</example-url>
+ *
+ * @export
+ * @class Breadcrumb
+ * @implements {AfterContentInit}
+ */
 @Component({
 	selector: "ibm-breadcrumb",
 	template: `
@@ -27,12 +37,22 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			<ibm-breadcrumb-item
 				*ngFor="let item of items"
 				[href]="item.href">
-				{{item.content}}
+				<ng-container *ngIf="!item.template">{{item.content}}</ng-container>
+				<ng-template
+					*ngIf="item.template"
+					[ngTemplateOutlet]="item.template"
+					[ngTemplateOutletContext]="{ $implicit: item }">
+				</ng-template>
 			</ibm-breadcrumb-item>
 		</ng-template>
 		<ng-template [ngIf]="shouldShowOverflow">
 			<ibm-breadcrumb-item [href]="first?.href">
-				{{first?.content}}
+				<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>
+				<ng-template
+					*ngIf="first?.template"
+					[ngTemplateOutlet]="first?.template"
+					[ngTemplateOutletContext]="{ $implicit: first }">
+				</ng-template>
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item>
 				<ibm-overflow-menu>
@@ -41,16 +61,31 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 						<a class="bx--overflow-menu-options__btn"
 							href="{{item?.href}}"
 							style="text-decoration: none;">
-							{{item?.content}}
+							<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>
+							<ng-template
+								*ngIf="item?.template"
+								[ngTemplateOutlet]="item?.template"
+								[ngTemplateOutletContext]="{ $implicit: item }">
+							</ng-template>
 						</a>
 					</li>
 				</ibm-overflow-menu>
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item [href]="secondLast?.href">
-				{{secondLast?.content}}
+				<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>
+				<ng-template
+					*ngIf="secondLast?.template"
+					[ngTemplateOutlet]="secondLast?.template"
+					[ngTemplateOutletContext]="{ $implicit: secondLast }">
+				</ng-template>
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item [href]="last?.href">
-				{{last?.content}}
+				<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>
+				<ng-template
+					*ngIf="last?.template"
+					[ngTemplateOutlet]="last?.template"
+					[ngTemplateOutletContext]="{ $implicit: last }">
+				</ng-template>
 			</ibm-breadcrumb-item>
 		</ng-template>
 	</nav>`
