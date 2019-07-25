@@ -1,0 +1,2745 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li>DateTimeModel</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/calendar/date-time-model.class.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disabledDates">disabledDates</a>
+                            </li>
+                            <li>
+                                <a href="#endDate">endDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#monthsTranslateKeys">monthsTranslateKeys</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#shortWeekdaysTranslateKeys">shortWeekdaysTranslateKeys</a>
+                            </li>
+                            <li>
+                                <a href="#startDate">startDate</a>
+                            </li>
+                            <li>
+                                <a href="#weekStart">weekStart</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#dayEnd">dayEnd</a>
+                            </li>
+                            <li>
+                                <a href="#daysOfMonth">daysOfMonth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#dayStart">dayStart</a>
+                            </li>
+                            <li>
+                                <a href="#isDateDisabled">isDateDisabled</a>
+                            </li>
+                            <li>
+                                <a href="#isDateInRange">isDateInRange</a>
+                            </li>
+                            <li>
+                                <a href="#selectDay">selectDay</a>
+                            </li>
+                            <li>
+                                <a href="#selectLastMonth">selectLastMonth</a>
+                            </li>
+                            <li>
+                                <a href="#selectLastQuarter">selectLastQuarter</a>
+                            </li>
+                            <li>
+                                <a href="#selectMonth">selectMonth</a>
+                            </li>
+                            <li>
+                                <a href="#selectMonthEnd">selectMonthEnd</a>
+                            </li>
+                            <li>
+                                <a href="#selectMonthsToDate">selectMonthsToDate</a>
+                            </li>
+                            <li>
+                                <a href="#selectQuarter">selectQuarter</a>
+                            </li>
+                            <li>
+                                <a href="#selectQuarterEnd">selectQuarterEnd</a>
+                            </li>
+                            <li>
+                                <a href="#selectQuarterStart">selectQuarterStart</a>
+                            </li>
+                            <li>
+                                <a href="#selectQuarterToDate">selectQuarterToDate</a>
+                            </li>
+                            <li>
+                                <a href="#selectToday">selectToday</a>
+                            </li>
+                            <li>
+                                <a href="#selectWeek">selectWeek</a>
+                            </li>
+                            <li>
+                                <a href="#selectWeekToDate">selectWeekToDate</a>
+                            </li>
+                            <li>
+                                <a href="#selectYear">selectYear</a>
+                            </li>
+                            <li>
+                                <a href="#selectYearEnd">selectYearEnd</a>
+                            </li>
+                            <li>
+                                <a href="#selectYearStart">selectYearStart</a>
+                            </li>
+                            <li>
+                                <a href="#selectYesterday">selectYesterday</a>
+                            </li>
+                            <li>
+                                <a href="#weekStartDate">weekStartDate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#daysOfWeek">daysOfWeek</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(startDate?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>, endDate?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/calendar/date-time-model.class.ts:102</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>startDate</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>endDate</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabledDates"></a>
+                        <span class="name">
+                            <b>
+                            disabledDates
+                            </b>
+                            <a href="#disabledDates"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>disabledDates:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/calendar/date-time-model.class.ts:83</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>An array of disabled dates and/or date ranges.</p>
+<p>Date is a Javascript <code>Date</code>. Range is an array with a start and end <code>Date</code>.
+If any of those is <code>null</code>, it represents an open range.</p>
+<div><pre class="line-numbers"><code class="language-typescript">     * // dates (July 10th, 2018 and August 10th, 2018)
+     * [new Date(2018, 6, 10), new Date(2018, 7, 10)]
+     *
+     * // date (July 10th, 2018) and a range (from August 10th, 2018 to forever)
+     * [new Date(2018, 6, 10), [new Date(2018, 7, 10), null]]
+     *</code></pre></div></div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="endDate"></a>
+                        <span class="name">
+                            <b>
+                            endDate
+                            </b>
+                            <a href="#endDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>endDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/calendar/date-time-model.class.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>End date of the range.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="monthsTranslateKeys"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            monthsTranslateKeys
+                            </b>
+                            <a href="#monthsTranslateKeys"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>monthsTranslateKeys:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+		&quot;CALENDAR.MONTHS.JANUARY&quot;,
+		&quot;CALENDAR.MONTHS.FEBRUARY&quot;,
+		&quot;CALENDAR.MONTHS.MARCH&quot;,
+		&quot;CALENDAR.MONTHS.APRIL&quot;,
+		&quot;CALENDAR.MONTHS.MAY&quot;,
+		&quot;CALENDAR.MONTHS.JUNE&quot;,
+		&quot;CALENDAR.MONTHS.JULY&quot;,
+		&quot;CALENDAR.MONTHS.AUGUST&quot;,
+		&quot;CALENDAR.MONTHS.SEPTEMBER&quot;,
+		&quot;CALENDAR.MONTHS.OCTOBER&quot;,
+		&quot;CALENDAR.MONTHS.NOVEMBER&quot;,
+		&quot;CALENDAR.MONTHS.DECEMBER&quot;
+	]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/calendar/date-time-model.class.ts:3</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="shortWeekdaysTranslateKeys"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            shortWeekdaysTranslateKeys
+                            </b>
+                            <a href="#shortWeekdaysTranslateKeys"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>shortWeekdaysTranslateKeys:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+		&quot;CALENDAR.SHORTWEEKDAYS.SUNDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.MONDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.TUESDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.WEDNESDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.THURSDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.FRIDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.SATURDAY&quot;
+	]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/calendar/date-time-model.class.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="startDate"></a>
+                        <span class="name">
+                            <b>
+                            startDate
+                            </b>
+                            <a href="#startDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>startDate:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/calendar/date-time-model.class.ts:42</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Start date of the range.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="weekStart"></a>
+                        <span class="name">
+                            <b>
+                            weekStart
+                            </b>
+                            <a href="#weekStart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>weekStart:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/calendar/date-time-model.class.ts:65</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>0 = Sunday
+1 = Monday
+2 = Tuesday
+3 = Wednesday
+4 = Thursday
+5 = Friday
+6 = Saturday</p>
+<p>Defaults to 0 (Sunday)</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dayEnd"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            dayEnd
+                            </b>
+                            <a href="#dayEnd"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>dayEnd(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/calendar/date-time-model.class.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="daysOfMonth"></a>
+                        <span class="name">
+                            <b>
+                            daysOfMonth
+                            </b>
+                            <a href="#daysOfMonth"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>daysOfMonth(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="355" class="link-to-prism">src/calendar/date-time-model.class.ts:355</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns a 2D array representing days of month the way they would be displayed
+in the calendar. With <code>null</code> representing empty days.</p>
+<p>Month of June, 2018, with week starting on Sunday, will return</p>
+<div><pre class="line-numbers"><code class="language-typescript">     * [
+     *     [ null, null, null, null, null, 1, 2 ],
+     *     [ 3, 4, 5, 6, 7, 8, 9 ],
+     *     [ 10, 11, 12, 13, 14, 15, 16 ],
+     *     [ 17, 18, 19, 20, 21, 22, 23 ],
+     *     [ 24, 25, 26, 27, 28, 29, 30 ],
+     *     [ null, null, null, null, null, null, null ]
+     * ]
+     *</code></pre></div></div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Array&lt;Array&lt;number&gt;&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dayStart"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            dayStart
+                            </b>
+                            <a href="#dayStart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>dayStart(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/calendar/date-time-model.class.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isDateDisabled"></a>
+                        <span class="name">
+                            <b>
+                            isDateDisabled
+                            </b>
+                            <a href="#isDateDisabled"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isDateDisabled(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">src/calendar/date-time-model.class.ts:393</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Tells you if <code>day</code> is disabled in <code>disabledDates</code> property.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isDateInRange"></a>
+                        <span class="name">
+                            <b>
+                            isDateInRange
+                            </b>
+                            <a href="#isDateInRange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>isDateInRange(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="424" class="link-to-prism">src/calendar/date-time-model.class.ts:424</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Tells you if <code>day</code> is inside of selected range.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectDay"></a>
+                        <span class="name">
+                            <b>
+                            selectDay
+                            </b>
+                            <a href="#selectDay"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectDay(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/calendar/date-time-model.class.ts:117</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects the full day that <code>day</code> is part of.</p>
+<p>Adjusts <code>startDate</code> and <code>endDate</code></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectLastMonth"></a>
+                        <span class="name">
+                            <b>
+                            selectLastMonth
+                            </b>
+                            <a href="#selectLastMonth"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectLastMonth()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/calendar/date-time-model.class.ts:214</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects previous month.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectLastQuarter"></a>
+                        <span class="name">
+                            <b>
+                            selectLastQuarter
+                            </b>
+                            <a href="#selectLastQuarter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectLastQuarter(date)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/calendar/date-time-model.class.ts:289</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>date</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectMonth"></a>
+                        <span class="name">
+                            <b>
+                            selectMonth
+                            </b>
+                            <a href="#selectMonth"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectMonth(day)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/calendar/date-time-model.class.ts:194</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects month that <code>day</code> belongs to.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectMonthEnd"></a>
+                        <span class="name">
+                            <b>
+                            selectMonthEnd
+                            </b>
+                            <a href="#selectMonthEnd"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectMonthEnd(day)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/calendar/date-time-model.class.ts:205</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects end of month that <code>day</code> belongs to.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectMonthsToDate"></a>
+                        <span class="name">
+                            <b>
+                            selectMonthsToDate
+                            </b>
+                            <a href="#selectMonthsToDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectMonthsToDate(targetDate, monthCount: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/calendar/date-time-model.class.ts:183</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects a <code>monthCount</code> of months ending with the one that <code>targetDate</code> belongs to
+from the beginning of the first until the <code>targetDate</code>, included.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>targetDate</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>monthCount</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>1</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectQuarter"></a>
+                        <span class="name">
+                            <b>
+                            selectQuarter
+                            </b>
+                            <a href="#selectQuarter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectQuarter(quarter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, year)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="258" class="link-to-prism">src/calendar/date-time-model.class.ts:258</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Select a <code>quarter</code> of the <code>year</code>.</p>
+<p><code>quarter</code> ranges from <code>0</code> to <code>3</code>, Q1 being <code>0</code></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>quarter</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>year</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date().getFullYear()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectQuarterEnd"></a>
+                        <span class="name">
+                            <b>
+                            selectQuarterEnd
+                            </b>
+                            <a href="#selectQuarterEnd"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectQuarterEnd(quarter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, year)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/calendar/date-time-model.class.ts:285</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sets an <code>endDate</code> to end of <code>quarter</code> of the <code>year</code>.</p>
+<p><code>quarter</code> ranges from <code>0</code> to <code>3</code>, Q1 being <code>0</code></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>quarter</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>year</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date().getFullYear()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectQuarterStart"></a>
+                        <span class="name">
+                            <b>
+                            selectQuarterStart
+                            </b>
+                            <a href="#selectQuarterStart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectQuarterStart(quarter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, year)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/calendar/date-time-model.class.ts:272</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Sets a <code>startDate</code> to start of <code>quarter</code> of the <code>year</code>.</p>
+<p><code>quarter</code> ranges from <code>0</code> to <code>3</code>, Q1 being <code>0</code></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>quarter</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>year</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date().getFullYear()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectQuarterToDate"></a>
+                        <span class="name">
+                            <b>
+                            selectQuarterToDate
+                            </b>
+                            <a href="#selectQuarterToDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectQuarterToDate(targetDate)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/calendar/date-time-model.class.ts:226</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects a quarter that <code>targetDate</code> belongs to from the first day of the
+quarter to <code>targetDate</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>targetDate</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectToday"></a>
+                        <span class="name">
+                            <b>
+                            selectToday
+                            </b>
+                            <a href="#selectToday"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectToday()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/calendar/date-time-model.class.ts:146</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Convenience function that selects today.</p>
+<p>Adjusts <code>startDate</code> and <code>endDate</code></p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectWeek"></a>
+                        <span class="name">
+                            <b>
+                            selectWeek
+                            </b>
+                            <a href="#selectWeek"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectWeek(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/calendar/date-time-model.class.ts:130</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects the week that <code>day</code> is part of.</p>
+<p>Adjusts <code>startDate</code> and <code>endDate</code></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectWeekToDate"></a>
+                        <span class="name">
+                            <b>
+                            selectWeekToDate
+                            </b>
+                            <a href="#selectWeekToDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectWeekToDate(targetDate)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/calendar/date-time-model.class.ts:170</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects a week that <code>targetDate</code> belongs to from the beginning
+(as set with <code>weekStart</code>) until the <code>targetDate</code>, included.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>targetDate</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectYear"></a>
+                        <span class="name">
+                            <b>
+                            selectYear
+                            </b>
+                            <a href="#selectYear"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectYear(day)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/calendar/date-time-model.class.ts:299</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects year that <code>day</code> belongs to.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectYearEnd"></a>
+                        <span class="name">
+                            <b>
+                            selectYearEnd
+                            </b>
+                            <a href="#selectYearEnd"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectYearEnd(day)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="310" class="link-to-prism">src/calendar/date-time-model.class.ts:310</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects end of year that <code>day</code> belongs to.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectYearStart"></a>
+                        <span class="name">
+                            <b>
+                            selectYearStart
+                            </b>
+                            <a href="#selectYearStart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectYearStart(day)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/calendar/date-time-model.class.ts:319</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects start of year that <code>day</code> belongs to.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectYesterday"></a>
+                        <span class="name">
+                            <b>
+                            selectYesterday
+                            </b>
+                            <a href="#selectYesterday"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>selectYesterday()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/calendar/date-time-model.class.ts:157</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Selects yesterday.</p>
+<p>Adjusts <code>startDate</code> and <code>endDate</code></p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="weekStartDate"></a>
+                        <span class="name">
+                            <b>
+                            weekStartDate
+                            </b>
+                            <a href="#weekStartDate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>weekStartDate(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="330" class="link-to-prism">src/calendar/date-time-model.class.ts:330</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns a week start date for a week that <code>day</code> is in.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>day</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>new Date()</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="daysOfWeek"></a>
+                        <span class="name"><b>daysOfWeek</b><a href="#daysOfWeek"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>daysOfWeek()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/calendar/date-time-model.class.ts:91</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>An array of short week names, starting from <code>weekStart</code>.</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class DateTimeModel {
+
+	static monthsTranslateKeys &#x3D; [
+		&quot;CALENDAR.MONTHS.JANUARY&quot;,
+		&quot;CALENDAR.MONTHS.FEBRUARY&quot;,
+		&quot;CALENDAR.MONTHS.MARCH&quot;,
+		&quot;CALENDAR.MONTHS.APRIL&quot;,
+		&quot;CALENDAR.MONTHS.MAY&quot;,
+		&quot;CALENDAR.MONTHS.JUNE&quot;,
+		&quot;CALENDAR.MONTHS.JULY&quot;,
+		&quot;CALENDAR.MONTHS.AUGUST&quot;,
+		&quot;CALENDAR.MONTHS.SEPTEMBER&quot;,
+		&quot;CALENDAR.MONTHS.OCTOBER&quot;,
+		&quot;CALENDAR.MONTHS.NOVEMBER&quot;,
+		&quot;CALENDAR.MONTHS.DECEMBER&quot;
+	];
+
+	static shortWeekdaysTranslateKeys &#x3D; [
+		&quot;CALENDAR.SHORTWEEKDAYS.SUNDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.MONDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.TUESDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.WEDNESDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.THURSDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.FRIDAY&quot;,
+		&quot;CALENDAR.SHORTWEEKDAYS.SATURDAY&quot;
+	];
+
+	static dayStart(day: Date) {
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate());
+	}
+
+	static dayEnd(day: Date) {
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate(), 23, 59, 59);
+	}
+
+	/**
+	 * Start date of the range.
+	 *
+	 * @type {Date}
+	 * @memberof DateTimeModel
+	 */
+	startDate: Date;
+
+	/**
+	 * End date of the range.
+	 *
+	 * @type {Date}
+	 * @memberof DateTimeModel
+	 */
+	endDate: Date;
+
+	/**
+	 * 0 &#x3D; Sunday
+	 * 1 &#x3D; Monday
+	 * 2 &#x3D; Tuesday
+	 * 3 &#x3D; Wednesday
+	 * 4 &#x3D; Thursday
+	 * 5 &#x3D; Friday
+	 * 6 &#x3D; Saturday
+	 *
+	 * Defaults to 0 (Sunday)
+	 *
+	 * @memberof DateTimeModel
+	 */
+	weekStart &#x3D; 0;
+
+	/**
+	 * An array of disabled dates and/or date ranges.
+	 *
+	 * Date is a Javascript &#x60;Date&#x60;. Range is an array with a start and end &#x60;Date&#x60;.
+	 * If any of those is &#x60;null&#x60;, it represents an open range.
+	 *
+	 * &#x60;&#x60;&#x60;typescript
+	 * // dates (July 10th, 2018 and August 10th, 2018)
+	 * [new Date(2018, 6, 10), new Date(2018, 7, 10)]
+	 *
+	 * // date (July 10th, 2018) and a range (from August 10th, 2018 to forever)
+	 * [new Date(2018, 6, 10), [new Date(2018, 7, 10), null]]
+	 * &#x60;&#x60;&#x60;
+	 *
+	 * @memberof DateTimeModel
+	 */
+	disabledDates &#x3D; [];
+
+	/**
+	 * An array of short week names, starting from &#x60;weekStart&#x60;.
+	 *
+	 * @readonly
+	 * @memberof DateTimeModel
+	 */
+	get daysOfWeek() {
+		const sunday &#x3D; new Date(2018, 5, 10);
+		const result &#x3D; [];
+
+		for (let i &#x3D; this.weekStart; i &lt; this.weekStart + 7; i++) {
+			const day &#x3D; new Date(sunday);
+			day.setDate(day.getDate() + i);
+			result.push(DateTimeModel.shortWeekdaysTranslateKeys[day.getDay()]);
+		}
+
+		return result;
+	}
+
+	constructor(startDate?: Date, endDate?: Date) {
+		this.startDate &#x3D; startDate;
+		this.endDate &#x3D; endDate;
+	}
+
+	/**
+	 * Selects the full day that &#x60;day&#x60; is part of.
+	 *
+	 * Adjusts &#x60;startDate&#x60; and &#x60;endDate&#x60;
+	 *
+	 * @param {Date} [day&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectDay(day: Date &#x3D; new Date()) {
+		this.startDate &#x3D; DateTimeModel.dayStart(day);
+		this.endDate &#x3D; DateTimeModel.dayEnd(day);
+	}
+
+	/**
+	 * Selects the week that &#x60;day&#x60; is part of.
+	 *
+	 * Adjusts &#x60;startDate&#x60; and &#x60;endDate&#x60;
+	 *
+	 * @param {Date} [day&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectWeek(day: Date &#x3D; new Date()) {
+		this.startDate &#x3D; this.weekStartDate(day);
+		this.endDate &#x3D; this.weekStartDate(day);
+		this.endDate.setDate(this.endDate.getDate() + 6);
+		this.endDate.setHours(23);
+		this.endDate.setMinutes(59);
+		this.endDate.setSeconds(59);
+	}
+
+	/**
+	 * Convenience function that selects today.
+	 *
+	 * Adjusts &#x60;startDate&#x60; and &#x60;endDate&#x60;
+	 *
+	 * @memberof DateTimeModel
+	 */
+	selectToday() {
+		this.selectDay(new Date());
+	}
+
+	/**
+	 * Selects yesterday.
+	 *
+	 * Adjusts &#x60;startDate&#x60; and &#x60;endDate&#x60;
+	 *
+	 * @memberof DateTimeModel
+	 */
+	selectYesterday() {
+		const yesterday &#x3D; new Date();
+		yesterday.setDate(yesterday.getDate() - 1);
+		this.selectDay(yesterday);
+	}
+
+	/**
+	 * Selects a week that &#x60;targetDate&#x60; belongs to from the beginning
+	 * (as set with &#x60;weekStart&#x60;) until the &#x60;targetDate&#x60;, included.
+	 *
+	 * @param {*} [targetDate&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectWeekToDate(targetDate &#x3D; new Date()) {
+		this.startDate &#x3D; this.weekStartDate(targetDate);
+		this.endDate &#x3D; targetDate;
+	}
+
+	/**
+	 * Selects a &#x60;monthCount&#x60; of months ending with the one that &#x60;targetDate&#x60; belongs to
+	 * from the beginning of the first until the &#x60;targetDate&#x60;, included.
+	 *
+	 * @param {*} [targetDate&#x3D;new Date()]
+	 * @param {number} [monthCount&#x3D;1]
+	 * @memberof DateTimeModel
+	 */
+	selectMonthsToDate(targetDate &#x3D; new Date(), monthCount &#x3D; 1) {
+		this.startDate &#x3D; new Date(targetDate.getFullYear(), targetDate.getMonth() - monthCount + 1, 1);
+		this.endDate &#x3D; targetDate;
+	}
+
+	/**
+	 * Selects month that &#x60;day&#x60; belongs to.
+	 *
+	 * @param {*} [day&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectMonth(day &#x3D; new Date()) {
+		this.startDate &#x3D; new Date(day.getFullYear(), day.getMonth(), 1);
+		this.selectMonthEnd(day);
+	}
+
+	/**
+	 * Selects end of month that &#x60;day&#x60; belongs to.
+	 *
+	 * @param {*} [day&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectMonthEnd(day &#x3D; new Date()) {
+		this.endDate &#x3D; new Date(day.getFullYear(), day.getMonth() + 1, 0, 23, 59, 59);  // 0 selects last day of previous month
+	}
+
+	/**
+	 * Selects previous month.
+	 *
+	 * @memberof DateTimeModel
+	 */
+	selectLastMonth() {
+		const now &#x3D; new Date();
+		this.selectMonth(new Date(now.getFullYear(), now.getMonth() - 1, 1));
+	}
+
+	/**
+	 * Selects a quarter that &#x60;targetDate&#x60; belongs to from the first day of the
+	 * quarter to &#x60;targetDate&#x60;.
+	 *
+	 * @param {*} [targetDate&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarterToDate(targetDate &#x3D; new Date()) {
+		const year &#x3D; targetDate.getFullYear();
+		const time &#x3D; targetDate.getTime();
+		const quarters &#x3D; [new Date(year, 0, 1), new Date(year, 3, 1), new Date(year, 6, 1), new Date(year, 9, 1)];
+		const quarterTimes &#x3D; quarters.map(q &#x3D;&gt; q.getTime());
+
+		if (quarterTimes[0] &lt; time &amp;&amp; time &lt; quarterTimes[1]) {
+			// Q1
+			this.startDate &#x3D; quarters[0];
+		} else if (quarterTimes[1] &lt; time &amp;&amp; time &lt; quarterTimes[2]) {
+			// Q2
+			this.startDate &#x3D; quarters[1];
+		} else if (quarterTimes[2] &lt; time &amp;&amp; time &lt; quarterTimes[3]) {
+			// Q3
+			this.startDate &#x3D; quarters[2];
+		} else {
+			// Q4
+			this.startDate &#x3D; quarters[3];
+		}
+
+		this.endDate &#x3D; targetDate;
+	}
+
+	/**
+	 * Select a &#x60;quarter&#x60; of the &#x60;year&#x60;.
+	 *
+	 * &#x60;quarter&#x60; ranges from &#x60;0&#x60; to &#x60;3&#x60;, Q1 being &#x60;0&#x60;
+	 *
+	 * @param {number} quarter
+	 * @param {*} [year&#x3D;new Date().getFullYear()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarter(quarter: number, year &#x3D; new Date().getFullYear()) {
+		this.selectQuarterStart(quarter, year);
+		this.selectQuarterEnd(quarter, year);
+	}
+
+	/**
+	 * Sets a &#x60;startDate&#x60; to start of &#x60;quarter&#x60; of the &#x60;year&#x60;.
+	 *
+	 * &#x60;quarter&#x60; ranges from &#x60;0&#x60; to &#x60;3&#x60;, Q1 being &#x60;0&#x60;
+	 *
+	 * @param {number} quarter
+	 * @param {*} [year&#x3D;new Date().getFullYear()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarterStart(quarter: number, year &#x3D; new Date().getFullYear()) {
+		this.startDate &#x3D; new Date(year, quarter * 3, 1);
+	}
+
+	/**
+	 * Sets an &#x60;endDate&#x60; to end of &#x60;quarter&#x60; of the &#x60;year&#x60;.
+	 *
+	 * &#x60;quarter&#x60; ranges from &#x60;0&#x60; to &#x60;3&#x60;, Q1 being &#x60;0&#x60;
+	 *
+	 * @param {number} quarter
+	 * @param {*} [year&#x3D;new Date().getFullYear()]
+	 * @memberof DateTimeModel
+	 */
+	selectQuarterEnd(quarter: number, year &#x3D; new Date().getFullYear()) {
+		this.endDate &#x3D; new Date(year, (quarter + 1) * 3, 0, 23, 59, 59);
+	}
+
+	selectLastQuarter(date &#x3D; new Date()) {
+		this.selectQuarter(date.getMonth() / 3, date.getFullYear());
+	}
+
+	/**
+	 * Selects year that &#x60;day&#x60; belongs to.
+	 *
+	 * @param {*} [day&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectYear(day &#x3D; new Date()) {
+		this.selectYearStart(day);
+		this.selectYearEnd(day);
+	}
+
+	/**
+	 * Selects end of year that &#x60;day&#x60; belongs to.
+	 *
+	 * @param {*} [day&#x3D;new Date()]
+	 * @memberof DateTimeModel
+	 */
+	selectYearEnd(day &#x3D; new Date()) {
+		this.endDate &#x3D; new Date(day.getFullYear(), 11, 31, 23, 59, 59);  // 31st of December of given year
+	}
+
+	/**
+	 * Selects start of year that &#x60;day&#x60; belongs to.
+	 *
+	 * @memberof DateTimeModel
+	 */
+	selectYearStart(day &#x3D; new Date()) {
+		this.startDate &#x3D; new Date(day.getFullYear(), 0, 1);  // 1st of January
+	}
+
+	/**
+	 * Returns a week start date for a week that &#x60;day&#x60; is in.
+	 *
+	 * @param {Date} [day&#x3D;new Date()]
+	 * @returns {Date}
+	 * @memberof DateTimeModel
+	 */
+	weekStartDate(day: Date &#x3D; new Date()): Date {
+		return new Date(day.getFullYear(), day.getMonth(), day.getDate() - day.getDay() + this.weekStart);
+	}
+
+	/**
+	 * Returns a 2D array representing days of month the way they would be displayed
+	 * in the calendar. With &#x60;null&#x60; representing empty days.
+	 *
+	 * Month of June, 2018, with week starting on Sunday, will return
+	 *
+	 * &#x60;&#x60;&#x60;typescript
+	 * [
+	 * 	[ null, null, null, null, null, 1, 2 ],
+	 * 	[ 3, 4, 5, 6, 7, 8, 9 ],
+	 * 	[ 10, 11, 12, 13, 14, 15, 16 ],
+	 * 	[ 17, 18, 19, 20, 21, 22, 23 ],
+	 * 	[ 24, 25, 26, 27, 28, 29, 30 ],
+	 * 	[ null, null, null, null, null, null, null ]
+	 * ]
+	 * &#x60;&#x60;&#x60;
+	 *
+	 * @param {Date} [day&#x3D;new Date()]
+	 * @returns {Array&lt;Array&lt;number&gt;&gt;}
+	 * @memberof DateTimeModel
+	 */
+	daysOfMonth(day: Date &#x3D; new Date()): Array&lt;Array&lt;number&gt;&gt; {
+		const weeks &#x3D; [];
+
+		const firstOfTheMonth &#x3D; new Date(day.getFullYear(), day.getMonth(), 1);
+		const lastOfTheMonth &#x3D; new Date(day.getFullYear(), day.getMonth() + 1, 0);
+		let dayIndex &#x3D; 1;
+
+		for (let w &#x3D; 1; w &lt; 7; w++) {
+			const week &#x3D; [];
+			for (let d &#x3D; 0; d &lt; 7; d++) {
+				if (w &#x3D;&#x3D;&#x3D; 1) {
+					// first week is special, we have to determine when to start
+					if (d &gt;&#x3D; firstOfTheMonth.getDay() + this.weekStart) {
+						week.push(dayIndex++);
+					} else {
+						week.push(null);
+					}
+				} else if (dayIndex &lt;&#x3D; lastOfTheMonth.getDate()) {
+					// every other day of the month
+					week.push(dayIndex++);
+				} else {
+					// except for when month ends
+					week.push(null);
+				}
+			}
+			weeks.push(week);
+		}
+
+		return weeks;
+	}
+
+	/**
+	 * Tells you if &#x60;day&#x60; is disabled in &#x60;disabledDates&#x60; property.
+	 *
+	 * @param {Date} day
+	 * @returns
+	 * @memberof DateTimeModel
+	 */
+	isDateDisabled(day: Date) {
+		for (let i &#x3D; 0; i &lt; this.disabledDates.length; i++) {
+			const dd &#x3D; this.disabledDates[i];
+
+			if (Array.isArray(dd)) {
+				if (dd.length !&#x3D;&#x3D; 2) {
+					console.warn(dd, &quot;should have length of 2, range start and range end. They can be set to &#x60;null&#x60; for open range.&quot;);
+				} else if (
+					!dd[0] &amp;&amp; dd[1] &amp;&amp; day.getTime() &lt;&#x3D; dd[1].getTime() ||
+					dd[0] &amp;&amp; !dd[1] &amp;&amp; day.getTime() &gt;&#x3D; dd[0].getTime() ||
+					!dd[0] &amp;&amp; !dd[1] ||
+					dd[0] &amp;&amp; dd[1] &amp;&amp; day.getTime() &lt;&#x3D; dd[1].getTime() &amp;&amp; day.getTime() &gt;&#x3D; dd[0].getTime()) {
+						return true;
+				}
+			} else if (
+				day.getFullYear() &#x3D;&#x3D;&#x3D; dd.getFullYear() &amp;&amp;
+				day.getMonth() &#x3D;&#x3D;&#x3D; dd.getMonth() &amp;&amp;
+				day.getDate() &#x3D;&#x3D;&#x3D; dd.getDate()) {
+					return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Tells you if &#x60;day&#x60; is inside of selected range.
+	 *
+	 * @param {Date} day
+	 * @returns
+	 * @memberof DateTimeModel
+	 */
+	isDateInRange(day: Date) {
+		const time &#x3D; day.getTime();
+		return this.startDate &amp;&amp; this.endDate &amp;&amp; this.startDate.getTime() &lt;&#x3D; time &amp;&amp; time &lt;&#x3D; this.endDate.getTime();
+	}
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'DateTimeModel.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
