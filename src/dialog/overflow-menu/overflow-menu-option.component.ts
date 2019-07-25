@@ -28,8 +28,8 @@ import {
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
-			(focus)="tabIndex = 0"
-			(blur)="tabIndex = -1"
+			(focus)="onFocus()"
+			(blur)="onBlur()"
 			(click)="onClick($event)"
 			[disabled]="disabled"
 			[attr.title]="title">
@@ -41,8 +41,8 @@ import {
 			class="bx--overflow-menu-options__btn"
 			role="menuitem"
 			[tabindex]="tabIndex"
-			(focus)="tabIndex = 0"
-			(blur)="tabIndex = -1"
+			(focus)="onFocus()"
+			(blur)="onBlur()"
 			(click)="onClick($event)"
 			[attr.disabled]="disabled"
 			[href]="href"
@@ -88,8 +88,16 @@ export class OverflowMenuOption implements AfterViewInit {
 
 	constructor(protected elementRef: ElementRef) {}
 
-	onClick(event) {
+	onClick() {
 		this.selected.emit();
+	}
+
+	onFocus() {
+		setTimeout(() => this.tabIndex = 0);
+	}
+
+	onBlur() {
+		setTimeout(() => this.tabIndex = -1);
 	}
 
 	ngAfterViewInit() {

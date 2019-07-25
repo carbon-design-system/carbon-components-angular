@@ -142,7 +142,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	modalState: "in" | "out" = "out";
 
 	/**
-	 * An element should have 'data-modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
+	 * An element should have 'modal-primary-focus' as an attribute to receive initial focus within the `Modal` component.
 	 */
 	selectorPrimaryFocus = "[modal-primary-focus]";
 
@@ -164,13 +164,13 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	ngAfterViewInit() {
 		const primaryFocusElement = this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
 		if (primaryFocusElement && primaryFocusElement.focus) {
-			primaryFocusElement.focus();
+			setTimeout(() => primaryFocusElement.focus());
 			return;
 		}
 		if (getFocusElementList(this.modal.nativeElement).length > 0) {
-			getFocusElementList(this.modal.nativeElement)[0].focus();
+			setTimeout(() => getFocusElementList(this.modal.nativeElement)[0].focus());
 		} else {
-			this.modal.nativeElement.focus();
+			setTimeout(() => this.modal.nativeElement.focus());
 		}
 	}
 
