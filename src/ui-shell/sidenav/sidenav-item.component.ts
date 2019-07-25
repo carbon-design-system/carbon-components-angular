@@ -1,6 +1,9 @@
-import { Component, Input, Sanitizer } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 
+/**
+ * `SideNavItem` can either be a child of `SideNav` or `SideNavMenu`
+ */
 @Component({
 	selector: "ibm-sidenav-item",
 	template: `

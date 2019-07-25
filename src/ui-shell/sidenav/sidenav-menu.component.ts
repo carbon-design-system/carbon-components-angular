@@ -7,6 +7,9 @@ import {
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
 
+/**
+ * `SideNavMenu` provides a method to group `SideNavItem`s under a common heading.
+ */
 @Component({
 	selector: "ibm-sidenav-menu",
 	template: `
@@ -42,11 +45,16 @@ import { SideNavItem } from "./sidenav-item.component";
 	`
 })
 export class SideNavMenu implements AfterContentInit {
+	/**
+	 * Heading for the gorup
+	 */
 	@Input() title: string;
+	/**
+	 * Controls the visibility of the child `SideNavItem`s
+	 */
+	@Input() expanded = false;
 
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
-
-	@Input() expanded = false;
 
 	ngAfterContentInit() {
 		this.sidenavItems.forEach(item => {
