@@ -7,17 +7,7 @@ import {
 import { I18n } from "../../i18n/i18n.module";
 
 /**
- * Carbon uses feature-flags to toggle the new ui-shell feature.
- *
- * To turn on this feature flag, include the feature-flag variable into your SCSS file before importing carbon-components,
- * then set ui-shell to true.
- *
- * ```scss
- * $feature-flags: (
- * 	ui-shell: true
- * );
- * @import 'carbon-components/src/globals/scss/styles';
- * ```
+ * `Sidenav` is a fixed left navigation that may contain `SideNavItem`s or `SideNavMenu`s
  *
  * [See demo](../../?path=/story/ui-shell--side-navigation)
  *
@@ -39,6 +29,7 @@ import { I18n } from "../../i18n/i18n.module";
 			</ul>
 			<footer class="bx--side-nav__footer">
 				<button
+					*ngIf="allowExpansion"
 					class="bx--side-nav__toggle"
 					type="button"
 					[title]="(expanded ? i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_CLOSE') : i18n.get('UI_SHELL.SIDE_NAV.TOGGLE_OPEN')) | async"
@@ -81,7 +72,16 @@ import { I18n } from "../../i18n/i18n.module";
 export class SideNav {
 	@HostBinding("attr.role") role = "complementary";
 	@HostBinding("class.bx--side-nav") hostClass = true;
-	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = false;
+	/**
+	 * Controls the expanded (`true`) or collapsed (`false`) state when on a small screen.
+	 */
+	@HostBinding("class.bx--side-nav--expanded") @Input() expanded = true;
+	/**
+	 * Controls the hidden (`true`) or visible (`false`) state
+	 */
+	@HostBinding("class.bx--side-nav--hidden") @Input() hidden = false;
+	@HostBinding("class.bx--side-nav--ux") ux = true;
+	@Input() allowExpansion = false;
 
 	constructor(public i18n: I18n) { }
 

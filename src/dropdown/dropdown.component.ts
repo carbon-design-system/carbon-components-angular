@@ -297,7 +297,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 					this.propagateChange(null);
 				}
 			}
-			this.selected.emit(event);
+			// only emit selected for "organic" selections
+			if (!event.isUpdate) {
+				this.selected.emit(event);
+			}
 		});
 	}
 
