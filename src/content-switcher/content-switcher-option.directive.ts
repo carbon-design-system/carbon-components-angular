@@ -54,6 +54,7 @@ export class ContentSwitcherOption {
 	@HostListener("focus")
 	onFocus() {
 		this.active = true;
+		this.selected.emit(true);
 	}
 
 	@HostListener("blur", ["$event"])
