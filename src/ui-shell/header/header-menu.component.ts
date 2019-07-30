@@ -1,5 +1,14 @@
-import { Component, Input, HostBinding, HostListener } from "@angular/core";
+import {
+	Component,
+	Input,
+	HostListener,
+	ElementRef
+} from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 
+/**
+ * Dropdown menu container for navigation items.
+ */
 @Component({
 	selector: "ibm-header-menu",
 	template: `
@@ -8,7 +17,7 @@ import { Component, Input, HostBinding, HostListener } from "@angular/core";
 			style="height: 100%">
 			<a
 				class="bx--header__menu-item bx--header__menu-title"
-				href="javascript:void(0)"
+				[href]="href"
 				role="menuitem"
 				tabindex="0"
 				aria-haspopup="true"
@@ -25,17 +34,47 @@ import { Component, Input, HostBinding, HostListener } from "@angular/core";
 	`
 })
 export class HeaderMenu {
-	@Input() title;
+	@Input() title: string;
+	@Input() set href(v: string) {
+		this._href = v;
+	}
 
-	expanded = false;
+	get href() {
+		return this.domSanitizer.bypassSecurityTrustUrl(this._href) as string;
+	}
+	@Input() trigger: "click" | "mouseover" = "click";
+
+	public expanded = false;
+
+	protected _href = "javascript:void(0)";
+
+	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) { }
+
+	@HostListener("click")
+	onClick() {
+		if (this.trigger === "click") {
+			this.expanded = !this.expanded;
+		}
+	}
 
 	@HostListener("mouseover")
 	onMouseOver() {
-		this.expanded = true;
+		if (this.trigger === "mouseover") {
+			this.expanded = true;
+		}
 	}
 
 	@HostListener("mouseout")
 	onMouseOut() {
-		this.expanded = false;
+		if (this.trigger === "mouseover") {
+			this.expanded = false;
+		}
+	}
+
+	@HostListener("focusout", ["$event"])
+	onFocusOut(event) {
+		if (!this.elementRef.nativeElement.contains(event.relatedTarget)) {
+			this.expanded = false;
+		}
 	}
 }

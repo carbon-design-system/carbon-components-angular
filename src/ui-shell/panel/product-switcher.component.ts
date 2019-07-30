@@ -1,5 +1,8 @@
 import { Component, HostBinding, Input } from "@angular/core";
 
+/**
+ * @deprecated `ibm-product-x` selectors and components are deprecated and will be removed in the next major version
+ */
 @Component({
 	selector: "ibm-product-switcher",
 	template: `
