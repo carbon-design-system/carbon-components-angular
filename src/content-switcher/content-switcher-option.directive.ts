@@ -56,11 +56,4 @@ export class ContentSwitcherOption {
 		this.active = true;
 		this.selected.emit(true);
 	}
-
-	@HostListener("blur", ["$event"])
-	onBlur(event) {
-		if (event.relatedTarget && event.relatedTarget.classList.contains("bx--content-switcher-btn")) {
-			this.active = false;
-		}
-	}
 }
