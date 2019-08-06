@@ -12,6 +12,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { I18n } from "../i18n/i18n.module";
 
 /**
+ * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
  * Used to emit changes performed on search components.
  */
 export class SearchChange {
@@ -125,9 +126,18 @@ export class Search implements ControlValueAccessor {
 	 */
 	@Input() clearButtonTitle = this.i18n.get().SEARCH.CLEAR_BUTTON;
 	/**
+	 * @deprecated in favor of `valueChange`, to be removed in the next major carbon-components-angular version
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<SearchChange>();
+	/**
+	 * Emits an event when value is changed.
+	 */
+	@Output() valueChange = new EventEmitter<string>();
+	/**
+	 * Emits an event when the clear button is clicked.
+	 */
+	@Output() clear = new EventEmitter();
 
 	@ViewChild("input") inputRef: ElementRef;
 
@@ -180,7 +190,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	onSearch(search: string) {
 		this.value = search;
-		this.emitChangeEvent();
+		this.doValueChange();
 	}
 
 	/**
@@ -188,17 +198,16 @@ export class Search implements ControlValueAccessor {
 	 */
 	clearSearch(): void {
 		this.value = "";
-		this.emitChangeEvent();
+		this.clear.emit();
+		this.propagateChange(this.value);
 	}
 
-	/**
-	 * Creates a class of `RadioChange` to emit the change in the `RadioGroup`.
-	 */
-	emitChangeEvent() {
+	doValueChange() {
 		let event = new SearchChange();
 		event.source = this;
 		event.value = this.value;
 		this.change.emit(event);
+		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
 	}
 
