@@ -36,7 +36,9 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 		<ng-template [ngIf]="!shouldShowOverflow">
 			<ibm-breadcrumb-item
 				*ngFor="let item of items"
-				[href]="item.href">
+				[href]="item.href"
+				[current]="item.current"
+				[ariaCurrent]="item.ariaCurrent">
 				<ng-container *ngIf="!item.template">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="item.template"
@@ -46,7 +48,10 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			</ibm-breadcrumb-item>
 		</ng-template>
 		<ng-template [ngIf]="shouldShowOverflow">
-			<ibm-breadcrumb-item [href]="first?.href">
+			<ibm-breadcrumb-item
+				[href]="first?.href"
+				[current]="first?.current"
+				[ariaCurrent]="first?.ariaCurrent">
 				<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>
 				<ng-template
 					*ngIf="first?.template"
@@ -71,7 +76,10 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					</li>
 				</ibm-overflow-menu>
 			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item [href]="secondLast?.href">
+			<ibm-breadcrumb-item
+				[href]="secondLast?.href"
+				[current]="secondLast?.current"
+				[ariaCurrent]="secondLast?.ariaCurrent">
 				<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>
 				<ng-template
 					*ngIf="secondLast?.template"
@@ -79,7 +87,10 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 					[ngTemplateOutletContext]="{ $implicit: secondLast }">
 				</ng-template>
 			</ibm-breadcrumb-item>
-			<ibm-breadcrumb-item [href]="last?.href">
+			<ibm-breadcrumb-item
+				[href]="last?.href"
+				[current]="last?.current"
+				[ariaCurrent]="last?.ariaCurrent">
 				<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>
 				<ng-template
 					*ngIf="last?.template"
