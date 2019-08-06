@@ -1,18 +1,8 @@
 import { Component, Input } from "@angular/core";
 
 /**
- * Carbon uses feature-flags to toggle the new ui-shell feature.
- *
- * To turn on this feature flag, include the feature-flag variable into your SCSS file before importing carbon-components,
- * then set ui-shell to true.
- *
- * ```scss
- * $feature-flags: (
- * 	ui-shell: true
- * );
- * @import 'carbon-components/src/globals/scss/styles';
- * ```
- *
+ * `Panel` is a component that can be used to display content on the right side of the screen.
+ * `Panel`s are generally activated by and linked to a `HeaderAction` component.
  */
 @Component({
 	selector: "ibm-panel",
@@ -27,5 +17,8 @@ import { Component, Input } from "@angular/core";
 	`
 })
 export class Panel {
+	/**
+	 * Controls the visibility of the panel
+	 */
 	@Input() expanded = false;
 }

@@ -6,7 +6,6 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { range } from "../common/utils";
 import { I18n } from "./../i18n/i18n.module";
 import { ExperimentalService } from "./../experimental.module";
 
@@ -106,10 +105,24 @@ import { ExperimentalService } from "./../experimental.module";
 					'bx--select__page-number' : isExperimental
 				}">
 					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText | async}}</label>
-					<select [id]="currentPageSelectId" class="bx--select-input" [(ngModel)]="currentPage">
-						<option *ngFor="let i of range(lastPage + 1, 1)" class="bx--select-option" [value]="i">{{i}}</option>
+					<input
+						*ngIf="pageOptions.length > pageSelectThreshold"
+						style="padding-right: 1rem; margin-right: 1rem;"
+						[id]="currentPageSelectId"
+						type="number"
+						min="1"
+						[max]="pageOptions.length"
+						class="bx--select-input"
+						[(ngModel)]="currentPage">
+					<select
+						*ngIf="pageOptions.length <= pageSelectThreshold"
+						[id]="currentPageSelectId"
+						class="bx--select-input"
+						[(ngModel)]="currentPage">
+						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<ibm-icon-chevron-down16
+						*ngIf="pageOptions.length <= 1000"
 						style="display: inherit;"
 						innerClass="bx--select__arrow"
 						[ariaLabel]="optionsListText | async">
@@ -175,6 +188,7 @@ export class Pagination {
 	 * Set to `true` if the total number of items is unknown.
 	 */
 	@Input() pagesUnknown = false;
+	@Input() pageSelectThreshold = 1000;
 
 	/**
 	 * Expects an object that contains some or all of:
@@ -290,6 +304,13 @@ export class Pagination {
 		return this.experimental.isExperimental;
 	}
 
+	get pageOptions() {
+		if (this._pageOptions.length !== this.model.totalDataLength) {
+			this._pageOptions = Array(Math.ceil(this.model.totalDataLength / this.itemsPerPage));
+		}
+		return this._pageOptions;
+	}
+
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
@@ -303,16 +324,9 @@ export class Pagination {
 	pageText = this.i18n.get("PAGINATION.PAGE");
 	ofLastPagesText = this.i18n.get("PAGINATION.OF_LAST_PAGES");
 
+	protected _pageOptions = [];
+
 	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
 		Pagination.paginationCounter++;
-	}
-
-	/**
-	 * Generates a list of numbers. (Python function)
-	 * Used to display the correct pagination controls.
-	 * @returns {array}
-	 */
-	range(stop: number, start = 0, step = 1) {
-		return range(stop, start, step);
 	}
 }

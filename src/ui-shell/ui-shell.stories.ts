@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
@@ -21,7 +22,7 @@ storiesOf("UI Shell", module)
 	.add("Header", () => ({
 		template: `
 			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger"></ibm-hamburger>
+				<ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
 				<ibm-header-navigation>
 					<ibm-header-item>Catalog</ibm-header-item>
 					<ibm-header-item>Docs</ibm-header-item>
@@ -60,23 +61,12 @@ storiesOf("UI Shell", module)
 		`,
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
-			menuClicked: () => { }
+			expanded: action("Menu clicked")
 		}
 	}))
 	.add("Side Navigation", () => ({
 		template: `
 			<ibm-sidenav>
-				<ibm-sidenav-header title="Side navigation title" [options]="options">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
-				</ibm-sidenav-header>
 				<ibm-sidenav-item>
 					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 						<path
@@ -137,7 +127,7 @@ storiesOf("UI Shell", module)
 	.add("Together", () => ({
 		template: `
 			<ibm-header name="[Platform]">
-				<ibm-hamburger *ngIf="hasHamburger"></ibm-hamburger>
+				<ibm-hamburger *ngIf="hasHamburger" [active]="active" (selected)="selected()"></ibm-hamburger>
 				<ibm-header-navigation>
 					<ibm-header-item>Catalog</ibm-header-item>
 					<ibm-header-item>Docs</ibm-header-item>
@@ -177,18 +167,7 @@ storiesOf("UI Shell", module)
 					</ibm-header-action>
 				</ibm-header-global>
 			</ibm-header>
-			<ibm-sidenav>
-				<ibm-sidenav-header title="Side navigation title" [options]="options">
-					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-						<path
-							d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-							12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-							23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-							14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-							10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-							10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-					</svg>
-				</ibm-sidenav-header>
+			<ibm-sidenav [expanded]="active">
 				<ibm-sidenav-item>
 					<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
 						<path
@@ -228,36 +207,20 @@ storiesOf("UI Shell", module)
 					<ibm-sidenav-item>Link</ibm-sidenav-item>
 				</ibm-sidenav-menu>
 			</ibm-sidenav>
-			<ibm-panel [expanded]="firstAction.active">
-				<ibm-product-switcher header="My Products">
-					<ibm-search size="sm" theme="light"></ibm-search>
-					<ibm-product-switcher-list>
-						<ibm-product-switcher-list-item>
-							<svg icon width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-								<path
-									d="M8.24 25.14L7 26.67a14 14 0 0 0 4.18 2.44l.68-1.88a12
-									12 0 0 1-3.62-2.09zm-4.05-7.07l-2 .35A13.89 13.89 0 0 0 3.86
-									23l1.73-1a11.9 11.9 0 0 1-1.4-3.93zm7.63-13.31l-.68-1.88A14
-									14 0 0 0 7 5.33l1.24 1.53a12 12 0 0 1 3.58-2.1zM5.59
-									10L3.86 9a13.89 13.89 0 0 0-1.64 4.54l2 .35A11.9 11.9 0 0 1 5.59
-									10zM16 2v2a12 12 0 0 1 0 24v2a14 14 0 0 0 0-28z" />
-							</svg>
-							One
-							<ibm-overflow-menu flip="true">
-								<ibm-overflow-menu-option>Option 1</ibm-overflow-menu-option>
-								<ibm-overflow-menu-option>Option 2</ibm-overflow-menu-option>
-							</ibm-overflow-menu>
-						</ibm-product-switcher-list-item>
-					</ibm-product-switcher-list>
-					<ibm-product-switcher-item>
-						<button class="bx--product-switcher__all-btn">View all products</button>
-					</ibm-product-switcher-item>
-				</ibm-product-switcher>
+			<ibm-panel [expanded]="firstAction.active"></ibm-panel>
+			<ibm-panel [expanded]="secondAction.active">
+				<ibm-switcher-list>
+					<ibm-switcher-list-item active="true">Switcher item one</ibm-switcher-list-item>
+					<ibm-switcher-list-item>Switcher item two</ibm-switcher-list-item>
+					<ibm-switcher-list-item>Switcher item three</ibm-switcher-list-item>
+					<ibm-switcher-list-item>Switcher item four</ibm-switcher-list-item>
+				</ibm-switcher-list>
 			</ibm-panel>
-			<ibm-panel [expanded]="secondAction.active"></ibm-panel>
 		`,
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
+			active: boolean("Left panel active", true),
+			selected: () => { console.log("selected"); },
 			options: [
 				{
 					content: "Option 1",
