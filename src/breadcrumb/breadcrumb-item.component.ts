@@ -7,8 +7,10 @@ import {
 @Component({
 	selector: "ibm-breadcrumb-item",
 	template: `
-	<a class="bx--link"
+	<a
+		class="bx--link"
 		href="{{skeleton ? '/#' : href}}"
+		[attr.aria-current]="(current ? ariaCurrent : null)"
 		*ngIf="skeleton || href; else content">
 		<ng-container *ngTemplateOutlet="content"></ng-container>
 	</a>
@@ -20,6 +22,10 @@ export class BreadcrumbItemComponent {
 	@Input() href: string;
 
 	@Input() skeleton = false;
+
+	@Input() ariaCurrent = "page";
+
+	@HostBinding("class.bx--breadcrumb-item--current") @Input() current = false;
 
 	@HostBinding("class.bx--breadcrumb-item") itemClass = true;
 }

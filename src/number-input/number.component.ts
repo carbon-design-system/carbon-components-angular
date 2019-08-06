@@ -7,7 +7,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
-import { isNullOrUndefined } from "util";
 
 /**
  * Used to emit changes performed on number input components.
@@ -65,8 +64,8 @@ export class NumberChange {
 					type="number"
 					[id]="id"
 					[value]="value"
-					[min]="min"
-					[max]="max"
+					[attr.min]="min"
+					[attr.max]="max"
 					[disabled]="disabled"
 					[required]="required"
 					(input)="onNumberInputChange($event)"/>
@@ -78,6 +77,7 @@ export class NumberChange {
 				<div *ngIf="!skeleton" class="bx--number__controls">
 					<button
 						class="bx--number__control-btn up-icon"
+						type="button"
 						aria-live="polite"
 						aria-atomic="true"
 						(click)="onIncrement()">
@@ -85,6 +85,7 @@ export class NumberChange {
 					</button>
 					<button
 						class="bx--number__control-btn down-icon"
+						type="button"
 						aria-live="polite"
 						aria-atomic="true"
 						(click)="onDecrement()">
@@ -145,11 +146,11 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the min attribute on the `input` element.
 	 */
-	@Input() min;
+	@Input() min = null;
 	/**
 	 * Sets the max attribute on the `input` element.
 	 */
-	@Input() max;
+	@Input() max = null;
 	/**
 	 * Sets the text inside the `label` tag.
 	 */
@@ -211,19 +212,19 @@ export class Number implements ControlValueAccessor {
 	 * Called when number input is blurred. Needed to properly implement `ControlValueAccessor`.
 	 * @memberof Number
 	 */
-	onTouched: () => any = () => {};
+	onTouched: () => any = () => { };
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
 	 * @memberof Number
 	 */
-	propagateChange = (_: any) => {};
+	propagateChange = (_: any) => { };
 
 	/**
 	 * Adds 1 to the current `value`.
 	 */
 	onIncrement(): void {
-		if (isNullOrUndefined(this.max) || this.value < this.max) {
+		if (this.max === null || this.value < this.max) {
 			this.value++;
 			this.emitChangeEvent();
 		}
@@ -233,7 +234,7 @@ export class Number implements ControlValueAccessor {
 	 * Subtracts 1 to the current `value`.
 	 */
 	onDecrement(): void {
-		if (isNullOrUndefined(this.min) || this.value > this.min) {
+		if (this.min === null || this.value > this.min) {
 			this.value--;
 			this.emitChangeEvent();
 		}

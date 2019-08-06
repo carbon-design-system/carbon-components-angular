@@ -77,6 +77,35 @@ storiesOf("Dropdown", module)
 			onClose: action("Multi-select dropdown closed")
 		}
 	}))
+	.add("Multi-select with ngModel", () => ({
+		template: `
+		<div style="width: 300px">
+			<ibm-dropdown
+				type="multi"
+				[label]="label"
+				[helperText]="helperText"
+				placeholder="Select"
+				[disabled]="disabled"
+				[(ngModel)]="model"
+				value="content">
+				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+			</ibm-dropdown>
+			<span>{{model | json}}</span>
+		</div>
+		`,
+		props: {
+			disabled: boolean("disabled", false),
+			label: text("Label", "Dropdown label"),
+			helperText: text("Helper text", "Optional helper text."),
+			items: [
+				{ content: "one" },
+				{ content: "two" },
+				{ content: "three" },
+				{ content: "four" }
+			],
+			model: null
+		}
+	}))
 	.add("With ngModel", () => ({
 		template: `
 		<div style="width: 300px">

@@ -48,7 +48,7 @@ import { I18n } from "./../i18n/i18n.module";
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
 			(click)="onClose()">
-			<ibm-icon-close16 class="bx--toast-notification-icon"></ibm-icon-close16>
+			<ibm-icon-close16 class="bx--toast-notification__close-icon"></ibm-icon-close16>
 		</button>
 	`
 })

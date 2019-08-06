@@ -21,6 +21,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 import { DatePickerModule, DocumentationModule } from "../";
+import { ButtonModule } from "../forms/forms.module";
 
 @Component({
 	selector: "app-date-picker",
@@ -71,7 +72,10 @@ class DatePickerStory {
 			range: [
 				[
 					new Date(),
-					new Date().setMonth(new Date().getMonth() + 1)
+					new Date(
+						new Date().getFullYear(),
+						new Date().getMonth() + 1,
+						new Date().getDate())
 				],
 				Validators.required
 			]
@@ -86,7 +90,8 @@ storiesOf("Date Picker", module)
 				DatePickerModule,
 				FormsModule,
 				ReactiveFormsModule,
-				DocumentationModule
+				DocumentationModule,
+				ButtonModule
 			],
 			declarations: [
 				DatePickerStory
@@ -102,7 +107,8 @@ storiesOf("Date Picker", module)
 			[placeholder]="placeholder"
 			[disabled]="disabled"
 			[invalid]="invalid"
-			[invalidText]="invalidText">
+			[invalidText]="invalidText"
+			(valueChange)="valueChange($event)">
 		</ibm-date-picker-input>
 		`,
 		props: {
@@ -111,11 +117,25 @@ storiesOf("Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("Disabled", false)
+			disabled: boolean("Disabled", false),
+			valueChange: action("Date change fired!")
 		}
 	}))
 	.add("Single", () => ({
 		template: `
+			<p>With initial value</p>
+			<ibm-date-picker
+				[label]="label"
+				[placeholder]="placeholder"
+				[theme]="theme"
+				[value]="value"
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[dateFormat]="dateFormat"
+				(valueChange)="valueChange($event)">
+			</ibm-date-picker>
+			<p style="margin-top: 20px;">Without initial value</p>
 			<ibm-date-picker
 				[label]="label"
 				[placeholder]="placeholder"
@@ -123,6 +143,7 @@ storiesOf("Date Picker", module)
 				[disabled]="disabled"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
+				[dateFormat]="dateFormat"
 				(valueChange)="valueChange($event)">
 			</ibm-date-picker>
 		`,
@@ -133,11 +154,14 @@ storiesOf("Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("Disabled", false)
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y"),
+			value: array("Value", ["10/19/2019"])
 		}
 	}))
 	.add("Range", () => ({
 		template: `
+		<p>With initial value</p>
 		<ibm-date-picker
 			[label]="label"
 			[rangeLabel]="label"
@@ -147,6 +171,21 @@ storiesOf("Date Picker", module)
 			[disabled]="disabled"
 			[invalid]="invalid"
 			[invalidText]="invalidText"
+			[dateFormat]="dateFormat"
+			[value]="value"
+			(valueChange)="valueChange($event)">
+		</ibm-date-picker>
+		<p style="margin-top: 20px;">Without initial value</p>
+		<ibm-date-picker
+			[label]="label"
+			[rangeLabel]="label"
+			range="true"
+			[placeholder]="placeholder"
+			[theme]="theme"
+			[disabled]="disabled"
+			[invalid]="invalid"
+			[invalidText]="invalidText"
+			[dateFormat]="dateFormat"
 			(valueChange)="valueChange($event)">
 		</ibm-date-picker>
 		`,
@@ -157,7 +196,9 @@ storiesOf("Date Picker", module)
 			placeholder: text("Placeholder text", "mm/dd/yyyy"),
 			invalidText: text("Form validation content", "Invalid date format"),
 			invalid: boolean("Show form validation", false),
-			disabled: boolean("Disabled", false)
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y"),
+			value: array("Value", ["09/19/2019", "10/19/2019"])
 		}
 	}))
 	.add("With reactive forms", () => ({
@@ -168,6 +209,59 @@ storiesOf("Date Picker", module)
 		`,
 		props: {
 			valueChange: action("Date change fired!")
+		}
+	}))
+	.add("With ngModel", () => ({
+		template: `
+			<div>
+				<ibm-date-picker
+					label="Date picker label"
+					[(ngModel)]="single">
+				</ibm-date-picker>
+				<button
+					ibmButton
+					(click)="single = null"
+					style="margin-top: 5px">
+					Send null
+				</button>
+				<button
+					ibmButton
+					(click)="single = [date]"
+					style="margin-left: 5px">
+					Send date
+				</button>
+				<br>
+				<code>{{ single | json }}</code>
+			</div>
+			<div style="margin-top: 15px;">
+				<ibm-date-picker
+					label="Date picker"
+					rangeLabel="Range label"
+					range="true"
+					[(ngModel)]="range">
+				</ibm-date-picker>
+				<button
+					ibmButton
+					(click)="range = null"
+					style="margin-top: 5px">
+					Send null
+				</button>
+				<button
+					ibmButton
+					(click)="range = rangeDates"
+					style="margin-left: 5px">
+					Send date
+				</button>
+				<br>
+				<code>{{ range | json }}</code>
+			</div>
+		`,
+		props: {
+			date: new Date(new Date().getFullYear(), 5, 15),
+			rangeDates: [
+				new Date(new Date().getFullYear(), 5, 15),
+				new Date(new Date().getFullYear(), 8, 19)
+			]
 		}
 	}))
 	.add("Skeleton", () => ({
