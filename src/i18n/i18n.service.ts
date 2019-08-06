@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable, isObservable, iif } from "rxjs";
 import { map } from "rxjs/operators";
-import { merge } from "./../utils/object";
+import { merge } from "../utils/object";
 
 const EN = require("./en.json");
 
@@ -34,6 +34,47 @@ export const replace = (subject, variables) => subject.pipe(
 		return str;
 	})
 );
+
+/**
+ * Represents an "overridable" translation value.
+ *
+ * Largely an internal edge case. There are situations where we want an `Observable` that
+ * can emit events from a centralized source **OR** an `Observable` that will emit events
+ * from a component local source. The key example being on/off text in a `Toggle` - In some cases
+ * we want the `Toggle` to use `I18n`s global translations, but in others we'd prefer to use a local
+ * override. We don't ever need to return to an non-overriden state, but we do need the ability to
+ * switch _to_ an overridden sate.
+ */
+export class Overridable {
+	public get value(): string {
+		return this._value;
+	}
+
+	public get subject(): Observable<string> {
+		console.log(this.value);
+		return iif(() => this.isOverridden, this.$override, this._subject);
+	}
+
+	protected _value = this.i18n.getValueFromPath(this.path);
+	protected $override = new BehaviorSubject<string>(this.value);
+	protected _subject: Observable<string> = this.i18n.get(this.path);
+	protected isOverridden = false;
+
+	constructor(protected path: string, protected i18n: I18n) {	}
+
+	override(value: string | Observable<string>) {
+		this.isOverridden = true;
+		if (isObservable(value)) {
+			value.subscribe(v => {
+				this.$override.next(v);
+				this._value = v;
+			});
+		} else {
+			this.$override.next(value);
+			this._value = value;
+		}
+	}
+}
 
 /**
  * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
@@ -70,7 +111,7 @@ export class I18n {
 	 *
 	 * @param path optional, looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	public get(path?) {
+	public get(path?: string) {
 		if (!path) {
 			return this.translationStrings;
 		}
@@ -86,6 +127,10 @@ export class I18n {
 		} catch (err) {
 			console.error(err);
 		}
+	}
+
+	public getOverrideable(path) {
+		return new Overridable(path, this);
 	}
 
 	/**
@@ -114,7 +159,7 @@ export class I18n {
 	 *
 	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	protected getValueFromPath(path) {
+	public getValueFromPath(path) {
 		let value = this.translationStrings;
 		for (const segment of path.split(".")) {
 			if (value[segment]) {
