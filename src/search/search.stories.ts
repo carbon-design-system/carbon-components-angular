@@ -1,5 +1,11 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs, boolean, select, text } from "@storybook/addon-knobs/angular";
+import { action } from "@storybook/addon-actions";
+import {
+	withKnobs,
+	boolean,
+	select,
+	text
+} from "@storybook/addon-knobs/angular";
 
 import { SearchModule, DocumentationModule } from "../";
 
@@ -16,7 +22,9 @@ storiesOf("Search", module).addDecorator(
 				[placeholder]="placeholder"
 				[autocomplete]="autocomplete"
 				[disabled]="disabled"
-				[size]="size">
+				[size]="size"
+				(valueChange)="valueChange($event)"
+				(clear)="clear()">
 			</ibm-search>
 		`,
 		props: {
@@ -24,7 +32,9 @@ storiesOf("Search", module).addDecorator(
 			theme: select("theme", ["dark", "light"], "dark"),
 			disabled: boolean("disabled", false),
 			autocomplete: text("autocomplete", "on"),
-			placeholder: text("placeholder", "Search")
+			placeholder: text("placeholder", "Search"),
+			valueChange: action("value change fired!"),
+			clear: action("clear fired!")
 		}
 	}))
 	.add("Toolbar search", () => ({
