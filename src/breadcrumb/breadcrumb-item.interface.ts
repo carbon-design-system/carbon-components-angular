@@ -16,4 +16,12 @@ export interface BreadcrumbItem {
 	 * Optional `TemplateRef` for the breadcrumb item. Receives the content as an `$implicit` template variable
 	 */
 	template?: TemplateRef<any>;
+	/**
+	 * aria-current for the breadcrumb item.
+	 */
+	ariaCurrent?: string;
+	/**
+	 * Sets the current class for the breadcrumb item.
+	 */
+	current?: boolean;
 }
