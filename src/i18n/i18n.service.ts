@@ -69,7 +69,7 @@ export class Overridable {
 	/**
 	 * Overriden value. Accessed by the readonly getter `value` and set through `override`
 	 */
-	protected _value = this.i18n.getValueFromPath(this.path) as string;
+	protected _value: string | Observable<string>;
 	/**
 	 * Subject of overriden values. Initialized with our default value.
 	 */
@@ -90,6 +90,7 @@ export class Overridable {
 		 */
 		const value = this.i18n.getValueFromPath(this.path) as string;
 		this.$override = new BehaviorSubject<string>(value);
+		this._value = value;
 	}
 	/**
 	 * Takes a string or an `Observable` that emits strings.
@@ -97,14 +98,13 @@ export class Overridable {
 	 */
 	override(value: string | Observable<string>) {
 		this.isOverridden = true;
+		this._value = value;
 		if (isObservable(value)) {
 			value.subscribe(v => {
 				this.$override.next(v);
-				this._value = v;
 			});
 		} else {
 			this.$override.next(value);
-			this._value = value;
 		}
 	}
 }
@@ -173,7 +173,7 @@ export class I18n {
 	 * Returns an instance of `Overridable` that can be used to optionally override the value provided by `I18n`
 	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	public getOverrideable(path: string) {
+	public getOverridable(path: string) {
 		return new Overridable(path, this);
 	}
 

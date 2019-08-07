@@ -60,8 +60,8 @@ export class ExpandableTile implements AfterContentInit {
 	tileMaxHeight = 0;
 	element = this.elementRef.nativeElement;
 
-	expand = this.i18n.getOverrideable("TILES.EXPAND");
-	collapse = this.i18n.getOverrideable("TILES.COLLAPSE");
+	expand = this.i18n.getOverridable("TILES.EXPAND");
+	collapse = this.i18n.getOverridable("TILES.COLLAPSE");
 
 	constructor(protected i18n: I18n, protected elementRef: ElementRef) {}
 

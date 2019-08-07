@@ -73,8 +73,8 @@ export class TableToolbar {
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
-	actionBarLabel = this.i18n.getOverrideable("TABLE_TOOLBAR.ACTION_BAR");
-	_cancelText = this.i18n.getOverrideable("TABLE_TOOLBAR.CANCEL");
+	actionBarLabel = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
+	_cancelText = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
 
 	constructor(protected i18n: I18n) {}
 

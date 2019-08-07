@@ -641,11 +641,11 @@ export class Table implements AfterViewInit {
 		this.checkboxRowLabel.override(valueWithDefaults.CHECKBOX_ROW);
 }
 
-	checkboxHeaderLabel = this.i18n.getOverrideable("TABLE.CHECKBOX_HEADER");
-	checkboxRowLabel = this.i18n.getOverrideable("TABLE.CHECKBOX_ROW");
-	endOfDataText = this.i18n.getOverrideable("TABLE.END_OF_DATA");
-	scrollTopText = this.i18n.getOverrideable("TABLE.SCROLL_TOP");
-	filterTitle = this.i18n.getOverrideable("TABLE.FILTER");
+	checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
+	checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
+	endOfDataText = this.i18n.getOverridable("TABLE.END_OF_DATA");
+	scrollTopText = this.i18n.getOverridable("TABLE.SCROLL_TOP");
+	filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	/**
 	 * Controls if all checkboxes are viewed as selected.
@@ -741,9 +741,9 @@ export class Table implements AfterViewInit {
 
 	protected _model: TableModel;
 
-	protected _expandButtonAriaLabel  = this.i18n.getOverrideable("TABLE.EXPAND_BUTTON");
-	protected _sortDescendingLabel = this.i18n.getOverrideable("TABLE.SORT_DESCENDING");
-	protected _sortAscendingLabel = this.i18n.getOverrideable("TABLE.SORT_ASCENDING");
+	protected _expandButtonAriaLabel  = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
+	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
+	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 
 	protected columnResizeWidth: number;
 	protected columnResizeMouseX: number;

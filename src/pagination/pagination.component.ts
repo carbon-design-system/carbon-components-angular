@@ -308,15 +308,15 @@ export class Pagination {
 	itemsPerPageSelectId = `pagination-select-items-per-page-${Pagination.paginationCounter}`;
 	currentPageSelectId = `pagination-select-current-page-${Pagination.paginationCounter}`;
 
-	itemsPerPageText = this.i18n.getOverrideable("PAGINATION.ITEMS_PER_PAGE");
-	optionsListText = this.i18n.getOverrideable("PAGINATION.OPEN_LIST_OF_OPTIONS");
-	backwardText = this.i18n.getOverrideable("PAGINATION.BACKWARD");
-	forwardText = this.i18n.getOverrideable("PAGINATION.FORWARD");
-	totalItemsText = this.i18n.getOverrideable("PAGINATION.TOTAL_ITEMS");
-	totalItemsUnknownText = this.i18n.getOverrideable("PAGINATION.TOTAL_ITEMS_UNKNOWN");
-	totalPagesText = this.i18n.getOverrideable("PAGINATION.TOTAL_PAGES");
-	pageText = this.i18n.getOverrideable("PAGINATION.PAGE");
-	ofLastPagesText = this.i18n.getOverrideable("PAGINATION.OF_LAST_PAGES");
+	itemsPerPageText = this.i18n.getOverridable("PAGINATION.ITEMS_PER_PAGE");
+	optionsListText = this.i18n.getOverridable("PAGINATION.OPEN_LIST_OF_OPTIONS");
+	backwardText = this.i18n.getOverridable("PAGINATION.BACKWARD");
+	forwardText = this.i18n.getOverridable("PAGINATION.FORWARD");
+	totalItemsText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEMS");
+	totalItemsUnknownText = this.i18n.getOverridable("PAGINATION.TOTAL_ITEMS_UNKNOWN");
+	totalPagesText = this.i18n.getOverridable("PAGINATION.TOTAL_PAGES");
+	pageText = this.i18n.getOverridable("PAGINATION.PAGE");
+	ofLastPagesText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGES");
 
 	protected _pageOptions = [];
 

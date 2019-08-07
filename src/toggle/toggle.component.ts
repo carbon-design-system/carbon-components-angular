@@ -150,8 +150,8 @@ export class Toggle extends Checkbox {
 	 */
 	@Output() change = new EventEmitter<ToggleChange>();
 
-	protected _offValues = this.i18n.getOverrideable("TOGGLE.OFF");
-	protected _onValues = this.i18n.getOverrideable("TOGGLE.ON");
+	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
+	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
 	/**
 	 * Creates an instance of Toggle.
 	 */
