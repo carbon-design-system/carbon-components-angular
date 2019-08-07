@@ -10,6 +10,7 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 /**
  * Defines the set of states for a toggle component.
@@ -105,7 +106,7 @@ export class Toggle extends Checkbox {
 	 * Text that is set on the left side of the toggle.
 	 */
 	@Input()
-	set offText(value: string) {
+	set offText(value: string | Observable<string>) {
 		this._offValues.override(value);
 	}
 
@@ -117,7 +118,7 @@ export class Toggle extends Checkbox {
 	 * Text that is set on the right side of the toggle.
 	 */
 	@Input()
-	set onText(value: string) {
+	set onText(value: string | Observable<string>) {
 		this._onValues.override(value);
 	}
 

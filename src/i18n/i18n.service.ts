@@ -46,21 +46,31 @@ export const replace = (subject, variables) => subject.pipe(
  * switch _to_ an overridden sate.
  */
 export class Overridable {
-	public get value(): string {
+	public get value(): string | Observable<string> {
 		return this._value;
 	}
 
 	public get subject(): Observable<string> {
-		console.log(this.value);
+		/**
+		 * since inputs are bound on template instantiation (and thusly will always have _some_ value)
+		 * We can use a simple boolean and the `iif` function to determine which subject to return on subscription
+		 */
 		return iif(() => this.isOverridden, this.$override, this._subject);
 	}
 
-	protected _value = this.i18n.getValueFromPath(this.path);
-	protected $override = new BehaviorSubject<string>(this.value);
+	protected _value = this.i18n.getValueFromPath(this.path) as string;
+	protected $override: BehaviorSubject<string>;
 	protected _subject: Observable<string> = this.i18n.get(this.path);
 	protected isOverridden = false;
 
-	constructor(protected path: string, protected i18n: I18n) {	}
+	constructor(protected path: string, protected i18n: I18n) {
+		/**
+		 * ensure `$override` is initlized with the correct default value
+		 * in some cases `_value` can get changed for an `Observable` before `$overrride` is created
+		 */
+		const value = this.i18n.getValueFromPath(this.path) as string;
+		this.$override = new BehaviorSubject<string>(value);
+	}
 
 	override(value: string | Observable<string>) {
 		this.isOverridden = true;
@@ -95,7 +105,7 @@ export class I18n {
 	 *
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
-	public set(strings) {
+	public set(strings: { [key: string]: string }) {
 		this.translationStrings = merge({}, EN, strings);
 		// iterate over all our tracked translations and update each observable
 		const translations = Array.from(this.translations);
@@ -115,21 +125,19 @@ export class I18n {
 		if (!path) {
 			return this.translationStrings;
 		}
-		try {
-			// we run this here to validate the path exists before adding it to the translation map
-			const value = this.getValueFromPath(path);
-			if (this.translations.has(path)) {
-				return this.translations.get(path);
-			}
-			const translation = new BehaviorSubject(value);
-			this.translations.set(path, translation);
-			return translation;
-		} catch (err) {
-			console.error(err);
-		}
+		return this.getSubject(path);
 	}
 
-	public getOverrideable(path) {
+	public getMultiple(partialPath: string): { [key: string]: Observable<string> } {
+		const values = this.getValueFromPath(partialPath);
+		const subjects = {};
+		for (const key of Object.keys(values)) {
+			subjects[key] = this.getSubject(`${partialPath}.${key}`);
+		}
+		return subjects;
+	}
+
+	public getOverrideable(path: string) {
 		return new Overridable(path, this);
 	}
 
@@ -150,7 +158,7 @@ export class I18n {
 	 * @param subject the translation to replace variables on
 	 * @param variables object of variables to replace
 	 */
-	public replace(subject, variables) {
+	public replace(subject: Observable<string>, variables: { [key: string]: string }) {
 		return replace(subject, variables);
 	}
 
@@ -159,7 +167,7 @@ export class I18n {
 	 *
 	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	public getValueFromPath(path) {
+	public getValueFromPath(path): string | { [key: string]: string } {
 		let value = this.translationStrings;
 		for (const segment of path.split(".")) {
 			if (value[segment]) {
@@ -169,5 +177,20 @@ export class I18n {
 			}
 		}
 		return value;
+	}
+
+	protected getSubject(path: string): Observable<string> {
+		try {
+			// we run this here to validate the path exists before adding it to the translation map
+			const value = this.getValueFromPath(path) as string;
+			if (this.translations.has(path)) {
+				return this.translations.get(path);
+			}
+			const translation = new BehaviorSubject(value);
+			this.translations.set(path, translation);
+			return translation;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
