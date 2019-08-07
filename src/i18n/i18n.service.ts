@@ -27,9 +27,7 @@ export const replace = (subject, variables) => subject.pipe(
 		const keys = Object.keys(variables);
 		for (const key of keys) {
 			const value = variables[key];
-			while (str.includes(`{{${key}}}`)) {
-				str = str.replace(`{{${key}}}`, value);
-			}
+			str = str.replace(new RegExp(`{{\\s*${key}\\s*}}`, "g"), value);
 		}
 		return str;
 	})
