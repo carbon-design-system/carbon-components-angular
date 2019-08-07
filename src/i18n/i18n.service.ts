@@ -38,7 +38,7 @@ export const replace = (subject, variables) => subject.pipe(
 /**
  * Represents an "overridable" translation value.
  *
- * Largely an internal edge case. There are situations where we want an `Observable` that
+ * Largely an internal usecase. There are situations where we want an `Observable` that
  * can emit events from a centralized source **OR** an `Observable` that will emit events
  * from a component local source. The key example being on/off text in a `Toggle` - In some cases
  * we want the `Toggle` to use `I18n`s global translations, but in others we'd prefer to use a local
@@ -46,32 +46,57 @@ export const replace = (subject, variables) => subject.pipe(
  * switch _to_ an overridden sate.
  */
 export class Overridable {
+	/**
+	 * The raw value of the translation. Defaults to the string value, but will return the value passed to `override`
+	 *
+	 * @readonly
+	 */
 	public get value(): string | Observable<string> {
 		return this._value;
 	}
 
+	/**
+	 * The translation subject. Returns either a stream of overriden values, or our base translation values.
+	 *
+	 * @readonly
+	 */
 	public get subject(): Observable<string> {
 		/**
 		 * since inputs are bound on template instantiation (and thusly will always have _some_ value)
 		 * We can use a simple boolean and the `iif` function to determine which subject to return on subscription
 		 */
-		return iif(() => this.isOverridden, this.$override, this._subject);
+		return iif(() => this.isOverridden, this.$override, this.baseTranslation);
 	}
 
+	/**
+	 * Overriden value. Accessed by the readonly getter `value` and set through `override`
+	 */
 	protected _value = this.i18n.getValueFromPath(this.path) as string;
+	/**
+	 * Subject of overriden values. Initialized with our default value.
+	 */
 	protected $override: BehaviorSubject<string>;
-	protected _subject: Observable<string> = this.i18n.get(this.path);
+	/**
+	 * Our base non-overriden translation.
+	 */
+	protected baseTranslation: Observable<string> = this.i18n.get(this.path);
+	/**
+	 * A boolean to flip between overriden and non-overriden states.
+	 */
 	protected isOverridden = false;
 
 	constructor(protected path: string, protected i18n: I18n) {
 		/**
 		 * ensure `$override` is initlized with the correct default value
-		 * in some cases `_value` can get changed for an `Observable` before `$overrride` is created
+		 * in some cases `_value` can get changed for an `Observable` before `$override` is created
 		 */
 		const value = this.i18n.getValueFromPath(this.path) as string;
 		this.$override = new BehaviorSubject<string>(value);
 	}
-
+	/**
+	 * Takes a string or an `Observable` that emits strings.
+	 * Overrides the value provided by the `I18n` service.
+	 */
 	override(value: string | Observable<string>) {
 		this.isOverridden = true;
 		if (isObservable(value)) {
@@ -128,15 +153,28 @@ export class I18n {
 		return this.getSubject(path);
 	}
 
+	/**
+	 * Returns all descendents of some path fragment as an object.
+	 *
+	 * @param partialPath a path fragment, for example `"NOTIFICATION"`
+	 */
 	public getMultiple(partialPath: string): { [key: string]: Observable<string> } {
 		const values = this.getValueFromPath(partialPath);
 		const subjects = {};
 		for (const key of Object.keys(values)) {
-			subjects[key] = this.getSubject(`${partialPath}.${key}`);
+			if (values[key] === Object(values[key])) {
+				subjects[key] = this.getMultiple(`${partialPath}.${key}`);
+			} else {
+				subjects[key] = this.getSubject(`${partialPath}.${key}`);
+			}
 		}
 		return subjects;
 	}
 
+	/**
+	 * Returns an instance of `Overridable` that can be used to optionally override the value provided by `I18n`
+	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
+	 */
 	public getOverrideable(path: string) {
 		return new Overridable(path, this);
 	}
@@ -179,6 +217,11 @@ export class I18n {
 		return value;
 	}
 
+	/**
+	 * Helper method that returns an observable from the interal cache based on path
+	 *
+	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
+	 */
 	protected getSubject(path: string): Observable<string> {
 		try {
 			// we run this here to validate the path exists before adding it to the translation map
