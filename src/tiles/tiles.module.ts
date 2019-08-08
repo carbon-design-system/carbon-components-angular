@@ -7,6 +7,7 @@ import { ExpandableTile } from "./expandable-tile.component";
 import { SelectionTile } from "./selection-tile.component";
 import { TileGroup } from "./tile-group.component";
 import { I18nModule } from "./../i18n/i18n.module";
+import { LinkModule } from "./../link/link.module";
 
 export { Tile } from "./tile.component";
 export { ClickableTile } from "./clickable-tile.component";
@@ -31,7 +32,8 @@ export { TileGroup } from "./tile-group.component";
 	],
 	imports: [
 		CommonModule,
-		I18nModule
+		I18nModule,
+		LinkModule
 	]
 })
 export class TilesModule {}

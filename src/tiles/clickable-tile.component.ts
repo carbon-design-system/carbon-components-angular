@@ -22,6 +22,7 @@ import {
 	selector: "ibm-clickable-tile",
 	template: `
 	<a
+		ibmLink
 		class="bx--tile bx--tile--clickable"
 		[ngClass]="{
 			'bx--tile--is-clicked': clicked
