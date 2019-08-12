@@ -1059,7 +1059,7 @@ Multi-select comboboxes also provide &quot;pills&quot; of selected items.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="442" class="link-to-prism">src/combobox/combobox.component.ts:442</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="443" class="link-to-prism">src/combobox/combobox.component.ts:443</a></div>
                             </td>
                         </tr>
 
@@ -1313,7 +1313,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="389" class="link-to-prism">src/combobox/combobox.component.ts:389</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="390" class="link-to-prism">src/combobox/combobox.component.ts:390</a></div>
                             </td>
                         </tr>
 
@@ -1382,7 +1382,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="427" class="link-to-prism">src/combobox/combobox.component.ts:427</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="428" class="link-to-prism">src/combobox/combobox.component.ts:428</a></div>
                             </td>
                         </tr>
 
@@ -1641,7 +1641,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="378" class="link-to-prism">src/combobox/combobox.component.ts:378</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="379" class="link-to-prism">src/combobox/combobox.component.ts:379</a></div>
                             </td>
                         </tr>
 
@@ -1725,7 +1725,7 @@ Updates pills if necessary.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="446" class="link-to-prism">src/combobox/combobox.component.ts:446</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="447" class="link-to-prism">src/combobox/combobox.component.ts:447</a></div>
                             </td>
                         </tr>
 
@@ -2560,6 +2560,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Opens the dropdown.
 	 */
 	public openDropdown() {
+		if (this.disabled) { return; }
 		this.open &#x3D; true;
 	}
 
