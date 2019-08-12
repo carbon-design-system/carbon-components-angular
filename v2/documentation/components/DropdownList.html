@@ -2713,7 +2713,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			} else {
 				item.selected &#x3D; !item.selected;
 				// emit an array of selected items
-				this.select.emit(this.getSelected());
+				this.select.emit(this.getSelected() || []);
 			}
 			this.index &#x3D; this.getListItems().indexOf(item);
 		}
