@@ -428,13 +428,11 @@ export class ComboBox implements OnChanges, OnInit, AfterViewInit, AfterContentI
 
 	protected updateSelected() {
 		const selected = this.view.getSelected();
-		if (selected) {
-			if (this.type === "multi") {
-				this.updatePills();
-			} else {
-				this.selectedValue = selected[0].content;
-				this.propagateChangeCallback(selected[0]);
-			}
+		if (this.type === "multi" ) {
+			this.updatePills();
+		} else if (selected) {
+			this.selectedValue = selected[0].content;
+			this.propagateChangeCallback(selected[0]);
 		}
 	}
 }
