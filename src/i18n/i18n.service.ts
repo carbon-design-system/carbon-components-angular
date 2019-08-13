@@ -216,7 +216,7 @@ export class I18n {
 	}
 
 	/**
-	 * Helper method that returns an observable from the interal cache based on path
+	 * Helper method that returns an observable from the internal cache based on the path
 	 *
 	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
