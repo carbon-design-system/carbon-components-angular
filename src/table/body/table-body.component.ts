@@ -24,6 +24,7 @@ import { TableModel } from "../table-model.class";
 					[(columnIndex)]="columnIndex"
 					*ngIf="!model.isRowFiltered(i)"
 					(click)="onRowSelect(i)"
+					[class]="(model.rowsClass[i] ? model.rowsClass[i] : null)"
 					[ngClass]="{
 						'tbody_row--success': !model.isRowSelected(i) && model.getRowContext(i) === 'success',
 						'tbody_row--warning': !model.isRowSelected(i) && model.getRowContext(i) === 'warning',
