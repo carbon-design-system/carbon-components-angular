@@ -37,8 +37,7 @@ export const isVisibleInContainer = (element: HTMLElement, container: HTMLElemen
  */
 export const scrollableParentsObservable = (node: HTMLElement) => {
 	const windowScroll = fromEvent(window, "scroll").pipe(map(event => (
-		// update the event target to be something useful. In this case `body` is a
-		// sensible replacement
+		// update the event target to be something useful. In this case `body` is a sensible replacement
 		Object.assign({}, event, { target: document.body }) as Event
 	)));
 	let observables = [windowScroll];

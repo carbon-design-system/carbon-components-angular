@@ -133,7 +133,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 		if (getFocusElementList(this.dialog.nativeElement).length > 0) {
 			dialogElement.focus();
 		}
-		const parentElement: HTMLElement = this.dialogConfig.parentRef.nativeElement;
+		const parentElement = this.dialogConfig.parentRef.nativeElement;
 
 		const placeDialogInContainer = () => {
 			// only do the work to find the scroll containers if we're appended to body
