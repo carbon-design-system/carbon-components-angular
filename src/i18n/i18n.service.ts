@@ -85,7 +85,7 @@ export class Overridable {
 
 	constructor(protected path: string, protected i18n: I18n) {
 		/**
-		 * ensure `$override` is initlized with the correct default value
+		 * ensure `$override` is initialized with the correct default value
 		 * in some cases `_value` can get changed for an `Observable` before `$override` is created
 		 */
 		const value = this.i18n.getValueFromPath(this.path) as string;
