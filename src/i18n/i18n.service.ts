@@ -54,7 +54,7 @@ export class Overridable {
 	}
 
 	/**
-	 * The translation subject. Returns either a stream of overriden values, or our base translation values.
+	 * The translation subject. Returns either a stream of overridden values, or our base translation values.
 	 *
 	 * @readonly
 	 */
