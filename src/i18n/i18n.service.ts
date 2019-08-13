@@ -40,7 +40,7 @@ export const replace = (subject, variables) => subject.pipe(
  * can emit events from a centralized source **OR** an `Observable` that will emit events
  * from a component local source. The key example being on/off text in a `Toggle` - In some cases
  * we want the `Toggle` to use `I18n`s global translations, but in others we'd prefer to use a local
- * override. We don't ever need to return to an non-overriden state, but we do need the ability to
+ * override. We don't ever need to return to a non-overridden state, but we do need the ability to
  * switch _to_ an overridden sate.
  */
 export class Overridable {
