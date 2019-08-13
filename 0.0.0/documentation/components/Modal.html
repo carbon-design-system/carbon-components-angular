@@ -796,7 +796,7 @@ placed near the end of your app component template (app.component.ts or app.comp
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>An element should have &#39;data-modal-primary-focus&#39; as an attribute to receive initial focus within the <code>Modal</code> component.</p>
+                        <div class="io-description"><p>An element should have &#39;modal-primary-focus&#39; as an attribute to receive initial focus within the <code>Modal</code> component.</p>
 </div>
                     </td>
                 </tr>
@@ -953,7 +953,7 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	modalState: &quot;in&quot; | &quot;out&quot; &#x3D; &quot;out&quot;;
 
 	/**
-	 * An element should have &#x27;data-modal-primary-focus&#x27; as an attribute to receive initial focus within the &#x60;Modal&#x60; component.
+	 * An element should have &#x27;modal-primary-focus&#x27; as an attribute to receive initial focus within the &#x60;Modal&#x60; component.
 	 */
 	selectorPrimaryFocus &#x3D; &quot;[modal-primary-focus]&quot;;
 
@@ -975,13 +975,13 @@ export class Modal implements AfterViewInit, OnInit, OnDestroy {
 	ngAfterViewInit() {
 		const primaryFocusElement &#x3D; this.modal.nativeElement.querySelector(this.selectorPrimaryFocus);
 		if (primaryFocusElement &amp;&amp; primaryFocusElement.focus) {
-			primaryFocusElement.focus();
+			setTimeout(() &#x3D;&gt; primaryFocusElement.focus());
 			return;
 		}
 		if (getFocusElementList(this.modal.nativeElement).length &gt; 0) {
-			getFocusElementList(this.modal.nativeElement)[0].focus();
+			setTimeout(() &#x3D;&gt; getFocusElementList(this.modal.nativeElement)[0].focus());
 		} else {
-			this.modal.nativeElement.focus();
+			setTimeout(() &#x3D;&gt; this.modal.nativeElement.focus());
 		}
 	}
 
