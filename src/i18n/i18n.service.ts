@@ -1,5 +1,10 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, isObservable, iif } from "rxjs";
+import {
+	BehaviorSubject,
+	Observable,
+	isObservable,
+	iif
+} from "rxjs";
 import { map } from "rxjs/operators";
 import { merge } from "../utils/object";
 
