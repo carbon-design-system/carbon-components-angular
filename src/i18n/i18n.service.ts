@@ -71,7 +71,7 @@ export class Overridable {
 	 */
 	protected _value: string | Observable<string>;
 	/**
-	 * Subject of overriden values. Initialized with our default value.
+	 * Subject of overridden values. Initialized with our default value.
 	 */
 	protected $override: BehaviorSubject<string>;
 	/**
