@@ -95,7 +95,6 @@ export class ModalDemo {
 				[@modalState]="modalState"
 				role="dialog"
 				aria-modal="true"
-				tabindex="0"
 				style="z-index:1;"
 				[attr.aria-label]="modalLabel"
 				#modal>
