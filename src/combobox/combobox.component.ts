@@ -369,6 +369,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Opens the dropdown.
 	 */
 	public openDropdown() {
+		if (this.disabled) { return; }
 		this.open = true;
 	}
 
