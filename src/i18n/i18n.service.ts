@@ -79,7 +79,7 @@ export class Overridable {
 	 */
 	protected baseTranslation: Observable<string> = this.i18n.get(this.path);
 	/**
-	 * A boolean to flip between overriden and non-overriden states.
+	 * A boolean to flip between overridden and non-overridden states.
 	 */
 	protected isOverridden = false;
 
