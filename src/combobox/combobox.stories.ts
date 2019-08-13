@@ -1,8 +1,9 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, object, text } from "@storybook/addon-knobs/angular";
+import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
 
-import { ComboBoxModule, DocumentationModule } from "../";
+import { ComboBoxModule } from "./combobox.module";
+import { DocumentationModule } from "./../documentation-component/documentation.module";
 
 storiesOf("Combobox", module)
 	.addDecorator(
@@ -17,6 +18,7 @@ storiesOf("Combobox", module)
 	.add("Basic", () => ({
 		template: `
 			<ibm-combo-box
+				[disabled]="disabled"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items"
@@ -25,6 +27,7 @@ storiesOf("Combobox", module)
 			</ibm-combo-box>
 		`,
 		props: {
+			disabled: boolean("disabled", false),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
