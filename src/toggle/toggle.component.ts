@@ -78,7 +78,7 @@ export class ToggleChange {
 			[ngClass]="{
 				'bx--skeleton': skeleton
 			}">
-			<span class="bx--toggle__text--left">{{(!skeleton ? offText : null) | async }}</span>
+			<span class="bx--toggle__text--left">{{(!skeleton ? offText : null) | async}}</span>
 			<span class="bx--toggle__appearance">
 				<svg *ngIf="size === 'sm'" class="bx--toggle__check" width="6px" height="5px" viewBox="0 0 6 5">
 					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z"/>
@@ -105,8 +105,8 @@ export class Toggle extends Checkbox {
 	 * Text that is set on the left side of the toggle.
 	 */
 	@Input()
-	set offText(value: string) {
-		this._offText.next(value);
+	set offText(value) {
+		this._offText.next(value.OFF);
 	}
 
 	get offText() {
@@ -117,8 +117,8 @@ export class Toggle extends Checkbox {
 	 * Text that is set on the right side of the toggle.
 	 */
 	@Input()
-	set onText(value: string) {
-		this._onText.next(value);
+	set onText(value) {
+		this._onText.next(value.ON);
 	}
 
 	get onText() {
