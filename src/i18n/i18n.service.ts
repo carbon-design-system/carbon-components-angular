@@ -75,7 +75,7 @@ export class Overridable {
 	 */
 	protected $override: BehaviorSubject<string>;
 	/**
-	 * Our base non-overriden translation.
+	 * Our base non-overridden translation.
 	 */
 	protected baseTranslation: Observable<string> = this.i18n.get(this.path);
 	/**
