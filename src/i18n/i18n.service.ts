@@ -67,7 +67,7 @@ export class Overridable {
 	}
 
 	/**
-	 * Overriden value. Accessed by the readonly getter `value` and set through `override`
+	 * Overridden value. Accessed by the readonly getter `value` and set through `override`
 	 */
 	protected _value: string | Observable<string>;
 	/**
