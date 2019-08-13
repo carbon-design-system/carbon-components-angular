@@ -7,7 +7,6 @@ import {
 	ViewChildren,
 	ElementRef,
 	AfterViewInit,
-	HostListener,
 	TemplateRef
 } from "@angular/core";
 import { Subscription, fromEvent } from "rxjs";
@@ -741,6 +740,10 @@ export class Table implements AfterViewInit {
 
 	columnIndex = 0;
 
+	public isColumnDragging = false;
+	public columnDraggedHoverIndex = -1;
+	public columnDraggedPosition = "";
+
 	protected _model: TableModel;
 
 	protected _expandButtonAriaLabel  = this.i18n.get("TABLE.EXPAND_BUTTON");
@@ -751,10 +754,6 @@ export class Table implements AfterViewInit {
 	protected columnResizeMouseX: number;
 	protected mouseMoveSubscription: Subscription;
 	protected mouseUpSubscription: Subscription;
-
-	protected isColumnDragging = false;
-	protected columnDraggedHoverIndex = -1;
-	protected columnDraggedPosition = "";
 
 	/**
 	 * Creates an instance of Table.
