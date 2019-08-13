@@ -106,7 +106,7 @@ export class Toggle extends Checkbox {
 	 */
 	@Input()
 	set offText(value) {
-		this._offText.next(value.OFF);
+		this._offText.next(value);
 	}
 
 	get offText() {
@@ -118,7 +118,7 @@ export class Toggle extends Checkbox {
 	 */
 	@Input()
 	set onText(value) {
-		this._onText.next(value.ON);
+		this._onText.next(value);
 	}
 
 	get onText() {
