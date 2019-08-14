@@ -8,9 +8,9 @@ import {
 	OnDestroy,
 	HostListener,
 	TemplateRef,
-	AfterViewInit,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
+	AfterViewChecked
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -88,7 +88,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
+export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	private static datePickerCount = 0;
 
 	/**
@@ -178,12 +178,12 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 		value: this.value
 	};
 
-	protected flatpickrInstance;
+	protected flatpickrInstance = null;
 
 	constructor(protected elementRef: ElementRef) { }
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (this.flatpickrInstance) {
+		if (this.isFlatpickrLoaded()) {
 			let dates = this.flatpickrInstance.selectedDates;
 			if (changes.value && this.didDateValueChange(changes.value.currentValue, changes.value.previousValue)) {
 				dates = changes.value.currentValue;
@@ -194,11 +194,19 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 		}
 	}
 
-	ngAfterViewInit() {
-		this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+	// because the actual view may be delayed in loading (think projection into a tab pane)
+	// and because we rely on a library that operates outside the Angular view of the world
+	// we need to keep trying to load the library, until the relevant DOM is actually live
+	ngAfterViewChecked() {
+		if (!this.isFlatpickrLoaded()) {
+			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
 
-		if (this.value.length > 0) {
-			this.setDateValues(this.value);
+			// if (and only if) the initialization succeeded, we can set the date values
+			if (this.isFlatpickrLoaded()) {
+				if (this.value.length > 0) {
+					this.setDateValues(this.value);
+				}
+			}
 		}
 	}
 
@@ -209,7 +217,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	/**
 	 * Writes a value from the model to the component. Expects the value to be `null` or `(Date | string)[]`
-	 * @param value value recived from the model
+	 * @param value value received from the model
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value = value;
@@ -232,7 +240,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 	 * Cleans up our flatpickr instance
 	 */
 	ngOnDestroy() {
-		if (!this.flatpickrInstance) { return; }
+		if (!this.isFlatpickrLoaded()) { return; }
 		this.flatpickrInstance.destroy();
 	}
 
@@ -240,7 +248,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 	 * Handles the `valueChange` event from the primary/single input
 	 */
 	onValueChange(event: string) {
-		if (this.flatpickrInstance) {
+		if (this.isFlatpickrLoaded()) {
 			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
 			if (this.range) {
 				this.setDateValues([date, this.flatpickrInstance.selectedDates[1]]);
@@ -255,7 +263,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 	 * Handles the `valueChange` event from the range input
 	 */
 	onRangeValueChange(event: string) {
-		if (this.flatpickrInstance) {
+		if (this.isFlatpickrLoaded()) {
 			const date = this.flatpickrInstance.parseDate(event, this.dateFormat);
 			this.setDateValues([this.flatpickrInstance.selectedDates[0], date]);
 			this.doSelect(this.flatpickrInstance.selectedDates);
@@ -316,7 +324,7 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 	 * @param dates the date values to apply
 	 */
 	protected setDateValues(dates: (Date | string)[]) {
-		if (this.flatpickrInstance) {
+		if (this.isFlatpickrLoaded()) {
 			const singleInput = this.elementRef.nativeElement.querySelector(`#${this.id}`);
 			const rangeInput = this.elementRef.nativeElement.querySelector(`#${this.id}-rangeInput`);
 
@@ -360,5 +368,13 @@ export class DatePicker implements OnDestroy, AfterViewInit, OnChanges {
 
 	protected didDateValueChange(currentValue, previousValue) {
 		return currentValue[0] !== previousValue[0] || currentValue[1] !== previousValue[1];
+	}
+
+	/**
+	 * More advanced checking of the loaded state of flatpickr
+	 */
+	protected isFlatpickrLoaded() {
+		// cast the instance to a boolean, and some method that has to exist for the library to be loaded in this case `setDate`
+		return !!this.flatpickrInstance && !!this.flatpickrInstance.setDate;
 	}
 }
