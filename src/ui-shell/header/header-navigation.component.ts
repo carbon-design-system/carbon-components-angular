@@ -1,4 +1,4 @@
-import { Component, HostBinding } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 
 /**
  * Container for header navigation items
@@ -6,7 +6,7 @@ import { Component, HostBinding } from "@angular/core";
 @Component({
 	selector: "ibm-header-navigation",
 	template: `
-		<nav class="bx--header__nav">
+		<nav class="bx--header__nav" [attr.aria-label]="ariaLabel">
 			<ul class="bx--header__menu-bar" role="menubar">
 				<ng-content></ng-content>
 			</ul>
@@ -15,4 +15,6 @@ import { Component, HostBinding } from "@angular/core";
 })
 export class HeaderNavigation {
 	@HostBinding("style.height.%") height = 100;
+
+	@Input() ariaLabel: string;
 }
