@@ -46,6 +46,8 @@ export class ColumnDirective implements OnInit {
 	ngOnInit() {
 		try {
 			Object.keys(this.columnNumbers).forEach(key => {
+				this._columnClasses.push("bx--col");
+
 				if (this.columnNumbers[key] === "nobreak") {
 					this._columnClasses.push(`bx--col-${key}`);
 				} else {
