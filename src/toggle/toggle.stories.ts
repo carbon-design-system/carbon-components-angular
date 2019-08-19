@@ -24,6 +24,14 @@ storiesOf("Toggle", module).addDecorator(
 				[checked]="checked"
 				[size]="size">
 			</ibm-toggle>
+			<ibm-toggle
+				[label]="label"
+				[onText]="altOnText"
+				[offText]="altOffText"
+				[disabled]="disabled"
+				[checked]="checked"
+				[size]="size">
+			</ibm-toggle>
 		`,
 		props: {
 			disabled: boolean("Disabled", false),
@@ -31,7 +39,9 @@ storiesOf("Toggle", module).addDecorator(
 			size: select("Size", ["md", "sm"], "md"),
 			label: text("Label text", ""),
 			onText: text("On text", "On"),
-			offText: text("Off text", "Off")
+			offText: text("Off text", "Off"),
+			altOffText: text("Alternative off text", "Dark"),
+			altOnText: text("Alternative on text", "Light")
 		}
 	}))
 	.add("Skeleton", () => ({
