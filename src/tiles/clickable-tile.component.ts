@@ -68,7 +68,7 @@ export class ClickableTile {
 	constructor(@Optional() protected router: Router) {}
 
 	navigate(event) {
-		if (this.router) {
+		if (this.router && this.route) {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);

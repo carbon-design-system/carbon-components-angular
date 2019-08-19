@@ -1,4 +1,10 @@
-import { Component, Input, Optional, EventEmitter, Output } from "@angular/core";
+import {
+	Component,
+	Input,
+	Optional,
+	EventEmitter,
+	Output
+} from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
@@ -51,7 +57,7 @@ export class HeaderItem {
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 
 	navigate(event) {
-		if (this.router) {
+		if (this.router && this.route) {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
 			this.navigation.emit(status);
