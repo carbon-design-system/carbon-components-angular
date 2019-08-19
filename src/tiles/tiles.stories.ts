@@ -3,13 +3,46 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
 import { TilesModule, DocumentationModule } from "../";
+import { RouterModule } from "@angular/router";
+import { APP_BASE_HREF } from "@angular/common";
+import { Component } from "@angular/core";
+
+
+@Component({
+	selector: "app-bar",
+	template: "<h1>bar</h1>"
+})
+class BarComponent { }
+
+@Component({
+	selector: "app-foo",
+	template: "<h1>foo</h1>"
+})
+class FooComponent {}
 
 storiesOf("Tiles", module)
 	.addDecorator(
 		moduleMetadata({
+			declarations: [FooComponent, BarComponent],
 			imports: [
 				TilesModule,
-				DocumentationModule
+				DocumentationModule,
+				RouterModule.forRoot([
+					{
+						path: "bar",
+						component: BarComponent
+					},
+					{
+						path: "foo",
+						component: FooComponent
+					}
+				], {
+					initialNavigation: false,
+					useHash: true
+				})
+			],
+			providers: [
+				{provide: APP_BASE_HREF, useValue: "/"}
 			]
 		})
 	)
@@ -41,6 +74,17 @@ storiesOf("Tiles", module)
 		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
 			Click the tile to open the Carbon Design System
 		</ibm-clickable-tile>
+		`
+	}))
+	.add("Routable", () => ({
+		template: `
+			<ibm-clickable-tile [route]="['foo']">
+				Click to trigger the <code>foo</code> route
+			</ibm-clickable-tile>
+			<ibm-clickable-tile [route]="['bar']">
+				Click to trigger the <code>bar</code> route
+			</ibm-clickable-tile>
+			<router-outlet></router-outlet>
 		`
 	}))
 	.add("Selectable", () => ({
