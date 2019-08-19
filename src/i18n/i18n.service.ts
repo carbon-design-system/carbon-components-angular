@@ -58,6 +58,10 @@ export class Overridable {
 		return this._value;
 	}
 
+	public set value(v: string | Observable<string>) {
+		this.override(v);
+	}
+
 	/**
 	 * The translation subject. Returns either a stream of overridden values, or our base translation values.
 	 *

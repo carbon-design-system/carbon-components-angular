@@ -160,11 +160,11 @@ export class Toggle extends Checkbox {
 		Toggle.toggleCount++;
 	}
 
-	getOffText() {
+	getOffText(): Observable<string> {
 		return this._offValues.subject;
 	}
 
-	getOnText() {
+	getOnText(): Observable<string> {
 		return this._onValues.subject;
 	}
 
