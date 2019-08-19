@@ -6,15 +6,43 @@ import { UIShellModule } from "./ui-shell.module";
 import { SearchModule } from "./../search/search.module";
 import { DialogModule } from "./../dialog/dialog.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { Component } from "@angular/core";
+import { RouterModule } from "@angular/router";
+
+@Component({
+	selector: "app-bar",
+	template: "<h1>bar</h1>"
+})
+class BarComponent { }
+
+@Component({
+	selector: "app-foo",
+	template: "<h1>foo</h1>"
+})
+class FooComponent { }
 
 storiesOf("UI Shell", module)
 	.addDecorator(
 		moduleMetadata({
+			declarations: [BarComponent, FooComponent],
 			imports: [
 				UIShellModule,
 				SearchModule,
 				DialogModule,
-				DocumentationModule
+				DocumentationModule,
+				RouterModule.forRoot([
+					{
+						path: "bar",
+						component: BarComponent
+					},
+					{
+						path: "foo",
+						component: FooComponent
+					}
+				], {
+					initialNavigation: false,
+					useHash: true
+				})
 			]
 		})
 	)
@@ -61,6 +89,28 @@ storiesOf("UI Shell", module)
 		`,
 		props: {
 			hasHamburger: boolean("Show Hamburger", true),
+			expanded: action("Menu clicked")
+		}
+	}))
+	.add("Header with router", () => ({
+		template: `
+			<ibm-header name="[Platform]">
+				<ibm-header-navigation>
+					<ibm-header-item [route]="['foo']">Catalog</ibm-header-item>
+					<ibm-header-item [route]="['bar']">Docs</ibm-header-item>
+					<ibm-header-item [route]="['foo']">Support</ibm-header-item>
+					<ibm-header-menu title="Manage">
+						<ibm-header-item [route]="['foo']">Link 1</ibm-header-item>
+						<ibm-header-item [route]="['bar']">Link 2</ibm-header-item>
+						<ibm-header-item [route]="['foo']">Link 3</ibm-header-item>
+					</ibm-header-menu>
+				</ibm-header-navigation>
+			</ibm-header>
+			<div style="margin-top: 2rem">
+				<router-outlet></router-outlet>
+			</div>
+		`,
+		props: {
 			expanded: action("Menu clicked")
 		}
 	}))

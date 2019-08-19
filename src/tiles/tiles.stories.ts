@@ -7,7 +7,6 @@ import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
 import { Component } from "@angular/core";
 
-
 @Component({
 	selector: "app-bar",
 	template: "<h1>bar</h1>"

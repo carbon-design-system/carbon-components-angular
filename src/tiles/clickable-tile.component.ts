@@ -25,8 +25,7 @@ import { Router } from "@angular/router";
 		ibmLink
 		class="bx--tile bx--tile--clickable"
 		tabindex="0"
-		(click)="onClick($event)"
-		(keydown)="onKeyDown($event)"
+		(click)="navigate($event)"
 		[href]="href"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
@@ -68,17 +67,7 @@ export class ClickableTile {
 
 	constructor(@Optional() protected router: Router) {}
 
-	onClick(event) {
-		this.navigate(event);
-	}
-
-	onKeyDown(event) {
-		if (event.key === "Enter" || event.key === " ") {
-			this.navigate(event);
-		}
-	}
-
-	protected navigate(event) {
+	navigate(event) {
 		if (this.router) {
 			event.preventDefault();
 			const status = this.router.navigate(this.route, this.routeExtras);
