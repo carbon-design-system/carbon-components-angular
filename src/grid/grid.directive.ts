@@ -45,7 +45,12 @@ export class ColumnDirective implements OnInit {
 
 	ngOnInit() {
 		try {
-			Object.keys(this.columnNumbers).forEach(key => {
+			const columnKeys = Object.keys(this.columnNumbers);
+			if (columnKeys.length <= 0) {
+				this._columnClasses.push("bx--col");
+			}
+
+			columnKeys.forEach(key => {
 				if (this.columnNumbers[key] === "nobreak") {
 					this._columnClasses.push(`bx--col-${key}`);
 				} else {
@@ -60,7 +65,7 @@ export class ColumnDirective implements OnInit {
 			console.error(`Malformed \`offsets\` or \`columnNumbers\`: ${err}`);
 		}
 
-		if (this.class !== "") {
+		if (this.class) {
 			this._columnClasses.push(this.class);
 		}
 	}
