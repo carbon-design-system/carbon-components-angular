@@ -1,6 +1,6 @@
 import { TableModel } from "../table-model.class";
 import { Component, Input } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n, Overridable } from "../../i18n/i18n.module";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
