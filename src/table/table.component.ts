@@ -15,7 +15,7 @@ import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 import { getScrollbarWidth } from "../common/utils";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/i18n.module";
 import { merge } from "./../utils/object";
 
 export interface TableTranslations {

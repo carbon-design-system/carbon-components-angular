@@ -4,7 +4,7 @@ import {
 	ElementRef,
 	AfterContentInit
 } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/i18n.module";
 import { merge } from "./../utils/object";
 
 export interface ExpandableTileTranslations {
