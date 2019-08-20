@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { I18n } from "../i18n/i18n.module";
+import { I18n, Overridable } from "../i18n/i18n.module";
 import { Observable } from "rxjs";
 
 /**
