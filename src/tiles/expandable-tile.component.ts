@@ -1,12 +1,16 @@
 import {
 	Component,
-	HostBinding,
 	Input,
-	ViewChild,
 	ElementRef,
 	AfterContentInit
 } from "@angular/core";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/i18n.module";
+import { merge } from "./../utils/object";
+
+export interface ExpandableTileTranslations {
+	EXPAND: string;
+	COLLAPSE: string;
+}
 
 @Component({
 	selector: "ibm-expandable-tile",
@@ -18,13 +22,13 @@ import { I18n } from "./../i18n/i18n.module";
 			role="button"
 			tabindex="0"
 			(click)="onClick()">
-			<button [attr.aria-label]="(expanded ? collapse : expand) | async" class="bx--tile__chevron">
+			<button [attr.aria-label]="(expanded ? collapse : expand).subject | async" class="bx--tile__chevron">
 				<svg *ngIf="!expanded" width="12" height="7" viewBox="0 0 12 7" role="img">
-					<title>{{expand | async}}</title>
+					<title>{{expand.subject | async}}</title>
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
 				</svg>
 				<svg *ngIf="expanded" width="12" height="7" viewBox="0 0 12 7" role="img">
-					<title>{{collapse | async}}</title>
+					<title>{{collapse.subject | async}}</title>
 					<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z"/>
 				</svg>
 			</button>
@@ -47,20 +51,17 @@ export class ExpandableTile implements AfterContentInit {
 	 * ```
 	 */
 	@Input()
-	set translations (value) {
-		if (value.EXPAND) {
-			this.expand.next(value.EXPAND);
-		}
-		if (value.COLLAPSE) {
-			this.collapse.next(value.COLLAPSE);
-		}
+	set translations(value: ExpandableTileTranslations) {
+		const valueWithDefaults = merge(this.i18n.getMultiple("TILES"), value);
+		this.expand.override(valueWithDefaults.EXPAND);
+		this.collapse.override(valueWithDefaults.COLLAPSE);
 	}
 
 	tileMaxHeight = 0;
 	element = this.elementRef.nativeElement;
 
-	expand = this.i18n.get("TILES.EXPAND");
-	collapse = this.i18n.get("TILES.COLLAPSE");
+	expand = this.i18n.getOverridable("TILES.EXPAND");
+	collapse = this.i18n.getOverridable("TILES.COLLAPSE");
 
 	constructor(protected i18n: I18n, protected elementRef: ElementRef) {}
 
