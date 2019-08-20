@@ -63,13 +63,13 @@ import { Tab } from "./tab.component";
 					}"
 					class="bx--tabs__nav-item"
 					role="presentation"
-					(click)="selectTab(tabref, tab, i)">
+					(click)="selectTab(tabItem, tab, i)">
 					<a
 						#tabItem
 						[attr.aria-selected]="tab.active"
 						[attr.tabindex]="(tab.active?0:-1)"
 						[attr.aria-controls]="tab.id"
-						(focus)="onTabFocus(tabref, i)"
+						(focus)="onTabFocus(tabItem, i)"
 						draggable="false"
 						id="{{tab.id}}-header"
 						class="bx--tabs__nav-link"
