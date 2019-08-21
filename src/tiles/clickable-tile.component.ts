@@ -1,7 +1,11 @@
 import {
 	Component,
-	Input
+	Input,
+	Output,
+	EventEmitter,
+	Optional
 } from "@angular/core";
+import { Router } from "@angular/router";
 
 /**
  * Build application's clickable tiles using this component.
@@ -13,10 +17,6 @@ import {
  * 		tile content
  * </ibm-clickable-tile>
  * ```
- *
- * @export
- * @class ClickableTile
- * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-clickable-tile",
@@ -24,14 +24,10 @@ import {
 	<a
 		ibmLink
 		class="bx--tile bx--tile--clickable"
-		[ngClass]="{
-			'bx--tile--is-clicked': clicked
-		}"
 		tabindex="0"
-		(click)="onClick($event)"
-		(keydown)="onKeyDown($event)"
+		(click)="navigate($event)"
 		[href]="href"
-		[target]="target"
+		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
 		<ng-content></ng-content>
 	</a>`
@@ -39,34 +35,43 @@ import {
 export class ClickableTile {
 	/**
 	 * Sets the `href` attribute on the `ibm-clickable-tile` element.
-	 * @type {string}
-	 * @memberof ClickableTile
 	 */
-	@Input() href: string;
+	@Input() href = "#";
 
 	/**
 	 * Sets the `target` attribute on the `ibm-clickable-tile` element.
-	 * @type {string}
-	 * @memberof ClickableTile
 	 */
 	@Input() target: string;
 
 	/**
 	 * Set to `true` to disable the clickable tile.
-	 * @type {boolean}
-	 * @memberof ClickableTile
 	 */
 	@Input() disabled = false;
 
-	clicked = false;
+	/**
+	 * Array of commands to send to the router when the link is activated
+	 * See: https://angular.io/api/router/Router#navigate
+	 */
+	@Input() route: any[];
 
-	onClick(event) {
-		this.clicked = !this.clicked;
-	}
+	/**
+	 * Router options. Used in conjunction with `route`
+	 * See: https://angular.io/api/router/Router#navigate
+	 */
+	@Input() routeExtras: any;
 
-	onKeyDown(event) {
-		if (event.key === "Enter" || event.key === " ") {
-			this.clicked = !this.clicked;
+	/**
+	 * Emits the navigation status promise when the link is activated
+	 */
+	@Output() navigation = new EventEmitter<Promise<boolean>>();
+
+	constructor(@Optional() protected router: Router) {}
+
+	navigate(event) {
+		if (this.router && this.route) {
+			event.preventDefault();
+			const status = this.router.navigate(this.route, this.routeExtras);
+			this.navigation.emit(status);
 		}
 	}
 }
