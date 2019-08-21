@@ -22,6 +22,7 @@ import {
 } from "@angular/core";
 import { DatePickerModule, DocumentationModule } from "../";
 import { ButtonModule } from "../forms/forms.module";
+import { TabsModule } from "../tabs/tabs.module";
 
 @Component({
 	selector: "app-date-picker",
@@ -91,7 +92,8 @@ storiesOf("Date Picker", module)
 				FormsModule,
 				ReactiveFormsModule,
 				DocumentationModule,
-				ButtonModule
+				ButtonModule,
+				TabsModule
 			],
 			declarations: [
 				DatePickerStory
@@ -262,6 +264,75 @@ storiesOf("Date Picker", module)
 				new Date(new Date().getFullYear(), 5, 15),
 				new Date(new Date().getFullYear(), 8, 19)
 			]
+		}
+	}))
+	.add("In tabs", () => ({
+		template: `
+			<ibm-tabs>
+				<ibm-tab heading="one">
+					Tab Content 1
+					<p>With initial value</p>
+					<ibm-date-picker
+						[label]="label"
+						[placeholder]="placeholder"
+						[theme]="theme"
+						[value]="value"
+						[disabled]="disabled"
+						[invalid]="invalid"
+						[invalidText]="invalidText"
+						[dateFormat]="dateFormat"
+						(valueChange)="valueChange($event)">
+					</ibm-date-picker>
+					<p style="margin-top: 20px;">Without initial value</p>
+					<ibm-date-picker
+						[label]="label"
+						[placeholder]="placeholder"
+						[theme]="theme"
+						[disabled]="disabled"
+						[invalid]="invalid"
+						[invalidText]="invalidText"
+						[dateFormat]="dateFormat"
+						(valueChange)="valueChange($event)">
+					</ibm-date-picker>
+				</ibm-tab>
+				<ibm-tab heading="two">
+					<p>With initial value</p>
+					<ibm-date-picker
+						[label]="label"
+						[placeholder]="placeholder"
+						[theme]="theme"
+						[value]="value"
+						[disabled]="disabled"
+						[invalid]="invalid"
+						[invalidText]="invalidText"
+						[dateFormat]="dateFormat"
+						(valueChange)="valueChange($event)">
+					</ibm-date-picker>
+					<p style="margin-top: 20px;">Without initial value</p>
+					<ibm-date-picker
+						[label]="label"
+						[placeholder]="placeholder"
+						[theme]="theme"
+						[disabled]="disabled"
+						[invalid]="invalid"
+						[invalidText]="invalidText"
+						[dateFormat]="dateFormat"
+						(valueChange)="valueChange($event)">
+					</ibm-date-picker>
+				</ibm-tab>
+				<ibm-tab heading="three">Tab Content 3</ibm-tab>
+			</ibm-tabs>
+		`,
+		props: {
+			valueChange: action("Date change fired!"),
+			theme: select("Theme", ["dark", "light"], "dark"),
+			label: text("Label text", "Date Picker Label"),
+			placeholder: text("Placeholder text", "mm/dd/yyyy"),
+			invalidText: text("Form validation content", "Invalid date format"),
+			invalid: boolean("Show form validation", false),
+			disabled: boolean("Disabled", false),
+			dateFormat: text("Date format", "m/d/Y"),
+			value: array("Value", ["10/19/2019"])
 		}
 	}))
 	.add("Skeleton", () => ({
