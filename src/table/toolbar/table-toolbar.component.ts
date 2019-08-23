@@ -1,6 +1,6 @@
 import { TableModel } from "../table-model.class";
 import { Component, Input } from "@angular/core";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n, Overridable } from "../../i18n/i18n.module";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -46,10 +46,10 @@ import { I18n } from "../../i18n/i18n.module";
 			[ngClass]="{
 				'bx--batch-actions--active': selected
 			}"
-			[attr.aria-label]="actionBarLabel | async">
+			[attr.aria-label]="actionBarLabel.subject | async">
 			<div class="bx--action-list">
 				<ng-content select="ibm-table-toolbar-actions"></ng-content>
-				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{cancelText | async}}</button>
+				<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para">
@@ -64,17 +64,17 @@ import { I18n } from "../../i18n/i18n.module";
 export class TableToolbar {
 	@Input() model: TableModel;
 
-	@Input() set ariaLabel (value) {
-		this.actionBarLabel.next(value.ACTION_BAR);
+	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
+		this.actionBarLabel.override(value.ACTION_BAR);
 	}
-	@Input() set cancelText(value) {
-		this._cancelText.next(value.CANCEL);
+	@Input() set cancelText(value: { CANCEL: string }) {
+		this._cancelText.override(value.CANCEL);
 	}
-	get cancelText() {
-		return this._cancelText;
+	get cancelText(): { CANCEL: string } {
+		return { CANCEL: this._cancelText.value as string };
 	}
-	actionBarLabel = this.i18n.get("TABLE_TOOLBAR.ACTION_BAR");
-	_cancelText = this.i18n.get("TABLE_TOOLBAR.CANCEL");
+	actionBarLabel = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
+	_cancelText = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
 
 	constructor(protected i18n: I18n) {}
 
