@@ -3,13 +3,14 @@ import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import {
+	Table,
+	TableHead,
 	TableModel,
 	TableHeaderItem,
 	TableItem,
 	DataGridFocus,
 	ExpandedRowHover
 } from "./table.module";
-import { Table } from "./table.component";
 
 import { By } from "@angular/platform-browser";
 
@@ -48,6 +49,7 @@ describe("Table", () => {
 			],
 			declarations: [
 				Table,
+				TableHead,
 				TableTest,
 				DataGridFocus,
 				ExpandedRowHover
