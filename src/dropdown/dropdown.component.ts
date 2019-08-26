@@ -16,7 +16,13 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
-import { Observable, fromEvent, of, Subscription, merge } from "rxjs";
+import {
+	Observable,
+	fromEvent,
+	of,
+	Subscription,
+	merge
+} from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "@carbon/utils-position";
