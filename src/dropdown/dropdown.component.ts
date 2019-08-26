@@ -16,13 +16,20 @@ import {
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
-import { Observable, fromEvent, of, Subscription } from "rxjs";
+import {
+	Observable,
+	fromEvent,
+	of,
+	Subscription,
+	merge
+} from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { position } from "@carbon/utils-position";
 import { I18n } from "./../i18n/i18n.module";
 import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
+import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/scroll";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -614,20 +621,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Add scroll event listener if scrollableContainer is provided
 	 */
 	addScrollEventListener() {
+		let scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
 		if (this.scrollableContainer) {
 			const container: HTMLElement = document.querySelector(this.scrollableContainer);
 
 			if (container) {
-				this.scroll = fromEvent(container, "scroll")
-				.subscribe(() => {
-					if (this.isVisibleInContainer(this.elementRef.nativeElement, container)) {
-						this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
-					} else {
-						this.closeMenu();
-					}
-				});
+				scrollObservable = merge(scrollObservable, fromEvent(container, "scroll"));
 			}
 		}
+		this.scroll = scrollObservable.subscribe(event => {
+			if (isVisibleInContainer(this.elementRef.nativeElement, event.target as HTMLElement)) {
+				this.dropdownService.updatePosition(this.dropdownButton.nativeElement);
+			} else {
+				this.closeMenu();
+			}
+		});
 	}
 
 	/**
@@ -648,22 +656,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		} else {
 			this.closeMenu();
 		}
-	}
-
-	/**
-	 * Returns `true` if the `elem` is visible within the `container`.
-	 */
-	isVisibleInContainer(elem: HTMLElement, container: HTMLElement): boolean {
-		const containerTop = container.scrollTop;
-		const containerBottom = containerTop + container.offsetHeight;
-		const elemTop = elem.offsetTop + elem.offsetHeight;
-		const elemBottom = elemTop;
-
-		if ((elemBottom <= containerBottom) && (elemTop >= containerTop)) {
-			return true;
-		}
-
-		return false;
 	}
 
 	public isTemplate(value) {
