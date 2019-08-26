@@ -30,7 +30,7 @@ import {
 			[tabindex]="tabIndex"
 			(focus)="onFocus()"
 			(blur)="onBlur()"
-			(click)="onClick($event)"
+			(click)="onClick()"
 			[disabled]="disabled"
 			[attr.title]="title">
 			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
@@ -43,7 +43,7 @@ import {
 			[tabindex]="tabIndex"
 			(focus)="onFocus()"
 			(blur)="onBlur()"
-			(click)="onClick($event)"
+			(click)="onClick()"
 			[attr.disabled]="disabled"
 			[href]="href"
 			[attr.title]="title">
