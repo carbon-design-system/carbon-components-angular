@@ -1,3 +1,4 @@
+// modules
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -8,26 +9,29 @@ import { Search16Module } from "@carbon/icons-angular/lib/search/16";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 
 // internal module imports
-import { DialogModule } from "./../dialog/dialog.module";
 import { NFormsModule } from "./../forms/forms.module";
-import { ButtonModule, SearchModule } from "../";
+import { DialogModule } from "./../dialog/dialog.module";
 import { I18nModule } from "./../i18n/i18n.module";
+import { ButtonModule, SearchModule } from "../";
 
 // table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";
+import { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
+import { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
+import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
+
 import { TableContainer } from "./table-container.component";
 import { TableHeader } from "./header/table-header.component";
 import { TableHeaderTitle } from "./header/table-header-title.directive";
 import { TableHeaderDescription } from "./header/table-header-description.directive";
-import { TableToolbarActions } from "./toolbar/table-toolbar-actions.component";
-import { TableToolbarSearch } from "./toolbar/table-toolbar-search.component";
-import { TableToolbarContent } from "./toolbar/table-toolbar-content.component";
+
 import { DataGridFocus } from "./data-grid-focus.directive";
 import { ExpandedRowHover } from "./expanded-row-hover.directive";
 
 // core table imports
 import { Table } from "./table.component";
 import { TableDirective } from "./table.directive";
+import { TableHead } from "./table-head.component";
 import { TableBody } from "./body/table-body.component";
 import { TableRowComponent } from "./body/table-row.component";
 import { TableExpandedRow } from "./body/table-expanded-row.component";
@@ -55,6 +59,7 @@ export {
 	// core table components
 	Table,
 	TableDirective,
+	TableHead,
 	TableBody,
 	TableRowComponent,
 	TableExpandedRow,
@@ -79,6 +84,7 @@ export {
 		// core table components
 		Table,
 		TableDirective,
+		TableHead,
 		TableBody,
 		TableRowComponent,
 		TableExpandedRow,
@@ -101,6 +107,7 @@ export {
 		// core table components
 		Table,
 		TableDirective,
+		TableHead,
 		TableBody,
 		TableRowComponent,
 		TableExpandedRow,

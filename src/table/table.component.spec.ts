@@ -3,6 +3,8 @@ import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import {
+	Table,
+	TableHead,
 	TableModel,
 	TableHeaderItem,
 	TableItem,
@@ -16,7 +18,6 @@ import {
 	TableCheckbox,
 	TableExpandButton
 } from "./table.module";
-import { Table } from "./table.component";
 
 import { By } from "@angular/platform-browser";
 
@@ -62,6 +63,7 @@ describe("Table", () => {
 				TableData,
 				TableCheckbox,
 				TableExpandButton,
+				TableHead,
 				TableTest,
 				DataGridFocus,
 				ExpandedRowHover
