@@ -2,8 +2,7 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter,
-	ElementRef
+	EventEmitter
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
 import { TableItem } from "./../table-item.class";
@@ -61,7 +60,7 @@ export class TableCheckbox {
 
 	protected _label = this.i18n.get("TABLE.CHECKBOX_ROW");
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) { }
+	constructor(protected i18n: I18n) { }
 
 	getSelectionLabelValue(row: TableItem[]) {
 		if (!this.selectionLabelColumn) {

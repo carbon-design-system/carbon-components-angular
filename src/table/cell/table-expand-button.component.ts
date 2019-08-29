@@ -21,7 +21,14 @@ import { I18n } from "./../../i18n/i18n.module";
 	`
 })
 export class TableExpandButton {
+	/**
+	 * Set to true to indicate the row has expanded
+	 */
 	@Input() expanded = false;
+	/**
+	 * Set to true to indicate the row can be expanded.
+	 * Defaults to false to allow for correct column alignment
+	 */
 	@Input() expandable = false;
 
 	@Input()

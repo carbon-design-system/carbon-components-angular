@@ -1,4 +1,9 @@
-import { Component, Input, EventEmitter, Output } from "@angular/core";
+import {
+	Component,
+	Input,
+	EventEmitter,
+	Output
+} from "@angular/core";
 import { TableModel } from "../table-model.class";
 
 @Component({
@@ -14,16 +19,13 @@ import { TableModel } from "../table-model.class";
 					[selected]="model.isRowSelected(i)"
 					[expandable]="model.isRowExpandable(i)"
 					[expanded]="model.isRowExpanded(i)"
-					[isDataGrid]="isDataGrid"
 					[checkboxLabel]="checkboxRowLabel"
 					[expandButtonAriaLabel]="expandButtonAriaLabel"
 					[skeleton]="skeleton"
 					(selectRow)="onRowCheckboxChange(i)"
 					(deselectRow)="onRowCheckboxChange(i)"
 					(expandRow)="model.expandRow(i, !model.isRowExpanded(i))"
-					[(columnIndex)]="columnIndex"
 					*ngIf="!model.isRowFiltered(i)"
-					(click)="onRowSelect(i)"
 					[class]="(model.rowsClass[i] ? model.rowsClass[i] : null)"
 					[ngClass]="{
 						'tbody_row--success': !model.isRowSelected(i) && model.getRowContext(i) === 'success',
@@ -36,8 +38,6 @@ import { TableModel } from "../table-model.class";
 					*ngIf="model.isRowExpanded(i) && !model.isRowFiltered(i)"
 					ibmTableExpandedRow
 					ibmExpandedRowHover
-					[isDataGrid]="isDataGrid"
-					[(columnIndex)]="columnIndex"
 					[row]="row"
 					[expanded]="model.isRowExpanded(i)"
 					[skeleton]="skeleton">
@@ -60,11 +60,6 @@ export class TableBody {
 	@Input() checkboxRowLabel;
 
 	/**
-	 * Set to `true` for a data grid with keyboard interactions.
-	 */
-	@Input() isDataGrid = false;
-
-	/**
 	 * Controls whether to show the selection checkboxes column or not.
 	 */
 	@Input() showSelectionColumn = true;
@@ -81,17 +76,6 @@ export class TableBody {
 	 */
 	@Input() selectionLabelColumn: number;
 
-	@Input() set columnIndex(value: number) {
-		const shouldEmit = value !== this._columnIndex;
-		this._columnIndex = value;
-		if (shouldEmit) {
-			this.columnIndexChange.emit(value);
-		}
-	}
-	get columnIndex(): number {
-		return this._columnIndex;
-	}
-
 	@Input() skeleton = false;
 
 	/**
@@ -107,21 +91,6 @@ export class TableBody {
 	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
-
-	@Output() columnIndexChange = new EventEmitter<number>();
-
-	protected _columnIndex = 0;
-	protected _model: TableModel;
-
-	onRowSelect(index: number) {
-		if (!this.showSelectionColumn && this.enableSingleSelect) {
-			this.model.rowsSelected.forEach((element, index) => {
-				this.model.selectRow(index, false);
-			});
-			this.model.selectRow(index, !this.model.rowsSelected[index]);
-			this.onRowCheckboxChange(index);
-		}
-	}
 
 	/**
 	 * Triggered when a single row is clicked.

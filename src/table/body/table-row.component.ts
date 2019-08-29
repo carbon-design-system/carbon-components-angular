@@ -17,25 +17,19 @@ import { TableItem } from "./../table-item.class";
 			<td
 				*ngIf="model.hasExpandableRows()"
 				ibmTableExpandButton
-				[ibmDataGridFocus]="isDataGrid"
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
 				[ariaLabel]="expandButtonAriaLabel"
-				(expandRow)="expandRow.emit()"
-				(click)="setExpandIndex($event)"
-				[(columnIndex)]="columnIndex">
+				(expandRow)="expandRow.emit()">
 			</td>
 			<td
 				*ngIf="!skeleton && showSelectionColumn"
 				ibmTableCheckbox
 				[selected]="selected"
-				[ibmDataGridFocus]="isDataGrid"
 				[label]="checkboxLabel"
 				[skeleton]="skeleton"
-				(change)="onSelectionChange()"
-				(click)="setCheckboxIndex()"
-				[(columnIndex)]="columnIndex">
+				(change)="onSelectionChange()">
 			</td>
 			<ng-container *ngFor="let item of row; let j = index">
 				<td
@@ -44,10 +38,7 @@ import { TableItem } from "./../table-item.class";
 					[item]="item"
 					[class]="model.header[j].className"
 					[ngStyle]="model.header[j].style"
-					[ibmDataGridFocus]="isDataGrid"
-					[skeleton]="skeleton"
-					(click)="setIndex(j)"
-					[(columnIndex)]="columnIndex">
+					[skeleton]="skeleton">
 				</td>
 			</ng-container>
 		</ng-container>
@@ -81,10 +72,6 @@ export class TableRowComponent {
 	@Input() expandButtonAriaLabel;
 
 	@Input() checkboxLabel;
-	/**
-	 * Set to `true` for a data grid with keyboard interactions.
-	 */
-	@Input() isDataGrid = false;
 
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
@@ -103,36 +90,22 @@ export class TableRowComponent {
 	 */
 	@Input() selectionLabelColumn: number;
 
-	@Input() set columnIndex(value: number) {
-		const shouldEmit = value !== this._columnIndex;
-		this._columnIndex = value;
-		if (shouldEmit) {
-			this.columnIndexChange.emit(value);
-		}
-	}
-	get columnIndex(): number {
-		return this._columnIndex;
-	}
-
 	@Input() skeleton = false;
 
 	/**
-	 * Emits if a single row is selected.
-	 *
-	 * @param {Object} ({model: this.model, selectedRowIndex: index})
+	 * Emits when the row is selected.
 	 */
-	@Output() selectRow = new EventEmitter<Object>();
+	@Output() selectRow = new EventEmitter();
 
 	/**
-	 * Emits if a single row is deselected.
-	 *
-	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
+	 * Emits when the row is deselected.
 	 */
-	@Output() deselectRow = new EventEmitter<Object>();
+	@Output() deselectRow = new EventEmitter();
 
-	@Output() expandRow = new EventEmitter<void>();
-
-	@Output() columnIndexChange = new EventEmitter<number>();
+	/**
+	 * Emits when the row is expanded
+	 */
+	@Output() expandRow = new EventEmitter();
 
 	@HostBinding("class.bx--data-table--selected") get selectedClass() {
 		return this.selected;
@@ -154,32 +127,10 @@ export class TableRowComponent {
 		return this.expandable ? true : null;
 	}
 
-	protected _columnIndex = 0;
-	protected _model: TableModel;
 	protected _checkboxRowLabel = this.i18n.get("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.get("TABLE.EXPAND_BUTTON");
 
 	constructor(protected i18n: I18n) { }
-
-	setExpandIndex(event) {
-		this.columnIndex = 0;
-	}
-
-	setCheckboxIndex() {
-		if (this.model.hasExpandableRows()) {
-			this.columnIndex = 1;
-		} else {
-			this.columnIndex = 0;
-		}
-	}
-
-	setIndex(columnIndex) {
-		if (this.model.hasExpandableRows() && this.showSelectionColumn) {
-			this.columnIndex = columnIndex + 2;
-		} else if (this.model.hasExpandableRows() || this.showSelectionColumn) {
-			this.columnIndex = columnIndex + 1;
-		}
-	}
 
 	onSelectionChange() {
 		if (this.selected) {
