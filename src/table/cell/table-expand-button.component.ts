@@ -6,6 +6,7 @@ import {
 	HostBinding
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -14,7 +15,7 @@ import { I18n } from "./../../i18n/i18n.module";
 		<button
 			*ngIf="expandable"
 			class="bx--table-expand__button"
-			[attr.aria-label]="ariaLabel | async"
+			[attr.aria-label]="getAriaLabel() | async"
 			(click)="expandRow.emit()">
 			<ibm-icon-chevron-right16 innerClass="bx--table-expand__svg"></ibm-icon-chevron-right16>
 		</button>
@@ -32,13 +33,12 @@ export class TableExpandButton {
 	@Input() expandable = false;
 
 	@Input()
-	set ariaLabel(value) {
-		if (value) {
-			this._ariaLabel.next(value);
-		}
+	set ariaLabel(value: string | Observable<string>) {
+		this._ariaLabel.override(value);
 	}
+
 	get ariaLabel() {
-		return this._ariaLabel;
+		return this._ariaLabel.value;
 	}
 
 	@Input() skeleton = false;
@@ -51,7 +51,11 @@ export class TableExpandButton {
 
 	@Output() expandRow = new EventEmitter<void>();
 
-	protected _ariaLabel = this.i18n.get("TABLE.EXPAND_BUTTON");
+	protected _ariaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
 	constructor(protected i18n: I18n) { }
+
+	getAriaLabel(): Observable<string> {
+		return this._ariaLabel.subject;
+	}
 }

@@ -6,18 +6,20 @@ import {
 	EventEmitter
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 @Component({
 	// tslint:disable-next-line: component-selector
 	selector: "[ibmTableHeadCheckbox]",
 	template: `
 		<ibm-checkbox
+			*ngIf="!skeleton"
 			inline="true"
 			[size]="size !== ('lg' ? 'sm' : 'md')"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
-			[attr.aria-label]="ariaLabel | async"
-			(change)="change.emit()">
+			(change)="change.emit()"
+			[aria-label]="getAriaLabel() | async">
 		</ibm-checkbox>
 	`
 })
@@ -28,7 +30,16 @@ export class TableHeadCheckbox {
 
 	@Input() indeterminate = false;
 
-	@Input() ariaLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
+	@Input() skeleton = false;
+
+	@Input()
+	set ariaLabel(value: string | Observable<string>) {
+		this._ariaLabel.override(value);
+	}
+
+	get ariaLabel() {
+		return this._ariaLabel.value;
+	}
 
 	@Output() change = new EventEmitter<boolean>();
 
@@ -36,5 +47,11 @@ export class TableHeadCheckbox {
 
 	@HostBinding("attr.style") hostStyle = "width: 10px;";
 
+	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
+
 	constructor(protected i18n: I18n) { }
+
+	getAriaLabel(): Observable<string> {
+		return this._ariaLabel.subject;
+	}
 }

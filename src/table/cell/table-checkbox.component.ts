@@ -6,14 +6,16 @@ import {
 } from "@angular/core";
 import { I18n } from "./../../i18n/i18n.module";
 import { TableItem } from "./../table-item.class";
+import { Observable } from "rxjs";
 
 @Component({
 	// tslint:disable-next-line: component-selector
 	selector: "[ibmTableCheckbox]",
 	template: `
 		<ibm-checkbox
+			*ngIf="!skeleton"
 			inline="true"
-			[aria-label]="label | i18nReplace:getSelectionLabelValue(row) | async"
+			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
 			[size]="size"
 			[checked]="selected"
 			(change)="change.emit()">
@@ -30,13 +32,13 @@ export class TableCheckbox {
 	 */
 	@Input() size: "sm" | "md" | "lg" = "md";
 
-	@Input() set label(value) {
-		if (value) {
-			this._label.next(value);
-		}
+	@Input()
+	set label(value: string | Observable<string>) {
+		this._label.override(value);
 	}
+
 	get label() {
-		return this._label;
+		return this._label.value;
 	}
 
 	/**
@@ -58,7 +60,7 @@ export class TableCheckbox {
 	 */
 	@Output() change = new EventEmitter();
 
-	protected _label = this.i18n.get("TABLE.CHECKBOX_ROW");
+	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
 	constructor(protected i18n: I18n) { }
 
@@ -67,5 +69,9 @@ export class TableCheckbox {
 			return { value: this.i18n.get().TABLE.ROW };
 		}
 		return { value: row[this.selectionLabelColumn].data };
+	}
+
+	getLabel(): Observable<string> {
+		return this._label.subject;
 	}
 }

@@ -6,6 +6,8 @@ import {
 	HostBinding,
 	OnInit
 } from "@angular/core";
+import { Observable } from "rxjs";
+import { I18n } from "./../../i18n/i18n.module";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -14,7 +16,7 @@ import {
 		<button
 			class="bx--table-sort"
 			*ngIf="!skeleton && this.sort.observers.length > 0 && column.sortable"
-			[attr.aria-label]="(column.sorted && column.ascending ? sortDescendingLabel : sortAscendingLabel) | async"
+			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
 				'bx--table-sort--active': column.sorted,
@@ -71,7 +73,7 @@ import {
 			aria-haspopup="true"
 			[ibmTooltip]="column.filterTemplate"
 			trigger="click"
-			[title]="filterTitle | async"
+			[title]="getFilterTitle() | async"
 			placement="bottom,top"
 			[data]="column.filterData">
 			<svg
@@ -93,7 +95,32 @@ export class TableHeadCell implements OnInit {
 
 	@Input() skeleton = false;
 
-	@Input() filterTitle;
+	@Input()
+	set sortDescendingLabel(value: string | Observable<string>) {
+		this._sortDescendingLabel.override(value);
+	}
+
+	get sortDescendingLabel() {
+		return this._sortDescendingLabel.value;
+	}
+
+	@Input()
+	set sortAscendingLabel(value: string | Observable<string>) {
+		this._sortAscendingLabel.override(value);
+	}
+
+	get sortAscendingLabel() {
+		return this._sortAscendingLabel.value;
+	}
+
+	@Input()
+	set filterTitle(value: string | Observable<string>) {
+		this._filterTitle.override(value);
+	}
+
+	get filterTitle() {
+		return this._filterTitle.value;
+	}
 
 	/**
 	 * Notifies that the column should be sorted
@@ -102,7 +129,25 @@ export class TableHeadCell implements OnInit {
 
 	@HostBinding("class.thead_action") theadAction = false;
 
+	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
+	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
+	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
+
+	constructor(protected i18n: I18n) { }
+
 	ngOnInit() {
 		this.theadAction = this.column.filterTemplate || this.sort.observers.length > 0;
+	}
+
+	getSortDescendingLabel(): Observable<string> {
+		return this._sortDescendingLabel.subject;
+	}
+
+	getSortAscendingLabel(): Observable<string> {
+		return this._sortAscendingLabel.subject;
+	}
+
+	getFilterTitle(): Observable<string> {
+		return this._filterTitle.subject;
 	}
 }

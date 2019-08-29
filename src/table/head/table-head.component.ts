@@ -9,6 +9,7 @@ import {
 
 import { TableModel } from "../table.module";
 import { I18n } from "../../i18n/i18n.module";
+import { Observable } from "rxjs";
 
 /**
  * A subcomponent that creates the thead of the table
@@ -31,17 +32,18 @@ import { I18n } from "../../i18n/i18n.module";
 			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows()"></th>
 			<th
 				ibmTableHeadCheckbox
-				*ngIf="showSelectionColumn"
+				*ngIf="!skeleton && showSelectionColumn"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
-				[ariaLabel]="checkboxHeaderLabel"
+				[ariaLabel]="getCheckboxHeaderLabel()"
+				[skeleton]="skeleton"
 				(change)="onSelectAllCheckboxChange()">
 			</th>
 			<ng-container *ngFor="let column of model.header; let i = index">
 				<th
 					ibmTableHeadCell
 					[column]="column"
-					[filterTitle]="filterTitle"
+					[filterTitle]="getFilterTitle()"
 					(sort)="sort.emit(i)"
 					*ngIf="column.visible"
 					[class]="column.className"
@@ -72,10 +74,41 @@ export class TableHead {
 
 	@Input() stickyHeader = false;
 
-	@Input() checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
-	@Input() sortDescendingLabel = this.i18n.get("TABLE.SORT_DESCENDING");
-	@Input() sortAscendingLabel = this.i18n.get("TABLE.SORT_ASCENDING");
-	@Input() filterTitle = this.i18n.get("TABLE.FILTER");
+	@Input()
+	set checkboxHeaderLabel(value: string | Observable<string>) {
+		this._checkboxHeaderLabel.override(value);
+	}
+
+	get checkboxHeaderLabel() {
+		return this._checkboxHeaderLabel.value;
+	}
+
+	@Input()
+	set sortDescendingLabel(value: string | Observable<string>) {
+		this._sortDescendingLabel.override(value);
+	}
+
+	get sortDescendingLabel() {
+		return this._sortDescendingLabel.value;
+	}
+
+	@Input()
+	set sortAscendingLabel(value: string | Observable<string>) {
+		this._sortAscendingLabel.override(value);
+	}
+
+	get sortAscendingLabel() {
+		return this._sortAscendingLabel.value;
+	}
+
+	@Input()
+	set filterTitle(value: string | Observable<string>) {
+		this._filterTitle.override(value);
+	}
+
+	get filterTitle() {
+		return this._filterTitle.value;
+	}
 
 	/**
 	 * Emits an index of the column that wants to be sorted.
@@ -94,6 +127,11 @@ export class TableHead {
 	 */
 	@Output() deselectAll = new EventEmitter<TableModel>();
 
+	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
+	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
+	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
+	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
+
 	constructor(protected i18n: I18n) {}
 
 	onSelectAllCheckboxChange() {
@@ -102,5 +140,21 @@ export class TableHead {
 		} else {
 			this.deselectAll.emit(this.model);
 		}
+	}
+
+	getCheckboxHeaderLabel(): Observable<string> {
+		return this._checkboxHeaderLabel.subject;
+	}
+
+	getSortDescendingLabel(): Observable<string> {
+		return this._sortDescendingLabel.subject;
+	}
+
+	getSortAscendingLabel(): Observable<string> {
+		return this._sortAscendingLabel.subject;
+	}
+
+	getFilterTitle(): Observable<string> {
+		return this._filterTitle.subject;
 	}
 }

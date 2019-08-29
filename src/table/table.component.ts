@@ -191,8 +191,8 @@ export interface TableTranslations {
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
 			(sort)="sort.emit($event)"
-			[checkboxHeaderLabel]="checkboxHeaderLabel"
-			[filterTitle]="filterTitle"
+			[checkboxHeaderLabel]="getCheckboxHeaderLabel()"
+			[filterTitle]="getFilterTitle()"
 			[model]="model"
 			[selectAllCheckbox]="selectAllCheckbox"
 			[selectAllCheckboxSomeSelected]="selectAllCheckboxSomeSelected"
@@ -207,8 +207,7 @@ export interface TableTranslations {
 			(deselectRow)="onSelectRow($event)"
 			(scroll)="onScroll($event)"
 			(selectRow)="onSelectRow($event)"
-			[checkboxRowLabel]="checkboxRowLabel"
-			[checkboxRowLabel]="checkboxRowLabel"
+			[checkboxRowLabel]="getCheckboxRowLabel()"
 			[enableSingleSelect]="enableSingleSelect"
 			[expandButtonAriaLabel]="expandButtonAriaLabel"
 			[model]="model"
@@ -234,9 +233,9 @@ export interface TableTranslations {
 			</tr>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
-					<h5>{{endOfDataText.subject | async}}</h5>
+					<h5>{{getEndOfDataText() | async}}</h5>
 					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						{{scrollTopText.subject | async}}
+						{{getScrollTopText() | async}}
 					</button>
 				</td>
 			</tr>
@@ -436,18 +435,12 @@ export class Table implements AfterViewInit, OnDestroy {
 	@Input()
 	set translations (value) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("TABLE"), value);
-		this.filterTitle.override(valueWithDefaults.FILTER);
-		this.endOfDataText.override(valueWithDefaults.END_OF_DATA);
-		this.scrollTopText.override(valueWithDefaults.SCROLL_TOP);
-		this.checkboxHeaderLabel.override(valueWithDefaults.CHECKBOX_HEADER);
-		this.checkboxRowLabel.override(valueWithDefaults.CHECKBOX_ROW);
+		this._filterTitle.override(valueWithDefaults.FILTER);
+		this._endOfDataText.override(valueWithDefaults.END_OF_DATA);
+		this._scrollTopText.override(valueWithDefaults.SCROLL_TOP);
+		this._checkboxHeaderLabel.override(valueWithDefaults.CHECKBOX_HEADER);
+		this._checkboxRowLabel.override(valueWithDefaults.CHECKBOX_ROW);
 	}
-
-	checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
-	checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
-	endOfDataText = this.i18n.getOverridable("TABLE.END_OF_DATA");
-	scrollTopText = this.i18n.getOverridable("TABLE.SCROLL_TOP");
-	filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	/**
 	 * Set to `false` to remove table rows (zebra) stripes.
@@ -515,13 +508,6 @@ export class Table implements AfterViewInit, OnDestroy {
 	 */
 	@Output() scrollLoad = new EventEmitter<TableModel>();
 
-	checkboxHeaderLabel = this.i18n.get("TABLE.CHECKBOX_HEADER");
-	endOfDataText = this.i18n.get("TABLE.END_OF_DATA");
-	scrollTopText = this.i18n.get("TABLE.SCROLL_TOP");
-	filterTitle = this.i18n.get("TABLE.FILTER");
-	// just get an initial value, the internal component will handle the rest
-	checkboxRowLabel = this.i18n.get().TABLE.CHECKBOX_ROW;
-
 	/**
 	 * Controls if all checkboxes are viewed as selected.
 	 */
@@ -538,6 +524,10 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.model.data.length === 1 && this.model.data[0].length === 0;
 	}
 
+	public isColumnDragging = false;
+	public columnDraggedHoverIndex = -1;
+	public columnDraggedPosition = "";
+
 	protected _model: TableModel;
 
 	protected subscriptions = new Subscription();
@@ -545,13 +535,14 @@ export class Table implements AfterViewInit, OnDestroy {
 	protected interactionModel: DataGridInteractionModel;
 	protected interactionPositionSubscription: Subscription;
 
-	public isColumnDragging = false;
-	public columnDraggedHoverIndex = -1;
-	public columnDraggedPosition = "";
-
 	protected _expandButtonAriaLabel  = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
+	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
+	protected _checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
+	protected _endOfDataText = this.i18n.getOverridable("TABLE.END_OF_DATA");
+	protected _scrollTopText = this.i18n.getOverridable("TABLE.SCROLL_TOP");
+	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	protected columnResizeWidth: number;
 	protected columnResizeMouseX: number;
@@ -758,4 +749,25 @@ export class Table implements AfterViewInit, OnDestroy {
 	getSortAscendingLabel() {
 		return this._sortAscendingLabel.subject;
 	}
+
+	getCheckboxHeaderLabel() {
+		return this._checkboxHeaderLabel.subject;
+	}
+
+	getCheckboxRowLabel() {
+		return this._checkboxRowLabel.subject;
+	}
+
+	getEndOfDataText() {
+		return this._endOfDataText.subject;
+	}
+
+	getScrollTopText() {
+		return this._scrollTopText.subject;
+	}
+
+	getFilterTitle() {
+		return this._filterTitle.subject;
+	}
+
 }

@@ -54,7 +54,7 @@ emptyModel.header = [
 ];
 
 const getProps = (more = {}) => {
-	return Object.assign({}, more, {
+	return Object.assign({}, {
 		model: simpleModel,
 		size: select("size", { Small: "sm", Normal: "md", Large: "lg" }, "md"),
 		title: text("Title", "Table title"),
@@ -63,7 +63,7 @@ const getProps = (more = {}) => {
 		striped: boolean("striped", false),
 		sortable: boolean("sortable", true),
 		isDataGrid: boolean("Data grid keyboard interactions", true)
-	});
+	}, more);
 };
 
 storiesOf("Table", module).addDecorator(
@@ -137,7 +137,8 @@ storiesOf("Table", module).addDecorator(
 			}
 		`],
 		props: getProps({
-			model: emptyModel
+			model: emptyModel,
+			description: text("Description", "With no data")
 		})
 	}))
 	.add("With toolbar", () => ({
@@ -184,7 +185,9 @@ storiesOf("Table", module).addDecorator(
 			</app-table>
 		</ibm-table-container>
 	`,
-		props: getProps()
+		props: getProps({
+			description: text("Description", "With toolbar")
+		})
 	}))
 	.add("With expansion", () => ({
 		template: `
@@ -201,14 +204,9 @@ storiesOf("Table", module).addDecorator(
 			</app-expansion-table>
 		</ibm-table-container>
 		`,
-		props: {
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
-			title: text("Title", "Table title"),
-			description: text("Description", "With expansion"),
-			showSelectionColumn: boolean("showSelectionColumn", true),
-			striped: boolean("striped", false),
-			isDataGrid: boolean("Data grid keyboard interactions", true)
-		}
+		props: getProps({
+			description: text("Description", "With expansion")
+		})
 	}))
 	.add("With dynamic content", () => ({
 		template: `
@@ -225,7 +223,9 @@ storiesOf("Table", module).addDecorator(
 			</app-custom-table>
 		</ibm-table-container>
 		`,
-		props: getProps()
+		props: getProps({
+			description: text("Description", "With dynamic content")
+		})
 	}))
 	.add("With overflow menu", () => ({
 		template: `
@@ -242,7 +242,9 @@ storiesOf("Table", module).addDecorator(
 			</app-overflow-table>
 		</ibm-table-container>
 		`,
-		props: getProps()
+		props: getProps({
+			description: text("Description", "With overflow menu")
+		})
 	}))
 	.add("With pagination", () => ({
 		template: `
@@ -254,12 +256,10 @@ storiesOf("Table", module).addDecorator(
 			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
 		</ibm-table-container>
 		`,
-		props: {
-			model: simpleModel,
+		props: getProps({
 			totalDataLength: number("totalDataLength", 105),
-			title: text("Title", "Table title"),
 			description: text("Description", "With pagination")
-		}
+		})
 	}))
 	.add("From components", () => ({
 		template: `

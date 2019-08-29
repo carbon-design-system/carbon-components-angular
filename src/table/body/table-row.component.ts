@@ -8,6 +8,7 @@ import {
 import { TableModel } from "./../table-model.class";
 import { I18n } from "./../../i18n/i18n.module";
 import { TableItem } from "./../table-item.class";
+import { Observable } from "rxjs";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -20,14 +21,14 @@ import { TableItem } from "./../table-item.class";
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
-				[ariaLabel]="expandButtonAriaLabel"
+				[ariaLabel]="getExpandButtonAriaLabel()"
 				(expandRow)="expandRow.emit()">
 			</td>
 			<td
 				*ngIf="!skeleton && showSelectionColumn"
 				ibmTableCheckbox
 				[selected]="selected"
-				[label]="checkboxLabel"
+				[label]="getCheckboxLabel()"
 				[skeleton]="skeleton"
 				(change)="onSelectionChange()">
 			</td>
@@ -69,9 +70,23 @@ export class TableRowComponent {
 	 */
 	@Input() enableSingleSelect = false;
 
-	@Input() expandButtonAriaLabel;
+	@Input()
+	set expandButtonAriaLabel(value: string | Observable<string>) {
+		this._expandButtonAriaLabel.override(value);
+	}
 
-	@Input() checkboxLabel;
+	get expandButtonAriaLabel() {
+		return this._expandButtonAriaLabel.value;
+	}
+
+	@Input()
+	set checkboxLabel(value: string | Observable<string>) {
+		this._checkboxLabel.override(value);
+	}
+
+	get checkboxLabel() {
+		return this._checkboxLabel.value;
+	}
 
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
@@ -127,8 +142,8 @@ export class TableRowComponent {
 		return this.expandable ? true : null;
 	}
 
-	protected _checkboxRowLabel = this.i18n.get("TABLE.CHECKBOX_ROW");
-	protected _expandButtonAriaLabel = this.i18n.get("TABLE.EXPAND_BUTTON");
+	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
+	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
 	constructor(protected i18n: I18n) { }
 
@@ -138,5 +153,13 @@ export class TableRowComponent {
 		} else {
 			this.selectRow.emit();
 		}
+	}
+
+	getCheckboxLabel(): Observable<string> {
+		return this._checkboxLabel.subject;
+	}
+
+	getExpandButtonAriaLabel(): Observable<string> {
+		return this._expandButtonAriaLabel.subject;
 	}
 }
