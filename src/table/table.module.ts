@@ -31,7 +31,10 @@ import { ExpandedRowHover } from "./expanded-row-hover.directive";
 // core table imports
 import { Table } from "./table.component";
 import { TableDirective } from "./table.directive";
-import { TableHead } from "./table-head.component";
+import { TableHead } from "./head/table-head.component";
+import { TableHeadCell } from "./head/table-head-cell.component";
+import { TableHeadCheckbox } from "./head/table-head-checkbox.component";
+import { TableHeadExpand } from "./head/table-head-expand.component";
 import { TableBody } from "./body/table-body.component";
 import { TableRowComponent } from "./body/table-row.component";
 import { TableExpandedRow } from "./body/table-expanded-row.component";
@@ -60,6 +63,9 @@ export {
 	Table,
 	TableDirective,
 	TableHead,
+	TableHeadCell,
+	TableHeadCheckbox,
+	TableHeadExpand,
 	TableBody,
 	TableRowComponent,
 	TableExpandedRow,
@@ -85,6 +91,9 @@ export {
 		Table,
 		TableDirective,
 		TableHead,
+		TableHeadCell,
+		TableHeadCheckbox,
+		TableHeadExpand,
 		TableBody,
 		TableRowComponent,
 		TableExpandedRow,
@@ -108,6 +117,9 @@ export {
 		Table,
 		TableDirective,
 		TableHead,
+		TableHeadCell,
+		TableHeadCheckbox,
+		TableHeadExpand,
 		TableBody,
 		TableRowComponent,
 		TableExpandedRow,
