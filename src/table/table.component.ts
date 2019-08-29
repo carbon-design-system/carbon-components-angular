@@ -9,16 +9,25 @@ import {
 	TemplateRef,
 	OnDestroy
 } from "@angular/core";
-import { Subscription, fromEvent } from "rxjs";
+import { Subscription, fromEvent, Observable } from "rxjs";
 
 import { TableModel } from "./table.module";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
-import { I18n } from "./../i18n/i18n.module";
+import { I18n, Overridable } from "./../i18n/i18n.module";
+import { merge } from "./../utils/object";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
+
+export interface TableTranslations {
+	FILTER: string;
+	END_OF_DATA: string;
+	SCROLL_TOP: string;
+	CHECKBOX_HEADER: string;
+	CHECKBOX_ROW: string;
+}
 
 /**
  * Build your table with this component by extending things that differ from default.
@@ -225,9 +234,9 @@ import { TableDomAdapter } from "./table-adapter.class";
 			</tr>
 			<tr *ngIf="this.model.isEnd">
 				<td class="table_end-indicator">
-					<h5>{{endOfDataText | async}}</h5>
+					<h5>{{endOfDataText.subject | async}}</h5>
 					<button (click)="scrollToTop($event)" class="btn--secondary-sm">
-						{{scrollTopText | async}}
+						{{scrollTopText.subject | async}}
 					</button>
 				</td>
 			</tr>
@@ -328,8 +337,6 @@ export class Table implements AfterViewInit, OnDestroy {
 		return this._model;
 	}
 
-
-
 	/**
 	 * Size of the table rows.
 	 */
@@ -392,20 +399,26 @@ export class Table implements AfterViewInit, OnDestroy {
 	 */
 	@Input() columnsDraggable = false;
 
-	@Input() expandButtonAriaLabel;
 	@Input()
-	set sortDescendingLabel(value) {
-		this._sortDescendingLabel.next(value);
+	set expandButtonAriaLabel(value: string | Observable<string>) {
+		this._expandButtonAriaLabel.override(value);
+	}
+	get expandButtonAriaLabel() {
+		return this._expandButtonAriaLabel.value;
+	}
+	@Input()
+	set sortDescendingLabel(value: string | Observable<string>) {
+		this._sortDescendingLabel.override(value);
 	}
 	get sortDescendingLabel() {
-		return this._sortDescendingLabel;
+		return this._sortDescendingLabel.value;
 	}
 	@Input()
-	set sortAscendingLabel(value) {
-		this._sortAscendingLabel.next(value);
+	set sortAscendingLabel(value: string | Observable<string>) {
+		this._sortAscendingLabel.override(value);
 	}
 	get sortAscendingLabel() {
-		return this._sortAscendingLabel;
+		return this._sortAscendingLabel.value;
 	}
 
 	/**
@@ -422,22 +435,19 @@ export class Table implements AfterViewInit, OnDestroy {
 	 */
 	@Input()
 	set translations (value) {
-		if (value.FILTER) {
-			this.filterTitle.next(value.FILTER);
-		}
-		if (value.END_OF_DATA) {
-			this.endOfDataText.next(value.END_OF_DATA);
-		}
-		if (value.SCROLL_TOP) {
-			this.scrollTopText.next(value.SCROLL_TOP);
-		}
-		if (value.CHECKBOX_HEADER) {
-			this.checkboxHeaderLabel.next(value.CHECKBOX_HEADER);
-		}
-		if (value.CHECKBOX_ROW) {
-			this.checkboxRowLabel = value.CHECKBOX_ROW ;
-		}
+		const valueWithDefaults = merge(this.i18n.getMultiple("TABLE"), value);
+		this.filterTitle.override(valueWithDefaults.FILTER);
+		this.endOfDataText.override(valueWithDefaults.END_OF_DATA);
+		this.scrollTopText.override(valueWithDefaults.SCROLL_TOP);
+		this.checkboxHeaderLabel.override(valueWithDefaults.CHECKBOX_HEADER);
+		this.checkboxRowLabel.override(valueWithDefaults.CHECKBOX_ROW);
 	}
+
+	checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
+	checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
+	endOfDataText = this.i18n.getOverridable("TABLE.END_OF_DATA");
+	scrollTopText = this.i18n.getOverridable("TABLE.SCROLL_TOP");
+	filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	/**
 	 * Set to `false` to remove table rows (zebra) stripes.
@@ -465,10 +475,6 @@ export class Table implements AfterViewInit, OnDestroy {
 	 * ```
 	 */
 	@Input() selectionLabelColumn: number;
-
-
-
-
 
 	/**
 	 * Emits an index of the column that wants to be sorted.
@@ -539,17 +545,18 @@ export class Table implements AfterViewInit, OnDestroy {
 	protected interactionModel: DataGridInteractionModel;
 	protected interactionPositionSubscription: Subscription;
 
-	protected _sortDescendingLabel = this.i18n.get("TABLE.SORT_DESCENDING");
-	protected _sortAscendingLabel = this.i18n.get("TABLE.SORT_ASCENDING");
+	public isColumnDragging = false;
+	public columnDraggedHoverIndex = -1;
+	public columnDraggedPosition = "";
+
+	protected _expandButtonAriaLabel  = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
+	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
+	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 
 	protected columnResizeWidth: number;
 	protected columnResizeMouseX: number;
 	protected mouseMoveSubscription: Subscription;
 	protected mouseUpSubscription: Subscription;
-
-	protected isColumnDragging = false;
-	protected columnDraggedHoverIndex = -1;
-	protected columnDraggedPosition = "";
 
 	/**
 	 * Creates an instance of Table.
@@ -733,5 +740,22 @@ export class Table implements AfterViewInit, OnDestroy {
 	scrollToTop(event) {
 		event.target.parentElement.parentElement.parentElement.parentElement.children[1].scrollTop = 0;
 		this.model.isEnd = false;
+	}
+
+	getSelectionLabelValue(row: TableItem[]) {
+		if (!this.selectionLabelColumn) {
+			return { value: this.i18n.get().TABLE.ROW };
+		}
+		return { value: row[this.selectionLabelColumn].data };
+	}
+
+	getExpandButtonAriaLabel() {
+		return this._expandButtonAriaLabel.subject;
+	}
+	getSortDescendingLabel() {
+		return this._sortDescendingLabel.subject;
+	}
+	getSortAscendingLabel() {
+		return this._sortAscendingLabel.subject;
 	}
 }

@@ -1,7 +1,12 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import {
+	BehaviorSubject,
+	Observable,
+	isObservable,
+	iif
+} from "rxjs";
 import { map } from "rxjs/operators";
-import { merge } from "./../utils/object";
+import { merge } from "../utils/object";
 
 const EN = require("./en.json");
 
@@ -27,13 +32,91 @@ export const replace = (subject, variables) => subject.pipe(
 		const keys = Object.keys(variables);
 		for (const key of keys) {
 			const value = variables[key];
-			while (str.includes(`{{${key}}}`)) {
-				str = str.replace(`{{${key}}}`, value);
-			}
+			str = str.replace(new RegExp(`{{\\s*${key}\\s*}}`, "g"), value);
 		}
 		return str;
 	})
 );
+
+/**
+ * Represents an "overridable" translation value.
+ *
+ * Largely an internal usecase. There are situations where we want an `Observable` that
+ * can emit events from a centralized source **OR** an `Observable` that will emit events
+ * from a component local source. The key example being on/off text in a `Toggle` - In some cases
+ * we want the `Toggle` to use `I18n`s global translations, but in others we'd prefer to use a local
+ * override. We don't ever need to return to a non-overridden state, but we do need the ability to
+ * switch _to_ an overridden sate.
+ */
+export class Overridable {
+	/**
+	 * The raw value of the translation. Defaults to the string value, but will return the value passed to `override`
+	 *
+	 * @readonly
+	 */
+	public get value(): string | Observable<string> {
+		return this._value;
+	}
+
+	public set value(v: string | Observable<string>) {
+		this.override(v);
+	}
+
+	/**
+	 * The translation subject. Returns either a stream of overridden values, or our base translation values.
+	 *
+	 * @readonly
+	 */
+	public get subject(): Observable<string> {
+		/**
+		 * since inputs are bound on template instantiation (and thusly will always have _some_ value)
+		 * We can use a simple boolean and the `iif` function to determine which subject to return on subscription
+		 */
+		return iif(() => this.isOverridden, this.$override, this.baseTranslation);
+	}
+
+	/**
+	 * Overridden value. Accessed by the readonly getter `value` and set through `override`
+	 */
+	protected _value: string | Observable<string>;
+	/**
+	 * Subject of overridden values. Initialized with our default value.
+	 */
+	protected $override: BehaviorSubject<string>;
+	/**
+	 * Our base non-overridden translation.
+	 */
+	protected baseTranslation: Observable<string> = this.i18n.get(this.path);
+	/**
+	 * A boolean to flip between overridden and non-overridden states.
+	 */
+	protected isOverridden = false;
+
+	constructor(protected path: string, protected i18n: I18n) {
+		/**
+		 * ensure `$override` is initialized with the correct default value
+		 * in some cases `_value` can get changed for an `Observable` before `$override` is created
+		 */
+		const value = this.i18n.getValueFromPath(this.path) as string;
+		this.$override = new BehaviorSubject<string>(value);
+		this._value = value;
+	}
+	/**
+	 * Takes a string or an `Observable` that emits strings.
+	 * Overrides the value provided by the `I18n` service.
+	 */
+	override(value: string | Observable<string>) {
+		this.isOverridden = true;
+		this._value = value;
+		if (isObservable(value)) {
+			value.subscribe(v => {
+				this.$override.next(v);
+			});
+		} else {
+			this.$override.next(value);
+		}
+	}
+}
 
 /**
  * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
@@ -54,7 +137,7 @@ export class I18n {
 	 *
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
-	public set(strings) {
+	public set(strings: { [key: string]: string }) {
 		this.translationStrings = merge({}, EN, strings);
 		// iterate over all our tracked translations and update each observable
 		const translations = Array.from(this.translations);
@@ -70,22 +153,37 @@ export class I18n {
 	 *
 	 * @param path optional, looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	public get(path?) {
+	public get(path?: string) {
 		if (!path) {
 			return this.translationStrings;
 		}
-		try {
-			// we run this here to validate the path exists before adding it to the translation map
-			const value = this.getValueFromPath(path);
-			if (this.translations.has(path)) {
-				return this.translations.get(path);
+		return this.getSubject(path);
+	}
+
+	/**
+	 * Returns all descendents of some path fragment as an object.
+	 *
+	 * @param partialPath a path fragment, for example `"NOTIFICATION"`
+	 */
+	public getMultiple(partialPath: string): { [key: string]: Observable<string> } {
+		const values = this.getValueFromPath(partialPath);
+		const subjects = {};
+		for (const key of Object.keys(values)) {
+			if (values[key] === Object(values[key])) {
+				subjects[key] = this.getMultiple(`${partialPath}.${key}`);
+			} else {
+				subjects[key] = this.getSubject(`${partialPath}.${key}`);
 			}
-			const translation = new BehaviorSubject(value);
-			this.translations.set(path, translation);
-			return translation;
-		} catch (err) {
-			console.error(err);
 		}
+		return subjects;
+	}
+
+	/**
+	 * Returns an instance of `Overridable` that can be used to optionally override the value provided by `I18n`
+	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
+	 */
+	public getOverridable(path: string) {
+		return new Overridable(path, this);
 	}
 
 	/**
@@ -105,7 +203,7 @@ export class I18n {
 	 * @param subject the translation to replace variables on
 	 * @param variables object of variables to replace
 	 */
-	public replace(subject, variables) {
+	public replace(subject: Observable<string>, variables: { [key: string]: string }) {
 		return replace(subject, variables);
 	}
 
@@ -114,7 +212,7 @@ export class I18n {
 	 *
 	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	protected getValueFromPath(path) {
+	public getValueFromPath(path): string | { [key: string]: string } {
 		let value = this.translationStrings;
 		for (const segment of path.split(".")) {
 			if (value[segment]) {
@@ -124,5 +222,25 @@ export class I18n {
 			}
 		}
 		return value;
+	}
+
+	/**
+	 * Helper method that returns an observable from the internal cache based on the path
+	 *
+	 * @param path looks like `"NOTIFICATION.CLOSE_BUTTON"`
+	 */
+	protected getSubject(path: string): Observable<string> {
+		try {
+			// we run this here to validate the path exists before adding it to the translation map
+			const value = this.getValueFromPath(path) as string;
+			if (this.translations.has(path)) {
+				return this.translations.get(path);
+			}
+			const translation = new BehaviorSubject(value);
+			this.translations.set(path, translation);
+			return translation;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }

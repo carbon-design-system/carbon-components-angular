@@ -184,6 +184,14 @@ export class Select implements ControlValueAccessor {
 		this.selected.emit(event.target.value);
 	}
 
+	/**
+	 * Listens for the host blurring, and notifies the model
+	 */
+	@HostListener("blur")
+	blur() {
+		this.onTouchedHandler();
+	}
+
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
 	}
@@ -193,12 +201,4 @@ export class Select implements ControlValueAccessor {
 	 */
 	protected onChangeHandler = (_: any) => { };
 	protected onTouchedHandler = () => { };
-
-	/**
-	 * Listens for the host blurring, and notifies the model
-	 */
-	@HostListener("blur")
-	protected blur() {
-		this.onTouchedHandler();
-	}
 }
