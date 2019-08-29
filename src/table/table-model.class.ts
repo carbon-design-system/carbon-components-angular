@@ -42,8 +42,8 @@ export class TableModel implements PaginationModel {
 	}
 
 	dataChange = new EventEmitter();
-	rowsSelectedChange = new EventEmitter();
-	rowsExpandedChange = new EventEmitter();
+	rowsSelectedChange = new EventEmitter<number>();
+	rowsExpandedChange = new EventEmitter<number>();
 
 	/**
 	 * Gets the full data.
@@ -81,9 +81,6 @@ export class TableModel implements PaginationModel {
 	 * It affects styling of the row to reflect the appended class name(s).
 	 *
 	 * It's empty or undefined by default
-	 *
-	 * @type {Array<string>}
-	 * @memberof TableModel
 	 */
 	rowsClass: Array<string>;
 
@@ -119,12 +116,12 @@ export class TableModel implements PaginationModel {
 
 	/**
 	 * Manually set data length in case the data in the table doesn't
-	 * correctly reflect all the data that table is to disply.
+	 * correctly reflect all the data that table is to display.
 	 *
 	 * Example: if you have multiple pages of data that table will display
 	 * but you're loading one at a time.
 	 *
-	 * Set to `null` to reset to default behaviour.
+	 * Set to `null` to reset to default behavior.
 	 */
 	set totalDataLength(length: number) {
 		this._totalDataLength = length;
@@ -526,7 +523,7 @@ export class TableModel implements PaginationModel {
 	 */
 	selectAll(value = true) {
 		for (let i = 0; i < this.rowsSelected.length; i++) {
-			this.rowsSelected[i] = value;
+			this.selectRow(i, value);
 		}
 	}
 
