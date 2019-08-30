@@ -46,6 +46,8 @@ import { TableExpandButton } from "./cell/table-expand-button.component";
 export { TableModel } from "./table-model.class";
 export { TableItem } from "./table-item.class";
 export { TableHeaderItem } from "./table-header-item.class";
+export * from "./table-adapter.class";
+export * from "./data-grid-interaction-model.class";
 
 export {
 	// toolbar and utility components

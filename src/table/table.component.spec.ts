@@ -1,29 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
-import {
-	Table,
-	TableHead,
-	TableModel,
-	TableHeaderItem,
-	TableItem,
-	DataGridFocus,
-	ExpandedRowHover,
-	TableDirective,
-	TableBody,
-	TableRowComponent,
-	TableExpandedRow,
-	TableData,
-	TableCheckbox,
-	TableExpandButton
-} from "./table.module";
 
 import { By } from "@angular/platform-browser";
 
-import { NFormsModule } from "./../forms/forms.module";
-import { I18nModule } from "../i18n/i18n.module";
-import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
+import { TableModel } from "./table-model.class";
+import { Table, TableModule } from "./table.module";
+import { TableHeaderItem } from "./table-header-item.class";
+import { TableItem } from "./table-item.class";
 
 @Component({
 	template: `<ibm-table [model]="tableModel"></ibm-table>`
@@ -47,27 +30,8 @@ describe("Table", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				FormsModule,
-				NFormsModule,
-				DialogModule,
-				I18nModule,
-				ChevronRight16Module
-			],
-			declarations: [
-				Table,
-				TableDirective,
-				TableBody,
-				TableRowComponent,
-				TableExpandedRow,
-				TableData,
-				TableCheckbox,
-				TableExpandButton,
-				TableHead,
-				TableTest,
-				DataGridFocus,
-				ExpandedRowHover
-			]
+			declarations: [ TableTest ],
+			imports: [ TableModule ]
 		});
 
 		fixture = TestBed.createComponent(TableTest);

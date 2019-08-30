@@ -4,7 +4,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/i18n.module";
 import { TableItem } from "./../table-item.class";
 import { Observable } from "rxjs";
 

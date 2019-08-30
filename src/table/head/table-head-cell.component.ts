@@ -7,7 +7,7 @@ import {
 	OnInit
 } from "@angular/core";
 import { Observable } from "rxjs";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/i18n.module";
 
 @Component({
 	// tslint:disable-next-line: component-selector

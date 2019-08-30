@@ -1,14 +1,12 @@
 import {
-	ApplicationRef,
 	Component,
-	HostBinding,
 	Input,
 	Output,
 	EventEmitter
 } from "@angular/core";
 
 import { TableModel } from "../table.module";
-import { I18n } from "../../i18n/i18n.module";
+import { I18n, Overridable } from "../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
 /**
@@ -19,9 +17,6 @@ import { Observable } from "rxjs";
  * ```html
  * 	<thead ibmTableHead [model]="model"></thead>
  * ```
- *
- * @export
- * @class TableHead
  */
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -117,15 +112,17 @@ export class TableHead {
 	/**
 	 * Emits if all rows are selected.
 	 *
-	 * @param {TableModel} model
+	 * @param model
 	 */
 	@Output() selectAll = new EventEmitter<TableModel>();
 	/**
 	 * Emits if all rows are deselected.
 	 *
-	 * @param {TableModel} model
+	 * @param model
 	 */
 	@Output() deselectAll = new EventEmitter<TableModel>();
+
+	public scrollbarWidth = 0;
 
 	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");

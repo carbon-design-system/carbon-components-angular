@@ -172,10 +172,6 @@ export interface TableTranslations {
  * ```
  *
  * <example-url>../../iframe.html?id=table--basic</example-url>
- *
- * @export
- * @class Table
- * @implements {AfterContentChecked}
  */
 @Component({
 	selector: "ibm-table",
@@ -478,28 +474,28 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Emits if all rows are selected.
 	 *
-	 * @param {TableModel} model
+	 * @param model
 	 */
 	@Output() selectAll = new EventEmitter<Object>();
 
 	/**
 	 * Emits if all rows are deselected.
 	 *
-	 * @param {TableModel} model
+	 * @param model
 	 */
 	@Output() deselectAll = new EventEmitter<Object>();
 
 	/**
 	 * Emits if a single row is selected.
 	 *
-	 * @param {Object} ({model: this.model, selectedRowIndex: index})
+	 * @param ({model: this.model, selectedRowIndex: index})
 	 */
 	@Output() selectRow = new EventEmitter<Object>();
 
 	/**
 	 * Emits if a single row is deselected.
 	 *
-	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
+	 * @param ({model: this.model, deselectedRowIndex: index})
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
 

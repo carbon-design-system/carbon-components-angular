@@ -5,7 +5,7 @@ import {
 	Output
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
-import { I18n } from "./../../i18n/i18n.module";
+import { I18n, Overridable } from "./../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
 @Component({
@@ -97,14 +97,14 @@ export class TableBody {
 	/**
 	 * Emits if a single row is selected.
 	 *
-	 * @param {Object} ({model: this.model, selectedRowIndex: index})
+	 * @param ({model: this.model, selectedRowIndex: index})
 	 */
 	@Output() selectRow = new EventEmitter<Object>();
 
 	/**
 	 * Emits if a single row is deselected.
 	 *
-	 * @param {Object} ({model: this.model, deselectedRowIndex: index})
+	 * @param ({model: this.model, deselectedRowIndex: index})
 	 */
 	@Output() deselectRow = new EventEmitter<Object>();
 
