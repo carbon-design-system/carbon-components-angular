@@ -56,11 +56,6 @@ let nextId = 0;
 * 	</ibm-tab>
 * </ibm-tabs>
 * ```
-*
-*
-* @export
-* @class Tab
-* @implements {OnInit}
 */
 @Component({
 	selector: "ibm-tab",
@@ -84,7 +79,6 @@ export class Tab implements OnInit {
 
 	/**
 	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
-	 * @type {(string | TemplateRef<any>)}
 	 */
 	@Input() heading: string | TemplateRef<any>;
 	/**
@@ -113,7 +107,6 @@ export class Tab implements OnInit {
 	@Input() cacheActive = false;
 	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
-	 * @type {EventEmitter<void>}
 	 */
 	@Output() selected: EventEmitter<void> = new EventEmitter<void>();
 
@@ -141,7 +134,6 @@ export class Tab implements OnInit {
 
 	/**
  	* Returns value indicating whether this `Tab` should be rendered in a `TabPanel`.
- 	* @returns boolean
  	*/
 	shouldRender() {
 		return this.active || this.cacheActive;

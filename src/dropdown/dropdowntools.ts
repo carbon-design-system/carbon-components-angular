@@ -6,8 +6,8 @@ import { debounceTime, map, filter } from "rxjs/operators";
  * filters to a single element where the first letter of
  * it's textContent matches the key pressed
  *
- * @param {HTMLElement} target element to watch
- * @param {Array<HTMLElement>} elements elements to search
+ * @param target element to watch
+ * @param elements elements to search
  */
 export function watchFocusJump(target: HTMLElement, elements): Observable<HTMLElement> {
 	return fromEvent(target, "keydown")

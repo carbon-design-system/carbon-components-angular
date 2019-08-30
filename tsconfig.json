@@ -4,24 +4,34 @@
 		"declaration": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
+		"downlevelIteration": true,
+		"importHelpers": true,
 		"lib": ["es2016", "dom"],
 		"sourceMap": true,
-		"mapRoot": "./",
-		"module": "es2015",
-		"moduleResolution": "node",
-		"outDir": "./dist",
-		"rootDir": "src",
-		"target": "es5",
 		"inlineSources": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"outDir": "./dist-pkg",
+		"rootDir": "src",
+		"target": "es2015",
 		"typeRoots": [
 			"./node_modules/@types",
-			"./demo/typings.d.ts"
 		]
 	},
 	"include": [
 		"src/**/*"
 	],
 	"exclude": [
-		"src/**/*.stories.ts"
-	]
+		"src/**/*.stories.ts",
+		"src/**/stories/**",
+		"**/*.spec.ts"
+	],
+	"angularCompilerOptions": {
+		"annotateForClosureCompiler": true,
+		"skipTemplateCodegen": true,
+		"strictMetadataEmit": true,
+		"fullTemplateTypeCheck": true,
+		"strictInjectionParameters": true,
+		"enableResourceInlining": true
+	}
 }

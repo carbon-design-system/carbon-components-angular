@@ -22,7 +22,6 @@ export interface DialogConfig {
 	closeTrigger: "mouseout" | "mouseleave";
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
-	 * @type {Placement}
 	 */
 	placement?: string;
 	/**

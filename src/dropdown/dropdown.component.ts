@@ -37,12 +37,6 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
  * [See demo](../../?path=/story/dropdown--basic)
  *
  * <example-url>../../iframe.html?id=dropdown--basic</example-url>
- *
- * @export
- * @class Dropdown
- * @implements {OnInit}
- * @implements {AfterContentInit}
- * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-dropdown",

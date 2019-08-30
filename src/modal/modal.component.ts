@@ -79,12 +79,6 @@ export class ModalDemo {
 ```
  *
  * <example-url>../../iframe.html?id=modal--basic</example-url>
- *
- * @export
- * @class Modal
- * @implements {AfterViewInit}
- * @implements {OnInit}
- * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-modal",
