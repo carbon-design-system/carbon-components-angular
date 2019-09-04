@@ -69,12 +69,13 @@ export class SelectionTile {
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.
 	 */
-	name = "tile-group-0";
+	name = "tile-group-unbound";
 	/**
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
 	 */
-	multiple = true;
+	multiple = true;	// Set to true because of the way tile group sets it up.
+						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 
 	@ViewChild("input") input;
 
