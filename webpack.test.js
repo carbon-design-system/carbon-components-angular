@@ -13,7 +13,7 @@ module.exports = [{
 						}
 					},
 					"angular2-template-loader"
-				],
+				]
 			},
 			{
 				test: /\.html$/,
