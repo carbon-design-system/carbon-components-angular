@@ -21,10 +21,6 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
  * [See demo](../../?path=/story/date-picker--single)
  *
  * <example-url>../../iframe.html?id=date-picker--single</example-url>
- *
- * @export
- * @class DatePicker
- * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-date-picker",

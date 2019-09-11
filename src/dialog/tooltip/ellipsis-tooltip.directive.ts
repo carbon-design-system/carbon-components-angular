@@ -22,10 +22,6 @@ import { Tooltip } from "./tooltip.component";
  * ```html
  * <div class="ellipsis" nEllipsisTooltip>Tooltip for ellipsis because I can and I am really really long</div>
  * ```
- *
- * @export
- * @class EllipsisTooltip
- * @extends {TooltipDirective}
  */
 @Directive({
 	selector: "[ibmEllipsisTooltip]",

@@ -10,20 +10,14 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * Used to emit changes performed on number input components.
- * @export
- * @class NumberChange
  */
 export class NumberChange {
 	/**
 	 * Contains the `Number` that has been changed.
-	 * @type {Number}
-	 * @memberof NumberChange
 	 */
 	source: Number;
 	/**
 	 * The value of the `Number` field encompassed in the `NumberChange` class.
-	 * @type {number}
-	 * @memberof NumberChange
 	 */
 	value: number;
 }
@@ -32,10 +26,6 @@ export class NumberChange {
  * [See demo](../../?path=/story/number--basic)
  *
  * <example-url>../../iframe.html?id=number--basic</example-url>
- *
- * @export
- * @class Number
- * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-number",
@@ -170,7 +160,6 @@ export class Number implements ControlValueAccessor {
 
 	/**
 	 * Creates an instance of `Number`.
-	 * @memberof Number
 	 */
 	constructor() {
 		Number.numberCount++;
@@ -186,8 +175,6 @@ export class Number implements ControlValueAccessor {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Number
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange = fn;
@@ -210,13 +197,11 @@ export class Number implements ControlValueAccessor {
 
 	/**
 	 * Called when number input is blurred. Needed to properly implement `ControlValueAccessor`.
-	 * @memberof Number
 	 */
 	onTouched: () => any = () => { };
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
-	 * @memberof Number
 	 */
 	propagateChange = (_: any) => { };
 

@@ -35,10 +35,6 @@ import { TabHeaders } from "./tab-headers.component";
  * ```
  *
  * <example-url>../../iframe.html?id=tabs--basic</example-url>
- *
- * @export
- * @class Tabs
- * @implements {AfterContentInit}
  */
 @Component({
 	selector: "ibm-tabs",

@@ -17,10 +17,6 @@ import {
  * ```
  *
  * <example-url>../../iframe.html?id=tiles--basic</example-url>
- *
- * @export
- * @class Tile
- * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-tile",

@@ -12,10 +12,6 @@ import { Select } from "../select/select.component";
  * [See demo](../../?path=/story/time-picker-select--simple)
  *
  * <example-url>../../iframe.html?id=time-picker-select--simple</example-url>
- *
- * @export
- * @class TimePickerSelect
- * @extends {Select}
  */
 @Component({
 	selector: "ibm-timepicker-select",

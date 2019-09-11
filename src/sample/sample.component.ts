@@ -31,7 +31,7 @@ export class Sample implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * instantiate services as protected variables
 	 *
-	 * @param {ElementRef} _elementRef
+	 * @param _elementRef
 	 */
 	constructor(protected _elementRef: ElementRef) {}
 

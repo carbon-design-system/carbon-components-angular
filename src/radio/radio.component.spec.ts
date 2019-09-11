@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
@@ -7,7 +7,7 @@ import { Radio } from "./radio.component";
 import { RadioGroup } from "./radio-group.component";
 
 @Component({
-	selector: "test-cmp",
+	selector: "test-component",
 	template: `
 	<ibm-radio-group [(ngModel)]="radio">
 		<ibm-radio *ngFor="let one of manyRadios" [value]="one"
@@ -21,12 +21,12 @@ class RadioTest {
 }
 
 describe("RadioGroup", () => {
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [Radio, RadioGroup, RadioTest],
 			imports: [FormsModule]
-		});
-	});
+		}).compileComponents();
+	}));
 
 	it("should work", () => {
 		const fixture = TestBed.createComponent(RadioTest);
@@ -55,11 +55,13 @@ describe("RadioComponent", () => {
 	let de: DebugElement;
 	let el: HTMLElement;
 
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [Radio]
-		});
+		}).compileComponents();
+	}));
 
+	beforeEach(() => {
 		fixture = TestBed.createComponent(Radio);
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));

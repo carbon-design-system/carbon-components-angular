@@ -15,9 +15,6 @@ export type TagType = "red" | "magenta" | "purple" | "blue" | "cyan" | "teal" | 
  * [See demo](../../?path=/story/tag--basic)
  *
  * <example-url>../../iframe.html?id=tag--basic</example-url>
- *
- * @export
- * @class Tag
  */
 @Component({
 	selector: "ibm-tag",
