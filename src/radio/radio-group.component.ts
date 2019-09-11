@@ -1,42 +1,18 @@
 import {
 	AfterContentInit,
-	ChangeDetectorRef,
 	ContentChildren,
 	Component,
-	ElementRef,
 	EventEmitter,
 	forwardRef,
 	Input,
-	OnInit,
 	Output,
 	QueryList,
-	Renderer2,
 	HostBinding,
 	AfterViewInit
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
-
-/**
- * Used to emit changes performed on a `Radio`.
- * @export
- * @class RadioChange
- */
-export class RadioChange {
-	/**
-	 * Contains the `Radio` that has been changed.
-	 */
-	source: Radio | null;
-	/**
-	 * The value of the `Radio` encompassed in the `RadioChange` class.
-	 */
-	value: string;
-
-	constructor(source: Radio, value: string) {
-		this.source = source;
-		this.value = value;
-	}
-}
+import { RadioChange } from "./radio-change.class";
 
 /**
  * [See demo](../../?path=/story/radio--basic)

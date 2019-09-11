@@ -26,12 +26,6 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
  * Used to implement a popover or tooltip.
- *
- * @export
- * @class Dialog
- * @implements {OnInit}
- * @implements {AfterViewInit}
- * @implements {OnDestroy}
  */
 @Component({
 	selector: "ibm-dialog",
@@ -96,7 +90,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * Creates an instance of `Dialog`.
-	 * @param {ElementRef} elementRef
+	 * @param elementRef
 	 */
 	constructor(protected elementRef: ElementRef) {	}
 
@@ -206,7 +200,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 	/**
 	 * Sets up a KeyboardEvent to close `Dialog` with Escape key.
-	 * @param {KeyboardEvent} event
+	 * @param event
 	 */
 	@HostListener("keydown", ["$event"])
 	escapeClose(event: KeyboardEvent) {
@@ -227,7 +221,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Sets up a event Listener to close `Dialog` if click event occurs outside
 	 * `Dialog` object.
-	 * @param {any} event
+	 * @param event
 	 */
 	@HostListener("document:click", ["$event"])
 	clickClose(event) {

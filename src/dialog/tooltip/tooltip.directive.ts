@@ -30,10 +30,6 @@ import { DialogService } from "./../dialog.service";
  * ```
  *
  * <example-url>../../iframe.html?id=tooltip--basic</example-url>
- *
- * @export
- * @class TooltipDirective
- * @extends {DialogDirective}
  */
 @Directive({
 	selector: "[ibmTooltip]",

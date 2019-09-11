@@ -22,9 +22,6 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
  * ```
  *
  * <example-url>../../iframe.html?id=overflow-menu--basic</example-url>
- *
- * @export
- * @class OverflowMenu
  */
 @Component({
 	selector: "ibm-overflow-menu",
