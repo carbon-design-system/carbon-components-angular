@@ -110,9 +110,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 
 	/**
 	 * Creates an instance of DialogDirective.
-	 * @param {ElementRef} elementRef
-	 * @param {ViewContainerRef} viewContainerRef
-	 * @param {DialogService} dialogService
+	 * @param elementRef
+	 * @param viewContainerRef
+	 * @param dialogService
 	 */
 	constructor(
 		protected elementRef: ElementRef,

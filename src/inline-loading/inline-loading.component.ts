@@ -10,9 +10,6 @@ import {
  * [See demo](../../?path=/story/inline-loading--basic)
  *
  * <example-url>../../iframe.html?id=inline-loading--basic</example-url>
- *
- * @export
- * @class InlineLoading
  */
 @Component({
 	selector: "ibm-inline-loading",
@@ -79,8 +76,6 @@ export class InlineLoading {
 
 	/**
 	 * Emits event after the success state is active
-	 *
-	 * @type {EventEmitter<any>}
 	 */
 	@Output() onSuccess: EventEmitter<any> = new EventEmitter();
 

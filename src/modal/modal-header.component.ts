@@ -17,9 +17,6 @@ import { ExperimentalService } from "./../experimental.service";
  * ```html
  * <ibm-modal-header (closeSelect)="closeModal()">Header text</ibm-modal-header>
  * ```
- *
- * @export
- * @class ModalHeader
  */
 @Component({
 	selector: "ibm-modal-header",
@@ -39,7 +36,6 @@ import { ExperimentalService } from "./../experimental.service";
 export class ModalHeader {
 	/**
 	 * Sets the style on the modal heading based on its category.
-	 * @type {"default" | "warning" | "error"}
 	 */
 	@Input() theme = "default";
 	/**

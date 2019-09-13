@@ -6,25 +6,29 @@
 		"experimentalDecorators": true,
 		"downlevelIteration": true,
 		"importHelpers": true,
-		"lib": ["es2016", "dom"],
+		"lib": [
+			"es2016",
+			"dom"
+		],
 		"sourceMap": true,
 		"inlineSources": true,
 		"module": "esnext",
 		"moduleResolution": "node",
-		"outDir": "./dist-pkg",
-		"rootDir": "src",
+		"outDir": "./dist/spec",
 		"target": "es2015",
 		"typeRoots": [
-			"./node_modules/@types",
+			"./node_modules/@types"
+		],
+		"types": [
+			"jasmine",
+			"node"
 		]
 	},
-	"include": [
-		"src/**/*"
+	"files": [
+		"src/test.ts",
 	],
-	"exclude": [
-		"src/**/*.stories.ts",
-		"src/**/stories/**",
-		"**/*.spec.ts"
+	"include": [
+		"**/*.spec.ts",
 	],
 	"angularCompilerOptions": {
 		"annotateForClosureCompiler": true,

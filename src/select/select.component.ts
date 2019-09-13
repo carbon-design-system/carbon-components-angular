@@ -27,10 +27,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
  *	```
  *
  * <example-url>../../iframe.html?id=select--basic</example-url>
- *
- * @export
- * @class Select
- * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-select",
