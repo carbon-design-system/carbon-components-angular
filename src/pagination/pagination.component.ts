@@ -43,9 +43,6 @@ export interface PaginationTranslations {
  * ```
  *
  * <example-url>../../iframe.html?id=pagination--basic</example-url>
- *
- * @export
- * @class Pagination
  */
 @Component({
 	selector: "ibm-pagination",
@@ -183,8 +180,6 @@ export class Pagination {
 	@Input() skeleton = false;
 	/**
 	 * `PaginationModel` with the information about pages you're controlling.
-	 *
-	 * @type {Model}
 	 */
 	@Input() model: PaginationModel;
 	/**

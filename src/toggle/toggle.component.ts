@@ -44,10 +44,6 @@ export class ToggleChange {
  * ```
  *
  * <example-url>../../iframe.html?id=toggle--basic</example-url>
- *
- * @export
- * @class Toggle
- * @extends {Checkbox}
  */
 @Component({
 	selector: "ibm-toggle",
@@ -127,7 +123,6 @@ export class Toggle extends Checkbox {
 	}
 	/**
 	 * Text that is set as the label of the toggle.
-	 * @type {(string)}
 	 */
 	@Input() label: string | TemplateRef<any>;
 	/**

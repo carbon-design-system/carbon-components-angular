@@ -16,10 +16,6 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
  *  [See demo](../../?path=/story/breadcrumb--basic)
  *
  * <example-url>../../iframe.html?id=breadcrumb--basic</example-url>
- *
- * @export
- * @class Breadcrumb
- * @implements {AfterContentInit}
  */
 @Component({
 	selector: "ibm-breadcrumb",

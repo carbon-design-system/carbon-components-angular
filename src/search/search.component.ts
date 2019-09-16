@@ -30,10 +30,6 @@ export class SearchChange {
  * [See demo](../../?path=/story/search--basic)
  *
  * <example-url>../../iframe.html?id=search--basic</example-url>
- *
- * @export
- * @class Search
- * @implements {ControlValueAccessor}
  */
 @Component({
 	selector: "ibm-search",
@@ -186,7 +182,7 @@ export class Search implements ControlValueAccessor {
 
 	/**
 	 * Called when text is written in the input.
-	 * @param {string} search The input text.
+	 * @param search The input text.
 	 */
 	onSearch(search: string) {
 		this.value = search;

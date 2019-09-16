@@ -25,12 +25,6 @@ import { filter } from "rxjs/operators";
  * [See demo](../../?path=/story/combobox--basic)
  *
  * <example-url>../../iframe.html?id=combobox--basic</example-url>
- *
- * @export
- * @class ComboBox
- * @implements {OnChanges}
- * @implements {AfterViewInit}
- * @implements {AfterContentInit}
  */
 @Component({
 	selector: "ibm-combo-box",
@@ -415,7 +409,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Bubbles from `n-pill-input` when the user types a value and presses enter. Intended to be used to add items to the list.
 	 *
-	 * @param {any} ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
+	 * @param ev event from `n-pill-input`, includes the typed value and the index of the pill the user typed after
 	 *
 	 * Example:
 	 * ```javascript
