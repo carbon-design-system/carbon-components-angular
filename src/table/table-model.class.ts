@@ -147,7 +147,7 @@ export class TableModel implements PaginationModel {
 	/**
 	 * Used in `data`
 	 */
-	protected _data: TableItem[][] = [];
+	protected _data: TableItem[][] = [[]];
 
 	/**
 	 * Returns how many rows is currently selected
