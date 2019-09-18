@@ -62,7 +62,7 @@ const getProps = (more = {}) => {
 		showSelectionColumn: boolean("showSelectionColumn", true),
 		striped: boolean("striped", false),
 		sortable: boolean("sortable", true),
-		isDataGrid: boolean("Data grid keyboard interactions", true)
+		isDataGrid: boolean("Data grid keyboard interactions", false)
 	}, more);
 };
 
@@ -264,15 +264,12 @@ storiesOf("Table", module).addDecorator(
 	.add("From components", () => ({
 		template: `
 			<table ibmTable [sortable]="false" style="width: 650px;">
-				<thead>
+				<thead ibmTableHead>
 					<tr>
 						<th
+							ibmTableHeadCell
 							*ngFor="let column of model.header"
-							[class]="column.className"
-							[ngStyle]="column.style">
-							<span class="bx--table-header-label">
-								<span [title]="column.data">{{column.data}}</span>
-							</span>
+							[column]="column">
 						</th>
 					</tr>
 				</thead>
