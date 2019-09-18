@@ -15,11 +15,13 @@ export abstract class TableAdapter {
 
 	getCell(row: number, column: number): TableCellAdapter { return; }
 
-	getCellFromElement(element: HTMLElement): TableCellAdapter { return; }
-
 	getRow(row: number): TableRowAdapter { return; }
 
-	getRowFromCell(cell: TableCellAdapter): TableRowAdapter { return; }
+	getColumnFromCell(cell: TableCellAdapter): number { return; }
+
+	getRowFromCell(cell: TableCellAdapter): number { return; }
+
+	getPositionFromCell(cell: TableCellAdapter): [number, number] { return; }
 }
 
 export class TableDomAdapter implements TableAdapter {
@@ -37,28 +39,45 @@ export class TableDomAdapter implements TableAdapter {
 		const baseRow = this.getRow(row);
 		let baseCells = Array.from(baseRow.cells);
 
-		let i = 0;
-		let cell: HTMLTableCellElement;
-		while (i <= column) {
-			cell = baseCells[i];
-			i += cell.colSpan;
+		// rows can have fewer total cells than the actual table
+		// the model pretends all rows behave the same (with colspans > 1 being N cells long)
+		// this maps that view to the HTML view (colspans > 1 are one element, so the array is shorter)
+		let realIndex = 0;
+		// i is only used for iterating the "cells"
+		for (let i = 0; i < column;) {
+			// skip the next N "cells"
+			i += baseCells[realIndex].colSpan;
+			// don't bump realIndex if i now exceeds the column we're shooting for
+			if (i > column) { break; }
+			// finally, increment realIndex (to keep it generally in step with i)
+			realIndex++;
 		}
-		return cell;
-	}
-
-	getCellFromElement(element: HTMLElement): HTMLTableCellElement {
-		return element.closest("td, th") as HTMLTableCellElement;
+		return baseCells[realIndex];
 	}
 
 	getRow(row: number): HTMLTableRowElement {
 		return this.tableElement.rows[row];
 	}
 
-	getRowFromCell(cell: HTMLTableCellElement): HTMLTableRowElement {
+	getColumnFromCell(cell: HTMLTableCellElement): number {
+		const row = this.getRow(this.getRowFromCell(cell));
+		let cellIndex = 0;
+		for (const c of Array.from(row.cells)) {
+			if (c === cell) { break; }
+			cellIndex += c.colSpan;
+		}
+		return cellIndex;
+	}
+
+	getRowFromCell(cell: HTMLTableCellElement): number {
 		for (const row of Array.from(this.tableElement.rows)) {
 			if (row.contains(cell)) {
-				return row;
+				return row.rowIndex;
 			}
 		}
+	}
+
+	getPositionFromCell(cell: HTMLTableCellElement): [number, number] {
+		return [this.getRowFromCell(cell), this.getColumnFromCell(cell)];
 	}
 }
