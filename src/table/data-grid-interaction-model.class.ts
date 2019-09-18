@@ -54,36 +54,32 @@ export class DataGridInteractionModel {
 	}
 
 	handleKeyboardEvent(event: KeyboardEvent) {
+		const currentCell = this.tableAdapter.getCell(this.currentRow, this.currentColumn);
 		switch (event.key) {
 			case "Right": // IE specific value
 			case "ArrowRight":
 				event.preventDefault();
-				const currentNextCell = this.tableAdapter.getCell(this.currentRow, this.currentColumn);
-				if (currentNextCell.colSpan > 1) {
-					this.goToColumn(currentNextCell.cellIndex + currentNextCell.colSpan + 1);
-				} else {
-					this.nextColumn();
-				}
+				// add the colspan since getColumnFromCell will return the
+				// first column containing the cell (of N columns it may span)
+				// and we want to navigate to the next "real" column
+				this.goToColumn(this.tableAdapter.getColumnFromCell(currentCell) + currentCell.colSpan);
 				break;
 			case "Left": // IE specific value
 			case "ArrowLeft":
 				event.preventDefault();
-				const currentPreviousCell = this.tableAdapter.getCell(this.currentRow, this.currentColumn);
-				if (currentPreviousCell.colSpan > 1) {
-					this.goToColumn(currentPreviousCell.cellIndex - 1);
-				} else {
-					this.previousColumn();
-				}
+				// we only ever need to subtract 1 from the column, since getColumnFromCell returns the
+				// first of N columns containing the cell
+				this.goToColumn(this.tableAdapter.getColumnFromCell(currentCell) - 1);
 				break;
 			case "Down": // IE specific value
 			case "ArrowDown":
 				event.preventDefault();
-				this.nextRow();
+				this.goToRow(this.currentRow + 1);
 				break;
 			case "Up": // IE specific value
 			case "ArrowUp":
 				event.preventDefault();
-				this.previousRow();
+				this.goToRow(this.currentRow - 1);
 				break;
 			case "Home":
 				event.preventDefault();
@@ -105,9 +101,9 @@ export class DataGridInteractionModel {
 	}
 
 	handleClickEvent(event: MouseEvent) {
-		const cell = this.tableAdapter.getCellFromElement(event.target as HTMLElement);
-		const row = this.tableAdapter.getRowFromCell(cell);
-		this.goTo({ row: row.rowIndex, column: cell.cellIndex });
+		const cell = (event.target as HTMLElement).closest("td, th") as HTMLTableCellElement;
+		const [rowIndex, cellIndex] = this.tableAdapter.getPositionFromCell(cell);
+		this.goTo({ row: rowIndex, column: cellIndex });
 	}
 
 	goToColumn(index: number) {
@@ -123,22 +119,6 @@ export class DataGridInteractionModel {
 	goTo({row, column}) {
 		this.rowSubject.next({ current: row, previous: this.currentRow });
 		this.columnSubject.next({ current: column, previous: this.currentColumn });
-	}
-
-	nextColumn() {
-		this.goToColumn(this.currentColumn + 1);
-	}
-
-	previousColumn() {
-		this.goToColumn(this.currentColumn - 1);
-	}
-
-	nextRow() {
-		this.goToRow(this.currentRow + 1);
-	}
-
-	previousRow() {
-		this.goToRow(this.currentRow - 1);
 	}
 
 	resetTabIndexes() {
