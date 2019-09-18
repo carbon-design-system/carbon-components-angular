@@ -6,7 +6,7 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 /**
  * [See demo](../../?path=/story/time-picker--simple)
@@ -46,7 +46,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 		}
 	]
 })
-export class TimePicker implements ControlValueAccessor{
+export class TimePicker implements ControlValueAccessor {
 	/**
 	 * Tracks the total number of selects instantiated. Used to generate unique IDs
 	 */
