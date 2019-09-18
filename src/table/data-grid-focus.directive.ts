@@ -9,6 +9,11 @@ import {
 import { Table } from "./table.component";
 import { getFocusElementList, tabbableSelectorIgnoreTabIndex } from "../common/tab.service";
 
+/**
+ * NOTE: This directive has been deprecated in favor of `DataGridInteractionModel`
+ *
+ * @deprecated
+ */
 @Directive({
 	selector: "[ibmDataGridFocus]"
 })
