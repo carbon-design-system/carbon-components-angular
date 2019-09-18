@@ -568,7 +568,7 @@ export class Table implements AfterViewInit, OnDestroy {
 				const currentElement = tableAdapter.getCell(currentRow, currentColumn);
 				Table.setTabIndex(currentElement, 0);
 
-				// if the model has just initialized don't focus anything
+				// if the model has just initialized don't focus or reset anything
 				if (previousRow === -1 || previousColumn === -1) { return; }
 
 				const previousElement = tableAdapter.getCell(previousRow, previousColumn);
