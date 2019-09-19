@@ -1,5 +1,6 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
 
@@ -12,13 +13,14 @@ describe("Checkbox", () => {
 	let el: HTMLElement;
 	let inputElement: HTMLElement;
 
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [Checkbox],
-			imports: [BrowserAnimationsModule],
-			providers: []
-		});
+			imports: [CommonModule, FormsModule]
+		}).compileComponents();
+	}));
 
+	beforeEach(() => {
 		fixture = TestBed.createComponent(Checkbox);
 		component = fixture.componentInstance;
 		de = fixture.debugElement.query(By.css("label"));

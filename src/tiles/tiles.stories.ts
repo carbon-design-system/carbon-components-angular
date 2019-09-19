@@ -88,7 +88,7 @@ storiesOf("Tiles", module)
 	}))
 	.add("Selectable", () => ({
 		template: `
-			<ibm-tile-group (selected)="selected($event)">
+			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
 				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
 				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>

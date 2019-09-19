@@ -1,34 +1,29 @@
 module.exports = function (config) {
 	config.set({
-		plugins: ['karma-webpack', 'karma-jasmine', 'karma-chrome-launcher'],
-		autoWatch: false,
+		basePath: '',
+		frameworks: ['jasmine', '@angular-devkit/build-angular'],
+		plugins: [
+			require('karma-jasmine'),
+			require('karma-chrome-launcher'),
+			require('karma-jasmine-html-reporter'),
+			require('karma-coverage-istanbul-reporter'),
+			require('@angular-devkit/build-angular/plugins/karma')
+		],
+		autoWatch: true,
 		browsers: ['ChromeHeadless'],
-		files: [{
-			pattern: './karma-test-shim.js',
-			watched: false
-		}],
-		frameworks: ['jasmine'],
-		phantomJsLauncher: {
-			exitOnResourceError: true
+		client: {
+			clearContext: false // leave Jasmine Spec Runner output visible in browser
 		},
-		preprocessors: {
-			'./karma-test-shim.js': ['webpack']
+		coverageIstanbulReporter: {
+			dir: require('path').join(__dirname, 'coverage'),
+			reports: ['html', 'lcovonly', 'text-summary'],
+			fixWebpackSourcePaths: true
 		},
-	browserConsoleLogOptions: {
-		terminal: true,
-		level: "debug"
-	},
-		reporters: ['dots'],
+		reporters: ['progress', 'kjhtml'],
 		port: 9876,
 		logLevel: config.LOG_INFO,
 		colors: true,
-		singleRun: true,
-		webpack: require('./webpack.test'),
-		webpackMiddleware: {
-			stats: 'errors-only'
-		},
-		webpackServer: {
-			noInfo: true
-		}
+		singleRun: false,
+		restartOnFileChange: true
 	});
 };

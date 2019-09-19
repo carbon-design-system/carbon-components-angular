@@ -9,9 +9,6 @@ import { I18n } from "../../i18n/i18n.module";
  * [See demo](../../?path=/story/ui-shell--header)
  *
  * <example-url>../../iframe.html?id=ui-shell--header</example-url>
- *
- * @export
- * @class Header
  */
 @Component({
 	selector: "ibm-header",

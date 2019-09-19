@@ -190,6 +190,7 @@ export interface TableTranslations {
 			[checkboxHeaderLabel]="getCheckboxHeaderLabel()"
 			[filterTitle]="getFilterTitle()"
 			[model]="model"
+			[size]="size"
 			[selectAllCheckbox]="selectAllCheckbox"
 			[selectAllCheckboxSomeSelected]="selectAllCheckboxSomeSelected"
 			[showSelectionColumn]="showSelectionColumn"
@@ -207,6 +208,7 @@ export interface TableTranslations {
 			[enableSingleSelect]="enableSingleSelect"
 			[expandButtonAriaLabel]="expandButtonAriaLabel"
 			[model]="model"
+			[size]="size"
 			[ngStyle]="{'overflow-y': 'scroll'}"
 			[selectionLabelColumn]="selectionLabelColumn"
 			[showSelectionColumn]="showSelectionColumn"
@@ -335,7 +337,7 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Size of the table rows.
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 	/**
 	 * Set to `true` for a loading table.
 	 */

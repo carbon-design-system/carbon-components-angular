@@ -27,10 +27,6 @@ import { isFocusInLastItem, isFocusInFirstItem } from "./../common/tab.service";
  *	```
  *
  * <example-url>../../iframe.html?id=content-switcher--basic</example-url>
- *
- * @export
- * @class ContentSwitcher
- * @implements {AfterViewInit}
  */
 @Component({
 	selector: "ibm-content-switcher",

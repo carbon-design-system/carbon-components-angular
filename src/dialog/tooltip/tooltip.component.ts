@@ -2,7 +2,8 @@ import {
 	Component,
 	TemplateRef,
 	HostBinding,
-	Input
+	Input,
+	ElementRef
 } from "@angular/core";
 import { getFocusElementList } from "./../../common/tab.service";
 
@@ -45,6 +46,11 @@ export class Tooltip extends Dialog {
 	 * if there _is_ focusable content we switch to the interactive `dialog` role.
 	 */
 	public role = "tooltip";
+
+	constructor(protected elementRef: ElementRef) {
+		super(elementRef);
+	}
+
 	/**
 	 * Check whether there is a template for the `Tooltip` content.
 	 */

@@ -29,10 +29,6 @@ import {
  * ```
  *
  * <example-url>../../iframe.html?id=input--label</example-url>
- *
- * @export
- * @class Label
- * @implements {AfterContentInit}
  */
 @Component({
 	selector: "ibm-label",
@@ -62,21 +58,16 @@ import {
 export class Label implements AfterContentInit {
 	/**
 	 * Used to build the id of the input item associated with the `Label`.
-	 * @static
-	 * @memberof Label
 	 */
 	static labelCounter = 0;
 	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
-	 * @memberof Label
 	 */
 	labelInputID = "ibm-label-" + Label.labelCounter;
 
 	/**
 	 * State of the `Label` will determine the styles applied.
-	 * @type {("success" | "warning" | "error" | "")}
-	 * @memberof Label
 	 */
 	@Input() labelState: "success" | "warning" | "error" | "" = "";
 	/**
@@ -102,7 +93,6 @@ export class Label implements AfterContentInit {
 
 	/**
 	 * Creates an instance of Label.
-	 * @memberof Label
 	 */
 	constructor() {
 		Label.labelCounter++;
@@ -110,7 +100,6 @@ export class Label implements AfterContentInit {
 
 	/**
 	 * Sets the id on the input item associated with the `Label`.
-	 * @memberof Label
 	 */
 	ngAfterContentInit() {
 		this.wrapper.nativeElement.querySelector("input,textarea,div").setAttribute("id", this.labelInputID);
