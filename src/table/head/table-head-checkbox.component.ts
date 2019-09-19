@@ -15,7 +15,7 @@ import { Observable } from "rxjs";
 		<ibm-checkbox
 			*ngIf="!skeleton"
 			inline="true"
-			[size]="size !== ('lg' ? 'sm' : 'md')"
+			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="checked"
 			[indeterminate]="indeterminate"
 			(change)="change.emit()"
@@ -24,7 +24,10 @@ import { Observable } from "rxjs";
 	`
 })
 export class TableHeadCheckbox {
-	@Input() size = "md";
+	/**
+	 * Size of the table rows.
+	 */
+	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 
 	@Input() checked = false;
 

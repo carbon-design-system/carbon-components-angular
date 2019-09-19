@@ -31,6 +31,7 @@ import { Observable } from "rxjs";
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
+				[size]="size"
 				[skeleton]="skeleton"
 				(change)="onSelectAllCheckboxChange()">
 			</th>
@@ -68,6 +69,11 @@ export class TableHead {
 	@Input() skeleton = false;
 
 	@Input() stickyHeader = false;
+
+	/**
+	 * Size of the table rows.
+	 */
+	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 
 	@Input()
 	set checkboxHeaderLabel(value: string | Observable<string>) {

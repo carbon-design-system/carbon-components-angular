@@ -16,7 +16,7 @@ import { Observable } from "rxjs";
 			*ngIf="!skeleton"
 			inline="true"
 			[aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[size]="size"
+			[size]="(size !== 'sm' ? 'md' : 'sm')"
 			[checked]="selected"
 			(change)="change.emit()">
 		</ibm-checkbox>

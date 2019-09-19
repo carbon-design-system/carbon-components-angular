@@ -10,7 +10,10 @@ export class TableDirective {
 
 	@Input() @HostBinding("class.bx--skeleton") skeleton = false;
 
-	@Input() size: "sm" | "md" | "lg" = "md";
+	/**
+	 * Size of the table rows.
+	 */
+	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 
 	@HostBinding("class.bx--data-table") tableClass = true;
 
@@ -20,5 +23,9 @@ export class TableDirective {
 
 	@HostBinding("class.bx--data-table--tall") get tallClass() {
 		return this.size === "lg";
+	}
+
+	@HostBinding("class.bx--data-table--short") get shortClass() {
+		return this.size === "sh";
 	}
 }

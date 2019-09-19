@@ -18,6 +18,7 @@ import { Observable } from "rxjs";
 					ibmTableRow
 					[model]="model"
 					[row]="row"
+					[size]="size"
 					[selected]="model.isRowSelected(i)"
 					[expandable]="model.isRowExpandable(i)"
 					[expanded]="model.isRowExpanded(i)"
@@ -79,6 +80,11 @@ export class TableBody {
 	 * Controls whether to show the selection checkboxes column or not.
 	 */
 	@Input() showSelectionColumn = true;
+
+	/**
+	 * Size of the table rows.
+	 */
+	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 
 	/**
 	 * Used to populate the row selection checkbox label with a useful value if set.

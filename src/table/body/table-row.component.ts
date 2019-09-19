@@ -27,6 +27,7 @@ import { Observable } from "rxjs";
 			<td
 				*ngIf="!skeleton && showSelectionColumn"
 				ibmTableCheckbox
+				[size]="size"
 				[selected]="selected"
 				[label]="getCheckboxLabel()"
 				[skeleton]="skeleton"
