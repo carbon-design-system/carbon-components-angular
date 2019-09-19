@@ -2,7 +2,13 @@
  * An abstract class that represents a cell in a table
  */
 export abstract class TableCellAdapter {
+	/**
+	 * The index of the cell in the table
+	 */
 	cellIndex: number;
+	/**
+	 * The number of columns spanned by this cell
+	 */
 	colSpan: number;
 }
 
@@ -10,7 +16,13 @@ export abstract class TableCellAdapter {
  * An abstract class that represents a row in a table
  */
 export abstract class TableRowAdapter {
+	/**
+	 * The index of the row in the table
+	 */
 	rowIndex: number;
+	/**
+	 * An array (or `HTMLCollection`) of `TableCellAdapter`s
+	 */
 	cells: HTMLCollection | TableCellAdapter[];
 }
 
