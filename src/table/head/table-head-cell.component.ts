@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 import { Observable } from "rxjs";
 import { I18n, Overridable } from "./../../i18n/i18n.module";
+import { map } from "rxjs/operators";
+import { TableHeaderItem } from "./../table-header-item.class";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -91,7 +93,7 @@ import { I18n, Overridable } from "./../../i18n/i18n.module";
 	`
 })
 export class TableHeadCell implements OnInit {
-	@Input() column;
+	@Input() column: TableHeaderItem;
 
 	@Input() skeleton = false;
 
@@ -136,18 +138,30 @@ export class TableHeadCell implements OnInit {
 	constructor(protected i18n: I18n) { }
 
 	ngOnInit() {
-		this.theadAction = this.column.filterTemplate || this.sort.observers.length > 0;
+		this.theadAction = !!this.column.filterTemplate || this.sort.observers.length > 0;
 	}
 
 	getSortDescendingLabel(): Observable<string> {
-		return this._sortDescendingLabel.subject;
+		return this._sortDescendingLabel.subject.pipe(this.sortLabelMap());
 	}
 
 	getSortAscendingLabel(): Observable<string> {
-		return this._sortAscendingLabel.subject;
+		return this._sortAscendingLabel.subject.pipe(this.sortLabelMap());
 	}
 
 	getFilterTitle(): Observable<string> {
 		return this._filterTitle.subject;
+	}
+
+	protected sortLabelMap() {
+		return map((str: string) => {
+			if (this.column.ariaSortLabel) {
+				return this.column.ariaSortLabel;
+			}
+			if (this.column.formatSortLabel) {
+				return this.column.formatSortLabel(str, this.column.ariaSortLabel);
+			}
+			return `${this.column.data} - ${str}`;
+		});
 	}
 }

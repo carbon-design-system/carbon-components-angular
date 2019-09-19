@@ -114,6 +114,16 @@ export class TableHeaderItem {
 	template: TemplateRef<any>;
 
 	/**
+	 * The label for the sort button
+	 */
+	ariaSortLabel: string;
+
+	/**
+	 * A callback function to format the sort label. Will be heavily called.
+	 */
+	formatSortLabel: (label: string, staticLabel?: string) => string;
+
+	/**
 	 * Used as a template for popover filter.
 	 *
 	 * `let-popover="popover"` will give you access to popover component and allow you to
