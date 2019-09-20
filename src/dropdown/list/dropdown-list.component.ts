@@ -107,7 +107,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * The list items belonging to the `DropdownList`.
 	 */
 	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
-		console.log("list items", value);
 		if (isObservable(value)) {
 			if (this._itemsSubscription) {
 				this._itemsSubscription.unsubscribe();
@@ -371,7 +370,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Transforms array input list of items to the correct state by updating the selected item(s).
 	 */
 	propagateSelected(value: Array<ListItem>): void {
-		console.log("list", value);
 		// if we get a non-array, log out an error (since it is one)
 		if (!Array.isArray(value)) {
 			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);

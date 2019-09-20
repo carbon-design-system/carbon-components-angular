@@ -170,9 +170,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
 	 */
 	@Input() set appendToBody (v) {
-		console.log("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
-		console.log("Ensure you have an `ibm-placeholder` in your app.");
-		console.log("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
+		console.warn("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
+		console.warn("Ensure you have an `ibm-placeholder` in your app.");
+		console.warn("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
 		this.appendInline = !v;
 	}
 
@@ -322,7 +322,6 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Propagates the injected `value`.
 	 */
 	writeValue(value: any) {
-		console.log("dropdown", value, this.view.getListItems());
 		// cache the written value so we can use it in `AfterContentInit`
 		this.writtenValue = value;
 		// propagate null/falsey as an array (deselect everything)

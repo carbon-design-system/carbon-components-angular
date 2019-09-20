@@ -1,9 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl } from "@angular/forms";
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter
+} from "@angular/core";
+import {
+	ReactiveFormsModule,
+	FormBuilder,
+	FormGroup,
+	FormControl
+} from "@angular/forms";
 
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
-import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs/angular";
+import {
+	withKnobs,
+	select,
+	boolean,
+	object,
+	text
+} from "@storybook/addon-knobs/angular";
 
 import { DropdownModule, DocumentationModule } from "../";
 import { of } from "rxjs";
@@ -30,12 +47,15 @@ const getProps = (overrides = {}) => Object.assign({}, {
 		<form [formGroup]="formGroup">
 			<div style="text-align:center">
 				<ibm-dropdown
-					[label]="Roles"
+					[label]="label"
 					[helperText]="helperText"
+					[theme]="theme"
 					type="multi"
 					placeholder="Multi-select"
 					value="oid"
-					(selected)="selected($event)"
+					[disabled]="disabled"
+					(selected)="selected.emit($event)"
+					(onClose)="onClose.emit($event)"
 					formControlName="roles">
 					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 				</ibm-dropdown>
@@ -50,11 +70,12 @@ const getProps = (overrides = {}) => Object.assign({}, {
 class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;
 
-	public items = [
-		{ content: "role 1", oid: 1, selected: false },
-		{ content: "role 2", oid: 2, selected: false },
-		{ content: "role 3", oid: 3, selected: false }
-	];
+	@Input() items = [];
+	@Input() label = "";
+	@Input() helperText = "";
+	@Input() disabled = false;
+	@Output() selected = new EventEmitter();
+	@Output() onClose = new EventEmitter();
 
 	constructor(protected formBuilder: FormBuilder) {}
 
@@ -168,9 +189,24 @@ storiesOf("Dropdown", module)
 	}))
 	.add("Width reactive forms", () => ({
 		template: `
-			<app-reactive-forms></app-reactive-forms>
+			<app-reactive-forms
+				[label]="label"
+				[helperText]="helperText"
+				[disabled]="disabled"
+				[items]="items"
+				(selected)="selected($event)"
+				(onClose)="onClose($event)">
+			</app-reactive-forms>
 		`,
-		props: getProps()
+		props: getProps({
+			items: [
+				{ content: "role 1", oid: 1, selected: false },
+				{ content: "role 2", oid: 2, selected: false },
+				{ content: "role 3", oid: 3, selected: false }
+			],
+			selected: action("Selected fired for multi-select dropdown"),
+			onClose: action("Multi-select dropdown closed")
+		})
 	}))
 	.add("With Observable items", () => ({
 		template: `
