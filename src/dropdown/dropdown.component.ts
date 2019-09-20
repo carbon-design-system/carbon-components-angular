@@ -372,7 +372,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		this.onTouchedCallback = fn;
 	}
 
+	/**
+	 * function passed in by `registerOnChange`
+	 */
 	propagateChange = (_: any) => {};
+
+	/**
+	 * `ControlValueAccessor` method to programatically disable the dropdown.
+	 *
+	 * ex: `this.formGroup.get("myDropdown").disable();`
+	 *
+	 * @param isDisabled `true` to disable the input
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
 
 	/**
 	 * Adds keyboard functionality for navigation, selection and closing of the `Dropdown`.
@@ -473,6 +487,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	}
 
 	clearSelected() {
+		if (this.disabled) { return; }
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
