@@ -1,3 +1,6 @@
+import { Component, OnInit } from "@angular/core";
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl } from "@angular/forms";
+
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, select, boolean, object, text } from "@storybook/addon-knobs/angular";
@@ -6,13 +9,76 @@ import { DropdownModule, DocumentationModule } from "../";
 import { of } from "rxjs";
 import { PlaceholderModule } from "../placeholder/placeholder.module";
 
+const getProps = (overrides = {}) => Object.assign({}, {
+	disabled: boolean("disabled", false),
+	label: text("Label", "Dropdown label"),
+	helperText: text("Helper text", "Optional helper text."),
+	items: object("items", [
+		{ content: "one" },
+		{ content: "two" },
+		{ content: "three" },
+		{ content: "four" }
+	]),
+	selected: action("Selected fired for dropdown"),
+	onClose: action("Dropdown closed"),
+	theme: select("theme", ["dark", "light"], "dark")
+}, overrides);
+
+@Component({
+	selector: "app-reactive-forms",
+	template: `
+		<form [formGroup]="formGroup">
+			<div style="text-align:center">
+				<ibm-dropdown
+					[label]="Roles"
+					[helperText]="helperText"
+					type="multi"
+					placeholder="Multi-select"
+					value="oid"
+					(selected)="selected($event)"
+					formControlName="roles">
+					<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+				</ibm-dropdown>
+			</div>
+		</form>
+
+		<br>
+
+		<code>{{ formGroup.get("roles").value | json }}</code>
+	`
+})
+class ReactiveFormsStory implements OnInit {
+	public formGroup: FormGroup;
+
+	public items = [
+		{ content: "role 1", oid: 1, selected: false },
+		{ content: "role 2", oid: 2, selected: false },
+		{ content: "role 3", oid: 3, selected: false }
+	];
+
+	constructor(protected formBuilder: FormBuilder) {}
+
+	ngOnInit() {
+		this.formGroup = this.formBuilder.group({
+			roles: new FormControl()
+		});
+		this.selectRoles();
+	}
+
+	private selectRoles() {
+		this.formGroup.get("roles").setValue([1, 2]);
+	}
+}
+
 storiesOf("Dropdown", module)
 	.addDecorator(
 		moduleMetadata({
+			declarations: [ ReactiveFormsStory ],
 			imports: [
 				DropdownModule,
 				PlaceholderModule,
-				DocumentationModule
+				DocumentationModule,
+				ReactiveFormsModule
 			]
 		})
 	)
@@ -33,20 +99,7 @@ storiesOf("Dropdown", module)
 		</div>
 		<ibm-placeholder></ibm-placeholder>
 	`,
-		props: {
-			disabled: boolean("disabled", false),
-			label: text("Label", "Dropdown label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: object("items", [
-				{ content: "one" },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			]),
-			selected: action("Selected fired for dropdown"),
-			onClose: action("Dropdown closed"),
-			theme: select("theme", ["dark", "light"], "dark")
-		}
+		props: getProps()
 	}))
 	.add("Multi-select", () => ({
 		template: `
@@ -63,19 +116,10 @@ storiesOf("Dropdown", module)
 			</ibm-dropdown>
 		</div>
 	`,
-		props: {
-			disabled: boolean("disabled", false),
-			label: text("Label", "Dropdown label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: object("items", [
-				{ content: "one" },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			]),
+		props: getProps({
 			selected: action("Selected fired for multi-select dropdown"),
 			onClose: action("Multi-select dropdown closed")
-		}
+		})
 	}))
 	.add("Multi-select with ngModel", () => ({
 		template: `
@@ -87,24 +131,21 @@ storiesOf("Dropdown", module)
 				placeholder="Select"
 				[disabled]="disabled"
 				[(ngModel)]="model"
-				value="content">
+				value="id">
 				<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 			</ibm-dropdown>
 			<span>{{model | json}}</span>
 		</div>
 		`,
-		props: {
-			disabled: boolean("disabled", false),
-			label: text("Label", "Dropdown label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: [
-				{ content: "one" },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			],
+		props: getProps({
+			items: object("items", [
+				{ content: "one", id: 0 },
+				{ content: "two", id: 1 },
+				{ content: "three", id: 2 },
+				{ content: "four", id: 3 }
+			]),
 			model: null
-		}
+		})
 	}))
 	.add("With ngModel", () => ({
 		template: `
@@ -121,18 +162,15 @@ storiesOf("Dropdown", module)
 			<span>{{model | json}}</span>
 		</div>
 		`,
-		props: {
-			disabled: boolean("disabled", false),
-			label: text("Label", "Dropdown label"),
-			helperText: text("Helper text", "Optional helper text."),
-			items: [
-				{ content: "one" },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			],
+		props: getProps({
 			model: null
-		}
+		})
+	}))
+	.add("Width reactive forms", () => ({
+		template: `
+			<app-reactive-forms></app-reactive-forms>
+		`,
+		props: getProps()
 	}))
 	.add("With Observable items", () => ({
 		template: `
@@ -149,20 +187,14 @@ storiesOf("Dropdown", module)
 			</ibm-dropdown>
 		</div>
 	`,
-		props: {
-			disabled: boolean("disabled", false),
-			label: text("Label", "Dropdown label"),
-			helperText: text("Helper text", "Optional helper text."),
+		props: getProps({
 			items: of([
 				{ content: "one" },
 				{ content: "two" },
 				{ content: "three" },
 				{ content: "four" }
-			]),
-			selected: action("Selected fired for dropdown"),
-			onClose: action("Dropdown closed"),
-			theme: select("theme", ["dark", "light"], "dark")
-		}
+			])
+		})
 	}))
 	.add("With Template", () => ({
 		template: `
@@ -187,18 +219,7 @@ storiesOf("Dropdown", module)
 			</ng-template>
 		</div>
 	`,
-		props: {
-			disabled: boolean("disabled", false),
-			items: object("items", [
-				{ content: "one", selected: true },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			]),
-			selected: action("Selected fired for dropdown"),
-			onClose: action("Dropdown closed"),
-			theme: select("theme", ["dark", "light"], "dark")
-		}
+		props: getProps()
 
 	}))
 	.add("Skeleton", () => ({
@@ -213,14 +234,7 @@ storiesOf("Dropdown", module)
 			</ibm-dropdown>
 		</div>
 		`,
-		props: {
-			items: [
-				{ content: "one" },
-				{ content: "two" },
-				{ content: "three" },
-				{ content: "four" }
-			]
-		}
+		props: getProps()
 	}))
 	.add("Documentation", () => ({
 		template: `

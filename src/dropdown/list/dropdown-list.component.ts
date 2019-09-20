@@ -107,6 +107,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * The list items belonging to the `DropdownList`.
 	 */
 	@Input() set items (value: Array<ListItem> | Observable<Array<ListItem>>) {
+		console.log("list items", value);
 		if (isObservable(value)) {
 			if (this._itemsSubscription) {
 				this._itemsSubscription.unsubscribe();
@@ -370,25 +371,31 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Transforms array input list of items to the correct state by updating the selected item(s).
 	 */
 	propagateSelected(value: Array<ListItem>): void {
+		console.log("list", value);
 		// if we get a non-array, log out an error (since it is one)
 		if (!Array.isArray(value)) {
 			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
 		}
-		for (let newItem of value) {
+		// loop through the list items and update the `selected` state for matching items in `value`
+		for (let oldItem of this.getListItems()) {
 			// copy the item
-			let tempNewItem: string | ListItem = Object.assign({}, newItem);
+			let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 			// deleted selected because it's what we _want_ to change
-			delete tempNewItem.selected;
+			delete tempOldItem.selected;
 			// stringify for compare
-			tempNewItem = JSON.stringify(tempNewItem);
-			for (let oldItem of this.getListItems()) {
-				let tempOldItem: string | ListItem = Object.assign({}, oldItem);
-				delete tempOldItem.selected;
-				tempOldItem = JSON.stringify(tempOldItem);
+			tempOldItem = JSON.stringify(tempOldItem);
+			for (let newItem of value) {
+				// copy the item
+				let tempNewItem: string | ListItem = Object.assign({}, newItem);
+				// deleted selected because it's what we _want_ to change
+				delete tempNewItem.selected;
+				// stringify for compare
+				tempNewItem = JSON.stringify(tempNewItem);
 				// do the compare
 				if (tempOldItem.includes(tempNewItem)) {
-					// oldItem = Object.assign(oldItem, newItem);
 					oldItem.selected = newItem.selected;
+					// if we've found a matching item, we can stop looping
+					break;
 				} else {
 					oldItem.selected = false;
 				}

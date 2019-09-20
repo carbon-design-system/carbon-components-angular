@@ -13,7 +13,7 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
 import {
@@ -117,7 +117,7 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
+export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
@@ -252,6 +252,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 	protected onTouchedCallback: () => void = this._noop;
 
+	// primarily used to capture and propagate input to `writeValue` before the content is available
+	protected writtenValue = [];
+
 	/**
 	 * Creates an instance of Dropdown.
 	 */
@@ -274,6 +277,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (!this.view) {
 			return;
 		}
+		this.writeValue(this.writtenValue);
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
@@ -318,6 +322,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Propagates the injected `value`.
 	 */
 	writeValue(value: any) {
+		console.log("dropdown", value, this.view.getListItems());
+		// cache the written value so we can use it in `AfterContentInit`
+		this.writtenValue = value;
 		// propagate null/falsey as an array (deselect everything)
 		if (!value) {
 			this.view.propagateSelected([value]);
@@ -334,12 +341,12 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		} else {
 			if (this.value) {
 				// clone the items and update their state based on the received value array
-				// this way we don't lose any additional metadata that may be passed in view the `items` Input
-				const newValues = Array.from(this.view.getListItems(), item => Object.assign({}, item));
+				// this way we don't lose any additional metadata that may be passed in via the `items` Input
+				let newValues = [];
 				for (const v of value) {
-					for (const newValue of newValues) {
-						if (newValue[this.value] === v) {
-							newValue.selected = true;
+					for (const item of this.view.getListItems()) {
+						if (item[this.value] === v) {
+							newValues.push(Object.assign({}, item, { selected: true }));
 						}
 					}
 				}
