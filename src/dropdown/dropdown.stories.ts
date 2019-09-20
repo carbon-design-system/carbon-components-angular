@@ -53,7 +53,6 @@ const getProps = (overrides = {}) => Object.assign({}, {
 					type="multi"
 					placeholder="Multi-select"
 					value="oid"
-					[disabled]="disabled"
 					(selected)="selected.emit($event)"
 					(onClose)="onClose.emit($event)"
 					formControlName="roles">
@@ -73,7 +72,14 @@ class ReactiveFormsStory implements OnInit {
 	@Input() items = [];
 	@Input() label = "";
 	@Input() helperText = "";
-	@Input() disabled = false;
+	@Input() set disabled(value) {
+		if (!this.formGroup) { return; }
+		if (value) {
+			this.formGroup.get("roles").disable();
+		} else {
+			this.formGroup.get("roles").enable();
+		}
+	}
 	@Output() selected = new EventEmitter();
 	@Output() onClose = new EventEmitter();
 
