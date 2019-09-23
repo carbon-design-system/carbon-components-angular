@@ -135,7 +135,6 @@ export class DialogService {
 		DialogService.dialogRefs.add(dialogRef);
 
 		// initialize some extra options
-		let focusedElement = document.activeElement;
 		dialogConfig["previouslyFocusedElement"] = document.activeElement;
 		dialogRef.instance.dialogConfig = dialogConfig;
 		this.onClose = dialogRef.instance.close;
