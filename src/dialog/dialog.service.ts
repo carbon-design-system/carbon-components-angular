@@ -196,9 +196,7 @@ export class DialogService {
 	 * Closes all known `Dialog`s. Does not focus any previous elements, since we can't know which would be correct
 	 */
 	closeAll() {
-		DialogService.dialogRefs.forEach(ref => {
-			ref.destroy();
-		});
+		DialogService.dialogRefs.forEach(ref => ref.destroy());
 		DialogService.dialogRefs.clear();
 		DialogService.dialogCloseSubscription.unsubscribe();
 		this.isClosed.emit(true);
