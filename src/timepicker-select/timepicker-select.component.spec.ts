@@ -70,14 +70,14 @@ describe("TimePickerSelect", () => {
 		expect(element.querySelector(".bx--label").textContent).toEqual("test-label");
 	});
 
-	it("should set ng-reflect-disabled to 'true'", () => {
+	it("should set disabled on the underlying select to true", () => {
 		fixture = TestBed.overrideComponent(TimePickerSelectTest, {
 			set: {
 				template: `<ibm-timepicker-select [disabled]="true"></ibm-timepicker-select>`
 			}
 		}).createComponent(TimePickerSelectTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-timepicker-select")).nativeElement;
-		expect(element.getAttribute("ng-reflect-disabled")).toEqual("true");
+		element = fixture.debugElement.query(By.css(".bx--select-input")).nativeElement;
+		expect(element.disabled).toEqual(true);
 	});
 });
