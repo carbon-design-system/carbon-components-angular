@@ -152,7 +152,7 @@ export class DialogService {
 
 		dialogRef.instance.elementRef.nativeElement.focus();
 
-		// deprecated - kept for API compat
+		// deprecated - kept for API compatibility
 		this.dialogRef = dialogRef;
 
 		// deprecated - kept for API compat
