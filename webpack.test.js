@@ -1,14 +1,19 @@
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = [{
+	devtool: "source-map",
 	module: {
 		rules: [
 			{
 				test: /\.ts$/,
-				loader: "ts-loader",
-				options: {
-					transpileOnly: true
-				}
+				loaders: [{
+						loader: "ts-loader",
+						options: {
+							// transpileOnly: true
+						}
+					},
+					"angular2-template-loader"
+				]
 			},
 			{
 				test: /\.html$/,

@@ -1,30 +1,40 @@
 import {
 	Component,
-	ElementRef,
 	TemplateRef
 } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
+import { TestBed, async } from "@angular/core/testing";
 import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
+import { DialogModule } from "./../dialog.module";
 import { PlaceholderModule } from "../../placeholder/placeholder.module";
 
 @Component({
-	selector: "test-cmp",
-	template: "<button ibmTooltip='Hello There' placement='bottom'>Me</button>",
-	entryComponents: [Tooltip]
+	selector: "test-component",
+	template: `
+		<button ibmTooltip='Hello There' placement='bottom'>Me</button>
+		<ibm-placeholder></ibm-placeholder>
+	`
 })
 class TooltipTest { }
 
+@Component({
+	selector: "test-template-component",
+	template: `
+		<ng-template #customPopover>custom template</ng-template>
+		<button [ibmTooltip]="customPopover">Pop over right</button>
+		<ibm-placeholder></ibm-placeholder>
+	`
+})
+class TooltipTemplateTest { }
+
 describe("Tooltip directive", () => {
-	beforeEach(() => {
+	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [TooltipDirective, Tooltip, TooltipTest],
-			imports: [
-				PlaceholderModule
-			]
-		});
-	});
+			declarations: [TooltipTest, TooltipTemplateTest ],
+			imports: [ DialogModule, PlaceholderModule ]
+		}).compileComponents();
+	}));
 
 	it("should compile the directive", () => {
 		const fixture = TestBed.createComponent(TooltipTest);
@@ -159,21 +169,11 @@ describe("Tooltip directive", () => {
 	});
 
 	it("tooltip should use provided custom template", () => {
-		TestBed.overrideComponent(TooltipTest, {
-			set: {
-				template: `
-				<ng-template #customPopover>custom template</ng-template>
-				<button [ibmTooltip]='customPopover'>Pop over right</button>
-				`
-			}
-		});
-
-		const fixture = TestBed.createComponent(TooltipTest);
+		const fixture = TestBed.createComponent(TooltipTemplateTest);
 		fixture.detectChanges();
 
 		const directiveEl = fixture.debugElement.query(By.directive(TooltipDirective));
 		const directiveInstance = directiveEl.injector.get(TooltipDirective);
-
-		expect(directiveInstance["ibmTooltip"] instanceof TemplateRef).toBe(true);
+		expect(directiveInstance.ibmTooltip instanceof TemplateRef).toBe(true);
 	});
 });

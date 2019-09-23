@@ -41,9 +41,6 @@ import { BaseModal } from "./base-modal.class";
  * 	}
  * }
  * ```
- *
- * @export
- * @class AlertModal
  */
 @Component({
 	selector: "ibm-alert-modal",

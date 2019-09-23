@@ -182,6 +182,7 @@ export interface TableTranslations {
 	[ngClass]="{
 		'bx--data-table--compact': size === 'sm',
 		'bx--data-table--tall': size === 'lg',
+		'bx--data-table--short': size === 'sh',
 		'bx--data-table--zebra': striped,
 		'bx--skeleton': skeleton
 	}">
@@ -203,7 +204,7 @@ export interface TableTranslations {
 					style="width: 10px;">
 					<ibm-checkbox
 						inline="true"
-						[size]="size !== ('lg' ? 'sm' : 'md')"
+						[size]="(size !== 'sm' ? 'md' : 'sm')"
 						[(ngModel)]="selectAllCheckbox"
 						[indeterminate]="selectAllCheckboxSomeSelected"
 						[attr.aria-label]="checkboxHeaderLabel.subject | async"
@@ -379,7 +380,7 @@ export interface TableTranslations {
 						<ibm-checkbox
 							inline="true"
 							[aria-label]="checkboxRowLabel.subject | i18nReplace:getSelectionLabelValue(row) | async"
-							[size]="size !== ('lg' ? 'sm' : 'md')"
+							[size]="(size !== 'sm' ? 'md' : 'sm')"
 							[(ngModel)]="model.rowsSelected[i]"
 							(change)="onRowCheckboxChange(i)">
 						</ibm-checkbox>
@@ -491,9 +492,9 @@ export class Table implements AfterViewInit {
 	/**
 	 * Size of the table rows.
 	 *
-	 * @type {("sm" | "md" | "lg")}
+	 * @type {("sm" | "sh" | "md" | "lg")}
 	 */
-	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() size: "sm" | "sh" | "md" | "lg" = "md";
 	/**
 	 * Set to `true` for a loading table.
 	 */

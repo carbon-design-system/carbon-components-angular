@@ -17,10 +17,6 @@ const noop = () => {};
  * [See demo](../../?path=/story/file-uploader--basic)
  *
  * <example-url>../../iframe.html?id=file-uploader--basic</example-url>
- *
- * @export
- * @class FileUploader
- * @implements {OnInit}
  */
 @Component({
 	selector: "ibm-file-uploader",

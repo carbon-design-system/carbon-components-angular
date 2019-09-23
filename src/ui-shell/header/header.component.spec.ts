@@ -9,8 +9,6 @@ import { Hamburger } from "../ui-shell.module";
 /**
  * Testing component for projecting an ibm-hamburger component
  * inside of an ibm-header component.
- *
- * @class HamburgerTest
  */
 @Component({
 	selector: "ibm-hamburger-test",
