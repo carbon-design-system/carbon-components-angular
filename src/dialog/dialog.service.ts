@@ -176,7 +176,7 @@ export class DialogService {
 		// to handle the case where we have a null `this.dialogRef`
 		if (!dialogRef) { return; }
 
-		let elementToFocus = dialogRef.instance.dialogConfig["previouslyFocusedElement"];
+		const elementToFocus = dialogRef.instance.dialogConfig["previouslyFocusedElement"];
 
 		dialogRef.destroy();
 
