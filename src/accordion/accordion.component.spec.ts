@@ -55,7 +55,7 @@ describe("Accordion", () => {
 
 	it("should expand on button click", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		wrapper = fixture. componentInstance;
+		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css(".bx--accordion__heading"));
 		element.triggerEventHandler("click", null);
@@ -65,7 +65,7 @@ describe("Accordion", () => {
 
 	it("should set test-content into accordion item", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		wrapper = fixture. componentInstance;
+		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__content"));
 		expect(element.nativeElement.textContent).toEqual(" test-content ");
@@ -73,7 +73,7 @@ describe("Accordion", () => {
 
 	it("should set ibm-accordion item title to Section 1", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		wrapper = fixture. componentInstance;
+		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
 		expect(element.nativeElement.textContent).toEqual(" Section 1 ");
