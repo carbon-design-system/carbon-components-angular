@@ -52,18 +52,34 @@ storiesOf("Time Picker", module)
 			[(ngModel)]="model"
 			[disabled]="disableTime"
 			label="Select a time">
-			<ibm-timepicker-select [theme]="theme" (valueChange)="timePickerSelectChange($event)" [disabled]="disabledSelect" display="inline">
+			<ibm-timepicker-select
+				[theme]="theme"
+				(valueChange)="timePickerSelectChange($event)"
+				[disabled]="disabledSelect"
+				display="inline"
+				[(ngModel)]="period">
 				<option selected value="AM">AM</option>
 				<option value="PM">PM</option>
 			</ibm-timepicker-select>
-			<ibm-timepicker-select [theme]="theme" (valueChange)="timePickerSelectChange($event)" [disabled]="disabledSelect" display="inline">
+			<ibm-timepicker-select
+				[theme]="theme"
+				(valueChange)="timePickerSelectChange($event)"
+				[disabled]="disabledSelect"
+				display="inline"
+				[(ngModel)]="timeZone">
 				<option selected value="Time Zone 1">Time Zone 1</option>
 				<option value="Time Zone 2">Time Zone 2</option>
 			</ibm-timepicker-select>
 		</ibm-timepicker>
+		<br>
 		<span> Input: {{model}} </span>
+		<span> Period: {{period}} </span>
+		<span> Time Zone: {{timeZone}} </span>
+
 		`,
 		props: {
+			period: "AM",
+			timeZone: "Time Zone 1",
 			timePickerChange : action("Time picker change fired"),
 			timePickerSelectChange: action("Time picker select change fired"),
 			model: "12:12",

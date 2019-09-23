@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -73,22 +74,30 @@ export class TimePicker implements ControlValueAccessor {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
-	writeValue(obj: any): void {
-		this.value = obj;
+	writeValue(value: string) {
+		this.value = value;
 	}
-	registerOnChange(fn: any): void {
-		this.onChangeHandler = fn;
+
+	registerOnChange(callback: any) {
+		this.onChangeHandler = callback;
 	}
-	registerOnTouched(fn: any): void {
-		this.onTouchedHandler = fn;
+
+	registerOnTouched(callback: any) {
+		this.onTouchedHandler = callback;
 	}
-	setDisabledState(isDisabled: boolean): void {
+
+	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
 	}
 
 	onChange(event) {
 		this.onChangeHandler(event.target.value);
 		this.valueChange.emit(event.target.value);
+	}
+
+	@HostListener("blur")
+	blur() {
+		this.onTouchedHandler();
 	}
 
 	public isTemplate(value) {

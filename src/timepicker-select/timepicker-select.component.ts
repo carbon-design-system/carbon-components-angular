@@ -7,6 +7,7 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { Select } from "../select/select.component";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 /**
  * [See demo](../../?path=/story/time-picker-select--simple)
@@ -26,7 +27,14 @@ import { Select } from "../select/select.component";
 				<ng-content></ng-content>
 			</select>
 			<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow"></ibm-icon-chevron-down16>
-	`
+	`,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: TimePickerSelect,
+			multi: true
+		}
+	]
 })
 export class TimePickerSelect extends Select {
 	@HostBinding("class.bx--select") timeSelect = true;
@@ -53,8 +61,4 @@ export class TimePickerSelect extends Select {
 	}
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
-
-	onChange(event) {
-		this.valueChange.emit(event.target.value);
-	}
 }
