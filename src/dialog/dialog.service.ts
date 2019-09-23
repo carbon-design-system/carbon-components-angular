@@ -155,7 +155,7 @@ export class DialogService {
 		// deprecated - kept for API compatibility
 		this.dialogRef = dialogRef;
 
-		// deprecated - kept for API compat
+		// deprecated - kept for API compatibility
 		this.dialogSubscription = closeSubscription;
 
 		// return `this` for easy method chaining
