@@ -11,8 +11,7 @@ import { TimePicker } from "./timepicker.component";
 		(valueChange)="onChange()"
 		[(value)]="value"
 		label="test"
-		disabled="false"
-		>
+		disabled="false">
 	</ibm-timepicker>`
 })
 class TimePickerTest {
@@ -94,7 +93,7 @@ describe("TimePicker", () => {
 			}
 		}).createComponent(TimePickerTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-timepicker")).nativeElement;
-		expect(element.getAttribute("ng-reflect-disabled")).toEqual("true");
+		element = fixture.debugElement.query(By.css(".bx--time-picker__input-field")).nativeElement;
+		expect(element.disabled).toEqual(true);
 	});
 });
