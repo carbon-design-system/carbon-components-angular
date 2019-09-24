@@ -14,7 +14,8 @@ import { Accordion } from "./accordion.component";
 		title="Section 1"
 		[skeleton]="false">
 		test-content
-	</ibm-accordion-item>`
+		</ibm-accordion-item>
+	<ibm-accordion>`
 })
 class AccordionTest {
 	onClick() {}
@@ -44,13 +45,13 @@ describe("Accordion", () => {
 
 	it("should call onClick on button click", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		wrapper = fixture.componentInstance;
+		element = fixture.debugElement.query(By.css("ibm-accordion-item"));
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--accordion__heading"));
-		spyOn(wrapper, "onClick");
-		element.triggerEventHandler("click", null);
+		spyOn(element.componentInstance.selected, "emit");
+		let change = fixture.nativeElement.querySelector(".bx--accordion__heading");
+		change.dispatchEvent(new Event("click"));
 		fixture.detectChanges();
-		expect(wrapper.onClick).toHaveBeenCalled();
+		expect(element.componentInstance.selected.emit).toHaveBeenCalled();
 	});
 
 	it("should expand on button click", () => {
@@ -68,7 +69,7 @@ describe("Accordion", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__content"));
-		expect(element.nativeElement.textContent).toEqual(" test-content ");
+		expect(element.nativeElement.textContent).toContain("test-content");
 	});
 
 	it("should set ibm-accordion item title to Section 1", () => {
@@ -76,6 +77,6 @@ describe("Accordion", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
-		expect(element.nativeElement.textContent).toEqual(" Section 1 ");
+		expect(element.nativeElement.textContent).toContain("Section 1");
 	});
 });
