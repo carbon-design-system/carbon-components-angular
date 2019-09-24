@@ -303,7 +303,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 				}
 			}
 			// only emit selected for "organic" selections
-			if (!event.isUpdate) {
+			if (event && !event.isUpdate) {
 				this.selected.emit(event);
 			}
 		});
