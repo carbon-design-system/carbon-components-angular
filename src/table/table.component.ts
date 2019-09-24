@@ -20,7 +20,6 @@ import { I18n, Overridable } from "./../i18n/i18n.module";
 import { merge } from "./../utils/object";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export interface TableTranslations {
 	FILTER: string;
