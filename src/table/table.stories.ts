@@ -62,7 +62,7 @@ const getProps = (more = {}) => {
 		showSelectionColumn: boolean("showSelectionColumn", true),
 		striped: boolean("striped", false),
 		sortable: boolean("sortable", true),
-		isDataGrid: boolean("Data grid keyboard interactions", false)
+		isDataGrid: boolean("Data grid keyboard interactions", true)
 	}, more);
 };
 

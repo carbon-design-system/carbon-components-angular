@@ -4,7 +4,7 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	OnInit
+	OnChanges
 } from "@angular/core";
 import { Observable } from "rxjs";
 import { I18n, Overridable } from "./../../i18n/i18n.module";
@@ -92,7 +92,7 @@ import { TableHeaderItem } from "./../table-header-item.class";
 		</button>
 	`
 })
-export class TableHeadCell implements OnInit {
+export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;
 
 	@Input() skeleton = false;
@@ -137,7 +137,7 @@ export class TableHeadCell implements OnInit {
 
 	constructor(protected i18n: I18n) { }
 
-	ngOnInit() {
+	ngOnChanges() {
 		this.theadAction = !!this.column.filterTemplate || this.sort.observers.length > 0;
 	}
 

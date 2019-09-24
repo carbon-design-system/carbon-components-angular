@@ -34,12 +34,12 @@ export abstract class TableAdapter {
 	/**
 	 * The last acccessible column in the table
 	 */
-	public get lastColumn(): number { return; }
+	public get lastColumnIndex(): number { return; }
 
 	/**
 	 * The last accessible row in the table
 	 */
-	public get lastRow(): number { return; }
+	public get lastRowIndex(): number { return; }
 
 	/**
 	 * Returns a cell from the table
@@ -88,14 +88,14 @@ export class TableDomAdapter implements TableAdapter {
 	/**
 	 * The last acccessible column in the table
 	 */
-	public get lastColumn() {
+	public get lastColumnIndex() {
 		return this.tableElement.rows[0].cells.length - 1;
 	}
 
 	/**
 	 * The last accessible row in the table
 	 */
-	public get lastRow() {
+	public get lastRowIndex() {
 		return this.tableElement.rows.length - 1;
 	}
 

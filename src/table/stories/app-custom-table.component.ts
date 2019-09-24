@@ -99,7 +99,7 @@ export class DynamicTableStory implements OnInit {
 	}
 
 	addColumn() {
-		let column = Array(this.model.data.length).fill(new TableItem({ data: `Column ${this.model.row(0).length}` }));
+		let column = Array(this.model.data.length).fill(null).map(() => new TableItem({ data: `Column ${this.model.row(0).length}` }));
 		this.model.addColumn(column);
 	}
 }

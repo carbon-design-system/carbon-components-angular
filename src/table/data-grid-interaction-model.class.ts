@@ -25,7 +25,7 @@ export interface DataGridPosition {
  *  - https://www.w3.org/TR/wai-aria-practices/#grid
  *
  * Example usage (taken from `table.component`):
- * ```
+```typescript
 // a standard HTML table
 const table = this.elementRef.nativeElement.querySelector("table") as HTMLTableElement;
 
@@ -62,7 +62,7 @@ this.interactionModel.position.subscribe(event => {
 	// finally, focus the current cell (skipped during initilzation)
 	Table.focus(currentElement);
 });
- * ```
+```
  */
 export class DataGridInteractionModel {
 	/**
@@ -105,14 +105,14 @@ export class DataGridInteractionModel {
 	 * The last column as reported by the adapter
 	 */
 	protected get lastColumn() {
-		return this.tableAdapter.lastColumn;
+		return this.tableAdapter.lastColumnIndex;
 	}
 
 	/**
 	 * The last row as reported by the adapter
 	 */
 	protected get lastRow() {
-		return this.tableAdapter.lastRow;
+		return this.tableAdapter.lastRowIndex;
 	}
 
 	/**
@@ -240,13 +240,13 @@ export class DataGridInteractionModel {
 	 * Convenience method to reset the tab indexes on a standard carbon table.
 	 * For custom tables you may want to reset the indexes manually and simply call `.reset()`
 	 */
-	resetTabIndexes() {
-		for (let i = 0; i < this.tableAdapter.lastRow; i++) {
+	resetTabIndexes(newTabIndex = -1) {
+		for (let i = 0; i < this.tableAdapter.lastRowIndex; i++) {
 			const row = this.tableAdapter.getRow(i) as HTMLTableRowElement;
 			for (const cell of Array.from(row.cells)) {
 				const tabbableElements = getFocusElementList(cell, tabbableSelectorIgnoreTabIndex);
-				tabbableElements.forEach((node: HTMLElement) => node.tabIndex = -1);
-				cell.tabIndex = -1;
+				tabbableElements.forEach((node: HTMLElement) => node.tabIndex = newTabIndex);
+				cell.tabIndex = newTabIndex;
 			}
 		}
 

@@ -20,6 +20,7 @@ import { I18n, Overridable } from "./../i18n/i18n.module";
 import { merge } from "./../utils/object";
 import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export interface TableTranslations {
 	FILTER: string;
@@ -345,7 +346,20 @@ export class Table implements AfterViewInit, OnDestroy {
 	/**
 	 * Set to `true` for a data grid with keyboard interactions.
 	 */
-	@Input() isDataGrid = false;
+	@Input() set isDataGrid(value: boolean) {
+		this._isDataGrid = value;
+		if (this.isViewReady) {
+			if (value) {
+				this.enableDataGridInteractions();
+			} else {
+				this.disableDataGridInteractions();
+			}
+		}
+	}
+
+	get isDataGrid(): boolean {
+		return this._isDataGrid;
+	}
 
 	/**
 	 * Controls whether to show the selection checkboxes column or not.
@@ -527,8 +541,12 @@ export class Table implements AfterViewInit, OnDestroy {
 	public columnDraggedPosition = "";
 
 	protected _model: TableModel;
+	protected _isDataGrid = false;
+	// flag to prevent getters/setters from querying the view before it's fully instantiated
+	protected isViewReady = false;
 
 	protected subscriptions = new Subscription();
+	protected positionSubscription: Subscription;
 
 	protected interactionModel: DataGridInteractionModel;
 	protected interactionPositionSubscription: Subscription;
@@ -557,43 +575,66 @@ export class Table implements AfterViewInit, OnDestroy {
 	) {}
 
 	ngAfterViewInit() {
+		this.isViewReady = true;
 		if (this.isDataGrid) {
-			const table = this.elementRef.nativeElement.querySelector("table") as HTMLTableElement;
-			const tableAdapter = new TableDomAdapter(table);
-			const keydownEventStream = fromEvent<KeyboardEvent>(table, "keydown");
-			const clickEventStream = fromEvent<MouseEvent>(table, "click");
-			this.interactionModel = new DataGridInteractionModel(keydownEventStream, clickEventStream, tableAdapter);
-			this.interactionModel.position.subscribe(event => {
-				const [currentRow, currentColumn] = event.current;
-				const [previousRow, previousColumn] = event.previous;
-
-				const currentElement = tableAdapter.getCell(currentRow, currentColumn);
-				Table.setTabIndex(currentElement, 0);
-
-				// if the model has just initialized don't focus or reset anything
-				if (previousRow === -1 || previousColumn === -1) { return; }
-
-				const previousElement = tableAdapter.getCell(previousRow, previousColumn);
-				Table.setTabIndex(previousElement, -1);
-				Table.focus(currentElement);
-			});
-			// call this after assigning `this.interactionModel` since it depends on it
-			this.resetTabIndex();
+			this.enableDataGridInteractions();
 		}
 	}
 
 	ngOnDestroy() {
 		this.subscriptions.unsubscribe();
+		if (this.positionSubscription) {
+			this.positionSubscription.unsubscribe();
+		}
+	}
+
+	enableDataGridInteractions() {
+		// if we have an `interactioModel` we've already enabled datagrid
+		if (this.interactionModel) {
+			return;
+		}
+		const table = this.elementRef.nativeElement.querySelector("table") as HTMLTableElement;
+		const tableAdapter = new TableDomAdapter(table);
+		const keydownEventStream = fromEvent<KeyboardEvent>(table, "keydown");
+		const clickEventStream = fromEvent<MouseEvent>(table, "click");
+		this.interactionModel = new DataGridInteractionModel(keydownEventStream, clickEventStream, tableAdapter);
+		this.positionSubscription = this.interactionModel.position.subscribe(event => {
+			const [currentRow, currentColumn] = event.current;
+			const [previousRow, previousColumn] = event.previous;
+
+			const currentElement = tableAdapter.getCell(currentRow, currentColumn);
+			Table.setTabIndex(currentElement, 0);
+
+			// if the model has just initialized don't focus or reset anything
+			if (previousRow === -1 || previousColumn === -1) { return; }
+
+			const previousElement = tableAdapter.getCell(previousRow, previousColumn);
+			Table.setTabIndex(previousElement, -1);
+			Table.focus(currentElement);
+		});
+		// call this after assigning `this.interactionModel` since it depends on it
+		this.resetTabIndex();
+	}
+
+	disableDataGridInteractions() {
+		// unsubscribe first so we don't cause the focus to fly around
+		if (this.positionSubscription) {
+			this.positionSubscription.unsubscribe();
+		}
+		// undo tab indexing (also resets the model)
+		this.resetTabIndex(0);
+		// null out the model ref
+		this.interactionModel = null;
 	}
 
 	onSelectAll() {
-		this.selectAll.emit(this.model);
 		this.model.selectAll(true);
+		this.selectAll.emit(this.model);
 	}
 
 	onDeselectAll() {
-		this.deselectAll.emit(this.model);
 		this.model.selectAll(false);
+		this.deselectAll.emit(this.model);
 	}
 
 	onSelectRow(event) {
@@ -630,18 +671,19 @@ export class Table implements AfterViewInit, OnDestroy {
 		}
 	}
 
-	resetTabIndex() {
+	resetTabIndex(newTabIndex = -1) {
+		// ensure the view is ready for the reset before we preform the actual reset
 		setTimeout(() => {
 			// reset all the tabIndexes we can find
 			const focusElementList = getFocusElementList(this.elementRef.nativeElement, tabbableSelectorIgnoreTabIndex);
-			if (focusElementList.length > 0) {
+			if (focusElementList) {
 				focusElementList.forEach(tabbable => {
-					tabbable.tabIndex = -1;
+					tabbable.tabIndex = newTabIndex;
 				});
 			}
 			// reset interaction model positions and tabIndexes
 			if (this.interactionModel) {
-				this.interactionModel.resetTabIndexes();
+				this.interactionModel.resetTabIndexes(newTabIndex);
 			}
 		});
 	}
