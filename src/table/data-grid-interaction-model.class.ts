@@ -125,7 +125,8 @@ export class DataGridInteractionModel {
 	constructor(
 		protected keyboardEventStream: Observable<KeyboardEvent>,
 		protected clickEventStream: Observable<MouseEvent>,
-		protected tableAdapter: TableAdapter) {
+		protected tableAdapter: TableAdapter
+	) {
 		this.rowIndex = this.rowSubject.asObservable();
 		this.columnIndex = this.columnSubject.asObservable();
 		this.position = combineLatest(this.rowIndex, this.columnIndex).pipe(map(positions => {
