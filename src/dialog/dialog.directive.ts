@@ -139,6 +139,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			gap: this.gap,
 			trigger: this.trigger,
 			closeTrigger: this.closeTrigger,
+			shouldClose: () => true,
 			appendInline: this.appendInline,
 			wrapperClass: this.wrapperClass,
 			data: this.data

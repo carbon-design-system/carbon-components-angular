@@ -28,8 +28,15 @@ import { Tab } from "./tab.component";
 			role="navigation"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-labelledby]="ariaLabelledby">
-			<div class="bx--tabs-trigger" tabindex="0" (click)="showTabList()">
-				<a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1">
+			<div
+				class="bx--tabs-trigger"
+				tabindex="0"
+				(click)="showTabList()"
+				(keydown)="onDropdownKeydown($event)">
+				<a
+					href="javascript:void(0)"
+					class="bx--tabs-trigger-text"
+					tabindex="-1">
 					<ng-container *ngIf="!getSelectedTab().headingIsTemplate">
 						{{ getSelectedTab().heading }}
 					</ng-container>
@@ -60,7 +67,8 @@ import { Tab } from "./tab.component";
 					}"
 					class="bx--tabs__nav-item"
 					role="presentation"
-					(click)="selectTab(tabItem, tab, i)">
+					(click)="selectTab(tabItem, tab, i)"
+					(keydown)="tabDropdownKeydown($event)">
 					<a
 						#tabItem
 						[attr.aria-selected]="tab.active"
@@ -148,6 +156,8 @@ export class TabHeaders implements AfterContentInit {
 	public currentSelectedTab: number;
 	public tabListVisible = false;
 
+	constructor(protected elementRef: ElementRef) {}
+
 	// keyboard accessibility
 	/**
 	 * Controls the keydown events used for tabbing through the headings.
@@ -210,11 +220,16 @@ export class TabHeaders implements AfterContentInit {
 		if ((event.key === " " || event.key === "Spacebar") && !this.followFocus) {
 			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
 		}
+
+		// dropdown list handler
+		if (event.key === "Escape") {
+			this.hideTabList();
+		}
 	}
 
 	@HostListener("focusout", ["$event"])
 	focusOut(event) {
-		if (this.tabListVisible && event.relatedTarget === null) {
+		if (this.tabListVisible && !this.elementRef.nativeElement.contains(event.relatedTarget)) {
 			this.tabListVisible = false;
 		}
 	}
@@ -237,6 +252,7 @@ export class TabHeaders implements AfterContentInit {
 	 * Controls manually focusing tabs.
 	 */
 	public onTabFocus(ref: HTMLElement, index: number) {
+		if (this.tabListVisible) { return; }
 		this.currentSelectedTab = index;
 		// reset scroll left because we're already handling it
 		this.headerContainer.nativeElement.parentElement.scrollLeft = 0;
@@ -252,6 +268,65 @@ export class TabHeaders implements AfterContentInit {
 
 	public showTabList() {
 		this.tabListVisible = true;
+		const focusTarget = this.allTabHeaders.find(tab => {
+			const tabContainer = tab.nativeElement.parentElement;
+			return !tabContainer.classList.contains("bx--tabs__nav-item--selected");
+		});
+		focusTarget.nativeElement.focus();
+	}
+
+	public hideTabList() {
+		this.tabListVisible = false;
+	}
+
+	public onDropdownKeydown(event: KeyboardEvent) {
+		switch (event.key) {
+			case " ":
+			case "Spacebar":
+			case "Enter":
+				event.preventDefault();
+				this.showTabList();
+				break;
+			default:
+				break;
+		}
+	}
+
+	public tabDropdownKeydown(event: KeyboardEvent) {
+		if (!this.tabListVisible) { return; }
+		const target = (event.target as HTMLElement).closest("a");
+
+		const headers = this.allTabHeaders.toArray().filter(tab =>
+			!tab.nativeElement.parentElement.classList.contains("bx--tabs__nav-item--disabled") &&
+			!tab.nativeElement.parentElement.classList.contains("bx--tabs__nav-item--selected"));
+
+		// unless the focus can move, it should remain on the target
+		let next: HTMLElement = target;
+		let previous: HTMLElement = target;
+
+		for (let i = 0; i < headers.length; i++) {
+			if (headers[i].nativeElement === target) {
+				if (i + 1 < headers.length) {
+					next = headers[i + 1].nativeElement;
+				}
+				if (i - 1 >= 0) {
+					previous = headers[i - 1].nativeElement;
+				}
+			}
+		}
+
+		switch (event.key) {
+			case "ArrowDown":
+			case "Down": // IE11 specific value
+				next.focus();
+				break;
+			case "ArrowUp":
+			case "Up": // IE11 specific value
+				previous.focus();
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**
