@@ -10,19 +10,19 @@ import { Accordion } from "./accordion.component";
 	template: `
 	<ibm-accordion>
 		<ibm-accordion-item
-		(selected)="onClick()"
-		title="Section 1"
-		[skeleton]="false">
+		[title]="title"
+		[skeleton]="skeleton">
 		test-content
 		</ibm-accordion-item>
 	<ibm-accordion>`
 })
 class AccordionTest {
-	onClick() {}
+	title = "Section 1";
+	skeleton = "false";
 }
 
 describe("Accordion", () => {
-	let fixture, wrapper, element;
+	let fixture, wrapper, debugElement;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -30,7 +30,6 @@ describe("Accordion", () => {
 				AccordionItem,
 				AccordionTest
 			],
-
 			imports: [
 				FormsModule,
 				ChevronRight16Module
@@ -45,38 +44,38 @@ describe("Accordion", () => {
 
 	it("should call onClick on button click", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		element = fixture.debugElement.query(By.css("ibm-accordion-item"));
+		let debugElement = fixture.debugElement.query(By.css("ibm-accordion-item"));
 		fixture.detectChanges();
-		spyOn(element.componentInstance.selected, "emit");
+		spyOn(debugElement.componentInstance.selected, "emit");
 		let change = fixture.nativeElement.querySelector(".bx--accordion__heading");
 		change.dispatchEvent(new Event("click"));
 		fixture.detectChanges();
-		expect(element.componentInstance.selected.emit).toHaveBeenCalled();
+		expect(debugElement.componentInstance.selected.emit).toHaveBeenCalled();
 	});
 
 	it("should expand on button click", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css(".bx--accordion__heading"));
-		element.triggerEventHandler("click", null);
+		debugElement = fixture.debugElement.query(By.css(".bx--accordion__heading"));
+		debugElement.triggerEventHandler("click", null);
 		fixture.detectChanges();
-		expect(element.nativeElement.getAttribute("aria-expanded")).toEqual("true");
+		expect(debugElement.nativeElement.getAttribute("aria-expanded")).toEqual("true");
 	});
 
 	it("should set test-content into accordion item", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__content"));
-		expect(element.nativeElement.textContent).toContain("test-content");
+		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__content"));
+		expect(debugElement.nativeElement.textContent).toContain("test-content");
 	});
 
 	it("should set ibm-accordion item title to Section 1", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
-		expect(element.nativeElement.textContent).toContain("Section 1");
+		debugElement = fixture.debugElement.query(By.css("ibm-accordion .bx--accordion__title"));
+		expect(debugElement.nativeElement.textContent).toContain("Section 1");
 	});
 });
