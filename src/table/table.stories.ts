@@ -510,7 +510,7 @@ storiesOf("Table", module).addDecorator(
 	`,
 		props: {
 			model: simpleModel,
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			title: text("Title", "Table title"),
 			description: text("Description", ""),
 			showSelectionColumn: boolean("showSelectionColumn", true),
@@ -544,7 +544,7 @@ storiesOf("Table", module).addDecorator(
 		`],
 		props: {
 			model: emptyModel,
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			title: text("Title", "Table title"),
 			description: text("Description", "With no data"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
@@ -597,7 +597,7 @@ storiesOf("Table", module).addDecorator(
 	`,
 		props: {
 			model: simpleModel,
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			title: text("Title", "Table title"),
 			description: text("Description", "With toolbar"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
@@ -622,7 +622,7 @@ storiesOf("Table", module).addDecorator(
 		</ibm-table-container>
 		`,
 		props: {
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			title: text("Title", "Table title"),
 			description: text("Description", "With expansion"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
@@ -646,7 +646,7 @@ storiesOf("Table", module).addDecorator(
 		</ibm-table-container>
 		`,
 		props: {
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			title: text("Title", "Table title"),
 			description: text("Description", "With dynamic content"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
@@ -670,7 +670,7 @@ storiesOf("Table", module).addDecorator(
 		</ibm-table-container>
 		`,
 		props: {
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			title: text("Title", "Table title"),
 			description: text("Description", "With overflow menu"),
 			showSelectionColumn: boolean("showSelectionColumn", true),
@@ -704,7 +704,7 @@ storiesOf("Table", module).addDecorator(
 			</app-skeleton-table>
 	`,
 		props: {
-			size: select("size", {Small: "sm", Normal: "md", Large: "lg"}, "md"),
+			size: select("size", {Small: "sm", Short: "sh", Normal: "md", Large: "lg"}, "md"),
 			striped: boolean("striped", false)
 		}
 	}))

@@ -19,7 +19,11 @@ export interface DialogConfig {
 	/**
 	 * Parameter for triggering the `Dialog` close event.
 	 */
-	closeTrigger: "mouseout" | "mouseleave";
+	closeTrigger?: "mouseout" | "mouseleave";
+	/**
+	 * Callback to control the closing behaviour. return `true` to close, and `false` to prevent closing
+	 */
+	shouldClose: () => boolean;
 	/**
 	 * Parameter defining the placement in which the `Dialog` appears.
 	 */
@@ -41,5 +45,8 @@ export interface DialogConfig {
 	 * Config object passed to the rendered component. (Optional)
 	 */
 	data?: Object;
+	/**
+	 * Additional arbitrary properties (mostly for internal/extended component use)
+	 */
 	[propName: string]: any;
 }
