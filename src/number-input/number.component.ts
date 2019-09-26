@@ -231,7 +231,7 @@ export class NumberComponent implements ControlValueAccessor {
 	emitChangeEvent(): void {
 		let event = new NumberChange();
 		event.source = this;
-		event.value = +this.value;
+		event.value = Number(this.value);
 		this.change.emit(event);
 		this.propagateChange(this.value);
 	}
