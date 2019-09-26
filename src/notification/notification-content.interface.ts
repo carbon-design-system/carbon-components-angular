@@ -6,6 +6,7 @@ export interface NotificationContent {
 	smart?: boolean;
 	closeLabel?: any;
 	message?: string;
+	lowContrast?: boolean;
 }
 
 export interface ToastContent extends NotificationContent {
