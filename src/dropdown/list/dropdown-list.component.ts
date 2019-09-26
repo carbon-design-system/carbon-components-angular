@@ -345,7 +345,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index < 0) {
 			return this.listElementList.first.nativeElement;
 		}
-		return this.listElementList.toArray()[this.index].nativeElement;
+		if (this.index > 0) {
+			return this.listElementList.toArray()[this.index].nativeElement;
+		}
 	}
 
 	/**
@@ -404,7 +406,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index < 0) {
 			this.index = 0;
 		}
-		this.getCurrentElement().focus();
+		if (this.index > 0) {
+			this.getCurrentElement().focus();
+		} 
 	}
 
 	/**
