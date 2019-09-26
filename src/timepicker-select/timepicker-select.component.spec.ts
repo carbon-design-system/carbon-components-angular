@@ -15,9 +15,7 @@ import { TimePickerSelect } from "./timepicker-select.component";
 	`
 })
 class TimePickerSelectTest {
-	onChange(event) {
-		console.log(event);
-	}
+	onChange(event) {}
 }
 
 describe("TimePickerSelect", () => {
