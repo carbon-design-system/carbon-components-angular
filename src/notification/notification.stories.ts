@@ -68,15 +68,35 @@ storiesOf("Notification", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-notification [notificationObj]="{type: 'error', title: 'Sample notification', message: 'Sample error message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'error',
+				title: 'Sample notification',
+				message:
+				'Sample error message',
+				showClose: showClose}">
 			</ibm-notification>
-			<ibm-notification [notificationObj]="{type: 'info', title: 'Sample notification', message: 'Sample info message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'info',
+				title: 'Sample notification',
+				message: 'Sample info message',
+				showClose: showClose}">
 			</ibm-notification>
-			<ibm-notification [notificationObj]="{type: 'success', title: 'Sample notification', message: 'Sample success message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'success',
+				title: 'Sample notification',
+				message: 'Sample success message',
+				showClose: showClose}">
 			</ibm-notification>
-			<ibm-notification [notificationObj]="{type: 'warning', title: 'Sample notification', message: 'Sample warning message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'warning',
+				title: 'Sample notification',
+				message: 'Sample warning message',
+				showClose: showClose}">
 			</ibm-notification>
-		`
+		`,
+		props: {
+			showClose: boolean("Show close icon", true)
+		}
 	}))
 	.add("Dynamic", () => ({
 		template: `
@@ -89,9 +109,13 @@ storiesOf("Notification", module)
 				type: 'error',
 				title: 'Sample toast',
 				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption'
+				caption: 'Sample caption',
+				showClose: showClose
 			}"></ibm-toast>
-		`
+		`,
+		props: {
+			showClose: boolean("Show close icon", true)
+		}
 	}))
 	.add("Dynamic toast", () => ({
 		template: `
