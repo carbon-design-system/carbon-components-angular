@@ -95,6 +95,7 @@ export class Notification {
 		title: "",
 		message: "",
 		type: "info",
+		showClose: true,
 		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON")
 	};
 	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
