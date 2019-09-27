@@ -9,33 +9,27 @@ import { FormsModule } from "@angular/forms";
 @Component({
 	template: `
 	<ibm-date-picker
-		[label]="label"
-		[placeholder]="placeholder"
-		[theme]="theme"
+		label="Date picker label"
+		placeholder="mm/dd/yyyy"
+		theme="light"
 		[value]="value"
 		[disabled]="disabled"
 		[invalid]="invalid"
-		[invalidText]="invalidText"
-		[dateFormat]="dateFormat"
+		invalidText="invalid text"
+		dateFormat="m/d/Y"
 		(valueChange)="valueChange($event)">
 	</ibm-date-picker>
 	`
 })
 class DatePickerTest {
-	label = "Date picker label";
-	placeholder = "mm/dd/yyyy";
-	theme = "dark";
 	value = ["10/19/2019"];
 	disabled = false;
-	dateFormat = "m/d/Y";
 	invalid = false;
-	valueChange(event) {
-		console.log(event);
-	}
+	valueChange(event) {}
 }
 
 describe("DatePicker", () => {
-	let fixture, element;
+	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -91,29 +85,31 @@ describe("DatePicker", () => {
 		expect(element.componentInstance.dateFormat).toEqual("m/d/Y");
 	});
 
-	it("should set theme to dark", () => {
+	it("should set theme to light", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		element = fixture.debugElement.query(By.css("ibm-date-picker"));
 		fixture.detectChanges();
-		expect(element.componentInstance.theme).toEqual("dark");
+		expect(element.componentInstance.theme).toEqual("light");
+		expect(element.nativeElement.querySelector(".bx--date-picker--light")).toBeTruthy();
 	});
 
-	it("should set invalid to true", () => {
+	it("should set invalid to true and set the invalidText to invalid text", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		element = fixture.debugElement.query(By.css("ibm-date-picker"));
 		fixture.componentInstance.invalid = true;
 		fixture.detectChanges();
 		expect(element.componentInstance.invalid).toBe(true);
+		expect(element.nativeElement.querySelector(".bx--form-requirement").textContent).toEqual("invalid text");
 	});
 
 	it("should call onValueChange on valueChange event", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		element = fixture.debugElement.query(By.css("ibm-date-picker"));
+		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		spyOn(element.componentInstance.valueChange, "emit");
-		let change = fixture.nativeElement.querySelector("ibm-date-picker-input");
-		change.dispatchEvent(new Event("valueChange"));
+		spyOn(wrapper, "valueChange");
+		element.triggerEventHandler("valueChange", {target: {value: "10/19/2019"}});
 		fixture.detectChanges();
-		expect(element.componentInstance.valueChange.emit).toHaveBeenCalled();
+		expect(wrapper.valueChange).toHaveBeenCalled();
 	});
 });
