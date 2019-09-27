@@ -67,26 +67,15 @@ describe("TimePicker", () => {
 		fixture = TestBed.createComponent(TimePickerTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		let de = fixture.debugElement.query(By.css(".bx--time-picker__input-field"));
+		const de = fixture.debugElement.query(By.css(".bx--time-picker__input-field"));
+		de.value = "04:33";
 		spyOn(wrapper, "onChange");
-		de.triggerEventHandler("change", {target: {value: ""}});
+		de.triggerEventHandler("change", {target: {value: "04:33"}});
 		fixture.detectChanges();
 		expect(wrapper.onChange).toHaveBeenCalled();
 	});
 
-	it("should change the value to 04:33", () => {
-		fixture = TestBed.createComponent(TimePickerTest);
-		wrapper = fixture.componentInstance;
-		element = fixture.debugElement.query(By.css(".bx--time-picker__input-field")).nativeElement;
-		fixture.detectChanges();
-		element.value = "04:33";
-		fixture.detectChanges();
-		element.dispatchEvent(new Event("change"));
-		fixture.detectChanges();
-		expect(wrapper.value).toEqual("04:33");
-	});
-
-	it("should set ng-reflect-disabled to true", () => {
+	it("should disable input", () => {
 		fixture = TestBed.overrideComponent(TimePickerTest, {
 			set: {
 				template: `<ibm-timepicker disabled="true"></ibm-timepicker>`
