@@ -39,7 +39,7 @@ import { I18n } from "./../i18n/i18n.module";
 			<p class="bx--toast-notification__caption" [innerHTML]="notificationObj.caption"></p>
 		</div>
 		<button
-			*ngIf="isShowClose"
+			*ngIf="showClose"
 			class="bx--toast-notification__close-button"
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
@@ -64,10 +64,6 @@ export class Toast extends Notification implements OnInit {
 	@HostBinding("class.bx--toast-notification--info") get isInfo() { return this.notificationObj["type"] === "info"; }
 	@HostBinding("class.bx--toast-notification--success") get isSuccess() { return this.notificationObj["type"] === "success"; }
 	@HostBinding("class.bx--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
-
-	get isShowClose() {
-		return this._notificationObj.showClose;
-	}
 
 	get isExperimental() {
 		return this.experimental.isExperimental;
