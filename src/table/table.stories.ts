@@ -56,7 +56,7 @@ emptyModel.header = [
 const getProps = (more = {}) => {
 	return Object.assign({}, {
 		model: simpleModel,
-		size: select("size", { Small: "sm", Normal: "md", Large: "lg" }, "md"),
+		size: select("size", { Small: "sm", Short: "sh", Normal: "md", Large: "lg" }, "md"),
 		title: text("Title", "Table title"),
 		description: text("Description", ""),
 		showSelectionColumn: boolean("showSelectionColumn", true),

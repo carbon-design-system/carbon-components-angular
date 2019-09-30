@@ -28,7 +28,8 @@ const noop = () => {};
 				<button
 					ibmButton="primary"
 					(click)="fileInput.click()"
-					[attr.for]="fileUploaderId">
+					[attr.for]="fileUploaderId"
+					[size]="size">
 					{{buttonText}}
 				</button>
 				<input
@@ -93,6 +94,12 @@ export class FileUploader implements OnInit {
 	 * Set to `true` for a loading file uploader.
 	 */
 	@Input() skeleton = false;
+	/**
+	 * Sets the size of the button.
+	 *
+	 * @type {("sm" | "normal")}
+	 */
+	@Input() size: "sm" | "normal";
 	/**
 	 * Provides a unique id for the underlying <input> node
 	 */
