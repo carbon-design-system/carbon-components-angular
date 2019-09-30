@@ -25,7 +25,7 @@ import { FileItem } from "./file-item.interface";
 			(keyup.space)="remove.emit()"
 			tabindex="0">
 			<ibm-icon-warning-filled16
-				*ngIf="isInvalid"
+				*ngIf="isInvalidText"
 				class="bx--file--invalid">
 			</ibm-icon-warning-filled16>
 			<ibm-icon-close16
@@ -61,8 +61,8 @@ export class File {
 
 	@HostBinding("class.bx--file__selected-file") selectedFile = true;
 
-	@HostBinding("class.bx--file__selected-file--invalid") get isInvalid() {
-		return this.fileItem.invalid;
+	@HostBinding("class.bx--file__selected-file--invalid") get isInvalidText() {
+		return this.fileItem.invalidText;
 	}
 
 	constructor(protected i18n: I18n) {}

@@ -44,7 +44,7 @@ const noop = () => {};
 				<div class="bx--file-container">
 					<div *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
-						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
+						<div *ngIf="fileItem.invalidText" class="bx--form-requirement">
 							File size exceeds limit
 						</div>
 					</div>
@@ -169,7 +169,7 @@ export class FileUploader implements OnInit {
 			const fileItem: FileItem = {
 				uploaded: false,
 				state: "edit",
-				invalid: false,
+				invalidText: false,
 				file: file
 			};
 			this.files.add(fileItem);

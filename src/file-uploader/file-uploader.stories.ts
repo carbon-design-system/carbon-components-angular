@@ -61,7 +61,6 @@ class FileUploaderStory {
 		this.files.forEach(fileItem => {
 			if (!fileItem.uploaded) {
 				if (fileItem.file.size < this.maxSize) {
-					console.log("here");
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "complete";
@@ -74,7 +73,7 @@ class FileUploaderStory {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "edit";
-						fileItem.invalid = true;
+						fileItem.invalidText = true;
 					}, 1500);
 				}
 			}
@@ -123,7 +122,6 @@ class NgModelFileUploaderStory {
 		this.model.forEach(fileItem => {
 			if (!fileItem.uploaded) {
 				if (fileItem.file.size < this.maxSize) {
-					console.log("here");
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "complete";
@@ -136,7 +134,7 @@ class NgModelFileUploaderStory {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "edit";
-						fileItem.invalid = true;
+						fileItem.invalidText = true;
 					}, 1500);
 				}
 			}
