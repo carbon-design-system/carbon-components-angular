@@ -138,6 +138,8 @@ export class TableHeadCell implements OnChanges {
 	constructor(protected i18n: I18n) { }
 
 	ngOnChanges() {
+		// Since it's not an input, and it touches the view, we're using `ngOnChanges`
+		// `get`ters have caused issues in the past with the view updating outside of change detection
 		this.theadAction = !!this.column.filterTemplate || this.sort.observers.length > 0;
 	}
 
