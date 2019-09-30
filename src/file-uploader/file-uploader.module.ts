@@ -4,7 +4,7 @@ import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--filled/16";
 
 import { FileUploader } from "./file-uploader.component";
-import { File } from "./file.component";
+import { FileComponent } from "./file.component";
 import { ButtonModule } from "../button/button.module";
 import { LoadingModule } from "../loading/loading.module";
 

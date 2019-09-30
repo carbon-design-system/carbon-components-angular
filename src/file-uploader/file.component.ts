@@ -43,7 +43,7 @@ import { FileItem } from "./file-item.interface";
 		</span>
 	`
 })
-export class File {
+export class FileComponent {
 	/**
 	 * Accessible translations for the close and complete icons
 	 */
