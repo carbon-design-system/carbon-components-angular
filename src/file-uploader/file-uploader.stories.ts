@@ -73,7 +73,8 @@ class FileUploaderStory {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "edit";
-						fileItem.invalidText = true;
+						fileItem.invalid = true;
+						fileItem.invalidText = "File size exceeds limit";
 					}, 1500);
 				}
 			}
@@ -134,7 +135,8 @@ class NgModelFileUploaderStory {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "edit";
-						fileItem.invalidText = true;
+						fileItem.invalid = true;
+						fileItem.invalidText = "File size exceeds limit";
 					}, 1500);
 				}
 			}

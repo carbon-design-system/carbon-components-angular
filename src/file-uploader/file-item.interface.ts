@@ -2,5 +2,6 @@ export interface FileItem {
 	file: File;
 	state: "edit" | "upload" | "complete";
 	uploaded: boolean;
-	invalidText: boolean;
+	invalid: boolean;
+	invalidText: string;
 }
