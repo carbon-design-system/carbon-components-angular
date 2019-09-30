@@ -404,7 +404,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		if (this.index < 0) {
 			this.index = 0;
 		}
-		this.getCurrentElement().focus(); 
+		this.getCurrentElement().focus();
 	}
 
 	/**
