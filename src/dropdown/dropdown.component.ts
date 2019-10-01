@@ -173,12 +173,10 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Set to `true` for a dropdown without arrow key activation.
 	 */
 	@Input() disableArrowKeys = false;
-
 	/**
 	 * Set to `true` for invalid state.
 	 */
 	@Input() invalid = false;
-
 	/**
 	 * Value displayed if dropdown is in invalid state.
 	 */
