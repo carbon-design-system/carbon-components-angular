@@ -17,7 +17,7 @@ import { FormsModule } from "@angular/forms";
 	<ibm-dropdown
 		placeholder="test"
 		class="custom-class"
-		(selected)="onSelect($event)"
+		(selected)="onSelect()"
 		[(ngModel)]="model">
 		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 	</ibm-dropdown>`
