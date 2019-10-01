@@ -56,7 +56,8 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton,
-			'bx--dropdown--disabled bx--list-box--disabled': disabled
+			'bx--dropdown--disabled bx--list-box--disabled': disabled,
+			'bx--dropdown--invalid': invalid
 		}">
 		<button
 			type="button"
@@ -93,6 +94,10 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
+			<ibm-icon-warning-filled16
+				*ngIf="invalid"
+				class="bx--dropdown__invalid-icon">
+			</ibm-icon-warning-filled16>
 			<ibm-icon-chevron-down16
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
@@ -107,6 +112,9 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 			}">
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
+	</div>
+	<div *ngIf="invalid" class="bx--form-requirement">
+		{{invalidText}}
 	</div>
 	`,
 	providers: [
@@ -165,6 +173,16 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Set to `true` for a dropdown without arrow key activation.
 	 */
 	@Input() disableArrowKeys = false;
+
+	/**
+	 * Set to `true` for invalid state.
+	 */
+	@Input() invalid = false;
+
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText = "";
 	/**
 	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
