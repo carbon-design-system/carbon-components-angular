@@ -6,6 +6,7 @@ import {
 	withKnobs,
 	boolean,
 	text,
+	select,
 	array
 } from "@storybook/addon-knobs";
 
@@ -27,7 +28,8 @@ import { NotificationService } from "../notification/notification.service";
 			[accept]="accept"
 			[multiple]="multiple"
 			[skeleton]="skeleton"
-			[(files)]="files">
+			[(files)]="files"
+			[size]="size">
 		</ibm-file-uploader>
 
 		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
@@ -47,6 +49,7 @@ class FileUploaderStory {
 	@Input() accept;
 	@Input() multiple;
 	@Input() skeleton = false;
+	@Input() size = "normal";
 
 	protected maxSize = 500000;
 
@@ -91,6 +94,7 @@ class FileUploaderStory {
 			[buttonText]="buttonText"
 			[accept]="accept"
 			[multiple]="multiple"
+			[size]="size"
 			[(ngModel)]="model">
 		</ibm-file-uploader>
 
@@ -109,6 +113,7 @@ class NgModelFileUploaderStory {
 	@Input() buttonText;
 	@Input() accept;
 	@Input() multiple;
+	@Input() size = "normal";
 
 	protected model = new Set();
 	protected maxSize = 500000;
@@ -160,13 +165,15 @@ storiesOf("File Uploader", module)
 				[description]="description"
 				[buttonText]="buttonText"
 				[accept]="accept"
-				[multiple]="multiple">
+				[multiple]="multiple"
+				[size]="size">
 			</app-file-uploader>
 		`,
 		props: {
 			title: text("The title", "Account Photo"),
 			description: text("The description", "only .jpg and .png files. 500kb max file size."),
 			buttonText: text("Button text", "Add files"),
+			size: select("size", {Small: "sm", Normal: "normal"}, "normal"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
 		}
@@ -178,13 +185,15 @@ storiesOf("File Uploader", module)
 				[description]="description"
 				[buttonText]="buttonText"
 				[accept]="accept"
-				[multiple]="multiple">
+				[multiple]="multiple"
+				[size]="size">
 			</app-ngmodel-file-uploader>
 		`,
 		props: {
 			title: text("The title", "Account Photo"),
 			description: text("The description", "only .jpg and .png files. 500kb max file size."),
 			buttonText: text("Button text", "Add files"),
+			size: select("size", {Small: "sm", Normal: "normal"}, "normal"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
 		}
@@ -199,3 +208,4 @@ storiesOf("File Uploader", module)
 			<ibm-documentation src="documentation/components/FileUploader.html"></ibm-documentation>
 		`
 	}));
+
