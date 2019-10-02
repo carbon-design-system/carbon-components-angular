@@ -134,10 +134,7 @@ storiesOf("Dropdown", module)
 		</div>
 		<ibm-placeholder></ibm-placeholder>
 	`,
-		props: getProps({
-			invalid: boolean("Invalid", false),
-			invalidText: "This is not a validation text"
-		})
+		props: getProps()
 	}))
 	.add("Multi-select", () => ({
 		template: `

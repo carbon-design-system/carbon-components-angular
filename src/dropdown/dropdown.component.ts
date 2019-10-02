@@ -94,10 +94,10 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
-			<ibm-icon-warning-filled16
+			<svg ibmIconWarningFilled16
 				*ngIf="invalid"
 				class="bx--dropdown__invalid-icon">
-			</ibm-icon-warning-filled16>
+			</svg>
 			<ibm-icon-chevron-down16
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
