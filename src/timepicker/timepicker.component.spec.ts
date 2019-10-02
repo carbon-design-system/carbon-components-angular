@@ -73,6 +73,7 @@ describe("TimePicker", () => {
 		de.triggerEventHandler("change", {target: {value: "04:33"}});
 		fixture.detectChanges();
 		expect(wrapper.onChange).toHaveBeenCalled();
+		expect(wrapper.value).toEqual("04:33");
 	});
 
 	it("should disable input", () => {
