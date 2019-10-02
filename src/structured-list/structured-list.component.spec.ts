@@ -17,8 +17,7 @@ import { wrappedError } from "@angular/core/src/error_handler";
 			nowrap="false"
 			selection="true"
 			[(ngModel)]="valueSelected"
-			(selected)="onSelected()"
-			>
+			(selected)="onSelected()">
 			<ibm-list-header>
 				<ibm-list-column nowrap="true">Column 1</ibm-list-column>
 				<ibm-list-column nowrap="true">Column 2</ibm-list-column>
@@ -38,12 +37,11 @@ import { wrappedError } from "@angular/core/src/error_handler";
 					Test
 				</ibm-list-column>
 			</ibm-list-row>
-			<p class="test">{{valueSelected}}</p>
 		</ibm-structured-list>
 	`
 })
 class StructuredListTest {
-	valueSelected = "row2";
+	valueSelected = null;
 	condensed = false;
 	onSelected() {}
 }
@@ -79,7 +77,7 @@ describe("StructuredList", () => {
 		expect(element.nativeElement.querySelector(".bx--structured-list--border")).toBeTruthy();
 	});
 
-	it("should change valueSelected to row1 on click and call onSelected", () => {
+	it("should change valueSelected to row1 on click and emit selected event", () => {
 		fixture = TestBed.createComponent(StructuredListTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
@@ -87,19 +85,8 @@ describe("StructuredList", () => {
 		spyOn(wrapper, "onSelected");
 		element.nativeElement.querySelector("ibm-list-row").click();
 		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".test").textContent).toEqual("row1");
+		expect(wrapper.valueSelected).toEqual("row1");
 		expect(wrapper.onSelected).toHaveBeenCalled();
-	});
-
-	it("should set valueSelected to row1 and change to row2", () => {
-		fixture = TestBed.createComponent(StructuredListTest);
-		wrapper = fixture.componentInstance;
-		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("ibm-structured-list"));
-		expect(element.nativeElement.querySelector(".test").textContent).toEqual("row2");
-		wrapper.valueSelected = "row1";
-		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".test").textContent).toEqual("row1");
 	});
 
 	it("should set bx--structured-list-content--nowrap class", () => {
