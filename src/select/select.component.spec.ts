@@ -7,12 +7,17 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 import { Select } from "./select.component";
 
 @Component({
-	template: `<ibm-select (selected)="onChange($event)"></ibm-select>`
+	template: `
+		<ibm-select (selected)="onChange()">
+			<option value="default" disabled selected hidden>Choose an option</option>
+			<option value="option1">Option 1</option>
+			<option value="option2">Option 2</option>
+			<option value="option3">Option 3</option>
+		</ibm-select>`
 })
 class SelectTest {
-	onChange(event) {
-		console.log(event);
-	}
+	model = "option2";
+	onChange() {}
 }
 
 describe("Select", () => {
@@ -23,7 +28,6 @@ describe("Select", () => {
 				Select,
 				SelectTest
 			],
-
 			imports: [
 				FormsModule,
 				ChevronDown16Module,
