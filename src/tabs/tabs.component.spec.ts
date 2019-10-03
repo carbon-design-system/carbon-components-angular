@@ -1,95 +1,135 @@
-/// <reference path="../../node_modules/@types/jasmine/index.d.ts" />
-
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
+import { By	 } from "@angular/platform-browser";
 
 import { Tabs } from "./tabs.component";
+import { CommonModule } from "@angular/common";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
 
+@Component({
+	template: `
+		<ibm-tabs [followFocus]="followFocus" [isNavigation]="isNavigation">
+			<ibm-tab heading="one" (selected)="onSelected()">Tab Content 1</ibm-tab>
+			<ibm-tab heading="two">Tab Content 2</ibm-tab>
+			<ibm-tab heading="three">Tab Content 3</ibm-tab>
+		</ibm-tabs>
+	`
+})
+class TabsTest {
+	isNavigation = true;
+	followFocus = true;
+	onSelected() {}
+}
 
-describe("Tabs", () => {
+describe("Sample", () => {
+	let fixture, wrapper, element;
+
+	const arrowRight = new KeyboardEvent("keydown", {
+		"key": "ArrowRight"
+	});
+	const arrowLeft = new KeyboardEvent("keydown", {
+		"key": "ArrowLeft"
+	});
+
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Tabs, Tab, TabHeaders, TabsTest]
+			declarations: [
+				Tabs,
+				Tab,
+				TabHeaders,
+				TabsTest
+			],
+			imports: [
+				CommonModule
+			]
 		});
 	});
 
-	xit("should work", () => {
-		// const fixture =
-
-		// expect(fixture.componentInstance instanceof TabsTestComponent).toBe(true);
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TabsTest);
+		wrapper = fixture.componentInstance;
+		element = fixture.debugElement.query(By.css("ibm-tabs"));
+		fixture.detectChanges();
 	});
 
-	xit("should have 2 tabs", () => {
-		// const fixture =
-
-		// fixture.detectChanges();
-		// expect(fixture.nativeElement.querySelectorAll("div ul li").length).toBe(2);
+	it("should work", () => {
+		const fixture = TestBed.createComponent(Tabs);
+		expect(fixture.componentInstance instanceof Tabs).toBe(true);
 	});
 
-	xit("first tab should be disabled", () => {
-		// const fixture =
-
-		// fixture.detectChanges();
-
-		// let allTabs = fixture.nativeElement.querySelectorAll("div ul li");
-		// expect(allTabs.length).toBe(2);
-		// expect(allTabs[0].querySelector("a").className).toBe("disabled-tab");
+	it("should have 3 tabs", () => {
+		expect(element.componentInstance.tabs.length).toBe(3);
 	});
 
-	// this test is taken out because the buttons are added in during the ngAfterViewInit(), which runs after detectChanges()
-	// it("should have scroll", () => {
-	// 	const fixture = createTestComponent(`
-	// 	<div style="max-width: 600px">
-	// 	<ibm-tabs>
-	// 		<ibm-tab heading='Tab1'>
-	// 			Tab 1 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab2 with a long header'>
-	// 			Tab 2 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab3'>
-	// 			Tab 3 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab4'>
-	// 			Tab 4content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab5 with a long header'>
-	// 			Tab 5 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab6 with a long header'>
-	// 			Tab 6 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab7'>
-	// 			Tab 7 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab8'>
-	// 			Tab 8 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab9 with a long header'>
-	// 			Tab 9 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab10'>
-	// 			Tab 10 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab11'>
-	// 			Tab 11 content
-	// 		</ibm-tab>
-	// 		<ibm-tab heading='Tab12'>
-	// 			tab 12 content
-	// 		</ibm-tab>
-	// 	</ibm-tabs>
-	// </div>
-	// 	`);
-	// 	fixture.detectChanges();
-	// 	expect(fixture.nativeElement.querySelectorAll("div ul li").length).toBe(12);
-	// 	expect(fixture.nativeElement.querySelectorAll("div button").length).toBe(2);
-	// });
+	it("should emit the selected event on click and change selected tab on keydown", () => {
+		spyOn(wrapper, "onSelected");
+		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		navItem.click();
+		expect(wrapper.onSelected).toHaveBeenCalled();
+	});
+
+	it("should increment currentSelectedTab on right arrow and decrement on left arrow", () => {
+		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
+
+		navItem.click();
+		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(0);
+
+		tabHeaders.nativeElement.dispatchEvent(arrowRight);
+		tabHeaders.nativeElement.dispatchEvent(arrowRight);
+		fixture.detectChanges();
+		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(2);
+
+		tabHeaders.nativeElement.dispatchEvent(arrowLeft);
+		fixture.detectChanges();
+		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(1);
+	});
+
+	it("should set currentSelectedTab to the first tab on arrowRight when done on the last tab", () => {
+		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
+
+		navItem.click();
+		tabHeaders.nativeElement.dispatchEvent(arrowRight);
+		tabHeaders.nativeElement.dispatchEvent(arrowRight);
+		tabHeaders.nativeElement.dispatchEvent(arrowRight);
+		fixture.detectChanges();
+		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(0);
+	});
+
+	it("should set currentSelectedTab to the last tab on left arrow when done on the first tab", () => {
+		const navItem = element.nativeElement.querySelector(".bx--tabs__nav-item");
+		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
+		navItem.click();
+		tabHeaders.nativeElement.dispatchEvent(arrowLeft);
+		fixture.detectChanges();
+		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(2);
+	});
+
+	it("should set tabIndex of all tabpanels to be -1 if isNavigation is false", () => {
+		element.componentInstance.tabs.forEach(tab => {
+			expect(tab.tabIndex).toBe(-1);
+		});
+	});
+
+	it("should set tabIndex of all tabpanels to be 0 if isNavigation is true", () => {
+		fixture = TestBed.createComponent(TabsTest);
+		wrapper = fixture.componentInstance;
+		wrapper.isNavigation = false;
+		element = fixture.debugElement.query(By.css("ibm-tabs"));
+		fixture.detectChanges();
+		element.componentInstance.tabs.forEach(tab => {
+			expect(tab.tabIndex).toBe(0);
+		});
+	});
+
+	it("should set tabListVisible to true when tabs trigger is clicked", () => {
+		let tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
+		fixture.detectChanges();
+		let tabsTrigger = tabHeaders.nativeElement.querySelector(".bx--tabs-trigger");
+		tabsTrigger.click();
+		fixture.detectChanges();
+		expect(tabHeaders.componentInstance.tabListVisible).toBe(true);
+	});
 });
-
-
-@Component({selector: "test-cmp", template: ""})
-class TabsTest {
-	changeCallback = (event: any) => {};
-}
