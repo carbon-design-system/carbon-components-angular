@@ -68,15 +68,34 @@ storiesOf("Notification", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<ibm-notification [notificationObj]="{type: 'error', title: 'Sample notification', message: 'Sample error message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'error',
+				title: 'Sample notification',
+				message: 'Sample error message',
+				lowContrast: lowContrast}">
 			</ibm-notification>
-			<ibm-notification [notificationObj]="{type: 'info', title: 'Sample notification', message: 'Sample info message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'info',
+				title: 'Sample notification',
+				message: 'Sample info message',
+				lowContrast: lowContrast}">
 			</ibm-notification>
-			<ibm-notification [notificationObj]="{type: 'success', title: 'Sample notification', message: 'Sample success message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'success',
+				title: 'Sample notification',
+				message: 'Sample success message',
+				lowContrast: lowContrast}">
 			</ibm-notification>
-			<ibm-notification [notificationObj]="{type: 'warning', title: 'Sample notification', message: 'Sample warning message'}">
+			<ibm-notification [notificationObj]="{
+				type: 'warning',
+				title: 'Sample notification',
+				message: 'Sample warning message',
+				lowContrast: lowContrast}">
 			</ibm-notification>
-		`
+		`,
+		props: {
+			lowContrast: boolean("Low Contrast", false)
+		}
 	}))
 	.add("Dynamic", () => ({
 		template: `
@@ -89,9 +108,34 @@ storiesOf("Notification", module)
 				type: 'error',
 				title: 'Sample toast',
 				subtitle: 'Sample subtitle message',
-				caption: 'Sample caption'
+				caption: 'Sample caption',
+				lowContrast: lowContrast
 			}"></ibm-toast>
-		`
+			<ibm-toast [notificationObj]="{
+				type: 'info',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast
+			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'success',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast
+			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'warning',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast
+			}"></ibm-toast>
+		`,
+		props: {
+			lowContrast: boolean("Low Contrast", false)
+		}
 	}))
 	.add("Dynamic toast", () => ({
 		template: `
