@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { By	 } from "@angular/platform-browser";
+import { By	} from "@angular/platform-browser";
 
 import { Slider } from "./slider.component";
 import { CommonModule } from "@angular/common";
@@ -8,7 +8,7 @@ import { CommonModule } from "@angular/common";
 @Component({
 	template: `
 	<ibm-slider
-		shiftMultiplier=28
+		[shiftMultiplier]="shiftMultiplier"
 		(valueChange)="onValueChange()"
 		[disabled]="disabled"
 		[max]="max"
@@ -19,6 +19,7 @@ class SliderTest {
 	disabled = false;
 	max = 100;
 	min = 0;
+	shiftMultiplier = 28;
 	onValueChange() {}
 }
 
@@ -53,31 +54,64 @@ describe("Dropdown", () => {
 		expect(element.componentInstance.isMouseDown).toBe(true);
 	});
 
-	it("should increment value on ArrowRight KeyboardEvent by the given shiftMultiplier", () => {
+	it("should increment value by 1 on ArrowRight KeyboardEvent", () => {
+		spyOn(wrapper, "onValueChange");
+		const arrowRight = new KeyboardEvent("keydown", {
+			"key": "ArrowRight"
+		});
+		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowRight);
+		fixture.detectChanges();
+		expect(element.componentInstance.value).toBe(1);
+		expect(wrapper.onValueChange).toHaveBeenCalled();
+	});
+
+	it("should decrement value by 1 on ArrowLeft KeyboardEvent", () => {
+		spyOn(wrapper, "onValueChange");
+		const arrowLeft = new KeyboardEvent("keydown", {
+			"key": "ArrowLeft"
+		});
+		element.componentInstance.value = 100;
+		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowLeft);
+		fixture.detectChanges();
+		expect(element.componentInstance.value).toBe(99);
+		expect(wrapper.onValueChange).toHaveBeenCalled();
+	});
+
+	it("should increment value on Shift + ArrowRight KeyboardEvent by the given shiftMultiplier", () => {
 		spyOn(wrapper, "onValueChange");
 		const arrowRight = new KeyboardEvent("keydown", {
 			"key": "ArrowRight",
 			shiftKey: true
 		});
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(new Event("mousedown"));
 		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowRight);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(28);
 		expect(wrapper.onValueChange).toHaveBeenCalled();
+
+		wrapper.shiftMultiplier = 5;
+		fixture.detectChanges();
+		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowRight);
+		fixture.detectChanges();
+		expect(element.componentInstance.value).toBe(33);
 	});
 
-	it("should decrement value on ArrowLeft KeyboardEvent by the given shiftMultiplier", () => {
+	it("should decrement value on Shift + ArrowLeft KeyboardEvent by the given shiftMultiplier", () => {
 		spyOn(wrapper, "onValueChange");
 		const arrowLeft = new KeyboardEvent("keydown", {
 			"key": "ArrowLeft",
 			shiftKey: true
 		});
 		element.componentInstance.value = 100;
-		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(new Event("mousedown"));
 		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowLeft);
 		fixture.detectChanges();
 		expect(element.componentInstance.value).toBe(72);
 		expect(wrapper.onValueChange).toHaveBeenCalled();
+
+		wrapper.shiftMultiplier = 5;
+		fixture.detectChanges();
+		element.nativeElement.querySelector(".bx--slider__thumb").dispatchEvent(arrowLeft);
+		fixture.detectChanges();
+		expect(element.componentInstance.value).toBe(67);
 	});
 
 	it("should set value to max value when input value is greater than the max value", () => {
