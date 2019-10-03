@@ -85,6 +85,7 @@ export class Notification {
 	@HostBinding("class.bx--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
 	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
+	@HostBinding("class.bx--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 
 	protected defaultNotificationObj = {
 		title: "",
