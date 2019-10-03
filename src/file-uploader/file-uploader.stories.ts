@@ -59,20 +59,8 @@ class FileUploaderStory {
 
 	onUpload() {
 		this.files.forEach(fileItem => {
-			if (fileItem.file.size > this.maxSize) {
-				this.notificationService.showNotification({
-					type: "error",
-					title: `'${fileItem.file.name}' exceeds size limit`,
-					message: `500kb max size. Please select a new file and try again`,
-					target: `#${this.notificationId}`
-				});
-			}
-		});
-
-		let filesArray = Array.from<any>(this.files);
-		if (filesArray.every(fileItem => fileItem.file.size <= this.maxSize)) {
-            this.files.forEach(fileItem => {
-                if (!fileItem.uploaded) {
+			if (!fileItem.uploaded) {
+				if (fileItem.file.size < this.maxSize) {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "complete";
@@ -80,8 +68,17 @@ class FileUploaderStory {
 						console.log(fileItem);
 					}, 1500);
 				}
-			});
-		}
+
+				if (fileItem.file.size > this.maxSize) {
+					fileItem.state = "upload";
+					setTimeout(() => {
+						fileItem.state = "edit";
+						fileItem.invalid = true;
+						fileItem.invalidText = "File size exceeds limit";
+					}, 1500);
+				}
+			}
+		});
 	}
 }
 
@@ -124,20 +121,8 @@ class NgModelFileUploaderStory {
 
 	onUpload() {
 		this.model.forEach(fileItem => {
-			if (fileItem.file.size > this.maxSize) {
-				this.notificationService.showNotification({
-					type: "error",
-					title: `'${fileItem.file.name}' exceeds size limit`,
-					message: `500kb max size. Please select a new file and try again`,
-					target: `#${this.notificationId}`
-				});
-			}
-		});
-
-		let filesArray = Array.from<any>(this.model);
-		if (filesArray.every(fileItem => fileItem.file.size <= this.maxSize)) {
-            this.model.forEach(fileItem => {
-                if (!fileItem.uploaded) {
+			if (!fileItem.uploaded) {
+				if (fileItem.file.size < this.maxSize) {
 					fileItem.state = "upload";
 					setTimeout(() => {
 						fileItem.state = "complete";
@@ -145,8 +130,17 @@ class NgModelFileUploaderStory {
 						console.log(fileItem);
 					}, 1500);
 				}
-			});
-		}
+
+				if (fileItem.file.size > this.maxSize) {
+					fileItem.state = "upload";
+					setTimeout(() => {
+						fileItem.state = "edit";
+						fileItem.invalid = true;
+						fileItem.invalidText = "File size exceeds limit";
+					}, 1500);
+				}
+			}
+		});
 	}
 }
 

@@ -42,7 +42,12 @@ const noop = () => {};
 					tabindex="-1"
 					(change)="onFilesAdded()"/>
 				<div class="bx--file-container">
-					<ibm-file *ngFor="let fileItem of files" [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
+					<div *ngFor="let fileItem of files">
+						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
+						<div *ngIf="fileItem.invalid" class="bx--form-requirement">
+							{{fileItem.invalidText}}
+						</div>
+					</div>
 				</div>
 			</div>
 		</ng-container>
@@ -164,6 +169,8 @@ export class FileUploader implements OnInit {
 			const fileItem: FileItem = {
 				uploaded: false,
 				state: "edit",
+				invalid: false,
+				invalidText: "",
 				file: file
 			};
 			this.files.add(fileItem);
