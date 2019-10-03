@@ -59,3 +59,5 @@ export class FileComponent {
 
 	constructor(protected i18n: I18n) {}
 }
+
+export { FileComponent as File };

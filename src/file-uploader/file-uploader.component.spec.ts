@@ -18,7 +18,7 @@ import { FileItem } from "./file-item.interface";
 			description="description"
 			buttonText="buttonText"
 			accept=".txt"
-			multiple="multiple"
+			multiple="true"
 			(filesChange)="onFilesChange($event)"
 			[(ngModel)]="files">
 		</ibm-file-uploader>
@@ -54,21 +54,21 @@ describe("FileUploader", () => {
 		expect(fixture.componentInstance instanceof FileUploader).toBe(true);
 	});
 
-	it("should set title to title", () => {
+	it("should set title to 'title'", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css(".bx--file--label"));
 		expect(element.nativeElement.textContent).toEqual("title");
 	});
 
-	it("should set description to description", () => {
+	it("should set description to 'description'", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css(".bx--label-description"));
 		expect(element.nativeElement.textContent).toEqual("description");
 	});
 
-	it("should set buttonText to buttonText", () => {
+	it("should set buttonText to 'buttonText'", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css(".bx--file")).nativeElement.querySelector(".bx--btn");
