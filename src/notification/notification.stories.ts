@@ -71,31 +71,35 @@ storiesOf("Notification", module)
 			<ibm-notification [notificationObj]="{
 				type: 'error',
 				title: 'Sample notification',
-				message:
-				'Sample error message',
-				showClose: showClose}">
+				message: 'Sample error message',
+				showClose: showClose,
+				lowContrast: lowContrast}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'info',
 				title: 'Sample notification',
 				message: 'Sample info message',
-				showClose: showClose}">
+				showClose: showClose,
+				lowContrast: lowContrast}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'success',
 				title: 'Sample notification',
 				message: 'Sample success message',
-				showClose: showClose}">
+				showClose: showClose,
+				lowContrast: lowContrast}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'warning',
 				title: 'Sample notification',
 				message: 'Sample warning message',
-				showClose: showClose}">
+				showClose: showClose,
+				lowContrast: lowContrast}">
 			</ibm-notification>
 		`,
 		props: {
-			showClose: boolean("Show close icon", true)
+			showClose: boolean("Show close icon", true),
+			lowContrast: boolean("Low Contrast", false)
 		}
 	}))
 	.add("Dynamic", () => ({
@@ -110,11 +114,37 @@ storiesOf("Notification", module)
 				title: 'Sample toast',
 				subtitle: 'Sample subtitle message',
 				caption: 'Sample caption',
+				lowContrast: lowContrast,
+				showClose: showClose
+			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'info',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast,
+				showClose: showClose
+			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'success',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast,
+				showClose: showClose
+			}"></ibm-toast>
+			<ibm-toast [notificationObj]="{
+				type: 'warning',
+				title: 'Sample toast',
+				subtitle: 'Sample subtitle message',
+				caption: 'Sample caption',
+				lowContrast: lowContrast,
 				showClose: showClose
 			}"></ibm-toast>
 		`,
 		props: {
-			showClose: boolean("Show close icon", true)
+			showClose: boolean("Show close icon", true),
+			lowContrast: boolean("Low Contrast", false),	
 		}
 	}))
 	.add("Dynamic toast", () => ({

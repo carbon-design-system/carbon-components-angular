@@ -7,6 +7,7 @@ export interface NotificationContent {
 	closeLabel?: any;
 	message?: string;
 	showClose?: boolean;
+	lowContrast?: boolean;
 }
 
 export interface ToastContent extends NotificationContent {
