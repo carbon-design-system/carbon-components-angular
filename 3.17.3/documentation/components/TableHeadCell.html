@@ -1,0 +1,1307 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>TableHeadCell</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/table/head/table-head-cell.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>[ibmTableHeadCell]</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button
+	class&#x3D;&quot;bx--table-sort&quot;
+	*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
+	[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
+	aria-live&#x3D;&quot;polite&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;bx--table-sort--active&#x27;: column.sorted,
+		&#x27;bx--table-sort--ascending&#x27;: column.ascending
+	}&quot;
+	(click)&#x3D;&quot;sort.emit()&quot;&gt;
+	&lt;span
+		*ngIf&#x3D;&quot;!column.template&quot;
+		[title]&#x3D;&quot;column.data&quot;
+		tabindex&#x3D;&quot;-1&quot;&gt;
+		{{column.data}}
+	&lt;/span&gt;
+	&lt;ng-template
+		[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+	&lt;/ng-template&gt;
+	&lt;svg
+		focusable&#x3D;&quot;false&quot;
+		preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+		style&#x3D;&quot;will-change: transform;&quot;
+		xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+		class&#x3D;&quot;bx--table-sort__icon&quot;
+		width&#x3D;&quot;16&quot;
+		height&#x3D;&quot;16&quot;
+		viewBox&#x3D;&quot;0 0 16 16&quot;
+		aria-hidden&#x3D;&quot;true&quot;&gt;
+		&lt;path d&#x3D;&quot;M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z&quot;&gt;&lt;/path&gt;
+	&lt;/svg&gt;
+	&lt;svg
+		focusable&#x3D;&quot;false&quot;
+		preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+		style&#x3D;&quot;will-change: transform;&quot;
+		xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+		class&#x3D;&quot;bx--table-sort__icon-unsorted&quot;
+		width&#x3D;&quot;16&quot;
+		height&#x3D;&quot;16&quot;
+		viewBox&#x3D;&quot;0 0 16 16&quot;
+		aria-hidden&#x3D;&quot;true&quot;&gt;
+		&lt;path d&#x3D;&quot;M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z&quot;&gt;&lt;/path&gt;
+	&lt;/svg&gt;
+&lt;/button&gt;
+&lt;span
+	class&#x3D;&quot;bx--table-header-label&quot;
+	*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable)&quot;&gt;
+	&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;{{column.data}}&lt;/span&gt;
+	&lt;ng-template
+		[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+	&lt;/ng-template&gt;
+&lt;/span&gt;
+&lt;button
+	[ngClass]&#x3D;&quot;{&#x27;active&#x27;: column.filterCount &gt; 0}&quot;
+	*ngIf&#x3D;&quot;column.filterTemplate&quot;
+	type&#x3D;&quot;button&quot;
+	aria-expanded&#x3D;&quot;false&quot;
+	aria-haspopup&#x3D;&quot;true&quot;
+	[ibmTooltip]&#x3D;&quot;column.filterTemplate&quot;
+	trigger&#x3D;&quot;click&quot;
+	[title]&#x3D;&quot;getFilterTitle() | async&quot;
+	placement&#x3D;&quot;bottom,top&quot;
+	[data]&#x3D;&quot;column.filterData&quot;&gt;
+	&lt;svg
+		xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+		class&#x3D;&quot;icon--sm&quot;
+		width&#x3D;&quot;16&quot;
+		height&#x3D;&quot;16&quot;
+		viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
+		&lt;path d&#x3D;&quot;M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z&quot;/&gt;
+	&lt;/svg&gt;
+	&lt;span *ngIf&#x3D;&quot;column.filterCount &gt; 0&quot;&gt;
+		{{column.filterCount}}
+	&lt;/span&gt;
+&lt;/button&gt;
+	</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_filterTitle">_filterTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_sortAscendingLabel">_sortAscendingLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_sortDescendingLabel">_sortDescendingLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getFilterTitle">getFilterTitle</a>
+                            </li>
+                            <li>
+                                <a href="#getSortAscendingLabel">getSortAscendingLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getSortDescendingLabel">getSortDescendingLabel</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#sortLabelMap">sortLabelMap</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#column">column</a>
+                            </li>
+                            <li>
+                                <a href="#filterTitle">filterTitle</a>
+                            </li>
+                            <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
+                                <a href="#sortAscendingLabel">sortAscendingLabel</a>
+                            </li>
+                            <li>
+                                <a href="#sortDescendingLabel">sortDescendingLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#sort">sort</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.thead_action">class.thead_action</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#sortDescendingLabel">sortDescendingLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#sortAscendingLabel">sortAscendingLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#filterTitle">filterTitle</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/table/head/table-head-cell.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="column"></a>
+                        <code>column</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="../classes/TableHeaderItem.html" target="_self" >TableHeaderItem</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/table/head/table-head-cell.component.ts:96</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="filterTitle"></a>
+                        <code>filterTitle</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/table/head/table-head-cell.component.ts:119</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/table/head/table-head-cell.component.ts:98</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="sortAscendingLabel"></a>
+                        <code>sortAscendingLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/table/head/table-head-cell.component.ts:110</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="sortDescendingLabel"></a>
+                        <code>sortDescendingLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/table/head/table-head-cell.component.ts:101</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="sort"></a>
+                        <code>sort</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Notifies that the column should be sorted</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/table/head/table-head-cell.component.ts:130</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.thead_action"></a>
+                        <span class="name">
+                            <b>
+                            class.thead_action
+                            </b>
+                            <a href="#class.thead_action"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.thead_action:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/table/head/table-head-cell.component.ts:132</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getFilterTitle"></a>
+                        <span class="name">
+                            <b>
+                            getFilterTitle
+                            </b>
+                            <a href="#getFilterTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getFilterTitle()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/table/head/table-head-cell.component.ts:154</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSortAscendingLabel"></a>
+                        <span class="name">
+                            <b>
+                            getSortAscendingLabel
+                            </b>
+                            <a href="#getSortAscendingLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getSortAscendingLabel()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/table/head/table-head-cell.component.ts:150</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSortDescendingLabel"></a>
+                        <span class="name">
+                            <b>
+                            getSortDescendingLabel
+                            </b>
+                            <a href="#getSortDescendingLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getSortDescendingLabel()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/table/head/table-head-cell.component.ts:146</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnChanges"></a>
+                        <span class="name">
+                            <b>
+                            ngOnChanges
+                            </b>
+                            <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnChanges()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/head/table-head-cell.component.ts:140</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortLabelMap"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            sortLabelMap
+                            </b>
+                            <a href="#sortLabelMap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>sortLabelMap()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/table/head/table-head-cell.component.ts:158</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_filterTitle"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _filterTitle
+                            </b>
+                            <a href="#_filterTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_filterTitle:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE.FILTER&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/table/head/table-head-cell.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_sortAscendingLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _sortAscendingLabel
+                            </b>
+                            <a href="#_sortAscendingLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_sortAscendingLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE.SORT_ASCENDING&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/table/head/table-head-cell.component.ts:135</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_sortDescendingLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _sortDescendingLabel
+                            </b>
+                            <a href="#_sortDescendingLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_sortDescendingLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE.SORT_DESCENDING&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head-cell.component.ts:134</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortDescendingLabel"></a>
+                        <span class="name"><b>sortDescendingLabel</b><a href="#sortDescendingLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortDescendingLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/table/head/table-head-cell.component.ts:105</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>sortDescendingLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/table/head/table-head-cell.component.ts:101</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortAscendingLabel"></a>
+                        <span class="name"><b>sortAscendingLabel</b><a href="#sortAscendingLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sortAscendingLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/table/head/table-head-cell.component.ts:114</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>sortAscendingLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/table/head/table-head-cell.component.ts:110</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filterTitle"></a>
+                        <span class="name"><b>filterTitle</b><a href="#filterTitle"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>filterTitle()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/table/head/table-head-cell.component.ts:123</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>filterTitle(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/table/head/table-head-cell.component.ts:119</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	Input,
+	Output,
+	EventEmitter,
+	HostBinding,
+	OnChanges
+} from &quot;@angular/core&quot;;
+import { Observable } from &quot;rxjs&quot;;
+import { I18n, Overridable } from &quot;./../../i18n/i18n.module&quot;;
+import { map } from &quot;rxjs/operators&quot;;
+import { TableHeaderItem } from &quot;./../table-header-item.class&quot;;
+
+@Component({
+	// tslint:disable-next-line: component-selector
+	selector: &quot;[ibmTableHeadCell]&quot;,
+	template: &#x60;
+		&lt;button
+			class&#x3D;&quot;bx--table-sort&quot;
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
+			[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
+			aria-live&#x3D;&quot;polite&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--table-sort--active&#x27;: column.sorted,
+				&#x27;bx--table-sort--ascending&#x27;: column.ascending
+			}&quot;
+			(click)&#x3D;&quot;sort.emit()&quot;&gt;
+			&lt;span
+				*ngIf&#x3D;&quot;!column.template&quot;
+				[title]&#x3D;&quot;column.data&quot;
+				tabindex&#x3D;&quot;-1&quot;&gt;
+				{{column.data}}
+			&lt;/span&gt;
+			&lt;ng-template
+				[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+			&lt;/ng-template&gt;
+			&lt;svg
+				focusable&#x3D;&quot;false&quot;
+				preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+				style&#x3D;&quot;will-change: transform;&quot;
+				xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+				class&#x3D;&quot;bx--table-sort__icon&quot;
+				width&#x3D;&quot;16&quot;
+				height&#x3D;&quot;16&quot;
+				viewBox&#x3D;&quot;0 0 16 16&quot;
+				aria-hidden&#x3D;&quot;true&quot;&gt;
+				&lt;path d&#x3D;&quot;M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z&quot;&gt;&lt;/path&gt;
+			&lt;/svg&gt;
+			&lt;svg
+				focusable&#x3D;&quot;false&quot;
+				preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+				style&#x3D;&quot;will-change: transform;&quot;
+				xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+				class&#x3D;&quot;bx--table-sort__icon-unsorted&quot;
+				width&#x3D;&quot;16&quot;
+				height&#x3D;&quot;16&quot;
+				viewBox&#x3D;&quot;0 0 16 16&quot;
+				aria-hidden&#x3D;&quot;true&quot;&gt;
+				&lt;path d&#x3D;&quot;M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z&quot;&gt;&lt;/path&gt;
+			&lt;/svg&gt;
+		&lt;/button&gt;
+		&lt;span
+			class&#x3D;&quot;bx--table-header-label&quot;
+			*ngIf&#x3D;&quot;!skeleton &amp;&amp; this.sort.observers.length &#x3D;&#x3D;&#x3D; 0 || (this.sort.observers.length &gt; 0 &amp;&amp; !column.sortable)&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;{{column.data}}&lt;/span&gt;
+			&lt;ng-template
+				[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+			&lt;/ng-template&gt;
+		&lt;/span&gt;
+		&lt;button
+			[ngClass]&#x3D;&quot;{&#x27;active&#x27;: column.filterCount &gt; 0}&quot;
+			*ngIf&#x3D;&quot;column.filterTemplate&quot;
+			type&#x3D;&quot;button&quot;
+			aria-expanded&#x3D;&quot;false&quot;
+			aria-haspopup&#x3D;&quot;true&quot;
+			[ibmTooltip]&#x3D;&quot;column.filterTemplate&quot;
+			trigger&#x3D;&quot;click&quot;
+			[title]&#x3D;&quot;getFilterTitle() | async&quot;
+			placement&#x3D;&quot;bottom,top&quot;
+			[data]&#x3D;&quot;column.filterData&quot;&gt;
+			&lt;svg
+				xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+				class&#x3D;&quot;icon--sm&quot;
+				width&#x3D;&quot;16&quot;
+				height&#x3D;&quot;16&quot;
+				viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
+				&lt;path d&#x3D;&quot;M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z&quot;/&gt;
+			&lt;/svg&gt;
+			&lt;span *ngIf&#x3D;&quot;column.filterCount &gt; 0&quot;&gt;
+				{{column.filterCount}}
+			&lt;/span&gt;
+		&lt;/button&gt;
+	&#x60;
+})
+export class TableHeadCell implements OnChanges {
+	@Input() column: TableHeaderItem;
+
+	@Input() skeleton &#x3D; false;
+
+	@Input()
+	set sortDescendingLabel(value: string | Observable&lt;string&gt;) {
+		this._sortDescendingLabel.override(value);
+	}
+
+	get sortDescendingLabel() {
+		return this._sortDescendingLabel.value;
+	}
+
+	@Input()
+	set sortAscendingLabel(value: string | Observable&lt;string&gt;) {
+		this._sortAscendingLabel.override(value);
+	}
+
+	get sortAscendingLabel() {
+		return this._sortAscendingLabel.value;
+	}
+
+	@Input()
+	set filterTitle(value: string | Observable&lt;string&gt;) {
+		this._filterTitle.override(value);
+	}
+
+	get filterTitle() {
+		return this._filterTitle.value;
+	}
+
+	/**
+	 * Notifies that the column should be sorted
+	 */
+	@Output() sort &#x3D; new EventEmitter();
+
+	@HostBinding(&quot;class.thead_action&quot;) theadAction &#x3D; false;
+
+	protected _sortDescendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_DESCENDING&quot;);
+	protected _sortAscendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_ASCENDING&quot;);
+	protected _filterTitle &#x3D; this.i18n.getOverridable(&quot;TABLE.FILTER&quot;);
+
+	constructor(protected i18n: I18n) { }
+
+	ngOnChanges() {
+		// Since it&#x27;s not an input, and it touches the view, we&#x27;re using &#x60;ngOnChanges&#x60;
+		// &#x60;get&#x60;ters have caused issues in the past with the view updating outside of change detection
+		this.theadAction &#x3D; !!this.column.filterTemplate || this.sort.observers.length &gt; 0;
+	}
+
+	getSortDescendingLabel(): Observable&lt;string&gt; {
+		return this._sortDescendingLabel.subject.pipe(this.sortLabelMap());
+	}
+
+	getSortAscendingLabel(): Observable&lt;string&gt; {
+		return this._sortAscendingLabel.subject.pipe(this.sortLabelMap());
+	}
+
+	getFilterTitle(): Observable&lt;string&gt; {
+		return this._filterTitle.subject;
+	}
+
+	protected sortLabelMap() {
+		return map((str: string) &#x3D;&gt; {
+			if (this.column.ariaSortLabel) {
+				return this.column.ariaSortLabel;
+			}
+			if (this.column.formatSortLabel) {
+				return this.column.formatSortLabel(str, this.column.ariaSortLabel);
+			}
+			return &#x60;${this.column.data} - ${str}&#x60;;
+		});
+	}
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><button	class="bx--table-sort"	*ngIf="!skeleton && this.sort.observers.length > 0 && column.sortable"	[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"	aria-live="polite"	[ngClass]="{		\'bx--table-sort--active\': column.sorted,		\'bx--table-sort--ascending\': column.ascending	}"	(click)="sort.emit()">	<span		*ngIf="!column.template"		[title]="column.data"		tabindex="-1">		{{column.data}}	</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template>	<svg		focusable="false"		preserveAspectRatio="xMidYMid meet"		style="will-change: transform;"		xmlns="http://www.w3.org/2000/svg"		class="bx--table-sort__icon"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M12.3 9.3l-3.8 3.8V1h-1v12.1L3.7 9.3 3 10l5 5 5-5z"></path>	</svg>	<svg		focusable="false"		preserveAspectRatio="xMidYMid meet"		style="will-change: transform;"		xmlns="http://www.w3.org/2000/svg"		class="bx--table-sort__icon-unsorted"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M13.8 10.3L12 12.1V2h-1v10.1l-1.8-1.8-.7.7 3 3 3-3zM4.5 2l-3 3 .7.7L4 3.9V14h1V3.9l1.8 1.8.7-.7z"></path>	</svg></button><span	class="bx--table-header-label"	*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">	<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template></span><button	[ngClass]="{\'active\': column.filterCount > 0}"	*ngIf="column.filterTemplate"	type="button"	aria-expanded="false"	aria-haspopup="true"	[ibmTooltip]="column.filterTemplate"	trigger="click"	[title]="getFilterTitle() | async"	placement="bottom,top"	[data]="column.filterData">	<svg		xmlns="http://www.w3.org/2000/svg"		class="icon--sm"		width="16"		height="16"		viewBox="0 0 16 16">		<path d="M0 0v3l6 8v5h4v-5l6-8V0H0zm9 10.7V15H7v-4.3L1.3 3h13.5L9 10.7z"/>	</svg>	<span *ngIf="column.filterCount > 0">		{{column.filterCount}}	</span></button>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+    var ACTUAL_COMPONENT = {'name': 'TableHeadCell'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TableHeadCell.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
