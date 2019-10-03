@@ -26,16 +26,12 @@ import { wrappedError } from "@angular/core/src/error_handler";
 			<ibm-list-row value="row1">
 				<ibm-list-column>Row 1</ibm-list-column>
 				<ibm-list-column nowrap="true">Row One</ibm-list-column>
-				<ibm-list-column>
-					Test
-				</ibm-list-column>
+				<ibm-list-column>Test</ibm-list-column>
 			</ibm-list-row>
 			<ibm-list-row value="row2">
 				<ibm-list-column>Row 2</ibm-list-column>
 				<ibm-list-column nowrap="true">Row Two</ibm-list-column>
-				<ibm-list-column>
-					Test
-				</ibm-list-column>
+				<ibm-list-column>Test</ibm-list-column>
 			</ibm-list-row>
 		</ibm-structured-list>
 	`
@@ -57,7 +53,6 @@ describe("StructuredList", () => {
 				ListHeader,
 				ListColumn
 			],
-
 			imports: [
 				FormsModule,
 				CheckmarkFilled16Module
