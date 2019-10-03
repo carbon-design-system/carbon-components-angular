@@ -27,6 +27,8 @@ import { of } from "rxjs";
 import { PlaceholderModule } from "../placeholder/placeholder.module";
 
 const getProps = (overrides = {}) => Object.assign({}, {
+	invalid: boolean("Invalid", false),
+	invalidText: "This is not a validation text",
 	disabled: boolean("disabled", false),
 	label: text("Label", "Dropdown label"),
 	helperText: text("Helper text", "Optional helper text."),
@@ -49,6 +51,8 @@ const getProps = (overrides = {}) => Object.assign({}, {
 				<ibm-dropdown
 					[label]="label"
 					[helperText]="helperText"
+					[invalid]="invalid"
+					[invalidText]="invalidText"
 					[theme]="theme"
 					type="multi"
 					placeholder="Multi-select"
@@ -72,6 +76,8 @@ class ReactiveFormsStory implements OnInit {
 	@Input() items = [];
 	@Input() label = "";
 	@Input() helperText = "";
+	@Input() invalid = false;
+	@Input() invalidText = "";
 	@Input() set disabled(value) {
 		if (!this.formGroup) { return; }
 		if (value) {
@@ -116,6 +122,8 @@ storiesOf("Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -134,6 +142,8 @@ storiesOf("Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				type="multi"
 				placeholder="Multi-select"
 				[disabled]="disabled"
@@ -143,10 +153,7 @@ storiesOf("Dropdown", module)
 			</ibm-dropdown>
 		</div>
 	`,
-		props: getProps({
-			selected: action("Selected fired for multi-select dropdown"),
-			onClose: action("Multi-select dropdown closed")
-		})
+		props: getProps()
 	}))
 	.add("Multi-select with ngModel", () => ({
 		template: `
@@ -155,6 +162,8 @@ storiesOf("Dropdown", module)
 				type="multi"
 				[label]="label"
 				[helperText]="helperText"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				placeholder="Select"
 				[disabled]="disabled"
 				[(ngModel)]="model"
@@ -180,6 +189,8 @@ storiesOf("Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				placeholder="Select"
 				[disabled]="disabled"
 				[(ngModel)]="model"
@@ -198,6 +209,8 @@ storiesOf("Dropdown", module)
 			<app-reactive-forms
 				[label]="label"
 				[helperText]="helperText"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[disabled]="disabled"
 				[items]="items"
 				(selected)="selected($event)"
@@ -220,6 +233,8 @@ storiesOf("Dropdown", module)
 			<ibm-dropdown
 				[label]="label"
 				[helperText]="helperText"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[theme]="theme"
 				placeholder="Select"
 				[disabled]="disabled"
@@ -245,6 +260,8 @@ storiesOf("Dropdown", module)
 				[theme]="theme"
 				placeholder="Select"
 				[displayValue]="dropdownRenderer"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[disabled]="disabled"
 				(selected)="selected($event)"
 				(onClose)="onClose($event)">
