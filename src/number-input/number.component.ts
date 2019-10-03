@@ -15,7 +15,7 @@ export class NumberChange {
 	/**
 	 * Contains the `Number` that has been changed.
 	 */
-	source: Number;
+	source: NumberComponent;
 	/**
 	 * The value of the `Number` field encompassed in the `NumberChange` class.
 	 */
@@ -97,7 +97,7 @@ export class NumberChange {
 		}
 	]
 })
-export class Number implements ControlValueAccessor {
+export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Variable used for creating unique ids for number input components.
 	 */
@@ -124,7 +124,7 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * The unique id for the number component.
 	 */
-	@Input() id = `number-${Number.numberCount}`;
+	@Input() id = `number-${NumberComponent.numberCount}`;
 	/**
 	 * Reflects the required attribute of the `input` element.
 	 */
@@ -162,7 +162,7 @@ export class Number implements ControlValueAccessor {
 	 * Creates an instance of `Number`.
 	 */
 	constructor() {
-		Number.numberCount++;
+		NumberComponent.numberCount++;
 	}
 
 	/**
@@ -231,7 +231,7 @@ export class Number implements ControlValueAccessor {
 	emitChangeEvent(): void {
 		let event = new NumberChange();
 		event.source = this;
-		event.value = this.value;
+		event.value = Number(this.value);
 		this.change.emit(event);
 		this.propagateChange(this.value);
 	}
@@ -245,3 +245,4 @@ export class Number implements ControlValueAccessor {
 		return value instanceof TemplateRef;
 	}
 }
+export { NumberComponent as Number };

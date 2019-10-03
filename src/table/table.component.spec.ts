@@ -1,21 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { DialogModule } from "./../dialog/dialog.module";
 import { TestBed } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
-import {
-	TableModel,
-	TableHeaderItem,
-	TableItem,
-	DataGridFocus,
-	ExpandedRowHover
-} from "./table.module";
-import { Table } from "./table.component";
 
 import { By } from "@angular/platform-browser";
 
-import { NFormsModule } from "./../forms/forms.module";
-import { I18nModule } from "../i18n/i18n.module";
-import { ChevronRight16Module } from "@carbon/icons-angular/lib/chevron--right/16";
+import { TableModel } from "./table-model.class";
+import { Table, TableModule } from "./table.module";
+import { TableHeaderItem } from "./table-header-item.class";
+import { TableItem } from "./table-item.class";
 
 @Component({
 	template: `<ibm-table [model]="tableModel"></ibm-table>`
@@ -39,19 +30,8 @@ describe("Table", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				FormsModule,
-				NFormsModule,
-				DialogModule,
-				I18nModule,
-				ChevronRight16Module
-			],
-			declarations: [
-				Table,
-				TableTest,
-				DataGridFocus,
-				ExpandedRowHover
-			]
+			declarations: [ TableTest ],
+			imports: [ TableModule ]
 		});
 
 		fixture = TestBed.createComponent(TableTest);

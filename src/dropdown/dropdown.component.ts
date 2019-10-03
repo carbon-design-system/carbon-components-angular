@@ -580,6 +580,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	 * Expands the dropdown menu in the view.
 	 */
 	openMenu() {
+		// prevents the dropdown from opening when list of items is empty
+		if (this.view.getListItems().length === 0) {
+			return;
+		}
+
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if we're not appending inline
