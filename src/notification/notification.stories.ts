@@ -144,7 +144,7 @@ storiesOf("Notification", module)
 		`,
 		props: {
 			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false),	
+			lowContrast: boolean("Low Contrast", false)
 		}
 	}))
 	.add("Dynamic toast", () => ({
