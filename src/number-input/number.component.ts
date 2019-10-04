@@ -92,7 +92,7 @@ export class NumberChange {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: Number,
+			useExisting: NumberComponent,
 			multi: true
 		}
 	]
