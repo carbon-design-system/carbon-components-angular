@@ -61,8 +61,18 @@ export class TileGroup implements AfterContentInit {
 	onTouched = () => { };
 
 	ngAfterContentInit() {
+		this.selectionTiles.changes.subscribe(() => {
+			this.updateTileProperties();
+		});
+		// initial update
+		this.updateTileProperties();
+	}
+
+	updateTileProperties() {
 		this.selectionTiles.forEach(tile => {
-			tile.name = this.name;
+			// let the DOM of the child nodes settle before setting the `name`
+			setTimeout(() => tile.name = this.name);
+			tile.multiple = this.multiple;
 			tile.change.subscribe(() => {
 				this.selected.emit({
 					value: tile.value,
@@ -71,7 +81,6 @@ export class TileGroup implements AfterContentInit {
 				});
 				this.onChange(tile.value);
 			});
-			tile.multiple = this.multiple;
 		});
 	}
 
