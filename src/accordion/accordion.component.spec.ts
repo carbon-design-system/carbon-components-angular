@@ -44,11 +44,10 @@ describe("Accordion", () => {
 
 	it("should call onClick on button click", () => {
 		fixture = TestBed.createComponent(AccordionTest);
-		let debugElement = fixture.debugElement.query(By.css("ibm-accordion-item"));
+		let debugElement = fixture.debugElement.query(By.css(".bx--accordion__heading"));
 		fixture.detectChanges();
 		spyOn(debugElement.componentInstance.selected, "emit");
-		let change = fixture.nativeElement.querySelector(".bx--accordion__heading");
-		change.dispatchEvent(new Event("click"));
+		debugElement.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(debugElement.componentInstance.selected.emit).toHaveBeenCalled();
 	});
