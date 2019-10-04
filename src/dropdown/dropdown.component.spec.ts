@@ -10,6 +10,7 @@ import { I18nModule } from "../i18n/i18n.module";
 import { DropdownService } from "./dropdown.service";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
+import { FormsModule } from "@angular/forms";
 import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
 
 @Component({
@@ -17,20 +18,20 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 	<ibm-dropdown
 		placeholder="test"
 		class="custom-class"
-		(selected)="onSelect($event)">
+		(selected)="onSelect()"
+		[(ngModel)]="model">
 		<ibm-dropdown-list [items]="items"></ibm-dropdown-list>
 	</ibm-dropdown>`
 })
 class DropdownTest {
-	items = [{content: "one", selected: false}, {content: "two", selected: false}];
+	model = null;
+	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
 	selected: ListItem;
-	onSelect(ev) {
-		this.selected = ev.item;
-	}
+	onSelect() {}
 }
 
 describe("Dropdown", () => {
-	let fixture, wrapper;
+	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -43,6 +44,7 @@ describe("Dropdown", () => {
 				I18nModule,
 				PlaceholderModule,
 				ChevronDown16Module,
+				FormsModule,
 				WarningFilled16Module
 			],
 			providers: [ DropdownService ]
@@ -60,21 +62,37 @@ describe("Dropdown", () => {
 		expect(fixture.componentInstance instanceof Dropdown).toBe(true);
 	});
 
-	// it("should select an item", () => {
-	// 	let itemEl = fixture.debugElement.query(By.css(".option"));
-	// 	itemEl.triggerEventHandler("click", null);
-	// 	fixture.detectChanges();
-	// 	expect(wrapper.selected.content).toBe("one");
-	// });
+	it("should expand the dropdown on click", () => {
+		fixture = TestBed.createComponent(DropdownTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css(".bx--list-box__field"));
+		element.triggerEventHandler("click", null);
+		fixture.detectChanges();
+		expect(element.nativeElement.getAttribute("aria-expanded")).toEqual("true");
+	});
 
-	xit("should change the placeholder value", () => {
-		let itemEl = fixture.debugElement.query(By.css("[role=option]"));
-		let buttonEl = fixture.debugElement.query(By.css(".bx--list-box__label"));
-		buttonEl.triggerEventHandler("click", null);
+	it("should propagate the change in selected option back to the form and emit a selected event", () => {
+		fixture = TestBed.createComponent(DropdownTest);
+		wrapper = fixture.componentInstance;
+		spyOn(wrapper, "onSelect");
 		fixture.detectChanges();
-		itemEl.triggerEventHandler("click", null);
+		element = fixture.debugElement.query(By.css("ibm-dropdown"));
+		element.componentInstance.menuIsClosed = false;
 		fixture.detectChanges();
-		expect(buttonEl.nativeElement.textContent.trim()).toBe("one");
+		element.nativeElement.querySelector(".bx--list-box__menu-item__option").click();
+		fixture.detectChanges();
+		expect(element.nativeElement.querySelector(".bx--list-box__label").textContent).toEqual("one");
+		expect(wrapper.onSelect).toHaveBeenCalled();
+		expect(wrapper.model.content).toEqual("one");
+		expect(wrapper.model.selected).toBe(true);
+	});
+
+	it("should set the placeholder text to test", () => {
+		fixture = TestBed.createComponent(DropdownTest);
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("ibm-dropdown"));
+		expect(element.nativeElement.querySelector(".bx--list-box__label").textContent).toEqual("test");
 	});
 
 	it("should keep custom classes on the host el", () => {
