@@ -7,7 +7,7 @@
 // Requires
 // =================================
 const gulp = require("gulp");
-const sass = require("node-sass");
+const sass = require("sass");
 const tap = require("gulp-tap");
 const path = require("path");
 const fs = require("fs");
