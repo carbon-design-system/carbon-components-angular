@@ -1,0 +1,1145 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>TableBody</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/table/body/table-body.component.ts</code>
+</p>
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>[ibmTableBody]</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;model&quot;&gt;
+	&lt;ng-container *ngFor&#x3D;&quot;let row of model.data; let i &#x3D; index&quot;&gt;
+		&lt;tr
+			ibmTableRow
+			[model]&#x3D;&quot;model&quot;
+			[row]&#x3D;&quot;row&quot;
+			[size]&#x3D;&quot;size&quot;
+			[selected]&#x3D;&quot;model.isRowSelected(i)&quot;
+			[expandable]&#x3D;&quot;model.isRowExpandable(i)&quot;
+			[expanded]&#x3D;&quot;model.isRowExpanded(i)&quot;
+			[checkboxLabel]&#x3D;&quot;getCheckboxRowLabel()&quot;
+			[expandButtonAriaLabel]&#x3D;&quot;getExpandButtonAriaLabel()&quot;
+			[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+			[skeleton]&#x3D;&quot;skeleton&quot;
+			(selectRow)&#x3D;&quot;onRowCheckboxChange(i)&quot;
+			(deselectRow)&#x3D;&quot;onRowCheckboxChange(i)&quot;
+			(expandRow)&#x3D;&quot;model.expandRow(i, !model.isRowExpanded(i))&quot;
+			*ngIf&#x3D;&quot;!model.isRowFiltered(i)&quot;
+			[class]&#x3D;&quot;(model.rowsClass[i] ? model.rowsClass[i] : null)&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;tbody_row--success&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;success&#x27;,
+				&#x27;tbody_row--warning&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;warning&#x27;,
+				&#x27;tbody_row--info&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;info&#x27;,
+				&#x27;tbody_row--error&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;error&#x27;
+			}&quot;&gt;
+		&lt;/tr&gt;
+		&lt;tr
+			*ngIf&#x3D;&quot;model.isRowExpanded(i) &amp;&amp; !model.isRowFiltered(i)&quot;
+			ibmTableExpandedRow
+			ibmExpandedRowHover
+			[row]&#x3D;&quot;row&quot;
+			[expanded]&#x3D;&quot;model.isRowExpanded(i)&quot;
+			[skeleton]&#x3D;&quot;skeleton&quot;&gt;
+		&lt;/tr&gt;
+	&lt;/ng-container&gt;
+&lt;/ng-container&gt;
+&lt;ng-content&gt;&lt;/ng-content&gt;
+	</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_checkboxRowLabel">_checkboxRowLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_expandButtonAriaLabel">_expandButtonAriaLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getCheckboxRowLabel">getCheckboxRowLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getExpandButtonAriaLabel">getExpandButtonAriaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#onRowCheckboxChange">onRowCheckboxChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkboxRowLabel">checkboxRowLabel</a>
+                            </li>
+                            <li>
+                                <a href="#enableSingleSelect">enableSingleSelect</a>
+                            </li>
+                            <li>
+                                <a href="#expandButtonAriaLabel">expandButtonAriaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#model">model</a>
+                            </li>
+                            <li>
+                                <a href="#selectionLabelColumn">selectionLabelColumn</a>
+                            </li>
+                            <li>
+                                <a href="#showSelectionColumn">showSelectionColumn</a>
+                            </li>
+                            <li>
+                                <a href="#size">size</a>
+                            </li>
+                            <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deselectRow">deselectRow</a>
+                            </li>
+                            <li>
+                                <a href="#selectRow">selectRow</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#expandButtonAriaLabel">expandButtonAriaLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#checkboxRowLabel">checkboxRowLabel</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/table/body/table-body.component.ts:119</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="checkboxRowLabel"></a>
+                        <code>checkboxRowLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/table/body/table-body.component.ts:72</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="enableSingleSelect"></a>
+                        <code>enableSingleSelect</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Controls whether to enable multiple or single row selection.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/table/body/table-body.component.ts:60</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="expandButtonAriaLabel"></a>
+                        <code>expandButtonAriaLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/table/body/table-body.component.ts:63</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="model"></a>
+                        <code>model</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="../classes/TableModel.html" target="_self" >TableModel</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/table/body/table-body.component.ts:55</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="selectionLabelColumn"></a>
+                        <code>selectionLabelColumn</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Used to populate the row selection checkbox label with a useful value if set.</p>
+<p>Example:</p>
+<div><pre class="line-numbers"><code class="language-none">     * &lt;ibm-table [selectionLabelColumn]=&quot;0&quot;&gt;&lt;/ibm-table&gt;
+     * &lt;!-- results in aria-label=&quot;Select first column value&quot;
+     * (where &quot;first column value&quot; is the value of the first column in the row --&gt;
+     *</code></pre></div></div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/table/body/table-body.component.ts:100</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="showSelectionColumn"></a>
+                        <code>showSelectionColumn</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Controls whether to show the selection checkboxes column or not.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>true</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/table/body/table-body.component.ts:83</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="size"></a>
+                        <code>size</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Size of the table rows.</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>&quot;sm&quot; | &quot;sh&quot; | &quot;md&quot; | &quot;lg&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;md&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/body/table-body.component.ts:88</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/table/body/table-body.component.ts:102</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="deselectRow"></a>
+                        <code>deselectRow</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits if a single row is deselected.</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/body/table-body.component.ts:116</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="selectRow"></a>
+                        <code>selectRow</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits if a single row is selected.</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/body/table-body.component.ts:109</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getCheckboxRowLabel"></a>
+                        <span class="name">
+                            <b>
+                            getCheckboxRowLabel
+                            </b>
+                            <a href="#getCheckboxRowLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getCheckboxRowLabel()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/table/body/table-body.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getExpandButtonAriaLabel"></a>
+                        <span class="name">
+                            <b>
+                            getExpandButtonAriaLabel
+                            </b>
+                            <a href="#getExpandButtonAriaLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getExpandButtonAriaLabel()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/body/table-body.component.ts:140</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onRowCheckboxChange"></a>
+                        <span class="name">
+                            <b>
+                            onRowCheckboxChange
+                            </b>
+                            <a href="#onRowCheckboxChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onRowCheckboxChange(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/table/body/table-body.component.ts:128</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Triggered when a single row is clicked.
+Updates the header checkbox state.
+Emits the <code>selectRow</code> or <code>deselectRow</code> event.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_checkboxRowLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _checkboxRowLabel
+                            </b>
+                            <a href="#_checkboxRowLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_checkboxRowLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE.CHECKBOX_ROW&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/table/body/table-body.component.ts:118</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_expandButtonAriaLabel"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _expandButtonAriaLabel
+                            </b>
+                            <a href="#_expandButtonAriaLabel"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_expandButtonAriaLabel:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE.EXPAND_BUTTON&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/table/body/table-body.component.ts:119</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="expandButtonAriaLabel"></a>
+                        <span class="name"><b>expandButtonAriaLabel</b><a href="#expandButtonAriaLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>expandButtonAriaLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/table/body/table-body.component.ts:67</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>expandButtonAriaLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/table/body/table-body.component.ts:63</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkboxRowLabel"></a>
+                        <span class="name"><b>checkboxRowLabel</b><a href="#checkboxRowLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>checkboxRowLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/table/body/table-body.component.ts:76</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>checkboxRowLabel(value)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/table/body/table-body.component.ts:72</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	Input,
+	EventEmitter,
+	Output
+} from &quot;@angular/core&quot;;
+import { TableModel } from &quot;../table-model.class&quot;;
+import { I18n, Overridable } from &quot;./../../i18n/i18n.module&quot;;
+import { Observable } from &quot;rxjs&quot;;
+
+@Component({
+	// tslint:disable-next-line: component-selector
+	selector: &quot;[ibmTableBody]&quot;,
+	template: &#x60;
+		&lt;ng-container *ngIf&#x3D;&quot;model&quot;&gt;
+			&lt;ng-container *ngFor&#x3D;&quot;let row of model.data; let i &#x3D; index&quot;&gt;
+				&lt;tr
+					ibmTableRow
+					[model]&#x3D;&quot;model&quot;
+					[row]&#x3D;&quot;row&quot;
+					[size]&#x3D;&quot;size&quot;
+					[selected]&#x3D;&quot;model.isRowSelected(i)&quot;
+					[expandable]&#x3D;&quot;model.isRowExpandable(i)&quot;
+					[expanded]&#x3D;&quot;model.isRowExpanded(i)&quot;
+					[checkboxLabel]&#x3D;&quot;getCheckboxRowLabel()&quot;
+					[expandButtonAriaLabel]&#x3D;&quot;getExpandButtonAriaLabel()&quot;
+					[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+					[skeleton]&#x3D;&quot;skeleton&quot;
+					(selectRow)&#x3D;&quot;onRowCheckboxChange(i)&quot;
+					(deselectRow)&#x3D;&quot;onRowCheckboxChange(i)&quot;
+					(expandRow)&#x3D;&quot;model.expandRow(i, !model.isRowExpanded(i))&quot;
+					*ngIf&#x3D;&quot;!model.isRowFiltered(i)&quot;
+					[class]&#x3D;&quot;(model.rowsClass[i] ? model.rowsClass[i] : null)&quot;
+					[ngClass]&#x3D;&quot;{
+						&#x27;tbody_row--success&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;success&#x27;,
+						&#x27;tbody_row--warning&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;warning&#x27;,
+						&#x27;tbody_row--info&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;info&#x27;,
+						&#x27;tbody_row--error&#x27;: !model.isRowSelected(i) &amp;&amp; model.getRowContext(i) &#x3D;&#x3D;&#x3D; &#x27;error&#x27;
+					}&quot;&gt;
+				&lt;/tr&gt;
+				&lt;tr
+					*ngIf&#x3D;&quot;model.isRowExpanded(i) &amp;&amp; !model.isRowFiltered(i)&quot;
+					ibmTableExpandedRow
+					ibmExpandedRowHover
+					[row]&#x3D;&quot;row&quot;
+					[expanded]&#x3D;&quot;model.isRowExpanded(i)&quot;
+					[skeleton]&#x3D;&quot;skeleton&quot;&gt;
+				&lt;/tr&gt;
+			&lt;/ng-container&gt;
+		&lt;/ng-container&gt;
+		&lt;ng-content&gt;&lt;/ng-content&gt;
+	&#x60;
+})
+export class TableBody {
+	@Input() model: TableModel;
+
+	/**
+	 * Controls whether to enable multiple or single row selection.
+	 */
+	@Input() enableSingleSelect &#x3D; false;
+
+	@Input()
+	set expandButtonAriaLabel(value: string | Observable&lt;string&gt;) {
+		this._expandButtonAriaLabel.override(value);
+	}
+
+	get expandButtonAriaLabel() {
+		return this._expandButtonAriaLabel.value;
+	}
+
+	@Input()
+	set checkboxRowLabel(value: string | Observable&lt;string&gt;) {
+		this._checkboxRowLabel.override(value);
+	}
+
+	get checkboxRowLabel() {
+		return this._checkboxRowLabel.value;
+	}
+
+	/**
+	 * Controls whether to show the selection checkboxes column or not.
+	 */
+	@Input() showSelectionColumn &#x3D; true;
+
+	/**
+	 * Size of the table rows.
+	 */
+	@Input() size: &quot;sm&quot; | &quot;sh&quot; | &quot;md&quot; | &quot;lg&quot; &#x3D; &quot;md&quot;;
+
+	/**
+	 * Used to populate the row selection checkbox label with a useful value if set.
+	 *
+	 * Example:
+	 * &#x60;&#x60;&#x60;
+	 * &lt;ibm-table [selectionLabelColumn]&#x3D;&quot;0&quot;&gt;&lt;/ibm-table&gt;
+	 * &lt;!-- results in aria-label&#x3D;&quot;Select first column value&quot;
+	 * (where &quot;first column value&quot; is the value of the first column in the row --&gt;
+	 * &#x60;&#x60;&#x60;
+	 */
+	@Input() selectionLabelColumn: number;
+
+	@Input() skeleton &#x3D; false;
+
+	/**
+	 * Emits if a single row is selected.
+	 *
+	 * @param ({model: this.model, selectedRowIndex: index})
+	 */
+	@Output() selectRow &#x3D; new EventEmitter&lt;Object&gt;();
+
+	/**
+	 * Emits if a single row is deselected.
+	 *
+	 * @param ({model: this.model, deselectedRowIndex: index})
+	 */
+	@Output() deselectRow &#x3D; new EventEmitter&lt;Object&gt;();
+
+	protected _checkboxRowLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.CHECKBOX_ROW&quot;);
+	protected _expandButtonAriaLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.EXPAND_BUTTON&quot;);
+
+	constructor(protected i18n: I18n) { }
+
+	/**
+	 * Triggered when a single row is clicked.
+	 * Updates the header checkbox state.
+	 * Emits the &#x60;selectRow&#x60; or &#x60;deselectRow&#x60; event.
+	 */
+	onRowCheckboxChange(index: number) {
+		if (this.model.isRowSelected(index)) {
+			this.deselectRow.emit({ model: this.model, deselectedRowIndex: index });
+		} else {
+			this.selectRow.emit({ model: this.model, selectedRowIndex: index });
+		}
+	}
+
+	getCheckboxRowLabel(): Observable&lt;string&gt; {
+		return this._checkboxRowLabel.subject;
+	}
+
+	getExpandButtonAriaLabel(): Observable&lt;string&gt; {
+		return this._expandButtonAriaLabel.subject;
+	}
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="model">	<ng-container *ngFor="let row of model.data; let i = index">		<tr			ibmTableRow			[model]="model"			[row]="row"			[size]="size"			[selected]="model.isRowSelected(i)"			[expandable]="model.isRowExpandable(i)"			[expanded]="model.isRowExpanded(i)"			[checkboxLabel]="getCheckboxRowLabel()"			[expandButtonAriaLabel]="getExpandButtonAriaLabel()"			[showSelectionColumn]="showSelectionColumn"			[skeleton]="skeleton"			(selectRow)="onRowCheckboxChange(i)"			(deselectRow)="onRowCheckboxChange(i)"			(expandRow)="model.expandRow(i, !model.isRowExpanded(i))"			*ngIf="!model.isRowFiltered(i)"			[class]="(model.rowsClass[i] ? model.rowsClass[i] : null)"			[ngClass]="{				\'tbody_row--success\': !model.isRowSelected(i) && model.getRowContext(i) === \'success\',				\'tbody_row--warning\': !model.isRowSelected(i) && model.getRowContext(i) === \'warning\',				\'tbody_row--info\': !model.isRowSelected(i) && model.getRowContext(i) === \'info\',				\'tbody_row--error\': !model.isRowSelected(i) && model.getRowContext(i) === \'error\'			}">		</tr>		<tr			*ngIf="model.isRowExpanded(i) && !model.isRowFiltered(i)"			ibmTableExpandedRow			ibmExpandedRowHover			[row]="row"			[expanded]="model.isRowExpanded(i)"			[skeleton]="skeleton">		</tr>	</ng-container></ng-container><ng-content></ng-content>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+    var ACTUAL_COMPONENT = {'name': 'TableBody'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TableBody.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
