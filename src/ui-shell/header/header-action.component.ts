@@ -20,7 +20,6 @@ import {
 			[title]="title"
 			(click)="onClick()">
 			<ng-content></ng-content>
-			<svg ibmIconClose20 class="bx--navigation-menu-panel-collapse-icon"></svg>
 		</button>
 	`
 })

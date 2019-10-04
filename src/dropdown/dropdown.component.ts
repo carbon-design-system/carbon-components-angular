@@ -13,7 +13,7 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
 import {
@@ -56,7 +56,8 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 			'bx--dropdown--light': theme === 'light',
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton,
-			'bx--dropdown--disabled bx--list-box--disabled': disabled
+			'bx--dropdown--disabled bx--list-box--disabled': disabled,
+			'bx--dropdown--invalid': invalid
 		}">
 		<button
 			type="button"
@@ -93,6 +94,10 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 				[ngTemplateOutletContext]="getRenderTemplateContext()"
 				[ngTemplateOutlet]="displayValue">
 			</ng-template>
+			<svg ibmIconWarningFilled16
+				*ngIf="invalid"
+				class="bx--dropdown__invalid-icon">
+			</svg>
 			<ibm-icon-chevron-down16
 				*ngIf="!skeleton"
 				class="bx--list-box__menu-icon"
@@ -108,6 +113,9 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 			<ng-content *ngIf="!menuIsClosed"></ng-content>
 		</div>
 	</div>
+	<div *ngIf="invalid" class="bx--form-requirement">
+		{{invalidText}}
+	</div>
 	`,
 	providers: [
 		{
@@ -117,7 +125,7 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 		}
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
+export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
@@ -166,13 +174,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 */
 	@Input() disableArrowKeys = false;
 	/**
+	 * Set to `true` for invalid state.
+	 */
+	@Input() invalid = false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText = "";
+	/**
 	 * Deprecated. Dropdown now defaults to appending inline
 	 * Set to `true` if the `Dropdown` is to be appended to the DOM body.
 	 */
 	@Input() set appendToBody (v) {
-		console.log("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
-		console.log("Ensure you have an `ibm-placeholder` in your app.");
-		console.log("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
+		console.warn("`appendToBody` has been deprecated. Dropdowns now append to the body by default.");
+		console.warn("Ensure you have an `ibm-placeholder` in your app.");
+		console.warn("Use `appendInline` if you need to position your dropdowns within the normal page flow.");
 		this.appendInline = !v;
 	}
 
@@ -252,6 +268,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 
 	protected onTouchedCallback: () => void = this._noop;
 
+	// primarily used to capture and propagate input to `writeValue` before the content is available
+	protected writtenValue = [];
+
 	/**
 	 * Creates an instance of Dropdown.
 	 */
@@ -274,6 +293,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		if (!this.view) {
 			return;
 		}
+		this.writeValue(this.writtenValue);
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
@@ -299,7 +319,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 				}
 			}
 			// only emit selected for "organic" selections
-			if (!event.isUpdate) {
+			if (event && !event.isUpdate) {
 				this.selected.emit(event);
 			}
 		});
@@ -318,6 +338,8 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Propagates the injected `value`.
 	 */
 	writeValue(value: any) {
+		// cache the written value so we can use it in `AfterContentInit`
+		this.writtenValue = value;
 		// propagate null/falsey as an array (deselect everything)
 		if (!value) {
 			this.view.propagateSelected([value]);
@@ -334,12 +356,12 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		} else {
 			if (this.value) {
 				// clone the items and update their state based on the received value array
-				// this way we don't lose any additional metadata that may be passed in view the `items` Input
-				const newValues = Array.from(this.view.getListItems(), item => Object.assign({}, item));
+				// this way we don't lose any additional metadata that may be passed in via the `items` Input
+				let newValues = [];
 				for (const v of value) {
-					for (const newValue of newValues) {
-						if (newValue[this.value] === v) {
-							newValue.selected = true;
+					for (const item of this.view.getListItems()) {
+						if (item[this.value] === v) {
+							newValues.push(Object.assign({}, item, { selected: true }));
 						}
 					}
 				}
@@ -366,7 +388,21 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 		this.onTouchedCallback = fn;
 	}
 
+	/**
+	 * function passed in by `registerOnChange`
+	 */
 	propagateChange = (_: any) => {};
+
+	/**
+	 * `ControlValueAccessor` method to programatically disable the dropdown.
+	 *
+	 * ex: `this.formGroup.get("myDropdown").disable();`
+	 *
+	 * @param isDisabled `true` to disable the input
+	 */
+	setDisabledState(isDisabled: boolean) {
+		this.disabled = isDisabled;
+	}
 
 	/**
 	 * Adds keyboard functionality for navigation, selection and closing of the `Dropdown`.
@@ -467,6 +503,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	}
 
 	clearSelected() {
+		if (this.disabled) { return; }
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
@@ -543,6 +580,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy {
 	 * Expands the dropdown menu in the view.
 	 */
 	openMenu() {
+		// prevents the dropdown from opening when list of items is empty
+		if (this.view.getListItems().length === 0) {
+			return;
+		}
+
 		this.menuIsClosed = false;
 
 		// move the dropdown list to the body if we're not appending inline

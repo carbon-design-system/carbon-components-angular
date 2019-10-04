@@ -42,6 +42,7 @@ import { of } from "rxjs";
 			</div>
 		</div>
 		<button
+			*ngIf="showClose"
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
 			[attr.aria-label]="notificationObj.closeLabel | async"
@@ -85,11 +86,17 @@ export class Notification {
 	@HostBinding("class.bx--inline-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
 	@HostBinding("class.bx--inline-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.bx--inline-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
+	@HostBinding("class.bx--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
+
+	get showClose() {
+		return this._notificationObj.showClose;
+	}
 
 	protected defaultNotificationObj = {
 		title: "",
 		message: "",
 		type: "info",
+		showClose: true,
 		closeLabel: this.i18n.get("NOTIFICATION.CLOSE_BUTTON")
 	};
 	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);

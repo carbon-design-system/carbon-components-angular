@@ -39,6 +39,7 @@ import { I18n } from "./../i18n/i18n.module";
 			<p class="bx--toast-notification__caption" [innerHTML]="notificationObj.caption"></p>
 		</div>
 		<button
+			*ngIf="showClose"
 			class="bx--toast-notification__close-button"
 			type="button"
 			[attr.aria-label]="notificationObj.closeLabel"
@@ -63,6 +64,8 @@ export class Toast extends Notification implements OnInit {
 	@HostBinding("class.bx--toast-notification--info") get isInfo() { return this.notificationObj["type"] === "info"; }
 	@HostBinding("class.bx--toast-notification--success") get isSuccess() { return this.notificationObj["type"] === "success"; }
 	@HostBinding("class.bx--toast-notification--warning") get isWarning() { return this.notificationObj["type"] === "warning"; }
+	@HostBinding("class.bx--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
+
 
 	get isExperimental() {
 		return this.experimental.isExperimental;
@@ -73,6 +76,8 @@ export class Toast extends Notification implements OnInit {
 		protected i18n: I18n,
 		protected experimental: ExperimentalService) {
 		super(notificationDisplayService, i18n);
+		// disable inline notification styles
+		this.notificationClass = false;
 	}
 
 	ngOnInit() {
