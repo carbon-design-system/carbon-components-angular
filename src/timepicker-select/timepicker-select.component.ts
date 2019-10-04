@@ -59,6 +59,4 @@ export class TimePickerSelect extends Select {
 	@HostBinding("class.bx--select--light") get timePickerSelectLight() {
 		return this.theme === "light";
 	}
-
-	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 }
