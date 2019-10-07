@@ -5,9 +5,6 @@ import {
 export class TableItem {
 	/**
 	 * Data for the table item.
-	 *
-	 * @type {*}
-	 * @memberof TableItem
 	 */
 	data: any;
 
@@ -15,9 +12,6 @@ export class TableItem {
 	 * Data for the expanded part of the row.
 	 *
 	 * You only need to set it for the first item in the row.
-	 *
-	 * @type {*}
-	 * @memberof TableItem
 	 */
 	expandedData: any;
 
@@ -52,9 +46,6 @@ export class TableItem {
 	 * 	[new TableItem({data: {name: "Custom item", link: "/table"}, template: this.customItemTemplate})]
 	 * ];
 	 * ```
-	 *
-	 * @type {TemplateRef<any>}
-	 * @memberof TableItem
 	 */
 	template: TemplateRef<any>;
 
@@ -63,15 +54,11 @@ export class TableItem {
 	 *
 	 * You only need to set it for the first item in the row.
 	 *
-	 * @type {TemplateRef<any>}
-	 * @memberof TableItem
 	 */
 	expandedTemplate: TemplateRef<any>;
 
 	/**
 	 * Creates an instance of TableItem.
-	 * @param {*} [rawData]
-	 * @memberof TableItem
 	 */
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty
