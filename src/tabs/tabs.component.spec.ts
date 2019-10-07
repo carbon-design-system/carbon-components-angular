@@ -91,9 +91,11 @@ describe("Sample", () => {
 		const tabHeaders = fixture.debugElement.query(By.css("ibm-tab-headers"));
 
 		navItem.click();
-		tabHeaders.nativeElement.dispatchEvent(arrowRight);
-		tabHeaders.nativeElement.dispatchEvent(arrowRight);
-		tabHeaders.nativeElement.dispatchEvent(arrowRight);
+
+		for (let i = 0; i < element.componentInstance.tabs.length; i++) {
+			tabHeaders.nativeElement.dispatchEvent(arrowRight);
+		}
+
 		fixture.detectChanges();
 		expect(tabHeaders.componentInstance.currentSelectedTab).toBe(0);
 	});
