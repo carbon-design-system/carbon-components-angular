@@ -84,7 +84,7 @@ describe("ProgressIndicator", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-progress-indicator"));
 		expect(element.nativeElement.querySelector(".bx--progress-step--current").textContent).toContain("Fourth step");
-		expect(element.nativeElement.querySelector(".bx--progress-step--current ibm-icon-warning16")).toBeTruthy();
+		expect(element.nativeElement.querySelector(".bx--progress__warning")).toBeTruthy();
 	});
 
 	it("should expand the tooltip when tooltip trigger is clicked", () => {
