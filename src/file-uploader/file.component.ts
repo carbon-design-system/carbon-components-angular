@@ -24,6 +24,10 @@ import { FileItem } from "./file-item.interface";
 			(keyup.enter)="remove.emit()"
 			(keyup.space)="remove.emit()"
 			tabindex="0">
+			<ibm-icon-warning-filled16
+				*ngIf="isInvalidText"
+				class="bx--file--invalid">
+			</ibm-icon-warning-filled16>
 			<ibm-icon-close16
 				class="bx--file-close"
 				[ariaLabel]="translations.REMOVE_BUTTON">
@@ -56,6 +60,10 @@ export class FileComponent {
 	@Output() remove = new EventEmitter();
 
 	@HostBinding("class.bx--file__selected-file") selectedFile = true;
+
+	@HostBinding("class.bx--file__selected-file--invalid") get isInvalidText() {
+		return this.fileItem.invalidText;
+	}
 
 	constructor(protected i18n: I18n) {}
 }
