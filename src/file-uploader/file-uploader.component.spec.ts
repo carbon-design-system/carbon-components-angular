@@ -7,6 +7,7 @@ import { FileUploader } from "./file-uploader.component";
 import { FileComponent } from "./file.component";
 import { CommonModule } from "@angular/common";
 import { CheckmarkFilled16Module } from "@carbon/icons-angular/lib/checkmark--filled/16";
+import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled/16";
 import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
@@ -44,7 +45,8 @@ describe("FileUploader", () => {
 				ButtonModule,
 				LoadingModule,
 				Close16Module,
-				CheckmarkFilled16Module
+				CheckmarkFilled16Module,
+				WarningFilled16Module
 			]
 		});
 	});
@@ -105,6 +107,27 @@ describe("FileUploader", () => {
 			.textContent)
 			.toEqual("test-filename");
 		expect(wrapper.onFilesChange).toHaveBeenCalled();
+	});
+
+	it("should set bx--file--invalid class on invalid file items", () => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+
+		const fileItem: FileItem = {
+			file: new File([""], "test-filename", {type: "text/html"}),
+			state: "edit",
+			uploaded: false,
+			invalid: false,
+			invalidText: "Invalid Text"
+		};
+		const testFiles = new Set().add(fileItem);
+		element = fixture.debugElement.query(By.css("ibm-file-uploader"));
+
+		element.componentInstance.value = testFiles;
+		fixture.detectChanges();
+
+		expect(element.nativeElement.querySelector(".bx--file__state-container .bx--file--invalid")).toBeTruthy();
 	});
 });
 
