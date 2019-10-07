@@ -36,7 +36,8 @@ import { Tab } from "./tab.component";
 					</ng-container>
 					<ng-template
 						*ngIf="getSelectedTab().headingIsTemplate"
-						[ngTemplateOutlet]="getSelectedTab().heading">
+						[ngTemplateOutlet]="getSelectedTab().heading"
+						[ngTemplateOutletContext]="{$implicit: getSelectedTab().context}">
 					</ng-template>
 				</a>
 				<svg width="10" height="5" viewBox="0 0 10 5">
