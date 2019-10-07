@@ -1,10 +1,11 @@
-import { TestBed } from "@angular/core/testing";
-import { By, EVENT_MANAGER_PLUGINS } from "@angular/platform-browser";
-import { Component, Output, EventEmitter } from "@angular/core";
+import { TestBed, async, fakeAsync } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
 import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
 import { Calendar16Module } from "@carbon/icons-angular/lib/calendar/16";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, Validators } from "@angular/forms";
+import { tick } from "@angular/core/src/render3";
 
 @Component({
 	template: `
@@ -12,20 +13,20 @@ import { FormsModule } from "@angular/forms";
 		label="Date picker label"
 		placeholder="mm/dd/yyyy"
 		theme="light"
-		[value]="value"
+		[(ngModel)]="value"
 		[disabled]="disabled"
 		[invalid]="invalid"
 		invalidText="invalid text"
 		dateFormat="m/d/Y"
-		(valueChange)="valueChange($event)">
+		(valueChange)="onValueChange()">
 	</ibm-date-picker>
 	`
 })
 class DatePickerTest {
-	value = ["10/19/2019"];
+	value = new Date(new Date().getFullYear(), 5, 15);
 	disabled = false;
 	invalid = false;
-	valueChange(event) {}
+	onValueChange() {}
 }
 
 describe("DatePicker", () => {
@@ -56,11 +57,20 @@ describe("DatePicker", () => {
 		expect(element.nativeElement.textContent).toEqual("Date picker label");
 	});
 
-	it("should set input value to 10/19/2019", () => {
+	it("should set the value of the component to be the value specified in the wrapper", async() => {
 		fixture = TestBed.createComponent(DatePickerTest);
+		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("input"));
-		expect(element.nativeElement.value).toEqual("10/19/2019");
+		fixture.whenStable().then(() => {
+			element = fixture.debugElement.query(By.css("ibm-date-picker"));
+			expect(element.componentInstance.value).toBe(wrapper.value);
+			wrapper.value =  new Date(new Date().getFullYear(), 14, 50);
+			fixture.detectChanges();
+			fixture.whenStable().then(() => {
+				element = fixture.debugElement.query(By.css("ibm-date-picker"));
+				expect(element.componentInstance.value).toBe(wrapper.value);
+			});
+		});
 	});
 
 	it("should set placeholder to mm/dd/yyyy", () => {
@@ -93,12 +103,13 @@ describe("DatePicker", () => {
 		expect(element.nativeElement.querySelector(".bx--date-picker--light")).toBeTruthy();
 	});
 
-	it("should set invalid to true and set the invalidText to invalid text", () => {
+	it("should set invalid to true and set the invalidText to 'invalid text'", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		element = fixture.debugElement.query(By.css("ibm-date-picker"));
 		fixture.componentInstance.invalid = true;
 		fixture.detectChanges();
 		expect(element.componentInstance.invalid).toBe(true);
+		expect(element.nativeElement.getAttribute("invalidText")).toEqual("invalid text");
 		expect(element.nativeElement.querySelector(".bx--form-requirement").textContent).toEqual("invalid text");
 	});
 
@@ -107,9 +118,9 @@ describe("DatePicker", () => {
 		element = fixture.debugElement.query(By.css("ibm-date-picker"));
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		spyOn(wrapper, "valueChange");
-		element.triggerEventHandler("valueChange", {target: {value: "10/19/2019"}});
+		spyOn(wrapper, "onValueChange");
+		element.triggerEventHandler("valueChange", {target: {value: wrapper.value}});
 		fixture.detectChanges();
-		expect(wrapper.valueChange).toHaveBeenCalled();
+		expect(wrapper.onValueChange).toHaveBeenCalled();
 	});
 });
