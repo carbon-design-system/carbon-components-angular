@@ -12,7 +12,7 @@ import { Accordion } from "./accordion.component";
 		<ibm-accordion-item
 		[title]="title"
 		[skeleton]="skeleton">
-		test-content
+			test-content
 		</ibm-accordion-item>
 	<ibm-accordion>`
 })
@@ -70,7 +70,7 @@ describe("Accordion", () => {
 		expect(debugElement.nativeElement.textContent).toContain("test-content");
 	});
 
-	it("should set ibm-accordion item title to Section 1", () => {
+	it("should set ibm-accordion item title to 'Section 1'", () => {
 		fixture = TestBed.createComponent(AccordionTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
