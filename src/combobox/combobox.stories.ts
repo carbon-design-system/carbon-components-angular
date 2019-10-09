@@ -20,6 +20,7 @@ storiesOf("Combobox", module)
 			<ibm-combo-box
 				[disabled]="disabled"
 				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items"
@@ -30,6 +31,7 @@ storiesOf("Combobox", module)
 		props: {
 			disabled: boolean("disabled", false),
 			invalid: boolean("Invalid", false),
+			invalidText: text("Invalid Text", "A valid value is required"),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
@@ -53,6 +55,7 @@ storiesOf("Combobox", module)
 		template: `
 			<ibm-combo-box
 				[invalid]="invalid"
+				[invalidText]="invalidText"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items"
@@ -63,6 +66,7 @@ storiesOf("Combobox", module)
 		`,
 		props: {
 			invalid: boolean("Invalid", false),
+			invalidText: text("Invalid Text", "A valid value is required"),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [

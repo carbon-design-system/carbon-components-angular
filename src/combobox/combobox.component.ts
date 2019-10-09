@@ -91,13 +91,14 @@ import { filter } from "rxjs/operators";
 						ariaLabel="Close menu">
 					</ibm-icon-chevron-down16>
 			</div>
-			<div *ngIf="invalid" class="bx--form-requirement">A valid value is required</div>
 			<div
 				#dropdownMenu
 				*ngIf="open">
 				<ng-content></ng-content>
 			</div>
 		</div>
+
+		<div *ngIf="invalid" class="bx--form-requirement">{{ invalidText }}</div>
 	`,
 	providers: [
 		{
@@ -161,6 +162,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Set to `true` for invalid state.
 	 */
 	@Input() invalid = false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText = "";
 	/**
 	 * Set to `true` to disable combobox.
 	 */
