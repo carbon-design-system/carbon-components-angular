@@ -75,7 +75,6 @@ storiesOf("Time Picker", module)
 		<span> Input: {{model}} </span>
 		<span> Period: {{period}} </span>
 		<span> Time Zone: {{timeZone}} </span>
-
 		`,
 		props: {
 			period: "AM",
