@@ -39,8 +39,8 @@ import { filter } from "rxjs/operators";
 		</div>
 		<div
 			class="bx--combo-box bx--list-box"
-			[ngClass]="{'bx--multi-select' : type === 'multi'}"
-			data-invalid="invalid">
+			[attr.data-invalid]="invalid ? false : null"
+			[ngClass]="{'bx--multi-select' : type === 'multi'}">
 			<div
 				[attr.aria-expanded]="open"
 				role="button"

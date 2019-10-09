@@ -19,6 +19,7 @@ storiesOf("Combobox", module)
 		template: `
 			<ibm-combo-box
 				[disabled]="disabled"
+				[invalid]="invalid"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items"
@@ -28,6 +29,7 @@ storiesOf("Combobox", module)
 		`,
 		props: {
 			disabled: boolean("disabled", false),
+			invalid: boolean("Invalid", false),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
@@ -50,6 +52,7 @@ storiesOf("Combobox", module)
 	.add("Multi-select", () => ({
 		template: `
 			<ibm-combo-box
+				[invalid]="invalid"
 				[label]="label"
 				[helperText]="helperText"
 				[items]="items"
@@ -59,6 +62,7 @@ storiesOf("Combobox", module)
 			</ibm-combo-box>
 		`,
 		props: {
+			invalid: boolean("Invalid", false),
 			label: text("Label", "ComboBox label"),
 			helperText: text("Helper text", "Optional helper text."),
 			items: [
