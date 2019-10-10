@@ -375,14 +375,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			console.error(`${this.constructor.name}.propagateSelected expects an Array<ListItem>, got ${JSON.stringify(value)}`);
 		}
 		// loop through the list items and update the `selected` state for matching items in `value`
-		for (let oldItem of value) {
+		for (let oldItem of this.getListItems()) {
 			// copy the item
 			let tempOldItem: string | ListItem = Object.assign({}, oldItem);
 			// deleted selected because it's what we _want_ to change
 			delete tempOldItem.selected;
 			// stringify for compare
 			tempOldItem = JSON.stringify(tempOldItem);
-			for (let newItem of this.getListItems()) {
+			for (let newItem of value) {
 				// copy the item
 				let tempNewItem: string | ListItem = Object.assign({}, newItem);
 				// deleted selected because it's what we _want_ to change
