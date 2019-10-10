@@ -10,10 +10,11 @@ import { ButtonModule } from "../button/button.module";
 import { LoadingModule } from "../loading/loading.module";
 
 export { FileUploader } from "./file-uploader.component";
+export { FileComponent, File } from "./file.component";
 
 @NgModule({
-	declarations: [FileUploader, FileComponent, File],
-	exports: [FileUploader, FileComponent, File],
+	declarations: [FileUploader, FileComponent],
+	exports: [FileUploader, FileComponent],
 	imports: [
 		CommonModule,
 		ButtonModule,
