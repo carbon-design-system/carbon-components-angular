@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
-import { By	 } from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 
 import { ProgressIndicator } from "./progress-indicator.component";
 import { CommonModule } from "@angular/common";
