@@ -35,7 +35,7 @@ import { I18n } from "../../i18n/i18n.module";
 			<ng-content select="ibm-hamburger"></ng-content>
 			<a
 				class="bx--header__name"
-				href="#"
+				[href]="href"
 				(click)="navigate($event)">
 				<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
 				{{name}}
