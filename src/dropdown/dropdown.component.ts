@@ -11,7 +11,8 @@ import {
 	HostListener,
 	OnDestroy,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	ApplicationRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -274,7 +275,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	/**
 	 * Creates an instance of Dropdown.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected dropdownService: DropdownService) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected dropdownService: DropdownService,
+		protected appRef: ApplicationRef) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
@@ -322,6 +327,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			if (event && !event.isUpdate) {
 				this.selected.emit(event);
 			}
+			this.appRef.tick();
 		});
 	}
 
