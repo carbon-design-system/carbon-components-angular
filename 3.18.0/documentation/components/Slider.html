@@ -1,0 +1,3430 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>Slider</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/slider/slider.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Used to select from ranges of values. <a href="https://www.carbondesignsystem.com/components/slider/usage">See here</a> for usage information.</p>
+<p><a href="../../?path=/story/slider--advanced">See demo</a></p>
+<p>The simplest possible slider usage looks something like:</p>
+<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-slider&gt;&lt;/ibm-slider&gt;
+ *</code></pre></div><p>That will render a slider without labels or alternative value input. Labels can be provided by
+elements with <code>[minLabel]</code> and <code>[maxLabel]</code> attributes, and an <code>input</code> (may use the <code>ibmInput</code> directive) can be supplied
+for use as an alternative value field.</p>
+<p>ex:</p>
+<div><pre class="line-numbers"><code class="language-html"> * &lt;!-- full example --&gt;
+ * &lt;ibm-slider&gt;
+ *        &lt;span minLabel&gt;0GB&lt;/span&gt;
+ *        &lt;span maxLabel&gt;100GB&lt;/span&gt;
+ *        &lt;input/&gt;
+ *    &lt;/ibm-slider&gt;
+ * &lt;!-- with just an input --&gt;
+ * &lt;ibm-slider&gt;
+ *        &lt;input/&gt;
+ *    &lt;/ibm-slider&gt;
+ * &lt;!-- with just one label --&gt;
+ * &lt;ibm-slider&gt;
+ *        &lt;span maxLabel&gt;Maximum&lt;/span&gt;
+ *    &lt;/ibm-slider&gt;
+ *</code></pre></div><p>Slider supports <code>NgModel</code> by default, as well as two way binding to the <code>value</code> input.</p>
+<p><example-url>../../iframe.html?id=slider--advanced</example-url></p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code><a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank" >ControlValueAccessor</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code><a href="../components/Slider.html" target="_self" >{
+    provide: NG_VALUE_ACCESSOR, useExisting: Slider, multi: true
+}</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ibm-slider</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate&quot;&gt;
+	&lt;label *ngIf&#x3D;&quot;label&quot; for&#x3D;&quot;slider&quot; class&#x3D;&quot;bx--label&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
+		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+	&lt;/label&gt;
+	&lt;div class&#x3D;&quot;bx--slider-container&quot;&gt;
+		&lt;label [id]&#x3D;&quot;bottomRangeId&quot; class&#x3D;&quot;bx--slider__range-label&quot;&gt;
+			&lt;ng-content select&#x3D;&quot;[minLabel]&quot;&gt;&lt;/ng-content&gt;
+		&lt;/label&gt;
+		&lt;div
+			class&#x3D;&quot;bx--slider&quot;
+			[ngClass]&#x3D;&quot;{&#x27;bx--slider--disabled&#x27;: disabled}&quot;&gt;
+			&lt;div
+				#thumb
+				class&#x3D;&quot;bx--slider__thumb&quot;
+				tabindex&#x3D;&quot;0&quot;
+				(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
+				(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+			&lt;/div&gt;
+			&lt;div
+				#track
+				class&#x3D;&quot;bx--slider__track&quot;
+				(click)&#x3D;&quot;onClick($event)&quot;&gt;
+			&lt;/div&gt;
+			&lt;div
+				#filledTrack
+				class&#x3D;&quot;bx--slider__filled-track&quot;&gt;
+			&lt;/div&gt;
+			&lt;input
+				#range
+				aria-label&#x3D;&quot;slider&quot;
+				class&#x3D;&quot;bx--slider__input&quot;
+				type&#x3D;&quot;range&quot;
+				[step]&#x3D;&quot;step&quot;
+				[min]&#x3D;&quot;min&quot;
+				[max]&#x3D;&quot;max&quot;
+				[value]&#x3D;&quot;value.toString()&quot;&gt;
+		&lt;/div&gt;
+		&lt;label [id]&#x3D;&quot;topRangeId&quot; class&#x3D;&quot;bx--slider__range-label&quot;&gt;
+			&lt;ng-content select&#x3D;&quot;[maxLabel]&quot;&gt;&lt;/ng-content&gt;
+		&lt;/label&gt;
+		&lt;ng-content select&#x3D;&quot;input&quot;&gt;&lt;/ng-content&gt;
+	&lt;/div&gt;
+&lt;/ng-container&gt;
+
+&lt;ng-template #skeletonTemplate&gt;
+	&lt;label *ngIf&#x3D;&quot;label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
+	&lt;div class&#x3D;&quot;bx--slider-container bx--skeleton&quot;&gt;
+		&lt;span class&#x3D;&quot;bx--slider__range-label&quot;&gt;&lt;/span&gt;
+		&lt;div class&#x3D;&quot;bx--slider&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--slider__thumb&quot;&gt;&lt;/div&gt;
+			&lt;div class&#x3D;&quot;bx--slider__track&quot;&gt;&lt;/div&gt;
+			&lt;div class&#x3D;&quot;bx--slider__filled-track&quot;&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;span class&#x3D;&quot;bx--slider__range-label&quot;&gt;&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/ng-template&gt;
+	</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_disabled">_disabled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_max">_max</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_min">_min</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_value">_value</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#bottomRangeId">bottomRangeId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#count">count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#eventSubscriptions">eventSubscriptions</a>
+                            </li>
+                            <li>
+                                <a href="#filledTrack">filledTrack</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#fractionComplete">fractionComplete</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#input">input</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#isMouseDown">isMouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#onTouched">onTouched</a>
+                            </li>
+                            <li>
+                                <a href="#propagateChange">propagateChange</a>
+                            </li>
+                            <li>
+                                <a href="#range">range</a>
+                            </li>
+                            <li>
+                                <a href="#thumb">thumb</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#topRangeId">topRangeId</a>
+                            </li>
+                            <li>
+                                <a href="#track">track</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#convertToPx">convertToPx</a>
+                            </li>
+                            <li>
+                                <a href="#convertToValue">convertToValue</a>
+                            </li>
+                            <li>
+                                <a href="#decrementValue">decrementValue</a>
+                            </li>
+                            <li>
+                                <a href="#getFractionComplete">getFractionComplete</a>
+                            </li>
+                            <li>
+                                <a href="#incrementValue">incrementValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isTemplate">isTemplate</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#onChange">onChange</a>
+                            </li>
+                            <li>
+                                <a href="#onClick">onClick</a>
+                            </li>
+                            <li>
+                                <a href="#onFocus">onFocus</a>
+                            </li>
+                            <li>
+                                <a href="#onKeyDown">onKeyDown</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseDown">onMouseDown</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseMove">onMouseMove</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseUp">onMouseUp</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnChange">registerOnChange</a>
+                            </li>
+                            <li>
+                                <a href="#registerOnTouched">registerOnTouched</a>
+                            </li>
+                            <li>
+                                <a href="#scaleX">scaleX</a>
+                            </li>
+                            <li>
+                                <a href="#writeValue">writeValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disableArrowKeys">disableArrowKeys</a>
+                            </li>
+                            <li>
+                                <a href="#disabled">disabled</a>
+                            </li>
+                            <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#label">label</a>
+                            </li>
+                            <li>
+                                <a href="#max">max</a>
+                            </li>
+                            <li>
+                                <a href="#min">min</a>
+                            </li>
+                            <li>
+                                <a href="#shiftMultiplier">shiftMultiplier</a>
+                            </li>
+                            <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
+                                <a href="#step">step</a>
+                            </li>
+                            <li>
+                                <a href="#value">value</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#valueChange">valueChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.bx--form-item">class.bx--form-item</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#min">min</a>
+                                </li>
+                                <li>
+                                    <a href="#max">max</a>
+                                </li>
+                                <li>
+                                    <a href="#value">value</a>
+                                </li>
+                                <li>
+                                    <a href="#disabled">disabled</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/slider/slider.component.ts:224</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="disableArrowKeys"></a>
+                        <code>disableArrowKeys</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> for a slider without arrow key interactions. </p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/slider/slider.component.ts:191</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="disabled"></a>
+                        <code>disabled</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Disables the range visually and functionally </p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/slider/slider.component.ts:193</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="id"></a>
+                        <code>id</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Base ID for the slider. The min and max labels get IDs <code>${this.id}-bottom-range</code> and <code>${this.id}-top-range</code> respectively </p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>&#x60;slider-${Slider.count++}&#x60;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/slider/slider.component.ts:183</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="label"></a>
+                        <code>label</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Sets the text inside the <code>label</code> tag </p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>string | TemplateRef&lt;any&gt;</code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/slider/slider.component.ts:189</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="max"></a>
+                        <code>max</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>The upper bound of our range </p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/slider/slider.component.ts:135</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="min"></a>
+                        <code>min</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>The lower bound of our range </p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/slider/slider.component.ts:125</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="shiftMultiplier"></a>
+                        <code>shiftMultiplier</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Value used to &quot;multiply&quot; the <code>step</code> when using arrow keys to select values </p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>4</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/slider/slider.component.ts:185</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> for a loading slider </p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/slider/slider.component.ts:187</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="step"></a>
+                        <code>step</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>The interval for our range </p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>1</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/slider/slider.component.ts:146</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="value"></a>
+                        <code>value</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set the initial value. Available for two way binding </p>
+</div>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/slider/slider.component.ts:148</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="valueChange"></a>
+                        <code>valueChange</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits every time a new value is selected </p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code>EventEmitter&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/slider/slider.component.ts:206</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--form-item"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--form-item
+                            </b>
+                            <a href="#class.bx--form-item"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--form-item:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/slider/slider.component.ts:207</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convertToPx"></a>
+                        <span class="name">
+                            <b>
+                            convertToPx
+                            </b>
+                            <a href="#convertToPx"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>convertToPx(value)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="309" class="link-to-prism">src/slider/slider.component.ts:309</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Converts a given &quot;real&quot; value to a px value we can update the view with </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convertToValue"></a>
+                        <span class="name">
+                            <b>
+                            convertToValue
+                            </b>
+                            <a href="#convertToValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>convertToValue(pxAmount)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/slider/slider.component.ts:298</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Converts a given px value to a &quot;real&quot; value in our range </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>pxAmount</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="decrementValue"></a>
+                        <span class="name">
+                            <b>
+                            decrementValue
+                            </b>
+                            <a href="#decrementValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>decrementValue(multiplier: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="341" class="link-to-prism">src/slider/slider.component.ts:341</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Decrements the value by the step value, or the step value multiplied by the <code>multiplier</code> argument.</p>
+</div>
+
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getFractionComplete"></a>
+                        <span class="name">
+                            <b>
+                            getFractionComplete
+                            </b>
+                            <a href="#getFractionComplete"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getFractionComplete(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/slider/slider.component.ts:283</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns the amount of &quot;completeness&quot; of a value as a fraction of the total track width</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incrementValue"></a>
+                        <span class="name">
+                            <b>
+                            incrementValue
+                            </b>
+                            <a href="#incrementValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>incrementValue(multiplier: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="332" class="link-to-prism">src/slider/slider.component.ts:332</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Increments the value by the step value, or the step value multiplied by the <code>multiplier</code> argument.</p>
+</div>
+
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isTemplate"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            isTemplate
+                            </b>
+                            <a href="#isTemplate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>isTemplate(value)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="413" class="link-to-prism">src/slider/slider.component.ts:413</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngAfterViewInit"></a>
+                        <span class="name">
+                            <b>
+                            ngAfterViewInit
+                            </b>
+                            <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/slider/slider.component.ts:228</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnDestroy"></a>
+                        <span class="name">
+                            <b>
+                            ngOnDestroy
+                            </b>
+                            <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/slider/slider.component.ts:253</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Clean up our DOMEvent subscriptions </p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onChange"></a>
+                        <span class="name">
+                            <b>
+                            onChange
+                            </b>
+                            <a href="#onChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onChange(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="346" class="link-to-prism">src/slider/slider.component.ts:346</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Change handler for the optional input </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onClick"></a>
+                        <span class="name">
+                            <b>
+                            onClick
+                            </b>
+                            <a href="#onClick"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onClick(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="351" class="link-to-prism">src/slider/slider.component.ts:351</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Handles clicks on the range track, and setting the value to it&#39;s &quot;real&quot; equivalent </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onFocus"></a>
+                        <span class="name">
+                            <b>
+                            onFocus
+                            </b>
+                            <a href="#onFocus"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onFocus(undefined)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">src/slider/slider.component.ts:358</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Focus handler for the optional input </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onKeyDown"></a>
+                        <span class="name">
+                            <b>
+                            onKeyDown
+                            </b>
+                            <a href="#onKeyDown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onKeyDown(event: KeyboardEvent)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="398" class="link-to-prism">src/slider/slider.component.ts:398</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Calls <code>incrementValue</code> for ArrowRight and ArrowUp, <code>decrementValue</code> for ArrowLeft and ArrowDown </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                    <code>KeyboardEvent</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMouseDown"></a>
+                        <span class="name">
+                            <b>
+                            onMouseDown
+                            </b>
+                            <a href="#onMouseDown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onMouseDown(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="385" class="link-to-prism">src/slider/slider.component.ts:385</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Enables the <code>onMouseMove</code> handler </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMouseMove"></a>
+                        <span class="name">
+                            <b>
+                            onMouseMove
+                            </b>
+                            <a href="#onMouseMove"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onMouseMove(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/slider/slider.component.ts:363</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Mouse move handler. Responsible for updating the value and visual selection based on mouse movement </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMouseUp"></a>
+                        <span class="name">
+                            <b>
+                            onMouseUp
+                            </b>
+                            <a href="#onMouseUp"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onMouseUp()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="393" class="link-to-prism">src/slider/slider.component.ts:393</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Disables the <code>onMouseMove</code> handler </p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="registerOnChange"></a>
+                        <span class="name">
+                            <b>
+                            registerOnChange
+                            </b>
+                            <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/slider/slider.component.ts:263</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Register a change propagation function for <code>ControlValueAccessor</code> </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fn</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="registerOnTouched"></a>
+                        <span class="name">
+                            <b>
+                            registerOnTouched
+                            </b>
+                            <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/slider/slider.component.ts:271</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Register a callback to notify when our input has been touched </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fn</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="scaleX"></a>
+                        <span class="name">
+                            <b>
+                            scaleX
+                            </b>
+                            <a href="#scaleX"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>scaleX(complete)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/slider/slider.component.ts:293</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Helper function to return the CSS transform <code>scaleX</code> function </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>complete</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="writeValue"></a>
+                        <span class="name">
+                            <b>
+                            writeValue
+                            </b>
+                            <a href="#writeValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>writeValue(v: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/slider/slider.component.ts:276</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Receives a value from the model </p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>v</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_disabled"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _disabled
+                            </b>
+                            <a href="#_disabled"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_disabled:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/slider/slider.component.ts:224</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_max"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _max
+                            </b>
+                            <a href="#_max"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_max:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>100</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/slider/slider.component.ts:222</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_min"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _min
+                            </b>
+                            <a href="#_min"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_min:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/slider/slider.component.ts:221</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_value"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _value
+                            </b>
+                            <a href="#_value"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_value:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.min</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/slider/slider.component.ts:223</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bottomRangeId"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            bottomRangeId
+                            </b>
+                            <a href="#bottomRangeId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>bottomRangeId:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x60;${this.id}-bottom-range&#x60;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/slider/slider.component.ts:213</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="count"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                            count
+                            </b>
+                            <a href="#count"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>count:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/slider/slider.component.ts:123</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Used to generate unique IDs </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventSubscriptions"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            eventSubscriptions
+                            </b>
+                            <a href="#eventSubscriptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>eventSubscriptions:     <code>Array&lt;Subscription&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Array&lt;Subscription&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/slider/slider.component.ts:219</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of event subscriptions so we can batch unsubscribe in <code>ngOnDestroy</code> </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filledTrack"></a>
+                        <span class="name">
+                            <b>
+                            filledTrack
+                            </b>
+                            <a href="#filledTrack"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>filledTrack:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;filledTrack&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/slider/slider.component.ts:210</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fractionComplete"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            fractionComplete
+                            </b>
+                            <a href="#fractionComplete"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>fractionComplete:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/slider/slider.component.ts:215</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="input"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            input
+                            </b>
+                            <a href="#input"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>input:     <code>HTMLInputElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLInputElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/slider/slider.component.ts:220</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isMouseDown"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            isMouseDown
+                            </b>
+                            <a href="#isMouseDown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>isMouseDown:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/slider/slider.component.ts:217</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onTouched"></a>
+                        <span class="name">
+                            <b>
+                            onTouched
+                            </b>
+                            <a href="#onTouched"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>onTouched:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; { }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/slider/slider.component.ts:268</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Callback to notify the model when our input has been touched </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="propagateChange"></a>
+                        <span class="name">
+                            <b>
+                            propagateChange
+                            </b>
+                            <a href="#propagateChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>propagateChange:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(_: any) &#x3D;&gt; { }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/slider/slider.component.ts:260</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Send changes back to the model </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="range"></a>
+                        <span class="name">
+                            <b>
+                            range
+                            </b>
+                            <a href="#range"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>range:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;range&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/slider/slider.component.ts:211</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="thumb"></a>
+                        <span class="name">
+                            <b>
+                            thumb
+                            </b>
+                            <a href="#thumb"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>thumb:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;thumb&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/slider/slider.component.ts:208</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="topRangeId"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            topRangeId
+                            </b>
+                            <a href="#topRangeId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>topRangeId:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x60;${this.id}-top-range&#x60;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/slider/slider.component.ts:214</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="track"></a>
+                        <span class="name">
+                            <b>
+                            track
+                            </b>
+                            <a href="#track"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>track:     <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;track&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/slider/slider.component.ts:209</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="min"></a>
+                        <span class="name"><b>min</b><a href="#min"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>min()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/slider/slider.component.ts:131</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>min(v)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/slider/slider.component.ts:125</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The lower bound of our range </p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="max"></a>
+                        <span class="name"><b>max</b><a href="#max"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>max()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/slider/slider.component.ts:142</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>max(v)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/slider/slider.component.ts:135</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The upper bound of our range </p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>value()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/slider/slider.component.ts:179</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>value(v)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/slider/slider.component.ts:148</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set the initial value. Available for two way binding </p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <span class="name"><b>disabled</b><a href="#disabled"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>disabled()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/slider/slider.component.ts:202</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>disabled(v)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/slider/slider.component.ts:193</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Disables the range visually and functionally </p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	HostBinding,
+	Input,
+	Output,
+	EventEmitter,
+	AfterViewInit,
+	OnDestroy,
+	ViewChild,
+	ElementRef,
+	TemplateRef
+} from &quot;@angular/core&quot;;
+import { fromEvent, Subscription } from &quot;rxjs&quot;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
+
+/**
+ * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
+ *
+ * [See demo](../../?path&#x3D;/story/slider--advanced)
+ *
+ * The simplest possible slider usage looks something like:
+ * &#x60;&#x60;&#x60;html
+ * &lt;ibm-slider&gt;&lt;/ibm-slider&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * That will render a slider without labels or alternative value input. Labels can be provided by
+ * elements with &#x60;[minLabel]&#x60; and &#x60;[maxLabel]&#x60; attributes, and an &#x60;input&#x60; (may use the &#x60;ibmInput&#x60; directive) can be supplied
+ * for use as an alternative value field.
+ *
+ * ex:
+ * &#x60;&#x60;&#x60;html
+ * &lt;!-- full example --&gt;
+ * &lt;ibm-slider&gt;
+ *		&lt;span minLabel&gt;0GB&lt;/span&gt;
+ *		&lt;span maxLabel&gt;100GB&lt;/span&gt;
+ *		&lt;input/&gt;
+ *	&lt;/ibm-slider&gt;
+ * &lt;!-- with just an input --&gt;
+ * &lt;ibm-slider&gt;
+ *		&lt;input/&gt;
+ *	&lt;/ibm-slider&gt;
+ * &lt;!-- with just one label --&gt;
+ * &lt;ibm-slider&gt;
+ *		&lt;span maxLabel&gt;Maximum&lt;/span&gt;
+ *	&lt;/ibm-slider&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * Slider supports &#x60;NgModel&#x60; by default, as well as two way binding to the &#x60;value&#x60; input.
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;slider--advanced&lt;/example-url&gt;
+ */
+@Component({
+	selector: &quot;ibm-slider&quot;,
+	template: &#x60;
+		&lt;ng-container *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate&quot;&gt;
+			&lt;label *ngIf&#x3D;&quot;label&quot; for&#x3D;&quot;slider&quot; class&#x3D;&quot;bx--label&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+			&lt;/label&gt;
+			&lt;div class&#x3D;&quot;bx--slider-container&quot;&gt;
+				&lt;label [id]&#x3D;&quot;bottomRangeId&quot; class&#x3D;&quot;bx--slider__range-label&quot;&gt;
+					&lt;ng-content select&#x3D;&quot;[minLabel]&quot;&gt;&lt;/ng-content&gt;
+				&lt;/label&gt;
+				&lt;div
+					class&#x3D;&quot;bx--slider&quot;
+					[ngClass]&#x3D;&quot;{&#x27;bx--slider--disabled&#x27;: disabled}&quot;&gt;
+					&lt;div
+						#thumb
+						class&#x3D;&quot;bx--slider__thumb&quot;
+						tabindex&#x3D;&quot;0&quot;
+						(mousedown)&#x3D;&quot;onMouseDown($event)&quot;
+						(keydown)&#x3D;&quot;onKeyDown($event)&quot;&gt;
+					&lt;/div&gt;
+					&lt;div
+						#track
+						class&#x3D;&quot;bx--slider__track&quot;
+						(click)&#x3D;&quot;onClick($event)&quot;&gt;
+					&lt;/div&gt;
+					&lt;div
+						#filledTrack
+						class&#x3D;&quot;bx--slider__filled-track&quot;&gt;
+					&lt;/div&gt;
+					&lt;input
+						#range
+						aria-label&#x3D;&quot;slider&quot;
+						class&#x3D;&quot;bx--slider__input&quot;
+						type&#x3D;&quot;range&quot;
+						[step]&#x3D;&quot;step&quot;
+						[min]&#x3D;&quot;min&quot;
+						[max]&#x3D;&quot;max&quot;
+						[value]&#x3D;&quot;value.toString()&quot;&gt;
+				&lt;/div&gt;
+				&lt;label [id]&#x3D;&quot;topRangeId&quot; class&#x3D;&quot;bx--slider__range-label&quot;&gt;
+					&lt;ng-content select&#x3D;&quot;[maxLabel]&quot;&gt;&lt;/ng-content&gt;
+				&lt;/label&gt;
+				&lt;ng-content select&#x3D;&quot;input&quot;&gt;&lt;/ng-content&gt;
+			&lt;/div&gt;
+		&lt;/ng-container&gt;
+
+		&lt;ng-template #skeletonTemplate&gt;
+			&lt;label *ngIf&#x3D;&quot;label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
+			&lt;div class&#x3D;&quot;bx--slider-container bx--skeleton&quot;&gt;
+				&lt;span class&#x3D;&quot;bx--slider__range-label&quot;&gt;&lt;/span&gt;
+				&lt;div class&#x3D;&quot;bx--slider&quot;&gt;
+					&lt;div class&#x3D;&quot;bx--slider__thumb&quot;&gt;&lt;/div&gt;
+					&lt;div class&#x3D;&quot;bx--slider__track&quot;&gt;&lt;/div&gt;
+					&lt;div class&#x3D;&quot;bx--slider__filled-track&quot;&gt;&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;span class&#x3D;&quot;bx--slider__range-label&quot;&gt;&lt;/span&gt;
+			&lt;/div&gt;
+		&lt;/ng-template&gt;
+	&#x60;,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: Slider,
+			multi: true
+		}
+	]
+})
+export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
+	/** Used to generate unique IDs */
+	private static count &#x3D; 0;
+	/** The lower bound of our range */
+	@Input() set min(v) {
+		if (!v) { return; }
+		this._min &#x3D; v;
+		// force the component to update
+		this.value &#x3D; this.value;
+	}
+	get min() {
+		return this._min;
+	}
+	/** The upper bound of our range */
+	@Input() set max(v) {
+		if (!v) { return; }
+		this._max &#x3D; v;
+		// force the component to update
+		this.value &#x3D; this.value;
+	}
+
+	get max() {
+		return this._max;
+	}
+	/** The interval for our range */
+	@Input() step &#x3D; 1;
+	/** Set the initial value. Available for two way binding */
+	@Input() set value(v) {
+		if (!v) {
+			v &#x3D; this.min;
+		}
+
+		if (v &gt; this.max) {
+			v &#x3D; this.max;
+		}
+
+		if (v &lt; this.min) {
+			v &#x3D; this.min;
+		}
+
+		this._value &#x3D; v;
+
+		if (this.thumb) {
+			this.thumb.nativeElement.style.left &#x3D; &#x60;${this.getFractionComplete(v) * 100}%&#x60;;
+		}
+
+		if (this.filledTrack) {
+			this.filledTrack.nativeElement.style.transform &#x3D; &#x60;translate(0%, -50%) ${this.scaleX(this.getFractionComplete(v))}&#x60;;
+		}
+
+		if (this.input) {
+			this.input.value &#x3D; v.toString();
+		}
+
+		this.propagateChange(v);
+		this.valueChange.emit(v);
+	}
+
+	get value() {
+		return this._value;
+	}
+	/** Base ID for the slider. The min and max labels get IDs &#x60;${this.id}-bottom-range&#x60; and &#x60;${this.id}-top-range&#x60; respectively */
+	@Input() id &#x3D; &#x60;slider-${Slider.count++}&#x60;;
+	/** Value used to &quot;multiply&quot; the &#x60;step&#x60; when using arrow keys to select values */
+	@Input() shiftMultiplier &#x3D; 4;
+	/** Set to &#x60;true&#x60; for a loading slider */
+	@Input() skeleton &#x3D; false;
+	/** Sets the text inside the &#x60;label&#x60; tag */
+	@Input() label: string | TemplateRef&lt;any&gt;;
+	/** Set to &#x60;true&#x60; for a slider without arrow key interactions. */
+	@Input() disableArrowKeys &#x3D; false;
+	/** Disables the range visually and functionally */
+	@Input() set disabled(v) {
+		this._disabled &#x3D; v;
+		// for some reason &#x60;this.input&#x60; never exists here, so we have to query for it here too
+		const input &#x3D; this.elementRef.nativeElement.querySelector(&quot;input:not([type&#x3D;range])&quot;);
+		if (input) {
+			input.disabled &#x3D; v;
+		}
+	}
+
+	get disabled() {
+		return this._disabled;
+	}
+	/** Emits every time a new value is selected */
+	@Output() valueChange: EventEmitter&lt;number&gt; &#x3D; new EventEmitter();
+	@HostBinding(&quot;class.bx--form-item&quot;) hostClass &#x3D; true;
+	@ViewChild(&quot;thumb&quot;) thumb: ElementRef;
+	@ViewChild(&quot;track&quot;) track: ElementRef;
+	@ViewChild(&quot;filledTrack&quot;) filledTrack: ElementRef;
+	@ViewChild(&quot;range&quot;) range: ElementRef;
+
+	public bottomRangeId &#x3D; &#x60;${this.id}-bottom-range&#x60;;
+	public topRangeId &#x3D; &#x60;${this.id}-top-range&#x60;;
+	public fractionComplete &#x3D; 0;
+
+	protected isMouseDown &#x3D; false;
+	/** Array of event subscriptions so we can batch unsubscribe in &#x60;ngOnDestroy&#x60; */
+	protected eventSubscriptions: Array&lt;Subscription&gt; &#x3D; [];
+	protected input: HTMLInputElement;
+	protected _min &#x3D; 0;
+	protected _max &#x3D; 100;
+	protected _value &#x3D; this.min;
+	protected _disabled &#x3D; false;
+
+	constructor(protected elementRef: ElementRef) {}
+
+	ngAfterViewInit() {
+		// bind mousemove and mouseup to the document so we don&#x27;t have issues tracking the mouse
+		this.eventSubscriptions.push(fromEvent(document, &quot;mousemove&quot;).subscribe(this.onMouseMove.bind(this)));
+		this.eventSubscriptions.push(fromEvent(document, &quot;mouseup&quot;).subscribe(this.onMouseUp.bind(this)));
+
+		// apply any values we got from before the view initialized
+		this.value &#x3D; this.value;
+
+		// TODO: ontouchstart/ontouchmove/ontouchend
+
+		// set up the optional input
+		this.input &#x3D; this.elementRef.nativeElement.querySelector(&quot;input:not([type&#x3D;range])&quot;);
+		if (this.input) {
+			this.input.type &#x3D; &quot;number&quot;;
+			this.input.classList.add(&quot;bx--slider-text-input&quot;);
+			this.input.classList.add(&quot;bx--text-input&quot;);
+			this.input.setAttribute(&quot;aria-labelledby&quot;, &#x60;${this.bottomRangeId} ${this.topRangeId}&#x60;);
+			this.input.value &#x3D; this.value.toString();
+			// bind events on our optional input
+			this.eventSubscriptions.push(fromEvent(this.input, &quot;change&quot;).subscribe(this.onChange.bind(this)));
+			this.eventSubscriptions.push(fromEvent(this.input, &quot;focus&quot;).subscribe(this.onFocus.bind(this)));
+		}
+	}
+
+	/** Clean up our DOMEvent subscriptions */
+	ngOnDestroy() {
+		this.eventSubscriptions.forEach(subscription &#x3D;&gt; {
+			subscription.unsubscribe();
+		});
+	}
+
+	/** Send changes back to the model */
+	propagateChange &#x3D; (_: any) &#x3D;&gt; { };
+
+	/** Register a change propagation function for &#x60;ControlValueAccessor&#x60; */
+	registerOnChange(fn: any) {
+		this.propagateChange &#x3D; fn;
+	}
+
+	/** Callback to notify the model when our input has been touched */
+	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; { };
+
+	/** Register a callback to notify when our input has been touched */
+	registerOnTouched(fn: any) {
+		this.onTouched &#x3D; fn;
+	}
+
+	/** Receives a value from the model */
+	writeValue(v: any) {
+		this.value &#x3D; v;
+	}
+
+	/**
+	 * Returns the amount of &quot;completeness&quot; of a value as a fraction of the total track width
+	 */
+	getFractionComplete(value: number) {
+		if (!this.track) {
+			return 0;
+		}
+
+		const trackWidth &#x3D; this.track.nativeElement.getBoundingClientRect().width;
+		return this.convertToPx(value) / trackWidth;
+	}
+
+	/** Helper function to return the CSS transform &#x60;scaleX&#x60; function */
+	scaleX(complete) {
+		return &#x60;scaleX(${complete})&#x60;;
+	}
+
+	/** Converts a given px value to a &quot;real&quot; value in our range */
+	convertToValue(pxAmount) {
+		// basic concept borrowed from carbon-components
+		// ref: https://github.com/IBM/carbon-components/blob/43bf3abdc2f8bdaa38aa84e0f733adde1e1e8894/src/components/slider/slider.js#L147-L151
+		const range &#x3D; this.max - this.min;
+		const trackWidth &#x3D; this.track.nativeElement.getBoundingClientRect().width;
+		const unrounded &#x3D; pxAmount / trackWidth;
+		const rounded &#x3D; Math.round((range * unrounded) / this.step) * this.step;
+		return rounded + this.min;
+	}
+
+	/** Converts a given &quot;real&quot; value to a px value we can update the view with */
+	convertToPx(value) {
+		if (!this.track) {
+			return 0;
+		}
+
+		const trackWidth &#x3D; this.track.nativeElement.getBoundingClientRect().width;
+		if (value &gt;&#x3D; this.max) {
+			return trackWidth;
+		}
+
+		if (value &lt;&#x3D; this.min) {
+			return 0;
+		}
+
+		// account for value shifting by subtracting min from value and max
+		return Math.round(trackWidth * ((value - this.min) / (this.max - this.min)));
+	}
+
+	/**
+	 * Increments the value by the step value, or the step value multiplied by the &#x60;multiplier&#x60; argument.
+	 *
+	 * @argument multiplier Defaults to &#x60;1&#x60;, multiplied with the step value.
+	 */
+	incrementValue(multiplier &#x3D; 1) {
+		this.value &#x3D; this.value + (this.step * multiplier);
+	}
+
+	/**
+	 * Decrements the value by the step value, or the step value multiplied by the &#x60;multiplier&#x60; argument.
+	 *
+	 * @argument multiplier Defaults to &#x60;1&#x60;, multiplied with the step value.
+	 */
+	decrementValue(multiplier &#x3D; 1) {
+		this.value &#x3D; this.value - (this.step * multiplier);
+	}
+
+	/** Change handler for the optional input */
+	onChange(event) {
+		this.value &#x3D; event.target.value;
+	}
+
+	/** Handles clicks on the range track, and setting the value to it&#x27;s &quot;real&quot; equivalent */
+	onClick(event) {
+		if (this.disabled) { return; }
+		const trackLeft &#x3D; this.track.nativeElement.getBoundingClientRect().left;
+		this.value &#x3D; this.convertToValue(event.clientX - trackLeft);
+	}
+
+	/** Focus handler for the optional input */
+	onFocus({target}) {
+		target.select();
+	}
+
+	/** Mouse move handler. Responsible for updating the value and visual selection based on mouse movement */
+	onMouseMove(event) {
+		if (this.disabled || !this.isMouseDown) { return; }
+		const track &#x3D; this.track.nativeElement.getBoundingClientRect();
+		if (
+			event.clientX - track.left &lt;&#x3D; track.width
+			&amp;&amp; event.clientX - track.left &gt;&#x3D; 0
+		) {
+			this.value &#x3D; this.convertToValue(event.clientX - track.left);
+		}
+
+		// if the mouse is beyond the max, set the value to &#x60;max&#x60;
+		if (event.clientX - track.left &gt; track.width) {
+			this.value &#x3D; this.max;
+		}
+
+		// if the mouse is below the min, set the value to &#x60;min&#x60;
+		if (event.clientX - track.left &lt; 0) {
+			this.value &#x3D; this.min;
+		}
+	}
+
+	/** Enables the &#x60;onMouseMove&#x60; handler */
+	onMouseDown(event) {
+		event.preventDefault();
+		if (this.disabled) { return; }
+		this.thumb.nativeElement.focus();
+		this.isMouseDown &#x3D; true;
+	}
+
+	/** Disables the &#x60;onMouseMove&#x60; handler */
+	onMouseUp() {
+		this.isMouseDown &#x3D; false;
+	}
+
+	/** Calls &#x60;incrementValue&#x60; for ArrowRight and ArrowUp, &#x60;decrementValue&#x60; for ArrowLeft and ArrowDown */
+	onKeyDown(event: KeyboardEvent) {
+		if (this.disableArrowKeys) {
+			return;
+		}
+		event.preventDefault();
+		const multiplier &#x3D; event.shiftKey ? this.shiftMultiplier : 1;
+		if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowLeft&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot;) {
+			this.decrementValue(multiplier);
+		}
+
+		if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowRight&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;ArrowUp&quot;) {
+			this.incrementValue(multiplier);
+		}
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;slider--advanced">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate">	<label *ngIf="label" for="slider" class="bx--label">		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>	</label>	<div class="bx--slider-container">		<label [id]="bottomRangeId" class="bx--slider__range-label">			<ng-content select="[minLabel]"></ng-content>		</label>		<div			class="bx--slider"			[ngClass]="{\'bx--slider--disabled\': disabled}">			<div				#thumb				class="bx--slider__thumb"				tabindex="0"				(mousedown)="onMouseDown($event)"				(keydown)="onKeyDown($event)">			</div>			<div				#track				class="bx--slider__track"				(click)="onClick($event)">			</div>			<div				#filledTrack				class="bx--slider__filled-track">			</div>			<input				#range				aria-label="slider"				class="bx--slider__input"				type="range"				[step]="step"				[min]="min"				[max]="max"				[value]="value.toString()">		</div>		<label [id]="topRangeId" class="bx--slider__range-label">			<ng-content select="[maxLabel]"></ng-content>		</label>		<ng-content select="input"></ng-content>	</div></ng-container><ng-template #skeletonTemplate>	<label *ngIf="label" class="bx--label bx--skeleton"></label>	<div class="bx--slider-container bx--skeleton">		<span class="bx--slider__range-label"></span>		<div class="bx--slider">			<div class="bx--slider__thumb"></div>			<div class="bx--slider__track"></div>			<div class="bx--slider__filled-track"></div>		</div>		<span class="bx--slider__range-label"></span>	</div></ng-template>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+    var ACTUAL_COMPONENT = {'name': 'Slider'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Slider.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
