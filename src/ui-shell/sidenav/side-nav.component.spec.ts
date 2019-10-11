@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { TestBed, async } from "@angular/core/testing";
-import { By  } from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 
 import { CommonModule } from "@angular/common";
 import { I18nModule } from "./../../i18n/i18n.module";
@@ -16,14 +16,14 @@ import { RouterModule } from "@angular/router";
 class FooComponent {}
 
 @Component({
-    template: `
-	<ibm-sidenav [allowExpansion]="allowExpansion" [hidden]="hidden">
-		<ibm-sidenav-menu title="Example Title"></ibm-sidenav-menu>
-		<ibm-sidenav-item
-			[route]="route"
-			(navigation)="onNavigation($event)">
-		</ibm-sidenav-item>
-	</ibm-sidenav>
+	template: `
+		<ibm-sidenav [allowExpansion]="allowExpansion" [hidden]="hidden">
+			<ibm-sidenav-menu title="Example Title"></ibm-sidenav-menu>
+			<ibm-sidenav-item
+				[route]="route"
+				(navigation)="onNavigation($event)">
+			</ibm-sidenav-item>
+		</ibm-sidenav>
 	`
 })
 class SideNavTest {
@@ -55,7 +55,8 @@ describe("SideNav", () => {
 						path: "foo",
 						component: FooComponent
 					}
-				], {
+				], 
+				{
 					initialNavigation: false,
 					useHash: true
 				})
