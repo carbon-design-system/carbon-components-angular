@@ -26,6 +26,7 @@ const noop = () => {};
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
 				<button
+					type="button"
 					ibmButton="primary"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
