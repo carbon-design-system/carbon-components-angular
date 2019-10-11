@@ -143,7 +143,6 @@ export class FileUploader implements OnInit {
 		// overrides the undefined files value set by the user
 		if (!this.files) {
 			this.files = new Set();
-			this.filesChange.emit(this.files);
 		}
 	}
 
