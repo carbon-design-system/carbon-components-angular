@@ -76,7 +76,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						aria-hidden="true">
 						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
 					</svg>
-					</div>
+				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
 					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
