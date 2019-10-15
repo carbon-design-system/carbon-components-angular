@@ -25,6 +25,7 @@ import { NotificationService } from "../notification/notification.service";
 			[title]="title"
 			[description]="description"
 			[buttonText]="buttonText"
+			[buttonType]="buttonType"
 			[accept]="accept"
 			[multiple]="multiple"
 			[skeleton]="skeleton"
@@ -46,6 +47,7 @@ class FileUploaderStory {
 	@Input() title;
 	@Input() description;
 	@Input() buttonText;
+	@Input() buttonType = "primary";
 	@Input() accept;
 	@Input() multiple;
 	@Input() skeleton = false;
@@ -89,6 +91,7 @@ class FileUploaderStory {
 			[title]="title"
 			[description]="description"
 			[buttonText]="buttonText"
+			[buttonType]="buttonType"
 			[accept]="accept"
 			[multiple]="multiple"
 			[size]="size"
@@ -108,6 +111,7 @@ class NgModelFileUploaderStory {
 	@Input() title;
 	@Input() description;
 	@Input() buttonText;
+	@Input() buttonType = "primary";
 	@Input() accept;
 	@Input() multiple;
 	@Input() size = "normal";
@@ -158,6 +162,7 @@ storiesOf("File Uploader", module)
 				[title]="title"
 				[description]="description"
 				[buttonText]="buttonText"
+				[buttonType]="buttonType"
 				[accept]="accept"
 				[multiple]="multiple"
 				[size]="size">
@@ -167,6 +172,13 @@ storiesOf("File Uploader", module)
 			title: text("The title", "Account Photo"),
 			description: text("The description", "only .jpg and .png files. 500kb max file size."),
 			buttonText: text("Button text", "Add files"),
+			buttonType: select("Button type", {
+				Primary: "primary",
+				Secondary: "secondary",
+				Tertiary: "tertiary",
+				Ghost: "ghost",
+				Danger: "danger"
+			}, "primary"),
 			size: select("size", {Small: "sm", Normal: "normal"}, "normal"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
@@ -178,6 +190,7 @@ storiesOf("File Uploader", module)
 				[title]="title"
 				[description]="description"
 				[buttonText]="buttonText"
+				[buttonType]="buttonType"
 				[accept]="accept"
 				[multiple]="multiple"
 				[size]="size">
@@ -187,6 +200,13 @@ storiesOf("File Uploader", module)
 			title: text("The title", "Account Photo"),
 			description: text("The description", "only .jpg and .png files. 500kb max file size."),
 			buttonText: text("Button text", "Add files"),
+			buttonType: select("Button type", {
+				Primary: "primary",
+				Secondary: "secondary",
+				Tertiary: "tertiary",
+				Ghost: "ghost",
+				Danger: "danger"
+			}, "danger--primary"),
 			size: select("size", {Small: "sm", Normal: "normal"}, "normal"),
 			accept: array("Accepted file extensions", [".png", ".jpg"], ","),
 			multiple: boolean("Supports multiple files", true)
