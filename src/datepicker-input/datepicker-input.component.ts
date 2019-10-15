@@ -36,9 +36,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[id]= "id"
 						[disabled]="disabled"
 						(change)="onChange($event)"/>
-						<ibm-icon-calendar16
-							class="bx--date-picker__icon"
-							(click)="onClick()">
+						<ibm-icon-calendar16 class="bx--date-picker__icon">
 						</ibm-icon-calendar16>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
@@ -78,8 +76,6 @@ export class DatePickerInput {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
-	@Output() selected = new EventEmitter();
-
 	@Input() theme: "light" | "dark" = "dark";
 
 	@Input() disabled = false;
@@ -99,10 +95,6 @@ export class DatePickerInput {
 		this.valueChange.emit(this.value);
 		this.propagateChange(this.value);
 		this.onTouched();
-	}
-
-	onClick() {
-		this.selected.emit();
 	}
 
 	public writeValue(value: any) {
