@@ -48,7 +48,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
 						(valueChange)="onValueChange($event)"
-						(toggleCalendar)="onToggleCalendar($event)">
+						(selected)="flatpickrInstance.open()">
 					</ibm-date-picker-input>
 				</div>
 
@@ -64,7 +64,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)">
+						(valueChange)="onRangeValueChange($event)"
+						(selected)="flatpickrInstance.open()">
 					</ibm-date-picker-input>
 				</div>
 			</div>
@@ -253,14 +254,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 				this.setDateValues([date]);
 			}
 			this.doSelect(this.flatpickrInstance.selectedDates);
-		}
-	}
-
-	onToggleCalendar(event: boolean) {
-		if (event) {
-			this.flatpickrInstance.open();
-		} else {
-			this.flatpickrInstance.close();
 		}
 	}
 

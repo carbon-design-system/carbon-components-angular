@@ -78,7 +78,7 @@ export class DatePickerInput {
 
 	@Output() valueChange: EventEmitter<string> = new EventEmitter();
 
-	@Output() toggleCalendar: EventEmitter<boolean> = new EventEmitter();
+	@Output() selected = new EventEmitter();
 
 	@Input() theme: "light" | "dark" = "dark";
 
@@ -92,8 +92,6 @@ export class DatePickerInput {
 
 	@Input() value = "";
 
-	protected calendarOpen = false;
-
 	constructor(protected elementRef: ElementRef) {}
 
 	onChange(event) {
@@ -104,8 +102,7 @@ export class DatePickerInput {
 	}
 
 	onClick() {
-		this.calendarOpen = !this.calendarOpen;
-		this.toggleCalendar.emit(this.calendarOpen);
+		this.selected.emit();
 	}
 
 	public writeValue(value: any) {
