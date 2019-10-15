@@ -27,8 +27,8 @@ storiesOf("Overflow Menu", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-			<div style="display:flex">
-				<h1 style="padding-top:0.5rem">Bottom placement</h1>
+			<div>
+				<h1 style="margin-bottom:1rem">Bottom placement</h1>
 				<ibm-overflow-menu [flip]="flip">
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
@@ -42,8 +42,9 @@ storiesOf("Overflow Menu", module)
 					<ibm-overflow-menu-option type="danger" (selected)="selected($event)">Danger option</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
-
-				<h1 style="padding-top:0.5rem">Top placement</h1>
+			</div>
+			<div style="margin-top: 8rem">
+				<h1 style="margin-bottom:1rem">Top placement</h1>
 				<ibm-overflow-menu [flip]="flip" placement="top">
 					<ibm-overflow-menu-option (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
@@ -67,8 +68,8 @@ storiesOf("Overflow Menu", module)
 	}))
 	.add("With links", () => ({
 		template: `
-			<div style="display:flex">
-				<h1 style="padding-top:0.5rem">Bottom placement</h1>
+			<div>
+				<h1 style="margin-bottom:1rem">Bottom placement</h1>
 				<ibm-overflow-menu [flip]="flip" >
 					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
@@ -82,8 +83,9 @@ storiesOf("Overflow Menu", module)
 					</ibm-overflow-menu-option>
 				</ibm-overflow-menu>
 				<ibm-placeholder></ibm-placeholder>
-
-				<h1 style="padding-top:0.5rem">Top placement</h1>
+			</div>
+			<div style="margin-top: 8rem">
+				<h1 style="margin-bottom:1rem">Top placement</h1>
 				<ibm-overflow-menu [flip]="flip" placement="top">
 					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
