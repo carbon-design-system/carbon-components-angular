@@ -132,7 +132,13 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Sets the value attribute on the `input` element.
 	 */
-	@Input() value = 0;
+	@Input() set value(v) {
+		this._value = Number(v);
+	}
+
+	get value() {
+		return this._value;
+	}
 	/**
 	 * Sets the min attribute on the `input` element.
 	 */
@@ -157,6 +163,8 @@ export class NumberComponent implements ControlValueAccessor {
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<NumberChange>();
+
+	protected _value = 0;
 
 	/**
 	 * Creates an instance of `Number`.
@@ -231,7 +239,7 @@ export class NumberComponent implements ControlValueAccessor {
 	emitChangeEvent(): void {
 		let event = new NumberChange();
 		event.source = this;
-		event.value = Number(this.value);
+		event.value = this.value;
 		this.change.emit(event);
 		this.propagateChange(this.value);
 	}
