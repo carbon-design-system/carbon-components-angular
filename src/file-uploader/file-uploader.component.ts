@@ -26,7 +26,7 @@ const noop = () => {};
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
 				<button
-					ibmButton="primary"
+					[ibmButton]="buttonType"
 					(click)="fileInput.click()"
 					[attr.for]="fileUploaderId"
 					[size]="size">
@@ -77,6 +77,10 @@ export class FileUploader implements OnInit {
 	 * Defaults to the `FILE_UPLOADER.OPEN` value from the i18n service
 	 */
 	@Input() buttonText = this.i18n.get().FILE_UPLOADER.OPEN;
+	/**
+	 * Type set for button
+	 */
+	@Input() buttonType: "primary" | "secondary" | "tertiary" | "ghost" | "danger" = "primary";
 	/**
 	 * Text set to the title
 	 */
