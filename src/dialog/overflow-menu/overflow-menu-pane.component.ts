@@ -35,7 +35,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	}
 
 	onDialogInit() {
-		this.addGap["bottom"] = pos => {
+		this.addGap["bottom"] = this.addGap["top"] = pos => {
 			let offset;
 			if (this.experimental.isExperimental) {
 				/*
