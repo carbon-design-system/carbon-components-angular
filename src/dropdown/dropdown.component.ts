@@ -298,7 +298,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		if (!this.view) {
 			return;
 		}
-		this.writeValue(this.writtenValue);
+		if (this.writtenValue && this.writtenValue.length) {
+			this.writeValue(this.writtenValue);
+		}
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
