@@ -19,8 +19,7 @@ import { PaginationModel } from "./pagination-model.class";
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
 			[pagesUnknown]="pagesUnknown"
-			(selectPage)="selectPage($event)"
-			pageO>
+			(selectPage)="selectPage($event)">
 		</ibm-pagination>
 	`
 })
