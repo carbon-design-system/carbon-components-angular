@@ -39,7 +39,7 @@ import { filter } from "rxjs/operators";
 		</div>
 		<div
 			class="bx--combo-box bx--list-box"
-			[attr.data-invalid]="invalid ? false : null"
+			[attr.data-invalid]="(invalid ? true : null)"
 			[ngClass]="{'bx--multi-select' : type === 'multi'}">
 			<div
 				[attr.aria-expanded]="open"
@@ -165,7 +165,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	/**
 	 * Value displayed if dropdown is in invalid state.
 	 */
-	@Input() invalidText = "";
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
