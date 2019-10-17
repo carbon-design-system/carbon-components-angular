@@ -63,7 +63,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						class="bx--select__invalid-icon"
 						style="display: inherit;">
 					</ibm-icon-warning-filled16>
-					<ibm-icon-chevron-down16 *ngIf="!skeleton" class="bx--select__arrow" style="display: inherit;"></ibm-icon-chevron-down16>
+					<svg
+						*ngIf="!skeleton"
+						focusable="false"
+						preserveAspectRatio="xMidYMid meet"
+						style="will-change: transform;"
+						xmlns="http://www.w3.org/2000/svg"
+						class="bx--select__arrow"
+						width="10"
+						height="6"
+						viewBox="0 0 10 6"
+						aria-hidden="true">
+						<path d="M5 6L0 1 .7.3 5 4.6 9.3.3l.7.7z"></path>
+					</svg>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">
 					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
