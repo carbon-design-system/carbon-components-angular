@@ -41,7 +41,7 @@ import { I18n } from "../../i18n/i18n.module";
 			<a
 				*ngIf="!isTemplate(brand)"
 				class="bx--header__name"
-				href="#"
+				[href]="href"
 				(click)="navigate($event)">
 				<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
 				{{name}}

@@ -149,7 +149,7 @@ storiesOf("UI Shell", module)
 	}))
 	.add("Header with router", () => ({
 		template: `
-			<ibm-header name="[Platform]">
+			<ibm-header name="[Platform]" [route]="['bar']">
 				<ibm-header-navigation>
 					<ibm-header-item [route]="['foo']">Catalog</ibm-header-item>
 					<ibm-header-item [route]="['bar']">Docs</ibm-header-item>
