@@ -1,0 +1,901 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li>Overridable</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/i18n/i18n.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents an &quot;overridable&quot; translation value.</p>
+<p>Largely an internal usecase. There are situations where we want an <code>Observable</code> that
+can emit events from a centralized source <strong>OR</strong> an <code>Observable</code> that will emit events
+from a component local source. The key example being on/off text in a <code>Toggle</code> - In some cases
+we want the <code>Toggle</code> to use <code>I18n</code>s global translations, but in others we&#39;d prefer to use a local
+override. We don&#39;t ever need to return to a non-overridden state, but we do need the ability to
+switch <em>to</em> an overridden sate.</p>
+
+            </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_value">_value</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#$override">$override</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#baseTranslation">baseTranslation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#isOverridden">isOverridden</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#override">override</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#value">value</a>
+                                </li>
+                                <li>
+                                    <a href="#subject">subject</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/i18n/i18n.service.ts:93</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>path</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_value"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            _value
+                            </b>
+                            <a href="#_value"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>_value:     <code>string | Observable&lt;string&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string | Observable&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/i18n/i18n.service.ts:81</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Overridden value. Accessed by the readonly getter <code>value</code> and set through <code>override</code></p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="$override"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            $override
+                            </b>
+                            <a href="#$override"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>$override:     <code>BehaviorSubject&lt;string&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>BehaviorSubject&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/i18n/i18n.service.ts:85</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Subject of overridden values. Initialized with our default value.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="baseTranslation"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            baseTranslation
+                            </b>
+                            <a href="#baseTranslation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>baseTranslation:     <code>Observable&lt;string&gt;</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.get(this.path)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/i18n/i18n.service.ts:89</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Our base non-overridden translation.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isOverridden"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            isOverridden
+                            </b>
+                            <a href="#isOverridden"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>isOverridden:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/i18n/i18n.service.ts:93</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>A boolean to flip between overridden and non-overridden states.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="override"></a>
+                        <span class="name">
+                            <b>
+                            override
+                            </b>
+                            <a href="#override"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>override(value: string | Observable<string>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/i18n/i18n.service.ts:108</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Takes a string or an <code>Observable</code> that emits strings.
+Overrides the value provided by the <code>I18n</code> service.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                    <code>string | Observable&lt;string&gt;</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>value()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/i18n/i18n.service.ts:57</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The raw value of the translation. Defaults to the string value, but will return the value passed to <code>override</code></p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>string | Observable</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>value(v)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/i18n/i18n.service.ts:61</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>v</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="subject"></a>
+                        <span class="name"><b>subject</b><a href="#subject"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>subject()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/i18n/i18n.service.ts:70</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>The translation subject. Returns either a stream of overridden values, or our base translation values.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import {
+	BehaviorSubject,
+	Observable,
+	isObservable,
+	iif
+} from &quot;rxjs&quot;;
+import { map } from &quot;rxjs/operators&quot;;
+import { merge } from &quot;../utils/object&quot;;
+
+const EN &#x3D; require(&quot;./en.json&quot;);
+
+/**
+ * Takes the &#x60;Observable&#x60; returned from &#x60;i18n.get&#x60; and an object of variables to replace.
+ *
+ * The keys specify the variable name in the string.
+ *
+ * Example:
+ * &#x60;&#x60;&#x60;typescript
+ * service.set({ &quot;TEST&quot;: &quot;{{foo}} {{bar}}&quot; });
+ *
+ * service.replace(service.get(&quot;TEST&quot;), { foo: &quot;test&quot;, bar: &quot;asdf&quot; })
+ * &#x60;&#x60;&#x60;
+ *
+ * Produces: &#x60;&quot;test asdf&quot;&#x60;
+ *
+ * @param subject the translation to replace variables on
+ * @param variables object of variables to replace
+ */
+export const replace &#x3D; (subject, variables) &#x3D;&gt; subject.pipe(
+	map&lt;string, void&gt;(str &#x3D;&gt; {
+		const keys &#x3D; Object.keys(variables);
+		for (const key of keys) {
+			const value &#x3D; variables[key];
+			str &#x3D; str.replace(new RegExp(&#x60;{{\\s*${key}\\s*}}&#x60;, &quot;g&quot;), value);
+		}
+		return str;
+	})
+);
+
+/**
+ * Represents an &quot;overridable&quot; translation value.
+ *
+ * Largely an internal usecase. There are situations where we want an &#x60;Observable&#x60; that
+ * can emit events from a centralized source **OR** an &#x60;Observable&#x60; that will emit events
+ * from a component local source. The key example being on/off text in a &#x60;Toggle&#x60; - In some cases
+ * we want the &#x60;Toggle&#x60; to use &#x60;I18n&#x60;s global translations, but in others we&#x27;d prefer to use a local
+ * override. We don&#x27;t ever need to return to a non-overridden state, but we do need the ability to
+ * switch _to_ an overridden sate.
+ */
+export class Overridable {
+	/**
+	 * The raw value of the translation. Defaults to the string value, but will return the value passed to &#x60;override&#x60;
+	 *
+	 * @readonly
+	 */
+	public get value(): string | Observable&lt;string&gt; {
+		return this._value;
+	}
+
+	public set value(v: string | Observable&lt;string&gt;) {
+		this.override(v);
+	}
+
+	/**
+	 * The translation subject. Returns either a stream of overridden values, or our base translation values.
+	 *
+	 * @readonly
+	 */
+	public get subject(): Observable&lt;string&gt; {
+		/**
+		 * since inputs are bound on template instantiation (and thusly will always have _some_ value)
+		 * We can use a simple boolean and the &#x60;iif&#x60; function to determine which subject to return on subscription
+		 */
+		return iif(() &#x3D;&gt; this.isOverridden, this.$override, this.baseTranslation);
+	}
+
+	/**
+	 * Overridden value. Accessed by the readonly getter &#x60;value&#x60; and set through &#x60;override&#x60;
+	 */
+	protected _value: string | Observable&lt;string&gt;;
+	/**
+	 * Subject of overridden values. Initialized with our default value.
+	 */
+	protected $override: BehaviorSubject&lt;string&gt;;
+	/**
+	 * Our base non-overridden translation.
+	 */
+	protected baseTranslation: Observable&lt;string&gt; &#x3D; this.i18n.get(this.path);
+	/**
+	 * A boolean to flip between overridden and non-overridden states.
+	 */
+	protected isOverridden &#x3D; false;
+
+	constructor(protected path: string, protected i18n: I18n) {
+		/**
+		 * ensure &#x60;$override&#x60; is initialized with the correct default value
+		 * in some cases &#x60;_value&#x60; can get changed for an &#x60;Observable&#x60; before &#x60;$override&#x60; is created
+		 */
+		const value &#x3D; this.i18n.getValueFromPath(this.path) as string;
+		this.$override &#x3D; new BehaviorSubject&lt;string&gt;(value);
+		this._value &#x3D; value;
+	}
+	/**
+	 * Takes a string or an &#x60;Observable&#x60; that emits strings.
+	 * Overrides the value provided by the &#x60;I18n&#x60; service.
+	 */
+	override(value: string | Observable&lt;string&gt;) {
+		this.isOverridden &#x3D; true;
+		this._value &#x3D; value;
+		if (isObservable(value)) {
+			value.subscribe(v &#x3D;&gt; {
+				this.$override.next(v);
+			});
+		} else {
+			this.$override.next(value);
+		}
+	}
+}
+
+/**
+ * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
+ *
+ * All the components that support I18n also support directly passed strings.
+ * Usage of I18n is optional, and it is not recommended for application use (libraries like ngx-translate
+ * are a better choice)
+ *
+ */
+@Injectable()
+export class I18n {
+	protected translationStrings &#x3D; EN;
+
+	protected translations &#x3D; new Map();
+
+	/**
+	 * Set/update the translations from an object. Also notifies all participating components of the update.
+	 *
+	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
+	 */
+	public set(strings: { [key: string]: string }) {
+		this.translationStrings &#x3D; merge({}, EN, strings);
+		// iterate over all our tracked translations and update each observable
+		const translations &#x3D; Array.from(this.translations);
+		for (const [path, subject] of translations) {
+			subject.next(this.getValueFromPath(path));
+		}
+	}
+
+	/**
+	 * When a path is specified returns an observable that will resolve to the translation string value.
+	 *
+	 * Returns the full translations object if path is not specified.
+	 *
+	 * @param path optional, looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
+	 */
+	public get(path?: string) {
+		if (!path) {
+			return this.translationStrings;
+		}
+		return this.getSubject(path);
+	}
+
+	/**
+	 * Returns all descendents of some path fragment as an object.
+	 *
+	 * @param partialPath a path fragment, for example &#x60;&quot;NOTIFICATION&quot;&#x60;
+	 */
+	public getMultiple(partialPath: string): { [key: string]: Observable&lt;string&gt; } {
+		const values &#x3D; this.getValueFromPath(partialPath);
+		const subjects &#x3D; {};
+		for (const key of Object.keys(values)) {
+			if (values[key] &#x3D;&#x3D;&#x3D; Object(values[key])) {
+				subjects[key] &#x3D; this.getMultiple(&#x60;${partialPath}.${key}&#x60;);
+			} else {
+				subjects[key] &#x3D; this.getSubject(&#x60;${partialPath}.${key}&#x60;);
+			}
+		}
+		return subjects;
+	}
+
+	/**
+	 * Returns an instance of &#x60;Overridable&#x60; that can be used to optionally override the value provided by &#x60;I18n&#x60;
+	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
+	 */
+	public getOverridable(path: string) {
+		return new Overridable(path, this);
+	}
+
+	/**
+	 * Takes the &#x60;Observable&#x60; returned from &#x60;i18n.get&#x60; and an object of variables to replace.
+	 *
+	 * The keys specify the variable name in the string.
+	 *
+	 * Example:
+	 * &#x60;&#x60;&#x60;
+	 * service.set({ &quot;TEST&quot;: &quot;{{foo}} {{bar}}&quot; });
+	 *
+	 * service.replace(service.get(&quot;TEST&quot;), { foo: &quot;test&quot;, bar: &quot;asdf&quot; })
+	 * &#x60;&#x60;&#x60;
+	 *
+	 * Produces: &#x60;&quot;test asdf&quot;&#x60;
+	 *
+	 * @param subject the translation to replace variables on
+	 * @param variables object of variables to replace
+	 */
+	public replace(subject: Observable&lt;string&gt;, variables: { [key: string]: string }) {
+		return replace(subject, variables);
+	}
+
+	/**
+	 * Trys to resolve a value from the provided path.
+	 *
+	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
+	 */
+	public getValueFromPath(path): string | { [key: string]: string } {
+		let value &#x3D; this.translationStrings;
+		for (const segment of path.split(&quot;.&quot;)) {
+			if (value[segment]) {
+				value &#x3D; value[segment];
+			} else {
+				throw new Error(&#x60;no key ${segment} at ${path}&#x60;);
+			}
+		}
+		return value;
+	}
+
+	/**
+	 * Helper method that returns an observable from the internal cache based on the path
+	 *
+	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
+	 */
+	protected getSubject(path: string): Observable&lt;string&gt; {
+		try {
+			// we run this here to validate the path exists before adding it to the translation map
+			const value &#x3D; this.getValueFromPath(path) as string;
+			if (this.translations.has(path)) {
+				return this.translations.get(path);
+			}
+			const translation &#x3D; new BehaviorSubject(value);
+			this.translations.set(path, translation);
+			return translation;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'Overridable.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
