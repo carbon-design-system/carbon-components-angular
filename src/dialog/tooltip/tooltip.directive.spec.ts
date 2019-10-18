@@ -11,11 +11,17 @@ import { PlaceholderModule } from "../../placeholder/placeholder.module";
 @Component({
 	selector: "test-component",
 	template: `
-		<button ibmTooltip="Hello There" placement="bottom"></button>
+		<button
+			ibmTooltip="Hello There"
+			placement="bottom"
+			(onOpen)="onOpen()">
+		</button>
 		<ibm-placeholder></ibm-placeholder>
 	`
 })
-class TooltipTest { }
+class TooltipTest {
+		onOpen() {}
+	}
 
 @Component({
 	selector: "test-template-component",
@@ -54,7 +60,7 @@ describe("Tooltip directive", () => {
 		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
 	});
 
-	it("should create the tooltip component and tooltip should appear at the top", async() => {
+	it("should create the tooltip component and tooltip should appear at the top", () => {
 		const fixture = TestBed.overrideComponent(TooltipTest, {
 			set: {
 				template: `
@@ -73,8 +79,10 @@ describe("Tooltip directive", () => {
 		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
 	});
 
-	it("should expand tooltip on click", () => {
+	it("should expand tooltip on click and emit an onOpen event", () => {
 		const fixture = TestBed.createComponent(TooltipTest);
+		let wrapper = fixture.componentInstance;
+		spyOn(wrapper, "onOpen");
 		fixture.detectChanges();
 
 		let button = fixture.debugElement.query(By.css("button"));
@@ -84,6 +92,7 @@ describe("Tooltip directive", () => {
 		fixture.detectChanges();
 
 		expect(button.nativeElement.getAttribute("aria-expanded")).toBe("true");
+		expect(wrapper.onOpen).toHaveBeenCalled();
 	});
 
 	it("should set tooltip type to warning", () => {
