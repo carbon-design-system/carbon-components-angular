@@ -3,7 +3,6 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { TestBed, async } from "@angular/core/testing";
-import { Tooltip } from "./tooltip.component";
 import { TooltipDirective } from "./tooltip.directive";
 import { By } from "@angular/platform-browser";
 import { DialogModule } from "./../dialog.module";
@@ -12,7 +11,7 @@ import { PlaceholderModule } from "../../placeholder/placeholder.module";
 @Component({
 	selector: "test-component",
 	template: `
-		<button ibmTooltip='Hello There' placement='bottom'>Me</button>
+		<button ibmTooltip="Hello There" placement="bottom"></button>
 		<ibm-placeholder></ibm-placeholder>
 	`
 })
@@ -33,7 +32,7 @@ describe("Tooltip directive", () => {
 		TestBed.configureTestingModule({
 			declarations: [TooltipTest, TooltipTemplateTest ],
 			imports: [ DialogModule, PlaceholderModule ]
-		}).compileComponents();
+		});
 	}));
 
 	it("should compile the directive", () => {
@@ -44,131 +43,84 @@ describe("Tooltip directive", () => {
 		expect(directiveEl).not.toBeNull();
 	});
 
-	it("should create the tooltip component and tooltip should appear at the top", () => {
-		TestBed.overrideComponent(TooltipTest, {
+	it("should create the tooltip component and tooltip should appear at the bottom", () => {
+		const fixture = TestBed.createComponent(TooltipTest);
+		fixture.detectChanges();
+
+		let button = fixture.debugElement.query(By.css("button"));
+
+		expect(button.nativeElement.getAttribute("placement")).toBe("bottom");
+
+		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
+	});
+
+	it("should create the tooltip component and tooltip should appear at the top", async() => {
+		const fixture = TestBed.overrideComponent(TooltipTest, {
 			set: {
 				template: `
-					<button ibmTooltip="Hello There" placement="top">Me</button>
+					<button ibmTooltip="Hello There" placement="top"></button>
 					<ibm-placeholder></ibm-placeholder>
 				`
 			}
-		});
+		}).createComponent(TooltipTest);
+		
+		fixture.detectChanges();
+
+		let button = fixture.debugElement.query(By.css("button"));
+
+		expect(button.nativeElement.getAttribute("placement")).toBe("top");
+
+		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
+	});
+
+	it("should expand tooltip on click", () => {
 		const fixture = TestBed.createComponent(TooltipTest);
 		fixture.detectChanges();
 
-		let button = fixture.nativeElement.querySelector("button");
+		let button = fixture.debugElement.query(By.css("button"));
 
-		button.click();
+		button.nativeElement.click();
+
 		fixture.detectChanges();
 
-		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
-		expect(document.querySelector(".bx--tooltip")).not.toBe(null);
+		expect(button.nativeElement.getAttribute("aria-expanded")).toBe("true");
 	});
 
-	xit("should create the tooltip component and tooltip should appear at the bottom", () => {
-		const fixture = TestBed.createComponent(TooltipTest);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
-		expect(document.querySelector(".tooltip--bottom")).not.toBe(null);
-	});
-
-	xit("should create the tooltip component and tooltip should appear at the bottom left", () => {
-		TestBed.overrideComponent(TooltipTest, {
+	it("should set tooltip type to warning", () => {
+		const fixture = TestBed.overrideComponent(TooltipTest, {
 			set: {
-				template: "<button ibmTooltip='Hello There' placement='bottom-left'>Me</button>"
+				template: `
+					<button ibmTooltip="Hello There" tooltipType="warning">Me</button>
+					<ibm-placeholder></ibm-placeholder>
+				`
 			}
-		});
-		const fixture = TestBed.createComponent(TooltipTest);
+		}).createComponent(TooltipTest);
+
 		fixture.detectChanges();
 
-		let button = fixture.nativeElement.querySelector("button");
+		let button = fixture.debugElement.query(By.css("button"));
 
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
-		expect(document.querySelector(".tooltip--bottom-left")).not.toBe(null);
+		expect(button.nativeElement.getAttribute("tooltiptype")).toBe("warning");
 	});
 
-	xit("should create the tooltip component and tooltip should appear at the bottom right", () => {
-		TestBed.overrideComponent(TooltipTest, {
+	it("should set tooltip type to error", () => {
+		const fixture = TestBed.overrideComponent(TooltipTest, {
 			set: {
-				template: "<button ibmTooltip='Hello There' placement='bottom-right'>Me</button>"
+				template: `
+					<button ibmTooltip="Hello There" tooltipType="error">Me</button>
+					<ibm-placeholder></ibm-placeholder>
+				`
 			}
-		});
-		const fixture = TestBed.createComponent(TooltipTest);
+		}).createComponent(TooltipTest);
+
 		fixture.detectChanges();
 
-		let button = fixture.nativeElement.querySelector("button");
+		let button = fixture.debugElement.query(By.css("button"));
 
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
-		expect(document.querySelector(".tooltip--bottom-right")).not.toBe(null);
+		expect(button.nativeElement.getAttribute("tooltiptype")).toBe("error");
 	});
 
-	xit("should create the tooltip component and tooltip should appear at the left", () => {
-		TestBed.overrideComponent(TooltipTest, {
-			set: {
-				template: "<button ibmTooltip='Hello There' placement='left'>Me</button>"
-			}
-		});
-		const fixture = TestBed.createComponent(TooltipTest);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
-		expect(document.querySelector(".tooltip--left")).not.toBe(null);
-	});
-
-	xit("should create the tooltip component and tooltip should appear at the right", () => {
-		TestBed.overrideComponent(TooltipTest, {
-			set: {
-				template: "<button ibmTooltip='Hello There' placement='right'>Me</button>"
-			}
-		});
-		const fixture = TestBed.createComponent(TooltipTest);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(fixture.componentInstance instanceof TooltipTest).toBe(true);
-		expect(document.querySelector(".tooltip--right")).not.toBe(null);
-	});
-
-	xit("tooltip should appear auto as default", () => {
-		TestBed.overrideComponent(TooltipTest, {
-			set: {
-				template: "<button ibmTooltip='test content'>Pop over right</button>"
-			}
-		});
-
-		const fixture = TestBed.createComponent(TooltipTest);
-		fixture.detectChanges();
-
-		let button = fixture.nativeElement.querySelector("button");
-
-		button.click();
-		fixture.detectChanges();
-
-		expect(document.querySelector(".tooltip").classList.contains("auto")).toBe(true);
-	});
-
-	it("tooltip should use provided custom template", () => {
+	it("should use provided custom template", () => {
 		const fixture = TestBed.createComponent(TooltipTemplateTest);
 		fixture.detectChanges();
 
