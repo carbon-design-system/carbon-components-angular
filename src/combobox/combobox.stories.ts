@@ -51,6 +51,45 @@ storiesOf("Combobox", module)
 			selected: action("selection changed")
 		}
 	}))
+	.add("With Template", () => ({
+		template: `
+			<ibm-combo-box
+				[disabled]="disabled"
+				[invalid]="invalid"
+				[invalidText]="invalidText"
+				[label]="label"
+				[helperText]="helperText"
+				[items]="items"
+				(selected)="selected($event)">
+				<ibm-dropdown-list></ibm-dropdown-list>
+			</ibm-combo-box>
+
+			<ng-template #invalidText>
+				<div class="bx--form-requirement">This is a template</div>
+			</ng-template>
+		`,
+		props: {
+			disabled: boolean("disabled", false),
+			invalid: boolean("Invalid", false),
+			label: text("Label", "ComboBox label"),
+			helperText: text("Helper text", "Optional helper text."),
+			items: [
+				{
+					content: "one"
+				},
+				{
+					content: "two"
+				},
+				{
+					content: "three"
+				},
+				{
+					content: "four"
+				}
+			],
+			selected: action("selection changed")
+		}
+	}))
 	.add("Multi-select", () => ({
 		template: `
 			<ibm-combo-box

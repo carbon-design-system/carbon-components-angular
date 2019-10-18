@@ -97,8 +97,13 @@ import { filter } from "rxjs/operators";
 				<ng-content></ng-content>
 			</div>
 		</div>
-
-		<div *ngIf="invalid" class="bx--form-requirement">{{ invalidText }}</div>
+		<div *ngIf="invalid">
+			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+			<ng-template
+				*ngIf="isTemplate(invalidText)"
+				[ngTemplateOutlet]="invalidText">
+			</ng-template>
+		</div>
 	`,
 	providers: [
 		{
