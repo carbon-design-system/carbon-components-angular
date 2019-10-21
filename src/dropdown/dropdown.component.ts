@@ -328,6 +328,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			// only emit selected for "organic" selections
 			if (event && !event.isUpdate) {
 				this.selected.emit(event);
+			} else {
+				// emit an empty array when the last selected item in a multiselect is unselected
+				this.selected.emit([]);
 			}
 			this.appRef.tick();
 		});
