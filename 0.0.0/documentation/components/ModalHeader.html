@@ -71,11 +71,6 @@
 
 
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -107,35 +102,7 @@
 		class&#x3D;&quot;bx--modal-close&quot;
 		[attr.aria-label]&#x3D;&quot;closeLabel&quot;
 		(click)&#x3D;&quot;onClose()&quot;&gt;
-		&lt;!-- old icon --&gt;
-		&lt;svg
-			*ngIf&#x3D;&quot;!isExperimental&quot;
-			class&#x3D;&quot;bx--modal-close__icon&quot;
-			fill-rule&#x3D;&quot;evenodd&quot;
-			height&#x3D;&quot;10&quot;
-			role&#x3D;&quot;img&quot;
-			viewBox&#x3D;&quot;0 0 10 10&quot;
-			width&#x3D;&quot;10&quot;
-			[attr.aria-label]&#x3D;&quot;closeLabel&quot;&gt;
-			&lt;title&gt;{{closeLabel}}&lt;/title&gt;
-			&lt;path d&#x3D;&quot;M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z&quot;&gt;&lt;/path&gt;
-		&lt;/svg&gt;
-		&lt;!-- new icon --&gt;
-		&lt;svg
-			*ngIf&#x3D;&quot;isExperimental&quot;
-			focusable&#x3D;&quot;false&quot;
-			preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-			style&#x3D;&quot;will-change: transform;&quot;
-			xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-			class&#x3D;&quot;bx--modal-close__icon&quot;
-			width&#x3D;&quot;16&quot;
-			height&#x3D;&quot;16&quot;
-			viewBox&#x3D;&quot;0 0 16 16&quot;
-			aria-hidden&#x3D;&quot;true&quot;&gt;
-			&lt;path
-				d&#x3D;&quot;M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z&quot;&gt;
-			&lt;/path&gt;
-		&lt;/svg&gt;
+		&lt;ibm-icon-close16 class&#x3D;&quot;bx--modal-close__icon&quot;&gt;&lt;/ibm-icon-close16&gt;
 	&lt;/button&gt;
 &lt;/header&gt;
 
@@ -239,7 +206,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/modal/modal-header.component.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/modal/modal-header.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -309,7 +276,7 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/modal/modal-header.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modal/modal-header.component.ts:45</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -331,7 +298,7 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/modal/modal-header.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modal/modal-header.component.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -355,7 +322,7 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/modal/modal-header.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/modal/modal-header.component.ts:50</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -392,7 +359,7 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modal/modal-header.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/modal/modal-header.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -433,7 +400,7 @@ Defaults to the <code>MODAL.CLOSE</code> value from the i18n service.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modal/modal-header.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modal/modal-header.component.ts:52</a></div>
                                 </td>
                             </tr>
 
@@ -463,9 +430,6 @@ import { ExperimentalService } from &quot;./../experimental.service&quot;;
  * &#x60;&#x60;&#x60;html
  * &lt;ibm-modal-header (closeSelect)&#x3D;&quot;closeModal()&quot;&gt;Header text&lt;/ibm-modal-header&gt;
  * &#x60;&#x60;&#x60;
- *
- * @export
- * @class ModalHeader
  */
 @Component({
 	selector: &quot;ibm-modal-header&quot;,
@@ -476,35 +440,7 @@ import { ExperimentalService } from &quot;./../experimental.service&quot;;
 				class&#x3D;&quot;bx--modal-close&quot;
 				[attr.aria-label]&#x3D;&quot;closeLabel&quot;
 				(click)&#x3D;&quot;onClose()&quot;&gt;
-				&lt;!-- old icon --&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!isExperimental&quot;
-					class&#x3D;&quot;bx--modal-close__icon&quot;
-					fill-rule&#x3D;&quot;evenodd&quot;
-					height&#x3D;&quot;10&quot;
-					role&#x3D;&quot;img&quot;
-					viewBox&#x3D;&quot;0 0 10 10&quot;
-					width&#x3D;&quot;10&quot;
-					[attr.aria-label]&#x3D;&quot;closeLabel&quot;&gt;
-					&lt;title&gt;{{closeLabel}}&lt;/title&gt;
-					&lt;path d&#x3D;&quot;M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-				&lt;!-- new icon --&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;isExperimental&quot;
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					style&#x3D;&quot;will-change: transform;&quot;
-					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-					class&#x3D;&quot;bx--modal-close__icon&quot;
-					width&#x3D;&quot;16&quot;
-					height&#x3D;&quot;16&quot;
-					viewBox&#x3D;&quot;0 0 16 16&quot;
-					aria-hidden&#x3D;&quot;true&quot;&gt;
-					&lt;path
-						d&#x3D;&quot;M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z&quot;&gt;
-					&lt;/path&gt;
-				&lt;/svg&gt;
+				&lt;ibm-icon-close16 class&#x3D;&quot;bx--modal-close__icon&quot;&gt;&lt;/ibm-icon-close16&gt;
 			&lt;/button&gt;
 		&lt;/header&gt;
 
@@ -513,7 +449,6 @@ import { ExperimentalService } from &quot;./../experimental.service&quot;;
 export class ModalHeader {
 	/**
 	 * Sets the style on the modal heading based on its category.
-	 * @type {&quot;default&quot; | &quot;warning&quot; | &quot;error&quot;}
 	 */
 	@Input() theme &#x3D; &quot;default&quot;;
 	/**
@@ -570,9 +505,9 @@ export class ModalHeader {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><header class="{{theme}} bx--modal-header">	<ng-content></ng-content>	<button		class="bx--modal-close"		[attr.aria-label]="closeLabel"		(click)="onClose()">		<!-- old icon -->		<svg			*ngIf="!isExperimental"			class="bx--modal-close__icon"			fill-rule="evenodd"			height="10"			role="img"			viewBox="0 0 10 10"			width="10"			[attr.aria-label]="closeLabel">			<title>{{closeLabel}}</title>			<path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z"></path>		</svg>		<!-- new icon -->		<svg			*ngIf="isExperimental"			focusable="false"			preserveAspectRatio="xMidYMid meet"			style="will-change: transform;"			xmlns="http://www.w3.org/2000/svg"			class="bx--modal-close__icon"			width="16"			height="16"			viewBox="0 0 16 16"			aria-hidden="true">			<path				d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z">			</path>		</svg>	</button></header>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><header class="{{theme}} bx--modal-header">	<ng-content></ng-content>	<button		class="bx--modal-close"		[attr.aria-label]="closeLabel"		(click)="onClose()">		<ibm-icon-close16 class="bx--modal-close__icon"></ibm-icon-close16>	</button></header>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'ModalHeader'};
 </script>
 <script src="../js/tree.js"></script>

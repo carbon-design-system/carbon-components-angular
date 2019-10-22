@@ -107,7 +107,6 @@ the entire ListItem will be passed to the template as <code>item</code>.</p>
                                         <a href="#items">items</a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
                                         <a href="#selected">selected</a>
                                 </li>
                             </ul>
@@ -130,7 +129,7 @@ the entire ListItem will be passed to the template as <code>item</code>.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/dropdown/list-item.interface.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/dropdown/list-item.interface.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -284,11 +283,6 @@ the entire ListItem will be passed to the template as <code>item</code>.</p>
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
@@ -309,28 +303,19 @@ the entire ListItem will be passed to the template as <code>item</code>.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface ListItem {
 	/**
 	 * Content to be displayed in the list.
-	 * @type {string}
-	 * @memberof ListItem
 	 */
 	content: string;
-
 	/**
 	 * Flag for the selected state of the item.
-	 * @type {boolean}
-	 * @memberof ListItem
 	 */
-	selected?: boolean;
+	selected: boolean;
 	/**
 	 * If the item is in a disabled state.
 	 * (Note: not all lists have to support disabled states, and not all lists behave the same with disabled items)
-	 * @type {boolean}
-	 * @memberof ListItem
 	 */
 	disabled?: boolean;
 	/**
 	 * Optional nested items.
-	 * @type {ListItem[]}
-	 * @memberof ListItem
 	 */
 	items?: ListItem[];
 

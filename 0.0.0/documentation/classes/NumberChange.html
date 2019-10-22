@@ -73,11 +73,6 @@
 
 
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -131,19 +126,19 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>source:     <code><a href="../components/Number.html" target="_self" >Number</a></code>
+                        <code>source:     <code><a href="../components/NumberComponent.html" target="_self" >NumberComponent</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../components/Number.html" target="_self" >Number</a></code>
+                            <i>Type : </i>    <code><a href="../components/NumberComponent.html" target="_self" >NumberComponent</a></code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/number-input/number.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/number-input/number.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -208,42 +203,50 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, HostBinding, EventEmitter, Output } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	Input,
+	HostBinding,
+	EventEmitter,
+	Output,
+	TemplateRef
+} from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
-import { isNullOrUndefined } from &quot;util&quot;;
 
 /**
  * Used to emit changes performed on number input components.
- * @export
- * @class NumberChange
  */
 export class NumberChange {
 	/**
 	 * Contains the &#x60;Number&#x60; that has been changed.
-	 * @type {Number}
-	 * @memberof NumberChange
 	 */
-	source: Number;
+	source: NumberComponent;
 	/**
 	 * The value of the &#x60;Number&#x60; field encompassed in the &#x60;NumberChange&#x60; class.
-	 * @type {number}
-	 * @memberof NumberChange
 	 */
 	value: number;
 }
 
 /**
- * @export
- * @class Number
- * @implements {ControlValueAccessor}
+ * [See demo](../../?path&#x3D;/story/number--basic)
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;number--basic&lt;/example-url&gt;
  */
 @Component({
 	selector: &quot;ibm-number&quot;,
 	template: &#x60;
 		&lt;label *ngIf&#x3D;&quot;skeleton &amp;&amp; label&quot; class&#x3D;&quot;bx--label bx--skeleton&quot;&gt;&lt;/label&gt;
+		&lt;label *ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot; [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
+			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+		&lt;/label&gt;
+		&lt;div *ngIf&#x3D;&quot;helperText&quot; class&#x3D;&quot;bx--form__helper-text&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
+			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+		&lt;/div&gt;
 		&lt;div
 			data-numberinput
-			[attr.data-invalid]&#x3D;&quot;(invalid ? &#x27;&#x27; : null)&quot;
+			[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
 			class&#x3D;&quot;bx--number&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--number--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
@@ -251,47 +254,55 @@ export class NumberChange {
 				&#x27;bx--number--helpertext&#x27;: helperText,
 				&#x27;bx--skeleton&#x27; : skeleton
 			}&quot;&gt;
-			&lt;label *ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot; [for]&#x3D;&quot;id&quot; class&#x3D;&quot;bx--label&quot;&gt;{{label}}&lt;/label&gt;
-			&lt;input
-				type&#x3D;&quot;number&quot;
-				[id]&#x3D;&quot;id&quot;
-				[value]&#x3D;&quot;value&quot;
-				[min]&#x3D;&quot;min&quot;
-				[max]&#x3D;&quot;max&quot;
-				[disabled]&#x3D;&quot;disabled&quot;
-				[required]&#x3D;&quot;required&quot;
-				(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
-			&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
-				&lt;button
-					class&#x3D;&quot;bx--number__control-btn up-icon&quot;
-					(click)&#x3D;&quot;onIncrement()&quot;&gt;
-					&lt;svg width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
-						&lt;path d&#x3D;&quot;M0 5L5 .002 10 5z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
-					&lt;/svg&gt;
-				&lt;/button&gt;
-				&lt;button
-					class&#x3D;&quot;bx--number__control-btn down-icon&quot;
-					(click)&#x3D;&quot;onDecrement()&quot;&gt;
-					&lt;svg width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
-						&lt;path d&#x3D;&quot;M0 0l5 4.998L10 0z&quot; fill-rule&#x3D;&quot;evenodd&quot; /&gt;
-					&lt;/svg&gt;
-				&lt;/button&gt;
+			&lt;div class&#x3D;&quot;bx--number__input-wrapper&quot;&gt;
+				&lt;input
+					type&#x3D;&quot;number&quot;
+					[id]&#x3D;&quot;id&quot;
+					[value]&#x3D;&quot;value&quot;
+					[attr.min]&#x3D;&quot;min&quot;
+					[attr.max]&#x3D;&quot;max&quot;
+					[disabled]&#x3D;&quot;disabled&quot;
+					[required]&#x3D;&quot;required&quot;
+					(input)&#x3D;&quot;onNumberInputChange($event)&quot;/&gt;
+				&lt;ibm-icon-warning-filled16
+					*ngIf&#x3D;&quot;!skeleton &amp;&amp; invalid&quot;
+					class&#x3D;&quot;bx--number__invalid&quot;
+					style&#x3D;&quot;display: inherit;&quot;&gt;
+				&lt;/ibm-icon-warning-filled16&gt;
+				&lt;div *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;bx--number__controls&quot;&gt;
+					&lt;button
+						class&#x3D;&quot;bx--number__control-btn up-icon&quot;
+						type&#x3D;&quot;button&quot;
+						aria-live&#x3D;&quot;polite&quot;
+						aria-atomic&#x3D;&quot;true&quot;
+						(click)&#x3D;&quot;onIncrement()&quot;&gt;
+						&lt;ibm-icon-caret-up16&gt;&lt;/ibm-icon-caret-up16&gt;
+					&lt;/button&gt;
+					&lt;button
+						class&#x3D;&quot;bx--number__control-btn down-icon&quot;
+						type&#x3D;&quot;button&quot;
+						aria-live&#x3D;&quot;polite&quot;
+						aria-atomic&#x3D;&quot;true&quot;
+						(click)&#x3D;&quot;onDecrement()&quot;&gt;
+						&lt;ibm-icon-caret-down16&gt;&lt;/ibm-icon-caret-down16&gt;
+					&lt;/button&gt;
+				&lt;/div&gt;
 			&lt;/div&gt;
 			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;bx--form-requirement&quot;&gt;
-				{{invalidText}}
+				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
+				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
 			&lt;/div&gt;
-			&lt;div *ngIf&#x3D;&quot;helperText&quot; class&#x3D;&quot;bx--form__helper-text&quot;&gt;{{helperText}}&lt;/div&gt;
 		&lt;/div&gt;
 	&#x60;,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: Number,
+			useExisting: NumberComponent,
 			multi: true
 		}
 	]
 })
-export class Number implements ControlValueAccessor {
+export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Variable used for creating unique ids for number input components.
 	 */
@@ -318,7 +329,7 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * The unique id for the number component.
 	 */
-	@Input() id &#x3D; &#x60;number-${Number.numberCount}&#x60;;
+	@Input() id &#x3D; &#x60;number-${NumberComponent.numberCount}&#x60;;
 	/**
 	 * Reflects the required attribute of the &#x60;input&#x60; element.
 	 */
@@ -326,38 +337,45 @@ export class Number implements ControlValueAccessor {
 	/**
 	 * Sets the value attribute on the &#x60;input&#x60; element.
 	 */
-	@Input() value &#x3D; 0;
+	@Input() set value(v) {
+		this._value &#x3D; Number(v);
+	}
+
+	get value() {
+		return this._value;
+	}
 	/**
 	 * Sets the min attribute on the &#x60;input&#x60; element.
 	 */
-	@Input() min;
+	@Input() min &#x3D; null;
 	/**
 	 * Sets the max attribute on the &#x60;input&#x60; element.
 	 */
-	@Input() max;
+	@Input() max &#x3D; null;
 	/**
 	 * Sets the text inside the &#x60;label&#x60; tag.
 	 */
-	@Input() label;
+	@Input() label: string | TemplateRef&lt;any&gt;;
 	/**
 	 * Sets the optional helper text.
 	 */
-	@Input() helperText;
+	@Input() helperText: string | TemplateRef&lt;any&gt;;
 	/**
 	 * Sets the invalid text.
 	 */
-	@Input() invalidText;
+	@Input() invalidText: string | TemplateRef&lt;any&gt;;
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change &#x3D; new EventEmitter&lt;NumberChange&gt;();
 
+	protected _value &#x3D; 0;
+
 	/**
 	 * Creates an instance of &#x60;Number&#x60;.
-	 * @memberof Number
 	 */
 	constructor() {
-		Number.numberCount++;
+		NumberComponent.numberCount++;
 	}
 
 	/**
@@ -370,8 +388,6 @@ export class Number implements ControlValueAccessor {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Number
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange &#x3D; fn;
@@ -386,22 +402,27 @@ export class Number implements ControlValueAccessor {
 	}
 
 	/**
-	 * Called when number input is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
-	 * @memberof Number
+	 * Sets the disabled state through the model
 	 */
-	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
+	setDisabledState(isDisabled: boolean) {
+		this.disabled &#x3D; isDisabled;
+	}
+
+	/**
+	 * Called when number input is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
+	 */
+	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; { };
 
 	/**
 	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
-	 * @memberof Number
 	 */
-	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
+	propagateChange &#x3D; (_: any) &#x3D;&gt; { };
 
 	/**
 	 * Adds 1 to the current &#x60;value&#x60;.
 	 */
 	onIncrement(): void {
-		if (isNullOrUndefined(this.max) || this.value &lt; this.max) {
+		if (this.max &#x3D;&#x3D;&#x3D; null || this.value &lt; this.max) {
 			this.value++;
 			this.emitChangeEvent();
 		}
@@ -411,7 +432,7 @@ export class Number implements ControlValueAccessor {
 	 * Subtracts 1 to the current &#x60;value&#x60;.
 	 */
 	onDecrement(): void {
-		if (isNullOrUndefined(this.min) || this.value &gt; this.min) {
+		if (this.min &#x3D;&#x3D;&#x3D; null || this.value &gt; this.min) {
 			this.value--;
 			this.emitChangeEvent();
 		}
@@ -432,7 +453,12 @@ export class Number implements ControlValueAccessor {
 		this.value &#x3D; event.target.value;
 		this.emitChangeEvent();
 	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
 }
+export { NumberComponent as Number };
 </code></pre>
     </div>
 </div>

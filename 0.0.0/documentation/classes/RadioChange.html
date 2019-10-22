@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/radio/radio-group.component.ts</code>
+            <code>src/radio/radio-change.class.ts</code>
         </p>
 
             <p class="comment">
@@ -73,11 +73,6 @@
 
 
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -121,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/radio/radio-group.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/radio/radio-change.class.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -203,7 +198,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/radio/radio-group.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/radio/radio-change.class.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -243,7 +238,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/radio/radio-group.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/radio/radio-change.class.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -268,29 +263,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-	AfterContentInit,
-	ChangeDetectorRef,
-	ContentChildren,
-	Component,
-	ElementRef,
-	EventEmitter,
-	forwardRef,
-	Input,
-	OnInit,
-	Output,
-	QueryList,
-	Renderer2,
-	HostBinding,
-	AfterViewInit
-} from &quot;@angular/core&quot;;
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
-import { Radio } from &quot;./radio.component&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Radio } from &quot;./radio.component&quot;;
 
 /**
  * Used to emit changes performed on a &#x60;Radio&#x60;.
- * @export
- * @class RadioChange
  */
 export class RadioChange {
 	/**
@@ -305,277 +281,6 @@ export class RadioChange {
 	constructor(source: Radio, value: string) {
 		this.source &#x3D; source;
 		this.value &#x3D; value;
-	}
-}
-
-/**
- * class: RadioGroup
- *
- * selector: &#x60;ibm-radio-group&#x60;
- *
- * source: &#x60;src/forms/radio.component.ts&#x60;
- *
- *
- * Ex:
- * &#x60;&#x60;&#x60;html
- * &lt;ibm-radio-group [(ngModel)]&#x3D;&quot;radio&quot;&gt;
- * 	&lt;ibm-radio *ngFor&#x3D;&quot;let one of manyRadios&quot; [value]&#x3D;&quot;one&quot;&gt;
- *		Radio {{one}}
- * 	&lt;/ibm-radio&gt;
- * &lt;/ibm-radio-group&gt;
- *
- * Radio selected: {{radio}}
- * &#x60;&#x60;&#x60;
- *
- * &#x60;&#x60;&#x60;typescript
- * manyRadios &#x3D; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;];
- * &#x60;&#x60;&#x60;
- *
- * Also see: [&#x60;Radio&#x60;](#ibm-radio)
- *
- */
-@Component({
-	selector: &quot;ibm-radio-group&quot;,
-	template: &#x60;
-		&lt;div class&#x3D;&quot;bx--radio-button-group&quot; role&#x3D;&quot;radiogroup&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/div&gt;
-	&#x60;,
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: RadioGroup,
-			multi: true
-		}
-	]
-})
-export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
-	/**
-	 * Used for creating the &#x60;RadioGroup&#x60; &#x27;name&#x27; property dynamically.
-	 */
-	static radioGroupCount &#x3D; 0;
-
-	/**
-	 * Emits event notifying other classes of a change using a &#x60;RadioChange&#x60; class.
-	 */
-	@Output() change: EventEmitter&lt;RadioChange&gt; &#x3D; new EventEmitter&lt;RadioChange&gt;();
-
-	/**
-	 * The &#x60;Radio&#x60; input items in the &#x60;RadioGroup&#x60;.
-	 */
-	// tslint:disable-next-line:no-forward-ref
-	@ContentChildren(forwardRef(() &#x3D;&gt; Radio)) radios: QueryList&lt;Radio&gt;;
-
-	/**
-	 * Sets the passed in &#x60;Radio&#x60; item as the selected input within the &#x60;RadioGroup&#x60;.
-	 */
-	@Input()
-	set selected(selected: Radio | null) {
-		this._selected &#x3D; selected;
-		this.value &#x3D; selected ? selected.value : null;
-		this.checkSelectedRadio();
-	}
-
-	/**
-	 * Returns the &#x60;Radio&#x60; that is selected within the &#x60;RadioGroup&#x60;.
-	 */
-	get selected() {
-		return this._selected;
-	}
-
-	/**
-	 * Sets the value/state of the selected &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60; to the passed in value.
-	 */
-	@Input()
-	set value(newValue: any) {
-		if (this._value !&#x3D;&#x3D; newValue) {
-			this._value &#x3D; newValue;
-
-			this.updateSelectedRadioFromValue();
-			this.checkSelectedRadio();
-		}
-	}
-
-	/**
-	 * Returns the value/state of the selected &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60;.
-	 */
-	get value() {
-		return this._value;
-	}
-
-	/**
-	 * Replaces the name associated with the &#x60;RadioGroup&#x60; with the provided parameter.
-	 */
-	@Input()
-	set name(name: string) {
-		this._name &#x3D; name;
-		this.updateRadioNames();
-	}
-	/**
-	 * Returns the associated name of the &#x60;RadioGroup&#x60;.
-	 */
-	get name() {
-		return this._name;
-	}
-
-	/**
-	 * Set to true to disable the whole radio group
-	 */
-	@Input() disabled &#x3D; false;
-
-	/**
-	 * Returns the skeleton value in the &#x60;RadioGroup&#x60; if there is one.
-	 */
-	@Input()
-	get skeleton(): any {
-		return this._skeleton;
-	}
-
-	/**
-	 * Sets the skeleton value for all &#x60;Radio&#x60; to the skeleton value of &#x60;RadioGroup&#x60;.
-	 */
-	set skeleton(value: any) {
-		this._skeleton &#x3D; value;
-		this.updateChildren();
-	}
-
-	/**
-	 * Binds &#x27;bx--form-item&#x27; value to the class for &#x60;RadioGroup&#x60;.
-	 */
-	@HostBinding(&quot;class.bx--form-item&quot;) radioButtonGroupClass &#x3D; true;
-
-	/**
-	 * To track whether the &#x60;RadioGroup&#x60; has been initialized.
-	 */
-	protected isInitialized &#x3D; false;
-	/**
-	 * Reflects whether or not the input is disabled and cannot be selected.
-	 */
-	protected _disabled &#x3D; false;
-	/**
-	 * Reflects whether or not the dropdown is loading.
-	 */
-	protected _skeleton &#x3D; false;
-	/**
-	 * The value of the selected option within the &#x60;RadioGroup&#x60;.
-	 */
-	protected _value: any &#x3D; null;
-	/**
-	 * The &#x60;Radio&#x60; within the &#x60;RadioGroup&#x60; that is selected.
-	 */
-	protected _selected: Radio &#x3D; null;
-	/**
-	 * The name attribute associated with the &#x60;RadioGroup&#x60;.
-	 */
-	protected _name &#x3D; &#x60;radio-group-${RadioGroup.radioGroupCount++}&#x60;;
-
-	/**
-	 * Updates the selected &#x60;Radio&#x60; to be checked (selected).
-	 */
-	checkSelectedRadio() {
-		if (this.selected &amp;&amp; !this._selected.checked) {
-			this.selected.checked &#x3D; true;
-		}
-	}
-
-	/**
-	 * Use the value of the &#x60;RadioGroup&#x60; to update the selected radio to the right state (selected state).
-	 */
-	updateSelectedRadioFromValue() {
-		let alreadySelected &#x3D; this._selected !&#x3D; null &amp;&amp; this._selected.value &#x3D;&#x3D;&#x3D; this._value;
-
-		if (this.radios &amp;&amp; !alreadySelected) {
-			this._selected &#x3D; null;
-			this.radios.forEach(radio &#x3D;&gt; {
-				if (radio.checked) {
-					this._selected &#x3D; radio;
-				}
-			});
-		}
-	}
-
-	/**
-	 * Creates a class of &#x60;RadioChange&#x60; to emit the change in the &#x60;RadioGroup&#x60;.
-	 */
-	emitChangeEvent(event: RadioChange) {
-		this.change.emit(event);
-		this.propagateChange(event.value);
-		this.onTouched();
-	}
-
-	/**
-	 * Synchronizes the names of the radio items with the name of the &#x60;RadioGroup&#x60;.
-	 */
-	updateRadioNames() {
-		if (this.radios) {
-			setTimeout(() &#x3D;&gt; {
-				this.radios.forEach(radio &#x3D;&gt; radio.name &#x3D; this.name);
-			});
-		}
-	}
-
-	/**
-	 * Updates the value of the &#x60;RadioGroup&#x60; using the provided parameter.
-	 */
-	writeValue(value: any) {
-		this.value &#x3D; value;
-	}
-
-	ngAfterContentInit() {
-		this.radios.changes.subscribe(() &#x3D;&gt; {
-			this.updateRadioNames();
-			this.updateRadioChangeHandler();
-		});
-
-		this.updateChildren();
-		this.updateRadioChangeHandler();
-	}
-
-	ngAfterViewInit() {
-		this.updateRadioNames();
-	}
-
-	/**
-	 * Used to set method to propagate changes back to the form.
-	 */
-	public registerOnChange(fn: any) {
-		this.propagateChange &#x3D; fn;
-	}
-
-	/**
-	 * Registers a callback to be triggered when the control has been touched.
-	 * @param fn Callback to be triggered when the checkbox is touched.
-	 */
-	public registerOnTouched(fn: any) {
-		this.onTouched &#x3D; fn;
-	}
-
-	/**
-	 * Needed to properly implement ControlValueAccessor.
-	 */
-	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
-
-	/**
-	 * Method set in registerOnChange to propagate changes back to the form.
-	 */
-	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
-
-	protected updateChildren() {
-		if (this.radios) {
-			this.radios.forEach(child &#x3D;&gt; child.skeleton &#x3D; this.skeleton);
-		}
-	}
-
-	protected updateRadioChangeHandler() {
-		this.radios.forEach(radio &#x3D;&gt; {
-			radio.registerRadioChangeHandler((event: RadioChange) &#x3D;&gt; {
-				// update selected and value from the event
-				this._selected &#x3D; event.source;
-				this._value &#x3D; event.value;
-				// bubble the event
-				this.emitChangeEvent(event);
-			});
-		});
 	}
 }
 </code></pre>

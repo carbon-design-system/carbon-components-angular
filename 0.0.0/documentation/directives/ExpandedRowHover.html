@@ -199,12 +199,12 @@
 export class ExpandedRowHover {
 	@HostListener(&quot;mouseenter&quot;, [&quot;$event&quot;])
 	addHoverClass(event) {
-		event.target.previousElementSibling.classList.add(&quot;bx--expandable-row--hover-v2&quot;);
+		event.target.previousElementSibling.classList.add(&quot;bx--expandable-row--hover&quot;);
 	}
 
 	@HostListener(&quot;mouseleave&quot;, [&quot;$event&quot;])
 	removeHoverClass(event) {
-		event.target.previousElementSibling.classList.remove(&quot;bx--expandable-row--hover-v2&quot;);
+		event.target.previousElementSibling.classList.remove(&quot;bx--expandable-row--hover&quot;);
 	}
 }
 </code></pre>

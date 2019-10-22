@@ -165,9 +165,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#blur">blur</a>
-                            </li>
-                            <li>
                                 <a href="#click">click</a>
                             </li>
                             <li>
@@ -443,40 +440,6 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="blur"></a>
-                        <span class="name">
-                            <b>
-                            blur
-                            </b>
-                            <a href="#blur"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Arguments : </i><code>'$event' </code>
-                        </td>
-                    </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>blur(event)</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:60</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="click"></a>
                         <span class="name">
                             <b>
@@ -712,13 +675,7 @@ export class ContentSwitcherOption {
 	@HostListener(&quot;focus&quot;)
 	onFocus() {
 		this.active &#x3D; true;
-	}
-
-	@HostListener(&quot;blur&quot;, [&quot;$event&quot;])
-	onBlur(event) {
-		if (event.relatedTarget &amp;&amp; event.relatedTarget.classList.contains(&quot;bx--content-switcher-btn&quot;)) {
-			this.active &#x3D; false;
-		}
+		this.selected.emit(true);
 	}
 }
 </code></pre>

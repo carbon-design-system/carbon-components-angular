@@ -115,7 +115,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/table/table-item.class.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/table/table-item.class.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -187,7 +187,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/table/table-item.class.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/table/table-item.class.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -227,7 +227,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/table/table-item.class.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/table/table-item.class.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -268,7 +268,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/table/table-item.class.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/table/table-item.class.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -309,7 +309,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/table/table-item.class.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/table/table-item.class.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -356,9 +356,6 @@ necessary for you to be able to access item&#39;s data in the template.</p>
 export class TableItem {
 	/**
 	 * Data for the table item.
-	 *
-	 * @type {*}
-	 * @memberof TableItem
 	 */
 	data: any;
 
@@ -366,9 +363,6 @@ export class TableItem {
 	 * Data for the expanded part of the row.
 	 *
 	 * You only need to set it for the first item in the row.
-	 *
-	 * @type {*}
-	 * @memberof TableItem
 	 */
 	expandedData: any;
 
@@ -403,9 +397,6 @@ export class TableItem {
 	 * 	[new TableItem({data: {name: &quot;Custom item&quot;, link: &quot;/table&quot;}, template: this.customItemTemplate})]
 	 * ];
 	 * &#x60;&#x60;&#x60;
-	 *
-	 * @type {TemplateRef&lt;any&gt;}
-	 * @memberof TableItem
 	 */
 	template: TemplateRef&lt;any&gt;;
 
@@ -414,15 +405,11 @@ export class TableItem {
 	 *
 	 * You only need to set it for the first item in the row.
 	 *
-	 * @type {TemplateRef&lt;any&gt;}
-	 * @memberof TableItem
 	 */
 	expandedTemplate: TemplateRef&lt;any&gt;;
 
 	/**
 	 * Creates an instance of TableItem.
-	 * @param {*} [rawData]
-	 * @memberof TableItem
 	 */
 	constructor(rawData?: any) {
 		// defaults so we dont leave things empty

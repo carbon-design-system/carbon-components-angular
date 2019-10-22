@@ -48,6 +48,9 @@
         <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -55,9 +58,18 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/ui-shell/sidenav.component.ts</code>
+    <code>src/ui-shell/sidenav/sidenav.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p><code>Sidenav</code> is a fixed left navigation that may contain <code>SideNavItem</code>s or <code>SideNavMenu</code>s</p>
+<p><a href="../../?path=/story/ui-shell--side-navigation">See demo</a></p>
+<p><example-url>../../iframe.html?id=ui-shell--side-navigation</example-url></p>
+
+    </p>
 
 
 
@@ -100,6 +112,7 @@
 	&lt;/ul&gt;
 	&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
 		&lt;button
+			*ngIf&#x3D;&quot;allowExpansion&quot;
 			class&#x3D;&quot;bx--side-nav__toggle&quot;
 			type&#x3D;&quot;button&quot;
 			[title]&#x3D;&quot;(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async&quot;
@@ -195,7 +208,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#allowExpansion">allowExpansion</a>
+                            </li>
+                            <li>
                                 <a href="#expanded">expanded</a>
+                            </li>
+                            <li>
+                                <a href="#hidden">hidden</a>
                             </li>
                         </ul>
                     </td>
@@ -215,6 +234,9 @@
                             </li>
                             <li>
                                 <a href="#class.bx--side-nav">class.bx--side-nav</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--side-nav--ux">class.bx--side-nav--ux</a>
                             </li>
                         </ul>
                     </td>
@@ -236,7 +258,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/ui-shell/sidenav.component.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -280,8 +302,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-2">
-                        <a name="expanded"></a>
-                        <code>expanded</code>
+                        <a name="allowExpansion"></a>
+                        <code>allowExpansion</code>
                     </td>
                     <td class="col-md-10">
                         <p>
@@ -291,7 +313,51 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/ui-shell/sidenav.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:81</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="expanded"></a>
+                        <code>expanded</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Controls the expanded (<code>true</code>) or collapsed (<code>false</code>) state when on a small screen.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>true</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="hidden"></a>
+                        <code>hidden</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Controls the hidden (<code>true</code>) or visible (<code>false</code>) state</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:79</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -325,7 +391,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/ui-shell/sidenav.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -358,7 +424,40 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/ui-shell/sidenav.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:71</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--side-nav--ux"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--side-nav--ux
+                            </b>
+                            <a href="#class.bx--side-nav--ux"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--side-nav--ux:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -395,7 +494,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/ui-shell/sidenav.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -446,7 +545,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/ui-shell/sidenav.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -465,8 +564,15 @@
 	Input,
 	ViewEncapsulation
 } from &quot;@angular/core&quot;;
-import { I18n } from &quot;./../i18n/i18n.module&quot;;
+import { I18n } from &quot;../../i18n/i18n.module&quot;;
 
+/**
+ * &#x60;Sidenav&#x60; is a fixed left navigation that may contain &#x60;SideNavItem&#x60;s or &#x60;SideNavMenu&#x60;s
+ *
+ * [See demo](../../?path&#x3D;/story/ui-shell--side-navigation)
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;ui-shell--side-navigation&lt;/example-url&gt;
+ */
 @Component({
 	selector: &quot;ibm-sidenav&quot;,
 	template: &#x60;
@@ -480,6 +586,7 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 			&lt;/ul&gt;
 			&lt;footer class&#x3D;&quot;bx--side-nav__footer&quot;&gt;
 				&lt;button
+					*ngIf&#x3D;&quot;allowExpansion&quot;
 					class&#x3D;&quot;bx--side-nav__toggle&quot;
 					type&#x3D;&quot;button&quot;
 					[title]&#x3D;&quot;(expanded ? i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_CLOSE&#x27;) : i18n.get(&#x27;UI_SHELL.SIDE_NAV.TOGGLE_OPEN&#x27;)) | async&quot;
@@ -522,7 +629,16 @@ import { I18n } from &quot;./../i18n/i18n.module&quot;;
 export class SideNav {
 	@HostBinding(&quot;attr.role&quot;) role &#x3D; &quot;complementary&quot;;
 	@HostBinding(&quot;class.bx--side-nav&quot;) hostClass &#x3D; true;
-	@HostBinding(&quot;class.bx--side-nav--expanded&quot;) @Input() expanded &#x3D; false;
+	/**
+	 * Controls the expanded (&#x60;true&#x60;) or collapsed (&#x60;false&#x60;) state when on a small screen.
+	 */
+	@HostBinding(&quot;class.bx--side-nav--expanded&quot;) @Input() expanded &#x3D; true;
+	/**
+	 * Controls the hidden (&#x60;true&#x60;) or visible (&#x60;false&#x60;) state
+	 */
+	@HostBinding(&quot;class.bx--side-nav--hidden&quot;) @Input() hidden &#x3D; false;
+	@HostBinding(&quot;class.bx--side-nav--ux&quot;) ux &#x3D; true;
+	@Input() allowExpansion &#x3D; false;
 
 	constructor(public i18n: I18n) { }
 
@@ -553,6 +669,11 @@ export class SideNav {
         </div>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;ui-shell--side-navigation">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
     
 </div>
 
@@ -560,9 +681,9 @@ export class SideNav {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav	class="bx--side-nav__navigation"	role="navigation"	[attr.aria-label]="i18n.get(\'UI_SHELL.SIDE_NAV.LABEL\')">	<ng-content select="ibm-sidenav-header"></ng-content>	<ul class="bx--side-nav__items">		<ng-content></ng-content>	</ul>	<footer class="bx--side-nav__footer">		<button			class="bx--side-nav__toggle"			type="button"			[title]="(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async"			(click)="toggle()">			<div class="bx--side-nav__icon">				<svg					*ngIf="expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>				</svg>				<svg					*ngIf="!expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>				</svg>			</div>			<span class="bx--assistive-text">				{{(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async}}			</span>		</button>	</footer></nav>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><nav	class="bx--side-nav__navigation"	role="navigation"	[attr.aria-label]="i18n.get(\'UI_SHELL.SIDE_NAV.LABEL\')">	<ng-content select="ibm-sidenav-header"></ng-content>	<ul class="bx--side-nav__items">		<ng-content></ng-content>	</ul>	<footer class="bx--side-nav__footer">		<button			*ngIf="allowExpansion"			class="bx--side-nav__toggle"			type="button"			[title]="(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async"			(click)="toggle()">			<div class="bx--side-nav__icon">				<svg					*ngIf="expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4l6.6 6.6L8 22.6 9.4 24l6.6-6.6 6.6 6.6 1.4-1.4-6.6-6.6L24 9.4z"></path>				</svg>				<svg					*ngIf="!expanded"					focusable="false"					preserveAspectRatio="xMidYMid meet"					style="will-change: transform;"					xmlns="http://www.w3.org/2000/svg"					width="20"					height="20"					viewBox="0 0 32 32"					aria-hidden="true">					<path d="M22 16L12 26l-1.4-1.4 8.6-8.6-8.6-8.6L12 6z"></path>				</svg>			</div>			<span class="bx--assistive-text">				{{(expanded ? i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_CLOSE\') : i18n.get(\'UI_SHELL.SIDE_NAV.TOGGLE_OPEN\')) | async}}			</span>		</button>	</footer></nav>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'SideNav'};
 </script>
 <script src="../js/tree.js"></script>

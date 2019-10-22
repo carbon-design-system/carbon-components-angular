@@ -68,11 +68,6 @@
 
             </p>
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -144,7 +139,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/notification/notification.service.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/notification/notification.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -235,7 +230,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/notification/notification.service.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/notification/notification.service.ts:136</a></div>
                             </td>
                         </tr>
 
@@ -311,7 +306,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/notification/notification.service.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/notification/notification.service.ts:162</a></div>
                             </td>
                         </tr>
 
@@ -386,7 +381,7 @@ some extra time (in ms) to timeout if you need to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/notification/notification.service.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/notification/notification.service.ts:201</a></div>
                             </td>
                         </tr>
 
@@ -427,7 +422,7 @@ some extra time (in ms) to timeout if you need to.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/notification/notification.service.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/notification.service.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -544,7 +539,7 @@ it&#39;s added to the calculated timeout</li>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/notification/notification.service.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/notification/notification.service.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -642,7 +637,7 @@ it&#39;s added to the calculated timeout</li>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/notification/notification.service.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/notification/notification.service.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -689,7 +684,7 @@ is responsible for.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/notification/notification.service.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/notification/notification.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -721,9 +716,6 @@ import { Toast } from &quot;./toast.component&quot;;
  * Provides a way to use the notification component.
  *
  * Notifications are displayed toward the top of the UI and do not interrupt the user’s work.
- *
- * @export
- * @class NotificationService
  */
 @Injectable()
 export class NotificationService implements OnDestroy {
@@ -738,9 +730,9 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Constructs NotificationService.
 	 *
-	 * @param {Injector} injector
-	 * @param {ComponentFactoryResolver} componentFactoryResolver
-	 * @param {ApplicationRef} applicationRef
+	 * @param injector
+	 * @param componentFactoryResolver
+	 * @param applicationRef
 	 */
 	constructor(
 		protected injector: Injector,
@@ -751,7 +743,7 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Shows the notification based on the &#x60;notificationObj&#x60;.
 	 *
-	 * @param {any} notificationObj Can have &#x60;type&#x60;, &#x60;message&#x60;, &#x60;target&#x60;, &#x60;duration&#x60; and &#x60;smart&#x60; members.
+	 * @param notificationObj Can have &#x60;type&#x60;, &#x60;message&#x60;, &#x60;target&#x60;, &#x60;duration&#x60; and &#x60;smart&#x60; members.
 	 *
 	 * **Members:**
 	 *
@@ -776,7 +768,7 @@ export class NotificationService implements OnDestroy {
 	 * }
 	 * &#x60;&#x60;&#x60;
 	 *
-	 * @param {any} [notificationComp&#x3D;Notification] If provided, used to resolve component factory
+	 * @param [notificationComp&#x3D;Notification] If provided, used to resolve component factory
 	 */
 	showNotification(notificationObj: NotificationContent | ToastContent, notificationComp &#x3D; Notification) {
 		const componentFactory &#x3D; this.componentFactoryResolver.resolveComponentFactory(notificationComp);
@@ -848,6 +840,10 @@ export class NotificationService implements OnDestroy {
 				setTimeout( () &#x3D;&gt; {
 					this.applicationRef.detachView(notificationRef.hostView);
 					notificationRef.destroy();
+					const index &#x3D; this.notificationRefs.indexOf(notificationRef);
+					if (index !&#x3D;&#x3D; -1) {
+						this.notificationRefs.splice(index, 1);
+					}
 				}, 200);
 			}
 		}
@@ -856,11 +852,11 @@ export class NotificationService implements OnDestroy {
 	/**
 	 * Calculates the amount of time user needs to read the message in the notification.
 	 *
-	 * @param {any} notificationObj Same object used to instantiate notification.
+	 * @param notificationObj Same object used to instantiate notification.
 	 *
 	 * In addition to &#x60;type&#x60; and &#x60;message&#x60; members, use &#x60;duration&#x60; member to add
 	 * some extra time (in ms) to timeout if you need to.
-	 * @returns {number} calculated timeout (in ms) for smart notification
+	 * @returns calculated timeout (in ms) for smart notification
 	 */
 	getSmartTimeout(notificationObj): number {
 		// calculate timeout

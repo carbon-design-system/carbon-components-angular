@@ -47,6 +47,9 @@
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -63,8 +66,10 @@
             </p>
             <p class="comment">
                 <p>Applies either ordered or unordered styling to the list container it is applied to.</p>
+<p><a href="../../?path=/story/list--basic">See demo</a></p>
 <p>For <code>ul</code>s it will apply unordered list styles, and for <code>ol</code>s it will apply ordered list styles.</p>
 <p>If a <code>ul</code> or <code>ol</code> is nested within a <code>li</code> the directive will apply nested list styling.</p>
+<p><example-url>../../iframe.html?id=list--basic</example-url></p>
 
             </p>
 
@@ -129,7 +134,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/list/list.directive.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/list/list.directive.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -191,7 +196,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/list/list.directive.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/list/list.directive.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -219,7 +224,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/list/list.directive.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/list/list.directive.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -247,7 +252,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/list/list.directive.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/list/list.directive.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -269,9 +274,13 @@
 /**
  * Applies either ordered or unordered styling to the list container it is applied to.
  *
+ * [See demo](../../?path&#x3D;/story/list--basic)
+ *
  * For &#x60;ul&#x60;s it will apply unordered list styles, and for &#x60;ol&#x60;s it will apply ordered list styles.
  *
  * If a &#x60;ul&#x60; or &#x60;ol&#x60; is nested within a &#x60;li&#x60; the directive will apply nested list styling.
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;list--basic&lt;/example-url&gt;
  */
 @Directive({
 	selector: &quot;[ibmList]&quot;
@@ -296,6 +305,11 @@ export class List {
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;list--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
 </div>
 
 

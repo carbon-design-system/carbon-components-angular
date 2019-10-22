@@ -103,6 +103,7 @@
 	#dialog
 	[id]&#x3D;&quot;dialogConfig.compID&quot;
 	[attr.role]&#x3D;&quot;role&quot;
+	[attr.data-floating-menu-direction]&#x3D;&quot;placement&quot;
 	class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
 	&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
 	&lt;ng-template
@@ -164,6 +165,10 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#placement">placement</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#placements">placements</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -289,6 +294,54 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -301,7 +354,7 @@
                     </td>
                     <td class="col-md-10">
                         <div><p>Receives <code>DialogConfig</code> interface object with properties of <code>Dialog</code>
-explictly defined.</p>
+explicitly defined.</p>
 </div>
                             <p>
                             <em>Type :</em>    <code><a href="../interfaces/DialogConfig.html" target="_self" >DialogConfig</a></code>
@@ -317,7 +370,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Dialog:61</div>
+                                    <div class="io-line">Defined in Dialog:47</div>
                             </td>
                         </tr>
             </tbody>
@@ -347,7 +400,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in Dialog:54</div>
+                                    <div class="io-line">Defined in Dialog:42</div>
                             </td>
                         </tr>
             </tbody>
@@ -380,7 +433,7 @@ explictly defined.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -423,7 +476,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:299</div>
+                                    <div class="io-line">Defined in Dialog:227</div>
                             </td>
                         </tr>
 
@@ -471,7 +524,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:277</div>
+                                    <div class="io-line">Defined in Dialog:206</div>
                             </td>
                         </tr>
 
@@ -514,7 +567,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -552,7 +605,7 @@ explictly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -598,7 +651,7 @@ explictly defined.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:215</div>
+                                    <div class="io-line">Defined in Dialog:164</div>
                             </td>
                         </tr>
 
@@ -647,7 +700,7 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:310</div>
+                                    <div class="io-line">Defined in Dialog:237</div>
                             </td>
                         </tr>
 
@@ -693,7 +746,7 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:138</div>
+                                    <div class="io-line">Defined in Dialog:116</div>
                             </td>
                         </tr>
 
@@ -740,7 +793,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:318</div>
+                                    <div class="io-line">Defined in Dialog:244</div>
                             </td>
                         </tr>
 
@@ -786,14 +839,14 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:121</div>
+                                    <div class="io-line">Defined in Dialog:100</div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Initilize the <code>Dialog</code>, set the placement and gap, and add a <code>Subscription</code> to resize events.</p>
+                            <div class="io-description"><p>Initialize the <code>Dialog</code>, set the placement and gap, and add a <code>Subscription</code> to resize events.</p>
 </div>
 
                             <div class="io-description">
@@ -832,7 +885,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:209</div>
+                                    <div class="io-line">Defined in Dialog:158</div>
                             </td>
                         </tr>
 
@@ -878,7 +931,7 @@ in respect to the parent element.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:220</div>
+                                    <div class="io-line">Defined in Dialog:169</div>
                             </td>
                         </tr>
 
@@ -930,7 +983,7 @@ in respect to the parent element.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -976,7 +1029,7 @@ in respect to the parent element.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/tooltip/tooltip.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -1036,7 +1089,7 @@ if there <em>is</em> focusable content we switch to the interactive <code>dialog
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:101</div>
+                                    <div class="io-line">Defined in Dialog:77</div>
                             </td>
                         </tr>
 
@@ -1089,7 +1142,7 @@ to not obscure the content beneath.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:73</div>
+                                    <div class="io-line">Defined in Dialog:56</div>
                             </td>
                         </tr>
 
@@ -1144,7 +1197,7 @@ to not obscure the content beneath.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:67</div>
+                                    <div class="io-line">Defined in Dialog:51</div>
                             </td>
                         </tr>
 
@@ -1191,13 +1244,65 @@ to not obscure the content beneath.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:80</div>
+                                    <div class="io-line">Defined in Dialog:61</div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The placement of the <code>Dialog</code> is recieved from the <code>Position</code> service.</p>
+                        <div class="io-description"><p>The placement of the <code>Dialog</code> is received from the <code>Position</code> service.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="placements"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            placements
+                            </b>
+                            <a href="#placements"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>placements:     <code>Positions</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Positions</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from     <code><a href="../components/Dialog.html" target="_self" >Dialog</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in Dialog:89</div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Extra placements. Child classes can add to this for use in <code>placeDialog</code>.</p>
 </div>
                     </td>
                 </tr>
@@ -1244,7 +1349,7 @@ to not obscure the content beneath.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:48</div>
+                                    <div class="io-line">Defined in Dialog:38</div>
                             </td>
                         </tr>
 
@@ -1291,7 +1396,7 @@ to not obscure the content beneath.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:88</div>
+                                    <div class="io-line">Defined in Dialog:66</div>
                             </td>
                         </tr>
 
@@ -1343,7 +1448,7 @@ to not obscure the content beneath.</p>
                             </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in Dialog:94</div>
+                                    <div class="io-line">Defined in Dialog:72</div>
                             </td>
                         </tr>
 
@@ -1366,11 +1471,13 @@ to not obscure the content beneath.</p>
 	Component,
 	TemplateRef,
 	HostBinding,
-	Input
+	Input,
+	ElementRef
 } from &quot;@angular/core&quot;;
 import { getFocusElementList } from &quot;./../../common/tab.service&quot;;
 
 import { Dialog } from &quot;./../dialog.component&quot;;
+import { position } from &quot;@carbon/utils-position&quot;;
 
 /**
  * Extend the &#x60;Dialog&#x60; component to create a tooltip for exposing content.
@@ -1382,6 +1489,7 @@ import { Dialog } from &quot;./../dialog.component&quot;;
 			#dialog
 			[id]&#x3D;&quot;dialogConfig.compID&quot;
 			[attr.role]&#x3D;&quot;role&quot;
+			[attr.data-floating-menu-direction]&#x3D;&quot;placement&quot;
 			class&#x3D;&quot;bx--tooltip bx--tooltip--shown&quot;&gt;
 			&lt;span class&#x3D;&quot;bx--tooltip__caret&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
 			&lt;ng-template
@@ -1407,10 +1515,28 @@ export class Tooltip extends Dialog {
 	 * if there _is_ focusable content we switch to the interactive &#x60;dialog&#x60; role.
 	 */
 	public role &#x3D; &quot;tooltip&quot;;
+
+	constructor(protected elementRef: ElementRef) {
+		super(elementRef);
+	}
+
 	/**
 	 * Check whether there is a template for the &#x60;Tooltip&#x60; content.
 	 */
 	onDialogInit() {
+		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; {
+			return position.addOffset(pos, 3, 0);
+		};
+		this.addGap[&quot;top&quot;] &#x3D; pos &#x3D;&gt; {
+			return position.addOffset(pos, -10, 0);
+		};
+		this.addGap[&quot;left&quot;] &#x3D; pos &#x3D;&gt; {
+			return position.addOffset(pos, -3, -6);
+		};
+		this.addGap[&quot;right&quot;] &#x3D; pos &#x3D;&gt; {
+			return position.addOffset(pos, -3, 6);
+		};
+
 		this.hasContentTemplate &#x3D; this.dialogConfig.content instanceof TemplateRef;
 	}
 
@@ -1452,9 +1578,9 @@ export class Tooltip extends Dialog {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div	#dialog	[id]="dialogConfig.compID"	[attr.role]="role"	class="bx--tooltip bx--tooltip--shown">	<span class="bx--tooltip__caret" aria-hidden="true"></span>	<ng-template			*ngIf="hasContentTemplate"			[ngTemplateOutlet]="dialogConfig.content"			[ngTemplateOutletContext]="{tooltip: this}">	</ng-template>	<p		*ngIf="!hasContentTemplate">		{{dialogConfig.content}}	</p></div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><div	#dialog	[id]="dialogConfig.compID"	[attr.role]="role"	[attr.data-floating-menu-direction]="placement"	class="bx--tooltip bx--tooltip--shown">	<span class="bx--tooltip__caret" aria-hidden="true"></span>	<ng-template			*ngIf="hasContentTemplate"			[ngTemplateOutlet]="dialogConfig.content"			[ngTemplateOutletContext]="{tooltip: this}">	</ng-template>	<p		*ngIf="!hasContentTemplate">		{{dialogConfig.content}}	</p></div></div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Tooltip'};
 </script>
 <script src="../js/tree.js"></script>

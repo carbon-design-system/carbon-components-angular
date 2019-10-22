@@ -193,10 +193,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Ng2FlatpickrModule } from &quot;ng2-flatpickr&quot;;
-import { NgModule } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 import { DatePickerInput } from &quot;./datepicker-input.component&quot;;
+import { Calendar16Module } from &quot;@carbon/icons-angular/lib/calendar/16&quot;;
 
 @NgModule({
 	declarations: [
@@ -207,7 +207,7 @@ import { DatePickerInput } from &quot;./datepicker-input.component&quot;;
 	],
 	imports: [
 		CommonModule,
-		Ng2FlatpickrModule
+		Calendar16Module
 	]
 })
 export class DatePickerInputModule { }

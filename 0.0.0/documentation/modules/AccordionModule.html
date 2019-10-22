@@ -199,6 +199,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
+import { ChevronRight16Module } from &quot;@carbon/icons-angular/lib/chevron--right/16&quot;;
 
 import { Accordion } from &quot;./accordion.component&quot;;
 import { AccordionItem } from &quot;./accordion-item.component&quot;;
@@ -215,7 +216,10 @@ export { AccordionItem } from &quot;./accordion-item.component&quot;;
 		Accordion,
 		AccordionItem
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ChevronRight16Module
+	]
 })
 export class AccordionModule { }
 </code></pre>

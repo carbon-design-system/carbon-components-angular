@@ -77,10 +77,40 @@
                                     <span class="modifier">Static</span>
                                 <a href="#experimentalEnabled">experimentalEnabled</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#experiments">experiments</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addExperiment">addExperiment</a>
+                            </li>
+                            <li>
+                                <a href="#disableExperiment">disableExperiment</a>
+                            </li>
+                            <li>
+                                <a href="#enableExperiment">enableExperiment</a>
+                            </li>
+                            <li>
+                                <a href="#getExperiment">getExperiment</a>
+                            </li>
+                            <li>
+                                <a href="#getExperiments">getExperiments</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -105,6 +135,369 @@
 </section>
 
 
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addExperiment"></a>
+                        <span class="name">
+                            <b>
+                            addExperiment
+                            </b>
+                            <a href="#addExperiment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>addExperiment(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, options: <a href="../interfaces/Experiment.html">Experiment</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/experimental.service.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Adds an experiment if it doesn&#39;t exist.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Default value</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>name</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>options</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/Experiment.html" target="_self" >Experiment</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code>{enabled: false}</code>
+                                                        </td>
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disableExperiment"></a>
+                        <span class="name">
+                            <b>
+                            disableExperiment
+                            </b>
+                            <a href="#disableExperiment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>disableExperiment(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/experimental.service.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Disables an experiment by name</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>name</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>name of the experiment to disable</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enableExperiment"></a>
+                        <span class="name">
+                            <b>
+                            enableExperiment
+                            </b>
+                            <a href="#enableExperiment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>enableExperiment(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/experimental.service.ts:53</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Enables an experiment by name</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>name</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>name of the experiment to enable</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getExperiment"></a>
+                        <span class="name">
+                            <b>
+                            getExperiment
+                            </b>
+                            <a href="#getExperiment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getExperiment(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/experimental.service.ts:71</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Get the options for an experiment by name</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>name</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>name of experiment to get</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="../interfaces/Experiment.html" target="_self" >Experiment</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getExperiments"></a>
+                        <span class="name">
+                            <b>
+                            getExperiments
+                            </b>
+                            <a href="#getExperiments"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getExperiments()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/experimental.service.ts:83</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Get an array of tuples representing an experiment and it&#39;s options</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Array&lt;&gt;</code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -133,15 +526,61 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                            <i>Default value : </i><code>true</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/experimental.service.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/experimental.service.ts:17</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Tracks if the v10 experimental mode is enabled</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="experiments"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            experiments
+                            </b>
+                            <a href="#experiments"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>experiments:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Map&lt;string, Experiment&gt;()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/experimental.service.ts:38</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Map to hold all our experiments</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -167,9 +606,18 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/experimental.service.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/experimental.service.ts:31</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Gets the state of the v10 experimental mode</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -178,11 +626,13 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/experimental.service.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/experimental.service.ts:23</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Sets the v10 experimental mode</p>
+</div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -227,16 +677,88 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
 
+/**
+ * Represents options for an experiment. The only required property is &#x60;enabled&#x60;, however other options may be supplied.
+ */
+export interface Experiment {
+	enabled: boolean;
+	[key: string]: any;
+}
+
 @Injectable()
 export class ExperimentalService {
-	static experimentalEnabled &#x3D; false;
+	/**
+	 * Tracks if the v10 experimental mode is enabled
+	 * @deprecated since v3
+	 */
+	static experimentalEnabled &#x3D; true;
 
+	/**
+	 * Sets the v10 experimental mode
+	 * @deprecated since v3
+	 */
 	set isExperimental(v: boolean) {
 		ExperimentalService.experimentalEnabled &#x3D; v;
 	}
 
+	/**
+	 * Gets the state of the v10 experimental mode
+	 * @deprecated since v3
+	 */
 	get isExperimental() {
 		return ExperimentalService.experimentalEnabled;
+	}
+
+	/**
+	 * Map to hold all our experiments
+	 */
+	private experiments &#x3D; new Map&lt;string, Experiment&gt;();
+
+	/**
+	 * Adds an experiment if it doesn&#x27;t exist.
+	 */
+	addExperiment(name: string, options: Experiment &#x3D; {enabled: false}) {
+		if (!this.experiments.has(name)) {
+			this.experiments.set(name, options);
+		}
+	}
+
+	/**
+	 * Enables an experiment by name
+	 * @param name name of the experiment to enable
+	 */
+	enableExperiment(name: string) {
+		const experiment &#x3D; this.getExperiment(name);
+		experiment.enabled &#x3D; true;
+	}
+
+	/**
+	 * Disables an experiment by name
+	 * @param name name of the experiment to disable
+	 */
+	disableExperiment(name: string) {
+		const experiment &#x3D; this.getExperiment(name);
+		experiment.enabled &#x3D; false;
+	}
+
+	/**
+	 * Get the options for an experiment by name
+	 * @param name name of experiment to get
+	 */
+	getExperiment(name: string): Experiment {
+		if (!this.experiments.has(name)) {
+			this.addExperiment(name);
+			return this.getExperiment(name);
+		}
+
+		return this.experiments.get(name);
+	}
+
+	/**
+	 * Get an array of tuples representing an experiment and it&#x27;s options
+	 */
+	getExperiments(): Array&lt;[string, Experiment]&gt; {
+		return Array.from(this.experiments.entries());
 	}
 }
 </code></pre>

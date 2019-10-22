@@ -48,6 +48,9 @@
         <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -62,17 +65,14 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-code-snippet&gt;Code&lt;/ibm-code-snippet&gt;
- *</code></pre></div>
+        <p><a href="../../?path=/story/code-snippet--basic">See demo</a></p>
+<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-code-snippet&gt;Code&lt;/ibm-code-snippet&gt;
+ *</code></pre></div><p><example-url>../../iframe.html?id=code-snippet--basic</example-url></p>
+
     </p>
 
 
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -121,12 +121,7 @@
 		[attr.aria-label]&#x3D;&quot;translations.COPY_CODE&quot;
 		(click)&#x3D;&quot;onCopyButtonClicked()&quot;
 		tabindex&#x3D;&quot;0&quot;&gt;
-		&lt;svg class&#x3D;&quot;bx--snippet__icon&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
-			&lt;path d&#x3D;&quot;M1 10H0V2C0 .9.9 0 2 0h8v1H2c-.6 0-1 .5-1 1v8z&quot; /&gt;
-			&lt;path d&#x3D;&quot;M11 4.2V8h3.8L11 4.2zM15 9h-4c-.6 0-1-.4-1-1V4H4.5c-.3 0-.5.2-.5.5v10c0 .3.2.5.5.5h10c.3 0
-				.5-.2.5-.5V9zm-4-6c.1 0 .3.1.4.1l4.5 4.5c0 .1.1.3.1.4v6.5c0 .8-.7 1.5-1.5 1.5h-10c-.8
-				0-1.5-.7-1.5-1.5v-10C3 3.7 3.7 3 4.5 3H11z&quot;/&gt;
-		&lt;/svg&gt;
+		&lt;ibm-icon-copy16 class&#x3D;&quot;bx--snippet__icon&quot;&gt;&lt;/ibm-icon-copy16&gt;
 		&lt;ng-container *ngTemplateOutlet&#x3D;&quot;feedbackTemplate&quot;&gt;&lt;/ng-container&gt;
 	&lt;/button&gt;
 	&lt;button
@@ -135,14 +130,7 @@
 		(click)&#x3D;&quot;toggleSnippetExpansion()&quot;
 		type&#x3D;&quot;button&quot;&gt;
 		&lt;span class&#x3D;&quot;bx--snippet-btn--text&quot;&gt;{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}&lt;/span&gt;
-		&lt;svg
-			class&#x3D;&quot;bx--icon-chevron--down&quot;
-			width&#x3D;&quot;12&quot; height&#x3D;&quot;7&quot;
-			viewBox&#x3D;&quot;0 0 12 7&quot;
-			[attr.aria-label]&#x3D;&quot;translations.SHOW_MORE_ICON&quot;&gt;
-			&lt;title&gt;{{translations.SHOW_MORE_ICON}}&lt;/title&gt;
-			&lt;path fill-rule&#x3D;&quot;nonzero&quot; d&#x3D;&quot;M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z&quot; /&gt;
-		&lt;/svg&gt;
+		&lt;ibm-icon-chevron-down16 class&#x3D;&quot;bx--icon-chevron--down&quot; [ariaLabel]&#x3D;&quot;translations.SHOW_MORE_ICON&quot;&gt;&lt;/ibm-icon-chevron-down16&gt;
 	&lt;/button&gt;
 &lt;/ng-template&gt;
 
@@ -335,7 +323,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/code-snippet/code-snippet.component.ts:162</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/code-snippet/code-snippet.component.ts:143</a></div>
                             </td>
                         </tr>
 
@@ -398,7 +386,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/code-snippet/code-snippet.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/code-snippet/code-snippet.component.ts:90</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -418,7 +406,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/code-snippet/code-snippet.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/code-snippet/code-snippet.component.ts:110</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -440,7 +428,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/code-snippet/code-snippet.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/code-snippet/code-snippet.component.ts:102</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -462,7 +450,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/code-snippet/code-snippet.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/code-snippet/code-snippet.component.ts:108</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -482,7 +470,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/code-snippet/code-snippet.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/code-snippet/code-snippet.component.ts:111</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -508,7 +496,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/code-snippet/code-snippet.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/code-snippet/code-snippet.component.ts:96</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -528,7 +516,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/code-snippet/code-snippet.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/code-snippet/code-snippet.component.ts:91</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -557,7 +545,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/code-snippet/code-snippet.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/code-snippet/code-snippet.component.ts:133</a></div>
                             </td>
                         </tr>
 
@@ -585,7 +573,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/code-snippet/code-snippet.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/code-snippet/code-snippet.component.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -618,7 +606,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/code-snippet/code-snippet.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/code-snippet/code-snippet.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -646,7 +634,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/code-snippet/code-snippet.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/code-snippet/code-snippet.component.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -674,7 +662,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/code-snippet/code-snippet.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/code-snippet/code-snippet.component.ts:123</a></div>
                             </td>
                         </tr>
 
@@ -702,7 +690,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/code-snippet/code-snippet.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/code-snippet/code-snippet.component.ts:117</a></div>
                             </td>
                         </tr>
 
@@ -730,7 +718,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/code-snippet/code-snippet.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/code-snippet/code-snippet.component.ts:114</a></div>
                             </td>
                         </tr>
 
@@ -758,7 +746,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/code-snippet/code-snippet.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/code-snippet/code-snippet.component.ts:130</a></div>
                             </td>
                         </tr>
 
@@ -790,7 +778,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/code-snippet/code-snippet.component.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/code-snippet/code-snippet.component.ts:202</a></div>
                             </td>
                         </tr>
 
@@ -834,7 +822,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/code-snippet/code-snippet.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/code-snippet/code-snippet.component.ts:160</a></div>
                             </td>
                         </tr>
 
@@ -874,7 +862,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/code-snippet/code-snippet.component.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/code-snippet/code-snippet.component.ts:186</a></div>
                             </td>
                         </tr>
 
@@ -912,7 +900,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/code-snippet/code-snippet.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/code-snippet/code-snippet.component.ts:152</a></div>
                             </td>
                         </tr>
 
@@ -965,7 +953,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/code-snippet/code-snippet.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/code-snippet/code-snippet.component.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -1005,7 +993,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/code-snippet/code-snippet.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/code-snippet/code-snippet.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -1044,7 +1032,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/code-snippet/code-snippet.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/code-snippet/code-snippet.component.ts:143</a></div>
                             </td>
                         </tr>
 
@@ -1073,7 +1061,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/code-snippet/code-snippet.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/code-snippet/code-snippet.component.ts:139</a></div>
                                 </td>
                             </tr>
 
@@ -1101,11 +1089,13 @@ export enum SnippetType {
 }
 
 /**
+ * [See demo](../../?path&#x3D;/story/code-snippet--basic)
+ *
  * &#x60;&#x60;&#x60;html
  * &lt;ibm-code-snippet&gt;Code&lt;/ibm-code-snippet&gt;
  * &#x60;&#x60;&#x60;
- * @export
- * @class CodeSnippet
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;code-snippet--basic&lt;/example-url&gt;
  */
 @Component({
 	selector: &quot;ibm-code-snippet&quot;,
@@ -1133,12 +1123,7 @@ export enum SnippetType {
 				[attr.aria-label]&#x3D;&quot;translations.COPY_CODE&quot;
 				(click)&#x3D;&quot;onCopyButtonClicked()&quot;
 				tabindex&#x3D;&quot;0&quot;&gt;
-				&lt;svg class&#x3D;&quot;bx--snippet__icon&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; width&#x3D;&quot;16&quot; height&#x3D;&quot;16&quot; viewBox&#x3D;&quot;0 0 16 16&quot;&gt;
-					&lt;path d&#x3D;&quot;M1 10H0V2C0 .9.9 0 2 0h8v1H2c-.6 0-1 .5-1 1v8z&quot; /&gt;
-					&lt;path d&#x3D;&quot;M11 4.2V8h3.8L11 4.2zM15 9h-4c-.6 0-1-.4-1-1V4H4.5c-.3 0-.5.2-.5.5v10c0 .3.2.5.5.5h10c.3 0
-						.5-.2.5-.5V9zm-4-6c.1 0 .3.1.4.1l4.5 4.5c0 .1.1.3.1.4v6.5c0 .8-.7 1.5-1.5 1.5h-10c-.8
-						0-1.5-.7-1.5-1.5v-10C3 3.7 3.7 3 4.5 3H11z&quot;/&gt;
-				&lt;/svg&gt;
+				&lt;ibm-icon-copy16 class&#x3D;&quot;bx--snippet__icon&quot;&gt;&lt;/ibm-icon-copy16&gt;
 				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;feedbackTemplate&quot;&gt;&lt;/ng-container&gt;
 			&lt;/button&gt;
 			&lt;button
@@ -1147,14 +1132,7 @@ export enum SnippetType {
 				(click)&#x3D;&quot;toggleSnippetExpansion()&quot;
 				type&#x3D;&quot;button&quot;&gt;
 				&lt;span class&#x3D;&quot;bx--snippet-btn--text&quot;&gt;{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}&lt;/span&gt;
-				&lt;svg
-					class&#x3D;&quot;bx--icon-chevron--down&quot;
-					width&#x3D;&quot;12&quot; height&#x3D;&quot;7&quot;
-					viewBox&#x3D;&quot;0 0 12 7&quot;
-					[attr.aria-label]&#x3D;&quot;translations.SHOW_MORE_ICON&quot;&gt;
-					&lt;title&gt;{{translations.SHOW_MORE_ICON}}&lt;/title&gt;
-					&lt;path fill-rule&#x3D;&quot;nonzero&quot; d&#x3D;&quot;M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z&quot; /&gt;
-				&lt;/svg&gt;
+				&lt;ibm-icon-chevron-down16 class&#x3D;&quot;bx--icon-chevron--down&quot; [ariaLabel]&#x3D;&quot;translations.SHOW_MORE_ICON&quot;&gt;&lt;/ibm-icon-chevron-down16&gt;
 			&lt;/button&gt;
 		&lt;/ng-template&gt;
 
@@ -1176,39 +1154,30 @@ export enum SnippetType {
 export class CodeSnippet {
 	/**
 	 * Variable used for creating unique ids for code-snippet components.
-	 * @type {number}
-	 * @static
-	 * @memberof CodeSnippet
 	 */
 	static codeSnippetCount &#x3D; 0;
 
 	/**
 	 * It can be &#x60;&quot;single&quot;&#x60;, &#x60;&quot;multi&quot;&#x60; or &#x60;&quot;inline&quot;&#x60;
 	 *
-	 * @type {SnippetType}
-	 * @memberof CodeSnippet
 	 */
 	@Input() display: SnippetType &#x3D; SnippetType.single;
 	@Input() translations &#x3D; this.i18n.get().CODE_SNIPPET;
 
 	/**
 	 * Set to &#x60;&quot;light&quot;&#x60; to apply the light style on the code snippet.
-	 * @type {&quot;light&quot; | &quot;dark&quot;}
-	 * @memberof CodeSnippet
 	 */
 	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
 
 	/**
 	 * Text displayed in the tooltip when user clicks button to copy code.
 	 *
-	 * @memberof CodeSnippet
 	 */
 	@Input() feedbackText &#x3D; this.translations.COPIED;
 
 	/**
 	 * Time in miliseconds to keep the feedback tooltip displayed.
 	 *
-	 * @memberof CodeSnippet
 	 */
 	@Input() feedbackTimeout &#x3D; 2000;
 
@@ -1249,10 +1218,6 @@ export class CodeSnippet {
 
 	/**
 	 * Creates an instance of CodeSnippet.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @param {ElementRef} elementRef
-	 * @param {Renderer2} renderer
-	 * @memberof CodeSnippet
 	 */
 	constructor(protected i18n: I18n) {
 		CodeSnippet.codeSnippetCount++;
@@ -1265,7 +1230,6 @@ export class CodeSnippet {
 	/**
 	 * Copies the code from the &#x60;&lt;code&gt;&#x60; block to clipboard.
 	 *
-	 * @memberof CodeSnippet
 	 */
 	copyCode() {
 		// create invisible, uneditable textarea with our code in it
@@ -1307,9 +1271,6 @@ export class CodeSnippet {
 	 * Inline code snippet acts as button and makes the whole component clickable.
 	 *
 	 * This handles clicks in that case.
-	 *
-	 * @returns
-	 * @memberof CodeSnippet
 	 */
 	@HostListener(&quot;click&quot;)
 	hostClick() {
@@ -1343,6 +1304,11 @@ export class CodeSnippet {
         </div>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;code-snippet--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
     
 </div>
 
@@ -1350,9 +1316,9 @@ export class CodeSnippet {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="display === \'inline\'; else notInline">	<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>	<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container></ng-container><ng-template #notInline>	<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">		<ng-container *ngIf="skeleton">			<span *ngIf="display === \'single\'; else multiSkeleton"></span>			<ng-template #multiSkeleton>				<span></span>				<span></span>				<span></span>			</ng-template>		</ng-container>		<pre *ngIf="!skeleton"><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>	</div>	<button		*ngIf="!skeleton"		class="bx--snippet-button"		[attr.aria-label]="translations.COPY_CODE"		(click)="onCopyButtonClicked()"		tabindex="0">		<svg class="bx--snippet__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">			<path d="M1 10H0V2C0 .9.9 0 2 0h8v1H2c-.6 0-1 .5-1 1v8z" />			<path d="M11 4.2V8h3.8L11 4.2zM15 9h-4c-.6 0-1-.4-1-1V4H4.5c-.3 0-.5.2-.5.5v10c0 .3.2.5.5.5h10c.3 0				.5-.2.5-.5V9zm-4-6c.1 0 .3.1.4.1l4.5 4.5c0 .1.1.3.1.4v6.5c0 .8-.7 1.5-1.5 1.5h-10c-.8				0-1.5-.7-1.5-1.5v-10C3 3.7 3.7 3 4.5 3H11z"/>		</svg>		<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>	</button>	<button		*ngIf="display === \'multi\' && shouldShowExpandButton"		class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"		(click)="toggleSnippetExpansion()"		type="button">		<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>		<svg			class="bx--icon-chevron--down"			width="12" height="7"			viewBox="0 0 12 7"			[attr.aria-label]="translations.SHOW_MORE_ICON">			<title>{{translations.SHOW_MORE_ICON}}</title>			<path fill-rule="nonzero" d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />		</svg>	</button></ng-template><ng-template #codeTemplate>	<code #code><ng-content></ng-content></code></ng-template><ng-template #feedbackTemplate>	<div	class="bx--btn--copy__feedback"	[ngClass]="{		\'bx--btn--copy__feedback--displayed\': showFeedback	}"	[attr.data-feedback]="feedbackText">	</div></ng-template>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="display === \'inline\'; else notInline">	<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>	<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container></ng-container><ng-template #notInline>	<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">		<ng-container *ngIf="skeleton">			<span *ngIf="display === \'single\'; else multiSkeleton"></span>			<ng-template #multiSkeleton>				<span></span>				<span></span>				<span></span>			</ng-template>		</ng-container>		<pre *ngIf="!skeleton"><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>	</div>	<button		*ngIf="!skeleton"		class="bx--snippet-button"		[attr.aria-label]="translations.COPY_CODE"		(click)="onCopyButtonClicked()"		tabindex="0">		<ibm-icon-copy16 class="bx--snippet__icon"></ibm-icon-copy16>		<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>	</button>	<button		*ngIf="display === \'multi\' && shouldShowExpandButton"		class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"		(click)="toggleSnippetExpansion()"		type="button">		<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>		<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>	</button></ng-template><ng-template #codeTemplate>	<code #code><ng-content></ng-content></code></ng-template><ng-template #feedbackTemplate>	<div	class="bx--btn--copy__feedback"	[ngClass]="{		\'bx--btn--copy__feedback--displayed\': showFeedback	}"	[attr.data-feedback]="feedbackText">	</div></ng-template>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'CodeSnippet'};
 </script>
 <script src="../js/tree.js"></script>

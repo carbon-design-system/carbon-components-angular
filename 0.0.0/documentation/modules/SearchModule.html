@@ -222,6 +222,8 @@
 import { NgModule } from &quot;@angular/core&quot;;
 import { FormsModule } from &quot;@angular/forms&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
+import { Search16Module } from &quot;@carbon/icons-angular/lib/search/16&quot;;
+import { Close16Module } from &quot;@carbon/icons-angular/lib/close/16&quot;;
 
 // imports
 import { I18nModule } from &quot;../i18n/i18n.module&quot;;
@@ -237,7 +239,9 @@ import { Search } from &quot;./search.component&quot;;
 	imports: [
 		FormsModule,
 		CommonModule,
-		I18nModule
+		I18nModule,
+		Search16Module,
+		Close16Module
 	]
 })
 export class SearchModule { }

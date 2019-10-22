@@ -47,6 +47,9 @@
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -63,19 +66,16 @@
             </p>
             <p class="comment">
                 <p>Directive for extending <code>Dialog</code> to create tooltips.</p>
+<p><a href="../../?path=/story/tooltip--basic">See demo</a></p>
 <p>class: TooltipDirective (extends PopoverDirective)</p>
 <p>selector: <code>nTooltip</code></p>
 <div><pre class="line-numbers"><code class="language-html"> * &lt;button nTooltip=&quot;I am a tooltip&quot; placement=&quot;right&quot; trigger=&quot;mouseenter&quot; type=&quot;danger&quot;&gt;Tooltip Right&lt;/button&gt;
  * &lt;button nTooltip=&quot;I am a tooltip&quot; type=&quot;warning&quot;&gt;Tooltip Top warning on click&lt;/button&gt;
- *</code></pre></div>
+ *</code></pre></div><p><example-url>../../iframe.html?id=tooltip--basic</example-url></p>
+
             </p>
 
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
         <section>
             <h3>Metadata</h3>
@@ -467,6 +467,8 @@ import { DialogService } from &quot;./../dialog.service&quot;;
 /**
  * Directive for extending &#x60;Dialog&#x60; to create tooltips.
  *
+ * [See demo](../../?path&#x3D;/story/tooltip--basic)
+ *
  * class: TooltipDirective (extends PopoverDirective)
  *
  *
@@ -478,9 +480,7 @@ import { DialogService } from &quot;./../dialog.service&quot;;
  * &lt;button nTooltip&#x3D;&quot;I am a tooltip&quot; type&#x3D;&quot;warning&quot;&gt;Tooltip Top warning on click&lt;/button&gt;
  * &#x60;&#x60;&#x60;
  *
- * @export
- * @class TooltipDirective
- * @extends {DialogDirective}
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;tooltip--basic&lt;/example-url&gt;
  */
 @Directive({
 	selector: &quot;[ibmTooltip]&quot;,
@@ -531,6 +531,11 @@ export class TooltipDirective extends DialogDirective {
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;tooltip--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
 </div>
 
 

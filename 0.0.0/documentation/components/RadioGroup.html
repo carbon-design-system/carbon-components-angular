@@ -48,6 +48,9 @@
         <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -62,7 +65,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>class: RadioGroup</p>
+        <p><a href="../../?path=/story/radio--basic">See demo</a></p>
+<p>class: RadioGroup</p>
 <p>selector: <code>ibm-radio-group</code></p>
 <p>source: <code>src/forms/radio.component.ts</code></p>
 <p>Ex:</p>
@@ -75,6 +79,7 @@
  * Radio selected: {{radio}}
  *</code></pre></div><div><pre class="line-numbers"><code class="language-typescript"> * manyRadios = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;];
  *</code></pre></div><p>Also see: <a href="#ibm-radio"><code>Radio</code></a></p>
+<p><example-url>../../iframe.html?id=radio--basic</example-url></p>
 
     </p>
 
@@ -121,7 +126,13 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;bx--radio-button-group&quot; role&#x3D;&quot;radiogroup&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div
+	class&#x3D;&quot;bx--radio-button-group&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;bx--radio-button-group--vertical&#x27;: orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27;,
+		&#x27;bx--radio-button-group--label-left&#x27;: orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27; &amp;&amp; labelPlacement &#x3D;&#x3D;&#x3D; &#x27;left&#x27;
+	}&quot;
+	role&#x3D;&quot;radiogroup&quot;&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/div&gt;
 	</code></pre></td>
@@ -232,6 +243,9 @@
                                 <a href="#updateRadioNames">updateRadioNames</a>
                             </li>
                             <li>
+                                <a href="#updateRadios">updateRadios</a>
+                            </li>
+                            <li>
                                 <a href="#updateSelectedRadioFromValue">updateSelectedRadioFromValue</a>
                             </li>
                             <li>
@@ -253,7 +267,13 @@
                                 <a href="#disabled">disabled</a>
                             </li>
                             <li>
+                                <a href="#labelPlacement">labelPlacement</a>
+                            </li>
+                            <li>
                                 <a href="#name">name</a>
+                            </li>
+                            <li>
+                                <a href="#orientation">orientation</a>
                             </li>
                             <li>
                                 <a href="#selected">selected</a>
@@ -346,7 +366,31 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/radio/radio-group.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/radio/radio-group.component.ts:143</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="labelPlacement"></a>
+                        <code>labelPlacement</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code>&quot;right&quot; | &quot;left&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;right&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/radio/radio-group.component.ts:75</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -369,7 +413,31 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/radio/radio-group.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/radio/radio-group.component.ts:129</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="orientation"></a>
+                        <code>orientation</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code>&quot;horizontal&quot; | &quot;vertical&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;horizontal&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/radio/radio-group.component.ts:73</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -388,7 +456,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/radio/radio-group.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/radio/radio-group.component.ts:92</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -411,7 +479,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/radio/radio-group.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/radio/radio-group.component.ts:149</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -434,7 +502,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/radio/radio-group.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/radio/radio-group.component.ts:109</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -458,7 +526,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/radio/radio-group.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/radio/radio-group.component.ts:80</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -491,7 +559,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/radio/radio-group.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/radio/radio-group.component.ts:164</a></div>
                             </td>
                         </tr>
 
@@ -534,7 +602,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/radio/radio-group.component.ts:205</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/radio/radio-group.component.ts:194</a></div>
                             </td>
                         </tr>
 
@@ -574,7 +642,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/radio/radio-group.component.ts:230</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/radio/radio-group.component.ts:219</a></div>
                             </td>
                         </tr>
 
@@ -645,7 +713,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/radio/radio-group.component.ts:254</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/radio/radio-group.component.ts:251</a></div>
                             </td>
                         </tr>
 
@@ -683,7 +751,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/radio/radio-group.component.ts:264</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/radio/radio-group.component.ts:261</a></div>
                             </td>
                         </tr>
 
@@ -723,7 +791,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/radio/radio-group.component.ts:271</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/radio/radio-group.component.ts:268</a></div>
                             </td>
                         </tr>
 
@@ -796,7 +864,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/radio/radio-group.component.ts:279</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/radio/radio-group.component.ts:276</a></div>
                             </td>
                         </tr>
 
@@ -874,7 +942,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/radio/radio-group.component.ts:293</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/radio/radio-group.component.ts:290</a></div>
                             </td>
                         </tr>
 
@@ -914,7 +982,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/radio/radio-group.component.ts:299</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/radio/radio-group.component.ts:296</a></div>
                             </td>
                         </tr>
 
@@ -952,14 +1020,52 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/radio/radio-group.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/radio/radio-group.component.ts:225</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Synchronizes the names of the radio items with the name of the <code>RadioGroup</code>.</p>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateRadios"></a>
+                        <span class="name">
+                            <b>
+                            updateRadios
+                            </b>
+                            <a href="#updateRadios"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateRadios()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/radio/radio-group.component.ts:233</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Synchronizes radio properties.</p>
 </div>
 
                             <div class="io-description">
@@ -992,7 +1098,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/radio/radio-group.component.ts:214</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/radio/radio-group.component.ts:203</a></div>
                             </td>
                         </tr>
 
@@ -1032,7 +1138,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/radio/radio-group.component.ts:250</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/radio/radio-group.component.ts:247</a></div>
                             </td>
                         </tr>
 
@@ -1115,7 +1221,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/radio/radio-group.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/radio/radio-group.component.ts:173</a></div>
                             </td>
                         </tr>
 
@@ -1155,7 +1261,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/radio/radio-group.component.ts:200</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/radio/radio-group.component.ts:189</a></div>
                             </td>
                         </tr>
 
@@ -1201,7 +1307,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/radio/radio-group.component.ts:196</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/radio/radio-group.component.ts:185</a></div>
                             </td>
                         </tr>
 
@@ -1241,7 +1347,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/radio/radio-group.component.ts:188</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/radio/radio-group.component.ts:177</a></div>
                             </td>
                         </tr>
 
@@ -1287,7 +1393,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/radio/radio-group.component.ts:192</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/radio/radio-group.component.ts:181</a></div>
                             </td>
                         </tr>
 
@@ -1327,7 +1433,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/radio/radio-group.component.ts:180</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/radio/radio-group.component.ts:169</a></div>
                             </td>
                         </tr>
 
@@ -1372,7 +1478,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/radio/radio-group.component.ts:286</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/radio/radio-group.component.ts:283</a></div>
                             </td>
                         </tr>
 
@@ -1411,7 +1517,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/radio/radio-group.component.ts:291</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="288" class="link-to-prism">src/radio/radio-group.component.ts:288</a></div>
                             </td>
                         </tr>
 
@@ -1457,7 +1563,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/radio/radio-group.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/radio/radio-group.component.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -1506,7 +1612,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/radio/radio-group.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/radio/radio-group.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -1541,7 +1647,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/radio/radio-group.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/radio/radio-group.component.ts:101</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1559,7 +1665,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/radio/radio-group.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/radio/radio-group.component.ts:92</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1615,7 +1721,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/radio/radio-group.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/radio/radio-group.component.ts:121</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1633,7 +1739,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/radio/radio-group.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/radio/radio-group.component.ts:109</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1693,7 +1799,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/radio/radio-group.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/radio/radio-group.component.ts:136</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1711,7 +1817,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/radio/radio-group.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/radio/radio-group.component.ts:129</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1772,7 +1878,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/radio/radio-group.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/radio/radio-group.component.ts:156</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1823,45 +1929,23 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	AfterContentInit,
-	ChangeDetectorRef,
 	ContentChildren,
 	Component,
-	ElementRef,
 	EventEmitter,
 	forwardRef,
 	Input,
-	OnInit,
 	Output,
 	QueryList,
-	Renderer2,
 	HostBinding,
 	AfterViewInit
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
 import { Radio } from &quot;./radio.component&quot;;
+import { RadioChange } from &quot;./radio-change.class&quot;;
 
 /**
- * Used to emit changes performed on a &#x60;Radio&#x60;.
- * @export
- * @class RadioChange
- */
-export class RadioChange {
-	/**
-	 * Contains the &#x60;Radio&#x60; that has been changed.
-	 */
-	source: Radio | null;
-	/**
-	 * The value of the &#x60;Radio&#x60; encompassed in the &#x60;RadioChange&#x60; class.
-	 */
-	value: string;
-
-	constructor(source: Radio, value: string) {
-		this.source &#x3D; source;
-		this.value &#x3D; value;
-	}
-}
-
-/**
+ * [See demo](../../?path&#x3D;/story/radio--basic)
+ *
  * class: RadioGroup
  *
  * selector: &#x60;ibm-radio-group&#x60;
@@ -1886,11 +1970,18 @@ export class RadioChange {
  *
  * Also see: [&#x60;Radio&#x60;](#ibm-radio)
  *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;radio--basic&lt;/example-url&gt;
  */
 @Component({
 	selector: &quot;ibm-radio-group&quot;,
 	template: &#x60;
-		&lt;div class&#x3D;&quot;bx--radio-button-group&quot; role&#x3D;&quot;radiogroup&quot;&gt;
+		&lt;div
+			class&#x3D;&quot;bx--radio-button-group&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--radio-button-group--vertical&#x27;: orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27;,
+				&#x27;bx--radio-button-group--label-left&#x27;: orientation &#x3D;&#x3D;&#x3D; &#x27;vertical&#x27; &amp;&amp; labelPlacement &#x3D;&#x3D;&#x3D; &#x27;left&#x27;
+			}&quot;
+			role&#x3D;&quot;radiogroup&quot;&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/div&gt;
 	&#x60;,
@@ -1907,6 +1998,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 * Used for creating the &#x60;RadioGroup&#x60; &#x27;name&#x27; property dynamically.
 	 */
 	static radioGroupCount &#x3D; 0;
+
+	@Input() orientation: &quot;horizontal&quot; | &quot;vertical&quot; &#x3D; &quot;horizontal&quot;;
+
+	@Input() labelPlacement: &quot;right&quot; | &quot;left&quot; &#x3D;  &quot;right&quot;;
 
 	/**
 	 * Emits event notifying other classes of a change using a &#x60;RadioChange&#x60; class.
@@ -1962,7 +2057,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	@Input()
 	set name(name: string) {
 		this._name &#x3D; name;
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 	/**
 	 * Returns the associated name of the &#x60;RadioGroup&#x60;.
@@ -2056,13 +2151,21 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 		this.onTouched();
 	}
 
-	/**
-	 * Synchronizes the names of the radio items with the name of the &#x60;RadioGroup&#x60;.
-	 */
 	updateRadioNames() {
+		console.warn(&quot;updateRadioNames had been deprecated. Use updateRadios instead&quot;);
+		this.updateRadios();
+	}
+
+	/**
+	 * Synchronizes radio properties.
+	 */
+	updateRadios() {
 		if (this.radios) {
 			setTimeout(() &#x3D;&gt; {
 				this.radios.forEach(radio &#x3D;&gt; radio.name &#x3D; this.name);
+				if (this.labelPlacement &#x3D;&#x3D;&#x3D; &quot;left&quot;) {
+					this.radios.forEach(radio &#x3D;&gt; radio.labelPlacement &#x3D; &quot;left&quot;);
+				}
 			});
 		}
 	}
@@ -2076,7 +2179,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 
 	ngAfterContentInit() {
 		this.radios.changes.subscribe(() &#x3D;&gt; {
-			this.updateRadioNames();
+			this.updateRadios();
 			this.updateRadioChangeHandler();
 		});
 
@@ -2085,7 +2188,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	}
 
 	ngAfterViewInit() {
-		this.updateRadioNames();
+		this.updateRadios();
 	}
 
 	/**
@@ -2154,6 +2257,11 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
         </div>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;radio--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
     
 </div>
 
@@ -2161,9 +2269,9 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="bx--radio-button-group" role="radiogroup">	<ng-content></ng-content></div>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><div	class="bx--radio-button-group"	[ngClass]="{		\'bx--radio-button-group--vertical\': orientation === \'vertical\',		\'bx--radio-button-group--label-left\': orientation === \'vertical\' && labelPlacement === \'left\'	}"	role="radiogroup">	<ng-content></ng-content></div>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'RadioGroup'};
 </script>
 <script src="../js/tree.js"></script>

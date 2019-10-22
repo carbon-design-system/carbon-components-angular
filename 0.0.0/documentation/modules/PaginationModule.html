@@ -210,6 +210,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 import { FormsModule } from &quot;@angular/forms&quot;;
+import { ChevronDown16Module } from &quot;@carbon/icons-angular/lib/chevron--down/16&quot;;
+import { CaretLeft16Module } from &quot;@carbon/icons-angular/lib/caret--left/16&quot;;
+import { CaretRight16Module } from &quot;@carbon/icons-angular/lib/caret--right/16&quot;;
 
 import { Pagination } from &quot;./pagination.component&quot;;
 import { I18nModule } from &quot;./../i18n/i18n.module&quot;;
@@ -229,7 +232,10 @@ export { Pagination } from &quot;./pagination.component&quot;;
 		CommonModule,
 		FormsModule,
 		I18nModule,
-		ExperimentalModule
+		ExperimentalModule,
+		ChevronDown16Module,
+		CaretLeft16Module,
+		CaretRight16Module
 	]
 })
 export class PaginationModule {}

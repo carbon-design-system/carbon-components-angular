@@ -285,6 +285,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
+import { CheckmarkFilled16Module } from &quot;@carbon/icons-angular/lib/checkmark--filled/16&quot;;
 
 import { StructuredList } from &quot;./structured-list.component&quot;;
 import { ListRow } from &quot;./list-row.component&quot;;
@@ -304,7 +305,10 @@ import { ListColumn } from &quot;./list-column.component&quot;;
 		ListHeader,
 		ListColumn
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		CheckmarkFilled16Module
+	]
 })
 class StructuredListModule { }
 

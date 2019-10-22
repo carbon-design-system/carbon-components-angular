@@ -257,6 +257,8 @@
 import { NgModule } from &quot;@angular/core&quot;;
 import { FormsModule } from &quot;@angular/forms&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
+import { ChevronDown16Module } from &quot;@carbon/icons-angular/lib/chevron--down/16&quot;;
+import { WarningFilled16Module } from &quot;@carbon/icons-angular/lib/warning--filled/16&quot;;
 
 // imports
 import { Select } from &quot;./select.component&quot;;
@@ -276,7 +278,9 @@ import { OptGroup } from &quot;./optgroup.directive&quot;;
 	],
 	imports: [
 		CommonModule,
-		FormsModule
+		FormsModule,
+		ChevronDown16Module,
+		WarningFilled16Module
 	]
 })
 class SelectModule { }

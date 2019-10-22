@@ -255,13 +255,17 @@ import { FormsModule } from &quot;@angular/forms&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 
 // imports
-import { Radio } from &quot;../radio/radio.component&quot;;
-import { RadioGroup } from &quot;../radio/radio-group.component&quot;;
+import { Radio } from &quot;./radio.component&quot;;
+import { RadioGroup } from &quot;./radio-group.component&quot;;
+import { RadioChange } from &quot;./radio-change.class&quot;;
 
 
 // exports
-export { Radio } from &quot;../radio/radio.component&quot;;
-export { RadioGroup } from &quot;../radio/radio-group.component&quot;;
+export {
+	Radio,
+	RadioGroup,
+	RadioChange
+};
 
 @NgModule({
 	declarations: [

@@ -47,6 +47,9 @@
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -63,9 +66,11 @@
             </p>
             <p class="comment">
                 <p>A convinence directive for applying styling to a link.</p>
+<p><a href="../../?path=/story/link--basic">See demo</a></p>
 <p>Example:</p>
 <div><pre class="line-numbers"><code class="language-hmtl"> * &lt;a href=&quot;#&quot; ibmLink&gt;A link&lt;/a&gt;
  *</code></pre></div><p>See the <a href="http://www.carbondesignsystem.com/components/link/code">vanilla carbon docs</a> for more detail.</p>
+<p><example-url>../../iframe.html?id=link--basic</example-url></p>
 
             </p>
 
@@ -180,7 +185,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/link/link.directive.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/link/link.directive.ts:41</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -209,7 +214,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/link/link.directive.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/link/link.directive.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -248,7 +253,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/link/link.directive.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/link/link.directive.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -286,7 +291,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/link/link.directive.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/link/link.directive.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -315,7 +320,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/link/link.directive.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/link/link.directive.ts:46</a></div>
                                 </td>
                             </tr>
 
@@ -326,7 +331,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/link/link.directive.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/link/link.directive.ts:41</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -385,6 +390,8 @@
 /**
  * A convinence directive for applying styling to a link.
  *
+ * [See demo](../../?path&#x3D;/story/link--basic)
+ *
  * Example:
  *
  * &#x60;&#x60;&#x60;hmtl
@@ -392,26 +399,28 @@
  * &#x60;&#x60;&#x60;
  *
  * See the [vanilla carbon docs](http://www.carbondesignsystem.com/components/link/code) for more detail.
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;link--basic&lt;/example-url&gt;
  */
 @Directive({
 	selector: &quot;[ibmLink]&quot;
 })
+
 
 export class Link {
 	@HostBinding(&quot;class.bx--link&quot;) baseClass &#x3D; true;
 
 	/**
 	 * Automatically set to &#x60;-1&#x60; when link is disabled.
-	 * @memberof Link
 	 */
 	@HostBinding(&quot;attr.tabindex&quot;) tabindex;
 
 	/**
 	 * Set to true to disable link.
-	 * @memberof Link
 	 */
 	@Input()
 	@HostBinding(&quot;attr.aria-disabled&quot;)
+	@HostBinding(&quot;class.bx--link--disabled&quot;)
 	set disabled(disabled: boolean) {
 		this._disabled &#x3D; disabled;
 		this.tabindex &#x3D; this.disabled ? -1 : null;
@@ -426,6 +435,11 @@ export class Link {
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;link--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
 </div>
 
 

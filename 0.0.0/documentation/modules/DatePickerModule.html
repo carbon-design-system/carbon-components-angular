@@ -79,7 +79,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_DatePickerModule_exports</title>
-<polygon fill="none" stroke="#000000" points="217,-319.5901 217,-371.5901 315,-371.5901 315,-319.5901 217,-319.5901"/>
+<polygon fill="none" stroke="#000000" points="113,-319.5901 113,-371.5901 383,-371.5901 383,-319.5901 113,-319.5901"/>
 </g>
 <!-- DatePicker -->
 <g id="node1" class="node">
@@ -102,14 +102,26 @@
 <!-- DatePicker  -->
 <g id="node5" class="node">
 <title>DatePicker </title>
-<polygon fill="#fb8072" stroke="#000000" points="306.69,-363.5901 225.31,-363.5901 225.31,-327.5901 306.69,-327.5901 306.69,-363.5901"/>
-<text text-anchor="middle" x="266" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePicker </text>
+<polygon fill="#fb8072" stroke="#000000" points="374.69,-363.5901 293.31,-363.5901 293.31,-327.5901 374.69,-327.5901 374.69,-363.5901"/>
+<text text-anchor="middle" x="334" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePicker </text>
 </g>
 <!-- DatePickerModule&#45;&gt;DatePicker  -->
 <g id="edge4" class="edge">
 <title>DatePickerModule&#45;&gt;DatePicker </title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266,-298.6962C266,-298.6962 266,-317.581 266,-317.581"/>
-<polygon fill="#000000" stroke="#000000" points="262.5001,-317.581 266,-327.581 269.5001,-317.5811 262.5001,-317.581"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M310.0125,-298.6962C310.0125,-298.6962 310.0125,-317.581 310.0125,-317.581"/>
+<polygon fill="#000000" stroke="#000000" points="306.5125,-317.581 310.0125,-327.581 313.5125,-317.5811 306.5125,-317.581"/>
+</g>
+<!-- DatePickerInputModule  -->
+<g id="node6" class="node">
+<title>DatePickerInputModule </title>
+<polygon fill="#fb8072" stroke="#000000" points="275.2905,-363.5901 120.7095,-363.5901 120.7095,-327.5901 275.2905,-327.5901 275.2905,-363.5901"/>
+<text text-anchor="middle" x="198" y="-341.3901" font-family="Times,serif" font-size="14.00" fill="#000000">DatePickerInputModule </text>
+</g>
+<!-- DatePickerModule&#45;&gt;DatePickerInputModule  -->
+<g id="edge5" class="edge">
+<title>DatePickerModule&#45;&gt;DatePickerInputModule </title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.2628,-298.6962C240.2628,-298.6962 240.2628,-317.581 240.2628,-317.581"/>
+<polygon fill="#000000" stroke="#000000" points="236.7629,-317.581 240.2628,-327.581 243.7629,-317.5811 236.7629,-317.581"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: DatePicker, multi: true
@@ -208,6 +220,9 @@
                         <li class="list-group-item">
                             <a href="../components/DatePicker.html">DatePicker</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="../modules/DatePickerInputModule.html">DatePickerInputModule</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -219,22 +234,20 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePickerInputModule } from &quot;./../datepicker-input/datepicker-input.module&quot;;
-import { Ng2FlatpickrModule } from &quot;ng2-flatpickr&quot;;
 import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 import { DatePicker } from &quot;./datepicker.component&quot;;
-
 
 @NgModule({
 	declarations: [
 		DatePicker
 	],
 	exports: [
-		DatePicker
+		DatePicker,
+		DatePickerInputModule
 	],
 	imports: [
 		CommonModule,
-		Ng2FlatpickrModule,
 		DatePickerInputModule
 	]
 })

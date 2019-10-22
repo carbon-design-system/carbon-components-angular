@@ -86,30 +86,41 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#appendInline">appendInline</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#closeTrigger">closeTrigger</a>
                                 </li>
                                 <li>
                                         <a href="#content">content</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#data">data</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#gap">gap</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#parentRef">parentRef</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#placement">placement</a>
                                 </li>
                                 <li>
+                                        <a href="#shouldClose">shouldClose</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#title">title</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#trigger">trigger</a>
                                 </li>
                             </ul>
@@ -132,9 +143,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/dialog-config.interface.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/dialog/dialog-config.interface.ts:47</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Additional arbitrary properties (mostly for internal/extended component use)</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -164,6 +181,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -199,6 +221,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -269,6 +296,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -304,6 +336,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -340,6 +377,11 @@ is associated to.</p>
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -375,6 +417,11 @@ is associated to.</p>
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -382,6 +429,41 @@ is associated to.</p>
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-description"><p>Parameter defining the placement in which the <code>Dialog</code> appears.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="shouldClose"></a>
+                                        <span class="name"><b>shouldClose</b><a href="#shouldClose"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>shouldClose:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Callback to control the closing behaviour. return <code>true</code> to close, and <code>false</code> to prevent closing</p>
 </div>
                                 </td>
                             </tr>
@@ -410,6 +492,11 @@ is associated to.</p>
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -445,14 +532,18 @@ is associated to.</p>
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Parameter for triggering <code>Dialog</code> display.
-With the release of v2.0 the type will just be &quot;click&quot; or &quot;hover&quot;.</p>
+                                    <div class="io-description"><p>Parameter for triggering <code>Dialog</code> display.</p>
 </div>
                                 </td>
                             </tr>
@@ -472,42 +563,47 @@ export interface DialogConfig {
 	/**
 	 * Title for the &#x60;Dialog&#x60; header.
 	 */
-	title: string;
+	title?: string;
 	/**
 	 * Body content for the &#x60;Dialog&#x60;.
 	 */
 	content: string | TemplateRef&lt;any&gt;;
 	/**
 	 * Parameter for triggering &#x60;Dialog&#x60; display.
-	 * With the release of v2.0 the type will just be &quot;click&quot; or &quot;hover&quot;.
 	 */
-	trigger: &quot;click&quot; | &quot;hover&quot; | &quot;mouseenter&quot;;
+	trigger?: &quot;click&quot; | &quot;hover&quot; | &quot;mouseenter&quot;;
 	/**
 	 * Parameter for triggering the &#x60;Dialog&#x60; close event.
 	 */
-	closeTrigger: &quot;mouseout&quot; | &quot;mouseleave&quot;;
+	closeTrigger?: &quot;mouseout&quot; | &quot;mouseleave&quot;;
+	/**
+	 * Callback to control the closing behaviour. return &#x60;true&#x60; to close, and &#x60;false&#x60; to prevent closing
+	 */
+	shouldClose: () &#x3D;&gt; boolean;
 	/**
 	 * Parameter defining the placement in which the &#x60;Dialog&#x60; appears.
-	 * @type {Placement}
 	 */
-	placement: string;
+	placement?: string;
 	/**
 	 * Used to set the offset of the &#x60;Dialog&#x60; relative to the content it
 	 * is associated to.
 	 */
-	gap: number;
+	gap?: number;
 	/**
 	 * Reference to the Parent element that links the &#x60;Dialog&#x60;.
 	 */
-	parentRef: ElementRef;
+	parentRef?: ElementRef;
 	/**
 	 * Set to &#x60;true&#x60; to open the dialog next to the triggering component
 	 */
-	appendInline: boolean;
+	appendInline?: boolean;
 	/**
 	 * Config object passed to the rendered component. (Optional)
 	 */
-	data: Object;
+	data?: Object;
+	/**
+	 * Additional arbitrary properties (mostly for internal/extended component use)
+	 */
 	[propName: string]: any;
 }
 </code></pre>

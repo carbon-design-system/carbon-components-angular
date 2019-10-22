@@ -58,6 +58,40 @@
     <code>src/table/toolbar/table-toolbar.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.</p>
+<h2 id="basic-usage">Basic usage</h2>
+<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-table-toolbar [model]=&quot;model&quot;&gt;
+ *        &lt;ibm-table-toolbar-actions&gt;
+ *            &lt;button ibmButton=&quot;primary&quot;&gt;
+ *                Delete
+ *                &lt;ibm-icon-delete16 class=&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-delete16&gt;
+ *            &lt;/button&gt;
+ *            &lt;button ibmButton=&quot;primary&quot;&gt;
+ *                Save
+ *                &lt;ibm-icon-save16 class=&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-save16&gt;
+ *            &lt;/button&gt;
+ *            &lt;button ibmButton=&quot;primary&quot;&gt;
+ *                Download
+ *                &lt;ibm-icon-download16 class=&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-download16&gt;
+ *            &lt;/button&gt;
+ *        &lt;/ibm-table-toolbar-actions&gt;
+ *            &lt;ibm-table-toolbar-content&gt;
+ *            &lt;ibm-table-toolbar-search [expandable]=&quot;true&quot;&gt;&lt;/ibm-table-toolbar-search&gt;
+ *            &lt;button ibmButton=&quot;toolbar-action&quot;&gt;
+ *                &lt;ibm-icon-settings16 class=&quot;bx--toolbar-action__icon&quot;&gt;&lt;/ibm-icon-settings16&gt;
+ *            &lt;/button&gt;
+ *            &lt;button ibmButton=&quot;primary&quot; size=&quot;sm&quot;&gt;
+ *                Primary Button
+ *                &lt;ibm-icon-add20 class=&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-add20&gt;
+ *            &lt;/button&gt;
+ *        &lt;/ibm-table-toolbar-content&gt;
+ *    &lt;/ibm-table-toolbar&gt;
+ *</code></pre></div>
+    </p>
 
 
 
@@ -92,16 +126,17 @@
 		[ngClass]&#x3D;&quot;{
 			&#x27;bx--batch-actions--active&#x27;: selected
 		}&quot;
-		[attr.aria-label]&#x3D;&quot;actionBarLabel | async&quot;&gt;
-		&lt;ng-content select&#x3D;&quot;ibm-table-toolbar-actions&quot;&gt;&lt;/ng-content&gt;
+		[attr.aria-label]&#x3D;&quot;actionBarLabel.subject | async&quot;&gt;
+		&lt;div class&#x3D;&quot;bx--action-list&quot;&gt;
+			&lt;ng-content select&#x3D;&quot;ibm-table-toolbar-actions&quot;&gt;&lt;/ng-content&gt;
+			&lt;button ibmButton&#x3D;&quot;primary&quot; class&#x3D;&quot;bx--batch-summary__cancel&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;{{_cancelText.subject | async}}&lt;/button&gt;
+		&lt;/div&gt;
 		&lt;div class&#x3D;&quot;bx--batch-summary&quot;&gt;
 			&lt;p class&#x3D;&quot;bx--batch-summary__para&quot;&gt;
 				&lt;span&gt;{{count}}&lt;/span&gt; items selected
 			&lt;/p&gt;
-			&lt;button class&#x3D;&quot;bx--batch-summary__cancel&quot; (click)&#x3D;&quot;cancel()&quot;&gt;Cancel&lt;/button&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-	&lt;ng-content select&#x3D;&quot;ibm-table-toolbar-search&quot;&gt;&lt;/ng-content&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/section&gt;
 </code></pre></td>
@@ -132,6 +167,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#_cancelText">_cancelText</a>
+                            </li>
+                            <li>
                                 <a href="#actionBarLabel">actionBarLabel</a>
                             </li>
                         </ul>
@@ -147,7 +185,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cancel">cancel</a>
+                                <a href="#onCancel">onCancel</a>
                             </li>
                         </ul>
                     </td>
@@ -163,6 +201,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#ariaLabel">ariaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#cancelText">cancelText</a>
                             </li>
                             <li>
                                 <a href="#model">model</a>
@@ -184,6 +225,9 @@
                             <ul class="index-list">
                                 <li>
                                     <a href="#ariaLabel">ariaLabel</a>
+                                </li>
+                                <li>
+                                    <a href="#cancelText">cancelText</a>
                                 </li>
                                 <li>
                                     <a href="#count">count</a>
@@ -209,7 +253,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:77</a></div>
                             </td>
                         </tr>
 
@@ -257,11 +301,36 @@
                         <code>ariaLabel</code>
                     </td>
                     <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code>literal type</code>
+
+                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:67</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="cancelText"></a>
+                        <code>cancelText</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code>literal type</code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:70</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -282,7 +351,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:65</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -300,25 +369,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="cancel"></a>
+                        <a name="onCancel"></a>
                         <span class="name">
                             <b>
-                            cancel
+                            onCancel
                             </b>
-                            <a href="#cancel"><span class="icon ion-ios-link"></span></a>
+                            <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>cancel()</code>
+<code>onCancel()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -345,6 +414,39 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_cancelText"></a>
+                        <span class="name">
+                            <b>
+                            _cancelText
+                            </b>
+                            <a href="#_cancelText"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>_cancelText:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE_TOOLBAR.CANCEL&quot;)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:77</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="actionBarLabel"></a>
                         <span class="name">
                             <b>
@@ -362,12 +464,12 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.i18n.get(&quot;TABLE_TOOLBAR.ACTION_BAR&quot;)</code>
+                            <i>Default value : </i><code>this.i18n.getOverridable(&quot;TABLE_TOOLBAR.ACTION_BAR&quot;)</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -392,12 +494,12 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>ariaLabel(value)</code></span>
+                        <span class="accessor"><b>set</b><code>ariaLabel(value: literal type)</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:67</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -409,6 +511,7 @@
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                 </tr>
                                             </thead>
@@ -416,6 +519,78 @@
                                                     <tr>
                                                             <td>value</td>
                                                     
+                                                            <td>
+                                                                        <code>literal type</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelText"></a>
+                        <span class="name"><b>cancelText</b><a href="#cancelText"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>cancelText()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:73</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>cancelText(value: literal type)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:70</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                        <code>literal type</code>
+                                                            </td>
                                                     
                                                         <td>
                                                                 No
@@ -451,7 +626,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:81</a></div>
                                 </td>
                             </tr>
 
@@ -473,7 +648,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/table/toolbar/table-toolbar.component.ts:84</a></div>
                                 </td>
                             </tr>
 
@@ -486,8 +661,43 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TableModel } from &quot;../table-model.class&quot;;
 import { Component, Input } from &quot;@angular/core&quot;;
-import { I18n } from &quot;../../i18n/i18n.module&quot;;
+import { I18n, Overridable } from &quot;../../i18n/i18n.module&quot;;
 
+/**
+ * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
+ *
+ * ## Basic usage
+ *
+ * &#x60;&#x60;&#x60;html
+ * &lt;ibm-table-toolbar [model]&#x3D;&quot;model&quot;&gt;
+ *		&lt;ibm-table-toolbar-actions&gt;
+ *			&lt;button ibmButton&#x3D;&quot;primary&quot;&gt;
+ *				Delete
+ *				&lt;ibm-icon-delete16 class&#x3D;&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-delete16&gt;
+ *			&lt;/button&gt;
+ *			&lt;button ibmButton&#x3D;&quot;primary&quot;&gt;
+ *				Save
+ *				&lt;ibm-icon-save16 class&#x3D;&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-save16&gt;
+ *			&lt;/button&gt;
+ *			&lt;button ibmButton&#x3D;&quot;primary&quot;&gt;
+ *				Download
+ *				&lt;ibm-icon-download16 class&#x3D;&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-download16&gt;
+ *			&lt;/button&gt;
+ *		&lt;/ibm-table-toolbar-actions&gt;
+ *			&lt;ibm-table-toolbar-content&gt;
+ *			&lt;ibm-table-toolbar-search [expandable]&#x3D;&quot;true&quot;&gt;&lt;/ibm-table-toolbar-search&gt;
+ *			&lt;button ibmButton&#x3D;&quot;toolbar-action&quot;&gt;
+ *				&lt;ibm-icon-settings16 class&#x3D;&quot;bx--toolbar-action__icon&quot;&gt;&lt;/ibm-icon-settings16&gt;
+ *			&lt;/button&gt;
+ *			&lt;button ibmButton&#x3D;&quot;primary&quot; size&#x3D;&quot;sm&quot;&gt;
+ *				Primary Button
+ *				&lt;ibm-icon-add20 class&#x3D;&quot;bx--btn__icon&quot;&gt;&lt;/ibm-icon-add20&gt;
+ *			&lt;/button&gt;
+ *		&lt;/ibm-table-toolbar-content&gt;
+ *	&lt;/ibm-table-toolbar&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ */
 @Component({
 	selector: &quot;ibm-table-toolbar&quot;,
 	template: &#x60;
@@ -497,16 +707,17 @@ import { I18n } from &quot;../../i18n/i18n.module&quot;;
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--batch-actions--active&#x27;: selected
 			}&quot;
-			[attr.aria-label]&#x3D;&quot;actionBarLabel | async&quot;&gt;
-			&lt;ng-content select&#x3D;&quot;ibm-table-toolbar-actions&quot;&gt;&lt;/ng-content&gt;
+			[attr.aria-label]&#x3D;&quot;actionBarLabel.subject | async&quot;&gt;
+			&lt;div class&#x3D;&quot;bx--action-list&quot;&gt;
+				&lt;ng-content select&#x3D;&quot;ibm-table-toolbar-actions&quot;&gt;&lt;/ng-content&gt;
+				&lt;button ibmButton&#x3D;&quot;primary&quot; class&#x3D;&quot;bx--batch-summary__cancel&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;{{_cancelText.subject | async}}&lt;/button&gt;
+			&lt;/div&gt;
 			&lt;div class&#x3D;&quot;bx--batch-summary&quot;&gt;
 				&lt;p class&#x3D;&quot;bx--batch-summary__para&quot;&gt;
 					&lt;span&gt;{{count}}&lt;/span&gt; items selected
 				&lt;/p&gt;
-				&lt;button class&#x3D;&quot;bx--batch-summary__cancel&quot; (click)&#x3D;&quot;cancel()&quot;&gt;Cancel&lt;/button&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
-		&lt;ng-content select&#x3D;&quot;ibm-table-toolbar-search&quot;&gt;&lt;/ng-content&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
 	&lt;/section&gt;
 	&#x60;
@@ -514,10 +725,17 @@ import { I18n } from &quot;../../i18n/i18n.module&quot;;
 export class TableToolbar {
 	@Input() model: TableModel;
 
-	@Input() set ariaLabel (value) {
-		this.actionBarLabel.next(value.ACTION_BAR);
+	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
+		this.actionBarLabel.override(value.ACTION_BAR);
 	}
-	actionBarLabel &#x3D; this.i18n.get(&quot;TABLE_TOOLBAR.ACTION_BAR&quot;);
+	@Input() set cancelText(value: { CANCEL: string }) {
+		this._cancelText.override(value.CANCEL);
+	}
+	get cancelText(): { CANCEL: string } {
+		return { CANCEL: this._cancelText.value as string };
+	}
+	actionBarLabel &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.ACTION_BAR&quot;);
+	_cancelText &#x3D; this.i18n.getOverridable(&quot;TABLE_TOOLBAR.CANCEL&quot;);
 
 	constructor(protected i18n: I18n) {}
 
@@ -528,7 +746,7 @@ export class TableToolbar {
 		return this.model.totalDataLength &gt; 0 ? this.model.rowsSelected.some(item &#x3D;&gt; item) : false;
 	}
 
-	cancel() {
+	onCancel() {
 		for (let i &#x3D; 0; i &lt; this.model.rowsSelected.length; i++) {
 			this.model.selectRow(i, false);
 		}
@@ -564,9 +782,9 @@ export class TableToolbar {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><section class="bx--table-toolbar">	<div		class="bx--batch-actions"		[ngClass]="{			\'bx--batch-actions--active\': selected		}"		[attr.aria-label]="actionBarLabel | async">		<ng-content select="ibm-table-toolbar-actions"></ng-content>		<div class="bx--batch-summary">			<p class="bx--batch-summary__para">				<span>{{count}}</span> items selected			</p>			<button class="bx--batch-summary__cancel" (click)="cancel()">Cancel</button>		</div>	</div>	<ng-content select="ibm-table-toolbar-search"></ng-content>	<ng-content></ng-content></section></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><section class="bx--table-toolbar">	<div		class="bx--batch-actions"		[ngClass]="{			\'bx--batch-actions--active\': selected		}"		[attr.aria-label]="actionBarLabel.subject | async">		<div class="bx--action-list">			<ng-content select="ibm-table-toolbar-actions"></ng-content>			<button ibmButton="primary" class="bx--batch-summary__cancel" (click)="onCancel()">{{_cancelText.subject | async}}</button>		</div>		<div class="bx--batch-summary">			<p class="bx--batch-summary__para">				<span>{{count}}</span> items selected			</p>		</div>	</div>	<ng-content></ng-content></section></div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TableToolbar'};
 </script>
 <script src="../js/tree.js"></script>

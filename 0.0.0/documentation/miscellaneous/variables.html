@@ -60,10 +60,16 @@
                             <a href="#_scrollbarWidth" title="src/utils/window-tools.ts"><b>_scrollbarWidth</b>&nbsp;&nbsp;&nbsp;(src/.../window-tools.ts)</a>
                         </li>
                         <li>
-                            <a href="#defaultOffset" title="src/dropdown/dropdown.service.ts"><b>defaultOffset</b>&nbsp;&nbsp;&nbsp;(src/.../dropdown.service.ts)</a>
+                            <a href="#carbonFlatpickrMonthSelectPlugin" title="src/datepicker/carbon-flatpickr-month-select.ts"><b>carbonFlatpickrMonthSelectPlugin</b>&nbsp;&nbsp;&nbsp;(src/.../carbon-flatpickr-month-select.ts)</a>
                         </li>
                         <li>
-                            <a href="#EN" title="src/i18n/i18n.service.ts"><b>EN</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.service.ts)</a>
+                            <a href="#config" title="src/datepicker/carbon-flatpickr-month-select.ts"><b>config</b>&nbsp;&nbsp;&nbsp;(src/.../carbon-flatpickr-month-select.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#context" title="src/test.ts"><b>context</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#defaultOffset" title="src/dropdown/dropdown.service.ts"><b>defaultOffset</b>&nbsp;&nbsp;&nbsp;(src/.../dropdown.service.ts)</a>
                         </li>
                         <li>
                             <a href="#EXPERIMENTAL_SERVICE_PROVIDER" title="src/experimental.module.ts"><b>EXPERIMENTAL_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../experimental.module.ts)</a>
@@ -72,10 +78,19 @@
                             <a href="#I18N_SERVICE_PROVIDER" title="src/i18n/i18n.module.ts"><b>I18N_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.module.ts)</a>
                         </li>
                         <li>
+                            <a href="#isScrollableElement" title="src/utils/scroll.ts"><b>isScrollableElement</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isVisibleInContainer" title="src/utils/scroll.ts"><b>isVisibleInContainer</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
+                        </li>
+                        <li>
                             <a href="#merge" title="src/utils/object.ts"><b>merge</b>&nbsp;&nbsp;&nbsp;(src/.../object.ts)</a>
                         </li>
                         <li>
                             <a href="#MINIMUM_OVERFLOW_THRESHOLD" title="src/breadcrumb/breadcrumb.component.ts"><b>MINIMUM_OVERFLOW_THRESHOLD</b>&nbsp;&nbsp;&nbsp;(src/.../breadcrumb.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#monthToStr" title="src/datepicker/carbon-flatpickr-month-select.ts"><b>monthToStr</b>&nbsp;&nbsp;&nbsp;(src/.../carbon-flatpickr-month-select.ts)</a>
                         </li>
                         <li>
                             <a href="#nextId" title="src/tabs/tab.component.ts"><b>nextId</b>&nbsp;&nbsp;&nbsp;(src/.../tab.component.ts)</a>
@@ -88,6 +103,12 @@
                         </li>
                         <li>
                             <a href="#replace" title="src/i18n/i18n.service.ts"><b>replace</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#require" title="src/test.ts"><b>require</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#scrollableParentsObservable" title="src/utils/scroll.ts"><b>scrollableParentsObservable</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
                         </li>
                         <li>
                             <a href="#tabbableSelector" title="src/common/tab.service.ts"><b>tabbableSelector</b>&nbsp;&nbsp;&nbsp;(src/.../tab.service.ts)</a>
@@ -136,6 +157,254 @@
             </tbody>
         </table>
 </section>
+    <h3>src/datepicker/carbon-flatpickr-month-select.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="carbonFlatpickrMonthSelectPlugin"></a>
+                        <span class="name">
+                            <b>
+                            carbonFlatpickrMonthSelectPlugin
+                            </b>
+                            <a href="#carbonFlatpickrMonthSelectPlugin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>carbonFlatpickrMonthSelectPlugin:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>fp &#x3D;&gt; {
+	const setupElements &#x3D; () &#x3D;&gt; {
+		if (!fp.monthElements) {
+			return;
+		}
+		fp.monthElements.forEach(elem &#x3D;&gt; {
+			if (!elem.parentNode) { return; }
+			elem.parentNode.removeChild(elem);
+		});
+		fp.monthElements.splice(
+			0,
+			fp.monthElements.length,
+			...fp.monthElements.map(() &#x3D;&gt; {
+				// eslint-disable-next-line no-underscore-dangle
+				const monthElement &#x3D; fp._createElement(
+					&quot;span&quot;,
+					config.classFlatpickrCurrentMonth
+				);
+				monthElement.textContent &#x3D; monthToStr(
+					fp.currentMonth,
+					config.shorthand &#x3D;&#x3D;&#x3D; true,
+					fp.l10n
+				);
+				fp.yearElements[0]
+					.closest(config.selectorFlatpickrMonthYearContainer)
+					.insertBefore(
+						monthElement,
+						fp.yearElements[0].closest(config.selectorFlatpickrYearContainer)
+					);
+				return monthElement;
+			})
+		);
+	};
+	const updateCurrentMonth &#x3D; () &#x3D;&gt; {
+		const monthStr &#x3D; monthToStr(
+			fp.currentMonth,
+			config.shorthand &#x3D;&#x3D;&#x3D; true,
+			fp.l10n
+		);
+		fp.yearElements.forEach(elem &#x3D;&gt; {
+			const currentMonthContainer &#x3D; elem.closest(
+				config.selectorFlatpickrMonthYearContainer
+			);
+			Array.prototype.forEach.call(
+				currentMonthContainer.querySelectorAll(&quot;.cur-month&quot;),
+				monthElement &#x3D;&gt; {
+					monthElement.textContent &#x3D; monthStr;
+				}
+			);
+		});
+	};
+
+	const register &#x3D; () &#x3D;&gt; {
+		fp.loadedPlugins.push(&quot;carbonFlatpickrMonthSelectPlugin&quot;);
+	};
+
+	return {
+		onMonthChange: updateCurrentMonth,
+		onOpen: updateCurrentMonth,
+		onReady: [setupElements, updateCurrentMonth, register]
+	};
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="config"></a>
+                        <span class="name">
+                            <b>
+                            config
+                            </b>
+                            <a href="#config"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>config:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+	selectorInit: &quot;[data-date-picker]&quot;,
+	selectorDatePickerInput: &quot;[data-date-picker-input]&quot;,
+	selectorDatePickerInputFrom: &quot;[data-date-picker-input-from]&quot;,
+	selectorDatePickerInputTo: &quot;[data-date-picker-input-to]&quot;,
+	selectorDatePickerIcon: &quot;[data-date-picker-icon]&quot;,
+	selectorFlatpickrMonthYearContainer: &quot;.flatpickr-current-month&quot;,
+	selectorFlatpickrYearContainer: &quot;.numInputWrapper&quot;,
+	selectorFlatpickrCurrentMonth: &quot;.cur-month&quot;,
+	classCalendarContainer: &#x60;bx--date-picker__calendar&#x60;,
+	classMonth: &#x60;bx--date-picker__month&#x60;,
+	classWeekdays: &#x60;bx--date-picker__weekdays&#x60;,
+	classDays: &#x60;bx--date-picker__days&#x60;,
+	classWeekday: &#x60;bx--date-picker__weekday&#x60;,
+	classDay: &#x60;bx--date-picker__day&#x60;,
+	classFocused: &#x60;bx--focused&#x60;,
+	classVisuallyHidden: &#x60;bx--visually-hidden&#x60;,
+	classFlatpickrCurrentMonth: &quot;cur-month&quot;,
+	attribType: &quot;data-date-picker-type&quot;,
+	dateFormat: &quot;m/d/Y&quot;,
+	shorthand: false
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="monthToStr"></a>
+                        <span class="name">
+                            <b>
+                            monthToStr
+                            </b>
+                            <a href="#monthToStr"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>monthToStr:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(monthNumber, shorthand, locale) &#x3D;&gt;
+	locale.months[shorthand ? &quot;shorthand&quot; : &quot;longhand&quot;][monthNumber]</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>This is from carbon-components.
+We need it to format the month select according to specs.
+Carbon currently doesn&#39;t expose this as a seperate package,
+and we don&#39;t import the carbon-components js (on purpose)
+so some copy pasta is required</p>
+<p>ref: <a href="https://github.com/carbon-design-system/carbon/blob/">https://github.com/carbon-design-system/carbon/blob/</a>
+     f06f38f0c2ef624e409a3d5711e897a79f4c88fc/packages/components/src/components/date-picker/date-picker.js#L52-L123</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/test.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="context"></a>
+                        <span class="name">
+                            <b>
+                            context
+                            </b>
+                            <a href="#context"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>context:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>require.context(&quot;./&quot;, true, /\.spec\.ts$/)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="require"></a>
+                        <span class="name">
+                            <b>
+                            require
+                            </b>
+                            <a href="#require"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>require:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
     <h3>src/dropdown/dropdown.service.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -169,88 +438,6 @@
                         </td>
                     </tr>
 
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/i18n/i18n.service.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="EN"></a>
-                        <span class="name">
-                            <b>
-                            EN
-                            </b>
-                            <a href="#EN"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>EN:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>require(&quot;./en.json&quot;)</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="replace"></a>
-                        <span class="name">
-                            <b>
-                            replace
-                            </b>
-                            <a href="#replace"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>replace:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>(subject, variables) &#x3D;&gt; subject.pipe(
-	map&lt;string, void&gt;(str &#x3D;&gt; {
-		const keys &#x3D; Object.keys(variables);
-		for (const key of keys) {
-			const value &#x3D; variables[key];
-			while (str.includes(&#x60;{{${key}}}&#x60;)) {
-				str &#x3D; str.replace(&#x60;{{${key}}}&#x60;, value);
-			}
-		}
-		return str;
-	})
-)</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Takes the <code>Observable</code> returned from <code>i18n.get</code> and an object of variables to replace.</p>
-<p>The keys specify the variable name in the string.</p>
-<p>Example:</p>
-<div><pre class="line-numbers"><code class="language-typescript"> * service.set({ &quot;TEST&quot;: &quot;{{foo}} {{bar}}&quot; });
- *
- * service.replace(service.get(&quot;TEST&quot;), { foo: &quot;test&quot;, bar: &quot;asdf&quot; })
- *</code></pre></div><p>Produces: <code>&quot;test asdf&quot;</code></p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -337,6 +524,141 @@
             </tbody>
         </table>
 </section>
+    <h3>src/utils/scroll.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isScrollableElement"></a>
+                        <span class="name">
+                            <b>
+                            isScrollableElement
+                            </b>
+                            <a href="#isScrollableElement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>isScrollableElement:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(element: HTMLElement) &#x3D;&gt; {
+	const computedStyle &#x3D; getComputedStyle(element);
+	return (
+		computedStyle.overflow &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
+		computedStyle.overflow &#x3D;&#x3D;&#x3D; &quot;scroll&quot; ||
+		computedStyle[&quot;overflow-y&quot;] &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
+		computedStyle[&quot;overflow-y&quot;] &#x3D;&#x3D;&#x3D; &quot;scroll&quot; ||
+		computedStyle[&quot;overflow-x&quot;] &#x3D;&#x3D;&#x3D; &quot;auto&quot; ||
+		computedStyle[&quot;overflow-x&quot;] &#x3D;&#x3D;&#x3D; &quot;scroll&quot;
+	);
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Checks if a given element is scrollable.
+If the element has an overflow set as part of its computed style it can scroll.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isVisibleInContainer"></a>
+                        <span class="name">
+                            <b>
+                            isVisibleInContainer
+                            </b>
+                            <a href="#isVisibleInContainer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>isVisibleInContainer:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(element: HTMLElement, container: HTMLElement) &#x3D;&gt; {
+	const elementRect &#x3D; element.getBoundingClientRect();
+	const containerRect &#x3D; container.getBoundingClientRect();
+	return elementRect.bottom &lt;&#x3D; containerRect.bottom &amp;&amp; elementRect.top &gt;&#x3D; containerRect.top;
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Checks if an element is visible within a container</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="scrollableParentsObservable"></a>
+                        <span class="name">
+                            <b>
+                            scrollableParentsObservable
+                            </b>
+                            <a href="#scrollableParentsObservable"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>scrollableParentsObservable:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(node: HTMLElement) &#x3D;&gt; {
+	const windowScroll &#x3D; fromEvent(window, &quot;scroll&quot;).pipe(map(event &#x3D;&gt; (
+		// update the event target to be something useful. In this case &#x60;body&#x60; is a sensible replacement
+		Object.assign({}, event, { target: document.body }) as Event
+	)));
+	let observables &#x3D; [windowScroll];
+	// walk the parents and subscribe to all the scroll events we can
+	while (node.parentElement &amp;&amp; node !&#x3D;&#x3D; document.body) {
+		if (isScrollableElement(node)) {
+			observables.push(fromEvent(node, &quot;scroll&quot;));
+		}
+		node &#x3D; node.parentElement;
+	}
+
+	return merge(...observables);
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Returns an observable that emits whenever any scrollable parent element scrolls</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
     <h3>src/utils/object.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -369,7 +691,7 @@
 					if (!target[key]) {
 						target[key] &#x3D; {};
 					}
-					// recursivly merge into the target
+					// recursively merge into the target
 					// most translations only run 3 or 4 levels deep, so no stack explosions
 					target[key] &#x3D; merge(target[key], object[key]);
 				} else {
@@ -529,6 +851,58 @@
                         </td>
                     </tr>
 
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/i18n/i18n.service.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="replace"></a>
+                        <span class="name">
+                            <b>
+                            replace
+                            </b>
+                            <a href="#replace"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>replace:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(subject, variables) &#x3D;&gt; subject.pipe(
+	map&lt;string, void&gt;(str &#x3D;&gt; {
+		const keys &#x3D; Object.keys(variables);
+		for (const key of keys) {
+			const value &#x3D; variables[key];
+			str &#x3D; str.replace(new RegExp(&#x60;{{\\s*${key}\\s*}}&#x60;, &quot;g&quot;), value);
+		}
+		return str;
+	})
+)</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Takes the <code>Observable</code> returned from <code>i18n.get</code> and an object of variables to replace.</p>
+<p>The keys specify the variable name in the string.</p>
+<p>Example:</p>
+<div><pre class="line-numbers"><code class="language-typescript"> * service.set({ &quot;TEST&quot;: &quot;{{foo}} {{bar}}&quot; });
+ *
+ * service.replace(service.get(&quot;TEST&quot;), { foo: &quot;test&quot;, bar: &quot;asdf&quot; })
+ *</code></pre></div><p>Produces: <code>&quot;test asdf&quot;</code></p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>

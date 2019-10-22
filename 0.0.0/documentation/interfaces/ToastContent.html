@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/banner/banner-content.interface.ts</code>
+            <code>src/notification/notification-content.interface.ts</code>
         </p>
 
 
@@ -164,17 +164,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface BannerContent {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface NotificationContent {
 	type: string;
 	title: string;
 	target?: string;
 	duration?: number;
 	smart?: boolean;
-	closeLabel?: string;
-}
-
-export interface NotificationContent extends BannerContent {
-	message: string;
+	closeLabel?: any;
+	message?: string;
+	showClose?: boolean;
+	lowContrast?: boolean;
 }
 
 export interface ToastContent extends NotificationContent {

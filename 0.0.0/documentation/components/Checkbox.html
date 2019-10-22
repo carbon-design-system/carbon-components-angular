@@ -48,6 +48,9 @@
         <li >
             <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -58,6 +61,14 @@
     <code>src/checkbox/checkbox.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p><a href="../../?path=/story/checkbox--basic">See demo</a></p>
+<p><example-url>../../iframe.html?id=checkbox--basic</example-url></p>
+
+    </p>
 
 
     <p class="comment">
@@ -68,11 +79,6 @@
                 <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
     </p>
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -132,7 +138,9 @@
 	[ngClass]&#x3D;&quot;{
 		&#x27;bx--skeleton&#x27; : skeleton
 	}&quot;&gt;
-	&lt;ng-content&gt;&lt;/ng-content&gt;
+	&lt;span [ngClass]&#x3D;&quot;{&#x27;bx--visually-hidden&#x27; : hideLabel}&quot;&gt;
+		&lt;ng-content&gt;&lt;/ng-content&gt;
+	&lt;/span&gt;
 &lt;/label&gt;
 	</code></pre></td>
             </tr>
@@ -251,6 +259,9 @@
                                 <a href="#disabled">disabled</a>
                             </li>
                             <li>
+                                <a href="#hideLabel">hideLabel</a>
+                            </li>
+                            <li>
                                 <a href="#id">id</a>
                             </li>
                             <li>
@@ -350,7 +361,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/checkbox/checkbox.component.ts:223</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/checkbox/checkbox.component.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -409,7 +420,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/checkbox/checkbox.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/checkbox/checkbox.component.ts:134</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -432,7 +443,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/checkbox/checkbox.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/checkbox/checkbox.component.ts:139</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -455,7 +466,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/checkbox/checkbox.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/checkbox/checkbox.component.ts:173</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -477,7 +488,29 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/checkbox/checkbox.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/checkbox/checkbox.component.ts:105</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="hideLabel"></a>
+                        <code>hideLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>true</code> to hide the checkbox labels.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/checkbox/checkbox.component.ts:113</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -499,7 +532,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/checkbox/checkbox.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/checkbox/checkbox.component.ts:121</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -522,7 +555,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/checkbox/checkbox.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/checkbox/checkbox.component.ts:150</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -544,7 +577,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/checkbox/checkbox.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/checkbox/checkbox.component.ts:101</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -567,7 +600,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/checkbox/checkbox.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/checkbox/checkbox.component.ts:117</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -590,7 +623,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/checkbox/checkbox.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/checkbox/checkbox.component.ts:97</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -613,7 +646,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/checkbox/checkbox.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/checkbox/checkbox.component.ts:125</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -639,7 +672,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/checkbox/checkbox.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/checkbox/checkbox.component.ts:93</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -661,7 +694,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/checkbox/checkbox.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/checkbox/checkbox.component.ts:109</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -684,7 +717,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/checkbox/checkbox.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/checkbox/checkbox.component.ts:129</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -709,7 +742,7 @@ click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/checkbox/checkbox.component.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/checkbox/checkbox.component.ts:197</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -731,7 +764,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/checkbox/checkbox.component.ts:207</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/checkbox/checkbox.component.ts:202</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -759,7 +792,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/checkbox/checkbox.component.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/checkbox/checkbox.component.ts:186</a></div>
                             </td>
                         </tr>
 
@@ -787,7 +820,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/checkbox/checkbox.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/checkbox/checkbox.component.ts:189</a></div>
                             </td>
                         </tr>
 
@@ -824,7 +857,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="321" class="link-to-prism">src/checkbox/checkbox.component.ts:321</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/checkbox/checkbox.component.ts:302</a></div>
                             </td>
                         </tr>
 
@@ -864,7 +897,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/checkbox/checkbox.component.ts:334</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="314" class="link-to-prism">src/checkbox/checkbox.component.ts:314</a></div>
                             </td>
                         </tr>
 
@@ -904,7 +937,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/checkbox/checkbox.component.ts:269</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/checkbox/checkbox.component.ts:257</a></div>
                             </td>
                         </tr>
 
@@ -971,7 +1004,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/checkbox/checkbox.component.ts:278</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/checkbox/checkbox.component.ts:264</a></div>
                             </td>
                         </tr>
 
@@ -1040,7 +1073,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/checkbox/checkbox.component.ts:252</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/checkbox/checkbox.component.ts:242</a></div>
                             </td>
                         </tr>
 
@@ -1113,7 +1146,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/checkbox/checkbox.component.ts:260</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/checkbox/checkbox.component.ts:250</a></div>
                             </td>
                         </tr>
 
@@ -1191,7 +1224,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/checkbox/checkbox.component.ts:238</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/checkbox/checkbox.component.ts:230</a></div>
                             </td>
                         </tr>
 
@@ -1231,7 +1264,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/checkbox/checkbox.component.ts:299</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/checkbox/checkbox.component.ts:281</a></div>
                             </td>
                         </tr>
 
@@ -1304,7 +1337,7 @@ on an indeterminate checkbox.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/checkbox/checkbox.component.ts:243</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/checkbox/checkbox.component.ts:235</a></div>
                             </td>
                         </tr>
 
@@ -1384,7 +1417,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/checkbox/checkbox.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/checkbox/checkbox.component.ts:207</a></div>
                             </td>
                         </tr>
 
@@ -1423,7 +1456,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/checkbox/checkbox.component.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/checkbox/checkbox.component.ts:211</a></div>
                             </td>
                         </tr>
 
@@ -1469,7 +1502,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/checkbox/checkbox.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/checkbox/checkbox.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -1514,7 +1547,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/checkbox/checkbox.component.ts:218</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/checkbox/checkbox.component.ts:213</a></div>
                             </td>
                         </tr>
 
@@ -1557,7 +1590,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/checkbox/checkbox.component.ts:223</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/checkbox/checkbox.component.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -1602,7 +1635,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/checkbox/checkbox.component.ts:291</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="276" class="link-to-prism">src/checkbox/checkbox.component.ts:276</a></div>
                             </td>
                         </tr>
 
@@ -1641,7 +1674,7 @@ on an indeterminate checkbox.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/checkbox/checkbox.component.ts:345</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/checkbox/checkbox.component.ts:324</a></div>
                             </td>
                         </tr>
 
@@ -1676,7 +1709,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/checkbox/checkbox.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/checkbox/checkbox.component.ts:143</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1684,8 +1717,6 @@ on an indeterminate checkbox.</p>
                                 <div class="io-description"><p>Reflects whether the checkbox state is indeterminate.</p>
 </div>
 
-                                <div>
-                                </div>
                         </td>
                     </tr>
 
@@ -1696,7 +1727,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/checkbox/checkbox.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/checkbox/checkbox.component.ts:150</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1756,7 +1787,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/checkbox/checkbox.component.ts:171</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/checkbox/checkbox.component.ts:166</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1764,8 +1795,6 @@ on an indeterminate checkbox.</p>
                                 <div class="io-description"><p>Returns value <code>true</code> if state is selected for the checkbox.</p>
 </div>
 
-                                <div>
-                                </div>
                         </td>
                     </tr>
 
@@ -1776,7 +1805,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/checkbox/checkbox.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/checkbox/checkbox.component.ts:173</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1842,8 +1871,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quo
 
 /**
  * Defines the set of states for a checkbox component.
- * @export
- * @enum {number}
  */
 export enum CheckboxState {
 	Init,
@@ -1854,29 +1881,22 @@ export enum CheckboxState {
 
 /**
  * Used to emit changes performed on checkbox components.
- * @export
- * @class CheckboxChange
  */
 export class CheckboxChange {
 	/**
 	 * Contains the &#x60;Checkbox&#x60; that has been changed.
-	 * @type {Checkbox}
-	 * @memberof CheckboxChange
 	 */
 	source: Checkbox;
 	/**
 	 * The state of the &#x60;Checkbox&#x60; encompassed in the &#x60;CheckboxChange&#x60; class.
-	 * @type {boolean}
-	 * @memberof CheckboxChange
 	 */
 	checked: boolean;
 }
 
 /**
- * @export
- * @class Checkbox
- * @implements {ControlValueAccessor}
- * @implements {AfterViewInit}
+ * [See demo](../../?path&#x3D;/story/checkbox--basic)
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;checkbox--basic&lt;/example-url&gt;
  */
 @Component({
 	selector: &quot;ibm-checkbox&quot;,
@@ -1903,7 +1923,9 @@ export class CheckboxChange {
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--skeleton&#x27; : skeleton
 			}&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;span [ngClass]&#x3D;&quot;{&#x27;bx--visually-hidden&#x27; : hideLabel}&quot;&gt;
+				&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;/span&gt;
 		&lt;/label&gt;
 	&#x60;,
 	providers: [
@@ -1942,6 +1964,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	@Input() skeleton &#x3D; false;
 	/**
+	 * Set to &#x60;true&#x60; to hide the checkbox labels.
+	 */
+	@Input() hideLabel &#x3D; false;
+	/**
 	 * Sets the name attribute on the &#x60;input&#x60; element.
 	 */
 	@Input() name: string;
@@ -1969,7 +1995,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	@Input(&quot;aria-labelledby&quot;) ariaLabelledby: string;
 	/**
 	 * Reflects whether the checkbox state is indeterminate.
-	 * @readonly
 	 */
 	get indeterminate() {
 		return this._indeterminate;
@@ -1993,7 +2018,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Returns value &#x60;true&#x60; if state is selected for the checkbox.
-	 * @readonly
 	 */
 	get checked() {
 		return this._checked;
@@ -2051,8 +2075,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Creates an instance of &#x60;Checkbox&#x60;.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof Checkbox
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Checkbox.checkboxCount++;
@@ -2060,7 +2082,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Toggle the selected state of the checkbox.
-	 * @memberof Checkbox
 	 */
 	public toggle() {
 		this.checked &#x3D; !this.checked;
@@ -2073,8 +2094,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Checkbox
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange &#x3D; fn;
@@ -2090,8 +2109,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Executes on the event of a change within &#x60;Checkbox&#x60; to block propagation.
-	 * @param {any} event
-	 * @memberof Checkbox
 	 */
 	onChange(event) {
 		event.stopPropagation();
@@ -2099,8 +2116,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Handles click events on the &#x60;Checkbox&#x60; and emits changes to other classes.
-	 * @param {any} event
-	 * @memberof Checkbox
 	 */
 	onClick(event) {
 		if (!this.disabled) {
@@ -2113,15 +2128,11 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Called when checkbox is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
-	 * @memberof Checkbox
 	 */
 	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
 
 	/**
 	 * Handles changes between checkbox states.
-	 * @param {CheckboxState} newState
-	 * @returns {null}
-	 * @memberof Checkbox
 	 */
 	transitionCheckboxState(newState: CheckboxState) {
 		let oldState &#x3D; this.currentCheckboxState;
@@ -2143,7 +2154,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Creates instance of &#x60;CheckboxChange&#x60; used to propagate the change event.
-	 * @memberof Checkbox
 	 */
 	emitChangeEvent() {
 		let event &#x3D; new CheckboxChange();
@@ -2156,7 +2166,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Updates the checkbox if it is in the indeterminate state.
-	 * @memberof Checkbox
 	 */
 	ngAfterViewInit() {
 		if (this.indeterminate) {
@@ -2167,7 +2176,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
-	 * @memberof Checkbox
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
 }
@@ -2194,6 +2202,11 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
         </div>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;checkbox--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
     
 </div>
 
@@ -2201,9 +2214,9 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><input	#inputCheckbox	class="bx--checkbox"	type="checkbox"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[indeterminate]="indeterminate"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="(indeterminate ? \'mixed\' : checked)"	(change)="onChange($event)"	(click)="onClick($event)"><label	[for]="id"	class="bx--checkbox-label"	[ngClass]="{		\'bx--skeleton\' : skeleton	}">	<ng-content></ng-content></label>	</div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><input	#inputCheckbox	class="bx--checkbox"	type="checkbox"	[id]="id"	[value]="value"	[name]="name"	[required]="required"	[checked]="checked"	[disabled]="disabled"	[indeterminate]="indeterminate"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby"	[attr.aria-checked]="(indeterminate ? \'mixed\' : checked)"	(change)="onChange($event)"	(click)="onClick($event)"><label	[for]="id"	class="bx--checkbox-label"	[ngClass]="{		\'bx--skeleton\' : skeleton	}">	<span [ngClass]="{\'bx--visually-hidden\' : hideLabel}">		<ng-content></ng-content>	</span></label>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Checkbox'};
 </script>
 <script src="../js/tree.js"></script>

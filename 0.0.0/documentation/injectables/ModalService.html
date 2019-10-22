@@ -73,11 +73,6 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
  *</code></pre></div>
             </p>
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -148,7 +143,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modal/modal.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modal/modal.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -227,7 +222,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modal/modal.service.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modal/modal.service.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -307,7 +302,7 @@ Uses ModalPlaceholderService to track open instances, and for it&#39;s placehold
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/modal/modal.service.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/modal/modal.service.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -379,7 +374,7 @@ When called without parameters it destroys the most recently created/top most mo
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modal/modal.service.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modal/modal.service.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -484,7 +479,7 @@ When called without parameters it destroys the most recently created/top most mo
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modal/modal.service.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modal/modal.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -519,7 +514,7 @@ When called without parameters it destroys the most recently created/top most mo
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/modal/modal.service.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modal/modal.service.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -554,7 +549,7 @@ When called without parameters it destroys the most recently created/top most mo
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/modal/modal.service.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modal/modal.service.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -591,8 +586,6 @@ import { PlaceholderService } from &quot;./../placeholder/placeholder.module&quo
  * 	destroy(index: number &#x3D; -1): void {}
  * }
  * &#x60;&#x60;&#x60;
- * @export
- * @class ModalService
  */
 @Injectable()
 export class ModalService {
@@ -601,18 +594,12 @@ export class ModalService {
 
 	/**
 	 * Creates an instance of &#x60;ModalService&#x60;.
-	 * @param {ComponentFactoryResolver} resolver
-	 * @memberof ModalService
 	 */
 	constructor(public resolver: ComponentFactoryResolver, public placeholderService: PlaceholderService) {}
 
 	/**
 	 * Creates and renders the modal component that is passed in.
 	 * &#x60;inputs&#x60; is an optional parameter of &#x60;data&#x60; that can be passed to the &#x60;Modal&#x60; component.
-	 * @template T
-	 * @param {{component: any, inputs?: any}} data
-	 * @returns {ComponentRef&lt;any&gt;}
-	 * @memberof ModalService
 	 */
 	create&lt;T&gt;(data: {component: any, inputs?: any}): ComponentRef&lt;any&gt; {
 		let defaults &#x3D; {inputs: {}};
@@ -657,8 +644,6 @@ export class ModalService {
 	 * 		click: clickFunction,
 	 * }
 	 * &#x60;&#x60;&#x60;
-	 * @returns {ComponentRef&lt;any&gt;}
-	 * @memberof ModalService
 	 */
 	show(data: AlertModalData) {
 		for (let key of Object.keys(data)) {
@@ -686,10 +671,6 @@ export class ModalService {
 	/**
 	 * Destroys the modal on the supplied index.
 	 * When called without parameters it destroys the most recently created/top most modal.
-	 *
-	 * @param {any} [index&#x3D;-1]
-	 * @returns
-	 * @memberof ModalService
 	 */
 	destroy(index &#x3D; -1) {
 		// return if nothing to destroy because it&#x27;s already destroyed

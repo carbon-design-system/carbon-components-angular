@@ -108,7 +108,19 @@ are a better choice)</p>
                                 <a href="#get">get</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getMultiple">getMultiple</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getOverridable">getOverridable</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#getSubject">getSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#getValueFromPath">getValueFromPath</a>
                             </li>
                             <li>
@@ -154,14 +166,14 @@ are a better choice)</p>
                 <tr>
                     <td class="col-md-4">
                             <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>get(path?)</code>
+                        <code>get(path?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/i18n/i18n.service.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/i18n/i18n.service.ts:156</a></div>
                             </td>
                         </tr>
 
@@ -178,6 +190,7 @@ are a better choice)</p>
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -185,6 +198,9 @@ are a better choice)</p>
                                         <tbody>
                                                 <tr>
                                                         <td>path</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
                                                     
                                                     <td>
                                                             Yes
@@ -216,10 +232,244 @@ are a better choice)</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getValueFromPath"></a>
+                        <a name="getMultiple"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            getMultiple
+                            </b>
+                            <a href="#getMultiple"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getMultiple(partialPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/i18n/i18n.service.ts:168</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns all descendents of some path fragment as an object.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>partialPath</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>a path fragment, for example <code>&quot;NOTIFICATION&quot;</code></p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>literal type</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getOverridable"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            getOverridable
+                            </b>
+                            <a href="#getOverridable"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getOverridable(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/i18n/i18n.service.ts:185</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns an instance of <code>Overridable</code> that can be used to optionally override the value provided by <code>I18n</code></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>path</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>looks like <code>&quot;NOTIFICATION.CLOSE_BUTTON&quot;</code></p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="../classes/Overridable.html" target="_self" >Overridable</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSubject"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Protected</span>
+                            getSubject
+                            </b>
+                            <a href="#getSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getSubject(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/i18n/i18n.service.ts:232</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Helper method that returns an observable from the internal cache based on the path</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>path</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>looks like <code>&quot;NOTIFICATION.CLOSE_BUTTON&quot;</code></p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getValueFromPath"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
                             getValueFromPath
                             </b>
                             <a href="#getValueFromPath"><span class="icon ion-ios-link"></span></a>
@@ -236,7 +486,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/i18n/i18n.service.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/i18n/i18n.service.ts:215</a></div>
                             </td>
                         </tr>
 
@@ -276,7 +526,7 @@ are a better choice)</p>
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                <b>Returns : </b>    <code>string | literal type</code>
 
                             </div>
                                 <div class="io-description">
@@ -303,14 +553,14 @@ are a better choice)</p>
                 <tr>
                     <td class="col-md-4">
                             <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>replace(subject, variables)</code>
+                        <code>replace(subject: Observable<string>, variables: literal type)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/i18n/i18n.service.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/i18n/i18n.service.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -332,6 +582,7 @@ are a better choice)</p>
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -339,6 +590,9 @@ are a better choice)</p>
                                         <tbody>
                                                 <tr>
                                                         <td>subject</td>
+                                                        <td>
+                                                                    <code>Observable&lt;string&gt;</code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -352,6 +606,9 @@ are a better choice)</p>
                                                 </tr>
                                                 <tr>
                                                         <td>variables</td>
+                                                        <td>
+                                                                    <code>literal type</code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -396,14 +653,14 @@ are a better choice)</p>
                 <tr>
                     <td class="col-md-4">
                             <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>set(strings)</code>
+                        <code>set(strings: literal type)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/i18n/i18n.service.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/i18n/i18n.service.ts:140</a></div>
                             </td>
                         </tr>
 
@@ -419,6 +676,7 @@ are a better choice)</p>
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
+                                                    <td>Type</td>
                                                 <td>Optional</td>
                                                     <td>Description</td>
                                             </tr>
@@ -426,6 +684,9 @@ are a better choice)</p>
                                         <tbody>
                                                 <tr>
                                                         <td>strings</td>
+                                                        <td>
+                                                                    <code>literal type</code>
+                                                        </td>
                                                     
                                                     <td>
                                                             No
@@ -487,7 +748,7 @@ are a better choice)</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/i18n/i18n.service.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/i18n/i18n.service.ts:133</a></div>
                             </td>
                         </tr>
 
@@ -521,7 +782,7 @@ are a better choice)</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/i18n/i18n.service.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/i18n/i18n.service.ts:131</a></div>
                             </td>
                         </tr>
 
@@ -535,11 +796,16 @@ are a better choice)</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
-import { BehaviorSubject } from &quot;rxjs&quot;;
+import {
+	BehaviorSubject,
+	Observable,
+	isObservable,
+	iif
+} from &quot;rxjs&quot;;
 import { map } from &quot;rxjs/operators&quot;;
-import { merge } from &quot;./../utils/object&quot;;
+import { merge } from &quot;../utils/object&quot;;
 
-const EN &#x3D; require(&quot;./en.json&quot;);
+import EN from &quot;./en&quot;;
 
 /**
  * Takes the &#x60;Observable&#x60; returned from &#x60;i18n.get&#x60; and an object of variables to replace.
@@ -563,13 +829,91 @@ export const replace &#x3D; (subject, variables) &#x3D;&gt; subject.pipe(
 		const keys &#x3D; Object.keys(variables);
 		for (const key of keys) {
 			const value &#x3D; variables[key];
-			while (str.includes(&#x60;{{${key}}}&#x60;)) {
-				str &#x3D; str.replace(&#x60;{{${key}}}&#x60;, value);
-			}
+			str &#x3D; str.replace(new RegExp(&#x60;{{\\s*${key}\\s*}}&#x60;, &quot;g&quot;), value);
 		}
 		return str;
 	})
 );
+
+/**
+ * Represents an &quot;overridable&quot; translation value.
+ *
+ * Largely an internal usecase. There are situations where we want an &#x60;Observable&#x60; that
+ * can emit events from a centralized source **OR** an &#x60;Observable&#x60; that will emit events
+ * from a component local source. The key example being on/off text in a &#x60;Toggle&#x60; - In some cases
+ * we want the &#x60;Toggle&#x60; to use &#x60;I18n&#x60;s global translations, but in others we&#x27;d prefer to use a local
+ * override. We don&#x27;t ever need to return to a non-overridden state, but we do need the ability to
+ * switch _to_ an overridden sate.
+ */
+export class Overridable {
+	/**
+	 * The raw value of the translation. Defaults to the string value, but will return the value passed to &#x60;override&#x60;
+	 *
+	 * @readonly
+	 */
+	public get value(): string | Observable&lt;string&gt; {
+		return this._value;
+	}
+
+	public set value(v: string | Observable&lt;string&gt;) {
+		this.override(v);
+	}
+
+	/**
+	 * The translation subject. Returns either a stream of overridden values, or our base translation values.
+	 *
+	 * @readonly
+	 */
+	public get subject(): Observable&lt;string&gt; {
+		/**
+		 * since inputs are bound on template instantiation (and thusly will always have _some_ value)
+		 * We can use a simple boolean and the &#x60;iif&#x60; function to determine which subject to return on subscription
+		 */
+		return iif(() &#x3D;&gt; this.isOverridden, this.$override, this.baseTranslation);
+	}
+
+	/**
+	 * Overridden value. Accessed by the readonly getter &#x60;value&#x60; and set through &#x60;override&#x60;
+	 */
+	protected _value: string | Observable&lt;string&gt;;
+	/**
+	 * Subject of overridden values. Initialized with our default value.
+	 */
+	protected $override: BehaviorSubject&lt;string&gt;;
+	/**
+	 * Our base non-overridden translation.
+	 */
+	protected baseTranslation: Observable&lt;string&gt; &#x3D; this.i18n.get(this.path);
+	/**
+	 * A boolean to flip between overridden and non-overridden states.
+	 */
+	protected isOverridden &#x3D; false;
+
+	constructor(protected path: string, protected i18n: I18n) {
+		/**
+		 * ensure &#x60;$override&#x60; is initialized with the correct default value
+		 * in some cases &#x60;_value&#x60; can get changed for an &#x60;Observable&#x60; before &#x60;$override&#x60; is created
+		 */
+		const value &#x3D; this.i18n.getValueFromPath(this.path) as string;
+		this.$override &#x3D; new BehaviorSubject&lt;string&gt;(value);
+		this._value &#x3D; value;
+	}
+	/**
+	 * Takes a string or an &#x60;Observable&#x60; that emits strings.
+	 * Overrides the value provided by the &#x60;I18n&#x60; service.
+	 */
+	override(value: string | Observable&lt;string&gt;) {
+		this.isOverridden &#x3D; true;
+		this._value &#x3D; value;
+		if (isObservable(value)) {
+			value.subscribe(v &#x3D;&gt; {
+				this.$override.next(v);
+			});
+		} else {
+			this.$override.next(value);
+		}
+	}
+}
 
 /**
  * The I18n service is a minimal internal singleton service used to supply our components with translated strings.
@@ -590,7 +934,7 @@ export class I18n {
 	 *
 	 * @param strings an object of strings, should follow the same format as src/i18n/en.json
 	 */
-	public set(strings) {
+	public set(strings: { [key: string]: string }) {
 		this.translationStrings &#x3D; merge({}, EN, strings);
 		// iterate over all our tracked translations and update each observable
 		const translations &#x3D; Array.from(this.translations);
@@ -606,22 +950,37 @@ export class I18n {
 	 *
 	 * @param path optional, looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
 	 */
-	public get(path?) {
+	public get(path?: string): any {
 		if (!path) {
 			return this.translationStrings;
 		}
-		try {
-			// we run this here to validate the path exists before adding it to the translation map
-			const value &#x3D; this.getValueFromPath(path);
-			if (this.translations.has(path)) {
-				return this.translations.get(path);
+		return this.getSubject(path);
+	}
+
+	/**
+	 * Returns all descendents of some path fragment as an object.
+	 *
+	 * @param partialPath a path fragment, for example &#x60;&quot;NOTIFICATION&quot;&#x60;
+	 */
+	public getMultiple(partialPath: string): { [key: string]: Observable&lt;string&gt; } {
+		const values &#x3D; this.getValueFromPath(partialPath);
+		const subjects &#x3D; {};
+		for (const key of Object.keys(values)) {
+			if (values[key] &#x3D;&#x3D;&#x3D; Object(values[key])) {
+				subjects[key] &#x3D; this.getMultiple(&#x60;${partialPath}.${key}&#x60;);
+			} else {
+				subjects[key] &#x3D; this.getSubject(&#x60;${partialPath}.${key}&#x60;);
 			}
-			const translation &#x3D; new BehaviorSubject(value);
-			this.translations.set(path, translation);
-			return translation;
-		} catch (err) {
-			console.error(err);
 		}
+		return subjects;
+	}
+
+	/**
+	 * Returns an instance of &#x60;Overridable&#x60; that can be used to optionally override the value provided by &#x60;I18n&#x60;
+	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
+	 */
+	public getOverridable(path: string) {
+		return new Overridable(path, this);
 	}
 
 	/**
@@ -641,7 +1000,7 @@ export class I18n {
 	 * @param subject the translation to replace variables on
 	 * @param variables object of variables to replace
 	 */
-	public replace(subject, variables) {
+	public replace(subject: Observable&lt;string&gt;, variables: { [key: string]: string }) {
 		return replace(subject, variables);
 	}
 
@@ -650,7 +1009,7 @@ export class I18n {
 	 *
 	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
 	 */
-	protected getValueFromPath(path) {
+	public getValueFromPath(path): string | { [key: string]: string } {
 		let value &#x3D; this.translationStrings;
 		for (const segment of path.split(&quot;.&quot;)) {
 			if (value[segment]) {
@@ -659,7 +1018,27 @@ export class I18n {
 				throw new Error(&#x60;no key ${segment} at ${path}&#x60;);
 			}
 		}
-		return value;
+		return value as any;
+	}
+
+	/**
+	 * Helper method that returns an observable from the internal cache based on the path
+	 *
+	 * @param path looks like &#x60;&quot;NOTIFICATION.CLOSE_BUTTON&quot;&#x60;
+	 */
+	protected getSubject(path: string): Observable&lt;string&gt; {
+		try {
+			// we run this here to validate the path exists before adding it to the translation map
+			const value &#x3D; this.getValueFromPath(path) as string;
+			if (this.translations.has(path)) {
+				return this.translations.get(path);
+			}
+			const translation &#x3D; new BehaviorSubject(value);
+			this.translations.set(path, translation);
+			return translation;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
 </code></pre>

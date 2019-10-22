@@ -47,6 +47,9 @@
         <li >
             <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
 </ul>
 
 <div class="tab-content">
@@ -58,6 +61,14 @@
             <code>src/grid/grid.directive.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><a href="../../?path=/story/grid--basic">See demo</a></p>
+<p><example-url>../../iframe.html?id=grid--basic</example-url></p>
+
+            </p>
 
 
 
@@ -133,7 +144,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/grid/grid.directive.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/grid/grid.directive.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -152,6 +163,11 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostBinding, Input, OnInit } from &quot;@angular/core&quot;;
 
+/**
+ * [See demo](../../?path&#x3D;/story/grid--basic)
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;grid--basic&lt;/example-url&gt;
+ */
 @Directive({
 	selector: &quot;[ibmGrid]&quot;
 })
@@ -189,7 +205,12 @@ export class ColumnDirective implements OnInit {
 
 	ngOnInit() {
 		try {
-			Object.keys(this.columnNumbers).forEach(key &#x3D;&gt; {
+			const columnKeys &#x3D; Object.keys(this.columnNumbers);
+			if (columnKeys.length &lt;&#x3D; 0) {
+				this._columnClasses.push(&quot;bx--col&quot;);
+			}
+
+			columnKeys.forEach(key &#x3D;&gt; {
 				if (this.columnNumbers[key] &#x3D;&#x3D;&#x3D; &quot;nobreak&quot;) {
 					this._columnClasses.push(&#x60;bx--col-${key}&#x60;);
 				} else {
@@ -204,7 +225,7 @@ export class ColumnDirective implements OnInit {
 			console.error(&#x60;Malformed \&#x60;offsets\&#x60; or \&#x60;columnNumbers\&#x60;: ${err}&#x60;);
 		}
 
-		if (this.class !&#x3D;&#x3D; &quot;&quot;) {
+		if (this.class) {
 			this._columnClasses.push(this.class);
 		}
 	}
@@ -212,6 +233,11 @@ export class ColumnDirective implements OnInit {
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;grid--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
 </div>
 
 

@@ -75,11 +75,6 @@ if content has overflow.</p>
                 <code><a href="https://angular.io/api/core/AfterContentInit" target="_blank" >AfterContentInit</a></code>
     </p>
 
-    <p class="comment">
-        <h3>Example</h3>
-    </p>
-    <div class="io-description">
-    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -110,15 +105,25 @@ if content has overflow.</p>
 	[ngClass]&#x3D;&quot;{
 		&#x27;bx--skeleton&#x27;: skeleton
 	}&quot;
-	role&#x3D;&quot;navigation&quot;&gt;
-	&lt;div class&#x3D;&quot;bx--tabs-trigger&quot; tabindex&#x3D;&quot;0&quot; (click)&#x3D;&quot;showTabList()&quot;&gt;
-		&lt;a href&#x3D;&quot;javascript:void(0)&quot; class&#x3D;&quot;bx--tabs-trigger-text&quot; tabindex&#x3D;&quot;-1&quot;&gt;
+	role&#x3D;&quot;navigation&quot;
+	[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
+	[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;&gt;
+	&lt;div
+		class&#x3D;&quot;bx--tabs-trigger&quot;
+		tabindex&#x3D;&quot;0&quot;
+		(click)&#x3D;&quot;showTabList()&quot;
+		(keydown)&#x3D;&quot;onDropdownKeydown($event)&quot;&gt;
+		&lt;a
+			href&#x3D;&quot;javascript:void(0)&quot;
+			class&#x3D;&quot;bx--tabs-trigger-text&quot;
+			tabindex&#x3D;&quot;-1&quot;&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;!getSelectedTab().headingIsTemplate&quot;&gt;
 				{{ getSelectedTab().heading }}
 			&lt;/ng-container&gt;
 			&lt;ng-template
 				*ngIf&#x3D;&quot;getSelectedTab().headingIsTemplate&quot;
-				[ngTemplateOutlet]&#x3D;&quot;getSelectedTab().heading&quot;&gt;
+				[ngTemplateOutlet]&#x3D;&quot;getSelectedTab().heading&quot;
+				[ngTemplateOutletContext]&#x3D;&quot;{$implicit: getSelectedTab().context}&quot;&gt;
 			&lt;/ng-template&gt;
 		&lt;/a&gt;
 		&lt;svg width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
@@ -132,20 +137,25 @@ if content has overflow.</p>
 		}&quot;
 		class&#x3D;&quot;bx--tabs__nav&quot;
 		role&#x3D;&quot;tablist&quot;&gt;
+		&lt;li role&#x3D;&quot;presentation&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;contentBefore&quot; [ngTemplateOutlet]&#x3D;&quot;contentBefore&quot;&gt;&lt;/ng-container&gt;
+		&lt;/li&gt;
 		&lt;li
 			*ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index;&quot;
 			[ngClass]&#x3D;&quot;{
-				&#x27;bx--tabs__nav-item--selected&#x27;: tab.active
+				&#x27;bx--tabs__nav-item--selected&#x27;: tab.active,
+				&#x27;bx--tabs__nav-item--disabled&#x27;: tab.disabled
 			}&quot;
 			class&#x3D;&quot;bx--tabs__nav-item&quot;
 			role&#x3D;&quot;presentation&quot;
-			(click)&#x3D;&quot;selectTab(tabref, tab, i)&quot;&gt;
+			(click)&#x3D;&quot;selectTab(tabItem, tab, i)&quot;
+			(keydown)&#x3D;&quot;tabDropdownKeydown($event)&quot;&gt;
 			&lt;a
 				#tabItem
 				[attr.aria-selected]&#x3D;&quot;tab.active&quot;
 				[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
 				[attr.aria-controls]&#x3D;&quot;tab.id&quot;
-				(focus)&#x3D;&quot;onTabFocus(tabref, i)&quot;
+				(focus)&#x3D;&quot;onTabFocus(tabItem, i)&quot;
 				draggable&#x3D;&quot;false&quot;
 				id&#x3D;&quot;{{tab.id}}-header&quot;
 				class&#x3D;&quot;bx--tabs__nav-link&quot;
@@ -161,11 +171,11 @@ if content has overflow.</p>
 				&lt;/ng-template&gt;
 			&lt;/a&gt;
 		&lt;/li&gt;
+		&lt;li role&#x3D;&quot;presentation&quot;&gt;
+			&lt;ng-container *ngIf&#x3D;&quot;contentAfter&quot; [ngTemplateOutlet]&#x3D;&quot;contentAfter&quot;&gt;&lt;/ng-container&gt;
+		&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/nav&gt;
-&lt;div&gt;
-	&lt;ng-content select&#x3D;&quot;ibm-tab&quot;&gt;&lt;/ng-content&gt;
-&lt;/div&gt;
 </code></pre></td>
             </tr>
 
@@ -235,7 +245,15 @@ if content has overflow.</p>
                                 <a href="#getSelectedTab">getSelectedTab</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#hideTabList">hideTabList</a>
+                            </li>
+                            <li>
                                 <a href="#ngAfterContentInit">ngAfterContentInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#onDropdownKeydown">onDropdownKeydown</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -253,6 +271,10 @@ if content has overflow.</p>
                                     <span class="modifier">Public</span>
                                 <a href="#showTabList">showTabList</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#tabDropdownKeydown">tabDropdownKeydown</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -266,7 +288,19 @@ if content has overflow.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#ariaLabel">ariaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#ariaLabelledby">ariaLabelledby</a>
+                            </li>
+                            <li>
                                 <a href="#cacheActive">cacheActive</a>
+                            </li>
+                            <li>
+                                <a href="#contentAfter">contentAfter</a>
+                            </li>
+                            <li>
+                                <a href="#contentBefore">contentBefore</a>
                             </li>
                             <li>
                                 <a href="#followFocus">followFocus</a>
@@ -292,6 +326,9 @@ if content has overflow.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#focusout">focusout</a>
+                            </li>
+                            <li>
                                 <a href="#keydown">keydown</a>
                             </li>
                         </ul>
@@ -302,9 +339,103 @@ if content has overflow.</p>
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/tabs/tab-headers.component.ts:158</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="ariaLabel"></a>
+                        <code>ariaLabel</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Sets the aria label on the nav element.</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/tabs/tab-headers.component.ts:125</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="ariaLabelledby"></a>
+                        <code>ariaLabelledby</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Sets the aria labelledby on the nav element.</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/tabs/tab-headers.component.ts:129</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -323,7 +454,41 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/tabs/tab-headers.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/tabs/tab-headers.component.ts:113</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="contentAfter"></a>
+                        <code>contentAfter</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/tabs/tab-headers.component.ts:132</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="contentBefore"></a>
+                        <code>contentBefore</code>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/tabs/tab-headers.component.ts:131</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -346,7 +511,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tabs/tab-headers.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/tabs/tab-headers.component.ts:117</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -368,7 +533,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/tabs/tab-headers.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/tabs/tab-headers.component.ts:121</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -391,7 +556,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/tabs/tab-headers.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/tabs/tab-headers.component.ts:108</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -401,6 +566,40 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
     <section>
     <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="focusout"></a>
+                        <span class="name">
+                            <b>
+                            focusout
+                            </b>
+                            <a href="#focusout"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Arguments : </i><code>'$event' </code>
+                        </td>
+                    </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>focusout(event)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/tabs/tab-headers.component.ts:232</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -427,7 +626,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/tabs/tab-headers.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/tabs/tab-headers.component.ts:167</a></div>
                             </td>
                         </tr>
 
@@ -472,7 +671,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/tabs/tab-headers.component.ts:224</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/tabs/tab-headers.component.ts:262</a></div>
                             </td>
                         </tr>
 
@@ -482,6 +681,46 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hideTabList"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            hideTabList
+                            </b>
+                            <a href="#hideTabList"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>hideTabList()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/tabs/tab-headers.component.ts:279</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
                     </td>
@@ -510,7 +749,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/tabs/tab-headers.component.ts:201</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/tabs/tab-headers.component.ts:238</a></div>
                             </td>
                         </tr>
 
@@ -522,6 +761,77 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onDropdownKeydown"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            onDropdownKeydown
+                            </b>
+                            <a href="#onDropdownKeydown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>onDropdownKeydown(event: KeyboardEvent)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/tabs/tab-headers.component.ts:283</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                    <code>KeyboardEvent</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -550,7 +860,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/tabs/tab-headers.component.ts:218</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/tabs/tab-headers.component.ts:255</a></div>
                             </td>
                         </tr>
 
@@ -635,7 +945,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/tabs/tab-headers.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/tabs/tab-headers.component.ts:336</a></div>
                             </td>
                         </tr>
 
@@ -732,7 +1042,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/tabs/tab-headers.component.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="352" class="link-to-prism">src/tabs/tab-headers.component.ts:352</a></div>
                             </td>
                         </tr>
 
@@ -774,7 +1084,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/tabs/tab-headers.component.ts:232</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/tabs/tab-headers.component.ts:270</a></div>
                             </td>
                         </tr>
 
@@ -786,6 +1096,77 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tabDropdownKeydown"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            tabDropdownKeydown
+                            </b>
+                            <a href="#tabDropdownKeydown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>tabDropdownKeydown(event: KeyboardEvent)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/tabs/tab-headers.component.ts:296</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                                    <code>KeyboardEvent</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -833,7 +1214,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/tabs/tab-headers.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/tabs/tab-headers.component.ts:153</a></div>
                             </td>
                         </tr>
 
@@ -874,7 +1255,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/tabs/tab-headers.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/tabs/tab-headers.component.ts:157</a></div>
                             </td>
                         </tr>
 
@@ -920,7 +1301,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/tabs/tab-headers.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/tabs/tab-headers.component.ts:149</a></div>
                             </td>
                         </tr>
 
@@ -963,7 +1344,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/tabs/tab-headers.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/tabs/tab-headers.component.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -1003,7 +1384,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/tabs/tab-headers.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/tabs/tab-headers.component.ts:158</a></div>
                             </td>
                         </tr>
 
@@ -1046,7 +1427,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/tabs/tab-headers.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/tabs/tab-headers.component.ts:141</a></div>
                             </td>
                         </tr>
 
@@ -1087,7 +1468,7 @@ Duplicate from <code>n-tabs</code> to support standalone headers</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/tabs/tab-headers.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/tabs/tab-headers.component.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -1124,9 +1505,6 @@ import { Tab } from &quot;./tab.component&quot;;
 /**
  * The &#x60;TabHeaders&#x60; component contains the &#x60;Tab&#x60; items and controls scroll functionality
  * if content has overflow.
- * @export
- * @class TabHeaders
- * @implements {AfterViewInit}
  */
 @Component({
 	selector: &quot;ibm-tab-headers&quot;,
@@ -1136,15 +1514,25 @@ import { Tab } from &quot;./tab.component&quot;;
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--skeleton&#x27;: skeleton
 			}&quot;
-			role&#x3D;&quot;navigation&quot;&gt;
-			&lt;div class&#x3D;&quot;bx--tabs-trigger&quot; tabindex&#x3D;&quot;0&quot; (click)&#x3D;&quot;showTabList()&quot;&gt;
-				&lt;a href&#x3D;&quot;javascript:void(0)&quot; class&#x3D;&quot;bx--tabs-trigger-text&quot; tabindex&#x3D;&quot;-1&quot;&gt;
+			role&#x3D;&quot;navigation&quot;
+			[attr.aria-label]&#x3D;&quot;ariaLabel&quot;
+			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby&quot;&gt;
+			&lt;div
+				class&#x3D;&quot;bx--tabs-trigger&quot;
+				tabindex&#x3D;&quot;0&quot;
+				(click)&#x3D;&quot;showTabList()&quot;
+				(keydown)&#x3D;&quot;onDropdownKeydown($event)&quot;&gt;
+				&lt;a
+					href&#x3D;&quot;javascript:void(0)&quot;
+					class&#x3D;&quot;bx--tabs-trigger-text&quot;
+					tabindex&#x3D;&quot;-1&quot;&gt;
 					&lt;ng-container *ngIf&#x3D;&quot;!getSelectedTab().headingIsTemplate&quot;&gt;
 						{{ getSelectedTab().heading }}
 					&lt;/ng-container&gt;
 					&lt;ng-template
 						*ngIf&#x3D;&quot;getSelectedTab().headingIsTemplate&quot;
-						[ngTemplateOutlet]&#x3D;&quot;getSelectedTab().heading&quot;&gt;
+						[ngTemplateOutlet]&#x3D;&quot;getSelectedTab().heading&quot;
+						[ngTemplateOutletContext]&#x3D;&quot;{$implicit: getSelectedTab().context}&quot;&gt;
 					&lt;/ng-template&gt;
 				&lt;/a&gt;
 				&lt;svg width&#x3D;&quot;10&quot; height&#x3D;&quot;5&quot; viewBox&#x3D;&quot;0 0 10 5&quot;&gt;
@@ -1158,20 +1546,25 @@ import { Tab } from &quot;./tab.component&quot;;
 				}&quot;
 				class&#x3D;&quot;bx--tabs__nav&quot;
 				role&#x3D;&quot;tablist&quot;&gt;
+				&lt;li role&#x3D;&quot;presentation&quot;&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;contentBefore&quot; [ngTemplateOutlet]&#x3D;&quot;contentBefore&quot;&gt;&lt;/ng-container&gt;
+				&lt;/li&gt;
 				&lt;li
 					*ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index;&quot;
 					[ngClass]&#x3D;&quot;{
-						&#x27;bx--tabs__nav-item--selected&#x27;: tab.active
+						&#x27;bx--tabs__nav-item--selected&#x27;: tab.active,
+						&#x27;bx--tabs__nav-item--disabled&#x27;: tab.disabled
 					}&quot;
 					class&#x3D;&quot;bx--tabs__nav-item&quot;
 					role&#x3D;&quot;presentation&quot;
-					(click)&#x3D;&quot;selectTab(tabref, tab, i)&quot;&gt;
+					(click)&#x3D;&quot;selectTab(tabItem, tab, i)&quot;
+					(keydown)&#x3D;&quot;tabDropdownKeydown($event)&quot;&gt;
 					&lt;a
 						#tabItem
 						[attr.aria-selected]&#x3D;&quot;tab.active&quot;
 						[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
 						[attr.aria-controls]&#x3D;&quot;tab.id&quot;
-						(focus)&#x3D;&quot;onTabFocus(tabref, i)&quot;
+						(focus)&#x3D;&quot;onTabFocus(tabItem, i)&quot;
 						draggable&#x3D;&quot;false&quot;
 						id&#x3D;&quot;{{tab.id}}-header&quot;
 						class&#x3D;&quot;bx--tabs__nav-link&quot;
@@ -1187,11 +1580,11 @@ import { Tab } from &quot;./tab.component&quot;;
 						&lt;/ng-template&gt;
 					&lt;/a&gt;
 				&lt;/li&gt;
+				&lt;li role&#x3D;&quot;presentation&quot;&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;contentAfter&quot; [ngTemplateOutlet]&#x3D;&quot;contentAfter&quot;&gt;&lt;/ng-container&gt;
+				&lt;/li&gt;
 			&lt;/ul&gt;
 		&lt;/nav&gt;
-		&lt;div&gt;
-			&lt;ng-content select&#x3D;&quot;ibm-tab&quot;&gt;&lt;/ng-content&gt;
-		&lt;/div&gt;
 	 &#x60;
 })
 
@@ -1215,6 +1608,17 @@ export class TabHeaders implements AfterContentInit {
 	 * Set to &#x60;true&#x60; to put tabs in a loading state.
 	 */
 	@Input() skeleton &#x3D; false;
+	/**
+	 * Sets the aria label on the nav element.
+	 */
+	@Input() ariaLabel: string;
+	/**
+	 * Sets the aria labelledby on the nav element.
+	 */
+	@Input() ariaLabelledby: string;
+
+	@Input() contentBefore;
+	@Input() contentAfter;
 
 	/**
 	 * Gets the Unordered List element that holds the &#x60;Tab&#x60; headings from the view DOM.
@@ -1241,6 +1645,8 @@ export class TabHeaders implements AfterContentInit {
 	 */
 	public currentSelectedTab: number;
 	public tabListVisible &#x3D; false;
+
+	constructor(protected elementRef: ElementRef) {}
 
 	// keyboard accessibility
 	/**
@@ -1304,6 +1710,18 @@ export class TabHeaders implements AfterContentInit {
 		if ((event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) &amp;&amp; !this.followFocus) {
 			this.selectTab(event.target, tabsArray[this.currentSelectedTab], this.currentSelectedTab);
 		}
+
+		// dropdown list handler
+		if (event.key &#x3D;&#x3D;&#x3D; &quot;Escape&quot;) {
+			this.hideTabList();
+		}
+	}
+
+	@HostListener(&quot;focusout&quot;, [&quot;$event&quot;])
+	focusOut(event) {
+		if (this.tabListVisible &amp;&amp; !this.elementRef.nativeElement.contains(event.relatedTarget)) {
+			this.tabListVisible &#x3D; false;
+		}
 	}
 
 	ngAfterContentInit() {
@@ -1324,6 +1742,7 @@ export class TabHeaders implements AfterContentInit {
 	 * Controls manually focusing tabs.
 	 */
 	public onTabFocus(ref: HTMLElement, index: number) {
+		if (this.tabListVisible) { return; }
 		this.currentSelectedTab &#x3D; index;
 		// reset scroll left because we&#x27;re already handling it
 		this.headerContainer.nativeElement.parentElement.scrollLeft &#x3D; 0;
@@ -1339,6 +1758,65 @@ export class TabHeaders implements AfterContentInit {
 
 	public showTabList() {
 		this.tabListVisible &#x3D; true;
+		const focusTarget &#x3D; this.allTabHeaders.find(tab &#x3D;&gt; {
+			const tabContainer &#x3D; tab.nativeElement.parentElement;
+			return !tabContainer.classList.contains(&quot;bx--tabs__nav-item--selected&quot;);
+		});
+		focusTarget.nativeElement.focus();
+	}
+
+	public hideTabList() {
+		this.tabListVisible &#x3D; false;
+	}
+
+	public onDropdownKeydown(event: KeyboardEvent) {
+		switch (event.key) {
+			case &quot; &quot;:
+			case &quot;Spacebar&quot;:
+			case &quot;Enter&quot;:
+				event.preventDefault();
+				this.showTabList();
+				break;
+			default:
+				break;
+		}
+	}
+
+	public tabDropdownKeydown(event: KeyboardEvent) {
+		if (!this.tabListVisible) { return; }
+		const target &#x3D; (event.target as HTMLElement).closest(&quot;a&quot;);
+
+		const headers &#x3D; this.allTabHeaders.toArray().filter(tab &#x3D;&gt;
+			!tab.nativeElement.parentElement.classList.contains(&quot;bx--tabs__nav-item--disabled&quot;) &amp;&amp;
+			!tab.nativeElement.parentElement.classList.contains(&quot;bx--tabs__nav-item--selected&quot;));
+
+		// unless the focus can move, it should remain on the target
+		let next: HTMLElement &#x3D; target;
+		let previous: HTMLElement &#x3D; target;
+
+		for (let i &#x3D; 0; i &lt; headers.length; i++) {
+			if (headers[i].nativeElement &#x3D;&#x3D;&#x3D; target) {
+				if (i + 1 &lt; headers.length) {
+					next &#x3D; headers[i + 1].nativeElement;
+				}
+				if (i - 1 &gt;&#x3D; 0) {
+					previous &#x3D; headers[i - 1].nativeElement;
+				}
+			}
+		}
+
+		switch (event.key) {
+			case &quot;ArrowDown&quot;:
+			case &quot;Down&quot;: // IE11 specific value
+				next.focus();
+				break;
+			case &quot;ArrowUp&quot;:
+			case &quot;Up&quot;: // IE11 specific value
+				previous.focus();
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**
@@ -1403,9 +1881,9 @@ export class TabHeaders implements AfterContentInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav	class="bx--tabs"	[ngClass]="{		\'bx--skeleton\': skeleton	}"	role="navigation">	<div class="bx--tabs-trigger" tabindex="0" (click)="showTabList()">		<a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1">			<ng-container *ngIf="!getSelectedTab().headingIsTemplate">				{{ getSelectedTab().heading }}			</ng-container>			<ng-template				*ngIf="getSelectedTab().headingIsTemplate"				[ngTemplateOutlet]="getSelectedTab().heading">			</ng-template>		</a>		<svg width="10" height="5" viewBox="0 0 10 5">			<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd"></path>		</svg>	</div>	<ul		#tabList		[ngClass]="{			\'bx--tabs__nav--hidden\': !tabListVisible		}"		class="bx--tabs__nav"		role="tablist">		<li			*ngFor="let tab of tabs; let i = index;"			[ngClass]="{				\'bx--tabs__nav-item--selected\': tab.active			}"			class="bx--tabs__nav-item"			role="presentation"			(click)="selectTab(tabref, tab, i)">			<a				#tabItem				[attr.aria-selected]="tab.active"				[attr.tabindex]="(tab.active?0:-1)"				[attr.aria-controls]="tab.id"				(focus)="onTabFocus(tabref, i)"				draggable="false"				id="{{tab.id}}-header"				class="bx--tabs__nav-link"				href="javascript:void(0)"				role="tab">				<ng-container *ngIf="!tab.headingIsTemplate">					{{ tab.heading }}				</ng-container>				<ng-template					*ngIf="tab.headingIsTemplate"					[ngTemplateOutlet]="tab.heading"					[ngTemplateOutletContext]="{$implicit: tab.context}">				</ng-template>			</a>		</li>	</ul></nav><div>	<ng-content select="ibm-tab"></ng-content></div></div>'
-    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Banner', 'selector': 'ibm-banner'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Calendar', 'selector': 'ibm-calendar'},{'name': 'CalendarHeader', 'selector': 'ibm-calendar-header'},{'name': 'CalendarMonth', 'selector': 'ibm-calendar-month-view'},{'name': 'CalendarMonths', 'selector': 'ibm-calendar-months-view'},{'name': 'CalendarQuarter', 'selector': 'ibm-calendar-quarter-view'},{'name': 'CalendarYear', 'selector': 'ibm-calendar-year-view'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'Icon', 'selector': 'ibm-icon'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'Number', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Pill', 'selector': 'ibm-pill'},{'name': 'PillInput', 'selector': 'ibm-pill-input'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'Sprite', 'selector': 'ibm-sprite'},{'name': 'StaticIcon', 'selector': 'ibm-static-icon'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'Switch', 'selector': 'ibm-switch'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
-    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+        var COMPONENT_TEMPLATE = '<div><nav	class="bx--tabs"	[ngClass]="{		\'bx--skeleton\': skeleton	}"	role="navigation"	[attr.aria-label]="ariaLabel"	[attr.aria-labelledby]="ariaLabelledby">	<div		class="bx--tabs-trigger"		tabindex="0"		(click)="showTabList()"		(keydown)="onDropdownKeydown($event)">		<a			href="javascript:void(0)"			class="bx--tabs-trigger-text"			tabindex="-1">			<ng-container *ngIf="!getSelectedTab().headingIsTemplate">				{{ getSelectedTab().heading }}			</ng-container>			<ng-template				*ngIf="getSelectedTab().headingIsTemplate"				[ngTemplateOutlet]="getSelectedTab().heading"				[ngTemplateOutletContext]="{$implicit: getSelectedTab().context}">			</ng-template>		</a>		<svg width="10" height="5" viewBox="0 0 10 5">			<path d="M0 0l5 4.998L10 0z" fill-rule="evenodd"></path>		</svg>	</div>	<ul		#tabList		[ngClass]="{			\'bx--tabs__nav--hidden\': !tabListVisible		}"		class="bx--tabs__nav"		role="tablist">		<li role="presentation">			<ng-container *ngIf="contentBefore" [ngTemplateOutlet]="contentBefore"></ng-container>		</li>		<li			*ngFor="let tab of tabs; let i = index;"			[ngClass]="{				\'bx--tabs__nav-item--selected\': tab.active,				\'bx--tabs__nav-item--disabled\': tab.disabled			}"			class="bx--tabs__nav-item"			role="presentation"			(click)="selectTab(tabItem, tab, i)"			(keydown)="tabDropdownKeydown($event)">			<a				#tabItem				[attr.aria-selected]="tab.active"				[attr.tabindex]="(tab.active?0:-1)"				[attr.aria-controls]="tab.id"				(focus)="onTabFocus(tabItem, i)"				draggable="false"				id="{{tab.id}}-header"				class="bx--tabs__nav-link"				href="javascript:void(0)"				role="tab">				<ng-container *ngIf="!tab.headingIsTemplate">					{{ tab.heading }}				</ng-container>				<ng-template					*ngIf="tab.headingIsTemplate"					[ngTemplateOutlet]="tab.heading"					[ngTemplateOutletContext]="{$implicit: tab.context}">				</ng-template>			</a>		</li>		<li role="presentation">			<ng-container *ngIf="contentAfter" [ngTemplateOutlet]="contentAfter"></ng-container>		</li>	</ul></nav></div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TabHeaders'};
 </script>
 <script src="../js/tree.js"></script>

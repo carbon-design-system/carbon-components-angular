@@ -147,9 +147,6 @@ ex: <code>providers: [{provide: AbstractDropdownView, useExisting: forwardRef(()
                             <li>
                                 <a href="#propagateSelected">propagateSelected</a>
                             </li>
-                            <li>
-                                <a href="#resetSelected">resetSelected</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -899,46 +896,6 @@ In most cases this just calls <code>getCurrentElement().focus()</code></p>
                 </tr>
             </tbody>
         </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="resetSelected"></a>
-                        <span class="name">
-                            <b>
-                            resetSelected
-                            </b>
-                            <a href="#resetSelected"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>resetSelected()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/dropdown/abstract-dropdown-view.class.ts:102</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Resets all selected items</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 </section>
 
 
@@ -1191,11 +1148,6 @@ export class AbstractDropdownView {
 	 * In most cases this just calls &#x60;getCurrentElement().focus()&#x60;
 	 */
 	initFocus(): void {}
-
-	/**
-	 * Resets all selected items
-	 */
-	resetSelected(): void {}
 }
 </code></pre>
     </div>

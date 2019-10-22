@@ -73,11 +73,6 @@
 
 
 
-            <p class="comment">
-                <h3>Example</h3>
-            </p>
-            <div class="io-description">
-            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -143,7 +138,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/checkbox/checkbox.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/checkbox/checkbox.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +178,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/checkbox/checkbox.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/checkbox/checkbox.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -225,8 +220,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quo
 
 /**
  * Defines the set of states for a checkbox component.
- * @export
- * @enum {number}
  */
 export enum CheckboxState {
 	Init,
@@ -237,29 +230,22 @@ export enum CheckboxState {
 
 /**
  * Used to emit changes performed on checkbox components.
- * @export
- * @class CheckboxChange
  */
 export class CheckboxChange {
 	/**
 	 * Contains the &#x60;Checkbox&#x60; that has been changed.
-	 * @type {Checkbox}
-	 * @memberof CheckboxChange
 	 */
 	source: Checkbox;
 	/**
 	 * The state of the &#x60;Checkbox&#x60; encompassed in the &#x60;CheckboxChange&#x60; class.
-	 * @type {boolean}
-	 * @memberof CheckboxChange
 	 */
 	checked: boolean;
 }
 
 /**
- * @export
- * @class Checkbox
- * @implements {ControlValueAccessor}
- * @implements {AfterViewInit}
+ * [See demo](../../?path&#x3D;/story/checkbox--basic)
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;checkbox--basic&lt;/example-url&gt;
  */
 @Component({
 	selector: &quot;ibm-checkbox&quot;,
@@ -286,7 +272,9 @@ export class CheckboxChange {
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--skeleton&#x27; : skeleton
 			}&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;span [ngClass]&#x3D;&quot;{&#x27;bx--visually-hidden&#x27; : hideLabel}&quot;&gt;
+				&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;/span&gt;
 		&lt;/label&gt;
 	&#x60;,
 	providers: [
@@ -325,6 +313,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 */
 	@Input() skeleton &#x3D; false;
 	/**
+	 * Set to &#x60;true&#x60; to hide the checkbox labels.
+	 */
+	@Input() hideLabel &#x3D; false;
+	/**
 	 * Sets the name attribute on the &#x60;input&#x60; element.
 	 */
 	@Input() name: string;
@@ -352,7 +344,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	@Input(&quot;aria-labelledby&quot;) ariaLabelledby: string;
 	/**
 	 * Reflects whether the checkbox state is indeterminate.
-	 * @readonly
 	 */
 	get indeterminate() {
 		return this._indeterminate;
@@ -376,7 +367,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Returns value &#x60;true&#x60; if state is selected for the checkbox.
-	 * @readonly
 	 */
 	get checked() {
 		return this._checked;
@@ -434,8 +424,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Creates an instance of &#x60;Checkbox&#x60;.
-	 * @param {ChangeDetectorRef} changeDetectorRef
-	 * @memberof Checkbox
 	 */
 	constructor(protected changeDetectorRef: ChangeDetectorRef) {
 		Checkbox.checkboxCount++;
@@ -443,7 +431,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Toggle the selected state of the checkbox.
-	 * @memberof Checkbox
 	 */
 	public toggle() {
 		this.checked &#x3D; !this.checked;
@@ -456,8 +443,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Sets a method in order to propagate changes back to the form.
-	 * @param {any} fn
-	 * @memberof Checkbox
 	 */
 	public registerOnChange(fn: any) {
 		this.propagateChange &#x3D; fn;
@@ -473,8 +458,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Executes on the event of a change within &#x60;Checkbox&#x60; to block propagation.
-	 * @param {any} event
-	 * @memberof Checkbox
 	 */
 	onChange(event) {
 		event.stopPropagation();
@@ -482,8 +465,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Handles click events on the &#x60;Checkbox&#x60; and emits changes to other classes.
-	 * @param {any} event
-	 * @memberof Checkbox
 	 */
 	onClick(event) {
 		if (!this.disabled) {
@@ -496,15 +477,11 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Called when checkbox is blurred. Needed to properly implement &#x60;ControlValueAccessor&#x60;.
-	 * @memberof Checkbox
 	 */
 	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
 
 	/**
 	 * Handles changes between checkbox states.
-	 * @param {CheckboxState} newState
-	 * @returns {null}
-	 * @memberof Checkbox
 	 */
 	transitionCheckboxState(newState: CheckboxState) {
 		let oldState &#x3D; this.currentCheckboxState;
@@ -526,7 +503,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Creates instance of &#x60;CheckboxChange&#x60; used to propagate the change event.
-	 * @memberof Checkbox
 	 */
 	emitChangeEvent() {
 		let event &#x3D; new CheckboxChange();
@@ -539,7 +515,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Updates the checkbox if it is in the indeterminate state.
-	 * @memberof Checkbox
 	 */
 	ngAfterViewInit() {
 		if (this.indeterminate) {
@@ -550,7 +525,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	/**
 	 * Method set in &#x60;registerOnChange&#x60; to propagate changes back to the form.
-	 * @memberof Checkbox
 	 */
 	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
 }
