@@ -361,6 +361,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	getSelected(): ListItem[] {
 		let selected = this.getListItems().filter(item => item.selected);
 		if (selected.length === 0) {
+			if (this.type === "multi") {
+				return [];
+			}
 			return null;
 		}
 		return selected;
@@ -460,6 +463,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				item.selected = !item.selected;
 				// emit an array of selected items
 				this.select.emit(this.getSelected());
+				console.log(this.getSelected());
 			}
 			this.index = this.getListItems().indexOf(item);
 		}
