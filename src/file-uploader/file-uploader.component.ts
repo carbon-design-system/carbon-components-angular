@@ -105,8 +105,6 @@ export class FileUploader {
 	@Input() skeleton = false;
 	/**
 	 * Sets the size of the button.
-	 *
-	 * @type {("sm" | "normal")}
 	 */
 	@Input() size: "sm" | "normal";
 	/**
