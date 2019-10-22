@@ -12,7 +12,8 @@ import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { NFormsModule } from "./../forms/forms.module";
 import { DialogModule } from "./../dialog/dialog.module";
 import { I18nModule } from "./../i18n/i18n.module";
-import { ButtonModule, SearchModule } from "../";
+import { ButtonModule } from "./../button/button.module";
+import { SearchModule } from "./../search/search.module";
 
 // table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";
