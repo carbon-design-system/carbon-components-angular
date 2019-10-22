@@ -17,7 +17,7 @@ import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { ExperimentalModule } from "./../experimental.module";
 
 // exports
-export { default as Modal } from "./modal.decorator";
+export { default as ModalDecorator } from "./modal.decorator";
 export { ModalService } from "./modal.service";
 export * from "./alert-modal.interface";
 export * from "./base-modal.class";
