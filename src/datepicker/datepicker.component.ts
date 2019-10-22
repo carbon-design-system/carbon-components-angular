@@ -330,29 +330,30 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate = "";
 			// if date is a string, parse and format
-			if (typeof dates[0] === "string") {
-				singleDate = this.flatpickrInstance.parseDate(dates[0], this.dateFormat);
+			if (typeof this.flatpickrInstance.selectedDates[0] === "string") {
+				singleDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 				singleDate = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
 			// if date is not a string we can assume it's a Date and we should format
-			} else if (!!dates[0]) {
-				singleDate = this.flatpickrInstance.formatDate(dates[0], this.dateFormat);
+			} else if (!!this.flatpickrInstance.selectedDates[0]) {
+				singleDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 			}
-			// apply the value
-			singleInput.value = singleDate;
 
 			if (rangeInput) {
 				// we can either set a date value or an empty string, so we start with an empty string
 				let rangeDate = "";
 				// if date is a string, parse and format
-				if (typeof dates[1] === "string") {
-					rangeDate = this.flatpickrInstance.parseDate(dates[1].toString(), this.dateFormat);
+				if (typeof this.flatpickrInstance.selectedDates[1] === "string") {
+					rangeDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[1].toString(), this.dateFormat);
 					rangeDate = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
 				// if date is not a string we can assume it's a Date and we should format
-				} else if (!!dates[1]) {
-					rangeDate = this.flatpickrInstance.formatDate(dates[1], this.dateFormat);
+				} else if (!!this.flatpickrInstance.selectedDates[1]) {
+					rangeDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[1], this.dateFormat);
 				}
-				// apply the value
-				rangeInput.value = rangeDate;
+				setTimeout(() => {
+					// apply the values
+					rangeInput.value = rangeDate;
+					singleInput.value = singleDate;
+				});
 			}
 		}
 	}
