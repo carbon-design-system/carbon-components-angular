@@ -1,0 +1,1387 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carbon-components-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">carbon-components-angular documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CodeSnippet</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+        <li >
+            <a href="#example" role="tab" id="example-tab" data-toggle="tab" data-link="example">Examples</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/code-snippet/code-snippet.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p><a href="../../?path=/story/code-snippet--basic">See demo</a></p>
+<div><pre class="line-numbers"><code class="language-html"> * &lt;ibm-code-snippet&gt;Code&lt;/ibm-code-snippet&gt;
+ *</code></pre></div><p><example-url>../../iframe.html?id=code-snippet--basic</example-url></p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ibm-code-snippet</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;display &#x3D;&#x3D;&#x3D; &#x27;inline&#x27;; else notInline&quot;&gt;
+	&lt;ng-container *ngTemplateOutlet&#x3D;&quot;codeTemplate&quot;&gt;&lt;/ng-container&gt;
+	&lt;ng-container *ngTemplateOutlet&#x3D;&quot;feedbackTemplate&quot;&gt;&lt;/ng-container&gt;
+&lt;/ng-container&gt;
+
+&lt;ng-template #notInline&gt;
+	&lt;div class&#x3D;&quot;bx--snippet-container&quot; [attr.aria-label]&#x3D;&quot;translations.CODE_SNIPPET_TEXT&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+			&lt;span *ngIf&#x3D;&quot;display &#x3D;&#x3D;&#x3D; &#x27;single&#x27;; else multiSkeleton&quot;&gt;&lt;/span&gt;
+			&lt;ng-template #multiSkeleton&gt;
+				&lt;span&gt;&lt;/span&gt;
+				&lt;span&gt;&lt;/span&gt;
+				&lt;span&gt;&lt;/span&gt;
+			&lt;/ng-template&gt;
+		&lt;/ng-container&gt;
+		&lt;pre *ngIf&#x3D;&quot;!skeleton&quot;&gt;&lt;ng-container *ngTemplateOutlet&#x3D;&quot;codeTemplate&quot;&gt;&lt;/ng-container&gt;&lt;/pre&gt;
+	&lt;/div&gt;
+	&lt;button
+		*ngIf&#x3D;&quot;!skeleton&quot;
+		class&#x3D;&quot;bx--snippet-button&quot;
+		[attr.aria-label]&#x3D;&quot;translations.COPY_CODE&quot;
+		(click)&#x3D;&quot;onCopyButtonClicked()&quot;
+		tabindex&#x3D;&quot;0&quot;&gt;
+		&lt;ibm-icon-copy16 class&#x3D;&quot;bx--snippet__icon&quot;&gt;&lt;/ibm-icon-copy16&gt;
+		&lt;ng-container *ngTemplateOutlet&#x3D;&quot;feedbackTemplate&quot;&gt;&lt;/ng-container&gt;
+	&lt;/button&gt;
+	&lt;button
+		*ngIf&#x3D;&quot;display &#x3D;&#x3D;&#x3D; &#x27;multi&#x27; &amp;&amp; shouldShowExpandButton&quot;
+		class&#x3D;&quot;bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand&quot;
+		(click)&#x3D;&quot;toggleSnippetExpansion()&quot;
+		type&#x3D;&quot;button&quot;&gt;
+		&lt;span class&#x3D;&quot;bx--snippet-btn--text&quot;&gt;{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}&lt;/span&gt;
+		&lt;ibm-icon-chevron-down16 class&#x3D;&quot;bx--icon-chevron--down&quot; [ariaLabel]&#x3D;&quot;translations.SHOW_MORE_ICON&quot;&gt;&lt;/ibm-icon-chevron-down16&gt;
+	&lt;/button&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #codeTemplate&gt;
+	&lt;code #code&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/code&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #feedbackTemplate&gt;
+	&lt;div
+	class&#x3D;&quot;bx--btn--copy__feedback&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;bx--btn--copy__feedback--displayed&#x27;: showFeedback
+	}&quot;
+	[attr.data-feedback]&#x3D;&quot;feedbackText&quot;&gt;
+	&lt;/div&gt;
+&lt;/ng-template&gt;
+	</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#code">code</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#codeSnippetCount">codeSnippetCount</a>
+                            </li>
+                            <li>
+                                <a href="#showFeedback">showFeedback</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#copyCode">copyCode</a>
+                            </li>
+                            <li>
+                                <a href="#onCopyButtonClicked">onCopyButtonClicked</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSnippetExpansion">toggleSnippetExpansion</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#display">display</a>
+                            </li>
+                            <li>
+                                <a href="#expanded">expanded</a>
+                            </li>
+                            <li>
+                                <a href="#feedbackText">feedbackText</a>
+                            </li>
+                            <li>
+                                <a href="#feedbackTimeout">feedbackTimeout</a>
+                            </li>
+                            <li>
+                                <a href="#skeleton">skeleton</a>
+                            </li>
+                            <li>
+                                <a href="#theme">theme</a>
+                            </li>
+                            <li>
+                                <a href="#translations">translations</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attr.type">attr.type</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--btn--copy">class.bx--btn--copy</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--snippet">class.bx--snippet</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--snippet--inline">class.bx--snippet--inline</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--snippet--light">class.bx--snippet--light</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--snippet--multi">class.bx--snippet--multi</a>
+                            </li>
+                            <li>
+                                <a href="#class.bx--snippet--single">class.bx--snippet--single</a>
+                            </li>
+                            <li>
+                                <a href="#style.display">style.display</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#click">click</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#shouldShowExpandButton">shouldShowExpandButton</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: <a href="../injectables/I18n.html">I18n</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/code-snippet/code-snippet.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of CodeSnippet.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="display"></a>
+                        <code>display</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>It can be <code>&quot;single&quot;</code>, <code>&quot;multi&quot;</code> or <code>&quot;inline&quot;</code></p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="../miscellaneous/enumerations.html#SnippetType" target="_self" >SnippetType</a></code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>SnippetType.single</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/code-snippet/code-snippet.component.ts:90</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="expanded"></a>
+                        <code>expanded</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/code-snippet/code-snippet.component.ts:110</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="feedbackText"></a>
+                        <code>feedbackText</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Text displayed in the tooltip when user clicks button to copy code.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>this.translations.COPIED</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/code-snippet/code-snippet.component.ts:102</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="feedbackTimeout"></a>
+                        <code>feedbackTimeout</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Time in miliseconds to keep the feedback tooltip displayed.</p>
+</div>
+                        <p>
+                            <em>Default value : </em><code>2000</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/code-snippet/code-snippet.component.ts:108</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="skeleton"></a>
+                        <code>skeleton</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/code-snippet/code-snippet.component.ts:111</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="theme"></a>
+                        <code>theme</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Set to <code>&quot;light&quot;</code> to apply the light style on the code snippet.</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code>&quot;light&quot; | &quot;dark&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;dark&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/code-snippet/code-snippet.component.ts:96</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="translations"></a>
+                        <code>translations</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>this.i18n.get().CODE_SNIPPET</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/code-snippet/code-snippet.component.ts:91</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attr.type"></a>
+                        <span class="name">
+                            <b>
+                            attr.type
+                            </b>
+                            <a href="#attr.type"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>attr.type:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/code-snippet/code-snippet.component.ts:133</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--btn--copy"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--btn--copy
+                            </b>
+                            <a href="#class.bx--btn--copy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--btn--copy:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/code-snippet/code-snippet.component.ts:126</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--snippet"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--snippet
+                            </b>
+                            <a href="#class.bx--snippet"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--snippet:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/code-snippet/code-snippet.component.ts:113</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--snippet--inline"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--snippet--inline
+                            </b>
+                            <a href="#class.bx--snippet--inline"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--snippet--inline:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/code-snippet/code-snippet.component.ts:120</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--snippet--light"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--snippet--light
+                            </b>
+                            <a href="#class.bx--snippet--light"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--snippet--light:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/code-snippet/code-snippet.component.ts:123</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--snippet--multi"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--snippet--multi
+                            </b>
+                            <a href="#class.bx--snippet--multi"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--snippet--multi:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/code-snippet/code-snippet.component.ts:117</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class.bx--snippet--single"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--snippet--single
+                            </b>
+                            <a href="#class.bx--snippet--single"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--snippet--single:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/code-snippet/code-snippet.component.ts:114</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="style.display"></a>
+                        <span class="name">
+                            <b>
+                            style.display
+                            </b>
+                            <a href="#style.display"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>style.display:     <code></code>
+</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/code-snippet/code-snippet.component.ts:130</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3>HostListeners</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="click"></a>
+                        <span class="name">
+                            <b>
+                            click
+                            </b>
+                            <a href="#click"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>click()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/code-snippet/code-snippet.component.ts:202</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Inline code snippet acts as button and makes the whole component clickable.</p>
+<p>This handles clicks in that case.</p>
+</div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="copyCode"></a>
+                        <span class="name">
+                            <b>
+                            copyCode
+                            </b>
+                            <a href="#copyCode"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>copyCode()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/code-snippet/code-snippet.component.ts:160</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Copies the code from the <code>&lt;code&gt;</code> block to clipboard.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onCopyButtonClicked"></a>
+                        <span class="name">
+                            <b>
+                            onCopyButtonClicked
+                            </b>
+                            <a href="#onCopyButtonClicked"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onCopyButtonClicked()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/code-snippet/code-snippet.component.ts:186</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="toggleSnippetExpansion"></a>
+                        <span class="name">
+                            <b>
+                            toggleSnippetExpansion
+                            </b>
+                            <a href="#toggleSnippetExpansion"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>toggleSnippetExpansion()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/code-snippet/code-snippet.component.ts:152</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="code"></a>
+                        <span class="name">
+                            <b>
+                            code
+                            </b>
+                            <a href="#code"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>code:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;code&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/code-snippet/code-snippet.component.ts:137</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="codeSnippetCount"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            codeSnippetCount
+                            </b>
+                            <a href="#codeSnippetCount"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span><code>codeSnippetCount:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/code-snippet/code-snippet.component.ts:84</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable used for creating unique ids for code-snippet components.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showFeedback"></a>
+                        <span class="name">
+                            <b>
+                            showFeedback
+                            </b>
+                            <a href="#showFeedback"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>showFeedback:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/code-snippet/code-snippet.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="shouldShowExpandButton"></a>
+                        <span class="name"><b>shouldShowExpandButton</b><a href="#shouldShowExpandButton"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>shouldShowExpandButton()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/code-snippet/code-snippet.component.ts:139</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	Input,
+	HostBinding,
+	ViewChild,
+	HostListener
+} from &quot;@angular/core&quot;;
+
+import { I18n } from &quot;../i18n/i18n.module&quot;;
+
+export enum SnippetType {
+	single &#x3D; &quot;single&quot;,
+	multi &#x3D; &quot;multi&quot;,
+	inline &#x3D; &quot;inline&quot;
+}
+
+/**
+ * [See demo](../../?path&#x3D;/story/code-snippet--basic)
+ *
+ * &#x60;&#x60;&#x60;html
+ * &lt;ibm-code-snippet&gt;Code&lt;/ibm-code-snippet&gt;
+ * &#x60;&#x60;&#x60;
+ *
+ * &lt;example-url&gt;../../iframe.html?id&#x3D;code-snippet--basic&lt;/example-url&gt;
+ */
+@Component({
+	selector: &quot;ibm-code-snippet&quot;,
+	template: &#x60;
+		&lt;ng-container *ngIf&#x3D;&quot;display &#x3D;&#x3D;&#x3D; &#x27;inline&#x27;; else notInline&quot;&gt;
+			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;codeTemplate&quot;&gt;&lt;/ng-container&gt;
+			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;feedbackTemplate&quot;&gt;&lt;/ng-container&gt;
+		&lt;/ng-container&gt;
+
+		&lt;ng-template #notInline&gt;
+			&lt;div class&#x3D;&quot;bx--snippet-container&quot; [attr.aria-label]&#x3D;&quot;translations.CODE_SNIPPET_TEXT&quot;&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+					&lt;span *ngIf&#x3D;&quot;display &#x3D;&#x3D;&#x3D; &#x27;single&#x27;; else multiSkeleton&quot;&gt;&lt;/span&gt;
+					&lt;ng-template #multiSkeleton&gt;
+						&lt;span&gt;&lt;/span&gt;
+						&lt;span&gt;&lt;/span&gt;
+						&lt;span&gt;&lt;/span&gt;
+					&lt;/ng-template&gt;
+				&lt;/ng-container&gt;
+				&lt;pre *ngIf&#x3D;&quot;!skeleton&quot;&gt;&lt;ng-container *ngTemplateOutlet&#x3D;&quot;codeTemplate&quot;&gt;&lt;/ng-container&gt;&lt;/pre&gt;
+			&lt;/div&gt;
+			&lt;button
+				*ngIf&#x3D;&quot;!skeleton&quot;
+				class&#x3D;&quot;bx--snippet-button&quot;
+				[attr.aria-label]&#x3D;&quot;translations.COPY_CODE&quot;
+				(click)&#x3D;&quot;onCopyButtonClicked()&quot;
+				tabindex&#x3D;&quot;0&quot;&gt;
+				&lt;ibm-icon-copy16 class&#x3D;&quot;bx--snippet__icon&quot;&gt;&lt;/ibm-icon-copy16&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;feedbackTemplate&quot;&gt;&lt;/ng-container&gt;
+			&lt;/button&gt;
+			&lt;button
+				*ngIf&#x3D;&quot;display &#x3D;&#x3D;&#x3D; &#x27;multi&#x27; &amp;&amp; shouldShowExpandButton&quot;
+				class&#x3D;&quot;bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand&quot;
+				(click)&#x3D;&quot;toggleSnippetExpansion()&quot;
+				type&#x3D;&quot;button&quot;&gt;
+				&lt;span class&#x3D;&quot;bx--snippet-btn--text&quot;&gt;{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}&lt;/span&gt;
+				&lt;ibm-icon-chevron-down16 class&#x3D;&quot;bx--icon-chevron--down&quot; [ariaLabel]&#x3D;&quot;translations.SHOW_MORE_ICON&quot;&gt;&lt;/ibm-icon-chevron-down16&gt;
+			&lt;/button&gt;
+		&lt;/ng-template&gt;
+
+		&lt;ng-template #codeTemplate&gt;
+			&lt;code #code&gt;&lt;ng-content&gt;&lt;/ng-content&gt;&lt;/code&gt;
+		&lt;/ng-template&gt;
+
+		&lt;ng-template #feedbackTemplate&gt;
+			&lt;div
+			class&#x3D;&quot;bx--btn--copy__feedback&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--btn--copy__feedback--displayed&#x27;: showFeedback
+			}&quot;
+			[attr.data-feedback]&#x3D;&quot;feedbackText&quot;&gt;
+			&lt;/div&gt;
+		&lt;/ng-template&gt;
+	&#x60;
+})
+export class CodeSnippet {
+	/**
+	 * Variable used for creating unique ids for code-snippet components.
+	 */
+	static codeSnippetCount &#x3D; 0;
+
+	/**
+	 * It can be &#x60;&quot;single&quot;&#x60;, &#x60;&quot;multi&quot;&#x60; or &#x60;&quot;inline&quot;&#x60;
+	 *
+	 */
+	@Input() display: SnippetType &#x3D; SnippetType.single;
+	@Input() translations &#x3D; this.i18n.get().CODE_SNIPPET;
+
+	/**
+	 * Set to &#x60;&quot;light&quot;&#x60; to apply the light style on the code snippet.
+	 */
+	@Input() theme: &quot;light&quot; | &quot;dark&quot; &#x3D; &quot;dark&quot;;
+
+	/**
+	 * Text displayed in the tooltip when user clicks button to copy code.
+	 *
+	 */
+	@Input() feedbackText &#x3D; this.translations.COPIED;
+
+	/**
+	 * Time in miliseconds to keep the feedback tooltip displayed.
+	 *
+	 */
+	@Input() feedbackTimeout &#x3D; 2000;
+
+	@HostBinding(&quot;class.bx--snippet--expand&quot;) @Input() expanded &#x3D; false;
+	@HostBinding(&quot;class.bx--skeleton&quot;) @Input() skeleton &#x3D; false;
+
+	@HostBinding(&quot;class.bx--snippet&quot;) snippetClass &#x3D; true;
+	@HostBinding(&quot;class.bx--snippet--single&quot;) get snippetSingleClass() {
+		return this.display &#x3D;&#x3D;&#x3D; SnippetType.single;
+	}
+	@HostBinding(&quot;class.bx--snippet--multi&quot;) get snippetMultiClass() {
+		return this.display &#x3D;&#x3D;&#x3D; SnippetType.multi;
+	}
+	@HostBinding(&quot;class.bx--snippet--inline&quot;) get snippetInlineClass() {
+		return this.display &#x3D;&#x3D;&#x3D; SnippetType.inline;
+	}
+	@HostBinding(&quot;class.bx--snippet--light&quot;) get snippetInlineLightClass() {
+		return this.display &#x3D;&#x3D;&#x3D; SnippetType.inline &amp;&amp; this.theme &#x3D;&#x3D;&#x3D; &quot;light&quot;;
+	}
+	@HostBinding(&quot;class.bx--btn--copy&quot;) get btnCopyClass() {
+		return this.display &#x3D;&#x3D;&#x3D; SnippetType.inline;
+	}
+
+	@HostBinding(&quot;style.display&quot;) get displayStyle() {
+		return this.display !&#x3D;&#x3D; SnippetType.inline ? &quot;block&quot; : null;
+	}
+	@HostBinding(&quot;attr.type&quot;) get attrType() {
+		return this.display &#x3D;&#x3D;&#x3D; SnippetType.inline ? &quot;button&quot; : null;
+	}
+
+	@ViewChild(&quot;code&quot;) code;
+
+	get shouldShowExpandButton() {
+		return this.code ? this.code.nativeElement.getBoundingClientRect().height &gt; 255 : false;
+	}
+
+	showFeedback &#x3D; false;
+
+	/**
+	 * Creates an instance of CodeSnippet.
+	 */
+	constructor(protected i18n: I18n) {
+		CodeSnippet.codeSnippetCount++;
+	}
+
+	toggleSnippetExpansion() {
+		this.expanded &#x3D; !this.expanded;
+	}
+
+	/**
+	 * Copies the code from the &#x60;&lt;code&gt;&#x60; block to clipboard.
+	 *
+	 */
+	copyCode() {
+		// create invisible, uneditable textarea with our code in it
+		const textarea &#x3D; document.createElement(&quot;textarea&quot;);
+		textarea.value &#x3D; this.code.nativeElement.innerText || this.code.nativeElement.textContent;
+		textarea.setAttribute(&quot;readonly&quot;, &quot;&quot;);
+		textarea.style.position &#x3D; &quot;absolute&quot;;
+		textarea.style.right &#x3D; &quot;-99999px&quot;;
+		document.body.appendChild(textarea);
+
+		// save user selection
+		const selected &#x3D; document.getSelection().rangeCount ? document.getSelection().getRangeAt(0) : null;
+
+		// copy to clipboard
+		textarea.select();
+		document.execCommand(&quot;copy&quot;);
+
+		// remove textarea
+		document.body.removeChild(textarea);
+
+		// restore user selection
+		if (selected) {
+			document.getSelection().removeAllRanges();
+			document.getSelection().addRange(selected);
+		}
+	}
+
+	onCopyButtonClicked() {
+		this.copyCode();
+
+		this.showFeedback &#x3D; true;
+
+		setTimeout(() &#x3D;&gt; {
+			this.showFeedback &#x3D; false;
+		}, this.feedbackTimeout);
+	}
+
+	/**
+	 * Inline code snippet acts as button and makes the whole component clickable.
+	 *
+	 * This handles clicks in that case.
+	 */
+	@HostListener(&quot;click&quot;)
+	hostClick() {
+		if (this.display !&#x3D;&#x3D; SnippetType.inline) {
+			return;
+		}
+
+		this.onCopyButtonClicked();
+	}
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade " id="c-example">
+            <iframe class="exampleContainer" src="../../iframe.html?id&#x3D;code-snippet--basic">
+                <p>no-iframes</p>
+            </iframe>
+    </div>
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="display === \'inline\'; else notInline">	<ng-container *ngTemplateOutlet="codeTemplate"></ng-container>	<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container></ng-container><ng-template #notInline>	<div class="bx--snippet-container" [attr.aria-label]="translations.CODE_SNIPPET_TEXT">		<ng-container *ngIf="skeleton">			<span *ngIf="display === \'single\'; else multiSkeleton"></span>			<ng-template #multiSkeleton>				<span></span>				<span></span>				<span></span>			</ng-template>		</ng-container>		<pre *ngIf="!skeleton"><ng-container *ngTemplateOutlet="codeTemplate"></ng-container></pre>	</div>	<button		*ngIf="!skeleton"		class="bx--snippet-button"		[attr.aria-label]="translations.COPY_CODE"		(click)="onCopyButtonClicked()"		tabindex="0">		<ibm-icon-copy16 class="bx--snippet__icon"></ibm-icon-copy16>		<ng-container *ngTemplateOutlet="feedbackTemplate"></ng-container>	</button>	<button		*ngIf="display === \'multi\' && shouldShowExpandButton"		class="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"		(click)="toggleSnippetExpansion()"		type="button">		<span class="bx--snippet-btn--text">{{expanded ? translations.SHOW_LESS : translations.SHOW_MORE}}</span>		<ibm-icon-chevron-down16 class="bx--icon-chevron--down" [ariaLabel]="translations.SHOW_MORE_ICON"></ibm-icon-chevron-down16>	</button></ng-template><ng-template #codeTemplate>	<code #code><ng-content></ng-content></code></ng-template><ng-template #feedbackTemplate>	<div	class="bx--btn--copy__feedback"	[ngClass]="{		\'bx--btn--copy__feedback--displayed\': showFeedback	}"	[attr.data-feedback]="feedbackText">	</div></ng-template>	</div>'
+    var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
+    var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
+    var ACTUAL_COMPONENT = {'name': 'CodeSnippet'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CodeSnippet.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
