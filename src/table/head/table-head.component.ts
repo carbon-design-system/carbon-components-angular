@@ -5,7 +5,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { TableModel } from "../table.module";
+import { TableModel } from "../table-model.class";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 import { Observable } from "rxjs";
 

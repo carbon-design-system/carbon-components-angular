@@ -3,7 +3,8 @@ import {
 	Input,
 	Optional,
 	Output,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -33,9 +34,14 @@ import { I18n } from "../../i18n/i18n.module";
 				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
 			</a>
 			<ng-content select="ibm-hamburger"></ng-content>
+			<ng-template
+				*ngIf="isTemplate(brand)"
+				[ngTemplateOutlet]="brand">
+			</ng-template>
 			<a
+				*ngIf="!isTemplate(brand)"
 				class="bx--header__name"
-				href="#"
+				[href]="href"
 				(click)="navigate($event)">
 				<span class="bx--header__name--prefix">{{brand}}&nbsp;</span>
 				{{name}}
@@ -56,8 +62,7 @@ export class Header {
 	/**
 	 * Top level branding. Defaults to "IBM"
 	 */
-	@Input() brand = "IBM";
-
+	@Input() brand: string | TemplateRef<any> = "IBM";
 	/**
 	 * Optional link for the header
 	 */
@@ -92,6 +97,10 @@ export class Header {
 		public i18n: I18n,
 		protected domSanitizer: DomSanitizer,
 		@Optional() protected router: Router) { }
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
+	}
 
 	navigate(event) {
 		if (this.router && this.route) {
