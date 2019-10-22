@@ -3,8 +3,7 @@ import {
 	Input,
 	Output,
 	ViewChild,
-	EventEmitter,
-	OnInit
+	EventEmitter
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -67,7 +66,7 @@ const noop = () => {};
 		}
 	]
 })
-export class FileUploader implements OnInit {
+export class FileUploader {
 	/**
 	 * Counter used to create unique ids for file-uploader components
 	 */
@@ -121,7 +120,8 @@ export class FileUploader implements OnInit {
 	/**
 	 * The list of files that have been submitted to be uploaded
 	 */
-	@Input() files: Set<FileItem>;
+	@Input() files = new Set<FileItem>();
+
 	@Output() filesChange = new EventEmitter<any>();
 
 	protected onTouchedCallback: () => void = noop;
@@ -141,14 +141,6 @@ export class FileUploader implements OnInit {
 		if (v !== this.files) {
 			this.files = v;
 			this.onChangeCallback(v);
-		}
-	}
-
-	ngOnInit() {
-		// overrides the undefined files value set by the user
-		if (!this.files) {
-			this.files = new Set();
-			this.filesChange.emit(this.files);
 		}
 	}
 
