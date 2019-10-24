@@ -80,7 +80,6 @@ export interface PaginationTranslations {
 						</option>
 					</select>
 					<svg
-						[ngClass]="{'If this is here its the new chevron': true}"
 						ibmIconChevronDown16
 						style="display: inherit"
 						class="bx--select__arrow"
@@ -133,7 +132,6 @@ export interface PaginationTranslations {
 						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<svg
-						[ngClass]="{'If this is here its the new chevron': true}"
 						*ngIf="pageOptions.length <= 1000"
 						ibmIconChevronDown16
 						style="display: inherit;"
