@@ -36,4 +36,5 @@ export class TooltipDefinition {
 	@Input() alignment: "start" | "center" | "end" = "start";
 
 	@HostBinding("class.bx--tooltip--definition") className = true;
+	@HostBinding("class.bx--tooltip--a11y") accessibility = true;
 }
