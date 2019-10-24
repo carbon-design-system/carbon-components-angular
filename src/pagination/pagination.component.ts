@@ -1,4 +1,4 @@
-import { PaginationModel } from "./pagination.module";
+import { PaginationModel } from "./pagination-model.class";
 import {
 	Component,
 	Input,

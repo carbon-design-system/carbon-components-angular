@@ -25,7 +25,7 @@ const dirs = {
 	DIST: "dist"
 };
 
-const licenseTemplate = `/*!
+const licenseTemplate = `/**
  *
  * carbon-angular v@PACKAGE_VERSION@ | @FILE_NAME@
  *
@@ -85,7 +85,7 @@ const buildReadme = () =>
 // =================================
 const build = gulp.series(buildAngular, buildI18n);
 
-const buildMeta = gulp.series(buildPackage, gulp.parallel(moveLicense, buildLicense, buildReadme));
+const buildMeta = gulp.parallel(moveLicense, buildLicense);
 
 module.exports = {
 	build,
