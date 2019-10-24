@@ -95,40 +95,6 @@ describe("Tooltip directive", () => {
 		expect(wrapper.onOpen).toHaveBeenCalled();
 	});
 
-	it("should set tooltip type to warning", () => {
-		const fixture = TestBed.overrideComponent(TooltipTest, {
-			set: {
-				template: `
-					<button ibmTooltip="Hello There" tooltipType="warning">Me</button>
-					<ibm-placeholder></ibm-placeholder>
-				`
-			}
-		}).createComponent(TooltipTest);
-
-		fixture.detectChanges();
-
-		let button = fixture.debugElement.query(By.css("button"));
-
-		expect(button.nativeElement.getAttribute("tooltiptype")).toBe("warning");
-	});
-
-	it("should set tooltip type to error", () => {
-		const fixture = TestBed.overrideComponent(TooltipTest, {
-			set: {
-				template: `
-					<button ibmTooltip="Hello There" tooltipType="error">Me</button>
-					<ibm-placeholder></ibm-placeholder>
-				`
-			}
-		}).createComponent(TooltipTest);
-
-		fixture.detectChanges();
-
-		let button = fixture.debugElement.query(By.css("button"));
-
-		expect(button.nativeElement.getAttribute("tooltiptype")).toBe("error");
-	});
-
 	it("should use provided custom template", () => {
 		const fixture = TestBed.createComponent(TooltipTemplateTest);
 		fixture.detectChanges();
