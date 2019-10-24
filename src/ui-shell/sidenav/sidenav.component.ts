@@ -79,7 +79,7 @@ export class SideNav {
 	@HostBinding("class.bx--side-nav--hidden") @Input() hidden = false;
 	@HostBinding("class.bx--side-nav--rail") @Input() rail = false;
 	@HostBinding("class.bx--side-nav--ux") ux = true;
-	@Input() allowExpansion = true;
+	@Input() allowExpansion = false;
 
 	constructor(public i18n: I18n) { }
 
