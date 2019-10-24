@@ -77,8 +77,9 @@ export class SideNav {
 	 * Controls the hidden (`true`) or visible (`false`) state
 	 */
 	@HostBinding("class.bx--side-nav--hidden") @Input() hidden = false;
+	@HostBinding("class.bx--side-nav--rail") @Input() rail = false;
 	@HostBinding("class.bx--side-nav--ux") ux = true;
-	@Input() allowExpansion = false;
+	@Input() allowExpansion = true;
 
 	constructor(public i18n: I18n) { }
 
