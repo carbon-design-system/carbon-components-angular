@@ -5,6 +5,7 @@ import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16"
 import { CaretLeft16Module } from "@carbon/icons-angular/lib/caret--left/16";
 import { CaretRight16Module } from "@carbon/icons-angular/lib/caret--right/16";
 
+
 import { Pagination } from "./pagination.component";
 import { I18nModule } from "./../i18n/i18n.module";
 import { ExperimentalModule } from "./../experimental.module";

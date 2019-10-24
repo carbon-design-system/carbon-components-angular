@@ -80,15 +80,12 @@ export interface PaginationTranslations {
 						</option>
 					</select>
 					<svg
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						style="will-change: transform;"
-						xmlns="http://www.w3.org/2000/svg"
+						[ngClass]="{'If this is here its the new chevron': true}"
+						ibmIconChevronDown16
+						style="display: inherit"
 						class="bx--select__arrow"
-						width="16" height="16"
-						viewBox="0 0 16 16"
-						aria-hidden="true">
-						<path d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"></path>
+						aria-hidden="true"
+						[ariaLabel]="optionsListText.subject | async">
 					</svg>
 				</div>
 			</div>
@@ -136,17 +133,12 @@ export interface PaginationTranslations {
 						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
 					<svg
+						[ngClass]="{'If this is here its the new chevron': true}"
 						*ngIf="pageOptions.length <= 1000"
-						focusable="false"
-						preserveAspectRatio="xMidYMid meet"
-						style="will-change: transform;"
-						xmlns="http://www.w3.org/2000/svg"
+						ibmIconChevronDown16
+						style="display: inherit;"
 						class="bx--select__arrow"
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
-						aria-hidden="true">
-						<path d="M8 11L3 6l.7-.7L8 9.6l4.3-4.3.7.7z"></path>
+						[ariaLabel]="optionsListText.subject | async">
 					</svg>
 				</div>
 			</div>
