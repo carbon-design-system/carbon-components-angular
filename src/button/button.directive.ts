@@ -1,7 +1,8 @@
 import {
 	Directive,
 	HostBinding,
-	Input
+	Input,
+	OnInit
 } from "@angular/core";
 
 /**
@@ -23,7 +24,7 @@ import {
 @Directive({
 	selector: "[ibmButton]"
 })
-export class Button {
+export class Button implements OnInit {
 	/**
 	 * sets the button type
 	 */
@@ -60,4 +61,10 @@ export class Button {
 	}
 	@HostBinding("class.bx--toolbar-action") toolbarAction = false;
 	@HostBinding("class.bx--overflow-menu") overflowMenu = false;
+
+	ngOnInit() {
+		if (!this.ibmButton) {
+			this.ibmButton = "primary";
+		}
+	}
 }
