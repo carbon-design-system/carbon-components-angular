@@ -3,7 +3,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
 
-storiesOf("Tooltip Definition", module)
+storiesOf("Components|Tooltip Definition", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [

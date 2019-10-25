@@ -22,7 +22,7 @@ class BarComponent { }
 })
 class FooComponent { }
 
-storiesOf("UI Shell", module)
+storiesOf("Components|UI Shell", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [BarComponent, FooComponent],

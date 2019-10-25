@@ -98,7 +98,7 @@ class AlertModalStory {
 	}
 }
 
-storiesOf("Modal", module)
+storiesOf("Components|Modal", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [

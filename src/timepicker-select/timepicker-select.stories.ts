@@ -3,7 +3,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { ExperimentalModule, DocumentationModule } from "../";
 
-storiesOf("Time Picker Select", module)
+storiesOf("Components|Time Picker Select", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
