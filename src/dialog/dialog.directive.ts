@@ -144,6 +144,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			wrapperClass: this.wrapperClass,
 			data: this.data
 		};
+		this.onDialogInit();
 	}
 
 	/**
