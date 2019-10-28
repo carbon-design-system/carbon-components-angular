@@ -3642,13 +3642,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			return;
 		}
 		let selected &#x3D; this.view.getSelected();
-		if (selected &amp;&amp; (!this.displayValue || !this.isRenderString())) {
+		if (selected.length &amp;&amp; (!this.displayValue || !this.isRenderString())) {
 			if (this.type &#x3D;&#x3D;&#x3D; &quot;multi&quot;) {
 				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
-		} else if (selected &amp;&amp; this.isRenderString()) {
+		} else if (selected.length &amp;&amp; this.isRenderString()) {
 			return of(this.displayValue as string);
 		}
 		return of(this.placeholder);
