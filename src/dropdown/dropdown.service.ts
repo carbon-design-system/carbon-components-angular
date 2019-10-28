@@ -42,7 +42,9 @@ export class DropdownService {
 		menuRef.style.display = "block";
 		const dropdownWrapper = document.createElement("div");
 		dropdownWrapper.className = `dropdown ${classList}`;
-		dropdownWrapper.style.width = parentRef.offsetWidth + "px";
+		if (parentRef) {
+			dropdownWrapper.style.width = parentRef.offsetWidth + "px";
+		}
 		dropdownWrapper.style.position = "absolute";
 		dropdownWrapper.appendChild(menuRef);
 
