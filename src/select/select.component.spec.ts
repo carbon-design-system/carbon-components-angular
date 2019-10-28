@@ -7,10 +7,18 @@ import { WarningFilled16Module } from "@carbon/icons-angular/lib/warning--filled
 import { Select } from "./select.component";
 
 @Component({
-	template: `<ibm-select (selected)="onChange()"></ibm-select>`
+	template: `
+		<ibm-select (selected)="onChange($event)" [(ngModel)]="model">
+			<option value="option1"> Option 1 </option>
+		</ibm-select>
+		`
 })
 class SelectTest {
-	onChange() {}
+	model = null;
+	value = null;
+	onChange(event) {
+		this.value = event;
+	}
 }
 
 describe("Select", () => {
@@ -34,15 +42,18 @@ describe("Select", () => {
 		expect(fixture.componentInstance instanceof Select).toBe(true);
 	});
 
-	it("should call onChange on change select", () => {
+	it("should call onChange on change select and propagate the change back to the form", () => {
 		fixture = TestBed.createComponent(SelectTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		let de = fixture.debugElement.query(By.css(".bx--select-input"));
-		spyOn(wrapper, "onChange");
-		de.triggerEventHandler("change", {target: {value: ""}});
+		spyOn(wrapper, "onChange").and.callThrough();
+		de.triggerEventHandler("change", {target: {value: "option1"}});
 		fixture.detectChanges();
 		expect(wrapper.onChange).toHaveBeenCalled();
+		expect(wrapper.model).toBe("option1");
+		expect(wrapper.value).toBe("option1");
+		expect(de.nativeElement.textContent).toContain("Option 1");
 	});
 
 	it("should set label to test", () => {

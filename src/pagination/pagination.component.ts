@@ -79,11 +79,13 @@ export interface PaginationTranslations {
 								{{ option }}
 						</option>
 					</select>
-					<ibm-icon-chevron-down16
-						style="display: inherit;"
-						innerClass="bx--select__arrow"
+					<svg
+						ibmIconChevronDown16
+						style="display: inherit"
+						class="bx--select__arrow"
+						aria-hidden="true"
 						[ariaLabel]="optionsListText.subject | async">
-					</ibm-icon-chevron-down16>
+					</svg>
 				</div>
 			</div>
 
@@ -129,12 +131,13 @@ export interface PaginationTranslations {
 						[(ngModel)]="currentPage">
 						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
 					</select>
-					<ibm-icon-chevron-down16
+					<svg
 						*ngIf="pageOptions.length <= 1000"
+						ibmIconChevronDown16
 						style="display: inherit;"
-						innerClass="bx--select__arrow"
+						class="bx--select__arrow"
 						[ariaLabel]="optionsListText.subject | async">
-					</ibm-icon-chevron-down16>
+					</svg>
 				</div>
 			</div>
 
