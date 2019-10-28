@@ -123,8 +123,6 @@
 			"check-type",
 			"check-preblock"
 		],
-
-		// [ENABLED, "attribute" | "element", "selectorPrefix" | ["listOfPrefixes"], "camelCase" | "kebab-case"]
 		"directive-selector": [true, "attribute", ["ibm", "app", "test"], "camelCase"],
 		"component-selector": [true, "element", ["ibm", "app", "test"], "kebab-case"],
 
