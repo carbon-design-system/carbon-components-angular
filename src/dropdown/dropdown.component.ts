@@ -11,7 +11,8 @@ import {
 	HostListener,
 	OnDestroy,
 	HostBinding,
-	TemplateRef
+	TemplateRef,
+	ApplicationRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -274,7 +275,11 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 	/**
 	 * Creates an instance of Dropdown.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected dropdownService: DropdownService) {}
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected dropdownService: DropdownService,
+		protected appRef: ApplicationRef) {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.
@@ -293,7 +298,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		if (!this.view) {
 			return;
 		}
-		this.writeValue(this.writtenValue);
+		if (this.writtenValue && this.writtenValue.length) {
+			this.writeValue(this.writtenValue);
+		}
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
@@ -322,6 +329,7 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			if (event && !event.isUpdate) {
 				this.selected.emit(event);
 			}
+			this.appRef.tick();
 		});
 	}
 
@@ -466,13 +474,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			return;
 		}
 		let selected = this.view.getSelected();
-		if (selected && (!this.displayValue || !this.isRenderString())) {
+		if (selected.length && (!this.displayValue || !this.isRenderString())) {
 			if (this.type === "multi") {
 				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
-		} else if (selected && this.isRenderString()) {
+		} else if (selected.length && this.isRenderString()) {
 			return of(this.displayValue as string);
 		}
 		return of(this.placeholder);

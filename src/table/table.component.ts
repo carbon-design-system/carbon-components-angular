@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { Subscription, fromEvent, Observable } from "rxjs";
 
-import { TableModel } from "./table.module";
+import { TableModel } from "./table-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
@@ -663,6 +663,7 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.selectAllCheckbox = false;
 			this.selectAllCheckboxSomeSelected = false;
 		} else if (selectedRowsCount < this.model.data.length) {
+			this.selectAllCheckbox = false;
 			this.selectAllCheckboxSomeSelected = true;
 		} else {
 			this.selectAllCheckbox = true;
