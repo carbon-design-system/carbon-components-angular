@@ -2,13 +2,10 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
-import { ChevronDown16Module } from "@carbon/icons-angular/lib/chevron--down/16";
 
 import { CommonModule } from "@angular/common";
 import { I18nModule } from "./../i18n/i18n.module";
 import { ExperimentalModule } from "./../experimental.module";
-import { CaretLeft16Module } from "@carbon/icons-angular/lib/caret--left/16";
-import { CaretRight16Module } from "@carbon/icons-angular/lib/caret--right/16";
 import { Pagination, PaginationModule } from "./pagination.module";
 import { PaginationModel } from "./pagination-model.class";
 
@@ -51,10 +48,7 @@ describe("Pagination", () => {
 				FormsModule,
 				PaginationModule,
 				I18nModule,
-				ExperimentalModule,
-				ChevronDown16Module,
-				CaretLeft16Module,
-				CaretRight16Module
+				ExperimentalModule
 			]
 		});
 	});
