@@ -12,7 +12,8 @@ import { Close16Module } from "@carbon/icons-angular/lib/close/16";
 import { NFormsModule } from "./../forms/forms.module";
 import { DialogModule } from "./../dialog/dialog.module";
 import { I18nModule } from "./../i18n/i18n.module";
-import { ButtonModule, SearchModule } from "../";
+import { ButtonModule } from "./../button/button.module";
+import { SearchModule } from "./../search/search.module";
 
 // table utilities/toolbar imports
 import { TableToolbar } from "./toolbar/table-toolbar.component";
@@ -40,6 +41,7 @@ import { TableRowComponent } from "./body/table-row.component";
 import { TableExpandedRow } from "./body/table-expanded-row.component";
 import { TableData } from "./cell/table-data.component";
 import { TableCheckbox } from "./cell/table-checkbox.component";
+import { TableRadio } from "./cell/table-radio.component";
 import { TableExpandButton } from "./cell/table-expand-button.component";
 
 // model exports
@@ -73,6 +75,7 @@ export {
 	TableExpandedRow,
 	TableData,
 	TableCheckbox,
+	TableRadio,
 	TableExpandButton
 };
 
@@ -101,6 +104,7 @@ export {
 		TableExpandedRow,
 		TableData,
 		TableCheckbox,
+		TableRadio,
 		TableExpandButton
 	],
 	exports: [
@@ -127,6 +131,7 @@ export {
 		TableExpandedRow,
 		TableData,
 		TableCheckbox,
+		TableRadio,
 		TableExpandButton
 	],
 	imports: [

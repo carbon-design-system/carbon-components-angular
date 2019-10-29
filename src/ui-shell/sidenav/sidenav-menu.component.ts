@@ -57,8 +57,10 @@ export class SideNavMenu implements AfterContentInit {
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
 	ngAfterContentInit() {
-		this.sidenavItems.forEach(item => {
-			item.isSubMenu = true;
+		setTimeout(() => {
+			this.sidenavItems.forEach(item => {
+				item.isSubMenu = true;
+			});
 		});
 	}
 

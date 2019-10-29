@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { Subscription, fromEvent, Observable } from "rxjs";
 
-import { TableModel } from "./table.module";
+import { TableModel } from "./table-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
@@ -194,6 +194,7 @@ export interface TableTranslations {
 			[selectAllCheckbox]="selectAllCheckbox"
 			[selectAllCheckboxSomeSelected]="selectAllCheckboxSomeSelected"
 			[showSelectionColumn]="showSelectionColumn"
+			[enableSingleSelect]="enableSingleSelect"
 			[skeleton]="skeleton"
 			[sortAscendingLabel]="sortAscendingLabel"
 			[sortDescendingLabel]="sortDescendingLabel"
@@ -642,12 +643,10 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.model.selectRow(event.selectedRowIndex, true);
 			this.selectRow.emit(event);
 
-			if (!this.showSelectionColumn && this.enableSingleSelect) {
+			if (this.showSelectionColumn && this.enableSingleSelect) {
 				const index = event.selectedRowIndex;
-				this.model.rowsSelected.forEach((_, index) => {
-					this.model.selectRow(index, false);
-				});
-				this.model.selectRow(index, !this.model.rowsSelected[index]);
+				this.model.selectAll(false);
+				this.model.selectRow(index);
 			}
 		} else {
 			this.model.selectRow(event.deselectedRowIndex, false);
@@ -663,6 +662,7 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.selectAllCheckbox = false;
 			this.selectAllCheckboxSomeSelected = false;
 		} else if (selectedRowsCount < this.model.data.length) {
+			this.selectAllCheckbox = false;
 			this.selectAllCheckboxSomeSelected = true;
 		} else {
 			this.selectAllCheckbox = true;
