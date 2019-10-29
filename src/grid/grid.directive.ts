@@ -10,6 +10,7 @@ import { Directive, HostBinding, Input, OnInit } from "@angular/core";
 })
 export class GridDirective {
 	@HostBinding("class.bx--grid") baseClass = true;
+	@HostBinding("class.bx--grid--condensed") @Input() condensed = false;
 }
 
 @Directive({
@@ -17,6 +18,10 @@ export class GridDirective {
 })
 export class RowDirective {
 	@HostBinding("class.bx--row") baseClass = true;
+	@HostBinding("class.bx--row--condensed") @Input() condensed = false;
+	@HostBinding("class.bx--no-gutter") @Input() noGutter = false;
+	@HostBinding("class.bx--no-gutter--left") @Input() noLeftGutter = false;
+	@HostBinding("class.bx--no-gutter--right") @Input() noRightGutter = false;
 }
 
 @Directive({

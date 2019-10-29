@@ -13,13 +13,26 @@ storiesOf("Grid", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-        	<div ibmGrid>
-            	<div ibmRow>
-              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':3, 'sm': 12}">First Column</div>
-              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':3, 'sm': 12}">Second column</div>
+        	<div ibmGrid [condensed]="gridCondensed">
+				<div
+					ibmRow
+					[noGutter]="noGutter"
+					[noLeftGutter]="noLeftGutter"
+					[noRightGutter]="noRightGutter"
+					[condensed]="rowCondensed">
+              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">First Column</div>
+					<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">Second column</div>
+					<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">Third Column</div>
             	</div>
          	</div>
-		`
+		`,
+		props: {
+			noGutter: boolean("Remove gutter", false),
+			noLeftGutter: boolean("Remove left gutter", false),
+			noRightGutter: boolean("Remove right gutter", false),
+			rowCondensed: boolean("Row condensed", false),
+			gridCondensed: boolean("Grid condensed", false)
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `
