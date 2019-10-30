@@ -3,20 +3,22 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
 import { DropdownModule } from "../../dropdown/dropdown.module";
+import { GridModule } from "../../grid/grid.module";
 
 @Component({
     selector: "app-sample-multi-selection",
     template: `
     <ibm-table-container>
-        <p ibmText style="float: left; margin-right: 10px; line-height: 30px">Filter by: </p>
-        <div style="float: left; margin-right: 10px; min-width: 150px;">
+        <div ibmRow>
+            <div ibmCol [columnNumbers]="{'md':2}" style="max-width: 100px">
+                <p ibmText style="line-height: 30px;">Filter by: </p>
+            </div>
+            <div ibmCol [columnNumbers]="{'md':4}" style="max-width: 200px">
+                <ibm-dropdown type="multi" placeholder="Type" inline="true" (selected)="onSelected($event)">
+                    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                </ibm-dropdown>
+            </div>
         </div>
-        <div style="float: left; min-width: 150px">
-            <ibm-dropdown type="multi" placeholder="Type" inline="true" (selected)="onSelected($event)">
-                <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-            </ibm-dropdown>
-        </div>
-        <p style="float: left; margin-left: 50px; line-height: 30px;">{{ selected }}</p>
         <ibm-table
             style="display: block; width: 650px;"
             [model]="model"
@@ -97,18 +99,18 @@ class SampleMultiSelection {
     }
 }
 
-
 storiesOf("Patterns|Filtering", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [ SampleMultiSelection ],
 			imports: [
                 TableModule,
-                DropdownModule
+                DropdownModule,
+                GridModule
 			]
 		})
 	)
 	.addDecorator(withKnobs)
 	.add("Multi Selection", () => ({
         template: `<app-sample-multi-selection></app-sample-multi-selection>`
-	}))
+	}));
