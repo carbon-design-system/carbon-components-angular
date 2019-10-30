@@ -17,11 +17,21 @@ export class GridDirective {
 	selector: "[ibmRow]"
 })
 export class RowDirective {
+	@Input() gutter = true;
+	@Input() leftGutter = true;
+	@Input() rightGutter = true;
+
 	@HostBinding("class.bx--row") baseClass = true;
 	@HostBinding("class.bx--row--condensed") @Input() condensed = false;
-	@HostBinding("class.bx--no-gutter") @Input() noGutter = false;
-	@HostBinding("class.bx--no-gutter--left") @Input() noLeftGutter = false;
-	@HostBinding("class.bx--no-gutter--right") @Input() noRightGutter = false;
+	@HostBinding("class.bx--no-gutter") get showGutter() {
+		return !this.gutter;
+	}
+	@HostBinding("class.bx--no-gutter--left") get showLeftGutter() {
+		return !this.leftGutter;
+	}
+	@HostBinding("class.bx--no-gutter--right") get showRightGutter() {
+		return !this.rightGutter;
+	}
 }
 
 @Directive({

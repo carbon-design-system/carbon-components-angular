@@ -16,9 +16,9 @@ storiesOf("Grid", module)
         	<div ibmGrid [condensed]="gridCondensed">
 				<div
 					ibmRow
-					[noGutter]="noGutter"
-					[noLeftGutter]="noLeftGutter"
-					[noRightGutter]="noRightGutter"
+					[gutter]="gutter"
+					[leftGutter]="leftGutter"
+					[rightGutter]="rightGutter"
 					[condensed]="rowCondensed">
               		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">First Column</div>
 					<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">Second column</div>
@@ -27,9 +27,9 @@ storiesOf("Grid", module)
          	</div>
 		`,
 		props: {
-			noGutter: boolean("Remove gutter", false),
-			noLeftGutter: boolean("Remove left gutter", false),
-			noRightGutter: boolean("Remove right gutter", false),
+			gutter: boolean("Gutter", true),
+			leftGutter: boolean("Left gutter", true),
+			rightGutter: boolean("Right gutter", true),
 			rowCondensed: boolean("Row condensed", false),
 			gridCondensed: boolean("Grid condensed", false)
 		}
