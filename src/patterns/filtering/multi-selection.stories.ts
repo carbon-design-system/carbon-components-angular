@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef } from "@angular/core";
+import { Component } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";

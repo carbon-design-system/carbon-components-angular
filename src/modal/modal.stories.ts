@@ -4,7 +4,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 import { ModalModule } from "../";
 import { Component, Input, Inject } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Modal, ModalService, DocumentationModule } from "../";
+import { ModalService, DocumentationModule } from "../";
 import { ModalButton, AlertModalType, ModalButtonType } from "./alert-modal.interface";
 import { PlaceholderModule } from "./../placeholder/placeholder.module";
 import { BaseModal } from "./base-modal.class";
