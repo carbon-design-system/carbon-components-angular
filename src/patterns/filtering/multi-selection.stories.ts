@@ -113,4 +113,4 @@ storiesOf("Patterns|Filtering", module)
 	.addDecorator(withKnobs)
 	.add("Multi Selection", () => ({
         template: `<app-sample-multi-selection></app-sample-multi-selection>`
-	}));
+    }));

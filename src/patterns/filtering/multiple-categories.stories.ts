@@ -35,7 +35,7 @@ import { TagModule } from "../../tag/tag.module";
                 <fieldset class="bx--fieldset">
                     <div ibmRow>
                         <div ibmCol [columnNumbers]="{'md':5, 'sm':5}">
-                            <legend class="bx--label">Type</legend>
+                            <legend class="bx--label" style="line-height: 30px">Type</legend>
                         </div>
                         <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
                             <ibm-tag-filter
@@ -200,4 +200,4 @@ storiesOf("Patterns|Filtering", module)
         template: `
             <app-sample-multi-categories></app-sample-multi-categories>
             `
-	}));
+    }));
