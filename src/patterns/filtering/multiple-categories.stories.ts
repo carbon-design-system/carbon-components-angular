@@ -8,70 +8,65 @@ import { GridModule } from "../../grid/grid.module";
 import { RadioModule } from "../../radio/radio.module";
 import { CheckboxModule } from "../../checkbox/checkbox.module";
 import { ButtonModule } from "../../forms/forms.module";
+import { TagModule } from "../../tag/tag.module";
 
 @Component({
     selector: "app-sample-multi-categories",
     template: `
-    <div style="float: left; margin-right: 50px;">
-        <button ibmButton (click)="resetFilters()" style="margin-bottom: 30px">Reset Filters</button>
-        <fieldset class="bx--fieldset">
-            <legend class="bx--label">Radio button label</legend>
-            <ibm-radio-group
-                aria-label="radiogroup"
-                orientation="vertical"
-                labelPlacement="right"
-                [(ngModel)]="radio"
-                (change)="onRadioChange($event)">
-                <ibm-radio *ngFor="let radio of manyRadios"
-                    [value]="radio.color"
-                    [disabled]="radio.disabled">
-                    {{radio.color}}
-                </ibm-radio>
-            </ibm-radio-group>
-        </fieldset>
-        <fieldset class="bx--fieldset">
-            <div>
-                <div
-                    *ngIf="checkBoxFilters.size > 0"
-                    class="bx--list-box__selection--multi"
-                    title="Clear all selected items"
-                    style="float: right;">
-                    {{checkBoxFilters.size}}
-                    <svg
-                        focusable="false"
-                        preserveAspectRatio="xMidYMid meet"
-                        style="will-change: transform;"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        aria-hidden="true">
-                        <path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-                    </svg>
-                </div>
-                <legend class="bx--label">Type</legend>
+    <div ibmGrid>
+        <div ibmRow>
+            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                <button ibmButton (click)="resetFilters()" style="margin-bottom: 30px">Reset Filters</button>
+                <fieldset class="bx--fieldset">
+                    <legend class="bx--label">Radio button label</legend>
+                    <ibm-radio-group
+                        aria-label="radiogroup"
+                        orientation="vertical"
+                        labelPlacement="right"
+                        [(ngModel)]="radio"
+                        (change)="onRadioChange($event)">
+                        <ibm-radio *ngFor="let radio of manyRadios"
+                            [value]="radio.color"
+                            [disabled]="radio.disabled">
+                            {{radio.color}}
+                        </ibm-radio>
+                    </ibm-radio-group>
+                </fieldset>
+                <fieldset class="bx--fieldset">
+                    <div ibmRow>
+                        <div ibmCol [columnNumbers]="{'md':5, 'sm':5}">
+                            <legend class="bx--label">Type</legend>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                            <ibm-tag-filter
+                                *ngIf="checkBoxFilters.size > 0"
+                                (close)="resetCheckboxList()">
+                                {{checkBoxFilters.size}}
+                            </ibm-tag-filter>
+                        </div>
+                    </div>
+                    <ibm-checkbox
+                        *ngFor="let listItem of checkboxList"
+                        [hideLabel]="hideLabel"
+                        [checked]="listItem.checked"
+                        [value]="listItem.value"
+                        (change)="onCheckboxChange($event)">
+                        {{ listItem.value }}
+                    </ibm-checkbox>
+                </fieldset>
             </div>
-            <ibm-checkbox
-                *ngFor="let listItem of checkboxList"
-                [hideLabel]="hideLabel"
-                [checked]="listItem.checked"
-                [value]="listItem.value"
-                (change)="onCheckboxChange($event)">
-                {{ listItem.value }}
-            </ibm-checkbox>
-        </fieldset>
-    </div>
-    <div style="float: left;">
-        <ibm-table-container>
-        <ibm-table
-            style="display: block; width: 650px;"
-            [model]="model"
-            size="lg"
-            [showSelectionColumn]="false">
-            <ng-content></ng-content>
-        </ibm-table>
-        </ibm-table-container>
+            <div ibmCol [columnNumbers]="{'md':4, 'sm':4}">
+                <ibm-table-container>
+                <ibm-table
+                    style="display: block; width: 650px;"
+                    [model]="model"
+                    size="lg"
+                    [showSelectionColumn]="false">
+                    <ng-content></ng-content>
+                </ibm-table>
+                </ibm-table-container>
+            </div>
+        </div>
     </div>
     `
 })
@@ -118,17 +113,23 @@ class SampleMultiCategories{
     }
 
     resetFilters() {
-        this.manyRadios = this.manyRadios.map(obj => {
-            return { color: obj.color, checked: false }
-        });
+        this.resetCheckboxList();
+        this.resetRadios();
+    }
 
+    resetCheckboxList() {
+        this.checkBoxFilters = new Set();
         this.checkboxList = this.checkboxList.map(obj => {
             return { value: obj.value, checked: false }
         });
+        this.applyFilters()
+    }
 
+    resetRadios() {
         this.radioFilter = null;
-        this.checkBoxFilters = new Set();
-
+        this.manyRadios = this.manyRadios.map(obj => {
+            return { color: obj.color, checked: false }
+        });
         this.applyFilters();
     }
 
@@ -136,21 +137,22 @@ class SampleMultiCategories{
         this.model.data = [];
         this.model.data.pop();
 
-        this.dataset.forEach(data => {
-            if((this.applyCheckboxFilters(data.type) || !this.checkBoxFilters.size) && (data.color === this.radioFilter || !this.radioFilter) ) {
-                this.model.data.push(
+        this.model.data = 
+            this.dataset
+                .filter(data =>
+                    (this.applyMultiFilters(data.type, this.checkBoxFilters) || !this.checkBoxFilters.size) &&
+                    (data.color === this.radioFilter || !this.radioFilter))
+                .map(filteredData =>                     
                     [
-                        new TableItem({ data: data.name }),
+                        new TableItem({ data: filteredData.name }),
                         new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
-                    ]
-                )
-            }
-        });
+                    ]);
     }
 
-    applyCheckboxFilters(types: Array<String>): Boolean {
+    // Apply filters of a multi selection, returns true if the given items pass the filter and false if not.
+    applyMultiFilters(types: Array<String>, filters): Boolean {
         let shouldInclude = true;
-        this.checkBoxFilters.forEach(filter => {
+        filters.forEach(filter => {
             if (!types.includes(filter)) {
                 shouldInclude = false;
             }
@@ -188,7 +190,8 @@ storiesOf("Patterns|Filtering", module)
                 StructuredListModule,
                 RadioModule,
                 CheckboxModule,
-                ButtonModule
+                ButtonModule,
+                TagModule
 			]
 		})
 	)
@@ -197,4 +200,4 @@ storiesOf("Patterns|Filtering", module)
         template: `
             <app-sample-multi-categories></app-sample-multi-categories>
             `
-	}))
+	}));
