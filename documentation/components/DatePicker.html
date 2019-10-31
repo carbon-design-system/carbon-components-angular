@@ -842,7 +842,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="365" class="link-to-prism">src/datepicker/datepicker.component.ts:365</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/datepicker/datepicker.component.ts:366</a></div>
                             </td>
                         </tr>
 
@@ -918,7 +918,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="360" class="link-to-prism">src/datepicker/datepicker.component.ts:360</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="361" class="link-to-prism">src/datepicker/datepicker.component.ts:361</a></div>
                             </td>
                         </tr>
 
@@ -989,7 +989,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/datepicker/datepicker.component.ts:372</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="373" class="link-to-prism">src/datepicker/datepicker.component.ts:373</a></div>
                             </td>
                         </tr>
 
@@ -2460,29 +2460,30 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate &#x3D; &quot;&quot;;
 			// if date is a string, parse and format
-			if (typeof dates[0] &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
-				singleDate &#x3D; this.flatpickrInstance.parseDate(dates[0], this.dateFormat);
+			if (typeof this.flatpickrInstance.selectedDates[0] &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
+				singleDate &#x3D; this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 				singleDate &#x3D; this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
 			// if date is not a string we can assume it&#x27;s a Date and we should format
-			} else if (!!dates[0]) {
-				singleDate &#x3D; this.flatpickrInstance.formatDate(dates[0], this.dateFormat);
+			} else if (!!this.flatpickrInstance.selectedDates[0]) {
+				singleDate &#x3D; this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 			}
-			// apply the value
-			singleInput.value &#x3D; singleDate;
 
 			if (rangeInput) {
 				// we can either set a date value or an empty string, so we start with an empty string
 				let rangeDate &#x3D; &quot;&quot;;
 				// if date is a string, parse and format
-				if (typeof dates[1] &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
-					rangeDate &#x3D; this.flatpickrInstance.parseDate(dates[1].toString(), this.dateFormat);
+				if (typeof this.flatpickrInstance.selectedDates[1] &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
+					rangeDate &#x3D; this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[1].toString(), this.dateFormat);
 					rangeDate &#x3D; this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
 				// if date is not a string we can assume it&#x27;s a Date and we should format
-				} else if (!!dates[1]) {
-					rangeDate &#x3D; this.flatpickrInstance.formatDate(dates[1], this.dateFormat);
+				} else if (!!this.flatpickrInstance.selectedDates[1]) {
+					rangeDate &#x3D; this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[1], this.dateFormat);
 				}
-				// apply the value
-				rangeInput.value &#x3D; rangeDate;
+				setTimeout(() &#x3D;&gt; {
+					// apply the values
+					rangeInput.value &#x3D; rangeDate;
+					singleInput.value &#x3D; singleDate;
+				});
 			}
 		}
 	}
