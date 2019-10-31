@@ -26,7 +26,6 @@ class PaginationTest implements OnInit {
 	pageInputDisabled = false;
 	pagesUnknown = false;
 
-
 	selectPage(page) {
 		this.model.currentPage = page;
 	}
