@@ -123,7 +123,7 @@ describe("Pagination", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("ibm-pagination"));
-		let buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--backward");
+		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--backward");
 		buttonBackward.click();
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
