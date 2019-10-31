@@ -41,6 +41,7 @@ import { TableRowComponent } from "./body/table-row.component";
 import { TableExpandedRow } from "./body/table-expanded-row.component";
 import { TableData } from "./cell/table-data.component";
 import { TableCheckbox } from "./cell/table-checkbox.component";
+import { TableRadio } from "./cell/table-radio.component";
 import { TableExpandButton } from "./cell/table-expand-button.component";
 
 // model exports
@@ -74,6 +75,7 @@ export {
 	TableExpandedRow,
 	TableData,
 	TableCheckbox,
+	TableRadio,
 	TableExpandButton
 };
 
@@ -102,6 +104,7 @@ export {
 		TableExpandedRow,
 		TableData,
 		TableCheckbox,
+		TableRadio,
 		TableExpandButton
 	],
 	exports: [
@@ -128,6 +131,7 @@ export {
 		TableExpandedRow,
 		TableData,
 		TableCheckbox,
+		TableRadio,
 		TableExpandButton
 	],
 	imports: [

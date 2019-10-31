@@ -26,8 +26,13 @@ import { Observable } from "rxjs";
 		<tr>
 			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows()"></th>
 			<th
+				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
+				style="width: 0;">
+				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
+			</th>
+			<th
 				ibmTableHeadCheckbox
-				*ngIf="!skeleton && showSelectionColumn"
+				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
@@ -61,6 +66,8 @@ export class TableHead {
 	@Input() model: TableModel;
 
 	@Input() showSelectionColumn = true;
+
+	@Input() enableSingleSelect = false;
 
 	@Input() selectAllCheckboxSomeSelected = false;
 
