@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	HostListener
 } from "@angular/core";
 import { TableModel } from "./../table-model.class";
 import { I18n, Overridable } from "./../../i18n/i18n.module";
@@ -25,11 +26,21 @@ import { Observable } from "rxjs";
 				(expandRow)="expandRow.emit()">
 			</td>
 			<td
-				*ngIf="!skeleton && showSelectionColumn"
+				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				ibmTableCheckbox
 				[size]="size"
 				[selected]="selected"
 				[label]="getCheckboxLabel()"
+				[row]="row"
+				[skeleton]="skeleton"
+				(change)="onSelectionChange()">
+			</td>
+			<td
+				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
+				ibmTableRadio
+				[selected]="selected"
+				[label]="getCheckboxLabel()"
+				[row]="row"
 				[skeleton]="skeleton"
 				(change)="onSelectionChange()">
 			</td>
@@ -147,6 +158,13 @@ export class TableRowComponent {
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
 	constructor(protected i18n: I18n) { }
+
+	@HostListener("click")
+	onRowClick() {
+		if (this.enableSingleSelect && !this.showSelectionColumn) {
+			this.onSelectionChange();
+		}
+	}
 
 	onSelectionChange() {
 		if (this.selected) {
