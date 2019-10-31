@@ -138,7 +138,7 @@ describe("Pagination", () => {
 		element = fixture.debugElement.query(By.css("ibm-pagination"));
 		element.componentInstance.currentPage = 5;
 		let buttonForward = element.nativeElement.querySelector(".bx--pagination__button--forward");
-		let buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--forward");
+		const buttonBackward = element.nativeElement.querySelector(".bx--pagination__button--forward");
 
 		buttonForward.click();
 		fixture.detectChanges();
