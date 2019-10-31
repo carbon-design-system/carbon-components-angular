@@ -450,6 +450,7 @@ export interface TableTranslations {
 			[selectAllCheckbox]&#x3D;&quot;selectAllCheckbox&quot;
 			[selectAllCheckboxSomeSelected]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
 			[showSelectionColumn]&#x3D;&quot;showSelectionColumn&quot;
+			[enableSingleSelect]&#x3D;&quot;enableSingleSelect&quot;
 			[skeleton]&#x3D;&quot;skeleton&quot;
 			[sortAscendingLabel]&#x3D;&quot;sortAscendingLabel&quot;
 			[sortDescendingLabel]&#x3D;&quot;sortDescendingLabel&quot;
@@ -898,12 +899,10 @@ export class Table implements AfterViewInit, OnDestroy {
 			this.model.selectRow(event.selectedRowIndex, true);
 			this.selectRow.emit(event);
 
-			if (!this.showSelectionColumn &amp;&amp; this.enableSingleSelect) {
+			if (this.showSelectionColumn &amp;&amp; this.enableSingleSelect) {
 				const index &#x3D; event.selectedRowIndex;
-				this.model.rowsSelected.forEach((_, index) &#x3D;&gt; {
-					this.model.selectRow(index, false);
-				});
-				this.model.selectRow(index, !this.model.rowsSelected[index]);
+				this.model.selectAll(false);
+				this.model.selectRow(index);
 			}
 		} else {
 			this.model.selectRow(event.deselectedRowIndex, false);
