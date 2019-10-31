@@ -24,7 +24,8 @@ function sort(model, index: number) {
 			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
-			[showSelectionColumn]="showSelectionColumn"
+			[showSelectionColumn]="true"
+			[enableSingleSelect]="false"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
 			(sort)="simpleSort($event)">
@@ -51,6 +52,8 @@ export class TableStory implements OnInit, OnChanges {
 				className: "my-class"
 			})
 		];
+
+		this.model.rowsSelectedChange.subscribe(event => console.log(event));
 
 		if (!this.noData) {
 			this.model.data = [
