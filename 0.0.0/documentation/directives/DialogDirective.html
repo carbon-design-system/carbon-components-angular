@@ -841,7 +841,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/dialog/dialog.directive.ts:231</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/dialog/dialog.directive.ts:233</a></div>
                             </td>
                         </tr>
 
@@ -922,7 +922,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/dialog/dialog.directive.ts:201</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/dialog/dialog.directive.ts:203</a></div>
                             </td>
                         </tr>
 
@@ -1008,7 +1008,7 @@ running code from child class.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/dialog/dialog.directive.ts:240</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/dialog/dialog.directive.ts:242</a></div>
                             </td>
                         </tr>
 
@@ -1049,7 +1049,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/dialog/dialog.directive.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/dialog/dialog.directive.ts:211</a></div>
                             </td>
                         </tr>
 
@@ -1092,7 +1092,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/dialog/dialog.directive.ts:219</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/dialog/dialog.directive.ts:221</a></div>
                             </td>
                         </tr>
 
@@ -1459,7 +1459,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			fromEvent(this.elementRef.nativeElement, &quot;keydown&quot;).subscribe((event: KeyboardEvent) &#x3D;&gt; {
 				// &quot;Spacebar&quot; is an IE specific value
 				if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot;) {
-					this.open();
+					setTimeout(() &#x3D;&gt; {
+						this.open();
+					});
 				}
 			});
 		}
