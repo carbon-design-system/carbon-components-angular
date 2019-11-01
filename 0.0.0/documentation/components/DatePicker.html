@@ -842,7 +842,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="366" class="link-to-prism">src/datepicker/datepicker.component.ts:366</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/datepicker/datepicker.component.ts:368</a></div>
                             </td>
                         </tr>
 
@@ -918,7 +918,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="361" class="link-to-prism">src/datepicker/datepicker.component.ts:361</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="363" class="link-to-prism">src/datepicker/datepicker.component.ts:363</a></div>
                             </td>
                         </tr>
 
@@ -989,7 +989,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="373" class="link-to-prism">src/datepicker/datepicker.component.ts:373</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="375" class="link-to-prism">src/datepicker/datepicker.component.ts:375</a></div>
                             </td>
                         </tr>
 
@@ -1136,7 +1136,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/datepicker/datepicker.component.ts:238</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/datepicker/datepicker.component.ts:240</a></div>
                             </td>
                         </tr>
 
@@ -1176,7 +1176,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/datepicker/datepicker.component.ts:261</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/datepicker/datepicker.component.ts:263</a></div>
                             </td>
                         </tr>
 
@@ -1247,7 +1247,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/datepicker/datepicker.component.ts:246</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/datepicker/datepicker.component.ts:248</a></div>
                             </td>
                         </tr>
 
@@ -1318,7 +1318,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/datepicker/datepicker.component.ts:223</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/datepicker/datepicker.component.ts:225</a></div>
                             </td>
                         </tr>
 
@@ -1387,7 +1387,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/datepicker/datepicker.component.ts:227</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/datepicker/datepicker.component.ts:229</a></div>
                             </td>
                         </tr>
 
@@ -1458,7 +1458,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/datepicker/datepicker.component.ts:322</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/datepicker/datepicker.component.ts:324</a></div>
                             </td>
                         </tr>
 
@@ -1536,7 +1536,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/datepicker/datepicker.component.ts:272</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/datepicker/datepicker.component.ts:274</a></div>
                             </td>
                         </tr>
 
@@ -1878,7 +1878,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/datepicker/datepicker.component.ts:231</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/datepicker/datepicker.component.ts:233</a></div>
                             </td>
                         </tr>
 
@@ -1911,7 +1911,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/datepicker/datepicker.component.ts:233</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/datepicker/datepicker.component.ts:235</a></div>
                             </td>
                         </tr>
 
@@ -2347,7 +2347,9 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value &#x3D; value;
-		this.setDateValues(this.value);
+		if (this.isFlatpickrLoaded() &amp;&amp; this.flatpickrInstance.config) {
+			this.setDateValues(this.value);
+		}
 	}
 
 	registerOnChange(fn: any) {
