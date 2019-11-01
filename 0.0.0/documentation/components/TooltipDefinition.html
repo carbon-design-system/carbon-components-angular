@@ -86,20 +86,20 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;bx--tooltip__trigger&quot; [attr.aria-describedby]&#x3D;&quot;id&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button
+	type&#x3D;&quot;button&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;bx--tooltip--bottom&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;,
+		&#x27;bx--tooltip--top&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;top&#x27;,
+		&#x27;bx--tooltip--align-start&#x27; : alignment &#x3D;&#x3D;&#x3D; &#x27;start&#x27;,
+		&#x27;bx--tooltip--align-center&#x27; : alignment &#x3D;&#x3D;&#x3D; &#x27;center&#x27;,
+		&#x27;bx--tooltip--align-end&#x27; : alignment &#x3D;&#x3D;&#x3D; &#x27;end&#x27;
+	}&quot;
+	class&#x3D;&quot;bx--tooltip__trigger bx--tooltip--a11y bx--tooltip__trigger--definition&quot;
+	[attr.aria-describedby]&#x3D;&quot;id&quot;&gt;
 	&lt;ng-content&gt;&lt;/ng-content&gt;
 &lt;/button&gt;
-&lt;div
-	[id]&#x3D;&quot;id&quot;
-	[ngClass]&#x3D;&quot;{
-		&#x27;bx--tooltip--definition__bottom&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;,
-		&#x27;bx--tooltip--definition__top&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;top&#x27;
-	}&quot;
-	role&#x3D;&quot;tooltip&quot;
-	[attr.aria-label]&#x3D;&quot;content&quot;&gt;
-	&lt;span class&#x3D;&quot;bx--tooltip__caret&quot;&gt;&lt;/span&gt;
-	&lt;p&gt;{{content}}&lt;/p&gt;
-&lt;/div&gt;
+&lt;div class&#x3D;&quot;bx--assistive-text&quot; [id]&#x3D;&quot;id&quot; role&#x3D;&quot;tooltip&quot;&gt;{{content}}&lt;/div&gt;
 	</code></pre></td>
             </tr>
 
@@ -145,6 +145,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#alignment">alignment</a>
+                            </li>
+                            <li>
                                 <a href="#content">content</a>
                             </li>
                             <li>
@@ -167,6 +170,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#class.bx--tooltip--a11y">class.bx--tooltip--a11y</a>
+                            </li>
+                            <li>
                                 <a href="#class.bx--tooltip--definition">class.bx--tooltip--definition</a>
                             </li>
                         </ul>
@@ -181,6 +187,30 @@
 
     <section>
     <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="alignment"></a>
+                        <code>alignment</code>
+                    </td>
+                    <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code>&quot;start&quot; | &quot;center&quot; | &quot;end&quot;</code>
+
+                            </p>
+                        <p>
+                            <em>Default value : </em><code>&quot;start&quot;</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/dialog/tooltip/tooltip-definition.component.ts:36</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -258,6 +288,39 @@ Set to <code>&quot;top&quot;</code> to have it positioned above the trigger text
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="class.bx--tooltip--a11y"></a>
+                        <span class="name">
+                            <b>
+                            class.bx--tooltip--a11y
+                            </b>
+                            <a href="#class.bx--tooltip--a11y"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>class.bx--tooltip--a11y:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/dialog/tooltip/tooltip-definition.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="class.bx--tooltip--definition"></a>
                         <span class="name">
                             <b>
@@ -280,7 +343,7 @@ Set to <code>&quot;top&quot;</code> to have it positioned above the trigger text
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/dialog/tooltip/tooltip-definition.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/tooltip/tooltip-definition.component.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -347,20 +410,20 @@ Set to <code>&quot;top&quot;</code> to have it positioned above the trigger text
 @Component({
 	selector: &quot;ibm-tooltip-definition&quot;,
 	template: &#x60;
-		&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;bx--tooltip__trigger&quot; [attr.aria-describedby]&#x3D;&quot;id&quot;&gt;
+		&lt;button
+			type&#x3D;&quot;button&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;bx--tooltip--bottom&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;,
+				&#x27;bx--tooltip--top&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;top&#x27;,
+				&#x27;bx--tooltip--align-start&#x27; : alignment &#x3D;&#x3D;&#x3D; &#x27;start&#x27;,
+				&#x27;bx--tooltip--align-center&#x27; : alignment &#x3D;&#x3D;&#x3D; &#x27;center&#x27;,
+				&#x27;bx--tooltip--align-end&#x27; : alignment &#x3D;&#x3D;&#x3D; &#x27;end&#x27;
+			}&quot;
+			class&#x3D;&quot;bx--tooltip__trigger bx--tooltip--a11y bx--tooltip__trigger--definition&quot;
+			[attr.aria-describedby]&#x3D;&quot;id&quot;&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/button&gt;
-		&lt;div
-			[id]&#x3D;&quot;id&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;bx--tooltip--definition__bottom&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;bottom&#x27;,
-				&#x27;bx--tooltip--definition__top&#x27; : placement &#x3D;&#x3D;&#x3D; &#x27;top&#x27;
-			}&quot;
-			role&#x3D;&quot;tooltip&quot;
-			[attr.aria-label]&#x3D;&quot;content&quot;&gt;
-			&lt;span class&#x3D;&quot;bx--tooltip__caret&quot;&gt;&lt;/span&gt;
-			&lt;p&gt;{{content}}&lt;/p&gt;
-		&lt;/div&gt;
+		&lt;div class&#x3D;&quot;bx--assistive-text&quot; [id]&#x3D;&quot;id&quot; role&#x3D;&quot;tooltip&quot;&gt;{{content}}&lt;/div&gt; 
 	&#x60;
 })
 export class TooltipDefinition {
@@ -377,7 +440,10 @@ export class TooltipDefinition {
 	 */
 	@Input() placement: &quot;bottom&quot; | &quot;top&quot; &#x3D; &quot;bottom&quot;;
 
+	@Input() alignment: &quot;start&quot; | &quot;center&quot; | &quot;end&quot; &#x3D; &quot;start&quot;;
+
 	@HostBinding(&quot;class.bx--tooltip--definition&quot;) className &#x3D; true;
+	@HostBinding(&quot;class.bx--tooltip--a11y&quot;) accessibility &#x3D; true;
 }
 </code></pre>
     </div>
@@ -409,7 +475,7 @@ export class TooltipDefinition {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button type="button" class="bx--tooltip__trigger" [attr.aria-describedby]="id">	<ng-content></ng-content></button><div	[id]="id"	[ngClass]="{		\'bx--tooltip--definition__bottom\' : placement === \'bottom\',		\'bx--tooltip--definition__top\' : placement === \'top\'	}"	role="tooltip"	[attr.aria-label]="content">	<span class="bx--tooltip__caret"></span>	<p>{{content}}</p></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><button	type="button"	[ngClass]="{		\'bx--tooltip--bottom\' : placement === \'bottom\',		\'bx--tooltip--top\' : placement === \'top\',		\'bx--tooltip--align-start\' : alignment === \'start\',		\'bx--tooltip--align-center\' : alignment === \'center\',		\'bx--tooltip--align-end\' : alignment === \'end\'	}"	class="bx--tooltip__trigger bx--tooltip--a11y bx--tooltip__trigger--definition"	[attr.aria-describedby]="id">	<ng-content></ng-content></button><div class="bx--assistive-text" [id]="id" role="tooltip">{{content}}</div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'TooltipDefinition'};
