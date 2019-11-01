@@ -9,57 +9,71 @@ import { ButtonModule } from "../../forms/forms.module";
 @Component({
     selector: "app-sample-progressive-loading",
     template: `
-    <div ibmRow style="margin-bottom: 50px">
-        <div ibmCol [columnNumbers]="{'md':2, 'md':2}">
-            Example 1
-            <ibm-dropdown
-                [skeleton]="skeletonStateDropdown"
-                type="multi"
-                [placeholder]="placeholder"
-                inline="true">
-                <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-            </ibm-dropdown>
-        </div>
+    <div ibmGrid>
+        <div ibmRow class="actions">
+            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                <ibm-dropdown
+                    label="Example 1"
+                    [skeleton]="skeletonStateDropdown"
+                    type="multi"
+                    [placeholder]="placeholder"
+                    inline="true">
+                    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                </ibm-dropdown>
+            </div>
 
-        <div ibmCol [columnNumbers]="{'md':2, 'md':2}">
-            Example 2
-            <ibm-dropdown
-                [skeleton]="skeletonStateDropdown"
-                type="multi"
-                [placeholder]="placeholder"
-                inline="true">
-                <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-            </ibm-dropdown>
-        </div>
+            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                <ibm-dropdown
+                    label="Example 2"
+                    [skeleton]="skeletonStateDropdown"
+                    type="multi"
+                    [placeholder]="placeholder"
+                    inline="true">
+                    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                </ibm-dropdown>
+            </div>
 
-        <div ibmCol [columnNumbers]="{'md':2, 'md':2}">
-            Example 3
-            <ibm-dropdown
-                [skeleton]="skeletonStateDropdown"
-                type="multi"
-                [placeholder]="placeholder"
-                inline="true">
-                <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-            </ibm-dropdown>
-        </div>
+            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                <ibm-dropdown
+                    label="Example 3"
+                    [skeleton]="skeletonStateDropdown"
+                    type="multi"
+                    [placeholder]="placeholder"
+                    inline="true">
+                    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                </ibm-dropdown>
+            </div>
 
-        <div ibmCol [columnNumbers]="{'md':2, 'md':2}">
-            <button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
+            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                <button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
+            </div>
+        </div>
+        <div ibmRow>
+            <ibm-table-container>
+                <ibm-table
+                    [skeleton]="skeletonStateTable"
+                    [model]="model"
+                    [striped]="false"
+                    size="lg"
+                    [showSelectionColumn]="false">
+                    <ng-content></ng-content>
+                </ibm-table>
+            </ibm-table-container>
         </div>
     </div>
+    `,
+    styles: [
+        `
+        ibm-table {
+            display: block;
+            width: 650px;
+        }
 
-    <ibm-table-container>
-        <ibm-table
-            [skeleton]="skeletonStateTable"
-            style="display: block; width: 650px;"
-            [model]="model"
-            [striped]="false"
-            size="lg"
-            [showSelectionColumn]="false">
-            <ng-content></ng-content>
-        </ibm-table>
-    </ibm-table-container>
-    `
+        .actions {
+            margin-bottom: 40px;
+        }
+        `
+    ]
 })
 class SampleProgressiveLoading {   
     model = new TableModel();

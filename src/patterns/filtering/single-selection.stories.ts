@@ -8,26 +8,47 @@ import { GridModule } from "../../grid/grid.module";
 @Component({
     selector: "app-sample-single-selection",
     template: `
-    <ibm-table-container>
+    <div ibmGrid>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'md':2}" style="max-width: 100px">
-                <p ibmText style="line-height: 30px;">Filter by: </p>
-            </div>
-            <div ibmCol [columnNumbers]="{'md':4}" style="max-width: 200px">
-                <ibm-dropdown placeholder="Type" inline="true" (selected)="onSelected($event)">
-                    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-                </ibm-dropdown>
+            <div ibmCol [columnNumbers]="{'md':4}">
+                <label ibmText>
+                    Filter by:
+                    <ibm-dropdown placeholder="Type" inline="true" (selected)="onSelected($event)">
+                        <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                    </ibm-dropdown>
+                </label>
             </div>
         </div>
-        <ibm-table
-            style="display: block; width: 650px;"
-            [model]="model"
-            size="lg"
-            [showSelectionColumn]="false">
-            <ng-content></ng-content>
-        </ibm-table>
-    </ibm-table-container>
+        <div ibmRow>
+            <ibm-table-container>
+                <ibm-table
+                    [model]="model"
+                    size="lg"
+                    [showSelectionColumn]="false">
+                    <ng-content></ng-content>
+                </ibm-table>
+            </ibm-table-container>
+        </div>
+    </div>
+    `,
+    styles: [
+        `
+        label {
+            display: flex;
+            align-items: center;
+            flex-direction-row;
+        }
+        
+        ibm-dropdown {
+            flex-grow: 2;
+        }
+
+        ibm-table {
+            display: block; 
+            width: 650px
+        }
     `
+    ]
 })
 class SampleSingleSelection {   
     model = new TableModel();
@@ -50,18 +71,14 @@ class SampleSingleSelection {
     ];
     
     onSelected(event) {
-        this.model.data = [];
-        this.model.data.pop();
-        this.dataset.forEach(data => {
-            if(data.type === event.item.content) {
-                this.model.data.push(
+        this.model.data =
+            this.dataset
+                .filter(data => data.type === event.item.content)
+                .map(filteredData =>                     
                     [
-                        new TableItem({ data: data.name }),
+                        new TableItem({ data: filteredData.name }),
                         new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
-                    ]
-                );
-            }
-        });
+                    ]);
     }
 
     ngOnInit() {

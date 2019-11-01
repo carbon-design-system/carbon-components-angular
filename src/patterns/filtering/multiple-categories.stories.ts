@@ -16,7 +16,7 @@ import { TagModule } from "../../tag/tag.module";
     <div ibmGrid>
         <div ibmRow>
             <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
-                <button ibmButton (click)="resetFilters()" style="margin-bottom: 30px">Reset Filters</button>
+                <button ibmButton (click)="resetFilters()">Reset Filters</button>
                 <fieldset class="bx--fieldset">
                     <legend class="bx--label">Radio button label</legend>
                     <ibm-radio-group
@@ -35,7 +35,7 @@ import { TagModule } from "../../tag/tag.module";
                 <fieldset class="bx--fieldset">
                     <div ibmRow>
                         <div ibmCol [columnNumbers]="{'md':5, 'sm':5}">
-                            <legend class="bx--label" style="line-height: 30px">Type</legend>
+                            <legend class="bx--label">Type</legend>
                         </div>
                         <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
                             <ibm-tag-filter
@@ -57,18 +57,28 @@ import { TagModule } from "../../tag/tag.module";
             </div>
             <div ibmCol [columnNumbers]="{'md':4, 'sm':4}">
                 <ibm-table-container>
-                <ibm-table
-                    style="display: block; width: 650px;"
-                    [model]="model"
-                    size="lg"
-                    [showSelectionColumn]="false">
-                    <ng-content></ng-content>
-                </ibm-table>
+                    <ibm-table
+                        [model]="model"
+                        size="lg"
+                        [showSelectionColumn]="false">
+                        <ng-content></ng-content>
+                    </ibm-table>
                 </ibm-table-container>
             </div>
         </div>
     </div>
+    `,
+    styles: [`
+        button {
+            margin-bottom: 20px;
+        }
+
+        ibm-table {
+            display: block;
+            width: 650px;
+        }
     `
+    ]
 })
 class SampleMultiCategories{
     model = new TableModel();
@@ -134,9 +144,6 @@ class SampleMultiCategories{
     }
 
     applyFilters() {
-        this.model.data = [];
-        this.model.data.pop();
-
         this.model.data = 
             this.dataset
                 .filter(data =>

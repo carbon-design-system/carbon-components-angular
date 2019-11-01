@@ -8,31 +8,53 @@ import { GridModule } from "../../grid/grid.module";
 @Component({
     selector: "app-sample-multi-selection",
     template: `
-    <ibm-table-container>
+    <div ibmGrid>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'md':2}" style="max-width: 100px">
-                <p ibmText style="line-height: 30px;">Filter by: </p>
-            </div>
-            <div ibmCol [columnNumbers]="{'md':4}" style="max-width: 200px">
-                <ibm-dropdown type="multi" placeholder="Type" inline="true" (selected)="onSelected($event)">
-                    <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
-                </ibm-dropdown>
+            <div ibmCol [columnNumbers]="{'md':4}">
+                <label ibmText>
+                    Filter by:
+                    <ibm-dropdown
+                        type="multi"
+                        placeholder="Type"
+                        inline="true"
+                        (selected)="onSelected($event)">
+                        <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                    </ibm-dropdown>
+                </label>
             </div>
         </div>
-        <ibm-table
-            style="display: block; width: 650px;"
-            [model]="model"
-            size="lg"
-            [showSelectionColumn]="false">
-            <ng-content></ng-content>
-        </ibm-table>
-    </ibm-table-container>
+        <div ibmRow>
+            <ibm-table-container>
+                <ibm-table
+                    [model]="model"
+                    size="lg"
+                    [showSelectionColumn]="false">
+                    <ng-content></ng-content>
+                </ibm-table>
+            </ibm-table-container>
+        </div>
+    </div>
+    `,
+    styles: [`
+        label {
+            display: flex;
+            align-items: center;
+            flex-direction-row;
+        }
+        
+        ibm-dropdown {
+            flex-grow: 2;
+        }
+
+        ibm-table {
+            display: block;
+            width: 650px;
+        }
     `
+    ]
 })
 class SampleMultiSelection {
     model = new TableModel();
-
-    selected = [];
 
     items = [
         { content: "Vegetable" },
@@ -44,7 +66,7 @@ class SampleMultiSelection {
         { name: "Apple", type: ["Fruit"] },
         { name: "Grape", type: ["Fruit"] },
         { name: "Eggplant", type: ["Fruit"] },
-        { name: "FruitVegMeat", type: ["Fruit", "Vegetable", "Meat"], color: "Purple" },
+        { name: "FruitVegMeat", type: ["Fruit", "Vegetable", "Meat"] },
         { name: "Lettuce", type: ["Vegetable"] },
         { name: "Daikon Radish", type: ["Vegetable"] },
         { name: "Beef", type: ["Meat"] }
@@ -52,23 +74,19 @@ class SampleMultiSelection {
     
     onSelected(event) {
         let checkboxFilters = new Set();
-        this.model.data = [];
-        this.model.data.pop();
 
-        this.dataset.forEach(data => {
-            event.forEach(filter => {
-                checkboxFilters.add(filter.content);
-            });
-
-            if (this.applyFilters(data.type, checkboxFilters)) {
-                this.model.data.push(
-                    [
-                        new TableItem({ data: data.name }),
-                        new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
-                    ]
-                )
-            }   
+        event.forEach(filter => {
+            checkboxFilters.add(filter.content);
         });
+
+        this.model.data = 
+            this.dataset
+                .filter(data => this.applyFilters(data.type, checkboxFilters))
+                .map(filteredData =>                     
+                    [
+                        new TableItem({ data: filteredData.name }),
+                        new TableItem({ data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." })
+                    ]);
     }
 
     applyFilters(types: Array<String>, filters): Boolean {
