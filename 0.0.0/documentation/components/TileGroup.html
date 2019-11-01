@@ -431,7 +431,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/tiles/tile-group.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/tiles/tile-group.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -469,7 +469,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/tiles/tile-group.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/tiles/tile-group.component.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -538,7 +538,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/tiles/tile-group.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/tiles/tile-group.component.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -607,7 +607,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/tiles/tile-group.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/tiles/tile-group.component.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -958,19 +958,22 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 			this.unsubscribeTiles$.next();
 
 			// react to changes
-			this.selectionTiles.forEach(tile &#x3D;&gt; {
-				tile.name &#x3D; this.name;
-				tile.change
-					.pipe(takeUntil(this.unsubscribeTiles$))
-					.subscribe(() &#x3D;&gt; {
-						this.selected.emit({
-							value: tile.value,
-							selected: tile.selected,
-							name: this.name
+			// setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
+			setTimeout(() &#x3D;&gt; {
+				this.selectionTiles.forEach(tile &#x3D;&gt; {
+					tile.name &#x3D; this.name;
+					tile.change
+						.pipe(takeUntil(this.unsubscribeTiles$))
+						.subscribe(() &#x3D;&gt; {
+							this.selected.emit({
+								value: tile.value,
+								selected: tile.selected,
+								name: this.name
+							});
+							this.onChange(tile.value);
 						});
-						this.onChange(tile.value);
-					});
-				tile.multiple &#x3D; this.multiple;
+					tile.multiple &#x3D; this.multiple;
+				});
 			});
 		};
 		updateTiles();
