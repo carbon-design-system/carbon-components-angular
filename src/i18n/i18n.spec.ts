@@ -1,7 +1,7 @@
 import { I18n } from "./i18n.service";
 import { isObservable, BehaviorSubject } from "rxjs";
 
-const EN = require("./en.json");
+import EN from "./en";
 
 let service;
 

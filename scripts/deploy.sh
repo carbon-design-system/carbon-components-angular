@@ -14,7 +14,7 @@ npm run semantic-release
 
 # deploy to gh pages
 if [[ $TRAVIS_BRANCH == "master" ]]; then
-	mkdir pages
+	mkdir -p pages
 	cd pages
 
 	git init
@@ -29,7 +29,7 @@ if [[ $TRAVIS_BRANCH == "master" ]]; then
 	cp -R ../dist/docs/storybook/* ./
 
 	version=$(node -e 'const package = require("./../dist/package.json"); console.log(package.version);')
-	mkdir $version
+	mkdir -p $version
 	mkdir -p $version/documentation
 	cp -R ../dist/docs/documentation/* $version/documentation
 	cp -R ../dist/docs/storybook/* $version

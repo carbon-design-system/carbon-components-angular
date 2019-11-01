@@ -298,7 +298,9 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 		if (!this.view) {
 			return;
 		}
-		this.writeValue(this.writtenValue);
+		if (this.writtenValue && this.writtenValue.length) {
+			this.writeValue(this.writtenValue);
+		}
 		this.view.type = this.type;
 		this.view.size = this.size;
 		this.view.select.subscribe(event => {
@@ -472,13 +474,13 @@ export class Dropdown implements OnInit, AfterContentInit, OnDestroy, ControlVal
 			return;
 		}
 		let selected = this.view.getSelected();
-		if (selected && (!this.displayValue || !this.isRenderString())) {
+		if (selected.length && (!this.displayValue || !this.isRenderString())) {
 			if (this.type === "multi") {
 				return of(this.placeholder);
 			} else {
 				return of(selected[0].content);
 			}
-		} else if (selected && this.isRenderString()) {
+		} else if (selected.length && this.isRenderString()) {
 			return of(this.displayValue as string);
 		}
 		return of(this.placeholder);

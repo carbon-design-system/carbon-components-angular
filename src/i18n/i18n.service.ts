@@ -8,7 +8,7 @@ import {
 import { map } from "rxjs/operators";
 import { merge } from "../utils/object";
 
-const EN = require("./en.json");
+import EN from "./en";
 
 /**
  * Takes the `Observable` returned from `i18n.get` and an object of variables to replace.
@@ -153,7 +153,7 @@ export class I18n {
 	 *
 	 * @param path optional, looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	public get(path?: string) {
+	public get(path?: string): any {
 		if (!path) {
 			return this.translationStrings;
 		}
@@ -221,7 +221,7 @@ export class I18n {
 				throw new Error(`no key ${segment} at ${path}`);
 			}
 		}
-		return value;
+		return value as any;
 	}
 
 	/**

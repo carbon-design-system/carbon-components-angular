@@ -72,19 +72,22 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 			this.unsubscribeTiles$.next();
 
 			// react to changes
-			this.selectionTiles.forEach(tile => {
-				tile.name = this.name;
-				tile.change
-					.pipe(takeUntil(this.unsubscribeTiles$))
-					.subscribe(() => {
-						this.selected.emit({
-							value: tile.value,
-							selected: tile.selected,
-							name: this.name
+			// setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
+			setTimeout(() => {
+				this.selectionTiles.forEach(tile => {
+					tile.name = this.name;
+					tile.change
+						.pipe(takeUntil(this.unsubscribeTiles$))
+						.subscribe(() => {
+							this.selected.emit({
+								value: tile.value,
+								selected: tile.selected,
+								name: this.name
+							});
+							this.onChange(tile.value);
 						});
-						this.onChange(tile.value);
-					});
-				tile.multiple = this.multiple;
+					tile.multiple = this.multiple;
+				});
 			});
 		};
 		updateTiles();
