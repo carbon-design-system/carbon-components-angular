@@ -217,7 +217,9 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value = value;
-		this.setDateValues(this.value);
+		if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
+			this.setDateValues(this.value);
+		}
 	}
 
 	registerOnChange(fn: any) {
