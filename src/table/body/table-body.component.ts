@@ -25,6 +25,7 @@ import { Observable } from "rxjs";
 					[checkboxLabel]="getCheckboxRowLabel()"
 					[expandButtonAriaLabel]="getExpandButtonAriaLabel()"
 					[showSelectionColumn]="showSelectionColumn"
+					[enableSingleSelect]="enableSingleSelect"
 					[skeleton]="skeleton"
 					(selectRow)="onRowCheckboxChange(i)"
 					(deselectRow)="onRowCheckboxChange(i)"

@@ -3,20 +3,20 @@ import { Component, Input, HostBinding } from "@angular/core";
 @Component({
 	selector: "ibm-tooltip-definition",
 	template: `
-		<button type="button" class="bx--tooltip__trigger" [attr.aria-describedby]="id">
+		<button
+			type="button"
+			[ngClass]="{
+				'bx--tooltip--bottom' : placement === 'bottom',
+				'bx--tooltip--top' : placement === 'top',
+				'bx--tooltip--align-start' : alignment === 'start',
+				'bx--tooltip--align-center' : alignment === 'center',
+				'bx--tooltip--align-end' : alignment === 'end'
+			}"
+			class="bx--tooltip__trigger bx--tooltip--a11y bx--tooltip__trigger--definition"
+			[attr.aria-describedby]="id">
 			<ng-content></ng-content>
 		</button>
-		<div
-			[id]="id"
-			[ngClass]="{
-				'bx--tooltip--definition__bottom' : placement === 'bottom',
-				'bx--tooltip--definition__top' : placement === 'top'
-			}"
-			role="tooltip"
-			[attr.aria-label]="content">
-			<span class="bx--tooltip__caret"></span>
-			<p>{{content}}</p>
-		</div>
+		<div class="bx--assistive-text" [id]="id" role="tooltip">{{content}}</div> 
 	`
 })
 export class TooltipDefinition {
@@ -33,5 +33,8 @@ export class TooltipDefinition {
 	 */
 	@Input() placement: "bottom" | "top" = "bottom";
 
+	@Input() alignment: "start" | "center" | "end" = "start";
+
 	@HostBinding("class.bx--tooltip--definition") className = true;
+	@HostBinding("class.bx--tooltip--a11y") accessibility = true;
 }
