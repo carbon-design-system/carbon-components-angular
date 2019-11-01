@@ -216,6 +216,9 @@
                             <li>
                                 <a href="#hidden">hidden</a>
                             </li>
+                            <li>
+                                <a href="#rail">rail</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -258,7 +261,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:82</a></div>
                             </td>
                         </tr>
 
@@ -313,7 +316,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:82</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -358,6 +361,26 @@
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:79</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="rail"></a>
+                        <code>rail</code>
+                    </td>
+                    <td class="col-md-10">
+                        <p>
+                            <em>Default value : </em><code>false</code>
+                        </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:80</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -457,7 +480,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -494,7 +517,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -545,7 +568,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/ui-shell/sidenav/sidenav.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -637,6 +660,7 @@ export class SideNav {
 	 * Controls the hidden (&#x60;true&#x60;) or visible (&#x60;false&#x60;) state
 	 */
 	@HostBinding(&quot;class.bx--side-nav--hidden&quot;) @Input() hidden &#x3D; false;
+	@HostBinding(&quot;class.bx--side-nav--rail&quot;) @Input() rail &#x3D; false;
 	@HostBinding(&quot;class.bx--side-nav--ux&quot;) ux &#x3D; true;
 	@Input() allowExpansion &#x3D; false;
 
