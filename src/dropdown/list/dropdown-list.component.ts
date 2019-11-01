@@ -361,7 +361,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	getSelected(): ListItem[] {
 		let selected = this.getListItems().filter(item => item.selected);
 		if (selected.length === 0) {
-			return null;
+			return [];
 		}
 		return selected;
 	}
