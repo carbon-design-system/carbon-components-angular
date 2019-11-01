@@ -89,6 +89,9 @@ export class Overridable {
 	 */
 	protected baseTranslation: Observable<string> = this.i18n.get(this.path);
 
+	/**
+	 * Subscription to the observable provided as an override (if any)
+	 */
 	protected subscription: Subscription;
 	/**
 	 * A boolean to flip between overridden and non-overridden states.
@@ -110,14 +113,16 @@ export class Overridable {
 	 */
 	override(value: string | Observable<string>) {
 		this.isOverridden = true;
+		// To ensure that there are not multiple subscriptions created for the same observable, we
+		// unsubscribe if a subscription already exists for an observable before creating a new one.
+		if (this.subscription) {
+			this.subscription.unsubscribe();
+			this.subscription = null;
+		}
+
 		this._value = value;
+
 		if (isObservable(value)) {
-			// To ensure that there are not multiple subscriptions created for the same observable, we
-			// unsubscribe if a subscription already exists for an observable before creating a new one.
-			if (this.subscription) {
-				this.subscription.unsubscribe();
-				this.subscription = null;
-			}
 			this.subscription = value.subscribe(v => {
 				this.$override.next(v);
 			});
