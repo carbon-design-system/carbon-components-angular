@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 
 import { By } from "@angular/platform-browser";
