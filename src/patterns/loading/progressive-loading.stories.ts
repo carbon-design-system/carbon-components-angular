@@ -5,13 +5,20 @@ import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table
 import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
 import { ButtonModule } from "../../forms/forms.module";
+import { UIShellModule } from "../../ui-shell/ui-shell.module";
+import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
 
 @Component({
     selector: "app-sample-progressive-loading",
     template: `
     <div ibmGrid>
+        <div ibmRow class="header">
+            <ibm-header [brand]="brandTemplate">
+                <ibm-hamburger></ibm-hamburger>
+            </ibm-header>
+        </div>
         <div ibmRow class="actions">
-            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
                 <ibm-dropdown
                     label="Example 1"
                     [skeleton]="skeletonStateDropdown"
@@ -22,7 +29,7 @@ import { ButtonModule } from "../../forms/forms.module";
                 </ibm-dropdown>
             </div>
 
-            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
                 <ibm-dropdown
                     label="Example 2"
                     [skeleton]="skeletonStateDropdown"
@@ -33,7 +40,7 @@ import { ButtonModule } from "../../forms/forms.module";
                 </ibm-dropdown>
             </div>
 
-            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
                 <ibm-dropdown
                     label="Example 3"
                     [skeleton]="skeletonStateDropdown"
@@ -44,29 +51,40 @@ import { ButtonModule } from "../../forms/forms.module";
                 </ibm-dropdown>
             </div>
 
-            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
                 <button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
             </div>
         </div>
         <div ibmRow>
-            <ibm-table-container>
-                <ibm-table
-                    [skeleton]="skeletonStateTable"
-                    [model]="model"
-                    [striped]="false"
-                    size="lg"
-                    [showSelectionColumn]="false">
-                    <ng-content></ng-content>
-                </ibm-table>
-            </ibm-table-container>
+            <div ibmCol [columnNumbers]="{'lg':12, 'md':12, 'sm':12}">
+                <ibm-table-container>
+                    <ibm-table
+                        [skeleton]="skeletonStateTable"
+                        [model]="model"
+                        size="lg"
+                        [showSelectionColumn]="false">
+                        <ng-content></ng-content>
+                    </ibm-table>
+                </ibm-table-container>
+            </div>
         </div>
     </div>
+
+    <ng-template #brandTemplate>
+        <a class="bx--header__name">
+            <ibm-icon-carbon32 style="fill:white"></ibm-icon-carbon32>
+            <span class="bx--header__name--prefix">Carbon</span>
+            [Patterns]
+        </a>
+    </ng-template>
     `,
-    styles: [
-        `
+    styles: [`
+        .header {
+            margin-bottom: 80px;
+        }
+
         ibm-table {
-            display: block;
-            width: 650px;
+            width: 100%;
         }
 
         .actions {
@@ -148,7 +166,12 @@ class SampleProgressiveLoading {
     }
 
     ngOnInit() {
+        document.querySelector('.sb-show-main').classList.add('full-page');
         this.loadScreen();
+    }
+
+    ngOnDestroy() {
+        document.querySelector('.sb-show-main').classList.remove('full-page');
     }
 }
 
@@ -157,10 +180,12 @@ storiesOf("Patterns|Loading", module)
 		moduleMetadata({
 			declarations: [ SampleProgressiveLoading ],
 			imports: [
+                Carbon32Module,
                 TableModule,
                 DropdownModule,
                 GridModule,
-                ButtonModule
+                ButtonModule,
+                UIShellModule
 			]
 		})
 	)

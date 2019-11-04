@@ -9,13 +9,20 @@ import { RadioModule } from "../../radio/radio.module";
 import { CheckboxModule } from "../../checkbox/checkbox.module";
 import { ButtonModule } from "../../forms/forms.module";
 import { TagModule } from "../../tag/tag.module";
+import { UIShellModule } from "../../ui-shell/ui-shell.module";
+import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
 
 @Component({
     selector: "app-sample-multi-categories",
     template: `
     <div ibmGrid>
+        <div ibmRow class="header">
+            <ibm-header [brand]="brandTemplate">
+                <ibm-hamburger></ibm-hamburger>
+            </ibm-header>
+        </div>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+            <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}" class="multi-selection">
                 <button ibmButton (click)="resetFilters()">Reset Filters</button>
                 <fieldset class="bx--fieldset">
                     <legend class="bx--label">Radio button label</legend>
@@ -25,7 +32,7 @@ import { TagModule } from "../../tag/tag.module";
                         labelPlacement="right"
                         [(ngModel)]="radio"
                         (change)="onRadioChange($event)">
-                        <ibm-radio *ngFor="let radio of manyRadios"
+                        <ibm-radio *ngFor="let radio of radios"
                             [value]="radio.color"
                             [disabled]="radio.disabled">
                             {{radio.color}}
@@ -34,10 +41,10 @@ import { TagModule } from "../../tag/tag.module";
                 </fieldset>
                 <fieldset class="bx--fieldset">
                     <div ibmRow>
-                        <div ibmCol [columnNumbers]="{'md':5, 'sm':5}">
+                        <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}">
                             <legend class="bx--label">Type</legend>
                         </div>
-                        <div ibmCol [columnNumbers]="{'md':2, 'sm':2}">
+                        <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}">
                             <ibm-tag-filter
                                 *ngIf="checkBoxFilters.size > 0"
                                 (close)="resetCheckboxList()">
@@ -55,7 +62,7 @@ import { TagModule } from "../../tag/tag.module";
                     </ibm-checkbox>
                 </fieldset>
             </div>
-            <div ibmCol [columnNumbers]="{'md':4, 'sm':4}">
+            <div ibmCol [columnNumbers]="{'lg':10, 'md':10, 'sm':3}" class="data-table">
                 <ibm-table-container>
                     <ibm-table
                         [model]="model"
@@ -67,20 +74,31 @@ import { TagModule } from "../../tag/tag.module";
             </div>
         </div>
     </div>
+
+    <ng-template #brandTemplate>
+        <a class="bx--header__name">
+            <ibm-icon-carbon32 style="fill:white"></ibm-icon-carbon32>
+            <span class="bx--header__name--prefix">Carbon</span>
+            [Patterns]
+        </a>
+    </ng-template>
     `,
     styles: [`
+        .header {
+            margin-bottom: 80px;
+        }
+
         button {
             margin-bottom: 20px;
         }
 
         ibm-table {
-            display: block;
-            width: 650px;
+            width: 100%;
         }
     `
     ]
 })
-class SampleMultiCategories{
+class SampleMultiCategories {
     model = new TableModel();
     checkBoxFilters = new Set();
     radioFilter = null;
@@ -95,7 +113,7 @@ class SampleMultiCategories{
         { name: "Beef", type: ["Meat"], color: "Red" }
     ];
 
-    manyRadios = [
+    radios = [
         { color: "Red", checked: false },
         { color: "Purple", checked: false },
         { color: "Green", checked: false },
@@ -137,7 +155,7 @@ class SampleMultiCategories{
 
     resetRadios() {
         this.radioFilter = null;
-        this.manyRadios = this.manyRadios.map(obj => {
+        this.radios = this.radios.map(obj => {
             return { color: obj.color, checked: false }
         });
         this.applyFilters();
@@ -168,6 +186,8 @@ class SampleMultiCategories{
     }
 
     ngOnInit() {
+        document.querySelector('.sb-show-main').classList.add('full-page');
+
         this.model.header = [
             new TableHeaderItem({
                 data: "Name"
@@ -184,6 +204,9 @@ class SampleMultiCategories{
             ]
         );
     }
+    ngOnDestroy() {
+        document.querySelector('.sb-show-main').classList.remove('full-page');
+    }
 }
 
 storiesOf("Patterns|Filtering", module)
@@ -192,13 +215,15 @@ storiesOf("Patterns|Filtering", module)
 			declarations: [ SampleMultiCategories ],
 			imports: [
                 TableModule,
+                Carbon32Module,
                 DropdownModule,
                 GridModule,
                 StructuredListModule,
                 RadioModule,
                 CheckboxModule,
                 ButtonModule,
-                TagModule
+                TagModule,
+                UIShellModule
 			]
 		})
 	)

@@ -4,13 +4,20 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
 import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
+import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
+import { UIShellModule } from "../../ui-shell/ui-shell.module";
 
 @Component({
     selector: "app-sample-multi-selection",
     template: `
     <div ibmGrid>
+        <div ibmRow class="header">
+            <ibm-header [brand]="brandTemplate">
+                <ibm-hamburger></ibm-hamburger>
+            </ibm-header>
+        </div>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'md':4}">
+            <div ibmCol [columnNumbers]="{'lg':3, 'md':3, 'sm':3}">
                 <label ibmText>
                     Filter by:
                     <ibm-dropdown
@@ -24,31 +31,44 @@ import { GridModule } from "../../grid/grid.module";
             </div>
         </div>
         <div ibmRow>
-            <ibm-table-container>
-                <ibm-table
-                    [model]="model"
-                    size="lg"
-                    [showSelectionColumn]="false">
-                    <ng-content></ng-content>
-                </ibm-table>
-            </ibm-table-container>
+            <div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
+                <ibm-table-container>
+                    <ibm-table
+                        [model]="model"
+                        size="lg"
+                        [showSelectionColumn]="false">
+                        <ng-content></ng-content>
+                    </ibm-table>
+                </ibm-table-container>
+            <div>
         </div>
     </div>
+
+    <ng-template #brandTemplate>
+        <a class="bx--header__name">
+            <ibm-icon-carbon32 style="fill:white"></ibm-icon-carbon32>
+            <span class="bx--header__name--prefix">Carbon</span>
+            [Patterns]
+        </a>
+    </ng-template>
     `,
     styles: [`
+        .header {
+            margin-bottom: 80px;
+        }
+
         label {
             display: flex;
             align-items: center;
-            flex-direction-row;
-        }
-        
-        ibm-dropdown {
-            flex-grow: 2;
         }
 
         ibm-table {
-            display: block;
-            width: 650px;
+            width: 100%;
+        }
+        
+        ibm-dropdown {
+            margin-left: 20px;
+            flex-grow: 1;
         }
     `
     ]
@@ -81,7 +101,7 @@ class SampleMultiSelection {
 
         this.model.data = 
             this.dataset
-                .filter(data => this.applyFilters(data.type, checkboxFilters))
+                .filter(data => this.applyMultiFilters(data.type, checkboxFilters))
                 .map(filteredData =>                     
                     [
                         new TableItem({ data: filteredData.name }),
@@ -89,7 +109,8 @@ class SampleMultiSelection {
                     ]);
     }
 
-    applyFilters(types: Array<String>, filters): Boolean {
+    // Apply filters of a multi selection, returns true if the given items pass the filter and false if not.
+    applyMultiFilters(types: Array<String>, filters): Boolean {
         let shouldInclude = true;
         filters.forEach(filter => {
             if (!types.includes(filter)) {
@@ -100,6 +121,8 @@ class SampleMultiSelection {
     }
 
     ngOnInit() {
+        document.querySelector('.sb-show-main').classList.add('full-page');
+
         this.model.header = [
             new TableHeaderItem({
                 data: "Name"
@@ -115,6 +138,10 @@ class SampleMultiSelection {
             ]
         );
     }
+
+    ngOnDestroy() {
+        document.querySelector('.sb-show-main').classList.remove('full-page');
+    }
 }
 
 storiesOf("Patterns|Filtering", module)
@@ -122,9 +149,11 @@ storiesOf("Patterns|Filtering", module)
 		moduleMetadata({
 			declarations: [ SampleMultiSelection ],
 			imports: [
+                Carbon32Module,
                 TableModule,
                 DropdownModule,
-                GridModule
+                GridModule,
+                UIShellModule
 			]
 		})
 	)
