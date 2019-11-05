@@ -6,14 +6,13 @@ import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
 import { ButtonModule } from "../../forms/forms.module";
 import { UIShellModule } from "../../ui-shell/ui-shell.module";
-import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
 
 @Component({
     selector: "app-sample-progressive-loading",
     template: `
     <div ibmGrid>
         <div ibmRow class="header">
-            <ibm-header [brand]="brandTemplate">
+            <ibm-header name="Patterns">
                 <ibm-hamburger></ibm-hamburger>
             </ibm-header>
         </div>
@@ -69,14 +68,6 @@ import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
             </div>
         </div>
     </div>
-
-    <ng-template #brandTemplate>
-        <a class="bx--header__name">
-            <ibm-icon-carbon32 style="fill:white"></ibm-icon-carbon32>
-            <span class="bx--header__name--prefix">Carbon</span>
-            [Patterns]
-        </a>
-    </ng-template>
     `,
     styles: [`
         .header {
@@ -180,7 +171,6 @@ storiesOf("Patterns|Loading", module)
 		moduleMetadata({
 			declarations: [ SampleProgressiveLoading ],
 			imports: [
-                Carbon32Module,
                 TableModule,
                 DropdownModule,
                 GridModule,

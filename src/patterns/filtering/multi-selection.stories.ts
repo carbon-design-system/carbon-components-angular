@@ -4,7 +4,6 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
 import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
-import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
 import { UIShellModule } from "../../ui-shell/ui-shell.module";
 
 @Component({
@@ -12,7 +11,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
     template: `
     <div ibmGrid>
         <div ibmRow class="header">
-            <ibm-header [brand]="brandTemplate">
+            <ibm-header name="Patterns">
                 <ibm-hamburger></ibm-hamburger>
             </ibm-header>
         </div>
@@ -43,14 +42,6 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             <div>
         </div>
     </div>
-
-    <ng-template #brandTemplate>
-        <a class="bx--header__name">
-            <ibm-icon-carbon32 style="fill:white"></ibm-icon-carbon32>
-            <span class="bx--header__name--prefix">Carbon</span>
-            [Patterns]
-        </a>
-    </ng-template>
     `,
     styles: [`
         .header {
@@ -149,7 +140,6 @@ storiesOf("Patterns|Filtering", module)
 		moduleMetadata({
 			declarations: [ SampleMultiSelection ],
 			imports: [
-                Carbon32Module,
                 TableModule,
                 DropdownModule,
                 GridModule,
