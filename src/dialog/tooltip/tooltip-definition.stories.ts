@@ -18,12 +18,14 @@ storiesOf("Components|Tooltip Definition", module)
 		template: `
 			<ibm-tooltip-definition
 				[content]="content"
-				[placement]="placement">
+				[placement]="placement"
+				[alignment]="alignment">
 				{{triggerText}}
 			</ibm-tooltip-definition>
 		`,
 		props: {
 			placement: select("Tooltip direction", ["bottom", "top"], "bottom"),
+			alignment: select("Tooltip alignment", ["start", "center", "end"], "start"),
 			triggerText: text("Tooltip text", "Definition Tooltip"),
 			content: text("Tooltip content", "Brief description of the dotted, underlined word above.")
 		}
