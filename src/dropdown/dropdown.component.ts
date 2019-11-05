@@ -36,7 +36,7 @@ import { DropdownService } from "./dropdown.service";
 			'bx--list-box--inline': inline,
 			'bx--skeleton': skeleton
 		}">
-		<button
+		<div
 			type="button"
 			#dropdownButton
 			class="bx--list-box__field"
@@ -44,8 +44,9 @@ import { DropdownService } from "./dropdown.service";
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
 			(blur)="onBlur()"
-			(click)="toggleMenu()"
-			[disabled]="disabled">
+			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
+			[attr.disabled]="(disabled ? true : null)"
+			>
 			<span (click)="clearSelected()" *ngIf="type === 'multi' && view.getSelected() && view.getSelected().length"
 				class="bx--list-box__selection bx--list-box__selection--multi">
 				{{view.getSelected().length}}
@@ -66,7 +67,7 @@ import { DropdownService } from "./dropdown.service";
 					</svg>
 				</div>
 			</div>
-		</button>
+		</div>
 		<div
 			#dropdownMenu
 			[ngClass]="{
