@@ -144,6 +144,7 @@
   },
   "dependencies": {
     "@carbon/utils-position": "1.0.0",
+    "element-closest-polyfill": "^1.0.0",
     "flatpickr": "4.6.1"
   }
 }
