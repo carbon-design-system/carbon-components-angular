@@ -130,7 +130,7 @@ export class Search implements ControlValueAccessor {
 	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange = new EventEmitter<string>();
-	@Output() opened = new EventEmitter<boolean>();
+	@Output() open = new EventEmitter<boolean>();
 	/**
 	 * Emits an event when the clear button is clicked.
 	 */
@@ -210,7 +210,7 @@ export class Search implements ControlValueAccessor {
 
 	openSearch() {
 		this.active = true;
-		this.opened.emit(this.active);
+		this.open.emit(this.active);
 		setTimeout(() => this.inputRef.nativeElement.focus());
 	}
 
@@ -231,7 +231,7 @@ export class Search implements ControlValueAccessor {
 			this.inputRef.nativeElement.value === "" &&
 			event.relatedTarget === null) {
 			this.active = false;
-			this.opened.emit(this.active);
+			this.open.emit(this.active);
 		}
 	}
 }
