@@ -20,14 +20,12 @@ import { FileItem } from "./file-item.interface";
 			buttonText="buttonText"
 			accept=".txt"
 			multiple="true"
-			(filesChange)="onFilesChange($event)"
 			[(ngModel)]="files">
 		</ibm-file-uploader>
 	`
 })
 class FileUploaderTest {
 	files = null;
-	onFilesChange(event) {}
 }
 
 describe("FileUploader", () => {
@@ -84,10 +82,9 @@ describe("FileUploader", () => {
 		expect(element.nativeElement.querySelector(".bx--file-input").getAttribute("accept")).toEqual(".txt");
 	});
 
-	it("should propagate the change in files back to the form and call onFilesChange", () => {
+	it("should propagate the change in files back to the form", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		wrapper = fixture.componentInstance;
-		spyOn(wrapper, "onFilesChange");
 		fixture.detectChanges();
 
 		const fileItem: FileItem = {
@@ -104,9 +101,7 @@ describe("FileUploader", () => {
 		expect(element
 			.nativeElement
 			.querySelector(".bx--file-container .bx--file-filename")
-			.textContent)
-			.toEqual("test-filename");
-		expect(wrapper.onFilesChange).toHaveBeenCalled();
+			.textContent).toEqual("test-filename");
 	});
 
 	it("should set bx--file--invalid class on invalid file items", () => {
