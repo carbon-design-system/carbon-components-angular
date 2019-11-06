@@ -88,6 +88,7 @@ export class SelectionTile {
 	keyboardInput(event) {
 		if (event.key === "Enter" || event.key === "Spacebar" || event.key === " ") {
 			this.selected = !this.selected;
+			this.input.nativeElement.dispatchEvent(new Event("change"));
 		}
 	}
 
