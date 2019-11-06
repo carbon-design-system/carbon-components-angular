@@ -271,7 +271,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 */
 	protected updateClassNames() {
 		if (!this.elementRef) { return; }
-		document.querySelector(".flatpickr-calendar").addEventListener("click", (event) => { event.stopPropagation(); });
 		// get all the possible flatpickrs in the document - we need to add classes to (potentially) all of them
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		const monthContainer = document.querySelectorAll(".flatpickr-month");
@@ -279,6 +278,10 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		const weekdayContainer = document.querySelectorAll(".flatpickr-weekday");
 		const daysContainer = document.querySelectorAll(".flatpickr-days");
 		const dayContainer = document.querySelectorAll(".flatpickr-day");
+		const openCalendarContainer = document.querySelectorAll(".flatpickr-calendar.open");
+
+		Array.from(openCalendarContainer)
+			.forEach(calendar => calendar.addEventListener("click", event => event.stopPropagation()));
 
 		// add classes to lists of elements
 		const addClassIfNotExists = (classname: string, elementList: NodeListOf<Element>) => {
