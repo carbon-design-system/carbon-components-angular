@@ -58,6 +58,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             <div ibmCol [columnNumbers]="{'lg':12, 'md':12, 'sm':12}">
                 <ibm-table-container>
                     <ibm-table
+                        class="data-table"
                         [skeleton]="skeletonStateTable"
                         [model]="model"
                         size="lg"
@@ -74,7 +75,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             margin-bottom: 80px;
         }
 
-        ibm-table {
+        .data-table {
             width: 100%;
         }
 

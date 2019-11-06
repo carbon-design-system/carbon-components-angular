@@ -22,7 +22,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
         </div>
         <div ibmRow>
             <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}" class="multi-selection">
-                <button ibmButton (click)="resetFilters()">Reset Filters</button>
+                <button ibmButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
                 <fieldset class="bx--fieldset">
                     <legend class="bx--label">Radio button label</legend>
                     <ibm-radio-group
@@ -64,6 +64,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             <div ibmCol [columnNumbers]="{'lg':10, 'md':10, 'sm':3}" class="data-table">
                 <ibm-table-container>
                     <ibm-table
+                        class="data-table"
                         [model]="model"
                         size="lg"
                         [showSelectionColumn]="false">
@@ -79,11 +80,11 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             margin-bottom: 80px;
         }
 
-        button {
+        .reset-button {
             margin-bottom: 20px;
         }
 
-        ibm-table {
+        .data-table {
             width: 100%;
         }
     `

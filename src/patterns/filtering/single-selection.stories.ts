@@ -17,9 +17,13 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
         </div>
         <div ibmRow>
             <div ibmCol [columnNumbers]="{'lg':3, 'md':3, 'sm':3}">
-                <label ibmText>
+                <label ibmText class="dropdown-label">
                     Filter by:
-                    <ibm-dropdown placeholder="Type" inline="true" (selected)="onSelected($event)">
+                    <ibm-dropdown
+                        class="filter-dropdown"
+                        placeholder="Type"
+                        inline="true"
+                        (selected)="onSelected($event)">
                         <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
                     </ibm-dropdown>
                 </label>
@@ -29,6 +33,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             <div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
                 <ibm-table-container>
                     <ibm-table
+                    class="data-table"
                         [model]="model"
                         size="lg"
                         [showSelectionColumn]="false">
@@ -44,17 +49,17 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             margin-bottom: 80px;
         }
 
-        label {
+        .dropdown-label {
             display: flex;
             align-items: center;
             flex-direction-row;
         }
 
-        ibm-table {
+        .data-table {
             width: 100%;
         }
         
-        ibm-dropdown {
+        .filter-dropdown {
             flex-grow: 1;
             margin-left: 20px;
         }
