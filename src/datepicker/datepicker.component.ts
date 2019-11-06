@@ -271,7 +271,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 */
 	protected updateClassNames() {
 		if (!this.elementRef) { return; }
-
+		document.querySelector(".flatpickr-calendar").addEventListener("click", (event) => { event.stopPropagation(); });
 		// get all the possible flatpickrs in the document - we need to add classes to (potentially) all of them
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		const monthContainer = document.querySelectorAll(".flatpickr-month");
