@@ -1,5 +1,3 @@
-import { Scroll } from "@angular/router";
-
 /**
  * A custom structure that represents a custom event to emit when scroll.
  *
@@ -7,7 +5,7 @@ import { Scroll } from "@angular/router";
  * export interface ScrollCustomEvent {
  * 	atTop: boolean;
  * 	atBottom: boolean;
- * 	event: Scroll;
+ * 	event: Event;
  * }
  * ```
  */
@@ -23,5 +21,5 @@ export interface ScrollCustomEvent {
 	/**
 	 * Complete Scroll event available to get any more data required
 	 */
-	event: Scroll;
+	event: Event;
 }
