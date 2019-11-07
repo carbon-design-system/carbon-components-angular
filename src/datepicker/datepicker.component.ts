@@ -278,10 +278,12 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 		const weekdayContainer = document.querySelectorAll(".flatpickr-weekday");
 		const daysContainer = document.querySelectorAll(".flatpickr-days");
 		const dayContainer = document.querySelectorAll(".flatpickr-day");
-		const openCalendarContainer = document.querySelectorAll(".flatpickr-calendar.open");
 
-		Array.from(openCalendarContainer)
-			.forEach(calendar => calendar.addEventListener("click", event => event.stopPropagation()));
+		Array.from(calendarContainer)
+			.forEach(calendar => {
+				calendar.removeEventListener("click", event => event.stopPropagation());
+				calendar.addEventListener("click", event => event.stopPropagation());
+			});
 
 		// add classes to lists of elements
 		const addClassIfNotExists = (classname: string, elementList: NodeListOf<Element>) => {
