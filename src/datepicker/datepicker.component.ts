@@ -281,8 +281,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 
 		Array.from(calendarContainer)
 			.forEach(calendar => {
-				calendar.removeEventListener("click", event => event.stopPropagation());
-				calendar.addEventListener("click", event => event.stopPropagation());
+				calendar.removeEventListener("click", this.preventCalendarClose);
+				calendar.addEventListener("click", this.preventCalendarClose);
 			});
 
 		// add classes to lists of elements
@@ -362,6 +362,8 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			}
 		}
 	}
+
+	protected preventCalendarClose = event => event.stopPropagation();
 
 	protected doSelect(selectedValue: (Date | string)[]) {
 		this.valueChange.emit(selectedValue);
