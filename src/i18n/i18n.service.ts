@@ -3,12 +3,13 @@ import {
 	BehaviorSubject,
 	Observable,
 	isObservable,
-	iif
+	iif,
+	Subscription
 } from "rxjs";
 import { map } from "rxjs/operators";
 import { merge } from "../utils/object";
 
-const EN = require("./en.json");
+import EN from "./en";
 
 /**
  * Takes the `Observable` returned from `i18n.get` and an object of variables to replace.
@@ -87,6 +88,11 @@ export class Overridable {
 	 * Our base non-overridden translation.
 	 */
 	protected baseTranslation: Observable<string> = this.i18n.get(this.path);
+
+	/**
+	 * Subscription to the observable provided as an override (if any)
+	 */
+	protected subscription: Subscription;
 	/**
 	 * A boolean to flip between overridden and non-overridden states.
 	 */
@@ -107,9 +113,17 @@ export class Overridable {
 	 */
 	override(value: string | Observable<string>) {
 		this.isOverridden = true;
+		// To ensure that there are not multiple subscriptions created for the same observable, we
+		// unsubscribe if a subscription already exists for an observable before creating a new one.
+		if (this.subscription) {
+			this.subscription.unsubscribe();
+			this.subscription = null;
+		}
+
 		this._value = value;
+
 		if (isObservable(value)) {
-			value.subscribe(v => {
+			this.subscription = value.subscribe(v => {
 				this.$override.next(v);
 			});
 		} else {
@@ -153,7 +167,7 @@ export class I18n {
 	 *
 	 * @param path optional, looks like `"NOTIFICATION.CLOSE_BUTTON"`
 	 */
-	public get(path?: string) {
+	public get(path?: string): any {
 		if (!path) {
 			return this.translationStrings;
 		}
@@ -221,7 +235,7 @@ export class I18n {
 				throw new Error(`no key ${segment} at ${path}`);
 			}
 		}
-		return value;
+		return value as any;
 	}
 
 	/**
