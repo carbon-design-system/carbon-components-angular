@@ -116,6 +116,8 @@ describe("Breadcrumb", () => {
 		const breadcrumbItemElements = testFixture.debugElement.queryAll(By.directive(BreadcrumbItemComponent));
 		expect(breadcrumbItemElements).not.toBeNull();
 		expect(breadcrumbItemElements.length).toBe(4); // 4 because one is created for the overflow menu
+		console.log(JSON.stringify(breadcrumbItemElements[1].name));
+		breadcrumbItemElements[1].children.forEach(child => console.log("child", child.name));
 		expect(breadcrumbItemElements[1].children[0].name).toEqual("ibm-overflow-menu");
 	});
 });
