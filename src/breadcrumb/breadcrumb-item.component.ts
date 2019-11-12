@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
 	template: `
 	<a
 		class="bx--link"
-		href="{{skeleton ? '/#' : href}}"
+		[href]="(skeleton ? '/#' : href)"
 		(click)="navigate($event)"
 		[attr.aria-current]="(current ? ariaCurrent : null)"
 		*ngIf="skeleton || href; else content">
