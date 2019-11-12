@@ -17,7 +17,7 @@ import { Router } from "@angular/router";
 		[href]="(skeleton ? '/#' : href)"
 		(click)="navigate($event)"
 		[attr.aria-current]="(current ? ariaCurrent : null)"
-		*ngIf="skeleton || href; else content">
+		*ngIf="useTemplate(); else content">
 		<ng-container *ngTemplateOutlet="content"></ng-container>
 	</a>
 	<ng-template #content>
