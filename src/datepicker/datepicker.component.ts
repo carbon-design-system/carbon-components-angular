@@ -196,6 +196,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
 			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
+			this.flatpickrInstance._positionCalendar();
 
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
@@ -209,6 +210,13 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	@HostListener("focusin")
 	onFocus() {
 		this.onTouched();
+	}
+
+	@HostListener("document:scroll")
+	onScroll() {
+		if (this.isFlatpickrLoaded()) {
+			this.flatpickrInstance._positionCalendar();
+		}
 	}
 
 	/**
