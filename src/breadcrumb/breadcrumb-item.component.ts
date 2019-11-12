@@ -62,6 +62,10 @@ export class BreadcrumbItemComponent {
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 
+	useTemplate() {
+		return this.skeleton || this._href || this.route;
+	}
+
 	navigate(event) {
 		if (this.router && this.route) {
 			event.preventDefault();
