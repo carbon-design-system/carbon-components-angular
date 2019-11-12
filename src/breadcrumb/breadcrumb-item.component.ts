@@ -58,7 +58,7 @@ export class BreadcrumbItemComponent {
 
 	@HostBinding("class.bx--breadcrumb-item") itemClass = true;
 
-	protected _href = "javascript:void(0)";
+	protected _href;
 
 	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
 
