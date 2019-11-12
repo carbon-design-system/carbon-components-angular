@@ -5,7 +5,8 @@ set -e # exit with nonzero exit code if anything fails
 rm -rf dist
 
 # run the angular/ng-packagr build
-ng build
+# TODO enable with v4
+# ng build
 
 # run the classic buld - TODO remove with v4/Carbon v11
 gulp build
