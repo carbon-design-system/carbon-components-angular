@@ -11,7 +11,7 @@ import {
 	OnChanges,
 	SimpleChanges,
 	AfterViewChecked,
-	OnInit
+	AfterViewInit
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -87,7 +87,7 @@ import { Subscription } from "rxjs";
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, OnInit {
+export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, AfterViewInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -183,17 +183,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, OnIni
 
 	constructor(protected elementRef: ElementRef) { }
 
-	ngOnInit() {
-		const scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
-		this.scrollSubscription = scrollObservable.subscribe((event: any) => {
-			if (!isVisibleInContainer(this.elementRef.nativeElement, event.target)) {
-				this.flatpickrInstance.close();
-			} else {
-				this.flatpickrInstance._positionCalendar();
-			}
-		});
-	}
-
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.isFlatpickrLoaded()) {
 			let dates = this.flatpickrInstance.selectedDates;
@@ -204,6 +193,17 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, OnIni
 			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
 			this.setDateValues(dates);
 		}
+	}
+
+	ngAfterViewInit() {
+		const scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
+		this.scrollSubscription = scrollObservable.subscribe((event: any) => {
+			if (!isVisibleInContainer(this.elementRef.nativeElement, event.target)) {
+				this.flatpickrInstance.close();
+			} else {
+				this.flatpickrInstance._positionCalendar();
+			}
+		});
 	}
 
 	// because the actual view may be delayed in loading (think projection into a tab pane)
