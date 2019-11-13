@@ -18,7 +18,7 @@ import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import { scrollableParentsObservable, isVisibleInContainer, isScrollableElement } from "../utils/scroll";
-import { Subscription } from 'rxjs';
+import { Subscription } from "rxjs";
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -227,7 +227,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, OnIni
 	onFocus() {
 		this.onTouched();
 	}
-	
+
 	/**
 	 * Writes a value from the model to the component. Expects the value to be `null` or `(Date | string)[]`
 	 * @param value value received from the model
