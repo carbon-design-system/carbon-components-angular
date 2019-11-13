@@ -13,6 +13,7 @@ gulp build
 ngc -p tsconfig-aot.json
 webpack --config webpack.build.js
 rm -rf dist/src dist/waste demo/bundle/documentation
+cp README.md package.json ./dist
 
 # move/generate/update meta files into dist
 gulp buildMeta
