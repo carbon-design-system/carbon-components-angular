@@ -10,12 +10,15 @@ import {
 	TemplateRef,
 	OnChanges,
 	SimpleChanges,
-	AfterViewChecked
+	AfterViewChecked,
+	OnInit
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
+import { scrollableParentsObservable, isVisibleInContainer, isScrollableElement } from "../utils/scroll";
+import { Subscription } from 'rxjs';
 
 /**
  * [See demo](../../?path=/story/date-picker--single)
@@ -84,7 +87,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 	],
 	encapsulation: ViewEncapsulation.None
 })
-export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
+export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, OnInit {
 	private static datePickerCount = 0;
 
 	/**
@@ -176,7 +179,20 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 
 	protected flatpickrInstance = null;
 
+	protected scrollSubscription: Subscription = new Subscription();
+
 	constructor(protected elementRef: ElementRef) { }
+
+	ngOnInit() {
+		const scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
+		this.scrollSubscription = scrollObservable.subscribe((event: any) => {
+			if (!isVisibleInContainer(this.elementRef.nativeElement, event.target)) {
+				this.flatpickrInstance.close();
+			} else {
+				this.flatpickrInstance._positionCalendar();
+			}
+		});
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.isFlatpickrLoaded()) {
@@ -211,14 +227,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	onFocus() {
 		this.onTouched();
 	}
-
-	@HostListener("document:scroll")
-	onScroll() {
-		if (this.isFlatpickrLoaded()) {
-			this.flatpickrInstance._positionCalendar();
-		}
-	}
-
+	
 	/**
 	 * Writes a value from the model to the component. Expects the value to be `null` or `(Date | string)[]`
 	 * @param value value received from the model
@@ -248,6 +257,7 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	ngOnDestroy() {
 		if (!this.isFlatpickrLoaded()) { return; }
 		this.flatpickrInstance.destroy();
+		this.scrollSubscription.unsubscribe();
 	}
 
 	/**
