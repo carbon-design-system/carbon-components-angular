@@ -198,10 +198,12 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	ngAfterViewInit() {
 		const scrollObservable = scrollableParentsObservable(this.elementRef.nativeElement);
 		this.scrollSubscription = scrollObservable.subscribe((event: any) => {
-			if (!isVisibleInContainer(this.elementRef.nativeElement, event.target)) {
-				this.flatpickrInstance.close();
-			} else {
-				this.flatpickrInstance._positionCalendar();
+			if (this.isFlatpickrLoaded()) {
+				if (!isVisibleInContainer(this.elementRef.nativeElement, event.target)) {
+					this.flatpickrInstance.close();
+				} else {
+					this.flatpickrInstance._positionCalendar();
+				}
 			}
 		});
 	}
