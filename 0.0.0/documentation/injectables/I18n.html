@@ -173,7 +173,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/i18n/i18n.service.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/i18n/i18n.service.ts:170</a></div>
                             </td>
                         </tr>
 
@@ -252,7 +252,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/i18n/i18n.service.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/i18n/i18n.service.ts:182</a></div>
                             </td>
                         </tr>
 
@@ -330,7 +330,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/i18n/i18n.service.ts:185</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/i18n/i18n.service.ts:199</a></div>
                             </td>
                         </tr>
 
@@ -408,7 +408,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/i18n/i18n.service.ts:232</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/i18n/i18n.service.ts:246</a></div>
                             </td>
                         </tr>
 
@@ -486,7 +486,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/i18n/i18n.service.ts:215</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/i18n/i18n.service.ts:229</a></div>
                             </td>
                         </tr>
 
@@ -560,7 +560,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/i18n/i18n.service.ts:206</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/i18n/i18n.service.ts:220</a></div>
                             </td>
                         </tr>
 
@@ -660,7 +660,7 @@ are a better choice)</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/i18n/i18n.service.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/i18n/i18n.service.ts:154</a></div>
                             </td>
                         </tr>
 
@@ -748,7 +748,7 @@ are a better choice)</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/i18n/i18n.service.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/i18n/i18n.service.ts:147</a></div>
                             </td>
                         </tr>
 
@@ -782,7 +782,7 @@ are a better choice)</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/i18n/i18n.service.ts:131</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/i18n/i18n.service.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -800,7 +800,8 @@ import {
 	BehaviorSubject,
 	Observable,
 	isObservable,
-	iif
+	iif,
+	Subscription
 } from &quot;rxjs&quot;;
 import { map } from &quot;rxjs/operators&quot;;
 import { merge } from &quot;../utils/object&quot;;
@@ -884,6 +885,11 @@ export class Overridable {
 	 * Our base non-overridden translation.
 	 */
 	protected baseTranslation: Observable&lt;string&gt; &#x3D; this.i18n.get(this.path);
+
+	/**
+	 * Subscription to the observable provided as an override (if any)
+	 */
+	protected subscription: Subscription;
 	/**
 	 * A boolean to flip between overridden and non-overridden states.
 	 */
@@ -904,9 +910,17 @@ export class Overridable {
 	 */
 	override(value: string | Observable&lt;string&gt;) {
 		this.isOverridden &#x3D; true;
+		// To ensure that there are not multiple subscriptions created for the same observable, we
+		// unsubscribe if a subscription already exists for an observable before creating a new one.
+		if (this.subscription) {
+			this.subscription.unsubscribe();
+			this.subscription &#x3D; null;
+		}
+
 		this._value &#x3D; value;
+
 		if (isObservable(value)) {
-			value.subscribe(v &#x3D;&gt; {
+			this.subscription &#x3D; value.subscribe(v &#x3D;&gt; {
 				this.$override.next(v);
 			});
 		} else {

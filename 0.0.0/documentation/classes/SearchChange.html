@@ -333,6 +333,7 @@ export class Search implements ControlValueAccessor {
 	 * Emits an event when value is changed.
 	 */
 	@Output() valueChange &#x3D; new EventEmitter&lt;string&gt;();
+	@Output() open &#x3D; new EventEmitter&lt;boolean&gt;();
 	/**
 	 * Emits an event when the clear button is clicked.
 	 */
@@ -412,6 +413,7 @@ export class Search implements ControlValueAccessor {
 
 	openSearch() {
 		this.active &#x3D; true;
+		this.open.emit(this.active);
 		setTimeout(() &#x3D;&gt; this.inputRef.nativeElement.focus());
 	}
 
@@ -432,6 +434,7 @@ export class Search implements ControlValueAccessor {
 			this.inputRef.nativeElement.value &#x3D;&#x3D;&#x3D; &quot;&quot; &amp;&amp;
 			event.relatedTarget &#x3D;&#x3D;&#x3D; null) {
 			this.active &#x3D; false;
+			this.open.emit(this.active);
 		}
 	}
 }
