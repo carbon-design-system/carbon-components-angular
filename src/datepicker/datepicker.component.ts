@@ -212,8 +212,6 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked, After
 	ngAfterViewChecked() {
 		if (!this.isFlatpickrLoaded()) {
 			this.flatpickrInstance = flatpickr(`#${this.id}`, this.flatpickrOptions);
-			this.flatpickrInstance._positionCalendar();
-
 			// if (and only if) the initialization succeeded, we can set the date values
 			if (this.isFlatpickrLoaded()) {
 				if (this.value.length > 0) {
