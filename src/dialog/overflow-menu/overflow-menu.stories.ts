@@ -69,7 +69,7 @@ storiesOf("Overflow Menu", module)
 	.add("With links", () => ({
 		template: `
 			<div>
-				<h1 style="margin-bottom:1rem">Bottom placement</h1>
+				<h1 style="margin-bottom: 1rem">Bottom placement</h1>
 				<ibm-overflow-menu [flip]="flip" >
 					<ibm-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 						An example option that is really long to show what should be done to handle long text
