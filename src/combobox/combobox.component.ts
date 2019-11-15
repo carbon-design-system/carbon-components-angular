@@ -188,6 +188,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 */
 	@Output() selected = new EventEmitter<ListItem | ListItem[]>();
 	/**
+	 * Emits the text entered to combobox
+	 */
+	@Output() onInputChange = new EventEmitter<string>();
+	/**
 	 * Intended to be used to add items to the list.
 	 *
 	 * Emits an event that includes the current item list, the suggested index for the new item, and a simple ListItem
@@ -402,6 +406,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Sets the list group filter, and manages single select item selection.
 	 */
 	public onSearch(searchString) {
+		// Emits the searched value
+		this.onInputChange.emit(searchString);
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
