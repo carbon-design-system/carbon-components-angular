@@ -47,7 +47,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onValueChange($event)">
+						(valueChange)="onValueChange($event)"
+						(click)="flatpickrInstance.open()">
 					</ibm-date-picker-input>
 				</div>
 
@@ -63,7 +64,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)">
+						(valueChange)="onRangeValueChange($event)"
+						(click)="flatpickrInstance.open()">
 					</ibm-date-picker-input>
 				</div>
 			</div>
