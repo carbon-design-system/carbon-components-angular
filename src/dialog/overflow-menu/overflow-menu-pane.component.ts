@@ -4,6 +4,7 @@ import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
 import { I18n } from "./../../i18n/i18n.module";
 import { ExperimentalService } from "./../../experimental.module";
+import { ElementService } from "./../../utils/utils.module";
 
 /**
  * Extend the `Dialog` component to create an overflow menu.
@@ -30,8 +31,12 @@ import { ExperimentalService } from "./../../experimental.module";
 	`
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {
-	constructor(protected elementRef: ElementRef, protected i18n: I18n, protected experimental: ExperimentalService) {
-		super(elementRef);
+	constructor(
+		protected elementRef: ElementRef,
+		protected i18n: I18n,
+		protected experimental: ExperimentalService,
+		protected elementService: ElementService) {
+		super(elementRef, elementService);
 	}
 
 	onDialogInit() {

@@ -1,13 +1,13 @@
-import { Injectable, ElementRef } from "@angular/core";
+import { Injectable, ElementRef, OnDestroy } from "@angular/core";
 import { PlaceholderService } from "./../placeholder/placeholder.module";
-import { fromEvent, Subscription } from "rxjs";
-import { throttleTime } from "rxjs/operators";
+import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
+import { AnimationFrameService } from "./../utils/utils.module";
 
 const defaultOffset = { top: 0, left: 0 };
 
 @Injectable()
-export class DropdownService {
+export class DropdownService implements OnDestroy {
 	public set offset(value: { top?: number, left?: number }) {
 		this._offset = Object.assign({}, defaultOffset, value);
 	}
@@ -21,14 +21,17 @@ export class DropdownService {
 	protected menuInstance: HTMLElement;
 
 	/**
-	 * Maintains an Event Observable Subscription for tracking window resizes.
-	 * Window resizing is tracked if the `Dropdown` is appended to the body, otherwise it does not need to be supported.
+	 * Maintains an Event Observable Subscription for the global requestAnimationFrame.
+	 * requestAnimationFrame is tracked only if the `Dropdown` is appended to the body otherwise we don't need it
 	 */
-	protected resize: Subscription;
+	protected animationFrameSubscription: Subscription = new Subscription();
 
 	protected _offset = defaultOffset;
 
-	constructor(protected placeholderService: PlaceholderService) {}
+	constructor(
+		protected placeholderService: PlaceholderService,
+		protected animationFrameService: AnimationFrameService
+	) {}
 
 	/**
 	 * Appends the menu to the body, or a `ibm-placeholder` (if defined)
@@ -56,10 +59,9 @@ export class DropdownService {
 
 		this.menuInstance = dropdownWrapper;
 
-		this.positionDropdown(parentRef, dropdownWrapper);
-		this.resize = fromEvent(window, "resize")
-			.pipe(throttleTime(100))
-			.subscribe(() => this.positionDropdown(parentRef, dropdownWrapper));
+		this.animationFrameSubscription = this.animationFrameService.tick.subscribe(() => {
+			this.positionDropdown(parentRef, dropdownWrapper);
+		});
 
 		return dropdownWrapper;
 	}
@@ -77,7 +79,7 @@ export class DropdownService {
 		this.menuInstance = null;
 		menu.style.display = "none";
 		hostRef.appendChild(menu);
-		this.resize.unsubscribe();
+		this.animationFrameSubscription.unsubscribe();
 		if (this.placeholderService.hasPlaceholderRef() && this.placeholderService.hasElement(instance)) {
 			this.placeholderService.removeElement(instance);
 		} else if (document.body.contains(instance)) {
@@ -91,6 +93,10 @@ export class DropdownService {
 	 */
 	updatePosition(parentRef) {
 		this.positionDropdown(parentRef, this.menuInstance);
+	}
+
+	ngOnDestroy() {
+		this.animationFrameSubscription.unsubscribe();
 	}
 
 	protected positionDropdown(parentRef, menuRef) {
