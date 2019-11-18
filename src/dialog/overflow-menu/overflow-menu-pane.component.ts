@@ -40,7 +40,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	}
 
 	onDialogInit() {
-		this.addGap["bottom"] = pos => {
+		const positionOverflowMenu = pos => {
 			let offset;
 			if (this.experimental.isExperimental) {
 				/*
@@ -57,7 +57,11 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				return position.addOffset(pos, 0, -offset);
 			}
 			return position.addOffset(pos, 0, offset);
-		};
+		}
+		
+		this.addGap["bottom"] = positionOverflowMenu;
+
+		this.addGap["top"] = positionOverflowMenu;
 
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;

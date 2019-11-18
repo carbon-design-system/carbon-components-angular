@@ -11,7 +11,17 @@ export interface BreadcrumbItem {
 	/**
 	 * Href for the breadcrumb item.
 	 */
-	href: string;
+	href?: string;
+	/**
+	 * Array of commands to send to the router when the link is activated
+	 * See: https://angular.io/api/router/Router#navigate
+	 */
+	route?: any[];
+	/**
+	 * Router options. Used in conjunction with `route`
+	 * See: https://angular.io/api/router/Router#navigate
+	 */
+	routeExtras?: any;
 	/**
 	 * Optional `TemplateRef` for the breadcrumb item. Receives the content as an `$implicit` template variable
 	 */
