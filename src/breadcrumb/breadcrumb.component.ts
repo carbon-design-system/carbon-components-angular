@@ -4,11 +4,16 @@ import {
 	ContentChildren,
 	QueryList,
 	AfterContentInit,
-	TemplateRef
+	TemplateRef,
+	Optional,
+	Output,
+	EventEmitter
 } from "@angular/core";
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
+import { DomSanitizer } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 const MINIMUM_OVERFLOW_THRESHOLD = 4;
 
@@ -33,8 +38,11 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			<ibm-breadcrumb-item
 				*ngFor="let item of items"
 				[href]="item.href"
+				[route]="item.route"
+				[routeExtras]="item.routeExtras"
 				[current]="item.current"
-				[ariaCurrent]="item.ariaCurrent">
+				[ariaCurrent]="item.ariaCurrent"
+				(navigation)="navigation.emit($event)">
 				<ng-container *ngIf="!item.template">{{item.content}}</ng-container>
 				<ng-template
 					*ngIf="item.template"
@@ -46,8 +54,11 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 		<ng-template [ngIf]="shouldShowOverflow">
 			<ibm-breadcrumb-item
 				[href]="first?.href"
+				[route]="first?.route"
+				[routeExtras]="first?.routeExtras"
 				[current]="first?.current"
-				[ariaCurrent]="first?.ariaCurrent">
+				[ariaCurrent]="first?.ariaCurrent"
+				(navigation)="navigation.emit($event)">
 				<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>
 				<ng-template
 					*ngIf="first?.template"
@@ -61,6 +72,7 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 						*ngFor="let item of overflowItems">
 						<a class="bx--overflow-menu-options__btn"
 							href="{{item?.href}}"
+							(click)="navigate($event, item)"
 							style="text-decoration: none;">
 							<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>
 							<ng-template
@@ -74,8 +86,11 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item
 				[href]="secondLast?.href"
+				[route]="secondLast?.route"
+				[routeExtras]="secondLast?.routeExtras"
 				[current]="secondLast?.current"
-				[ariaCurrent]="secondLast?.ariaCurrent">
+				[ariaCurrent]="secondLast?.ariaCurrent"
+				(navigation)="navigation.emit($event)">
 				<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>
 				<ng-template
 					*ngIf="secondLast?.template"
@@ -85,8 +100,11 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 			</ibm-breadcrumb-item>
 			<ibm-breadcrumb-item
 				[href]="last?.href"
+				[route]="last?.route"
+				[routeExtras]="last?.routeExtras"
 				[current]="last?.current"
-				[ariaCurrent]="last?.ariaCurrent">
+				[ariaCurrent]="last?.ariaCurrent"
+				(navigation)="navigation.emit($event)">
 				<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>
 				<ng-template
 					*ngIf="last?.template"
@@ -105,9 +123,6 @@ export class Breadcrumb implements AfterContentInit {
 	@Input() noTrailingSlash = false;
 
 	@Input() ariaLabel: string;
-
-	protected _threshold: number;
-	protected _skeleton = false;
 
 	@Input()
 	set skeleton(value: any) {
@@ -131,9 +146,10 @@ export class Breadcrumb implements AfterContentInit {
 		return this._threshold;
 	}
 
-	ngAfterContentInit() {
-		this.updateChildren();
-	}
+	/**
+	 * Emits the navigation status promise when the link is activated
+	 */
+	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
 	get shouldShowContent(): boolean {
 		return !this.items;
@@ -160,6 +176,23 @@ export class Breadcrumb implements AfterContentInit {
 
 	get last(): BreadcrumbItem {
 		return this.shouldShowOverflow ? this.items[this.items.length - 1] : null;
+	}
+
+	protected _threshold: number;
+	protected _skeleton = false;
+
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+
+	ngAfterContentInit() {
+		this.updateChildren();
+	}
+
+	navigate(event, item: BreadcrumbItem) {
+		if (this.router && item.route) {
+			event.preventDefault();
+			const status = this.router.navigate(item.route, item.routeExtras);
+			this.navigation.emit(status);
+		}
 	}
 
 	protected updateChildren() {

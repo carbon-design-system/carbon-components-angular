@@ -5,7 +5,7 @@ import {
 	EventEmitter
 } from "@angular/core";
 
-import { TableModel } from "../table.module";
+import { TableModel } from "../table-model.class";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
@@ -26,8 +26,13 @@ import { Observable } from "rxjs";
 		<tr>
 			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows()"></th>
 			<th
+				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
+				style="width: 0;">
+				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
+			</th>
+			<th
 				ibmTableHeadCheckbox
-				*ngIf="!skeleton && showSelectionColumn"
+				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				[checked]="selectAllCheckbox"
 				[indeterminate]="selectAllCheckboxSomeSelected"
 				[ariaLabel]="getCheckboxHeaderLabel()"
@@ -46,7 +51,7 @@ import { Observable } from "rxjs";
 					[ngStyle]="column.style">
 				</th>
 			</ng-container>
-			<th *ngIf="!skeleton && stickyHeader" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
 				<!--
 					Scrollbar pushes body to the left so this header column is added to push
 					the title bar the same amount and keep the header and body columns aligned.
@@ -61,6 +66,8 @@ export class TableHead {
 	@Input() model: TableModel;
 
 	@Input() showSelectionColumn = true;
+
+	@Input() enableSingleSelect = false;
 
 	@Input() selectAllCheckboxSomeSelected = false;
 

@@ -39,6 +39,7 @@ import { filter } from "rxjs/operators";
 		</div>
 		<div
 			class="bx--combo-box bx--list-box"
+			[attr.data-invalid]="(invalid ? true : null)"
 			[ngClass]="{'bx--multi-select' : type === 'multi'}">
 			<div
 				[attr.aria-expanded]="open"
@@ -49,6 +50,10 @@ import { filter } from "rxjs/operators";
 				aria-label="close menu"
 				aria-haspopup="true"
 				(click)="toggleDropdown()">
+				<ibm-icon-warning-filled16
+					*ngIf="invalid"
+					class="bx--list-box__invalid-icon">
+				</ibm-icon-warning-filled16>
 				<div
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
@@ -91,6 +96,13 @@ import { filter } from "rxjs/operators";
 				*ngIf="open">
 				<ng-content></ng-content>
 			</div>
+		</div>
+		<div *ngIf="invalid">
+			<div *ngIf="!isTemplate(invalidText)" class="bx--form-requirement">{{ invalidText }}</div>
+			<ng-template
+				*ngIf="isTemplate(invalidText)"
+				[ngTemplateOutlet]="invalidText">
+			</ng-template>
 		</div>
 	`,
 	providers: [
@@ -151,6 +163,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Sets the optional helper text.
 	 */
 	@Input() helperText: string | TemplateRef<any>;
+	/**
+	 * Set to `true` for invalid state.
+	 */
+	@Input() invalid = false;
+	/**
+	 * Value displayed if dropdown is in invalid state.
+	 */
+	@Input() invalidText: string | TemplateRef<any>;
 	/**
 	 * Set to `true` to disable combobox.
 	 */
@@ -442,7 +462,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 		const selected = this.view.getSelected();
 		if (this.type === "multi" ) {
 			this.updatePills();
-		} else if (selected) {
+		} else if (selected && selected[0]) {
 			this.selectedValue = selected[0].content;
 			this.propagateChangeCallback(selected[0]);
 		}
