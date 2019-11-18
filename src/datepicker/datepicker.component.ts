@@ -48,7 +48,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
 						(valueChange)="onValueChange($event)"
-						(click)="flatpickrInstance.open()">
+						(click)="openFlatpickr()">
 					</ibm-date-picker-input>
 				</div>
 
@@ -65,7 +65,7 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
 						(valueChange)="onRangeValueChange($event)"
-						(click)="flatpickrInstance.open()">
+						(click)="openFlatpickr()">
 					</ibm-date-picker-input>
 				</div>
 			</div>
@@ -266,6 +266,12 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			this.setDateValues([this.flatpickrInstance.selectedDates[0], date]);
 			this.doSelect(this.flatpickrInstance.selectedDates);
 		}
+	}
+
+	// Needs to be opened like this when calendar is clicked to avoid the error:
+	// Property 'flatpickrInstance' is protected and only accessible within class 'DatePicker' and its subclasses.
+	openFlatpickr() {
+		this.flatpickrInstance.open();
 	}
 
 	/**
