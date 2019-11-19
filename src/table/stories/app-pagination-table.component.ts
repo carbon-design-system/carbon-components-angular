@@ -27,7 +27,12 @@ import { TableItem } from "../table-item.class";
 			</ibm-label>
 		</ng-template>
 
-		<ibm-table style="display: block; width: 650px;" [model]="model" (sort)="paginationSort($event)"></ibm-table>
+		<ibm-table
+			style="display: block; width: 650px;"
+			[model]="model"
+			(sort)="paginationSort($event)"
+			[stickyHeader]="stickyHeader">
+		</ibm-table>
 		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
 	`
 })
@@ -41,6 +46,8 @@ export class PaginationTableStory implements OnInit {
 		this.model.totalDataLength = value;
 	}
 
+	@Input() stickyHeader = false;
+	
 	@ViewChild("filter")
 	filter: TemplateRef<any>;
 	@ViewChild("filterableHeaderTemplate")
@@ -53,8 +60,7 @@ export class PaginationTableStory implements OnInit {
 		this.model.header = [
 			new TableHeaderItem({ data: "Very long title indeed" }),
 			new TableHeaderItem({
-				data: "Very long title indeed",
-				style: { "width": "auto" }
+				data: "Very long title indeed"
 			})
 		];
 

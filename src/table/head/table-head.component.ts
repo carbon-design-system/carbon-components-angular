@@ -2,10 +2,12 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	AfterViewInit
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
+import { getScrollbarWidth } from "../../utils/window-tools";
 import { I18n, Overridable } from "../../i18n/i18n.module";
 import { Observable } from "rxjs";
 
@@ -24,7 +26,8 @@ import { Observable } from "rxjs";
 	template: `
 	<ng-container *ngIf="model">
 		<tr>
-			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows()"></th>
+			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows() && !stickyHeader"></th>
+			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows() && stickyHeader" class="bx--table-expand-v2" style="padding-left: 2.5rem"></th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
 				style="width: 0;">
@@ -62,7 +65,7 @@ import { Observable } from "rxjs";
 	<ng-content></ng-content>
 	`
 })
-export class TableHead {
+export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
 
 	@Input() showSelectionColumn = true;
@@ -143,6 +146,10 @@ export class TableHead {
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
 	constructor(protected i18n: I18n) {}
+
+	ngAfterViewInit() {
+		this.scrollbarWidth = getScrollbarWidth();
+	}
 
 	onSelectAllCheckboxChange() {
 		if (!this.selectAllCheckbox) {

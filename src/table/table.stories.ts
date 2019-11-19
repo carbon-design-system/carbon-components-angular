@@ -62,7 +62,8 @@ const getProps = (more = {}) => {
 		showSelectionColumn: boolean("showSelectionColumn", true),
 		striped: boolean("striped", false),
 		sortable: boolean("sortable", true),
-		isDataGrid: boolean("Data grid keyboard interactions", true)
+		isDataGrid: boolean("Data grid keyboard interactions", true),
+		stickyHeader: boolean("stickyHeader", false)
 	}, more);
 };
 
@@ -103,6 +104,7 @@ storiesOf("Table", module).addDecorator(
 			</ibm-table-header>
 			<app-table
 				[model]="model"
+				[stickyHeader]="stickyHeader"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
@@ -181,6 +183,7 @@ storiesOf("Table", module).addDecorator(
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
 				[sortable]="sortable"
+				[stickyHeader]="stickyHeader"
 				[isDataGrid]="isDataGrid">
 			</app-table>
 		</ibm-table-container>
@@ -199,6 +202,7 @@ storiesOf("Table", module).addDecorator(
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[stickyHeader]="stickyHeader"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-expansion-table>
@@ -218,6 +222,7 @@ storiesOf("Table", module).addDecorator(
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[stickyHeader]="stickyHeader"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-custom-table>
@@ -237,6 +242,7 @@ storiesOf("Table", module).addDecorator(
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[stickyHeader]="stickyHeader"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-overflow-table>
@@ -253,7 +259,7 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
+			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model" [stickyHeader]="stickyHeader"></app-pagination-table>
 		</ibm-table-container>
 		`,
 		props: getProps({

@@ -19,6 +19,7 @@ import { Observable } from "rxjs";
 			<td
 				*ngIf="model.hasExpandableRows()"
 				ibmTableExpandButton
+				class="bx--table-expand-v2"
 				[expanded]="expanded"
 				[expandable]="expandable"
 				[skeleton]="skeleton"
@@ -28,6 +29,7 @@ import { Observable } from "rxjs";
 			<td
 				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
 				ibmTableCheckbox
+				class="bx--table-column-checkbox"
 				[size]="size"
 				[selected]="selected"
 				[label]="getCheckboxLabel()"
