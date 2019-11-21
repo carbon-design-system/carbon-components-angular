@@ -63,32 +63,29 @@ export interface PaginationTranslations {
 			<label class="bx--pagination__text" [for]="itemsPerPageSelectId">
 				{{itemsPerPageText.subject | async}}
 			</label>
-			<div class="bx--form-item">
-				<div class="bx--select bx--select--inline"
-					[ngClass]="{
-						'bx--select__item-count': isExperimental
-					}">
-					<select
-						[id]="itemsPerPageSelectId"
-						[(ngModel)]="itemsPerPage"
-						class="bx--select-input">
-						<option
-							class="bx--select-option"
-							*ngFor="let option of itemsPerPageOptions"
-							[value]="option">
-								{{ option }}
-						</option>
-					</select>
-					<svg
-						ibmIconChevronDown16
-						style="display: inherit"
-						class="bx--select__arrow"
-						aria-hidden="true"
-						[ariaLabel]="optionsListText.subject | async">
-					</svg>
-				</div>
+			<div class="bx--select bx--select--inline"
+				[ngClass]="{
+					'bx--select__item-count': isExperimental
+				}">
+				<select
+					[id]="itemsPerPageSelectId"
+					[(ngModel)]="itemsPerPage"
+					class="bx--select-input">
+					<option
+						class="bx--select-option"
+						*ngFor="let option of itemsPerPageOptions"
+						[value]="option">
+							{{ option }}
+					</option>
+				</select>
+				<svg
+					ibmIconChevronDown16
+					style="display: inherit"
+					class="bx--select__arrow"
+					aria-hidden="true"
+					[ariaLabel]="optionsListText.subject | async">
+				</svg>
 			</div>
-
 			<span *ngIf="!pagesUnknown" class="bx--pagination__text">
 				<span *ngIf="!isExperimental">|&nbsp;</span>
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
@@ -108,37 +105,36 @@ export interface PaginationTranslations {
 			[ngClass]="{
 				'bx--pagination--inline': !isExperimental
 			}">
-
-			<div *ngIf="!pageInputDisabled" class="bx--form-item">
-				<div class="bx--select bx--select--inline"
+			<div
+				*ngIf="!pageInputDisabled"
+				class="bx--select bx--select--inline"
 				[ngClass]="{
 					'bx--select__page-number' : isExperimental
 				}">
-					<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
-					<input
-						*ngIf="pageOptions.length > pageSelectThreshold"
-						style="padding-right: 1rem; margin-right: 1rem;"
-						[id]="currentPageSelectId"
-						type="number"
-						min="1"
-						[max]="pageOptions.length"
-						class="bx--select-input"
-						[(ngModel)]="currentPage">
-					<select
-						*ngIf="pageOptions.length <= pageSelectThreshold"
-						[id]="currentPageSelectId"
-						class="bx--select-input"
-						[(ngModel)]="currentPage">
-						<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
-					</select>
-					<svg
-						*ngIf="pageOptions.length <= 1000"
-						ibmIconChevronDown16
-						style="display: inherit;"
-						class="bx--select__arrow"
-						[ariaLabel]="optionsListText.subject | async">
-					</svg>
-				</div>
+				<label [for]="currentPageSelectId" class="bx--label bx--visually-hidden">{{itemsPerPageText.subject | async}}</label>
+				<input
+					*ngIf="pageOptions.length > pageSelectThreshold"
+					style="padding-right: 1rem; margin-right: 1rem;"
+					[id]="currentPageSelectId"
+					type="number"
+					min="1"
+					[max]="pageOptions.length"
+					class="bx--select-input"
+					[(ngModel)]="currentPage">
+				<select
+					*ngIf="pageOptions.length <= pageSelectThreshold"
+					[id]="currentPageSelectId"
+					class="bx--select-input"
+					[(ngModel)]="currentPage">
+					<option *ngFor="let page of pageOptions; let i = index;" class="bx--select-option" [value]="i + 1">{{i + 1}}</option>
+				</select>
+				<svg
+					*ngIf="pageOptions.length <= 1000"
+					ibmIconChevronDown16
+					style="display: inherit;"
+					class="bx--select__arrow"
+					[ariaLabel]="optionsListText.subject | async">
+				</svg>
 			</div>
 
 			<span *ngIf="!pageInputDisabled && !pagesUnknown" class="bx--pagination__text">
