@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	ViewChild,
-	EventEmitter
+	EventEmitter,
+	TemplateRef
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -24,7 +25,21 @@ const noop = () => {};
 			<strong class="bx--file--label">{{title}}</strong>
 			<p class="bx--label-description">{{description}}</p>
 			<div class="bx--file">
+				<label *ngIf="drop" class="bx--file-browse-btn">
+					<div
+						class="bx--file__drop-container"
+						[ngClass]="{'bx--file__drop-container--drag-over': dragOver}"
+						role="button"
+						(click)="fileInput.click()"
+						[attr.for]="fileUploaderId"
+						(dragover)="onDragOver($event)"
+						(dragleave)="onDragLeave($event)"
+						(drop)="onDrop($event)">
+						{{ dropText }}
+					</div>
+				</label>
 				<button
+					*ngIf="!drop"
 					type="button"
 					[ibmButton]="buttonType"
 					(click)="fileInput.click()"
@@ -40,7 +55,7 @@ const noop = () => {};
 					[id]="fileUploaderId"
 					[multiple]="multiple"
 					tabindex="-1"
-					(change)="onFilesAdded()"/>
+					(change)="onFilesAdded(fileList)"/>
 				<div class="bx--file-container">
 					<div *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
@@ -108,6 +123,14 @@ export class FileUploader {
 	 */
 	@Input() size: "sm" | "normal";
 	/**
+	 * Set to `true` to enable drag and drop.
+	 */
+	@Input() drop = false;
+	/**
+	 * Sets the text shown in drag and drop box.
+	 */
+	@Input() dropText: string | TemplateRef<any>;
+	/**
 	 * Provides a unique id for the underlying <input> node
 	 */
 	@Input() fileUploaderId = `file-uploader-${FileUploader.fileUploaderCount}`;
@@ -122,8 +145,15 @@ export class FileUploader {
 
 	@Output() filesChange = new EventEmitter<any>();
 
+	@Output() dropped = new EventEmitter<any>();
+
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
+
+	/**
+	 * Controls the state of the drag and drop file container
+	 */
+	protected dragOver = false;
 
 	constructor(protected i18n: I18n) {
 		FileUploader.fileUploaderCount++;
@@ -146,6 +176,10 @@ export class FileUploader {
 		this.onTouchedCallback();
 	}
 
+	get fileList() {
+		return Array.from(this.fileInput.nativeElement.files);
+	}
+
 	/**
 	 * Propagates the injected `value`.
 	 */
@@ -155,12 +189,11 @@ export class FileUploader {
 		}
 	}
 
-	onFilesAdded() {
-		const files = this.fileInput.nativeElement.files;
+	onFilesAdded(fileList) {
 		if (!this.multiple) {
 			this.files.clear();
 		}
-		for (let file of files) {
+		for (let file of fileList) {
 			const fileItem: FileItem = {
 				uploaded: false,
 				state: "edit",
@@ -173,6 +206,48 @@ export class FileUploader {
 		}
 
 		this.value = this.files;
+	}
+
+	onDragOver(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		this.dragOver = true;
+	}
+
+	onDragLeave(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		this.dragOver = false;
+	}
+
+	onDrop(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		const transferredFiles = Array.from(event.dataTransfer.files);
+
+		if (!this.accept.length) {
+			this.onFilesAdded(transferredFiles);
+			this.dragOver = false;
+			return;
+		}
+
+		const fileExtensionRegExp = new RegExp(/\.[0-9a-z]+$/, "i");
+
+		const acceptedFiles = transferredFiles.filter(({ name, type }) => {
+			if (!fileExtensionRegExp.test(name)) {
+				return false;
+			}
+			const [fileExtension] = name.match(fileExtensionRegExp);
+			return this.accept.includes(type) || this.accept.includes(fileExtension);
+		});
+
+		this.onFilesAdded(acceptedFiles);
+		this.dragOver = false;
+
+		// Emit the files for the possibility of further filtration.
+		// See storybook for an example.
+		this.dropped.emit(this.files);
 	}
 
 	removeFile(fileItem) {
