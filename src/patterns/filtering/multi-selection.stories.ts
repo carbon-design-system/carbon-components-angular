@@ -5,6 +5,7 @@ import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table
 import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
 import { UIShellModule } from "../../ui-shell/ui-shell.module";
+import { filterErrorsAndWarnings } from "@angular/compiler-cli";
 
 @Component({
     selector: "app-sample-multi-selection",
@@ -16,7 +17,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             </ibm-header>
         </div>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'lg':3, 'md':3, 'sm':3}">
+            <div ibmCol [columnNumbers]="{'lg': 3, 'md': 3, 'sm': 3}">
                 <label ibmText class="dropdown-label">
                     Filter by:
                     <ibm-dropdown
@@ -86,15 +87,15 @@ class SampleMultiSelection {
     ];
     
     onSelected(event) {
-        let checkboxFilters = new Set();
+        let checkboxFilters = [];
 
         event.forEach(filter => {
-            checkboxFilters.add(filter.content);
+            checkboxFilters.push(filter.content);
         });
 
         this.model.data = 
             this.dataset
-                .filter(data => this.applyMultiFilters(data.type, checkboxFilters))
+                .filter(data => checkboxFilters.every(filter => data.type.includes(filter)))
                 .map(filteredData =>                     
                     [
                         new TableItem({ data: filteredData.name }),
@@ -102,28 +103,11 @@ class SampleMultiSelection {
                     ]);
     }
 
-    // Apply filters of a multi selection, returns true if the given items pass the filter and false if not.
-    applyMultiFilters(types: Array<String>, filters): Boolean {
-        let shouldInclude = true;
-        filters.forEach(filter => {
-            if (!types.includes(filter)) {
-                shouldInclude = false;
-            }
-        });
-        return shouldInclude;
-    }
-
     ngOnInit() {
         document.querySelector('.sb-show-main').classList.add('full-page');
 
-        this.model.header = [
-            new TableHeaderItem({
-                data: "Name"
-            }),
-            new TableHeaderItem({
-                data: "Description"
-            })
-        ]
+        this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
+
         this.model.data = this.dataset.map(datapoint => 
             [
                 new TableItem({ data: datapoint.name }),

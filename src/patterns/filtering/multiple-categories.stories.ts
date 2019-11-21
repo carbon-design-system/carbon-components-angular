@@ -21,7 +21,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             </ibm-header>
         </div>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}" class="multi-selection">
+            <div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}" class="multi-selection">
                 <button ibmButton (click)="resetFilters()" class="reset-button">Reset Filters</button>
                 <fieldset class="bx--fieldset">
                     <legend class="bx--label">Radio button label</legend>
@@ -40,10 +40,10 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
                 </fieldset>
                 <fieldset class="bx--fieldset">
                     <div ibmRow>
-                        <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}">
+                        <div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
                             <legend class="bx--label">Type</legend>
                         </div>
-                        <div ibmCol [columnNumbers]="{'lg': 2, 'md':2, 'sm':1}">
+                        <div ibmCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
                             <ibm-tag-filter
                                 *ngIf="checkBoxFilters.size > 0"
                                 (close)="resetCheckboxList()">
@@ -61,7 +61,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
                     </ibm-checkbox>
                 </fieldset>
             </div>
-            <div ibmCol [columnNumbers]="{'lg':10, 'md':10, 'sm':3}" class="data-table">
+            <div ibmCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
                 <ibm-table-container>
                     <ibm-table
                         class="data-table"
@@ -92,7 +92,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
 })
 class SampleMultiCategories {
     model = new TableModel();
-    checkBoxFilters = new Set();
+    checkBoxFilters = [];
     radioFilter = null;
 
     dataset = [
@@ -120,9 +120,9 @@ class SampleMultiCategories {
 
     onCheckboxChange(event) {
         if (event.checked) {
-            this.checkBoxFilters.add(event.source.value);
+            this.checkBoxFilters.push(event.source.value);
         } else {
-            this.checkBoxFilters.delete(event.source.value);
+            this.checkBoxFilters.splice(this.checkBoxFilters.indexOf(event.source.value), 1);
         }
         this.applyFilters();
     }
@@ -138,7 +138,7 @@ class SampleMultiCategories {
     }
 
     resetCheckboxList() {
-        this.checkBoxFilters = new Set();
+        this.checkBoxFilters = [];
         this.checkboxList = this.checkboxList.map(obj => {
             return { value: obj.value, checked: false }
         });
@@ -157,7 +157,7 @@ class SampleMultiCategories {
         this.model.data = 
             this.dataset
                 .filter(data =>
-                    (this.applyMultiFilters(data.type, this.checkBoxFilters) || !this.checkBoxFilters.size) &&
+                    (this.checkBoxFilters.every(filter => data.type.includes(filter))) &&
                     (data.color === this.radioFilter || !this.radioFilter))
                 .map(filteredData =>                     
                     [
@@ -166,28 +166,10 @@ class SampleMultiCategories {
                     ]);
     }
 
-    // Apply filters of a multi selection, returns true if the given items pass the filter and false if not.
-    applyMultiFilters(types: Array<String>, filters): Boolean {
-        let shouldInclude = true;
-        filters.forEach(filter => {
-            if (!types.includes(filter)) {
-                shouldInclude = false;
-            }
-        });
-        return shouldInclude;
-    }
-
     ngOnInit() {
         document.querySelector('.sb-show-main').classList.add('full-page');
 
-        this.model.header = [
-            new TableHeaderItem({
-                data: "Name"
-            }),
-            new TableHeaderItem({
-                data: "Description"
-            })
-        ]
+        this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
         
         this.model.data = this.dataset.map(datapoint => 
             [

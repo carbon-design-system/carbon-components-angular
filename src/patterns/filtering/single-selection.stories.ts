@@ -16,7 +16,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             </ibm-header>
         </div>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'lg':3, 'md':3, 'sm':3}">
+            <div ibmCol [columnNumbers]="{'lg': 3, 'md': 3, 'sm': 3}">
                 <label ibmText class="dropdown-label">
                     Filter by:
                     <ibm-dropdown
@@ -63,7 +63,6 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             flex-grow: 1;
             margin-left: 20px;
         }
-
     `
     ]
 })
@@ -74,7 +73,7 @@ class SampleSingleSelection implements OnInit {
 
     items = [
         { content: "All" },
-		{ content: "Vegetable" },
+        { content: "Vegetable" },
         { content: "Fruit" },
         { content: "Meat" }
     ];
@@ -102,14 +101,7 @@ class SampleSingleSelection implements OnInit {
     ngOnInit() {
         document.querySelector('.sb-show-main').classList.add('full-page');
 
-        this.model.header = [
-            new TableHeaderItem({
-                data: "Name"
-            }),
-            new TableHeaderItem({
-                data: "Description"
-            })
-        ]
+        this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
         this.model.data = this.dataset.map(datapoint => 
             [

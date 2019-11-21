@@ -1,7 +1,11 @@
 import { Component } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
+import {
+    TableModule,
+    TableModel,
+    TableHeaderItem,
+    TableItem } from "../../table/table.module";
 import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
 import { ButtonModule } from "../../forms/forms.module";
@@ -17,7 +21,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
             </ibm-header>
         </div>
         <div ibmRow class="actions">
-            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
+            <div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
                 <ibm-dropdown
                     label="Example 1"
                     [skeleton]="skeletonStateDropdown"
@@ -28,7 +32,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
                 </ibm-dropdown>
             </div>
 
-            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
+            <div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
                 <ibm-dropdown
                     label="Example 2"
                     [skeleton]="skeletonStateDropdown"
@@ -39,7 +43,7 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
                 </ibm-dropdown>
             </div>
 
-            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
+            <div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
                 <ibm-dropdown
                     label="Example 3"
                     [skeleton]="skeletonStateDropdown"
@@ -50,12 +54,12 @@ import { UIShellModule } from "../../ui-shell/ui-shell.module";
                 </ibm-dropdown>
             </div>
 
-            <div ibmCol [columnNumbers]="{'lg':3, 'md':2, 'sm':1}">
+            <div ibmCol [columnNumbers]="{'lg': 3, 'md': 2, 'sm': 1}">
                 <button ibmButton (click)="loadScreen(); uninitializeData()">Show Loading</button>
             </div>
         </div>
         <div ibmRow>
-            <div ibmCol [columnNumbers]="{'lg':12, 'md':12, 'sm':12}">
+            <div ibmCol [columnNumbers]="{'lg': 12, 'md': 12, 'sm': 12}">
                 <ibm-table-container>
                     <ibm-table
                         class="data-table"
