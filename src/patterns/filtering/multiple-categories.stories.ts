@@ -139,17 +139,13 @@ class SampleMultiCategories {
 
     resetCheckboxList() {
         this.checkBoxFilters = [];
-        this.checkboxList = this.checkboxList.map(obj => {
-            return { value: obj.value, checked: false }
-        });
+        this.checkboxList = this.checkboxList.map(obj => ({ value: obj.value, checked: false }));
         this.applyFilters()
     }
 
     resetRadios() {
         this.radioFilter = null;
-        this.radios = this.radios.map(obj => {
-            return { color: obj.color, checked: false }
-        });
+        this.radios = this.radios.map(obj => ({ color: obj.color, checked: false }));
         this.applyFilters();
     }
 
@@ -188,15 +184,15 @@ storiesOf("Patterns|Filtering", module)
 		moduleMetadata({
 			declarations: [ SampleMultiCategories ],
 			imports: [
-                TableModule,
-                DropdownModule,
-                GridModule,
-                StructuredListModule,
-                RadioModule,
-                CheckboxModule,
-                ButtonModule,
-                TagModule,
-                UIShellModule
+				TableModule,
+				DropdownModule,
+				GridModule,
+				StructuredListModule,
+				RadioModule,
+				CheckboxModule,
+				ButtonModule,
+				TagModule,
+				UIShellModule
 			]
 		})
 	)

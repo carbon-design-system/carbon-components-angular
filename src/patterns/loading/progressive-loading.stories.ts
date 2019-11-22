@@ -117,21 +117,9 @@ class SampleProgressiveLoading {
     }
 
     loadScreen() {
-        this.model.data = this.dataset.map(datapoint => 
-            [
-                new TableItem({}),
-                new TableItem({})
-            ]
-        );
+        this.model.data = this.dataset.map(datapoint => [new TableItem({}), new TableItem({})]);
         
-        this.model.header = [
-            new TableHeaderItem({
-                data: ""
-            }),
-            new TableHeaderItem({
-                data: ""
-            })
-        ]
+        this.model.header = [new TableHeaderItem({ data: "" }), new TableHeaderItem({ data: "" })];
 
         setTimeout(() => {
             this.skeletonStateDropdown = false;
@@ -143,14 +131,7 @@ class SampleProgressiveLoading {
         }, 4000);
 
         setTimeout(() => {
-            this.model.header = [
-                new TableHeaderItem({
-                    data: "Name"
-                }),
-                new TableHeaderItem({
-                    data: "Description"
-                })
-            ]
+            this.model.header = [new TableHeaderItem({ data: "Name" }), new TableHeaderItem({ data: "Description" })];
 
             this.model.data = this.dataset.map(datapoint => 
                 [
@@ -176,11 +157,11 @@ storiesOf("Patterns|Loading", module)
 		moduleMetadata({
 			declarations: [ SampleProgressiveLoading ],
 			imports: [
-                TableModule,
-                DropdownModule,
-                GridModule,
-                ButtonModule,
-                UIShellModule
+				TableModule,
+				DropdownModule,
+				GridModule,
+				ButtonModule,
+				UIShellModule
 			]
 		})
 	)

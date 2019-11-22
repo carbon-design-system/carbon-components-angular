@@ -5,7 +5,6 @@ import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table
 import { DropdownModule } from "../../dropdown/dropdown.module";
 import { GridModule } from "../../grid/grid.module";
 import { UIShellModule } from "../../ui-shell/ui-shell.module";
-import { filterErrorsAndWarnings } from "@angular/compiler-cli";
 
 @Component({
     selector: "app-sample-multi-selection",
@@ -87,11 +86,7 @@ class SampleMultiSelection {
     ];
     
     onSelected(event) {
-        let checkboxFilters = [];
-
-        event.forEach(filter => {
-            checkboxFilters.push(filter.content);
-        });
+        const checkboxFilters = event.map(filter => filter.content);
 
         this.model.data = 
             this.dataset
@@ -126,10 +121,10 @@ storiesOf("Patterns|Filtering", module)
 		moduleMetadata({
 			declarations: [ SampleMultiSelection ],
 			imports: [
-                TableModule,
-                DropdownModule,
-                GridModule,
-                UIShellModule
+				TableModule,
+				DropdownModule,
+				GridModule,
+				UIShellModule
 			]
 		})
 	)

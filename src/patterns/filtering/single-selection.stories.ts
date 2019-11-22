@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { withKnobs } from "@storybook/addon-knobs/angular";
 import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table/table.module";
@@ -121,10 +121,10 @@ storiesOf("Patterns|Filtering", module)
 		moduleMetadata({
 			declarations: [ SampleSingleSelection ],
 			imports: [
-                TableModule,
-                DropdownModule,
-                GridModule,
-                UIShellModule
+				TableModule,
+				DropdownModule,
+				GridModule,
+				UIShellModule
 			]
 		})
 	)
