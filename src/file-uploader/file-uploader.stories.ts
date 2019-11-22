@@ -136,7 +136,7 @@ class DragAndDropStory {
 
 		let promises: Array<Promise<any>> = [];
 
-		// Creates a promise which resolves to a file and whether of not the file should be accepted.
+		// Creates a promise which resolves to a file and whether or not the file should be accepted.
 		const readFileAndAddToMap = fileObj => {
 			return new Promise((resolve, reject) => {
 				let fileExtension, mime;
@@ -154,7 +154,10 @@ class DragAndDropStory {
 						[fileExtension] = fileObj.file.name.match(fileExtensionRegExp);
 						mime = fileObj.file.type;
 					}
-					resolve({file: fileObj, accept: (this.accept.includes(fileExtension) || this.accept.includes(mime))});
+					resolve({
+						file: fileObj,
+						accept: (this.accept.includes(fileExtension) || this.accept.includes(mime))
+					});
 				};
 
 				reader.onerror = error => {
@@ -168,9 +171,10 @@ class DragAndDropStory {
 		});
 
 		Promise.all(promises).then(filePromiseArray =>
-			filePromiseArray.filter(filePromise => filePromise.accept).map(acceptedFile => acceptedFile.file))
-				.then(acceptedFiles => this.files = new Set(acceptedFiles))
-					.catch(error => console.log(error));
+			filePromiseArray.filter(filePromise => filePromise.accept)
+				.map(acceptedFile => acceptedFile.file))
+					.then(acceptedFiles => this.files = new Set(acceptedFiles))
+						.catch(error => console.log(error));
 	}
 
 	onUpload() {
