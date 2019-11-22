@@ -42,6 +42,15 @@ import { of } from "rxjs";
 			</div>
 		</div>
 		<button
+			*ngIf="notificationObj.showAction"
+			(click)="onAction()"
+			ibmButton="ghost"
+			size="sm"
+			class="bx--inline-notification__action-button"
+			type="button">
+			{{notificationObj.actionText}}
+		</button>
+		<button
 			*ngIf="showClose"
 			(click)="onClose()"
 			class="bx--inline-notification__close-button"
@@ -73,6 +82,11 @@ export class Notification {
 	 * Emits on close.
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
+
+	/**
+	 * Emits on action.
+	 */
+	@Output() action: EventEmitter<any> = new EventEmitter();
 
 	componentRef: ComponentRef<Notification>;
 
@@ -108,6 +122,13 @@ export class Notification {
 	 */
 	onClose() {
 		this.close.emit();
+	}
+
+	/**
+	 * Emits action event.
+	 */
+	onAction() {
+		this.action.emit();
 	}
 
 	destroy() {

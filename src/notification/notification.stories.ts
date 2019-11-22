@@ -73,33 +73,42 @@ storiesOf("Notification", module)
 				title: 'Sample notification',
 				message: 'Sample error message',
 				showClose: showClose,
-				lowContrast: lowContrast}">
+				lowContrast: lowContrast,
+				showAction: showAction,
+				actionText: 'Action'}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'info',
 				title: 'Sample notification',
 				message: 'Sample info message',
 				showClose: showClose,
-				lowContrast: lowContrast}">
+				lowContrast: lowContrast,
+				showAction: showAction,
+				actionText: 'Action'}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'success',
 				title: 'Sample notification',
 				message: 'Sample success message',
 				showClose: showClose,
-				lowContrast: lowContrast}">
+				lowContrast: lowContrast,
+				showAction: showAction,
+				actionText: 'Action'}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'warning',
 				title: 'Sample notification',
 				message: 'Sample warning message',
 				showClose: showClose,
-				lowContrast: lowContrast}">
+				lowContrast: lowContrast,
+				showAction: showAction,
+				actionText: 'Action'}">
 			</ibm-notification>
 		`,
 		props: {
 			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false)
+			lowContrast: boolean("Low Contrast", false),
+			showAction: boolean("Show action", false)
 		}
 	}))
 	.add("Dynamic", () => ({
