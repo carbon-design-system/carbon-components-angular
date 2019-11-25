@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 
 export interface NotificationContent {
 	type: string;
@@ -21,5 +21,5 @@ export interface ToastContent extends NotificationContent {
 interface NotificationAction {
 	text: string;
 	click: Subject<{event: Event, action: any}> | ((event: {event: Event, action: any}) => any);
-	[x:string]: any;
+	[x: string]: any;
 }

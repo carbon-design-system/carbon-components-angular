@@ -51,8 +51,6 @@ class NotificationActionStory {
 	@Input() showClose = true;
 	@Input() lowContrast = false;
 
-	constructor(protected notificationService: NotificationService) { }
-
 	subject = new Subject<any>();
 
 	actions = [
@@ -63,6 +61,8 @@ class NotificationActionStory {
 			})
 		}
 	];
+
+	constructor(protected notificationService: NotificationService) { }
 }
 
 @Component({
