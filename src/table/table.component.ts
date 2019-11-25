@@ -628,17 +628,13 @@ export class Table implements AfterViewInit, OnDestroy {
 	}
 
 	onSelectAll() {
-		if (this.model.data.length > 1) {
-			this.model.selectAll(true);
-			this.selectAll.emit(this.model);
-		}
+		this.model.selectAll(true);
+		this.selectAll.emit(this.model);
 	}
 
 	onDeselectAll() {
-		if (this.model.data.length > 1) {
-			this.model.selectAll(false);
-			this.deselectAll.emit(this.model);
-		}
+		this.model.selectAll(false);
+		this.deselectAll.emit(this.model);
 	}
 
 	onSelectRow(event) {

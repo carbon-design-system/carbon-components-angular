@@ -522,8 +522,10 @@ export class TableModel implements PaginationModel {
 	 * @param value state to set all rows to. Defaults to `true`
 	 */
 	selectAll(value = true) {
-		for (let i = 0; i < this.rowsSelected.length; i++) {
-			this.selectRow(i, value);
+		if (this.data.length > 1) {
+			for (let i = 0; i < this.rowsSelected.length; i++) {
+				this.selectRow(i, value);
+			}
 		}
 	}
 
