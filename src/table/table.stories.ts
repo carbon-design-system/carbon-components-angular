@@ -196,7 +196,7 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model">
+			<ibm-table-toolbar>
 				<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
 					<button ibmButton="toolbar-action">

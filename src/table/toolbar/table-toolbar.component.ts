@@ -42,7 +42,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 	template: `
 	<section class="bx--table-toolbar">
 		<div
-			*ngIf="showActions && model"
+			*ngIf="model"
 			class="bx--batch-actions"
 			[ngClass]="{
 				'bx--batch-actions--active': selected
@@ -62,7 +62,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 	</section>
 	`
 })
-export class TableToolbar implements AfterViewInit{
+export class TableToolbar {
 	@Input() model: TableModel;
 
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
@@ -71,21 +71,13 @@ export class TableToolbar implements AfterViewInit{
 	@Input() set cancelText(value: { CANCEL: string }) {
 		this._cancelText.override(value.CANCEL);
 	}
-	@Input() showActions = true;
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
 	actionBarLabel = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
 	_cancelText = this.i18n.getOverridable("TABLE_TOOLBAR.CANCEL");
 
-	constructor(protected i18n: I18n, protected elementRef: ElementRef) {}
-
-	ngAfterViewInit() {
-		const toolbarActions = this.elementRef.nativeElement.querySelector("ibm-table-toolbar-actions");
-		if (!toolbarActions) {
-			this.showActions = false;
-		}
-	}
+	constructor(protected i18n: I18n) {}
 
 	get count() {
 		return this.model.totalDataLength > 0 ? this.model.rowsSelected.reduce((previous, current) => previous + (current ? 1 : 0), 0) : 0;
