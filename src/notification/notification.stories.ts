@@ -1,12 +1,69 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action } from "@storybook/addon-actions";
+import { action, actions } from "@storybook/addon-actions";
 import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
-import { Component } from "@angular/core";
+import { Component, Testability, Input } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
 import { I18n } from "../i18n/i18n.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
+import { Subject } from "rxjs";
+
+@Component({
+	selector: "app-notification-action-story",
+	template: `
+		<ibm-notification [notificationObj]="{
+			type: 'error',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'info',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'success',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		<ibm-notification [notificationObj]="{
+			type: 'warning',
+			title: 'Sample notification',
+			message: 'Sample error message',
+			showClose: showClose,
+			lowContrast: lowContrast,
+			actions: actions}">
+		</ibm-notification>
+		`,
+	providers: [NotificationService]
+})
+class NotificationActionStory {
+	@Input() showClose = true;
+	@Input() lowContrast = false;
+
+	constructor(protected notificationService: NotificationService) { }
+
+	subject = new Subject<any>();
+
+	actions = [
+		{
+			text: "Action",
+			click: this.subject.subscribe({
+				next: () => console.log("action");
+			})
+		}
+	];
+}
 
 @Component({
 	selector: "app-notification-story",
@@ -57,6 +114,7 @@ storiesOf("Notification", module)
 		moduleMetadata({
 			declarations: [
 				NotificationStory,
+				NotificationActionStory,
 				ToastStory
 			],
 			imports: [
@@ -73,42 +131,45 @@ storiesOf("Notification", module)
 				title: 'Sample notification',
 				message: 'Sample error message',
 				showClose: showClose,
-				lowContrast: lowContrast,
-				showAction: showAction,
-				actionText: 'Action'}">
+				lowContrast: lowContrast}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'info',
 				title: 'Sample notification',
 				message: 'Sample info message',
 				showClose: showClose,
-				lowContrast: lowContrast,
-				showAction: showAction,
-				actionText: 'Action'}">
+				lowContrast: lowContrast}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'success',
 				title: 'Sample notification',
 				message: 'Sample success message',
 				showClose: showClose,
-				lowContrast: lowContrast,
-				showAction: showAction,
-				actionText: 'Action'}">
+				lowContrast: lowContrast}">
 			</ibm-notification>
 			<ibm-notification [notificationObj]="{
 				type: 'warning',
 				title: 'Sample notification',
 				message: 'Sample warning message',
 				showClose: showClose,
-				lowContrast: lowContrast,
-				showAction: showAction,
-				actionText: 'Action'}">
+				lowContrast: lowContrast}">
 			</ibm-notification>
 		`,
 		props: {
 			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false),
-			showAction: boolean("Show action", false)
+			lowContrast: boolean("Low Contrast", false)
+		}
+	}))
+	.add("Test", () => ({
+		template: `
+			<app-notification-action-story
+				[showClose]="showClose"
+				[lowContrast]="lowContrast">
+			</app-notification-action-story>
+		`,
+		props: {
+			showClose: boolean("Show close icon", true),
+			lowContrast: boolean("Low Contrast", false)
 		}
 	}))
 	.add("Dynamic", () => ({

@@ -41,15 +41,16 @@ import { of } from "rxjs";
 				<p [innerHTML]="notificationObj.message" class="bx--inline-notification__subtitle"></p>
 			</div>
 		</div>
-		<button
-			*ngIf="notificationObj.showAction"
-			(click)="onAction()"
-			ibmButton="ghost"
-			size="sm"
-			class="bx--inline-notification__action-button"
-			type="button">
-			{{notificationObj.actionText}}
-		</button>
+		<div *ngFor="let action of notificationObj.actions">
+			<button
+				(click)="onClick(action.click)"
+				ibmButton="ghost"
+				size="sm"
+				class="bx--inline-notification__action-button"
+				type="button">
+				{{action.text}}
+			</button>
+		</div>
 		<button
 			*ngIf="showClose"
 			(click)="onClose()"
@@ -82,11 +83,6 @@ export class Notification {
 	 * Emits on close.
 	 */
 	@Output() close: EventEmitter<any> = new EventEmitter();
-
-	/**
-	 * Emits on action.
-	 */
-	@Output() action: EventEmitter<any> = new EventEmitter();
 
 	componentRef: ComponentRef<Notification>;
 
@@ -124,11 +120,12 @@ export class Notification {
 		this.close.emit();
 	}
 
-	/**
-	 * Emits action event.
-	 */
-	onAction() {
-		this.action.emit();
+	onClick(action) {
+		if (typeof action === "function") {
+			action();
+		} else {
+			action.next();
+		}
 	}
 
 	destroy() {
