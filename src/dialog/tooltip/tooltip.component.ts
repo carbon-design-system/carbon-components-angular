@@ -2,7 +2,8 @@ import {
 	Component,
 	TemplateRef,
 	HostBinding,
-	ElementRef
+	ElementRef,
+	Optional
 } from "@angular/core";
 import { getFocusElementList } from "./../../common/tab.service";
 
@@ -49,7 +50,8 @@ export class Tooltip extends Dialog {
 
 	constructor(
 		protected elementRef: ElementRef,
-		protected elementService: ElementService) {
+		// mark `elementService` as optional since making it mandatory would be a breaking change
+		@Optional() protected elementService: ElementService = null) {
 		super(elementRef, elementService);
 	}
 

@@ -1,4 +1,10 @@
-import { Component, HostListener, ElementRef, AfterViewInit } from "@angular/core";
+import {
+	Component,
+	HostListener,
+	ElementRef,
+	AfterViewInit,
+	Optional
+} from "@angular/core";
 import { Dialog } from "../dialog.component";
 import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "./../../common/tab.service";
@@ -35,7 +41,8 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 		protected elementRef: ElementRef,
 		protected i18n: I18n,
 		protected experimental: ExperimentalService,
-		protected elementService: ElementService) {
+		// mark `elementService` as optional since making it mandatory would be a breaking change
+		@Optional() protected elementService: ElementService = null) {
 		super(elementRef, elementService);
 	}
 
@@ -57,8 +64,8 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				return position.addOffset(pos, 0, -offset);
 			}
 			return position.addOffset(pos, 0, offset);
-		}
-		
+		};
+
 		this.addGap["bottom"] = positionOverflowMenu;
 
 		this.addGap["top"] = positionOverflowMenu;
