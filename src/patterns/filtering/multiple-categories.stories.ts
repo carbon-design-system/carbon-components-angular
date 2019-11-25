@@ -198,7 +198,7 @@ storiesOf("Patterns|Filtering", module)
 	)
 	.addDecorator(withKnobs)
 	.add("Multiple Categories", () => ({
-        template: `
-            <app-sample-multi-categories></app-sample-multi-categories>
-            `
+		template: `
+			<app-sample-multi-categories></app-sample-multi-categories>
+			`
     }));
