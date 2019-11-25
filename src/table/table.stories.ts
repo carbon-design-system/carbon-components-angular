@@ -167,7 +167,7 @@ storiesOf("Table", module).addDecorator(
 				</ibm-table-toolbar-actions>
 					<ibm-table-toolbar-content>
 					<ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search>
-					<button ibmButton="toolbar-action">
+					<button ibmButton="ghost" class="toolbar-action">
 						<ibm-icon-settings16 class="bx--toolbar-action__icon"></ibm-icon-settings16>
 					</button>
 					<button ibmButton="primary" size="sm">

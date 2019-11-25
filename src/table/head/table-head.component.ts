@@ -26,8 +26,11 @@ import { Observable } from "rxjs";
 	template: `
 	<ng-container *ngIf="model">
 		<tr>
-			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows() && !stickyHeader"></th>
-			<th ibmTableHeadExpand *ngIf="model.hasExpandableRows() && stickyHeader" class="bx--table-expand-v2" style="padding-left: 2.5rem"></th>
+			<th
+			ibmTableHeadExpand
+			*ngIf="model.hasExpandableRows()"
+			[ngClass]="{'bx--table-expand-v2': stickyHeader}">
+			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
 				style="width: 0;">
@@ -63,7 +66,12 @@ import { Observable } from "rxjs";
 		</tr>
 	</ng-container>
 	<ng-content></ng-content>
-	`
+	`,
+	styles: [`
+		.bx--table-expand-v2 {
+			padding-left: 2.5rem;
+		}
+	`]
 })
 export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
