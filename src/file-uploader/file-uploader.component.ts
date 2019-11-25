@@ -35,7 +35,8 @@ const noop = () => {};
 						(dragover)="onDragOver($event)"
 						(dragleave)="onDragLeave($event)"
 						(drop)="onDrop($event)">
-						{{ dropText }}
+						<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
+						<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
 					</div>
 				</label>
 				<button
@@ -55,7 +56,7 @@ const noop = () => {};
 					[id]="fileUploaderId"
 					[multiple]="multiple"
 					tabindex="-1"
-					(change)="onFilesAdded(fileList)"/>
+					(change)="onFilesAdded()"/>
 				<div class="bx--file-container">
 					<div *ngFor="let fileItem of files">
 						<ibm-file [fileItem]="fileItem" (remove)="removeFile(fileItem)"></ibm-file>
@@ -145,8 +146,6 @@ export class FileUploader {
 
 	@Output() filesChange = new EventEmitter<any>();
 
-	@Output() dropped = new EventEmitter<any>();
-
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
@@ -154,6 +153,8 @@ export class FileUploader {
 	 * Controls the state of the drag and drop file container
 	 */
 	protected dragOver = false;
+
+	protected _fileList = [];
 
 	constructor(protected i18n: I18n) {
 		FileUploader.fileUploaderCount++;
@@ -176,8 +177,15 @@ export class FileUploader {
 		this.onTouchedCallback();
 	}
 
+	set fileList(files: Array<any>) {
+		this._fileList = files;
+	}
+
 	get fileList() {
-		return Array.from(this.fileInput.nativeElement.files);
+		if (this.fileInput.nativeElement.files.length) {
+			return Array.from(this.fileInput.nativeElement.files);
+		}
+		return this._fileList;
 	}
 
 	/**
@@ -189,11 +197,11 @@ export class FileUploader {
 		}
 	}
 
-	onFilesAdded(fileList) {
+	onFilesAdded() {
 		if (!this.multiple) {
 			this.files.clear();
 		}
-		for (let file of fileList) {
+		for (let file of this.fileList) {
 			const fileItem: FileItem = {
 				uploaded: false,
 				state: "edit",
@@ -227,7 +235,8 @@ export class FileUploader {
 		const transferredFiles = Array.from(event.dataTransfer.files);
 
 		if (!this.accept.length) {
-			this.onFilesAdded(transferredFiles);
+			this.fileList = transferredFiles;
+			this.onFilesAdded();
 			this.dragOver = false;
 			return;
 		}
@@ -242,18 +251,23 @@ export class FileUploader {
 			return this.accept.includes(type) || this.accept.includes(fileExtension);
 		});
 
-		this.onFilesAdded(acceptedFiles);
+		this.fileList = acceptedFiles;
+		this.onFilesAdded();
 		this.dragOver = false;
 
 		// Emit the files for the possibility of further filtration.
 		// See storybook for an example.
-		this.dropped.emit(this.files);
+		this.filesChange.emit(this.files);
 	}
 
 	removeFile(fileItem) {
 		this.files.delete(fileItem);
 		this.fileInput.nativeElement.value = "";
 		this.filesChange.emit(this.files);
+	}
+
+	public isTemplate(value) {
+		return value instanceof TemplateRef;
 	}
 
 	/**

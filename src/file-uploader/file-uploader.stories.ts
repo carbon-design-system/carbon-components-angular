@@ -18,7 +18,7 @@ import {
 } from "../";
 import { NotificationService } from "../notification/notification.service";
 
-const fileType = require("file-type");
+import * as fileType from "file-type";
 
 @Component({
 	selector: "app-file-uploader",
@@ -101,7 +101,7 @@ class FileUploaderStory {
 			[size]="size"
 			drop="true"
 			[dropText]="dropText"
-			(dropped)="onDropped($event)">
+			(filesChange)="onDropped($event)">
 		</ibm-file-uploader>
 
 		<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
@@ -173,8 +173,7 @@ class DragAndDropStory {
 		Promise.all(promises).then(filePromiseArray =>
 			filePromiseArray.filter(filePromise => filePromise.accept)
 				.map(acceptedFile => acceptedFile.file))
-					.then(acceptedFiles => this.files = new Set(acceptedFiles))
-						.catch(error => console.log(error));
+					.then(acceptedFiles => this.files = new Set(acceptedFiles)).catch(error => console.log(error));
 	}
 
 	onUpload() {
