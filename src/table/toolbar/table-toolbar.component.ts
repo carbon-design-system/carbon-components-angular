@@ -42,7 +42,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 	template: `
 	<section class="bx--table-toolbar">
 		<div
-			*ngIf="showToolbarActions"
+			*ngIf="showActions && model"
 			class="bx--batch-actions"
 			[ngClass]="{
 				'bx--batch-actions--active': selected
@@ -71,7 +71,7 @@ export class TableToolbar implements AfterViewInit{
 	@Input() set cancelText(value: { CANCEL: string }) {
 		this._cancelText.override(value.CANCEL);
 	}
-	@Input() showToolbarActions = true;
+	@Input() showActions = true;
 	get cancelText(): { CANCEL: string } {
 		return { CANCEL: this._cancelText.value as string };
 	}
@@ -83,7 +83,7 @@ export class TableToolbar implements AfterViewInit{
 	ngAfterViewInit() {
 		const toolbarActions = this.elementRef.nativeElement.querySelector("ibm-table-toolbar-actions");
 		if (!toolbarActions) {
-			this.showToolbarActions = false;
+			this.showActions = false;
 		}
 	}
 
