@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	ViewChild
+	ViewChild,
+	HostListener
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "./../i18n/i18n.module";
@@ -80,6 +81,14 @@ export class SelectionTile {
 
 	constructor(public i18n: I18n) {
 		SelectionTile.tileCount++;
+	}
+
+	@HostListener("keydown", ["$event"])
+	keyboardInput(event) {
+		if (event.key === "Enter" || event.key === "Spacebar" || event.key === " ") {
+			this.selected = !this.selected;
+			this.change.emit();
+		}
 	}
 
 	onChange(event) {
