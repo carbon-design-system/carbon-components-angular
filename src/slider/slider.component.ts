@@ -399,14 +399,13 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		if (this.disableArrowKeys) {
 			return;
 		}
-		event.preventDefault();
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;
 		if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
 			this.decrementValue(multiplier);
-		}
-
-		if (event.key === "ArrowRight" || event.key === "ArrowUp") {
+			event.preventDefault();
+		} else if (event.key === "ArrowRight" || event.key === "ArrowUp") {
 			this.incrementValue(multiplier);
+			event.preventDefault();
 		}
 	}
 
