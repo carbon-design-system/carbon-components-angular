@@ -8,6 +8,11 @@ import { TableItem } from "./table-item.class";
 
 export class TableModel implements PaginationModel {
 	/**
+	 * The number of models instantiated, used for (among other things) unique id generation
+	 */
+	protected static COUNT = 0;
+
+	/**
 	 * Sets data of the table.
 	 *
 	 * Make sure all rows are the same length to keep the column count accurate.
@@ -148,6 +153,64 @@ export class TableModel implements PaginationModel {
 	 * Used in `data`
 	 */
 	protected _data: TableItem[][] = [[]];
+
+	constructor() {
+		TableModel.COUNT++;
+	}
+
+	/**
+	 * Returns an id for the given column
+	 *
+	 * @param column the column to generate an id for
+	 * @param row the row of the header to generate an id for
+	 */
+	getId(column: number | "select" | "expand", row = 0): string {
+		return `table-header-${row}-${column}-${TableModel.COUNT}`;
+	}
+
+	/**
+	 * Returns the id of the header. Used to link the cells with headers (or headers with headers)
+	 *
+	 * @param column the column to start getting headers for
+	 * @param colSpan the number of columns to get headers for (defaults to 1)
+	 */
+	getHeaderId(column: number | "select" | "expand", colSpan = 1): string {
+		if (column === "select" || column === "expand") {
+			return this.getId(column);
+		}
+
+		let ids = [];
+		for (let i = column; i >= 0; i--) {
+			if (this.header[i]) {
+				for (let j = 0; j < colSpan; j++) {
+					ids.push(this.getId(i + j));
+				}
+				break;
+			}
+		}
+
+		return ids.join(" ");
+	}
+
+	/**
+	 * Finds closest header by trying the `column` and then working its way to the left
+	 *
+	 * @param column the target column
+	 */
+	getHeader(column: number): TableHeaderItem {
+		if (!this.header) {
+			return null;
+		}
+
+		for (let i = column; i >= 0; i--) {
+			const headerCell = this.header[i];
+			if (headerCell) {
+				return headerCell;
+			}
+		}
+
+		return null;
+	}
 
 	/**
 	 * Returns how many rows is currently selected
@@ -300,11 +363,11 @@ export class TableModel implements PaginationModel {
 	}
 
 	hasExpandableRows() {
-		return this.data.some(data => data.some(d => d.expandedData)); // checking for some in 2D array
+		return this.data.some(data => data.some(d => d && d.expandedData)); // checking for some in 2D array
 	}
 
 	isRowExpandable(index: number) {
-		return this.data[index].some(d => d.expandedData);
+		return this.data[index].some(d => d && d.expandedData);
 	}
 
 	isRowExpanded(index: number) {
@@ -502,7 +565,7 @@ export class TableModel implements PaginationModel {
 	 */
 	isRowFiltered(index: number): boolean {
 		const realIndex = this.realRowIndex(index);
-		return this.header.some((item, i) => item.filter(this.row(realIndex)[i]));
+		return this.header.some((item, i) => item && item.filter(this.row(realIndex)[i]));
 	}
 
 	/**
