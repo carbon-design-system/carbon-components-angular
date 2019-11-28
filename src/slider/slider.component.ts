@@ -72,6 +72,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 						(keydown)="onKeyDown($event)">
 					</div>
 					<div
+						#thumb2
+						*ngIf="isRange()"
+						class="bx--slider__thumb"
+						tabindex="0"
+						(mousedown)="onMouseDown($event, false)"
+						(keydown)="onKeyDown($event, false)">
+					</div>
+					<div
 						#track
 						class="bx--slider__track"
 						(click)="onClick($event)">
@@ -150,11 +158,12 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			v = this.min;
 		}
 
-		if (v > this.max) {
+		if (this.isRange() && v >= this.value2 - this.step) {
+			// stop the left handle if surpassing the right one
+			v = this.value2 - this.step;
+		} else if (v > this.max) {
 			v = this.max;
-		}
-
-		if (v < this.min) {
+		} else if (v < this.min) {
 			v = this.min;
 		}
 
@@ -164,7 +173,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			this.thumb.nativeElement.style.left = `${this.getFractionComplete(v) * 100}%`;
 		}
 
-		if (this.filledTrack) {
+		if (this.isRange() && this.filledTrack) {
+			this.updateTrackRangeWidth();
+		} else if (this.filledTrack) {
 			this.filledTrack.nativeElement.style.transform = `translate(0%, -50%) ${this.scaleX(this.getFractionComplete(v))}`;
 		}
 
@@ -179,6 +190,44 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	get value() {
 		return this._value;
 	}
+
+	/** Set the initial value. Available for two way binding */
+	@Input() set value2(v) {
+		if (!v) {
+			v = this.max;
+		}
+
+		if (v > this.max) {
+			v = this.max;
+		} else if (this.isRange() && v <= this.value + this.step) {
+			// stop the right handle if surpassing the left one
+			v = this.value + this.step;
+		} else if (v < this.min) {
+			v = this.min;
+		}
+
+		this._value2 = v;
+
+		if (this.thumb2) {
+			this.thumb2.nativeElement.style.left = `${this.getFractionComplete(v) * 100}%`;
+		}
+
+		if (this.filledTrack) {
+			this.updateTrackRangeWidth();
+		}
+
+		if (this.input2) {
+			this.input2.value = v.toString();
+		}
+
+		this.propagateChange(v);
+		this.value2Change.emit(v);
+	}
+
+	get value2() {
+		return this._value2;
+	}
+
 	/** Base ID for the slider. The min and max labels get IDs `${this.id}-bottom-range` and `${this.id}-top-range` respectively */
 	@Input() id = `slider-${Slider.count++}`;
 	/** Value used to "multiply" the `step` when using arrow keys to select values */
@@ -193,9 +242,9 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	@Input() set disabled(v) {
 		this._disabled = v;
 		// for some reason `this.input` never exists here, so we have to query for it here too
-		const input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
-		if (input) {
-			input.disabled = v;
+		const inputs = this.getInputs();
+		if (inputs && inputs.length > 0) {
+			inputs.forEach(input => input.disabled = v);
 		}
 	}
 
@@ -204,8 +253,10 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	}
 	/** Emits every time a new value is selected */
 	@Output() valueChange: EventEmitter<number> = new EventEmitter();
+	@Output() value2Change: EventEmitter<number> = new EventEmitter();
 	@HostBinding("class.bx--form-item") hostClass = true;
 	@ViewChild("thumb") thumb: ElementRef;
+	@ViewChild("thumb2") thumb2: ElementRef;
 	@ViewChild("track") track: ElementRef;
 	@ViewChild("filledTrack") filledTrack: ElementRef;
 	@ViewChild("range") range: ElementRef;
@@ -218,12 +269,15 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/** Array of event subscriptions so we can batch unsubscribe in `ngOnDestroy` */
 	protected eventSubscriptions: Array<Subscription> = [];
 	protected input: HTMLInputElement;
+	protected input2: HTMLInputElement;
 	protected _min = 0;
 	protected _max = 100;
 	protected _value = this.min;
+	protected _value2 = null;
 	protected _disabled = false;
+	protected _focusedThumb: ElementRef = null;
 
-	constructor(protected elementRef: ElementRef) {}
+	constructor(protected elementRef: ElementRef) { }
 
 	ngAfterViewInit() {
 		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse
@@ -233,19 +287,35 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		// apply any values we got from before the view initialized
 		this.value = this.value;
 
+		if (this.isRange()) {
+			this.value2 = this.value2;
+		}
+
 		// TODO: ontouchstart/ontouchmove/ontouchend
 
 		// set up the optional input
-		this.input = this.elementRef.nativeElement.querySelector("input:not([type=range])");
-		if (this.input) {
-			this.input.type = "number";
-			this.input.classList.add("bx--slider-text-input");
-			this.input.classList.add("bx--text-input");
-			this.input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
+		const inputs = this.getInputs();
+		if (inputs && inputs.length > 0) {
+			inputs.forEach(input => {
+				input.type = "number";
+				input.classList.add("bx--slider-text-input");
+				input.classList.add("bx--text-input");
+				input.setAttribute("aria-labelledby", `${this.bottomRangeId} ${this.topRangeId}`);
+
+				this.eventSubscriptions.push(fromEvent(input, "focus").subscribe(this.onFocus.bind(this)));
+			});
+
+			this.input = inputs[0];
 			this.input.value = this.value.toString();
 			// bind events on our optional input
 			this.eventSubscriptions.push(fromEvent(this.input, "change").subscribe(this.onChange.bind(this)));
-			this.eventSubscriptions.push(fromEvent(this.input, "focus").subscribe(this.onFocus.bind(this)));
+
+			if (inputs.length === 2) {
+				this.input2 = inputs[1];
+				this.input2.value = this.value2.toString();
+				// bind events on our optional input
+				this.eventSubscriptions.push(fromEvent(this.input2, "change").subscribe(this.onChange2.bind(this)));
+			}
 		}
 	}
 
@@ -342,9 +412,49 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.value = this.value - (this.step * multiplier);
 	}
 
+	/**
+	 * Increments the value by the step value, or the step value multiplied by the `multiplier` argument.
+	 *
+	 * @argument multiplier Defaults to `1`, multiplied with the step value.
+	 */
+	incrementValue2(multiplier = 1) {
+		this.value2 = this.value2 + (this.step * multiplier);
+	}
+
+	/**
+	 * Decrements the value by the step value, or the step value multiplied by the `multiplier` argument.
+	 *
+	 * @argument multiplier Defaults to `1`, multiplied with the step value.
+	 */
+	decrementValue2(multiplier = 1) {
+		this.value2 = this.value2 - (this.step * multiplier);
+	}
+
+	/**
+	 * Determines if the slider is in range mode.
+	 */
+	isRange(): boolean {
+		return this.value2 !== null;
+	}
+
+	/**
+	 * Range mode only.
+	 * Updates the track width to span from the low thumb to the high thumb
+	 */
+	updateTrackRangeWidth() {
+		const fraction = this.getFractionComplete(this._value);
+		const fraction2 = this.getFractionComplete(this._value2);
+		this.filledTrack.nativeElement.style.transform = `translate(${fraction * 100}%, -50%) ${this.scaleX(fraction2 - fraction)}`;
+	}
+
 	/** Change handler for the optional input */
 	onChange(event) {
 		this.value = event.target.value;
+	}
+
+	/** Change handler for the optional input2 */
+	onChange2(event) {
+		this.value2 = event.target.value;
 	}
 
 	/** Handles clicks on the range track, and setting the value to it's "real" equivalent */
@@ -355,7 +465,7 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	}
 
 	/** Focus handler for the optional input */
-	onFocus({target}) {
+	onFocus({ target }) {
 		target.select();
 	}
 
@@ -367,25 +477,42 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 			event.clientX - track.left <= track.width
 			&& event.clientX - track.left >= 0
 		) {
-			this.value = this.convertToValue(event.clientX - track.left);
+			if (this._focusedThumb === this.thumb) {
+				this.value = this.convertToValue(event.clientX - track.left);
+			} else {
+				this.value2 = this.convertToValue(event.clientX - track.left);
+			}
 		}
 
 		// if the mouse is beyond the max, set the value to `max`
 		if (event.clientX - track.left > track.width) {
-			this.value = this.max;
+			if (this._focusedThumb === this.thumb) {
+				this.value = this.max;
+			} else {
+				this.value2 = this.max;
+			}
 		}
 
 		// if the mouse is below the min, set the value to `min`
 		if (event.clientX - track.left < 0) {
-			this.value = this.min;
+			if (this._focusedThumb === this.thumb) {
+				this.value = this.min;
+			} else {
+				this.value2 = this.min;
+			}
 		}
 	}
 
-	/** Enables the `onMouseMove` handler */
-	onMouseDown(event) {
+	/**
+	 * Enables the `onMouseMove` handler
+	 *
+	 * @param {boolean} thumb If true then `thumb` is clicked down, otherwise `thumb2` is clicked down.
+	 */
+	onMouseDown(event, thumb = true) {
 		event.preventDefault();
 		if (this.disabled) { return; }
-		this.thumb.nativeElement.focus();
+		this._focusedThumb = thumb ? this.thumb : this.thumb2;
+		this._focusedThumb.nativeElement.focus();
 		this.isMouseDown = true;
 	}
 
@@ -394,22 +521,39 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		this.isMouseDown = false;
 	}
 
-	/** Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown */
-	onKeyDown(event: KeyboardEvent) {
+	/**
+	 * Calls `incrementValue` for ArrowRight and ArrowUp, `decrementValue` for ArrowLeft and ArrowDown.
+	 *
+	 * @param {boolean} thumb If true then `thumb` is pressed down, otherwise `thumb2` is pressed down.
+	 */
+	onKeyDown(event: KeyboardEvent, thumb = true) {
 		if (this.disableArrowKeys) {
 			return;
 		}
 		const multiplier = event.shiftKey ? this.shiftMultiplier : 1;
 		if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
-			this.decrementValue(multiplier);
+			if (thumb) {
+				this.decrementValue(multiplier);
+			} else {
+				this.decrementValue2(multiplier);
+			}
 			event.preventDefault();
 		} else if (event.key === "ArrowRight" || event.key === "ArrowUp") {
-			this.incrementValue(multiplier);
+			if (thumb) {
+				this.incrementValue(multiplier);
+			} else {
+				this.incrementValue2(multiplier);
+			}
 			event.preventDefault();
 		}
 	}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/** Get optional input fields */
+	protected getInputs(): HTMLInputElement[] {
+		return this.elementRef.nativeElement.querySelectorAll("input:not([type=range])");
 	}
 }
