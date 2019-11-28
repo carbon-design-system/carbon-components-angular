@@ -53,7 +53,7 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 			</div>
 			<div class="bx--batch-summary">
 				<p class="bx--batch-summary__para">
-					<span>{{count}}</span> items selected
+					<span>{{count}}</span> {{batchText}}
 				</p>
 			</div>
 		</div>
@@ -63,6 +63,8 @@ import { I18n, Overridable } from "../../i18n/i18n.module";
 })
 export class TableToolbar {
 	@Input() model: TableModel;
+
+	@Input() batchText = "items selected";
 
 	@Input() set ariaLabel (value: { ACTION_BAR: string }) {
 		this.actionBarLabel.override(value.ACTION_BAR);

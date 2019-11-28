@@ -148,7 +148,7 @@ storiesOf("Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<ibm-table-toolbar [model]="model">
+			<ibm-table-toolbar [model]="model" [batchText]="batchText">
 				<ibm-table-toolbar-actions>
 					<button ibmButton="primary">
 						Delete
@@ -186,7 +186,8 @@ storiesOf("Table", module).addDecorator(
 		</ibm-table-container>
 	`,
 		props: getProps({
-			description: text("Description", "With toolbar")
+			description: text("Description", "With toolbar"),
+			batchText: text("Toolbar batch text", "items selected")
 		})
 	}))
 	.add("With expansion", () => ({
