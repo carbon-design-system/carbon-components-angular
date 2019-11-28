@@ -131,7 +131,7 @@ class DragAndDropStory {
 	// preliminary filtration and is optional.
 	onDropped(event) {
 		const transferredFiles = Array.from(event);
-	
+
 		// Creates a promise which resolves to a file and whether or not the file should be accepted.
 		const readFileAndCheckType = fileObj => {
 			return new Promise((resolve, reject) => {
