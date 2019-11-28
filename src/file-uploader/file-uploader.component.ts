@@ -154,8 +154,6 @@ export class FileUploader {
 	 */
 	protected dragOver = false;
 
-	protected _fileList = [];
-
 	constructor(protected i18n: I18n) {
 		FileUploader.fileUploaderCount++;
 	}
@@ -177,15 +175,8 @@ export class FileUploader {
 		this.onTouchedCallback();
 	}
 
-	set fileList(files: Array<any>) {
-		this._fileList = files;
-	}
-
 	get fileList() {
-		if (this.fileInput.nativeElement.files.length) {
-			return Array.from(this.fileInput.nativeElement.files);
-		}
-		return this._fileList;
+		return Array.from(this.fileInput.nativeElement.files);
 	}
 
 	/**
@@ -197,18 +188,22 @@ export class FileUploader {
 		}
 	}
 
+	createFileItem(file): FileItem {
+		return {
+			uploaded: false,
+			state: "edit",
+			invalid: false,
+			invalidText: "",
+			file: file
+		};
+	}
+
 	onFilesAdded() {
 		if (!this.multiple) {
 			this.files.clear();
 		}
 		for (let file of this.fileList) {
-			const fileItem: FileItem = {
-				uploaded: false,
-				state: "edit",
-				invalid: false,
-				invalidText: "",
-				file: file
-			};
+			const fileItem = this.createFileItem(file);
 			this.files.add(fileItem);
 			this.filesChange.emit(this.files);
 		}
@@ -235,29 +230,30 @@ export class FileUploader {
 		const transferredFiles = Array.from(event.dataTransfer.files);
 
 		if (!this.accept.length) {
-			this.fileList = transferredFiles;
-			this.onFilesAdded();
+			transferredFiles.forEach(file => {
+				const fileItem = this.createFileItem(file);
+				this.files.add(fileItem);
+				this.filesChange.emit(this.files);
+			});
+
+			this.value = this.files;
 			this.dragOver = false;
 			return;
 		}
 
-		const fileExtensionRegExp = new RegExp(/\.[0-9a-z]+$/, "i");
-
-		const acceptedFiles = transferredFiles.filter(({ name, type }) => {
-			if (!fileExtensionRegExp.test(name)) {
-				return false;
-			}
-			const [fileExtension] = name.match(fileExtensionRegExp);
+		transferredFiles.filter(({ name, type }) => {
+			// Get the file extension and add a "." to the beginning.
+			const fileExtension = name.split(".").pop().replace(/^/, ".");
+			// Check if the accept array contains the mime type or extension of the file.
 			return this.accept.includes(type) || this.accept.includes(fileExtension);
+		}).forEach(file => {
+			const fileItem = this.createFileItem(file);
+			this.files.add(fileItem);
+			this.filesChange.emit(this.files);
 		});
 
-		this.fileList = acceptedFiles;
-		this.onFilesAdded();
+		this.value = this.files;
 		this.dragOver = false;
-
-		// Emit the files for the possibility of further filtration.
-		// See storybook for an example.
-		this.filesChange.emit(this.files);
 	}
 
 	removeFile(fileItem) {

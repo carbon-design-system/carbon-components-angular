@@ -131,13 +131,9 @@ class DragAndDropStory {
 	// preliminary filtration and is optional.
 	onDropped(event) {
 		const transferredFiles = Array.from(event);
-
-		const fileExtensionRegExp = new RegExp(/\.[0-9a-z]+$/, "i");
-
-		let promises: Array<Promise<any>> = [];
-
+	
 		// Creates a promise which resolves to a file and whether or not the file should be accepted.
-		const readFileAndAddToMap = fileObj => {
+		const readFileAndCheckType = fileObj => {
 			return new Promise((resolve, reject) => {
 				let fileExtension, mime;
 				let reader = new FileReader();
@@ -151,7 +147,7 @@ class DragAndDropStory {
 					} else {
 						// If a file type can not be determined using magic numbers
 						// then use file extension or mime type.
-						[fileExtension] = fileObj.file.name.match(fileExtensionRegExp);
+						fileExtension = fileObj.file.name.split(".").pop().replace(/^/, ".");
 						mime = fileObj.file.type;
 					}
 					resolve({
@@ -166,14 +162,13 @@ class DragAndDropStory {
 			});
 		};
 
-		transferredFiles.forEach(file => {
-			promises.push(readFileAndAddToMap(file));
-		});
+		const promises = transferredFiles.map(file => readFileAndCheckType(file));
 
 		Promise.all(promises).then(filePromiseArray =>
 			filePromiseArray.filter(filePromise => filePromise.accept)
 				.map(acceptedFile => acceptedFile.file))
-					.then(acceptedFiles => this.files = new Set(acceptedFiles)).catch(error => console.log(error));
+				.then(acceptedFiles => this.files = new Set(acceptedFiles))
+				.catch(error => console.log(error));
 	}
 
 	onUpload() {
