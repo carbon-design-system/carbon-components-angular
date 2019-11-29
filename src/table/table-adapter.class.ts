@@ -90,6 +90,11 @@ export abstract class TableAdapter {
 	findIndex(cell: TableCellAdapter): [number, number] { return; }
 }
 
+enum TableDomSpanDirection {
+	colSpan = "colSpan",
+	rowSpan = "rowSpan"
+}
+
 /**
  * A concrete implementation of `TableAdapter`
  *
@@ -194,13 +199,13 @@ export class TableDomAdapter implements TableAdapter {
 
 			// start from the last row and work up
 			for (const headerRow of headerRows.reverse()) {
-				const cells = Array.from(headerRow.cells);
-				const header = cells.find(cell => ids.includes(cell.id));
+				const headerCells = Array.from(headerRow.cells);
+				const header = headerCells.find(headerCell => ids.includes(headerCell.id));
 				// if we have a matching header, find it's index (adjusting for colspans)
 				if (header) {
 					// this is borrowed from below
 					let cellIndex = 0;
-					for (const c of cells) {
+					for (const c of headerCells) {
 						if (c === header) { break; }
 						cellIndex += c.colSpan;
 					}
@@ -216,11 +221,11 @@ export class TableDomAdapter implements TableAdapter {
 			for (const id of ids) {
 				// there's no selector that will match two space separated lists,
 				// so we have to iterate through the ids and query the row for each
-				const cells = Array.from(row.querySelectorAll(`[headers~='${id}']`));
-				for (const cell of cells) {
+				const rowCells = Array.from(row.querySelectorAll(`[headers~='${id}']`));
+				for (const rowCell of rowCells) {
 					// only keep one set of cells
-					if (!similarCells.includes(cell)) {
-						similarCells.push(cell);
+					if (!similarCells.includes(rowCell)) {
+						similarCells.push(rowCell);
 					}
 				}
 			}
@@ -273,9 +278,8 @@ export class TableDomAdapter implements TableAdapter {
 	 * @param row the row to get the length of
 	 */
 	protected getRealRowLength(row: HTMLTableRowElement): number {
-		return Array.from(row.cells).reduce((count, cell) => {
-			return count + cell.colSpan;
-		}, -1); // start at -1 since the colspans will sum to 1 index greater than the total
+		// start at -1 since the colspans will sum to 1 index greater than the total
+		return Array.from(row.cells).reduce((count, cell) => count + cell.colSpan, -1);
 	}
 
 	/**
@@ -285,7 +289,7 @@ export class TableDomAdapter implements TableAdapter {
 	 * @param targetIndex The index we think the cell is located at
 	 * @param spanDirection The direction of the cell spans. Should be `"colSpan"` for a row and `"rowSpan"` for a column
 	 */
-	protected findCell(cells: HTMLTableCellElement[], targetIndex: number, spanDirection: "colSpan" | "rowSpan") {
+	protected findCell(cells: HTMLTableCellElement[], targetIndex: number, spanDirection: TableDomSpanDirection) {
 		// rows/cols can have fewer total cells than the actual table
 		// the model pretends all rows/cols behave the same (with col/row spans > 1 being N cells long)
 		// this maps that view to the HTML view (col/row spans > 1 are one element, so the array is shorter)
@@ -313,7 +317,7 @@ export class TableDomAdapter implements TableAdapter {
 	 * @param index the index of the element
 	 */
 	protected findCellInRow(row: HTMLTableCellElement[], index: number) {
-		return this.findCell(row, index, "colSpan");
+		return this.findCell(row, index, TableDomSpanDirection.colSpan);
 	}
 
 	/**
@@ -323,6 +327,6 @@ export class TableDomAdapter implements TableAdapter {
 	 * @param index the index of the element
 	 */
 	protected findCellInColumn(col: HTMLTableCellElement[], index: number) {
-		return this.findCell(col, index, "rowSpan");
+		return this.findCell(col, index, TableDomSpanDirection.rowSpan);
 	}
 }
