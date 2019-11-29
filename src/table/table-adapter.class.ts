@@ -192,10 +192,13 @@ export class TableDomAdapter implements TableAdapter {
 			const headerRows = Array.from(this.tableElement.tHead.rows);
 			const indexes = [];
 
+			// start from the last row and work up
 			for (const headerRow of headerRows.reverse()) {
 				const cells = Array.from(headerRow.cells);
 				const header = cells.find(cell => ids.includes(cell.id));
+				// if we have a matching header, find it's index (adjusting for colspans)
 				if (header) {
+					// this is borrowed from below
 					let cellIndex = 0;
 					for (const c of cells) {
 						if (c === header) { break; }
@@ -205,20 +208,27 @@ export class TableDomAdapter implements TableAdapter {
 				}
 			}
 
+			// sort the indexes largest to smallest to find the closest matching header index
 			const firstIndex = indexes.sort((a, b) => b - a)[0];
 
+			// search the row for cells that share the header
 			let similarCells = [];
 			for (const id of ids) {
+				// there's no selector that will match two space separated lists,
+				// so we have to iterate through the ids and query the row for each
 				const cells = Array.from(row.querySelectorAll(`[headers~='${id}']`));
 				for (const cell of cells) {
+					// only keep one set of cells
 					if (!similarCells.includes(cell)) {
 						similarCells.push(cell);
 					}
 				}
 			}
 
+			// DOM order is not preserved, so we have to sort the row
 			similarCells = similarCells.sort((a: HTMLTableCellElement, b: HTMLTableCellElement) => a.cellIndex - b.cellIndex);
 
+			// return the header index plus any adjustment within that headers column
 			return firstIndex + similarCells.indexOf(cell);
 		}
 
@@ -257,6 +267,8 @@ export class TableDomAdapter implements TableAdapter {
 	/**
 	 * Helper function that returns the "real" length of a row.
 	 * Only accurate with regard to colspans (though that's sufficient for it's uses here)
+	 *
+	 * TODO: Take rowSpan into account
 	 *
 	 * @param row the row to get the length of
 	 */
