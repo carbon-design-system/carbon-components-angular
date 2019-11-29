@@ -6,6 +6,9 @@ import { PaginationModel } from "./../pagination/pagination-model.class";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 
+export type HeaderType = number | "select" | "expand";
+
+
 export class TableModel implements PaginationModel {
 	/**
 	 * The number of models instantiated, used for (among other things) unique id generation
@@ -164,7 +167,7 @@ export class TableModel implements PaginationModel {
 	 * @param column the column to generate an id for
 	 * @param row the row of the header to generate an id for
 	 */
-	getId(column: number | "select" | "expand", row = 0): string {
+	getId(column: HeaderType, row = 0): string {
 		return `table-header-${row}-${column}-${TableModel.COUNT}`;
 	}
 
@@ -174,7 +177,7 @@ export class TableModel implements PaginationModel {
 	 * @param column the column to start getting headers for
 	 * @param colSpan the number of columns to get headers for (defaults to 1)
 	 */
-	getHeaderId(column: number | "select" | "expand", colSpan = 1): string {
+	getHeaderId(column: HeaderType, colSpan = 1): string {
 		if (column === "select" || column === "expand") {
 			return this.getId(column);
 		}
