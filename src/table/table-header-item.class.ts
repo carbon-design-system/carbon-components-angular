@@ -33,6 +33,17 @@ export class TableHeaderItem {
 	filterCount = 0;
 
 	/**
+	 * The number of rows to span
+	 * **NOTE:** not supported by the default carbon table
+	 */
+	rowSpan = 1;
+
+	/**
+	 * The number of columns to span
+	 */
+	colSpan = 1;
+
+	/**
 	 * Attach a class to the column, both the header and column cells.
 	 *
 	 */

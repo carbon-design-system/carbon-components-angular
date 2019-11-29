@@ -23,6 +23,7 @@ import { Observable } from "rxjs";
 				[expandable]="expandable"
 				[skeleton]="skeleton"
 				[ariaLabel]="getExpandButtonAriaLabel()"
+				[headers]="model.getHeaderId('expand')"
 				(expandRow)="expandRow.emit()">
 			</td>
 			<td
@@ -33,6 +34,7 @@ import { Observable } from "rxjs";
 				[label]="getCheckboxLabel()"
 				[row]="row"
 				[skeleton]="skeleton"
+				[headers]="model.getHeaderId('select')"
 				(change)="onSelectionChange()">
 			</td>
 			<td
@@ -42,16 +44,29 @@ import { Observable } from "rxjs";
 				[label]="getCheckboxLabel()"
 				[row]="row"
 				[skeleton]="skeleton"
+				[headers]="model.getHeaderId('select')"
 				(change)="onSelectionChange()">
 			</td>
 			<ng-container *ngFor="let item of row; let j = index">
 				<td
-					*ngIf="model.header[j].visible"
+					*ngIf="item && model.getHeader(j) && model.getHeader(j).visible"
 					ibmTableData
+					[headers]="model.getHeaderId(j, item.colSpan)"
 					[item]="item"
-					[class]="model.header[j].className"
-					[ngStyle]="model.header[j].style"
-					[skeleton]="skeleton">
+					[class]="model.getHeader(j).className"
+					[ngStyle]="model.getHeader(j).style"
+					[skeleton]="skeleton"
+					[attr.colspan]="item.colSpan"
+					[attr.rowspan]="item.rowSpan">
+				</td>
+				<td
+					*ngIf="item && model.getHeader(j) == null"
+					ibmTableData
+					[headers]="model.getHeaderId(j, item.colSpan)"
+					[item]="item"
+					[skeleton]="skeleton"
+					[attr.colspan]="item.colSpan"
+					[attr.rowspan]="item.rowSpan">
 				</td>
 			</ng-container>
 		</ng-container>
