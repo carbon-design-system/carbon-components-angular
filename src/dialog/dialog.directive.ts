@@ -144,7 +144,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			wrapperClass: this.wrapperClass,
 			data: this.data
 		};
-		this.onDialogInit();
+
+		// Run any code a child class may need.
+		this.onDialogChanges();
 	}
 
 	/**
@@ -241,4 +243,10 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * Run after DialogDirective completes it's ngOnInit.
 	 */
 	protected onDialogInit() {}
+
+	/**
+	 * Empty method for child to override and specify additional on changes steps.
+	 * run after DialogDirective completes it's ngOnChanges.
+	 */
+	protected onDialogChanges() {}
 }
