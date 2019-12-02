@@ -1,11 +1,10 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { action, actions } from "@storybook/addon-actions";
-import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
+import { action } from "@storybook/addon-actions";
+import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { Component, Testability, Input } from "@angular/core";
+import { Component, Input, EventEmitter, Output } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
-import { I18n } from "../i18n/i18n.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 import { Subject } from "rxjs";
 
@@ -51,13 +50,15 @@ class NotificationActionStory {
 	@Input() showClose = true;
 	@Input() lowContrast = false;
 
-	subject = new Subject<any>();
+	@Output() actionClicked: EventEmitter<any> = new EventEmitter();
+
+	actionSubject = new Subject<any>();
 
 	actions = [
 		{
 			text: "Action",
-			click: this.subject.subscribe({
-				next: () => console.log("action");
+			click: this.actionSubject.subscribe({
+				next: () => this.actionClicked.emit()
 			})
 		}
 	];
@@ -160,16 +161,18 @@ storiesOf("Notification", module)
 			lowContrast: boolean("Low Contrast", false)
 		}
 	}))
-	.add("Test", () => ({
+	.add("With Actions", () => ({
 		template: `
 			<app-notification-action-story
 				[showClose]="showClose"
-				[lowContrast]="lowContrast">
+				[lowContrast]="lowContrast"
+				(actionClicked)="selected()">
 			</app-notification-action-story>
 		`,
 		props: {
 			showClose: boolean("Show close icon", true),
-			lowContrast: boolean("Low Contrast", false)
+			lowContrast: boolean("Low Contrast", false),
+			selected: action("Action button clicked!")
 		}
 	}))
 	.add("Dynamic", () => ({

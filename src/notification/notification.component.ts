@@ -121,6 +121,9 @@ export class Notification {
 	}
 
 	onClick(action) {
+		if (!action) {
+			return;
+		}
 		if (typeof action === "function") {
 			action();
 		} else {
