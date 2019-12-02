@@ -218,20 +218,15 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 
 	@HostListener("focusin")
 	onFocus() {
-		// Updates the months and years manually when calendar mode is range because months
-		// and years are not updated properly without manually updating them on focus.
+		// Updates the month manually when calendar mode is range because month
+		// will not update properly without manually updating them on focus.
 		if (this.range) {
 			if (this.rangeInput.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[1]) {
 				const currentMonth = this.flatpickrInstance.selectedDates[1].getMonth();
-
-				this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[1].getFullYear();
-
 				this.flatpickrInstance.changeMonth(currentMonth, false);
+
 			} else if (this.input.input.nativeElement === document.activeElement && this.flatpickrInstance.selectedDates[0]) {
 				const currentMonth = this.flatpickrInstance.selectedDates[0].getMonth();
-
-				this.flatpickrInstance.currentYear = this.flatpickrInstance.selectedDates[0].getFullYear();
-
 				this.flatpickrInstance.changeMonth(currentMonth, false);
 			}
 		}
