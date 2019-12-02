@@ -8,7 +8,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { CodeSnippetModule } from "..";
 
-storiesOf("CodeSnippet", module).addDecorator(
+storiesOf("Components|CodeSnippet", module).addDecorator(
 	moduleMetadata({
 		imports: [CodeSnippetModule]
 	})
@@ -26,7 +26,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
 import { CodeSnippetModule } from "..";
 
-storiesOf("Code Snippet", module).addDecorator(
+storiesOf("Components|Code Snippet", module).addDecorator(
 	moduleMetadata({
 		imports: [CodeSnippetModule]
 	})
@@ -35,7 +35,7 @@ storiesOf("Code Snippet", module).addDecorator(
 
 const inlineCode = "<inline code>";
 
-storiesOf("Code Snippet", module).addDecorator(
+storiesOf("Components|Code Snippet", module).addDecorator(
 	moduleMetadata({
 		imports: [CodeSnippetModule, DocumentationModule]
 	})

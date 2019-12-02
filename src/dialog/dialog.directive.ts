@@ -174,7 +174,9 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 			fromEvent(this.elementRef.nativeElement, "keydown").subscribe((event: KeyboardEvent) => {
 				// "Spacebar" is an IE specific value
 				if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
-					this.open();
+					setTimeout(() => {
+						this.open();
+					});
 				}
 			});
 		}

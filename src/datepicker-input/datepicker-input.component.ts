@@ -36,8 +36,7 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 						[id]= "id"
 						[disabled]="disabled"
 						(change)="onChange($event)"/>
-						<ibm-icon-calendar16
-							class="bx--date-picker__icon">
+						<ibm-icon-calendar16 class="bx--date-picker__icon">
 						</ibm-icon-calendar16>
 				</div>
 				<div *ngIf="invalid" class="bx--form-requirement">

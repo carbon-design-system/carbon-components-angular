@@ -5,7 +5,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 import { InformationFilled16Module } from "@carbon/icons-angular/lib/information--filled/16";
 import { DialogModule, PlaceholderModule, DocumentationModule } from "../../";
 
-storiesOf("Tooltip", module)
+storiesOf("Components|Tooltip", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
