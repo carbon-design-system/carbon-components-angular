@@ -116,8 +116,11 @@
 		&lt;ibm-breadcrumb-item
 			*ngFor&#x3D;&quot;let item of items&quot;
 			[href]&#x3D;&quot;item.href&quot;
+			[route]&#x3D;&quot;item.route&quot;
+			[routeExtras]&#x3D;&quot;item.routeExtras&quot;
 			[current]&#x3D;&quot;item.current&quot;
-			[ariaCurrent]&#x3D;&quot;item.ariaCurrent&quot;&gt;
+			[ariaCurrent]&#x3D;&quot;item.ariaCurrent&quot;
+			(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;!item.template&quot;&gt;{{item.content}}&lt;/ng-container&gt;
 			&lt;ng-template
 				*ngIf&#x3D;&quot;item.template&quot;
@@ -129,8 +132,11 @@
 	&lt;ng-template [ngIf]&#x3D;&quot;shouldShowOverflow&quot;&gt;
 		&lt;ibm-breadcrumb-item
 			[href]&#x3D;&quot;first?.href&quot;
+			[route]&#x3D;&quot;first?.route&quot;
+			[routeExtras]&#x3D;&quot;first?.routeExtras&quot;
 			[current]&#x3D;&quot;first?.current&quot;
-			[ariaCurrent]&#x3D;&quot;first?.ariaCurrent&quot;&gt;
+			[ariaCurrent]&#x3D;&quot;first?.ariaCurrent&quot;
+			(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;!first?.template&quot;&gt;{{first?.content}}&lt;/ng-container&gt;
 			&lt;ng-template
 				*ngIf&#x3D;&quot;first?.template&quot;
@@ -144,6 +150,7 @@
 					*ngFor&#x3D;&quot;let item of overflowItems&quot;&gt;
 					&lt;a class&#x3D;&quot;bx--overflow-menu-options__btn&quot;
 						href&#x3D;&quot;{{item?.href}}&quot;
+						(click)&#x3D;&quot;navigate($event, item)&quot;
 						style&#x3D;&quot;text-decoration: none;&quot;&gt;
 						&lt;ng-container *ngIf&#x3D;&quot;!item?.template&quot;&gt;{{item?.content}}&lt;/ng-container&gt;
 						&lt;ng-template
@@ -157,8 +164,11 @@
 		&lt;/ibm-breadcrumb-item&gt;
 		&lt;ibm-breadcrumb-item
 			[href]&#x3D;&quot;secondLast?.href&quot;
+			[route]&#x3D;&quot;secondLast?.route&quot;
+			[routeExtras]&#x3D;&quot;secondLast?.routeExtras&quot;
 			[current]&#x3D;&quot;secondLast?.current&quot;
-			[ariaCurrent]&#x3D;&quot;secondLast?.ariaCurrent&quot;&gt;
+			[ariaCurrent]&#x3D;&quot;secondLast?.ariaCurrent&quot;
+			(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;!secondLast?.template&quot;&gt;{{secondLast?.content}}&lt;/ng-container&gt;
 			&lt;ng-template
 				*ngIf&#x3D;&quot;secondLast?.template&quot;
@@ -168,8 +178,11 @@
 		&lt;/ibm-breadcrumb-item&gt;
 		&lt;ibm-breadcrumb-item
 			[href]&#x3D;&quot;last?.href&quot;
+			[route]&#x3D;&quot;last?.route&quot;
+			[routeExtras]&#x3D;&quot;last?.routeExtras&quot;
 			[current]&#x3D;&quot;last?.current&quot;
-			[ariaCurrent]&#x3D;&quot;last?.ariaCurrent&quot;&gt;
+			[ariaCurrent]&#x3D;&quot;last?.ariaCurrent&quot;
+			(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 			&lt;ng-container *ngIf&#x3D;&quot;!last?.template&quot;&gt;{{last?.content}}&lt;/ng-container&gt;
 			&lt;ng-template
 				*ngIf&#x3D;&quot;last?.template&quot;
@@ -229,6 +242,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#navigate">navigate</a>
+                            </li>
+                            <li>
                                 <a href="#ngAfterContentInit">ngAfterContentInit</a>
                             </li>
                             <li>
@@ -266,6 +282,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#navigation">navigation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -308,6 +338,66 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(domSanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:182</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>domSanitizer</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank" >DomSanitizer</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -327,7 +417,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:125</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -348,7 +438,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:121</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -368,7 +458,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:123</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -389,7 +479,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:128</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -410,7 +500,31 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:138</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="navigation"></a>
+                        <code>navigation</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Emits the navigation status promise when the link is activated</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:152</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -418,12 +532,91 @@
 </section>
 
 
-
     <section>
     
         <h3 id="methods">
             Methods
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="navigate"></a>
+                        <span class="name">
+                            <b>
+                            navigate
+                            </b>
+                            <a href="#navigate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>navigate(event, item: <a href="../interfaces/BreadcrumbItem.html">BreadcrumbItem</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:190</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>event</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>item</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/BreadcrumbItem.html" target="_self" >BreadcrumbItem</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -446,7 +639,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:186</a></div>
                             </td>
                         </tr>
 
@@ -486,7 +679,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -536,7 +729,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:182</a></div>
                             </td>
                         </tr>
 
@@ -571,7 +764,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:181</a></div>
                             </td>
                         </tr>
 
@@ -614,7 +807,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:119</a></div>
                             </td>
                         </tr>
 
@@ -643,7 +836,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:133</a></div>
                                 </td>
                             </tr>
 
@@ -654,7 +847,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:128</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -712,7 +905,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:145</a></div>
                                 </td>
                             </tr>
 
@@ -723,7 +916,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:138</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -781,7 +974,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:154</a></div>
                                 </td>
                             </tr>
 
@@ -803,7 +996,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:158</a></div>
                                 </td>
                             </tr>
 
@@ -825,7 +1018,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:165</a></div>
                                 </td>
                             </tr>
 
@@ -847,7 +1040,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:169</a></div>
                                 </td>
                             </tr>
 
@@ -869,7 +1062,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:157</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:173</a></div>
                                 </td>
                             </tr>
 
@@ -891,7 +1084,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/breadcrumb/breadcrumb.component.ts:177</a></div>
                                 </td>
                             </tr>
 
@@ -908,11 +1101,16 @@
 	ContentChildren,
 	QueryList,
 	AfterContentInit,
-	TemplateRef
+	TemplateRef,
+	Optional,
+	Output,
+	EventEmitter
 } from &quot;@angular/core&quot;;
 
 import { BreadcrumbItem } from &quot;./breadcrumb-item.interface&quot;;
 import { BreadcrumbItemComponent } from &quot;./breadcrumb-item.component&quot;;
+import { DomSanitizer } from &quot;@angular/platform-browser&quot;;
+import { Router } from &quot;@angular/router&quot;;
 
 const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 
@@ -937,8 +1135,11 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 			&lt;ibm-breadcrumb-item
 				*ngFor&#x3D;&quot;let item of items&quot;
 				[href]&#x3D;&quot;item.href&quot;
+				[route]&#x3D;&quot;item.route&quot;
+				[routeExtras]&#x3D;&quot;item.routeExtras&quot;
 				[current]&#x3D;&quot;item.current&quot;
-				[ariaCurrent]&#x3D;&quot;item.ariaCurrent&quot;&gt;
+				[ariaCurrent]&#x3D;&quot;item.ariaCurrent&quot;
+				(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 				&lt;ng-container *ngIf&#x3D;&quot;!item.template&quot;&gt;{{item.content}}&lt;/ng-container&gt;
 				&lt;ng-template
 					*ngIf&#x3D;&quot;item.template&quot;
@@ -950,8 +1151,11 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 		&lt;ng-template [ngIf]&#x3D;&quot;shouldShowOverflow&quot;&gt;
 			&lt;ibm-breadcrumb-item
 				[href]&#x3D;&quot;first?.href&quot;
+				[route]&#x3D;&quot;first?.route&quot;
+				[routeExtras]&#x3D;&quot;first?.routeExtras&quot;
 				[current]&#x3D;&quot;first?.current&quot;
-				[ariaCurrent]&#x3D;&quot;first?.ariaCurrent&quot;&gt;
+				[ariaCurrent]&#x3D;&quot;first?.ariaCurrent&quot;
+				(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 				&lt;ng-container *ngIf&#x3D;&quot;!first?.template&quot;&gt;{{first?.content}}&lt;/ng-container&gt;
 				&lt;ng-template
 					*ngIf&#x3D;&quot;first?.template&quot;
@@ -965,6 +1169,7 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 						*ngFor&#x3D;&quot;let item of overflowItems&quot;&gt;
 						&lt;a class&#x3D;&quot;bx--overflow-menu-options__btn&quot;
 							href&#x3D;&quot;{{item?.href}}&quot;
+							(click)&#x3D;&quot;navigate($event, item)&quot;
 							style&#x3D;&quot;text-decoration: none;&quot;&gt;
 							&lt;ng-container *ngIf&#x3D;&quot;!item?.template&quot;&gt;{{item?.content}}&lt;/ng-container&gt;
 							&lt;ng-template
@@ -978,8 +1183,11 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 			&lt;/ibm-breadcrumb-item&gt;
 			&lt;ibm-breadcrumb-item
 				[href]&#x3D;&quot;secondLast?.href&quot;
+				[route]&#x3D;&quot;secondLast?.route&quot;
+				[routeExtras]&#x3D;&quot;secondLast?.routeExtras&quot;
 				[current]&#x3D;&quot;secondLast?.current&quot;
-				[ariaCurrent]&#x3D;&quot;secondLast?.ariaCurrent&quot;&gt;
+				[ariaCurrent]&#x3D;&quot;secondLast?.ariaCurrent&quot;
+				(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 				&lt;ng-container *ngIf&#x3D;&quot;!secondLast?.template&quot;&gt;{{secondLast?.content}}&lt;/ng-container&gt;
 				&lt;ng-template
 					*ngIf&#x3D;&quot;secondLast?.template&quot;
@@ -989,8 +1197,11 @@ const MINIMUM_OVERFLOW_THRESHOLD &#x3D; 4;
 			&lt;/ibm-breadcrumb-item&gt;
 			&lt;ibm-breadcrumb-item
 				[href]&#x3D;&quot;last?.href&quot;
+				[route]&#x3D;&quot;last?.route&quot;
+				[routeExtras]&#x3D;&quot;last?.routeExtras&quot;
 				[current]&#x3D;&quot;last?.current&quot;
-				[ariaCurrent]&#x3D;&quot;last?.ariaCurrent&quot;&gt;
+				[ariaCurrent]&#x3D;&quot;last?.ariaCurrent&quot;
+				(navigation)&#x3D;&quot;navigation.emit($event)&quot;&gt;
 				&lt;ng-container *ngIf&#x3D;&quot;!last?.template&quot;&gt;{{last?.content}}&lt;/ng-container&gt;
 				&lt;ng-template
 					*ngIf&#x3D;&quot;last?.template&quot;
@@ -1009,9 +1220,6 @@ export class Breadcrumb implements AfterContentInit {
 	@Input() noTrailingSlash &#x3D; false;
 
 	@Input() ariaLabel: string;
-
-	protected _threshold: number;
-	protected _skeleton &#x3D; false;
 
 	@Input()
 	set skeleton(value: any) {
@@ -1035,9 +1243,10 @@ export class Breadcrumb implements AfterContentInit {
 		return this._threshold;
 	}
 
-	ngAfterContentInit() {
-		this.updateChildren();
-	}
+	/**
+	 * Emits the navigation status promise when the link is activated
+	 */
+	@Output() navigation &#x3D; new EventEmitter&lt;Promise&lt;boolean&gt;&gt;();
 
 	get shouldShowContent(): boolean {
 		return !this.items;
@@ -1064,6 +1273,23 @@ export class Breadcrumb implements AfterContentInit {
 
 	get last(): BreadcrumbItem {
 		return this.shouldShowOverflow ? this.items[this.items.length - 1] : null;
+	}
+
+	protected _threshold: number;
+	protected _skeleton &#x3D; false;
+
+	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+
+	ngAfterContentInit() {
+		this.updateChildren();
+	}
+
+	navigate(event, item: BreadcrumbItem) {
+		if (this.router &amp;&amp; item.route) {
+			event.preventDefault();
+			const status &#x3D; this.router.navigate(item.route, item.routeExtras);
+			this.navigation.emit(status);
+		}
 	}
 
 	protected updateChildren() {
@@ -1107,7 +1333,7 @@ export class Breadcrumb implements AfterContentInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav #nav class="bx--breadcrumb"	[ngClass]="{		\'bx--skeleton\' : skeleton,		\'bx--breadcrumb--no-trailing-slash\' : noTrailingSlash	}"	[attr.aria-label]="ariaLabel">	<ng-template [ngIf]="shouldShowContent">		<ng-content></ng-content>	</ng-template>	<ng-template [ngIf]="!shouldShowOverflow">		<ibm-breadcrumb-item			*ngFor="let item of items"			[href]="item.href"			[current]="item.current"			[ariaCurrent]="item.ariaCurrent">			<ng-container *ngIf="!item.template">{{item.content}}</ng-container>			<ng-template				*ngIf="item.template"				[ngTemplateOutlet]="item.template"				[ngTemplateOutletContext]="{ $implicit: item }">			</ng-template>		</ibm-breadcrumb-item>	</ng-template>	<ng-template [ngIf]="shouldShowOverflow">		<ibm-breadcrumb-item			[href]="first?.href"			[current]="first?.current"			[ariaCurrent]="first?.ariaCurrent">			<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>			<ng-template				*ngIf="first?.template"				[ngTemplateOutlet]="first?.template"				[ngTemplateOutletContext]="{ $implicit: first }">			</ng-template>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item>			<ibm-overflow-menu>				<li class="bx--overflow-menu-options__option"					*ngFor="let item of overflowItems">					<a class="bx--overflow-menu-options__btn"						href="{{item?.href}}"						style="text-decoration: none;">						<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>						<ng-template							*ngIf="item?.template"							[ngTemplateOutlet]="item?.template"							[ngTemplateOutletContext]="{ $implicit: item }">						</ng-template>					</a>				</li>			</ibm-overflow-menu>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item			[href]="secondLast?.href"			[current]="secondLast?.current"			[ariaCurrent]="secondLast?.ariaCurrent">			<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>			<ng-template				*ngIf="secondLast?.template"				[ngTemplateOutlet]="secondLast?.template"				[ngTemplateOutletContext]="{ $implicit: secondLast }">			</ng-template>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item			[href]="last?.href"			[current]="last?.current"			[ariaCurrent]="last?.ariaCurrent">			<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>			<ng-template				*ngIf="last?.template"				[ngTemplateOutlet]="last?.template"				[ngTemplateOutletContext]="{ $implicit: last }">			</ng-template>		</ibm-breadcrumb-item>	</ng-template></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav #nav class="bx--breadcrumb"	[ngClass]="{		\'bx--skeleton\' : skeleton,		\'bx--breadcrumb--no-trailing-slash\' : noTrailingSlash	}"	[attr.aria-label]="ariaLabel">	<ng-template [ngIf]="shouldShowContent">		<ng-content></ng-content>	</ng-template>	<ng-template [ngIf]="!shouldShowOverflow">		<ibm-breadcrumb-item			*ngFor="let item of items"			[href]="item.href"			[route]="item.route"			[routeExtras]="item.routeExtras"			[current]="item.current"			[ariaCurrent]="item.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!item.template">{{item.content}}</ng-container>			<ng-template				*ngIf="item.template"				[ngTemplateOutlet]="item.template"				[ngTemplateOutletContext]="{ $implicit: item }">			</ng-template>		</ibm-breadcrumb-item>	</ng-template>	<ng-template [ngIf]="shouldShowOverflow">		<ibm-breadcrumb-item			[href]="first?.href"			[route]="first?.route"			[routeExtras]="first?.routeExtras"			[current]="first?.current"			[ariaCurrent]="first?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!first?.template">{{first?.content}}</ng-container>			<ng-template				*ngIf="first?.template"				[ngTemplateOutlet]="first?.template"				[ngTemplateOutletContext]="{ $implicit: first }">			</ng-template>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item>			<ibm-overflow-menu>				<li class="bx--overflow-menu-options__option"					*ngFor="let item of overflowItems">					<a class="bx--overflow-menu-options__btn"						href="{{item?.href}}"						(click)="navigate($event, item)"						style="text-decoration: none;">						<ng-container *ngIf="!item?.template">{{item?.content}}</ng-container>						<ng-template							*ngIf="item?.template"							[ngTemplateOutlet]="item?.template"							[ngTemplateOutletContext]="{ $implicit: item }">						</ng-template>					</a>				</li>			</ibm-overflow-menu>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item			[href]="secondLast?.href"			[route]="secondLast?.route"			[routeExtras]="secondLast?.routeExtras"			[current]="secondLast?.current"			[ariaCurrent]="secondLast?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!secondLast?.template">{{secondLast?.content}}</ng-container>			<ng-template				*ngIf="secondLast?.template"				[ngTemplateOutlet]="secondLast?.template"				[ngTemplateOutletContext]="{ $implicit: secondLast }">			</ng-template>		</ibm-breadcrumb-item>		<ibm-breadcrumb-item			[href]="last?.href"			[route]="last?.route"			[routeExtras]="last?.routeExtras"			[current]="last?.current"			[ariaCurrent]="last?.ariaCurrent"			(navigation)="navigation.emit($event)">			<ng-container *ngIf="!last?.template">{{last?.content}}</ng-container>			<ng-template				*ngIf="last?.template"				[ngTemplateOutlet]="last?.template"				[ngTemplateOutletContext]="{ $implicit: last }">			</ng-template>		</ibm-breadcrumb-item>	</ng-template></nav></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'Breadcrumb'};

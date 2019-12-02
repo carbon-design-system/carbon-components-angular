@@ -138,7 +138,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/table/table-adapter.class.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/table/table-adapter.class.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -178,7 +178,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/table/table-adapter.class.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/table/table-adapter.class.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -212,6 +212,10 @@
 	 * The number of columns spanned by this cell
 	 */
 	colSpan: number;
+	/**
+	 * The number of rows spanned by this cell
+	 */
+	rowSpan: number;
 }
 
 /**
@@ -234,7 +238,7 @@ export abstract class TableRowAdapter {
  */
 export abstract class TableAdapter {
 	/**
-	 * The last acccessible column in the table
+	 * The last accessible column in the table
 	 */
 	public get lastColumnIndex(): number { return; }
 
@@ -250,6 +254,13 @@ export abstract class TableAdapter {
 	 * @param column index of the column
 	 */
 	getCell(row: number, column: number): TableCellAdapter { return; }
+
+	/**
+	 * Returns a row from the table
+	 *
+	 * @param column index of the column
+	 */
+	getColumn(column: number): TableCellAdapter[] { return; }
 
 	/**
 	 * Returns a row from the table
@@ -281,6 +292,11 @@ export abstract class TableAdapter {
 	findIndex(cell: TableCellAdapter): [number, number] { return; }
 }
 
+enum TableDomSpanDirection {
+	colSpan &#x3D; &quot;colSpan&quot;,
+	rowSpan &#x3D; &quot;rowSpan&quot;
+}
+
 /**
  * A concrete implementation of &#x60;TableAdapter&#x60;
  *
@@ -288,10 +304,10 @@ export abstract class TableAdapter {
  */
 export class TableDomAdapter implements TableAdapter {
 	/**
-	 * The last acccessible column in the table
+	 * The last accessible column in the table
 	 */
 	public get lastColumnIndex() {
-		return this.tableElement.rows[0].cells.length - 1;
+		return this.getRealRowLength(this.tableElement.rows[0]);
 	}
 
 	/**
@@ -318,23 +334,47 @@ export class TableDomAdapter implements TableAdapter {
 	 * @param column index of the column
 	 */
 	getCell(row: number, column: number): HTMLTableCellElement {
-		const baseRow &#x3D; this.getRow(row);
-		let baseCells &#x3D; Array.from(baseRow.cells);
+		const col &#x3D; this.getColumn(column);
 
-		// rows can have fewer total cells than the actual table
-		// the model pretends all rows behave the same (with colspans &gt; 1 being N cells long)
-		// this maps that view to the HTML view (colspans &gt; 1 are one element, so the array is shorter)
-		let realIndex &#x3D; 0;
-		// i is only used for iterating the &quot;cells&quot;
-		for (let i &#x3D; 0; i &lt; column;) {
-			// skip the next N &quot;cells&quot;
-			i +&#x3D; baseCells[realIndex].colSpan;
-			// don&#x27;t bump realIndex if i now exceeds the column we&#x27;re shooting for
-			if (i &gt; column) { break; }
-			// finally, increment realIndex (to keep it generally in step with i)
-			realIndex++;
+		return this.findCellInColumn(col, row).cell;
+	}
+
+	/**
+	 * Returns a column from the table, using the &#x60;id&#x60; and &#x60;headers&#x60; attributes
+	 *
+	 * See here for more detail these attributes: https://www.w3.org/TR/WCAG20-TECHS/H43.html
+	 *
+	 * @param column the index of the column
+	 */
+	getColumn(column: number): HTMLTableCellElement[] {
+		const firstHeader &#x3D; Array.from(this.tableElement.rows[0].cells);
+
+		const { cell: header, realIndex: realColumnIndex } &#x3D; this.findCellInRow(firstHeader, column);
+
+		const linkedCells: HTMLTableCellElement[] &#x3D; [];
+
+		for (let i &#x3D; 1; i &lt; this.tableElement.rows.length; i++) {
+			const row &#x3D; this.tableElement.rows[i];
+			// query for any cells that are linked to the given header id
+			// &#x60;~&#x3D;&#x60; matches values in space separated lists - so &#x60;[headers~&#x3D;&#x27;foo&#x27;]&#x60; would match &#x60;headers&#x3D;&quot;foo bar&quot;&#x60; and &#x60;headers&#x3D;&quot;foo&quot;&#x60;
+			// but not &#x60;headers&#x3D;&quot;bar&quot;&#x60; or &#x60;headers&#x3D;&quot;bar baz&quot;&#x60;
+			const linkedRowCells: NodeListOf&lt;HTMLTableCellElement&gt; &#x3D; row.querySelectorAll(&#x60;[headers~&#x3D;&#x27;${header.id}&#x27;]&#x60;);
+			// if we have more than one cell, get the one that is closest to the column
+			if (linkedRowCells.length &gt; 1) {
+				const { cell } &#x3D; this.findCellInRow(Array.from(linkedRowCells), column - realColumnIndex);
+				linkedCells.push(cell);
+			} else if (linkedRowCells[0]) {
+				linkedCells.push(linkedRowCells[0]);
+			}
 		}
-		return baseCells[realIndex];
+
+		// return an empty array if we can&#x27;t find any linked cells
+		// returning anything else would be a lie
+		if (!linkedCells) {
+			return [];
+		}
+
+		return [header, ...linkedCells];
 	}
 
 	/**
@@ -353,6 +393,53 @@ export class TableDomAdapter implements TableAdapter {
 	 */
 	findColumnIndex(cell: HTMLTableCellElement): number {
 		const row &#x3D; this.getRow(this.findRowIndex(cell));
+		// if the cell has linked headers we can do a more accurate lookup
+		if (cell.headers) {
+			const ids &#x3D; cell.headers.split(&quot; &quot;);
+			const headerRows &#x3D; Array.from(this.tableElement.tHead.rows);
+			const indexes &#x3D; [];
+
+			// start from the last row and work up
+			for (const headerRow of headerRows.reverse()) {
+				const headerCells &#x3D; Array.from(headerRow.cells);
+				const header &#x3D; headerCells.find(headerCell &#x3D;&gt; ids.includes(headerCell.id));
+				// if we have a matching header, find it&#x27;s index (adjusting for colspans)
+				if (header) {
+					// this is borrowed from below
+					let cellIndex &#x3D; 0;
+					for (const c of headerCells) {
+						if (c &#x3D;&#x3D;&#x3D; header) { break; }
+						cellIndex +&#x3D; c.colSpan;
+					}
+					indexes.push(cellIndex);
+				}
+			}
+
+			// sort the indexes largest to smallest to find the closest matching header index
+			const firstIndex &#x3D; indexes.sort((a, b) &#x3D;&gt; b - a)[0];
+
+			// search the row for cells that share the header
+			let similarCells &#x3D; [];
+			for (const id of ids) {
+				// there&#x27;s no selector that will match two space separated lists,
+				// so we have to iterate through the ids and query the row for each
+				const rowCells &#x3D; Array.from(row.querySelectorAll(&#x60;[headers~&#x3D;&#x27;${id}&#x27;]&#x60;));
+				for (const rowCell of rowCells) {
+					// only keep one set of cells
+					if (!similarCells.includes(rowCell)) {
+						similarCells.push(rowCell);
+					}
+				}
+			}
+
+			// DOM order is not preserved, so we have to sort the row
+			similarCells &#x3D; similarCells.sort((a: HTMLTableCellElement, b: HTMLTableCellElement) &#x3D;&gt; a.cellIndex - b.cellIndex);
+
+			// return the header index plus any adjustment within that headers column
+			return firstIndex + similarCells.indexOf(cell);
+		}
+
+		// fallback if the cell isn&#x27;t linked to any headers
 		let cellIndex &#x3D; 0;
 		for (const c of Array.from(row.cells)) {
 			if (c &#x3D;&#x3D;&#x3D; cell) { break; }
@@ -382,6 +469,67 @@ export class TableDomAdapter implements TableAdapter {
 	 */
 	findIndex(cell: HTMLTableCellElement): [number, number] {
 		return [this.findRowIndex(cell), this.findColumnIndex(cell)];
+	}
+
+	/**
+	 * Helper function that returns the &quot;real&quot; length of a row.
+	 * Only accurate with regard to colspans (though that&#x27;s sufficient for it&#x27;s uses here)
+	 *
+	 * TODO: Take rowSpan into account
+	 *
+	 * @param row the row to get the length of
+	 */
+	protected getRealRowLength(row: HTMLTableRowElement): number {
+		// start at -1 since the colspans will sum to 1 index greater than the total
+		return Array.from(row.cells).reduce((count, cell) &#x3D;&gt; count + cell.colSpan, -1);
+	}
+
+	/**
+	 * Finds a cell and it&#x27;s real index given an array of cells, a target index, and the spanning direction
+	 *
+	 * @param cells An array of cells to search
+	 * @param targetIndex The index we think the cell is located at
+	 * @param spanDirection The direction of the cell spans. Should be &#x60;&quot;colSpan&quot;&#x60; for a row and &#x60;&quot;rowSpan&quot;&#x60; for a column
+	 */
+	protected findCell(cells: HTMLTableCellElement[], targetIndex: number, spanDirection: TableDomSpanDirection) {
+		// rows/cols can have fewer total cells than the actual table
+		// the model pretends all rows/cols behave the same (with col/row spans &gt; 1 being N cells long)
+		// this maps that view to the HTML view (col/row spans &gt; 1 are one element, so the array is shorter)
+		let realIndex &#x3D; 0;
+		// i is only used for iterating the cells
+		for (let i &#x3D; 0; i &lt; targetIndex;) {
+			// skip the next N cells
+			i +&#x3D; cells[realIndex][spanDirection];
+			// don&#x27;t bump realIndex if i now exceeds the cell we&#x27;re shooting for
+			if (i &gt; targetIndex) { break; }
+			// finally, increment realIndex (to keep it generally in step with i)
+			realIndex++;
+		}
+
+		return {
+			cell: cells[realIndex],
+			realIndex
+		};
+	}
+
+	/**
+	 * Helper method around &#x60;findCell&#x60;, searches based on a row of cells
+	 *
+	 * @param row the row of elements to search
+	 * @param index the index of the element
+	 */
+	protected findCellInRow(row: HTMLTableCellElement[], index: number) {
+		return this.findCell(row, index, TableDomSpanDirection.colSpan);
+	}
+
+	/**
+	 * Helper method around &#x60;findCell&#x60;, searches based on a column of cells
+	 *
+	 * @param col the column of elements to search
+	 * @param index the index of the element
+	 */
+	protected findCellInColumn(col: HTMLTableCellElement[], index: number) {
+		return this.findCell(col, index, TableDomSpanDirection.rowSpan);
 	}
 }
 </code></pre>

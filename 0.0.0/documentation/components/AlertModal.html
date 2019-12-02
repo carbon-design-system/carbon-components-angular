@@ -100,6 +100,12 @@ placed near the end of your app component template (app.component.ts or app.comp
             <code><a href="../classes/BaseModal.html" target="_self" >BaseModal</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
 
 
 <section>
@@ -131,7 +137,7 @@ placed near the end of your app component template (app.component.ts or app.comp
 		&lt;p class&#x3D;&quot;bx--modal-header__label bx--type-delta&quot;&gt;{{modalLabel}}&lt;/p&gt;
     			&lt;p class&#x3D;&quot;bx--modal-header__heading bx--type-beta&quot;&gt;{{modalTitle}}&lt;/p&gt;
 	&lt;/ibm-modal-header&gt;
-	&lt;div class&#x3D;&quot;bx--modal-content&quot;&gt;
+	&lt;div #content class&#x3D;&quot;bx--modal-content&quot;&gt;
 		&lt;p [innerHTML]&#x3D;&quot;modalContent&quot;&gt;&lt;/p&gt;
 	&lt;/div&gt;
 	&lt;ibm-modal-footer *ngIf&#x3D;&quot;buttons.length &gt; 0&quot;&gt;
@@ -178,6 +184,9 @@ placed near the end of your app component template (app.component.ts or app.comp
                                 <a href="#buttons">buttons</a>
                             </li>
                             <li>
+                                <a href="#content">content</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#modalContent">modalContent</a>
                             </li>
@@ -214,6 +223,9 @@ placed near the end of your app component template (app.component.ts or app.comp
                             </li>
                             <li>
                                 <a href="#dismissModal">dismissModal</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
                             </li>
                             <li>
                                 <a href="#closeModal">closeModal</a>
@@ -255,7 +267,7 @@ placed near the end of your app component template (app.component.ts or app.comp
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/modal/alert-modal.component.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/modal/alert-modal.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -413,7 +425,7 @@ placed near the end of your app component template (app.component.ts or app.comp
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modal/alert-modal.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/modal/alert-modal.component.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -478,7 +490,7 @@ placed near the end of your app component template (app.component.ts or app.comp
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/modal/alert-modal.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/modal/alert-modal.component.ts:116</a></div>
                             </td>
                         </tr>
 
@@ -488,6 +500,44 @@ placed near the end of your app component template (app.component.ts or app.comp
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngAfterViewInit"></a>
+                        <span class="name">
+                            <b>
+                            ngAfterViewInit
+                            </b>
+                            <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/modal/alert-modal.component.ts:97</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                             </div>
                     </td>
@@ -587,7 +637,44 @@ placed near the end of your app component template (app.component.ts or app.comp
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/modal/alert-modal.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/modal/alert-modal.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="content"></a>
+                        <span class="name">
+                            <b>
+                            content
+                            </b>
+                            <a href="#content"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>content:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;content&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/modal/alert-modal.component.ts:73</a></div>
                             </td>
                         </tr>
 
@@ -631,7 +718,7 @@ placed near the end of your app component template (app.component.ts or app.comp
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/modal/alert-modal.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/modal/alert-modal.component.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -675,7 +762,7 @@ placed near the end of your app component template (app.component.ts or app.comp
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/modal/alert-modal.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/modal/alert-modal.component.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -719,7 +806,7 @@ placed near the end of your app component template (app.component.ts or app.comp
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/modal/alert-modal.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/modal/alert-modal.component.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -768,7 +855,7 @@ placed near the end of your app component template (app.component.ts or app.comp
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/modal/alert-modal.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/modal/alert-modal.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -812,7 +899,7 @@ placed near the end of your app component template (app.component.ts or app.comp
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/modal/alert-modal.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/modal/alert-modal.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -827,7 +914,9 @@ placed near the end of your app component template (app.component.ts or app.comp
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
-	Inject
+	Inject,
+	ViewChild,
+	AfterViewInit
 } from &quot;@angular/core&quot;;
 import { BaseModal } from &quot;./base-modal.class&quot;;
 
@@ -877,7 +966,7 @@ import { BaseModal } from &quot;./base-modal.class&quot;;
 				&lt;p class&#x3D;&quot;bx--modal-header__label bx--type-delta&quot;&gt;{{modalLabel}}&lt;/p&gt;
       			&lt;p class&#x3D;&quot;bx--modal-header__heading bx--type-beta&quot;&gt;{{modalTitle}}&lt;/p&gt;
 			&lt;/ibm-modal-header&gt;
-			&lt;div class&#x3D;&quot;bx--modal-content&quot;&gt;
+			&lt;div #content class&#x3D;&quot;bx--modal-content&quot;&gt;
 				&lt;p [innerHTML]&#x3D;&quot;modalContent&quot;&gt;&lt;/p&gt;
 			&lt;/div&gt;
 			&lt;ibm-modal-footer *ngIf&#x3D;&quot;buttons.length &gt; 0&quot;&gt;
@@ -894,7 +983,8 @@ import { BaseModal } from &quot;./base-modal.class&quot;;
 		&lt;/ibm-modal&gt;
 	&#x60;
 })
-export class AlertModal extends BaseModal {
+export class AlertModal extends BaseModal implements AfterViewInit {
+	@ViewChild(&quot;content&quot;) content;
 	/**
 	 * Creates an instance of &#x60;AlertModal&#x60;.
 	 */
@@ -915,6 +1005,16 @@ export class AlertModal extends BaseModal {
 			if (!button.type) {
 				button.type &#x3D; &quot;secondary&quot;;
 			}
+		}
+	}
+
+	ngAfterViewInit() {
+		if (!this.content) { return false; }
+		const element &#x3D; this.content.nativeElement;
+		if (element.scrollHeight &gt; element.clientHeight) {
+			element.tabIndex &#x3D; 0;
+		} else {
+			element.tabIndex &#x3D; -1;
 		}
 	}
 
@@ -964,7 +1064,7 @@ export class AlertModal extends BaseModal {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ibm-modal [theme]="modalType" [modalLabel]="modalTitle" (overlaySelected)="dismissModal()">	<ibm-modal-header (closeSelect)="dismissModal()">		<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>    			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>	</ibm-modal-header>	<div class="bx--modal-content">		<p [innerHTML]="modalContent"></p>	</div>	<ibm-modal-footer *ngIf="buttons.length > 0">		<ng-container *ngFor="let button of buttons; let i = index">			<button				[ibmButton]="button.type"				(click)="buttonClicked(i)"				[id]="button.id"				[attr.modal-primary-focus]="(button.type.indexOf(\'primary\') !== -1 ? \'\' : null)">				{{button.text}}			</button>		</ng-container>	</ibm-modal-footer></ibm-modal>	</div>'
+        var COMPONENT_TEMPLATE = '<div><ibm-modal [theme]="modalType" [modalLabel]="modalTitle" (overlaySelected)="dismissModal()">	<ibm-modal-header (closeSelect)="dismissModal()">		<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>    			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>	</ibm-modal-header>	<div #content class="bx--modal-content">		<p [innerHTML]="modalContent"></p>	</div>	<ibm-modal-footer *ngIf="buttons.length > 0">		<ng-container *ngFor="let button of buttons; let i = index">			<button				[ibmButton]="button.type"				(click)="buttonClicked(i)"				[id]="button.id"				[attr.modal-primary-focus]="(button.type.indexOf(\'primary\') !== -1 ? \'\' : null)">				{{button.text}}			</button>		</ng-container>	</ibm-modal-footer></ibm-modal>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'ibm-accordion'},{'name': 'AccordionItem', 'selector': 'ibm-accordion-item'},{'name': 'AlertModal', 'selector': 'ibm-alert-modal'},{'name': 'Breadcrumb', 'selector': 'ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'ibm-breadcrumb-item'},{'name': 'Checkbox', 'selector': 'ibm-checkbox'},{'name': 'ClickableTile', 'selector': 'ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'ibm-combo-box'},{'name': 'ContentSwitcher', 'selector': 'ibm-content-switcher'},{'name': 'DatePicker', 'selector': 'ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'ibm-dialog'},{'name': 'DialogPlaceholder', 'selector': 'ibm-dialog-placeholder'},{'name': 'Documentation', 'selector': 'ibm-documentation'},{'name': 'Dropdown', 'selector': 'ibm-dropdown'},{'name': 'DropdownList', 'selector': 'ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'ibm-expandable-tile'},{'name': 'File', 'selector': 'ibm-file'},{'name': 'FileUploader', 'selector': 'ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'ibm-hamburger'},{'name': 'Header', 'selector': 'ibm-header'},{'name': 'HeaderAction', 'selector': 'ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'ibm-header-global'},{'name': 'HeaderItem', 'selector': 'ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'ibm-header-navigation'},{'name': 'InlineLoading', 'selector': 'ibm-inline-loading'},{'name': 'Label', 'selector': 'ibm-label'},{'name': 'ListColumn', 'selector': 'ibm-list-column'},{'name': 'ListHeader', 'selector': 'ibm-list-header'},{'name': 'ListRow', 'selector': 'ibm-list-row'},{'name': 'Loading', 'selector': 'ibm-loading'},{'name': 'Modal', 'selector': 'ibm-modal'},{'name': 'ModalFooter', 'selector': 'ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'ibm-modal-header'},{'name': 'ModalPlaceholder', 'selector': 'ibm-modal-placeholder'},{'name': 'Notification', 'selector': 'ibm-notification'},{'name': 'NumberComponent', 'selector': 'ibm-number'},{'name': 'OverflowMenu', 'selector': 'ibm-overflow-menu'},{'name': 'OverflowMenuOption', 'selector': 'ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'ibm-overlay'},{'name': 'Pagination', 'selector': 'ibm-pagination'},{'name': 'Panel', 'selector': 'ibm-panel'},{'name': 'Placeholder', 'selector': 'ibm-placeholder'},{'name': 'ProductSwitcher', 'selector': 'ibm-product-switcher'},{'name': 'ProgressIndicator', 'selector': 'ibm-progress-indicator'},{'name': 'Radio', 'selector': 'ibm-radio'},{'name': 'RadioGroup', 'selector': 'ibm-radio-group'},{'name': 'Sample', 'selector': 'ibm-sample'},{'name': 'SampleSub', 'selector': 'ibm-sample-sub'},{'name': 'Search', 'selector': 'ibm-search'},{'name': 'Select', 'selector': 'ibm-select'},{'name': 'SelectionTile', 'selector': 'ibm-selection-tile'},{'name': 'SideNav', 'selector': 'ibm-sidenav'},{'name': 'SideNavHeader', 'selector': 'ibm-sidenav-header'},{'name': 'SideNavItem', 'selector': 'ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'ibm-sidenav-menu'},{'name': 'Slider', 'selector': 'ibm-slider'},{'name': 'StructuredList', 'selector': 'ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'ibm-switcher-list, ibm-product-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'ibm-switcher-list-item, ibm-product-switcher-list-item, ibm-product-switcher-item'},{'name': 'Tab', 'selector': 'ibm-tab'},{'name': 'TabHeaders', 'selector': 'ibm-tab-headers'},{'name': 'Table', 'selector': 'ibm-table'},{'name': 'TableBody', 'selector': '[ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'ibm-table-container'},{'name': 'TableData', 'selector': '[ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'ibm-table-header'},{'name': 'TableHeadExpand', 'selector': '[ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'ibm-tabs'},{'name': 'Tag', 'selector': 'ibm-tag'},{'name': 'TagFilter', 'selector': 'ibm-tag-filter'},{'name': 'Tile', 'selector': 'ibm-tile'},{'name': 'TileGroup', 'selector': 'ibm-tile-group'},{'name': 'TimePicker', 'selector': 'ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'ibm-timepicker-select'},{'name': 'Toast', 'selector': 'ibm-toast'},{'name': 'Toggle', 'selector': 'ibm-toggle'},{'name': 'Tooltip', 'selector': 'ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'ibm-tooltip-definition'},{'name': 'TooltipIcon', 'selector': 'ibm-tooltip-icon'}];
     var DIRECTIVES = [{'name': 'Button', 'selector': '[ibmButton]'},{'name': 'ColumnDirective', 'selector': '[ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[ibmContentOption]'},{'name': 'DataGridFocus', 'selector': '[ibmDataGridFocus]'},{'name': 'DialogDirective', 'selector': '[ibmDialog]'},{'name': 'EllipsisTooltip', 'selector': '[ibmEllipsisTooltip]'},{'name': 'ExpandedRowHover', 'selector': '[ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[ibmGrid]'},{'name': 'Link', 'selector': '[ibmLink]'},{'name': 'List', 'selector': '[ibmList]'},{'name': 'ListItemDirective', 'selector': '[ibmListItem]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[ibmOverflowMenu]'},{'name': 'RowDirective', 'selector': '[ibmRow]'},{'name': 'ScrollableList', 'selector': '[ibmScrollableList]'},{'name': 'TableDirective', 'selector': '[ibmTable]'},{'name': 'TableHeaderDescription', 'selector': '[ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[ibmTableHeaderTitle]'},{'name': 'TextArea', 'selector': '[ibmTextArea]'},{'name': 'TextInput', 'selector': '[ibmText]'},{'name': 'TooltipDirective', 'selector': '[ibmTooltip]'}];
     var ACTUAL_COMPONENT = {'name': 'AlertModal'};

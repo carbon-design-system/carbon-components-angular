@@ -540,7 +540,7 @@ this.interactionModel.position.subscribe(event =&gt; {
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:235</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:238</a></div>
                             </td>
                         </tr>
 
@@ -606,7 +606,7 @@ this.interactionModel.position.subscribe(event =&gt; {
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:215</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:218</a></div>
                             </td>
                         </tr>
 
@@ -682,14 +682,14 @@ this.interactionModel.position.subscribe(event =&gt; {
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:225</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:228</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Jump to a specific row without chaning the column</p>
+                            <div class="io-description"><p>Jump to a specific row without changing the column</p>
 </div>
 
                             <div class="io-description">
@@ -758,7 +758,7 @@ this.interactionModel.position.subscribe(event =&gt; {
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:207</a></div>
                             </td>
                         </tr>
 
@@ -915,7 +915,7 @@ this.interactionModel.position.subscribe(event =&gt; {
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:260</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:263</a></div>
                             </td>
                         </tr>
 
@@ -955,7 +955,7 @@ this.interactionModel.position.subscribe(event =&gt; {
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:244</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/table/data-grid-interaction-model.class.ts:247</a></div>
                             </td>
                         </tr>
 
@@ -1290,31 +1290,34 @@ export class DataGridInteractionModel {
 	 */
 	handleKeyboardEvent(event: KeyboardEvent) {
 		const currentCell &#x3D; this.tableAdapter.getCell(this.currentRow, this.currentColumn);
+		let currentColumn &#x3D; this.tableAdapter.findColumnIndex(currentCell);
+		let currentRow &#x3D; this.tableAdapter.findRowIndex(currentCell);
+
 		switch (event.key) {
 			case &quot;Right&quot;: // IE specific value
 			case &quot;ArrowRight&quot;:
 				event.preventDefault();
-				// add the colspan since getColumnFromCell will return the
+				// add the colspan since findColumnIndex will return the
 				// first column containing the cell (of N columns it may span)
 				// and we want to navigate to the next &quot;real&quot; column
-				this.goToColumn(this.tableAdapter.findColumnIndex(currentCell) + currentCell.colSpan);
+				this.goToColumn(currentColumn + currentCell.colSpan);
 				break;
 			case &quot;Left&quot;: // IE specific value
 			case &quot;ArrowLeft&quot;:
 				event.preventDefault();
-				// we only ever need to subtract 1 from the column, since getColumnFromCell returns the
+				// we only ever need to subtract 1 from the column, since findColumnIndex returns the
 				// first of N columns containing the cell
-				this.goToColumn(this.tableAdapter.findColumnIndex(currentCell) - 1);
+				this.goToColumn(currentColumn - 1);
 				break;
 			case &quot;Down&quot;: // IE specific value
 			case &quot;ArrowDown&quot;:
 				event.preventDefault();
-				this.goToRow(this.currentRow + 1);
+				this.goToRow(currentRow + currentCell.rowSpan);
 				break;
 			case &quot;Up&quot;: // IE specific value
 			case &quot;ArrowUp&quot;:
 				event.preventDefault();
-				this.goToRow(this.currentRow - 1);
+				this.goToRow(currentRow - 1);
 				break;
 			case &quot;Home&quot;:
 				event.preventDefault();
@@ -1357,7 +1360,7 @@ export class DataGridInteractionModel {
 	}
 
 	/**
-	 * Jump to a specific row without chaning the column
+	 * Jump to a specific row without changing the column
 	 *
 	 * @param index row to jump to
 	 */

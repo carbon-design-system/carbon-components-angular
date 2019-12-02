@@ -1102,7 +1102,7 @@ for use as an alternative value field.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="413" class="link-to-prism">src/slider/slider.component.ts:413</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="412" class="link-to-prism">src/slider/slider.component.ts:412</a></div>
                             </td>
                         </tr>
 
@@ -3309,14 +3309,13 @@ export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 		if (this.disableArrowKeys) {
 			return;
 		}
-		event.preventDefault();
 		const multiplier &#x3D; event.shiftKey ? this.shiftMultiplier : 1;
 		if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowLeft&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;ArrowDown&quot;) {
 			this.decrementValue(multiplier);
-		}
-
-		if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowRight&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;ArrowUp&quot;) {
+			event.preventDefault();
+		} else if (event.key &#x3D;&#x3D;&#x3D; &quot;ArrowRight&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;ArrowUp&quot;) {
 			this.incrementValue(multiplier);
+			event.preventDefault();
 		}
 	}
 

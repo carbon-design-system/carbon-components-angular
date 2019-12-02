@@ -630,7 +630,7 @@ If the element has an overflow set as part of its computed style it can scroll.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>(node: HTMLElement) &#x3D;&gt; {
+                            <i>Default value : </i><code>(node: HTMLElement): Observable&lt;Event&gt; &#x3D;&gt; {
 	const windowScroll &#x3D; fromEvent(window, &quot;scroll&quot;).pipe(map(event &#x3D;&gt; (
 		// update the event target to be something useful. In this case &#x60;body&#x60; is a sensible replacement
 		Object.assign({}, event, { target: document.body }) as Event

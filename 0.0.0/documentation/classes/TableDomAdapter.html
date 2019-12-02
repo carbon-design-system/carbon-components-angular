@@ -110,6 +110,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#findCell">findCell</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#findCellInColumn">findCellInColumn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#findCellInRow">findCellInRow</a>
+                            </li>
+                            <li>
                                 <a href="#findColumnIndex">findColumnIndex</a>
                             </li>
                             <li>
@@ -120,6 +132,13 @@
                             </li>
                             <li>
                                 <a href="#getCell">getCell</a>
+                            </li>
+                            <li>
+                                <a href="#getColumn">getColumn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#getRealRowLength">getRealRowLength</a>
                             </li>
                             <li>
                                 <a href="#getRow">getRow</a>
@@ -164,7 +183,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/table/table-adapter.class.ts:100</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/table-adapter.class.ts:116</a></div>
                             </td>
                         </tr>
 
@@ -244,7 +263,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/table/table-adapter.class.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/table/table-adapter.class.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -267,6 +286,304 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="findCell"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            findCell
+                            </b>
+                            <a href="#findCell"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>findCell(cells: <a href="../components/Table.html">HTMLTableCellElement[]</a>, targetIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, spanDirection: <a href="../components/Table.html">TableDomSpanDirection</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/table/table-adapter.class.ts:292</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Finds a cell and it&#39;s real index given an array of cells, a target index, and the spanning direction</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>cells</td>
+                                                        <td>
+                                                                    <code><a href="../components/Table.html" target="_self" >HTMLTableCellElement[]</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>An array of cells to search</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>targetIndex</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>The index we think the cell is located at</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>spanDirection</td>
+                                                        <td>
+                                                                    <code><a href="../components/Table.html" target="_self" >TableDomSpanDirection</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>The direction of the cell spans. Should be <code>&quot;colSpan&quot;</code> for a row and <code>&quot;rowSpan&quot;</code> for a column</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{ cell: any; realIndex: number; }</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="findCellInColumn"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            findCellInColumn
+                            </b>
+                            <a href="#findCellInColumn"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>findCellInColumn(col: <a href="../components/Table.html">HTMLTableCellElement[]</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="329" class="link-to-prism">src/table/table-adapter.class.ts:329</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Helper method around <code>findCell</code>, searches based on a column of cells</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>col</td>
+                                                        <td>
+                                                                    <code><a href="../components/Table.html" target="_self" >HTMLTableCellElement[]</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>the column of elements to search</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>the index of the element</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{ cell: any; realIndex: number; }</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="findCellInRow"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            findCellInRow
+                            </b>
+                            <a href="#findCellInRow"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>findCellInRow(row: <a href="../components/Table.html">HTMLTableCellElement[]</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/table/table-adapter.class.ts:319</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Helper method around <code>findCell</code>, searches based on a row of cells</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>row</td>
+                                                        <td>
+                                                                    <code><a href="../components/Table.html" target="_self" >HTMLTableCellElement[]</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>the row of elements to search</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>the index of the element</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code>{ cell: any; realIndex: number; }</code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="findColumnIndex"></a>
                         <span class="name">
                             <b>
@@ -285,7 +602,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/table/table-adapter.class.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/table/table-adapter.class.ts:192</a></div>
                             </td>
                         </tr>
 
@@ -361,7 +678,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/table/table-adapter.class.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/table/table-adapter.class.ts:268</a></div>
                             </td>
                         </tr>
 
@@ -430,7 +747,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/table/table-adapter.class.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/table/table-adapter.class.ts:254</a></div>
                             </td>
                         </tr>
 
@@ -506,7 +823,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/table/table-adapter.class.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/table-adapter.class.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -580,6 +897,163 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="getColumn"></a>
+                        <span class="name">
+                            <b>
+                            getColumn
+                            </b>
+                            <a href="#getColumn"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getColumn(column: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/table/table-adapter.class.ts:147</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Returns a column from the table, using the <code>id</code> and <code>headers</code> attributes</p>
+<p>See here for more detail these attributes: <a href="https://www.w3.org/TR/WCAG20-TECHS/H43.html">https://www.w3.org/TR/WCAG20-TECHS/H43.html</a></p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>column</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>the index of the column</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="../components/Table.html" target="_self" >HTMLTableCellElement[]</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getRealRowLength"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Protected</span>
+                            getRealRowLength
+                            </b>
+                            <a href="#getRealRowLength"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getRealRowLength(row: <a href="../components/Table.html">HTMLTableRowElement</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/table/table-adapter.class.ts:280</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Helper function that returns the &quot;real&quot; length of a row.
+Only accurate with regard to colspans (though that&#39;s sufficient for it&#39;s uses here)</p>
+<p>TODO: Take rowSpan into account</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>row</td>
+                                                        <td>
+                                                                    <code><a href="../components/Table.html" target="_self" >HTMLTableRowElement</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>the row to get the length of</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="getRow"></a>
                         <span class="name">
                             <b>
@@ -598,7 +1072,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/table/table-adapter.class.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/table/table-adapter.class.ts:183</a></div>
                             </td>
                         </tr>
 
@@ -679,12 +1153,12 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/table/table-adapter.class.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/table/table-adapter.class.ts:107</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>The last acccessible column in the table</p>
+                                <div class="io-description"><p>The last accessible column in the table</p>
 </div>
 
                         </td>
@@ -708,7 +1182,7 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/table/table-adapter.class.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/table/table-adapter.class.ts:114</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -735,6 +1209,10 @@ Custom tables that don&#39;t follow the standard structure should use a custom i
 	 * The number of columns spanned by this cell
 	 */
 	colSpan: number;
+	/**
+	 * The number of rows spanned by this cell
+	 */
+	rowSpan: number;
 }
 
 /**
@@ -757,7 +1235,7 @@ export abstract class TableRowAdapter {
  */
 export abstract class TableAdapter {
 	/**
-	 * The last acccessible column in the table
+	 * The last accessible column in the table
 	 */
 	public get lastColumnIndex(): number { return; }
 
@@ -773,6 +1251,13 @@ export abstract class TableAdapter {
 	 * @param column index of the column
 	 */
 	getCell(row: number, column: number): TableCellAdapter { return; }
+
+	/**
+	 * Returns a row from the table
+	 *
+	 * @param column index of the column
+	 */
+	getColumn(column: number): TableCellAdapter[] { return; }
 
 	/**
 	 * Returns a row from the table
@@ -804,6 +1289,11 @@ export abstract class TableAdapter {
 	findIndex(cell: TableCellAdapter): [number, number] { return; }
 }
 
+enum TableDomSpanDirection {
+	colSpan &#x3D; &quot;colSpan&quot;,
+	rowSpan &#x3D; &quot;rowSpan&quot;
+}
+
 /**
  * A concrete implementation of &#x60;TableAdapter&#x60;
  *
@@ -811,10 +1301,10 @@ export abstract class TableAdapter {
  */
 export class TableDomAdapter implements TableAdapter {
 	/**
-	 * The last acccessible column in the table
+	 * The last accessible column in the table
 	 */
 	public get lastColumnIndex() {
-		return this.tableElement.rows[0].cells.length - 1;
+		return this.getRealRowLength(this.tableElement.rows[0]);
 	}
 
 	/**
@@ -841,23 +1331,47 @@ export class TableDomAdapter implements TableAdapter {
 	 * @param column index of the column
 	 */
 	getCell(row: number, column: number): HTMLTableCellElement {
-		const baseRow &#x3D; this.getRow(row);
-		let baseCells &#x3D; Array.from(baseRow.cells);
+		const col &#x3D; this.getColumn(column);
 
-		// rows can have fewer total cells than the actual table
-		// the model pretends all rows behave the same (with colspans &gt; 1 being N cells long)
-		// this maps that view to the HTML view (colspans &gt; 1 are one element, so the array is shorter)
-		let realIndex &#x3D; 0;
-		// i is only used for iterating the &quot;cells&quot;
-		for (let i &#x3D; 0; i &lt; column;) {
-			// skip the next N &quot;cells&quot;
-			i +&#x3D; baseCells[realIndex].colSpan;
-			// don&#x27;t bump realIndex if i now exceeds the column we&#x27;re shooting for
-			if (i &gt; column) { break; }
-			// finally, increment realIndex (to keep it generally in step with i)
-			realIndex++;
+		return this.findCellInColumn(col, row).cell;
+	}
+
+	/**
+	 * Returns a column from the table, using the &#x60;id&#x60; and &#x60;headers&#x60; attributes
+	 *
+	 * See here for more detail these attributes: https://www.w3.org/TR/WCAG20-TECHS/H43.html
+	 *
+	 * @param column the index of the column
+	 */
+	getColumn(column: number): HTMLTableCellElement[] {
+		const firstHeader &#x3D; Array.from(this.tableElement.rows[0].cells);
+
+		const { cell: header, realIndex: realColumnIndex } &#x3D; this.findCellInRow(firstHeader, column);
+
+		const linkedCells: HTMLTableCellElement[] &#x3D; [];
+
+		for (let i &#x3D; 1; i &lt; this.tableElement.rows.length; i++) {
+			const row &#x3D; this.tableElement.rows[i];
+			// query for any cells that are linked to the given header id
+			// &#x60;~&#x3D;&#x60; matches values in space separated lists - so &#x60;[headers~&#x3D;&#x27;foo&#x27;]&#x60; would match &#x60;headers&#x3D;&quot;foo bar&quot;&#x60; and &#x60;headers&#x3D;&quot;foo&quot;&#x60;
+			// but not &#x60;headers&#x3D;&quot;bar&quot;&#x60; or &#x60;headers&#x3D;&quot;bar baz&quot;&#x60;
+			const linkedRowCells: NodeListOf&lt;HTMLTableCellElement&gt; &#x3D; row.querySelectorAll(&#x60;[headers~&#x3D;&#x27;${header.id}&#x27;]&#x60;);
+			// if we have more than one cell, get the one that is closest to the column
+			if (linkedRowCells.length &gt; 1) {
+				const { cell } &#x3D; this.findCellInRow(Array.from(linkedRowCells), column - realColumnIndex);
+				linkedCells.push(cell);
+			} else if (linkedRowCells[0]) {
+				linkedCells.push(linkedRowCells[0]);
+			}
 		}
-		return baseCells[realIndex];
+
+		// return an empty array if we can&#x27;t find any linked cells
+		// returning anything else would be a lie
+		if (!linkedCells) {
+			return [];
+		}
+
+		return [header, ...linkedCells];
 	}
 
 	/**
@@ -876,6 +1390,53 @@ export class TableDomAdapter implements TableAdapter {
 	 */
 	findColumnIndex(cell: HTMLTableCellElement): number {
 		const row &#x3D; this.getRow(this.findRowIndex(cell));
+		// if the cell has linked headers we can do a more accurate lookup
+		if (cell.headers) {
+			const ids &#x3D; cell.headers.split(&quot; &quot;);
+			const headerRows &#x3D; Array.from(this.tableElement.tHead.rows);
+			const indexes &#x3D; [];
+
+			// start from the last row and work up
+			for (const headerRow of headerRows.reverse()) {
+				const headerCells &#x3D; Array.from(headerRow.cells);
+				const header &#x3D; headerCells.find(headerCell &#x3D;&gt; ids.includes(headerCell.id));
+				// if we have a matching header, find it&#x27;s index (adjusting for colspans)
+				if (header) {
+					// this is borrowed from below
+					let cellIndex &#x3D; 0;
+					for (const c of headerCells) {
+						if (c &#x3D;&#x3D;&#x3D; header) { break; }
+						cellIndex +&#x3D; c.colSpan;
+					}
+					indexes.push(cellIndex);
+				}
+			}
+
+			// sort the indexes largest to smallest to find the closest matching header index
+			const firstIndex &#x3D; indexes.sort((a, b) &#x3D;&gt; b - a)[0];
+
+			// search the row for cells that share the header
+			let similarCells &#x3D; [];
+			for (const id of ids) {
+				// there&#x27;s no selector that will match two space separated lists,
+				// so we have to iterate through the ids and query the row for each
+				const rowCells &#x3D; Array.from(row.querySelectorAll(&#x60;[headers~&#x3D;&#x27;${id}&#x27;]&#x60;));
+				for (const rowCell of rowCells) {
+					// only keep one set of cells
+					if (!similarCells.includes(rowCell)) {
+						similarCells.push(rowCell);
+					}
+				}
+			}
+
+			// DOM order is not preserved, so we have to sort the row
+			similarCells &#x3D; similarCells.sort((a: HTMLTableCellElement, b: HTMLTableCellElement) &#x3D;&gt; a.cellIndex - b.cellIndex);
+
+			// return the header index plus any adjustment within that headers column
+			return firstIndex + similarCells.indexOf(cell);
+		}
+
+		// fallback if the cell isn&#x27;t linked to any headers
 		let cellIndex &#x3D; 0;
 		for (const c of Array.from(row.cells)) {
 			if (c &#x3D;&#x3D;&#x3D; cell) { break; }
@@ -905,6 +1466,67 @@ export class TableDomAdapter implements TableAdapter {
 	 */
 	findIndex(cell: HTMLTableCellElement): [number, number] {
 		return [this.findRowIndex(cell), this.findColumnIndex(cell)];
+	}
+
+	/**
+	 * Helper function that returns the &quot;real&quot; length of a row.
+	 * Only accurate with regard to colspans (though that&#x27;s sufficient for it&#x27;s uses here)
+	 *
+	 * TODO: Take rowSpan into account
+	 *
+	 * @param row the row to get the length of
+	 */
+	protected getRealRowLength(row: HTMLTableRowElement): number {
+		// start at -1 since the colspans will sum to 1 index greater than the total
+		return Array.from(row.cells).reduce((count, cell) &#x3D;&gt; count + cell.colSpan, -1);
+	}
+
+	/**
+	 * Finds a cell and it&#x27;s real index given an array of cells, a target index, and the spanning direction
+	 *
+	 * @param cells An array of cells to search
+	 * @param targetIndex The index we think the cell is located at
+	 * @param spanDirection The direction of the cell spans. Should be &#x60;&quot;colSpan&quot;&#x60; for a row and &#x60;&quot;rowSpan&quot;&#x60; for a column
+	 */
+	protected findCell(cells: HTMLTableCellElement[], targetIndex: number, spanDirection: TableDomSpanDirection) {
+		// rows/cols can have fewer total cells than the actual table
+		// the model pretends all rows/cols behave the same (with col/row spans &gt; 1 being N cells long)
+		// this maps that view to the HTML view (col/row spans &gt; 1 are one element, so the array is shorter)
+		let realIndex &#x3D; 0;
+		// i is only used for iterating the cells
+		for (let i &#x3D; 0; i &lt; targetIndex;) {
+			// skip the next N cells
+			i +&#x3D; cells[realIndex][spanDirection];
+			// don&#x27;t bump realIndex if i now exceeds the cell we&#x27;re shooting for
+			if (i &gt; targetIndex) { break; }
+			// finally, increment realIndex (to keep it generally in step with i)
+			realIndex++;
+		}
+
+		return {
+			cell: cells[realIndex],
+			realIndex
+		};
+	}
+
+	/**
+	 * Helper method around &#x60;findCell&#x60;, searches based on a row of cells
+	 *
+	 * @param row the row of elements to search
+	 * @param index the index of the element
+	 */
+	protected findCellInRow(row: HTMLTableCellElement[], index: number) {
+		return this.findCell(row, index, TableDomSpanDirection.colSpan);
+	}
+
+	/**
+	 * Helper method around &#x60;findCell&#x60;, searches based on a column of cells
+	 *
+	 * @param col the column of elements to search
+	 * @param index the index of the element
+	 */
+	protected findCellInColumn(col: HTMLTableCellElement[], index: number) {
+		return this.findCell(col, index, TableDomSpanDirection.rowSpan);
 	}
 }
 </code></pre>

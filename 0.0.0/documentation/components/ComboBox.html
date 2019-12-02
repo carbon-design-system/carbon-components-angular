@@ -2663,7 +2663,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 			const matches &#x3D; this.view.getListItems().some(item &#x3D;&gt; item.content.toLowerCase().includes(searchString.toLowerCase()));
 			if (!matches) {
 				const selected &#x3D; this.view.getSelected();
-				if (selected) {
+				if (selected &amp;&amp; selected[0]) {
 					selected[0].selected &#x3D; false;
 					// notify that the selection has changed
 					this.view.select.emit({ item: selected[0] });

@@ -97,7 +97,16 @@
                                         <a href="#current">current</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#href">href</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#route">route</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#routeExtras">routeExtras</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
@@ -252,6 +261,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -259,6 +273,88 @@
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-description"><p>Href for the breadcrumb item.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="route"></a>
+                                        <span class="name"><b>route</b><a href="#route"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>route:     <code>any[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>any[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Array of commands to send to the router when the link is activated
+See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/api/router/Router#navigate</a></p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="routeExtras"></a>
+                                        <span class="name"><b>routeExtras</b><a href="#routeExtras"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>routeExtras:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Router options. Used in conjunction with <code>route</code>
+See: <a href="https://angular.io/api/router/Router#navigate">https://angular.io/api/router/Router#navigate</a></p>
 </div>
                                 </td>
                             </tr>
@@ -322,7 +418,17 @@ export interface BreadcrumbItem {
 	/**
 	 * Href for the breadcrumb item.
 	 */
-	href: string;
+	href?: string;
+	/**
+	 * Array of commands to send to the router when the link is activated
+	 * See: https://angular.io/api/router/Router#navigate
+	 */
+	route?: any[];
+	/**
+	 * Router options. Used in conjunction with &#x60;route&#x60;
+	 * See: https://angular.io/api/router/Router#navigate
+	 */
+	routeExtras?: any;
 	/**
 	 * Optional &#x60;TemplateRef&#x60; for the breadcrumb item. Receives the content as an &#x60;$implicit&#x60; template variable
 	 */

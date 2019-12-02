@@ -383,32 +383,29 @@ export interface PaginationTranslations {
 			&lt;label class&#x3D;&quot;bx--pagination__text&quot; [for]&#x3D;&quot;itemsPerPageSelectId&quot;&gt;
 				{{itemsPerPageText.subject | async}}
 			&lt;/label&gt;
-			&lt;div class&#x3D;&quot;bx--form-item&quot;&gt;
-				&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
-					[ngClass]&#x3D;&quot;{
-						&#x27;bx--select__item-count&#x27;: isExperimental
-					}&quot;&gt;
-					&lt;select
-						[id]&#x3D;&quot;itemsPerPageSelectId&quot;
-						[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
-						class&#x3D;&quot;bx--select-input&quot;&gt;
-						&lt;option
-							class&#x3D;&quot;bx--select-option&quot;
-							*ngFor&#x3D;&quot;let option of itemsPerPageOptions&quot;
-							[value]&#x3D;&quot;option&quot;&gt;
-								{{ option }}
-						&lt;/option&gt;
-					&lt;/select&gt;
-					&lt;svg
-						ibmIconChevronDown16
-						style&#x3D;&quot;display: inherit&quot;
-						class&#x3D;&quot;bx--select__arrow&quot;
-						aria-hidden&#x3D;&quot;true&quot;
-						[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
-					&lt;/svg&gt;
-				&lt;/div&gt;
+			&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;bx--select__item-count&#x27;: isExperimental
+				}&quot;&gt;
+				&lt;select
+					[id]&#x3D;&quot;itemsPerPageSelectId&quot;
+					[(ngModel)]&#x3D;&quot;itemsPerPage&quot;
+					class&#x3D;&quot;bx--select-input&quot;&gt;
+					&lt;option
+						class&#x3D;&quot;bx--select-option&quot;
+						*ngFor&#x3D;&quot;let option of itemsPerPageOptions&quot;
+						[value]&#x3D;&quot;option&quot;&gt;
+							{{ option }}
+					&lt;/option&gt;
+				&lt;/select&gt;
+				&lt;svg
+					ibmIconChevronDown16
+					style&#x3D;&quot;display: inherit&quot;
+					class&#x3D;&quot;bx--select__arrow&quot;
+					aria-hidden&#x3D;&quot;true&quot;
+					[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+				&lt;/svg&gt;
 			&lt;/div&gt;
-
 			&lt;span *ngIf&#x3D;&quot;!pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;
 				&lt;span *ngIf&#x3D;&quot;!isExperimental&quot;&gt;|&amp;nbsp;&lt;/span&gt;
 				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: model.totalDataLength } | async}}
@@ -428,37 +425,36 @@ export interface PaginationTranslations {
 			[ngClass]&#x3D;&quot;{
 				&#x27;bx--pagination--inline&#x27;: !isExperimental
 			}&quot;&gt;
-
-			&lt;div *ngIf&#x3D;&quot;!pageInputDisabled&quot; class&#x3D;&quot;bx--form-item&quot;&gt;
-				&lt;div class&#x3D;&quot;bx--select bx--select--inline&quot;
+			&lt;div
+				*ngIf&#x3D;&quot;!pageInputDisabled&quot;
+				class&#x3D;&quot;bx--select bx--select--inline&quot;
 				[ngClass]&#x3D;&quot;{
 					&#x27;bx--select__page-number&#x27; : isExperimental
 				}&quot;&gt;
-					&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText.subject | async}}&lt;/label&gt;
-					&lt;input
-						*ngIf&#x3D;&quot;pageOptions.length &gt; pageSelectThreshold&quot;
-						style&#x3D;&quot;padding-right: 1rem; margin-right: 1rem;&quot;
-						[id]&#x3D;&quot;currentPageSelectId&quot;
-						type&#x3D;&quot;number&quot;
-						min&#x3D;&quot;1&quot;
-						[max]&#x3D;&quot;pageOptions.length&quot;
-						class&#x3D;&quot;bx--select-input&quot;
-						[(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
-					&lt;select
-						*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; pageSelectThreshold&quot;
-						[id]&#x3D;&quot;currentPageSelectId&quot;
-						class&#x3D;&quot;bx--select-input&quot;
-						[(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
-						&lt;option *ngFor&#x3D;&quot;let page of pageOptions; let i &#x3D; index;&quot; class&#x3D;&quot;bx--select-option&quot; [value]&#x3D;&quot;i + 1&quot;&gt;{{i + 1}}&lt;/option&gt;
-					&lt;/select&gt;
-					&lt;svg
-						*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; 1000&quot;
-						ibmIconChevronDown16
-						style&#x3D;&quot;display: inherit;&quot;
-						class&#x3D;&quot;bx--select__arrow&quot;
-						[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
-					&lt;/svg&gt;
-				&lt;/div&gt;
+				&lt;label [for]&#x3D;&quot;currentPageSelectId&quot; class&#x3D;&quot;bx--label bx--visually-hidden&quot;&gt;{{itemsPerPageText.subject | async}}&lt;/label&gt;
+				&lt;input
+					*ngIf&#x3D;&quot;pageOptions.length &gt; pageSelectThreshold&quot;
+					style&#x3D;&quot;padding-right: 1rem; margin-right: 1rem;&quot;
+					[id]&#x3D;&quot;currentPageSelectId&quot;
+					type&#x3D;&quot;number&quot;
+					min&#x3D;&quot;1&quot;
+					[max]&#x3D;&quot;pageOptions.length&quot;
+					class&#x3D;&quot;bx--select-input&quot;
+					[(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
+				&lt;select
+					*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; pageSelectThreshold&quot;
+					[id]&#x3D;&quot;currentPageSelectId&quot;
+					class&#x3D;&quot;bx--select-input&quot;
+					[(ngModel)]&#x3D;&quot;currentPage&quot;&gt;
+					&lt;option *ngFor&#x3D;&quot;let page of pageOptions; let i &#x3D; index;&quot; class&#x3D;&quot;bx--select-option&quot; [value]&#x3D;&quot;i + 1&quot;&gt;{{i + 1}}&lt;/option&gt;
+				&lt;/select&gt;
+				&lt;svg
+					*ngIf&#x3D;&quot;pageOptions.length &lt;&#x3D; 1000&quot;
+					ibmIconChevronDown16
+					style&#x3D;&quot;display: inherit;&quot;
+					class&#x3D;&quot;bx--select__arrow&quot;
+					[ariaLabel]&#x3D;&quot;optionsListText.subject | async&quot;&gt;
+				&lt;/svg&gt;
 			&lt;/div&gt;
 
 			&lt;span *ngIf&#x3D;&quot;!pageInputDisabled &amp;&amp; !pagesUnknown&quot; class&#x3D;&quot;bx--pagination__text&quot;&gt;

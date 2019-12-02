@@ -715,7 +715,7 @@
                     <td class="col-md-4">
 
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                <b>Returns : </b>    <code>OperatorFunction&lt;string, string&gt;</code>
 
                             </div>
                     </td>
@@ -1045,7 +1045,7 @@
 	HostBinding,
 	OnChanges
 } from &quot;@angular/core&quot;;
-import { Observable } from &quot;rxjs&quot;;
+import { Observable, OperatorFunction } from &quot;rxjs&quot;;
 import { I18n, Overridable } from &quot;./../../i18n/i18n.module&quot;;
 import { map } from &quot;rxjs/operators&quot;;
 import { TableHeaderItem } from &quot;./../table-header-item.class&quot;;
@@ -1194,7 +1194,7 @@ export class TableHeadCell implements OnChanges {
 		return this._filterTitle.subject;
 	}
 
-	protected sortLabelMap() {
+	protected sortLabelMap(): OperatorFunction&lt;string, string&gt; {
 		return map((str: string) &#x3D;&gt; {
 			if (this.column.ariaSortLabel) {
 				return this.column.ariaSortLabel;

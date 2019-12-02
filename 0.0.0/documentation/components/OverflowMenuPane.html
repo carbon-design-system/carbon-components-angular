@@ -448,7 +448,7 @@ explicitly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -579,7 +579,7 @@ explicitly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -619,7 +619,7 @@ explicitly defined.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/dialog/overflow-menu/overflow-menu-pane.component.ts:125</a></div>
                             </td>
                         </tr>
 
@@ -1467,7 +1467,7 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 	}
 
 	onDialogInit() {
-		this.addGap[&quot;bottom&quot;] &#x3D; pos &#x3D;&gt; {
+		const positionOverflowMenu &#x3D; pos &#x3D;&gt; {
 			let offset;
 			if (this.experimental.isExperimental) {
 				/*
@@ -1484,7 +1484,11 @@ export class OverflowMenuPane extends Dialog implements AfterViewInit {
 				return position.addOffset(pos, 0, -offset);
 			}
 			return position.addOffset(pos, 0, offset);
-		};
+		}
+		
+		this.addGap[&quot;bottom&quot;] &#x3D; positionOverflowMenu;
+
+		this.addGap[&quot;top&quot;] &#x3D; positionOverflowMenu;
 
 		if (!this.dialogConfig.menuLabel) {
 			this.dialogConfig.menuLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;

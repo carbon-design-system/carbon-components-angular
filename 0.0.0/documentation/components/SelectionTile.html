@@ -454,7 +454,7 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tiles/selection-tile.component.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/tiles/selection-tile.component.ts:95</a></div>
                             </td>
                         </tr>
 
@@ -874,6 +874,7 @@ export class SelectionTile {
 	keyboardInput(event) {
 		if (event.key &#x3D;&#x3D;&#x3D; &quot;Enter&quot; || event.key &#x3D;&#x3D;&#x3D; &quot;Spacebar&quot; || event.key &#x3D;&#x3D;&#x3D; &quot; &quot;) {
 			this.selected &#x3D; !this.selected;
+			this.change.emit(event);
 		}
 	}
 

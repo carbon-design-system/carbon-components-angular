@@ -147,11 +147,15 @@
                         <code>item</code>
                     </td>
                     <td class="col-md-10">
+                            <p>
+                            <em>Type :</em>    <code><a href="../classes/TableItem.html" target="_self" >TableItem</a></code>
+
+                            </p>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/table/cell/table-data.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/table/cell/table-data.component.ts:18</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -171,7 +175,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/table/cell/table-data.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/table/cell/table-data.component.ts:20</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -190,6 +194,7 @@
 	Component,
 	Input
 } from &quot;@angular/core&quot;;
+import { TableItem } from &quot;./../table-item.class&quot;;
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -202,7 +207,7 @@
 	&#x60;
 })
 export class TableData {
-	@Input() item;
+	@Input() item: TableItem;
 
 	@Input() skeleton &#x3D; false;
 }
