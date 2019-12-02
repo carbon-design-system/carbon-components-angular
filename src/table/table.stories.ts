@@ -66,7 +66,7 @@ const getProps = (more = {}) => {
 	}, more);
 };
 
-storiesOf("Table", module).addDecorator(
+storiesOf("Components|Table", module).addDecorator(
 		moduleMetadata({
 			imports: [
 				NFormsModule,

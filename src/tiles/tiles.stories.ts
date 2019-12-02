@@ -19,7 +19,7 @@ class BarComponent { }
 })
 class FooComponent {}
 
-storiesOf("Tiles", module)
+storiesOf("Components|Tiles", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [FooComponent, BarComponent],
