@@ -11,7 +11,7 @@ import {
 import { SliderModule } from "./slider.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
-storiesOf("Slider", module).addDecorator(moduleMetadata({
+storiesOf("Components|Slider", module).addDecorator(moduleMetadata({
 	imports: [SliderModule, DocumentationModule]
 }))
 .addDecorator(withKnobs)
