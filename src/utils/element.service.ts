@@ -4,6 +4,10 @@ import { map } from "rxjs/operators";
 import { getScrollableParents, isVisibleInContainer } from "./scroll";
 import { AnimationFrameServiceSingleton } from "./animation-frame.service";
 
+export interface ElementVisibilityEvent {
+	visible: boolean;
+}
+
 @Injectable()
 export class ElementService {
 	protected tick: Observable<number>;
@@ -12,20 +16,18 @@ export class ElementService {
 		this.tick = from(this.singleton.tick);
 	}
 
-	visibility(target: HTMLElement, parentElement: HTMLElement = target): Observable<{ visible: boolean, frame: number }> {
+	visibility(target: HTMLElement, parentElement: HTMLElement = target): Observable<ElementVisibilityEvent> {
 		const scrollableParents = getScrollableParents(parentElement);
-		return this.tick.pipe(map(frame => {
+		return this.tick.pipe(map(() => {
 			for (const parent of scrollableParents) {
 				if (!isVisibleInContainer(target, parent)) {
 					return {
-						visible: false,
-						frame
+						visible: false
 					};
 				}
 			}
 			return {
-				visible: true,
-				frame
+				visible: true
 			};
 		}));
 	}
