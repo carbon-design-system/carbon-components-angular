@@ -134,7 +134,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 			}
 		}
 
-		// only focus the dialog of there are focusable elements within the dialog
+		// only focus the dialog if there are focusable elements within the dialog
 		if (getFocusElementList(this.dialog.nativeElement).length > 0) {
 			dialogElement.focus();
 		}
