@@ -10,7 +10,7 @@ import {
 
 import { InputModule, DocumentationModule } from "../";
 
-storiesOf("Input", module).addDecorator(
+storiesOf("Components|Input", module).addDecorator(
 	moduleMetadata({
 		imports: [InputModule, DocumentationModule]
 	})

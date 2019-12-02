@@ -27,7 +27,7 @@ class SkeletonStory implements OnInit {
 	}
 }
 
-storiesOf("Progress Indicator", module)
+storiesOf("Components|Progress Indicator", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [SkeletonStory],

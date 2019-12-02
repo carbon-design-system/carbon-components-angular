@@ -4,7 +4,7 @@ import { withKnobs } from "@storybook/addon-knobs/angular";
 import { TagModule } from "../tag/tag.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
-storiesOf("Tag", module)
+storiesOf("Components|Tag", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
