@@ -6,7 +6,7 @@ import {
 	HostBinding,
 	OnChanges
 } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, OperatorFunction } from "rxjs";
 import { I18n, Overridable } from "./../../i18n/i18n.module";
 import { map } from "rxjs/operators";
 import { TableHeaderItem } from "./../table-header-item.class";
@@ -155,7 +155,7 @@ export class TableHeadCell implements OnChanges {
 		return this._filterTitle.subject;
 	}
 
-	protected sortLabelMap() {
+	protected sortLabelMap(): OperatorFunction<string, string> {
 		return map((str: string) => {
 			if (this.column.ariaSortLabel) {
 				return this.column.ariaSortLabel;

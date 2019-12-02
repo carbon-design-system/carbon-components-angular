@@ -1,5 +1,5 @@
 import { map } from "rxjs/operators";
-import { fromEvent, merge } from "rxjs";
+import { fromEvent, merge, Observable } from "rxjs";
 
 
 /**
@@ -46,7 +46,7 @@ export const getScrollableParents = (node: HTMLElement) => {
  *
  * @param node root element to start finding scrolling parents from
  */
-export const scrollableParentsObservable = (node: HTMLElement) => {
+export const scrollableParentsObservable = (node: HTMLElement): Observable<Event> => {
 	const windowScroll = fromEvent(window, "scroll").pipe(map(event => (
 		// update the event target to be something useful. In this case `body` is a sensible replacement
 		Object.assign({}, event, { target: document.body }) as Event
