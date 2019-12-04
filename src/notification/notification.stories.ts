@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { Component, Input, EventEmitter, Output } from "@angular/core";
+import { Component, Input, EventEmitter, Output, OnInit } from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
@@ -46,7 +46,7 @@ import { Subject } from "rxjs";
 		`,
 	providers: [NotificationService]
 })
-class NotificationActionStory {
+class NotificationActionStory implements OnInit {
 	@Input() showClose = true;
 	@Input() lowContrast = false;
 
@@ -57,13 +57,15 @@ class NotificationActionStory {
 	actions = [
 		{
 			text: "Action",
-			click: this.actionSubject.subscribe({
-				next: () => this.actionClicked.emit()
-			})
+			click: this.actionSubject
 		}
 	];
 
 	constructor(protected notificationService: NotificationService) { }
+
+	ngOnInit() {
+		this.actions.forEach(action => action.click.subscribe({ next: () => this.actionClicked.emit() }));
+	}
 }
 
 @Component({

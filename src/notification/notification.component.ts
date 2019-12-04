@@ -11,7 +11,7 @@ import {
 import { NotificationContent } from "./notification-content.interface";
 import { I18n } from "./../i18n/i18n.module";
 import { NotificationDisplayService } from "./notification-display.service";
-import { of } from "rxjs";
+import { of, isObservable, Subject } from "rxjs";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -124,10 +124,10 @@ export class Notification {
 		if (!action) {
 			return;
 		}
-		if (typeof action === "function") {
-			action();
+		if (isObservable(action)) {
+			(action as Subject<any>).next();
 		} else {
-			action.next();
+			action();
 		}
 	}
 
