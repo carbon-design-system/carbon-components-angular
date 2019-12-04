@@ -27,13 +27,15 @@ import { Observable } from "rxjs";
 	<ng-container *ngIf="model">
 		<tr>
 			<th
-			ibmTableHeadExpand
-			*ngIf="model.hasExpandableRows()"
-			[ngClass]="{'bx--table-expand-v2': stickyHeader}">
+				ibmTableHeadExpand
+				*ngIf="model.hasExpandableRows()"
+				[ngClass]="{'bx--table-expand-v2': stickyHeader}"
+				[id]="model.getId('expand')">
 			</th>
 			<th
 				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				style="width: 0;">
+				style="width: 0;"
+				[id]="model.getId('select')">
 				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
 			</th>
 			<th
@@ -44,17 +46,21 @@ import { Observable } from "rxjs";
 				[ariaLabel]="getCheckboxHeaderLabel()"
 				[size]="size"
 				[skeleton]="skeleton"
-				(change)="onSelectAllCheckboxChange()">
+				(change)="onSelectAllCheckboxChange()"
+				[id]="model.getId('select')">
 			</th>
 			<ng-container *ngFor="let column of model.header; let i = index">
 				<th
+					*ngIf="column && column.visible"
+					[ngStyle]="column.style"
 					ibmTableHeadCell
+					[class]="column.className"
+					[id]="model.getId(i)"
 					[column]="column"
 					[filterTitle]="getFilterTitle()"
-					(sort)="sort.emit(i)"
-					*ngIf="column.visible"
-					[class]="column.className"
-					[ngStyle]="column.style">
+					[attr.colspan]="column.colSpan"
+					[attr.rowspan]="column.rowSpan"
+					(sort)="sort.emit(i)">
 				</th>
 			</ng-container>
 			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth" [ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
