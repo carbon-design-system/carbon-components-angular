@@ -28,7 +28,7 @@ import { EventEmitter } from "@angular/core";
 				draggable="false"
 				class="bx--tabs__nav-link"
 				href="javascript:void(0)"
-				[attr.tabindex]="(active?0:-1)"
+				[attr.tabindex]="(active? 0 : -1)"
 				role="tab">
 				<ng-container *ngIf="!isTemplate(heading)">
 					{{ heading }}

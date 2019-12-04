@@ -215,7 +215,10 @@ export class TabHeaderGroup implements AfterContentInit, OnDestroy {
 		if (selected) {
 			return selected;
 		}
-		return {headingIsTemplate: false, heading: ""};
+		return {
+			headingIsTemplate: false,
+			heading: ""
+		};
 	}
 
 	public showTabList() {
