@@ -36,7 +36,7 @@ class TabStory {
 	@Input() followFocus = true;
 }
 
-storiesOf("Tabs", module)
+storiesOf("Components|Tabs", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [

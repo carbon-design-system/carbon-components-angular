@@ -4,7 +4,7 @@ import { withKnobs, boolean, object } from "@storybook/addon-knobs/angular";
 
 import { AccordionModule, DocumentationModule } from "../";
 
-storiesOf("Accordion", module)
+storiesOf("Components|Accordion", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [

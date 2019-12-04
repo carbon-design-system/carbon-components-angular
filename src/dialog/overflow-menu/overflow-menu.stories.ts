@@ -14,7 +14,7 @@ function createOptions(count: number): Array<string> {
 	return options;
 }
 
-storiesOf("Overflow Menu", module)
+storiesOf("Components|Overflow Menu", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
