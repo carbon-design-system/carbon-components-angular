@@ -66,12 +66,12 @@ export class TableModel implements PaginationModel {
 	/**
 	 * Contains information about selection state of rows in the table.
 	 */
-	rowsSelected: Array<boolean>;
+	rowsSelected: boolean[] = [];
 
 	/**
 	 * Contains information about expanded state of rows in the table.
 	 */
-	rowsExpanded: Array<boolean>;
+	rowsExpanded: boolean[] = [];
 
 	/**
 	 * Contains information about the context of the row.
@@ -81,7 +81,7 @@ export class TableModel implements PaginationModel {
 	 * string can be one of `"success" | "warning" | "info" | "error" | ""` and it's
 	 * empty or undefined by default
 	 */
-	rowsContext: Array<string>;
+	rowsContext: string[] = [];
 
 	/**
 	 * Contains class name(s) of the row.
@@ -90,22 +90,22 @@ export class TableModel implements PaginationModel {
 	 *
 	 * It's empty or undefined by default
 	 */
-	rowsClass: Array<string>;
+	rowsClass: string[] = [];
 
 	/**
 	 * Contains information about the header cells of the table.
 	 */
-	header: TableHeaderItem[];
+	header: TableHeaderItem[] = [];
 
 	/**
-	 * Tracks the current page of the table.
+	 * Tracks the current page.
 	 */
-	currentPage: number;
+	currentPage = 0;
 
 	/**
-	 * Length of page of the table.
+	 * Length of page.
 	 */
-	pageLength: number;
+	pageLength = 10;
 
 	/**
 	 * Set to true when there is no more data to load in the table

@@ -2,15 +2,15 @@ export class PaginationModel {
 	/**
 	 * Tracks the current page.
 	 */
-	currentPage: number;
+	currentPage = 0;
 
 	/**
 	 * Length of page.
 	 */
-	pageLength: number;
+	pageLength = 10;
 
 	/**
 	 * Absolute total number of items needed to paginate.
 	 */
-	totalDataLength: number;
+	totalDataLength = 0;
 }
