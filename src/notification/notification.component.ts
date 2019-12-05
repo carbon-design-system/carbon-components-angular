@@ -43,7 +43,7 @@ import { of, isObservable, Subject } from "rxjs";
 		</div>
 		<div *ngFor="let action of notificationObj.actions">
 			<button
-				(click)="onClick(action.click, $event)"
+				(click)="onClick(action, $event)"
 				ibmButton="ghost"
 				size="sm"
 				class="bx--inline-notification__action-button"
@@ -121,13 +121,13 @@ export class Notification {
 	}
 
 	onClick(action, event) {
-		if (!action) {
+		if (!action.click) {
 			return;
 		}
-		if (isObservable(action)) {
-			(action as Subject<{event: Event, action: any}>).next({event, action: event.action});
+		if (isObservable(action.click)) {
+			(action.click as Subject<{event: Event, action: any}>).next({event, action});
 		} else {
-			action({event, action: event.action});
+			action.click({event, action});
 		}
 	}
 
