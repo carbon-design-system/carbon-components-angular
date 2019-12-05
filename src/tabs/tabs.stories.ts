@@ -8,13 +8,17 @@ import { Component, Input } from "@angular/core";
 	selector: "ibm-header-group",
 	template: `
 		<ibm-tab-header-group [followFocus]="followFocus">
-			<ibm-tab-header heading="Content 1" [paneReference]="content1">
+			<ibm-tab-header [paneReference]="content1">
+				Content 1
 			</ibm-tab-header>
-			<ibm-tab-header heading="Content 2" [paneReference]="content2">
+			<ibm-tab-header [paneReference]="content2">
+				Content 2
 			</ibm-tab-header>
-			<ibm-tab-header heading="Content 3" [paneReference]="content3" disabled="true">
+			<ibm-tab-header [paneReference]="content3" disabled="true">
+				Content 3
 			</ibm-tab-header>
-			<ibm-tab-header heading="Content 4" [paneReference]="content4">
+			<ibm-tab-header [paneReference]="content4">
+				Content 4
 			</ibm-tab-header>
 		</ibm-tab-header-group>
 

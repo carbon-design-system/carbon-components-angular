@@ -3,9 +3,7 @@ import {
 	Input,
 	ViewChild,
 	ElementRef,
-	TemplateRef,
-	Output,
-	OnInit
+	Output
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -30,24 +28,13 @@ import { EventEmitter } from "@angular/core";
 				href="javascript:void(0)"
 				[attr.tabindex]="(active? 0 : -1)"
 				role="tab">
-				<ng-container *ngIf="!isTemplate(heading)">
-					{{ heading }}
-				</ng-container>
-				<ng-template
-					*ngIf="isTemplate(heading)"
-					[ngTemplateOutlet]="heading"
-					[ngTemplateOutletContext]="{$implicit: context}">
-				</ng-template>
+				<ng-content></ng-content>
 			</a>
 		</li>
 	 `
 })
 
-export class TabHeader implements OnInit {
-	/**
-	 * The `Tab`'s title to be displayed or custom temaplate for the `Tab` heading.
-	 */
-	@Input() heading: string | TemplateRef<any>;
+export class TabHeader {
 	/**
 	 * Indicates whether the `Tab` is active/selected.
 	 * Determines whether it's `TabPanel` is rendered.
@@ -71,24 +58,6 @@ export class TabHeader implements OnInit {
 	@Output() selected: EventEmitter<any> = new EventEmitter<any>();
 
 	@ViewChild("tabItem") tabItem: ElementRef;
-	/**
-	 * Boolean value reflects if the `Tab` is using a custom template for the heading.
-	 * Default value is false.
-	 */
-	public headingIsTemplate = false;
-
-	public isTemplate(value) {
-		return value instanceof TemplateRef;
-	}
-	/**
-	 * Checks for custom heading template on initialization and updates the value
-	 * of the boolean 'headingIsTemplate'.
-	 */
-	ngOnInit() {
-		if (this.heading instanceof TemplateRef) {
-			this.headingIsTemplate = true;
-		}
-	}
 
 	selectTab() {
 		this.tabItem.nativeElement.focus();
