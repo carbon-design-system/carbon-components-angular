@@ -49,10 +49,6 @@ export class TabHeader {
 	 */
 	@Input() paneReference: Tab;
 	/**
-	 * Allows the user to pass data to the custom template for the `Tab` heading.
-	 */
-	@Input() context: any;
-	/**
 	 * Value 'selected' to be emitted after a new `Tab` is selected.
 	 */
 	@Output() selected: EventEmitter<any> = new EventEmitter<any>();
