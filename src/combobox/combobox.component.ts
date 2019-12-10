@@ -216,6 +216,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
 	/** emits an empty event when the menu is closed */
 	@Output() close: EventEmitter<any> = new EventEmitter<any>();
+	@Output() search: EventEmitter<any> = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
@@ -402,6 +403,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Sets the list group filter, and manages single select item selection.
 	 */
 	public onSearch(searchString) {
+		this.search.emit(searchString);
 		this.view.filterBy(searchString);
 		if (searchString !== "") {
 			this.openDropdown();
