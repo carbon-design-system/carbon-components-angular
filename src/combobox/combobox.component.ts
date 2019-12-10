@@ -38,9 +38,12 @@ import { filter } from "rxjs/operators";
 			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
 		</div>
 		<div
-			class="bx--combo-box bx--list-box"
-			[attr.data-invalid]="(invalid ? true : null)"
-			[ngClass]="{'bx--multi-select' : type === 'multi'}">
+			[ngClass]="{
+				'bx--multi-select': type === 'multi',
+				'bx--combo-box': type === 'single' || !pills.length
+			}"
+			class="bx--list-box"
+			[attr.data-invalid]="(invalid ? true : null)">
 			<div
 				[attr.aria-expanded]="open"
 				role="button"
@@ -58,7 +61,7 @@ import { filter } from "rxjs/operators";
 					*ngIf="type === 'multi' && pills.length > 0"
 					(click)="clearSelected()"
 					role="button"
-					class="bx--list-box__selection bx--list-box__selection--multi"
+					class="bx--list-box__selection--multi"
 					tabindex="0"
 					title="Clear all selected items">
 					{{ pills.length }}
@@ -257,6 +260,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Subscribes to select events and handles focus/filtering/initial list updates
 	 */
 	ngAfterContentInit() {
+		console.log(this.pills.length);
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe(event => {
