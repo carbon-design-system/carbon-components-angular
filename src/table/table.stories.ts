@@ -199,6 +199,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-expansion-table>
@@ -218,6 +219,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-custom-table>
@@ -237,6 +239,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[sortable]="sortable"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-overflow-table>
@@ -253,7 +256,7 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
+			<app-pagination-table [sortable]="sortable" [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
 		</ibm-table-container>
 		`,
 		props: getProps({

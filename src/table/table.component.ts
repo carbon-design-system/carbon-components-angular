@@ -178,12 +178,14 @@ export interface TableTranslations {
 	template: `
 	<table
 		ibmTable
-		sortable="true"
+		[sortable]="sortable"
+		[noBorder]="noBorder"
 		[size]="size"
 		[striped]="striped"
 		[skeleton]="skeleton">
 		<thead
 			ibmTableHead
+			[sortable]="sortable"
 			(deselectAll)="onDeselectAll()"
 			(selectAll)="onSelectAll()"
 			(sort)="sort.emit($event)"
@@ -356,6 +358,10 @@ export class Table implements AfterViewInit, OnDestroy {
 			}
 		}
 	}
+
+	@Input() sortable = true;
+
+	@Input() noBorder = true;
 
 	get isDataGrid(): boolean {
 		return this._isDataGrid;

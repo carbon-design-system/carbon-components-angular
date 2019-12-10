@@ -52,6 +52,8 @@ import { Observable } from "rxjs";
 					[ngStyle]="column.style"
 					ibmTableHeadCell
 					[class]="column.className"
+					[sortable]="sortable"
+					[skeleton]="skeleton"
 					[id]="model.getId(i)"
 					[column]="column"
 					[filterTitle]="getFilterTitle()"
@@ -85,6 +87,8 @@ export class TableHead {
 	@Input() skeleton = false;
 
 	@Input() stickyHeader = false;
+
+	@Input() sortable = true;
 
 	/**
 	 * Size of the table rows.

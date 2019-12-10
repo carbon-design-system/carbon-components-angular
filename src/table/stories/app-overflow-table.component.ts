@@ -30,6 +30,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
+			[sortable]="sortable"
 			[showSelectionColumn]="showSelectionColumn"
 			[isDataGrid]="isDataGrid"
 			[striped]="striped">
@@ -42,6 +43,7 @@ export class OverflowTableStory implements OnInit {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() isDataGrid = false;
+	@Input() sortable = true;
 
 	@ViewChild("overflowMenuItemTemplate")
 	protected overflowMenuItemTemplate: TemplateRef<any>;

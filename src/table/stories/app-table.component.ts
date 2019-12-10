@@ -26,6 +26,7 @@ function sort(model, index: number) {
 			[size]="size"
 			[showSelectionColumn]="true"
 			[enableSingleSelect]="false"
+			[sortable]="sortable"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid"
 			(sort)="simpleSort($event)">

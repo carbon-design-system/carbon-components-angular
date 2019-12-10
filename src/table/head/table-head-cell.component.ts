@@ -17,7 +17,7 @@ import { TableHeaderItem } from "./../table-header-item.class";
 	template: `
 		<button
 			class="bx--table-sort"
-			*ngIf="!skeleton && this.sort.observers.length > 0 && column.sortable"
+			*ngIf="sortable && !skeleton && this.sort.observers.length > 0 && column.sortable"
 			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
@@ -61,7 +61,7 @@ import { TableHeaderItem } from "./../table-header-item.class";
 		</button>
 		<span
 			class="bx--table-header-label"
-			*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable)">
+			*ngIf="!skeleton && this.sort.observers.length === 0 || (this.sort.observers.length > 0 && !column.sortable) || !sortable">
 			<span *ngIf="!column.template" [title]="column.data">{{column.data}}</span>
 			<ng-template
 				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
@@ -96,6 +96,8 @@ export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;
 
 	@Input() skeleton = false;
+
+	@Input() sortable = true;
 
 	@Input()
 	set sortDescendingLabel(value: string | Observable<string>) {
