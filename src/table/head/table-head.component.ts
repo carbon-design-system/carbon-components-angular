@@ -88,6 +88,10 @@ export class TableHead {
 
 	@Input() stickyHeader = false;
 
+	/**
+	 * Setting sortable to false will disable all headers including headers which are sortable. Is is
+	 * possible to set the sortable state on the header item to disable/enable sorting for only some headers.
+	 */
 	@Input() sortable = true;
 
 	/**

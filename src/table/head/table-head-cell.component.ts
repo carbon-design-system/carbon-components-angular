@@ -17,7 +17,7 @@ import { TableHeaderItem } from "./../table-header-item.class";
 	template: `
 		<button
 			class="bx--table-sort"
-			*ngIf="sortable && !skeleton && this.sort.observers.length > 0 && column.sortable"
+			*ngIf="sortable && !skeleton && column.sortable"
 			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
 			aria-live="polite"
 			[ngClass]="{
