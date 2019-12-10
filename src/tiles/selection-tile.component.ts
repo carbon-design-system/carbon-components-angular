@@ -27,13 +27,13 @@ import { I18n } from "./../i18n/i18n.module";
 				[value]="value"
 				[name]="name"
 				(change)="onChange($event)"/>
-			<div class="bx--tile__checkmark">
+			<div class="bx--tile__checkmark" *ngIf="!skeleton">
 				<svg width="16" height="16" viewBox="0 0 16 16">
 					<path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
 						fill-rule="evenodd"/>
 				</svg>
 			</div>
-			<div class="bx--tile-content">
+			<div class="bx--tile-content" *ngIf="!skeleton">
 				<ng-content></ng-content>
 			</div>
 		</label>
@@ -58,6 +58,8 @@ export class SelectionTile {
 		if (!this.input) { return; }
 		return this.input.nativeElement.checked;
 	}
+
+	@Input() skeleton = false;
 	/**
 	 * The value for the tile. Returned via `ngModel` or `selected` event on the containing `TileGroup`.
 	 */

@@ -37,6 +37,8 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 	 */
 	@Input() multiple = false;
 
+	@Input() skeleton = true;
+
 	/**
 	 * Emits an event when the tile selection changes.
 	 *

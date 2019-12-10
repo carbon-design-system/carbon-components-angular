@@ -1,5 +1,5 @@
 import { storiesOf, moduleMetadata } from "@storybook/angular";
-import { withKnobs } from "@storybook/addon-knobs/angular";
+import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 import { action } from "@storybook/addon-actions";
 
 import { TilesModule, DocumentationModule } from "../";
@@ -48,75 +48,92 @@ storiesOf("Components|Tiles", module)
 	.addDecorator(withKnobs)
 	.add("Basic", () => ({
 		template: `
-		<ibm-tile>
+		<ibm-tile [skeleton]="skeleton">
 			tile content goes here...
 		</ibm-tile>
-		`
+		`,
+		props: {
+			skeleton: boolean("Set skeleton state", false)
+		}
 	}))
 	.add("Multiple", () => ({
 		template: `
 		<div style="display: flex; flex-flow: row wrap; justify-content: space-around;">
-			<ibm-tile>
+			<ibm-tile [skeleton]="skeleton">
 				Tile 1
 			</ibm-tile>
-			<ibm-tile>
+			<ibm-tile [skeleton]="skeleton">
 				Tile 2
 			</ibm-tile>
-			<ibm-tile>
+			<ibm-tile [skeleton]="skeleton">
 				Tile 3
 			</ibm-tile>
 		</div>
-		`
+		`,
+		props: {
+			skeleton: boolean("Set skeleton state", false)
+		}
 	}))
 	.add("Clickable", () => ({
 		template: `
-		<ibm-clickable-tile href="https://www.carbondesignsystem.com/" target="_blank">
+		<ibm-clickable-tile [skeleton]="skeleton" href="https://www.carbondesignsystem.com/" target="_blank">
 			Click the tile to open the Carbon Design System
 		</ibm-clickable-tile>
-		`
+		`,
+		props: {
+			skeleton: boolean("Set skeleton state", false)
+		}
 	}))
 	.add("Routable", () => ({
 		template: `
-			<ibm-clickable-tile [route]="['foo']">
+			<ibm-clickable-tile [route]="['foo']" [skeleton]="skeleton">
 				Click to trigger the <code>foo</code> route
 			</ibm-clickable-tile>
-			<ibm-clickable-tile [route]="['bar']">
+			<ibm-clickable-tile [route]="['bar']" [skeleton]="skeleton">
 				Click to trigger the <code>bar</code> route
 			</ibm-clickable-tile>
 			<router-outlet></router-outlet>
-		`
+		`,
+		props: {
+			skeleton: boolean("Set skeleton state", false)
+		}
 	}))
 	.add("Selectable", () => ({
 		template: `
 			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile1" [selected]="true" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
+			skeleton: boolean("Set skeleton state", false),
 			selected: action("tile selected")
 		}
 	}))
 	.add("Multi-select", () => ({
 		template: `
 			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
-				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile1" [selected]="true" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
+			skeleton: boolean("Set skeleton state", false),
 			selected: action("tile selected")
 		}
 	}))
 	.add("Expandable", () => ({
 		template: `
-		<ibm-expandable-tile>
+		<ibm-expandable-tile [skeleton]="skeleton">
 			<span class="bx--tile-content__above-the-fold" style="height: 200px">Above the fold content here</span>
 			<span class="bx--tile-content__below-the-fold" style="height: 400px">Below the fold content here</span>
 		</ibm-expandable-tile>
-		`
+		`,
+		props: {
+			skeleton: boolean("Set skeleton state", false)
+		}
 	}))
 	.add("Documentation", () => ({
 		template: `

@@ -29,7 +29,7 @@ import { Router } from "@angular/router";
 		[href]="href"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
-		<ng-content></ng-content>
+		<ng-content *ngIf="!skeleton"></ng-content>
 	</a>`
 })
 export class ClickableTile {
@@ -60,6 +60,7 @@ export class ClickableTile {
 	 */
 	@Input() routeExtras: any;
 
+	@Input() skeleton = false;
 	/**
 	 * Emits the navigation status promise when the link is activated
 	 */

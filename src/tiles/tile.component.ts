@@ -1,6 +1,7 @@
 import {
 	Component,
-	HostBinding
+	HostBinding,
+	Input
 } from "@angular/core";
 
 /**
@@ -20,8 +21,9 @@ import {
  */
 @Component({
 	selector: "ibm-tile",
-	template: `<ng-content></ng-content>`
+	template: `<ng-content *ngIf="!skeleton"></ng-content>`
 })
 export class Tile {
+	@Input() skeleton = false;
 	@HostBinding("class.bx--tile") tileClass = true;
 }
