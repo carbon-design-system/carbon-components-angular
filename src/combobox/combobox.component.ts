@@ -260,7 +260,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * Subscribes to select events and handles focus/filtering/initial list updates
 	 */
 	ngAfterContentInit() {
-		console.log(this.pills.length);
 		if (this.view) {
 			this.view.type = this.type;
 			this.view.select.subscribe(event => {
