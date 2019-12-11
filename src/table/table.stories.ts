@@ -62,6 +62,7 @@ const getProps = (more = {}) => {
 		showSelectionColumn: boolean("showSelectionColumn", true),
 		striped: boolean("striped", false),
 		sortable: boolean("sortable", true),
+		skeleton: boolean("skeleton", false),
 		isDataGrid: boolean("Data grid keyboard interactions", true)
 	}, more);
 };
@@ -104,6 +105,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-table
 				[model]="model"
 				[size]="size"
+				[skeleton]="skeleton"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped"
 				[sortable]="sortable"
@@ -123,6 +125,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-no-data-table
 				[model]="model"
 				[size]="size"
+				[skeleton]="skeleton"
 				[showSelectionColumn]="showSelectionColumn"
 				[striped]="striped">
 				<tbody><tr><td class="no-data" colspan="3"><div>No data.</div></td></tr></tbody>
@@ -213,6 +216,7 @@ storiesOf("Components|Table", module).addDecorator(
 				[model]="model"
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[skeleton]="skeleton"
 				[striped]="striped"
 				[sortable]="sortable"
 				[isDataGrid]="isDataGrid">
@@ -233,6 +237,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-expansion-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[skeleton]="skeleton"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-expansion-table>
@@ -252,6 +257,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-custom-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[skeleton]="skeleton"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-custom-table>
@@ -271,6 +277,7 @@ storiesOf("Components|Table", module).addDecorator(
 			<app-overflow-table
 				[size]="size"
 				[showSelectionColumn]="showSelectionColumn"
+				[skeleton]="skeleton"
 				[striped]="striped"
 				[isDataGrid]="isDataGrid">
 			</app-overflow-table>
@@ -287,7 +294,11 @@ storiesOf("Components|Table", module).addDecorator(
 				<h4 ibmTableHeaderTitle>{{title}}</h4>
 				<p ibmTableHeaderDescription>{{description}}</p>
 			</ibm-table-header>
-			<app-pagination-table [totalDataLength]="totalDataLength" [model]="model"></app-pagination-table>
+			<app-pagination-table
+				[skeleton]="skeleton"
+				[totalDataLength]="totalDataLength"
+				[model]="model">
+			</app-pagination-table>
 		</ibm-table-container>
 		`,
 		props: getProps({
