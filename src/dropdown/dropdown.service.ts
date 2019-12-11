@@ -24,7 +24,7 @@ export class DropdownService implements OnDestroy {
 	 * Maintains an Event Observable Subscription for the global requestAnimationFrame.
 	 * requestAnimationFrame is tracked only if the `Dropdown` is appended to the body otherwise we don't need it
 	 */
-	protected animationFrameSubscription: Subscription = new Subscription();
+	protected animationFrameSubscription = new Subscription();
 
 	protected _offset = defaultOffset;
 
