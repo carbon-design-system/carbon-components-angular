@@ -52,7 +52,7 @@ class ToastStory {
 	}
 }
 
-storiesOf("Notification", module)
+storiesOf("Components|Notification", module)
 	.addDecorator(
 		moduleMetadata({
 			declarations: [

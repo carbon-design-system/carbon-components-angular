@@ -47,7 +47,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onValueChange($event)">
+						(valueChange)="onValueChange($event)"
+						(click)="openFlatpickrInstance()">
 					</ibm-date-picker-input>
 				</div>
 
@@ -63,7 +64,8 @@ import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-selec
 						[invalid]="invalid"
 						[invalidText]="invalidText"
 						[skeleton]="skeleton"
-						(valueChange)="onRangeValueChange($event)">
+						(valueChange)="onRangeValueChange($event)"
+						(click)="openFlatpickrInstance()">
 					</ibm-date-picker-input>
 				</div>
 			</div>
@@ -217,7 +219,9 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 	 */
 	writeValue(value: (Date | string)[]) {
 		this.value = value;
-		this.setDateValues(this.value);
+		if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
+			this.setDateValues(this.value);
+		}
 	}
 
 	registerOnChange(fn: any) {
@@ -264,6 +268,12 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			this.setDateValues([this.flatpickrInstance.selectedDates[0], date]);
 			this.doSelect(this.flatpickrInstance.selectedDates);
 		}
+	}
+
+	// FlatpickrInstance needs to be opened like this when calendar Icon is clicked to avoid the error:
+	// Property 'flatpickrInstance' is protected and only accessible within class 'DatePicker' and its subclasses.
+	openFlatpickrInstance() {
+		this.flatpickrInstance.open();
 	}
 
 	/**
@@ -330,29 +340,30 @@ export class DatePicker implements OnDestroy, OnChanges, AfterViewChecked {
 			// we can either set a date value or an empty string, so we start with an empty string
 			let singleDate = "";
 			// if date is a string, parse and format
-			if (typeof dates[0] === "string") {
-				singleDate = this.flatpickrInstance.parseDate(dates[0], this.dateFormat);
+			if (typeof this.flatpickrInstance.selectedDates[0] === "string") {
+				singleDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 				singleDate = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
 			// if date is not a string we can assume it's a Date and we should format
-			} else if (!!dates[0]) {
-				singleDate = this.flatpickrInstance.formatDate(dates[0], this.dateFormat);
+			} else if (!!this.flatpickrInstance.selectedDates[0]) {
+				singleDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 			}
-			// apply the value
-			singleInput.value = singleDate;
 
 			if (rangeInput) {
 				// we can either set a date value or an empty string, so we start with an empty string
 				let rangeDate = "";
 				// if date is a string, parse and format
-				if (typeof dates[1] === "string") {
-					rangeDate = this.flatpickrInstance.parseDate(dates[1].toString(), this.dateFormat);
+				if (typeof this.flatpickrInstance.selectedDates[1] === "string") {
+					rangeDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[1].toString(), this.dateFormat);
 					rangeDate = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
 				// if date is not a string we can assume it's a Date and we should format
-				} else if (!!dates[1]) {
-					rangeDate = this.flatpickrInstance.formatDate(dates[1], this.dateFormat);
+				} else if (!!this.flatpickrInstance.selectedDates[1]) {
+					rangeDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[1], this.dateFormat);
 				}
-				// apply the value
-				rangeInput.value = rangeDate;
+				setTimeout(() => {
+					// apply the values
+					rangeInput.value = rangeDate;
+					singleInput.value = singleDate;
+				});
 			}
 		}
 	}

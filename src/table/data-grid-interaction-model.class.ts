@@ -151,31 +151,34 @@ export class DataGridInteractionModel {
 	 */
 	handleKeyboardEvent(event: KeyboardEvent) {
 		const currentCell = this.tableAdapter.getCell(this.currentRow, this.currentColumn);
+		let currentColumn = this.tableAdapter.findColumnIndex(currentCell);
+		let currentRow = this.tableAdapter.findRowIndex(currentCell);
+
 		switch (event.key) {
 			case "Right": // IE specific value
 			case "ArrowRight":
 				event.preventDefault();
-				// add the colspan since getColumnFromCell will return the
+				// add the colspan since findColumnIndex will return the
 				// first column containing the cell (of N columns it may span)
 				// and we want to navigate to the next "real" column
-				this.goToColumn(this.tableAdapter.findColumnIndex(currentCell) + currentCell.colSpan);
+				this.goToColumn(currentColumn + currentCell.colSpan);
 				break;
 			case "Left": // IE specific value
 			case "ArrowLeft":
 				event.preventDefault();
-				// we only ever need to subtract 1 from the column, since getColumnFromCell returns the
+				// we only ever need to subtract 1 from the column, since findColumnIndex returns the
 				// first of N columns containing the cell
-				this.goToColumn(this.tableAdapter.findColumnIndex(currentCell) - 1);
+				this.goToColumn(currentColumn - 1);
 				break;
 			case "Down": // IE specific value
 			case "ArrowDown":
 				event.preventDefault();
-				this.goToRow(this.currentRow + 1);
+				this.goToRow(currentRow + currentCell.rowSpan);
 				break;
 			case "Up": // IE specific value
 			case "ArrowUp":
 				event.preventDefault();
-				this.goToRow(this.currentRow - 1);
+				this.goToRow(currentRow - 1);
 				break;
 			case "Home":
 				event.preventDefault();
@@ -218,7 +221,7 @@ export class DataGridInteractionModel {
 	}
 
 	/**
-	 * Jump to a specific row without chaning the column
+	 * Jump to a specific row without changing the column
 	 *
 	 * @param index row to jump to
 	 */

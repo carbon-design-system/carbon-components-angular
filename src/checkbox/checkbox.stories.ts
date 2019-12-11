@@ -4,7 +4,7 @@ import { withKnobs, boolean, text } from "@storybook/addon-knobs/angular";
 
 import { CheckboxModule, DocumentationModule } from "../";
 
-storiesOf("Checkbox", module).addDecorator(
+storiesOf("Components|Checkbox", module).addDecorator(
 	moduleMetadata({
 		imports: [CheckboxModule, DocumentationModule]
 	})
