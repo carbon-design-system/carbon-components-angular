@@ -148,7 +148,7 @@ class NgModelFileUploaderStory {
 	}
 }
 
-storiesOf("File Uploader", module)
+storiesOf("Components|File Uploader", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [FileUploaderModule, NotificationModule, ButtonModule, DocumentationModule],

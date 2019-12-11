@@ -36,7 +36,7 @@ import { OverflowMenuDirective } from "./overflow-menu.directive";
 			role="button"
 			aria-haspopup="true"
 			class="bx--overflow-menu"
-			placement="bottom"
+			[placement]="placement"
 			tabindex="0">
 			<svg focusable="false" class="bx--overflow-menu__icon" width="3" height="15" viewBox="0 0 3 15">
 				<g fill-rule="evenodd">
@@ -74,6 +74,8 @@ export class OverflowMenu {
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
 	@Input() flip = false;
+
+	@Input() placement: "bottom" | "top" = "bottom";
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 

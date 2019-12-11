@@ -60,16 +60,16 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 			'bx--dropdown--disabled bx--list-box--disabled': disabled,
 			'bx--dropdown--invalid': invalid
 		}">
-		<button
+		<div
 			type="button"
 			#dropdownButton
 			class="bx--list-box__field"
 			[ngClass]="{'a': !menuIsClosed}"
 			[attr.aria-expanded]="!menuIsClosed"
 			[attr.aria-disabled]="disabled"
-			(click)="toggleMenu()"
+			(click)="disabled ? $event.stopPropagation() : toggleMenu()"
 			(blur)="onBlur()"
-			[disabled]="disabled">
+			[attr.disabled]="disabled ? true : null">
 			<div
 				(click)="clearSelected()"
 				*ngIf="type === 'multi' && getSelectedCount() > 0"
@@ -105,7 +105,7 @@ import { scrollableParentsObservable, isVisibleInContainer } from "./../utils/sc
 				[attr.aria-label]="menuButtonLabel"
 				[ngClass]="{'bx--list-box__menu-icon--open': !menuIsClosed }">
 			</ibm-icon-chevron-down16>
-		</button>
+		</div>
 		<div
 			#dropdownMenu
 			[ngClass]="{
