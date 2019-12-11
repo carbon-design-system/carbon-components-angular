@@ -64,7 +64,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * `Subscription` used to update placement in the event of a window resize.
 	 */
-	protected resizeSubscription: Subscription = new Subscription();
+	protected resizeSubscription = new Subscription();
 	/**
 	 * Subscription to all the scrollable parents `scroll` event
 	 */
