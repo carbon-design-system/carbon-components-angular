@@ -2,6 +2,7 @@ import {
 	Component,
 	Input
 } from "@angular/core";
+import { TableItem } from "./../table-item.class";
 
 @Component({
 	// tslint:disable-next-line: component-selector
@@ -14,7 +15,7 @@ import {
 	`
 })
 export class TableData {
-	@Input() item;
+	@Input() item: TableItem;
 
 	@Input() skeleton = false;
 }
