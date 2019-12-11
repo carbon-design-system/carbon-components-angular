@@ -8,7 +8,7 @@ import {
 
 import { ToggleModule, DocumentationModule } from "../";
 
-storiesOf("Toggle", module).addDecorator(
+storiesOf("Components|Toggle", module).addDecorator(
 	moduleMetadata({
 		imports: [ToggleModule, DocumentationModule]
 	})
