@@ -216,10 +216,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	 * }
 	 * ```
 	 */
-	@Output() submit: EventEmitter<any> = new EventEmitter<any>();
+	@Output() submit = new EventEmitter<any>();
 	/** emits an empty event when the menu is closed */
-	@Output() close: EventEmitter<any> = new EventEmitter<any>();
-	@Output() search: EventEmitter<any> = new EventEmitter<any>();
+	@Output() close = new EventEmitter<any>();
+	@Output() search = new EventEmitter<any>();
 	/** ContentChild reference to the instantiated dropdown list */
 	@ContentChild(AbstractDropdownView) view: AbstractDropdownView;
 	@ViewChild("dropdownMenu") dropdownMenu;
