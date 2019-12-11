@@ -50,7 +50,7 @@ class NotificationActionStory implements OnInit {
 	@Input() showClose = true;
 	@Input() lowContrast = false;
 
-	@Output() actionClicked: EventEmitter<any> = new EventEmitter();
+	@Output() actionClicked = new EventEmitter();
 
 	actionSubject = new Subject<any>();
 
