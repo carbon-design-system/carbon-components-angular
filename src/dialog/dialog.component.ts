@@ -70,7 +70,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	// add a new subscription temporarily so that contexts (such as tests)
 	// that don't run ngAfterViewInit have something to unsubscribe in ngOnDestroy
-	protected scrollSubscription: Subscription = new Subscription();
+	protected scrollSubscription = new Subscription();
 
 	protected visibilitySubscription = new Subscription();
 	/**
