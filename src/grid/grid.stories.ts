@@ -20,9 +20,9 @@ storiesOf("Components|Grid", module)
 					[leftGutter]="leftGutter"
 					[rightGutter]="rightGutter"
 					[condensed]="rowCondensed">
-              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">First Column</div>
-					<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">Second column</div>
-					<div ibmCol class="custom-class-example" [columnNumbers]="{'md':2, 'sm': 12}">Third Column</div>
+              		<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">First Column</div>
+					<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Second column</div>
+					<div ibmCol class="custom-class-example" [columnNumbers]="{'md': 2, 'sm': 12}">Third Column</div>
             	</div>
          	</div>
 		`,
