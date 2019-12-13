@@ -9,6 +9,7 @@ import { DocumentationModule } from "./../documentation-component/documentation.
 import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { Carbon32Module } from "@carbon/icons-angular/lib/carbon/32";
+import { Fade16Module } from "@carbon/icons-angular/lib/fade/16";
 
 @Component({
 	selector: "app-bar",
@@ -29,6 +30,7 @@ storiesOf("Components|UI Shell", module)
 			imports: [
 				UIShellModule,
 				Carbon32Module,
+				Fade16Module,
 				SearchModule,
 				DialogModule,
 				DocumentationModule,
@@ -271,6 +273,21 @@ storiesOf("Components|UI Shell", module)
 					<ibm-sidenav-item [route]="['foo']">Link</ibm-sidenav-item>
 				</ibm-sidenav-menu>
 			</ibm-sidenav>
+			<div>
+				<router-outlet></router-outlet>
+			</div>
+		`
+	}))
+	.add("Right Panel with router", () => ({
+		template: `
+			<ibm-panel expanded="true">
+				<ibm-switcher-list>
+					<ibm-switcher-list-item [route]="['foo']">Switcher item one</ibm-switcher-list-item>
+					<ibm-switcher-list-item [route]="['bar']">Switcher item two</ibm-switcher-list-item>
+					<ibm-switcher-list-item [route]="['foo']">Switcher item three</ibm-switcher-list-item>
+					<ibm-switcher-list-item [route]="['bar']">Switcher item four</ibm-switcher-list-item>
+				</ibm-switcher-list>
+			</ibm-panel>
 			<div>
 				<router-outlet></router-outlet>
 			</div>
