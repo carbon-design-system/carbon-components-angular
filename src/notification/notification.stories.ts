@@ -2,7 +2,13 @@ import { storiesOf, moduleMetadata } from "@storybook/angular";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs/angular";
 
-import { Component, Input, EventEmitter, Output, OnInit } from "@angular/core";
+import {
+	Component,
+	Input,
+	EventEmitter,
+	Output,
+	OnInit
+} from "@angular/core";
 
 import { NotificationModule, NotificationService } from "./notification.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
