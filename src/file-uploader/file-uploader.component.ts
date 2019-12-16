@@ -146,13 +146,13 @@ export class FileUploader {
 
 	@Output() filesChange = new EventEmitter<any>();
 
-	protected onTouchedCallback: () => void = noop;
-	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
-
 	/**
 	 * Controls the state of the drag and drop file container
 	 */
-	protected dragOver = false;
+	public dragOver = false;
+
+	protected onTouchedCallback: () => void = noop;
+	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
 	constructor(protected i18n: I18n) {
 		FileUploader.fileUploaderCount++;
