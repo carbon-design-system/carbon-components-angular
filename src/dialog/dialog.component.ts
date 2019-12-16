@@ -110,9 +110,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		// fallback if elementService isn't available
 		if (!this.elementService) {
-			this.resizeSubscription = Dialog.resizeObservable.subscribe(() => {
-				this.placeDialog();
-			});
+			this.resizeSubscription = Dialog.resizeObservable.subscribe(this.placeDialog);
 		}
 
 		// run any additional initialization code that consuming classes may have
