@@ -34,7 +34,9 @@ import { FileItem } from "./file-item.interface";
 			</ibm-icon-close16>
 		</span>
 		<span *ngIf="fileItem.state === 'upload'">
-			<ibm-loading size="sm"></ibm-loading>
+			<div class="bx--inline-loading__animation">
+				<ibm-loading size="sm"></ibm-loading>
+			</div>
 		</span>
 		<span
 			*ngIf="fileItem.state === 'complete'"
