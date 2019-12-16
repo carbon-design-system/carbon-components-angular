@@ -32,6 +32,7 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[stickyHeader]="stickyHeader"
+			[skeleton]="skeleton"
 			[isDataGrid]="isDataGrid"
 			[striped]="striped">
 		</ibm-table>
@@ -44,6 +45,7 @@ export class OverflowTableStory implements OnInit {
 	@Input() striped = true;
 	@Input() isDataGrid = false;
 	@Input() stickyHeader = false;
+	@Input() skeleton = false;
 
 	@ViewChild("overflowMenuItemTemplate")
 	protected overflowMenuItemTemplate: TemplateRef<any>;

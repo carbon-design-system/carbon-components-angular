@@ -31,13 +31,16 @@ import { TableItem } from "../table-item.class";
 			style="display: block; width: 650px;"
 			[model]="model"
 			(sort)="paginationSort($event)"
-			[stickyHeader]="stickyHeader">
+			[stickyHeader]="stickyHeader"
+			[skeleton]="skeleton">
 		</ibm-table>
 		<ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination>
 	`
 })
 export class PaginationTableStory implements OnInit {
 	@Input() model = new TableModel();
+
+	@Input() skeleton = false;
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;

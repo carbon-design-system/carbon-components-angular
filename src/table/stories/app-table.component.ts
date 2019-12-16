@@ -24,6 +24,7 @@ function sort(model, index: number) {
 			style="display: block; width: 650px;"
 			[model]="model"
 			[size]="size"
+			[skeleton]="skeleton"
 			[showSelectionColumn]="true"
 			[enableSingleSelect]="false"
 			[stickyHeader]="stickyHeader"
@@ -43,6 +44,7 @@ export class TableStory implements OnInit, OnChanges {
 	@Input() isDataGrid = false;
 	@Input() noData = false;
 	@Input() stickyHeader = false;
+	@Input() skeleton = false;
 
 	ngOnInit() {
 		this.model.header = [
@@ -57,7 +59,7 @@ export class TableStory implements OnInit, OnChanges {
 
 		this.model.rowsSelectedChange.subscribe(event => console.log(event));
 
-		if (!this.noData) {
+		if (!this.noData && !this.skeleton) {
 			this.model.data = [
 				[new TableItem({ data: "Name 1" }), new TableItem({ data: "qwer" })],
 				[new TableItem({ data: "Name 3" }), new TableItem({ data: "zwer" })],

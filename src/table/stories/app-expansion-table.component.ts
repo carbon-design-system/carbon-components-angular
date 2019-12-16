@@ -41,6 +41,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
 			[stickyHeader]="stickyHeader"
+			[skeleton]="skeleton"
 			[striped]="striped"
 			(sort)="customSort($event)"
 			[isDataGrid]="isDataGrid">
@@ -54,6 +55,7 @@ export class ExpansionTableStory implements OnInit {
 	@Input() striped = true;
 	@Input() isDataGrid = false;
 	@Input() stickyHeader = false;
+	@Input() skeleton = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
