@@ -246,7 +246,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit {
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
 
-	protected showCloseButton = false;
+	protected showClearButton = false;
 
 	/**
 	 * Creates an instance of ComboBox.
