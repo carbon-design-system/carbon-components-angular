@@ -21,7 +21,10 @@ import {
  */
 @Component({
 	selector: "ibm-tile",
-	template: `<ng-content *ngIf="!skeleton"></ng-content>`
+	template: `
+		<ng-content *ngIf="!skeleton"></ng-content>
+		<label *ngIf="skeleton"></label>
+		`
 })
 export class Tile {
 	@Input() skeleton = false;

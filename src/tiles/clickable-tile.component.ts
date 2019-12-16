@@ -22,6 +22,7 @@ import { Router } from "@angular/router";
 	selector: "ibm-clickable-tile",
 	template: `
 	<a
+		*ngIf="!skeleton"
 		ibmLink
 		class="bx--tile bx--tile--clickable"
 		tabindex="0"
@@ -29,8 +30,11 @@ import { Router } from "@angular/router";
 		[href]="href"
 		[attr.target]="target"
 		[attr.aria-disabled]="disabled">
-		<ng-content *ngIf="!skeleton"></ng-content>
-	</a>`
+		<ng-content></ng-content>
+	</a>
+
+	<a *ngIf="skeleton" class="bx--tile bx--tile--clickable"></a>
+	`
 })
 export class ClickableTile {
 	/**

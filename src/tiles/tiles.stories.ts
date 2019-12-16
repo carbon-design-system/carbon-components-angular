@@ -100,10 +100,10 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Selectable", () => ({
 		template: `
-			<ibm-tile-group (selected)="selected($event)" [multiple]="false">
-				<ibm-selection-tile value="tile1" [selected]="true" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
+			<ibm-tile-group (selected)="selected($event)" [multiple]="false" [skeleton]="skeleton">
+				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
@@ -113,10 +113,10 @@ storiesOf("Components|Tiles", module)
 	}))
 	.add("Multi-select", () => ({
 		template: `
-			<ibm-tile-group (selected)="selected($event)" [multiple]="true">
-				<ibm-selection-tile value="tile1" [selected]="true" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile2" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
-				<ibm-selection-tile value="tile3" [skeleton]="skeleton">Selectable Tile</ibm-selection-tile>
+			<ibm-tile-group (selected)="selected($event)" [multiple]="true" [skeleton]="skeleton">
+				<ibm-selection-tile value="tile1" [selected]="true">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile2">Selectable Tile</ibm-selection-tile>
+				<ibm-selection-tile value="tile3">Selectable Tile</ibm-selection-tile>
 			</ibm-tile-group>
 		`,
 		props: {
