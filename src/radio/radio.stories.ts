@@ -4,7 +4,7 @@ import { withKnobs, text, select } from "@storybook/addon-knobs/angular";
 
 import { RadioModule, DocumentationModule } from "../";
 
-storiesOf("Radio", module).addDecorator(
+storiesOf("Components|Radio", module).addDecorator(
 	moduleMetadata({
 		imports: [RadioModule, DocumentationModule]
 	})

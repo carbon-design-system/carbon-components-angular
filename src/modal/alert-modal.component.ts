@@ -1,6 +1,8 @@
 import {
 	Component,
-	Inject
+	Inject,
+	ViewChild,
+	AfterViewInit
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
 
@@ -50,7 +52,7 @@ import { BaseModal } from "./base-modal.class";
 				<p class="bx--modal-header__label bx--type-delta">{{modalLabel}}</p>
       			<p class="bx--modal-header__heading bx--type-beta">{{modalTitle}}</p>
 			</ibm-modal-header>
-			<div class="bx--modal-content">
+			<div #content class="bx--modal-content">
 				<p [innerHTML]="modalContent"></p>
 			</div>
 			<ibm-modal-footer *ngIf="buttons.length > 0">
@@ -67,7 +69,8 @@ import { BaseModal } from "./base-modal.class";
 		</ibm-modal>
 	`
 })
-export class AlertModal extends BaseModal {
+export class AlertModal extends BaseModal implements AfterViewInit {
+	@ViewChild("content") content;
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
@@ -88,6 +91,16 @@ export class AlertModal extends BaseModal {
 			if (!button.type) {
 				button.type = "secondary";
 			}
+		}
+	}
+
+	ngAfterViewInit() {
+		if (!this.content) { return false; }
+		const element = this.content.nativeElement;
+		if (element.scrollHeight > element.clientHeight) {
+			element.tabIndex = 0;
+		} else {
+			element.tabIndex = -1;
 		}
 	}
 

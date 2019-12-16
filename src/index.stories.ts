@@ -162,7 +162,7 @@ class WelcomeStory implements OnInit, OnDestroy {
 }
 
 
-storiesOf("Welcome", module)
+storiesOf("Components|Welcome", module)
 .addDecorator(
 	moduleMetadata({
 		imports: [ButtonModule, Bee20Module, Document20Module],

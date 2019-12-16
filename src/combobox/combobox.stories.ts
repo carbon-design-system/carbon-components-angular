@@ -5,7 +5,7 @@ import { withKnobs, text, boolean } from "@storybook/addon-knobs/angular";
 import { ComboBoxModule } from "./combobox.module";
 import { DocumentationModule } from "./../documentation-component/documentation.module";
 
-storiesOf("Combobox", module)
+storiesOf("Components|Combobox", module)
 	.addDecorator(
 		moduleMetadata({
 			imports: [
