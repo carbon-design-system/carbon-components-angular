@@ -40,6 +40,7 @@ class CustomHeaderItem extends TableHeaderItem {
 			[model]="model"
 			[size]="size"
 			[showSelectionColumn]="showSelectionColumn"
+			[skeleton]="skeleton"
 			[striped]="striped"
 			(sort)="customSort($event)"
 			[isDataGrid]="isDataGrid">
@@ -52,6 +53,7 @@ export class ExpansionTableStory implements OnInit {
 	@Input() showSelectionColumn = true;
 	@Input() striped = true;
 	@Input() isDataGrid = false;
+	@Input() skeleton = false;
 
 	@ViewChild("customHeaderTemplate")
 	protected customHeaderTemplate: TemplateRef<any>;
